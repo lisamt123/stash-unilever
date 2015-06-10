@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CaseSettings xmlns="http://soap.sforce.com/2006/04/metadata">
+    <closeCaseThroughStatusChange>true</closeCaseThroughStatusChange>
+    <defaultCaseOwner>cec_auto@cec.prod</defaultCaseOwner>
+    <defaultCaseOwnerType>User</defaultCaseOwnerType>
+    <defaultCaseUser>mbrookes@unilever2.com</defaultCaseUser>
+    <emailToCase>
+        <enableEmailToCase>true</enableEmailToCase>
+        <enableHtmlEmail>true</enableHtmlEmail>
+        <enableOnDemandEmailToCase>true</enableOnDemandEmailToCase>
+        <enableThreadIDInBody>true</enableThreadIDInBody>
+        <enableThreadIDInSubject>false</enableThreadIDInSubject>
+        <notifyOwnerOnNewCaseEmail>false</notifyOwnerOnNewCaseEmail>
+        <overEmailLimitAction>Bounce</overEmailLimitAction>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email Portugal</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>atendimento.consumidor-pt@unilever.com</emailAddress>
+            <routingName>Atendimento ao Consumidor Unilever Jerónimo Martins</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email Benelux</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>info.benjerry@unilever.com</emailAddress>
+            <routingName>B&amp;J consumenten service</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email DACH</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>benjerry.oesterreich@unilever.com</emailAddress>
+            <routingName>Ben&amp;Jerry Service</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email DACH</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>benandjerry.beratungsservice@unilever.com</emailAddress>
+            <routingName>Ben&amp;Jerry Service</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email India</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>lever.care@unilever.com</emailAddress>
+            <routingName>CEC India Emails</routingName>
+            <saveEmailHeaders>true</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>White Mail</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>previewmisc@unileverconsumerlink.co.uk</emailAddress>
+            <routingName>CEC UK Scanned Letters</routingName>
+            <saveEmailHeaders>true</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email DACH</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>careline@dudarfst-produkte.de</emailAddress>
+            <routingName>Du-Darfst Service</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email Nordic</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>forbrugerkontakt.dk@unilever.com</emailAddress>
+            <routingName>Forbrugerkontakt</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email Nordic</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>forbrukerkontakt.no@unilever.com</emailAddress>
+            <routingName>Forbrukerkontakt</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email Hungary</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>vevoinfo@unilever.hu</emailAddress>
+            <routingName>Hungary Fogyasztói Kapcsolatok</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email Czech Republic</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>infolinka@unilever.com</emailAddress>
+            <routingName>Infolinka Unilever ČR a SR</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email DACH</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>knorr.beratungsservice@unilever.com</emailAddress>
+            <routingName>Knorr Service</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email Nordic</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>konsumentkontakt@unilever.com</emailAddress>
+            <routingName>Konsumenkontakt</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email Nordic</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>kuluttaja.palvelu@unilever.com</emailAddress>
+            <routingName>Kuluttajapalvelu</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email Spain</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>info.spain@unilever.com</emailAddress>
+            <routingName>Sercvicio de Atención al Consumidor</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email Italy</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>consumer-service.it@unilever.com</emailAddress>
+            <routingName>Servizio Consumatori – Unilever Italia</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email Poland</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>unilever@pl.teleperformance.com</emailAddress>
+            <routingName>Serwis Konsumenta Unilever</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email Baltics</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>unilever@telenordi.com</emailAddress>
+            <routingName>Unilever Baltics</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email UK</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>unilevercustomercare@unileverconsumerlink.co.uk</emailAddress>
+            <routingName>Unilever Consumer Care UK</routingName>
+            <saveEmailHeaders>true</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email France</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>service.plus@unilever.com</emailAddress>
+            <routingName>Unilever France Relations consommateurs</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email DACH</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>consumer.service-ch@unilever.com</emailAddress>
+            <routingName>Unilever Service</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email DACH</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>unilever.service@unilever.com</emailAddress>
+            <routingName>Unilever Service</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email DACH</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>unilever.oesterreich@unilever.com</emailAddress>
+            <routingName>Unilever Service</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email Benelux</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>consumer.service@unilever.com</emailAddress>
+            <routingName>Unilever consumenten service</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email Benelux</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>careline.belgium@unilever.com</emailAddress>
+            <routingName>Unilever service consommateurs</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <routingAddresses>
+            <addressType>EmailToCase</addressType>
+            <caseOrigin>Email Greece</caseOrigin>
+            <casePriority>2 - Medium</casePriority>
+            <createTask>true</createTask>
+            <emailAddress>unilever.greece@unilever.com</emailAddress>
+            <routingName>ΕΛΑΙΣ-Unilever Hellas Careline</routingName>
+            <saveEmailHeaders>false</saveEmailHeaders>
+            <taskStatus>Completed</taskStatus>
+        </routingAddresses>
+        <unauthorizedSenderAction>Discard</unauthorizedSenderAction>
+    </emailToCase>
+    <enableCaseFeed>true</enableCaseFeed>
+    <enableDraftEmails>true</enableDraftEmails>
+    <enableEarlyEscalationRuleTriggers>false</enableEarlyEscalationRuleTriggers>
+    <enableNewEmailDefaultTemplate>true</enableNewEmailDefaultTemplate>
+    <enableSuggestedArticlesApplication>false</enableSuggestedArticlesApplication>
+    <enableSuggestedArticlesCustomerPortal>false</enableSuggestedArticlesCustomerPortal>
+    <enableSuggestedArticlesPartnerPortal>false</enableSuggestedArticlesPartnerPortal>
+    <enableSuggestedSolutions>true</enableSuggestedSolutions>
+    <keepRecordTypeOnAssignmentRule>true</keepRecordTypeOnAssignmentRule>
+    <newEmailDefaultTemplateClass>cec_SmartTemplateLoaderHelper</newEmailDefaultTemplateClass>
+    <notifyContactOnCaseComment>false</notifyContactOnCaseComment>
+    <notifyDefaultCaseOwner>true</notifyDefaultCaseOwner>
+    <notifyOwnerOnCaseComment>false</notifyOwnerOnCaseComment>
+    <notifyOwnerOnCaseOwnerChange>false</notifyOwnerOnCaseOwnerChange>
+    <showFewerCloseActions>true</showFewerCloseActions>
+    <useSystemEmailAddress>true</useSystemEmailAddress>
+    <webToCase>
+        <caseOrigin>Web</caseOrigin>
+        <enableWebToCase>true</enableWebToCase>
+    </webToCase>
+</CaseSettings>
