@@ -1,0 +1,2 @@
+<apex:page standardController="Asset__c" extensions="WinatPOSAssetViewController" action="{!doAction}" >
+</apex:page>

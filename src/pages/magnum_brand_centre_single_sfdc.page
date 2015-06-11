@@ -1,0 +1,136 @@
+<apex:page showHeader="true" sidebar="false" standardController="Article__c" extensions="ArticleExtension">
+  
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36302283-1']);
+    _gaq.push(['_setDomainName', 'na9.visual.force.com']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>  
+        <link rel="stylesheet" href="{!URLFOR($Resource.magnum_brand_centre_resources, 'grid.css')}" type="text/css" media="screen, projection" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.shared_brand_centre_resources, 'brand_centers_structure.css')}" type="text/css" media="screen, projection" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.magnum_brand_centre_resources, 'style.css')}" type="text/css" media="screen, projection" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.magnum_brand_centre_resources, 'jquery.tipsy.css')}" type="text/css" media="screen, projection" />
+
+        <script src="https://www.google.com/jsapi" tye="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+        <script src="{!URLFOR($Resource.magnum_brand_centre_resources, 'jquery.tipsy.js')}"></script>
+        <script src="{!URLFOR($Resource.magnum_brand_centre_resources, 'jquery.tabify.js')}"></script>
+        <script src="{!URLFOR($Resource.magnum_brand_centre_resources, 'jquery.corner.js')}"></script>
+        <script src="{!URLFOR($Resource.magnum_brand_centre_resources, 'vallenato.js')}"></script>
+        <script src="{!URLFOR($Resource.magnum_brand_centre_resources, 'jcarousellite_1.0.1.min.js')}"></script>
+        <script src="{!URLFOR($Resource.magnum_brand_centre_resources, 'scripts.js')}"></script>
+        
+        <script type="text/javascript">
+        $(document).ready(function(){
+            if($.browser.msie){
+                $.getScript("{!URLFOR($Resource.ulw_brief_2_resources, 'js/PIE.js')}").done(function(){
+                    if (window.PIE) {
+                        $('.rounded').each(function() {
+                            PIE.attach(this);
+                        });
+                    }
+                });
+            }
+        });
+        </script>
+        
+        <!--
+        <div id="contentPage" class="icecream-in-corner">
+        -->
+        <div id="contentPage">
+        
+        <div id="innerPage">
+        <div class="container_12">
+
+            <div id="header" class="alpha omega grid_12">
+
+                 <div class="alpha omega grid_12">
+                   <ul id="main_menu">   
+                        <apex:repeat value="{!linksSections}" var="bs">                     
+                        <apex:outputtext value="<li>" escape="false" rendered="{!bs.Position__c == 'Horizontal Menu'}"/>
+                        <apex:outputlink value="#" rendered="{!bs.Position__c == 'Horizontal Menu'}"><apex:outputtext value="{!bs.Name}" rendered="{!bs.Position__c == 'Horizontal Menu'}"/></apex:outputlink>
+                        
+                        
+                            <div class="submenu">
+                          
+                           <apex:repeat value="{!brandsubcategory}" var="subcat">
+                           
+                           <apex:outputtext escape="false" value="<h4>" rendered="{!subcat.Brand_Link_Sections__c == bs.id && bs.Position__c == 'Horizontal Menu'}"/>
+                           <apex:outputtext value="{!subcat.Name}" rendered="{!subcat.Brand_Link_Sections__c == bs.id && bs.Position__c == 'Horizontal Menu'}"/>
+                           <apex:outputtext escape="false" value="</h4>" rendered="{!subcat.Brand_Link_Sections__c == bs.id && bs.Position__c == 'Horizontal Menu'}"/>
+                           
+                            
+                          
+                                  <apex:outputtext value="<ul>" escape="false" rendered="{!bs.Position__c == 'Horizontal Menu'}"/>
+                                 
+                                 
+                                 <apex:repeat value="{!brandlinks}" var="bl">                
+                              <apex:outputtext value="<li>" escape="false" rendered="{!bl.Sub_Categorys__c == subcat.id && bs.Position__c == 'Horizontal Menu' && subcat.Brand_Link_Sections__c == bs.id}"/>
+                                 <apex:outputlink value="{!bl.Link_Output__c}" rendered="{!bl.Sub_Categorys__c == subcat.id && bs.Position__c == 'Horizontal Menu' && subcat.Brand_Link_Sections__c == bs.id}">{!bl.Link_Name__c}</apex:outputlink>
+                                <apex:outputtext value="<li>" escape="false" rendered="{!bl.Sub_Categorys__c == subcat.id && bs.Position__c == 'Horizontal Menu' && subcat.Brand_Link_Sections__c == bs.id}"/>
+                                </apex:repeat>
+                                
+                                   <apex:outputtext value="</ul>" escape="false" rendered="{!bs.Position__c == 'Horizontal Menu'}"/>
+                              </apex:repeat>
+                                                                                 
+                            </div>
+                        <apex:outputtext value="</li>" escape="false" rendered="{!bs.Position__c == 'Horizontal Menu'}"/>                     
+                        </apex:repeat>
+                    </ul>
+                </div>
+
+                <div id="subnav">
+                    <ul>
+                        <li><a href="/apex/magnum_brand_centre_sfdc?id={!Article__c.uw_Brand__r.id}">Home</a></li>
+                        <li><a href="/apex/magnum_brand_centre_articles_sfdc?bid={!Article__c.uw_Brand__r.id}">All Stories</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="grid_12"><br /><br /></div>
+
+            <div class="alpha grid_4">
+<!--
+                <img src="{!URLFOR($Resource.magnum_brand_centre_resources, 'images/article.png')}" alt="" />
+-->
+                <img src="/sfc/servlet.shepherd/version/download/{!article__c.Picture_ID__c}" width="250" alt="{!article__c.Image_Caption__c}"/>
+            </div>
+
+            <div class="grid_8">
+                
+                <div class="singlearticle pagearticle">
+                    <p class="title">{!Article__c.Name}</p>
+                    <p class="subtitle">{!Article__c.Article_Subtitle__c}</p>
+                    <p class="author"><a href="/_ui/core/userprofile/UserProfilePage?u={!Article__c.AuthorUser__c}">{!BLANKVALUE(Article__c.Author__c, "")}</a></p>
+                    
+                    <p class="date"><apex:outputField value="{!Article__c.Publish_Date__c}"/></p>
+
+                    <div class="content">
+                        <apex:outputField value="{!Article__c.Article_Body__c}"/>
+                    </div>
+                    
+                    <div class="chatter-comments">
+                    
+                    <a id="follow"/>
+                            <chatter:follow entityId="{!Article__c.Id}"/> 
+                            <chatter:feed entityId="{!Article__c.Id}"/>
+                    
+                    </div>
+                    
+                </div>
+              
+
+            </div><!--  end content  -->
+                           
+             <div style="clear:both"></div>
+        </div>
+        </div>
+        </div>
+</apex:page>

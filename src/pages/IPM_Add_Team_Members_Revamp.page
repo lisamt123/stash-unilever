@@ -1,0 +1,80 @@
+<apex:page standardController="IPM_Project__c" extensions="IPM_Taskview"  sidebar="false" >
+<apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmMilestonesAndTasks.css')}"/>
+<style>
+    .noPadright{padding-right:0px !important;} 
+    .noPadleft{padding-left:0px !important;}
+    .navbar-nav li:last-child > a > span{margin-top:0px !important;}   
+    .ipmHeading{padding:0px 0px 5px !important;}
+    .editButton{position: relative;left: 50px;}
+    .teamHeading{border-bottom:1px solid #7EA19D;padding-bottom:10px;}
+    .pageTitlefont{font-size: 1.8em;font-weight: bold;}
+    
+    /* content styles */
+    .teamLeftarrow{top: 4px;position: relative;}
+    .srchImage {cursor: pointer;width: 18px;position: relative;right: 7px;top: -23px;float: right;height: 18px;}
+    .searchBox input {width: 100%;border: 1px solid #333333;border-radius: 4px;height: 30px;padding-left: 5px;}
+    .addTeamCustmargin{margin-top:20px;}
+</style>
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" />
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <apex:composition template="ipmTemplateRevamp2">
+        <apex:define name="body">
+            <apex:includeScript value="{!URLFOR($Resource.IPM_Resources, 'js/functions.js')}"/> 
+            <c:ipmPageHeader pageTitle="Laundry"/>
+            <div class="gradientbg">
+                <div class="row">
+                    <c:ipmProjectDetailsRevampNew />        
+                </div>
+                <div class="row">
+                    <c:ipmNavMenuRevamp2 activeItem="coreParameters"/>
+                </div>
+            </div>
+            <div class="ipmContent">
+                <div class="blue teamHeading">
+                    <div class="row">
+                        <div class="col-sm-6 pageTitlefont">
+                            <span class="SecButtonSet teamLeftarrow">
+                                <a class="icoButton arrow-left" href=""></a>
+                            </span>
+                            Add Team Members
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 noPadleft addTeamCustmargin">
+                        <div class="col-sm-4 searchBox">
+                           <input type="text" placeholder="Search from Global List (Type Name)" id="srchTxt" />
+                           <apex:image styleClass="srchImage" value="{!URLFOR($Resource.ipmResourceRevamp, 'images/search.svg')}" onclick="searchProjects();" />
+                           <!--<apex:image styleClass="srchImage" value="" onclick="searchProjects();" />-->
+                        </div>
+                    </div>
+                </div>                        
+            </div>
+            <div id="ipmModalDiv">
+                <c:ipmModalRevamp />
+            </div>
+             <div id="ipmModalEdit" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div id="ipmDeleteModalDiv">
+                <c:ipmConfirmModalRevamp />
+            </div>
+            <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmMilestonesAndTasks.css')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmHeader-new.css')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/functions.js')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmModal1.css')}"/> 
+            <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/ipmAccordion.js')}"/>
+            <script>
+                 var jq= jQuery.noConflict();
+                 
+            </script>
+        </apex:define>
+    </apex:composition>
+</apex:page>

@@ -1,0 +1,378 @@
+<apex:page controller="AF_BonusMatrixOverrideController" showheader="false" >
+ <script>
+     function isNumberKey(evt)
+       {
+          var charCode = (evt.which) ? evt.which : event.keyCode;
+          var result = false;
+          var errorMsg = document.getElementById("regTitle");
+          if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+          {
+             errorMsg.innerHTML = "<b>Please enter numbers only.</b>";
+             result = false;
+          }
+          else
+          {
+           errorMsg.innerHTML = "";
+           result = true;         
+          }             
+          return result; 
+       }
+  </script>
+ <style>
+ .comment_box1{ 
+    margin-top: 5px;
+    width: 982px;
+    height: 93px;
+    margin-bottom: 5px;
+    border: 2px solid #74AE00;
+    border-radius: 7px;
+    resize: none;
+    }
+ .submit_btn{
+    background: none repeat scroll 0 0 #E400A7 !important;
+border: 1px solid red!important;
+border-radius: 5px !important;
+color: #FFFFFF!important;
+font-size: 14px!important;
+height: 30px;
+margin-top: 10px!important;
+/* padding-bottom: 20px; */
+/* padding-top: 5px; */
+width: 100px;
+/* margin-left: 470px !important; */
+float: right;
+margin-right: 205px!important;
+ }
+ 
+ .submit_btn_screen1_bonus{
+  background: none repeat scroll 0 0 #E400A7 !important;
+border: 1px solid red!important;
+border-radius: 5px !important;
+color: #FFFFFF!important;
+font-size: 14px!important;
+height: 30px;
+margin-top: 10px!important;
+/* padding-bottom: 20px; */
+/* padding-top: 5px; */
+width: 100px;
+/* margin-left: 470px !important; */
+float: left;
+margin-left: 80px!important;
+ }
+ 
+ 
+  .submit_btnblur{
+    background: none repeat scroll 0 0 #CCC !important;
+    border: 1px solid red!important;
+    border-radius: 5px !important;
+    color: #FFFFFF!important;
+    font-size: 16px!important;
+    height: 35px;
+    margin-top: 13px ;
+    padding-bottom: 20px;
+    padding-top: 5px;
+    width: 160px;
+    margin-left:100px !important;
+ }
+ .bPageBlock {
+border-top: 4px solid #74AE00!important;
+margin-bottom: 9px;
+background-color: #222;
+background-image: url(/img/bgPageBlockLeft.gif);
+background-repeat: no-repeat;
+background-position: left bottom;
+padding-bottom: 9px;
+clear: both;
+} 
+ .submit_btn_addcomment{
+ background: none repeat scroll 0 0 #004976 !important;
+<!--border: 1px solid red!important;-->
+border-radius: 5px !important;
+color: #FFFFFF!important;
+font-size: 14px!important;
+height: 30px;
+margin-top: -31px!important;
+padding-bottom: 0px;
+padding-top: 0px;
+width: 115px;
+margin-left: 400px!important;
+margin-bottom: 10px!important;
+ }
+ .heading_main{
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom:5px;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    }
+.heading_text{
+    color: black;
+    font-size: 20px;
+    margin-right: 20px;
+    padding: 7px 1px 8px 8px;
+}
+  .values1
+   {
+    background: none repeat scroll 0 0 #FFFFFF;
+border: 2px solid #74AE00;
+border-radius: 5px;
+color: #000000;
+font-size: 16px;
+height: 25px;
+margin-top: 5px;
+padding: 0;
+width: 120px;
+/* padding-top: 2px; */
+/* padding-left: 5px; */
+text-align: center;
+   }
+    
+  .values1_bonus
+   {
+  background: none repeat scroll 0 0 #FFFFFF;
+border: 2px solid #74AE00;
+border-radius: 5px;
+color: #000000;
+font-size: 16px;
+height: 25px;
+/* margin-top: 5px; */
+padding: 0;
+width: 120px;
+text-align: center;
+padding-top: 2px;
+padding-left: 5px;
+margin-left: 200px;
+   }
+   .values2_bonus
+   {
+    background: none repeat scroll 0 0 #FFFFFF;
+border: 2px solid #74AE00;
+border-radius: 5px;
+color: #000000;
+font-size: 16px;
+height: 25px;
+/* margin-top: 5px; */
+padding: 0;
+width: 120px;
+text-align: center;
+padding-top: 2px;
+padding-left: 5px;
+   }
+   
+   
+ </style>
+ <style>
+    .activeTab {background-color: #95BD4F;color: white;background-image: none;padding: 10px;cursor: pointer;font-size:16px;font-weight:bold;}
+    .inactiveTab { background-color: lightgrey; color:black; background-image:none;cursor: pointer;font-size:16px;}
+</style>
+ <apex:form id="frm">
+  
+  
+  <div class="row">           
+        <div class="col-lg-12 charttable1">         
+            <apex:image url="{!$Resource.header_new}" style="width:100%;height:37px;" />            
+        </div>          
+    </div>
+ 
+ <!-- <div class="heading_main">
+       <h1 class="heading_text"> Bonus Estimate </h1>
+      </div>-->
+ 
+ <apex:tabPanel switchType="ajax" id="MainPanel" tabClass="activeTab" inactiveTabClass="inactiveTab" >
+ <apex:tab label="Bonus Estimate" name="Bonus Estimate" id="BonusEstimate" >
+      <apex:pagemessages id="pm1"/>
+     <apex:pageBlock >
+     <div style="text-align: center!important;font-size:16px;font-weight:bold;"> <apex:outputText id="Billing" >Billing to {!BonusMatrixObj.Unilever_Entity_Name__c}</apex:outputText> </div>
+     </apex:pageBlock>
+     
+    <table  style="border: 2px solid #74AE00;border-radius: 10px; padding:0.8%;width: 66%;border-collapse:separate!important;float: left;/*margin-left: 147px;*/margin-bottom: 10px;">
+   <tr style="display: block;
+    font-weight: bold;
+   /* margin-bottom: 5px !important; */
+
+    margin-left: 37px !important;
+   /* margin-top: 5px !important;*/
+    width: 600px;">
+        <td style="display: inline; margin-right: 103px;"> <apex:outputText ></apex:outputText></td>
+         <td style="display: inline;"><!-- Bonus Matrix Fees -->
+         <span style="font-weight: bold; margin-left: 16px;"> <apex:outputText ><!-- {!agreedBaseFee} --></apex:outputText></span>
+         </td>
+         <td style="padding-left: 20px;font-size: 16px;padding-top:10px;">
+                 <span style="font-size: 16px; display: block;text-align: center;font-weight:bold;margin-left:93px;">Unilever Entity</span>  
+                <span style="margin-left:93px;margin-top: 5px;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 14px; display: block;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 145px;height: 25px;padding-top: 5px;">{!BonusMatrixObj.Unilever_Entity_Name__c}
+            </span>
+            </td>
+        <td style="padding-left: 20px;font-size: 16px;padding-top:10px;">
+                  <span style="font-size: 16px; display: block;text-align: center;font-weight:bold;">Agency Entity</span> 
+                <span style="margin-top: 5px;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 14px; display: block;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 145px;height: 25px;padding-top: 5px;"> {!BonusMatrixObj.Agency_Entity_Name__c}
+                </span>  
+            </td>
+            <br/>
+     </tr>
+     
+     <tr style="margin-top: 1px !important; font-weight: bold; margin-bottom: 10px ! important; display: block; margin-left: 60px ! important; width: 600px;">
+       <td style="font-size: 20px; margin-left: 18px ! important; display: inline;">
+       <apex:outputText >Bonus Value</apex:outputText></td>
+       
+      <td style="font-size: 20px; display: inline; margin-left: 100px ! important;">
+             <span style="font-size: 20px;font-weight:bold;">€ </span>
+              <span style="display: inline-block;margin-top: 5px;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 16px;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 125px;height: 25px;padding-top: 5px;">
+       <apex:outputText value="{0,number,###,###,###.##}">
+        <apex:param value="{!BonusMatrixObj.AF_Value__c}"/>
+       </apex:outputText>
+       </span>
+       </td>
+       
+       
+       <td style="font-size: 20px; display: inline; /* margin-bottom: 15px ! important;*/"><!-- <apex:outputText >{!oopsAgencyCurrencyCode}</apex:outputText> --></td>
+         <td style="display: inline; width: 20px; margin-left: 5px;"><apex:outputText ><!--{!oopsEstimateAgencyValue} --></apex:outputText> </td>
+     </tr>
+     
+     
+ <tr style="margin-top: 20px !important; font-weight: bold; display: block; margin-left:  60px ! important; width: 600px;">
+               <td style="font-size: 20px; margin-left: 18px ! important; display: inline;">
+               <apex:outputText >Override Bonus Value</apex:outputText>
+               </td>
+                
+               <td style="font-size: 20px; display: inline; margin-left: 10px ! important;">
+                    <span style="font-size: 20px;font-weight:bold;">€ </span>
+               <apex:inputtext value="{!BonusMatrixValue}" id="override1" onkeypress="return isNumberKey(event)" styleClass="values1" disabled="{!!isBonusEstimateEdit}">
+                    
+                     <apex:actionSupport action="{!CalculateLocalC}" reRender="TotalLocal" event="onchange"/>
+                     </apex:inputtext>
+                     <apex:inputText value="{!BonusMatrixObj.AF_Value__c}" id="override" onkeypress="return isNumberKey(event)" rendered="false" />
+                     
+                      <div style="font-family:arial;color:red;font-size:14px;text-align:center;display: inline;" id="regTitle"></div>
+                   <!--  <apex:inputText value="{!BonusMatrixObj.AF_Value__c}" id="override2" onkeypress="return isNumberKey(event)" />-->
+                     <!--  
+                    
+                 
+                     <apex:actionSupport event="onchange" action="{!Calculate_overrideamt}" reRender="convertedvalue"/>
+                    </apex:inputText>
+                     -->
+              </td>
+      
+    </tr>
+     
+     
+       <tr style="margin-top: 20px !important; font-weight: bold; display: inline-block; margin-left: 0px ! important; /* width: 515px; */">
+               <td style="font-size: 20px; margin-left: 18px ! important; display: inline-block;width: 197px;float: left;">
+                <apex:outputText >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                
+                </apex:outputText>
+               </td>
+     
+      <td style="display: inline-block;font-size:16px;width: 35px!important;/* border: 1px solid red; */float: left;padding-left: 65px;padding-right: 0px;margin-left: 3px;padding-top: 7px;">
+              
+      <apex:outputText style="margin-left: 42px;width: 54px!important;/*border: 1px solid red;*/display: inline-block;">
+            {!BonusMatrixObj.AF_Rate_Currency__c}
+      </apex:outputText>
+     
+      </td>
+     
+     <td style="display: inline-block;font-size:16px;width: 127px!important;float: left;">
+          <span style="display: inline-block;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 16px;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 125px;height: 25px;padding-top: 5px;">         
+            <apex:outputText value="{0,number,###,###,###.##}" id="TotalLocal" >
+                 <apex:param value="{!EsLocal}"/>
+               </apex:outputText>  
+          </span>
+             
+              </td>
+        
+     </tr>  
+     
+     
+     <tr style="margin-top: 5px !important;margin-bottom: 25px ! important; margin-left:  60px ! important; width: 600px;">
+       <td style="margin-left: 79px ! important; display: block;font-size:16px;margin-top: 10px;margin-bottom: 10px;">
+       <apex:outputPanel rendered="{!!IsReadyforPO}">
+        <apex:outputText style="margin-top:10px;" >Current Average Unilever Exchange Rate {!BonusMatrixObj.AF_Agency_Exchange_Rate__c}</apex:outputText>
+        </apex:outputPanel>
+       </td>
+       </tr>    
+         
+          <tr>
+     <td>
+                  <apex:commandButton value="Add Comment" onClick="commentsToggleOpen('commentAddTable');return false;" styleClass="submit_btn_addcomment"  />
+       <apex:commandButton value="Save" action="{!Save}" StyleClass="submit_btn_screen1_bonus" reRender="frm,pm1"  rendered="{!IF(AND(isBonusEstimateEdit,NOT(IsReadyforPO)),'true','false')}"/>      
+     </td>
+     </tr> 
+     
+     
+         
+     </table>     
+    
+
+      <c:AF_CommentsListComp ParentRecordValue="{!ParentId}" IsViewAllValue="false" ParentObjectTypeDesc="AF_Bonus_Matrix__c"  />  
+
+    
+    <c:AF_FieldHistoryComp ParentRecordValue="{!ParentId}" IsViewAllValue="false"  ParentObjectName="AF_Bonus_Matrix__c"/>
+     </apex:tab>
+     
+     <apex:tab label="PO Number" name="PO Number" id="PONumber" rendered="{!IF(AND(IsShowPOTab,IsReadyforPO),true,false)}">
+    <apex:pagemessages id="pm2"/>
+    <table align="Center" style="border: 2px solid #74AE00;border-radius: 10px; padding:0.8%;width: 50%;border-collapse:separate!important;/* float: left; *//* margin-left:30px; */" >
+    <tr>
+    <td style="width: 150px;">
+    <span style="font-size: 16px; font-weight:bold;display: inline;margin-left: 220px;">
+         <apex:outputLabel >PO Number</apex:outputLabel>
+         </span>
+    </td>
+    <!--<td>
+     <span style="font-size: 16px; font-weight:bold;display: inline;text-align: center;/* width: 339px!important; *//* border: 1px solid red; */margin-left: 27px;">
+           <apex:outputLabel >PO Value</apex:outputLabel>
+           </span>
+    </td>-->
+    </tr>
+    
+    <tr>
+    <td>
+       <apex:inputField id="po_number" value="{!BonusMatrixObj.PO_Number__c}" styleClass="values1_bonus" rendered="{!isPOEditable}"/>
+       <apex:outputPanel rendered="{!IsReadonlyPO}">
+       <span style="margin-top: 5px;margin-left:158px;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 16px; display: block;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 125px;height: 25px;padding-top: 5px;">
+       <apex:outputField value="{!BonusMatrixObj.PO_Number__c}" />
+       </span>
+        </apex:outputPanel>
+      </td>
+ <!--   <td>
+      <Apex:inputfield id="povalue" value="{!BonusMatrixObj.AF_PO_Value__c}" styleClass="values2_bonus" rendered="{!isPOEditable}"/>
+       <apex:outputPanel rendered="{!!isPOEditable}">
+       <span style="margin-top: 5px;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 16px; display: block;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 125px;height: 25px;padding-top: 5px;">
+       <apex:outputField value="{!BonusMatrixObj.AF_PO_Value__c}" rendered="{!!isPOEditable}" />
+       </span>
+       </apex:outputPanel>
+    </td>-->
+    </tr>
+    <tr>
+    <td colspan= "2">
+         
+       <!--  <apex:commandButton value="Save" action="{!SavePO}" style="Align:center" styleClass="save_btn" Rerender="pm2"/>-->
+     <apex:commandButton value="Save" action="{!SavePO}" StyleClass="btn submit_btn"  reRender="pm2" rendered="{!isPOEditable}"/>
+   <!--  <apex:commandButton value="Save" action="{!SavePO}" styleClass="submit_btnblur"   reRender="pm2"/> -->
+    
+    </td>
+    </tr>
+    </table>
+   
+    </apex:tab>
+     
+    </apex:tabPanel>   
+ </apex:form>
+ <script>
+  function commentsToggleOpen(elementId) 
+  {
+      //alert(elementId);
+      document.getElementById(elementId).style.display = 'block';
+  }
+  function commentsToggleClose(elementId) 
+
+  { 
+      //alert(elementId);
+      document.getElementById(elementId).style.display = 'none';
+  }
+  commentsToggleClose('commentAddTable');
+
+
+</script>
+</apex:page>

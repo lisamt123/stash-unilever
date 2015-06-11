@@ -1,0 +1,255 @@
+<apex:page controller="cp_PlannerController" tabStyle="cp_Planner__tab" title="Global Comms Planner - Calendar">
+
+    <!-- PAge settings and referenced CSS and JS -->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <c:cp_CommonIncludes />
+    <c:cp_CommonCSS />
+
+    <c:cp_CommonScripts />
+    <c:cp_PlannerScripts />
+    <!-- END PAGE HEADER -->
+
+
+    <!-- Start of page body -->
+    <a href="/apex/cp_DefaultPreference" style="position:absolute;top:20px;right:50px" class="button print" id="myDefaults">
+        My Defaults
+    </a>
+
+    <div id="notify-pop" />
+
+    <div id="side-bar-planner" style="display: block">
+
+        <div id="actions" class="sidebar-section"> 
+
+            <div id="warnings"></div>
+
+            <div class="filters">
+
+                <div class="filter global-filter">
+                    Global Event
+                    <input type="checkbox" id="btn-global-event" class="filter-global-event" />
+                </div>
+
+                <div class="filter jump-filter">
+
+                    <apex:form >
+                    
+                        <table id="ButtonTable">
+                            <tr>
+                                <td>
+                                    Jump To &nbsp; 
+                                    <apex:selectList styleClass="jump_to_month" value="{!month}" size="1" id="month">
+                                        <apex:selectOptions value="{!monthValues}"/>
+                                    </apex:selectList>
+
+                                    <apex:selectList styleClass="jump_to_year" value="{!year}" size="1" id="year">
+                                        <apex:selectOptions value="{!yearValues}"/>
+                                    </apex:selectList>
+
+                                    <input type="button" onclick="return jumpTo();" value="Go" class="btn" />
+                                </td>
+                            </tr>
+                        </table>
+
+                    </apex:form>  
+
+                    <div class="search" style="width:140px;">
+
+                        <div class="" style="width:140px;">
+                           <a id="btn-show-filter" href="#" class="btn-search">Advanced search</a>
+                        </div>
+
+                        <div class="">
+                           <a id="btn-clear-filter" class="btn-reset-search" href="#" style="display:none">&#215; Reset search</a>
+                        </div>  
+
+                    </div>
+
+                    <div class="print">
+
+                        <div>
+                            <div>
+                                <a id="btn-print" class="button print" href="#" onclick="printBrowser();return false;" target="_blank">Print</a>
+                            </div>
+                        </div> 
+
+                        <br/>
+                        <br/> 
+                        <div class="clear"></div>
+                        <div class="print">
+
+                            <div>
+                                <a class="koButton med" href="#" id="resetAll" style="height:5px;margin-top: 3px;font-weight:bold;float:center">Clear</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="dynamic-filters" style="width:650px;">                        
+                         
+                <button id="market-select" class="filter-select" >
+                    Clusters/MCOs
+                </button>
+                <div id="market-options" class="filter-options" style="float:left;">
+                    <ul>
+                        <li id="Cluster" class="section">Cluster</li>
+                        <li id="MCO" class="section">MCO</li>
+                    </ul>
+                </div>
+                <button id="country-select" class="filter-select">
+                    Countries
+                </button>
+                <div id="country-options" class="filter-options" style="position:absolute;float:left;">
+                    <ul id="countryList"></ul>
+                </div>
+                <button id="categories-select" class="filter-select">
+                    Categories
+                </button>
+                <div id="categories-options" class="filter-options" style="float:left;width:150px;">
+                    <ul id="categoryList"></ul>
+                </div>  
+
+                <button id="functions-select" class="filter-select" style="width:150px;">
+                    Functions/Expertise
+                </button>
+                <div id="functions-options" class="filter-options" style="float:left;">
+                    <ul>
+                        <li id="Function" class="section">Functions</li>
+                        <li id="Expertise" class="section">Expertise</li>
+                    </ul>
+                </div>
+                
+                <button id="ule-select" class="filter-select">
+                    Spokesperson
+                </button>
+
+                <div id="ule-options" class="filter-options" style="float:left;">
+                    <ul id="uleList"></ul>       
+                </div>
+
+            </div>
+
+        </div>
+            
+    </div>
+
+    <!-- event mouse over hover contents -->
+    <div id="campaignInfoPopOvr" />
+
+    <div class="clear"></div>
+
+    <div id="calendar-container" >
+
+        <div id="dashboard" />
+
+        <div style="position: relative; left: 270px; top: 55px;" >
+            <apex:form >
+                <apex:commandButton value="Create New Event" onClick="return loadPopUp();" />
+            </apex:form>
+         </div>
+
+         <div id="calendar"></div>
+
+    </div>
+
+    <div id="footer">
+
+        <div id="legend">
+            <table width="210">
+                <tr><td colspan="2" id="symbol">Event Type</td></tr>
+                <tr><td><img src="{!URLFOR($Resource.cp_unilever_assets,'global.png')} "/></td><td>Global Event</td></tr>
+                <tr><td><img src="{!URLFOR($Resource.cp_unilever_assets,'event-info.png')} "/></td><td>For information</td></tr>
+                <tr><td><img src="{!URLFOR($Resource.cp_banIcon)} "/></td><td>Opted Out Event</td> </tr>
+                <tr><td>BM</td><td>Big Moment</td></tr>
+                <tr><td>CE</td><td>Corporate External</td></tr>
+                <tr><td>CI</td><td>Corporate Internal</td></tr>
+            </table>
+
+            <table width="210">
+                <tr><td colspan="2"></td></tr>
+                <tr><td>EI</td><td>External &amp; Internal</td></tr>
+                <tr><td>E</td><td>External</td></tr>
+                <tr><td>I</td><td>Internal</td></tr>
+                <tr><td>OA</td><td>Operational Activity</td></tr>
+                <tr><td>CB</td><td>Capability Building</td></tr>
+                <tr><td>-</td><td>Not selected to appear on POAP</td></tr>
+            </table>
+
+            <table id="LegendColor" width="210">
+                <tr><td colspan="2" id="symbol">{!$ObjectType.cp_Event__c.Fields.Narrative__c.Label}</td></tr>
+                <tr><td style="background:#78BE20;width:20px;" /><td>Sustainable Growth</td></tr>
+                <tr><td style="background:#00A9E0;width:20px;" /><td>Our Brands</td></tr>
+                <tr><td style="background:#DA291C;width:20px;" /><td>Our People</td></tr>
+                <tr><td style="background:#702F8A;width:20px;" /><td>Our Operations</td></tr>
+                <tr><td style="background:#FFD100;width:20px;" /><td>Functional Activity</td></tr>
+                <tr><td style="background:#004976;width:20px;" /><td>Non Unilever event</td></tr>
+            </table>
+
+            <table width="110"> 
+                <tr><td id="symbol" colspan="2">Event Status</td></tr>
+               <tr><td style="background:grey;width:20px;"/><td>Draft</td></tr>
+               <tr><td style="background:#262626;width:20px;" /> <td>Confirmed</td></tr>
+               <tr><td style="border:3px solid #262626;width:20px;height:16px"/><td>Tentative</td></tr>
+            </table>
+
+        </div>
+
+    </div> 
+
+
+    <!-- Advanced Filter popup -->
+    <div id="filter-dialog" style="display:none">
+        
+        <!-- plugin starts here -->
+        <apex:form id="filter-form">
+        
+            <div>
+                <h2>Please select the criteria for your filter below.</h2>
+            </div>
+            
+            <div id="filter-criteria-wrapper">
+
+                <div id="filter-set-1" class="filter-expression">
+
+                    <div class="left">
+                        <select name="filter-field-name" class="filter-field-name ui-state-default ui-corner-all" size="1">
+                        </select>
+                    </div>
+                    
+                    <div class="left">
+                        <select size="1" name="filter-operator-type" class="filter-operator-type ui-state-default ui-corner-all"></select>
+                    </div>              
+    
+                    <div class="left">
+                        <input type="text" name="filter-field-value" class="filter-field-value ui-state-default ui-corner-all required" style="display:none"/>
+                        <select size="1" name="select-filter-field-value" class="select-filter-field-value ui-state-default ui-corner-all" style="display:none"></select>
+                        <input type="hidden" value="" class="real-date-value" />
+                    </div>
+
+                </div>
+
+                <div class="clear"></div> 
+            
+            </div>
+
+            <div class="left">
+                <a href="#" id="btn-filter-apply" class="button med">Apply</a>
+            </div>
+
+            <div class="left" style="margin-left: 6px">
+                <a id="btn-reset-filter" class="koButton med" href="#">Reset</a>
+            </div>
+
+        </apex:form>
+
+    </div>
+
+    <div id="detail-iframe-dialog" style="display:none">
+        <iframe id="record-detail"/>
+    </div>
+    
+</apex:page>

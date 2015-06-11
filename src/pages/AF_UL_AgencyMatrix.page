@@ -1,0 +1,1641 @@
+<apex:page standardController="AF_Brand_Estimate__c" extensions="AF_BrandEstimateStdCtrlExt,AFBrandEstimateStCtrlExtSummary,AF_BrandEstimateRemote" showHeader="false">
+<apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
+<head>
+    <meta charset="utf-8" />
+    <apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/js/jquery.colorbox-min.js')}"/>
+    <apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
+      <!-- Add fancyBox -->
+    <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.css?v=2.1.0')}" type="text/css" media="screen" />
+    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.pack.js?v=2.1.0')}"></script>
+    
+    
+    <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6')}" type="text/css" media="screen" />
+    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6')}"></script>
+       <script>
+  $(document).ready(function(){
+    $(".outText1").hover(function(){
+        $('.outText1').prop('title', {!tradDecimalPerStr}+'%');
+    }
+    );
+    $(".outText2").hover(function(){
+        $('.outText2').prop('title', {!digitDecimalPerStr}+'%');
+    }
+    );
+    $(".outText3").hover(function(){
+        $('.outText3').prop('title', {!adaptDecimalPerStr}+'%');
+    }
+    );
+    });
+    
+  </script>    
+      <script type="text/javascript">
+    
+    // commentsToggleClose(commentAddTable); 
+            $('a.addfancy').fancybox({
+              autoSize: false,
+                    width: 900,
+                    height: 500,
+                    type: 'iframe',
+                    titlePosition: 'inside',
+                    hideOnOverlayClick:'false',
+                    hideOnContentClick:'false',
+                    helpers     : { 
+                    overlay : {closeClick: false} // prevents closing when clicking OUTSIDE fancybox
+                    },
+                    afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
+                       //parent.location.reload(true);
+                        location.reload();
+                     }
+            });
+            
+        </script>
+    
+    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/lib/jquery.mousewheel-3.0.6.pack.js')}"></script>
+    <!-- Optionally add helpers - button, thumbnail and/or media -->
+    <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.css?v=1.0.3')}" type="text/css" media="screen" />
+    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.js?v=1.0.3')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-media.js?v=1.0.3')}"></script>
+    <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.filter.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/style.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.css')}" />
+    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0"/>
+
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/css/jquery.dataTables.css')}"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/syntax/shCore.css')}"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/demo.css')}"/>
+   <!-- <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/styles/AF_Uniform_Styles.css')}"/> -->
+ 
+   
+    <style>
+    .tableborder th, .tableborder td { border:1px solid #000;}
+    .dataTables_wrapper .DTFC_LeftWrapper .DTFC_LeftBodyWrapper .DTFC_LeftBodyLiner{ overflow:hidden!important; }
+    #gridPanel table td.mydisplaytotal a.margin0{ margin-top:0px; }
+
+ .dataTables_scrollBody {
+overflow-y: hidden!important;
+height: auto!important;
+}
+.DTFC_LeftBodyWrapper {
+overflow: hidden!important;
+border-right:1px solid #000;
+}
+
+  .archive {
+    top:0px;
+   }
+  .totalCell{
+        background:#C0C0C0;
+    }
+    .firstCol{
+     background: #FFFFFF!important;
+     /*border-left-width:0px!important;
+     border-right-width:0px!important;
+     border-top-width:0px!important;*/
+    }
+    .agencyBar {
+background-color: #61A631;
+float: right;
+width: 69.6%;
+text-indent: -8px;
+color: white;
+padding: 10px 18px;
+border-bottom: 1px solid #111111;
+clear: both;
+height: 25px;
+border: 1px solid green;
+border-radius: 4px;
+    }
+    .ulRowControl{
+        width:134px;
+    }
+    .agencyLeft{
+        float:left;
+        width: 294px;
+        font-size: 16px;
+        font-weight: bold;
+        display: inline;
+        margin-left: 0px;
+        margin-top: 2px!important;
+        margin-bottom: 3px;
+    }
+    .agencyRight{
+        height:8px;
+    }
+    .headFirstRow{background:#90C16F;color:black;}
+    .headRow{background: #D3E6B8;overflow-x:hiden}
+    .pencil_image{height: 20px;width: 20px;}
+    #progressbar.progressbar.ui-progressbar.ui-widget.ui-widget-content.ui-corner-all{
+  width: 164px;
+height: 36%;
+float: right;
+margin-right: 0px;
+border: 1px solid black!important;
+margin-top: 2px;}
+    #progressbar1.progressbar.ui-progressbar.ui-widget.ui-widget-content.ui-corner-all{
+   width: 164px;
+height: 36%;
+float: right;
+margin-right: 18px;
+border: 1px solid black!important;
+margin-top: 2px;
+}
+    
+    
+    .alignCenter { text-align: center; }
+    table#DataTables_Table_0.display.mydisplay.dataTable.no-footer{margin-left: 0px!important;}
+    
+    div.dataTables_scrollHead{
+    border-right: 1px solid grey!important;
+width: 99.8%!important;
+background: none;
+border-top: 1px solid grey!important;}
+    div.dataTables_scrollBody{border-right: 1px solid grey!important;width: 99.8%!important;}
+    
+    div.DTFC_ScrollWrapper{height: auto!important;}
+    .crossBorder{
+        background-color: #FF7E7E /*#FFD7D7*/ !important;
+    }
+    .comment{
+        background-color: #CAEDFF !important;
+    }
+    .crossComment{
+        background-color: #FF7E7E !important;
+    }
+    #wrapper {
+      width:100%;
+      clear:both;
+    }
+    #progressbar {
+    width: 20%;
+    float: right;
+    margin-right: 114px;
+    padding: 0px;
+    background-color : white!important;
+    }
+    
+     #progressbar1 {
+    width: 20%;
+    float: right;
+    margin-right: 114px;
+    padding: 0px;
+    background-color : white!important;
+    }
+    
+    
+    .ui-progressbar {
+        position: relative;
+        background-color : green !important;
+    }
+   
+    /*
+   #progressbar.progressbar.ui-progressbar.ui-widget.ui-widget-content.ui-corner-all {
+width: 20%;
+height: 35%;
+float: right;
+margin-right: 29px;
+border:1px solid black!important;
+
+}*/
+
+/*
+
+#progressbar1.progressbar.ui-progressbar.ui-widget.ui-widget-content.ui-corner-all {
+width: 20%;
+height: 35%;
+float: right;
+margin-right: 29px;
+border:1px solid black!important;
+
+}
+
+*/
+   .postSummary#progressbar.progressbar.ui-progressbar.ui-widget.ui-widget-content.ui-corner-all {
+/*width: 20%; */
+/*float: right; */
+/* margin-right: -82px; */
+/*margin-top: 21px;*/
+}
+
+  .postSummary#progressbar1.progressbar.ui-progressbar.ui-widget.ui-widget-content.ui-corner-all {
+/*width: 20%; */
+/*float: right; */
+/* margin-right: -82px; */
+/*margin-top: 21px;*/
+}
+
+    .progress-label {
+        position: absolute;
+        left: 45%;
+        top: 1px;
+        font-weight: bold;
+        color: black;
+    }
+    .postSummary {
+       clear: both;
+/* background: #bdc3c7!important; */
+height: 55px;
+width: 99.6%!important;
+border: 2px solid #74AE00;
+border-radius: 10px;
+margin-bottom: 1px;
+/*margin-bottom: -14px;*/
+    }
+    
+    .actionbar_second{
+       clear: both;
+/* background: #bdc3c7!important; */
+height: 44px;
+width: 99.6%!important;
+border: 2px solid #74AE00;
+border-radius: 10px;
+margin-bottom: 10px;
+    }
+    
+    .brandName {
+     width: 80%;
+float: left;
+display: inline;
+margin-left: 10px;
+margin-top: 13px;
+font-size: 16px;
+font-weight: bold;
+/* padding-bottom: 15px; *
+    }
+    
+    .brandName1 {
+      width: 60%;
+float: left;
+display: inline;
+margin-left: 16px;
+margin-top: 13px;
+font-size: 18px;
+font-weight: bold;
+/* padding-bottom: 15px; */
+    }
+    
+    
+    #first {
+   /* width: 29%; */
+float: left;
+display: inline;
+margin-left: 5px;
+margin-top: 2px!important;
+margin-bottom: 3px;
+    }
+    #second {
+    width: 36%;
+float: left;
+display: block;
+/* margin-right: 164px; */
+/* margin-left: 88px; */
+/* margin-top: 14PX;
+        }
+        #third {
+   float: right;
+/* margin-top: 14px; */
+/* margin-right: 109px;
+    }
+        #fourth {
+   float: RIGHT!important;
+display: block;
+margin-left: 68px!important;
+width: 200px;
+/* border: 1px solid red; */
+    }
+    td.details-control {
+        cursor: pointer;
+    }
+    
+ /*  #gridPanel table tr {padding: 0px}*/
+ /* #gridPanel table td {width: 200px; height: 100%; padding: 0px; overflow: hidden}   */
+ /* #gridPanel table td { padding: 0px; overflow: hidden}    */
+ /* #gridPanel table td a {margin: -1em; padding: 1em; display: block;}  */
+ #gridPanel table td a {
+display: block;
+/*width: 106px;*/
+height: 25px;
+margin-top: -8PX;
+  } 
+   
+   td.details-control.alignCenter:hover {
+background:#D3E6B8;
+}
+    .panel{
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid;
+        width=75%; 
+        height=300px; 
+    }
+    .hidden {
+        display:none;
+    }
+    .spinner {
+       /* display: block;*/
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .displayed {
+        display:block;
+    }
+    .ui-widget-header {
+        border: 2px solid #74AE00;
+     /* background: #95bd4f 50% 50% repeat-x; */
+        background: #74AE00 !important; 
+        color: #ffffff;
+        font-weight: 50px;
+       /*  padding: 5px; */
+      /*  width:82%;
+       margin-left: 97px; */
+       /*  padding-top: 7px; */
+        
+    }
+    .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+     color: #fff;
+    }
+    .ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br{
+    border: 2px solid #74AE00;
+    padding-top: 7px;
+    color:black;
+    padding: 5px;
+   /* padding-bottom: 15px;*/
+    }
+    
+    .ui-state-default, .ui-widget-content {
+   /* background: green; */
+    color:black;
+    font-weight: bold;
+    }
+    .comment_box1{
+    margin-top: 5px;
+    width:977px;
+    height: 93px;
+    margin-bottom: 5px;
+    border: 2px solid #74AE00;
+    border-radius: 7px;
+    resize: none;
+    font-size: 16px;
+    }
+    .panel{
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid;
+        width:75%; 
+        height:300px; 
+    }
+    .hidden {
+        display:none;
+    }
+     .submit_btn{
+    background: none repeat scroll 0 0 #E400A7 !important;
+    border: 1px solid red!important;
+    border-radius: 5px !important;
+    color: #FFFFFF!important;
+    font-size: 13px!important;
+    height: 30px;
+    margin-top: 13px ;
+    padding-bottom: 20px;
+    padding-top: 5px;
+    width: 135px;
+    margin-left:100px !important;
+ }
+ 
+   .submit_btn2{
+    background: none repeat scroll 0 0 #E400A7 !important;
+border: 1px solid red!important;
+border-radius: 5px !important;
+color: #FFFFFF!important;
+font-size: 13px!important;
+height: 30px;
+margin-top: 13px;
+padding-bottom: 20px;
+/* padding-top: 4px!important; */
+width: 75px;
+/* margin-left: 100px !important; */
+ }
+  
+   .submit_btn_submitnew{
+    background: none repeat scroll 0 0 #E400A7 !important;
+border: 1px solid red!important;
+border-radius: 5px !important;
+color: #FFFFFF!important;
+font-size: 13px!important;
+height: 30px;
+margin-top: 13px;
+padding-bottom: 20px;
+/* padding-top: 4px!important; */
+width: 75px;
+/* margin-left: 100px !important; */
+ }
+   .submit_btn3{
+   background: none repeat scroll 0 0 #E400A7 !important;
+border: 1px solid red!important;
+border-radius: 5px !important;
+color: #FFFFFF!important;
+font-size: 13px!important;
+height: 30px;
+margin-top: 13px;
+padding-bottom: 20px;
+padding-top: 5px;
+width: 75px;
+margin-left: 0px!important;
+ }
+ 
+    .submit_btn5{
+   background: none repeat scroll 0 0 #E400A7 !important;
+border: 1px solid red!important;
+border-radius: 5px !important;
+color: #FFFFFF!important;
+font-size: 13px!important;
+height: 30px;
+margin-top: 13px;
+padding-bottom: 20px;
+padding-top: 5px;
+width:75px;
+margin-left: -5px!important;
+margin-right: 15px!important;
+ }
+ 
+ .submit_btn4
+ {
+    background: none repeat scroll 0 0 #E400A7 !important;
+border: 1px solid red!important;
+border-radius: 5px !important;
+color: #FFFFFF!important;
+font-size: 13px!important;
+height: 30px;
+margin-top: 13px;
+padding-bottom: 20px;
+padding-top: 5px;
+width: 139px;
+/* margin-left: 0px !important; */
+margin-right: 10px!important;
+font-weight: bold!important;
+float: right!important;
+    }
+ 
+    .spinner {
+       /* display: block;*/
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .displayed {
+        visibility: visible;
+    }
+    /* This is for the full screen DIV */
+    .popupBackground {
+        /* Background color */
+        background-color:black;
+        opacity: 0.5;
+        filter: alpha(opacity = 20);
+    
+        /* Dimensions */
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 998;
+        position: absolute;
+        
+        /* Mouse */
+        cursor:wait;
+    }
+ 
+    /* This is for the message DIV */
+    .PopupPanel {
+        /* Background color */
+        border: solid 2px blue;
+        background-color: white;
+ 
+        /* Dimensions */
+        left: 50%;
+        width: 200px;
+        margin-left: -100px;
+        top: 50%;
+        height: 50px;
+        margin-top: -25px;
+        z-index: 999;
+        position: fixed;
+        
+        /* Mouse */
+        cursor:pointer;
+    }
+    .margin10{margin-top:2px;}
+      .circle1
+    {
+        width:70px;
+        height:70px;
+        border-radius:70px;
+        text-align:center;
+        line-height: 68px;
+        background:whitesmoke;
+        border: 3px solid #74AE00;
+        font-size: 26px;
+        float:left;
+        margin-left: 17%;
+        margin-top: 10px;
+    }
+    
+    .circle_vertical
+    {
+        width:70px;
+        height:70px;
+        border-radius:70px;
+        text-align:center;
+        line-height: 94px;
+        background:whitesmoke;
+        border: 1px solid #BDC3C7;
+        font-size: 666%;
+    }
+    
+    .circle
+    {
+        width:70px;
+        height:70px;
+        border-radius:70px;
+        text-align:center;
+        line-height: 68px;
+        background:whitesmoke;
+        border: 3px solid #DA0600;
+        font-size: 26px;
+        float:left;
+        margin-left: 17%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .firstdiv
+  {
+float: left;
+width: 32%;
+/* border: 2px solid red; */
+  }
+  .seconddiv
+  {
+   float: right; 
+width: 65%;
+text-align: center;
+/* margin-left: 3%; */
+height: auto;
+/* border: 1px solid red; */
+display: inline-block;
+  }
+    
+    .verticalLine {
+    border-left: 5px solid #808080;
+    height: 77px;
+    width: 4%;
+    }
+    
+    .container {
+    width:100%;
+    margin-left:10px;
+    margin-right:10px;
+    }
+    .customPopup{
+    background-color: #D3E3DD;
+    border: 2px solid #74AE00;
+    border-radius: 15px;
+    display: block;
+    height: 225px;
+    left: 50%;
+    margin-left: -250px;
+    position: fixed;
+    top: 250px;
+    width: 500px;
+    z-index: 9999;
+        }
+         .popupBackground2{
+            <!-- background-color:#f6f6f6; -->
+            position: fixed;
+            opacity: .8%;
+            filter: alpha(opacity = 80);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+    
+    .input_select1 {
+    color: #000000;
+    height: 26px;
+    width: 126px;
+}
+    
+    .button_select1 {
+    background: none repeat scroll 0 0 #FF00FF;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-family: times new roman;
+    font-size: 17px;
+    font-weight: bold;
+    height: 30px;
+    margin-left: -23px;
+    width: 125px;
+    }
+        
+    .selectbrand {
+    margin-top: 67px;
+    }
+    .selectbrand1 {
+    display: inline;
+    margin-left: 88px;
+    margin-top: 67px;
+    }
+    .selectbrand2 {
+    display: inline;
+    margin-left: 78px;
+    }
+    .selectbrand3 {
+    margin-left: 213px;
+    margin-top: 32px;
+    }
+    .close{margin-left:500px; margin-top: -15px;}
+    
+    .createBrandPopUp{
+    background: none repeat scroll 0 0 #007DBB;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 13px;
+    margin-right: 20px;
+    padding: 10px;
+    position: absolute;
+    width: 978px;
+    }
+    
+    .createBrandPopup2{
+    background: none repeat scroll 0 0 #FF00FF;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-family: times new roman;
+    font-size: 17px;
+    font-weight: bold;
+    height: 30px;
+    margin-left: -23px;
+    width: 125px;
+    }
+    
+    html {
+    font-size: 16px;
+    }
+    
+    .charttable1{padding-left: 93px;padding-right: 49px;}
+    .charttable_agency{/*padding-left: 93px;padding-right: 49px;*/width:100%;}
+    .charttable2{border: 2px solid red;border-radius: 10px; padding:10px;width:100%;border-collapse:separate!important;}
+   .demo{
+    border: 0 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #0088cc url(Resource/arrow.png) no-repeat 90% center;
+    width: 100px;
+    text-indent: 0.01px;
+    text-overflow: "";
+    color: #FFF;
+    border-radius: 15px;
+    padding: 5px;
+    box-shadow: inset 0 0 5px rgba(000,000,000, 0.5);
+    }
+   .demo1{
+    border: 0 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #0088cc url(Static Resources/arrow_down/arrow.png) no-repeat 90% center;
+    width: 100px;
+    text-indent: 0.01px;
+    text-overflow: "";
+    color: #FFF;
+    border-radius: 15px;
+    padding: 5px;
+    box-shadow: inset 0 0 5px rgba(000,000,000, 0.5);
+    }
+
+  .btn-finance{ color: white!important;font-size: 14px!important;background: #007DBB!important;padding: 6px!important;border-radius: 5px!important;border:1px solid black!important;}
+   .center{text-align:center;}
+   a {
+      text-decoration: underline;color:#004976;
+     }
+   body{font-family: 'Lato', sans-serif!important;font-style: normal;font-weight: 400;  }
+  .Agency_fees{font-size:28px;font-weight: bold;color: #74AE00;padding-left: 15px;width: 410px;padding-top: 15px;}
+  .Profile_Name{width:170px;text-align:right;font-weight:bold;padding-top: 11px;}
+  .User_Name{color:#004976;width:145px;text-align:center;font-weight:bold;padding-top: 11px;}
+  
+    .heading_main{
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: -10px;
+        padding-bottom:11px;
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+        }
+    .heading_text{
+        background: none repeat scroll 0 0 #D4D4D4;
+        border: 1px solid #000000;
+        border-radius: 3px;
+        color: #222626 !important;
+        font-size: 20px!important;
+        height: 23px;
+        margin-right: 20px;
+        padding: 7px 1px 8px 8px;
+        position: absolute;
+        width: 98.6%;
+        font-family: Arial,Helvetica !important;
+        font-weight: bold;
+    }
+    
+    .heading_bottom{
+        display: block;
+        margin-top: 0;
+        padding-top: 80px;
+    }
+    .mydisplay{/* margin-left: 97px!important;width: 84%!important; */}
+    
+    body {
+    font: 12px Helvetica, arial, sans-serif;
+    }
+   /* .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: #D3E6B8; 
+    
+    }
+    */
+    .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: #D3E6B8; 
+    
+    }
+    
+    .ui-state-default{
+  background: white!important;
+  }
+    
+    
+    table.dataTable.display tbody tr.even > .sorting_1, table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
+     /* background-color: #D3E6B8!important; */
+    }
+    .ui-progressbar .ui-progressbar-value {
+    margin: -1px;
+    height: 100%;
+    background-color: #4E82BE !important;
+    border: 1px solid black!important;
+    }
+    .Crossborder_matrix{float:right; 
+    height: 15px; 
+    width: 15px; 
+    border-style:solid; 
+    border-width:1px; 
+    border-color: rgb(212, 212, 212) rgb(212, 212, 212) -moz-use-text-color;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    background-color: rgb(255, 126, 126);
+    }
+    .table_control{
+width: 93.96%;
+display: block;
+float: left;
+border: 2px solid #74AE00;
+border-radius: 10px;
+margin-bottom: 1px;
+height: 45px;
+}
+    .add_Agency_Entities{
+    display: block;
+font-weight: bold;
+/* margin-left: 119px; */
+margin-left: 382px;
+}
+    div.ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix{background:grey;}
+
+</style>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/js/jquery.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/js/jquery.dataTables.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/extensions/FixedColumns/js/dataTables.fixedColumns.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/extensions/ColVis/js/dataTables.colVis.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/syntax/shCore.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/demo.js')}"></script>
+    <script type="text/javascript" language="javascript">
+        //Page Initialisation....
+        var colsSelected = [];
+        var agencyEntities = [];
+        var rowsSelected;
+        var agencyId = "{!agencyId}";
+        var sObjectId = '{!brandEstimateId}';
+        var advFilter = [];
+        var progressValue = '{!progressValue}';
+        var sObjectName = 'AF_Brand_Estimate__c';
+        var isRow = location.search.split('bRow=')[1];
+        var isCol = location.search.split('bCol=')[1];
+        var dataSet, cols, oTable, singleRow, singleCol;
+    </script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/functions.js')}"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.filter.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.js')}"></script>
+    <!-- <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/loadBaseFeeMatrix.js')}"></script> -->
+    <script>
+    function openAgentEstimateModel(url, title){
+    
+         var pagetitle = title;
+         var $dialog = jQuery('<div style="display: block; width: 922px; min-height: 0px; max-height: none; height: 546.222222328186px;"></div>')
+         .html('<iframe style="border: 0px; " src="' + url + '" height="1000" width="890" scrolling="no"></iframe>')
+        <!-- outer -->
+         .dialog({
+             autoOpen: false,
+             modal: true,
+             height: 900,
+             width: 935,
+             maxHeight: 1000,
+             maxWidth: 1000,
+             title: pagetitle
+         });
+         $dialog.dialog('open');           
+    }
+    loadAgMatrix();
+    
+    $(document).ready(function() {
+        $('#agCol').on( 'click', function (e) {
+            e.preventDefault();
+            $.when( addUnileverEntityToEstimates(colsSelected) ).then( function(status){
+                if(typeof isCol === 'undefined') {
+                    location.replace(addParameterToURL('bCol=Y'));
+                }else {
+                    location.reload();
+                }
+            },
+            function(status){
+                $("#gridPanel").html(status+', unable to load matrix page.');
+                //alert( status+', unable to load matrix page.' );
+            },
+            function(status){
+               //$("#agCol").html(status);
+            });
+        });
+        $('#ulRow').on( 'click', function () {
+            $.when( addAgencyEntityToEstimates(rowsSelected) ).then( function(status){
+                console.log('isRow :' + isRow);
+                //loadAgMatrix();
+                if(typeof isRow === 'undefined') {
+                    location.replace(addParameterToURL('bRow=Y'));
+                }else {
+                    location.reload();
+                }
+            },
+            function(status){
+                $("#gridPanel").html(status+', unable to load matrix page.');
+                //alert( status+', unable to load matrix page.' );
+            },
+            function(status){
+               //$("#ulRow").html(status);
+            });
+         });
+         $('#advFltr').on( 'click', function (e) {
+            $.each( advFilter, function( k, v ) {
+                $( ".display tbody tr td" ).each(function() {
+                    if(v == 'tf' || v == 'df' || v == 'af') {
+                        var selectedVal = $(this).attr(v);
+                        if(typeof selectedVal != 'undefined') {
+                            var pos = selectedVal.split("/");
+                            $(this).children("a").html(pos[0] + '<br/>' + pos[1]);
+                        }
+                    }else {
+                        if(v != 'all') {
+                            var selectedVal = $(this).children("a").attr(v);
+                            if(typeof selectedVal != 'undefined') {
+                                $(this).children("a").text(selectedVal);
+                            }
+                        } else {
+                            location.reload();
+                        }
+                    }
+                });
+            });
+        });
+        $('.display tbody').on('click', 'td .archive', function () {
+            var entName = $(this).parent().text();
+            if(confirm('Are you sure? You want to remove the row ' + entName + ' from the matrix.')) {
+                $.when( archiveAgencyEntityToEstimates(entName) ).then( function(status){
+                    location.reload();
+                },
+                function(status){
+                    $("#gridPanel").html(status+', unable to load matrix page.');
+                    //alert( status+', unable to load matrix page.' );
+                },
+                function(status){
+                   //$("#ulRow").html(status);
+                });
+             }
+         });
+         $('.display thead tr').on('click', 'th .archive', function () {
+            var entName = $(this).parent().text();
+            if(confirm('Are you sure? You want to remove the column ' + entName + ' from  the matrix.')) {
+                $.when( archiveUnileverEntityToEstimates(entName) ).then( function(status){
+                    location.reload();
+                },
+                function(status){
+                    $("#gridPanel").html(status+', unable to load matrix page.');
+                    //alert( status+', unable to load matrix page.' );
+                },
+                function(status){
+                   //$("#ulRow").html(status);
+                });
+             }
+         });
+        $( "#ldMatrix" )
+        .click(function( event) {
+           event.preventDefault();
+           $.when( addSingleULAGEntity() ).then( function(status){
+               location.reload();
+           },
+           function(status){},
+           function(status){
+           });
+        });
+    });
+</script>
+</head>
+ <script>
+        function openComments(url){
+        
+             var pagetitle = 'Double click to add/modify comments';
+             var $dialog = jQuery('<div style="display: block; width: 922px; min-height: 0px; max-height: none; height: 546.222222328186px;"></div>')
+             .html('<iframe style="border: 0px; border-radius: 5px; margin-top: 10px;" src="' + url + '" height="310" width="922" scrolling="no"></iframe>')
+             .dialog({
+                 autoOpen: false,
+                 modal: true,
+                 height: 390,
+                 width: 970,
+                 maxHeight: 400,
+                 maxWidth: 600,
+                 title: pagetitle
+             });
+             $dialog.dialog('open');           
+        }
+    function openHelpLink(){
+        if({!isAgencyFlag}) {
+         var urlStr = '{!$Label.AF_AgencyUrlLink}/servlet/servlet.FileDownload?file={!$Label.AF_DocumentId}';
+         window.open(urlStr);
+
+        }else{   
+        var urlStr = '{!$Label.AF_UrlLink}/servlet/servlet.FileDownload?file={!$Label.AF_DocumentId}';
+        window.open(urlStr);
+        
+      }
+    }
+    </script>
+<body class="dt-example">
+    <apex:form >            
+       <!--  <div class="heading_main">
+       <h1 class="heading_text"> Create Brand / Agency Combination  </h1>
+      </div>
+      <span class="heading_bottom"></span>    -->            
+         <apex:outputpanel >
+                <div class="row">            
+     <div class="col-lg-12 charttable1"> 
+        <table style="width: 96%;float: left;">
+        <tr>
+           <td style="text-align:center;width:5%"> <apex:image url="{!$Resource.logo_Unilever}" width="70px" height="70px"/> </td>        
+           <td class="Agency_fees">{!$Label.Agency_Fee_Title}</td>
+           <td class="Profile_Name"> {!$User.AF_UserTypeText__c} </td>
+           <td class="User_Name" style="text-align:right;width:40%"> {!$User.FirstName} {!$User.LastName} &nbsp;
+            </td>
+           <td style="text-align:center;width:5%;padding-top:6px;padding-right: 16px;"> <apex:image url="{!$Resource.Help}" width="30px" height="30px" onclick="openHelpLink();"/> </td>
+       </tr>
+       </table>
+  </div>    
+   </div>
+             <div class="row">           
+        <div class="col-lg-12 charttable1">         
+        
+        <apex:image url="{!$Resource.header_new}" style="width:94%;height:37px;" /> 
+        </div>            
+                       
+        </div>          
+            <div class="row">
+     <div class="col-lg-12 charttable1">
+<div style="border: 2px solid #74AE00;border-radius: 10px; padding:0.8%;width:92%;border-collapse:separate!important;float: left;margin-bottom:1px;padding-top: 0px;padding-bottom: 0px;">
+
+            <div class="firstdiv">
+               <div style="font-size:28px;width: 70%;"><b>{!categoryNameStr}</b></div>
+                    <div style="float: left;width: 102%;/* border: 2px solid yellow; */">
+                       <div style="font-size: 20px; float: left; width: 50%; padding-top: 10px;"><apex:outputLabel rendered="{!!isAgencyFlag}"> Unilever Base Fees </apex:outputLabel></div >
+                       <div style="font-size: 32px; float: left; width: 46%;padding-top: 5px;/* border: 2px solid blue; */">
+                           <apex:outputText value="{0,number,###,###,###}" rendered="{!!isAgencyFlag}">
+                           €<apex:param value="{!totalUnileverFee}"/>
+                           </apex:outputText>
+                        </div>
+                    </div>      
+                            
+                    <div style="float: left;width: 102%;/* border: 2px solid green; */">    
+                        <div style="font-size: 20px; float: left; width: 50%; padding-top: 10px;/* border: 1px solid green; */">Agency Base Fees&nbsp; </div>
+                        <div style="font-size: 32px; float: left; width: 47%;padding-top: 5px;/* border: 2px solid blue; */">
+                            <apex:outputText value="{0,number,###,###,###}">
+                                €<apex:param value="{!totalAgencyFee}"/>
+                            </apex:outputText>
+                        </div>
+                    </div>    
+              
+            </div> <!-- First Div closed -->
+   
+   
+               <div class="seconddiv">
+                    <div>
+                        <div style="font-size: 16px; font-weight: bold; width: 23%;height:18px; float: left;margin-left: 5%;/* height: 18px; *//* border: 1px solid red; */"> Cross Border PO</div >
+                        <div style="font-size: 16px; width: 3%; float: left;">&nbsp;&nbsp;&nbsp;&nbsp;</div >
+                        <div style="font-size: 16px; font-weight: bold; float: left; width: 21%;"> Traditional </div >
+                        <div style="font-size: 16px; float: left; width: 21%; font-weight: bold;"> Digital </div >
+                        <div style="float: left;font-size:16px;font-weight: bold;width: 21%;margin-left: 2px;  "> Adaptation </div >
+                    </div>
+                    <div>  
+                        <div style="float: left; width: 21%;margin-left: 5%;"> 
+                        <!--   <span class="circle">{!crosPerStr}</span>-->
+                        <canvas id="mycrosscanvas" height="100" width="150"></canvas>
+                        </div> 
+                        <div style="float: left;width: 5%;">  <span class="circle_vertical"></span></div>
+                        <div style="float: left;width: 21%;"> <!-- 
+                        <span class="circle1">{!tradPerStr}%</span> -->
+                        <canvas id="mytradcanvas" height="100" width="150"></canvas></div> 
+                        <div style="float: left;width: 21%;"> 
+                        <!--  <span class="circle1">{!digitPerStr}%</span> -->
+                        <canvas id="mydigitcanvas" height="100" width="150"></canvas>
+                        </div> 
+                        <div style="float: left; width: 21%;"> 
+                        <!--  <span class="circle1">{!adaptPerStr}%</span>  -->
+                        <canvas id="myadapcanvas" height="100" width="150"></canvas>
+                        </div> 
+                    </div>
+                    <div style="float: left;width: 100%;font-size: 16px;">
+                        <div style="float: left;width: 21%;margin-left: 5%;">
+                            <apex:outputText value="{0,number,###,###,###}">
+                            €<apex:param value="{!totalCroBordFee}"/>
+                            </apex:outputText> 
+                        </div>
+                        <div style="float: left; width: 5%;">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <div style="float: left; width: 21%;">
+                            <apex:outputText styleclass="outText1" value="{0,number,###,###,###}">
+                                €<apex:param value="{!totalTraditionalFee}"/>
+                            </apex:outputText> 
+                        </div>
+                        <div style="float: left; width: 21%;">
+                            <apex:outputText styleclass="outText2" value="{0,number,###,###,###}">
+                                €<apex:param value="{!totalDigitalFee}"/>
+                            </apex:outputText>
+                        </div>
+                        <div style="float: left; width: 21%;">
+                            <apex:outputText styleclass="outText3" value="{0,number,###,###,###}">
+                                €<apex:param value="{!totalAdaptiveFee}"/>
+                            </apex:outputText>
+                        </div>
+                    </div>
+            </div> <!-- Second Div closed -->
+         </div>  <!-- MainDiv closed -->        
+     </div>
+ </div>
+
+  <div class="row">
+    <div class="col-lg-12 charttable1">
+        <table style="border: 2px solid #74AE00!important;border-radius: 10px; padding: 0px 0 0px 0px;width:94%;border-collapse:separate!important;/* margin-top: 10px; */float:left;margin-bottom: 1px;">
+           <tr>
+                        <td id="first">
+                            <select multiple="multiple"  id="advFltr" >
+                                <option value="all">All Currency</option>
+                                <option value="l">Local</option>
+                                <option value="e">Euro</option>
+                                <option value="tf">Traditional</option>
+                                <option value="df">Digital</option>
+                                <option value="af">Adaptation</option>
+                            </select>
+                        </td>
+                    
+ 
+                             <!--    <td style="width:50px;"></td>
+                                 <td style="width:50px;"></td> <td style="width:50px;"></td> <td style="width:165px;"></td> -->
+                                 
+                                
+                                  
+       
+                                 
+                                   <td style="background: #004976; padding: 6px 3px 6px 12px;width: 105px;margin-left: 13px;color: white;/* border: 2px solid black; */border-radius: 5px;/* padding-left: 20px; */display:inline;float: left;margin-top: 6px;height: 18px!important;"> 
+                                           <a onClick="commentsToggleOpen('commentAddTable');window.location.hash='commentAddTable';return false;" style="font-size: 13px;font-weight: bold;color: white;text-decoration:none;">Add Comment</a>
+                                      </td> 
+                                      <td style="background: #004976; padding: 6px 3px 6px 12px;width: 120px;margin-left: 13px;color: white;/* border: 2px solid black; */border-radius: 5px;/* padding-left: 15px; */display:inline;float: left;margin-top: 6px;height: 18px!important;"> 
+                                           <a href="apex/AF_UploadAnAttachment?parentId={!brandEstimateId}" style="font-size: 13px;font-weight: bold;color: white;text-decoration: none;" class="addfancy">Upload Document</a>
+                                      </td>
+                                       <!--<apex:outputPanel rendered="{!OR(Not(isAgencyFlag),iscmcoAgencyFlag)}">-->
+                                       <apex:outputPanel rendered="{!iscmcoAgencyFlag}">
+                                       <td style="background: #004976; padding: 6px 3px 6px 12px;width: 60px;margin-left: 15px;color: white;/* border: 2px solid black; */border-radius: 5px;/* padding-left: 15px; */display:inline;float: left;margin-top: 6px;height: 18px!important;"> 
+                                           
+                                           <a href="apex/AF_ControllerReview?Id={!brandEstimateId}" style="font-size: 13px;font-weight: bold;color: white;text-decoration: none;" class="addfancy">Review</a>
+                                           <!--<a href="#" style="font-size: 13px;font-weight: bold;color: white;text-decoration: none;" onClick="openComments('/apex/AF_AgencyReviewComments?id={!brandEstimateId}');return false;">Review</a>-->
+                                           
+                                      </td>
+                                      
+                                    </apex:outputPanel>
+                                    
+                                     <td style="width:280px;"> 
+                                    <c:AF_ApprovalProcessForBrandEstimates ParentRecordValue="{!brandEstimateId}" brandvalue="{!$CurrentPage.parameters.brandvalue}" catageory="{!$CurrentPage.parameters.category}" year="{!$CurrentPage.parameters.Year}"/> 
+                                      </td>
+                                      
+                                      <td style="/* margin-left: 20px; */float: right;cursor: pointer; ">
+                                              <apex:image url="{!$Resource.print_icon}" width="40px" height="40px"  title="Please click to Print " onclick="window.print();" /> 
+                                      </td>
+                                  </tr>
+        </table>
+    </div>
+</div>
+ 
+
+ 
+  <div class="row">
+     <div class="col-lg-12 charttable1">
+ <div class="table_control">
+   <!-- <div class="postSummary"> -->
+<div style="width: 50%;float:left;/* border: 1px solid red; */height: 59px;position: absolute;/* margin-left: 0px; */"> 
+
+      <div align="left" class="brandName">{!AF_Brand_Estimate__c.Name}</div>       
+</div> 
+<apex:outputpanel rendered="{!isAgencyFlag1}"> 
+<div style="width: 16%;height: 59px;float:left;position: absolute;margin-left: 50%;display: block;">
+      
+        
+         <div id="progressbar1" class="progressbar">
+            <div class="progress-label progresschange">{!progressReviewValue}%</div>
+        </div> 
+       
+        <div style="float: right;font-weight: bold;margin-right: 18px; margin-top: 1px;text-align: center;width: 164px;border: 1px solid black;border-radius:4px;background: white;"> Controller Review</div>
+        
+</div>    
+</apex:outputpanel> 
+<div style="width: 16%;height: 59px;float: left;/* border: 1px solid red; */position: absolute;margin-left: 62.7%;">
+        <div id="progressbar" class="progressbar">
+            <div class="progress-label progresschange">{!progressValue}%</div>
+        </div> 
+     
+            <div style="float: right;font-weight: bold;margin-right: 0px; margin-top: 1px;text-align: center;width: 164px;border: 1px solid black;border-radius:4px;background: white;/* display: block; */"> {!statusProcess}</div>
+
+</div>   
+<div style="width: 4%;height: 47px;float: right;/* border: 4px solid green; */position: static;/* margin-left: 64%; */margin-right: 4px;display: block;margin-top: 1px;"></div>      
+        
+      
+  <!-- </div> --> 
+   
+   
+   
+ </div>
+ 
+  </div>
+ </div>
+ 
+         </apex:outputpanel>    
+         <br/>
+        <!-- Matrix page loads from here -->
+        
+        
+        <div class="row">
+               <div class="col-lg-12 charttable1">
+               <div style="border: 2px solid #74AE00;border-radius: 10px; padding:0.8%;width:92%;border-collapse:separate!important;float: left;margin-bottom:1px;">
+        
+        
+        
+        <apex:outputPanel rendered="{!noEstimates}">
+    <div id="gridPanel">
+       
+               <div class="col-lg-12 charttable_agency">
+       <div align="right" style="font-size:16px;">{!$Label.Matrix_Currency_Desc}</div>
+       <div class="agencyBar">
+            <div align="left" class="agencyLeft">Agency Entities</div>
+            <div align="right" class="agencyRight">
+            <div id="colPanel" align="right">
+                <select multiple="multiple" class="toggle-vis" id="agCol" style="width:140px;margin-right: 10px;" />
+                <img id="submit-col" style="vertical-align:middle;" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" />
+             </div>
+             <div id="loadColSpinner" class="spinner">
+                loading Agency Entities...<img src='/img/loading.gif' />
+             </div>
+              <apex:outputpanel rendered="{!IF(statusProcess!='Ready for PO','true','false')}">
+             <img id="add-col-panel" style="vertical-align:middle;"  width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" />
+             </apex:outputpanel>
+            </div>
+        </div>
+        
+        </div>
+        
+        <table class="display mydisplay tableborder " width="100%" border="0">
+            <thead style="border:none;">
+                <tr><th id="0" isDisplay="y" class="firstCol"></th><th id="1" isDisplay="y" class="firstCol custCol"></th></tr>
+            </thead>
+            <tbody style="font-size:14px;background:red!important;">
+            </tbody>
+        </table>
+         <div class="ulRowControl">
+             <div align="center">
+             <apex:outputpanel rendered="{!IF(statusProcess!='Ready for PO','true','false')}">
+                 <img id="add-row-panel" style="vertical-align:top;" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" />
+             </apex:outputpanel>
+             </div>
+         </div>
+         <div id="rowPanel">
+             <select multiple="multiple" id="ulRow" style="width:140px;"/>
+             <img id="submit-row" style="vertical-align:middle;" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" />
+         </div>
+         <div id="loadRowSpinner" class="spinner">
+             loading UL Entities...<img src='/img/loading.gif' />
+         </div>
+         <div id="fourth" style="
+    float: right;">
+                        <table>
+                            <tr>
+                                <td align="right">
+                                    <div id="divpreview3" style="display:inline;float:left;">&nbsp;</div><img src="{!URLFOR($Resource.AF_isTax)}" height="15" width="15"/>&nbsp;Represents Cross Border billing&nbsp;
+                                    <div id="divpreview3" style="display:inline;float:left;">&nbsp;</div><img src="{!URLFOR($Resource.AF_isComment)}" height="15" width="15"/>&nbsp;Comment/Change to review&nbsp;
+                                </td>
+                            </tr>
+                         </table>
+            </div>
+    </div>
+    <div id="gridSpinner" class="spinner">
+        loading Matrix...<img src='/img/loading.gif' />
+    </div>
+    
+    
+   <!-- <br/><br/><br/>Demo Button: <apex:commandButton action="{!SetStatus}" value="Ready for PO" /><br/><br/><br/> -->
+    
+    
+    
+    
+   <!-- <c:AF_AddCommentComp ParentRecordValue="{!brandEstimateId}" ParentObjectTypeDesc="AF_Brand_Estimate__c" /> -->
+    
+                
+    
+   <!-- <c:AF_ApprovalProcessForBrandEstimates ParentRecordValue="{!brandEstimateId}" brandvalue="{!$CurrentPage.parameters.brandvalue}" catageory="{!$CurrentPage.parameters.category}" year="{!$CurrentPage.parameters.Year}"/> -->
+      
+    <c:AF_CommentsListComp ParentRecordValue="{!brandEstimateId}" ParentObjectTypeDesc="AF_Brand_Estimate__c"  IsViewAllValue="false"  ReturnPageURLValue="AF_UL_AgencyMatrix?Id={!brandEstimateId}" />
+   
+    <!-- <apex:outputLink onclick="openAttachmentWindow();return false;" >Upload Document</apex:outputLink> -->
+    <c:AF_DocumentListComp ParentRecordValue="{!brandEstimateId}"/> 
+     
+    
+    
+    </apex:outputPanel>
+  
+    
+    <!-- Matrix code ends, single row/col interface begins -->
+   
+
+
+
+   <apex:outputPanel rendered="{!!noEstimates}">
+        <div id="wrapper">
+            <br /><br />
+            <div align="center" style="font-size:medium;">
+                Lets add the first Row/Column to the matrix by adding Unilever/Agency Entity respectively
+            </div>
+            <br /><br /><table align="center">
+               <tr>
+                   <td valign="middle">
+                       <div id="rowSPanel" class="hidden">
+                           Add Unilever Entity (Row to the matrix) : <select multiple="multiple" id="ulSRow" style="width:370px;"/>
+                       </div>
+                       <div id="loadSRowSpinner" class="spinner">
+                          loading Unilever Entities...<img src='/img/loading.gif' />
+                       </div>
+                   </td>
+                   <td valign="middle">
+                       <div id="colSPanel" class="hidden">
+                           Add Agency Entity (Column to the matrix) : <select multiple="multiple" class="toggle-vis" id="agSCol" style="width:370px;" />
+                       </div>
+                       <div id="loadSColSpinner" class="spinner">
+                          loading Agency Entities...<img src='/img/loading.gif' />
+                       </div>
+                   </td>
+               </tr>
+               <tr>
+                   <td valign="middle">&nbsp;&nbsp;</td>
+                   <td valign="middle"><button id="ldMatrix" style="  background: none repeat scroll 0 0 #E400A7 !important; border: 1px solid red!important; border-radius: 5px !important; color: #FFFFFF!important; font-size: 13px!important; height: 30px; margin-top: 0px!important; padding-bottom: 0px; padding-top: 0px; width: 110px; /* margin-left: -100px!important; */ /* margin-bottom: 10px!important; */">Create Matrix</button></td>
+               </tr>
+            </table>
+        </div>
+    </apex:outputPanel>
+    
+      </div></div></div>
+    </apex:form>
+<!--
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/matrixControls.js')}"></script>
+  -->
+  <script>
+  var $j = jQuery.noConflict();
+        $j("#advFltr").multiselect({
+            multiple: false,
+            header: "Advanced Filters",
+            noneSelectedText: "All Currency",
+            selectedList: 1
+        });
+        $j("#advFltr").multiselect().multiselectfilter().bind("multiselectclick multiselectcheckall", function( event, ui ){
+            advFilter = [];
+            advFilter = $j.map($j(this).multiselect("getChecked"), function(input ){
+                return input.value;
+            });
+            
+            $j('#advFltr').trigger( "click");
+        })
+        $j("#agCol").multiselect({
+           show: ["slide", 300],
+           hide: ["explode", 1000]
+        });
+        $j("#ulRow").multiselect({
+           show: ["slide", 300],
+           hide: ["explode", 1000]
+        });
+        $j("#agCol").multiselect().multiselectfilter().bind("multiselectclick multiselectcheckall multiselectuncheckall", function( event, ui ){
+            colsSelected = [];
+            colsSelected = $j.map($j(this).multiselect("getChecked"), function(input ){
+                return input.value;
+            });
+            //$j('#agCol').trigger( "click");
+        })
+        .triggerHandler("multiselectclick"); // trigger above logic when page first loads
+        $j( "#colPanel :button span" ).text("Add Agency Entities");
+        $j( "#rowPanel :button span" ).text("Add Unilever Entities");
+        loadAgEnts();
+        function loadAgEnts() {
+            $j.when( getAgencyEntities( ) ).then( function(status){
+                $j("#loadColSpinner").removeClass('displayed').addClass('hidden');
+                $j.each(status, function(key, value) {
+                    var i = key+1;
+                    console.log('key: ' + i + ' : val ' + value );
+                    $j('#agCol').append($j('<option>', {
+                        value: value,
+                        text: value
+                    }));
+                    $j('#agSCol').append($j('<option>', {
+                        value: value,
+                        text: value
+                    }));
+                    i++;
+                    $j('#agCol').multiselect( 'refresh' );
+                    $j('#agSCol').multiselect( 'refresh' );
+                });
+            },
+            function(status){
+                $("#agCol").html(status+', unable to load Agency Entities.');
+                //alert( status+', unable to load Agency Entities' );
+            },
+            function(status){
+               $j("#agCol").html(status);
+            });
+        }
+        
+        $j("#ulRow").multiselect().multiselectfilter().bind("multiselectclick multiselectcheckall multiselectuncheckall", function( event, ui ){
+            rowsSelected = [];
+            rowsSelected = $j.map($j(this).multiselect("getChecked"), function( input ){
+                return input.value;
+            });
+            //$j('#ulRow').trigger( "click");
+        })
+        .triggerHandler("multiselectclick"); // trigger above logic when page first loads
+        
+        loadUlEnts();
+        function loadUlEnts() {
+            $j.when( getUnileverEntities() ).then( function(status){
+                $j("#loadRowSpinner").removeClass('displayed').addClass('hidden');
+                
+                $j.each(status, function(key, value) {
+                    console.log('key: ' + key + ' : val ' + value );
+                    $j('#ulRow').append($j('<option>', {
+                        value: value,
+                        text: value
+                    }));
+                    
+                    $j('#ulSRow').append($j('<option>', {
+                        value: value,
+                        text: value
+                    }));
+                    $j('#ulSRow').multiselect( 'refresh' );
+                    $j('#ulRow').multiselect( 'refresh' );
+                });
+            },
+            function(status){
+                $("#ulRow").html(status+', unable to load Unilever Entities.');
+                //alert( status+', unable to load Unilever Entities.' );
+            },
+            function(status){
+               //$("#ulRow").html(status);
+            });
+        }
+        // Add event listener for opening and closing details
+        $j('.display tbody').on('mouseover', 'td.details-control', function () {
+            var tr = $j(this).closest('tr');
+            var t = $j(this).attr('t');
+            var d = $j(this).attr('d');
+            var a = $j(this).attr('a');
+            $j(this).tooltip( {content : format(t, d, a)}, { track: true });
+        } );
+        
+        $j('#add-row-panel').on('click', function () {
+            $j("#rowPanel").removeClass('hidden').addClass('displayed');
+            $j("#add-row-panel").removeClass('displayed').addClass('hidden');
+        } );
+        
+        $j('#add-col-panel').on('click', function () {
+            $j("#colPanel").removeClass('hidden').addClass('displayed');
+            $j("#add-col-panel").removeClass('displayed').addClass('hidden');
+        } );
+        $j('#submit-col').on('click', function () {
+            $j('#agCol').trigger( "click");
+        } );
+        $j('#submit-row').on('click', function () {
+            $j('#ulRow').trigger( "click");
+        } );
+        var progressbar = $j( "#progressbar" ),
+        progressLabel = $j( ".progress-label" );
+        progressbar.progressbar({
+            value: progressValue,
+        complete: function() {
+            progressLabel.text( progressValue );
+        }
+        });
+        $j("#ulSRow").multiselect({
+            multiple: false,
+            noneSelectedText: "None",
+            selectedList: 1
+        });
+        $j("#agSCol").multiselect({
+            multiple: false,
+            noneSelectedText: "None",
+            selectedList: 1
+        });
+        $j("#ulSRow").multiselect().multiselectfilter().bind("multiselectclick multiselectcheckall", function( event, ui ){
+            $j.map($j(this).multiselect("getChecked"), function( input ){
+                singleRow = input.value;
+            });
+        })
+        $j("#agSCol").multiselect().multiselectfilter().bind("multiselectclick multiselectcheckall", function( event, ui ){
+            $j.map($j(this).multiselect("getChecked"), function(input ){
+                singleCol = input.value;
+            });
+        });
+      
+        
+  </script>
+   
+    <script>
+    $j(document).ready(function() {
+        $j(".statusBrand").multiselect({
+            multiple: false,
+            header: "Status Brand",
+            noneSelectedText: "--None--",
+            selectedList: 1
+        });
+    });
+    
+    $j(function() {
+    $j( "#progressbar" ).progressbar({
+    value: {!progressValue}
+    });
+     $j( "#progressbar1" ).progressbar({
+    value: {!progressReviewValue}
+    });
+    });
+    </script>
+    
+    <!--Chart Javascript -->
+    <script>
+        window.onload = function() {
+            var myCrossBar = new Chart(document.getElementById("mycrosscanvas").getContext("2d")).Doughnut(DoughnutCrossData,crossopts);
+            var mytradBar = new Chart(document.getElementById("mytradcanvas").getContext("2d")).Doughnut(DoughnutTradData,tradopts);
+            var mydigitBar = new Chart(document.getElementById("mydigitcanvas").getContext("2d")).Doughnut(DoughnutDigtData,digtopts);
+            var myadapBar = new Chart(document.getElementById("myadapcanvas").getContext("2d")).Doughnut(DoughnutAdapData,adapopts);
+        }
+        var DoughnutCrossData = 
+       [{
+            value : 100,
+            color: "#FF0000",
+        },
+        {
+            value : 0,
+            color: "#E6E6E6",
+        }]
+        var crossper = {!crosPerStr}+'';
+        var crossopts= {legend : true,
+           crossText : [crossper],
+           crossTextIter: ["all"],
+           crossTextOverlay :   [true],
+           crossTextFontSize : [20],
+           crossTextFontColor : ["black"],
+           crossTextRelativePosX : [2],
+           crossTextRelativePosY : [2],
+           crossTextPosX : [0],
+           crossTextPosY : [0],
+           crossTextAlign : ["center"],
+           crossTextBaseline : ["middle"],
+           canvasBorders : false,
+           
+        };
+    var trad ={!tradPerStr};
+    var DoughnutTradData = 
+                [{
+                    value : trad,
+                    color: "#74AE00",
+                 },
+                 {
+                    value : 100-trad,
+                    color: "#ECF0F1",
+
+                 }]
+var tradPer = trad+'%';
+var tradopts= {legend : true,
+   crossText : [tradPer],
+   crossTextIter: ["all"],
+   crossTextOverlay :   [true],
+   crossTextFontSize : [20],
+   crossTextFontColor : ["black"],
+   crossTextRelativePosX : [2],
+   crossTextRelativePosY : [2],
+   crossTextPosX : [0],
+   crossTextPosY : [0],
+   crossTextAlign : ["center"],
+   crossTextBaseline : ["middle"],
+   canvasBorders : false,
+};
+
+var digt={!digitPerStr};
+var DoughnutDigtData = 
+       [{
+            value : digt,
+            color: "#007DBB",
+        },
+        {
+            value : 100-digt,
+            color: "#ECF0F1",
+        }]
+var digtper = digt+'%';
+var digtopts= {legend : true,
+   crossText : [digtper],
+   crossTextIter: ["all"],
+   crossTextOverlay :   [true],
+   crossTextFontSize : [20],
+   crossTextFontColor : ["black"],
+   crossTextRelativePosX : [2],
+   crossTextRelativePosY : [2],
+   crossTextPosX : [0],
+   crossTextPosY : [0],
+   crossTextAlign : ["center"],
+   crossTextBaseline : ["middle"],
+   canvasBorders : false,
+};
+var adap ={!adaptPerStr};
+var DoughnutAdapData = 
+                [{
+                    value : adap,
+                    color: "#E400A7",
+                 },
+                 {
+                    value : 100-adap,
+                    color: "#ECF0F1",
+
+                 }]
+var adapPer = adap+'%';
+var adapopts= {legend : true,
+   crossText : [adapPer],
+   crossTextIter: ["all"],
+   crossTextOverlay :   [true],
+   crossTextFontSize : [20],
+   crossTextFontColor : ["black"],
+   crossTextRelativePosX : [2],
+   crossTextRelativePosY : [2],
+   crossTextPosX : [0],
+   crossTextPosY : [0],
+   crossTextAlign : ["center"],
+   crossTextBaseline : ["middle"],
+   canvasBorders : false,
+};
+
+  function commentsToggleOpen(elementId) 
+  {
+      //alert(elementId);
+      document.getElementById(elementId).style.display = 'block';
+  }
+  function commentsToggleClose(elementId) 
+
+  { 
+      //alert(elementId);
+      document.getElementById(elementId).style.display = 'none';
+  }
+  commentsToggleClose('commentAddTable');
+
+    </script>
+</body>
+</apex:page>

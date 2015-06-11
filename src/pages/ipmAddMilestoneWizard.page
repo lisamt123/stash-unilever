@@ -1,0 +1,263 @@
+<apex:page standardController="IPM_Milestone__c" extensions="IPM_Milestone"  sidebar="false" standardStylesheets="true" showHeader="false">      
+        <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/bootstrap.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmButtons.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/jquery.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/bootstrap.js')}"/>
+<!--        <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/bootstrap-fixed-header-table.js')}"/>-->
+        <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'assets/font-awesome/css/font-awesome.min.css')}"/>
+        <!--<apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/bootstrap-fixed-header-table.css')}"/>-->
+        <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmTable.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmCheckbox.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmPageHeader.css')}"/>
+        <style>
+            .addMilestoneList>tbody>tr.selected{background:#E5F2F8;}
+            .addMilestoneList>tbody>tr.selected td {border-bottom: 1px #007DBB solid;}
+            .marginTop{margin-top:20px;}
+            .ipmButtonGroup{margin-bottom:20px;}
+            .inputField{margin-bottom:15px;}
+            .inputField input, .inputField select{width:100%;height:30px;border-radius: 3px; border: 1px #a8a8a8 solid;}
+          
+            .middlePanel{background:#f9f9f9; border-top:1px #d7e1e0 solid; border-bottom:1px #d7e1e0 solid;margin-bottom: 10px;padding-top: 5px;}
+            .fieldFont{font-size:1em; color:#555555;}
+            .fieldLabel{padding-top:5px; padding-bottom:5px; font-weight:bold;}
+            .modal-backdrop.in {opacity: 0.7;}
+            .date input{height:30px;border-radius: 4px;border: 1px #ddd solid;width:100%;}
+            .input-group.date{width:100%;}            
+            /*ipmButton Styles */
+            .ipmButton{padding: 7px 0;font-size: 1em;border-radius: 2px;color: white;border: 1px #406b14 solid;text-transform: capitalize;height: 30px;text-decoration: none;width:100%}
+            .ipmButton.green{background:#81bf42 !important;}
+            .ipmButton.green:hover{background:#56843b !important;}
+             #addTask .ipmButtonGroup{margin-bottom: 8%;} 
+             
+             /* lookup search icon*/
+             .lookupInput a{margin-left: -9%;}
+             [id$=mlktp], .date .dateInput .dateFormat{display:none;}
+            .input-group-addon{padding: 0px;margin-top: -3px;width: 1px;background:none; border:none;color: #007dbb;font-size: 1.3em; left:66%; position:absolute;}
+             
+             .messageTable td ul li{margin-left:0px !important;}
+             .messageTable td ul{padding-left:0px !important;margin-top: -25px !important;}
+             .message .messageTable .messageCell{margin-top:-6px !important;float:left;}
+             .errorMsg{padding: 10px;background: #ffebec;border-radius: 3px;margin-top: 15px;}
+             .error{border:1px solid #e03729 !important;}
+             .errorMsg:before{left: 5%;top: 73px;position: absolute;border-top: 1px #ffebec solid;border-right: 1px #ffebec solid;background: #ffebec;content: " ";height: 15px;width: 15px;-ms-transform: rotate(-45deg);transform: rotate(-45deg);}
+             
+     /* tab nav styles */
+         #ipmAddMilestoneTab .ipmTabContent { width:100%; }
+       <!-- #ipmAddMilestoneTab .panel {background:transparent;}
+        #ipmAddMilestoneTab .ipmMilestoneTabs {padding:0 0 0 20px; margin:0; background:#fff; border-bottom:1px solid #50657d;}
+        #ipmAddMilestoneTab .ipmMilestoneTabs li {display:inline-block;color:#50657d; padding:7px 12px; margin:0; font-weight:bold;cursor:pointer;}
+        #ipmAddMilestoneTab .ipmMilestoneTabs li.active{border:1px solid #50657d; color:#428bca; position:relative; top:2px; border-bottom:2px solid #ffffff!important; background:#ffffff; cursor:pointer; border-top-left-radius:3px; border-top-right-radius:3px;-moz-border-top-left-radius:3px; -moz-border-top-right-radius:3px;-webkit-border-top-left-radius:3px; -webkit-border-top-right-radius:3px;}-->
+        #ipmAddMilestoneTab{margin-top:20px;}
+        #ipmAddMilestoneTab .ipmMilestoneTabs li {top: 10px;width: 167px;position: relative;padding: 14px;background-repeat: no-repeat !important;text-align: center;background-size: 100% !important;margin-right: 0.5%;display: inline-block;color: #fff;margin-left: 0px !important;font-weight: bold;cursor: pointer;}
+        #ipmAddMilestoneTab .ipmMilestoneTabs {padding: 0 0 0 20px;border-bottom:1px solid #7ea19d;margin-bottom:20px;}
+        #ipmAddMilestoneTab .ipmMilestoneTabs li.active {color: #343434;position: relative;cursor: pointer;}
+        
+        input[type=text]{width: 100%;height: 30px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px #a8a8a8 solid;}
+        .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{padding:10px 5px;}
+        .addMilestoneList .input-group-addon{left: 97%;margin-top:6px;}
+        .datePicker{left:0!important; margin-left:60% !important;}
+        .addMilestoneDueDate .input-group-addon{top:43px;}
+      .dateInputBox.dateInputBoxAdd{background-position-x: 99%;}
+        </style>
+        <div class="container-fluid" id="ipmAddMilestoneTab">
+        <ul class="ipmMilestoneTabs">
+       <li class="selectList tabOdd"><span>Select from List</span></li>
+       <li class="newMstone tabEven"><span>Create new</span></li>
+   </ul> 
+   
+   <div class="ipmMilestoneContent" id="selectList">
+       <apex:form >
+       <apex:dataTable value="{!milestones}" var="p" id="tskPanel" styleClass="ipmTable table table-bordered table-fixed-header addMilestoneList">
+       <apex:column styleClass="col-xs-1">
+       <div class="additionalMstone">
+           <apex:inputCheckbox value="{!p.checked}"/>
+       </div>
+          <!--  <apex:facet name="header">
+                <div class="colCompleted">
+                    <span></span>
+                </div>
+            </apex:facet>
+            <div class="col-xs-2 ipmCheckbox">
+                
+               
+                <input type="checkbox" value="{!p.checked}" id="{!p.mile.IPM_Name__c}" />
+                <label for="{!p.mile.IPM_Name__c}"></label> 
+            </div>-->
+        </apex:column>
+ <!--  <apex:column >
+        <apex:outputfield value="{!p.IPM_Category__c}" />
+    </apex:column> -->
+    <apex:column headerValue="Additional MileStones" styleClass="col-xs-5">
+        <apex:outputfield value="{!p.mile.IPM_Name__c}" />
+    </apex:column>
+    <apex:column headerValue="Phase" styleClass="col-xs-3">
+        <apex:outputfield value="{!p.mile.IPM_Phase__c}" />
+       <!-- <apex:inputField value="{!p.mile.IPM_Phase__c}"/> -->
+    </apex:column>
+    <apex:column headerValue="Due Date" styleClass="col-xs-3">
+        <!-- <apex:outputfield value="{!p.IPM_Type_of_gate__c}"/> -->
+        <apex:inputField value="{!p.mile.IPM_Due_Date__c}" styleClass="dateInputBox calendar">
+            <!--<span class="input-group-addon fa fa-calendar " id="datepicker" />-->
+        </apex:inputField>
+    </apex:column>                         
+</apex:dataTable>
+    <div class="col-xs-2 ipmButtonGroup pull-right">
+        <apex:commandLink action="{!createMileStones}" value="Add" styleClass="ipmButton green" onComplete="pageclose();" />
+        
+    </div>
+    </apex:form>
+   </div>
+    <div class="ipmMilestoneContent" id="newMstone"> 
+            <div class="row" id="EditTask">
+               <!-- <apex:tabPanel >
+                    <apex:tab label="Pagination">
+                        <apex:include pageName="pagination"/>
+                    </apex:tab>
+                    <apex:tab >
+                    </apex:tab>
+                </apex:tabPanel>-->
+                <apex:form id="form">
+                    <!--<apex:pageMessages id="messages"/> -->
+                    <apex:actionStatus id="stat">
+                            <apex:facet name="start"> 
+                                    <apex:outputPanel layout="block">
+                                        <apex:panelGrid columns="2" style="margin:200px;">
+                                                <apex:panelGroup >
+                                                     <apex:image value="/img/loading.gif" title="Processing..." style="vertical-align:middle;" />
+                                                </apex:panelGroup>
+                                                <apex:panelGroup >
+                                                        <div class="messageText">Loading...</div>
+                                                </apex:panelGroup> 
+                                        </apex:panelGrid>
+                                </apex:outputPanel>
+                            </apex:facet>
+                            <apex:facet name="stop"> 
+                        <apex:outputPanel styleClass="tableContainer" layout="block">   
+                             <div class="col-xs-12 marginTop">
+                        <div class=""><apex:outputLabel value="Milestone" styleClass="fieldLabel fieldFont" /></div>
+                        <div class="inputField"><apex:inputField value="{!tasks.IPM_Name__c}" styleClass="fieldFont" required="true" /></div>
+                        <!--<div><apex:outputtext rendered="{!displayerror}"><font color="red">Please enter name</font></apex:outputtext></div>-->
+                    </div>
+                    <div class="col-xs-12">
+                        <div class=""><apex:outputLabel value="Phase" styleClass="fieldLabel fieldFont"/></div>
+                        <div class="inputField">
+                            <apex:inputField value="{!tasks.IPM_Phase__c}" styleClass="fieldFont" required="true">
+                                <apex:actionSupport event="onchange" rerender="blockToRerender" action="{!getduedate}"/>
+                             </apex:inputField>    
+                        </div>
+                        <!--<div class=""><apex:outputLabel value="Gate Documents" styleClass="fieldLabel fieldFont"/></div>
+                        <div class="inputField"><apex:inputField value="{!tasks.IPM_Type_of_gate__c}" styleClass="fieldFont" /></div>-->
+                    </div>
+                    
+                     <apex:outputPanel id="blockToRerender">
+                    <div class="col-xs-12 addMilestoneDueDate">
+                        <div class=""><apex:outputLabel value="Due Date" styleClass="fieldLabel fieldFont"/></div>
+                        <div class="inputField"><!--class='input-group date'>-->
+                            <apex:inputField value="{!tasks.IPM_Due_Date__c}" id="dueDate" styleClass="dateInputBox dateInputBoxAdd calendar" required="{!if(tasks.IPM_Name__c == null,false,true)}"><!-- id="Duedate"> -->
+                                <!--<span class="input-group-addon fa fa-calendar" id="datepicker" />-->
+                            </apex:inputField>
+                            
+                          <!-- <apex:pageMessages />-->
+                        <!--    <div class='input-group date'>
+                                <apex:inputText value="{!dueDate}" styleClass="dateInputField" html-readonly="true"/>
+                                <!--<apex:inputField value="{!IPM_Project_Task__c.IPM_Due_Date__c}" id="Duedate"/>
+                                <span class="input-group-addon" id="datepicker">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>                                           
+                            </div> -->
+                            
+                               <!-- <span class="input-group-addon fa fa-calendar" id="datepicker" /> -->
+                                             
+                        </div>
+                    </div>
+                    </apex:outputPanel>
+                    <div class="col-xs-2 marginTop ipmButtonGroup pull-right">
+                        <!--<apex:commandLink action="{!dosave}" value="Add" styleClass="ipmButton green"/>-->                
+                        <apex:commandLink action="{!dosaveTasks}" value="Add" styleClass="ipmButton green" rendered="{!if(taskId == null,true,false)}" reRender="form" onComplete="{!if(validate,'pageclose()','')};"/>
+                        
+                         <apex:commandLink action="{!dosaveTasks}" value="Save" styleClass="ipmButton green" rendered="{!if(taskId != null,true,false)}" onComplete="pageclose();"/>
+                    </div>
+                        </apex:outputPanel>
+                    </apex:facet>
+                </apex:actionStatus>
+                    
+                        
+                </apex:form>
+            
+                <apex:form >
+                    <apex:outputPanel id="popup">
+                        <apex:outputPanel styleClass="popupBg" layout="block" rendered="{!displayPopUp}"/>
+                        <apex:outputPanel styleClass="popup" layout="block" rendered="{!displayPopUp}">
+                            <div class="popupContent">No Project Resource With this assigned user. Do you want to create a Project Resource</div>
+                            <div class="ipmButtonGroup pull-center">
+                            
+                            </div>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:form>
+            </div>
+        </div>
+       </div>
+        <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/bootstrap-datepicker.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/datepicker.css')}"/> 
+        <!--<apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmMilestonesAndTasks.css')}"/>-->
+        <apex:outputPanel id="scriptToRerender">
+        <script type="text/javascript">
+             var jq=jQuery.noConflict();
+            //jq("[id$=mlktp]").hide();
+            jq('.date .dateInput .dateFormat').hide();
+            
+            jq("#errorMsg").hide();
+            
+            function Validate(){
+                if(jq("#dueDate").val() == null){
+                    $("#errorMsg").show();
+                }
+            }
+            
+            function pageclose(){
+                if('{!ProjectWizard}' !='' || '{!ProjectWizard}' !=null ){
+               window.top.location.href="/apex/ipmProjectSetup?Pid={!projectId}&Milestoneid=milestones";
+            }else{
+                window.top.location.href='/apex/IPM_Tasklist?id={!projectId}';
+            } 
+               
+            } 
+        jq(document).ready(function(){
+           // jq('.addMilestoneList thead').addClass('header');
+            //jq('.table-fixed-header').fixedHeader()
+        jq('#ipmAddMilestoneTab .ipmMilestoneContent').hide();
+            jq('#ipmAddMilestoneTab .ipmMilestoneTabs li:first').addClass('active'); 
+        jq('#ipmAddMilestoneTab .ipmMilestoneContent:first').show();  
+            jq('#ipmAddMilestoneTab .ipmMilestoneTabs li').on('click', function(e){ 
+                e.preventDefault();
+                jq('#ipmAddMilestoneTab .ipmMilestoneTabs li').removeClass('active');                   
+               var getClass= jq(this).attr('class').split(' ');
+                var getId = getClass[0];
+                jq('#ipmAddMilestoneTab .ipmMilestoneContent').hide();
+                jq(this).addClass('active');
+                jq('#'+getId).fadeIn("fast");                    
+            }); 
+            jq(document).find(".additionalMstone input[type=checkbox]:checked").closest("tr").addClass("selected");
+            jq(document).on("click", ".additionalMstone input[type=checkbox]", function(){
+                if(jq(this).is(":checked")){
+                    jq(this).next('label').addClass("selected");
+                    jq(this).closest("tr").addClass("selected");
+                }else{
+                    jq(this).next('label').removeClass("selected");
+                    jq(this).closest("tr").removeClass("selected");
+                }
+            });
+            
+            jq('input[type=checkbox]').each(function () {
+                var val = jq(this).attr('value');
+                if(val === 'true'){
+                   jq(this).prop('checked', true); 
+                   jq(this).next('label').addClass('selected');
+                }else{jq(this).prop('checked', false);}
+            });
+        });
+        jq('.dateInput .dateFormat').hide();       
+    </script>
+        </apex:outputPanel> 
+    </apex:page>

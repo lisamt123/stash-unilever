@@ -1,0 +1,396 @@
+<apex:page controller="AF_OOPSEstimateController" showHeader="false" sidebar="false">
+<!-- {!Buttondisplay}<br/>
+ {!oopsEstimate.AF_OOPS_Actual__r.AF_Status__c}<br/>
+ {!LoggedinUser.AF_Agency_Fees_User_Type__c} -->
+ <script>
+     function isNumberKey(evt)
+       {
+          var charCode = (evt.which) ? evt.which : event.keyCode;
+          var result = false;
+          var errorMsg = document.getElementById("regTitle");
+          if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+          {
+             errorMsg.innerHTML = "<b>Please enter numbers only.</b>";
+             result = false;
+          }
+          else
+          {
+           errorMsg.innerHTML = "";
+           result = true;         
+          }             
+          return result; 
+       }
+  </script>
+ <style>
+ 
+  .heading_main{
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom:5px;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    }
+.heading_text{
+    color: black;
+    font-size: 20px;
+    margin-right: 20px;
+    padding: 7px 1px 8px 8px;
+}
+
+ .comment_box1{
+    margin-top: 5px;
+    width: 982px;
+    height: 93px;
+    margin-bottom: 5px;
+    border: 2px solid #74AE00;
+    border-radius: 7px;
+    resize: none;
+    font-size:16px;
+    }
+ .submit_btn{
+background: none repeat scroll 0 0 #E400A7 !important;
+border: 1px solid red!important;
+border-radius: 5px !important;
+color: #FFFFFF!important;
+font-size: 14px!important;
+height: 30px;
+/* margin-top: 10px!important; */
+/* padding-bottom: 20px; */
+/* padding-top: 5px; */
+width: 100px;
+/* margin-left: 470px !important; */
+float: left;
+margin-left: 177px!important;
+margin-right: 5px!important;
+ }
+ 
+ .submit_btn_screen1_oops{
+  background: none repeat scroll 0 0 #E400A7 !important;
+border: 1px solid red!important;
+border-radius: 5px !important;
+color: #FFFFFF!important;
+font-size: 14px!important;
+height: 30px;
+/*margin-top: 10px!important;*/
+/* padding-bottom: 20px; */
+/* padding-top: 5px; */
+width: 100px;
+/* margin-left: 470px !important; */
+float: left;
+margin-left: 80px!important;
+ }
+ 
+  .submit_btnblur{
+    background: none repeat scroll 0 0 #CCC !important;
+    border: 1px solid red!important;
+    border-radius: 5px !important;
+    color: #FFFFFF!important;
+    font-size: 16px!important;
+    height: 35px;
+    margin-top: 13px ;
+    padding-bottom: 20px;
+    padding-top: 5px;
+    width: 160px;
+    margin-left:100px !important;
+ }
+ 
+  .values1
+   {
+   background: none repeat scroll 0 0 #FFFFFF;
+border: 2px solid #74AE00;
+border-radius: 5px;
+color: #000000;
+font-size: 16px;
+height: 25px;
+margin-top: 5px;
+padding: 0;
+width: 120px;
+text-align: center;
+padding-top: 2px;
+padding-left: 5px;
+
+   }
+   
+  .values1_oops
+   {
+background: none repeat scroll 0 0 #FFFFFF;
+border: 2px solid #74AE00;
+border-radius: 5px;
+color: #000000;
+font-size: 16px;
+height: 25px;
+/* margin-top: 5px; */
+padding: 0;
+width: 120px;
+text-align: center;
+padding-top: 2px;
+padding-left: 5px;
+margin-left: 160px;
+   }
+   
+    .values2_oops
+   {
+    background: none repeat scroll 0 0 #FFFFFF;
+border: 2px solid #74AE00;
+border-radius: 5px;
+color: #000000;
+font-size: 16px;
+height: 25px;
+/* margin-top: 5px; */
+padding: 0;
+width: 120px;
+text-align: center;
+padding-top: 2px;
+padding-left: 5px;
+   }
+   
+ 
+ </style>
+ <!--Tab Style - Vaseem to Amend -->
+<style>
+    .activeTab {background-color: #95BD4F;color: white;background-image: none;padding: 10px;cursor: pointer;font-size:16px;font-weight:bold;}
+    .inactiveTab { background-color: lightgrey; color:black; background-image:none;cursor: pointer;font-size:16px;}
+</style>
+ <apex:form id="frm">
+ 
+ 
+ 
+  <div class="row">           
+        <div class="col-lg-12 charttable1">         
+            <apex:image url="{!$Resource.header_new}" style="width:100%;height:37px;" />            
+        </div>          
+    </div>
+    
+    <!-- <div class="heading_main">
+       <h1 class="heading_text"> OOPS Estimate </h1>
+      </div>-->
+      
+      
+<apex:tabPanel switchType="ajax" id="MainPanel" tabClass="activeTab" inactiveTabClass="inactiveTab" >
+ <apex:tab label="OOPS Estimate" name="OOPS Estimate" id="OppsEstimate" >
+ <apex:pagemessages id="pm1" />
+     <apex:pageBlock >
+     <div style="text-align: center!important;font-size:16px;font-weight:bold;"> <apex:outputText id="Billing" >Billing to: <b>{!oopsEstimate.Unilever_Entity_Name__c}</b></apex:outputText> </div>
+     </apex:pageBlock>
+     
+     <table  style="border: 2px solid #74AE00;border-radius: 10px; padding:0.8%;width:100%;border-collapse:separate!important;float: left;/*margin-left:30px;*/margin-bottom:10px;">
+   <tr style="display: inline;
+    font-weight: bold;
+  /* margin-bottom: 5px !important; */
+    margin-left: 37px !important;
+   /* margin-top: 5px !important;*/
+    width: 600px;">
+        <td style="display: inline; margin-right: 103px;"> <apex:outputText ><!-- Please enter all figures in thousands of Euros --></apex:outputText></td>
+         <td style="display: inline;"><!--Agreed Base Fees -->
+         <span style="font-weight: bold; margin-left: 16px;"> <apex:outputText ><!-- {!agreedBaseFee} --></apex:outputText></span>
+         </td>
+     </tr>
+     
+     
+    <tr style="margin-top: 1px !important; font-weight: bold; margin-bottom: 10px ! important; display: block; margin-left: 60px ! important; width: 600px;">
+       <td style="padding-left: 20px;font-size: 16px;padding-top:10px;">
+                 <span style="font-size: 16px; display: block;text-align: center;font-weight:bold;margin-left:93px;">Unilever Entity</span>  
+                <span style="margin-left:93px;margin-top: 5px;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 14px; display: block;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 145px;height: 25px;padding-top: 5px;">{!oopsEstimate.Unilever_Entity_Name__c}
+            </span>
+            </td>
+        <td style="padding-left: 20px;font-size: 16px;padding-top:10px;">
+                  <span style="font-size: 16px; display: block;text-align: center;font-weight:bold;">Agency Entity</span> 
+                <span style="margin-top: 5px;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 14px; display: block;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 145px;height: 25px;padding-top: 5px;"> {!oopsEstimate.Agency_Entity_Name__c}
+                </span>  
+            </td>
+            <br/>
+       <td style="font-size: 20px; margin-left: 18px ! important; display: inline;">
+       <apex:outputText >OOPS Estimate</apex:outputText></td>
+       
+     
+            
+             
+       <td style="font-size: 20px; display: inline; margin-left: 100px ! important;">
+             <span style="font-size: 20px;font-weight:bold;">€ </span>
+             <span style="display: inline-block;margin-top: 5px;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 16px;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 125px;height: 25px;padding-top: 5px;">
+             <apex:outputText value="{0,number,###,###,###}" >
+             <apex:param value="{!oopsEstimate.AF_Estimate__c}"/>
+             </apex:outputText>
+             </span>
+        </td>
+         <td style="font-size: 20px; display: inline; /* margin-bottom: 15px ! important;*/"><!-- <apex:outputText >{!oopsAgencyCurrencyCode}</apex:outputText> --></td>
+         <td style="display: inline; width: 20px; margin-left: 5px;"><apex:outputText ><!--{!oopsEstimateAgencyValue} --></apex:outputText> </td>
+     </tr>
+    
+    
+     <tr style="margin-top: 20px !important; font-weight: bold; display: block; margin-left:  60px ! important; width: 600px;">
+               <td style="font-size: 20px; margin-left: 18px ! important; display: inline;">
+               <apex:outputText >Override OOPS Estimate</apex:outputText>
+               </td>
+              <td style="font-size: 20px; display: inline; margin-left: 10px ! important;">
+                    <span style="font-size: 20px;font-weight:bold;">€ </span>
+                     <apex:inputtext value="{!OppsEstimatesValue}" id="override1" onkeypress="return isNumberKey(event)" disabled="{!Buttondisplay}" styleClass="values1">
+                     
+                     <apex:actionSupport action="{!CalculateLocalC}" reRender="TotalLocal" event="onchange"/>
+                     </apex:inputtext>
+                     <apex:inputText value="{!oopsEstimate.AF_Estimate__c}" id="override" onkeypress="return isNumberKey(event)" disabled="{!Buttondisplay}" rendered="false"/>
+                     <!--  
+                     <div style="font-family:arial;color:red;font-size:14px;text-align:center;display: inline;" id="regTitle"></div>
+                 
+                     <apex:actionSupport event="onchange" action="{!Calculate_overrideamt}" reRender="convertedvalue"/>
+                    </apex:inputText>
+                     -->
+              </td>
+             
+        
+     </tr>  
+     
+     
+    <tr style="margin-top: 20px !important; font-weight: bold; display: inline-block; margin-left: 0px ! important; /* width: 515px; */">
+               <td style="font-size: 20px; margin-left: 18px ! important; display: inline-block;width: 225px;float: left;">
+                <apex:outputText >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                
+                </apex:outputText>
+               </td>
+             
+          
+              
+              <td style="display: inline-block;font-size:16px;width: 35px!important;/* border: 1px solid red; */float: left;padding-left: 65px;padding-right: 0px;margin-left: 3px;padding-top: 7px;">
+              
+              <apex:outputPanel id="convertedvalue">
+              <apex:outputText ></apex:outputText>
+              </apex:outputPanel>
+           
+           
+           
+            <apex:outputText style="margin-left: 42px;width: 54px!important;/*border: 1px solid red;*/display: inline-block;">
+            {!oopsEstimate.AF_OOPS_Matrix_Currency_Code__c}</apex:outputText>
+             </td>
+             
+              <td style="display: inline-block;font-size:16px;width: 127px!important;float: left;">
+          <span style="display: inline-block;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 16px;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 125px;height: 25px;padding-top: 5px;">         
+                <apex:outputText value="{0,number,###,###,###}" id="TotalLocal" >
+                 <apex:param value="{!EsLocal}"/>
+               </apex:outputText>
+          </span>
+             
+              </td>
+        
+     </tr>  
+     
+     <tr style="margin-top: 5px !important;margin-bottom: 25px ! important; margin-left:  60px ! important; width: 600px;">
+       <td style="margin-left: 79px ! important; display: block;font-size:16px;margin-top: 10px;margin-bottom: 10px;">
+       <apex:outputPanel rendered="{!!IsReadyforPO}">
+       <apex:outputText style="margin-top:10px;" >Current Average Unilever Exchange Rate {!oopsEstimate.AF_Agency_Exchange_Rate__c}</apex:outputText>
+       </apex:outputPanel>
+       </td>
+       </tr>
+    
+     <tr>
+     <td>
+         <apex:commandButton value="Add Comment" onClick="commentsToggleOpen('commentAddTable');return false;" styleClass="submit_btn_addcomment"  />
+                 
+         <apex:commandButton value="Save" action="{!Save}" StyleClass="submit_btn_screen1_oops" rendered="{!IF(AND(isOopsEditable,NOT(IsReadyforPO)),'true','false')}" reRender="frm,pm1"/> 
+         
+         <!--<apex:commandButton value="Save" action="{!Save}" StyleClass="submit_btn_screen1_oops" rendered="{!!Buttondisplay}" reRender="frm"/> -->
+         
+         <!--<apex:commandButton value="Save" action="{!Save}" styleClass="submit_btnblur" rendered="{!Buttondisplay}" disabled="{!Buttondisplay}" reRender="frm,pm1"/> -->
+      </td>  
+     </tr>   
+     </table>     
+      <c:AF_CommentsListComp ParentRecordValue="{!oopsEstimate.Id}" ParentObjectTypeDesc="AF_OOPS_Estimate__c"  IsViewAllValue="false"  />
+    <c:AF_FieldHistoryComp ParentRecordValue="{!oopsEstimate.Id}" ParentObjectName="AF_OOPS_Estimate__c" IsViewAllValue="false" />   
+     <!-- 
+     
+      <table>
+       <tr style=" display: block;margin-left: 20px;">
+             <td style="display: block; margin-left: 33px;">
+            <span style="font-size: 16px; display: block;text-align: left;font-weight:bold;">Add Comments</span>
+            <apex:outputPanel id="text1area">
+            <apex:inputTextarea value="{!addComments}" styleClass="comment_box comment_box1" />
+            </apex:outputPanel>
+            </td>
+       </tr>
+     
+     </table>
+     <apex:pageBlock id="pb1">
+     <apex:pageBlockTable value="{!OopsComment}" var="comment">
+         <apex:column >
+             <apex:outputText value="{0,date,dd'/'MM'/'yy}">
+             <apex:param value="{!comment.CreatedDate}" />
+             </apex:outputText>
+         </apex:column>
+         <apex:column >
+             <apex:outputText >{!comment.AF_Comments__c}</apex:outputText>
+         </apex:column>
+         <apex:column >
+             <apex:outputText >{!comment.OwnerName__c}</apex:outputText>
+         </apex:column>
+     </apex:pageBlockTable>
+     </apex:pageBlock>
+     <apex:pageBlock ><apex:commandButton value="Add Changes" action="{!SaveComment}" StyleClass="btn submit_btn" reRender="pb1,text1area"/></apex:pageBlock>
+      -->
+    </apex:tab>
+    
+    <apex:tab label="PO Number" name="PO Number" id="PONumber" rendered="{!IF(AND(IsShowPOTab,IsReadyforPO),true,false)}">
+    <apex:pagemessages id="pm2"/>
+      <table  align="center" style="border: 2px solid #74AE00;border-radius: 10px; padding:0.8%;width: 50%;border-collapse:separate!important;/* float: left; *//* margin-left:30px; */">
+    <tr>
+    <td style="width: 150px;">
+    <span style="font-size: 16px; font-weight:bold;display: inline;margin-left: 180px;">
+         <apex:outputLabel >PO Number</apex:outputLabel>
+         </span>
+    </td>
+   <!-- <td>
+     <span style="font-size: 16px; font-weight:bold;display: inline;text-align: center;/* width: 339px!important; *//* border: 1px solid red; */margin-left: 27px;">
+           <apex:outputLabel >PO Value</apex:outputLabel>
+           </span>
+    </td>-->
+    </tr>
+    
+    <tr>
+    <td>
+      <apex:inputField id="po_number" value="{!polist.AF_PO_Number__c}" styleClass="values1_oops" rendered="{!isPOEditable}"/>
+       <apex:outputPanel rendered="{!IsReadonlyPO}">
+       <span style="margin-top: 5px;margin-left:158px;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 16px; display: block;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 125px;height: 25px;padding-top: 5px;">
+       <apex:outputField value="{!polist.AF_PO_Number__c}" rendered="{!!isPOEditable}" />
+       </span>
+       </apex:outputPanel>
+    </td>
+   <!-- <td>
+      <Apex:inputfield id="povalue" value="{!oopsEstimate.AF_PO_Value__c}" styleClass="values2_oops" rendered="{!isPOEditable}"/>
+       <apex:outputPanel rendered="{!!isPOEditable}">
+       <span style="margin-top: 5px;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 16px; display: block;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 125px;height: 25px;padding-top: 5px;">
+       <apex:outputField value="{!oopsEstimate.AF_PO_Value__c}" rendered="{!!isPOEditable}" />
+       </span>
+       </apex:outputPanel>
+    </td>-->
+    </tr>
+    <tr>
+    <td colspan= "2">
+   <!-- <apex:commandButton value="Save" action="{!SavePO}" style="Align:center" styleClass="save_btn" Rerender="pm2"/>-->
+      
+      <apex:commandButton value="Save" action="{!SavePO}" StyleClass="btn submit_btn" rendered="{!isPOEditable}" reRender="pm2"/>
+     <!-- <apex:commandButton value="Save" action="{!SavePO}" styleClass="submit_btnblur" rendered="{!Buttondisplay}" disabled="{!Buttondisplay}" reRender="pm2"/> -->
+   
+    </td>
+    </tr>
+    </table>
+   
+    </apex:tab>
+    </apex:tabPanel>
+ </apex:form>
+ <script>
+  function commentsToggleOpen(elementId) 
+  {
+      //alert(elementId);
+      document.getElementById(elementId).style.display = 'block';
+  }
+  function commentsToggleClose(elementId) 
+
+  { 
+      //alert(elementId);
+      document.getElementById(elementId).style.display = 'none';
+  }
+  commentsToggleClose('commentAddTable');
+
+
+</script>
+</apex:page>

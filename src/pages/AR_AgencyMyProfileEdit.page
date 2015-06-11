@@ -1,0 +1,144 @@
+<apex:page docType="html-5.0" standardStylesheets="false" showHeader="false" applyHtmlTag="false" applyBodyTag="false" standardController="Account" extensions="AR_AgencyMyProfileEdit">
+	
+	<apex:composition template="AR_Template">
+	
+		<apex:define name="content">
+		
+			<section role="main" id="content" class="form global-content">
+			
+				<apex:form styleClass="form-validate">
+		
+					<header class="main-header">
+		            	<h1>Update</h1>
+		            	<p>Here you can update your profile information:</p>
+			        </header>
+	        	
+	                <div class="form-fields-wrapper">
+	                
+	                    <ul class="form-errors active">
+	                       <apex:messages />
+	                    </ul>
+	                    
+	                    <apex:repeat value="{!fields}" var="field"> 
+	                    	
+	                    	<apex:outputText rendered="{!OR(field.Type == 'string', field.Type == 'email', field.Type == 'phone', field.type == 'url')}">
+			                    <div class="form-row text-row clearfix">
+			                        <label class="form-row-label">{!field.Label}</label>
+			                        <div class="form-input">
+			                            <apex:inputField value="{!agency[field.fieldPath]}" />
+			                            <apex:outputText rendered="{!$ObjectType['Account'].fields[field.fieldPath].InlineHelpText != null}">
+				                        	<p class="helper">{!$ObjectType['Account'].fields[field.fieldPath].InlineHelpText}</p>
+				                        </apex:outputText>
+			                        </div>
+			                    </div>
+			                </apex:outputText>
+			                
+			                <apex:outputText rendered="{!field.Type == 'picklist'}">
+			                	<div class="form-row clearfix">
+				                     <label class="form-row-label">{!field.Label}</label>
+				                     <div class="form-input">
+				                     	<label class="select-label">
+				                        	<apex:inputField value="{!agency[field.fieldPath]}" styleClass="select" />
+				                    	</label>
+				                    	<apex:outputText rendered="{!$ObjectType['Account'].fields[field.fieldPath].InlineHelpText != null}">
+			                        		<p class="helper">{!$ObjectType['Account'].fields[field.fieldPath].InlineHelpText}</p>
+			                        	</apex:outputText>
+				                    </div>
+				                </div>
+			                </apex:outputText>
+			                
+			                <apex:outputText rendered="{!field.Type == 'textarea'}">
+			                    <div class="form-row textarea-row clearfix">
+			                        <label class="form-row-label">{!field.Label}</label>
+			                        <div class="form-input">
+			                            <apex:inputTextArea value="{!agency[field.fieldPath]}" rows="10" />
+			                            <apex:outputText rendered="{!$ObjectType['Account'].fields[field.fieldPath].InlineHelpText != null}">
+				                        	<p class="helper">{!$ObjectType['Account'].fields[field.fieldPath].InlineHelpText}</p>
+				                        </apex:outputText>
+			                        </div>
+			                    </div>
+			                </apex:outputText>
+			                
+		                </apex:repeat>
+
+	                </div>
+	
+					<div id="update-profile">
+	                	<apex:commandButton styleClass="update-profile" />
+	                	<apex:outputLink value="{!$Page.AR_AgencyMyProfile}" style="float:right;margin: 20px 30px 0 0 ;">Cancel</apex:outputLink>
+	                </div>
+	                
+	                <div style="clear:both;"></div>
+	                
+	                <br/><hr/><br/>
+	                
+	                <h1>Office Locations (<a href="{!$Page.AR_AgencyMyProfileEditGeography}?id={!agency.Id}">edit</a>)</h1>
+	                <table class="table">
+	                    <thead>
+	                        <tr>
+	                            <th>Country</th>
+	                            <th>City</th>
+	                            <th>Office / Company Name</th>
+	                            <th>Office Address</th>
+	                            <th>No. of (FTE's) Employees</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                    	<apex:repeat value="{!agency.Geographies__r}" var="geography">
+	                    		<tr>
+		                    		<td><apex:outputField value="{!geography.Name}" /></td>
+		                    		<td><apex:outputField value="{!geography.City__c}" /></td>
+		                    		<td><apex:outputField value="{!geography.Office_Company_Name__c}" /></td>
+		                    		<td><apex:outputField value="{!geography.Office_Address__c}" /></td>
+		                    		<td><apex:outputField value="{!geography.No_of_FTE_s_Employees__c}" /></td>
+		                    	</tr>
+	                    	</apex:repeat>
+	                    </tbody>
+	                </table>
+	                
+	                <br/><hr/><br/>
+	              
+	                <h1>Projects/Porfolio (<a href="{!$Page.AR_AgencyMyProfileEditProjects}?id={!agency.Id}">edit</a>)</h1>
+	                <table class="table">
+	                    <thead>
+	                        <tr>
+	                            <th>Project Title</th>
+	                            <th>Brand</th>
+	                            <th>Main Link</th>
+	                            <th>Additional Images</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                    	<apex:repeat value="{!projects}" var="project">
+	                    		<tr>
+		                    		<td><apex:outputField value="{!project.Project_Title__c}" /></td>
+		                    		<td><apex:outputField value="{!project.Brand_Competitor__c}" /></td>
+		                    		<td>
+		                    			<apex:repeat value="{!project.Attachments}" var="att">
+		                    				<apex:outputLink value="/servlet/servlet.FileDownload?file={!att.Id}" target="_blank" rendered="{!LEFT(att.Name,4) == 'one_'}">View File</apex:outputLink>
+		                    			</apex:repeat>
+		                    		</td>
+		                    		<td>
+		                    			<apex:repeat value="{!project.Attachments}" var="att">
+		                    				<apex:outputText rendered="{!LEFT(att.Name,4) != 'one_'}">
+		                    					<apex:outputLink value="/servlet/servlet.FileDownload?file={!att.Id}" target="_blank">View File</apex:outputLink>
+		                    					&nbsp;&nbsp;&nbsp;
+		                    				</apex:outputText>
+		                    			</apex:repeat>
+		                    		</td>		                    	
+		                    	</tr>
+	                    	</apex:repeat>
+	                    </tbody>
+	                </table>
+	
+	            </apex:form>
+	            
+	        </section>
+        
+		</apex:define>
+		
+	</apex:composition>
+
+
+
+</apex:page>

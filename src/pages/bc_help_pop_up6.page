@@ -1,0 +1,19 @@
+<apex:page showHeader="false" sidebar="false">
+ <link rel="stylesheet" type="text/css" media="all" href="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/css/style.css')}" />
+
+<div class="help_template">
+  <div class="title"> WHO IS WHO LINKS HELP</div>
+  <p>
+      Who is Who is an area in the Brand Centre for you to display your team members. Adding this information will let people who view your Brand Centre know who to contact if they have questions or suggestions.  
+  </p>
+  <p> <img src="{!URLFOR($Resource.ulw_help_pop_up, 'img/help_image_6.jpg')}"/> </p>
+
+  <table width="800" border="0" cellpadding="4">
+    <tr>
+      <td class="bubblebox"><span class="numcolor">1</span></td>
+      <td class="bubbletxt"><span>Links you add will be shown in this section.</span></td>
+    </tr>
+  </table>
+
+</div>
+</apex:page>

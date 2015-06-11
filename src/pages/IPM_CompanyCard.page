@@ -1,0 +1,146 @@
+<apex:page controller="IPM_CompanyCard" showHeader="true" sidebar="false"> 
+    <apex:includeScript value="{!URLFOR($Resource.ipmResource, 'js/jquery.js')}"/> 
+    <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'assets/font-awesome/css/font-awesome.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/bootstrap.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmTable.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmButtons.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.ipmResource, 'js/jquery-ui.js')}"/> 
+<style>
+    .bsFieldLabel {color: #565656;font-weight: bold;}
+    .ipmSelect {font-weight: normal;width: 100%;position: relative;z-index: 1;}
+    .inputField select {width: 100%;height: 30px;border-radius: 3px;border: 1px #a8a8a8 solid;color: #565656;}
+    .pb20{padding-bottom:20px;}
+    .pt20{padding-top:20px;}
+    
+    /* content container */
+    
+    .ccContainer{width:100%;float:left;border-radius: 4px;background-color: #f8f8f8;border-top: 3px solid #ef2b2d;border-bottom: 1px solid #eaeaea;border-left: 1px solid #eaeaea;border-right: 1px solid #eaeaea;}
+    .ccButtonContainer{clear:both;margin: 20px 40px;}
+    .multiSelect{height:100px !important;}
+</style>
+  
+    <apex:form >
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ccContainer">
+                    <div class="col-sm-6">
+                        <div class="inputField">
+                            <div class="col-sm-12 pb20 pt20">
+                                <div class="col-sm-4">
+                                    <label class="bsFieldLabel">Company Card Name</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <label class="ipmSelect custSelectWidth">
+                                        <apex:inputField value="{!IPMCompanyCard.Name}"/>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inputField">
+                            <div class="col-sm-12 pb20 pt20">
+                                <div class="col-sm-4">
+                                    <label class="bsFieldLabel">Company Card Type</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <label class="ipmSelect custSelectWidth">
+                                        <apex:selectList onchange="refreshlist(this.value)" value="{!CCRecordType}" size="1" multiselect="false">
+                                            <apex:selectOption itemLabel="Select" itemValue=""/>
+                                            <apex:selectOption itemLabel="Global" itemValue="Global"/>
+                                            <apex:selectOption itemLabel="Local" itemValue="Local"/>
+                                            <apex:selectOption itemLabel="Regional" itemValue="Regional"/>
+                                        </apex:selectList>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <apex:outputpanel id="UCluster">
+                            <apex:outputpanel rendered="{! if(OR(isRegional=true,GeoScope!='',isLocal=true),'true','false')}">
+                                <div class="inputField">
+                                    <div class="col-sm-12 pb20">
+                                        <div class="col-sm-4">
+                                            <apex:outputPanel rendered="{!isLocal=true}">
+                                            <label class="bsFieldLabel">Market Cluster</label>
+                                            </apex:outputPanel>
+                                             <apex:outputPanel rendered="{!isLocal=false}">
+                                            <label class="bsFieldLabel">Geographical Scope</label>
+                                            </apex:outputPanel>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <apex:selectList id="SelectedUnileverCluster1" styleClass="multiSelect" multiselect="true" value="{!SelectedUnileverCluster}" rendered="{!isRegional}" style="min-width:90%;"  size="10" >
+                                                <apex:selectOptions value="{!lstUnileverCluster}"></apex:selectOptions>
+                                            </apex:selectList>
+                                            <apex:outputText value="Global" rendered="{!GeoScope!=''}"/>
+                                            <apex:selectList id="SelectedUnileverCluster2" multiselect="false" value="{!OneUnileverCluster}" rendered="{!isLocal}" style="min-width:90%;"  size="1" onchange="doSearch1(this.value)">
+                                                <apex:selectOptions value="{!lstUnileverCluster}"></apex:selectOptions>
+                                            </apex:selectList>
+                                        </div>
+                                    </div>
+                                </div>
+                            </apex:outputpanel>
+                        </apex:outputpanel>
+                        <br></br>
+                        <apex:outputpanel id="MCO">
+                            <apex:outputpanel rendered="{!isMCO}">
+                                <div class="inputField">
+                                    <div class="col-sm-12 pb20">
+                                        <div class="col-sm-4">
+                                            <label class="bsFieldLabel">MCO</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <label class="ipmSelect custSelectWidth">
+                                                <apex:selectList id="MCOName" multiselect="false" value="{!SelectedCountryCluster}" size="1" rendered="{!isMCO}" onchange="doSearch2(this.value)">
+                                                    <apex:selectOptions value="{!lstCountryCluster}"></apex:selectOptions>
+                                                </apex:selectList>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </apex:outputpanel> 
+                        </apex:outputpanel>
+                        <!-- ISOCountryDependencyName-->
+                        <apex:outputpanel id="isoname">
+                            <apex:outputpanel rendered="{!isISOCountryDependencyNameShow}">
+                                <div class="inputField">
+                                    <div class="col-sm-12 pb20">
+                                        <div class="col-sm-4">
+                                            <label class="bsFieldLabel">Geographical Scope</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <label class="ipmSelect custSelectWidth">
+                                                <apex:selectList id="SelectedISOCountryDependencyName" styleClass="multiSelect" multiselect="true" value="{!SelectedISOCountryDependencyName}" size="10" rendered="{!isISOCountryDependencyNameShow}">
+                                                    <apex:selectOptions value="{!lstISOCountryDependencyName }"></apex:selectOptions>
+                                                </apex:selectList>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </apex:outputpanel> 
+                        </apex:outputpanel>
+                        <br></br>
+                        <!-- Action functions -->
+                        <apex:actionFunction id="doSearch" name="doSearch" action="{!onRegionSelection}"  reRender="SelectedUnileverCluster,region,UCluster,CntCluster,isoname,savebutton,MCO">
+                            <apex:param name="SelectedRegion" assignTo="{!SelectedRegion}" value="" />
+                        </apex:actionFunction>
+                        <apex:actionFunction id="doSearch1" name="doSearch1" action="{!onUnileverClusterSelection}"  reRender="SelectedCountryCluster,region,UCluster,CntCluster,isoname,savebutton,MCO">
+                            <apex:param name="SelectedRegion" assignTo="{!OneUnileverCluster}" value="" />
+                        </apex:actionFunction>
+                        <apex:actionFunction id="doSearch2" name="doSearch2" action="{!onCountryClusterSelection}"  reRender="SelectedISOCountryDependencyName,region,UCluster,CntCluster,isoname,savebutton,MCO">
+                            <apex:param name="SelectedRegion" assignTo="{!SelectedCountryCluster}" value="" />
+                        </apex:actionFunction>
+                        <apex:actionfunction name="refreshlist" action="{!showDropdown}" reRender="region,UCluster,CntCluster,isoname,savebutton">
+                            <apex:param name="Rtype" assignTo="{!CCRecordType}" value=""/>
+                        </apex:actionFunction>
+                    </div>
+                    <apex:outputpanel id="savebutton">
+                        <div class="ccButtonContainer">
+                            <apex:commandButton action="{!SaveCC}" reRender="none" value="Save" disabled="{!CCRecordType==''}"/>
+                        </div>
+                    </apex:outputpanel>
+                </div>
+            </div>
+        </div>
+    </apex:form>
+   <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/bootstrap.js')}"/>
+   <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmDropDown.css')}"/> 
+</apex:page>

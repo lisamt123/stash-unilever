@@ -1,0 +1,124 @@
+<!-- 
+   Page Name   : SendToChatter
+   Author      : Mindtree
+   Description : Send to chatter post the given information on the wall of the My follower or Group depending on the selection.                    
+-->
+<apex:page controller="Core_SendToChatterController" showHeader="false" docType="Html-5.0">
+
+    <style>
+        .list .headerRow {
+            display: none;
+        }
+        
+        .pbBody table.list #accountNameListPanel {
+            width: 3%;
+        }
+        
+        body .bPageBlock,
+        body #bodyCell .bResource .secondaryPalette,
+        body .secondaryPalette.bPageBlock {
+            border-bottom: 1px solid #FFFFFF;
+            background-color: #FFFFFF;
+            border-top: 4px solid #FFFFFF;
+            border-left: 1px solid #FFFFFF;
+            border-right: 1px solid #FFFFFF;
+        }
+        
+        body .bPageBlock .detailList tr td,
+        body .bPageBlock .detailList tr th {
+            border-color: rgb(255, 255, 255);
+        }
+        
+        body .bEditBlock .pbBottomButtons,
+        body .apexp .bPageBlock.apexDefaultPageBlock .pbBottomButtons {
+            border-top: 1px solid #FFFFFF;
+        }
+    </style>
+
+    <script type="text/javascript" src="{!URLFOR($Resource.Core_jqueryMin)}" />
+
+    <apex:form >
+        <apex:actionFunction action="{!createDesc}" name="generateFruits" reRender="rad,displayGroupNames,disN" />
+
+        <apex:pageblock id="displayWindow">
+            <apex:pagemessages id="errormsg"></apex:pagemessages>
+
+            <apex:pageblockbuttons location="bottom">
+                <apex:commandButton value="Link to Chatter" action="{!postOnWall}" style="width:90px" reRender="panel,errormsg" />
+                <apex:commandButton value="Cancel" style="width:50px" onclick="window.top.close()" />
+            </apex:pageblockbuttons>
+
+            <apex:outputPanel id="panel">
+                <script type="text/javascript">
+                    var flag = '{!isClose}';
+                    if (flag == 'true') {
+                        window.top.close();
+                    }
+                </script>
+            </apex:outputPanel>
+
+            <apex:outputtext value=" " style="color:blue;font-size:150%;font-weight:bold;" />
+
+            <apex:pageblocksection columns="1">
+
+                <apex:pageblocksectionItem >
+                    <apex:outputlabel value="Link URL:" style="font-style: Arial;font-size:12px;" />
+                    <apex:inputtextarea style="width:400px" value="{!strSharepointURL}" disabled="true" />
+                </apex:pageblocksectionItem>
+
+                <apex:pageblocksectionItem >
+                    <apex:outputlabel value="Link Names:" style="font-style: Arial;font-size:12px;" />
+                    <apex:inputtext style="width:400px;" value="{!strLinkName}" />
+                </apex:pageblocksectionItem>
+
+                <apex:pageblocksectionItem >
+                    <apex:outputlabel value="Post:" style="font-style: Arial;font-size:12px;" />
+                    <apex:inputtextarea style="width:400px;height:100px" value="{!strPostDetail}" />
+                </apex:pageblocksectionItem>
+
+                <apex:pageblocksectionItem >
+                    <apex:outputlabel value="To:" style="font-style: Arial;font-size:12px;" />
+                    <apex:outputpanel id="disN">
+                        
+                        <apex:outputpanel id="rad">
+                            
+                            <apex:selectRadio value="{!strSelToVal}" onchange="generateFruits()">
+                                <apex:selectOptions value="{!Items}" />
+                            </apex:selectRadio>
+
+                            <apex:outputtext rendered="{!if(strSelToVal=='MyFollowers',true,false)}">Your followers see this post direclty in their feed.
+                                <br/>Any one can see this in the All Company feed of your profile.</apex:outputtext>
+                            <apex:outputtext rendered="{!if(strSelToVal=='AGroup',true,false)}">Members of this group will see this post directly in their feed.
+                                <br/>Any one can see this in the All Company feed of your profile, or the group.</apex:outputtext><br/>
+                            
+                        </apex:outputpanel> <br/><br/>
+                                               
+                        <apex:outputpanel id="displayGroupNames">
+                            <apex:outputPanel rendered="{!if(strSelToVal=='AGroup',true,false)}">
+                                <c:Core_AutoComplete allowClear="true" importJquery="true" labelField="Name" SObject="CollaborationGroup" valueField="Id" targetField="{!targetField}" style="width:200px" />
+                                <apex:commandButton action="{!saveGroupInList}" reRender="displayGroupNames" value="ADD" />
+                                <br/>
+                                <br/>
+                                <apex:outputPanel id="accountNameListPanel" style="overflow:auto;width:20%;" layout="block">
+                                    <apex:pageBlockTable id="accountNameListBlock" value="{!groupNameMap}" var="mapValue">
+                                        <apex:column >
+                                            <apex:commandLink reRender="displayGroupNames" action="{!removeGroupInList}"  style="Text-decoration:none;"> 
+                                               <span style="font-weight: 900;font-family:Verdana;color:gray;"> x </span>
+                                                <apex:param name="id" value="{!mapValue}" />
+                                            </apex:commandLink>
+                                        </apex:column>
+                                        <apex:column value="{!groupNameMap[mapValue]}" />
+                                    </apex:pageBlockTable>
+                                </apex:outputPanel>
+                                <br/>
+                                <br/>
+                            </apex:outputPanel>
+                            <apex:outputtext style="color:red;" value="NOTE: You are only posting a link of the selected file on Chatter. Only people with access to the original file on SharePoint/o365 will be able access the file using the link." />
+                        </apex:outputpanel>
+                    </apex:outputpanel>
+
+                </apex:pageblocksectionItem>
+            </apex:pageblocksection>
+        </apex:pageblock>
+    </apex:form> 
+</apex:page>

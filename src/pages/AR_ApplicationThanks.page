@@ -1,0 +1,35 @@
+<apex:page docType="html-5.0" standardStylesheets="false" showHeader="false" title="Unilever Agency Portal - Thanks" controller="AR_RegistrationController">
+
+	<apex:composition template="AR_Template">
+	
+		<apex:define name="content">
+		
+			<section role="main" id="content" class="form global-content">
+			
+	            <header class="main-header">
+	            
+	                <h1>
+	                    Application Submitted
+	                </h1>
+	                <p>Thank you, your application has been received.</p>
+	                <p>You will be contacted by Unilever regarding the process of your application..</p>
+	                
+	            </header>
+	            
+	            <div class="form-fields-wrapper">
+	            	
+	            	<apex:form >
+	            
+		            	<p>If you are seeing this page in error, or wish to start a new application, click <apex:commandLink value="here" action="{!Logout}" /> to logout.</p>
+		            	
+		            	<br/><br/><br/>
+		            	
+		            </apex:form>
+	            </div>
+	        </section>
+		
+		</apex:define>
+    
+	</apex:composition>
+	
+</apex:page>

@@ -1,0 +1,227 @@
+<apex:page controller="AF_AdjustQuater_Homepage_lightbox" docType="HTML-5.0"  showHeader="false" sidebar="false"> 
+<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=2.0, width=device-width" />
+<script type="text/javascript">
+        function selectAllCheckboxes(obj,receivedInputID){
+            var inputCheckBox = document.getElementsByTagName("input");                 
+            for(var i=0; i<inputCheckBox.length; i++){         
+                if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){                                    
+                    inputCheckBox[i].checked = obj.checked;
+                }
+            }
+        }
+   function setfocus(){
+        console.log(document.getElementById('onfocus').value);
+         var e = document.getElementById('onfocus');
+         e.focus();
+       
+     }
+   function callclosepopup(){
+   CallClose();
+   }
+ 
+</script>
+<style type="text/css">
+        .custPopup{
+    background-color: #FFFFFF;
+    border-color: #74AE00;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 10px;
+    left: 50%;
+    margin-left: -250px;
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    width: 500px;
+    z-index: 9999;
+
+        }
+        
+  .custPopup1{color:#800080;font-size: 17px;}
+  .popupBackground{
+                position:fixed;
+                top:0;
+                left:0;
+                background:#5A5757;
+                opacity:0.8;
+                z-index:998;
+                height:100%;
+                width:100%;
+        }
+    
+    .closeButton {
+    display:block;
+    position:absolute;
+    top:-10px;
+    right:-10px;
+}
+.message .messageTable .messageCell {
+    color: #800080!important;
+    font-weight: bold!important;
+}
+
+.odd { 
+         background-color: #FCF7F7;
+}
+.even {
+         background-color: #DFF0D8;
+}
+
+.continue_btn{
+   background: #004976!important;
+border-radius: 5px !important;
+color: #FFFFFF !important;
+float: right;
+font-size: 14px !important;
+height: 30px;
+margin-top: 11px !important;
+width: 100px;
+margin-right: 6px!important;
+    }
+.bPageBlock .list {
+    width: 99%!important;
+}
+.heading_main{
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom:5px;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    }
+.heading_text{
+    color: black;
+    font-size: 20px;
+    margin-right: 20px;
+    padding: 7px 1px 8px 1px;
+}
+
+body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th {
+ background:#61A631;
+ color: #FFFFFF;
+ }
+.closeButton2
+{
+ border: 1px solid #000000;
+    border-radius: 22px;
+    height: 30px;
+    width: 30px;
+    right: -23px;
+    top: -16px;
+    position: absolute;
+    display: block;
+}
+
+ </style>
+
+<apex:form >
+<div id="onfocus">
+</div>
+<apex:pageBlock id="pb1">
+<apex:pageMessages ></apex:pageMessages> 
+ 
+     <div class="row">           
+        <div class="col-lg-12 charttable1">         
+            <apex:image url="{!$Resource.header_new}" style="width:100%;height:37px;" />            
+        </div>          
+    </div>
+     <div class="heading_main">
+       <h1 class="heading_text"> Adjust Base Fee Quarters  </h1>
+      </div>
+       <apex:outputlabel value="{!$Label.AF_Adjust_Quarters}" style="font-size:16px;font-weight:bold;"/>
+        <br/>
+  <apex:outputPanel style="overflow:auto;width:770px;height:250px" layout="block">
+  <apex:pageBlockTable value="{!QuarterEstimate}" var="QE" id="pbt1" rowClasses="even,odd" style="font-size: 16px;">
+    <apex:column headerValue="Select">
+        <apex:facet name="header">       
+        <apex:outputPanel >
+            
+            <apex:outputLabel value="Select All" style="font-size: 16px;" /><br/>
+            <apex:inputCheckbox value="{!QE.selected}" onclick="selectAllCheckboxes(this,'chk1')" style="margin-left: 30px;" />
+        </apex:outputPanel>
+        </apex:facet>
+
+        <apex:inputCheckbox value="{!QE.selected}" id="chk1" onselect="selectedCheckbox()" style="margin-left: 30px;"/>
+     </apex:column>
+     
+      <apex:column headerValue="">
+            <apex:facet name="header">       
+            <apex:commandLink action="{!queryBrandEstimate}" rerender="pb1" style="color:white;font-size: 16px;"> Current Base Fee Name
+             
+            <img src="/img/sort_asc_arrow.gif" alt="Sorted Ascending" title="Sorted Ascending" width="21" align="texttop" height="14" style="{!IF((sortDir = 'asc'),'','display:none')}"/>            
+            <img src="/img/sort_desc_arrow.gif" alt="Sorted Descending" title="Sorted Descending" width="21" align="texttop" height="14" style="{!IF((sortDir = 'desc'),'','display:none')}"/>              
+            </apex:commandLink>
+            </apex:facet>
+            <apex:outputText value="{!QE.BrandRecord.name}"/>
+        </apex:column>
+    
+   
+   <apex:column headerValue="Quarters">
+   <apex:facet name="header">       
+        <apex:outputPanel >
+          <!--  <apex:outputLabel value="Quarters" style="padding-left:22px;font-weight:bold;"/>-->
+    <apex:inputCheckbox value="{!QE.Q1}"  onclick="selectAllCheckboxes(this,'chkQ1')"/>
+    <apex:outputLabel value="All"/>
+        </apex:outputPanel>
+        </apex:facet>
+    <apex:inputCheckbox id="chkQ1" value="{!QE.Q1}"  disabled="{!QE.Q1}"/>
+    <apex:outputLabel >Q1</apex:outputLabel>
+   </apex:column> 
+   
+   <apex:column headerValue="">
+   <apex:facet name="header">       
+        <apex:outputPanel >
+          
+    <apex:inputCheckbox value="{!QE.Q2}"  onclick="selectAllCheckboxes(this,'chk2')"/>
+    <apex:outputLabel value="All"/>
+        </apex:outputPanel>
+        </apex:facet>
+        <apex:inputCheckbox id="chk2" value="{!QE.Q2}" disabled="{!QE.Q2}"/>
+        <apex:outputLabel >Q2</apex:outputLabel>
+   </apex:column> 
+   
+   <apex:column headerValue="">
+   <apex:facet name="header">       
+        <apex:outputPanel >
+           
+    <apex:inputCheckbox value="{!QE.Q3}"  onclick="selectAllCheckboxes(this,'chk3')"/>
+    <apex:outputLabel value="All"/>
+        </apex:outputPanel>
+        </apex:facet>
+    <apex:inputCheckbox id="chk3"  value="{!QE.Q3}" disabled="{!QE.Q3}"/>
+    <apex:outputLabel >Q3</apex:outputLabel>
+   </apex:column>
+   
+   <apex:column headerValue="">
+   <apex:facet name="header">       
+        <apex:outputPanel >
+          
+    <apex:inputCheckbox value="{!QE.Q4}"  onclick="selectAllCheckboxes(this,'chk4')"/>
+    <apex:outputLabel value="All"/>
+        </apex:outputPanel>
+        </apex:facet>
+    <apex:inputCheckbox id="chk4" value="{!QE.Q4}" disabled="{!QE.Q4}"/>
+    <apex:outputLabel >Q4</apex:outputLabel>
+   </apex:column> 
+   
+   </apex:pageBlockTable> 
+   </apex:outputPanel>
+   <apex:commandButton value="Continue" action="{!showPopup}" styleClass="continue_btn"  reRender="pb1"/>
+   <apex:outputPanel id="ContinuePopup">
+        <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp}"/>
+            <apex:outputPanel styleClass="custPopup custPopup1" layout="block" rendered="{!displayPopUp}">
+                Are you sure you want to associate the selected Base Fees to the selected quarter(s)? This will result in the selected Base Fee names being automatically updated. 
+                You will be notified by email when the process is finished.<br/><br/>
+                 <apex:commandButton action="{!saveBrandEstimate}"  value="Confirm" id="theUpdate" reRender="pb1" styleClass="continue_btn" oncomplete="setfocus();"/>
+              <!--   <apex:commandButton Value="X" styleClass="closeButton" action="{!closePopup}" rerender="ContinuePopup"/>
+                  <apex:commandButton styleClass="closeButton" action="{!closePopup}" rerender="ContinuePopup"> -->
+                 <apex:actionFunction name="CallClose" action="{!closePopup}" reRender="ContinuePopup,pbt"/>
+                 <apex:image url="{!$Resource.fancy_close}" styleClass="closeButton2" onclick="callclosepopup();" />
+                <!--    <apex:/commandButton> -->
+            </apex:outputPanel>
+        </apex:outputPanel>   
+  </apex:pageBlock>
+  
+</apex:form>
+</apex:page>

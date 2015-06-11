@@ -1,0 +1,884 @@
+<apex:page controller="IPM_GateDocumentController" sidebar="false" standardStylesheets="false" >
+    <apex:stylesheet value="{!URLFOR($Resource.ipmResource, 'css/ipmModal.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.ipmResource, 'js/jquery.js')}"/>
+     <apex:includeScript value="{!URLFOR($Resource.ipmResource, 'js/jquery-ui.js')}"/>   
+    <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/jquery-ui.css')}"/>
+     <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmHeader-new.css')}"/>
+    <style>
+    
+    /* header new styles */
+    .ipmFunnelPanel {bottom: 4px;}
+    
+       // .htmlDetailElementTable img {width:44px!important;max-width: 100%; height: 44px!important; border-radius: 50% !important;}
+        .ipmProjectDetails .panel-title {line-height:2em!important;}  
+             
+        .uploadImg img {border-radius: 50% !important;max-width: 44px;} 
+        .ipmProjectDetails .panel {background:transparent;}
+        .ipmProjectDetails .uploadImg {overflow:hidden;padding:0!important;margin:0!important;}
+        
+        .ipmProjectDetails .panel-body .col-sm-3 {padding-left:3px!important;margin-top: 18px;}
+        .pageHeadToolbar { border-bottom:1px solid #ddd; margin:0 15px; }       
+        .pageHeadToolbar h2.pageTitle {margin:20px 7px 20px 0!important;display:inline-block; font-size:1.8402083517355998em;color:#253b78; font-weight:bold;padding-right: 10px;border-right: 1px solid #929292;}
+        .pageHeadToolbar .SecFillProgress {display:inline-block; }
+        .pageHeadToolbar .SecFillProgress .fillProgress {display:inline-block;color:#e98824;font-size:22px; font-weight:normal;}
+        .pageHeadToolbar .SecFillProgress .fillProgress span {font-size:12px!important;}
+        .pageHeadToolbar .SecFillProgress .fillProgressTxt {color:#364354!important;display:inline-block; font-size:12px;}
+        .pageHeadToolbar .SecStatusUpdate {display:inline-block;margin:15px 0; padding-right:15px;border-right: 1px solid #929292;}        
+        .pageHeadToolbar .SecCurrentStatus {display:inline-block; color:#364354; margin: 15px;text-align:right;}
+        .pageHeadToolbar .status {color:#e98824;display:block;font-weight:bold;}
+        .icoButton {cursor:pointer;}
+        
+        .leftSideBar {margin-top:10px;}
+        .leftSideBar h4 {color:#253b78; font-size:1.1em; font-weight:bold;}
+        .leftSideBar ul.docFilter {padding:0!important; margin:20px 0 0!important; list-style:none;}
+        .leftSideBar ul.docFilter li {margin-left:0!important; display:block; background:#edeef0; color:#253b78; border-bottom:1px solid #d7e0e0; padding:7px;}
+        .leftSideBar ul.docFilter li > input[type=checkbox]{position:relative; margin-right:5px; top:2px;}
+        .leftSideBar ul.docFilter h4 {display:block; background:#edeef0; color:#253b78; margin-bottom:0!important; border-bottom:1px solid #d7e0e0; border-top:1px solid #d7e0e0; padding:10px 7px;}
+        .tempWrapper .expandTool {text-align:right;}
+        .tempWrapper .expandTool span {display:inline-block; margin:5px; font-weight:bold; color:#0f81bb; cursor:pointer; }
+        .contenWrapper { margin-top:11px;}
+        /* Generic Accordian Styles */
+        .ipmAccordian {display:block;}
+        .ipmAccordian .aHead {display:block;}
+        .ipmAccordian > .ipmAcrdnExpand {border:1px solid #dce3e2; display:block; border-top:none!important; margin-bottom:10px;}        
+        .ipmAccordian > .aHead {color: #253b78;font-size: 1.5em;font-weight: bold;display: block;background: #f7f7f7;border: 1px solid #dce3e2;margin-bottom: 2px;padding: 13px 10px 14px;}
+        .ipmAccordian > .ipmAcrdnExpand > .aHead {color:#0f7fb8!important; font-size:1.2em; font-style:normal; font-weight:bold; display:block;border-bottom:1px solid #dce3e2; margin:0 20px; padding:12px 0;}
+        .ipmAccordian > .ipmAcrdnExpand > .ipmAcrdnExpand > .aHead {font-size:1em;font-style:normal;font-weight:bold;color:#0f7fb8; display:block; border-bottom:1px solid #eee; padding: 12px 0 15px; margin:0 0 0 20px;}
+        .ipmAccordian > .ipmAcrdnExpand > .ipmAcrdnExpand > .aHead:first-child {padding-top:2px;}
+        .ipmAccordian .ipmAcrdnExpand .ipmAcrdnExpand {padding:10px 20px 0 45px;display:block;}
+        .ipmAccordian .ipmAcrdnExpand .col-sm-3 {padding-right:0!important; position:relative;}
+        .ipmAccordian .ipmAcrdnExpand .ipmAcrdnExpand .ipmAcrdnExpand {padding:10px 10px 0 45px;display:block;}
+        .ipmAccordian .ipmAcrdnExpand {color:#797979;display:block;}
+        .ipmAccordian > .aHead span.expico {display: inline-block; cursor:pointer; font-family: FontAwesome;width: 21px;height: 21px;text-align: center;font-weight: normal;line-height: 23px;background: #81bd42;position: relative;margin-right: 5px;
+        font-size: 0.8em;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;color: #fff;}
+        .ipmAccordian .ipmAcrdnExpand .aHead span.expico {display: inline-block; cursor:pointer; font-family: FontAwesome;width: 16px;height: 16px;text-align: center;font-weight: normal;line-height: 17px;background: #d4d4d4;position: relative;margin-right: 5px;
+        font-size: 0.7em;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;color: #fff;}
+        .ipmAccordian span.wrpHead {display: inline-block;padding: 5px 10px 5px 0;border-right: 1px solid #797979;}
+        .ipmAccordian .Filled-in {display: inline-block;padding: 0 8px;margin-left: 5px; border-left: 1px solid #797979; color:#e68627!important;font-size:13px!important; font-weight:normal!important; }
+        .ipmAccordian .Not.Started {display: inline-block;padding: 0 8px;margin-left: 5px; border-left: 1px solid #797979; color:#797979!important;font-size:13px!important; font-weight:normal!important; }
+        .ipmAccordian .Excluded {display: inline-block;padding: 0 8px;margin-left: 5px; color:#222!important; background:#ebebeb; font-size:13px!important; font-weight:normal!important; }
+        .ipmAccordian span.lastupdate {display:block; margin: 6px 0 0 0; color:#d4d4d4!important; font-weight:normal!important; }        
+        .ipmAccordian .acHead {padding-top:4px;}
+        .ipmAccordian .lastUpdate {color:#c2c2c2; display:block; margin-top:10px;font-size:0.9em;}
+        .messageBox .SecButtonSet {margin-top:0!important;margin-right:10px!important; position:relative; top:2px;}
+        .messageBox .SecButtonSet .icoButton {width:16px!important;height:16px!important;top: -2px; }
+        .messageBox .SecButtonSet a {display:block; float:left; border:1px solid #015ba7; cursor:default; border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%;}
+        .messageBox .SecButtonSet span.msgTxt {position: relative; top: -2px; display:block; margin-left:25px;text-align:left;}
+        
+        
+        .ipmAccordian .SecButtonSet {display:inline-block; text-align:right; margin-top:-5px;}
+        .ipmAccordian .SecButtonSet .icoButton {display:inline-block;width:30px; margin: 0 5px; height:30px;border:1px solid #1568b6;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}
+        
+        .ipmProjectDetails .SecButtonSet {display:inline-block; text-align:right; position:relative;}
+
+       
+        .StatusComment {background:#d9ecc6;border:1px solid #bdbdbd;margin-top:20px;margin-bottom:20px;}
+        .StatusComment .panelTitle {font-size:1.2em; font-weight:bold;color: #364354; margin:0px 20px 0; padding:15px 0px; border-bottom:1px solid #aecaab;}
+        .StatusComment .panelRow {margin: 10px 20px 0;border-bottom:1px solid #aecaab;}
+        .StatusComment .innerHead {font-weight:bold; color:#333333;margin-left:10px;}
+        .StatusComment .updateStatus {color:#666;}
+        .StatusComment .panelRow:last-child {border:none!important;}
+        .StatusComment .marginbottom {margin-bottom:6px;}
+        .StatusComment .txtRight{text-align:right;}                
+        /* ipmModal Styles */
+        #ipmModal .modal-header{background:#eaeaea !important;padding:17.5px 10px 17.5px 17.5px; border-bottom:1px #d7d7d7 solid;border-radius:3px;-webkit-border-radius:3px;}
+        #ipmModal .modal-title{color:#253b78 !important;font-weight:bold;font-size:1em;}
+        #ipmModal .modal-header button.close{border: 1px #007dbb solid;border-radius: 50%;padding: 3px 5px;color: #007dbb;width: 30px; background: #fff; margin-top:-8px;opacity: 1;}
+        #ipmModal .modal-content{border-radius:3px;height:100%;}
+        #ipmModal .modal-body{height:90%;}
+        #ipmModal .modal-dialog{margin:15px auto;}
+        .dropdown-menu{min-width:246px;left:2px;}
+               
+        .messageBox{color:#0f81bb;background:#dbefff;border:1px solid #007DBB;position:relative;border-radius:3px;margin-left:60px;padding:7px;}
+         .closeMessage{color: #000;position: absolute;right: 6px;top:7px;cursor:pointer;}
+       .rHead{color: #797979;font-size: 0.8em;font-weight: normal;}
+         .greyline{color:#333;font-size:1em;border-top: 1px solid #aecaab;padding:0;margin-top:10px;}
+       .greyline>div {padding-top:10px;}
+       .commentPanel{margin-top:10px;padding-left:0px;}
+       .user{font-size:1em;font-weight:bold;color:#666666;padding-right:10px;border-right:1px solid #252525;padding-top:3px;padding-bottom:3px;margin-right:10px;}
+       .action-txt{font-size:1em;font-weight:bold;color:#585858;}
+       .status-date{font-size:0.8em;font-weight:normal;color:#797979;}
+       .pageContent {position:relative;}
+       .pageContent .initFilter {background:#fff url({!URLFOR($Resource.ipmResourceRevamp, 'images/ajax-loader.gif')}) no-repeat center 40px; width:100%; height:100%; padding: 20px; color:#000;  text-align:center; position:absolute; z-index:100; display:block; opacity:0.9; -moz-opacity:0.9; -webkit-opacity:0.9; filter:alpha(opacity=90); }
+        .circular.ipmImage {border-radius: 500rem !important;}
+
+        /* gatekeeperlist table styling */
+        .gateKeeperlist{table-layout:fixed;}
+        .incHeight{height: 17px;}
+        .gateKeeperlist>thead>tr>th:first-child {padding-left: 5px !important;}
+        .gateKeeperlist>tbody>tr>td:first-child{text-align:left !important;}
+        .Yes{width:20px;height:20px;background:#81bf42;}
+        .No{width:20px;height:20px;background:#d01620;}
+        .notApplicable{width:20px;height:20px;background:#999999;}
+        .Partly{width:20px;height:20px;background:#f1993e;}
+        .noPadleft{padding-left:0px !important;}
+        .noPadright{padding-right:0px !important;}  
+        
+        .firstCol{width:7%;}
+        .secondCol{width:35%;}
+        .thirdCol{width:16%;}
+        .fourthCol{width:10%;}
+                
+        /*otif table styling for showing color*/
+        .Green{width:20px;height:20px;background:#81bf42;}
+        .Red{width:20px;height:20px;background:#d01620;}
+        .notApplicable{width:20px;height:20px;background:#999999;}
+        .Amber{width:20px;height:20px;background:#f1993e;}
+        
+        .navbar-nav li:last-child > a > span{margin-top:2px !important;}
+        .ipmNavMenuDiv .navbar-nav>li>.dropdown-menu{margin-top:-10px;}
+        .ipmContent{position:relative;top:-25px;}
+       
+  </style>
+
+    <apex:composition template="ipmTemplateRevamp2"> 
+        <apex:define name="body">
+         
+               <div class="gradientbg">
+                    <div class="row">
+                       <c:ipmProjectDetailsRevampNew />
+                    </div>
+                    <div class="row">
+                        <c:ipmNavMenuRevamp2 activeItem="gateDocument"/>
+                    </div>
+                </div>
+         <div class="ipmContent">
+            <apex:form >
+               <!-- <div class="row">
+                   <c:ipmProjectDetailsRevamp />
+                </div>
+                <div class="row">
+                    <c:ipmNavMenu activeItem="gateDocument"/>
+                </div>-->               
+                <!-- Page Head & Toolbar -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel-group pageHeadToolbar clearfix">
+                        <div class="row">
+                        <div class="col-sm-5 pull-left">
+                        <h2 class="pageTitle">
+                        {!projectDoc.IPM_GateDocuments__c} Document
+                        </h2>
+                        <div class="SecFillProgress">
+                        <div class="fillProgress">{!FilledinPer}<span>%</span></div>
+                        <div class="fillProgressTxt">Filled-in</div>
+                        
+                        </div>                    
+                        </div>
+                        <div class="col-sm-7 pull-right clearfix">                    
+                        <div class="SecButtonSet pull-right">
+                        <a class="icoButton history" data-toggle="modal" data-target="#ipmModal" value="/apex/IpmProjectDocumentSectionHistory?Id={!project.Id}" data-backdrop="static" data-keyboard="false" title="View Update History" id="showHistory"></a>
+                       <!-- <a class="icoButton history" href="/apex/IpmProjectDocumentSectionHistory?Id={!project.Id}" title="History"></a>-->
+                       <!-- <apex:commandLink action="{!printGateDocument}" styleClass="icoButton print"   title="Print"/>-->
+                        <apex:commandLink action="{!exportToPdf}" styleClass="icoButton download"   title="Download"/>
+                       <!-- <apex:commandLink action="{!shareViaChatter}" styleClass="icoButton share"   title="Share"/>-->
+                        </div>
+                        <!--<div class="SecStatusUpdate pull-right">
+                        <input type="button" class="ipmButton primary" value="Update Status"/>
+                        </div>-->
+                        <apex:outputPanel rendered="{!IF(AND(projectDoc.IPM_Document_Status__c!='Approved' && projectDoc.IPM_Document_Status__c!='Not Started' && IsUpdateStatus=true),True,False)}">
+                        <div class="SecStatusUpdate pull-right openModal" modalTitle="Change current document status" data-toggle="modal" data-target="#ipmModal" value="/apex/ipmChangeCurrenDocumentStatus?id={!project.Id}" data-backdrop="static" data-keyboard="false" title="Update Status">
+                            <input type="button" class="ipmButton primary" value="Update Status"/>
+                        </div>
+                        </apex:outputPanel>
+                        <div class="SecCurrentStatus pull-right">
+                        Current Document Status<span class="status">{!projectDoc.IPM_Document_Status__c}</span>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                 <!--/ Page Head & Toolbar -->
+                 
+                 <!-- Page Content -->
+                  <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel-group pageContent clearfix"> 
+                        <apex:actionStatus id="TypeDocs" startText="" startStyleClass="initFilter"></apex:actionStatus>                                       
+                        <div class="col-sm-2 pull-left leftSideBar">                    
+                        <div class="panel">
+                        <h4>Filters</h4>
+                        <ul class="docFilter">
+                        <h4>Type</h4>
+                        <apex:actionFunction action="{!IsNegotiable}" name="callFilterType" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!IsNegotiable}" value="true" name="IsNegotiable"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!IsNegotiable}" name="callFilterType1" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!IsNegotiable}" value="false" name="IsNegotiable1"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!IsNegotiable}" name="callFilterOptional" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!Isoptional}" value="true" name="Optonal"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!IsNegotiable}" name="callFilterOptional1" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!Isoptional}" value="false" name="Optonal1"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!IsNegotiable}" name="callFilterAllType" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!Isoptional}" value="true" name="Optonal2"/>
+                            <apex:param assignTo="{!IsNegotiable}" value="true" name="IsNegotiable2"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!IsNegotiable}" name="callFilterAllType1" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!Isoptional}" value="false" name="Optonal3"/>
+                            <apex:param assignTo="{!IsNegotiable}" value="false" name="IsNegotiable3"/>
+                        </apex:actionFunction>
+                        <li><input type="checkbox" class="checkAll" name="AllType" value="All" oncomplete="addbuttonStyle()"/>All</li>
+                        <li><input type="checkbox" class="checkSub" id="NonNegotiable" name="NonNegotiable" title="Non Negotiable" value="{!IsNegotiable}" />Non Negotiable ({!NonNegotiableCount})</li>
+                        <li><input type="checkbox" class="checkSub" id="Optional" name="Optional" title="Optional"  value=""/>Optional ({!OptionalCount})</li>
+                        </ul>
+                        <ul class="docFilter">
+                        <h4>Status</h4>
+                        <apex:actionFunction action="{!IPMStatus}" name="callFilterNotstarted" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!Notstarted}" value="Not Started" name="Notstarted"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!IPMStatus}" name="callFilterNotstarted1" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!Notstarted}" value="" name="Notstarted1"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!IPMStatus}" name="callFilterFilledin" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!FilledIn}" value="Filled-in" name="Filledin"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!IPMStatus}" name="callFilterFilledin1" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!FilledIn}" value="" name="Filledin1"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!IPMStatus}" name="callFilterExcluded" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!Excluded}" value="Excluded" name="Excluded"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!IPMStatus}" name="callFilterExcluded1" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!Excluded}" value="" name="Excluded1"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!IPMStatus}" name="callFilterAllStatus" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!Excluded}" value="Excluded" name="Excluded2"/>
+                            <apex:param assignTo="{!FilledIn}" value="Filled-in" name="Filledin2"/>
+                            <apex:param assignTo="{!Notstarted}" value="Not Started" name="Notstarted2"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!IPMStatus}" name="callFilterAllStatus1" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!Excluded}" value="" name="Excluded3"/>
+                            <apex:param assignTo="{!FilledIn}" value="" name="Filledin3"/>
+                            <apex:param assignTo="{!Notstarted}" value="" name="Notstarted3"/>
+                        </apex:actionFunction>
+                        
+                        <li><input type="checkbox" class="checkAll" name="allStatus" value="All"/>All</li>
+                        <li><input type="checkbox" class="checkSub" id="NotStarted" name="NotStarted" value="Non Started"/>Not Started ({!NotstartedCount})</li>
+                        <li><input type="checkbox" class="checkSub" id="filled-in" name="filled-in" value="Filled-in"/>Filled-in ({!FilledinCount})</li>
+                        <li><input type="checkbox" class="checkSub" id="excluded" name="excluded" value="Excluded"/>Excluded ({!ExcludedCount})</li>
+                        </ul>
+                        <ul class="docFilter">
+                        <h4>Functional Role</h4>
+                        <apex:actionFunction action="{!FunctionRole}" name="callFilterBD" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!BD}" value="BD" name="BD"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!FunctionRole}" name="callFilterBD1" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!BD}" value="" name="BD1"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!FunctionRole}" name="callFilterCD" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!CD}" value="CD" name="CD"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!FunctionRole}" name="callFilterCD1" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!CD}" value="" name="CD1"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!FunctionRole}" name="callFilterCMI" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!CMI}" value="CMI" name="CMI"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!FunctionRole}" name="callFilterCMI1" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!CMI}" value="" name="CMI1"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!FunctionRole}" name="callFilterRnD" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!RnD}" value="R&D" name="RnD"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!FunctionRole}" name="callFilterRnD1" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!RnD}" value="" name="RnD1"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!FunctionRole}" name="callFilterSC" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!SC}" value="SC" name="SC"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!FunctionRole}" name="callFilterSC1" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!SC}" value="" name="SC1"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!FunctionRole}" name="callFilterFinance" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!Finance}" value="Finance" name="Finance"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!FunctionRole}" name="callFilterFinance1" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!Finance}" value="" name="Finance1"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!FunctionRole}" name="callFilterBB" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!BB}" value="BB" name="BB"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!FunctionRole}" name="callFilterBB1" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!BB}" value="" name="BB1"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!FunctionRole}" name="callFilterFunctional" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!BB}" value="BB" name="BB2"/>
+                            <apex:param assignTo="{!Finance}" value="Finance" name="Finance2"/>
+                            <apex:param assignTo="{!SC}" value="SC" name="SC2"/>
+                            <apex:param assignTo="{!RnD}" value="R&D" name="RnD2"/> 
+                            <apex:param assignTo="{!CMI}" value="CMI" name="CMI2"/>
+                            <apex:param assignTo="{!BD}" value="BD" name="BD2"/>
+                            <apex:param assignTo="{!CD}" value="CD" name="CD2"/>
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!FunctionRole}" name="callFilterFunctional1" reRender="MainTable" status="TypeDocs">
+                            <apex:param assignTo="{!BB}" value="" name="BB3"/>
+                            <apex:param assignTo="{!Finance}" value="" name="Finance3"/>
+                            <apex:param assignTo="{!SC}" value="" name="SC3"/>
+                            <apex:param assignTo="{!RnD}" value="" name="RnD2"/> 
+                            <apex:param assignTo="{!CMI}" value="" name="CMI3"/>
+                            <apex:param assignTo="{!BD}" value="" name="BD3"/>
+                            <apex:param assignTo="{!CD}" value="" name="CD3"/>
+                        </apex:actionFunction>
+                        <li><input type="checkbox" class="checkAll" name="allFunctionalRole" value="All"/>All</li>
+                        <li><input type="checkbox" class="checkSub" id="bd" name="bd" value="BD"/>BD ({!BDCount})</li>
+                        <li><input type="checkbox" class="checkSub" id="cmi" name="cmi" value="CMI"/>CMI ({!CMICount})</li>
+                        <li><input type="checkbox" class="checkSub" id="cd" name="cd" value="CD"/>CD ({!CDCount})</li>
+                        <li><input type="checkbox" class="checkSub" id="rnd" name="rnd" value="R&D"/>R&amp;D ({!RnDCount})</li>
+                        <li><input type="checkbox" class="checkSub" id="sc" name="sc" value="sc"/>SC ({!SCCount})</li>
+                        <li><input type="checkbox" class="checkSub" id="finance" name="finance" value="Finance"/>Finance ({!FinanceCount})</li>
+                        <li><input type="checkbox" class="checkSub" id="bb" name="bb" value="BB"/>BB ({!BBCount})</li>
+                        </ul>
+                        </div>
+                        </div>
+                        <div class="col-sm-10 pull-right tempWrapper">
+                        <apex:pageMessages /> &nbsp;
+                        <div class="row clearfix">
+                        <apex:outputPanel rendered="{!IF(AND(projectDoc.IPM_Document_Status__c!='Approved',isReadable=false),true,false)}">
+                        <div class="col-sm-2 pull-left openModal" data-toggle="modal" data-target="#ipmModal" value="/apex/ipmAddManageSections?id={!project.Id}&DocType={!projectDoc.IPM_GateDocuments__c}" data-backdrop="static" data-keyboard="false" title="Add/Manage Sections" modalTitle="Add/Manage Sections">
+                            <input type="button" class="ipmButton" value="Add/Manage Sections"/>
+                       </div>
+                        </apex:outputPanel>  
+                      <apex:outputPanel rendered="{!IF(AND(projectDoc.IPM_Document_Status__c!='Approved',projectDoc.IPM_Document_Status__c!='Proposed'),True,False)}">
+                      
+                       <apex:outputPanel rendered="{! if(mstn.IPM_Due_Date__c !=null,'true','false')}">
+                       <div class="col-sm-5 pull-left messageBox ">
+                       <div class="SecButtonSet"><a class="icoButton info" title="info"></a><span class="msgTxt">Your {!projectDoc.IPM_GateDocuments__c} Gate meeting is Due on&nbsp; <strong><apex:outputfield value="{!mstn.IPM_Due_Date__c}"/></strong>.&nbsp;Propose your document soon. </span></div>
+                        <span class="closeMessage">X</span>
+                        </div> 
+                        </apex:outputPanel>
+                       </apex:outputPanel>                 
+                        <apex:outputPanel rendered="{!If(OR(projectDoc.IPM_Document_Status__c='Postponed',projectDoc.IPM_Document_Status__c='Approved'),True,False)}">
+                       <div class="col-sm-12">
+                        <div class="StatusComment">
+                        <div class="panel-group">                    
+                        <div class="panelTitle">
+                        <apex:outputText value="Comments and Required Actions from Gate Meeting"/>
+                        </div>
+                        <apex:outputPanel rendered="{!If(AND(projectDoc.IPM_Document_Status__c='Approved',projectDoc.IPM_Approval_Date__c!=null),True,False)}">
+                        <div class="clearfix panelRow"> 
+                         <div class="row">
+                         <div class="col-sm-1 commentImage">
+                         <apex:image url="{!projectDoc.LastmodifiedBy.smallphotoUrl}" id="plImage1" styleClass="circular ipmImage"  />  
+                         
+                         </div>
+                         <div class="col-sm-11 commentPanel">
+                        <div class="row clearfix marginbottom">
+                        <div class="col-sm-8 innerHead">
+                        <span class="user"><apex:outputText value="{!projectDoc.LastModifiedBy.Name}"/></span>
+                        <apex:outputText value="{!projectDoc.IPM_Document_Status__c}"/>
+                        <span class="status-date">On&nbsp;<apex:outputfield value="{!projectDoc.IPM_Approval_Date__c}"/></span>
+                        </div>
+                        <div class="col-sm-4 txtRight updateStatus">
+                        <!--Last Updated: <apex:outputText value="{!projectDoc.LastModifiedDate}"/>-->
+                        
+                        </div>
+                        </div>
+                         
+                        </div>                    
+                        </div>
+                        <div class="greyline clearfix">
+                        <div>
+                        <apex:outputText value="{!projectDoc.IPM_Approved_Comments__c}"/>
+                        </div>
+                        </div>
+                        </div> 
+                        </apex:outputPanel>                    
+                        <apex:outputPanel rendered="{!If(OR(projectDoc.IPM_Document_Status__c='Postponed',projectDoc.IPM_Postponement_Date__c!=null),True,False)}">
+                        <div class="clearfix panelRow">
+                         <div class="row">
+                         <div class="col-sm-1">
+                         <apex:image url="{!projectDoc.LastmodifiedBy.smallphotoUrl}" id="plImage" styleClass="circular ipmImage"  /> 
+                         
+                         </div>
+                         <div class="col-sm-11 commentPanel">
+                        <div class="row clearfix marginbottom">
+                        <div class="col-sm-8 innerHead">
+                        <span class="user">
+                         <apex:outputText value="{!projectDoc.LastModifiedBy.Name}"/> </span> 
+                          <span class="action-txt"><apex:outputText value="{!IF(OR(projectDoc.IPM_Document_Status__c='Approved',projectDoc.IPM_Postponement_Date__c!=null),'Postponed',projectDoc.IPM_Document_Status__c)}"/>
+                        </span>
+                        <span class="status-date">On&nbsp; <apex:outputfield value="{!projectDoc.IPM_Postponement_Date__c}"/></span>
+
+                        </div>
+                        <div class="col-sm-4 txtRight updateStatus">
+                        <!--Last Updated: <apex:outputText value="{!projectDoc.LastModifiedDate}"/>&nbsp;|&nbsp;-->
+                                            </div>
+                        </div>
+                        
+                        </div>                    
+                        </div>
+                        <div class="greyline clearfix">
+                        <div>
+                        <apex:outputText value="{!projectDoc.IPM_Postponed_Comments__c}"/>
+                        </div>
+                        </div> 
+                        </div> 
+                        </apex:outputPanel>                     
+                                             
+                         
+                        </div>
+                        </div>
+                        </div>
+                        </apex:outputPanel>   
+                        <div class="col-sm-4 pull-right expandTool">
+                        <span class="expandAll">Expand All</span> | <span class="collapseAll">Collapse All</span>
+                        </div>
+                        </div>
+                        <apex:outputPanel >
+                        <div class="row">
+                       
+                        <div class="col-sm-12">
+                        
+                        <div class="panel contenWrapper">
+                           <apex:outputPanel styleClass="ipmAccordian" id="MainTable">
+                            <apex:repeat value="{!projSectionList}" var="psl"> <!--For Header-->                                 
+                              <apex:outputPanel styleClass="aHead">
+                              <span class='expico fa fa-minus'></span>
+                                                             
+                                  
+                              {!psl.IPM_Section__r.IPM_Section_Sequence__c} {!psl.IPM_Section__r.IPM_Section_Name__c}
+                              <span id="" class="rHead pull-right">  
+                              <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='1','true','false')}">
+                               {!IntroNegotiable}&nbsp;Non-Negotiable &nbsp;|&nbsp;
+                               {!IntroOptional}&nbsp;Optional
+                              </apex:outputPanel>
+                               <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='2','true','false')}">
+                               {!ExterNegotiable}&nbsp;Non-Negotiable &nbsp;|&nbsp;
+                               {!ExterOptional}&nbsp;Optional
+                              </apex:outputPanel>
+                             <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='3','true','false')}">
+                             {!MixNegotiable}&nbsp;Non-Negotiable &nbsp;|&nbsp;
+                               {!MixOptional}&nbsp;Optional
+                               </apex:outputPanel> 
+                              <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='4','true','false')}">
+                              {!DeploNegotiable}&nbsp;Non-Negotiable &nbsp;|&nbsp;
+                               {!DeploOptional}&nbsp;Optional
+                              </apex:outputPanel>
+                              <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='5','true','false')}">
+                              {!TechNegotiable}&nbsp;Non-Negotiable &nbsp;|&nbsp;
+                               {!TechOptional}&nbsp;Optional
+                               </apex:outputPanel>
+                               <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='6','true','false')}">
+                               {!FinNegotiable}&nbsp;Non-Negotiable &nbsp;|&nbsp;
+                               {!FinOptional}&nbsp;Optional
+                                
+                              </apex:outputPanel>
+                               <apex:outputPanel rendered="{! if(psl.IPM_Section__r.IPM_Section_Sequence__c='7','true','false')}">
+                               {!ProMNegotiable}&nbsp;Non-Negotiable &nbsp;|&nbsp;
+                               {!ProMOptional}&nbsp;Optional
+                               </apex:outputPanel>
+                              </span>
+                              </apex:outputPanel>
+                          <apex:outputPanel styleClass="ipmAcrdnExpand">
+                                <apex:repeat value="{!projSubSectionList}" var="sub">                                                           
+                                    <apex:outputPanel styleClass="aHead" rendered="{!IF (AND(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,sub.IPM_Default_Section__c=true),True,False)}">
+                                    <span class='expico fa fa-minus'></span>
+                                    <apex:outputPanel rendered="{!IF(sub.IPM_Section__r.IPM_Section_Type__c!='Sub Header',True,False)}">
+                                    <a href="/apex/ipmProjectDocumentSectionEditorV1?Id={!project.Id}&projDocSecId={!sub.Id}"> {!sub.IPM_Section__r.IPM_Section_Sequence__c} {!sub.IPM_Section__r.IPM_Section_Name__c} [{!sub.IPM_FunctionalRole__c}]</a> <span class="{!sub.IPM_Section_Status__c}"> {!sub.IPM_Section_Status__c}</span> 
+                                    <apex:outputPanel styleClass="SecButtonSet pull-right">                                 
+                                    <a class="icoButton comments" data-toggle="modal" data-target="#ipmModal" value="/apex/IPMCommentsPage?id={!sub.Id}" data-backdrop="static" data-keyboard="false" title="{!sub.IPM_Section__r.IPM_Section_Sequence__c} {!sub.IPM_Section__r.IPM_Section_Name__c} Comments" id="{!sub.Id}"><apex:outputPanel styleClass="count" rendered="{!IF(sub.IPM_Count_of_Comments__c!=null && sub.IPM_Count_of_Comments__c >0 ,True,False)}">{!sub.IPM_Count_of_Comments__c}</apex:outputPanel></a>
+                                    <apex:outputPanel rendered="{!IF(AND(projectDoc.IPM_Document_Status__c!='Approved',projectDoc.IPM_Document_Status__c!='Proposed',contains(userrole,sub.IPM_FunctionalRole__c)),True,False)}">
+                                    <a class="icoButton details" href="/apex/ipmProjectDocumentSectionEditorV1?Id={!project.Id}&projDocSecId={!sub.Id}" title="Details"></a>  
+                                    </apex:outputPanel>
+                                    </apex:outputPanel> 
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IF(sub.IPM_Section__r.IPM_Section_Type__c='Sub Header',True,False)}">
+                                    {!sub.IPM_Section__r.IPM_Section_Sequence__c} {!sub.IPM_Section__r.IPM_Section_Name__c} [{!sub.IPM_FunctionalRole__c}] <span class="{!sub.IPM_Section_Status__c}"> {!sub.IPM_Section_Status__c} </span>
+                                    </apex:outputPanel>
+                                    </apex:outputPanel>                               
+                                  
+                                    <apex:outputPanel styleClass="ipmAcrdnExpand" rendered="{!IF(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,True,False)}">                              
+                                     <apex:repeat value="{!projSubSectionList}" var="sub1">                                  
+                                       <apex:outputPanel styleClass="aHead" rendered="{!IF(AND(sub.IPM_Section__r.Id=sub1.IPM_Section__r.IPM_Parent_Section__c,sub1.IPM_Default_Section__c=true),True,False)}">
+                                       <span class='expico fa fa-minus'></span>
+                                      <!-- <a href="/apex/ipmProjectDocumentSectionEditorV1?Id={!project.Id}&projDocSecId={!sub1.Id}"> {!sub1.IPM_Section__r.IPM_Section_Sequence__c} {!sub1.IPM_Section__r.IPM_Section_Name__c}</a> <span class="{!sub1.IPM_Section_Status__c}"> {!sub1.IPM_Section_Status__c}</span>-->
+                                       <a href="/apex/ipmProjectDocumentSectionEditorV1?Id={!project.Id}&projDocSecId={!sub1.Id}"> {!sub1.IPM_Section__r.IPM_Section_Sequence__c} {!sub1.IPM_Section__r.IPM_Section_Name__c}&nbsp;<apex:outputText value="{!if(sub1.IPM_FunctionalRole__c==sub.IPM_FunctionalRole__c,'','['+sub1.IPM_FunctionalRole__c+']')}"></apex:outputText></a> <span class="{!sub1.IPM_Section_Status__c}"> {!sub1.IPM_Section_Status__c}</span>                                   
+
+                                       <apex:outputPanel styleClass="SecButtonSet pull-right">                                 
+                                        <a class="icoButton comments" data-toggle="modal" data-target="#ipmModal" value="/apex/IPMCommentsPage?id={!sub1.Id}" data-backdrop="static" data-keyboard="false" title="{!sub1.IPM_Section__r.IPM_Section_Sequence__c} {!sub1.IPM_Section__r.IPM_Section_Name__c} Comments" id="{!sub1.Id}"><apex:outputPanel styleClass="count" rendered="{!IF(sub1.IPM_Count_of_Comments__c!=null && sub1.IPM_Count_of_Comments__c >0 ,True,False)}">{!sub1.IPM_Count_of_Comments__c}</apex:outputPanel></a>
+                                        <apex:outputPanel rendered="{!IF(AND(projectDoc.IPM_Document_Status__c!='Approved',projectDoc.IPM_Document_Status__c!='Proposed',contains(userrole,sub1.IPM_FunctionalRole__c)),True,False)}">
+                                        <a class="icoButton details" href="/apex/ipmProjectDocumentSectionEditorV1?Id={!project.Id}&projDocSecId={!sub1.Id}" title="Details"></a> 
+                                        </apex:outputPanel>
+                                        </apex:outputPanel>                  
+                                        </apex:outputPanel>
+                                        <apex:outputPanel styleClass="ipmAcrdnExpand" rendered="{!IF(sub.IPM_Section__r.Id=sub1.IPM_Section__r.IPM_Parent_Section__c,True,False)}">
+                                             <!--Special Section-->
+                                       <!--   <c:IPM_CRRT_Count Editable="false" gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!sub1.Id}" rendered="{!If(OR(sub1.IPM_Section__r.IPM_Section_Sequence__c=='3.2.1',sub1.IPM_Section__r.IPM_Section_Sequence__c=='3.3.3'),true,false)}"></c:IPM_CRRT_Count>-->
+                                          <!--upto Here-->
+                                            <apex:outputText value="{!sub1.IPM_Gate_Document_Summary__c }" rendered="{!IF(sub.IPM_Section__r.Id=sub1.IPM_Section__r.IPM_Parent_Section__c,True,False)}" escape="false"/>
+                                          
+                                           <apex:outputPanel styleClass="lastUpdate">
+                                            <apex:outputText value="Last Update: {!sub1.IPM_GateHistory__c} on" rendered="{!IF(sub1.IPM_GateHistory__c!=NULL,True,False)}" ></apex:outputText>
+                                            <apex:outputField value="{!sub1.IPM_GateHistory_Date__c}" rendered="{!IF(sub1.IPM_GateHistory_Date__c!=NULL,True,False)}" /> 
+                                           </apex:outputPanel>
+                                        </apex:outputPanel>
+                                     </apex:repeat>                                 
+                                     <apex:outputText value="{!sub.IPM_Gate_Document_Summary__c }" escape="false" rendered="{!IF(AND(sub.IPM_Section__r.IPM_Section_Type__c!='Header',sub.IPM_Section__r.IPM_Section_Type__c!='Sub Header'),True,False)}"/>
+                                    <!-- Special Sections-->
+                                     <c:ipmGateKeeperList setEdit="false" getDocType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!IF(sub.IPM_Section__r.IPM_Section_Name__c=='Gate Keeper Checklist',true,false)}"></c:ipmGateKeeperList>
+                                     <c:ipmOTIFStatusTable otifType="Table" setEdit="false" getSectionId="{!sub.Id}" rendered="{!IF(sub.IPM_Section__r.IPM_Section_Name__c=='OTIF Status',true,false)}"></c:ipmOTIFStatusTable>
+                                    <c:IPM_Risk_Questionnaire getProjectId="{!projectId}" getProjectSectionId="{!sub.Id}" editSection="false" gateType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!IF(sub.IPM_Section__r.IPM_Section_Name__c=='Risk',true,false)}"></c:IPM_Risk_Questionnaire>
+                               <!--      <c:ipmCMIGateSection rendered="{!IF(sub.IPM_Section__r.IPM_Section_Name__c=='Mix Qualification Plan and Action Standards (Table)',true,false)}"></c:ipmCMIGateSection>-->
+                                     <c:IPM_Customer_Channels getProjectID="{!projectId}" getSecid="{!sub.Id}" CCEdit="false" rendered="{!if(sub.IPM_Section__r.IPM_Section_Name__c='Customers/Channels',true,false)}"></c:IPM_Customer_Channels>
+                                     <apex:outputPanel styleClass="lastUpdate">
+                                     <apex:outputText value="Last Update: {!sub.IPM_GateHistory__c} on" rendered="{!IF(sub.IPM_GateHistory__c!=NULL,True,False)}" ></apex:outputText>        
+                                      <apex:outputField value="{!sub.IPM_GateHistory_Date__c}" rendered="{!IF(sub.IPM_GateHistory_Date__c!=NULL,True,False)}" />
+                                     </apex:outputPanel>
+                                     
+                                     </apex:outputPanel>                             
+                                </apex:repeat> 
+                                </apex:outputPanel>
+                        </apex:repeat>
+                       </apex:outputPanel> 
+                        </div> 
+                       
+                        </div>
+                        </div>
+                          </apex:outputPanel>                  
+                        </div>
+                        </div>                    
+                        </div> 
+                       
+                </div>            
+                 <!--/ Page Content -->
+                 
+                <!--<div id="row coreParamDiv">
+                    <c:ipmModal />
+                </div>-->
+                  <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmTable.css')}"/>
+                <script>
+                   if('{!NonNegotiableCount}'==0){
+                   document.getElementById("NonNegotiable").disabled = true;
+                   }             
+                   if('{!OptionalCount}'==0){
+                   document.getElementById("Optional").disabled = true;
+                   }
+                   if('{!NotstartedCount}'==0){
+                   document.getElementById("NotStarted").disabled = true;
+                   }             
+                   if('{!FilledinCount}'==0){
+                   document.getElementById("filled-in").disabled = true;
+                   }
+                   if('{!ExcludedCount}'==0){
+                   document.getElementById("excluded").disabled = true;
+                   }
+                   if('{!BDCount}'==0){
+                   document.getElementById("bd").disabled = true;
+                   }
+                   if('{!CMICount}'==0){
+                   document.getElementById("cmi").disabled = true;
+                   }
+                   if('{!CDCount}'==0){
+                   document.getElementById("cd").disabled = true;
+                   }
+                   if('{!RnDCount}'==0){
+                   document.getElementById("rnd").disabled = true;
+                   }
+                   if('{!SCCount}'==0){
+                   document.getElementById("sc").disabled = true;
+                   }
+                   if('{!FinanceCount}'==0){
+                   document.getElementById("sc").disabled = true;
+                   }
+                   if('{!BBCount}'==0){
+                   document.getElementById("bb").disabled = true;
+                   }
+                   
+                   var jq = jQuery.noConflict();
+                   function addbuttonStyle(){
+                       jq(".ipmAccordian").find("span.aHead").prepend("<span class='expico fa fa-plus'></span>");
+                   }
+                  jq(".leftSideBar").on("click", "input[name=NonNegotiable]", function(){               
+                        if(jq(this).is(":checked")){
+                          jq(this).attr("value", "true");  
+                          callFilterType();                                       
+                          }else{
+                          jq(this).attr("value", "false"); 
+                          callFilterType1();                      
+                       }                                    
+                   });
+                   jq(".leftSideBar").on("click", "input[name=Optional]", function(){               
+                        if(jq(this).is(":checked")){
+                          jq(this).attr("value", "true");  
+                          callFilterOptional();                      
+                          }else{
+                          jq(this).attr("value", "false"); 
+                          callFilterOptional1(); 
+                       }                                    
+                   });
+                   
+                    jq(".leftSideBar").on("click", "input[name=AllType]", function(){               
+                        if(jq(this).is(":checked")){
+                          jq(this).attr("value", "true");  
+                          callFilterAllType();                      
+                          }else{
+                          jq(this).attr("value", "false"); 
+                          callFilterAllType1(); 
+                       }                                    
+                   });
+                    jq(".leftSideBar").on("click", "input[name=NotStarted]", function(){               
+                        if(jq(this).is(":checked")){
+                          jq(this).attr("value", "true");  
+                          callFilterNotstarted();                      
+                          }else{
+                          jq(this).attr("value", "false"); 
+                          callFilterNotstarted1(); 
+                       }                                    
+                   });
+                    jq(".leftSideBar").on("click", "input[name=filled-in]", function(){               
+                        if(jq(this).is(":checked")){
+                          jq(this).attr("value", "true");  
+                          callFilterFilledin();                      
+                          }else{
+                          jq(this).attr("value", "false"); 
+                          callFilterFilledin1(); 
+                       }                                    
+                   });
+                    jq(".leftSideBar").on("click", "input[name=excluded]", function(){               
+                        if(jq(this).is(":checked")){
+                          jq(this).attr("value", "true");  
+                          callFilterExcluded();                      
+                          }else{
+                          jq(this).attr("value", "false"); 
+                          callFilterExcluded1(); 
+                       }                                    
+                   });
+                   jq(".leftSideBar").on("click", "input[name=allStatus]", function(){               
+                        if(jq(this).is(":checked")){
+                          jq(this).attr("value", "true");  
+                          callFilterAllStatus();                      
+                          }else{
+                          jq(this).attr("value", "false"); 
+                          callFilterAllStatus1(); 
+                       }                                    
+                   });
+                   jq(".leftSideBar").on("click", "input[name=cd]", function(){               
+                        if(jq(this).is(":checked")){
+                          jq(this).attr("value", "true");  
+                          callFilterCD();                      
+                          }else{
+                          jq(this).attr("value", "false"); 
+                          callFilterCD1(); 
+                       }                                    
+                   }); 
+                   jq(".leftSideBar").on("click", "input[name=cmi]", function(){               
+                        if(jq(this).is(":checked")){
+                          jq(this).attr("value", "true");  
+                          callFilterCMI();                      
+                          }else{
+                          jq(this).attr("value", "false"); 
+                          callFilterCMI1(); 
+                       }                                    
+                   }); 
+                    jq(".leftSideBar").on("click", "input[name=bd]", function(){               
+                        if(jq(this).is(":checked")){
+                          jq(this).attr("value", "true");  
+                          callFilterBD();                      
+                          }else{
+                          jq(this).attr("value", "false"); 
+                          callFilterBD1(); 
+                       }                                    
+                   }); 
+                    jq(".leftSideBar").on("click", "input[name=rnd]", function(){               
+                        if(jq(this).is(":checked")){
+                          jq(this).attr("value", "true");  
+                          callFilterRnD();                      
+                          }else{
+                          jq(this).attr("value", "false"); 
+                          callFilterRnD1(); 
+                       }                                    
+                   }); 
+                   jq(".leftSideBar").on("click", "input[name=finance]", function(){               
+                        if(jq(this).is(":checked")){
+                          jq(this).attr("value", "true");  
+                          callFilterFinance();                      
+                          }else{
+                          jq(this).attr("value", "false"); 
+                          callFilterFinance1(); 
+                       }                                    
+                   }); 
+                   jq(".leftSideBar").on("click", "input[name=sc]", function(){               
+                        if(jq(this).is(":checked")){
+                          jq(this).attr("value", "true");  
+                          callFilterSC();                      
+                          }else{
+                          jq(this).attr("value", "false"); 
+                          callFilterSC1(); 
+                       }                                    
+                   }); 
+                   jq(".leftSideBar").on("click", "input[name=bb]", function(){               
+                        if(jq(this).is(":checked")){
+                          jq(this).attr("value", "true");  
+                          callFilterBB();                      
+                          }else{
+                          jq(this).attr("value", "false"); 
+                          callFilterBB1(); 
+                       }                                    
+                   });
+                   jq(".leftSideBar").on("click", "input[name=allFunctionalRole]", function(){               
+                        if(jq(this).is(":checked")){
+                          jq(this).attr("value", "true");  
+                          callFilterFunctional();                      
+                          }else{
+                          jq(this).attr("value", "false"); 
+                          callFilterFunctional1(); 
+                         
+                       }                                    
+                   });               
+                   jq(".docFilter").find("input[type=checkbox]").prop("checked",true);               
+                   jq(".docFilter").on("click", ".checkAll", function(){
+                            if(jq(this).is(":checked")){
+                            jq(this).closest("ul").find("input[type=checkbox]").prop("checked", true);
+                            jq(this).closest("ul").find("input[type=checkbox]").attr("value", "true");
+                            }else{
+                            jq(this).closest("ul").find("input[type=checkbox]").prop("checked", false);
+                            jq(this).closest("ul").find("input[type=checkbox]").attr("value", "false");
+                            }
+                   });
+                   
+                   jq(".docFilter").on("click", ".checkSub", function(){
+                       var checkSub = jq(this).closest("ul").find(".checkSub:checked").closest("li").length;
+                       var checkNot = jq(this).closest("ul").find(".checkSub").closest("li").length;                                    
+                       if(checkNot != checkSub){                                  
+                       jq(this).closest("ul").find("li input.checkAll").prop("checked", false);
+                       } 
+                       if(checkNot == checkSub){                                  
+                       jq(this).closest("ul").find("li input.checkAll").prop("checked", true);
+                       }                   
+                   }); 
+                             
+                   var statusCheckApproved = "{!projectDoc.IPM_Document_Status__c}";               
+                   if(statusCheckApproved == "Proposed" || statusCheckApproved == "Approved"){               
+                       jq(".ipmAccordian").find(".ipmAcrdnExpand a").removeAttr("href");
+                   }
+                   jq("#coreParameters").click(function() {
+                        event.preventDefault ? event.preventDefault() : event.returnValue = false;
+                        var url =jq(this).attr('value');
+                        openModal(url);
+                        jq('#ipmModal .modal-dialog').width('97%');
+                        jq('#ipmModal .modal-dialog').height('90%');
+                     });
+                     jq("#rollOut").click(function() {
+                        alert('hi');
+                        var url = '/apex/ipmRollout?id=a0Lc0000002whXwEAI';
+                        openModal(url);
+                    });
+                    jq(".nav a").on("click", function(){
+                       jq(".nav").find(".active").removeClass("active");
+                       jq(this).parent().addClass("active");
+                    });
+                    
+                    function checkhref(){
+                        var href="/apex/ipmProjectTeamMembers?id="+'{!project.Id}'+'&IsComplete='+'{!isCoreParameter}';
+                        alert(href);
+                        var iswizardComplete='{!isCoreParameter}';
+                        if(iswizardComplete==false){
+                        alert('please complete core parameter wizard');
+                        return false;
+                        }else{
+                        parent.location.assign(href);
+                        }
+                    }
+                    jq("span.ipmAcrdnExpand").hide();
+                    jq("span.ipmAcrdnExpand:first, span.ipmAcrdnExpand:first span.ipmAcrdnExpand").not(':empty').show();                          
+                    jq(".contenWrapper").on("click", ".ipmAccordian span.expico", function(){                
+                        if(jq(this).closest("span.aHead").next("span.ipmAcrdnExpand").is(":visible") && jq(this).closest("span.aHead").next("span.ipmAcrdnExpand").not(':empty')){
+                            jq(this).closest("span.aHead").next("span.ipmAcrdnExpand").slideUp("fast");
+                            jq(this).removeClass("fa-minus");
+                            jq(this).addClass("fa-plus");
+                        }else{
+                            jq(this).closest("span.aHead").next("span.ipmAcrdnExpand").slideDown("fast");
+                            jq(this).removeClass("fa-plus");
+                            jq(this).addClass("fa-minus");
+                        }
+                    });
+                    jq(".expandTool").on("click", ".expandAll", function(){
+                        jq(".ipmAccordian").find(".ipmAcrdnExpand").not(':empty').slideDown("fast");
+                        jq(".ipmAccordian").find(".aHead .expico").removeClass("fa-plus");
+                        jq(".ipmAccordian").find(".aHead .expico").addClass("fa-minus");
+                    });
+                    jq(".expandTool").on("click", ".collapseAll", function(){
+                        jq(".ipmAccordian").find(".ipmAcrdnExpand ").slideUp("fast");
+                        jq(".ipmAccordian").find(".aHead .expico").addClass("fa-plus");
+                        jq(".ipmAccordian").find(".aHead .expico").removeClass("fa-minus");
+                    });
+                    
+                    jq(document).ready(function(){   
+                    jq(".contenWrapper").find(".ipmAccordian span.aHead span.expico").removeClass("fa-minus");              
+                    jq(".contenWrapper").find(".ipmAccordian span.aHead span.expico").addClass("fa-plus");
+                    jq(".contenWrapper").find(".ipmAccordian span.aHead:first span.expico").removeClass("fa-plus");
+                    jq(".contenWrapper").find(".ipmAccordian span.aHead:first span.expico").addClass("fa-minus");
+                    jq(".contenWrapper").find(".ipmAccordian .ipmAcrdnExpand:first span.aHead span.expico").removeClass("fa-plus");
+                    jq(".contenWrapper").find(".ipmAccordian .ipmAcrdnExpand:first span.aHead span.expico").addClass("fa-minus");
+                    });
+                    
+                    
+                    
+               </script>
+               <div id="ipmModalDiv">
+                    <c:ipmModalRevamp />
+                </div>
+                <script>            
+                        jq(document).ready(function(){
+                        jq(".history").each(function(){                            
+                            var url =jq(this).attr('value');
+                            var id=jq(this).attr('id');
+                            var title=jq(this).attr('title');                   
+                            jq(document).on('click', "#"+id, function(e){                       
+                            event.preventDefault ? event.preventDefault() : event.returnValue = false; 
+                            openModal(url);   
+                            jq('#ipmModal .modal-title').html(title);
+                            jq('#ipmModal .modal-dialog').width('50%');
+                            jq('#ipmModal .modal-dialog').height('90%');
+                            });                    
+                            });
+                            
+                             jq(".comments").each(function(){                            
+                            var url =jq(this).attr('value');
+                            var id=jq(this).attr('id');
+                            var title=jq(this).attr('title');                   
+                            jq(document).on('click', "#"+id, function(e){                       
+                            event.preventDefault ? event.preventDefault() : event.returnValue = false; 
+                            openModal(url);   
+                            jq('#ipmModal .modal-title').html(title);
+                            jq('#ipmModal .modal-dialog').width('60%');
+                            jq('#ipmModal .modal-dialog').height('90%');
+                            });                    
+                            });
+                            
+                            jq(document).on('click', '.SecStatusUpdate1', function(){
+                                var url =jq(this).attr('value');
+                                var modalTitle = 'Change current document status';
+                                //jq(this).attr('modalTitle');
+                                openModal(url);
+                                jq('#ipmModal .modal-title').html(modalTitle);
+                                jq('#ipmModal .modal-dialog').width('50%');
+                                jq('#ipmModal .modal-dialog').height('90%');
+                            });
+                            jq(document).on('click', '.openModal', function(){
+                                var url =jq(this).attr('value');
+                                var modalTitle = jq(this).attr('modalTitle');
+                                openModal(url);
+                                jq('#ipmModal .modal-title').html(modalTitle);
+                                jq('#ipmModal .modal-dialog').width('50%');
+                                jq('#ipmModal .modal-dialog').height('90%');
+                            });
+                            jq("#ipmModal .close").on("click", function(){ 
+                                if(jq("#ipmModal .modal-title").text().indexOf("Comment") != -1){                  
+                                window.top.location.href='/apex/ipmGetDocumentV5?id={!project.Id}';
+                                }
+                            });
+                            jq('.closeMessage').on('click', function(){
+                               jq(this).closest('div').remove();
+                            });
+                       });                  
+                </script> 
+                </apex:form>
+        </div>
+        </apex:define>
+    </apex:composition>
+</apex:page>

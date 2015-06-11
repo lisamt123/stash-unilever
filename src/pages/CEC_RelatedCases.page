@@ -1,0 +1,44 @@
+<!--====================================================-->
+<!--Name:  CEC_RelatedCases                               -->
+<!--Copyright notice: @ Unilever                        -->
+<!--====================================================-->
+<!--====================================================-->
+<!-- Purpose:This page is used to to display the related cases-->
+<!--====================================================-->
+<!--====================================================-->
+<!-- History                                            -->
+<!-- -------                                            -->
+<!-- VERSION  AUTHOR        DATE            DETAIL               RELEASE/CSR     -->
+<!-- 1.0 -    Vaishnavi        Jan-2015      INITIAL DEVELOPMENT       Sprint VI       -->
+
+<apex:page id="page" standardController="case" showHeader="false" extensions="CEC_CaseInlineController">
+	<apex:includeScript value="/support/console/30.0/integration.js"/>
+	<apex:form >
+		<apex:actionFunction action="{!getAllRecords}" name="getAllRecordsAF" rerender="casePageBlock"/>
+		<apex:pageBlock id="casePageBlock" mode="maindetail">
+			<apex:pageBlockSection columns="1">
+				<apex:pageBlockTable value="{!fiveRelatedIssues}" var="ri">
+			    	<apex:column headerValue="{!$Label.CEC_CaseNumber}" width="5%">
+			    		<apex:commandLink onclick="openCaseinPrimarytab('{!ri.record.Id}','{!ri.record.CaseNumber}');return false;" value="{!ri.record.CaseNumber}"/>
+			    	</apex:column>
+			    	<apex:column headerValue="{!$Label.CEC_ParentCaseNumber}"  width="5%">
+			    		<apex:commandLink onclick="openCaseinPrimarytab('{!ri.record.ParentId}','{!ri.parentNumber}');return false;" value="{!ri.parentNumber}"/>
+			    	</apex:column>
+			    	<apex:column headerValue="{!$Label.CEC_Product}" value="{!ri.record.CEC_Product__r.Name}" width="30%"/> 
+			    	<apex:column headerValue="{!$Label.CEC_ReasonCode}" value="{!ri.record.Reason_Code__r.Name}" width="30%"/>
+			    	<apex:column value="{!ri.record.Status}" width="15%"/>
+		    	</apex:pageBlockTable>
+		    </apex:pageBlockSection>
+	    	<apex:commandLink onclick="getAllRecordsJS();return false" value="View All" rendered="{!displayMore}"/>    
+		</apex:pageBlock>
+	</apex:form>
+	<script src="/soap/ajax/28.0/connection.js" type="text/javascript"/>
+	<script type="text/javascript">
+		function openCaseinPrimarytab(caseIdentity,caseNumber){
+		    sforce.console.openPrimaryTab(null, '/' + caseIdentity, true); 
+		}
+		function getAllRecordsJS(){
+			getAllRecordsAF();
+		}
+	</script>
+</apex:page>

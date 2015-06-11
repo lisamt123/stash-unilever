@@ -1,0 +1,23 @@
+<apex:page standardController="cp_Event__c" extensions="cp_SpokePersonSelectionController" >
+<apex:form id="theForm">
+        <apex:pageBlock tabStyle="cp_Event__c" mode="mainDetail">
+        <apex:inputhidden value="{!cp_Event__c.Track_ULE__c}"/>
+        <apex:inputHidden value="{!cp_Event__c.HostPlanner__c}"/>
+        <apex:pageMessages id="errorMessage"/>
+        
+        <apex:outputText: value="Is someone speaking or attending this event?" style="font-style:italic;color:gray;"/><br/>
+        <apex:outputText: value="If your representative does not appear on this list, don't worry, the list will evolve in the next development phase." style="font-style:italic;color:gray;"/>
+        
+    <c:cp_MultiselectPicklist leftLabel="Available Speaker/representative"
+                leftOptions="{!allContacts}"
+                rightLabel="Selected Speaker/representative"
+                rightOptions="{!selectedContacts}"
+                size="10"
+                width="300px"/> 
+        <apex:pageBlockButtons location="top">
+        <apex:commandButton action="{!OnSave}" value="Save" rendered="{!canEdit}"/>
+        </apex:pageBlockButtons>
+     
+        </apex:pageBlock>
+</apex:form>
+</apex:page>

@@ -1,0 +1,92 @@
+<apex:page standardController="kof_Contact__c">
+    <apex:includeScript value="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"/>
+    <script>
+        var j$=jQuery.noConflict();
+
+        j$(document).ready(function() {
+            var ifw = j$('[id$=iframeWrapper]');
+            j$('[id$=dash_shield]').css('top', ifw.position().top);
+            j$('[id$=dash_shield]').css('left', ifw.position().left);
+            j$('[id$=dash_shield]').css('width', ifw.width());
+            j$('[id$=dash_shield]').css('height', ifw.height());
+            
+            //j$('[id$=dash_shield]').click(
+            //    function(){
+            //        window.parent.location = '/{!$Setup.cp_System_Settings__c.stakeholders_home_dashboardID__c}';
+            //    }
+            //);
+        });
+    </script>
+    
+    <style>
+        #dash_shield{
+            display: block;
+            position: absolute;
+            background-color: black;
+            z-index:1001;
+            -moz-opacity: 0;
+            opacity:.0;
+            filter: alpha(opacity=0);
+        }
+        #dash_shield:hover{
+            cursor: pointer;
+        }
+        
+        #iframeWrapper
+        {
+            width: 100%;
+            height: 330px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        #dashFrame
+        {
+            position: absolute;
+            top: -70px;
+            width: 100%;
+        }
+        
+        #title{
+            font-size: 2em;
+            font-weight: bold;
+            line-height:2;
+        }
+        .headerMessage {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .headerMessage p {
+            margin-bottom: 10px !important;
+        }
+    </style>
+    
+    <div id="title">
+        Stakeholders
+    </div>
+    
+    <div id="dash_shield"/>
+    <div>
+        <apex:pageBlock >
+            <apex:pageBlockSection columns="1">
+                <div class="headerMessage">
+                    <p>
+                        Welcome to the Stakeholder Database! With this integrated system you can keep track of the engagement with your Stakeholders &amp; Key Opinion Formers and share the outcomes with colleagues in other parts of the world. This will enable us to work more proactively and in a joined-up way and more importantly, it will help us drive the Unilever reputation, create long-term advocates for the business and deliver the Unilever Sustainable Living Plan.
+                    </p>
+                    <p>
+                        IMPORTANT: Stakeholder owners are responsible for keeping their respective stakeholder information up to date. If you are not a stakeholder owner, please do NOT contact a stakeholder in this system without checking with the stakeholder owner first. For all other questions about the Stakeholder Database, please contact Joanna van Lynden (<a href="Joanna.van-Lynden@unilever.com">Joanna.van-Lynden@unilever.com</a>)
+                    </p>
+                </div>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </div>
+    
+    <!--<apex:pageBlock >
+        <div id="iframeWrapper">
+            <apex:iframe id="dashFrame" src="/{!$Setup.cp_System_Settings__c.stakeholders_home_dashboardID__c}?isdtp=mn"/>
+        </div>
+    </apex:pageBlock>-->
+    
+    <apex:enhancedList listId="{!$Setup.cp_System_Settings__c.stakeholders_home_contactViewID__c}" height="500"/>
+
+</apex:page>
