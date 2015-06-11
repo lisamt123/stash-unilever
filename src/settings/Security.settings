@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SecuritySettings xmlns="http://soap.sforce.com/2006/04/metadata">
-    <networkAccess>
-        <ipRanges>
-            <end>170.252.64.72</end>
-            <start>170.252.64.72</start>
-        </ipRanges>
-        <ipRanges>
-            <end>122.167.125.182</end>
-            <start>122.167.125.182</start>
-        </ipRanges>
-    </networkAccess>
+    <networkAccess/>
     <passwordPolicies>
-        <complexity>SpecialCharacters</complexity>
-        <expiration>SixMonths</expiration>
-        <historyRestriction>6</historyRestriction>
-        <lockoutInterval>ThirtyMinutes</lockoutInterval>
-        <maxLoginAttempts>FiveAttempts</maxLoginAttempts>
+        <complexity>AlphaNumeric</complexity>
+        <expiration>NinetyDays</expiration>
+        <historyRestriction>3</historyRestriction>
+        <lockoutInterval>FifteenMinutes</lockoutInterval>
+        <maxLoginAttempts>TenAttempts</maxLoginAttempts>
         <minPasswordLength>EightCharacters</minPasswordLength>
-        <passwordAssistanceMessage>If you continue to have problems, please ring I.T Helpdesk and log a ticket. Please note you will remain locked out for 30 minutes.</passwordAssistanceMessage>
         <questionRestriction>DoesNotContainPassword</questionRestriction>
     </passwordPolicies>
     <sessionSettings>
@@ -25,12 +15,11 @@
         <enableCSRFOnGet>true</enableCSRFOnGet>
         <enableCSRFOnPost>true</enableCSRFOnPost>
         <enableCacheAndAutocomplete>true</enableCacheAndAutocomplete>
-        <enableClickjackNonsetupSFDC>false</enableClickjackNonsetupSFDC>
+        <enableClickjackNonsetupSFDC>true</enableClickjackNonsetupSFDC>
         <enableClickjackNonsetupUser>false</enableClickjackNonsetupUser>
         <enableClickjackSetup>true</enableClickjackSetup>
         <enableSMSIdentity>true</enableSMSIdentity>
         <forceRelogin>false</forceRelogin>
         <lockSessionsToIp>false</lockSessionsToIp>
-        <sessionTimeout>EightHours</sessionTimeout>
     </sessionSettings>
 </SecuritySettings>
