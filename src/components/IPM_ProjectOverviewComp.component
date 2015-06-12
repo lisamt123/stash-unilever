@@ -1,0 +1,99 @@
+<apex:component controller="IPM_ProjectOverviewCtrl">
+
+    <div class="col-sm-3">
+        <div class="topheader">Key Project Details</div>
+        <div class="greyborder"></div>
+        <p class="keyTitle">{!projectObj.IPM_Project_Name__c}</p>
+        <p class="keycontent">{!projectObj.IPM_Brand__c} | {!projectObj.IPM_Category_Text__c}</p>
+         <div class="greyborder"></div>
+          <div class="row">
+         <div class="col-sm-2 pr0">
+            <div><img src="/resource/1422940358000/ipmResourceRevamp/images/flag_homescreen.svg" class="fasttrack"/></div>
+        </div>
+        <div class="col-sm-9 pl0">
+             <div class="keycontent mt6">Fast Track project</div>
+        </div>
+        </div>
+        <div class="greyborder"></div>
+         <div class="row">
+         <div class="col-sm-8 pr0">
+            <div class="keycontent">Current document</div>
+        </div>
+        <div class="col-sm-3 pl0">
+            <div class="percentage"><a href="/apex/ipm_GateDocument?id={!projectObj.Id}">{!projectObj.IPM_FilledIn_Percentage__c}%</a></div>
+        </div>
+        </div>
+        <div class="greyborder"></div>
+        <div class="row">
+        <div class="col-sm-12 pr0">
+            <div class="keycontent">Current document status</div>
+        </div>
+        <div class="documentStatus pl0">
+            <div class="percentage">{!projectDoc.IPM_Document_Status__c}</div>
+        </div>
+       <apex:outputPanel rendered="{!IF(AND(projectDoc.IPM_Document_Status__c!='Approved' && projectDoc.IPM_Document_Status__c!='Not Started',IsUpdateStatus=true,projectObj.IPM_Phase__c!='PLE'),True,False)}">
+        <div class="openModal SecStatusUpdate dstatusButton" modalTitle="Change current document status" data-toggle="modal" data-target="#ipmModal" value="/apex/ipmChangeCurrenDocumentStatus?id={!projectObj.Id}" data-backdrop="static" data-keyboard="false" title="Update Status">
+            <input type="button" class="ipmButton" value="Change status"/>
+        </div>
+        </apex:outputPanel>
+        </div>
+        <div class="greyborder"></div>
+        <div class="row">
+         <div class="col-sm-8 pr0">
+            <div class="keycontent">Target launch date</div>
+        </div>
+        <div class="col-sm-3 pl0">
+            <div class="blackFont dueDate"><apex:outputField value="{!projectObj.IPM_Target_Launch_Dates__c}" /></div>
+        </div>
+        </div>
+        <div class="greyborder"></div>
+        <div class="row">
+         <div class="col-sm-8 pr0">
+            <div class="keycontent">Project route</div>
+        </div>
+        <div class="col-sm-3 pl0">
+            <div class="blackFont">{!projectObj.IPM_Complexity__c}</div>
+        </div>
+        </div>
+        <div class="greyborder"></div>
+        <div class="row">
+         <div class="col-sm-8 pr0">
+            <div class="keycontent">Year 3 iTO</div>
+        </div>
+        <div class="col-sm-3 pl0">
+            <div class="blackFont">5mn</div>
+        </div>
+        </div>
+        <div class="greyborder"></div>
+        
+        <div class="row mt20">
+            <div class="col-sm-2">                        
+            <img class="cirimg" src="{!projectObj.IPM_Project_Leader__r.SmallPhotoUrl}"/>
+            </div>
+            <div class="col-sm-10"> 
+            <div class="designation">Project leader</div>
+            <div class="author">{!projectObj.IPM_Project_Leader__r.Name}</div>
+            </div>
+       </div>
+       <div class="greyborder"></div>
+        <div class="row mt20">
+            <div class="col-sm-2">                        
+            <img class="cirimg" src="{!projectObj.IPM_Project_Gatekeeper__r.SmallPhotoUrl}"/>
+            </div>
+            <div class="col-sm-10"> 
+            <div class="designation">Gatekeeper</div>
+            <div class="author">{!projectObj.IPM_Project_Gatekeeper__r.Name}</div>
+            </div>
+       </div>
+       <div class="greyborder"></div>
+        <div>
+        <p class="keyprojectDetails mt20">Description:</p>
+        <p class="keycontent">{!projectObj.IPM_Project_Description__c}</p>
+        </div>
+    </div>
+    <script>
+    jq(".dueDate").each(function () {
+        jq(this).text(jq(this).text().replace('00:00:00 GMT',''));
+    });
+    </script>
+</apex:component>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Holds value whether CMCO has permission to edit or not</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>AF_CMCO_Rights__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>AF_CMCO_Rights</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>AF_CMCO</label>
+    <visibility>Protected</visibility>
+</CustomObject>

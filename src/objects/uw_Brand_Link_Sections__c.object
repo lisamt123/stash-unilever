@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>Brand_Link_Section_Detail</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>bc_help_pop_up5</customHelpPage>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Brand_Centre_Link__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot;+  Brand_Centre__r.Id , Brand_Centre__r.Name , &quot;Self&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Brand Centre</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Brand_Centre__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Brand Centre</label>
+        <referenceTo>uw_Brand__c</referenceTo>
+        <relationshipLabel>Brand Link Sections</relationshipLabel>
+        <relationshipName>Brand_Link_Sections</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Horizontal_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Horizontal Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>End</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Middle</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Ordinal__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please specify a number 0-99 to order the Link Sections on the Page. Horizonal links go left to right and vertical links go top to bottom.</inlineHelpText>
+        <label>Ordinal</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Position__c</fullName>
+        <externalId>false</externalId>
+        <label>Position</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Horizontal Menu</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vertical Menu</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Section_Image_ID__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please ensure your Brand Link image/icon is not larger than 50 X 50 pixels in dimension.</inlineHelpText>
+        <label>Section Image ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Style_Class__c</fullName>
+        <externalId>false</externalId>
+        <label>Style Class</label>
+        <picklist>
+            <picklistValues>
+                <fullName>accordion-content brandessentail</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>accordion-content</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>accordion-content bransexperience</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>accordion-content clearfix brandassets</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <label>Brand Link Sections</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Brand_Centre_Link__c</columns>
+        <columns>Brand_Centre__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Position__c</field>
+            <operation>equals</operation>
+            <value>Horizontal Menu</value>
+        </filters>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Brand Link Sections Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Brand Link Sections</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

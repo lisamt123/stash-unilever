@@ -1,3 +1,0 @@
-<apex:page showHeader="false" sidebar="false">
-<chatter:newsfeed />
-</apex:page>

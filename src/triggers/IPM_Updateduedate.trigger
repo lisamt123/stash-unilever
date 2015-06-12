@@ -1,0 +1,1 @@
+trigger IPM_Updateduedate on IPM_Task__c (before update,before insert){}

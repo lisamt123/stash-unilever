@@ -1,0 +1,293 @@
+<apex:component controller="isll_USLPBrandTableComponentController" extensions="isll_ReturnUrlExtention"  allowDML="true" >
+	<style>
+.myTable {
+	position:relative;
+}
+.myTable table {
+	/*width:100%;
+	width:90%; */
+	width:900px;
+	table-layout: fixed; border-spacing: 0px; border-collapse:collapse;
+	z-index:2;
+	position:relative;
+}
+.myTable th, .myTable td {
+	text-align: center;
+	/*text-transform: uppercase;*/
+	text-decoration: none;
+	font-size:13px;
+	width:auto;
+	line-height:13px;
+	padding-left: 7px;
+	word-wrap: break-word;
+	vertical-align:middle;
+}
+.myTable th {
+	height:40px;
+	/*border-bottom: 1px #7FC2E4 solid;*/
+	padding-bottom:20px;vertical-align:bottom
+}
+.myTable td {
+	/*height:60px;*/height:60px;
+	border-top: 1px #7FC2E4 solid;
+	margin:0;
+	padding:0
+}
+/* 		
+ 		#tableContent tr:nth-child(even) {background: #ccc !important;}
+		#tableContent tr:nth-child(odd) {background: #FFF !important;}
+*/ 	
+ 		
+div#bottom {height:400px; overflow:auto;}
+div#top {padding-bottom: 5px;}
+
+.topLeft {
+	background:url(/img/alohaSkin/overlayTopLft.png) left top no-repeat;
+	padding:8px 6px 8px 12px;
+}
+
+.topRight {
+	background:url(/img/alohaSkin/overlay_crns.png) right top no-repeat;
+	padding-left:0;
+	padding-right:6px;
+}
+
+.customPopup {
+	background-color:#FFF;
+	left:20%;
+	position:absolute;
+	width:650px;
+	display:block;
+	top:10px;
+	visibility:visible;
+	border-radius:5px;
+	padding:10px;
+	border:2px solid;
+	border-color:#E6E6E6;
+	z-index:9999
+}
+
+.disabledTextBox {
+	background-color:#FFF;
+	border:1px solid;
+	color:#000;
+	cursor:default;
+	width:90px;
+	display:table;
+	text-align:right;
+	padding:2px 1px;
+}
+
+.closeButton {
+	float:right;
+}
+
+.heading-column-1 {color:#1c2885;vertical-align:middle;text-align:center;}
+.heading-column-2 {color:#de6c2c;}
+.heading-column-3 {color:#e9582c;}
+.heading-column-4 {color:#e10e2c;}
+.heading-column-5 {color:#d52988;}
+
+.myTable td.column-1, .myTable td.column-5 {
+	background-image: url('{!URLFOR($Resource.isll_images, 'brand-table/vertical-line-blue-1.png')}');
+	background-repeat: no-repeat;
+}
+
+.myTable tr:nth-child(3n+2) td.column-1, .myTable tr:nth-child(3n+2) td.column-5 {
+	background-image: url('{!URLFOR($Resource.isll_images, 'brand-table/vertical-line-blue-2.png')}');
+	background-repeat: no-repeat;
+}
+
+.myTable tr:nth-child(3n+3) td.column-1, .myTable tr:nth-child(3n+3) td.column-5 {
+	background-image: url('{!URLFOR($Resource.isll_images, 'brand-table/vertical-line-blue-3.png')}');
+	background-repeat: no-repeat;
+}
+
+.myTable td.column-1 {
+	border-right:1px #7FC2E4 solid;
+	background-position: left top;
+}
+
+.myTable td.column-5 {
+	/*border:1px #7FC2E4 solid; border-left:none;*/
+	background-position: right top;
+}
+
+.myTable tr:nth-child(1) td {
+	border-top:none;
+}
+
+.myTable {
+	background-image: url('{!URLFOR($Resource.isll_images, 'brand-table/horizontal-line-blue-1.png')}');
+	background-repeat: no-repeat;
+	background-position: left 60px;
+}
+
+.myTable table#tableContent {
+	background-image: url('{!URLFOR($Resource.isll_images, 'brand-table/horizontal-line-blue-1.png')}');
+	background-repeat: no-repeat;
+	background-position: left bottom;
+}
+
+#table-bg-top-left {
+	width:58px;
+	height:420px;
+	position:absolute;
+	top:-20px;
+	left:-100px;
+	background-image: url('{!URLFOR($Resource.isll_images, 'brand-table/brand-table-bg-top-left.png')}');
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size:58px 420px;
+}
+#table-bg-bottom-right {
+	width:428px;
+	height:600px;
+	position:absolute;
+	bottom:-45px;
+	/*right:-45px;*/
+	right:10px;
+	background-image: url('{!URLFOR($Resource.isll_images, 'brand-table/brand-table-bg-bottom-right.png')}');
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size:428px 600px;
+  z-index:1;
+}
+
+.isll_USLPBrandTablbEdit #table-bg-top-left, .isll_USLPBrandTablbEdit #table-bg-top-left {display:none;}
+
+#brandTable .editLink {z-index:2;}
+</style>
+
+	<apex:attribute name="editable" description="need to write one" type="Boolean" required="false" assignTo="{!isEditable}" />
+	<apex:attribute name="isEditModeAtr" description="" type="Boolean" required="false" assignTo="{!isEditMode}" />
+	
+	<apex:outputPanel id="tablePanel">
+		<div class = "myTable">
+		
+			<table id="tableContent">
+				<thead>
+				<tr>
+					<apex:outputPanel rendered="{!isEditMode}" >
+			     		<th></th><!-- Remove icon header -->
+			    	</apex:outputPanel>
+					<th class="heading-column-1"></th>
+				    <th class="heading-column-2">Started</th>
+				    <th class="heading-column-3">Defined USLP<br/>Ambition</th>
+				    <th class="heading-column-4">Activating<br/>In Market</th>
+				    <th class="heading-column-5">Learn<br/>More</th>
+				    <apex:outputPanel rendered="{!isEditMode}" >
+				     	<th>Order</th>
+				     	<th></th>
+				    </apex:outputPanel>
+				</tr>
+				</thead>
+		    
+		    <tbody>
+				<apex:repeat value="{!allBrandUSLP}" var="brandUSLP">
+					<tr>
+						<!-- <apex:outputPanel rendered="{!isEditMode}" > -->
+							<td style="width:3px; {!IF(isEditMode, '', 'display:none;')}">
+								<apex:commandLink action="{!removeFromTable}" rendered="{!isEditMode}"> 
+							    	<apex:image value="/img/func_icons/remove12_on.gif"/>
+							    	<apex:param name="brandUSLPId" value="{!brandUSLP.id}"/>
+							    </apex:commandLink>
+							</td>
+						<!-- </apex:outputPanel> -->
+						
+						<!-- <apex:outputPanel rendered="{!!isEditMode}" > -->
+						    <td style="{!IF(isEditMode, 'display:none;', '')}" class="column-1">
+						    	<a href="{!brandUSLP.Brand_Centre_Link__c}">
+						    		<apex:image value="/servlet/servlet.FileDownload?file={!brandUSLP.Attachments[0].id}" rendered="{!IF(brandUSLP.Attachments.size == 1, TRUE, FALSE)}" height="56px"/>
+						    	</a>
+						    </td>
+						    <td style="{!IF(isEditMode, 'display:none;', '')}"><apex:image value="{!URLFOR($Resource.isll_images, 'brand-table/heart-light-orange.png')}" rendered="{!brandUSLP.Started__c}" height="20px"/></td>
+						    <td style="{!IF(isEditMode, 'display:none;', '')}"><apex:image value="{!URLFOR($Resource.isll_images, 'brand-table/heart-dark-orange.png')}" rendered="{!brandUSLP.Defined_USLP_Ambition__c}" height="20px"/></td>
+						    <td style="{!IF(isEditMode, 'display:none;', '')}"><apex:image value="{!URLFOR($Resource.isll_images, 'brand-table/heart-red.png')}" rendered="{!brandUSLP.Activating_In_Market__c}" height="20px"/></td>
+						   	<td class="column-5" style="{!IF(isEditMode, 'display:none;', '')}">
+						   		<a href="{!brandUSLP.Case_Study__c}">
+						   			<apex:image value="{!URLFOR($Resource.isll_images, 'download.png')}"  rendered="{!IF(NOT(ISBLANK(brandUSLP.Case_Study__c)) || brandUSLP.Case_Study__c != '', TRUE, FALSE)}"   height="20px" width="20px" />
+						   		</a>
+						   	</td>
+						<!-- </apex:outputPanel> -->
+						
+						<!-- <apex:outputPanel rendered="{!isEditMode}" > -->
+						    <td style="{!IF(isEditMode, '', 'display:none;')}">
+						    	<a href="{!brandUSLP.Brand_Centre_Link__c}">
+						    		<apex:image value="/servlet/servlet.FileDownload?file={!brandUSLP.Attachments[0].id}" rendered="{!IF(brandUSLP.Attachments.size == 1, TRUE, FALSE)}"   width="40px" height="40px"/>
+						    	</a>
+						    </td>
+						    <td style="{!IF(isEditMode, '', 'display:none;')}"><apex:inputfield value="{!brandUSLP.Started__c}"/></td>
+						    <td style="{!IF(isEditMode, '', 'display:none;')}"><apex:inputfield value="{!brandUSLP.Defined_USLP_Ambition__c}"/></td>
+						    <td style="{!IF(isEditMode, '', 'display:none;')}"><apex:inputfield value="{!brandUSLP.Activating_In_Market__c}"/></td>
+						   	<td style="{!IF(isEditMode, '', 'display:none;')}">
+						   		<a href="{!brandUSLP.Case_Study__c}">
+						   			<apex:image value="{!URLFOR($Resource.isll_images, 'download.png')}"  rendered="{!IF(NOT(ISBLANK(brandUSLP.Case_Study__c)) || brandUSLP.Case_Study__c != '', TRUE, FALSE)}"   height="20px" width="20px" />
+						   		</a>
+						   	</td>
+						   	<td style="{!IF(isEditMode, '', 'display:none;')}">
+						   	 	<apex:commandLink action="{!reArrangeTable}">
+						   	 		<apex:image value="/img/arrow_up.gif"/>
+						   	 		<apex:param name="brandToMove" value="{!brandUSLP.id}" />
+						   	 		<apex:param name="action" value="Up" />
+						   	 	</apex:commandLink>
+						   	 	<apex:commandLink action="{!reArrangeTable}">
+						   	 		<apex:image value="/img/arrow_dwn.gif"/>
+						   	 		<apex:param name="brandToMove" value="{!brandUSLP.id}" />
+						   	 		<apex:param name="action" value="Down" />
+						   	 	</apex:commandLink>
+						   	 </td>
+						   	 <td style="{!IF(isEditMode, '', 'display:none;')}">
+						   	 	<apex:commandLink action="{!hideShowEditDialog}">
+						        	Edit<apex:param name="uslpToEditId" value="{!brandUSLP.id}"/>
+						        </apex:commandLink>
+						   	 </td>
+						<!-- </apex:outputPanel> -->
+				    </tr>
+				</apex:repeat>
+				</tbody>
+				<tfoot></tfoot>
+			</table>
+		
+			<apex:outputLink value="isll_USLPBrandTablbEdit" styleClass="editLink" rendered="{!ShowEditLink}">Edit
+				<apex:param name="returnPage" value="{!backUrl}" />
+			</apex:outputLink>
+			<apex:commandButton value="Update" action="{!updateUSLPBrands}"   rendered="{!isEditMode}"/>
+		</div>
+	</apex:outputPanel>
+
+	<apex:outputPanel id="editPanel">
+    	<apex:outputPanel styleClass="customPopup" layout="block" rendered="{!showEditMode}">
+			<div class="topRight">
+				<div class="topLeft">
+				<apex:commandLink action="{!hideShowEditDialog}" styleClass="dialogClose">share</apex:commandLink>
+					
+					<h2 id="titeBox" style = "font-size: 1.25em;">Edit Brand USLP</h2>
+				</div>
+			</div>
+			<div style = "width:650px;">
+				<br/>
+				<div id = "groupSelection">
+					<apex:pageBlock id="newUslp" >
+			      		<apex:pageBlockSection showHeader="false" columns="1" >
+							<apex:inputField value="{!newBrand.Name}" />
+			          		<apex:inputField value="{!newBrand.Started__c}" />
+			          		<apex:inputField value="{!newBrand.Defined_USLP_Ambition__c}" />
+			          		<apex:inputField value="{!newBrand.Activating_In_Market__c}" />
+			          		<apex:inputField value="{!newBrand.Case_Study__c}" />
+			          		<apex:inputField value="{!newBrand.Brand_Centre_Link__c}" />
+			          		<apex:outputPanel >
+				          		<apex:outputLabel value="File" for="file"/>
+				          		<apex:inputFile value="{!attachment.body}" filename="{!attachment.name}" id="file"/>
+			          		</apex:outputPanel>
+			          </apex:pageBlockSection>
+			        </apex:pageBlock>
+			    </div>
+			</div>
+            <div id = "buttons">
+	            <apex:commandButton action="{!addNewBrandUSLP}" value="Update" />
+	            <apex:commandButton action="{!hideShowEditDialog}" value="Cancel"/>
+            </div>  
+       	</apex:outputPanel>  
+    </apex:outputPanel>
+</apex:component>

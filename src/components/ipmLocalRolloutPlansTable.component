@@ -1,0 +1,266 @@
+<apex:component controller="ipmRolloutPlansTableController" allowDML="true">
+<apex:includeScript value="{!URLFOR($Resource.ipmResource, 'js/jquery.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.ipmResource, 'js/jquery-ui.js')}"/> 
+<apex:stylesheet value="{!URLFOR($Resource.ipmResource, 'css/jquery-ui.css')}"/>
+    <style>
+        .rollouttable{table-layout:fixed;width: 100%;max-width: 100%;}
+        .rollouttable tr:first-child th:first-child {text-align:center;}
+        .rollouttable th, .rollouttable td {padding-top:8px;padding-bottom:5px;}
+        .rollouttable th{font-weight:normal !important;color:#666 !important;padding-bottom:13px !important;}
+         span.expico {display: inline-block;cursor: pointer;font-family: FontAwesome;width: 21px;height: 21px;
+        text-align: center;font-weight: normal;line-height: 23px;background: #81bd42;position: relative;
+        margin-right: 5px;font-size: 0.8em;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;color: #fff;}
+        .rollsubhead{padding:0 10px;}
+        .editsec{display: inline-block;position: relative;left: 54px;top: 9px;}
+        .statetext{margin-bottom:10px;padding: 3px 10px 3px 0 !important;display:inline-block;border-right: 1px #7fa19e solid;}
+        .fa-star:before {color: #81bd42;}        
+        .noBackground {background: #ffffff !important;}
+        .secrow td{border-top:1px solid #ddd !important; !important;border-bottom:1px solid #ddd !important;background:#f7f8fa;}
+        .greyborleft{border-left:1px solid #ddd !important;}
+        .greyborright{border-right:1px solid #ddd !important;}
+        .greyColr {background: #f8f8f8;}
+        .panel{background-color:none !important;}
+        .regpos{position:relative;bottom:5px;}
+        .drpfield {padding: 6px;border-radius: 4px;min-width:80%;}
+        .searchBox{width:65%;}
+        .mb20{margin-bottom:20px;}      
+        .pb20{padding-bottom:36px;}
+        .mt20{margin-top:10px;}
+        .separator {padding:0 15px; border-left:1px solid #ddd;}
+        .date-icon{position: relative;top: -21px;left: 92px;}
+        .right-column{position: relative;top: 120px;}
+        .rollsubhead{padding:0 10px;}
+        .inline{display:inline-block;}
+        .countrytext{padding: 4px;border: 1px solid #ddd;border-radius: 4px;margin-bottom:8px;}        
+        .inline-text{position: relative;bottom: 6px;}
+        .bottonsec{margin-top:20px;margin-bottom:20px;text-align:right;float:right;}
+        .ortext{margin-top:10px;margin-bottom:10px;text-align:center;}
+        .greytext{color:#666;}
+        .addrolloutsec{background-color:#f8f8f8;}
+        #editsection{display:none;}
+        .dblock{display:block;}
+        .rounded { border-radius: 50%; margin-right: 5px;}        
+        .table>tbody>tr>td{padding:10px 10px !important;}
+        .fa-star:before{margin-left:5px;}
+        .w200{width:200px;}
+        .countrytxt{padding: 8px;border: 1px solid #ddd;border-radius: 4px;margin-bottom:8px;}
+        .mr10{margin-right:10px;}
+        .ml30{margin-left:30px;}
+        .pl30{padding-left:30px;}
+        .countrytable{text-align:left !important;}
+        .srchImage{right:-58px !important;}
+        .searchBox input{width:200px !important;}
+        .table-bordered>thead>tr>th{border-bottom-width:1px !important;}
+        
+        .icoButton-delete{width: 25px !important;height: 23px !important;}
+        .searchBox label{float:left;}
+        input[type=text]{width: 60%;height: 30px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px #a8a8a8 solid;}
+        .editsectn{text-align: right;margin-right: 13px;}
+        #editblock tr td{border-top:0px;}
+        .wordwrap{word-wrap:break-word;}
+        .dateFormat{visibility:hidden;}
+        table #editblock{box-shadow: 0 6px 12px rgba(0, 0, 0, 0.17);border:1px solid #2262A0;}
+    </style>
+ 
+    <apex:outputPanel id="autoFill">
+    <script type="text/javascript">  
+        var jq = jQuery.noConflict();   
+        var apexPLList =[];               
+        <apex:repeat value="{!listPL}" var="plList">          
+            apexPLList.push('{!plList.IPM_User__r.name}');         
+        </apex:repeat> 
+        jq(document).ready(function(){ 
+            jq(".plautocomplete").autocomplete({
+                source : apexPLList
+            }); 
+            
+        });    
+    </script>
+    
+    <script type="text/javascript">  
+        var jq = jQuery.noConflict();   
+        var apexFLList =[];               
+        <apex:repeat value="{!listFL}" var="flList">          
+            apexFLList.push('{!flList.IPM_User__r.name}');         
+        </apex:repeat> 
+        jq(document).ready(function(){ 
+            jq(".flautocomplete").autocomplete({
+                source : apexFLList
+            }); 
+        });    
+    </script>
+    </apex:outputPanel>
+    <div class="row">
+        <apex:outputPanel id="topButtonPanel">
+            <div class="col-sm-6 pull-left mSpacing">
+                <apex:commandLink styleClass="ipmButton" value="Add / Edit Rollouts" action="{!addRollout}" rendered="{!isEditMode}"/>
+            </div>
+            <div class="col-sm-6 pull-right mSpacing">
+                <apex:commandLink styleClass="ipmButton primary pull-right" value="Edit" action="{!editRollout}" rendered="{! if(AND(NOT(isEditMode),isEditable=true),true,false)}" onComplete="reRenderPanels();" status="loadingStatus">
+                    <apex:param name="p1" assignTo="{!isEditMode}" value="TRUE"/>
+                </apex:commandLink>
+                <apex:commandLink styleClass="ipmButton primary pull-right" value="Save" action="{!saveRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus">
+                    <apex:param name="p1" assignTo="{!isEditMode}" value="FALSE"/>
+                </apex:commandLink>
+                <apex:commandLink styleClass="ipmButton pull-right mr10" value="Cancel" action="{!cancelRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus">
+                    <apex:param name="p1" assignTo="{!isEditMode}" value="FALSE"/>
+                </apex:commandLink>
+            </div>
+        </apex:outputPanel>
+    </div>
+    <apex:pagemessages id="pgmsgs" />
+    <table class="ipmTable table table-bordered myListTable">
+        <thead class="">
+            <tr>
+                <th width="3%" scope="col" colspan="1">
+                    <div>
+                        <div class="colCompleted incHeight"><span>&nbsp;</span></div>
+                    </div>
+                </th>
+                <th scope="col" width="20%" colspan="1">
+                    <div>
+                        <div class="colProject incHeight"><span>Rollout</span></div>
+                    </div>              
+                </th>
+                <th scope="col" width="20%" colspan="1">
+                    <div>
+                        <div class="colCategory incHeight"><span>Target Launch Date</span></div>
+                    </div>
+                </th>
+                <th scope="col" width="11%" colspan="1">
+                    <div>
+                        <div class="colPhase incHeight"><span>Status</span></div>
+                    </div>
+                </th>
+                <th scope="col" width="20%" colspan="1">
+                    <div>
+                        <div class="colTasks incHeight"><span>Country Leader</span></div>
+                    </div>
+                </th>
+                <th scope="col" width="25%" colspan="1">
+                    <div>
+                        <div class="colSection incHeight"><span>Finance Leader</span></div>
+                    </div>
+                </th>  
+            </tr>
+        </thead>
+    </table>
+    <apex:outputPanel id="rolloutPanel">
+        <div class="tableAccrdion">
+            <div class="ipmAccordion">
+                <apex:repeat value="{!lstRegionalRollouts}" var="localRollout">
+                <div class="projectContainer">
+                    <!-- Regional Rollout Header -->
+                    <div class="pHead">
+                        <table class="rollouttable"> 
+                            <thead class="">
+                                <tr>
+                                    <th scope="col" width="3%" colspan="">
+                                        <div class="incHeight">
+                                            <span class="expico fa fa-minus"></span>
+                                        </div>
+                                    </th>
+                                    <th scope="col" width="20%" colspan="">
+                                        <div class="incHeight">              
+                                            <span class="rollsubhead wordwrap">
+                                                <b>
+                                                    <apex:outputLink value="{!URLFOR($Page.ipmProjectOverview,null,[id=localRollout.Local_Project__c])}" styleClass="noDecoration" target="_blank" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}">
+                                                        {!localRollout.IPM_Rollout_Project__c}
+                                                    </apex:outputLink>
+                                                    <apex:outputText rendered="{!IF(localRollout.Local_Project__c != null, false, true)}">
+                                                        {!localRollout.IPM_Rollout_Project__c}
+                                                    </apex:outputText>
+                                                </b>
+                                            </span>
+                                        </div>
+                                    </th> 
+                                    <th scope="col" width="20%" colspan="1">
+                                        <div class="incHeight">
+                                            <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>
+                                            <apex:inputField value="{!localRollout.Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}"/>
+                                        </div>
+                                    </th>
+                                    <th scope="col" width="11%" colspan="1">
+                                        <!--
+                                        <div>
+                                            <span>
+                                                <apex:outputField value="{!localRollout.IPM_Status__c}" rendered="{!NOT(isEditMode)}"/>
+                                                <apex:inputField value="{!localRollout.IPM_Status__c}" rendered="{!isEditMode}" styleClass="fieldFont drpfield"/>
+                                            </span>
+                                        </div>
+                                        -->
+                                    </th>
+                                    <th scope="col" width="20%" colspan="1">
+                                        <apex:outputField value="{!localRollout.IPM_Regional_PL__c}" rendered="{!NOT(isEditMode)}"/>
+                                        <apex:inputText value="{!localRollout.IPM_Regional_PL_Text__c}" styleClass="plautocomplete" rendered="{!isEditMode}"  />
+                                    </th>
+                                    <th scope="col" width="25%" colspan="1">
+                                        <apex:outputField value="{!localRollout.Finance_Member__c}" rendered="{!NOT(isEditMode)}"/>
+                                        <apex:inputText value="{!localRollout.IPM_Finance_Member_Text__c}" styleClass="flautocomplete" rendered="{!isEditMode}"/>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="ipmAcrdnExpand">
+                        
+                            <div class="pt20">
+                                <table class="rollouttable editable">                                 
+                                    <tr class="secrow">
+                                        <td width="3%">
+                                            &nbsp;
+                                        </td>
+                                        <td width="15%"> 
+                                            <b>MCO:&nbsp;</b>{!localRollout.MCO_Name__c}
+                                        </td>
+                                        <td  width="47%" class="noBorder" colspan="4">
+                                            <div class="separator">
+                                                <strong>Included Countries:&nbsp;</strong>
+                                               <apex:repeat value="{!mapLocalRolloutCountryMapping[localRollout.Id]}" var="country">
+                                                    {!country.Country_Name__c};
+                                                </apex:repeat>
+                                            </div>
+                                        </td>
+                                        <td class="text-right" width="26%">
+                                            <div class="mr15" style="display:inline-block;">
+                                                <!--
+                                                <div class="SecButtonSet edit1">
+                                                    <a class="icoButton edit1" href="#" onclick="editLocalRollout('a0dM0000005pEwCIAU');" target="_top"></a> 
+                                                </div>
+                                                -->
+                                                <div class="SecButtonSet">
+                                                    <!-- <a href="" class="icoButton edit1"></a>-->
+                                                    <apex:commandLink styleClass="icoButton edit1" action="{!editRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();">
+                                                        <apex:param name="p1" assignTo="{!selectedMCORollout}" value="{!localRollout.Id}"/>
+                                                    </apex:commandLink>
+                                                    <apex:commandLink styleClass="icoButton delete" action="{!deleteMCORollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();">
+                                                        <apex:param name="p1" assignTo="{!selectedMCORollout}" value="{!localRollout.Id}"/>
+                                                    </apex:commandLink>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>                                
+                                </table>
+                            </div>
+                    </div>
+                </div>
+                </apex:repeat>
+            </div>
+        </div>
+    </apex:outputPanel>
+    <div class="row">
+        <apex:outputPanel id="bottomButtonPanel">
+            <div class="col-sm-6 pull-left mSpacing">
+            </div>
+            <div class="col-sm-6 pull-right mSpacing">
+                <apex:commandLink styleClass="ipmButton primary pull-right" value="Save" action="{!saveRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus">
+                    <apex:param name="p1" assignTo="{!isEditMode}" value="FALSE"/>
+                </apex:commandLink>
+                <apex:commandLink styleClass="ipmButton pull-right mr10" value="Cancel" action="{!cancelRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus">
+                    <apex:param name="p1" assignTo="{!isEditMode}" value="FALSE"/>
+                </apex:commandLink>
+            </div>
+        </apex:outputPanel>
+    </div>
+    <apex:actionFunction name="reRenderPanels" reRender="topButtonPanel,rolloutPanel,bottomButtonPanel,autoFill,hideUser,pgmsgs" status="loadingStatus"/>
+</apex:component>

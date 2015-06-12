@@ -1,0 +1,23 @@
+<apex:component id="ipmConfirmModal">
+    <apex:attribute name="confirmTitle" type="String" description="TODO"/>
+    <apex:attribute name="modalId" type="String" description="TODO"/>
+    <style>
+        #closeBtn{background:url("{!URLFOR($Resource.ipmResource, 'images/ipmCoreParamClose.png')}") no-repeat !important;}
+    </style>
+    <div class="modal fade" id="{!modalId}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-xs-12 pull-right" data-dismiss="modal" aria-hidden="true" id="closeBtn" title="close">&times;</div>
+                    <div class="col-xs-12 confirmContent">  
+                        <div class="confirm-title">{!confirmTitle}</div>
+                        <div class="ipmButtonGroup ipmFromAction pull-right">
+                            <button type="button" class="ipmButton gray" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="ipmButton teal confirmAction">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</apex:component>

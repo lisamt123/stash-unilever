@@ -1,0 +1,512 @@
+<apex:component controller="IPM_TaskCompCtrl" allowDML="true">
+
+       
+            <style>
+               
+            </style>
+            <apex:attribute name="pId" type="String" AssignTo="{!projectId}" description="this is the project id"/>
+             <apex:attribute name="Edittask" type="Boolean" AssignTo="{!IsTaskEditable}" description="this is used for security"/>
+            <apex:attribute name="EditAlltask" type="Boolean" AssignTo="{!IsAllEditable}" description="this is used for security"/>
+            <apex:attribute name="functionrole" type="String" AssignTo="{!UFunctionRole}" description="this is used for security"/>
+             
+             <apex:form >
+                <!--<apex:outputPanel id="statsPanel">
+                 <div class="row ipmTaskRow">
+                    <div class="col-xs-1 heading3 blue ipmPanelHeading width1">Tasks</div>
+                    <div class="col-xs-2 ipmStatistics width2">
+                        <c:ipmStatisticRevamp colorClass="green" kpiValue="{!closedTasks}" kpi="Completed" />
+                    </div>
+                    <div class="col-xs-2 ipmStatistics last width2">
+                        <c:ipmStatisticRevamp colorClass="gray" kpiValue="{!openTasks}" kpi="Open" />
+                    </div>
+                </div>
+                </apex:outputPanel>
+                <apex:outputPanel id="tmpPanel">
+                <div class="row ipmTaskRow">
+                    <div class="col-xs-1 staticLabel2" style="padding-left:0px;">Show Only</div>
+                    <div class="col-xs-6 assignedCheckboxes" style="padding-left:0px;">
+                    
+                    <div class="col-xs-2 ipmCheckbox">
+                        <input type="checkbox" value="true" id="myrole" name="my role" onClick="myRole(this.checked);"/>
+                        <label class="taskTop" for="myrole"></label>
+                    </div>
+                    <div class="col-xs-4 staticLabel2">My Functional Role</div>
+                    <div class="col-xs-2 ipmCheckbox">
+                        <input type="checkbox" value="true" id="assignedToMe" name="Assigned to me" onClick="myTasks(this.checked)"/>
+                        <label class="taskTop" for="assignedToMe"></label>
+                    </div>
+                    <div class="col-xs-3 staticLabel2">Assigned to me</div>
+                   <ul class="phase"><apex:repeat value="{!phasesList}" var="phs">
+                                            <li><label><input type="checkbox" onClick="fPhase();" value="{!phs}" id="{!phs}"/>{!phs}</label></li>
+                                            </apex:repeat></ul>&nbsp;
+                                            <ul class="user">
+                                            <apex:repeat value="{!usersList}" var="usr">
+                                            <li><label><input id="{!usr}" value="{!usr}" onClick="fUser();" type="checkbox"/>{!usr}</label></li>
+                                            </apex:repeat>
+                                        </ul>Due Date Sort
+                                        <apex:image onClick="toggleDueDate();" value="/img/move_down.gif" height="16" width="16" rendered="{!!isAsc}" />
+                                        <apex:image value="/img/move_up.gif" onClick="toggleDueDate();"  height="16" width="16" rendered="{!isAsc}" />
+                </div>
+                
+                </div> 
+                </apex:outputPanel>-->
+                <div class="pull-right addLink tabTaskButton noPadright txtRight" id="addTask" data-toggle="modal" data-target="#ipmMstoneTaskWizard" value="/apex/ipmAddTaskWizard?projectId={!projectId}&Wizard=true" title="Add Task" data-backdrop="static" data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText"> Add To-do</span></div>
+                <div class="row ipmTaskRowTodo">
+                    <div class="table-responsive" id="ipmTableDiv">
+                        <apex:actionStatus startText="updating..." id="myStatus">
+                             <apex:facet name="start">
+                                <img height="15" width="15" src="/img/loading32.gif" />
+                            </apex:facet>
+                        </apex:actionStatus>
+                        <apex:dataTable value="{!projectTasks}" var="p" id="tskPanel" styleClass="ipmTable table table-bordered taskListTable">
+                            <apex:column styleClass="{!IF(p.isComplete,'selected', 'notselected')} completeHeader taskCompleteHeader col-xs-1" width="16%" rendered="">
+                                <apex:facet name="header">
+                                    <div class="colCompleted">
+                                        <span>Completed?</span>
+                                        <span id="sortCompletion" class="fa {!IF(currentSort['thisFld'] = 'IPM_Completed__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon" />
+                                        <div class="keep-open  btn-group">
+                                            <div class="dropdown completedFilter completedFilterT ipmDropDown">
+                                                <div class="dropdown-toggle" data-toggle="dropdown">
+                                                    <a class="fa filterIcon icoButton filter"></a> 
+                                                </div>
+                                                <ul class="dropdown-menu pull-right complete" role="menu">
+                                                    <li>
+                                                        <div class="col-xs-2 ipmCheckbox">
+                                                            <input type="checkbox" value="t" id="complYes" />
+                                                            <label for="complYes"></label>
+                                                        </div>
+                                                        <div class="col-xs-10 staticLabel">Yes</div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="col-xs-2 ipmCheckbox">
+                                                            <input type="checkbox" value="f" id="complNo" />
+                                                            <label for="complNo"></label>
+                                                        </div>
+                                                        <div class="col-xs-10 staticLabel">No</div>
+                                                    </li>
+                                                    <li class="filterActions">
+                                                        <div class="ipmButtonGroup col-xs-6 pull-left">
+                                                            <a value="Done" id="completeFilterDone" class="ipmDropcompletebuttons" styleClass="blue col-xs-6" onClick="fComplete();">Done</a>
+                                                        </div>
+                                                        <div class="ipmButtonGroup col-xs-6 pull-left">   
+                                                            <a value="Reset" styleClass="bulue col-xs-6" class="completeFilterReset" onClick="fCompleteReset();">Reset</a>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </apex:facet>
+                                <div class="col-xs-2 ipmCheckbox taskCheck">
+                                    <input type="checkbox" isChecked="{!p.isComplete}" id="{!p.taskObj.Id}" onClick="myAssignedTasks('{!p.taskObj.Id}',this.checked)" isDisabled="{! If(OR(AND(IsAllEditable=true,UFunctionRole=null),AND(IsAllEditable=true,UFunctionRole='Supply Chain'),AND(UFunctionRole=p.taskObj.IPM_Function__c,IsTaskEditable=true)),'false','true')}"/>
+                                   <label for="{!p.taskObj.Id}"></label>
+                                  
+                                </div>
+                            </apex:column>
+                            <apex:column headerValue="Task" styleClass="col-xs-2 taskHeader {!IF(p.isComplete,'selected', 'notselected')}">
+                                <apex:facet name="header">
+                                    <div class="toDopaddingleft">To Do&#39;s
+                                       <!-- <span id="sortTasks" class="fa {!IF(currentSort['thisFld'] = 'IPM_Task_Name__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>--></div>
+                                </apex:facet>
+                                <div class="col-sm-12 noPadleft noPadright">
+                                    <div class="col-sm-1 noPadleft noPadright">
+                                        <apex:outputPanel styleClass="mandatorycolor" rendered="{!p.taskObj.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
+                                    </div>
+                                    <div class="col-sm-11 noPadleft noPadright">
+                                        <div class="editTask" value="/apex/ipmEditTask?projectId={!projectId}&taskId={!p.taskObj.Id}" title="Edit Task" ><span class="toDomandatory"><apex:outputfield value="{!p.taskObj.IPM_Task_Name__c}" /></span></div>
+                                    </div>
+                                </div>
+                            </apex:column>
+                            <apex:column styleClass="col-xs-1 {!IF(p.isComplete,'selected', 'notselected')} phaseHeader">
+                                <apex:facet name="header">
+                                    <div class="colPhase">
+                                        <span>Phase</span>
+                                       <!-- <span id="sortPhases" class="fa {!IF(currentSort['thisFld'] = 'IPM_Phase__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>-->
+                                        <div class="keep-open  btn-group">
+                                            <div class="dropdown phaseFilter ipmDropDown">
+                                                <div class="dropdown-toggle" data-toggle="dropdown">
+                                                    <a class="fa filterIcon icoButton filter"></a> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </apex:facet>
+                                <div class="editTask" value="/apex/ipmEditTask?projectId={!projectId}&taskId={!p.taskObj.Id}" title="Edit Task" ><apex:outputfield value="{!p.taskObj.IPM_Phase__c}" /></div>
+                            </apex:column>
+                            <apex:column headerValue="Section" styleClass="col-xs-2 {!IF(p.isComplete,'selected', 'notselected')}">
+                                <apex:facet name="header">
+                                    <div>Section 
+                                       <!-- <span id="sortSections" class="fa {!IF(currentSort['thisFld'] = 'IPM_Project_Document_Section__r.IPM_Section_Sequence__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>--></div>
+                                </apex:facet>
+                                <apex:outPutPanel rendered="{!IF(AND(p.taskObj.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c!='Approved',p.taskObj.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c!='Proposed'),True,False)}">
+                               <!-- <a href="" target="_blank">
+                                 link from above a tag /apex/ipmProjectDocumentSectionEditorV1?Id={!p.taskObj.IPM_Project__c}&projDocSecId={!p.taskObj.IPM_Project_Document_Section__c} -->
+                                <apex:outputfield value="{!p.taskObj.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>&nbsp;
+                                <apex:outputfield value="{!p.taskObj.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/><!--</a>-->&nbsp;
+                                </apex:outputPanel>
+                                <apex:outPutPanel rendered="{!IF(OR(p.taskObj.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c=='Approved',p.taskObj.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c=='Proposed'),True,False)}">
+                                <apex:outputfield value="{!p.taskObj.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>&nbsp;
+                                <apex:outputfield value="{!p.taskObj.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/>&nbsp;
+                                </apex:outputPanel>
+                                <div class="editTask" value="/apex/ipmEditTask?projectId={!projectId}&taskId={!p.taskObj.Id}" title="Edit Task" ><apex:outputPanel rendered="{!p.taskObj.IPM_Function__c != NULL}">[{!p.taskObj.IPM_Function__c}]</apex:outputPanel></div>
+                            </apex:column>
+                            <apex:column width="15%" styleClass="{!IF(p.isComplete,'selected', 'notselected')}">
+                                <apex:facet name="header">
+                                    <div class="colAssignee">
+                                        <span>Assignee</span>
+                                       <!-- <span id="sortAssignees" class="fa {!IF(isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>-->
+                                        <div class="keep-open  btn-group">
+                                            <div class="dropdown userFilter ipmDropDown">
+                                                <div class="dropdown-toggle" data-toggle="dropdown">
+                                                    <a class="fa filterIcon icoButton filter"></a> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </apex:facet>
+                                <img src="{!p.profilePhoto}" height="30" width="30" class="circular ipmImage"/><span class="tableAssigneeName"><apex:outputfield value="{!p.taskObj.IPM_Assignee__r.Name}" /></span>
+                            </apex:column>
+                            <apex:column headerValue="Due Date" rendered="{!!isExternalApproach}" styleClass="col-xs-1 duedateHeader {!IF(p.isComplete,'selected', 'notselected')}">
+                                <apex:facet name="header">
+                                    <div>Due Date 
+                                      <!--  <span id="sortDueDate" class="fa {!IF(currentSort['thisFld'] = 'IPM_Due_Date1__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>--></div>
+                                </apex:facet>
+                                <div class="editTask" value="/apex/ipmEditTask?projectId={!projectId}&taskId={!p.taskObj.Id}" title="Edit Task" ><apex:outputfield value="{!p.taskObj.IPM_Due_Date1__c}"/></div>
+                            </apex:column>                         
+                            <apex:column width="10%" headerValue="" styleClass="{!IF(p.isComplete,'selected', 'notselected')}" rendered=""> 
+                                <apex:outputPanel styleClass="SecButtonSet pull-right">
+                                    <apex:outputPanel rendered="{! If(OR(AND(IsAllEditable=true,UFunctionRole=null),AND(IsAllEditable=true,UFunctionRole='Supply Chain'),AND(UFunctionRole=p.taskObj.IPM_Function__c,IsTaskEditable=true)),'true','false')}">
+                                    <a class="icoButton edit1 editTaskBtn"  value="/apex/ipmEditTask?projectId={!projectId}&taskId={!p.taskObj.Id}"></a>
+                                    <!--<a class="icoButton delete" onClick="myFunc('{!p.taskObj.Id}')" title="Delete"/>-->
+                                    </apex:outputPanel>
+                                     <apex:outputPanel rendered="{! If(OR(AND(IsAllEditable=true,UFunctionRole=null),AND(IsAllEditable=true,UFunctionRole='Supply Chain'),AND(UFunctionRole=p.taskObj.IPM_Function__c,IsTaskEditable=true)),'true','false')}">
+                                      <a class="icoButton delete" data-toggle="modal" data-target="#ipmDeleteModal"  value="{!p.taskObj.Id}" id="{!p.taskObj.Id}" 
+                                        onclick="myFunc('{!p.taskObj.Id}','{!p.isSectionLast}','{!p.taskObj.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c}','{!p.taskObj.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}')" 
+                                        title="Delete" 
+                                        data-backdrop="static" data-keyboard="false"/>
+                                    </apex:outputPanel> 
+                                </apex:outputPanel>
+                            </apex:column>
+                        </apex:dataTable>
+                    </div> 
+                </div>
+                <div class="panel-group gateMilstone clearfix">
+                   <div class="row">
+                     <div class="col-sm-12 noteimg pull-left">
+                         <div class="col-sm-12 tableMstonBbottom noPadleft noPadright">
+                             <span class="mstone"><span class="mandatorycolor">*</span>Non-negotiable To-dos</span>
+                         </div>
+                     </div>
+                   </div>
+                </div>
+                <div id="phaseFilterDiv">
+                    <ul class="dropdown-menu pull-right phase" role="menu">
+                        <apex:repeat value="{!phasesList}" var="phs">
+                            <li>
+                                <div class="col-xs-2 ipmCheckbox">
+                                    <input type="checkbox" value="{!phs}" id="{!phs}" />
+                                    <label for="{!phs}"></label>
+                                </div>
+                                <div class="col-xs-10 staticLabel">{!phs}</div>
+                            </li>
+                        </apex:repeat>
+                        <li class="filterActions">
+                            <div class="ipmButtonGroup col-xs-6 pull-left">
+                                <a value="Done" id="phaseMFilterDone" class="ipmDropbuttons" styleClass="blue col-xs-6" onClick="fPhase();">Done</a>
+                             </div>
+                             <div class="ipmButtonGroup col-xs-6 pull-left">   
+                                <a value="Reset" styleClass="bulue col-xs-6" class="ipmDropreset" onClick="fPhaseReset();">Reset</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="userFilterDiv">
+                    <ul class="dropdown-menu pull-right user" role="menu">
+                        <apex:repeat value="{!usersList}" var="usr">
+                            <li>
+                                <div class="col-xs-2 ipmCheckbox">
+                                    <input type="checkbox" value="{!usr}" id="{!usr}" />
+                                    <label for="{!usr}"></label>
+                                </div>
+                                <div class="col-xs-10 staticLabel">{!usr}</div>
+                            </li>
+                        </apex:repeat>
+                        <li class="filterActions">
+                            <div class="ipmButtonGroup col-xs-6 pull-left">
+                                <a value="Done" id="phaseMFilterDone" class="ipmDropbuttons" styleClass="blue col-xs-6" onClick="fUser();">Done</a>
+                             </div>
+                             <div class="ipmButtonGroup col-xs-6 pull-left">   
+                                <a value="Reset" styleClass="bulue col-xs-6" class="ipmDropreset" onClick="fUserReset();">Reset</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+               <!-- <div id="ipmDeleteModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <div class="modal-title">Remove Task</div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="col-xs-12 panel-body">
+                                    <div class="confirmMsg">You are about to delete task. Are you sure  want to continue?</div>
+                                    <div class="ipmButtonGroup ipmFromAction pull-right">
+                                        <a class="ipmButton cancelAction" data-dismiss="modal">No</a>
+                                        <a class="ipmButton green confirmAction" >Yes</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                </apex:form>
+                <apex:form >
+                <apex:actionFunction name="deleteTask" action="{!deleteTask}" reRender="tskPanel,statsPanel,jsLoad,tmpPanel" status="myStatus">
+                    <apex:param name="tskId" assignTo="{!taskId}" value="" />
+                 </apex:actionFunction>
+             </apex:form>
+             <apex:form >
+                <apex:actionFunction name="toggleDueDate" action="{!toggleDueDate}" reRender="tskPanel,statsPanel,jsLoad,tmpPanel" status="myStatus">
+                 </apex:actionFunction>
+             </apex:form>
+             <apex:form >
+                <apex:actionFunction name="toggleSortTasks" action="{!toggleSortTasks}" reRender="tskPanel,statsPanel,jsLoad,tmpPanel" status="myStatus"/>
+             </apex:form>
+             <apex:form >
+                <apex:actionFunction name="toggleSortSections" action="{!toggleSortSections}" reRender="tskPanel,statsPanel,jsLoad,tmpPanel" status="myStatus"/>
+             </apex:form>
+             <apex:form >
+                <apex:actionFunction name="toggleSortAssignees" action="{!toggleSortAssignees}" reRender="tskPanel,statsPanel,jsLoad,tmpPanel" status="myStatus"/>
+             </apex:form>
+             <apex:form >
+                <apex:actionFunction name="toggleSortCompletion" action="{!toggleSortCompletion}" reRender="tskPanel,statsPanel,jsLoad,tmpPanel" status="myStatus" />
+             </apex:form>
+             <apex:form >
+                <apex:actionFunction name="toggleSortPhases" action="{!toggleSortPhases}" reRender="tskPanel,statsPanel,jsLoad,tmpPanel" status="myStatus"/>
+             </apex:form>
+             <apex:form >
+                <apex:actionFunction name="myRole" action="{!myRole}" rerender="tskPanel,statsPanel,jsLoad" status="myStatus">
+                    <apex:param name="mytsk" assignTo="{!toggleRole}" value="" />
+                </apex:actionFunction>
+             </apex:form>
+              <apex:form >
+            <apex:actionFunction name="markComplete" action="{!markComplete}" reRender="tskPanel,statsPanel,jsLoad">
+                <apex:param name="tskId" assignTo="{!taskId}" value="" />
+                <apex:param name="isChecked" assignTo="{!isChecked}" value="" />
+             </apex:actionFunction>
+             </apex:form>
+             <apex:form >
+                <apex:actionFunction name="myTasks" action="{!myTasks}" rerender="tskPanel,statsPanel,jsLoad" status="myStatus">
+                    <apex:param name="mytsk" assignTo="{!toggleTask}" value="" />
+                </apex:actionFunction>
+             </apex:form>
+             <apex:form >
+                <apex:actionFunction name="filteredPhase" action="{!filteredPhase}" rerender="tskPanel,statsPanel,jsLoad" status="myStatus">
+                    <apex:param name="phase" assignTo="{!phase}" value="" />
+                </apex:actionFunction>
+             </apex:form>
+             <apex:form >
+                <apex:actionFunction name="filterComplete" action="{!filterCompleteTasks}" rerender="tskPanel,statsPanel,jsLoad" status="myStatus">
+                    <apex:param name="isOpen" assignTo="{!isCompleteTasks}" value="" />
+                </apex:actionFunction>
+             </apex:form>
+             <apex:form >
+                <apex:actionFunction name="filterAssignee" action="{!filteredUser}" rerender="tskPanel,statsPanel,jsLoad" status="myStatus">
+                    <apex:param name="isOpen" assignTo="{!user}" value="" />
+                </apex:actionFunction>
+             </apex:form>
+            
+             <apex:outputPanel id="jsLoad">
+             <script>
+                var user = [];
+                var phase = [];
+                var complete =[];
+                var taskId = '';
+                function myFunc(str,isLst,gateName,secName) {
+                    var errMsg = ''
+                    if(isLst == 'true') {
+                        errMsg = 'All tasks correlating to the ' + gateName + ' Section ' + secName + '  have been removed. Would you like to remove this section from the ' + gateName + ' Document?';
+                    }else {
+                        errMsg = '{!$Label.delete_task_msg}';
+                    }
+                   jq('#ipmDeleteModal .modal-title').html("Remove Task");
+                   jq('#ipmDeleteModal .confirmMsg').html(errMsg);
+                    
+                    jq('#ipmDeleteModal .confirmAction').attr('value', str);
+                    jq(".confirmAction").addClass("removeTask");
+                }
+                jq(document).on('click', '#ipmDeleteModal .removeTask', function(){
+                    if(taskId != jq(this).attr('value')) {
+                        taskId = jq(this).attr('value');
+                        //alert(taskId);
+                        deleteTask(taskId);
+                        jq("#ipmDeleteModal").modal('hide');
+                    }
+                });
+                function myAssignedTasks(taskId, isChecked) {
+                    if(isChecked != 'true') {
+                        jq('.taskCheck input[type=checkbox]#'+taskId).closest("tr").removeClass("selected");
+                    }else {
+                        jq('.taskCheck input[type=checkbox]#'+taskId).closest("tr").addClass("selected");
+                    }
+                    
+                    markComplete(taskId, isChecked);
+                }
+                function fPhase() {
+                    jq(".phase input:checkbox:checked").each(function() {
+                        phase.push(jq(this).val());
+                    });
+                    var pStr = phase.toString();
+                    filteredPhase(pStr);
+                }
+                function fUser() {
+                    jq(".user input:checkbox:checked").each(function() {
+                        user.push(jq(this).val());
+                    });
+                    var uStr = user.toString();
+                    filterAssignee(uStr);
+                }
+                
+                jq(document).on('show.bs.dropdown', '.phaseFilter', function(){
+                    if(jq('.phaseFilter ul.phase').length  == 0){
+                        var dropDownList = jq('#phaseFilterDiv').html();
+                        jq(this).append(dropDownList);                        
+                    }
+                    var selectedValues = '{!phase}';
+                    var selectedValuesArr = selectedValues.split(',');
+                    jq('.phaseFilter .dropdown-toggle .icoButton').removeClass('filter');
+             jq('.phaseFilter .dropdown-toggle .icoButton').addClass('filter-selected');
+                    
+                    if(selectedValuesArr.length != 0){
+                        jq('.phaseFilter .dropdown-menu input[type="checkbox"]').each(function () {
+                            var val = jq(this).attr('value');
+                            if(jq.inArray(val, selectedValuesArr) != -1){
+                               jq(this).prop('checked', true); 
+                              // jq(this).next('label').addClass('selected');
+                            }else{jq(this).prop('checked', false);}
+                        });
+                        //selectCheckBox(this, 'phaseFilter', selectedValuesArr);
+                    }
+                });
+                jq(document).on('show.bs.dropdown', '.userFilter', function(){
+                    if(jq('.userFilter ul.user').length  == 0){
+                        var dropDownList = jq('#userFilterDiv').html();
+                        jq(this).append(dropDownList);
+                    }
+                    jq('.userFilter .dropdown-toggle .icoButton').removeClass('filter');
+             jq('.userFilter .dropdown-toggle .icoButton').addClass('filter-selected');
+                    
+                    var selectedValues = '{!user}';
+                    var selectedValuesArr= selectedValues.split(',');
+                    if(selectedValuesArr.length != 0){
+                        jq('.userFilter .dropdown-menu input[type="checkbox"]').each(function () {
+                            var val = jq(this).attr('value');
+                            if(jq.inArray(val, selectedValuesArr) != -1){
+                               jq(this).prop('checked', true); 
+                              // jq(this).next('label').addClass('selected');
+                            }else{jq(this).prop('checked', false);}
+                        });
+                        //selectCheckBox(this, 'phaseFilter', selectedValuesArr);
+                    }
+                });
+                jq(document).on('click', '.dropdown-menu input[type="checkbox"], .dropdown-menu label', function(e){
+                    e.stopPropagation();
+                });
+                
+                 jq(document).on('hide.bs.dropdown', '.completedFilterT', function(){
+        jq('.completedFilterT .dropdown-toggle .icoButton').removeClass('filter-selected');
+             jq('.completedFilterT .dropdown-toggle .icoButton').addClass('filter');
+             
+             });
+             
+             jq(document).on('hide.bs.dropdown', '.userFilter', function(){
+        jq('.userFilter .dropdown-toggle .icoButton').removeClass('filter-selected');
+             jq('.userFilter .dropdown-toggle .icoButton').addClass('filter');
+             
+             });
+             
+             jq(document).on('hide.bs.dropdown', '.phaseFilter', function(){
+        jq('.phaseFilter .dropdown-toggle .icoButton').removeClass('filter-selected');
+             jq('.phaseFilter .dropdown-toggle .icoButton').addClass('filter');
+             
+             });
+                
+                function selectCheckBox(element, filterName, arr){
+                    alert('.' +filterName +' .dropdown-menu input[type="checkbox"]');
+                    jq('.' +filterName +' .dropdown-menu input[type="checkbox"]').each(function () {
+                        var val = jq(this).attr('value');
+                        if(jq.inArray(val, arr) != -1){
+                           jq(element).prop('checked', true); 
+                           jq(element).next('label').addClass('selected');
+                        }else{jq(element).prop('checked', false);}
+                    });
+                }
+                jq('#sortDueDate').on('click', function(){
+                    toggleDueDate();
+                });
+                jq('#sortTasks').on('click', function(){
+                    toggleSortTasks();
+                });
+                jq('#sortSections').on('click', function(){
+                    toggleSortSections();
+                });
+                jq('#sortPhases').on('click', function(){
+                    toggleSortPhases();
+                });
+                jq('#sortCompletion').on('click', function(){
+                    toggleSortCompletion();
+                });
+                jq('#sortAssignees').on('click', function(){
+                    toggleSortAssignees();
+                });
+                function fPhaseReset(){
+                    jq(".phase input:checkbox").each(function() {
+                        jq(this).prop('checked', false);
+                        jq(this).next('label').removeClass('selected');
+                    });
+                    filteredPhase('');
+                }
+                function fUserReset(){
+                    jq(".user input:checkbox").each(function() {
+                        jq(this).prop('checked', false);
+                        jq(this).next('label').removeClass('selected');
+                    });
+                    filterAssignee('');
+                }
+                function fComplete(){
+                    jq(".complete input:checkbox:checked").each(function() {
+                        complete.push(jq(this).val());
+                    });
+                    var cStr = complete.toString();
+                    filterComplete(cStr);
+                }
+                jq(document).on('show.bs.dropdown', '.completedFilterT', function(){
+                    var selectedValues = '{!isCompleteTasks}';
+                    var selectedValuesArr = selectedValues.split(',');
+                     jq('.completedFilterT .dropdown-toggle .icoButton').removeClass('filter');
+             jq('.completedFilterT .dropdown-toggle .icoButton').addClass('filter-selected');
+                    
+                    if(selectedValuesArr.length != 0){
+                        jq('.completedFilterT .dropdown-menu input[type="checkbox"]').each(function () {
+                            var val = jq(this).attr('value');
+                            if(jq.inArray(val, selectedValuesArr) != -1){
+                               jq(this).prop('checked', true); 
+                              // jq(this).next('label').addClass('selected');
+                            }else{jq(this).prop('checked', false);}
+                        });
+                    }
+                });
+                function fCompleteReset(){
+                    jq(".complete input:checkbox").each(function() {
+                        jq(this).prop('checked', false);
+                        //jq(this).next('label').removeClass('selected');
+                    });
+                    filterComplete('');
+                }
+             </script>
+             </apex:outputPanel>
+             <script>
+                jq('.sortIcon').addClass('fa-angle-down');
+             </script>
+        </apex:component>

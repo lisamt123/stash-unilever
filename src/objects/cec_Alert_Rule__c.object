@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Alert_Type_Image__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL(Type__c, &apos;Safety&apos;),IMAGE(&quot;/resource/CEC_Safety_alert&quot;, &quot;Safety&quot;, 30, 30), IMAGE(&quot;/resource/CEC_Quality_alert&quot;, &quot;Quality&quot;, 30, 30))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Alert Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>All_Market__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When selected, the rule will apply to all markets regardless of the Market field</inlineHelpText>
+        <label>All Markets</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Group_By_Day_Code__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When selected, cases must have a Production Code/Daycode added in order to be tracked.</inlineHelpText>
+        <label>Group By Day Code?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>L0_Product_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(VALUE(TEXT(Product_Level__c)) &gt;= 0, Product_Category__r.L0_Product_Category__c, null)</formula>
+        <label>L0 Product Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>L1_Product_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(VALUE(TEXT(Product_Level__c))&gt;=1 , Product_Category__r.L1_Product_Category__c, null)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>L1 Product Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>L1_Reason_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(VALUE(TEXT(Reason_Level__c))&gt;=1, Reason_Code__r.Global_Listening_Tree__r.L1_Desc__c  , null)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>L1 Reason Code</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>L2_Product_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(VALUE(TEXT(Product_Level__c))&gt;=2, Product_Category__r.L2_Product_Category__c, null)</formula>
+        <label>L2 Product Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>L3_Product_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(VALUE(TEXT(Product_Level__c))&gt;=3, Product_Category__r.L3_Product_Category__c, null)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>L3 Product Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>L3_Reason_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(VALUE(TEXT(Reason_Level__c))&gt;=3 , Reason_Code__r.Global_Listening_Tree__r.L3_Desc__c  , null)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>L3 Reason Code</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>L5_Product_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(VALUE(TEXT(Product_Level__c))&gt;=5, Product_Category__r.L5_Product_Category__c, null)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>L5 Product Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>L5_Reason_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(TEXT(Reason_Level__c) = &apos;5&apos;,  Reason_Code__r.Global_Listening_Tree__r.L5_Desc__c , null)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>L5 Reason Code</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>L7_Product_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(TEXT(Product_Level__c) = &apos;7&apos;, Product_Category__r.L7_Product_Category__c, null)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>L7 Product Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Market__c</fullName>
+        <externalId>false</externalId>
+        <label>Market</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Baltics</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Benelux</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Czech Republic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DACH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>France</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Greece</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hungary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>India</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nordic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Poland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Portugal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>United Kingdom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Product_Category__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Product Category</label>
+        <referenceTo>mdm_Product_Category__c</referenceTo>
+        <relationshipLabel>Alert Rule</relationshipLabel>
+        <relationshipName>Alert_Rule</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Product_Level__c</fullName>
+        <description>CEC</description>
+        <externalId>false</externalId>
+        <inlineHelpText>After selecting a product category, this field determines what level to use for matching.</inlineHelpText>
+        <label>Product Level</label>
+        <picklist>
+            <controllingField>Type__c</controllingField>
+            <picklistValues>
+                <fullName>0</fullName>
+                <controllingFieldValues>Safety</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <controllingFieldValues>Quality</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>7</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Reason_Code__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Reason Code</label>
+        <referenceTo>mdm_Reason_Code__c</referenceTo>
+        <relationshipLabel>Alert Rule</relationshipLabel>
+        <relationshipName>Alert_Rule</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Reason_Level__c</fullName>
+        <description>CEC</description>
+        <externalId>false</externalId>
+        <inlineHelpText>After selecting a reason code, this field determines what level to use for matching.</inlineHelpText>
+        <label>Reason Level</label>
+        <picklist>
+            <controllingField>Type__c</controllingField>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <controllingFieldValues>Quality</controllingFieldValues>
+                <controllingFieldValues>Safety</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Threshold__c</fullName>
+        <description>CEC</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When the count of matching records is equal to or greater than this value, the alert actions associated to this rule will be triggered.</inlineHelpText>
+        <label>Threshold</label>
+        <precision>3</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Quality</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Safety</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <label>Alert Rule</label>
+    <listViews>
+        <fullName>CEC_Baltics_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Baltics Queue</label>
+        <queue>CEC_Baltics_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Benelux_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Benelux Queue</label>
+        <queue>CEC_Benelux_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Cyprus_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Cyprus Queue</label>
+        <queue>CEC_Cyprus_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Czech_Republic_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Czech Republic Queue</label>
+        <queue>CEC_Czech_Republic_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_DACH_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC DACH Queue</label>
+        <queue>CEC_DACH_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_France_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC France Queue</label>
+        <queue>CEC_France_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_General_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>General Queue</label>
+        <queue>CEC_General_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Greece_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Greece Queue</label>
+        <queue>CEC_Greece_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Hungary_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Hungary Queue</label>
+        <queue>CEC_Hungary_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_India_Tier_1_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC India Tier 1</label>
+        <queue>CEC_India_Tier_1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Italy_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Italy Queue</label>
+        <queue>CEC_Italy_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Nordic_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Nordic Queue</label>
+        <queue>CEC_Nordic_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Poland_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Poland Queue</label>
+        <queue>CEC_Poland_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Portugal_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Portugal Queue</label>
+        <queue>CEC_Portugal_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Spain_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Spain Queue</label>
+        <queue>CEC_Spain_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>phindia</fullName>
+        <columns>NAME</columns>
+        <columns>Active__c</columns>
+        <columns>L0_Product_Category__c</columns>
+        <columns>Market__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>phindia</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Alert Rule Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Alert Rule</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>L0_Product_Category_Mandatory_Validation</fullName>
+        <active>true</active>
+        <description>Please verify that the Product Category&apos;s &apos;Division Name&apos; is not null if Type is &apos;Safety&apos;</description>
+        <errorConditionFormula>L0_Product_Category__c = null &amp;&amp;  ISPICKVAL(Type__c, &apos;Safety&apos;)</errorConditionFormula>
+        <errorMessage>Please make sure that  the Product Category&apos;s  &apos;Division Name&apos; is not null for &apos;Safety&apos; alerts.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>L2_Product_Category_Mandatory_Validation</fullName>
+        <active>true</active>
+        <description>This validation rule is to verify if the L2 Product Category is mandatory if the type is &apos;Quality&apos;</description>
+        <errorConditionFormula>L2_Product_Category__c = null &amp;&amp; ISPICKVAL(Type__c,&apos;Quality&apos;)</errorConditionFormula>
+        <errorMessage>Please make sure that the Product Category&apos;s &apos;Category Name&apos; is not null for &apos;Quality&apos; alerts.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>L5_ReasonCode_Mandatory_Validation</fullName>
+        <active>true</active>
+        <description>This validation is triggered if the &quot;L5_Code&quot; value of the Reason_Code lookup is null  and if the Reason_Level is  5, or If the Reason_Level is not  5</description>
+        <errorConditionFormula>AND(L5_Reason_Code__c = null,OR(ISPICKVAL(Type__c,  &quot;Quality&quot;),ISPICKVAL(Type__c,&quot;Safety&quot;)))</errorConditionFormula>
+        <errorMessage>Please check the following :-
+ Whether the Reason level is 5,  
+ If Reason code is not empty and its Global Listening Tree&apos;s &apos;L5 Code&apos;    value is not empty and
+ select the value on Type field</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Market_And_Global_Flag_Validation</fullName>
+        <active>true</active>
+        <description>Market_And_Global_Flag_Validation</description>
+        <errorConditionFormula>AND( TEXT(Market__c)= null,  All_Market__c = false)</errorConditionFormula>
+        <errorMessage>Please specify the Market or Check All Market field</errorMessage>
+    </validationRules>
+</CustomObject>

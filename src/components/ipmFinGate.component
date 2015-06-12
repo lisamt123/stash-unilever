@@ -1,0 +1,820 @@
+<apex:component controller="IPM_FinGateController"  allowDML="true" >
+
+<apex:attribute name="projId" type="ID" assignTo="{!projectId}" required="true" description="Getting Project Id"/>
+
+<!--
+             <apex:outputPanel id="gdFin">
+          <c:currentFinancialTabContent currentFinancial="{!currentFinancial}" financialsInnovation="{!financialsInnovation}"
+                                                                financialsCalendar="{!financialsCalendar}"
+                                                                colSpan="{!colSpan}"
+                                                                sustainabilityPeriod="{!sustainabilityPeriod}"
+                                                                fieldSuffix="{!fieldSuffix}"/> 
+           </apex:outputPanel>                                                    
+-->
+
+    <div class="row">
+        <c:ipmFinancialTabHeader ipmFinancial="{!currentFinancial}" 
+            fieldSuffix="{!fieldSuffix}"
+        />
+        <div class="col-sm-4" style="text-align:right;margin-top:20px;"></div>
+    </div>
+    
+    <!-- Heading -->
+    <div class="ipmfinHeading2">Innovation Years</div>
+
+    <!-- Variables -->
+    <apex:variable value="{!IF(CONTAINS(currentFinancial.Financial_External_ID__c, '_CONSOLIDATED'), TRUE, FALSE)}" var="isConsolidated"/>
+    
+    <!-- Financial Table -->
+    <div class="table-responsive">
+    <table class="ipmFinancetable fintable table table-bordered" border="0" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th class="blueBorder" scope="col" colspan="3" width="35%">
+                    <span class="finproject">&nbsp;{!currentFinancial.Display_Name__c}</span>
+                </th>
+                <th class="" scope="col" colspan="{!colSpan}" width="65%">
+                    <span class="finproject">Innovation Years:</span>
+                    <span class="fintotal">&nbsp;{!sustainabilityPeriod}</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <apex:variable value="{!0}" var="rowCount"/>
+
+            <!-- Sub Headers -->
+            <tr class="fintleblubg">
+                <td colspan="3" rowspan="2" class="blueBorder btmBleBorder"></td>
+                <td class="y0BorderGay"></td>
+                <td class="finproject" colspan="{!sustainabilityPeriod}">Gross P &amp; L</td>
+                <td class="iPLBorderGay finproject" colspan="{!sustainabilityPeriod}">Incremental P &amp; L</td>
+            </tr>
+            <tr class="fintleblubg btmBleBorder finproject">
+                <!--<td colspan="3"></td>-->
+                <td class="y0BorderGay">Y0</td>
+                <apex:repeat value="{!financialsInnovation.lstYearNames}" var="yearName">
+                    <td>{!yearName}</td>
+                </apex:repeat>
+                <apex:repeat value="{!financialsInnovation.lstYearNames}" var="yearName">
+                    <td class="iPLBorderGay">{!yearName}</td>
+                </apex:repeat>
+            </tr>
+
+            <!-- Value Market Share -->
+            <tr>
+                <td class="fintleblubg finproject">Value Market Share</td>
+                <td class="fintleblubg">%</td>
+                <td class="fintleblubg blueBorder"></td>
+                <!-- Y0 -->
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                    <apex:outputText value="{!financialsInnovation.y0ValueMarketShare}"/>
+                </td>
+                <!-- GROSS -->
+                <apex:repeat value="{!financialsInnovation.lstGrossPLValueMarketShare}" var="valueWrapper">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{!valueWrapper.value}"/>
+                    </td>
+                </apex:repeat>
+                <!-- INCREMENTAL -->
+                <apex:repeat value="{!financialsInnovation.lstIncrementalPLValueMarketShare}" var="valueWrapper">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{!valueWrapper.value}"/>
+                    </td>
+                </apex:repeat>
+                <apex:variable value="{!rowCount + 1}" var="rowCount"/>
+            </tr>
+            
+            <!-- Volume -->
+            <tr>
+                <td class="fintleblubg finproject">Volume</td>
+                <td class="fintleblubg">
+                    <apex:outputText rendered="{!NOT(isConsolidated)}">
+                        <!-- Global Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputField value="{!currentFinancial.Volume_Unit_Global__c}"/>
+                        </apex:outputPanel>
+    
+                        <!-- Regional Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputField value="{!currentFinancial.Volume_Unit_Regional__c}"/>
+                        </apex:outputPanel>
+    
+                        <!-- Local Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputField value="{!currentFinancial.Volume_Unit_Local__c}"/>
+                        </apex:outputPanel>
+                    </apex:outputText>
+                    <apex:outputText rendered="{!isConsolidated}">
+                        Total '000 Units
+                    </apex:outputText>
+                </td>
+                <td class="fintleblubg blueBorder"></td>
+                <!-- Y0 -->
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                    <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:param value="{!financialsInnovation.y0Volume}" />
+                    </apex:outputText>
+                </td>
+                <!-- GROSS -->
+                <apex:repeat value="{!financialsInnovation.lstGrossPLVolume}" var="valueWrapper">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <!-- INCREMENTAL -->
+                <apex:repeat value="{!financialsInnovation.lstIncrementalPLVolume}" var="valueWrapper">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <apex:variable value="{!rowCount + 1}" var="rowCount"/>
+            </tr>
+
+            <!-- Volume Tons -->
+            <apex:outputText rendered="{!isConsolidated}">
+                <tr>
+                    <td class="fintleblubg finproject">Volume</td>
+                    <td class="fintleblubg">
+                        Total Tons
+                    </td>
+                    <td class="fintleblubg blueBorder"></td>
+                    <!-- Y0 -->
+                    <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!financialsInnovation.y0VolumeTons}" />
+                        </apex:outputText>
+                    </td>
+                    <!-- GROSS -->
+                    <apex:repeat value="{!financialsInnovation.lstGrossPLVolumeTons}" var="valueWrapper">
+                        <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!valueWrapper.value}" />
+                            </apex:outputText>
+                        </td>
+                    </apex:repeat>
+                    <!-- INCREMENTAL -->
+                    <apex:repeat value="{!financialsInnovation.lstIncrementalPLVolumeTons}" var="valueWrapper">
+                        <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!valueWrapper.value}" />
+                            </apex:outputText>
+                        </td>
+                    </apex:repeat>
+                    <apex:variable value="{!rowCount + 1}" var="rowCount"/>
+                </tr>
+            </apex:outputText>
+
+            <!-- Turnover -->
+            <tr>
+                <td class="fintleblubg finproject">Turnover</td>
+                <td class="fintleblubg">&euro; &#39;000</td>
+                <td class="fintleblubg greenplus blueBorder">(+)</td>
+                <!-- Y0 -->
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                    <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:param value="{!financialsInnovation.y0Turnover}" />
+                    </apex:outputText>
+                </td>
+                <!-- GROSS -->
+                <apex:repeat value="{!financialsInnovation.lstGrossPLTurnover}" var="valueWrapper">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <!-- INCREMENTAL -->
+                <apex:repeat value="{!financialsInnovation.lstIncrementalPLTurnover}" var="valueWrapper">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <apex:variable value="{!rowCount + 1}" var="rowCount"/>
+            </tr>
+
+            <!-- Gross Profit -->
+            <tr>
+                <td class="fintleblubg finproject">Gross Profit</td>
+                <td class="fintleblubg">&euro; &#39;000</td>
+                <td class="fintleblubg greenplus blueBorder">(+)</td>
+                <!-- Y0 -->
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                    <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:param value="{!financialsInnovation.y0GrossProfit}" />
+                    </apex:outputText>
+                </td>
+                <!-- GROSS -->
+                <apex:repeat value="{!financialsInnovation.lstGrossPLGrossProfit}" var="valueWrapper">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <!-- INCREMENTAL -->
+                <apex:repeat value="{!financialsInnovation.lstIncrementalPLGrossProfit}" var="valueWrapper">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <apex:variable value="{!rowCount + 1}" var="rowCount"/>
+            </tr>
+            
+            <!-- Advertising & Promotions -->
+            <tr>
+                <td class="fintleblubg finproject">Advertising &amp; Promotions</td>
+                <td class="fintleblubg">&euro; &#39;000</td>
+                <td class="fintleblubg redminus blueBorder">(-)</td>
+                <!-- Y0 -->
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                    <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:param value="{!financialsInnovation.y0Advertising}" />
+                    </apex:outputText>
+                </td>
+                <!-- GROSS -->
+                <apex:repeat value="{!financialsInnovation.lstGrossPLAdvertising}" var="valueWrapper">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <!-- INCREMENTAL -->
+                <apex:repeat value="{!financialsInnovation.lstIncrementalPLAdvertising}" var="valueWrapper">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <apex:variable value="{!rowCount + 1}" var="rowCount"/>
+            </tr>
+
+            <!-- Profit before Overheads -->
+            <tr>
+                <td class="fintleblubg finproject">Profit Before Overheads</td>
+                <td class="fintleblubg">&euro; &#39;000</td>
+                <td class="fintleblubg greenplus blueBorder">(+)</td>
+                <!-- Y0 -->
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                    <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:param value="{!financialsInnovation.y0Profit}" />
+                    </apex:outputText>
+                </td>
+                <!-- GROSS -->
+                <apex:repeat value="{!financialsInnovation.lstGrossPLProfit}" var="valueWrapper">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <!-- INCREMENTAL -->
+                <apex:repeat value="{!financialsInnovation.lstIncrementalPLProfit}" var="valueWrapper">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <apex:variable value="{!rowCount + 1}" var="rowCount"/>
+            </tr>
+
+            <!-- GM (% of T/O) -->
+            <tr class="fintlegreenbg">
+                <td class="finproject">GM (% of T/O)</td>
+                <td>%</td>
+                <td class="greenplus">(+)</td>
+                <td>{!financialsInnovation.y0GM}</td>
+                <apex:repeat value="{!financialsInnovation.lstGrossPLGM}" var="valueWrapper">
+                    <td>{!valueWrapper.value}</td>
+                </apex:repeat>
+                <apex:repeat value="{!financialsInnovation.lstIncrementalPLGM}" var="valueWrapper">
+                    <td class="iPLBorderGay">{!valueWrapper.value}</td>
+                </apex:repeat>
+            </tr>
+            
+            <!-- A&P (% of T/O) -->
+            <tr class="fintlegreenbg">
+                <td class="finproject">A&amp;P (% of T/O)</td>
+                <td>%</td>
+                <td class="redminus">(-)</td>
+                <td>{!financialsInnovation.y0AP}</td>
+                <apex:repeat value="{!financialsInnovation.lstGrossPLAP}" var="valueWrapper">
+                    <td>{!valueWrapper.value}</td>
+                </apex:repeat>
+                <apex:repeat value="{!financialsInnovation.lstIncrementalPLAP}" var="valueWrapper">
+                    <td class="iPLBorderGay">{!valueWrapper.value}</td>
+                </apex:repeat>
+            </tr>
+            
+            <!-- PBO (% of T/O) -->
+            <tr class="fintlegreenbg">
+                <td class="finproject">PBO (% of T/O)</td>
+                <td>%</td>
+                <td class="greenplus">(+)</td>
+                <td>{!financialsInnovation.y0PBO}</td>
+                <apex:repeat value="{!financialsInnovation.lstGrossPLPBO}" var="valueWrapper">
+                    <td>{!valueWrapper.value}</td>
+                </apex:repeat>
+                <apex:repeat value="{!financialsInnovation.lstIncrementalPLPBO}" var="valueWrapper">
+                    <td class="iPLBorderGay">{!valueWrapper.value}</td>
+                </apex:repeat>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <!-- Summary Table -->
+    <div class="row">
+        <div class="col-sm-4">
+            <table class="fintable table table-bordered finSumTbl" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="30%" class="finproject fintleblubg">NPV</td>
+                    <td width="30%" class="fintleblubg">&euro; &#39;000</td>
+                    <td width="30%" class="blueBorder">
+                        <!-- Global Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.NPV_Global__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.NPV_Regional__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.NPV_Local__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%" class="finproject fintleblubg">IRR</td>
+                    <td width="30%" class="fintleblubg">%</td>
+                    <td width="30%" class="blueBorder">
+                        <!-- Global Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputText value="{!currentFinancial.IRR_Global__c}"/>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputText value="{!currentFinancial.IRR_Regional__c}"/>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputText value="{!currentFinancial.IRR_Local__c}"/>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%" class="finproject fintleblubg">Payback</td>
+                    <td width="30%" class="fintleblubg">Years</td>
+                    <td width="30%" class="blueBorder">
+                        <!-- Global Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.Payback_Global__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.Payback_Regional__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.Payback_Local__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="col-sm-4">
+            <table class="fintable table table-bordered finSumTbl" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="40%" class="finproject fintleblubg">CAPEX</td>
+                    <td width="30%" class="fintleblubg">&euro; &#39;000</td>
+                    <td width="30%" class="blueBorder">
+                        <!-- Global Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.CAPEX_Global__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.CAPEX_Regional__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.CAPEX_Local__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%" class="finproject fintleblubg">BIC</td>
+                    <td width="30%" class="fintleblubg">&euro; &#39;000</td>
+                    <td width="30%" class="blueBorder">
+                        <!-- Global Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.BIC_Global__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.BIC_Regional__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.BIC_Local__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-sm-4">
+            <table class="fintable table table-bordered finSumTbl" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="70%" class="finproject fintleblubg">GM Y1 bps vs DNDS</td>
+                    <td width="30%" class="blueBorder">
+                        <!-- Global Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.GM_Y1_bps_vs_DNDS_Global__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.GM_Y1_bps_vs_DNDS_Regional__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.GM_Y1_bps_vs_DNDS_Local__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" class="finproject fintleblubg">PBO Y1 bps vs DNDS Global</td>
+                    <td width="50%" class="blueBorder">
+                        <!-- Global Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.PBO_Y1_bps_vs_DNDS_Global__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.PBO_Y1_bps_vs_DNDS_Regional__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!currentFinancial.PBO_Y1_bps_vs_DNDS_Local__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+            </table>
+        </div>                                                        
+    </div>
+    
+    <!-- Heading -->
+    <div class="ipmfinHeading2">Calendar Years</div>
+
+    <!-- Financial Table -->
+    <div class="table-responsive">
+    <table class="ipmFinancetable fintable table table-bordered" border="0" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th class="blueBorder" scope="col" colspan="3" width="35%">
+                    <span class="finproject">&nbsp;{!currentFinancial.Display_Name__c}</span>
+                </th>
+                <th class="" scope="col" colspan="{!colSpan}" width="65%">
+                    <span class="finproject">Calendar Years:</span>
+                    <span class="fintotal">&nbsp;{!sustainabilityPeriod}</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <apex:variable value="{!0}" var="rowCount"/>
+
+            <!-- Sub Headers -->
+            <tr class="fintleblubg">
+                <td colspan="3" rowspan="2" class="blueBorder btmBleBorder"></td>
+                <td class="y0BorderGay"></td>
+                <td class="finproject" colspan="{!sustainabilityPeriod}">Gross P &amp; L</td>
+                <td class="iPLBorderGay finproject" colspan="{!sustainabilityPeriod}">Incremental P &amp; L</td>
+            </tr>
+            <tr class="fintleblubg btmBleBorder finproject">
+                <!--<td colspan="3"></td>-->
+                <td class="y0BorderGay"></td>
+                <apex:repeat value="{!financialsCalendar.lstYearNames}" var="yearName">
+                    <td>{!yearName}</td>
+                </apex:repeat>
+                <apex:repeat value="{!financialsCalendar.lstYearNames}" var="yearName">
+                    <td class="iPLBorderGay">{!yearName}</td>
+                </apex:repeat>
+            </tr>
+
+            <!-- Value Market Share -->
+            <tr>
+                <td class="fintleblubg finproject">Value Market Share</td>
+                <td class="fintleblubg">%</td>
+                <td class="fintleblubg blueBorder"></td>
+                <!-- Y0 -->
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                </td>
+                <!-- GROSS -->
+                <apex:repeat value="{!financialsCalendar.lstGrossPLValueMarketShare}" var="valueWrapper">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{!valueWrapper.value}"/>
+                    </td>
+                </apex:repeat>
+                <!-- INCREMENTAL -->
+                <apex:repeat value="{!financialsCalendar.lstIncrementalPLValueMarketShare}" var="valueWrapper">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{!valueWrapper.value}"/>
+                    </td>
+                </apex:repeat>
+                <apex:variable value="{!rowCount + 1}" var="rowCount"/>
+            </tr>
+            
+            <!-- Volume -->
+            <tr>
+                <td class="fintleblubg finproject">Volume</td>
+                <td class="fintleblubg">
+                    <apex:outputText rendered="{!NOT(isConsolidated)}">
+                        <!-- Global Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputField value="{!currentFinancial.Volume_Unit_Global__c}"/>
+                        </apex:outputPanel>
+    
+                        <!-- Regional Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputField value="{!currentFinancial.Volume_Unit_Regional__c}"/>
+                        </apex:outputPanel>
+    
+                        <!-- Local Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputField value="{!currentFinancial.Volume_Unit_Local__c}"/>
+                        </apex:outputPanel>
+                    </apex:outputText>
+                    <apex:outputText rendered="{!isConsolidated}">
+                        Total '000 Units
+                    </apex:outputText>
+                </td>
+                <td class="fintleblubg blueBorder"></td>
+                <!-- Y0 -->
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                </td>
+                <!-- GROSS -->
+                <apex:repeat value="{!financialsCalendar.lstGrossPLVolume}" var="valueWrapper">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <!-- INCREMENTAL -->
+                <apex:repeat value="{!financialsCalendar.lstIncrementalPLVolume}" var="valueWrapper">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <apex:variable value="{!rowCount + 1}" var="rowCount"/>
+            </tr>
+
+            <!-- Volume Tons -->
+            <apex:outputText rendered="{!isConsolidated}">
+                <tr>
+                    <td class="fintleblubg finproject">Volume</td>
+                    <td class="fintleblubg">
+                        Total Tons
+                    </td>
+                    <td class="fintleblubg blueBorder"></td>
+                    <!-- Y0 -->
+                    <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                    </td>
+                    <!-- GROSS -->
+                    <apex:repeat value="{!financialsCalendar.lstGrossPLVolumeTons}" var="valueWrapper">
+                        <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!valueWrapper.value}" />
+                            </apex:outputText>
+                        </td>
+                    </apex:repeat>
+                    <!-- INCREMENTAL -->
+                    <apex:repeat value="{!financialsCalendar.lstIncrementalPLVolumeTons}" var="valueWrapper">
+                        <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!valueWrapper.value}" />
+                            </apex:outputText>
+                        </td>
+                    </apex:repeat>
+                    <apex:variable value="{!rowCount + 1}" var="rowCount"/>
+                </tr>
+            </apex:outputText>
+
+            <!-- Turnover -->
+            <tr>
+                <td class="fintleblubg finproject">Turnover</td>
+                <td class="fintleblubg">&euro; &#39;000</td>
+                <td class="fintleblubg greenplus blueBorder">(+)</td>
+                <!-- Y0 -->
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                </td>
+                <!-- GROSS -->
+                <apex:repeat value="{!financialsCalendar.lstGrossPLTurnover}" var="valueWrapper">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <!-- INCREMENTAL -->
+                <apex:repeat value="{!financialsCalendar.lstIncrementalPLTurnover}" var="valueWrapper">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <apex:variable value="{!rowCount + 1}" var="rowCount"/>
+            </tr>
+
+            <!-- Gross Profit -->
+            <tr>
+                <td class="fintleblubg finproject">Gross Profit</td>
+                <td class="fintleblubg">&euro; &#39;000</td>
+                <td class="fintleblubg greenplus blueBorder">(+)</td>
+                <!-- Y0 -->
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                </td>
+                <!-- GROSS -->
+                <apex:repeat value="{!financialsCalendar.lstGrossPLGrossProfit}" var="valueWrapper">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <!-- INCREMENTAL -->
+                <apex:repeat value="{!financialsCalendar.lstIncrementalPLGrossProfit}" var="valueWrapper">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <apex:variable value="{!rowCount + 1}" var="rowCount"/>
+            </tr>
+            
+            <!-- Advertising & Promotions -->
+            <tr>
+                <td class="fintleblubg finproject">Advertising &amp; Promotions</td>
+                <td class="fintleblubg">&euro; &#39;000</td>
+                <td class="fintleblubg redminus blueBorder">(-)</td>
+                <!-- Y0 -->
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                </td>
+                <!-- GROSS -->
+                <apex:repeat value="{!financialsCalendar.lstGrossPLAdvertising}" var="valueWrapper">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <!-- INCREMENTAL -->
+                <apex:repeat value="{!financialsCalendar.lstIncrementalPLAdvertising}" var="valueWrapper">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <apex:variable value="{!rowCount + 1}" var="rowCount"/>
+            </tr>
+
+            <!-- Profit before Overheads -->
+            <tr>
+                <td class="fintleblubg finproject">Profit Before Overheads</td>
+                <td class="fintleblubg">&euro; &#39;000</td>
+                <td class="fintleblubg greenplus blueBorder">(+)</td>
+                <!-- Y0 -->
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                </td>
+                <!-- GROSS -->
+                <apex:repeat value="{!financialsCalendar.lstGrossPLProfit}" var="valueWrapper">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <!-- INCREMENTAL -->
+                <apex:repeat value="{!financialsCalendar.lstIncrementalPLProfit}" var="valueWrapper">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')}">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <apex:variable value="{!rowCount + 1}" var="rowCount"/>
+            </tr>
+
+            <!-- GM (% of T/O) -->
+            <tr class="fintlegreenbg">
+                <td class="finproject">GM (% of T/O)</td>
+                <td>%</td>
+                <td class="greenplus">(+)</td>
+                <td></td>
+                <apex:repeat value="{!financialsCalendar.lstGrossPLGM}" var="valueWrapper">
+                    <td>{!valueWrapper.value}</td>
+                </apex:repeat>
+                <apex:repeat value="{!financialsCalendar.lstIncrementalPLGM}" var="valueWrapper">
+                    <td class="iPLBorderGay">{!valueWrapper.value}</td>
+                </apex:repeat>
+            </tr>
+            
+            <!-- A&P (% of T/O) -->
+            <tr class="fintlegreenbg">
+                <td class="finproject">A&amp;P (% of T/O)</td>
+                <td>%</td>
+                <td class="redminus">(-)</td>
+                <td></td>
+                <apex:repeat value="{!financialsCalendar.lstGrossPLAP}" var="valueWrapper">
+                    <td>{!valueWrapper.value}</td>
+                </apex:repeat>
+                <apex:repeat value="{!financialsCalendar.lstIncrementalPLAP}" var="valueWrapper">
+                    <td class="iPLBorderGay">{!valueWrapper.value}</td>
+                </apex:repeat>
+            </tr>
+            
+            <!-- PBO (% of T/O) -->
+            <tr class="fintlegreenbg">
+                <td class="finproject">PBO (% of T/O)</td>
+                <td>%</td>
+                <td class="greenplus">(+)</td>
+                <td></td>
+                <apex:repeat value="{!financialsCalendar.lstGrossPLPBO}" var="valueWrapper">
+                    <td>{!valueWrapper.value}</td>
+                </apex:repeat>
+                <apex:repeat value="{!financialsCalendar.lstIncrementalPLPBO}" var="valueWrapper">
+                    <td class="iPLBorderGay">{!valueWrapper.value}</td>
+                </apex:repeat>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+</apex:component>

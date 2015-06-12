@@ -1,0 +1,19 @@
+<apex:component id="ipmBosscardFunnelRevamp">    
+    <div class="row">
+        <div class="col-sm-12">           
+            <div class="basic panel ipmFunnelPanel">
+                <div class="progress-wrap">
+                    <ul class="progress-bar">
+                        <li class="bosscard first"><span>BOSSCARD</span></li>
+                        <li class="next"><span>Idea</span></li>
+                        <li class="next"><span>Feasibility</span></li>
+                        <li class="next"><span>Capability</span></li>
+                        <li class="next"><span>Market Ready</span></li>
+                        <li class="next"><span>Market Deployment</span></li>
+                        <li class="last"><span>PLE</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</apex:component>

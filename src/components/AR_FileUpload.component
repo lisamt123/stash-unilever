@@ -1,0 +1,67 @@
+<!--
+	Unilever
+
+	Page Name: AR_AgencyProfile
+	Marc Saelzler | 2013-09-11
+
+	Component to upload files.
+
+	Timeline
+	Date 					| Name 				| Description
+	2013-09-11 15:20 (CET) 	| Marc Saelzler 	| Initial development.
+-->
+<apex:component controller="AR_UploadHelper" allowDML="true">
+	<apex:attribute name="fileName" 		type="String" 				description="Could be necessary if something else has to be displayed, instead of the origin file name." assignTo="{!a_fileName}" />
+	<apex:attribute name="fileNamePrefix" 	type="String" 				description="Used to recognize which file has to be displayed, if more are possible for one parent object." assignTo="{!a_fileNamePrefix}" required="true" />
+	<apex:attribute name="holder" 			type="AR_SObjectHolder" 	description="" assignTo="{!a_holder}" required="true" />
+	
+	<script>
+		var x_fileSelected = false;
+		
+		var CheckSelection = function(p_elem)
+		{
+			x_fileSelected = false;
+			
+			if(p_elem.value != null && p_elem.value != '')
+			{
+				x_fileSelected = true;
+			}
+		}
+	</script>
+	
+	<apex:actionRegion >
+	
+		<apex:outputPanel id="fileUploadPanel" layout="block">
+		
+			<apex:messages />
+
+				<apex:outputText rendered="{!OR(a_holder.files[fileNamePrefix].id=null, a_reupload=true)}">
+				
+					<div style="float:left;">
+						<apex:inputFile id="fileInput" value="{!a_body}" filename="{!a_holder.files[fileNamePrefix].name}" onchange="CheckSelection(this);"/>
+					</div>
+					<div style="float:left;margin-left:20px;">
+						(max. 5mb)
+					</div>
+
+				</apex:outputText>
+				
+				<apex:outputText rendered="{!AND(a_holder.files[fileNamePrefix].id<>null, !a_reupload)}"> 
+				
+					<apex:outputLink value="{!URLFOR($Action.Attachment.Download, a_holder.files[fileNamePrefix].id)}" target="_blank">
+				     	View file
+				    </apex:outputLink>
+				    
+				    &nbsp;&nbsp;&nbsp;&nbsp;
+				   
+				    <apex:commandButton value="Choose different file" rerender="fileUploadPanel">
+				    	<apex:param name="firstName" value="true" assignTo="{!a_reupload}" />
+				    </apex:commandButton>
+				    
+			    </apex:outputText>
+
+		</apex:outputPanel>
+		
+	</apex:actionRegion>
+	
+</apex:component>

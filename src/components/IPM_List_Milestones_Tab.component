@@ -1,0 +1,516 @@
+<apex:component controller="IPM_List_Milestones"  allowDML="true">
+  <apex:attribute name="pId" type="String" AssignTo="{!projectId}" description="this is the project id"/>
+    <apex:attribute name="Editmilestone" type="Boolean" AssignTo="{!isEditable}" description="this is used for security"/>
+    <apex:attribute name="IsBD" type="Boolean" AssignTo="{!isBDuser}" description="this is used for security"/>
+    <apex:attribute name="IsDateEditable" type="Boolean" AssignTo="{!isSDateEdit}" description="this is used for security"/>
+   
+   <style>
+  
+
+   </style>
+     <apex:form >
+      
+     <!-- main panel -->
+        <apex:outputPanel id="statsPanelM">
+         <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmTimeLineView.css')}"/>
+        <div class="row ipmMileRow mileTabrow">
+            <div class="col-sm-12 noPadleft">
+                <div class="col-xs-1 heading3 blue ipmPanelHeading tabTitlewidth">Milestones</div>
+                <div class="col-xs-2 blue mstoneCountText padTop width1">{!milestoneCnt}</div>
+            </div>
+            <div class="col-sm-12 noPadright noPadleft">
+                <div class="milestoneDescContainer">
+                    <span class="mstoneDesc">Below key milestones required by your category. Please add a due date for each milestone.<br/>For either option it is possible to add/remove sections and to-dos later. You may also add mini-milestones.</span>
+                </div>
+                <div class="addMstoneContainer pull-right txtRight" data-target="#ipmaddMstonWizard" data-toggle="modal" data-keyboard="false" value="/apex/ipmAddMilestoneWizard?projectId={!projectId}&Wizard=true" data-backdrop="static" aria-hidden="true">
+                    <span class="fa fa-plus" /><span class="addLinkText"> Add Milestone</span>
+                </div>
+            </div>
+            <!--<div class="col-xs-3 pull-right noPadright">
+                <div class="col-xs-4 toggleContainer SecButtonSet">
+                    <div class="col-xs-6 listViewIcon selectedView1"><a class="icoButton list-selected"></a> </div>
+                 <div class="col-xs-6 timelineIcon"><a class="icoButton timeline"></a></div>
+                </div> 
+                <apex:outputpanel rendered="{! if(AND(isEditable=true,isBDuser=false),'true','false')}">
+                <div class="col-xs-6 addLink" id="addMilestone" data-toggle="modal" data-target="#ipmModal" 
+                value="/apex/ipmAddTaskRevamp2?projectId={!projectId}" title="Add Task" data-backdrop="static" 
+                data-keyboard="false">
+                </div> 
+                </apex:outputpanel>    
+            </div>-->
+        </div>
+        </apex:outputPanel>
+        <!--<div class="row ipmTaskRow">
+            <div class="col-xs-2 pull-right addLink" id="addMilestone" data-toggle="modal" data-target="#ipmModal" 
+                value="/apex/ipmAddTaskRevamp2?projectId={!projectId}" title="Add Task" data-backdrop="static" 
+                data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText">Add Milestone</span></div>
+        </div> -->
+        <apex:outputPanel id="milestonesTimeLineView">
+         <div class="timeLineView">
+        
+           <!-- <c:ipmMilestoneTimeLineView pId="{!projectId}"></c:ipmMilestoneTimeLineView>-->
+           <div id="ipmTimeLine">
+    <a id="pre"><i class="fa fa-angle-left"></i></a>
+    <a id="next"><i class="fa fa-angle-right"></i></a> 
+    <div class="cInner">           
+        <ul class="taskProgress">
+            <apex:repeat value="{!timelineMilestones}" var="t" >
+                <apex:outputPanel rendered="{!!t.isFuture}">
+                <apex:repeat value="{!t.milestoneList}" var="m">
+                    <apex:outputPanel rendered="{!m.IPM_Completed__c}">
+                        <li class="completedTasks {!m.IPM_phase__c}">
+                            <div class="leftPanel">
+                            <div class="phase">{!m.IPM_phase__c}</div>
+                            <div class="milestones">{!m.IPM_Name__c}</div>
+                            <div class="dueDate">Due {!m.IPM_Due_Date__c}</div>
+                            <div class="comDate">Completed {!m.IPM_Completed_On__c}</div>
+                            </div>
+                            <div class="rightPanel"></div>
+                        </li> 
+                    </apex:outputPanel>
+                </apex:repeat>
+                
+                <apex:repeat value="{!t.milestoneList}" var="m">
+                    <apex:outputPanel rendered="{!!m.IPM_Completed__c}">
+                        <li class="openTasks {!m.IPM_phase__c}">
+                            <div class="leftPanel">
+                            <div class="phase">{!m.IPM_phase__c}</div>
+                            <div class="milestones">{!m.IPM_Name__c}</div>
+                            <div class="dueDate">Due {!m.IPM_Due_Date__c}</div>
+                            </div>
+                            <div class="rightPanel"></div>
+                        </li> 
+                    </apex:outputPanel>
+                </apex:repeat>
+                </apex:outputPanel>
+            
+                <apex:outputPanel rendered="{!t.isFuture}">
+                <apex:repeat value="{!t.milestoneList}" var="m">
+                    <li class="upcoming {!m.IPM_phase__c}">
+                        <div class="leftPanel">
+                        <div class="phase">{!m.IPM_phase__c}</div>
+                        <div class="milestones">{!m.IPM_Name__c}</div>
+                        <div class="dueDate">Due {!m.IPM_Due_Date__c}</div>
+                        </div>
+                        <div class="rightPanel"></div>
+                    </li> 
+                </apex:repeat>
+                </apex:outputPanel>
+            </apex:repeat>
+        </ul>
+        </div> 
+        <div class="statusProgress">
+        <span class="sImg completed"></span><span>Completed</span>
+        <span class="sImg open"></span><span>Open</span>
+        <span class="sImg upcoming"></span><span>Upcoming</span>
+        </div>           
+    </div>
+        </div>
+        </apex:outputPanel>
+        <div class="row ipmMileRow" id="milestoneList">
+           <!-- <ul class="phaseM"><apex:repeat value="{!phaseMsList}" var="phsM">
+                                        <li><label><input type="checkbox" onClick="fphaseM(this.checked);" value="{!phsM}" id="{!phsM}M"/>{!phsM}</label></li>
+                                        </apex:repeat></ul>-->
+            <div class="table-responsive" id="ipmTableDiv">
+                <apex:actionStatus startText="updating..." id="myStatusM">
+                     <apex:facet name="start">
+                        <img height="15" width="15" src="/img/loading32.gif" />
+                    </apex:facet>
+                </apex:actionStatus>
+                <apex:dataTable value="{!projectMilestones}" var="p" id="tskPanelM" styleClass="ipmTable table table-bordered">
+                    <apex:column width="14%" styleClass="{!IF(p.isComplete,'selected', 'notselected')} completeHeader col-xs-1" rendered="">
+                        <apex:facet name="header">
+                            <div class="colCompleted">
+                                <span>Completed?</span>
+                                <span id="sortCompletion1" class="fa {!IF(currentSort['thisFld'] = 'IPM_Completed__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>
+                                <div class="keep-open  btn-group">
+                                    <div class="dropdown completedFilter completedFilterM ipmDropDown">
+                                        <div class="dropdown-toggle" data-toggle="dropdown">
+                                            <a class="fa filterIcon icoButton filter"></a>
+                                        </div>
+                                        <ul class="dropdown-menu pull-right completeM" role="menu">
+                                            <li>
+                                                <div class="col-xs-2 ipmCheckbox">
+                                                    <input type="checkbox" value="t" id="complYesM" />
+                                                    <label for="complYesM"></label>
+                                                </div>
+                                                <div class="col-xs-10 staticLabel">Yes</div>
+                                            </li>
+                                            <li>
+                                                <div class="col-xs-2 ipmCheckbox">
+                                                    <input type="checkbox" value="f" id="complNoM" />
+                                                    <label for="complNoM"></label>
+                                                </div>
+                                                <div class="col-xs-10 staticLabel">No</div>
+                                            </li>
+                                            <li class="filterActions">
+                                                <div class="ipmButtonGroup col-xs-6 pull-left">
+                                                    <a value="Done" id="completeFilterDoneM" class="ipmDropcompletebuttons" styleClass="blue col-xs-6" onClick="fCompleteM();">Done</a>
+                                                </div>
+                                                <div class="ipmButtonGroup col-xs-6 pull-left">   
+                                                    <a value="Reset" styleClass="bulue col-xs-6" class="completeFilterReset" onClick="fCompleteResetM();">Reset</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </apex:facet>
+                        <div class="col-xs-2 ipmCheckbox milestoneCheck">
+                           
+                           <input type="checkbox" value="{!p.isComplete}" id="{!p.mObj.Id}" onClick="markCompl('{!p.mObj.Id}', this.checked);" isDisabled="{!if(or(AND(p.mObj.IPM_Milestone__c != NULL,isEditable=true),AND(p.mObj.IPM_Milestone__c == NULL,isSDateEdit=true,isEditable=true)),'false','true')}"/>
+                           <label for="{!p.mObj.Id}"></label>
+                           
+                        </div>
+                    </apex:column>
+                    <apex:column width="40%" headerValue="Milestone" styleClass="{!IF(p.isComplete,'selected', 'notselected')}">
+                            <apex:facet name="header">
+                                <div>Milestone 
+                                    <!--<span id="sortMilestones" class="fa {!IF(currentSort['thisFld'] = 'IPM_Name__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>--></div>
+                            </apex:facet>
+                            <div class="col-sm-12 noteimg noPadleft">
+                            <div class="col-sm-1 noPadleft">
+                           
+                            <apex:outputPanel rendered="{!p.mObj.IPM_Milestone__c = NULL}">
+                            <a href="#" class="icoButton document"></a>
+                            </apex:outputPanel>
+                            </div>
+                            <div class="col-sm-10 noPadleft">
+                             <apex:outputfield value="{!p.mObj.IPM_Name__c}" />
+                            </div>
+                            </div>
+                        
+                    </apex:column>
+                    <apex:column styleClass="{!IF(p.isComplete,'selected', 'notselected')}">
+                        <apex:facet name="header">
+                            <div class="colPhase">
+                                <span>Phase</span>
+                               <!-- <span id="sortPhases1" class="fa {!IF(currentSort['thisFld'] = 'IPM_phase__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>-->
+                                <div class="keep-open  btn-group">
+                                    <div class="dropdown phaseMFilter ipmDropDown">
+                                        <div class="dropdown-toggle" data-toggle="dropdown">
+                                            <a class="fa filterIcon icoButton filter"></a> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </apex:facet>
+                        <apex:outputfield value="{!p.mObj.IPM_Phase__c}" />
+                    </apex:column>
+                    <apex:column width="14%" headerValue="Due Date" styleClass="col-xs-1 duedateHeader {!IF(p.isComplete,'selected', 'notselected')}">
+                        <apex:facet name="header">
+                            <div>Due Date 
+                               <!-- <span id="sortDueDate1" class="fa {!IF(currentSort['thisFld'] = 'IPM_Due_Date__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>--></div>
+                        </apex:facet>
+                        <apex:outputfield value="{!p.mObj.IPM_Due_Date__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="Completed on" styleClass="{!IF(p.isComplete,'selected', 'notselected')}" rendered="">
+                        <apex:facet name="header">
+                            <div>Completed on 
+                                <span id="sortCompletedOn" class="fa {!IF(currentSort['thisFld'] = 'IPM_Completed_On__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span></div>
+                        </apex:facet>
+                        <apex:outputfield value="{!p.mObj.IPM_Completed_On__c}"/>
+                    </apex:column>
+                     <apex:column headerValue="Action" styleClass="{!IF(p.isComplete,'selected', 'notselected')} iconHeader">
+                        <apex:outputPanel styleClass="SecButtonSet">
+                         <apex:outputPanel rendered="{!if(or(AND(p.mObj.IPM_Milestone__c != NULL,isEditable=true),AND(p.mObj.IPM_Milestone__c == NULL,isSDateEdit=true,isEditable=true)),'true','false')}">
+                            <a class="icoButton edit1 editMilestoneBtn" value="/apex/ipmEditMilestoneWizard?projectId={!projectId}&taskId={!p.mObj.Id}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="Edit" ></a>
+                         </apex:outputPanel>
+                            <!--<a class="icoButton edit1" href="/apex/ipmAddTaskRevamp2?projectId={!projectId}&id={!p.mObj.Id}" title="Edit"></a>-->
+                          <!--   <apex:outputPanel rendered="{!if(p.mObj.IPM_Milestone__c != NULL,true,false)}">
+                              <a class="icoButton delete" data-toggle="modal" data-target="#ipmDeleteModal"  value="{!p.mObj.Id}" onclick="delMilestone('{!p.mObj.Id}')" title="Delete" data-backdrop="static" data-keyboard="false"/>
+                             </apex:outputPanel>-->
+                             
+                             <apex:outputPanel rendered="{!if(AND(p.mObj.IPM_Milestone__c != NULL,isEditable=true,isBDuser=false),true,false)}">
+                              <a class="icoButton delete" data-toggle="modal" data-target="#ipmDeleteModal"  value="{!p.mObj.Id}" onclick="delMilestone('{!p.mObj.Id}')" title="Delete" data-backdrop="static" data-keyboard="false"/>
+                             </apex:outputPanel>
+                        </apex:outputPanel>
+                    </apex:column>
+                </apex:dataTable>
+            </div> 
+            <div class="panel-group gateMilstone clearfix">
+                <div class="row">
+                    <div class="col-sm-12 noteimg pull-left">
+                        <div class="col-sm-12 tableMstonBbottom noPadleft noPadright">
+                            <a href="#" class="icoButton document-grey" title="Gate document milestone"></a>
+                            <span class="mstone">Gate document milestone</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="panel-group gateMilstone clearfix">
+          <div class="row">
+           <div class="col-sm-4 pull-right">
+             <a href="#" class="showallbutton">Show all</a>
+           </div>
+          </div>
+        </div>-->
+        </apex:form>
+        <div id="phaseMFilterDiv">
+            <ul class="dropdown-menu pull-right phaseM" role="menu">
+                <apex:repeat value="{!phaseMsList}" var="phsM">
+                    <li>
+                        <div class="col-xs-2 ipmCheckbox">
+                            <input type="checkbox" value="{!phsM}" id="M_{!phsM}" />
+                            <label for="M_{!phsM}"></label>
+                        </div>
+                        <div class="col-xs-10 staticLabel">{!phsM}</div>
+                    </li>
+                </apex:repeat>
+                <li class="filterActions">
+                    <div class="ipmButtonGroup col-xs-6 pull-left">
+                        <a value="Done" id="phaseMFilterDone" class="ipmDropbuttons" styleClass="blue col-xs-6" onClick="fphaseM();">Done</a>
+                     </div>
+                     <div class="ipmButtonGroup col-xs-6 pull-left">   
+                        <a value="Reset" styleClass="bulue col-xs-6" class="ipmDropreset" onClick="fPhaseMReset();">Reset</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+       <apex:form >
+        <apex:actionFunction name="deleteMilestone" action="{!deleteMilestone}" reRender="tskPanelM,statsPanelM,jsLoadM,tml" onComplete="javascript:location.reload();" status="myStatusM">
+            <apex:param name="tskId" assignTo="{!milestoneId}" value="" />
+         </apex:actionFunction>
+     </apex:form>
+     <apex:form >
+        <apex:actionFunction name="toggleDueDate1" action="{!toggleDueDate}" reRender="tskPanelM,statsPanelM,jsLoadM">
+         </apex:actionFunction>
+     </apex:form>
+     <apex:form >
+        <apex:actionFunction name="toggleSortMilestones" action="{!toggleSortMilestones}" reRender="tskPanelM,statsPanelM,jsLoadM" status="myStatusM"/>
+     </apex:form>
+     <apex:form >
+        <apex:actionFunction name="toggleSortPhases1" action="{!toggleSortPhases}" reRender="tskPanelM,statsPanelM,jsLoadM" status="myStatusM"/>
+     </apex:form>
+     <apex:form >
+        <apex:actionFunction name="toggleSortCompletion1" action="{!toggleSortCompletion}" reRender="tskPanelM,statsPanelM,jsLoadM" status="myStatusM"/>
+     </apex:form>
+     <apex:form >
+        <apex:actionFunction name="toggleSortCompletedOn" action="{!toggleSortCompletedOn}" reRender="tskPanelM,statsPanelM,jsLoadM" status="myStatusM" />
+     </apex:form>
+     <apex:form >
+        <apex:actionFunction name="filteredPhaseM" action="{!filteredPhaseM}" reRender="tskPanelM,statsPanelM,jsLoadM" status="myStatusM">
+            <apex:param name="phaseM" assignTo="{!phaseM}" value="" />
+        </apex:actionFunction>
+     </apex:form>
+     <apex:form >
+    <apex:actionFunction name="markCompleteM" action="{!markCompleteM}" reRender="milestonesTimeLineView,tskPanelM,statsPanelM,tml,jsLoadM" status="myStatusM">
+        <apex:param name="mId" assignTo="{!milestoneId}" value="" />
+        <apex:param name="isChecked" assignTo="{!isChecked}" value="" />
+     </apex:actionFunction>
+     </apex:form>
+     <apex:form >
+        <apex:actionFunction name="filterCompleteM" action="{!filterCompleteMilestones}" reRender="tskPanelM,statsPanelM,jsLoadM" status="myStatusM">
+            <apex:param name="isOpen" assignTo="{!isCompleteMilestones}" value="" />
+        </apex:actionFunction>
+     </apex:form>
+     <apex:outputPanel id="jsLoadM">
+     <script>
+        var step = 1; 
+        var current = 0; 
+        var maximum = 0;
+        var visible = 1; 
+        var speed = 500; 
+        var liSize = 250;
+        var carousel_height = 210; 
+        function timelineSetup(){
+            var blockQuote = jq('blockquote.taskProgress');
+            if(blockQuote.length >0){
+                var contents = blockQuote.html();
+                blockQuote.remove();
+                var ulTag = '<ul class="taskProgress">' +contents+'</ul>';
+                jq('#ipmTimeLine .cInner').append(ulTag);   
+            }
+            jq("#ipmTimeLine").find(".taskProgress span").contents().unwrap();   
+            maximum = jq('#ipmTimeLine .taskProgress li').size();   
+            var ulSize = liSize * maximum;   
+            var divSize = liSize * visible;  
+     
+            jq('#ipmTimeLine .taskProgress').css("width", ulSize+"px").css("left", -(current * liSize)).css("position", "absolute");
+            jq('#pre').css("color", "#ddd");  
+        }   
+        timelineSetup();
+        jq('#next').click(function() {                     
+            jq('#pre').removeAttr("style");
+                if(current + step < 0 || current + step > maximum - visible) {return; }
+                else {
+                    current = current + step;
+                    jq('#ipmTimeLine ul').animate({left: -(liSize * current)}, speed, null);
+                }
+                return false;
+            });
+     
+            jq('#pre').click(function() { 
+                if(current - step < 0 || current - step > maximum - visible) {return; }
+                else {
+                    current = current - step;
+                    jq('#ipmTimeLine ul').animate({left: -(liSize * current)}, speed, null);
+                }
+                return false;
+            });
+        
+        var phaseM = [];
+        var completeM =[];
+        var pStrM, cStrM;
+       // jq(".milestoneCheck input[type=checkbox]:checked").each(function(){jq(this).closest("tr").addClass("selected");});
+        function delMilestone(str) {
+            jq('#ipmDeleteModal .modal-title').html("Remove Milestone");
+            jq('#ipmDeleteModal .confirmMsg').html('{!$Label.delete_milestone_msg}');
+            jq('#ipmDeleteModal .confirmAction').attr('value', str);
+            jq(".confirmAction").addClass("removeMilestone");
+        }
+        jq(document).on('click', '#ipmDeleteModal .removeMilestone', function(){
+            var milestoneId = jq(this).attr('value');
+            deleteMilestone(milestoneId);
+            jq("#ipmDeleteModal").modal('hide');
+        });
+        function fphaseM(){
+            jq(".phaseM input:checkbox:checked").each(function() {
+                phaseM.push(jq(this).val());
+            });
+            pStrM = phaseM.toString();
+            filteredPhaseM(pStrM);
+        }
+        function markCompl(mId, isChecked) {
+        
+            markCompleteM(mId, isChecked);
+            if(isChecked != 'true') {
+                jq('.taskCheck input[type=checkbox]#'+mId).closest("tr").removeClass("selected");
+            }else {
+                jq('.taskCheck input[type=checkbox]#'+mId).closest("tr").addClass("selected");
+            }
+            timelineSetup();
+        }
+        jq('#sortDueDate1').on('click', function(){
+            toggleDueDate1();
+        });
+        jq('#sortMilestones').on('click', function(){
+            toggleSortMilestones();
+        });
+        jq('#sortPhases1').on('click', function(){
+            toggleSortPhases1();
+        });
+        jq('#sortCompletion1').on('click', function(){
+            toggleSortCompletion1();
+        });
+        jq('#sortCompletedOn').on('click', function(){
+            toggleSortCompletedOn();
+        });
+        jq('#ipmTableDiv input[type=checkbox]').each(function () {
+            var val = jq(this).attr('value');
+            var isDisabled = jq(this).attr('isDisabled');
+            if(val === 'true'){
+               jq(this).prop('checked', true); 
+            }else{jq(this).prop('checked', false);}
+            if(isDisabled=='true'){
+                        jq(this).prop('disabled', true);
+                    }
+        });
+        jq(document).on('show.bs.dropdown', '.phaseMFilter', function(){
+            if(jq('.phaseMFilter ul.phaseM').length  == 0){
+                var dropDownList = jq('#phaseMFilterDiv').html();
+                jq(this).append(dropDownList);
+                 
+            }
+            var selectedValues = '{!phaseM}';
+            var selectedValuesArr = selectedValues.split(',');
+            jq('.phaseMFilter .dropdown-toggle .icoButton').removeClass('filter');
+             jq('.phaseMFilter .dropdown-toggle .icoButton').addClass('filter-selected');
+            
+            if(selectedValuesArr.length != 0){
+                jq('.phaseMFilter .dropdown-menu input[type="checkbox"]').each(function () {
+                    var val = jq(this).attr('value');
+                    if(jq.inArray(val, selectedValuesArr) != -1){
+                       jq(this).prop('checked', true); 
+                       jq(this).next('label').addClass('selected');
+                    }else{jq(this).prop('checked', false);jq(this).next('label').removeClass('selected');}
+                });
+            }
+        });
+        jq(document).on('click', '.dropdown-menu input[type="checkbox"], .dropdown-menu li', function(e){
+            e.stopPropagation();
+        });
+        
+        jq(document).on('hide.bs.dropdown', '.completedFilterM', function(){
+        jq('.completedFilterM .dropdown-toggle .icoButton').removeClass('filter-selected');
+             jq('.completedFilterM .dropdown-toggle .icoButton').addClass('filter');
+             
+             });
+             
+             jq(document).on('hide.bs.dropdown', '.phaseMFilter', function(){
+        jq('.phaseMFilter .dropdown-toggle .icoButton').removeClass('filter-selected');
+             jq('.phaseMFilter .dropdown-toggle .icoButton').addClass('filter');
+             
+             });
+        
+        function fPhaseMReset(){
+            jq(".phaseM input:checkbox").each(function() {
+                jq(this).prop('checked', false);
+                jq(this).next('label').removeClass('selected');
+            });
+            filteredPhaseM('');
+        }
+        function fCompleteM(){
+            jq(".completeM input:checkbox:checked").each(function() {
+                completeM.push(jq(this).val());
+            });
+            cStrM = completeM.toString();
+            filterCompleteM(cStrM);
+        }
+        jq(document).on('show.bs.dropdown', '.completedFilterM', function(){
+            var selectedValues = '{!isCompleteMilestones}';
+            var selectedValuesArr = selectedValues.split(',');
+            jq('.completedFilterM .dropdown-toggle .icoButton').removeClass('filter');
+             jq('.completedFilterM .dropdown-toggle .icoButton').addClass('filter-selected');
+            
+            if(selectedValuesArr.length != 0){
+                jq('.completedFilterM .dropdown-menu input[type="checkbox"]').each(function () {
+                    var val = jq(this).attr('value');
+                    if(jq.inArray(val, selectedValuesArr) != -1){
+                       jq(this).prop('checked', true); 
+                      // jq(this).next('label').addClass('selected');
+                    }else{jq(this).prop('checked', false);}
+                });
+            }
+        });
+        function fCompleteResetM(){
+            jq(".completeM input:checkbox").each(function() {
+                jq(this).prop('checked', false);
+                //jq(this).next('label').removeClass('selected');
+            });
+            filterCompleteM('');
+        }
+        jq(".dueDate,.comDate").each(function () {
+            jq(this).text(jq(this).text().replace('00:00:00 GMT',''));
+        });
+        jq(".timeLineView").hide();
+        jq(".toggleContainer .timelineIcon").on("click", function(){  
+                jq("#milestoneList").hide();
+                //timelineSetup();
+                jq(".toggleContainer .listViewIcon").removeClass('selectedView1');
+                jq('.timelineIcon .icoButton').removeClass('timeline');
+                jq('.timelineIcon .icoButton').addClass('timeline-selected');
+                jq('.listViewIcon .icoButton').removeClass('list-selected');
+                jq('.listViewIcon .icoButton').addClass('list');
+                jq(".timeLineView").fadeIn("fast");
+                jq(this).addClass('selectedView');
+        });  
+        jq(".toggleContainer .listViewIcon").on("click", function(){  
+                jq(".timeLineView").hide();
+                jq(".toggleContainer .timelineIcon").removeClass('selectedView');
+                jq("#milestoneList").fadeIn("fast");
+                jq(this).addClass('selectedView1');
+                jq('.timelineIcon .icoButton').removeClass('timeline-selected');
+                jq('.timelineIcon .icoButton').addClass('timeline');
+                jq('.listViewIcon .icoButton').removeClass('list');
+                jq('.listViewIcon .icoButton').addClass('list-selected');
+        });
+        jq(".dueDate,.comDate").each(function () {
+            jq(this).text(jq(this).text().replace('00:00:00 GMT',''));
+        });
+        
+        
+     </script>
+     </apex:outputPanel>
+</apex:component>

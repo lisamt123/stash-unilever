@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataCategoryGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <dataCategory>
+        <dataCategory>
+            <label>Health and Safety Concerns</label>
+            <name>Health_and_Safety_Concerns</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Ingredients</label>
+            <name>Ingredients</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Investigations</label>
+            <name>Investigations</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Recipes</label>
+            <name>Recipes</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Responses</label>
+            <name>Responses</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <label>Contacts</label>
+                <name>Contacts</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Environment and Sustainability</label>
+                <name>Environment_and_Sustainability</name>
+            </dataCategory>
+            <dataCategory>
+                <label>GM Statements</label>
+                <name>GM_Statements</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Press Statements</label>
+                <name>Press_Statements</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Processes</label>
+                <name>Processes</name>
+            </dataCategory>
+            <dataCategory>
+                <label>DotCom</label>
+                <name>DotCom</name>
+            </dataCategory>
+            <label>Corporate</label>
+            <name>Corporate</name>
+        </dataCategory>
+        <label>All Categories</label>
+        <name>All_Categories</name>
+    </dataCategory>
+    <label>Category</label>
+    <objectUsage>
+        <object>KnowledgeArticleVersion</object>
+    </objectUsage>
+</DataCategoryGroup>

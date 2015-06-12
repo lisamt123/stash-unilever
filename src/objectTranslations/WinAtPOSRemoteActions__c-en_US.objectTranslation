@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>WinAtPOSRemoteActions</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>WinAtPOSRemoteActions</value>
+    </caseValues>
+    <fields>
+        <help><!-- Default image size if asset don&apos;t have primary image --></help>
+        <label><!-- Default Image Size --></label>
+        <name>Default_Image_Size__c</name>
+    </fields>
+    <fields>
+        <help><!-- Default Image Url if asset don&apos;t have primary image defined --></help>
+        <label><!-- Default Image Url --></label>
+        <name>Default_Image_Url__c</name>
+    </fields>
+    <fields>
+        <help><!-- Maximal files size which can be attached into pdf file --></help>
+        <label><!-- Max file size --></label>
+        <name>Max_file_size__c</name>
+    </fields>
+    <fields>
+        <label><!-- PDF Asset Collection Limit --></label>
+        <name>PDF_Asset_Collection_Limit__c</name>
+    </fields>
+    <fields>
+        <label><!-- WinAtPosGroup --></label>
+        <name>WinAtPosGroup__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
