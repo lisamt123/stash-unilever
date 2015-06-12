@@ -1,0 +1,410 @@
+<apex:component controller="IPM_GateCMIContorller" allowDML="true">
+<apex:attribute name="getProjectId" description="Pass the project id as parameter" type="ID" required="true" assignTo="{!projectId}" />
+<apex:attribute name="getSectionId" description="Pass the section id as parameter" type="ID" required="true" assignTo="{!projDocSecId}" />
+<apex:attribute name="Editable" description="Used for security" type="Boolean" assignTo="{!isEditable}"/>
+<style>
+.navbar-nav li:last-child > a > span{margin-top:0px !important;}   
+.ipmAccordian {display:block;margin: 10px 0;}
+.ipmAccordian .aHead {display:inline-block;padding-top:20px;}
+.ipmDropDown .dropdown-menu>li:last-child{border-bottom:0px;padding-left:0px !important;padding-bottom:10px !important;}
+.ipmButtonGroup .ipmDropbuttons{border-right:1px solid #252525;padding:10px 21px 10px 21px;}
+.ipmButtonGroup .ipmDropreset{padding:0px 13px;}
+.dateInput .dateInputBox{width:100%;height: 30px;border: 1px solid #ddd;border-radius:3px;}
+.dateFormat{display:none;}
+.calendar{background-position-x: 97%;}
+.fieldLabel{padding-top: 7px;font-weight: bold;font-size: 0.83em;}
+.inputField{margin:0 0 10px 0;}
+.table>thead>tr>th:first-child {padding-left: 10px;}
+.ipmSelect { border:1px solid #dce3e2;border-radius:3px;-webkit-border-radius:3px;-webkit-border-radius:3px;position:relative; z-index:0; display:inline-block;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;}
+.cmiTable.table>thead>tr>th>div{border-right: 1px #ddd solid !important;}
+.CMIcountryAccordian{border: 0px #dce3e2 solid;margin: -11px 0;} 
+.txtalignLeft{text-align:left;}
+</style>
+<apex:outputPanel layout="block" id="checkboxes">
+    <apex:outputPanel layout="block" rendered="{!isEditable}">
+        <div class="row noMargin">
+            <div class="col-sm-12 selectBackground">
+                <apex:outputPanel layout="block" styleClass="col-sm-7 dropdown cmiTestList ipmDropDown">
+                    <apex:outputPanel layout="block" html-data-toggle="dropdown">
+                        <div class="ipmDropDownSelect">
+                            <span>Select</span>
+                            <a class="listArrow"></a>    
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel layout="block" styleClass="dropdown-menu pull-right ipmDropDownList CMIList">
+                        <apex:dataList value="{!consolidatedOptions}" var="option" id="CMIList" styleClass="ccCmiList">
+                            <div class="col-xs-1 ipmCheckbox">
+                                <input class="ccListbox" type="checkbox" value="{!option.value}" id="{!option.value}" />
+                                <label for="{!option.value}"></label>
+                            </div>
+                            <div class="col-xs-10 noPadleft cmiLabel">{!option.value}</div>
+                        </apex:dataList>
+                        <apex:outputPanel layout="block" rendered="{!isEditable}" >                    
+                            <li class="filterActionscc">
+                                <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">
+                                    <apex:commandLink onclick="addTest();"  styleClass="ipmDropbuttonscc" value="Done" id="gatecmiDone" reRender="showCMIArea,cmiInputTable" />  
+                                </div>
+                                <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">   
+                                    <a value="Reset" class="ipmDropresetcc">Reset</a>
+                                </div>
+                            </li>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </div>
+        </div> 
+    </apex:outputPanel> 
+</apex:outputPanel> 
+        
+<apex:actionFunction name="selectTest" action="{!createCMISections}"  reRender="showCMIArea,cmiInputTable" >
+    <apex:param name="selectTest" assignTo="{!cmiName}" value="" />
+</apex:actionFunction>
+<apex:actionFunction name="selectCountry" action="{!createCountryCMI}"  reRender="showCMIArea,cmiInputTable" >
+    <apex:param name="selectCountries" assignTo="{!countryName}" value="" />
+    <apex:param name="cmiid" assignTo="{!gateCMIId}" value="" />
+</apex:actionFunction>
+<apex:outputPanel layout="block" id="showCMIArea" styleClass="contentWrapper"> 
+    <apex:outputPanel layout="block" rendered="{!showCMI}">
+        <apex:repeat value="{!gateTypes}" var="types">
+            <apex:outputPanel layout="block" rendered="{!gateCount[types.value]>0}">
+                <div class="row ipmAccordian CMIGateDoc" id="MainTable">
+                        <!-- <apex:repeat value="{!projSectionList}" var="psl"> <!--For Header -->                                
+                    <div class="col-xs-12 ipmAccordianDiv">
+                        <div class="row aHead">
+                            <span class='expico fa fa-minus'></span><span> {!types.value}</span>
+                        </div>
+                            
+                        <div class="row ipmAcrdnExpand">
+                            <div class="col-xs-12 ipmAcrdnExpandDiv">
+                                <div class="row">
+                                    <apex:repeat value="{!cmiList}" var="cmi">
+                                        <apex:outputPanel layout="block" rendered="{!cmi.Gate__c=types.value}">
+                                            <div class="col-xs-12 ipmAcrdnHeader aHead SecButtonSet">
+                                            <apex:outputPanel layout="block" rendered="{!isEditable}">
+                                               <div class="col-xs-10 txtalignLeft"><span class='expico fa fa-minus'></span><span>{!cmi.Element__c}/{!cmi.Test__c}</span></div><div class="deletBtnDiv col-xs-2 pull-right"><a class="icoButton delete" title="Delete" onClick="deleteCMI('{!cmi.ID}');" /></div>
+                                            </apex:outputPanel>
+                                            </div>
+                                            <div class="col-xs-12 ipmAcrdnExpand">
+                                                <div class="row">
+                                                    <apex:outputPanel layout="block" rendered="{!isEditable}">
+                                                    <div class="fieldLabel col-xs-3">Conducted In:</div>
+                                                    <apex:outputPanel layout="block" styleClass="dropdown cmiCountrySelector ipmDropDown col-xs-6">
+                                                        <apex:outputPanel html-data-toggle="dropdown">
+                                                            <div class="ipmDropDownSelect">
+                                                                <span>Select</span>
+                                                                <a class="listArrow"></a>    
+                                                            </div>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel layout="block" styleClass="dropdown-menu pull-right ipmDropDownList CMICountryList">
+                                                            <apex:dataList value="{!countries}" var="cou" id="CMICountryList" styleClass="cccmiList">                                                               
+                                                                        <div class="col-xs-1 ipmCheckbox">
+                                                                            <input class="ccListbox" type="checkbox" value="{!cou.value}" id="{!cmi.id}{!cou.value}" />
+                                                                            <label for="{!cmi.id}{!cou.value}"></label>
+                                                                        </div>
+                                                                        <div class="col-xs-10 noPadleft cmiLabel">{!cou.value}</div>
+                                                                   
+                                                            </apex:dataList>
+                                                            <apex:outputPanel layout="block" rendered="{!isEditable}" >
+                                                                <li class="filterActionscc">
+                                                                    <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">
+                                                                        <apex:commandLink styleClass="ipmDropbuttonscc" value="Done" onclick="addCountry('{!cmi.Id}')" rerender="cmiInputTable"/>
+                                                                    </div>
+                                                                    <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">   
+                                                                        <a value="Reset" class="ipmDropresetcc">Reset</a>
+                                                                    </div>
+                                                                </li>
+                                                            </apex:outputPanel>                   
+                                                        </apex:outputPanel>
+                                                    </apex:outputPanel> 
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel layout="block" id="cmiInputTable">   
+                                                        <apex:repeat value="{!countryNameList}" var="selCon">
+                                                            <apex:outputPanel layout="block" styleClass="row CMIcountryAccordian" rendered="{!AND(cmi.Country__c!=null,cmi.Country__c!='',CONTAINS(cmi.Country__c,selCon))}">
+                                                                <apex:outputPanel layout="block" styleClass="col-xs-12 ipmAcrdnHeader aHead SecButtonSet">
+                                                                    <div class="col-xs-10">
+                                                                        <span class='expico fa fa-minus'></span>
+                                                                        <span>{!selCon}</span>
+                                                                    </div>
+                                                                    <apex:outputPanel layout="block" rendered="{!isEditable}" >
+                                                                    <div class="deletBtnDiv col-xs-2 pull-right">
+                                                                        <a class="icoButton delete" title="Delete" onClick="deleteCMI('{!cmi.ID}');" />
+                                                                    </div>
+                                                                    </apex:outputPanel>
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel layout="block" styleClass="col-xs-12 ipmAcrdnExpand">
+                                                                    <div class="row"> 
+                                                                        <div class="col-xs-4 fieldLabel">Result Timings: </div>
+                                                                        <apex:outputPanel layout="block" rendered="{!isEditable}" styleClass="col-xs-5 noPadleft">
+                                                                            <div class="inputField">
+                                                                                <apex:inputField value="{!cmi.Approx_Results_Timing__c}" styleClass="dateInputBox calendar" />
+                                                                            </div>
+                                                                        </apex:outputPanel>
+                                                                        <apex:outputPanel layout="block" rendered="{!!isEditable}" styleClass="col-xs-5 noPadleft">
+                                                                            <apex:outputField value="{!cmi.Approx_Results_Timing__c}" styleClass="dateInputBox calendar" />
+                                                                        </apex:outputPanel>
+                                                                    </div>
+                                                                    <div class="row table-responsive cmiTableDiv" id="ipmTableDiv">
+                                                                        <table class="ipmTable table table-bordered cmiTable">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th><div>Inputs</div></th>
+                                                                                    <th><div>Results</div></th>
+                                                                                    <th><div>Results Achieved By</div></th>
+                                                                                    <th><div>Comments</div></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <apex:repeat value="{!sectionList}" var="sec" id="secList">
+                                                                                    <apex:outputPanel layout="block" id="content">
+                                                                                        <apex:outputPanel layout="block" rendered="{!cmi.Id=sec.IPM_Gate_CMI__c}">
+                                                                                            <apex:outputPanel layout="block" rendered="{!sec.IPM_CMI_Country__c=selCon}">
+                                                                                                <tr>
+                                                                                                    <td>
+                                                                                                        <apex:outputPanel layout="block" rendered="{!isEditable}">
+                                                                                                            <apex:inputField id="inputSelectList" styleClass="cmiSelectBox" value="{!sec.IPM_CMI_Input__c}" />
+                                                                                                        </apex:outputPanel>   
+                                                                                                        <apex:outputPanel layout="block" rendered="{!!isEditable}">
+                                                                                                            <apex:outputField value="{!sec.IPM_CMI_Input__c}" />
+                                                                                                        </apex:outputPanel>  
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <apex:outputPanel styleClass="cmiResultBox" layout="block" rendered="{!isEditable}">
+                                                                                                            <apex:inputField styleClass="cmiSelectBox" value="{!sec.IPM_CMI_Result__c}" rendered="{!cmi.Id=sec.IPM_Gate_CMI__c}" />
+                                                                                                        </apex:outputPanel>   
+                                                                                                        <apex:outputPanel layout="block" rendered="{!!isEditable}">
+                                                                                                            <apex:outputField styleClass="cmiSelectBox" value="{!sec.IPM_CMI_Result__c}"  />
+                                                                                                        </apex:outputPanel> 
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <apex:outputPanel styleClass="rachievedBox" layout="block" rendered="{!isEditable}">
+                                                                                                            <apex:inputField value="{!sec.IPM_CMI_Results_Acheived__c}"  rendered="{!cmi.Id=sec.IPM_Gate_CMI__c}" onchange="updateCMIContent('{!sec.Id}',this.value,'{!sec.IPM_CMI_Comments__c}',this.value,'Contract');"/>
+                                                                                                        </apex:outputPanel>   
+                                                                                                        <apex:outputPanel layout="block" rendered="{!!isEditable}">
+                                                                                                            <apex:outputField value="{!sec.IPM_CMI_Results_Acheived__c}"  />
+                                                                                                        </apex:outputPanel> 
+                                                                                                    </td>
+                                                                                                    <td>
+                                                                                                        <apex:outputPanel layout="block" rendered="{!isEditable}">
+                                                                                                            <apex:inputField styleClass="cmiCommentBox" value="{!sec.IPM_CMI_Comments__c}" rendered="{!cmi.Id=sec.IPM_Gate_CMI__c}" onchange="updateCMIContent('{!sec.Id}','{!sec.IPM_CMI_Results_Acheived__c}',this.value,'Contract');" />
+                                                                                                        </apex:outputPanel>
+                                                                                                        <apex:outputPanel layout="block" rendered="{!!isEditable}">
+                                                                                                            <apex:outputField value="{!sec.IPM_CMI_Comments__c}"   />
+                                                                                                        </apex:outputPanel> 
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </apex:outputPanel>
+                                                                                        </apex:outputPanel>
+                                                                                    </apex:outputPanel>
+                                                                                </apex:repeat>                                                                              
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                        </apex:repeat>
+                                                    </apex:outputPanel>
+                                                </div>
+                                            </div>
+                                        </apex:outputPanel>
+                                    </apex:repeat>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </apex:outputpanel>
+        </apex:repeat>  
+    </apex:outputPanel>
+</apex:outputPanel>
+<script>
+function deleteCMI(cmiId)
+{
+delCMI(cmiId);
+}
+function updateCMIContent(cId,resCMI,commCMI,gateType)
+{
+updateContent(cId,resCMI,commCMI,gateType);
+}
+</script>
+<apex:actionFunction name="updateContent" action="{!updateCMI}" reRender="">
+<apex:param name="coId" assignTo="{!secConId}" value="" />
+<apex:param name="res" assignTo="{!resultCMI}" value="" />
+<apex:param name="comm" assignTo="{!commentsCMI}" value="" />
+<apex:param name="gType" assignTo="{!gateType}" value="" />
+</apex:actionFunction>
+<apex:actionFunction name="delCMI" action="{!deleteCMI}" reRender="showCMIArea,secList,secCMIList,cmiInputTable">
+<apex:param name="cmiId" assignTo="{!gateCMIId}" value="" />
+</apex:actionFunction>
+<apex:outputPanel id="scriptToRerender">
+<script> 
+var jq= jQuery.noConflict();
+
+ jq(document).on('show.bs.dropdown', '.cmiTestList', function(){
+        jq('.CMIList').show();
+        var selectedValues = '{!cmiName}';
+        var selectedValuesArr = selectedValues.split(',');
+        
+        if(selectedValuesArr.length != 0){
+            jq('.CMIList input[type="checkbox"]').each(function () {
+                var val = jq(this).attr('value');
+                if(jq.inArray(val, selectedValuesArr) != -1){
+                   jq(this).prop('checked', true); 
+                   jq(this).prop('disabled', true);
+                   jq(this).next('label').addClass('selected');
+                }else{
+                    jq(this).prop('checked', false);
+                    jq(this).next('label').removeClass('selected');
+                    jq(this).prop('disabled', false);
+                }
+            });
+        }
+     });
+jq(document).ready( function() {
+       
+        var selectedValues = '{!cmiName}';
+        var selectedValuesArr = selectedValues.split(',');
+        
+         jq('.cmiSelectBox').prop('disabled', true);
+         jq('.cmiResultBox').find('span').find('select').addClass("active");
+         jq('.cmiResultBox span select').prop('disabled', true);
+         
+        if(selectedValuesArr.length != 0){
+            jq('.CMIList input[type="checkbox"]').each(function () {
+                var val = jq(this).attr('value');
+                if(jq.inArray(val, selectedValuesArr) != -1){
+                   jq(this).prop('checked', true); 
+                   jq(this).prop('disabled', true);
+                   jq(this).next('label').addClass('selected');
+                }else{
+                    jq(this).prop('checked', false);
+                    jq(this).next('label').removeClass('selected');
+                    jq(this).prop('disabled', false);
+                }
+            });
+        }
+     });
+     
+     jq(document).click(function(e) {
+          if( e.target.id != 'CMIList') {
+            jq(".CMIList").hide();
+          }
+        });
+var testStr ='', countryStr='';
+
+jq(document).on('click', '.CMIList input[type="checkbox"], .CMIList li', function(e){
+    e.stopPropagation();
+});
+
+ jq(document).on('show.bs.dropdown', '.cmiCountrySelector', function(){
+        jq(this).find('.CMICountryList').show();
+        var selectedValues = '{!countryName}';
+        var selectedValuesArr = selectedValues.split(',');
+        if(selectedValuesArr.length != 0){
+            jq('.CMICountryList input[type="checkbox"]').each(function () {
+                var val = jq(this).attr('value');
+                if(jq.inArray(val, selectedValuesArr) != -1){
+                   jq(this).prop('checked', true); 
+                   jq(this).prop('disabled', true);
+                   jq(this).next('label').addClass('selected');
+                }else{
+                    jq(this).prop('checked', false);
+                    jq(this).next('label').removeClass('selected');
+                    jq(this).prop('disabled', false);
+                }
+            });
+        }
+     });
+jq(document).ready( function() {
+
+    jq(document).on('click', '#ipmDeleteModal .removeCmiTest', function(){
+        var milestoneId = jq(this).attr('value');
+        //deleteCmiTest(milestoneId);
+        jq("#ipmDeleteModal").modal('hide');
+    });
+       
+        var selectedValues = '{!countryName}';
+        var selectedValuesArr = selectedValues.split(',');
+        
+        if(selectedValuesArr.length != 0){
+            jq('.CMICountryList input[type="checkbox"]').each(function () {
+                var val = jq(this).attr('value');
+                if(jq.inArray(val, selectedValuesArr) != -1){
+                   jq(this).prop('checked', true); 
+                   jq(this).prop('disabled', true);
+                   jq(this).next('label').addClass('selected');
+                }else{
+                    jq(this).prop('checked', false);
+                    jq(this).next('label').removeClass('selected');
+                    jq(this).prop('disabled', false);
+                }
+            });
+        }
+     });
+     
+     jq(document).click(function(e) {
+          if( e.target.id != 'CMICountryList') {
+            jq(".CMICountryList").hide();
+          }
+        });
+        
+    jq(document).on('click', '.CMICountryList input[type="checkbox"], .CMICountryList li', function(e){
+        e.stopPropagation();
+    });
+    jq(document).ready( function() {
+    jq(".ipmAcrdnExpand").hide();
+    jq(".ipmAcrdnExpand:first").not(':empty').show();  
+    jq(".ipmAcrdnExpandDiv").find(".ipmAcrdnExpand:first").not(':empty').show();                         
+    jq(document).on("click", ".ipmAccordian .expico", function(){                
+        // alert();
+        if(jq(this).closest(".aHead").next(".ipmAcrdnExpand").is(":visible") && jq(this).closest(".aHead").next(".ipmAcrdnExpand").not(':empty')){
+            jq(this).closest(".aHead").next(".ipmAcrdnExpand").slideUp("fast");
+            jq(this).removeClass("fa-minus");
+            jq(this).addClass("fa-plus");
+        }else{
+            jq(this).closest(".aHead").next(".ipmAcrdnExpand").slideDown("fast");
+            jq(this).removeClass("fa-plus");
+            jq(this).addClass("fa-minus");
+        }
+    });
+            
+    
+}); 
+ jq(document).ready(function(){   
+          
+        jq(".ipmAccordianDiv").find(".aHead span.expico").removeClass("fa-minus");              
+        jq(".ipmAccordianDiv").find(".aHead span.expico").addClass("fa-plus");
+        jq(".contentWrapper").find(".aHead:first span.expico").removeClass("fa-plus");
+        jq(".contentWrapper").find(".aHead:first span.expico").addClass("fa-minus");
+        jq(".ipmAcrdnExpandDiv").find(".ipmAcrdnHeader:first span.expico").removeClass("fa-plus");
+        jq(".ipmAcrdnExpandDiv").find(".ipmAcrdnHeader:first span.expico").addClass("fa-minus");
+    });
+
+function addTest(){
+    var cmiTestList = [];
+    jq('.CMIList').hide();
+    jq(".CMIList input:checkbox:checked").each(function() {
+        cmiTestList.push(jq(this).val());
+    });
+    //alert('here:' +cmiTestList);
+    testStr = cmiTestList.toString();
+    selectTest(testStr);
+}
+function addCountry(gateCMIId){
+    var cmiCountryList = [];
+    jq('.CMICountryList').hide();
+    jq(".CMICountryList input:checkbox:checked").each(function() {
+        cmiCountryList.push(jq(this).val());
+    });
+   // alert('here:' +cmiCountryList);
+    countryStr = cmiCountryList.toString();
+    selectCountry(countryStr,gateCMIId);
+}
+function delMilestone(str) {
+    jq('#ipmDeleteModal .modal-title').html("Remove Milestone");
+    jq('#ipmDeleteModal .confirmMsg').html('{!$Label.delete_milestone_msg}');
+    jq('#ipmDeleteModal .confirmAction').attr('value', str);
+    jq(".confirmAction").addClass("removeCmiTest");
+}
+</script>      
+</apex:outputPanel>
+</apex:component>

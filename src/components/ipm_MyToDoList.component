@@ -1,0 +1,849 @@
+<apex:component controller="IPM_MyTaskList" allowDML="true">
+    <div class="pagemessageBoxDiv">
+        <apex:outputLabel rendered="{!if(externalApproach <> null,true,false)}">
+          <div class="col-sm-12 pull-left pagemessageBox ">
+            <div class="SecButtonSet">
+            <a class="icoButton info smallinfo" title="info"></a>
+            <span class="listmsgTxt">
+                The tasks and due dates for following projects are being managed externally. 
+                Please get in touch with the project Leader for more details {!externalApproach}
+            </span>
+            </div>
+          </div> 
+         </apex:outputLabel>
+     </div>
+     <div class="row">
+      <div class="col-sm-12 pull-right mSpacing textRight indicationTxt">
+          *represents non-negotiable to-do's
+      </div>
+     </div>
+    <apex:outputPanel id="tskPanel"> 
+    <apex:actionStatus startText="updating..." id="myStatus">
+         <apex:facet name="start">
+            <img height="15" width="15" src="/img/loading32.gif" />
+        </apex:facet>
+    </apex:actionStatus>
+    <table class="ipmTable table table-bordered myListTable"> 
+        <thead class="">
+            <tr>
+                <th class="  " width="14%" scope="col" colspan="1">
+                  <div>
+                    <div class="colCompleted incHeight">
+                        <span>Completed?</span>
+                        <div class="keep-open  btn-group">
+                            <div class="dropdown completedFilter ipmDropDown">
+                                <div class="dropdown-toggle" data-toggle="dropdown">
+                                    <a class="fa filterIcon icoButton filter"></a>
+                                </div>
+                                <ul class="dropdown-menu pull-right complete" role="menu">
+                                    <li>
+                                        <div class="col-xs-2 ipmCheckbox">
+                                            <input type="checkbox" value="Yes" id="complYes" />
+                                            <label for="complYes"></label>
+                                        </div>
+                                        <div class="col-xs-10 staticLabel">Yes</div>
+                                    </li>
+                                    <li>
+                                        <div class="col-xs-2 ipmCheckbox">
+                                            <input type="checkbox" value="No" id="complNo" />
+                                            <label for="complNo"></label>
+                                        </div>
+                                        <div class="col-xs-10 staticLabel">No</div>
+                                    </li>
+                                    <li class="filterActions">
+                                        <div class="ipmButtonGroup col-xs-6 pull-left">
+                                            <a value="Done" id="completeFilterDone" class="ipmDropcompletebuttons" styleClass="blue col-xs-6" onClick="fComplete();">Done</a>
+                                        </div>
+                                        <div class="ipmButtonGroup col-xs-6 pull-left">   
+                                            <a value="Reset" styleClass="bulue col-xs-6" class="completeFilterReset" onClick="fcompletereset();">Reset</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                  </div>  
+                </th>
+            <th class="  " scope="col" colspan="1">
+            <div>
+             <div class="colProject incHeight">
+              <span>Project</span>
+             
+               <div class="keep-open  btn-group">
+                <div class="dropdown projectFilter ipmDropDown">
+                 <div class="dropdown-toggle" data-toggle="dropdown">
+                    <a class="fa filterIcon icoButton filter"></a> 
+                 </div>
+                 <ul class="dropdown-menu pull-right project" role="menu">
+                    <li>
+                        <div class="searchBox">
+                           <input type="text" placeholder="Project Name" id="srchTxt" />
+                           <apex:image styleClass="srchImage" value="{!URLFOR($Resource.ipmResourceRevamp, 'images/search.svg')}" onclick="searchProjects();"/>
+                        </div>
+                    </li>
+                    <apex:repeat value="{!projectlist}" var="phs">
+                        <li>
+                            <div class="col-xs-2 ipmCheckbox">
+                                <input type="checkbox" value="{!phs}" id="project-{!phs}" />
+                                <label for="project-{!phs}"></label>
+                            </div>
+                            <div class="col-xs-10 staticLabel">{!phs}</div>
+                        </li>
+                    </apex:repeat>
+                    <li class="filterActions">
+                        <div class="ipmButtonGroup col-xs-6 pull-left">
+                            <a value="Done" id="projectFilterDone" class="ipmDropbuttons" styleClass="blue col-xs-6" onClick="fProject();">Done</a>
+                         </div>
+                         <div class="ipmButtonGroup col-xs-6 pull-left">   
+                            <a value="Reset" styleClass="bulue col-xs-6" class="ipmDropreset" onClick="fProjectreset();">Reset</a>
+                        </div>
+                    </li>
+                </ul>
+                </div>
+               </div>
+             </div>
+            </div>
+
+            </th>
+            <th class="  " scope="col" colspan="1">
+            <div>
+             <div class="incHeight">
+              <span>Brand</span>
+              
+               <div class="keep-open  btn-group">
+                <div class="dropdown brandFilter ipmDropDown">
+                 <div class="dropdown-toggle" data-toggle="dropdown">
+                    <a class="fa filterIcon icoButton filter"></a> 
+                 </div>
+                <ul class="dropdown-menu pull-right brand" role="menu">
+                    <apex:repeat value="{!brandlist}" var="phs">
+                        <li>
+                            <div class="col-xs-2 ipmCheckbox">
+                                <input type="checkbox" value="{!phs}" id="brand-{!phs}" />
+                                <label for="brand-{!phs}"></label>
+                            </div>
+                            <div class="col-xs-10 staticLabel">{!phs}</div>
+                        </li>
+                    </apex:repeat>
+                    <li class="filterActions">
+                        <div class="ipmButtonGroup col-xs-6 pull-left">
+                            <a value="Done" id="brandFilterDone" class="ipmDropbuttons" styleClass="blue col-xs-6" onClick="fBrand();">Done</a>
+                         </div>
+                         <div class="ipmButtonGroup col-xs-6 pull-left">   
+                            <a value="Reset" styleClass="bulue col-xs-6" class="ipmDropreset" onClick="fBrandReset();">Reset</a>
+                        </div>
+                    </li>
+                </ul>
+                </div>
+               </div>
+             </div>
+            </div>
+
+            </th>
+            <th class="  " scope="col" colspan="1">
+            <div>
+             <div class="colCategory incHeight">
+              <span>Category</span>
+              
+               <div class="keep-open  btn-group">
+                <div class="dropdown categoryFilter ipmDropDown">
+                 <div class="dropdown-toggle" data-toggle="dropdown">
+                    <a class="fa filterIcon icoButton filter"></a> 
+                 </div>
+                 <ul class="dropdown-menu pull-right category" role="menu">
+                    <apex:repeat value="{!CategoryList}" var="phs">
+                        <li>
+                            <div class="col-xs-2 ipmCheckbox">
+                                <input type="checkbox" value="{!phs}" id="category-{!phs}" />
+                                <label for="category-{!phs}"></label>
+                            </div>
+                            <div class="col-xs-10 staticLabel">{!phs}</div>
+                        </li>
+                    </apex:repeat>
+                    <li class="filterActions">
+                        <div class="ipmButtonGroup col-xs-6 pull-left">
+                            <a value="Done" id="categoryFilterDone" class="ipmDropbuttons" styleClass="blue col-xs-6" onClick="fCategory();">Done</a>
+                         </div>
+                         <div class="ipmButtonGroup col-xs-6 pull-left">   
+                            <a value="Reset" styleClass="bulue col-xs-6" class="ipmDropreset" onClick="fCategoryReset();">Reset</a>
+                        </div>
+                    </li>
+                </ul>
+                </div>
+               </div>
+             </div>  
+            </div>
+
+            </th>
+            <th class="  " scope="col" colspan="1">
+            <div>
+             <div class="colPhase incHeight">
+                <span>Phase</span>
+                <span id="sortPhases" class="fa {!IF(currentSort['thisFld'] = 'IPM_Phase__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>
+                <div class="keep-open  btn-group">
+                    <div class="dropdown phaseFilter ipmDropDown">
+                        <div class="dropdown-toggle" data-toggle="dropdown">
+                            <a class="fa filterIcon icoButton filter"></a> 
+                        </div>
+                        <ul class="dropdown-menu pull-right phase" role="menu">
+                            <apex:repeat value="{!phasesList}" var="phs">
+                                <li>
+                                    <div class="col-xs-2 ipmCheckbox">
+                                        <input type="checkbox" value="{!phs}" id="{!phs}" />
+                                        <label for="{!phs}"></label>
+                                    </div>
+                                    <div class="col-xs-10 staticLabel">{!phs}</div>
+                                </li>
+                            </apex:repeat>
+                            <li class="filterActions">
+                                <div class="ipmButtonGroup col-xs-6 pull-left">
+                                    <a value="Done" id="phaseFilterDone" class="ipmDropbuttons" styleClass="blue col-xs-6" onClick="fPhase();">Done</a>
+                                 </div>
+                                 <div class="ipmButtonGroup col-xs-6 pull-left">   
+                                    <a value="Reset" styleClass="bulue col-xs-6" class="ipmDropreset" onClick="fPhaseReset();">Reset</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+             </div>   
+            </div>
+
+            </th>
+            <th class="  " scope="col" colspan="1">
+            <div>
+             <div class="colTasks incHeight">
+               <span>Tasks</span> 
+                 <span id="sortTasks" class="fa {!IF(currentSort['thisFld'] = 'IPM_Task_Name__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>
+            </div>
+           </div>
+            </th>
+            <th class="  " scope="col" colspan="1">
+            <div>
+             <div class="colSection incHeight">
+              <span>Section</span>
+              <span id="sortSections" class="fa {!IF(currentSort['thisFld'] = 'IPM_Project_Document_Section__r.IPM_Section_Sequence__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>
+             </div>  
+            </div>
+
+            </th>
+            <th class="  " width="14%" scope="col" colspan="1">
+            <div>
+             <div class="colDuedate incHeight">
+              <span>Due Date</span>
+              <!--<span class="fa fa-angle-up sortIcon fa-angle-down" id="sortCompletion"></span>-->
+              <span id="sortCompletion" class="fa {!IF(currentSort['thisFld'] = 'IPM_Due_Date1__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>
+            </div>   
+            </div>
+            </th>
+            </tr>
+        </thead>
+    </table>
+    </apex:outputPanel>
+    <div class="tableAccrdion">
+        <div class="ipmAccordion">
+            <div class="projectContainer">
+                <apex:outputPanel id="overDue"> 
+                <div class="pHead">
+                    <span class='expico fa fa-minus'></span><span class="todoSubhead">Overdue</span><span class="todoCount">{!if(isCompleteTasks != 'Yes',setCon.ResultSize,0)}</span>
+                </div>
+                <div class="ipmAcrdnExpand">
+                    <table class="ipmTable table table-bordered overdueTable data-table">
+                        <tbody>
+                            {!isCompleteTasks}
+                            <apex:variable var="rIndex" value="{!(setCon.PageSize*(setCon.PageNumber-1))}" /> 
+                            <apex:repeat var="p" value="{!OverduetasksSample}">
+                            <tr>
+         <td class="serialNum">
+            <div><apex:variable var="rIndex" value="{!rIndex+1}"/>
+            <apex:outputText value="{!rIndex}"/></div>
+        </td> 
+        <td class="colCompleted">
+            <div class="col-xs-2 ipmCheckbox taskCheck">
+                <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)"/>
+               <label for="{!p.Id}"></label>
+            </div>
+        </td>
+        <td>
+            <a href="#">{!p.IPM_Project__r.IPM_Project_Name__c}</a>
+        </td>
+        <td>
+            {!p.IPM_Project__r.IPM_Brand__c}
+        </td>
+        <td>
+           <!--<span>{!p.IPM_Project__r.IPM_Category_Icon__c}</span>--> 
+          <apex:outputText escape="false" value="{!p.IPM_Project__r.IPM_Category_Icon__c}"/>
+           {!p.IPM_Project__r.IPM_Category_Text__c}
+        </td>
+        <td>
+            {!p.IPM_Phase__c}
+        </td>
+        <td>
+             <apex:outputPanel rendered="{!p.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
+             <apex:outputfield value="{!p.IPM_Task_Name__c}" />
+        </td>
+        <td>
+            <apex:outPutPanel rendered="{!IF(AND(p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c!='Approved',p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c!='Proposed'),True,False)}">
+                <a href="/apex/ipmProjectDocumentSectionEditorV1?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}" target="_blank">
+                <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>&nbsp;
+                <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/></a>&nbsp;
+            </apex:outputPanel>
+            <apex:outPutPanel rendered="{!IF(OR(p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c=='Approved',p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c=='Proposed'),True,False)}">
+                <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>&nbsp;
+                <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/>&nbsp;
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel>
+        </td>
+        <td>
+            <apex:outputField value="{!p.IPM_Due_Date1__c}"/>
+        </td>
+    </tr>
+</apex:repeat>
+                        </tbody>
+                        <apex:outputPanel rendered="{!if(setCon.ResultSize > setCon.PageSize && isCompleteTasks != 'Yes',true,false)}">
+                        <tr class="paginationRow">
+                            <td colspan="9" class="paginationCol">
+                                <div class="pull-right">
+                                    <apex:form >
+                                            <apex:panelGrid columns="7">
+                                                <apex:commandLink status="fetchStatus" reRender="overDue" value="Show all" action="{!showAllOverDue}" styleClass="showallbutton" title="Last Page"/>
+                                                <apex:commandButton status="fetchStatus" reRender="overDue" value="<<" action="{!setCon.first}" disabled="{!!setCon.hasPrevious}" title="First Page" styleClass="paginationLink"/>
+                                                <apex:commandButton status="fetchStatus" reRender="overDue" value="<" action="{!setCon.previous}" disabled="{!!setCon.hasPrevious}" title="Previous Page" styleClass="paginationLink"/>
+                                                <span class="paginationLink"> Page {!setCon.pageNumber} of {!totalpages}</span>
+                                                <apex:commandButton status="fetchStatus" reRender="overDue" value=">" action="{!setCon.next}" disabled="{!!setCon.hasNext}" title="Next Page" styleClass="paginationLink"/>
+                                                <apex:commandButton status="fetchStatus" reRender="overDue" value=">>" action="{!setCon.last}" disabled="{!!setCon.hasNext}" title="Last Page" styleClass="paginationLink"/>                                    
+                                                <apex:outputPanel style="color:#4AA02C;font-weight:bold">
+                                                    <apex:actionStatus id="fetchStatus" startText="Fetching..." stopText=""/>
+                                                </apex:outputPanel>
+                                            </apex:panelGrid>
+                                    </apex:form>
+                                </div>
+                            </td>
+                        </tr>
+                        </apex:outputPanel>
+                    </table>
+                </div> 
+                </apex:outputPanel>
+            </div>
+            <div class="projectContainer">
+                <apex:outputPanel id="todaytasks"> 
+                <div class="pHead">
+                    <span class='expico fa fa-minus'></span><span class="todoSubhead">Today</span><span class="todoCount">{!if(isCompleteTasks != 'Yes',setControl.ResultSize,0)}</span>
+                </div>
+                <div class="ipmAcrdnExpand">
+                    
+                    <table class="ipmTable table table-bordered overdueTable data-table">
+                        <tbody>
+                            <apex:variable var="rIndex" value="{!(setControl.PageSize*(setControl.PageNumber-1))}" />
+                            <apex:repeat var="p" value="{!projectTaskssample}">
+                                <tr>
+                                    <td class="serialNum">
+                                        <div><apex:variable var="rIndex" value="{!rIndex+1}"/>
+                                        <apex:outputText value="{!rIndex}"/></div>
+                                    </td>
+                                    <td class="colCompleted">
+                                        <div class="col-xs-2 ipmCheckbox taskCheck">
+                                            <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)"/>
+                                           <label for="{!p.Id}"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#">{!p.IPM_Project__r.IPM_Project_Name__c}</a>
+                                    </td>
+                                    <td>
+                                        {!p.IPM_Project__r.IPM_Brand__c}
+                                    </td>
+                                    <td>
+                                          <apex:outputText escape="false" value="{!p.IPM_Project__r.IPM_Category_Icon__c}"/> 
+                                        {!p.IPM_Project__r.IPM_Category_Text__c}
+                                    </td>
+                                    <td>
+                                        {!p.IPM_Phase__c}
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel rendered="{!p.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
+                                         <apex:outputfield value="{!p.IPM_Task_Name__c}" />
+                                    </td>
+                                    <td>
+                                        <apex:outPutPanel rendered="{!IF(AND(p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c!='Approved',p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c!='Proposed'),True,False)}">
+                                            <a href="/apex/ipmProjectDocumentSectionEditorV1?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}" target="_blank">
+                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>&nbsp;
+                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/></a>&nbsp;
+                                        </apex:outputPanel>
+                                        <apex:outPutPanel rendered="{!IF(OR(p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c=='Approved',p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c=='Proposed'),True,False)}">
+                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>&nbsp;
+                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/>&nbsp;
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel>
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!p.IPM_Due_Date1__c}"/>
+                                    </td>
+                                </tr>
+                            </apex:repeat> 
+                            <apex:outputPanel rendered="{!if(setControl.ResultSize > setControl.PageSize && isCompleteTasks != 'Yes',true,false)}">
+                                <tr class="paginationRow">
+                                    <td colspan="9" class="paginationCol">
+                                        <div class="pull-right">
+                                            <apex:form >
+                                                    <apex:panelGrid columns="7">
+                                                        <apex:commandLink status="fetchStatus" reRender="todaytasks" value="Show all" action="{!todayTasksize}" styleClass="showallbutton" title="Last Page"/>
+                                                        <apex:commandButton status="fetchStatus" reRender="todaytasks" value="<<" action="{!setControl.first}" disabled="{!!setControl.hasPrevious}" title="First Page" styleClass="paginationLink"/>
+                                                        <apex:commandButton status="fetchStatus" reRender="todaytasks" value="<" action="{!setControl.previous}" disabled="{!!setControl.hasPrevious}" title="Previous Page" styleClass="paginationLink"/>
+                                                        <span class="paginationLink"> Page {!setControl.pageNumber} of {!totaltodaypages}</span>
+                                                        <apex:commandButton status="fetchStatus" reRender="todaytasks" value=">" action="{!setControl.next}" disabled="{!!setControl.hasNext}" title="Next Page" styleClass="paginationLink"/>
+                                                        <apex:commandButton status="fetchStatus" reRender="todaytasks" value=">>" action="{!setControl.last}" disabled="{!!setControl.hasNext}" title="Last Page" styleClass="paginationLink"/>                                    
+                                                        <apex:outputPanel style="color:#4AA02C;font-weight:bold">
+                                                            <apex:actionStatus id="fetchStatus" startText="Fetching..." stopText=""/>
+                                                        </apex:outputPanel>
+                                                    </apex:panelGrid>
+                                            </apex:form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </apex:outputPanel>
+                        </tbody>
+                    </table>
+                    
+                     <!--<apex:form >
+                     <apex:outputPanel rendered="{!if(setControl.ResultSize >= setControl.PageSize,true,false)}">
+                    <apex:panelGrid columns="7">
+                <apex:commandButton status="fetchStatus" reRender="todaytasks" value="|<" action="{!setControl.first}" disabled="{!!setCon.hasPrevious}" title="First Page"/>
+                <apex:commandButton status="fetchStatus" reRender="todaytasks" value="<" action="{!setControl.previous}" disabled="{!!setCon.hasPrevious}" title="Previous Page"/>
+                <apex:commandButton status="fetchStatus" reRender="todaytasks" value=">" action="{!setControl.next}" disabled="{!!setCon.hasNext}" title="Next Page"/>
+                <apex:commandButton status="fetchStatus" reRender="todaytasks" value=">|" action="{!setControl.last}" disabled="{!!setCon.hasNext}" title="Last Page"/>
+                <apex:outputText >{!setControl.pageNumber} </apex:outputText>
+                <apex:outputPanel style="color:#4AA02C;font-weight:bold">
+                    <apex:actionStatus id="fetchStatus" startText="Fetching..." stopText=""/>
+                </apex:outputPanel>
+            </apex:panelGrid>
+            </apex:outputPanel>
+                    
+                </apex:form>-->
+                
+                </div> 
+                </apex:outputPanel>
+            </div>
+            <div class="projectContainer">
+                <apex:outputPanel id="nextSevendays"> 
+                <div class="pHead">
+                    <span class='expico fa fa-minus'></span><span class="todoSubhead">In next 7 days</span><span class="todoCount">{!if(isCompleteTasks != 'Yes',setCont.ResultSize,0)}</span>
+                </div>
+                <div class="ipmAcrdnExpand">
+                    
+                    <table class="ipmTable table table-bordered overdueTable data-table">
+                        <tbody>
+                            <apex:variable var="rIndex" value="{!(setCont.PageSize*(setCont.PageNumber-1))}" />
+                            <apex:repeat var="p" value="{!NextSevenTasks}">
+                                <tr>
+                                    <td class="serialNum">
+                                        <div><apex:variable var="rIndex" value="{!rIndex+1}"/>
+                                        <apex:outputText value="{!rIndex}"/></div>
+                                    </td>
+                                    <td class="colCompleted">
+                                        <div class="col-xs-2 ipmCheckbox taskCheck">
+                                            <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)"/>
+                                           <label for="{!p.Id}"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="/{!p.IPM_Project__c}">{!p.IPM_Project__r.IPM_Project_Name__c}</a>
+                                    </td>
+                                    <td>
+                                        {!p.IPM_Project__r.IPM_Brand__c}
+                                    </td>
+                                    <td>
+                                          <apex:outputText escape="false" value="{!p.IPM_Project__r.IPM_Category_Icon__c}"/> 
+                                        {!p.IPM_Project__r.IPM_Category_Text__c}
+                                    </td>
+                                    <td>
+                                        {!p.IPM_Phase__c}
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel rendered="{!p.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
+                                         <apex:outputfield value="{!p.IPM_Task_Name__c}" />
+                                    </td>
+                                    <td>
+                                        <apex:outPutPanel rendered="{!IF(AND(p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c!='Approved',p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c!='Proposed'),True,False)}">
+                                            <a href="/apex/ipmProjectDocumentSectionEditorV1?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}" target="_blank">
+                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>&nbsp;
+                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/></a>&nbsp;
+                                        </apex:outputPanel>
+                                        <apex:outPutPanel rendered="{!IF(OR(p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c=='Approved',p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c=='Proposed'),True,False)}">
+                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>&nbsp;
+                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/>&nbsp;
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel>
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!p.IPM_Due_Date1__c}"/>
+                                    </td>
+                                </tr>
+                            </apex:repeat> 
+                        </tbody>
+                        <apex:outputPanel rendered="{!if(setCont.ResultSize > setCont.PageSize && isCompleteTasks != 'Yes',true,false)}">
+                        <tr class="paginationRow">
+                            <td colspan="9" class="paginationCol">
+                                <div class="pull-right">
+                                    <apex:form >
+                                            <apex:panelGrid columns="7">
+                                                <apex:commandLink status="fetchStatus" reRender="nextSevendays" value="Show all" action="{!showAllNextSevenDays}" styleClass="showallbutton" title="Last Page"/>
+                                                <apex:commandButton status="fetchStatus" reRender="nextSevendays" value="<<" action="{!setCont.first}" disabled="{!!setCont.hasPrevious}" title="First Page" styleClass="paginationLink"/>
+                                                <apex:commandButton status="fetchStatus" reRender="nextSevendays" value="<" action="{!setCont.previous}" disabled="{!!setCont.hasPrevious}" title="Previous Page" styleClass="paginationLink"/>
+                                                <span class="paginationLink"> Page {!setCont.pageNumber} of {!nextSevenpagesize}</span>
+                                                <apex:commandButton status="fetchStatus" reRender="nextSevendays" value=">" action="{!setCont.next}" disabled="{!!setCont.hasNext}" title="Next Page" styleClass="paginationLink"/>
+                                                <apex:commandButton status="fetchStatus" reRender="nextSevendays" value=">>" action="{!setCont.last}" disabled="{!!setCont.hasNext}" title="Last Page" styleClass="paginationLink"/>                                    
+                                                <apex:outputPanel style="color:#4AA02C;font-weight:bold">
+                                                    <apex:actionStatus id="fetchStatus" startText="Fetching..." stopText=""/>
+                                                </apex:outputPanel>
+                                            </apex:panelGrid>
+                                    </apex:form>
+                                </div>
+                            </td>
+                        </tr>
+                        </apex:outputPanel>
+                    </table>   
+                </div> 
+                </apex:outputPanel>
+            </div>
+            <div class="projectContainer">
+                <apex:outputPanel id="laterTasks">
+                <div class="pHead">
+                    <span class='expico fa fa-minus'></span><span class="todoSubhead">Later</span><span class="todoCount">{!if(isCompleteTasks != 'Yes',setContr.ResultSize,0)}</span>
+                </div>
+                <div class="ipmAcrdnExpand">
+                    
+                    <apex:variable var="rIndex" value="{!(setContr.PageSize*(setContr.PageNumber-1))}" />
+                    <table class="ipmTable table table-bordered overdueTable data-table">
+                        <tbody>
+                            <apex:repeat var="p" value="{!LaterTasks}">
+                                <tr>
+                                    <td class="serialNum">
+                                       <div><apex:variable var="rIndex" value="{!rIndex+1}"/>
+                                        <apex:outputText value="{!rIndex}"/></div>
+                                    </td>
+                                    <td class="colCompleted">
+                                       <div class="col-xs-2 ipmCheckbox taskCheck">
+                                            <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)"/>
+                                           <label for="{!p.Id}"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#">{!p.IPM_Project__r.IPM_Project_Name__c}</a>
+                                    </td>
+                                    <td>
+                                        {!p.IPM_Project__r.IPM_Brand__c}
+                                    </td>
+                                    <td>
+                                         <apex:outputText escape="false" value="{!p.IPM_Project__r.IPM_Category_Icon__c}"/>
+                                        {!p.IPM_Project__r.IPM_Category_Text__c}
+                                    </td>
+                                    <td>
+                                        {!p.IPM_Phase__c}
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel rendered="{!p.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
+                                         <apex:outputfield value="{!p.IPM_Task_Name__c}" />
+                                    </td>
+                                    <td>
+                                        <apex:outPutPanel rendered="{!IF(AND(p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c!='Approved',p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c!='Proposed'),True,False)}">
+                                            <a href="/apex/ipmProjectDocumentSectionEditorV1?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}" target="_blank">
+                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>&nbsp;
+                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/></a>&nbsp;
+                                        </apex:outputPanel>
+                                        <apex:outPutPanel rendered="{!IF(OR(p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c=='Approved',p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c=='Proposed'),True,False)}">
+                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>&nbsp;
+                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/>&nbsp;
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel>
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!p.IPM_Due_Date1__c}"/>
+                                    </td>
+                                </tr>
+                            </apex:repeat> 
+                        </tbody>
+                            <apex:outputPanel rendered="{!if(setContr.ResultSize > setContr.PageSize && isCompleteTasks != 'Yes',true,false)}">
+                            <tr class="paginationRow">
+                                <td colspan="9" class="paginationCol">
+                                    <div class="pull-right">
+                                        <apex:form >
+                                                <apex:panelGrid columns="7">
+                                                    <apex:commandLink status="fetchStatus" reRender="laterTasks" value="Show all" action="{!showAllLaterTasks}" styleClass="showallbutton" title="Last Page"/>
+                                                    <apex:commandButton status="fetchStatus" reRender="laterTasks" value="<<" action="{!setContr.first}" disabled="{!!setContr.hasPrevious}" title="First Page" styleClass="paginationLink"/>
+                                                    <apex:commandButton status="fetchStatus" reRender="laterTasks" value="<" action="{!setContr.previous}" disabled="{!!setContr.hasPrevious}" title="Previous Page" styleClass="paginationLink"/>
+                                                    <span class="paginationLink"> Page {!setContr.pageNumber} of {!totallatertaskpages}</span>
+                                                    <apex:commandButton status="fetchStatus" reRender="laterTasks" value=">" action="{!setContr.next}" disabled="{!!setContr.hasNext}" title="Next Page" styleClass="paginationLink"/>
+                                                    <apex:commandButton status="fetchStatus" reRender="laterTasks" value=">>" action="{!setContr.last}" disabled="{!!setContr.hasNext}" title="Last Page" styleClass="paginationLink"/>                                    
+                                                    <apex:outputPanel style="color:#4AA02C;font-weight:bold">
+                                                        <apex:actionStatus id="fetchStatus" startText="Fetching..." stopText=""/>
+                                                    </apex:outputPanel>
+                                                </apex:panelGrid>
+                                        </apex:form>
+                                    </div>
+                                </td>
+                            </tr>
+                        </apex:outputPanel>
+                    </table>
+                </div> 
+                </apex:outputPanel>
+            </div>
+            <div class="projectContainer">
+                <apex:outputPanel id="completedTasks">
+                <div class="pHead">
+                    <span class='expico fa fa-minus'></span><span class="todoSubhead">Completed</span><span class="todoCount">{!if(isCompleteTasks != 'No',setController.ResultSize,0)}</span>
+                </div>
+                <div class="ipmAcrdnExpand">
+                    
+                    <apex:variable var="rIndex" value="{!(setController.PageSize*(setController.PageNumber-1))}" />
+                    <table class="ipmTable table table-bordered overdueTable data-table">
+                        <tbody>
+                            <apex:repeat var="p" value="{!completedTasks}">
+                                <tr>
+                                    <td class="serialNum">
+                                        <apex:variable var="rIndex" value="{!rIndex+1}"/>
+                                        <apex:outputText value="{!rIndex}"/>
+                                    </td>
+                                    <td class="colCompleted">
+                                            
+                                        <div class="col-xs-2 ipmCheckbox taskCheck">
+                                            <input type="checkbox" value="{!p.IPM_Completed__c}" checked="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)"/>
+                                           <label for="{!p.Id}"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#">{!p.IPM_Project__r.IPM_Project_Name__c}</a>
+                                    </td>
+                                    <td>
+                                        {!p.IPM_Project__r.IPM_Brand__c}
+                                    </td>
+                                    <td>
+                                        
+                                        <!-- <img src="/resource/1420804160000/ipmResourceRevamp/images/categoryIcons/Spark.png" alt="images/categoryIcons/Spark.png" border="0"/> -->
+                                        <apex:outputText escape="false" value="{!p.IPM_Project__r.IPM_Category_Icon__c}" style="height='30';width='30';"/>
+                                       
+                                        
+                                         <!-- <img src="{!p.IPM_Project__r.IPM_Category_Icon__c}" height="30" width="30" class="rounded"/> -->
+                                        {!p.IPM_Project__r.IPM_Category_Text__c}
+                                    </td>
+                                    <td>
+                                        {!p.IPM_Phase__c}
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel rendered="{!p.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
+                                         <apex:outputfield value="{!p.IPM_Task_Name__c}" />
+                                    </td>
+                                    <td>
+                                        <apex:outPutPanel rendered="{!IF(AND(p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c!='Approved',p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c!='Proposed'),True,False)}">
+                                            <a href="/apex/ipmProjectDocumentSectionEditorV1?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}" target="_blank">
+                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>&nbsp;
+                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/></a>&nbsp;
+                                        </apex:outputPanel>
+                                        <apex:outPutPanel rendered="{!IF(OR(p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c=='Approved',p.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c=='Proposed'),True,False)}">
+                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>&nbsp;
+                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/>&nbsp;
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel>
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!p.IPM_Due_Date1__c}"/>
+                                    </td>
+                                </tr>
+                            </apex:repeat> 
+                        </tbody>
+                            <apex:outputPanel rendered="{!if(setController.ResultSize > setController.PageSize && isCompleteTasks != 'No',true,false)}">
+                            <tr class="paginationRow">
+                                <td colspan="9" class="paginationCol">
+                                    <div class="pull-right">
+                                        <apex:form >
+                                                <apex:panelGrid columns="7">
+                                                    <apex:commandLink status="fetchStatus" reRender="completedTasks" value="Show all" action="{!showCompletedTasks}" styleClass="showallbutton" title="Last Page"/>
+                                                    <apex:commandButton status="fetchStatus" reRender="completedTasks" value="<<" action="{!setController.first}" disabled="{!!setController.hasPrevious}" title="First Page" styleClass="paginationLink"/>
+                                                    <apex:commandButton status="fetchStatus" reRender="completedTasks" value="<" action="{!setController.previous}" disabled="{!!setController.hasPrevious}" title="Previous Page" styleClass="paginationLink"/>
+                                                    <span class="paginationLink"> Page {!setContr.pageNumber} of {!totalcompletedpages}</span>
+                                                    <apex:commandButton status="fetchStatus" reRender="completedTasks" value=">" action="{!setController.next}" disabled="{!!setController.hasNext}" title="Next Page" styleClass="paginationLink"/>
+                                                    <apex:commandButton status="fetchStatus" reRender="completedTasks" value=">>" action="{!setController.last}" disabled="{!!setController.hasNext}" title="Last Page" styleClass="paginationLink"/>                                    
+                                                    <apex:outputPanel style="color:#4AA02C;font-weight:bold">
+                                                        <apex:actionStatus id="fetchStatus" startText="Fetching..." stopText=""/>
+                                                    </apex:outputPanel>
+                                                </apex:panelGrid>
+                                        </apex:form>
+                                    </div>
+                                </td>
+                            </tr>
+                        </apex:outputPanel>
+                    </table>
+                </div> 
+                </apex:outputPanel>
+            </div>
+        </div>
+    </div>
+    <apex:form >
+        <apex:actionFunction name="filteredProject" action="{!filteredProject}" rerender="overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus">
+            <apex:param name="projectName" assignTo="{!projectName}" value="" />
+        </apex:actionFunction>
+    </apex:form>
+    <apex:form >
+        <apex:actionFunction name="filteredBrand" action="{!filteredBrand}" rerender="tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus">
+            <apex:param name="brandName" assignTo="{!brandName}" value="" />
+        </apex:actionFunction>
+    </apex:form>
+    <apex:form >
+        <apex:actionFunction name="filteredCategory" action="{!filteredCategory}" rerender="tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus">
+            <apex:param name="categoryName" assignTo="{!categoryName}" value="" />
+        </apex:actionFunction>
+    </apex:form>
+    <apex:form >
+        <apex:actionFunction name="filteredPhase" action="{!filteredPhase}" rerender="tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus">
+            <apex:param name="phase" assignTo="{!phase}" value="" />
+        </apex:actionFunction>
+     </apex:form>
+     <apex:form >
+        <apex:actionFunction name="toggleSortPhases" action="{!toggleSortPhases}" reRender="tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus"/>
+     </apex:form>
+     
+     <apex:form >
+        <apex:actionFunction name="toggleSortTasks" action="{!toggleSortTasks}" reRender="tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus"/>
+     </apex:form>
+     <apex:form >
+        <apex:actionFunction name="toggleSortSections" action="{!toggleSortSections}" reRender="tskPanel,statsPanel,jsLoad,tmpPanel" status="myStatus"/>
+     </apex:form>
+     
+     <apex:form >
+        <apex:actionFunction name="toggleDueDate" action="{!toggleDueDate}" reRender="tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus"/>
+     </apex:form>
+     
+     <apex:form >
+        <apex:actionFunction name="markComplete" action="{!markComplete}" reRender="tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus">
+            <apex:param name="tskId" assignTo="{!taskId}" value="" />
+            <apex:param name="isChecked" assignTo="{!isChecked}" value="" />
+         </apex:actionFunction>
+     </apex:form>
+     
+     <apex:form >
+        <apex:actionFunction name="filterComplete" action="{!filterCompleteTasks}" rerender="tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus">
+            <apex:param name="isOpen" assignTo="{!isCompleteTasks}" value="" />
+        </apex:actionFunction>
+     </apex:form>
+     
+     <apex:form >
+        <apex:actionFunction name="sProjects" action="{!projectSearch}" reRender="tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus">
+            <apex:param name="searchValue" assignTo="{!searchValue}" value="" />
+         </apex:actionFunction>
+     </apex:form>
+     
+    <script>
+        
+        var project=[];
+        var brand=[];
+        var category=[];
+        var phase= [];
+        var complete=[];
+        
+        
+        function fProject() {
+            jq(".project input:checkbox:checked").each(function() {
+                project.push(jq(this).val());
+            });
+            var pStr = project.toString();
+            filteredProject(pStr);
+        }
+        
+        jq(document).ready(function(){
+                jq(".htmlencode").html(jq(".htmlencode")[0].text());
+            });
+        
+        function fProjectreset(){
+            jq(".project input:checkbox").each(function() {
+                jq(this).prop('checked', false);
+                jq(this).next('label').removeClass('selected');
+            });
+            filteredProject('');
+        }
+        
+        function myAssignedTasks(taskId, isChecked) {
+            if(isChecked != 'true') {
+                jq('.taskCheck input[type=checkbox]#'+taskId).closest("tr").removeClass("selected");
+            }else {
+                jq('.taskCheck input[type=checkbox]#'+taskId).closest("tr").addClass("selected");
+            }
+            
+            markComplete(taskId, isChecked);
+        }
+        
+        function fBrand() {
+            jq(".brand input:checkbox:checked").each(function() {
+                brand.push(jq(this).val());
+            });
+            var pStr = brand.toString();
+            filteredBrand(pStr);
+        }
+        
+        function fCategory() {
+            jq(".category input:checkbox:checked").each(function() {
+                category.push(jq(this).val());
+            });
+            var pStr = category.toString();
+            filteredCategory(pStr);
+        }
+        
+        function fPhase() {
+            jq(".phase input:checkbox:checked").each(function() {
+                phase.push(jq(this).val());
+            });
+            var pStr = phase.toString();
+            filteredPhase(pStr);
+        }
+        
+        jq(document).on('click', '#sortPhases', function(){
+            toggleSortPhases();
+        });
+        
+        jq(document).on('click','#sortTasks', function(){
+            toggleSortTasks();
+        });
+        
+        jq(document).on('click', '#sortSections', function(){
+            toggleSortSections();
+        });
+        
+        
+        
+        jq(document).on('click', '#sortCompletion',function(){
+            toggleDueDate();
+        });
+        
+        jq('#srchTxt').keypress(function (e) {
+          if (e.which == 13) {
+            sProjects(srchTxt.value);
+            return false;
+          }
+        });
+        
+        function fComplete(){
+            jq(".complete input:checkbox:checked").each(function() {
+                complete.push(jq(this).val());
+            });
+            var pStr = complete.toString();
+            filterComplete(pStr);
+        }
+        
+        function fcompletereset(){
+            jq(".complete input:checkbox").each(function() {
+                jq(this).prop('checked', false);
+                jq(this).next('label').removeClass('selected');
+            });
+            filterComplete('');
+        }
+        
+        function searchProjects(){
+            var searchValue=document.getElementById("srchTxt").value;
+            
+            //document.getElementById('srchTxt').value
+            //alert($("#srchTxt").val());
+            sProjects(searchValue);
+        }
+        
+        
+    </script>
+</apex:component>

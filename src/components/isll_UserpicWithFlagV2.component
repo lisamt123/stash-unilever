@@ -1,0 +1,12 @@
+<apex:component controller="isll_UserpicWithFlagController">
+    <apex:attribute name="user" description="User with FullPhotoUrl and LocaleSidKey selected." 
+         assignTo="{!cUser}" type="User" required="true"/>
+     <apex:attribute name="width" description="Width of the image." type="Integer"/>
+     <apex:attribute name="height" description="Height of the image." type="Integer"/>
+     <apex:attribute name="style" description="css styles of the image." type="String"/> 
+
+    <div style="position: relative; width: {!width}px; {!style}">
+        <apex:image url="{!user.SmallPhotoUrl}" width="{!width}" height="{!height}" style="position: relative; top: 0; left: 0;"/>
+        <img src="{!URLFOR($Resource.isll_flagIcons, iconName+'.png')}"  style="position: absolute; bottom: 3px; right: 0;"/>
+    </div>
+</apex:component>

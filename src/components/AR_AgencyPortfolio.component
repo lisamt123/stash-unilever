@@ -1,0 +1,27 @@
+<apex:component controller="AR_AgencyPortfolioAndInformation">
+
+	<apex:attribute name="agencyId" type="String" description="The id of the agency." required="true" assignTo="{!theAgencyId}" />
+	<apex:attribute name="internal" type="Boolean" description="Specify whether for internal or external user" required="false" />
+
+	<div class="main-image">
+		<apex:repeat value="{!agency.Attachments}" var="att">
+			<apex:image value="/servlet/servlet.FileDownload?file={!att.Id}" styleClass="main-banner" rendered="{!LEFT(att.Name,6)=='three_'}" />
+		</apex:repeat>
+        <div class="image-title-container">
+            <h1><apex:outputText value="{!agency.Name}" /></h1>
+            <apex:outputPanel styleClass="stars{!FLOOR(agency.Overall_Rating__c)}" rendered="{!internal}" />
+            <apex:outputText rendered="{!agency.Vimeo_Link__c != null}">
+            	<span class="play-video fancybox-media" href="{!agency.Vimeo_Link__c}">Watch our video</span>
+            </apex:outputText>
+        </div>
+	</div>
+    <ul class="clients">
+    	<apex:repeat value="{!projects}" var="project">
+	        <li class="resizer-container">
+	            <apex:image value="/servlet/servlet.FileDownload?file={!project.Attachments[0].Id}" rendered="{!project.Attachments.size > 0}" />
+	            <a href="#">{!project.Brand_Competitor__c}<span></span></a>
+	        </li>
+        </apex:repeat>
+    </ul>
+
+</apex:component>

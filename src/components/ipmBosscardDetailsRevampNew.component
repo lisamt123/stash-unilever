@@ -1,0 +1,17 @@
+<apex:component controller="IPM_ProjectDetails" > 
+<apex:attribute name="ProName" type="String" assignTo="{!ProjectName}" description="To get project name"/>
+    <div class="ipmProjectDetails">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="col-sm-5 noPadleft">   
+                    <div class="col-sm-12 noPadright">                             
+                        <span class="ipmpanel-heading noBorderright dispBlock"><apex:outputText value="{!ProjectName}" /></span>
+                    </div>
+                </div>    
+                <div class="col-sm-7">                                
+                    <c:ipmBosscardFunnelRevamp />
+                </div>
+            </div>                             
+        </div>
+    </div>
+</apex:component>

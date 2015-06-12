@@ -1,0 +1,194 @@
+<apex:component controller="IPM_CRRT_Section_Controller"  allowDML="true">
+<apex:attribute name="gateType" description="For Getting Gate Type" required="true" type="String" assignTo="{!gate}"/>
+<apex:attribute name="getSectionId" description="For Getting Project Document Section" required="true" type="Id" assignTo="{!projDocSecId}"/>
+<apex:attribute name="Editable" description="Used for security purpose" type="Boolean" assignTo="{!isEditable}"/>
+<apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmTable.css')}"/>
+<style>
+.noborder{border-left:0px !important;}
+.table>thead>tr>th>div {padding-left:10px !important;border-left:1px solid #ddd;height: 34px;margin-bottom: 6px;}
+.innertext{font-size:0.8em !important;}
+.projectContainer .pHead {padding-bottom: 15px;border-bottom: 4px solid #E6E534 !important;padding-top: 15px;}
+.ipmAccordion .projectContainer .pHead > span.expico {display: inline-block;cursor: pointer;font-family: FontAwesome;width: 21px;
+height: 21px;text-align: center;font-weight: normal;line-height: 23px;background: #81bd42;position: relative;margin-right: 5px;
+font-size: 0.8em;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;color: #fff;}
+.todoSubhead {color: #1797C0;font-weight: bold;border-right: 0px solid #A7A7A7;padding: 0px 10px;margin-right: 10px;}
+.table>tbody>tr>td:first-child {
+text-align: left !important;}
+.table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{padding:16px 5px !important;}
+.whitebg{background:#fff;}
+.inputField-text {width: 11%;height: 30px;border-radius: 3px;border: 1px #a8a8a8 solid;color: #565656;}
+.h48{height:48px;}
+.regpos{position: relative;bottom: 10px;}
+.pl10{padding-left:10px;}
+.projectRadioButton input[type=radio] {visibility: hidden;width: 0px;height: 0px;}
+.projectRadioButton label {background:#ffffff;position: relative;margin-right: 66px;text-indent: 30px;font-weight: normal;color: #555555;float: left;cursor: pointer;width: 22px;
+height: 22px;border: 1px solid #ccc;border-radius: 20px;overflow: visible;white-space: nowrap;}
+.projectRadioButton input[type=radio]:checked + label {border: 2px solid #007DBD;}
+.projectRadioButton label:after {opacity: 0;content: '';position: absolute;width: 6px;height: 6px;background: #007DBD;top: 50%;left: 50%;margin-top: -3px;
+margin-left: -3px;border: 1px solid #007DBD;border-radius: 40px;}
+.projectRadioButton input[type=radio]:checked + label:after {opacity: 1;}
+.infotext{font-size: 0.85em;color: #666;}
+.noChangeCheckboxDiv{margin:0 0 10px 0;}
+.tblOverflow {overflow-x:scroll;}
+.showLabel{float:left;margin-right:20px;}
+</style>  
+   <!-- <div class="h48">
+   <div class="col-sm-9 infotext">Last Update by: John Smith on 16-Nov-2014 13:00 AM</div>
+   <div class="col-sm-3 text-right">
+       <a href="#" onclick="if(typeof jsfcljs == 'function'){jsfcljs(document.getElementById('j_id0:j_id6:frm'),'j_id0:j_id6:frm:j_id79,j_id0:j_id6:frm:j_id79','');}return false" class="ipmButton bosscardmright" target="_top">Cancel</a>
+       <a class="ipmButton primary" href="#" id="j_id0:j_id6:frm:j_id80" name="j_id0:j_id6:frm:j_id80" onclick="A4J.AJAX.Submit('j_id0:j_id6:frm',event,{'similarityGroupingId':'j_id0:j_id6:frm:j_id80','parameters':{'j_id0:j_id6:frm:j_id80':'j_id0:j_id6:frm:j_id80','IsSave':'true'} } );return false;" target="_top">Save</a>
+   </div>
+   </div> -->
+    
+  <div class="table-responsive tblOverflow" id="ipmTableDiv">
+    <apex:outputPanel rendered="{!if(and(countryList !=0, gate='Contract'),'true','false')}">                            
+        <div class="row noChangeCheckboxDiv">
+            <div class="staticLabel2 noPadLeft showLabel noPadright">Show only</div>
+            <div class="noChangeCheckbox" style="padding-left:0px;">
+                <div class="col-xs-2 ipmCheckbox">
+                    <input type="checkbox" value="true" id="noChange" name="no change" onClick="noChangeFilter(this.checked);"/>
+                    <label class="taskTop" for="noChange"></label>
+                </div>
+                <div class="col-xs-3 staticLabel2">No Change</div>   
+            </div>
+        </div>
+    </apex:outputPanel>
+    <table class="ipmTable table table-bordered taskListTable" border="0" cellpadding="0" cellspacing="0">    
+    <thead>
+        <tr>
+            <th width="20%">
+                <div class="noborder">Incumbent CU&apos;s</div>
+            </th>
+            <th width="20%">
+                <div>Volumes <span class="innertext">(tonnes)</span></div>
+            </th>
+            <th width="20%">
+                <div>No Change
+                <p class="innertext">(out of scope from project)</p></div>
+            </th>
+            <th width="20%">
+                <div>Discontinued
+                 <p class="innertext">(Costumer unit to be delisted)</p></div>
+            </th>
+            <th width="20%">
+                <div>Replace
+                 <p class="innertext">(CU is going to be replaced)</p></div>
+            </th>
+        </tr>
+        <apex:outputPanel id="countryListPanel">
+        <tr class="whitebg">
+            <td colspan="5">
+            <apex:repeat value="{!countryList}" var="cl">
+                <div class="tableAccrdion">
+                    <div class="ipmAccordion">            
+                        <div class="projectContainer">
+                            <div class="pHead">                           
+                                <span class="expico fa fa-plus"></span><span class="todoSubhead">{!cl.Country_Name__c}</span>   
+                            <apex:outputPanel rendered="{!if(and(isEditable=true,gate='Contract'),'true','false')}">                            
+                            <div class="pull-right regpos"> <a href="#" class="ipmButton bosscardmright" target="_top">Add new</a></div>
+                            </apex:outputPanel>
+                            </div>                      
+                        <div class="ipmAcrdnExpand" style="display: none;">
+                    <table class="ipmTable table table-bordered overdueTable data-table tblCRRTStat">
+                        <tbody>
+                       <apex:outputPanel layout="block" id="culTable">
+                        <apex:repeat value="{!countryUnitList}" var="cul">
+                            <apex:outputPanel layout="block" rendered="{!IF(cul.IPM_CU_Sales_SKU_Count_Mapping__r.Country__c=cl.Country_Name__c,TRUE,FALSE)}">
+                            <tr class="tblCRRTStatRow">                            
+                            <td width="20%">{!cul.IPM_Incumbent_CUs__c}</td>
+                             <td width="20%">{!cul.IPM_CU_Volume__c}</td>
+                              <td width="20%" class="projectRadioButton">              
+                                            
+                                <input type="radio" name="group{!cul.Id}" data-disabled="{!if(isEditable=false,'true','')}" id="group1{!cul.Id}" data-checked="{!IF(cul.IPM_CRRT_Status__c == 'No Change','true','false')}" value="{!cul.IPM_CRRT_Status__c}" onclick="changeCRRTStatus('{!cul.Id}','No Change');"/><label for="group1{!cul.Id}"> </label>                              
+                                </td>
+                               <td width="20%" class="projectRadioButton">
+                                <input type="radio" name="group{!cul.Id}" data-disabled="{!if(OR(isEditable==false, AND(gate=='Market Deployment', OR(cul.IPM_CRRT_Status__c == 'Replace', cul.IPM_CRRT_Status__c=='Discontinued'))),'true','')}" id="group2{!cul.Id}" data-checked="{!IF(cul.IPM_CRRT_Status__c == 'Discontinued','true','false')}" value="{!cul.IPM_CRRT_Status__c}" onclick="changeCRRTStatus('{!cul.Id}','Discontinued');"/><label for="group2{!cul.Id}"> </label>  
+                               </td>
+                                <td width="20%" class="projectRadioButton">
+                                <input type="radio" name="group{!cul.Id}" data-disabled="{!if(OR(isEditable==false, AND(gate=='Market Ready', OR(cul.IPM_CRRT_Status__c == 'No Change', cul.IPM_CRRT_Status__c == 'Discontinued')), AND(gate=='Market Deployment', OR(cul.IPM_CRRT_Status__c == 'Replaced',cul.IPM_CRRT_Status__c=='Discontinued'))),'true','')}" id="group3{!cul.Id}" data-checked="{!IF(cul.IPM_CRRT_Status__c == 'Replace','true','false')}" value="{!cul.IPM_CRRT_Status__c}" onclick="changeCRRTStatus('{!cul.Id}','Replace');"/><label for="group3{!cul.Id}"> </label>  
+                                </td>
+                                </tr>
+                               </apex:outputPanel>  
+                        </apex:repeat>   
+                        </apex:outputPanel>
+                       <!-- <apex:outputPanel layout="block" rendered="{!gate='Contract'}" id="testblock">-->
+                           <tr>
+                                    <td colspan="5">
+                                    <apex:outputPanel layout="block" styleClass="col-sm-11" rendered="{!if(AND(isEditable,gate='Contract'),true,false)}">
+                      
+                                       <input type="text" name="" class="inputField-text" maxlength="14"/>
+                                        <span><img src="/resource/1422940358000/ipmResourceRevamp/images/New_Flag_1b.png" title="" class="pl10 ipmImage"/></span>
+                                   
+                                    </apex:outputPanel>
+                                    
+                                        <div >  
+                                        <apex:outputPanel layout="block" styleClass="col-sm-1 text-right" rendered="{!if(AND(isEditable,gate='Contract'),true,false)}">   
+                                            <div class="panel SecButtonSet delete">
+                                                <a class="icoButton delete" href="#" id="" name="" target="_top"></a> 
+                                            </div>
+                                        </apex:outputPanel>     
+                                    </div>
+                                    </td>
+                                </tr>
+                       <!--  </apex:outputPanel>     -->
+                        </tbody>
+                    </table>
+               
+                </div>
+                 </div>
+                  </div>
+                  </div>
+                  </apex:repeat>
+            </td>            
+        </tr>
+        </apex:outputPanel>
+    </thead>
+    </table>
+  </div>
+   
+   <apex:actionFunction name="callUpdateStatus" action="{!updateCRRTStatus}" reRender="">
+        <apex:param name="FirstParam" assignTo="{!conId}" value="" />
+        <apex:param name="SecondParam" assignTo="{!crrtStatus}" value="" />
+</apex:actionFunction>
+<apex:actionFunction name="ncFilter" action="{!filterNoChange}" reRender="culTable">
+        <apex:param name="noChangeParam" assignTo="{!filterNoChange}" value="" />
+</apex:actionFunction>
+   <script>
+  var jq= jQuery.noConflict();
+  jq(document).ready( function() {
+    jq(".ipmAcrdnExpand").hide();
+    jq(".ipmAcrdnExpand:first, .ipmAcrdnExpand:first .ipmAcrdnExpand").not(':empty').show();                          
+    jq(document).on("click", ".pHead .expico", function(){                
+       if(jq(this).closest(".pHead").next(".ipmAcrdnExpand").is(":visible") && jq(this).closest(".pHead").next(".ipmAcrdnExpand").not(':empty')){
+            jq(this).closest(".pHead").next(".ipmAcrdnExpand").slideUp("fast");
+            jq(this).removeClass("fa-minus");
+            jq(this).addClass("fa-plus");
+        }else{
+            jq(this).closest(".pHead").next(".ipmAcrdnExpand").slideDown("fast");
+            jq(this).removeClass("fa-plus");
+            jq(this).addClass("fa-minus");
+        }
+    });
+         
+}); 
+
+jq(document).ready(function(){  
+         jq(".projectContainer").find(".pHead span.expico").removeClass("fa-minus");                
+        jq(".projectContainer").find(".pHead span.expico").addClass("fa-plus");
+        jq("td .tableAccrdion:first").find(".pHead span.expico").removeClass("fa-plus");
+        jq(".projectContainer").find(".pHead span.expico").addClass("fa-minus");
+        
+    });
+        
+   function changeCRRTStatus(id,status)
+    {      
+    
+      callUpdateStatus(id,status);
+    }
+    function noChangeFilter(status)
+    {
+       // alert(status);
+        ncFilter(status);
+    }
+   </script>
+</apex:component>

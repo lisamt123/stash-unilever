@@ -1,0 +1,21 @@
+<apex:component id="ipmConfirmModalRevamp">
+  <div id="ipmDeleteModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-title"></div>
+            </div>
+            <div class="modal-body">
+                <div class="col-xs-12 panel-body">
+                    <div class="confirmMsg"></div>
+                    <div class="ipmButtonGroup ipmFromAction pull-right">
+                        <a class="ipmButton cancelAction" data-dismiss="modal">No</a>
+                        <a class="ipmButton green confirmAction" >Yes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</apex:component>

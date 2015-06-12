@@ -31,7 +31,7 @@
     <types>
         <members>*</members>
         <name>AuraDefinitionBundle</name>
-    </types>    
+    </types>
     <types>
         <members>*</members>
         <name>AuthProvider</name>

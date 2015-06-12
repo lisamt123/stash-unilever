@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Organisation</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Organisations</value>
+    </caseValues>
+    <fields>
+        <label><!-- Address --></label>
+        <name>Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>BillingCity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>BillingCountry__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postcode --></label>
+        <name>BillingPostcode__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>BillingState__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street --></label>
+        <name>BillingStreet__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fax --></label>
+        <name>Fax__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Full Name --></label>
+        <name>Owner_Fullname__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Organisation --></label>
+        <name>ParentAccount__c</name>
+        <relationshipLabel><!-- Child Organisations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Phone --></label>
+        <name>Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Root Organisation --></label>
+        <name>Root_Organisation__c</name>
+    </fields>
+    <fields>
+        <help><!-- Tier 1 - &quot;Super KOFs&quot; or Delivery Partners: globally influential orgs/individuals, crucial to delivery of our business strategy &amp; USLP
+Tier 2  - Supporting Partners/ influential KOFs at global or local level 
+Tier 3 - Low to Medium priority stakeholders --></help>
+        <label><!-- Scale of Importance --></label>
+        <name>Scale_of_Importance__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Stakeholder Type --></label>
+        <name>Stakeholder_Type__c</name>
+        <picklistValues>
+            <masterLabel>Academic</masterLabel>
+            <translation><!-- Academic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Companies / Business Partners</masterLabel>
+            <translation><!-- Companies / Business Partners --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consumer associations</masterLabel>
+            <translation><!-- Consumer associations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customers</masterLabel>
+            <translation><!-- Customers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Government</masterLabel>
+            <translation><!-- Government --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IGOs</masterLabel>
+            <translation><!-- IGOs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Investors</masterLabel>
+            <translation><!-- Investors --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KOFs / Individuals</masterLabel>
+            <translation><!-- KOFs / Individuals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media</masterLabel>
+            <translation><!-- Media --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NGOs</masterLabel>
+            <translation><!-- NGOs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>National, state and local government bodies</masterLabel>
+            <translation><!-- National, state and local government bodies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Political leaders</masterLabel>
+            <translation><!-- Political leaders --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Professional Body</masterLabel>
+            <translation><!-- Professional Body --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Suppliers</masterLabel>
+            <translation><!-- Suppliers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trade / Industry associations and professional societies</masterLabel>
+            <translation><!-- Trade / Industry associations and professional societies --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Subject Matter Expert --></label>
+        <name>Subject_Matter_Expert__c</name>
+        <picklistValues>
+            <masterLabel>Animal Testing</masterLabel>
+            <translation><!-- Animal Testing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Better Livelihoods</masterLabel>
+            <translation><!-- Better Livelihoods --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Biofuels</masterLabel>
+            <translation><!-- Biofuels --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Climate Change</masterLabel>
+            <translation><!-- Climate Change --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Confidence in Chemicals - legislation</masterLabel>
+            <translation><!-- Confidence in Chemicals - legislation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Food &amp; Beverage Taxes</masterLabel>
+            <translation><!-- Food &amp; Beverage Taxes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Food Security</masterLabel>
+            <translation><!-- Food Security --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Funding R&amp;D / Supply Chain innovations</masterLabel>
+            <translation><!-- Funding R&amp;D / Supply Chain innovations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Greenhouse gases</masterLabel>
+            <translation><!-- Greenhouse gases --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Harmonised food safety legislation</masterLabel>
+            <translation><!-- Harmonised food safety legislation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Health &amp; Hygiene</masterLabel>
+            <translation><!-- Health &amp; Hygiene --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Improving Nutrition</masterLabel>
+            <translation><!-- Improving Nutrition --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Land rights</masterLabel>
+            <translation><!-- Land rights --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mal-nutrition</masterLabel>
+            <translation><!-- Mal-nutrition --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marketing &amp; Advertising Restrictions</masterLabel>
+            <translation><!-- Marketing &amp; Advertising Restrictions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nanotechnology</masterLabel>
+            <translation><!-- Nanotechnology --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nutrition claims/profiles</masterLabel>
+            <translation><!-- Nutrition claims/profiles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging Sustainability</masterLabel>
+            <translation><!-- Packaging Sustainability --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Transition &amp; Human Rights</masterLabel>
+            <translation><!-- Social Transition &amp; Human Rights --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sustainable Sourcing</masterLabel>
+            <translation><!-- Sustainable Sourcing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sustainable sourcing (incl Palm Oil)</masterLabel>
+            <translation><!-- Sustainable sourcing (incl Palm Oil) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tax transparency</masterLabel>
+            <translation><!-- Tax transparency --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waste</masterLabel>
+            <translation><!-- Waste --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Water</masterLabel>
+            <translation><!-- Water --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Short summary of the Unilever relationship with this stakeholder, similar to what&apos;s been described in the strategy --></help>
+        <label><!-- Summary of Unilever Relationship --></label>
+        <name>Summary_of_Unilever_Relationship__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unilever SharePoint Information --></label>
+        <name>Unilever_SharePoint_Information__c</name>
+    </fields>
+    <fields>
+        <label><!-- Website --></label>
+        <name>Website__c</name>
+    </fields>
+    <layouts>
+        <layout>Organisation Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Organisation_Hierarchy --></label>
+        <name>Organisation_Hierarchy</name>
+    </webLinks>
+</CustomObjectTranslation>
