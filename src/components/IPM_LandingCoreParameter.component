@@ -1,0 +1,558 @@
+<apex:component controller="IPM_CoreParametersViewController" allowDML="true">
+ <!--<apex:attribute name="ProId" assignTo="{!ProjectName}" type="String" required="false" description="Get project id"/>-->
+    <style>
+        .panel-label label{margin-bottom: 5px;font-weight: normal;color:#333333;}
+        .panel-field-value{background-color: #f5f5f5;margin-bottom: 15px;padding: 5px !important;min-height: 30px;border: 1px #ddd solid;color:#666666;}  
+        #strategicIntentTable.table-bordered>tbody>tr>th {border: none;white-space: initial;padding: 7px;text-align: right;color:#666666;font-weight: normal;font-size: 0.850em;}
+        #strategicIntentTable.table-bordered>thead>tr>th {border: none;width: 10%;white-space: initial;padding: 4px;text-align:center;color:#666666;font-weight: normal;font-size: 0.850em;}
+        #strategicIntentTable.table-bordered{border: none;}
+        #strategicIntentTable.table-bordered>tbody>tr>td{text-align:center;}
+        .panel-title{padding-bottom: 15px;} 
+        .sectionDiv{margin:35px 15px 15px 15px; border:1px #ddd solid;}
+        .sectionDiv .sectionHeading{margin-top: -1.7%;margin-left: 1.7%;background-color: #fff;width: 23%;margin-bottom:3%;}
+        .sectionHeading#projectSpanTitle{width:21%;}
+        .tableTitle{margin-left: 19%;font-weight:normal;color:#00B389;}
+        .editBtn{float: right;background-color: #f5f5f5;padding: 5px 5px 5px 11px !important;text-align: center;margin-top: -5%;}
+        .editBtn span{font-size:1.5em;}
+        .tableIndicator{margin-top:15px;}
+        .tableIndicator .box{height: 20px;width: 20px; float:left;}
+        .orange.box{background-color: #ed8c23;}
+        .yellow.box{background-color: #ffdc42;}
+        .blue.box{background-color: #72c4e9;}
+        .tableIndicator label{text-transform:uppercase; margin:2px 5px;font-weight:normal; color:#666;}
+        .ipmPageHeader{padding-top:4.5%;}
+        /*.ipmContainer div.container-fluid{padding-top:2%;}*/
+        .sectionDiv div.ErrMsg{margin-bottom:10px;margin-top: -10px;padding-left: 0 !important;}
+    
+    /* About Project Styles */
+       .coreParamTitle{font-size: 1.2em;display: block;float: left;padding: 10px 10px 10px 0px;border-right: 1px solid #B2B2B2;margin-top: 10px;margin-bottom: 10px;font-weight: bold;color: #3B516D;}  
+       .coreDelete{padding: 15px 0px 0px 10px;}
+       .aboutProContainer{border:1px solid #929292;padding-top:10px;border-radius:4px;}
+       .coreProtitle{color:#3B516D;font-weight:bold;display:block;} 
+       .coreProvalue{display:block;font-size:1.6em;color:#007DBB;}
+       .coreTopContainer{padding:10px 0px;border-bottom:1px solid #C9CBC4;width:100%;float:left;}
+       .coreMtitle{font-weight:bold;display:block;color:#555555;}
+       .coreMvalue{color:#555555;display:block;}
+       .custCoreparmborder{border-right:1px solid #7F7F7F;height: 60px;}
+       .projectraLabel{padding-left:10px;color: #565656;position: relative;bottom: 3px;}
+       .fastTrackcheck{margin-left: 15px !important;width: 30px;height: 17px;}
+       .coreCheckrow{padding-top:10px;padding-bottom:10px;}
+       .coreBg{background:#F5F9EC;}
+       
+     /* Core Parameters page Styles */
+     
+     .coreFieldContainer{margin-bottom:20px;}
+     .coreSectionFtitle{display: block;float: left;margin-right: 30px;color: #555555;font-weight: bold;}
+     .coreSectionFvalue{color:#565656;}  
+     .custFieldsborder{border-right:0px solid #7F7F7F;}
+     .noMarginBottom{margin-bottom:0px;}
+     .fieldSection{border-bottom:1px solid #C9CBC4;float:left;padding:10px 0px 30px;}
+     .graphContainer{padding:20px 0px;}
+     .additionalMarbottom{margin-bottom:20px;}
+     .tableIndicator label{text-transform:capitalize;}
+     .graphHeading{display: block;color: #3B506B;margin-bottom:10px;font-size: 1.2em;font-weight: bold;}
+     .graphCategory{display: block;color: #555555;margin-bottom:10px;font-weight: bold;}
+     .graphContent{color:#676767;}
+      #strategicIntentTable .fa{color:#fff;}
+      
+    </style>
+        <apex:form >
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="coreParamTitle">About Project</span>
+                    <apex:outputPanel rendered="{!isEditable}">
+                        <div class="SecButtonSet coreDelete editProject " value="/apex/ipmEditProject?Pid={!projectName}">
+                            <a class="icoButton edit1" data-toggle="modal" data-target="#ipmEditProject" data-keyboard="false" data-backdrop="static" title="Edit"></a>
+                        </div>
+                    </apex:outputPanel>
+                </div>
+            </div>
+            <div class="row coreMtop">
+                <div class="col-sm-12">
+                    <div class="col-sm-12 noPadleft noPadright aboutProContainer">
+                        <div class="coreTopContainer">
+                            <div class="col-sm-3 custCoreparmborder">
+                                <span class="coreProtitle">Project Name</span>
+                                <span class="coreProvalue coreCustmargin "><apex:outputtext value="{!ProjectCoreParemeters.name}"/></span>
+                            </div>
+                            <div class="col-sm-2 custCoreparmborder">    
+                                <span class="coreMtitle">Category</span> 
+                                <span class="coreMvalue"><apex:outputtext value="{!ProjectCoreParemeters.IPM_Category_Text__c}"/></span>   
+                            </div>
+                            <div class="col-sm-2 custCoreparmborder">
+                                <span class="coreMtitle">Brand Positioning</span>
+                                <span class="coreMvalue"><apex:outputtext value="{!ProjectCoreParemeters.IPM_Brand_Positioning__c}"/></span>    
+                            </div>
+                           <!-- <div class="col-sm-2 custCoreparmborder">
+                                <span class="coreMtitle">Brand</span>
+                                <span class="coreMvalue"><apex:outputtext value="{!ProjectCoreParemeters.IPM_Brand__c}"/></span>
+                            </div>-->
+                            <div class="col-sm-3">    
+                                <span class="coreMtitle">Target Launch Date</span>
+                                <span class="coreMvalue"><apex:outputField value="{!ProjectCoreParemeters.IPM_Target_Launch_Dates__c}"/></span>
+                            </div>
+                        </div>
+                        <div class="coreTopContainer coreBg">
+                            <div class="col-sm-12">
+                                <span class="coreMtitle">Description</span>
+                                <span class="coreMdesc coreCustmargin "><apex:outputtext value="{!ProjectCoreParemeters.IPM_Project_Description__c}"/></span>
+                            </div>
+                        </div>
+                        <div class="coreTopContainer coreBg">
+                            <div class="col-sm-12">
+                                <div class="col-sm-6 noPadleft custCoreparmborder"> 
+                                    <span class="coreMtitle"><apex:outputLabel value="Who will approve the Charter Gate?" /></span> 
+                                    <span class="coreMvalue"><apex:outputtext value="{!ProjectCoreParemeters.IPM_Approver_of_Charter__c}"/></span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span class="coreMtitle"><apex:outputLabel value="Who will approve the Contract and Market Ready Gate?" /></span>
+                                    <span class="coreMvalue"><apex:outputtext value="{!ProjectCoreParemeters.IPM_GateKeeping_Model__c}"/> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 coreBg coreCheckrow noPadleft">
+                               <apex:inputCheckbox styleClass="fastTrackcheck" disabled="true" value="{!ProjectCoreParemeters.IPM_Fast_Track_Project__c}"/>
+                                <span class="projectraLabel">I want this project to be a Fast track Project</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <apex:pageMessages id="ValidationMsg" escape="false"></apex:pageMessages> 
+                <div class="col-sm-12">
+                    <span class="coreParamTitle">Core Parameters</span>
+                    <apex:outputPanel rendered="{!isEditable}">
+                    <div class="SecButtonSet coreDelete">
+                        <a class="icoButton edit1 editcoreparam" data-toggle="modal" data-target="#ipmEditCoreparameters" data-keyboard="false" data-backdrop="static" title="Edit"></a>
+                    </div>
+                     </apex:outputPanel>
+                    <apex:pagemessages />
+                </div>
+            </div>
+            <div class="row coreMtop">
+                <div class="col-sm-12">
+                    <div class="col-sm-12 noPadleft noPadright aboutProContainer">
+                        <div class="col-sm-12 noPadleft noPadright fieldSection">
+                            <div class="col-sm-6 noPadright custFieldsborder">
+                               <!-- <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFtitle">Project Type</span>
+                                    </div>
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFvalue">:  {!ProjectCoreParemeters.IPMProject_Type__c}</span>
+                                    </div>
+                                </div>-->
+                                <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFtitle">Market Place Activity</span>
+                                    </div>
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFvalue">:  {!ProjectCoreParemeters.IPM_Answer_of_Q1__c}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFtitle">Consumer Value Perception</span>
+                                    </div>
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFvalue">:  {!ProjectCoreParemeters.IPM_Answer_of_Q2__c}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 noPadleft noMarginBottom noPadright coreFieldContainer">
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFtitle">Enabling Technology</span>
+                                    </div>
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFvalue">:  {!ProjectCoreParemeters.IPM_Answer_of_Q3__c}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="col-sm-6">
+                                <div class="coreFieldContainer">
+                                    <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
+                                        <div class="col-sm-6 noPadleft noPadright">
+                                            <span class="coreSectionFtitle">Project Span</span>
+                                        </div>
+                                        <div class="col-sm-6 noPadleft noPadright">
+                                            <span class="coreSectionFvalue">:  {!ProjectCoreParemeters.IPMProject_Span__c}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>-->
+                        </div>
+                        <div class="col-sm-12 coreBg graphContainer">
+                            <apex:outputPanel id="strategicIntent">
+                                <apex:outputPanel rendered="{! IF(OR(ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt10,ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt11,ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt12,ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt13,ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt14),'false','true')}">
+                                    <div class="col-sm-5">
+                                        <apex:outputPanel rendered="{! If(OR(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                            AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                            AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                              AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                               AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                              AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                              AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                              AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                              AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                              AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9)
+                                                                             ),'true','false')}">
+                                           <apex:outputText value="Strategic Intent" styleclass="graphHeading"/>
+                                           <apex:outputText value="Innovation"  styleClass="graphCategory"/>
+                                           <apex:outputText styleClass="graphContent" value="{!Innovationtxt}"/>
+                                        </apex:outputPanel> 
+                                        <apex:outputPanel rendered="{! IF(OR(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt5,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                                 AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                                 AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt5,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                                 AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                                 AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                                 AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt5,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                                 AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                                 AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                                 AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                                 AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt5,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9)
+                                                                                 ),'true','false')}">
+                                           <apex:outputText value="Strategic Intent" styleclass="graphHeading"/>
+                                           <apex:outputText value="Renovation" styleClass="graphCategory"/> 
+                                           <apex:outputText styleClass="graphContent" value="{!Renovationtxt}"/>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{! IF(ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt9,'true','false')}">
+                                            <apex:outputText value="Strategic Intent" styleclass="graphHeading"/>
+                                            <apex:outputText value="BLG" styleClass="graphCategory"/> 
+                                            <apex:outputText styleClass="graphContent" value="{!BLGtxt}"/>
+                                        </apex:outputPanel> 
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <div class="table-responsive" id="strategicIntentTableDiv">  
+                                            <table class="table-bordered" id="strategicIntentTable">
+                                               <!-- <caption class="panel-heading question tableTitle"></caption>-->
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>{!Q2_Opt1}</th>
+                                                            <th>{!Q2_Opt2}</th>
+                                                            <th>{!Q2_Opt3}</th>       
+                                                            <th>{!Q2_Opt4}</th>
+                                                            <th>{!Q2_Opt5}</th>
+                                                        </tr>
+                                                   </thead>
+                                                   <tbody>
+                                                       <tr>
+                                                           <th>{!Q3_Opt1}</th>
+                                                               <td bgcolor="#ed8c23"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                               <td bgcolor="#ee9635"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                               <td bgcolor="#ef9f48"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                               <td bgcolor="#f1a859"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                               <td bgcolor="#ffdc42"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt5,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                       </tr>
+                                                       <tr>
+                                                           <th>{!Q3_Opt2}</th>
+                                                           <td bgcolor="#ee9635"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                           <td bgcolor="#ef9f48"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                           <td bgcolor="#f1a859"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                           <td bgcolor="#ffdc42"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                           <td bgcolor="#fed82d"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt5,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                       </tr>
+                                                       <tr>
+                                                           <th>{!Q3_Opt3}</th>
+                                                           <td bgcolor="#ef9f48"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                           <td bgcolor="#f1a859"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                           <td bgcolor="#ffdc42"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                           <td bgcolor="#fed82d"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                           <td bgcolor="#fed51b"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt5,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                     </tr>
+                                                     <tr>
+                                                         <th>{!Q3_Opt4}</th>
+                                                             <td bgcolor="#f1a859"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                             <td bgcolor="#ffdc42"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                             <td bgcolor="#fed82d"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                             <td bgcolor="#fed51b"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                             <td bgcolor="#ffd207"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt5,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                     </tr>
+                                                     <tr>
+                                                         <th>No change in Pack or Product (BLG)</th>
+                                                             <td class="graphNoborder"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt9,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt1),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                             <td bgcolor="#72c4e9"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt9,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt2),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                             <td bgcolor="#72c4e9"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt9,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt3),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                             <td bgcolor="#72c4e9"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt9,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt4),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                             <td bgcolor="#72c4e9"><apex:outputPanel rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt9,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt5),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                     </tr>
+                                                 </tbody>
+                                            </table> 
+                                            <div class="pull-right txtAlignright tableIndicator">
+                                                <div class="buttonmarRight graphLegend">
+                                                    <div class="box orange cust-Inputs"></div> 
+                                                    <label>Innovation</label>
+                                                </div>
+                                                <div class="buttonmarRight graphLegend">
+                                                    <div class="box yellow cust-Inputs"></div> 
+                                                    <label>Renovation</label>
+                                                </div>
+                                                <div class="graphLegend">
+                                                    <div class="box blue cust-Inputs"></div> 
+                                                    <label>BLG</label>
+                                                </div>  
+                                            </div>
+                                            <div class="GOperational">
+                                                <apex:outputPanel rendered="{! IF(OR(ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt10,ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt11,ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt12,ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt13,ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt14),'true','false')}"><span>This project is classified as <b>{!$Label.IPM_Strategic_Intent_message}</b></span></apex:outputPanel>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="coreParamTitle">Additional Parameters</span>
+                    <apex:outputPanel rendered="{!isEditable}">
+                    <div class="SecButtonSet coreDelete">
+                        <a class="icoButton edit1 editadditionalparam" data-toggle="modal" data-target="#ipmEditAdditionalParameters" data-keyboard="false" data-backdrop="static" title="Edit" ></a>
+                    </div>
+                    </apex:outputPanel>
+                    <apex:pagemessages />
+                </div>
+            </div>
+            <div class="row coreMtop">
+                <div class="col-sm-12">
+                    <div class="col-sm-12 noPadleft coreBg noPadright additionalMarbottom aboutProContainer">
+                        <div class="col-sm-12 noPadleft noPadright fieldSection">
+                            <div class="col-sm-6 noPadright custFieldsborder">
+                               <!-- <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFtitle">Market</span>
+                                    </div>
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFvalue">:  {!ProjectCoreParemeters.IPM_Market__c}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFtitle">Sector</span>
+                                    </div>
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFvalue">:  {!ProjectCoreParemeters.IPM_Sector__c}</span>
+                                    </div>
+                                </div>-->
+                                <apex:outputPanel rendered="{!if( OR(ProjectCoreParemeters.IPM_Category_Text__c=='HHC',ProjectCoreParemeters.IPM_Category_Text__c=='Household Care',ProjectCoreParemeters.IPM_Category_Text__c=='HOUSEHOLD CARE'),TRUE,FALSE)}">
+                                <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFtitle">Sub-Sector</span>
+                                    </div>
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFvalue">:  {!ProjectCoreParemeters.IPM_Sub_sector__c}</span>
+                                    </div>
+                                </div>
+                                </apex:outputPanel>
+                                 <apex:outputPanel rendered="{! if(OR(ProjectCoreParemeters.IPM_Category_Text__c=='Laundry',ProjectCoreParemeters.IPM_Category_Text__c=='LAUNDRY'),TRUE,FALSE)}">
+                                     <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFtitle">Market</span>
+                                    </div>
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFvalue">:  {!ProjectCoreParemeters.IPM_Market__c}</span>
+                                    </div>
+                                </div>
+                                </apex:outputPanel>
+                                 <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFtitle">Company</span>
+                                    </div>
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFvalue">:  {!ProjectCoreParemeters.IPM_Company_Card__r.name}</span>
+                                    </div>
+                                </div>
+                               <!-- <div class="col-sm-12 noPadleft noMarginBottom noPadright coreFieldContainer">
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFtitle">Platform</span>
+                                    </div>
+                                    <div class="col-sm-6 noPadleft noPadright">
+                                        <span class="coreSectionFvalue">:  {!ProjectCoreParemeters.IPMPlatform__c}</span>
+                                    </div>
+                                </div>-->
+                            </div>
+                           <!-- <div class="col-sm-6">
+                                
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+           
+         <!--  <div class="row">
+                <div class="col-sm-9 pull-left">
+                 <apex:pageMessages id="ValidationMsg" escape="false"></apex:pageMessages>                                                 
+                                          
+                    <div class="row">
+                        <div class="col-sm-12 rightColumn">
+                            <div class="panel">
+                                <div class="panel-heading teal ipmPanelHeading">Core Parameters</div>
+                                <apex:pagemessages />  
+                                <div class="sectionDiv">
+                                    <div class="sectionHeading teal ipmPanelHeading">Project Scope</div>
+                                    
+                                    <div class="panel-body">
+                                        <div class="col-sm-offset-11 col-sm-1 editBtn" data-toggle="modal" data-target="#ipmModal" id="edit" value="/apex/ipmCoreParameters?id={!ProjectName}&slide=ProjectScope" title="Edit Project Scope" data-backdrop="static" data-keyboard="false"><span class="fa fa-pencil"></span></div>
+                                        <div class="row">
+                                        <apex:outputPanel id="QuestionSection">
+                                            <div class="col-sm-5">
+                                                <div class="panel-label"><apex:outputLabel value="Market Place Activity" styleClass="required"/></div>
+                                                <div class="col-sm-12 panel-field-value"><apex:outputField value="{!ProjectCoreParemeters.IPM_Answer_of_Q1__c}"/>
+                                                </div> 
+                                                <div class="ErrMsg col-xs-12"><apex:outputText value="Please select Market Place Activity" rendered="{!isAnswer1Empty}" /></div>
+                                                <div class="panel-label"><apex:outputLabel value="Consumer Value Perception" styleClass="{! IF(isAnswer2asterisk==true,'required','')}"/></div>
+                                                <div class="col-sm-12 panel-field-value"><apex:outputField value="{!ProjectCoreParemeters.IPM_Answer_of_Q2__c}"/>
+                                                </div>
+                                                <div class="ErrMsg col-xs-12">
+                                                 <apex:outputText value="Please select Consumer Value Perception" rendered="{!isAnswer2Empty}"/>
+                                                </div>
+                                                <div class="panel-label"><apex:outputLabel value="Enabling Technology" styleClass="{! IF(isAnswer3asterisk==true,'required','')}" /></div>
+                                                <div class="col-sm-12 panel-field-value"><apex:outputField value="{!ProjectCoreParemeters.IPM_Answer_of_Q3__c}"/> 
+                                                </div>
+                                                <div class="ErrMsg col-xs-12"><apex:outputText value="Please select Enabling Technology" rendered="{!isAnswer3Empty}"/></div>
+                                            </div>
+                                            <div class="col-sm-offset-1 col-sm-5">
+                                                <div class="panel-label"><apex:outputLabel value="Project Span" styleClass="required"/></div>
+                                                <div class="col-sm-12 panel-field-value"><apex:outputField value="{!ProjectCoreParemeters.IPMProject_Span__c}"/></div> 
+                                                <div class="ErrMsg col-xs-12"><apex:outputText value="Please select Project Span" rendered="{!isProjectSpanEmpty}" /></div>
+                                               
+                                                <div class="panel-label"><apex:outputLabel value="Project Type" styleClass="required" /></div>
+                                                <div class="col-sm-12 panel-field-value"><apex:outputField value="{!ProjectCoreParemeters.IPMProject_Type__c}"/></div>
+                                                  <div class="ErrMsg col-xs-12"><apex:outputText value="Please select Project Type" rendered="{!isProjectTypeEmpty}" /></div>
+                                               
+                                            </div> 
+                                        </apex:outputPanel>
+                                        </div>
+                                        <div class="row">
+                                            <apex:outputPanel rendered="{! IF(OR(ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt10,ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt11,ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt12,ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt13,ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt14),'false','true')}">
+                                                <div class="col-sm-12 table-responsive" id="coreParamOverview">
+                                                    <table class="table-bordered" id="strategicIntentTable">
+                                                       <caption class="tableTitle">Strategic Intent</caption>
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th>{!Q2_Opt1}</th>
+                                                                <th>{!Q2_Opt2}</th>
+                                                                <th>{!Q2_Opt3}</th>       
+                                                                <th>{!Q2_Opt4}</th>
+                                                                <th>{!Q2_Opt5}</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>{!Q3_Opt1}</th>
+                                                                <td bgcolor="#ed8c23"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                                <td bgcolor="#ee9635"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                                <td bgcolor="#ef9f48"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                                <td bgcolor="#f1a859"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                                <td bgcolor="#ffdc42"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt5,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>{!Q3_Opt2}</th>
+                                                                <td bgcolor="#ee9635"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                                <td bgcolor="#ef9f48"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                                <td bgcolor="#f1a859"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                                <td bgcolor="#ffdc42"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                                <td bgcolor="#fed82d"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt5,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>{!Q3_Opt3}</th>
+                                                                <td bgcolor="#ef9f48"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                                <td bgcolor="#f1a859"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                                <td bgcolor="#ffdc42"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                                <td bgcolor="#fed82d"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                                <td bgcolor="#fed51b"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt5,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <th>{!Q3_Opt4}</th>
+                                                                <td bgcolor="#f1a859"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt1,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                                <td bgcolor="#ffdc42"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt2,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                                <td bgcolor="#fed82d"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt3,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                                <td bgcolor="#fed51b"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                                <td bgcolor="#ffd207"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q3__c==Q3_Opt4,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt5,ProjectCoreParemeters.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"/></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>No change in Pack or Product (BLG)</th>
+                                                                <td bgcolor="#72c4e9"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt9,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt1),'true','false')}"/></td>
+                                                                <td bgcolor="#72c4e9"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt9,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt2),'true','false')}"/></td>
+                                                                <td bgcolor="#72c4e9"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt9,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt3),'true','false')}"/></td>
+                                                                <td bgcolor="#72c4e9"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt9,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt4),'true','false')}"/></td>
+                                                                <td bgcolor="#72c4e9"><apex:image url="{!$Resource.Strategic_Pointer}" rendered="{! IF(AND(ProjectCoreParemeters.IPM_Answer_of_Q1__c==Q1_Opt9,ProjectCoreParemeters.IPM_Answer_of_Q2__c==Q2_Opt5),'true','false')}"/></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table> 
+                                                </div>
+                                                <div class="col-sm-9 pull-right tableIndicator">
+                                                <div class="col-sm-4">
+                                                    <div class="box orange"></div> 
+                                                    <label>Innovation</label>
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <div class="box yellow"></div> 
+                                                    <label>Renovation</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="box blue"></div> 
+                                                    <label>BLG</label>
+                                                </div>  
+                                            </div>
+                                            </apex:outputPanel> 
+                                        </div>    
+                                    </div>
+                                </div>
+                                <div class="sectionDiv">
+                                    <div class="sectionHeading teal ipmPanelHeading" id="projectSpanTitle">Project Span</div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-offset-11 col-sm-1 editBtn" data-toggle="modal" data-target="#ipmModal" id="edit" value="/apex/ipmCoreParameters?id={!ProjectName}&slide=ProjectSpan" title="Edit Project Span" data-backdrop="static" data-keyboard="false"><span class="fa fa-pencil"></span></div>
+                                        <div class="row">
+                                          <apex:outputPanel id="ProjectSpan">
+                                            <div class="col-sm-5">
+                                                <div class="panel-label"><apex:outputLabel value="Category Group" styleClass="required"/></div>
+                                                <div class="col-sm-12 panel-field-value"><apex:outputField value="{!ProjectCoreParemeters.IPM_Category_Group__c}"/></div> 
+                                                
+                                                <div class="panel-label"><apex:outputLabel value="Sector"/></div>
+                                                <div class="col-sm-12 panel-field-value"><apex:outputField value="{!ProjectCoreParemeters.IPM_Sector__c}"/></div> 
+                                                
+                                                <div class="panel-label"><apex:outputLabel value="GIC " styleClass="required"/></div>
+                                                <div class="col-sm-12 panel-field-value"><apex:outputField value="{!ProjectCoreParemeters.IPMCompany__c}"/></div>   
+                                                <div class="ErrMsg col-xs-12"><apex:outputText value="Please select GIC" rendered="{!isCompanyEmpty}"/></div>
+                                             
+                                                <div class="panel-label"><apex:outputLabel value="Platform" styleClass="required"/></div>
+                                                <div class="col-sm-12 panel-field-value"><apex:outputField value="{!ProjectCoreParemeters.IPMPlatform__c}"/> </div>   
+                                                <div class="ErrMsg col-xs-12"><apex:outputText value="Please select Platform" rendered="{!isPlatformEmpty}"/></div>
+                                             
+                                                
+                                            </div>
+                                            <div class="col-sm-offset-1 col-sm-5">
+                                                <div class="panel-label"><apex:outputLabel value="Market"/></div>
+                                                <div class="col-sm-12 panel-field-value"><apex:outputField value="{!ProjectCoreParemeters.IPM_Market__c}"/></div> 
+                                                
+                                                <div class="panel-label"><apex:outputLabel value="Sub-Sector"/></div>
+                                                <div class="col-sm-12 panel-field-value"><apex:outputField value="{!ProjectCoreParemeters.IPM_Sub_sector__c}"/></div> 
+                                                
+                                                <div class="panel-label"><apex:outputLabel value="Region" styleClass="required"/></div>
+                                                <div class="col-sm-12 panel-field-value"><apex:outputField value="{!ProjectCoreParemeters.IPMRegion__c}"/></div> 
+                                                <div class="ErrMsg col-xs-12"><apex:outputText value="Please select Region" rendered="{!isRegionEmpty}"/></div>
+                                             
+                                            </div>
+                                             </apex:outputPanel> 
+                                        </div>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    </div> 
+                                
+                    <div class="ipmButtonGroup ipmFromAction pull-right">
+                       <!-- <apex:commandLink action="{!BackToProjectIntermediate}" value="Save & Continue" reRender="ValidationMsg,QuestionSection,ProjectSpan" styleClass="ipmButton teal" />
+                    </div>
+                    </div>
+                    
+                </div>-->
+                 
+        </apex:form>
+       
+</apex:component>

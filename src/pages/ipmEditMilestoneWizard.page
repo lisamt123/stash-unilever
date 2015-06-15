@@ -1,0 +1,146 @@
+<apex:page standardController="IPM_Milestone__c" extensions="IPM_Milestone"  sidebar="false" standardStylesheets="true" showHeader="false">      
+        <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/bootstrap.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmButtons.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/jquery.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/bootstrap.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'assets/font-awesome/css/font-awesome.min.css')}"/>
+        <style>
+            .inlineEdit{margin:10px 10px 0px 10px;}
+            .inlineEdit > div{padding-left:5px; padding-right:5px;}
+            .inlineEdit > div:first-child{padding-left:0px;}
+            .inlineEdit .ipmButtonGroup{padding-right: 0;width:13%;}
+            .inputField{margin-bottom:15px;}
+            .inputField input, .inputField select{width:100%;height:30px;border-radius: 3px; border: 1px #a8a8a8 solid;}
+            .fa-calendar:before{margin-left: -41px;}
+            .middlePanel{background:#f9f9f9; border-top:1px #d7e1e0 solid; border-bottom:1px #d7e1e0 solid;margin-bottom: 10px;padding-top: 5px;}
+            .fieldFont{font-size:1em; color:#555555;}
+            .fieldLabel{padding-top:5px; padding-bottom:5px; font-weight:bold;}
+            .modal-backdrop.in {opacity: 0.7;}
+            .date input{height:30px;border-radius: 4px;border: 1px #ddd solid;width:100%;}
+            .input-group.date{width:100%;}
+            .ipmButtonGroup .ipmButton:first-child{margin-right: 0;}
+            // html{height:100%; overflow-y:hidden;}
+             /* lookup search icon*/
+             .lookupInput a{margin-left: -9%;}
+             input[disabled], select:disabled{background: #f7f7f7; border:1px #cdcdcd solid;}
+            //.dateInput .dateInputBox{width:66%;}
+            .input-group-addon{padding: 0px;margin-top: -23px;width: 1px;background:none; border:none;color: #007dbb;font-size: 1.3em; left:100%; position:absolute;}
+            //.completedDateCalendar{top:124px;}
+            
+            .messageTable td ul li{margin-left:0px !important;}
+             .messageTable td ul{padding-left:0px !important;margin-top: -25px !important;}
+             .message .messageTable .messageCell{margin-top:-6px !important;float:left;}
+             .errorMsg{padding: 10px;background: #ffebec;border-radius: 3px;margin-top: 8px;}
+             .error{border:1px solid #e03729 !important;}
+             .popupContent .ipmButton{width:11%;}
+             .popupContent{margin-top:10px;}
+             .mPhaseEditDiv{margin-left:14%;}
+             .dateDropDown{width:12.8%;}
+        </style>
+        <div class="container-fluid">
+            <div class="row" id="EditTask">
+                <apex:form id="form">
+                <apex:pageMessages id="messages"/> 
+                    <div class="row inlineEdit">
+                        <div class="col-xs-offset-2 col-xs-3">
+                            <!--<div class=""><apex:outputLabel value="Milestone" styleClass="fieldLabel fieldFont" /></div>-->
+                            <div class="inputField"><apex:inputField id="mName" value="{!tasks.IPM_Name__c}" styleClass="fieldFont" required="true" /></div>
+                            <script>document.getElementById('{!$Component.mName}').disabled = {!if(tasks.IPM_Type_of_Milestone__c == 'Standard',true,false)};</script> 
+                        </div>
+                        <div class="col-xs-offset-2 col-xs-2 mPhaseEditDiv">
+                            <!--<div class=""><apex:outputLabel value="Phase" styleClass="fieldLabel fieldFont"/></div>-->
+                            <div class="inputField"><apex:inputField id="mPhase" value="{!tasks.IPM_Phase__c}" styleClass="fieldFont mPhaseEdit" required="true"/></div>
+                            <script>
+                                document.getElementById('{!$Component.mPhase}').disabled = {!if(tasks.IPM_Type_of_Milestone__c == 'Standard',true,false)};
+                            </script>
+                        </div>
+                        <div class="col-xs-1 dateDropDown">
+                            <!--<div class=""><apex:outputLabel value="Due Date" styleClass="fieldLabel fieldFont"/></div>-->
+                            <div class="inputField">
+                                <apex:inputField value="{!tasks.IPM_Due_Date__c}" id="DateP" styleClass="dateInputBox calendar"><!-- id="Duedate"> -->
+                                    <!--<span class="input-group-addon fa fa-calendar" id="datepicker" />-->
+                                </apex:inputField>
+                                <script>document.getElementById('{!$Component.DateP}').disabled = {!if(AND(tasks.IPM_Type_of_Milestone__c == 'Standard',IsDateEdit='false'),'true','false')};
+                              
+                                </script>                      
+                            </div>
+                        </div>
+                        <!--<div class="col-xs-1 dateDropDown">
+                            <div class="inputField">
+                                <apex:inputField value="{!tasks.IPM_Completed_On__c}" styleClass="dateInputBox calendar" id="Completeon">
+                                </apex:inputField>
+                                <script>document.getElementById('{!$Component.Completeon}').disabled = {!if(AND(tasks.IPM_Type_of_Milestone__c == 'Standard',IsDateEdit='false'),true,false)};
+                                </script> 
+                            </div> 
+                        </div>-->
+                        <div class="col-xs-2 ipmButtonGroup pull-right">   
+                            <div class="pull-right">    
+                                <apex:commandLink action="{!dosaveTasks}" value="Add" styleClass="ipmButton green" rendered="{!if(AND(taskId == null,tasks.IPM_Type_of_Milestone__c == 'Standard',IsDateEdit='false'),true,false)}" onComplete="pageclose();"/>
+                                <apex:commandLink action="{!updateTasksMileStones}" value="Save" styleClass="ipmButton green saveMilestone" reRender="form,displaymessage" oncomplete="{!if(validate,'pageclose();','')}" rendered="{!if(taskId != null,true,false)}" />
+                                <apex:commandLink value="Cancel" styleClass="ipmButton" onClick="pageclose();"/>
+                            </div>
+                        </div>
+                    </div>
+                </apex:form>
+            
+                <apex:form >
+                    <apex:outputPanel id="displaymessage">
+                        <apex:outputPanel styleClass="popupBg" layout="block" rendered="{!displayPopUp}"/>
+                        <apex:outputPanel styleClass="popup" layout="block" rendered="{!displayPopUp}">
+                            <div class="col-xs-12 popupContent ipmButtonGroup" style="padding:0;">
+                                <span>Do We need to update tasks?</span>
+                                <apex:commandLink value="yes" styleClass="ipmButton green" action="{!doupdateTasks}" oncomplete="pageclose();"/>
+                                <apex:commandLink value="No" styleClass="ipmButton grey" action="{!dosaveTasks}" oncomplete="pageclose();"/>
+                            </div>
+                            <div class="ipmButtonGroup pull-center">
+                            
+                            </div>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                    <apex:outputPanel id="popup">
+                        <apex:outputPanel styleClass="popupBg" layout="block" rendered="{!displayPopUp}"/>
+                        <apex:outputPanel styleClass="popup" layout="block" rendered="{!displayPopUp}">
+                            <div class="popupContent">No Project Resource With this assigned user. Do you want to create a Project Resource</div>
+                            <div class="ipmButtonGroup pull-center">
+                            </div>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:form>
+            </div>
+        </div>
+        <apex:includeScript value="{!URLFOR($Resource.ipmResource, 'js/bootstrap-datepicker.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.ipmResource, 'css/datepicker.css')}"/>               
+        <script type="text/javascript">
+            var jq=jQuery.noConflict();
+            var dateFormat = "yyyy-mm-dd";
+            jq.browser = {};
+            jq(function() {
+                jq("[id$=mlktp]").hide();
+                jq('.dateInput .dateFormat').hide();
+            });
+            
+            jq(document).on('focus', '.dateInputBox', function(){window.parent.jq('#ipmModalEdit .modal-dialog').height('40%');});
+            jq(document).on('click', '.saveMilestone', function(){window.parent.jq('#ipmModalEdit .modal-dialog').height('20%');});
+            jq(document).on('focus','.mPhaseEdit', function(){console.log('here');window.parent.jq('#ipmModalEdit .modal-dialog').height('25%');});
+            jq(document).on('blur','.mPhaseEdit', function(){window.parent.jq('#ipmModalEdit .modal-dialog').height('16%');});
+            jq(document).on('blur', '.dateInputBox', function(){
+                setTimeout(function(){
+                            if(!jq('.datePicker').is(':visible') && !jq('.mPhaseEdit').is(':focus')){
+                                window.parent.jq('#ipmModalEdit .modal-dialog').height('16%');
+                            }
+                        },200);
+                    }); 
+        </script>
+        <script>
+            function pageclose(){
+                
+                  if('{!ProjectWizard}' !='' || '{!ProjectWizard}'!=null ){
+                   window.top.location.href='/apex/ipmProjectSetup?Pid={!projectId}&Milestoneid=milestones';
+                  }else{
+                    window.top.location.href='/apex/IPM_Tasklist?id={!projectId}';
+                   } 
+                   
+                }
+                
+        </script>
+    </apex:page>

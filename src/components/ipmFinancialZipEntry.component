@@ -1,0 +1,8 @@
+<apex:component >
+    <apex:attribute name="path" type="string" description="Path to entry in the zip file"/>
+    <apex:attribute name="data" type="string" description="File data" default=""/>
+    <apex:attribute name="base64" type="boolean" description="Is the data base64 encoded?" default="false"/>
+    <script>
+        zipFile.file('{!path}', '{!JSENCODE(data)}', {base64: {!base64}});
+    </script>
+</apex:component>

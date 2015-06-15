@@ -1,0 +1,23 @@
+<apex:page controller="im_NewIssueLauncherController" sidebar="false" showHeader="false" tabStyle="im_Issue__c">
+    <style>
+        #advice{
+            font-size: 1.3em;
+        }
+    </style>
+        
+    <script>
+        function newIssue(){
+            window.parent.location = "/{!issueObjectPrefix}/e";
+        }
+    </script>
+    
+    <apex:pageBlock >
+        <div id="advice">
+            To report a new issue please click on the button below.
+        </div>
+        
+        <!-- Note that we're NOT using an apex form here because it uses POST which causes a RESUBMISSION error if the user hits Back and not Cancel -->
+        <input type="submit" onclick="newIssue()" value="Report an Issue"/>
+    </apex:pageBlock>
+    
+</apex:page>

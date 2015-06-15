@@ -1,0 +1,70 @@
+<apex:page standardcontroller="uw_Brand_Link_Sections__c" extensions="BrandCentreExtension">
+<div align="right">
+    
+    
+        
+
+
+ <div align="right">
+    
+    <a href="#" onclick="Popup=window.open('/apex/bc_help_pop_up10','Popup','toolbar=no,
+location=no,status=no,menubar=no,scrollbars=yes,resizable=no, width=720,height=750,left=600,top=23'); return false;">
+Help for this page</a><img  src="{!URLFOR($Resource.fuse_brief1_resources_1, 'help-icon.png')}" alt="Help"  />
+    
+    </div>
+    
+
+
+
+    
+    </div>
+
+
+
+<apex:form >
+
+<apex:pageblock >
+
+<apex:pageblocksection >
+
+
+
+<apex:inputtext value="{!name}" />
+<apex:inputtext value="{!Ordinal}" />
+
+<apex:selectList value="{!position}" multiselect="false" size="1">
+            <apex:selectOption itemValue="Horizontal Position" itemLabel="Horizontal Menu"/>
+            <apex:selectOption itemValue="Vertical Position" itemLabel="Vertical Menu"/>
+           
+
+        </apex:selectList>
+
+
+
+<apex:selectList value="{!Styleclass}" multiselect="false" size="1">
+            <apex:selectOption itemValue="accordion-content brandessentail" itemLabel="accordion-content brandessentail"/>
+            <apex:selectOption itemValue="accordion-content" itemLabel="accordion-content"/>
+            <apex:selectOption itemValue="accordion-content bransexperience" itemLabel="accordion-content bransexperience"/>
+            <apex:selectOption itemValue="accordion-content clearfix brandassets" itemLabel="accordion-content clearfix brandassets"/>
+
+        </apex:selectList>
+
+
+
+<apex:outputpanel rendered="{!position == 'Horizontal Menu'}" id="menu">
+
+</apex:outputpanel>
+
+
+
+
+
+
+</apex:pageblocksection>
+<apex:commandbutton value="Save" action="{!savesection}" rerender="menu" id="theButton"/>
+</apex:pageblock>
+
+</apex:form>
+
+
+</apex:page>

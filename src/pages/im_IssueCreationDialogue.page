@@ -1,0 +1,26 @@
+<apex:page standardController="im_Issue__c" extensions="im_IssueCreationDialogueController" showHeader="false" sidebar="false"> 
+  <apex:pageMessages />
+  <!--Author : Sachin Chincholi Date:25/09/2013 Version:1.0
+Purpose : On Click of the Submit for Approval, on the Issue detail Page,
+should convert the Status of the Issue_Status__c in the record to Submitted and also copy the 
+data in Issue_Severity__c to Issue_Severity_on_submission__c and update the record -->
+
+   <!-- This Block is rendered, when Issue Status is New -->
+  <apex:pageBlock rendered="{!im_Issue__c.Issue_Status__c == 'New'}" >
+      <div class="Warning"><div style="text-align: center;"><span style="font-size: x-large;color:red;">{!$Label.im_issueCreationDialogue_New}</span></div></div>
+      <div style="text-align: center;"><b>{!$Label.im_issueCreationDialogue_NewTagline}</b></div>
+  </apex:pageBlock>
+    
+    <!-- This Block is rendered, when Issue Status is Submitted-->
+  <apex:pageBlock rendered="{!im_Issue__c.Issue_Status__c == 'Submitted'}">
+      <div class="Warning"><div style="text-align: center;"><span style="font-size: x-large;color:Green;">{!$Label.im_issueCreationDialogue_Submitted}</span></div></div>
+      <div style="text-align: center;"><b>{!$Label.im_issueCreationDialogue_SubmittedTagline}</b></div>
+  </apex:pageBlock>
+     
+    <!-- This Block is rendered, when Issue Status is Reviewed--> 
+  <apex:pageBlock rendered="{!im_Issue__c.Issue_Status__c == 'Reviewed'}">
+      <div class="Warning"><div style="text-align: center;"><span style="font-size: x-large;color:blue;">{!$Label.im_issueCreationDialogue_Reviewed}</span></div></div>
+      <div style="text-align: center;"><b>{!$Label.im_issueCreationDialogue_ReviewedTagline}</b></div>
+  </apex:pageBlock>
+  
+</apex:page>

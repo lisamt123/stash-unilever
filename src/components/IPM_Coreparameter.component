@@ -1,0 +1,824 @@
+<apex:component controller="IPM_CoreParameterRevamp" allowDML="true">
+ <!--<apex:attribute name="ProId" assignTo="{!ProjectID}" type="String" required="false" description="Get project id"/>-->
+   
+    <style>
+        .mainMenuDiv #closeBtn{background:url("{!URLFOR($Resource.ipmResource, 'images/ipmCoreParamClose.png')}") no-repeat !important;}
+    
+      </style>       
+ <div class="row" id="coreParamContent">
+        <apex:form id="frm">   
+        
+            <div id="myCarousel" class="col-xs-12 negateMarginTop carousel" data-interval="false" data-ride="carousel" data-wrap="false">
+                
+                 <!--Carousel indicators -->
+                <div class="col-xs-10 noPadleft noPadright carousel-inner">
+                    <div class="item active">
+                        <div class="panel">          
+                            <div class="panel-body noPadleft noPadright">
+                                <div class="container-fluid">
+                                    <div class="row"> 
+                                        <div class="col-sm-12 noPadleft">
+                                            <span class="coreParam">"Core Parameters" define the key attributes for a project and are mandatory. Complete the following five steps
+as best as you can, using<br/> the help text as a guide. (You may come back and make changes later.)</span><br/>
+                                          
+                                        </div>
+                                        <div class="col-sm-12 noPadleft">
+                                            <div class="questionNavigation">
+                                                <!--<div class="col-sm-1 noPadleft questNumber">
+                                                    <span class="singleNumber">2.1</span>
+                                                    <span class="allNumbers">1 of 5</span>
+                                                </div>-->
+                                                <div class="col-sm-11 noPadleft questName">
+                                                    <span class="coreTitle">2.1 Market Place Activity</span>
+                                                </div>
+                                            </div>    
+                                        </div>
+                                    </div>  
+                                </div> 
+                                <div class="panel-heading question"><label id="Q1Description">{!Q1_description}</label></div>
+                               <!--<apex:outputPanel id="selectedOne">
+                                    <div id="answerOne" value='{!Answerone}'></div>
+                               </apex:outputPanel>-->
+                               <apex:outputPanel rendered="{! if(AND(IsQuestionOne=true,isEditable=true),true,false) }" >
+                                <div class="slide-bar" id="slideBar1">
+                                    <span class="slideIcon fa fa-circle" id="slideIcon1" />                                    
+                                    <div class="col-xs-12 sliderTrack"> 
+                                       <label for="Select" Style="color:#004e94" class="fstchild"><span>Select</span></label>                                  
+                                       <label for="Q1_Opt1" Style="color:#004e94"><span>{!Q1_Opt1}</span></label>
+                                        <input type="radio" name="Question1" id="Q1_Opt1" value="{!Q1_Opt1}" class="hide" title="{! if(Q1_Opt1==IPM_Coreparameter.IPM_Answer_of_Q1__c,'checked','unchecked')}"/>
+
+                                        <label  for="Q1_Opt2" Style="color:#004e94"><span>{!Q1_Opt2}</span></label>
+                                        <input type="radio" name="Question1" id="Q1_Opt2" value="{!Q1_Opt2}" class="hide" title="{! if(Q1_Opt2==IPM_Coreparameter.IPM_Answer_of_Q1__c,'checked','unchecked')}"/>
+
+                                        <label for="Q1_Opt3" Style="color:#004e94"><span>{!Q1_Opt3}</span></label>
+                                        <input type="radio" name="Question1" id="Q1_Opt3" value="{!Q1_Opt3}" class="hide" title="{! if(Q1_Opt3==IPM_Coreparameter.IPM_Answer_of_Q1__c,'checked','unchecked')}"/>
+
+                                        <label for="Q1_Opt4" Style="color:#004e94"><span>{!Q1_Opt4}</span></label>
+                                        <input type="radio" name="Question1" id="Q1_Opt4" value="{!Q1_Opt4}" class="hide" title="{! if(Q1_Opt4==IPM_Coreparameter.IPM_Answer_of_Q1__c,'checked','unchecked')}"/>
+
+                                        <label for="Q1_Opt5" Style="color:#004e94"><span>{!Q1_Opt5}</span></label>
+                                        <input type="radio" name="Question1" id="Q1_Opt5" value="{!Q1_Opt5}" class="hide" title="{! if(Q1_Opt5==IPM_Coreparameter.IPM_Answer_of_Q1__c,'checked','unchecked')}"/>
+
+                                        <label for="Q1_Opt7" Style="color:#004e94"><span>{!Q1_Opt7}</span></label>
+                                        <input type="radio" name="Question1" id="Q1_Opt7" value="{!Q1_Opt7}" class="hide" title="{! if(Q1_Opt7==IPM_Coreparameter.IPM_Answer_of_Q1__c,'checked','unchecked')}"/>
+                                        
+                                        <label for="Q1_Opt6" Style="color:#004e94"><span>{!Q1_Opt6}</span></label>
+                                        <input type="radio" name="Question1" id="Q1_Opt6" value="{!Q1_Opt6}" class="hide" title="{! if(Q1_Opt6==IPM_Coreparameter.IPM_Answer_of_Q1__c,'checked','unchecked')}"/>
+
+                                        <label for="Q1_Opt8" Style="color:#004e94"><span>{!Q1_Opt8}</span></label>
+                                        <input type="radio" name="Question1" id="Q1_Opt8" value="{!Q1_Opt8}" class="hide" title="{! if(Q1_Opt8==IPM_Coreparameter.IPM_Answer_of_Q1__c,'checked','unchecked')}"/>
+
+                                        <label for="Q1_Opt9" Style="color:#004e94;"><span>{!Q1_Opt9}</span></label>
+                                        <input type="radio" name="Question1" id="Q1_Opt9" value="{!Q1_Opt9}" class="hide" title="{! if(Q1_Opt9==IPM_Coreparameter.IPM_Answer_of_Q1__c,'checked','unchecked')}"/>
+                                        
+                                        <label for="Q1_Opt10" class="bluePointer" Style="color:#722257;"><span>{!Q1_Opt10}</span></label>
+                                        <input type="radio" name="Question1" id="Q1_Opt10" value="{!Q1_Opt10}" class="hide" title="{! if(Q1_Opt10==IPM_Coreparameter.IPM_Answer_of_Q1__c,'checked','unchecked')}"/>
+                                        
+                                        <label for="Q1_Opt11" class="bluePointer" Style="color:#722257;"><span>{!Q1_Opt11}</span></label>
+                                        <input type="radio" name="Question1" id="Q1_Opt11" value="{!Q1_Opt11}" class="hide" title="{! if(Q1_Opt11==IPM_Coreparameter.IPM_Answer_of_Q1__c,'checked','unchecked')}"/>
+                                        
+                                        <label for="Q1_Opt12" class="bluePointer" Style="color:#722257"><span>{!Q1_Opt12}</span></label>
+                                        <input type="radio" name="Question1" id="Q1_Opt12" value="{!Q1_Opt12}" class="hide" title="{! if(Q1_Opt12==IPM_Coreparameter.IPM_Answer_of_Q1__c,'checked','unchecked')}"/>
+        
+                                        <label for="Q1_Opt13" class="bluePointer" Style="color:#722257;"><span>{!Q1_Opt13}</span></label>
+                                        <input type="radio" name="Question1" id="Q1_Opt13" value="{!Q1_Opt13}" class="hide" title="{! if(Q1_Opt13==IPM_Coreparameter.IPM_Answer_of_Q1__c,'checked','unchecked')}"/>
+        
+                                        <label for="Q1_Opt14" Style="color:#722257" class="lstchild bluePointer"><span>{!Q1_Opt14}</span></label>
+                                        <input type="radio" name="Question1" id="Q1_Opt14" value="{!Q1_Opt14}" class="hide" title="{! if(Q1_Opt14==IPM_Coreparameter.IPM_Answer_of_Q1__c,'checked','unchecked')}"/>
+                                        
+                                        </div>
+                                </div>  
+                                </apex:outputPanel>  
+                                    <apex:outputtext value="{!IPM_Coreparameter.IPM_Answer_of_Q1__c}" rendered="{! if(AND(IsQuestionOne=true,isEditable=false),true,false) }"/>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item" id="questionSlide3">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="container-fluid">
+                                    <div class="row"> 
+                                        <div class="col-sm-12 noPadleft">
+                                           <span class="coreParam">"Core Parameters" define the key attributes for a project and are mandatory. Complete the following five steps
+as best as you can, using<br/> the help text as a guide. (You may come back and make changes later.)</span><br/>
+                                        </div>
+                                        <div class="col-sm-12 noPadleft">
+                                            <div class="questionNavigation">
+                                                <!--<div class="col-sm-1 noPadleft questNumber">
+                                                    <span class="singleNumber">2.2</span>
+                                                    <span class="allNumbers">2 of 5</span>
+                                                </div>-->
+                                                <div class="col-sm-11 noPadleft questName">
+                                                    <span class="coreTitle">2.2 Consumers Perceived Value</span>
+                                                </div>
+                                            </div>    
+                                        </div>
+                                    </div>  
+                                </div> 
+                            <apex:outputPanel id="Quest2">
+                            <apex:outputPanel rendered="{! IF(OR(IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt10,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt11,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt12,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt13,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt14),'false','true')}">
+                              <div class="panel-heading question"><label id="Q2Description">{!Q2_description}</label></div>
+                                <apex:outputPanel rendered="{! IF(AND(isEditable=true),'true','false')}">
+                                          
+                                <div class="slide-bar" id="slideBar2">
+                                <span class="slideIcon fa fa-circle" id="slideIcon2" />
+                                    <div class="col-xs-12 sliderTrack">
+                                        <apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt9),'false','true')}">
+                                            <label for="Select" Style="color:#004e94" class="fstchild"><span>Select</span></label>
+                                            <label for="Q2_Opt3" >{!Q2_Opt3}</label>
+                                            <input type="radio" name="Question2" id="Q2_Opt3" value="{!Q2_Opt3}" class="hide" title="{! if(Q2_Opt3==IPM_Coreparameter.IPM_Answer_of_Q2__c,'checked','unchecked')}"/>
+                                            
+                                            <label for="Q2_Opt2">{!Q2_Opt2}</label>
+                                            <input type="radio" name="Question2" id="Q2_Opt2" value="{!Q2_Opt2}" class="hide" title="{! if(Q2_Opt2==IPM_Coreparameter.IPM_Answer_of_Q2__c,'checked','unchecked')}"/>
+                                        
+                                            <label for="Q2_Opt1">{!Q2_Opt1}</label>
+                                            <input type="radio" name="Question2" id="Q2_Opt1" value="{!Q2_Opt1}" class="hide" title="{! if(Q2_Opt1==IPM_Coreparameter.IPM_Answer_of_Q2__c,'checked','unchecked')}"/>
+                                            
+                                            <label for="Q2_Opt4">{!Q2_Opt4}</label>
+                                            <input type="radio" name="Question2" id="Q2_Opt4" value="{!Q2_Opt4}" class="hide" title="{! if(Q2_Opt4==IPM_Coreparameter.IPM_Answer_of_Q2__c,'checked','unchecked')}"/>
+                                            
+                                            <label for="Q2_Opt5" class="lstchild">{!Q2_Opt5}</label>
+                                            <input type="radio" name="Question2" id="Q2_Opt5" value="{!Q2_Opt5}" class="hide" title="{! if(Q2_Opt5==IPM_Coreparameter.IPM_Answer_of_Q2__c,'checked','unchecked')}"/>
+                                        </apex:outputPanel>     
+                                        <apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt9),'true','false')}">
+                                            <label for="Select" Style="color:#004e94" class="fstchild"><span>Select</span></label>
+                                            <label for="Q2_Opt3" class="labelWidth23">{!Q2_Opt3}</label>
+                                            <input type="radio" name="Question2" id="Q2_Opt3" value="{!Q2_Opt3}" class="hide" title="{! if(Q2_Opt3==IPM_Coreparameter.IPM_Answer_of_Q2__c,'checked','unchecked')}"/>
+                                            
+                                            <label for="Q2_Opt2" class="labelWidth23">{!Q2_Opt2}</label>
+                                            <input type="radio" name="Question2" id="Q2_Opt2" value="{!Q2_Opt2}" class="hide" title="{! if(Q2_Opt2==IPM_Coreparameter.IPM_Answer_of_Q2__c,'checked','unchecked')}"/>
+                                        
+                                            <label for="Q2_Opt4" class="labelWidth23">{!Q2_Opt4}</label>
+                                            <input type="radio" name="Question2" id="Q2_Opt4" value="{!Q2_Opt4}" class="hide" title="{! if(Q2_Opt4==IPM_Coreparameter.IPM_Answer_of_Q2__c,'checked','unchecked')}"/>
+                                            
+                                            <label for="Q2_Opt5" class="labelWidth23">{!Q2_Opt5}</label>
+                                            <input type="radio" name="Question2" id="Q2_Opt5" value="{!Q2_Opt5}" class="hide" title="{! if(Q2_Opt5==IPM_Coreparameter.IPM_Answer_of_Q2__c,'checked','unchecked')}"/>
+                                        </apex:outputPanel>              
+                                        </div>
+                                </div>
+                                </apex:outputPanel>
+                                  <apex:outputtext value="{!IPM_Coreparameter.IPM_Answer_of_Q2__c}" rendered="{! if(AND(isEditable=false),true,false) }"/>
+                                </apex:outputPanel>
+                           </apex:outputPanel>      
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="container-fluid">
+                                    <div class="row"> 
+                                        <div class="col-sm-12 noPadleft">
+                                           <span class="coreParam">"Core Parameters" define the key attributes for a project and are mandatory. Complete the following five steps
+as best as you can, using<br/> the help text as a guide. (You may come back and make changes later.)</span><br/>
+                                        </div>
+                                        <div class="col-sm-12 noPadleft">
+                                            <div class="questionNavigation">
+                                                <!--<div class="col-sm-1 noPadleft questNumber">
+                                                    <span class="singleNumber">2.3</span>
+                                                    <span class="allNumbers">3 of 5</span>
+                                                </div>-->
+                                                <div class="col-sm-11 noPadleft questName">
+                                                    <span class="coreTitle">2.3 Enabling Technology</span>
+                                                </div>
+                                            </div>    
+                                        </div>
+                                    </div>  
+                                </div> 
+                                 <apex:outputPanel id="QuestDesc">
+                                    <apex:outputPanel rendered="{! IF(OR(IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt9,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt10,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt11,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt12,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt13,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt14),'false','true')}">
+                                <div class="panel-heading question"><label id="Q3Description">{!Q3_description}</label></div>
+                                <apex:outputPanel rendered="{! IF(AND(isEditable=true),'true','false')}">
+                                <div class="slide-bar" id="slideBar3">
+                                <span class="slideIcon fa fa-circle" id="slideIcon3" />
+                                    <div class="col-xs-12 sliderTrack">  
+                                        <apex:outputPanel rendered="{!isEditable}">
+                                        <label for="Select" Style="color:#004e94" class="fstchild"><span>Select</span></label>
+                                        <label for="Q3_Opt4">{!Q3_Opt4}</label>
+                                        <input type="radio" name="Question3" id="Q3_Opt4" value="{!Q3_Opt4}" class="hide" title="{! if(Q3_Opt4==IPM_Coreparameter.IPM_Answer_of_Q3__c,'checked','unchecked')}"/>                                                           
+                                        
+                                        <label for="Q3_Opt3">{!Q3_Opt3}</label>
+                                        <input type="radio" name="Question3" id="Q3_Opt3" value="{!Q3_Opt3}" class="hide" title="{! if(Q3_Opt3==IPM_Coreparameter.IPM_Answer_of_Q3__c,'checked','unchecked')}"/>
+                                        
+                                        <label for="Q3_Opt2">{!Q3_Opt2}</label>
+                                        <input type="radio" name="Question3" id="Q3_Opt2" value="{!Q3_Opt2}" class="hide" title="{! if(Q3_Opt2==IPM_Coreparameter.IPM_Answer_of_Q3__c,'checked','unchecked')}"/>
+                                                
+                                        <label for="Q3_Opt1" class="lstchild">{!Q3_Opt1}</label>
+                                        <input type="radio" name="Question3" id="Q3_Opt1" value="{!Q3_Opt1}" class="hide" title="{! if(Q3_Opt1==IPM_Coreparameter.IPM_Answer_of_Q3__c,'checked','unchecked')}"/>
+                                        </apex:outputPanel>
+                                         
+                                    </div> 
+                                </div>
+                                </apex:outputPanel>
+                                <apex:outputText value="{!IPM_Coreparameter.IPM_Answer_of_Q3__c}" rendered="{!!isEditable}"/>
+                                </apex:outputPanel>
+                                     <apex:outputText value="You have selected BLG" rendered="{!IsBLG}"/>
+                                </apex:outputPanel>
+                            </div>
+                        </div>
+                         <apex:actionFunction action="{!SelectedAnswer}" name="sectorMarket,Ans_parameter" reRender="helpTxt,helpTxt2,helpTxt3,strategicIntent,QuestionthreeMsg,QuestiontwoMsg,QuestionOneMsg,MarketMsg">
+                            <apex:param name="Ans" value="" id="SelectAns" assignTo="{!SelectedAnswer}" />
+                            <apex:param name="Question" value="" id="SelectQuestion" assignTo="{!SelectedQuestion}" />
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!SelectedAnswer}" name="Ans_parameter1" reRender="sectorMarket,helpTxt,helpTxt2,helpTxt3,Quest2,Quest3,strategicIntent,QuestionthreeMsg,QuestiontwoMsg,QuestionOneMsg,MarketMsg,QuestDesc, selectedOne">
+                            <apex:param name="Ans" value="" id="SelectAns1" assignTo="{!SelectedAnswer}" />
+                            <apex:param name="Question" value="" id="SelectQuestion1" assignTo="{!SelectedQuestion}" />
+                        </apex:actionFunction>
+                         <apex:actionFunction action="{!SelectedAnswer}" name="Ans_parameter2" reRender="sectorMarket,helpTxt,helpTxt2,helpTxt3,strategicIntent,QuestionthreeMsg,QuestiontwoMsg,QuestionOneMsg,MarketMsg">
+                            <apex:param name="Ans" value="" id="SelectAns2" assignTo="{!SelectedAnswer}" />
+                            <apex:param name="Question" value="" id="SelectQuestion2" assignTo="{!SelectedQuestion}" />
+                        </apex:actionFunction>
+                         <apex:actionFunction action="{!SelectedAnswer}" name="Ans_parameter3" reRender="sectorMarket,helpTxt,helpTxt2,helpTxt3,strategicIntent,QuestionthreeMsg,QuestiontwoMsg,QuestionOneMsg,MarketMsg">
+                            <apex:param name="Ans" value="" id="SelectAns3" assignTo="{!SelectedAnswer}" />
+                            <apex:param name="Question" value="" id="SelectQuestion3" assignTo="{!SelectedQuestion}" />
+                        </apex:actionFunction>
+                    </div>
+                    <div class="item" id="slideStrategicIntent">    
+                       <div class="panel">
+                            <div class="panel-body">
+                                <div class="container-fluid">
+                                    <div class="row"> 
+                                        <div class="col-sm-12 noPadleft">
+                                            <span class="coreParam">Below is how your project plots in the Consumer/Technology Matrix (CTM) based on your selections.</span>
+                                            <span class="coreParam">The Strategic Intent indicates whether your project is Innovation, Renovation or Brand Led Growth(BLG).</span>
+                                            <span class="coreParam">CTM indicates portfolio alignment to strategy, drives resource, and investment decisions and facilitates risk management at the portfolio level. Operational project do not appear in CTM. Please ensure the Consumer Value Perception and Enabling Technology selections are correct before proceeding to the next step.</span>
+                                        </div>
+                                        <div class="col-sm-12 noPadleft">
+                                            <div class="questionNavigation">
+                                                <!--<div class="col-sm-1 noPadleft questNumber">
+                                                    <span class="singleNumber">2.4</span>
+                                                    <span class="allNumbers">4 of 5</span>
+                                                </div>-->
+                                                <div class="col-sm-11 noPadleft questName">
+                                                    <span class="coreTitle">2.4 Strategic Intent</span>
+                                                </div>
+                                            </div>    
+                                        </div>
+                                    </div>  
+                                </div> 
+                                <!--<div class="panel-heading question"><label>Strategic Intent</label></div>-->
+                                <div class="col-sm-12 noPadleft noPadright">
+                                       <apex:outputPanel id="strategicIntent">
+                                        <apex:outputPanel rendered="{! IF(OR(IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt10,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt11,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt12,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt13,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt14),'false','true')}">
+                                           <!-- <apex:outputText value="Project Type:" rendered="{! If(projecttype =='','false','true')}" styleClass="tableTitle panel-heading question"/>
+                                            <apex:outputText value="{!projecttype}" rendered="{! If(projecttype =='','false','true')}" styleClass="tableTitle panel-heading question StrategicFont"/>
+                                          &nbsp;&nbsp;&nbsp;&nbsp;-->
+                                         
+                                            <apex:outputPanel rendered="{! If(OR(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt1,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt1,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                        AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt1,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt2,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                        AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt1,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt3,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                          AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt1,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt4,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                           AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt2,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt1,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                          AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt2,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt2,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                          AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt2,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt3,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                          AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt3,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt1,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                          AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt3,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt2,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                          AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt4,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt1,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9)
+                                                                        
+                                                                                             
+                                                                 ),'true','false')}">
+                                                                 <!--<apex:outputText value="Strategic Intent" styleclass="tableTitle panel-heading question"/>-->
+                                                                 <div class="coreGreenbox">
+                                                                     <apex:outputText value="Your Project's Strategic Intent is "/><span><b> Innovation</b></span>
+                                                                 </div>
+                                                                  <div class="col-sm-5 noPadleft noPadright">
+                                                                     <apex:outputText value="Innovation" styleClass="wizardCorecategory"/>
+                                                                     <apex:outputText styleClass="wizardCoreContent" value="{!Innovationtxt}"/>
+                                                                     </div>
+                                        </apex:outputPanel> 
+                                        
+                                        <apex:outputPanel rendered="{! IF(OR(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt1,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt5,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                             AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt2,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt4,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                             AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt2,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt5,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                             AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt3,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt3,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                             AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt3,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt4,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                             AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt3,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt5,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                             AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt4,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt2,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                             AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt4,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt3,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                             AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt4,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt4,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),
+                                                                             AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt4,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt5,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9)
+                                                                             ),'true','false')}">
+                                        <!--<apex:outputText value="Strategic Intent" styleclass="tableTitle panel-heading question"/>-->
+                                        <div class="coreGreenbox">
+                                            <apex:outputText value="Your Project's Strategic Intent is "/><span><b> Renovation</b></span>
+                                        </div>
+                                         <div class="col-sm-5 noPadleft noPadright">
+                                            <apex:outputText value="Renovation" styleClass="wizardCorecategory"/> 
+                                            <apex:outputText styleClass="wizardCoreContent" value="{!Renovationtxt}"/>
+                                            </div>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{! IF(IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt9,'true','false')}">
+                                        <!-- <apex:outputText value="Strategic Intent" styleclass="tableTitle panel-heading question"/>-->
+                                         <div class="coreGreenbox">
+                                             <apex:outputText value="Your Project's Strategic Intent is "/><span><b> BLG</b></span>
+                                         </div>
+                                          <div class="col-sm-5 noPadleft noPadright">
+                                             <apex:outputText value="BLG" styleClass="wizardCorecategory"/> 
+                                             <apex:outputText styleClass="wizardCoreContent" value="{!BLGtxt}"/>
+                                             </div>
+                                        </apex:outputPanel> 
+                                         
+                                        <div class="col-sm-7 noPadleft noPadright table-responsive" id="strategicIntentTableDiv">   
+                                            <table class="table-bordered" id="strategicIntentTable">
+                                              <!-- <caption class="panel-heading question tableTitle"></caption>-->
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>{!Q2_Opt1}</th>
+                                                        <th>{!Q2_Opt2}</th>
+                                                        <th>{!Q2_Opt3}</th>       
+                                                        <th>{!Q2_Opt4}</th>
+                                                        <th>{!Q2_Opt5}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>{!Q3_Opt1}</th>
+                                                        <td bgcolor="#ed8c23"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt1,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt1,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#ee9635"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt1,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt2,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#ef9f48"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt1,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt3,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#f1a859"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt1,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt4,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#ffdc42"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt1,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt5,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>{!Q3_Opt2}</th>
+                                                        <td bgcolor="#ee9635"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt2,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt1,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#ef9f48"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt2,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt2,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#f1a859"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt2,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt3,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#ffdc42"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt2,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt4,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#fed82d"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt2,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt5,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>{!Q3_Opt3}</th>
+                                                        <td bgcolor="#ef9f48"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt3,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt1,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#f1a859"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt3,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt2,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#ffdc42"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt3,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt3,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#fed82d"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt3,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt4,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#fed51b"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt3,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt5,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <th>{!Q3_Opt4}</th>
+                                                        <td bgcolor="#f1a859"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt4,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt1,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#ffdc42"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt4,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt2,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#fed82d"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt4,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt3,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#fed51b"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt4,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt4,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#ffd207"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt4,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt5,IPM_Coreparameter.IPM_Answer_of_Q1__c!=Q1_Opt9),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>No change in Pack or Product (BLG)</th>
+                                                        <td class="graphNoborder" bgcolor=""><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt9,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt1),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#72c4e9"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt9,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt2),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#72c4e9"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt9,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt3),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#72c4e9"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt9,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt4),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td bgcolor="#72c4e9"><apex:outputPanel rendered="{! IF(AND(IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt9,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt5),'true','false')}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="pull-right txtAlignright tableIndicator">
+                                                <div class="buttonmarRight graphLegend">
+                                                    <div class="box orange cust-Inputs"></div> 
+                                                    <label>Innovation</label>
+                                                </div>
+                                                <div class="buttonmarRight graphLegend">
+                                                    <div class="box yellow cust-Inputs"></div> 
+                                                    <label>Renovation</label>
+                                                </div>
+                                                <div class="graphLegend">
+                                                    <div class="box blue cust-Inputs"></div> 
+                                                    <label>BLG</label>
+                                                </div>  
+                                            </div>
+                                        </div>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{! IF(OR(IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt10,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt11,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt12,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt13,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt14),'true','false')}">
+                                            <div class="col-xs-12 coreParam noPadleft strategicIntentMsg">"IPM Navigator features to manage operational projects are currently being built and not functional currently. Please get in touch with your business partner for assistance"</div>
+                                        </apex:outputPanel>
+                                        <div class="GOperational">
+                                            <apex:outputPanel rendered="{! IF(OR(IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt10,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt11,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt12,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt13,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt14),'true','false')}"><span>This project is classified as <b>{!$Label.IPM_Strategic_Intent_message}</b></span></apex:outputPanel>
+                                        </div>
+                                        </apex:outputPanel>
+                                </div> 
+                                <div class="skipButtoncontainer txtAlignright pull-right">
+                                    <div class="buttonmarRight pull-left">
+                                        <a href="#myCarousel" data-slide="prev" title="Previous" id="prevControl" class="ipmButton">Back</a>
+                                    </div>
+                                    <div class="buttonmarRight pull-left ml5">
+                                        <apex:outputPanel rendered="{!isEditable}">
+                                        <a href="#myCarousel" data-slide="next" title="Next" id="nextControl" class="ipmButton primary">Save and Continue</a>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!!isEditable}">
+                                        <a href="#myCarousel" data-slide="next" title="Next" id="nextControl" class="ipmButton primary">Continue</a>
+                                        </apex:outputPanel>
+                                        
+                                   </div> 
+                                </div> 
+                            </div>
+                        </div>
+                    </div>  
+                    
+                    <div class="item">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="container-fluid">
+                                    <div class="row"> 
+                                        <div class="col-sm-12 noPadleft">
+                                            <span class="coreParam">Almost done! Please confirm or modify the remaining few parameters.</span><br/>
+                                        </div>
+                                        <div class="col-sm-12 noPadleft">
+                                            <div class="questionNavigation">
+                                                <!-- <div class="col-sm-1 noPadleft questNumber">
+                                                    <span class="singleNumber">2.5</span>
+                                                   <span class="allNumbers">5 of 5</span>
+                                                </div>-->
+                                                <div class="col-sm-11 noPadleft questName">
+                                                    <span class="coreTitle">2.5 Additional Parameters</span>
+                                                </div>
+                                            </div>    
+                                        </div>
+                                    </div>  
+                                </div> 
+                                <div class="col-xs-12" id="projectSpan">
+                                  <!--  <div class="panel-heading question"><label>Please confirm additional parameters</label></div>
+                                    <apex:pageMessages id="errormessage"/>-->
+                                    <apex:outputPanel id="marketmain">
+                                        <div class="row">
+                                            <div class="col-sm-5 additionalParamTop noPadleft noBoxshadow">
+                                                <div class="basic panel">
+                                                    <div class="panel-body">
+                                                       <!-- <div class="inputField">
+                                                            <div class="panel-label"><apex:outputlabel value="Category Group"/></div>
+                                                            <div class="panel-field-value"><apex:outputField value="{!IPM_Coreparameter.IPM_Category_Group__c}" /></div>
+                                                        </div>
+                                                        <div class="inputField">
+                                                            <div class="panel-label"><apex:outputlabel value="Category"/></div>
+                                                            <div class="panel-field-value"><apex:outputField value="{!IPM_Coreparameter.IPM_Category__c}" styleClass="panel-field-value"/></div>
+                                                        </div>-->
+                                                        <apex:outputPanel id="sectorMarket">
+                                                        <apex:outputPanel rendered="{! if(OR(IPM_Coreparameter.IPM_Category_Text__c=='Laundry',IPM_Coreparameter.IPM_Category_Text__c=='LAUNDRY'),TRUE,FALSE)}">
+                                                        <div class="inputField">
+                                                            <div class="panel-label bsFieldLabel"><apex:outputlabel value="Market"/> </div>                                                           
+                                                            <label class="ipmSelect">
+                                                                <apex:selectList size="1" multiselect="false" disabled="{!!isEditable}" value="{!IPM_Coreparameter.IPM_Market__c}"> 
+                                                                    <apex:selectOptions value="{!lstmarket}"/>
+                                                                </apex:selectList>
+                                                               <!-- <apex:inputField value="{!IPM_Coreparameter.IPM_Market__c}" rendered="{!isEditable}" />
+                                                                <apex:outputField value="{!IPM_Coreparameter.IPM_Market__c}" rendered="{!!isEditable}" />-->
+                                                            </label>
+                                                             <apex:outputPanel id="marketMsg1">
+                                                                <apex:outputText value="Please select market" rendered="{!isMarketMandatory}" styleClass="ErrMsg"/>
+                                                             </apex:outputPanel>
+                                                        </div>
+                                                        </apex:outputPanel>
+                                                       <!-- <div class="inputField">
+                                                            <div class="panel-label bsFieldLabel"><apex:outputlabel value="Sector" /></div>
+                                                            <label class="ipmSelect">
+                                                                <apex:inputField value="{!IPM_Coreparameter.IPM_Sector__c}" rendered="{!isEditable}"/>
+                                                                <apex:outputField value="{!IPM_Coreparameter.IPM_Sector__c}" rendered="{!!isEditable}" />
+                                                            </label>
+                                                        </div>-->
+                                                        <apex:outputPanel rendered="{!if( OR(IPM_Coreparameter.IPM_Category_Text__c=='HHC',IPM_Coreparameter.IPM_Category_Text__c=='Household Care',IPM_Coreparameter.IPM_Category_Text__c=='HOUSEHOLD CARE'),TRUE,FALSE)}">
+                                                        <div class="inputField">
+                                                            <div class="panel-label bsFieldLabel"><apex:outputlabel value="Sub Sector" /></div>
+                                                            <label class="ipmSelect">
+                                                                 <apex:selectList size="1" multiselect="false" disabled="{!!isEditable}" value="{!IPM_Coreparameter.IPM_Sub_sector__c}"> 
+                                                                    <apex:selectOptions value="{!lstsubsector}"/>
+                                                                </apex:selectList>
+                                                                <!--<apex:inputField value="{!IPM_Coreparameter.IPM_Sub_sector__c}" rendered="{!isEditable}" />
+                                                                <apex:outputField value="{!IPM_Coreparameter.IPM_Sub_sector__c}" rendered="{!!isEditable}" />-->
+                                                            </label>
+                                                        
+                                                        </div>
+                                                        </apex:outputPanel> 
+                                                        </apex:outputPanel> 
+                                                       <!--
+                                                        <div class="inputField">
+                                                            <div class="panel-label bsFieldLabel"><apex:outputlabel value="Company" /></div>
+                                                            <label class="ipmSelect">
+                                                                <apex:selectList size="1" value="{!selectedCompany}" rendered="{!isEditable}" >
+                                                                    <apex:selectOptions value="{!Allcompanycard}"/>
+                                                                <apex:actionSupport event="onchange" action="{!searchprojectpahse}" reRender="none"/>
+                                                                </apex:selectList>
+                                                                <!--<apex:inputField value="{!IPM_Coreparameter.IPMCompany__c}" rendered="{!isEditable}"/>-->
+                                                                <!--<apex:outputField value="{!IPM_Coreparameter.IPMCompany__c}" rendered="{!!isEditable}" />
+                                                            </label>
+                                                        </div>
+                                                        -->
+                                                        
+                                                       <!-- <div class="inputField">
+                                                            <div class="panel-label"><apex:outputlabel value="Region" /></div>
+                                                            <apex:inputField value="{!IPM_Coreparameter.IPMRegion__c}" />
+                                                        </div>-->
+                                                        <!--<div class="inputField">
+                                                            <div class="panel-label bsFieldLabel"><apex:outputlabel value="Platform" /></div>
+                                                            <label class="ipmSelect">
+                                                                <apex:inputField value="{!IPM_Coreparameter.IPMPlatform__c}" rendered="{!isEditable}"/>
+                                                                <apex:outputField value="{!IPM_Coreparameter.IPMPlatform__c}" rendered="{!!isEditable}" />
+                                                            </label>
+                                                        </div>-->
+                                                      <div class="col-sm-12 noPadleft radioButton">
+                                                            <apex:outputLabel value="Do you want this project to have a BET Toolkit?" styleClass="bsFieldLabel" /><br/>
+                                                            <div class="ipmRadioButton additionalParam"> 
+                                                                <apex:selectRadio value="{!IPM_Coreparameter.IPM_BET_Toolkit__c}" disabled="{!!isEditable}" onchange="CallBET()">
+                                                                    <apex:selectOptions value="{!BETToolkit}"></apex:selectOptions>
+                                                                </apex:selectRadio>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <apex:actionFunction name="CallBET" action="{!BETvalue}" reRender="BET"/>
+                                            <apex:outputPanel id="BET">
+                                                <apex:outputPanel rendered="{! if(or(IPM_Coreparameter.IPM_BET_Toolkit__c=='No Toolkit'),false,true)}" >
+                                                <div class="col-sm-12 yellowBox toolkitContainer noPadleft">
+                                                <span class="toolkitNote">Please be aware that the Target Launch Date on your project might be prior to the Target Launch Date for the Toolkit’s lead project hence the BET First and final release might be too late.</span>
+                                                <label class="ipmSelect">
+                                                    <apex:selectList size="1" multiselect="false" >
+                                                        <apex:selectOption itemlabel="Select existing Toolkit" itemvalue=""/>
+                                                    </apex:selectList>
+                                                </label>    
+                                                </div>
+                                                </apex:outputPanel>
+                                            </apex:outputPanel>
+                                            <!--<div class="col-sm-offset-1 col-sm-5 noBoxshadow rightColumn">
+                                                <div class="basic panel">
+                                                    <div class="panel-body">
+                                                        
+                                                        
+                                                        <div class="inputField">
+                                                            <div class="panel-label"><apex:outputlabel value="Complexity" /></div>
+                                                            <apex:inputField value="{!IPMProjects.IPM_Complexity__c}"/>
+                                                        </div>
+                                                        
+                                                        <div class="inputField">
+                                                            <div class="panel-label"><apex:outputlabel value="IPM Gate Keeping model" /></div>
+                                                            <apex:inputField value="{!IPMProjects.IPM_GateKeeping_Model__c}"/>
+                                                        </div>
+                                                         <div class="inputField">
+                                                            <div class="panel-label"><apex:outputlabel value="Target Launch Date" /></div>
+                                                            <apex:inputField value="{!IPMProjects.IPM_Target_Launch_Dates__c}"/>
+                                                        </div>
+                                                        <div class="inputField">
+                                                        <apex:outputPanel id="targetLaunchDateValidation" >
+                                                        <script>
+                                                        {!targetLaunchDateValidationPopup}
+                                                        
+                                                        if({!error} ==0 && !{!targetLaunchDateValidationPopup} && {!closepopup}){
+                                                            window.top.location.href='/apex/ipmCoreParametersLandingPage?id={!ProjectID}';
+                                                        }
+                                                        </script>
+                                                        
+                                                        
+                                                        
+                                                        
+                                                           <apex:outputPanel rendered="{!targetLaunchDateValidationPopup}">
+                                                           
+                                                            Are you sure you want to continue with target date less than 390 days?<br/><br/>
+                                                            
+                                                             <apex:commandButton action="{!confirm}"  value="Confirm" id="theUpdate" />
+                                                             <!--<apex:commandButton value="X" />-->
+                                                       
+                                                             
+                                                            <!--  </apex:outputPanel>
+                                                              
+                                                             
+                                                        </apex:outputPanel>
+                                                        </div>     
+                                                        
+                                                        <div class="inputField">
+                                                            <div class="panel-label"><apex:outputlabel value="PM Approach" /></div>
+                                                            <apex:inputField value="{!IPMProjects.IPM_PM_Approach__c}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                           <!-- <div class="col-sm-12 yellowBox toolkitContainer noPadleft">
+                                                <span class="toolkitNote">Please be aware that the Target Launch Date on your project might be prior to the Target Launch Date for the Toolkit’s lead project hence the BET First and final release might be too late.</span>
+                                                <label class="ipmSelect">
+                                                    <apex:inputField value="{!IPM_Coreparameter.IPM_Sub_sector__c}" rendered="{!isEditable}" />
+                                                    <apex:outputField value="{!IPM_Coreparameter.IPM_Sub_sector__c}" rendered="{!!isEditable}" />
+                                                </label>    
+                                            </div>
+                                            <div class="col-sm-12 noPadleft">
+                                                <span class="fieldnote"><span class="mandatorycolor">*</span> Marked fields are mandatory</span>
+                                            </div>-->
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="skipButtoncontainer txtAlignright pull-right">
+                                               <!-- <div class="successMsgDiv1">
+                                                    <apex:outputPanel id="MarketMsg">
+                                                        <apex:outputText value="Record successfully saved" rendered="{!saveMarket}" styleClass="successMsg"/>
+                                                    </apex:outputPanel> 
+                                                </div>-->
+                                                <div class="buttonmarRight noPadright pull-left">
+                                                    <a onClick="skipTab(this);"  class="teammembers ipmButton" >Skip for now</a>
+                                                </div>
+                                                <div class="buttonmarRight ml5 ipmFromAction noPadleft pull-right noPadright">
+                                                    <apex:commandLink onComplete="selectTeam(this);" Value="Save and continue" rendered="{!isEditable}" action="{!ProjectSpan}" styleClass="teammembers ipmButton primary" reRender="gototeam,marketMsg1,helpTxt,helpTxt2,helpTxt3,Quest2,Quest3,strategicIntent,QuestionthreeMsg,QuestiontwoMsg,QuestionOneMsg,MarketMsg,marketmain"/>  
+                                                    <!--oncomplete="pageclose();" -->
+                                                </div>
+                                                <div class="buttonmarRight backButton pull-right">
+                                                    <a href="#myCarousel" data-slide="prev" title="Previous" id="prevControl" class="ipmButton">Back</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </apex:outputPanel>
+                                </div> 
+                                 
+                            </div>
+                        </div>
+                    </div>
+                </div>                 
+            </div>
+            
+            <div class="col-sm-12 description" >
+                <div class="col-sm-12 helpTextDiv" id="helpTextDiv1">
+                    <div class="row helpContent">
+                        <apex:outputPanel id="helpTxt">    
+                            <apex:outputPanel rendered="{!IF(OR(IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt1,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt2,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt3,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt4,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt5,
+                                                                IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt6,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt7,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt8,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt9,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt10,
+                                                                IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt11,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt12,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt13,IPM_Coreparameter.IPM_Answer_of_Q1__c==Q1_Opt14),'true','false')}">
+                           
+                            <div class="col-xs-12 helpDesc"><apex:outputField value="{!lstIpmCoreHelp.IPM_Core_Parameter_Helps__c}" /></div>
+                            
+                            <div class="col-xs-2"><apex:outputField value=" {!lstIpmCoreHelp.IPM_Core_Parameter_example__c }" /></div>
+                            <div class="col-xs-2"><apex:outputField value="{!lstIpmCoreHelp.IPM_Core_Parameter_example_two__c}" /></div>
+                            <div class="col-xs-2"><apex:outputField value=" {!lstIpmCoreHelp.IMP_Core_Parameter_example_three__c}" /></div>
+                            <div class="col-xs-2"><apex:outputField value="{!lstIpmCoreHelp.IPM_Core_Parameter_example_four__c}" /></div>
+                            <div class="col-xs-2"><apex:outputField value=" {!lstIpmCoreHelp.IPM_Core_Parameter_example_five__c }" /></div>
+                        </apex:outputPanel>
+                        </apex:outputPanel>
+                    </div>
+                    <div class="col-sm-12 noPadright">
+                        <div class="col-sm-4 noPadright pull-right">
+                            <span class="legendDesc">Select of MPA values implies project to be</span>
+                            <div class="legendContainer">
+                                <div class="originalCont">
+                                    <div class="greenBg"></div>
+                                    <span class="legText">Original</span>
+                                </div>
+                                <div class="operationalCont">
+                                    <div class="blueBg"></div>
+                                    <span class="legText">Operational</span>
+                                </div>
+                            </div>    
+                        </div>
+                    </div> 
+                    <div class="row modalBottom">
+                        <div class="successMsgDiv col-sm-offset-7 col-sm-3">
+                            <apex:outputPanel id="QuestionOneMsg">
+                                <apex:outputText value="Record successfully saved" rendered="{!saveQuestionOne}" styleClass="successMsg"/>
+                            </apex:outputPanel>
+                        </div>
+                    </div>
+                    <div class="skipButtoncontainer txtAlignright pull-right">
+                        <div class="buttonmarRight noPadright pull-left">
+                            <a onClick="skipTab(this);"  class="teammembers ipmButton" >Skip for now</a>
+                        </div> 
+                        <div class="buttonmarRight backButton pull-left">
+                            <a onClick="backTab(this);" title="Previous" id="prevControl" class="projectdetails ipmButton">Back</a>
+                        </div>
+                        <div class="buttonmarRight pull-left ml5">
+                        <apex:outputPanel rendered="{!isEditable}">
+                            <a href="#myCarousel" data-slide="next" onClick="callrefresh()" title="Next" id="nextControl" class="ipmButton primary">Save and continue</a>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!!isEditable}">
+                            <a href="#myCarousel" data-slide="next" title="Next" id="nextControl" class="ipmButton primary">Continue</a>
+                        </apex:outputPanel>
+                        </div> 
+                        <apex:actionFunction name="callrefresh" action="{!getcategoryname}" reRender="sectorMarket"/>
+                    </div>
+                </div>
+                
+                <div class="col-xs-12 helpTextDiv" id="helpTextDiv2">
+                    <div class="row helpContent">
+                        <apex:outputPanel id="helpTxt2">
+                            <apex:outputPanel rendered="{! IF(OR(IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt1,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt2,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt3,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt4,IPM_Coreparameter.IPM_Answer_of_Q2__c==Q2_Opt5),'true','false')}">
+                                
+                                <div class="col-xs-12 helpDesc"><apex:outputField value="{!lstIpmCoreHelpQ2.IPM_Core_Parameter_Helps__c}"  /></div>
+
+                                <div class="col-xs-2"><apex:outputField value=" {!lstIpmCoreHelpQ2.IPM_Core_Parameter_example__c }" /></div>
+                                <div class="col-xs-2"><apex:outputField value="{!lstIpmCoreHelpQ2.IPM_Core_Parameter_example_two__c}" /></div>
+                                <div class="col-xs-2"><apex:outputField value=" {!lstIpmCoreHelpQ2.IMP_Core_Parameter_example_three__c}" /></div>
+                                <div class="col-xs-2"><apex:outputField value="{!lstIpmCoreHelpQ2.IPM_Core_Parameter_example_four__c}" /></div>
+                                <div class="col-xs-2"><apex:outputField value=" {!lstIpmCoreHelpQ2.IPM_Core_Parameter_example_five__c }" /></div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </div>
+                    <div class="row modalBottom">
+                        <div class="successMsgDiv col-sm-offset-7 col-sm-3">
+                            <apex:outputPanel id="QuestiontwoMsg">
+                                <apex:outputText value="Record successfully saved" rendered="{!saveQuestionTwo}" styleClass="successMsg"/>
+                            </apex:outputPanel>
+                        </div>
+                        <div class="skipButtoncontainer txtAlignright pull-right">
+                            <div class="buttonmarRight noPadright pull-left">
+                                <a onClick="skipTab(this);"  class="teammembers ipmButton" >Skip for now</a>
+                            </div> 
+                            <div class="buttonmarRight backButton pull-left">
+                                <a href="#myCarousel" data-slide="prev" title="Previous" id="prevControl" class="ipmButton">Back</a>
+                            </div>
+                            <div class="buttonmarRight pull-left ml5">
+                            <apex:outputPanel rendered="{!isEditable}">
+                                <a href="#myCarousel" data-slide="next" title="Next" id="nextControl" class="ipmButton primary">Save and continue</a>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!!isEditable}">
+                                <a href="#myCarousel" data-slide="next" title="Next" id="nextControl" class="ipmButton primary">Continue</a>
+                            </apex:outputPanel>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 helpTextDiv" id="helpTextDiv3">
+                    <div class="row helpContent">
+                        <apex:outputPanel id="helpTxt3">
+                            <apex:outputPanel rendered="{! IF(OR(IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt1,IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt2,IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt3,IPM_Coreparameter.IPM_Answer_of_Q3__c==Q3_Opt4),'true','false')}">
+                                
+                                <div class="col-xs-12 helpDesc"><apex:outputField value="{!lstIpmCoreHelpQ3.IPM_Core_Parameter_Helps__c}" /></div>
+                                <div class="col-xs-2"><apex:outputField value=" {!lstIpmCoreHelpQ3.IPM_Core_Parameter_example__c }" /></div>
+                                <div class="col-xs-2"><apex:outputField value="{!lstIpmCoreHelpQ3.IPM_Core_Parameter_example_two__c}" /></div>
+                                <div class="col-xs-2"><apex:outputField value=" {!lstIpmCoreHelpQ3.IMP_Core_Parameter_example_three__c}" /></div>
+                                <div class="col-xs-2"><apex:outputField value="{!lstIpmCoreHelpQ3.IPM_Core_Parameter_example_four__c}" /></div>
+                                <div class="col-xs-2"><apex:outputField value=" {!lstIpmCoreHelpQ3.IPM_Core_Parameter_example_five__c }" /></div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </div>
+                    <div class="row modalBottom">
+                        <div class="successMsgDiv col-sm-offset-7 col-sm-3">
+                            <apex:outputPanel id="QuestionthreeMsg">
+                                <apex:outputText value="Record successfully saved" rendered="{!saveQuestionThree}" styleClass="successMsg"/>
+                            </apex:outputPanel>
+                        </div>
+                        <div class="skipButtoncontainer txtAlignright pull-right">
+                            <div class="buttonmarRight noPadright pull-left">
+                               <a onClick="skipTab(this);"  class="teammembers ipmButton" >Skip for now</a>
+                            </div> 
+                            <div class="buttonmarRight backButton pull-left">
+                                <a href="#myCarousel" data-slide="prev" title="Previous" id="prevControl" class="ipmButton">Back</a>
+                            </div>
+                            <div class="buttonmarRight pull-left ml5">
+                                <a href="#myCarousel" data-slide="next" title="Next" id="nextControl" class="ipmButton primary">Save and continue</a>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>  
+               
+            <div id="refreshTargetLaunchDateValidationPopup">
+            
+                
+            </div>
+        </apex:form>
+    </div> 
+    <script>
+    
+        jq(document).on('click','.mainMenuDiv #closeBtn', function (e) {  
+            window.top.location.href="/apex/ipmCoreParametersLandingPage?id={!ProjectId}&IsBossID=true";
+            
+        });
+        
+        jq(".coreparameters").on("click", function(){
+            setSlider(3);
+        }); 
+        
+        function pageclose(){
+            alert("{!error}---{!targetLaunchDateValidationPopup}");
+            if({!error} ==0 && !{!targetLaunchDateValidationPopup}){
+                window.top.location.href='/apex/ipmCoreParametersLandingPage?id={!ProjectID}';
+            }
+        }     
+        
+        function skipTab(selem){
+                jq('#ipmGetStartedTab .ipmStartedTabs li').removeClass('active');                   
+                var getClass= jq(selem).attr('class').split(' ');
+                var getId = getClass[0];
+                jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent').hide();
+                jq("#ipmGetStartedTab .ipmStartedTabs li."+getId).addClass('active');
+                jq('#'+getId).fadeIn("fast");
+                callrefresh();
+            }
+        
+    </script>
+
+<apex:outputPanel id="gototeam">
+<script>
+ function selectTeam(telem){
+                    if({!isSavedCoreparameter} == true){
+                        jq('#ipmGetStartedTab .ipmStartedTabs li').removeClass('active');                   
+                        var getClass= jq(telem).attr('class').split(' ');
+                        var getId = getClass[0];
+                      
+                        jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent').hide();
+                        jq("#ipmGetStartedTab .ipmStartedTabs li."+getId).addClass('active');
+                        jq('#'+getId).fadeIn("fast");    
+                    } 
+            } 
+</script>
+
+
+</apex:outputPanel>
+</apex:component>

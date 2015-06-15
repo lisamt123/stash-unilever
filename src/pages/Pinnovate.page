@@ -1,0 +1,661 @@
+<apex:page controller="uw_PinnovateController" sidebar="false"
+    showheader="false">
+    <!--   ?id=0F9c00000000G4sCAE   -->
+    <!-- -->
+    <!--CSS Style for above code to display as popup
+<iframe src="/sfc/p/c0000001KMA0/a/c0000000CbMN/tXhbpiZLtdENXKsiKJu99VohJMaLdUngu.wNnq3esIA=" style="width:718px; height:700px;" align="middle"  quality="high" bgcolor="#f3f3f3" name="renditionLarge"  allowfullscreen="true" wmode="opaque"></iframe>-->
+    <style>
+.customPopupPanel { /* Background color */
+    border: #EBE9E9 1px;
+    border-style: solid;
+    border-width: 3px;
+    background-color: #ffffff; /* white; */
+    /* Dimensions */
+    word-wrap: break-word;
+    center:0%;
+    left: 33%;
+    width: 500px;
+    margin-left: -100px;
+    top: 50%;
+    /*height: 75px;*/
+    margin-top: -25px;
+    z-index: 9999;;
+    position: fixed;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    wmode: opaque;
+}
+
+.clsCenter {
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+}
+
+#overlay {
+    background-color: rgba(0, 0, 0, .5);
+}
+</style>
+
+ <style type="text/css">
+      .custPopup{
+        border: #EBE9E9 1px;
+        
+          background-color: white;
+          border-width: 2px;
+          border-style: solid;
+          z-index: 9999;
+          left: 50%;
+          padding:10px;
+          position: fixed;
+          width: 800px;
+          height: 500px;
+          margin-left: -400px;
+          top:100px;
+          
+          -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+
+      }
+      .popupBackground{
+          background-color:black;
+          opacity: 0.20;
+          filter: alpha(opacity = 20);
+          position: fixed;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          z-index: 9998;
+      }
+</style>
+<!-- popup end -->
+
+    <!-- The following Script is for YouTube testing -->
+    <script>
+        $(window).load(function(){
+         $('iframe').each(function(){
+         var url = $(this).attr("src"), char = url.indexOf("?") != -1 ? '&' : '?';
+         /* In my case it is only necessary to youtube player */
+         if(url.indexOf("youtube") != -1){ 
+         $(this).attr("src",url+char+"wmode=transparent");
+         $(this).attr("wmode","Opaque");
+         }
+         
+        });
+         });
+</script>
+
+
+    <!-- Hampesh -->
+
+
+    <!-- <link rel="stylesheet" href="{!$Resource.Preview_CSS}" type="text/css"
+        media="screen" />
+    <script type="image/gif" src="{!$Resource.Preview_Close}"></script>
+    <script type="image/png" src="{!$Resource.Preview_Overlay}"></script>
+    <script type="image/gif" src="{!$Resource.Preview_Loading}"></script>
+    <script type="application/javascript" src="{!$Resource.Preview_Script}"></script> -->
+
+
+    <!-- Hampesh -->
+
+    <apex:includeScript value="{!$Resource.modernizrtransitions}" />
+    <apex:includeScript value="{!$Resource.jquery171min}" />
+    <apex:includeScript value="{!$Resource.jquerymasonrymin}" />
+    <apex:stylesheet value="{!$Resource.PinnovateStyle}" />
+
+    <script src="/EXT/ext-3.3.3/ext-core.js"></script>
+    <script src="/jslibrary/1383366200000/sfdc/main.js"></script>
+    <script src="/jslibrary/jslabels/1387503688000/en_US.js"></script>
+    <script src="/jslibrary/1383366200000/sfdc/AccessibleDialog.js"></script>
+    <script src="/jslibrary/1384279364000/sfdc/Chatter.js"></script>
+    <script src="/jslibrary/1383366200000/sfdc/UmpsWidgetLoader.js"></script>
+    <style>
+@font-face {
+    font-family: DINWebPro;
+    src:
+        url("{!URLFOR($Resource.fuse_brief1_resources_1, 'fonts/DINWebPro.eot')}")
+}
+
+@font-face {
+    font-family: DINWebPro;
+    src:
+        url("{!URLFOR($Resource.fuse_brief1_resources_1, 'fonts/DINWebPro.woff')}")
+        format("woff")
+}
+
+@font-face {
+    font-family: DINWebPro-Medium;
+    src:
+        url("{!URLFOR($Resource.fuse_brief1_resources_1, 'fonts/DINWebPro-Medium.eot')}")
+}
+
+@font-face {
+    font-family: DINWebPro-Medium;
+    src:
+        url("{!URLFOR($Resource.fuse_brief1_resources_1, 'fonts/DINWebPro-Medium.woff')}")
+        format("woff")
+}
+
+@font-face {
+    font-family: DINWebPro-Bold;
+    src:
+        url("{!URLFOR($Resource.fuse_brief1_resources_1, 'fonts/DINWebPro-Bold.eot')}")
+}
+
+@font-face {
+    font-family: DINWebPro-Bold;
+    src:
+        url("{!URLFOR($Resource.fuse_brief1_resources_1, 'fonts/DINWebPro-Bold.woff')}")
+        format("woff")
+}
+
+body {
+    background: {! settings.Background_Color__c
+}
+
+;
+}
+.item {
+    width: 240px;
+    margin: 10px;
+    float: left;
+    border: 2px Solid #C0B6B6;
+    border-style: outset;
+    background: #FFFFFF;
+}
+
+#content {
+    padding: 10px 10px 10px 10px;
+    background-repeat: repeat;
+}
+
+#container{
+  margin-top : 3%;
+  background : {!settings.Background_Color__c};
+  background-image:url({!settings.Background_Image__c});
+  background-repeat:repeat;
+}
+
+.pinnovate-title {
+    max-height: 10%;
+    margin-bottom: 4%;
+    text-align: center;
+    padding-top: 3%;
+    font-size: 14px;
+    font-family: "DINWebPro", "sans-serif" !important;
+}
+
+.pinnovate-content {
+    width: 98%;
+    min-height: 181px;
+    max-height: 50%;
+    float: left;
+    overflow: auto;
+    word-wrap: break-word;
+    margin-bottom: 4%;
+    padding: 1%;
+    font-family: "DINWebPro", "sans-serif" !important;
+}
+
+.pinnovate-details {
+    width: 98%;
+    height: 36%;
+    float: left;
+    overflow: auto;
+    word-wrap: break-word;
+    padding: 1%;
+    font-family: "DINWebPro", "sans-serif" !important;
+}
+
+.pinnovate-details-user-photo {
+    float: left;
+    padding-right: 5px;
+    padding-left: 5px;
+    height: 100%;
+}
+
+.pinnovate-details-description {
+    height: 100%;
+}
+
+#pinnovate_header {
+    background: {! settings.Background_Color__c
+}
+
+;
+font-family
+:
+ 
+"
+DINWebPro
+"
+,
+"
+sans-serif
+"
+ 
+!
+important
+;
+
+          
+         
+}
+#leftcolumn {
+    width: 50%;
+    height: 30px;
+    border: 2px;
+    float: left;
+    text-align: center;
+    background-color: lightGray;
+}
+
+#rightcolumn {
+    width: 50%;
+    height: 30px;
+    border: 2px;
+    float: left;
+    text-align: center;
+    background-color: lightGray;
+}
+
+.imagebox:hover {
+    background-image: url(/img/chatterfiles/zoom24withbg.png); 
+    background-position:inherit;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+</style>
+
+
+    <div id="pinnovate_header" width="100%">
+        <div align="center" width="100%">
+            <apex:image style="height:172px;width=877px; "
+                url="{!settings.Header_Banner__c}" />
+        </div>
+        <div
+            style="width: 100%; background-color: lightGray; margin-top: 5px;">
+            <div id="leftcolumn">
+                <a href="/{!CollaborationGroupId}" style="color: #616161;"> <b>&lt;
+                        Back to Group</b>
+                </a>
+            </div>
+            <div id="rightcolumn">
+                <apex:form >
+                    <label
+                        style="color: #616161; font-family: 'DINWebPro', 'sans-serif' !important;"><b>Select
+                            Topic</b>
+                    </label>&nbsp;&nbsp;
+        <apex:selectList value="{!topicName}" size="1">
+                        <apex:selectOptions value="{!items}" />
+                        <apex:actionSupport action="{!setTopicFilter}"
+                            reRender="contentPanel" event="onchange" />
+                    </apex:selectList>
+                    <p />
+                    <!--<script>   
+  function likeFeedItem(feedItemId, buttElement){
+    
+    Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.uw_PinnovateController_Prashanth.likeFeedItem}',
+            feedItemId, 
+            function(result, event){
+                if (event.status) {
+                    $('#'+feedItemId).html(result);
+                    $(buttElement).hide();
+        
+                    $('#'+feedItemId + 'Status').html('Liked');
+        
+                } else if (event.type === 'exception') {
+                   console.log('Exception liking Feed Item' + result);
+                }
+            }, 
+            {escape: true}
+        ); 
+     
+    }
+    </script>-->
+
+                </apex:form>
+            </div>
+        </div>
+    </div>
+    <apex:outputPanel id="contentPanel">
+        <section id="content">
+
+        <div id="container" class="transitions-enabled clearfix">
+
+            <apex:repeat id="rowRepeater" value="{!PinnotaveDataOrderedFirst}"
+                var="td">
+
+                <div class="item">
+
+                    <div class="pinnovate-title">
+                        <a href="/{!td.feedItem.Id}"
+                            style="color: #616161; font-size: 16px;">{!td.title}</a>
+                    </div>
+
+                    <apex:outputPanel rendered="{!td.feedItem.Type == 'LinkPost'}">
+                        <div class="pinnovate-content">
+
+
+                            <iframe width="99%" height="179px" src="{!td.contentURL}"
+                                frameborder="0" allowfullscreen="1"> </iframe>
+                        </div>
+                    </apex:outputPanel>
+
+                    <apex:outputPanel rendered="{!td.feedItem.Type == 'ContentPost'}">
+                        <div class="pinnovate-content">
+                            <apex:form >
+                                <apex:commandlink rerender="formforPreview" action="{!showPopupPreview}" >
+                                    <apex:param value="{!td.contentURL}" name="valid" assignto="{!strPreviewID}"/>
+                                    <img src="/sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB720BY480&versionId={!td.contentURL}&operationContext=CHATTER"
+                                        height="179px" width="99%" class="imagebox"/>
+                                </apex:commandlink>
+                            </apex:form>
+                        </div>  
+                    </apex:outputPanel>
+
+
+                    <div class="pinnovate-details">
+                        <!--{!td.strRecordID}-->
+                        <div class="pinnovate-details-user-photo">
+                            <a href="/{!td.creator.Id}"> <apex:image style="height:45px;width=45px;"
+                                    url="{!td.creator.SmallPhotoUrl}" /> </a>
+                        </div>
+
+                         <!--Author: Mindtree
+                           Date: 27/06/2014
+                           Description: Replicating the Chatter post css style in pinnovate wall text. -->
+                                                        
+                        <div class="pinnovate-details-description" style="padding-left: 5px;">
+                            <a href="/{!td.creator.Id}" style="color: #015BA7"><b>{!td.creator.Name}</b> </a>
+                            
+                            <div style="font-family: Arial,Helvetica,sans-serif;color: #222;font-size:.92em;line-height: 14px;">
+                               <apex:outputText rendered="{!(td.description == '')}"> <br/><br/></apex:outputText>
+                               <apex:outputText rendered="{!(td.description != '')}" style="font-family: Arial,Helvetica,sans-serif;color: #222;"> {!td.description}<br/><br/></apex:outputText>                                 
+                            </div>
+                            
+                            <apex:form >
+                                <apex:outputPanel >
+                                    <div >
+                                       <apex:commandlink rerender="formforComment" value="Comment" title="Comment on this post."
+                                            action="{!refCommentDetails}" style="display:inline;color:#015ba7;font-weight:normal;font-size:.82em;font-family: Arial,Helvetica,sans-serif;" status="Loading">
+                                            <apex:param value="{!td.feedItem.Id}"
+                                                name="feeditemIdForComment" />
+                                        </apex:commandlink> 
+                                                                                                               
+                                        <div id="pinnovate-comment-like" style="display:inline;color:#015ba7;font-weight:normal;font-size:.82em;font-family: Arial,Helvetica,sans-serif;">
+                                        <b>({!td.CommentCount})</b></div> 
+                                        
+                                        <span class="cxfeeditemcommentdot feeditemseparatingdot">·</span>
+                                        
+                                        <apex:commandlink value="Like" action="{!ClickLike}" title="Like this post."
+                                            style="color:#015ba7;font-weight:normal;font-size:.82em;font-family: Arial,Helvetica,sans-serif;"
+                                            rendered="{!NOT(td.hasLikedPost)}" status="Updating">
+                                            <apex:param value="{!td.feedItem.Id}" name="likeId" />
+                                        </apex:commandlink>
+                                        
+
+                                        <apex:commandlink value="Unlike" action="{!ClickUnLike}" title="Stop liking this post."
+                                            style="color:#015ba7;font-weight:normal;font-size:.82em;font-family: Arial,Helvetica,sans-serif;"
+                                            rendered="{!td.hasLikedPost}" status="Updating">
+                                            <!-- rerender="formforlike"-->
+                                            <apex:param value="{!td.feedItem.Id}" name="unlikeId" />
+                                        </apex:commandlink>
+                                        
+                                        <span class="cxfeeditemcommentdot feeditemseparatingdot">·</span>
+                                        
+                                        <a href="/{!td.feedItem.Id}" title="Click for single-item view of this post." class="feeditemtimestamp"
+                                            style="color:#7d7d84;font-size:.82em;font-weight:normal;font-family:Arial,Helvetica,sans-serif;">{!td.CreatedDateString}</a> 
+                                        
+                                        <apex:outputPanel rendered="{!(td.LikeCount >0)}" style="color:#888;font-weight:normal;font-size:.82em;font-family:Arial,Helvetica,sans-serif;"> 
+                                       <br/>
+                                        {!td.LikeString} 
+                                        <apex:commandlink rerender="formforLike" value="like" title="People who liked this post."
+                                            action="{!refLikeDetails}" style="color:#888;font-weight:normal;"
+                                             status="Loading">
+                                            <apex:param value="{!td.feedItem.Id}"
+                                                name="feeditemIdForLike" />
+                                        </apex:commandlink>
+                                        this.
+                                        </apex:outputPanel>
+                                        
+                               <!-- ------- End---------- -->  
+                               
+                                        <apex:actionstatus id="Loading">
+                                            <apex:facet name="start">
+                                                <div class="waitingSearchDiv" id="el_loading"
+                                                    style="background-color: #fbfbfb; height: 100%; opacity: 0.65; width: 100%;">
+                                                    <div class="waitingHolder"
+                                                        style="center: 0px; width: 91px;">
+                                                        <img class="waitingImage" src="/img/loading.gif"
+                                                            title="Please Wait..." /> <span
+                                                            class="waitingDescription">Loading...</span>
+                                                    </div>
+                                                </div>
+                                            </apex:facet>
+                                        </apex:actionstatus>
+
+                                        <!--<apex:commandlink value="Like" action="{!refLikeDetails}">
+                             <apex:param value="{!td.feedItem.Id}" name="lid"/>
+                         </apex:commandlink>
+                        <div id="{!td.feedItem.Id}" style="display: inline;"><b>{!td.LikeCount}</b></div>&nbsp;Likes <b>{!td.CommentCount}</b>&nbsp;Comments
+                        <apex:commandlink value="Comments" action="{!refCommentDetails}">
+                            <apex:param value="{!td.feedItem.Id}" name="fid"/>
+                        </apex:commandlink>
+                        <a href="#rowRepeater" id="likeFeedItem" onClick="likeFeedItem('{!td.feedItem.Id}', this)"><apex:outputText rendered="{!NOT(td.hasLikedPost)}"> Like </apex:outputText></a>
+                        <div style="display: inline;" id="{!td.feedItem.Id}Status"><apex:outputText rendered="{!td.hasLikedPost}">  Liked</apex:outputText></div>-->
+                                    </div>
+                                </apex:outputPanel>
+                            </apex:form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </apex:repeat>
+
+        </div>
+
+        <!-- #container --> <script>
+  $(function(){
+    
+    var $container = $('#container');
+    
+    $('#mini-container').masonry({
+      columnWidth: 50
+    });
+    
+    $container.masonry({
+      itemSelector: '.item',
+      columnWidth: 10,
+      isAnimated: !Modernizr.csstransitions
+    });
+    
+  });
+</script> </section>
+        <!-- #content -->
+    </apex:outputPanel>
+
+    <!-- Popup Code for comment -->
+    <style>
+.pbSubheader {
+    background-color: red !important;
+    border-color: none !important;
+}
+</style>
+
+    <!--<script>
+function FuncWaterMark(txtEmail, event) {
+            
+            var strVal = "Write a comment...";
+            //Here to check textbox length and event type
+            if (txtEmail.value.length == 0 & event.type == "blur") {
+                txtEmail.style.color = "Gray";//setting text color
+                txtEmail.value = strVal; //setting default text in textbox
+            }
+            // Here to check textbox value and event type
+            if (txtEmail.value == strVal & event.type == "focus") {
+                txtEmail.style.color = "black";
+                txtEmail.value = "";
+            }
+            if (txtEmail.value.length == 0 & event.type == "submit") {
+                txtEmail.style.color = "Gray";//setting text color
+                txtEmail.value = strVal; //setting default text in textbox
+            }
+             
+        }
+        function resize_wm() {
+          var strVal = "Write a comment...";
+          var inputBox = document.getElementById(textforcomment);
+          inputBox.value =strVal;
+          inputBox.style.color = "Gray";
+        }
+        window.onload=resize_wm;
+</script> -->
+
+    <apex:form id="formforComment">
+       <apex:outputPanel id="tstpopupcom">
+            <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!bolShowPopupCom}"/>
+            
+        <apex:outputPanel id="popInnerOutputPnl1"
+            rendered="{!bolShowPopupCom}" styleClass="customPopupPanel"
+            layout="block" style="overflow:auto;height:250px;">
+            <apex:pageBlock >
+                <apex:pageblockButtons >
+                    <apex:commandlink value="Close" style="float:left;color:Black"
+                        action="{!closePopupCom}" />
+                    <!-- status="Loading1"-->
+                </apex:pageblockButtons>
+
+                <!--<apex:actionstatus id="Loading1">
+                            <apex:facet name="start">
+                                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
+                                       height: 100%;opacity:0.65;width:100%;"> 
+                                    <div class="waitingHolder" style="center: 0px; width: 91px;">
+                                        <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                                        <span class="waitingDescription">Closing...</span>
+                                    </div>
+                                </div>
+                            </apex:facet>
+                        </apex:actionstatus>-->
+
+
+                <apex:pageblocksection columns="1" >
+                    <apex:pageBlockTable value="{!lstFeecComtWrap}" var="fi"
+                        cellpadding="15" rendered="{!bolCommentDetail}">
+                        <apex:column >
+                            <apex:image style="height:45px;width=45px;"
+                                url="{!fi.objPhotoURL.SmallPhotoUrl}" />
+                        </apex:column>
+                        <apex:column headerValue="Name" headerClass="clsCenter"
+                            width="100px">
+                            <a href="/{!fi.createdidby}" style="color: #015BA7"
+                                target="_blank"><b>{!fi.strUserName}</b>
+                            </a>
+                        </apex:column>
+                        <apex:column headerValue="Comment" headerClass="clsCenter"
+                            value="{!fi.strFeedCmmt}" width="300px" />
+                    </apex:pageBlockTable>
+                </apex:pageblocksection>
+
+                <apex:pageBlockSection rendered="{!bolAllowComment}">
+
+                    <apex:inputTextarea id="textforcomment"
+                        style="width:435px;height:25px" value="{!Comm}" />
+                    <br />
+                    <!-- onblur="FuncWaterMark(this, event);" onfocus="FuncWaterMark(this, event);"-->
+                    <apex:commandButton value="Comment" action="{!insrtComt}"
+                        reRender="formforComment" status="Loading" style="float:right" />
+                    <apex:actionstatus id="Loading">
+                        <apex:facet name="start">
+                            <div class="waitingSearchDiv" id="el_loading"
+                                style="background-color: #fbfbfb; height: 100%; opacity: 0.65; width: 100%">
+                                <div class="waitingHolder" style="center: 0px; width: 91px;">
+                                    <img class="waitingImage" src="/img/loading.gif"
+                                        title="Please Wait..." /> <span class="waitingDescription">Updating...</span>
+                                </div>
+                            </div>
+                        </apex:facet>
+                    </apex:actionstatus>
+
+                    </apex:pageblocksection>
+            </apex:pageBlock>
+
+
+        </apex:outputPanel>
+
+    </apex:outputPanel>
+    
+    </apex:form>
+
+    <!-- Popup code Ends -->
+
+    <!-- Popup code for like -->
+    <apex:form id="formforLike">
+    
+    <apex:outputPanel id="tstpopuplik">
+            <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!bolShowPopupLik}"/>
+            
+        <apex:outputPanel id="popInnerOutputPnl2"
+            styleClass="customPopupPanel" layout="block"
+            rendered="{!bolShowPopupLik}" style="overflow:auto;height:250px;">
+            
+            <apex:pageBlock >
+                <apex:pageblockButtons >
+                    <apex:commandlink value="Close"
+                        style="text-align:center;color:Black" action="{!closePopupLik}"
+                        rerender="formforLike" status="Loading2" />
+                </apex:pageblockButtons>
+
+                <apex:actionstatus id="Loading2">
+                    <apex:facet name="start">
+                        <div class="waitingSearchDiv" id="el_loading"
+                            style="background-color: #fbfbfb; height: 100%; opacity: 0.65; width: 100%;">
+                            <div class="waitingHolder" style="center: 0px; width: 91px;">
+                                <img class="waitingImage" src="/img/loading.gif"
+                                    title="Please Wait..." /> <span class="waitingDescription">Closing...</span>
+                            </div>
+                        </div>
+                    </apex:facet>
+                </apex:actionstatus>
+
+                <apex:pageblocksection columns="1">
+                    <apex:pageBlockTable value="{!lstFeeclikWrap}" var="fl"
+                        cellpadding="15">
+                        <apex:column >
+                            <apex:image style="height:45px;width=45px;"
+                                url="{!fl.objPhotoURL.SmallPhotoUrl}" />
+                        </apex:column>
+                        <apex:column headerValue="Name" headerClass="clsCenter">
+                            <a href="/{!fl.createdidby}" style="color: #015BA7"
+                                target="_blank"><b>{!fl.strUserName}</b>
+                            </a>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageblocksection>
+            </apex:pageBlock>
+        </apex:outputPanel>
+       </apex:outputPanel>
+    </apex:form>
+    <!-- Popup code Ends -->
+    
+    <!-- Popup code for PReview -->
+    <apex:form id="formforPreview">
+        <apex:outputPanel id="tstpopup">
+            <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!bolShowPopupPreview}"/>
+            <apex:outputPanel styleClass="custPopup" layout="block" rendered="{!bolShowPopupPreview}">
+               <apex:commandLink value="X" title="Close the popup" action="{!closePopupPreview}" rerender="formforPreview" style="float:right" />
+                <embed width="100%" height="95%" align="middle" type="application/x-shockwave-flash" wmode="opaque" pluginspage="http://www.adobe.com/go/getflashplayer" allowfullscreen="true" allowscriptaccess="sameDomain" name="renditionSmall" bgcolor="#ffffff" quality="high" id="renditionSmall" flashvars="shepherd_prefix=/sfc/servlet.shepherd&v={!strPreviewID}&mode=chatter_bubble&amp;" src="/_swf/121310/sfc/flex/DocViewer.swf"/>
+                <!-- <embed width="100%" height="95%" align="middle" type="application/x-shockwave-flash" wmode="opaque" pluginspage="http://www.adobe.com/go/getflashplayer" allowfullscreen="true" allowscriptaccess="sameDomain" name="renditionSmall" bgcolor="#ffffff" quality="high" id="renditionSmall" flashvars="shepherd_prefix=/sfc/servlet.shepherd&v=068c00000000j6EAAQ&mode=chatter_bubble&amp;" src="/_swf/121310/sfc/flex/DocViewer.swf"/> -->
+            </apex:outputPanel>
+        </apex:outputPanel>
+    </apex:form>
+    <!-- Popup code Ends -->
+
+</apex:page>

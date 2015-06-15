@@ -1,0 +1,183 @@
+<apex:page standardController="IPM_Task__c" extensions="IPM_NewTask"  sidebar="false" standardStylesheets="true" showHeader="false">      
+        <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/bootstrap.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmButtons.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/jquery.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/bootstrap.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'assets/font-awesome/css/font-awesome.min.css')}"/>
+        <style>
+            .marginTop{margin-top:20px;}
+            .inputField{margin-bottom:15px;}
+            .inputField input, .inputField select{width:100%;height:30px;border-radius: 3px; border: 1px #a8a8a8 solid;}
+            .input-group-addon{padding: 0px;margin-top: -3px;width: 1px;background:none; border:none;color: #007dbb;font-size: 1.3em;}
+            .fa-calendar:before{margin-left: -41px;}
+            .middlePanel{background:#f9f9f9; border-top:1px #d7e1e0 solid; border-bottom:1px #d7e1e0 solid;margin-bottom: 10px;padding-top: 5px;}
+            .fieldFont{font-size:1em; color:#555555;}
+            .fieldLabel{padding-top:5px; padding-bottom:5px; font-weight:bold;}
+            .modal-backdrop.in {opacity: 0.7;}
+            .date input{height:30px;border-radius: 4px;border: 1px #ddd solid;width:100%;}
+            .input-group.date{width:100%;}
+            .input-group .input-group-addon {position: absolute;top: 283px;right: 25px;} 
+              
+            /*ipmButton Styles */
+            .ipmButton{padding: 7px 0;font-size: 1em;border-radius: 2px;color: white;border: 1px #406b14 solid;text-transform: capitalize;height: 30px;text-decoration: none;width:100%}
+            .ipmButton.green{background:#81bf42 !important;}
+            .ipmButton.green:hover{background:#56843b !important;}
+             #addTask .ipmButtonGroup{margin-bottom: 8%;} 
+             
+             /* lookup search icon*/
+             .lookupInput a{margin-left: -9%;}
+             
+             .phaseModal{width:48%;float:left;}
+             .gatedocModal{width:48%;float:left;margin-right:10px;}
+             .messageTable td ul li{margin-left:0px !important;}
+             .messageTable td ul{padding-left:0px !important;margin-top: -25px !important;}
+             .message .messageTable .messageCell{margin-top:-6px !important;float:left;}
+             .errorMsg{padding: 10px;background: #ffebec;border-radius: 3px;margin-top: 15px;}
+             .error{border:1px solid #e03729 !important;}
+             .errorMsg:before{left: 10%;top: 73px;position: absolute;border-top: 1px #ffebec solid;border-right: 1px #ffebec solid;background: #ffebec;content: " ";height: 15px;width: 15px;-ms-transform: rotate(-45deg);transform: rotate(-45deg);}
+             .custErr:before{left: 10%;top: 78px;position: absolute;border-top: 1px #ffebec solid;border-right: 1px #ffebec solid;background: #ffebec;content: " ";height: 15px;width: 15px;-ms-transform: rotate(-45deg);transform: rotate(-45deg);}
+             .dateInput .dateInputBox{width:66%;}
+            .input-group-addon{padding: 0px;margin-top: -3px;width: 1px;background:none; border:none;color: #007dbb;font-size: 1.3em; left:66%; top:283px; position:absolute;}
+            body{overflow:hidden;height:100%;}
+            html, .container-fluid, #EditTask, #EditTask form{height:96%;}
+            .panelScroll{overflow-y:scroll;height:100%;}
+            #EditTask .ipmButtonGroup{height:10%;}
+            .datePicker{top:250px !important;}
+       </style>
+        <div class="container-fluid">
+            <div class="row" id="EditTask">
+                <apex:form id="form">
+                    <!--<apex:pageMessages id="messages"/> -->
+                    <div class="panelScroll">
+                    <div class="col-xs-12 marginTop">
+                        <div class=""><apex:outputLabel value="To-Do" styleClass="fieldLabel fieldFont" /></div>
+                        <div class="inputField"><apex:inputField value="{!tasks.IPM_Task_Name__c}" styleClass="fieldFont" required="true"/></div>
+                        <!--<div><apex:outputtext rendered="{!displayerror}"><font color="red">Please enter name</font></apex:outputtext></div>-->
+                    </div>
+                    <div class="col-xs-12 middlePanel">
+                        <div class=""><apex:outputLabel value="Gate document & Phase" styleClass="fieldLabel fieldFont"/></div>
+                         <div class="gatedocModal">
+                        <div class="inputField"><apex:inputField value="{!tasks.IPM_Type_of_Gate__c}" styleClass="fieldFont" required="true">
+                            <apex:actionSupport event="onchange" rerender="blockToRerender, scriptToRerender" action="{!getSections}"/>
+                            </apex:inputField>
+                        </div>
+                        </div>
+                        <div class="phaseModal">
+                        <div class="inputField">
+                            <apex:inputField value="{!tasks.IPM_Phase__c}" styleClass="fieldFont" required="true">
+                                <apex:actionSupport event="onchange" rerender="blockToRerender" action="{!getSections}"/>
+                             </apex:inputField>    
+                        </div>
+                        </div>
+                       
+                      </div> 
+                      
+                      <div class=""><apex:outputLabel value="Functional role" styleClass="fieldLabel fieldFont"/></div>
+                        <apex:outputPanel rendered="{!if(roleValue != null,true,false)}">
+                        <div class="inputField"><apex:outputField value="{!tasks.IPM_Function__c}" styleClass="fieldFont"/></div>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!if(roleValue == null,true,false)}">
+                        <div class="inputField">
+                            <apex:inputField value="{!tasks.IPM_Function__c}" styleClass="fieldFont" required="true">
+                                <apex:actionSupport event="onchange" rerender="blockToRerender" action="{!getSections}"/>
+                             </apex:inputField>  
+                        </div>
+                        
+                        </apex:outputPanel> 
+                    
+                     <apex:outputPanel id="blockToRerender">
+                        <div class="col-xs-12" style="display:{!if(displayDueDate,'block','none')};">
+                       <!-- <div class=""><apex:outputLabel value="Functional role" styleClass="fieldLabel fieldFont"/></div>
+                        <apex:outputPanel rendered="{!if(roleValue != null,true,false)}">
+                        <div class="inputField"><apex:outputField value="{!tasks.IPM_Function__c}" styleClass="fieldFont"/></div>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!if(roleValue == null,true,false)}">
+                        <div class="inputField">
+                            <apex:inputField value="{!tasks.IPM_Function__c}" styleClass="fieldFont" required="true">
+                                <apex:actionSupport event="onchange" rerender="blockToRerender" action="{!getSections}"/>
+                             </apex:inputField>  
+                        </div>
+                        
+                        </apex:outputPanel> -->
+                         <div class=""><apex:outputLabel value="Section" styleClass="fieldLabel fieldFont"/></div>
+                        <div class="inputField">
+                        <!-- <apex:inputField value="{!tasks.IPM_Project_Document_Section__c}" styleClass="fieldFont" /> -->
+                            <apex:selectList size="1" value="{!listvalue}">
+                                <apex:selectOptions value="{!Sectionlist}" /> 
+                            </apex:selectList>
+                        </div>
+                        
+                        
+                        <div class=""><apex:outputLabel value="Assignee" styleClass="fieldLabel fieldFont"/></div>
+                        <apex:outputText value="{!userName}"/>
+                       <!-- <apex:outputField value="{!tasks.IPM_Assignee__c}"/> -->
+                        <!-- <div class="inputField"><apex:inputField value="{!tasks.IPM_Assignee__c}" styleClass="fieldFont" /></div> -->
+                    
+                        <div class=""><apex:outputLabel value="Due date" styleClass="fieldLabel fieldFont"/> <i>(optional)</i></div>
+                        <div class="inputField"><!--class='input-group date'>-->
+                            <apex:inputField value="{!tasks.IPM_Due_Date1__c}" styleClass="dateInputBox calendar"><!-- id="Duedate"> -->
+                                <!--<span class="input-group-addon fa fa-calendar" id="datepicker" />-->
+                            </apex:inputField>
+                           <!-- <div class='input-group date'>
+                                <apex:inputText value="{!dueDate}" id="dateValue" html-readonly="true"/>
+                                <!--<apex:inputField value="{!IPM_Project_Task__c.IPM_Due_Date__c}" id="Duedate"/>
+                                <span class="input-group-addon" id="datepicker">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>                                           
+                            </div> -->
+                          <!--  <div class='input-group date'>
+                                <apex:outputLabel value="Approved On"/>
+                                <apex:inputField value="{!tasks.IPM_Due_Date__c}" >
+                                <span class="input-group-addon fa fa-calendar" id="datepicker" />
+                                </apex:inputField>
+                            </div> -->
+                            
+                               <!-- <span class="input-group-addon fa fa-calendar" id="datepicker" /> -->
+                                             
+                        </div>
+                    </div>
+                    
+                    </apex:outputPanel>
+                   
+                    </div>
+                    <div class="col-xs-4 marginTop ipmButtonGroup pull-right">
+                        <!--<apex:commandLink action="{!dosave}" value="Add" styleClass="ipmButton green"/>-->                
+                        <apex:commandLink action="{!dosaveTasks}" value="Add" styleClass="ipmButton green" rendered="{!if(taskId == null,true,false)}" reRender="form, scriptToRerender" onComplete="{!if(validate,'pageclose()','')};"/>
+                         <apex:commandLink action="{!dosaveTasks}" value="Save" styleClass="ipmButton green" rendered="{!if(taskId != null,true,false)}" onComplete="pageclose();"/></div>
+                </apex:form>
+            
+                <apex:form >
+                    <apex:outputPanel id="popup">
+                        <apex:outputPanel styleClass="popupBg" layout="block" rendered="{!displayPopUp}"/>
+                        <apex:outputPanel styleClass="popup" layout="block" rendered="{!displayPopUp}">
+                            <div class="popupContent">No Project Resource With this assigned user. Do you want to create a Project Resource</div>
+                            <div class="ipmButtonGroup pull-center">
+                            
+                            </div>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:form>
+            </div>
+        </div>
+        <apex:outputPanel id="scriptToRerender">
+           <script type="text/javascript">
+                var jq=jQuery.noConflict();                
+                jq("[id$=mlktp]").hide();
+                jq('.dateInput .dateFormat').hide();
+                function pageclose(){
+                    var parentUrl = window.top.location.href;
+                    var projDocSecEditor = "ipmProjectDocumentSectionEditor";
+                    
+                    if(parentUrl.indexOf(projDocSecEditor) >= 0){
+                        parentUrl +="&ipmTab=aTasks";
+                    }
+                    window.top.location.href=parentUrl;
+                }  
+                
+                jq('.gatedocModal').find('.errorMsg').addClass('custErr');
+                
+                
+                
+            </script>
+        </apex:outputPanel> 
+    </apex:page>

@@ -1,0 +1,14 @@
+<apex:component layout="none">
+    <apex:attribute name="header" type="String" description="TODO"/>
+    <apex:attribute name="headerColor" type="String" description="TODO"/>
+    
+    <section class="panel ipmTaskWidget">
+        <header class="panel-heading {!headerColor}">{!header}</header>
+        <div class="panel-body">
+            <div class="taskContent">
+                <apex:componentBody />
+            </div>
+            
+        </div>
+    </section>
+</apex:component>

@@ -1,0 +1,141 @@
+<!--
+	Unilever
+
+	Page Name: AR_Registration
+
+	Marc Saelzler | 2013-08-27
+
+	Page for the agency registration.
+
+	Timeline
+	Date 					| Name 				| Description
+	2013-08-27 16:24 (CET) 	| Marc Saelzler 	| Initial development.
+	2013-08-28 			 	| Marc Saelzler 	| Changed view and implemented functions of the controller.
+	2013-08-29 			 	| Marc Saelzler 	| Additional view adjustments and further functions of the controller.
+	2013-08-30 11:20 (CET) 	| Marc Saelzler 	| Split between the 'sections' to only show one at a time, step by step.
+	2013-08-30 16:56 (CET) 	| Marc Saelzler 	| Added some parts from the architect template based on 'AR_Template.page' into this page.
+	2013-09-02 11:37 (CET) 	| Marc Saelzler 	| Added some additional parts from the architect template.
+	2013-09-10 10:53 (CET) 	| Marc Saelzler 	| Changes to only display the registration form and the app id if the log in was successful.
+	2013-09-11 13:00 (CET) 	| Ben Edwards	 	| Integrated with styling
+-->
+
+<apex:page docType="html-5.0" applyHtmlTag="false" applyBodyTag="false" standardstylesheets="false" sidebar="false" showHeader="false" controller="AR_RegistrationController" action="{!InitPage}">
+	
+	<apex:composition template="AR_Template">
+	
+		<apex:define name="content">
+		
+			<section role="main" id="content" class="form global-content">
+			
+	            <header class="main-header">
+	            	<apex:outputText rendered="{!ApplicationObject.obj.Id == null}">
+		                <h1>
+	                    	Contact information
+	                	</h1>
+		                <p>Please complete the below contact information for your agency. These details will be used going forward for all future communication during the application process, as well as the ongoing maintenance of your agency profile.</p>
+		                <p>Please ensure you only complete this process if you hold sufficient authority to do so on behalf of your organisation. Also, please note that you will always be able to to update the dedicated agency representative information going forward, however you will not be allowed to have more than one log-in per agency.</p>
+	            	</apex:outputText>
+	            	<apex:outputText rendered="{!ApplicationObject.obj.Id != null}">
+		                <h1>
+	                    	Continue Application
+	                	</h1>
+		                <p>You are logged in as the email address and key below. Click below to continue your application.</p>
+		                <p>To logout and start a new application, click <a href="javascript:DoLogout();">here</a>.</p>
+	            	</apex:outputText>
+	            </header>
+	            
+	            <apex:form styleClass="form-validate">
+	            
+	            	<div class="form-fields-wrapper">
+	            
+		                <ul class="form-errors active">
+		                    <apex:messages />
+		                </ul>
+	                
+		                <apex:outputText rendered="{!ApplicationObject.obj.Id == null}">
+		                
+			                <apex:repeat value="{!FieldSetMap['ar_Application__c']['registration']}" var="field">
+			                
+			                	<apex:outputText rendered="{!OR(field.Type == 'string', field.Type == 'email', field.Type == 'phone', field.Type == 'multipicklist')}">
+					                <div class="form-row text-row clearfix">
+					                    <label class="form-row-label">{!field.Label} *</label>
+					                    <div class="form-input">
+					                        <apex:inputField value="{!ApplicationObject.obj[field.fieldPath]}" required="true" />
+					                        <apex:outputText rendered="{!$ObjectType['ar_Application__c'].fields[field.fieldPath].InlineHelpText != null}">
+					                        	<p class="helper">{!$ObjectType['ar_Application__c'].fields[field.fieldPath].InlineHelpText}</p>
+					                        </apex:outputText>
+					                    </div>
+				                	</div>
+				                </apex:outputText>
+				                
+				                <apex:outputText rendered="{!field.Type == 'picklist'}">
+				                	<div class="form-row select-row clearfix">
+					                     <label class="form-row-label">{!field.Label} *</label>
+					                     <div class="form-input">
+					                     	<label class="select-label">
+					                        	<apex:inputField value="{!ApplicationObject.obj[field.fieldPath]}" />
+					                    	</label>
+					                    	<apex:outputText rendered="{!$ObjectType['ar_Application__c'].fields[field.fieldPath].InlineHelpText != null}">
+				                        		<p class="helper">{!$ObjectType['ar_Application__c'].fields[field.fieldPath].InlineHelpText}</p>
+				                        	</apex:outputText>
+					                    </div>
+					                </div>
+					            </apex:outputText>
+				                
+			                </apex:repeat>
+			                
+			                <div class="form-row text-row clearfix">
+			                    <label class="form-row-label">&nbsp;</label>
+			                    <div class="form-input">
+			                    	<c:AR_CaptchaChallenge public_key="{!CaptchaHandler.publicKey}"/>
+			                    </div>
+			                </div>
+		                
+		                	<footer class="form-footer">
+		                		<ul>
+		                			<li>
+		                				<apex:commandButton styleClass="create" action="{!SaveApplication}" />
+		                			</li>
+		                		</ul>
+		                	</footer>
+
+			        	</apex:outputText>
+			        	
+				        <apex:outputText rendered="{!ApplicationObject.obj.Id != null}">
+				        
+				        	<div style="padding: 0 5%;">
+					        	<p>Your application has been saved and you can resume it at any time. Your credentials are as follows:</p>
+					        	<div class="form-row text-row clearfix">
+				                    <label class="form-row-label">Email Address</label>
+				                    <label class="form-row-label">{!ApplicationObject.obj['Email__c']}</label>
+			                	</div>
+			                	<div class="form-row text-row clearfix">
+				                    <label class="form-row-label">Unique Key</label>
+				                    <label class="form-row-label">{!ApplicationObject.obj.Id}</label>
+			                	</div>
+			                	<p>If you wish to start a new application, click <a href="javascript:DoLogout();">here</a> to logout.</p>
+		                	</div>
+		                	
+		                	<footer class="form-fields-wrapper clearfix">
+		                		<ul>
+				                	<li>
+				                		<apex:commandLink styleClass="btn btn-continue-application" action="{!goOnWithTheProcess}" value="Continue Application" />
+				                	</li>
+				                </ul>
+				            </footer>
+				            
+				        </apex:outputText>
+			        
+			        	<apex:actionFunction name="DoLogout" action="{!Logout}" />
+			         
+			        </div>
+	            
+	            </apex:form>
+	            
+	        </section>
+		
+		</apex:define>
+		
+	</apex:composition>
+	
+</apex:page>

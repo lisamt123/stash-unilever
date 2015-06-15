@@ -1,0 +1,357 @@
+<apex:page standardController="IPM_Project__c" extensions="IPM_ProjectController" showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0">
+   <apex:includeScript value="{!URLFOR($Resource.ipmResource, 'js/jquery.js')}"/>
+     <apex:includeScript value="{!URLFOR($Resource.ipmResource, 'js/jquery-ui.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/jquery-ui.css')}"/>
+  <style>
+  /* Project Details Pop up */
+  
+          /* Content styles */
+          .buttonmarRight{margin-right:15px;}
+          .editProjectTop{margin-top:20px;}
+          .uploadImage img {max-width: 100%;}
+         .noPadleft{padding-left:0px !important;}
+         .noPadright{padding-right:0px !important;}
+         .bosscardMtop{margin-top:20px;}
+         .bsFieldLabel{color:#565656;font-weight:bold;}
+         .bsFieldLabel label{color:#565656;font-weight:bold;}
+         .mandatorycolor{color:#CF1721;}
+         .inputField{margin-bottom:10px;}
+         .descTop{margin-top:10px;}
+         .inputField input{width: 100%;height: 30px;border-radius: 3px;border: 1px #a8a8a8 solid;color:#565656;}
+         .inputField textarea{width: 100%;height: 70px;border-radius: 3px;border: 1px #a8a8a8 solid;color:#565656;}
+         .inputField select{width: 100%;height: 30px;border-radius: 3px;border: 1px #a8a8a8 solid;color:#565656;}
+         .fieldnote{margin-bottom: 20px;color:#555555;padding-top:10px;font-style:italic;font-size: 0.85em;display:block;}
+         .bosscardmright{margin-right:10px;}
+         .expandTool {text-align:right;}
+         .expandTool span {display:inline-block; font-weight:bold; color:#0f81bb; cursor:pointer; }
+         .bcInstruction{font-weight:bold;color:#3B4F6A;}
+         .txtAlignright{text-align:right;}
+         .periodDetails{display:block;font-weight:bold;color:#344454;float:right;position: relative;bottom: 32px;left: 20px;}
+         .characterlimit{display: block;text-align: right;}
+         .custMarginbottom {margin-bottom: 20px;}
+         .dateInput {white-space: nowrap;}
+         .uploadImage {cursor: pointer;}
+         .allNumbers{color:#666666;}
+        .legendDesc{color:#656565;} 
+        .panel{box-shadow:none;}
+        .ipmButton:link{text-decoration:none;}
+        .proSetupButton{margin-right:15px;}
+        .imageBorder{padding:0px !important;border-radius:4px;}
+        
+        /* Project details radio buttons */
+         .projectraLabel{padding-left:10px;color: #565656;position: relative;bottom: 3px;}
+         .txtRight{text-align:right;}
+         #charCountRemaining{font-weight:bold;}
+        
+         /* checkbox styles */
+        .ipmCheckbox{width:100%;}
+        .ipmCheckbox label{top:1px !important;left:10px;}
+        .yellowBox{margin-top: 10px;background: #fff15a;padding: 8px;border-radius: 3px;}
+        .fastTrackcheck{margin-left: 15px !important;width: 30px;height: 17px;}
+        
+        /* Error message styles */
+         .ErrMsg{color:#d74c3b;width:55%;display:block;padding: 10px;background: #ffebec;border-radius: 3px;margin-top: 15px;}
+         .ErrMsg:before{left: 3%;top: 63px;position: absolute;border-top: 1px #ffebec solid;border-right: 1px #ffebec solid;background: #ffebec;content: " ";height: 15px;width: 15px;-ms-transform: rotate(-45deg);transform: rotate(-45deg);}
+         .TldErrMsg{color:#d74c3b;width:100%;display:block;padding: 10px;background: #ffebec;border-radius: 3px;margin-top: 15px;}
+         .TldErrMsg:before{left: 12%;top: 70%;position: absolute;border-top: 1px #ffebec solid;border-right: 1px #ffebec solid;background: #ffebec;content: " ";height: 15px;width: 15px;-ms-transform: rotate(-45deg);transform: rotate(-45deg);}
+         .projDescErrMsg{color:#d74c3b;width:55%;display:block;padding: 10px;background: #ffebec;border-radius: 3px;margin-top: 15px;}
+         .projDescErrMsg:before{left: 3%;top: 47%;position: absolute;border-top: 1px #ffebec solid;border-right: 1px #ffebec solid;background: #ffebec;content: " ";height: 15px;width: 15px;-ms-transform: rotate(-45deg);transform: rotate(-45deg);}
+          
+           /* custom tooltip styles */
+          .radioTooltip1,.radioTooltip2,.radioTooltip3{display:none;}
+          .toolTipMsg{clear:both;padding:20px;background:#fafafa;border:1px #c9c9c9 solid; border-radius:2px;color:#364354;font-size:0.82em;position:relative;}          
+          .radioTooltip1::before { top: -8px; left: 0; content:" "; position: absolute; border-top: 1px #c9c9c9 solid;border-right: 1px #c9c9c9 solid;background: #fafafa;height: 15px;width: 15px;transform: rotate(-45deg);-moz-transform: rotate(-45deg);-webkit--transform: rotate(-45deg);-ms-transform: rotate(-45deg); }
+          .radioTooltip2::before { top: -8px; left: 6px; content:" "; position: absolute; border-top: 1px #c9c9c9 solid;border-right: 1px #c9c9c9 solid;background: #fafafa;height: 15px;width: 15px;transform: rotate(-45deg);-moz-transform: rotate(-45deg);-webkit--transform: rotate(-45deg);-ms-transform: rotate(-45deg); }
+          .radioTooltip3::before { top: -8px; left: 90px; content:" "; position: absolute; border-top: 1px #c9c9c9 solid;border-right: 1px #c9c9c9 solid;background: #fafafa;height: 15px;width: 15px;transform: rotate(-45deg);-moz-transform: rotate(-45deg);-webkit--transform: rotate(-45deg);-ms-transform: rotate(-45deg); }
+ 
+           /* select styles */
+       
+       .ipmSelect{font-weight:normal;width:100%;position:relative;z-index:1;}
+       .ipmSelect.tlp{font-weight:normal;width:50%;position:relative;z-index:1;}
+       .ipmSelect select{-webkit-appearance: none;-ms-appearance: none;appearance: none;background: transparent;}
+       .ipmSelect:after{display: block;font-family: FontAwesome;content: "\f107";font-size: 1.4em;position: absolute;top: 3px;right: 4px;top: 1px\9;right: 1px\9;z-index: -1;width: 20px;height: 20px;text-align: center;background: #fff;color: #000;
+      
+  </style>
+<div class="container-fluid">
+    <apex:form >
+    <apex:actionFunction name="callBackFunction1" reRender="teamMemberPanel" action="none"/>
+    <apex:actionFunction name="refreshcoreparameter" action="{!corerefresh}" reRender="IPMcore"/>
+    <apex:actionFunction name="callproject" action="{!createproject}" status="actStatusId" rerender="imgpn,modalpop,SaveAndNext"/>
+        <div class="row">
+            <div class="col-sm-12 editProjectTop">
+                <div class="col-sm-2 noPadleft noPadright">
+                    <div class="panel">
+                        <div class="panel-body imageBorder">
+                        <apex:actionFunction name="getProjectId" action="{!ProjectIdGeneration}" reRender="imgpn,modalpop,pdf,pdf1,isID1,isID,isID2,isID3,pgmsg,commLink,commLink1,SaveButton,DisableSaveButton,commLink2"  />
+                        <apex:actionFunction name="callsave" action="{!save}" reRender="isID"  />  
+                        <apex:outputPanel id="imgpn">
+                       
+                            <apex:outputPanel id="isID" rendered="{!IdGenerated}">
+                                <apex:outputPanel rendered="true"> 
+                                    <div title="Click to Upload Image" onClick="callsave();" class="uploadImage" data-target="#ipmUploadImage" value="/apex/IPM_ImageUpload?isProject=true&id={!ProId}" data-toggle="modal" data-keyboard="false" data-backdrop="static">
+                                        <apex:image styleClass="ipmImage" value="{!URLFOR($Resource.ipmResourceRevamp, 'images/pro_placeholder.png')}" rendered="{!If(AND(OR(ImageId=='',ImageId==null),OR(project.IPM_Project_Logo__c==null,project.IPM_Project_Logo__c=='')),true,false)}" title="Click to Upload Image"/>
+                                        <apex:image url="/servlet/servlet.FileDownload?file={!ImageId}" styleClass="ipmImage" rendered="{! if(AND(ImageId !='',ImageId !=null),true,false)}" /> 
+                                        <apex:outputfield value="{!project.IPM_Project_Logo__c}" rendered="{! if(AND(OR(ImageId=='',ImageId==null),OR(project.IPM_Project_Logo__c!='',project.IPM_Project_Logo__c!=null)),true,false)}"/>
+                                    </div>
+                                </apex:outputPanel> 
+                            </apex:outputPanel> 
+                        </apex:outputPanel>                                      
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-10">
+                    <div class="col-sm-10 noPadleft">
+                        <div class="inputField oneCol">
+                            <div class="required">
+                                <apex:outputLabel value="Project Name" styleClass="bsFieldLabel" />
+                                <span class="mandatorycolor">*</span><br/>
+                                <apex:inputText value="{!project.IPM_Project_Name__c}" id="proname"  styleClass="brandautocomplete BosscardNameInputBox"  onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;}"  maxlength="14" rendered="{!isEditable}" />
+                                 <apex:outputField rendered="{!!isEditable}" value="{!project.IPM_Project_Name__c}"/>
+                                    <apex:outputPanel id="nameMsg">
+                                        <apex:outputText value="Please enter the Project Name" rendered="{!isNameMandatory}" styleClass="ErrMsg"/>
+                                        <apex:outputText value="Please do not use special characters like @,!,etc." rendered="{!isContainSpecialChars}" styleclass="projDescErrMsg"/>
+                                    </apex:outputPanel>
+                                <apex:outputLabel value="Project Description" styleClass="bsFieldLabel descTop" />
+                                <span class="mandatorycolor">*</span><br/>
+                                <apex:inputTextarea id="projDesc" value="{!project.IPM_Project_Description__c}" rendered="{!isEditable}"  styleClass="limitdesc brandautocomplete BosscardNameInputBox"  onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;}"  />
+                                <apex:outputPanel id="DescMsg">
+                                        <apex:outputText value="Please enter the Project Description" rendered="{!isProDescMandatory}" styleClass="projDescErrMsg"/>
+                                       
+                                </apex:outputPanel>
+                                <apex:outputField value="{!project.IPM_Project_Description__c}" rendered="{!!isEditable}"/>
+                                
+                                <div class="txtRight">
+                                     <span id="charCountRemainingText"> Characters remaining: </span> <span id="charCountRemaining">70</span>
+                                </div> 
+                             </div> 
+                        </div>
+                        <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <div class="inputField">
+                                                                        <div class=""><apex:outputlabel value="Company" /></div>
+                                                                        <label class="ipmSelect">
+                                                                            <apex:selectList size="1" value="{!selectedCompany}" rendered="{!isEditable}" onchange="CCchange(this.value)" >
+                                                                                <apex:selectOptions value="{!Allcompanycard}"/>
+                                                                            <apex:actionFunction name="CCchange" action="{!searchprojectpahse}" reRender="cat">
+                                                                                <apex:param name="Cname" assignTo="{!selectedCompany}" value=""/>
+                                                                            </apex:actionFunction>
+                                                                            </apex:selectList>
+                                                                            <!--<apex:inputField value="{!IPM_Coreparameter.IPMCompany__c}" rendered="{!isEditable}"/>-->
+                                                                           <!--<apex:outputField value="{!IPM_Coreparameter.IPMCompany__c}" rendered="{!!isEditable}" />-->
+                                                                        </label>
+                                                                    </div>
+                                                                   <!-- <div class="inputField">
+                                                                        <apex:outputLabel value="Brand" styleClass="bsFieldLabel" /><br/>
+                                                                         <span class="fa fa-question-circle" title="Please Select Brand" align="center" alt="Help" /> 
+                                                                        <label class="ipmSelect custSelectWidth">
+                                                                            <apex:selectList value="{!selBrand}" multiselect="false" size="1" id="Brand" disabled="{!!isEditable}" >
+                                                                                <apex:selectOptions value="{!brands}"></apex:selectOptions>
+                                                                            </apex:selectList>
+                                                                        </label>
+                                                                        
+                                                                    </div> -->
+                                                                    <div class="inputField">
+                                                                        <apex:outputLabel value="Brand Positioning " styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span><br/>
+                                                                        <!-- <span class="fa fa-question-circle" title="Please Select Brand Positioning" align="center" alt="Help" /> -->
+                                                                        <label class="ipmSelect custSelectWidth">    
+                                                                            <apex:selectList value="{!selBrandPos}" multiselect="false" size="1" id="pos" disabled="{!!isEditable}" >
+                                                                                <apex:selectOptions value="{!brandPos}"></apex:selectOptions>
+                                                                            </apex:selectList>
+                                                                        </label>
+                                                                        <apex:outputPanel id="BrandPMsg">
+                                                                        <apex:outputText value="Please select brand positioning" rendered="{!isBrandPoMandatory}" styleClass="TldErrMsg"/>
+                                                                        </apex:outputPanel>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 rightColumn">
+                                                                    <div class="inputField">
+                                                                        <apex:outputLabel value="Category" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span><br/>
+                                                                        <!-- <span class="fa fa-question-circle" title="Please Select Category" align="center" alt="Help" /> -->
+                                                                        <label class="ipmSelect custSelectWidth">
+                                                                            <apex:selectList value="{!selCat }" multiselect="false" size="1" id="cat" disabled="{!!isEditable}" onChange="BrandP(this.value)">
+                                                                                <apex:selectOptions value="{!Category}"></apex:selectOptions>
+                                                                            </apex:selectList>
+                                                                            <apex:actionFunction name="BrandP" action="{!SearchbrandPos}" reRender="pos">
+                                                                                <apex:param name="BrandPo" assignTo="{!selCat }" value=""/>
+                                                                            </apex:actionFunction>
+                                                                        </label>
+                                                                        
+                                                                        <apex:outputPanel id="CateMsg">
+                                                                        <apex:outputText value="Please Select Category" rendered="{!isCateMandatory}" styleClass="TldErrMsg"/>
+                                                                        </apex:outputPanel>
+                                                                    </div>
+                                                                    <div class="inputField launchPeriod">
+                                                                        <apex:outputLabel value="Target Launch Date" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span>
+                                                                        <apex:inputField value="{!project.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox calendar" rendered="{!isEditable}"/>                                                              
+                                                                        <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}" rendered="{!!isEditable}"/>
+                                                                        <apex:outputPanel id="TLDPMsg">
+                                                                            <apex:outputText value="Please select target launch date" rendered="{!isTLDMandatory}" styleClass="TldErrMsg"/>
+                                                                        </apex:outputPanel>
+                                                                    </div>
+                                                                    <!-- <div class="inputField launchPeriod">
+                                                                        <apex:outputLabel value="Target Launch Period" styleClass="bsFieldLabel" /><br/>
+                                                                        <label class="ipmSelect tlp">
+                                                                            <apex:selectList value="{!expectedTLD}" multiselect="false" size="1" id="pos1" >
+                                                                                <apex:selectOptions value="{!ListOfQuarter}"></apex:selectOptions>
+                                                                            </apex:selectList>
+                                                                        </label>
+                                                                        <span class="periodDetails">Q1, 2015 (In Bosscard)</span>
+                                                                    </div> -->
+                                                                </div>
+                                                            </div>
+                    </div>
+                    <apex:outputPanel rendered="{! if(CompanyType='Regional','true','false')}">
+                    <div class="col-sm-12 noPadleft noPadright radioButton">
+                        <apex:outputLabel value="Who will approve the Charter gate document?" styleClass="bsFieldLabel" /><br/>
+                        <div class="ipmRadioButton">
+                            <apex:selectRadio value="{!project.IPM_Approver_of_Charter__c}" disabled="{!!isEditable}">
+                                <apex:selectOptions value="{!CharterApprovers}"></apex:selectOptions>
+                            </apex:selectRadio>
+                        </div>
+                    </div>
+                    </apex:outputPanel>
+                    <div class="col-sm-12 noPadleft noPadright radioButton">
+                        <apex:outputLabel value="Who will aprove the Contract and Market Ready Gates?" styleClass="bsFieldLabel" /><br/>
+                        <div class="ipmRadioButton">
+                            <apex:selectRadio value="{!project.IPM_GateKeeping_Model__c}" disabled="{!!isEditable}">
+                                <apex:selectOptions value="{!ContractApprovers}"></apex:selectOptions>
+                            </apex:selectRadio>
+                        </div>
+                        <div class="radioTooltip2 toolTipMsg" id="RCLT">
+                            <span>RCLT help text</span>
+                        </div>
+                        <div class="radioTooltip3 toolTipMsg" id="GCLT">
+                            <span>GCLT &amp; RCLT help text</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 yellowBox noPadleft">
+                            <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!!isEditable}"/>
+                            <span class="projectraLabel">I want this project to be a Fast track Project</span>
+                    </div>
+                    <div class="col-sm-12 noPadleft">
+                        <span class="fieldnote"><span class="mandatorycolor">*</span> Marked fields are mandatory</span>
+                    </div>
+                    <div class="noPadright">
+                        <div class="pull-right noPadright txtAlignright">
+                            <div class="pull-right">
+                                <apex:commandLink action="{!saveProceed}" value="Save and continue" styleClass="coreparameters custMarginbottom ipmButton primary" reRender="pgmsg,nameMsg,TLDPMsg,BrandPMsg,CateMsg,DescMsg,miles,selectNextTabScript" rendered="{!isEditable}" onComplete="Closepopup()">
+                                </apex:commandLink>
+                            </div>
+                            <div class="buttonmarRight pull-right">
+                                <a class="ipmButton" onClick="pagerefresh()">Reset</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <apex:actionFunction name="SaveComplexity" action="{!SaveComplexityType}" reRender="complexityrender">
+            <apex:param name="holdcomplexity" assignTo="{!ComplexityType}" value="Lite"/>
+        </apex:actionFunction> 
+        <apex:actionFunction name="SaveComplexity1" action="{!SaveComplexityType}" reRender="complexityrender">
+            <apex:param name="holdcomplexity1" assignTo="{!ComplexityType}" value="Full"/>
+        </apex:actionFunction> 
+        <apex:actionFunction name="savemiles" action="{!SaveComplexityType}" reRender="complexityrender"/>
+    </apex:form>
+</div> 
+<div id="ipmUploadImage" tabindex="-1" data-backdrop-limit="1" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" onClick="closeimagepopup()" aria-hidden="true">&times;</button>
+                            <div class="modal-title">Upload Image</div>
+                        </div>
+                        <div class="modal-body">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/functions.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmModal1.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmButtons.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.ipmResource, 'assets/font-awesome/css/font-awesome.min.css')}"/>   
+    <apex:stylesheet value="{!URLFOR($Resource.ipmResource, 'css/bootstrap.min.css')}"/>
+     <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmRadioButton.css')}"/>                      
+    <script>
+        jq('.ipmRadioButton input[type=radio]').each(function(i){ 
+            var rdChecked = jq('.ipmRadioButton input[type=radio]:checked').attr("value").split(" ");
+            var rdData = rdChecked[0];
+            jq("#"+rdData).show();
+         });
+         jq('.ipmRadioButton input[type=radio]').each(function(e){ 
+                jq(this).click(function(){
+                var redData = jq(this).attr("value").split(" ");
+                var actData = redData[0];
+                    jq(".toolTipMsg").hide();
+                    jq("#"+actData).show();
+                });  
+           }); 
+                function Closepopup(){
+                    window.parent.location.href="/apex/IPM_Core_Parameters_Revamp?id={!projectId}"
+                }
+                function closeimagepopup(){
+                    window.parent.location.reload(true);
+                }
+                function pagerefresh()
+                {
+                    window.location.reload(true);    
+                }
+                 jq(document).on('click', '.uploadImage', function(e) {                 
+                    event.preventDefault ? event.preventDefault() : event.returnValue = false; 
+                    var url = jq(this).attr('value');                    
+                    jq("#ipmUploadImage .modal-body").html('<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" allowtransparency="true" src= "'+url+'"></iframe>');  
+                    jq('#ipmUploadImage .modal-dialog').width('40%');
+                    jq('#ipmUploadImage .modal-dialog').height('40%');                        
+                    jq('#ipmUploadImage .modal-dialog').css({'margin-top':'10%','z-index':'999'});     
+                });
+            
+    </script>
+    <script>
+        (function(jq) {
+                    jq.fn.extend( {
+                        limiter: function(limit, remaining,total) {
+                        jq("#charCountRemainingText").show();
+                            jq(this).on("keydown keyup focus", function() {
+                                jq("#charCountRemainingText").show();
+                                setCount(this, remaining, total);
+                            });
+                            
+                            jq(this).keypress(function(e) {
+                            setCount(this, remaining,total);
+                                if (e.which < 0x20) {                                               
+                                    return;     // Do nothing
+                                }
+                                if (this.value.length == limit) {
+                                    e.preventDefault();
+                                } else if (this.value.length > limit) {
+                                    // Maximum exceeded
+                                    this.value = this.value.substring(0, limit);
+                                }
+                            });
+                            
+                            function setCount(src, remaining,total) {
+                                var charsCurrent = src.value.length;
+                                var chars = 0;
+                                jq(".limitdesc").each(function(index, value){chars += jq(value).val().length});
+                                if (chars > limit) {
+                                    
+                                    chars = limit;
+                                }
+                                remaining.html( limit - chars );
+                                total.html(chars);
+                            }
+                            
+                            setCount(jq(this)[0], elem);
+                        }
+                    });
+                })(jQuery); 
+                 
+                var remaining = jq("#charCountRemaining");                
+                var total = jq("#charCountTotal");                
+                jq(".limitdesc").limiter(70, remaining,total);
+                
+                 
+            </script>
+    
+</apex:page>

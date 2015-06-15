@@ -1,0 +1,156 @@
+<apex:component >
+
+  <!-- Begin Default Content REMOVE THIS -->
+  <div class="row">
+  <div class="table-responsive">                         
+     <table with="100%" border="0" cellpadding="0" cellspacing="0" class="table table-bordered ipmTable gatedoctable ipmFinancetable fintable">
+     <colgroup span="6"></colgroup>
+         <thead>
+         <tr class=" ">
+         <th class=" " scope="col">
+         Element
+         </th>
+          <th class="  " scope="col"> 
+          Test
+         </th>
+          <th class=" " scope="col">
+          KPI
+         </th>
+          <th class="  " scope="col">
+            Input
+         </th>
+          <th class=" " scope="col">
+            Country
+         </th>
+          <th class="  " scope="col"> 
+          Results <br></br>Timings
+         </th>
+          <th class=" " colspan="2" scope="col">
+            Results
+         </th>
+          <th class="  " scope="col"> 
+          Results<br></br> Overall <br></br>color coding
+         </th>
+         <th class="  " scope="col"> 
+          Comments<br></br>/follow up<br></br> plan in <br></br>feasibility <br></br>phase
+         </th>
+         <th class="  " scope="col"> 
+          Agency 1<br></br>Pager
+         </th>
+         </tr>
+         </thead>
+         <tbody>
+         <tr class="fintleblubg">
+            <td colspan="11" class="textleft">    
+                Charter
+            </td>                                   
+         </tr>
+            <tr>
+                <td>
+                Concept
+                </td>  
+                <td>Snapshot</td>
+                <td>Introscape</td>
+                <td>
+                    <table class="innertable">
+                        <tr><td class="dataCell">CVM</td></tr>  
+                        <tr><td class="dataCell">Salience</td></tr>  
+                        <tr><td class="dataCell">Communication</td></tr>  
+                        <tr><td class="dataCell">Attraction</td></tr> 
+                        <tr><td class="dataCell">Point Of purchase</td></tr>                                                 
+                    </table>
+                    
+                </td>
+                <td>DE</td>
+                <td>01-Jan-2014</td>
+                <td class="noborder borleft">
+                     <table class="innertable">
+                        <tr><td class="dataCell">CVM</td></tr>  
+                        <tr><td class="dataCell">Salience</td></tr>  
+                        <tr><td class="dataCell">Communication</td></tr>  
+                        <tr><td class="dataCell">Attraction</td></tr> 
+                        <tr><td class="dataCell">Point Of purchase</td></tr>                                                 
+                    </table>
+                </td>
+                <td class="noborder"><table class="innertable">
+                        <tr><td class="dataCell">&nbsp;</td></tr>  
+                        <tr><td class="dataCell">Outstanding</td></tr>  
+                        <tr><td class="dataCell">Satisfactory</td></tr>  
+                        <tr><td class="dataCell">Satisfactory</td></tr> 
+                        <tr><td class="dataCell">Risky</td></tr>                                                 
+                    </table></td>
+                
+                 <td>
+                    CVM-Outstanding
+                </td> 
+                <td>
+                    <table class="innertable">
+                        <tr><td class="dataCell">&nbsp;</td></tr>  
+                        <tr><td class="dataCell">&nbsp;</td></tr>  
+                        <tr><td class="dataCell">&nbsp;</td></tr>  
+                        <tr><td class="dataCell">&nbsp;</td></tr> 
+                        <tr><td class="dataCell">&nbsp;</td></tr>                                                 
+                    </table>
+                </td>    
+                <td>
+                    <table class="innertable">
+                        <tr><td class="dataCell">&nbsp;</td></tr>  
+                        <tr><td class="dataCell">&nbsp;</td></tr>  
+                        <tr><td class="dataCell">&nbsp;</td></tr>  
+                        <tr><td class="dataCell">&nbsp;</td></tr> 
+                        <tr><td class="dataCell">&nbsp;</td></tr>                                                 
+                    </table>
+                </td>                                       
+            </tr>                                
+            
+         </tbody>
+          <thead>
+         <tr class=" ">
+         <th class=" " scope="col">
+         Element
+         </th>
+          <th class="  " scope="col"> 
+          Test
+         </th>
+          <th class=" " scope="col">
+          KPI
+         </th>
+          <th class="  " scope="col">
+            Input
+         </th>
+          <th class=" " scope="col">
+            Country
+         </th>
+          <th class="  " scope="col"> 
+          Results<br></br> Timings
+         </th>
+          <th class=" " colspan="2" scope="col">
+            Results
+         </th>
+          <th class="  " scope="col"> 
+          Results <br></br>Overall <br></br>color coding
+         </th>
+         <th class="  " scope="col"> 
+          Comments<br></br>/follow up<br></br> plan in <br></br>feasibility<br></br> phase
+         </th>
+         <th class="  " scope="col"> 
+          Agency 1<br></br>Pager
+         </th>
+         </tr>
+         </thead>
+          <tr class="fintleblubg">
+            <td colspan="11" class="textleft">    
+                Charter
+            </td>                                   
+         </tr>
+          <tr class="fintleblubg">
+            <td colspan="11" class="textleft">    
+                Market Ready
+            </td>                                   
+         </tr>
+     </table>              
+  </div>
+  </div>
+                         
+  <!-- End Default Content REMOVE THIS -->
+</apex:component>

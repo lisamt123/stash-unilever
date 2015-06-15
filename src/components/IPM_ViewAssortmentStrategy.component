@@ -1,0 +1,52 @@
+<apex:component controller="IPM_AssortmentStrategy" allowDML="true">
+<apex:attribute name="ProSecID" assignTo="{!ProdocSecId}" type="string"  description="Get section id"/>
+   <apex:repeat value="{!setAssortStrategy}" var="UAS" id="AssortStrategy">
+                <div class="ipmAccordion">
+                    <div class="projectContainer">
+                        <div class="pHead">                            
+                                            <div class="col-sm-12 accordian-sec">
+                                                <span class="expico fa fa-plus"></span>
+                                        <div class="bsFieldLabel">{!UAS}</div>
+                                        
+                                        </div>
+                        
+                        </div>  
+                        
+                        <div class="ipmAcrdnExpand" style="display: none;">
+                            <apex:repeat value="{!lstAssortStrategy}" var="lstAS">
+                              
+                            <apex:outputPanel rendered="{! if(lstAS.IPM_Incumbent_CUs__c=UAS,true,false)}">
+                            <div class="pt20">
+                                <div class="col-sm-12 ipmAcrdnExpan">
+                                    <div class="col-sm-4">
+                                    <div class="inputField">
+                                        <label class="bsFieldLabel">
+                                        {!lstAS.IPM_Customer_Channels__c}</label>
+                                    </div>
+                                                                    
+                                    </div>
+                                    <div class="col-sm-4">
+                                    <div class="inputField ">
+                                      <apex:outputtext value="{!lstAS.IPM_Assortment_Strategy_Priority__c}" />
+                                   </div>
+                                    
+                                    </div>
+                                    <div class="col-sm-4">                                  
+                                    <div class="inputField">
+                                    <!--<input id="" placeholder="Dist target %" type="text" name="" value="" class="" maxlength="14" onkeyup=""/>-->
+                                    <apex:outputtext value="{!lstAS.IPM_Assortment_strategy_Target__c}"/>
+                                    </div>                                  
+                                   
+                                    
+                                    </div>
+                                    </div>
+                                
+                        </div>
+                        </apex:outputPanel>
+                         </apex:repeat>                    
+                        </div> 
+                        
+                    </div>
+                </div>
+                </apex:repeat>
+</apex:component>

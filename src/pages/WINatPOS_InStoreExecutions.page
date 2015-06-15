@@ -1,0 +1,31 @@
+<!--===========================================================================-->
+<!--Name:  WinatPOS_InStoreExecutions                                          -->
+<!--Copyright notice:                                                          -->
+<!--===========================================================================-->
+<!--===========================================================================-->
+<!-- Purpose:                                                                  -->
+<!---------                                                                    -->
+<!--===========================================================================-->
+<!--===========================================================================-->
+<!-- History                                                                   -->
+<!-- -------                                                                   -->
+<!-- VERSION  AUTHOR           DATE              DETAIL          RELEASE/CSR   -->
+<!--   1.0 -  Darren Sabey   22/10/2013      INITIAL DEVELOPMENT               -->
+<!--===========================================================================-->
+
+<apex:page doctype="html" controller="WINatPOSController" showheader="true" sidebar="false" standardStylesheets="true" cache="true">    
+    <head>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+        <apex:stylesheet value="{!URLFOR($Resource.winatpos,'winatpos/general.css')}"/>
+        <style>
+            .category_list {
+                left: 175px !important;
+            }
+            #brand_list {
+                left: 350px !important;                
+            }
+        </style>              
+    </head>
+    <c:WINatPOS_Main />         
+</apex:page>

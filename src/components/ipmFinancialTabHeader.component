@@ -1,0 +1,30 @@
+<apex:component >
+    <apex:attribute name="ipmFinancial" type="IPM_Financial__c" required="true" description="IPM Financial object record"/>
+    <apex:attribute name="fieldSuffix" type="String" required="true" description="fieldSuffix - Global/Regional/Local"/>
+
+    <div class="col-sm-6">
+        <div class="ipmfinHeading1">Financial Business Case - {!ipmFinancial.Display_Name__c}</div>
+        <div class="staticLabel2" style="padding-top:5px;">Last Saved By: &nbsp;
+            <!-- Global Values -->
+            <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                <apex:outputField value="{!ipmFinancial.Last_Saved_By_Global__c}"/>
+                &nbsp;on&nbsp;
+                <apex:outputField value="{!ipmFinancial.Last_Saved_Global__c}"/>
+            </apex:outputPanel>
+
+            <!-- Regional Values -->
+            <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                <apex:outputField value="{!ipmFinancial.Last_Saved_By_Regional__c}"/>
+                &nbsp;on&nbsp;
+                <apex:outputField value="{!ipmFinancial.Last_Saved_Regional__c}"/>
+            </apex:outputPanel>
+
+            <!-- Local Values -->
+            <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                <apex:outputField value="{!ipmFinancial.Last_Saved_By_Local__c}"/>
+                &nbsp;on&nbsp;
+                <apex:outputField value="{!ipmFinancial.Last_Saved_Local__c}"/>
+            </apex:outputPanel>
+        </div>
+    </div>
+</apex:component>

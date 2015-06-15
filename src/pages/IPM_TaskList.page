@@ -1,0 +1,335 @@
+<apex:page standardController="IPM_Project__c" extensions="IPM_Taskview" sidebar="false" >
+<apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmMilestonesAndTasks.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmModal1.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmDropDown.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmHeader-new.css')}"/>
+<style>
+    /* header new styles */
+    .ipmFunnelPanel {bottom: 4px;}
+    //.tabEven.dropdown a{margin-top:8px;}
+    .navbar-nav li:last-child a{/*bottom: 7px;*/ position: relative;}
+    .nav{position:relative;}
+
+    //.htmlDetailElementTable img {width:44px!important;max-width: 100%;max-height: 44px!important; border-radius: 50% !important;}
+    .modal-backdrop.in{opacity: 0 !important;}
+    .htmlDetailElementTable img {width:100%; max-width:100%;}
+
+    .heading2{font-size:1.840em;}
+    .heading3{font-size:1.338em; font-weight:bold;}
+    .ipmHeading{border-bottom:1px #7fa19e solid; padding:0px 0px 5px;text-transform:none;}
+    .blue{color:#253b78 !important;}
+    .ipmPanelHeading{padding:3px 10px 3px 0 !important;border-right:0px;text-transform:none;}
+    .gray{color:#555555;}
+    .ipmMileRow{padding-left:0px !important; margin:10px 0px 0px !important;}
+    .ipmTaskRow{padding-left:0px !important; margin:20px 0px 0px !important;}
+    .statisticsBox{padding:3px;text-align: center; color: white;border-radius: 3px;width: 23px;height: 23px;border: 1px #ddd solid;font-size:0.850em;font-weight:bold;}
+    .statisticsBox.green{background: #81bf42;}
+    .statisticsBox.gray{background: #e4e3e3; color:#666666;}
+    .staticLabel2{font-weight:normal;color:#666666;font-size:1em;padding-right: 4px !important;padding-top: 0px;padding-left: 4px !important;}
+    .staticLabel{font-weight:normal;color:#666666;font-size:1em;padding-right: 8px !important;padding-top: 3px;padding-left: 8px !important;}
+    .ipmStatistics{padding: 4px 10px; border-right: 1px #252525 solid;}
+    .ipmStatistics.last{border-right:none;}
+     div[class^="col-xs"]{padding-left:10px;padding-right:10px;}
+    .width1{width:7%;}
+    .width2{width:12%;}
+    .width3{width:10%;}
+     .addLink{padding-right:10px !important;float:left; text-align:right; color:#007DBB; font-size:0.7em; cursor:pointer;}
+    .addLinkText{margin-left:1px;font-size: 1.4em;font-weight: bold;}
+    
+     input[disabled]{background-color:#f7f7f7;border:1px #cdcdcd solid;}
+    .toggleContainer a{vertical-align:middle;}
+    .toggleContainer{position: relative;/*left: 20px;*/padding-left:0 !important;padding-right:0 !important;text-align:center !important;}
+    .toggleContainer>div{padding-left:0 !important;padding-right:0 !important;}
+    .toggleContainer>.selectedView{background: transparent;background-color: #81bf42 !important;border-top-right-radius: 15px;border-bottom-right-radius: 15px;}
+    .toggleContainer>.selectedView1{background: transparent;background-color: #81bf42 !important;border-top-left-radius: 15px;border-bottom-left-radius: 15px;}
+    
+    .SecButtonSet .icoButton {display:inline-block;width:30px; margin: 0 5px; cursor:pointer; height:30px;border:1px solid #1568b6;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}
+    .SecButtonSet  {display:inline-block; text-align:right; margin-top:0px;}
+    .noteimg .icoButton {display:inline-block;width:15px;cursor:text; margin: -9px 6px -9px 0px; height:30px;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}
+    .noteimg {display:inline-block;}
+    .padTop{padding-top:4px;}
+    .gateMilstone { border-bottom:1px solid #ddd; margin:0px;padding-bottom: 20px; }
+    .showallbutton{font-family:Arial;font-size:1em;font-weight:bold;color:#007DBB;border-right:1px solid #ddd;padding:7px 10px;}
+    .mstone{font-style: italic;color: #666;}
+    .completeHeader{width:16%;}
+    .iconHeader{width:10%;}
+    .taskListTable thead th:first-child{width:160px !important;}
+    /*.taskListTable thead th:first-child + th{width:130px !important;}*/
+    .colCompleted,.colPhase,.colAssignee{height:17px;}
+    #ipmTimeLine{margin-bottom:20px;}
+    .filterIcon{padding-top:2px;cursor:pointer;display:inline-block;width:15px;margin: -6px 0px; height:30px;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}
+    .mstoneTasks .icoButton{margin:0px 2px;}
+    .duedateHeader{width:11%;}
+    .taskphaseHeader{width:130px !important;}
+    #addMilestone{margin-top: 5px;padding-right: 0 !important;float: right;border-left: 1px grey solid;width: 53%;height: 24px;line-height: 24px;}
+    .ipmTable.table-bordered{border-bottom:1px solid #7fa19e;border-top:1px solid #ddd !important;}
+    .taskListTable.table-bordered{table-layout:fixed;border-bottom:1px solid #7fa19e;border-top:1px solid #ddd !important;}
+    .ipmTaskRow .rounded {border-radius:50%; margin-right:10px;float:left;}
+     .colRed{color:red !important;}
+     .colBlack{color:#000 !important;}
+     .assignedCheckboxes .taskTop{margin-top:0px;position:absolute !important;top:2px !important;}
+    .noPadleft{padding-left:0px !important;}
+    .table>thead>tr>th:first-child{padding-left:4px !important;}
+    .table>thead>tr>th:last-child{width:11%;}
+    .table>thead>tr>td:last-child, .table>tbody>tr>td:last-child {text-align:right;}
+    
+   .ipmDropDown .dropdown-toggle{padding: 7px;position: relative;top: -7px;left: 2px;}
+    .keep-open{height:18px;width: 25px;}
+    .ipmTable .dropdown-menu{margin-top:-8px !important;z-index:9 !important;}
+    .ipmTable .open .dropdown-toggle a{margin:-7px -2px;}
+    .fa{cursor:pointer;}
+    
+    .filterActions a{cursor:pointer;}
+     .phaseFilter .dropdown-menu{border:1px solid #252525;z-index:0;min-width: 190px;border-radius:4px 0px 4px 4px;background:#f9f9f9;margin-top: 0px;margin-right: -3px;}        
+     .ipmTable  .open .dropdown-toggle{background: #f9f9f9;padding: 7px;border-top: 1px solid #000;border-left: 1px solid #000;border-right: 1px solid #000;border-bottom: 0px;border-radius: 4px 4px 0px 0px;position: relative;bottom: -1px;z-index: 10;left: 3px;}
+     .phaseFilter .dropdown-menu>li{padding:10px 0px 36px 10px !important;border-bottom: 1px solid #ddd;}
+                
+     .ipmTable .open .dropdown-toggle{background: #f9f9f9;padding: 7px;border-top: 1px solid #000;border-left: 1px solid #000;border-right: 1px solid #000;border-bottom: 0px;border-radius: 4px 4px 0px 0px;position: relative;bottom: -1px;z-index: 10;left: 3px;}
+     .ipmTable .dropdown-menu .ipmCheckbox label{top:4px;}
+     li .ipmButtonGroup{margin-top: 4px;}
+     .sortIcon{font-size: 1.2em;margin-left: 8px; cursor:pointer;}
+     .deleteTask{display:none;}
+     .deleteTask div{padding:20px;}
+     #ipmTableDiv .SecButtonSet .icoButton {display:inline-block;width:30px; margin: 0px 5px; height:30px;border:1px solid #1568b6;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}
+     
+     .toggleContainer{border: 1px solid #1568b6;border-radius: 20px;margin-top:0px !important;}
+    .toggleContainer .icoButton{border:0px;margin: 0px;}
+    .noPadleft .icoButton{border:0px;}
+    .noPadleft .icoButton{margin: -9px -1px;}
+    .noPadright{padding-right:0px !important;}    
+    
+    /*.ipmDropDown .dropdown-menu{border:1px solid #252525;z-index:1000;min-width: 190px;border-radius:4px 0px 4px 4px;background:#f9f9f9;margin-top: 0px;margin-right: -3px;}  
+    .ipmDropDown .dropdown-menu>li{padding:10px 0px 36px 10px !important;border-bottom: 1px solid #ddd;}
+    .ipmDropDown .dropdown-menu>li:last-child{border-bottom:0px;padding-left:0px !important;}
+    .ipmButtonGroup .ipmDropbuttons{border-right:1px solid #252525;padding:10px 21px 10px 21px;}
+    .ipmButtonGroup .ipmDropreset{padding:0px 13px;}
+    
+    .ipmButtonGroup .ipmDropcompletebuttons{border-right:1px solid #252525;padding:10px 15px 10px 0px;}
+    .ipmButtonGroup .ipmDropcompletereset{padding:0px;}
+    .completedFilter .dropdown-menu{border:1px solid #252525;min-width: 136px;z-index:1;border-radius:4px 0px 4px 4px;background:#f9f9f9;margin-top: 0px;margin-right: -3px;} 
+    .completedFilter .dropdown-menu>li{padding:10px 0px 36px 10px !important;border-bottom: 1px solid #ddd;}
+    .completedFilter .dropdown-menu>li:last-child{border-bottom:0px;padding-left:0px !important;}
+    .completedFilter .dropdown-menu>li label{text-indent:30px;line-height:14px;font-weight: normal;}*/
+    .timeLineView{display:none;}
+    .dateInput .dateInputBox{width:66%;}
+    .input-group-addon{padding: 0px;margin-top: -3px;width: 1px;background:none; border:none;color: #007dbb;font-size: 1.3em; left:66%; top:43px; position:absolute;}
+    .modal-body html{height:height:100%; overflow-y:hidden;}
+    .errorMsg:before{left: 3%;top: 63px;position: absolute;border-top: 1px #ffebec solid;border-right: 1px #ffebec solid;background: #ffebec;content: " ";height: 15px;width: 15px;-ms-transform: rotate(-45deg);transform: rotate(-45deg);}
+    .ipmPanelCount{padding-left:8px;border-left:1px #252525 solid;font-weight:normal;}
+    
+    .mandatorycolor{color: #CF1721;}
+    .alertBox{padding:15px 0;margin-bottom:0;margin-top:20px;}
+    .pagemessageBoxDiv{margin-top:30px !important;}
+    #milestoneList table th:last-child{text-align:right!important;}
+    .ipmTaskRow table th:last-child{text-align:right!important;}
+    
+    .nav{margin-left:20px;}
+    .addmilelink{width:18%;}
+    @media screen and (max-width: 1024px) {
+       .addmilelink{width:24%;}
+    }
+    .ipmCheckbox{width:20px;}
+</style>
+<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" />
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css" />-->
+    <apex:composition template="ipmTemplateRevamp2">
+        <apex:define name="body">
+            <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/functions.js')}"/> 
+            
+            <div class="gradientbg">
+                <div class="row">
+                  <apex:form >
+                   <c:ipmProjectDetailsRevampNew />
+                 </apex:form>
+                </div>
+               <!-- <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(IPM_Project__c.IPMProject_Span__c='Local' && IPM_Project__c.IPM_Phase__c!='Market Ready')}"> 
+                        <c:ipmNavMenuBCC activeItem="milestonesAndTasks"></c:ipmNavMenuBCC>                        
+                   </apex:OutputPanel>
+                   <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(IPM_Project__c.IPMProject_Span__c!='Local' && OR(IPM_Project__c.IPM_Phase__c!='Feasibility',IPM_Project__c.IPM_Phase__c!='Capability',IPM_Project__c.IPM_Phase__c!='Ideas',IPM_Project__c.IPM_Phase__c!='Market Ready'))}" > 
+                        <c:ipmNavMenuRevamp2 activeItem="milestonesAndTasks"/>
+                   </apex:OutputPanel>-->
+                   
+                   <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(IPM_Project__c.IPMProject_Span__c='Local' && IPM_Project__c.IPM_Phase__c!='Market Ready' && IPM_Project__c.IPM_Phase__c!='Market Deployment' && IPM_Project__c.IPM_Phase__c!='PLE')}"> 
+                        <c:ipmNavMenuBCC activeItem="milestonesAndTasks"></c:ipmNavMenuBCC>                        
+                   </apex:OutputPanel>
+                   <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(IPM_Project__c.IPMProject_Span__c!='Local' && OR(IPM_Project__c.IPM_Phase__c!='Feasibility',IPM_Project__c.IPM_Phase__c!='Capability',IPM_Project__c.IPM_Phase__c!='Ideas',IPM_Project__c.IPM_Phase__c!='Market Ready'))}" > 
+                        <c:ipmNavMenuRevamp2 activeItem="milestonesAndTasks"/>
+                   </apex:OutputPanel>
+                    <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(IPM_Project__c.IPMProject_Span__c='Local' && OR(IPM_Project__c.IPM_Phase__c='PLE',IPM_Project__c.IPM_Phase__c='Market Ready',IPM_Project__c.IPM_Phase__c='Market Deployment'))}" > 
+                        <c:ipmNavMenuRevamp2 activeItem="milestonesAndTasks"/>
+                   </apex:OutputPanel>
+               <!-- <div class="row">
+                    <c:ipmNavMenuRevamp2 activeItem="milestonesAndTasks"/>
+                </div>-->
+            </div>
+            <div class="ipmContent">
+                <div class="heading2 ipmHeading blue">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            Milestones and To-Dos
+                        </div>
+                        <div class="col-sm-6 SecButtonSet mstoneTasks pull-right">
+                            <a href="/apex/ipmtaskprint?id={!IPM_Project__c.Id}&type=print" class="icoButton print" title="Print"></a>
+                            <a href="/apex/ipmProjectTaskPdf?id={!IPM_Project__c.Id}&type=pdf" class="icoButton download" title="Download"></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <apex:outputPanel id="mainRender">
+                    <c:IPM_List_Milestones pId="{!IPM_Project__c.Id}" Editmilestone="{!isMilestoneEditable}" isBD="{!isBDuser}" IsDateEditable="{!isupdateDates}" MileStoneAlerts="{!MileStoneAlerts}"/>
+                </apex:outputPanel>
+                
+                <apex:outputPanel rendered="{!isvisible}">
+                <c:IPM_List_Tasks pId="{!IPM_Project__c.Id}" Edittask="{!isTaskeditable}" EditAlltask="{!isAllTask}" functionrole="{!FunctionRole}" projectapproach="{!pmApproachMessage}" />
+                </apex:outputPanel>
+                
+            </div>
+            <div id="ipmModalDiv">
+                <c:ipmModalRevamp />
+            </div>
+             <div id="ipmModalEdit" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div id="ipmDeleteModalDiv">
+                <c:ipmConfirmModalRevamp />
+            </div>
+          <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmTable.css')}"/>
+            <script>
+                 var jq= jQuery.noConflict();
+                 var pageScrollTop = 0;
+                 jq(document).on('click', '#addMilestone', function(e){
+                    event.preventDefault ? event.preventDefault() : event.returnValue = false;                       
+                    var url =jq(this).attr('value');
+                    openModal(url);   
+                    jq('#ipmModal .modal-title').html('Add Milestone');
+                    jq('#ipmModal .modal-dialog').width('60%');
+                    jq('#ipmModal .modal-dialog').height('80%');
+                    jq('#ipmModal .modal-dialog').css('margin-top','8%');
+                });
+
+                jq(document).on('dblclick', '.editMilestone, .editTask', function(e){
+                    event.preventDefault ? event.preventDefault() : event.returnValue = false;                       
+                    openEditModal(this);
+                });
+                jq(document).on('click', '.editMilestoneBtn, .editTaskBtn', function(e){
+                    event.preventDefault ? event.preventDefault() : event.returnValue = false; 
+                    openEditModal(this);
+                });
+                jq(document).on('click', '#addTask', function(e){
+                    event.preventDefault ? event.preventDefault() : event.returnValue = false;                       
+                    var url =jq(this).attr('value');
+                    openModal(url);   
+                    jq('#ipmModal .modal-title').html('Add To-Dos');
+                    jq('#ipmModal .modal-dialog').width('30%');
+                    jq('#ipmModal .modal-dialog').height('90%');
+                    jq('#ipmModal .modal-dialog').css('margin-top','3%');
+                });
+                
+                jq(document).on('click', '#editTask', function(e){
+                    event.preventDefault ? event.preventDefault() : event.returnValue = false;                       
+                    var url =jq(this).attr('value');
+                    //openModal(url);
+                    jq("#ipmModalEdit .modal-body").html('<iframe id="tskiFrm" frameborder="0" height="84%" width="100%" marginheight="0" marginwidth="0" allowtransparency="true" src= "'+url+'"></iframe>'); 
+                    //jq("#ipmModalEdit .modal-body").append($("#div_comp").html());
+                    var iContent = jq('#tskiFrm').contents().find("body").html();
+                    jq("#ipmModalEdit .modal-body #tskiFrm .container-fluid").clone().prependTo("#div_comp");
+                    //jq("#div_comp").append(iContent);
+                    jq("#div_comp").dialog({
+                        modal: true,
+                        draggable: false,
+                        resizable: false,
+                        position: ['center', 'top'],
+                        width: 400,
+                        height : 200
+                       
+                    });
+                    //jq("#ipmModalEdit .modal-body").html();
+                    jq('#ipmModal .modal-title').html('Edit To-Dos');
+                    jq('#ipmModal .modal-dialog').width('30%');
+                    jq('#ipmModal .modal-dialog').height('90%');
+                    jq('#ipmModal .modal-dialog').css('margin-top','3%');
+                });
+                jq(document).ready(function(){
+                    jq(".ipmCheckbox").find("input[type=checkbox]:checked").closest("tr").addClass("selected");
+                    jq(".ipmCheckbox").on("click", "input[type=checkbox]", function(){
+                        if(jq(this).prop("value")=="true"){
+                        jq(this).closest("tr").addClass("selected");
+                        }else{
+                        jq(this).closest("tr").removeClass("selected");
+                        }
+                    });
+                    if("{!pmApproachMessage}" == "true"){
+                        jq('.ipmStatistics').hide();
+                        jq('#addTask').hide();
+                        jq('#tasksAssignedToMeFilter').hide();
+                    }
+                });
+                
+                function openEditModal(elem){
+                    var url =jq(elem).attr('value');
+                    var top = jq(elem).closest('tr').offset().top - pageScrollTop;                     
+                    jq('#ipmModalEdit').modal({show:true, keyboard: false, backdrop:'static'});                    
+                    jq("#ipmModalEdit .modal-body").html('<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" allowtransparency="true" src= "'+url+'"></iframe>');  
+                     jq("#ipmModalEdit .modal-body").height('100%');
+                    jq('#ipmModalEdit .modal-dialog').css('margin-top',top);
+                    jq('#ipmModalEdit .modal-title').html('Edit Milestone');
+                    jq('#ipmModalEdit .modal-dialog').width('92.3%');
+                    jq('#ipmModalEdit .modal-dialog').height('25%');
+                    jq('#ipmModalEdit .modal-dialog').css('margin-left','2%');
+                    jq('#ipmModalEdit .modal-dialog').css('margin-right','8%');
+                }
+            </script> 
+            <apex:outputPanel id="checkBoxScript">
+                <script>                    
+                    /*jq(".ipmTable>tbody>tr").click(function(){
+                        jq(this).addClass("selected").siblings().removeClass("selected");
+                        jq('.ipmCheckbox label').removeClass("selected");
+                        jq(this).find('.ipmCheckbox label').addClass('selected');
+                    });*/                    
+                    jq(".timeLineView").hide();
+                    jq(".toggleContainer .icoButton.document").on("click", function(){                    
+                        if(jq(".ipmTaskRow").is(":visible")){
+                            jq(".ipmTaskRow").hide();
+                            jq(".timeLineView").fadeIn("fast");
+                        }else{
+                            jq(".ipmTaskRow").hide();
+                            jq(".ipmTaskRow").fadeIn("fast");
+                        }
+                    }); 
+                    jq(".nav a").on("click", function(){
+                       jq(".nav").find(".active").removeClass("active");
+                       jq(this).parent().addClass("active");
+                    }); 
+                    jq(window).scroll(function() {
+                        pageScrollTop = jq(window).scrollTop();
+                    });
+                    jq('#ipmTableDiv input[type=checkbox]').each(function () {
+                        var val = jq(this).attr('value');
+                        var isDisabled = jq(this).attr('isDisabled');
+                        if(val === 'true'){
+                           jq(this).prop('checked', true); 
+                            jq(this).next('label').addClass('selected');
+                            jq(this).parent().next('label').addClass('selected');
+                        }else{
+                                jq(this).prop('checked', false);
+                                jq(this).next('label').removeClass('selected');
+                                jq(this).parent().next('label').removeClass('selected');
+                            }
+                        if(isDisabled=='true'){
+                                    jq(this).prop('disabled', true);
+                                }
+                    });
+                </script>
+           </apex:outputPanel>
+           
+        </apex:define>
+    </apex:composition>
+</apex:page>

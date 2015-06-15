@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>FA_Arrival_Date_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Arrival Date/Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>FA_Arrival_Information__c</fullName>
+        <externalId>false</externalId>
+        <label>Arrival Information</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Airport Car Transfer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Train Station Car Transfer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Own Arrangements</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FA_Course_Occ_Group_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>FA_Course_Occurence__r.Name  + &apos; # &apos; +  FA_Participant_Instructor__r.FirstName +&apos; &apos;+ FA_Participant_Instructor__r.LastName</formula>
+        <label>Course Occurance Group Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FA_Course_Occurence__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Occurence</label>
+        <referenceTo>FA_Course_Occurence__c</referenceTo>
+        <relationshipLabel>Occurence Member</relationshipLabel>
+        <relationshipName>FA_Participant_Occurence</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>true</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>FA_Course_name__c</fullName>
+        <externalId>false</externalId>
+        <formula>FA_Course_Occurence__r.FA_Course__r.Id</formula>
+        <label>Course name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FA_Departure_Date_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Departure Date/Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>FA_Departure_Information__c</fullName>
+        <externalId>false</externalId>
+        <label>Departure Information</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Airport car transfer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Train station car transfer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Own arrangements</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FA_External_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>This field help us to maintain the the uniqueness for participant and occurance</description>
+        <externalId>false</externalId>
+        <label>External ID</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>FA_New_Arrival_Date_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Arrival Date</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FA_New_Arrival_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Arrival Date-old</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FA_New_Arrival_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Arrival Time</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FA_New_Depart_Date_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Departure Date</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FA_New_Depart_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Departure Time</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FA_New_Departure_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Departure Date-old</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FA_Other_Accomodation_Needs__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Accomodation Needs</label>
+        <length>2000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FA_Other_Travel_Arrangements__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Travel Arrangements</label>
+        <length>2000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FA_Participant_Instructor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Participant/Instructor</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Occurence_Member</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FA_Participation_Status__c</fullName>
+        <description>To capture the status of the Participant related to the course Occurrence</description>
+        <externalId>false</externalId>
+        <label>Participation Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Invited</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Confirmed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Attended</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FA_Role__c</fullName>
+        <externalId>false</externalId>
+        <label>Role</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Participant</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Instructor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FA_Send_Feedback_Invitation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Send Feedback Invitation</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FA_Send_Invite_Mail__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Send Invite Mail</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Occurence Member</label>
+    <nameField>
+        <displayFormat>OM-{00000}</displayFormat>
+        <label>Record No</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Occurence Members</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>FA_Course_Occurence__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FA_Participant_Instructor__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FA_Role__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>FA_Occurrence_Member_Creation_Check</fullName>
+        <active>true</active>
+        <description>Needs to create Occurrence Member only for Course Occurrence that are active</description>
+        <errorConditionFormula>IF (NOT( ISPICKVAL(FA_Course_Occurence__r.FA_Status__c, &apos;Active&apos;)) ,ISNEW() ,False)</errorConditionFormula>
+        <errorMessage>Status of Course Occurrence is not Active</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FA_Participant_Check</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF ( FA_Course_Occurence__r.FA_End_Date_Time__c   &lt;  NOW()  ,ISNEW() ,False)</errorConditionFormula>
+        <errorMessage>Cannot Add Participant to a date post the end date of the course occurrence</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FA_RistrictOwnerAsMember</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISNEW() &amp;&amp; IF ( $User.Id== FA_Participant_Instructor__c,true,false)</errorConditionFormula>
+        <errorDisplayField>FA_Participant_Instructor__c</errorDisplayField>
+        <errorMessage>Owner cannot be added as the Occurence Member
+Owner will be added automatically 
+Please choose another Participant/Instructor</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FA_cannotChangeStatusIfCancelled</fullName>
+        <active>true</active>
+        <description>Status cannot be changed if the Status is already Cancelled</description>
+        <errorConditionFormula>ISCHANGED(FA_Participation_Status__c) &amp;&amp;   TEXT( PRIORVALUE( FA_Participation_Status__c ))==&apos;Cancelled&apos;</errorConditionFormula>
+        <errorDisplayField>FA_Participation_Status__c</errorDisplayField>
+        <errorMessage>Cancelled Status cannot be changed</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FA_mustEnterParticipantInstructor</fullName>
+        <active>true</active>
+        <description>Participant/Instructor must be entered</description>
+        <errorConditionFormula>ISBLANK(FA_Participant_Instructor__c)</errorConditionFormula>
+        <errorDisplayField>FA_Participant_Instructor__c</errorDisplayField>
+        <errorMessage>Please select a Participant/Instructor</errorMessage>
+    </validationRules>
+</CustomObject>

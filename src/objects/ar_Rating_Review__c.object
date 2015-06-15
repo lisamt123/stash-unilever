@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Agency portal management - Ratings details</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Agency__c</fullName>
+        <externalId>false</externalId>
+        <label>Agency</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Ratings</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Clarity_of_Strategy__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Demonstrates clear understanding of business objectives and provides strategic design solutions in response.</inlineHelpText>
+        <label>Clarity of Strategy</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Collaboration_Fit__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Is willing to share, trust and co-create with us and other agency partners.</inlineHelpText>
+        <label>Collaboration &amp; Fit</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Craft_Execution__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Cares about attention to detail, passion for the work and the process that led to it.</inlineHelpText>
+        <label>Craft &amp; Execution</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Creativity_Ideas__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Shows an ability to develop imaginative, cut-through concepts that surprise and delight.</inlineHelpText>
+        <label>Creativity &amp; Ideas</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Insight_Foresight__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Exhibits an understanding of social/human behaviours and future trends</inlineHelpText>
+        <label>Insight / Foresight</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Options_Rated_Count__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(Clarity_of_Strategy__c),0,1) +
+IF(ISBLANK(Collaboration_Fit__c),0,1) +
+IF(ISBLANK(Craft_Execution__c),0,1) +
+IF(ISBLANK(Creativity_Ideas__c),0,1) +
+IF(ISBLANK(Insight_Foresight__c),0,1) +
+IF(ISBLANK(Value_for_Money__c),0,1)</formula>
+        <label>Options Rated Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Overall__c</fullName>
+        <externalId>false</externalId>
+        <formula>(
+	IF(ISBLANK(Clarity_of_Strategy__c),0,Clarity_of_Strategy__c) +
+	IF(ISBLANK(Collaboration_Fit__c),0,Collaboration_Fit__c) +
+	IF(ISBLANK(Craft_Execution__c),0,Craft_Execution__c) +
+	IF(ISBLANK(Creativity_Ideas__c),0,Creativity_Ideas__c) +
+	IF(ISBLANK(Insight_Foresight__c),0,Insight_Foresight__c) +
+	IF(ISBLANK(Value_for_Money__c),0,Value_for_Money__c)
+)
+/ Options_Rated_Count__c</formula>
+        <label>Overall</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Review__c</fullName>
+        <externalId>false</externalId>
+        <label>Review</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Value_for_Money__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Delivers of effective solutions efficiently and at a competitive cost.</inlineHelpText>
+        <label>Value for Money</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Agency Rating &amp; Review</label>
+    <nameField>
+        <displayFormat>R-{00000}</displayFormat>
+        <label>Rating ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Agency Ratings &amp; Reviews</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

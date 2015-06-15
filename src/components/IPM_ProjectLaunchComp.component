@@ -1,0 +1,18 @@
+<apex:component controller="IPM_ProjDocumentSectionHstryController">
+<style>
+#stopsection img{padding-bottom:10px;}
+#stopsection{margin-top:20px;}
+.infosec{background-color:#F7F7F7;padding:10px;color:##364353;text-align:left;font-weight:normal !important;}
+.successStyle{color:#439C26;font-weight:bold;font-size:1.4em;padding-bottom:5px;}
+.launchDate{color:#3C516E;font-size:1.2em;}
+</style>
+    <div class="col-sm-6 text-center" id="stopsection">
+        <div><img src="/resource/1422940358000/ipmResourceRevamp/images/img_ple.png"/></div>
+         <div class="successStyle">Project has successfully launched</div>
+        <div class="launchDate">on&nbsp;<apex:outputField value="{!projectDoc.IPM_Approval_Date__c }"/></div>
+        <!--<div class="infosec">
+            <p><b>Comments</b></p>
+            <p>{!projectObj.IPM_Stopped_Comments__c}</p>
+        </div>-->
+    </div>
+</apex:component>

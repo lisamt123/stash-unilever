@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CMS Article Link</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CMS Article Links</value>
+    </caseValues>
+    <fields>
+        <label><!-- CMS Article --></label>
+        <name>CMS_Article__c</name>
+        <relationshipLabel><!-- CMS Article Links --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CMS Link --></label>
+        <name>CMS_Link__c</name>
+        <relationshipLabel><!-- CMS Article Links --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

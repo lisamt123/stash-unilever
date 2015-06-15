@@ -1,0 +1,1362 @@
+<apex:page Controller="IPM_ProjectDocumentSectionController" sidebar="false" standardStylesheets="false" id="page"  docType="html-5.0">
+   <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/jquery.js')}"/>
+   <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/jquery-ui.js')}"/>
+   <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/functions.js')}"/>
+    <style type="text/css">   
+   /* header new styles */
+    .ipmFunnelPanel {bottom: 4px !important;}
+   
+    .custMarginRight{margin-right:6px;}
+        //.htmlDetailElementTable img {width:44px!important;max-width: 100%;max-height: 44px!important; border-radius: 50% !important;}
+        .ipmProjectDetails .panel-title {line-height:2em!important;} 
+        .uploadImg {}
+        
+        .uploadImg img {border-radius: 50% !important;}
+        .ipmSectionEditor .panel {box-shadow:none!important;}
+        .ipmProjectDetails {border-top:1px solid #4a5b8f; border-bottom:1px solid #34416b;}
+        .ipmProjectDetails .panel {background:transparent;}
+        .ipmProjectDetails .uploadImg {overflow:hidden;padding:0!important;margin:0!important;}
+        
+        .ipmProjectDetails .panel-body .col-sm-3 {padding-left:3px!important;margin-top: 18px;}
+        .pageHeadToolbar { border-bottom:1px solid #7EA19D; margin:0px 0 0 15px; }       
+        .pageHeadToolbar h2.pageTitle {margin:0px 7px 10px 0!important;display:inline-block; font-size:1.8402083517355998em;color:#253b78; font-weight:bold;padding-right: 10px;border-right: 1px solid #929292;}
+        .pageHeadToolbar .SecFillProgress {display:inline-block; }
+        .pageHeadToolbar .SecFillProgress .fillProgress {display:inline-block;color:#e98824;font-size:22px; font-weight:normal;}
+        .pageHeadToolbar .SecFillProgress .fillProgress span {font-size:12px!important;}
+        .pageHeadToolbar .SecFillProgress .fillProgressTxt {color:#364354!important;display:inline-block; font-size:12px;}
+        .pageHeadToolbar .SecStatusUpdate {display:inline-block;margin:15px 0; padding-right:15px;border-right: 1px solid #929292;}        
+        .pageHeadToolbar .SecCurrentStatus {display:inline-block; color:#364354; margin: 15px;text-align:right;}
+        .pageHeadToolbar .status {color:#e98824;display:block;font-weight:bold;}
+        .pageHelpToolbar {margin:0 15px; }
+        .pageHeadToolbar .selLabel {font-size:1em;display:inline-block; margin-right:7px;font-weight:normal;}        
+        .icoButton {cursor:pointer;}
+        .panelOutcome {border-bottom:1px solid #ddd!important; padding-bottom:7px!important; margin-bottom:10px!important; margin-top:6px!important;font-size:1.2em; font-weight:bold; }
+        .panelMessage { padding-bottom:0px!important;margin-top:10px; margin-bottom:10px!important; box-shadow:none!important;font-size:1em; color:#1568b6; font-style:italic; }
+        .dateUpdate{ padding-bottom:7px!important;font-size:1em; color:#666; }
+        .marginFloatedBlock {margin-bottom:10px;}
+        .notifyTeam {font-size:1em; }
+        .notifyTeam input[type=checkbox] {position:relative; top:2px;}
+        .leftSideBar {margin-top:10px;}
+        .leftSideBar h4 {color:#253b78; font-size:1.1em; font-weight:bold;}
+        .leftSideBar ul.docFilter {padding:0!important; margin:20px 0 0!important; list-style:none;}
+        .leftSideBar ul.docFilter li {margin-left:0!important; display:block; background:#edeef0; color:#253b78; border-bottom:1px solid #d7e0e0; padding:7px;}
+        .leftSideBar ul.docFilter li > input[type=checkbox]{position:relative; margin-right:5px; top:2px;}
+        .leftSideBar ul.docFilter h4 {display:block; background:#edeef0; color:#253b78; margin-bottom:0!important; border-bottom:1px solid #d7e0e0; border-top:1px solid #d7e0e0; padding:10px 7px;}
+        .tempWrapper .expandTool {text-align:right;}
+        .tempWrapper .expandTool span {display:inline-block; margin:5px; font-weight:bold; color:#0f81bb; cursor:pointer; }
+        .contenWrapper { margin-top:11px;}
+        /* Generic Accordian Styles */
+        .ipmAccordian {display:block;}
+        .ipmAccordian .aHead {display:block;}
+        .ipmAccordian > .ipmAcrdnExpand {border:1px solid #dce3e2; display:block; border-top:none!important; margin-bottom:10px;}        
+        .ipmAccordian > .aHead {color:#253b78; font-size:1.5em; font-weight:bold; display:block;background:#f7f7f7;border:1px solid #dce3e2; margin:0; padding:13px 10px 14px;}
+        .ipmAccordian > .ipmAcrdnExpand > .aHead {color:#0f7fb8!important; font-size:1.2em; font-style:normal; font-weight:bold; display:block;border-bottom:1px solid #dce3e2; margin:0 20px; padding:12px 0;}
+         .ipmAccordian > .ipmAcrdnExpand > .ipmAcrdnExpand > .aHead {font-size:1em;font-style:normal;font-weight:bold;color:#0f7fb8; display:block; border-bottom:1px solid #eee; padding: 12px 0 15px; margin:0 0 0 20px;}
+        .ipmAccordian .ipmAcrdnExpand .ipmAcrdnExpand {padding:20px;display:block;}
+        .ipmAccordian .ipmAcrdnExpand .ipmAcrdnExpand .col-sm-3 {padding-right:0!important; position:relative; right:-5px;}
+        .ipmAccordian .ipmAcrdnExpand .ipmAcrdnExpand .ipmAcrdnExpand {padding:20px;display:block;}
+        .ipmAccordian .ipmAcrdnExpand {color:#797979;display:block;}
+        .ipmAccordian > .aHead span.expico {display: inline-block; cursor:pointer; font-family: FontAwesome;width: 21px;height: 21px;text-align: center;font-weight: normal;line-height: 23px;background: #81bd42;position: relative;margin-right: 5px;
+        font-size: 0.8em;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;color: #fff;}
+        .ipmAccordian .ipmAcrdnExpand .aHead span.expico {display: inline-block; cursor:pointer; font-family: FontAwesome;width: 16px;height: 16px;text-align: center;font-weight: normal;line-height: 17px;background: #d4d4d4;position: relative;margin-right: 5px;
+        font-size: 0.7em;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;color: #fff;}
+        .ipmAccordian span.wrpHead {display: inline-block;padding: 5px 10px 5px 0;border-right: 1px solid #797979;}
+        .ipmAccordian span.filledIn {display: inline-block;padding: 5px 10px; color:#e68627!important; font-weight:normal!important; }
+        .ipmAccordian span.Excluded {display: inline-block;padding: 5px 10px; margin-left:5px; color:#797979!important; background:#ebebeb; font-size:0.9em!important; font-weight:normal!important; }
+        .ipmAccordian span.lastupdate {display:block; margin: 6px 0 0 0; color:#d4d4d4!important; font-weight:normal!important; }        
+        .ipmAccordian .acHead {padding-top:4px;}
+        
+        #ipmSecEditorTab {background:#ebf8fc;}
+        #ipmSecEditorTab .ipmTabContent { width:100%; }
+        #ipmSecEditorTab .panel {background:transparent;}
+        #ipmSecEditorTab .ipmTabs {padding:0 0 0 20px; margin:0; background:#fff; border-bottom:1px solid #50657d;}
+        #ipmSecEditorTab .ipmTabs li {display:inline-block; padding:7px 12px; margin:0; font-weight:bold;cursor:pointer;}
+        #ipmSecEditorTab .ipmTabs li.active{border:1px solid #50657d; color:#007DBB; position:relative; top:2px; border-bottom:2px solid #ebf8fc!important; background:#ebf8fc; cursor:pointer; border-top-left-radius:3px; border-top-right-radius:3px;-moz-border-top-left-radius:3px; -moz-border-top-right-radius:3px;-webkit-border-top-left-radius:3px; -webkit-border-top-right-radius:3px;}
+        .ipmTabContent#aTasks {min-height:490px;}
+        
+        .pageHeadToolbar .SecButtonSet {display:inline-block; text-align:right; margin-top:0px;text-align:right;padding-top:5px;}
+        .pageHeadToolbar .SecButtonSet .icoButton {display:inline-block;width:30px; margin: 0 5px; height:30px;border:1px solid #1568b6;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}
+        .pageHelpToolbar .SecButtonSet  {display:inline-block; text-align:right; margin-top:4px;text-align:right;}
+        .pageHelpToolbar .SecButtonSet .icoButton {display:inline-block;width:30px; margin: 0 5px; height:30px;border:1px solid #1568b6;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}
+        .pageHeadToolbar .SecButtonSet .icoButton {display:inline-block;width:30px; margin: 0 5px; height:30px;border:1px solid #1568b6;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}
+        .ipmProjectDetails .SecButtonSet {display:inline-block; text-align:right; position:relative; top:0;}
+       
+        .ipmProjectDetails .SecButtonSet {display:inline-block; text-align:right; position:relative; top:0;}
+        
+        .SecButtonSet .icoButton {display:inline-block;width:30px; margin: 0 5px; height:30px;border:1px solid #1568b6;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}
+        .ipmButtonSet {display:inline-block; text-align:right;}
+        .ipmButtonSet .ipmButton {display:inline-block; margin: 0 5px;}
+        .ipmButtonSet .ipmButton.last {margin-right:0!important;}
+        
+        .secAttachment {background:#f5f5f5;border-bottom:1px solid #b9c9c7; }
+        .secAttachment .secTitle {font-weight:bold; padding:7px;}
+        .secAttachment .secLink {font-weight:bold; text-align:right; padding:7px; cursor:pointer; color:#1568b6;}
+        .secAttachment .fileName {display:inline-block;padding:7px; margin-right:5px;}
+        .secAttachment .panelListFiles {color:#1568b6; background:transparent:important;}
+        /*.secEditSummary {margin-bottom:10px!important;}*/
+       
+        .asterisk:before{ content:"* ";} 
+        /* ipmModal Styles */
+        #ipmModal .modal-header{background: url({!URLFOR($Resource.ipmResourceRevamp, '/images/pop_header.png')}) repeat-x !important;padding:17.5px 10px 17.5px 17.5px; border-bottom:1px #d7d7d7 solid;border-radius:3px;-webkit-border-radius:3px;}
+        #ipmModal .modal-title{color:#333333 !important;font-weight:bold;font-size:1em;}
+        #ipmModal .modal-header button.close{border: 1px #007dbb solid;border-radius: 50%;padding: 3px 5px;color: #007dbb;width: 30px; background: #fff; margin-top:-8px;opacity: 1;}
+        #ipmModal .modal-content{border-radius:3px;height:100%;}
+        #ipmModal .modal-body{height:90%;}
+        #ipmModal .modal-dialog{margin:15px auto;}
+        
+        .ipmSelect {border-radius:3px;-webkit-border-radius:3px;-webkit-border-radius:3px;position:relative; z-index:0; display:inline-block;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;}
+        .ipmSelect select {padding:3px;-webkit-appearance: none;-ms-appearance: none; appearance: none; padding-right:20px; padding-right:5px\9; background: transparent;border: none;}
+        select::-ms-expand {display: none;}
+        .ipmSelect::after {display:block; font-family:FontAwesome; content:"\f107"; font-size:1.4em; position:absolute; top:3px; right:0; top:1px\9; right:1px\9; z-index:-1;width:20px;height:20px; text-align:center; background:#fff;color:#000;}
+        
+        .aTaskbutton{font-family:Arial;font-size:1em;font-weight:bold;color:#007DBB;}
+        .aTabs{padding:10px 0px;background:#ffffff;min-height:50px;width:96%;color:#666;margin:10px 10px 10px 10px;border-radius:2px;border:1px solid #cccccc;float:left;}
+        .aTabs.active{background:#e1f9dd;border:0px;}
+        .aTabs input{margin:0px;position:relative;top:0px;cursor: pointer;width: 16px;height: 16px;border-radius: 2px;border: 2px #ddd solid;}
+        .greytext{font-size:0.9em;margin-top:5px;color:#a4a4a4;display:block;}
+        .aTabs a.icoButton.delete {margin-top:0px;}        
+        .aTabs #aTbox1.selected{border-color:#007dbb;}
+        .aTabs #aTbox1:hover{background:#f0f9fd;}
+        .aTabs #aTbox1.selected:after{border-color:#007dbb;}
+        .aTabs .wrapping{word-wrap: break-word;display:block;}
+        .ipmTabContent .addLink {color:#1568b6; text-align:right;cursor:pointer;}
+        
+        .mdown{position: relative;top: 8px;}
+        .outcomeIcon{position:relative; background:url(/images/icon-info.svg) no-repeat 50% 50%;}
+        .panelOutcome .SecButtonSet {margin-top:0!important; position:relative; top:2px;}
+        .panelOutcome .SecButtonSet .icoButton {width:16px!important;height:16px!important;top: 1px;}
+        .pageHeading .SecButtonSet {margin:0!important;padding:0!important;position:relative; top:7px;}
+        .SecButtonSetInfo .icoButton{width:16px !important; height:16px !important;position:relative;top:3px;}
+        .chexckboxLabel{padding-left:4px;}
+        .notifyTeam .ipmCheckbox{margin-top:13px;}
+        .icoButton.question{font-size: 1.5em;text-align: center;vertical-align: top;/*padding-top: 2px;*/text-decoration: none;}
+   
+         .Mtop{margin-top:10px;} 
+         .textRight{text-align:right;}  
+         .marBottom{margin-bottom:10px;}
+         
+         .noPadleft{padding-left:0px !important;}
+         .noPadright{padding-right:0px !important;}
+         .cboxPadding{padding-left:8px !important;padding-right:8px !important;}
+         .addLinkText{font-weight:bold;float:none !important;}
+         
+         .tooltip > .tooltip-inner {-webkit-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);-moz-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);margin-left:100px;font-weight:normal;background-color: #00b1a5;border-radius:2px;text-align:left;width:500px;}
+         .tooltip > .tooltip-arrow {border-top-color:#00b1a5!important;}
+         .tooltip.bottom .tooltip-arrow {border-bottom-color:#00b1a5!important;}
+         
+         /* tables styling */
+         
+         .incHeight{height:17px;}
+         .otifTable{;table-layout:fixed;margin-top:10px;}
+         .otifTable>thead>tr>th:first-child{padding-left:10px;}
+         .otifTable>tbody>tr>td:first-child{text-align:left;}
+         .otifTable>tbody>tr:nth-child(even) {background:transparent!important;}
+         .radioButtons>tbody>tr>td{padding:5px;}
+         .radioButtons>tbody>tr>td input[type="radio"]{margin-right:3px;}
+         #green,#green1{color:#81bf42;}
+         #amber{color:#f1993e;}
+         #red,#red1{color:#d01620;}
+         #grey,#grey1{color:#999999;}
+         .ipmCheckboxDiv{margin-left:0 !important; margin-right:0 !important;}
+        .checkboxLabel, .ipmCheckbox{float:left;}
+        .ipmCheckbox {width:16px; height:16px; padding:0 !important;}
+        .ipmCheckbox label{top:0;}
+        .ipmCheckboxDiv .checkboxLabel{padding:0 0 0 10px !important;margin-top:-2px;color: #253b78;}
+        .riskMheading{margin-bottom:10px;}
+        
+        
+        /* Gk Checklist Slider*/
+        /*slider styles*/
+        .gateKeeperSlider label[for=s0]{left:0px !important;}
+        .gateKeeperSlider label[for=s0]:before { left: 0% !important;}
+        .gateKeeperSlider label[for=s4]{right:0px !important; }
+        .gateKeeperSlider label[for=s4]:before{left: 100% !important;}
+        .sliderGk{margin-bottom:20px;display:block;}
+        .legendSld {position:relative; top:20px;}
+        .legendSld label {float:left; cursor:pointer; position:relative; font-size:0.8em;font-weight:normal;color:#555555;}
+        .legendSld:after {content:""; display:block; clear:both; visibility:hidden;}
+        .legendSld label[for=s0] {text-align:left;left:-10px; width:12.5%;}
+        .legendSld label[for=s1] {text-align:center; width:25%;}
+        .legendSld label[for=s2] {text-align:center; width:25%;}
+        .legendSld label[for=s3] {text-align:center; width:25%;}
+        .legendSld label[for=s4] {text-align:right;right:-18px; width:12.5%;}
+        /*.legendSld label[for=s1]:before, .legendSld label[for=s2]:before {content:"";display:block;position:absolute;left:49.5%; top:-25px; border:1px solid #589e0d; background:#fff; width:5px; height:16px; border-radius:5px; -webkit-border-radius:5px; -webkit-border-radius:5px;}*/
+        .legendSld label:before {content:"";display:block;position:absolute;left:49.5%; top:-25px; border:1px solid #252525; background:#fff; width:5px; height:16px; border-radius:5px; -webkit-border-radius:5px; -webkit-border-radius:5px;}
+        .legendSld label[for=s4]:before {left:75%;}
+        .legendSld label[for=s0]:before {left:17%;}
+        
+        .sld4.legendSld label[for=s0]:before {left:0!important;}
+        .sld4.legendSld label[for=s3]:before {left:90%!important;}
+        .sld3.legendSld label[for=s0]:before {left:0!important;}
+        .sld3.legendSld label[for=s2]:before {left:90%!important;}
+        
+        .sld5.legendSld label[for=s0]:before {left:0!important;}
+        .sld5.legendSld label[for=s4]:before {left:90%!important;}
+        
+        .sld4.legendSld label[for=s0] {text-align:left;left:0; width:16.6666666666667%;}
+        .sld4.legendSld label[for=s1] {text-align:center; width:33.333333333333336%;}
+        .sld4.legendSld label[for=s2] {text-align:center; width:33.333333333333336%;}
+        .sld4.legendSld label[for=s3] {text-align:right; right:-3px; width:16.666666666666668%;}
+        
+        .sld5.legendSld label[for=s0] {text-align:left;left:-3px; width:15%;}
+        .sld5.legendSld label[for=s1] {text-align:center; width:22%;}
+        .sld5.legendSld label[for=s2] {text-align:center; width:25%;}
+        .sld5.legendSld label[for=s3] {text-align:center; width:27%;}
+        .sld5.legendSld label[for=s4] {text-align:right; right:-2px; width:11%;}
+        
+        .sld3.legendSld label[for=s0] {text-align:left;left:0; width:25%;}
+        .sld3.legendSld label[for=s1] {text-align:center; width:50%;}
+        .sld3.legendSld label[for=s2] {text-align:right;right:-3px;width:25%;}
+        
+        .slider3 .legendSld label[for=s2]:before {display:none!important;}
+        .sliderDiv{margin-top:20px;} 
+        .sliderDiv:after {display:block; clear:both: content:" "; visibility:hidden;}   
+        #changeStatus{margin:20px 0 0 0;padding:0 15px;}       
+        /*.infoMsg{padding:10px;font-size:0.82em;background:#e5f8ff;border:1px #1568b6 solid;color:#007dbb; border-radius:2px;}       
+        .toolTipMsg{background:#fafafa;border:1px #c9c9c9 solid; border-radius:2px;color:#364354;font-size:0.82em;position:relative;}          
+        .toolTipMsg::before { left: 5%;top: -8px; position: absolute; border-top: 1px #c9c9c9 solid;border-right: 1px #c9c9c9 solid;background: #fafafa;content: " ";height: 15px;width: 15px;transform: rotate(-45deg);-moz-transform: rotate(-45deg);-webkit--transform: rotate(-45deg);-ms-transform: rotate(-45deg); }
+        .toolTipMsg label {font-weight:normal;} */
+        .ui-slider-handle {border-radius:50%!important;-moz-border-radius:50%!important;-webkit-border-radius:50%!important;background:#EDEDED !important;border:1px solid #8F8F8F !important;}
+        .ui-slider-horizontal {height:0.4em!important; display:block; border:none!important;background:#DCDCDC !important;width:90%!important; margin:20px auto 40px;}
+        .ui-slider-horizontal .ui-slider-handle {top:-0.6em!important;}
+        .ui-slider .ui-slider-handle {width:1.6em!important; height:1.6em!important;}        
+        .gkTable td, .gkTable th { border:transparent!important;padding: 13px 10px;}
+        .gkTable .gkComments {width:100%;}
+        /* upto here*/
+        
+        .firstCol{width:5%;}
+        .secondCol{width:20%;}
+        .thirdCol{width:15%;}
+        .fourthCol{width:40%;}
+        /* gatekeeperlist table styling */
+        .gateKeeperlist{table-layout:fixed;}
+        .incHeight{height: 17px;}
+        .gateKeeperlist>thead>tr>th:first-child {padding-left: 5px !important;}
+        .gateKeeperlist>tbody>tr>td:first-child{text-align:left !important;}
+        .Yes{background:#81bf42;}
+        .No{background:#d01620;}
+        .Not.Applicable{background:#999999;}
+        .Partly{background:#f1993e;}
+        .noMargin{margin:0px !important;}
+        
+        .blue{color:#253b78 !important;}
+        .noPadright{padding-right:0px !important;}
+        .noPadleft{padding-left:0px !important;}
+        .ipmPanelHeading{padding:3px 10px 3px 0 !important;border-right:1px #797979 solid;text-transform:none;}
+        .custHead1{width:21%;}
+        .mitigationRow{margin-bottom:20px;border-bottom:1px solid #ddd;padding-bottom: 10px;}
+        .SecStatusUpdate1{padding-top:7px;padding-left:10px;}
+        .ipmProjectDetails{border-top:0px !important;border-bottom:0px !important;}
+        
+        .dropdown-menu li a{color: #007dbb!important;}  
+        
+     /* ipmModal Styles revamp*/
+      .htmlDetailElementTable img {width:100%; max-width:100%;}
+      .modal-header{background:#eaeaea !important;padding:17.5px 15px; border-bottom:1px #d7d7d7 solid;border-top-left-radius: 5px;border-top-right-radius:5px;}
+      .modal-title{color:#253b78 !important;font-weight:bold;font-size:1.3em;}
+      .modal-header button.close{border: 1px #007dbb solid;border-radius: 50%;padding: 3px 5px;color: #007dbb; margin-top:-5px;opacity: 1;width:30px;}
+      .modal-content{border-radius:4px;height:100%;width:100%;float:left;}
+      .modal-body{height:88%;padding:0px !important;}
+      .modal-dialog{margin:15px auto;}
+      .modal-backdrop.in{opacity: 0.7 !important;}
+       #ipmDeleteModal .modal-dialog{height:auto;width:40%;margin-top:15%;}
+       #ipmDeleteModal .ipmButtonGroup{margin-top:20px;}
+       #ipmDeleteModal .ipmButtonGroup .ipmButton.green{color:white !important;border: 1px #406b14 solid;}
+       #ipmDeleteModal .confirmMsg{font-size:1em;color:#555555;}
+       
+       /* dropdown styles */
+        .ipmDropDown .dropdown-menu{border:1px solid #252525;z-index:1000;min-width: 190px;border-radius:4px 0px 4px 4px;background:#f9f9f9;margin-top: 0px;margin-right: -3px;}  
+        .ipmDropDown .dropdown-menu>li{padding:10px 0px 36px 10px !important;border-bottom: 1px solid #ddd;margin: 0px;}
+        .ipmDropDown .dropdown-menu>li:last-child{border-bottom:0px;padding-left:0px !important;}
+        .ipmButtonGroup .ipmDropbuttons{border-right:1px solid #252525;padding:0 21px 0 21px; width:100%; display:inline-block; margin:5px 0;}
+        .ipmButtonGroup .ipmDropreset{padding:0px 13px; width:100%; display:inline-block; margin:5px 0;}
+        .ipmButtonGroup .ipmDropcompletebuttons{border-right:1px solid #252525;padding:10px 15px 10px 0px;}
+        .ipmButtonGroup .ipmDropcompletereset{padding:0px;}
+        
+        /* dropdown styles Customer Channels */
+         .channelList{width:210px;margin-left:20px;}
+         .channelList ul{margin-bottom:0px;}
+         .filterActionscc{border-top: 1px solid #ddd;}
+        .channelList a{color: #007dbb!important;font-weight:bold;cursor:pointer;}  
+        .ipmDropresetcc:hover,.ipmDropbuttonscc:hover{text-decoration:none !important;}
+        .ipmDropDown .channelList ul{padding:0px;list-style:none;z-index:1000;border-radius:4px 0px 4px 4px;background:#ffffff;}  
+        .ipmDropDown .channelList ul>li{padding:10px 0px 36px 10px !important;border-bottom: 1px solid #ddd;margin: 0px;}
+        .ipmDropDown .channelList ul>li:last-child{border-bottom:0px;}
+        .ipmButtonGroup .ipmDropbuttonscc{text-align:center;border-right:1px solid #252525;padding:5px 21px; width:100%; display:inline-block; margin:5px 0;}
+        .ipmButtonGroup .ipmDropresetcc{text-align:center;padding:5px 21px; width:100%; display:inline-block; margin:5px 0;}
+        .ipmButtonGroup .ipmDropcompletebuttons{border-right:1px solid #252525;padding:10px 15px 10px 0px;}
+        .ipmButtonGroup .ipmDropcompletereset{padding:0px;}
+        
+        /* dropdown styles CMI Country */
+         .CMICountryList{width:250px;margin-left:20px;}
+         .CMICountryList ul{margin-bottom:0px;}
+         .filterActionscc{border-top: 1px solid #ddd;}
+        .CMICountryList a{color: #007dbb!important;font-weight:bold;cursor:pointer;}  
+        .ipmDropresetcc:hover,.ipmDropbuttonscc:hover{text-decoration:none !important;}
+        .ipmDropDown .CMICountryList ul{padding:0px;list-style:none;z-index:1000;border-radius:4px 0px 4px 4px;background:#ffffff;}  
+        .ipmDropDown .CMICountryList ul>li{padding:10px 0px 36px 10px !important;border-bottom: 1px solid #ddd;margin: 0px;}
+        .ipmDropDown .CMICountryList ul>li:last-child{border-bottom:0px;}
+        .cmiTable{table-layout:fixed;}
+        .cmiSelectBox{width:100%;padding: 5px 5px;background: #fff;border: 1px solid #dddddd;}
+        .cmiCommentBox{width:100%;margin-top: 20px;}
+        .cmiResultBox span select{width:100%;padding: 5px 5px;background: #fff;border: 1px solid #dddddd;}
+        .rachievedBox span select{width:100%;padding: 5px 5px;background: #fff;border: 1px solid #dddddd;}
+        
+        /* dropdown styles CMI main dropdown */
+         .ipmDropDownSelect{padding: 5px 5px;background:#fff;border: 1px solid #dddddd;}
+         .listContainer{border:1px solid #636363;}
+         #upImg .modal-body{padding:0;}
+         .ipmDropDownSelect:after{display: block;font-family: FontAwesome;content: "\f107";font-size:14px;position: absolute;top: 6px;right: 0px;margin-right: 6px; width: 20px;height: 20px;text-align: center;background: #fff;color: #000;}
+         .ipmDropDownList{border:1px solid #c9c9c9 !important;background:#fff !important;left: 1px !important;top: 41px;}
+         .ipmDropDownList .ipmDropbuttons,.ipmDropDownList .ipmDropreset{font-weight:bold;cursor:pointer;}
+         .ipmDropDownList:before{left: 8%;top: -8px;position: absolute;border-top: 1px #c9c9c9 solid;border-right: 1px #c9c9c9 solid;background: #fff;content: " ";height: 15px;width: 15px;-ms-transform:rotate(-45deg);transform: rotate(-45deg);}
+         .ipmDropDown .dropdown-menu .scroll>li {padding: 10px 0px 36px 10px !important;border-bottom: 1px solid #ddd;margin: 0px;}  
+         .cmiLabel{display:block;float:left; margin-left:7px;}
+         .deletBtnDiv{text-align:right !important;margin-right: -5px;}
+         .cmiTableDiv{margin:0px;}
+         .dropdown.cmiTestList{padding:0;}
+         
+         .cmiCountrySelector .ipmDropDownSelect:after{right:25px;}   
+         .CMIList{width:402px;}
+         .CMIList ul{margin-bottom:0px;}
+         .filterActionscc{border-top: 1px solid #ddd;}
+        .CMIList a{color: #007dbb!important;font-weight:bold;cursor:pointer;}  
+        .ipmDropresetcc:hover,.ipmDropbuttonscc:hover{text-decoration:none !important;}
+        .ipmDropDown .CMIList ul{padding:0px;list-style:none;z-index:1000;min-width: 190px;border-radius:4px 0px 4px 4px;background:#ffffff;}  
+        .ipmDropDown .CMIList ul>li{padding:10px 0px 36px 10px !important;border-bottom: 1px solid #ddd;margin: 0px;}
+        .ipmDropDown .CMIList ul>li:last-child{border-bottom:0px;}
+        
+        /* Accordion styles for Gate CMI */
+            .ipmAccordian > .ipmAccordianDiv > .ipmAcrdnExpand { display:block; border-top:none!important; margin-bottom:10px; margin: 10px -5px;}        
+            .ipmAccordian > .ipmAccordianDiv > .aHead {color: #253b78;font-size: 1.5em;font-weight: bold;display: block;/*background: #f7f7f7;*/margin-bottom: 2px;padding: 13px 10px 14px;border-bottom:4px solid #E6E534 !important;}
+            .ipmAccordian > .ipmAccordianDiv > .ipmAcrdnExpand > .ipmAcrdnExpand > .aHead {font-size:1em;font-style:normal;font-weight:bold;color:#0f7fb8; display:block; border-bottom:1px solid #eee; padding: 12px 0 15px; margin:0 0 0 20px;}
+            .ipmAccordian > .ipmAccordianDiv >  .ipmAcrdnExpand > .ipmAcrdnExpand > .aHead:first-child {padding-top:2px;}
+            .ipmAccordian .ipmAcrdnExpand .ipmAcrdnExpand, .CMIcountryAccordian .ipmAccordian .ipmAcrdnExpand .ipmAcrdnExpand {padding:10px 15px;display:block;}
+            .ipmAccordian .ipmAcrdnExpand .col-sm-3 {padding-right:0!important; position:relative;}
+            .ipmAccordian > .ipmAccordianDiv > .aHead span.expico {display: inline-block; cursor:pointer; font-family: FontAwesome;width: 21px;height: 21px;text-align: center;font-weight: normal;line-height: 23px;background: #81bd42;position: relative;margin-right: 5px;
+                font-size: 0.8em;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;color: #fff;}
+            .ipmAccordian .Filled-in {display: inline-block;padding: 0 8px;margin-left: 5px; border-left: 1px solid #797979; color:#e68627!important;font-size:13px!important; font-weight:normal!important; }
+            .ipmAccordian .Not.Started {display: inline-block;padding: 0 8px;margin-left: 5px; border-left: 1px solid #797979; color:#797979!important;font-size:13px!important; font-weight:normal!important; }
+            .ipmAccordian .Excluded {display: inline-block;padding: 0 8px;margin-left: 5px; color:#222!important; background:#ebebeb; font-size:13px!important; font-weight:normal!important; }
+            .ipmAccordian .lastUpdate {color:#c2c2c2; display:block; margin-top:10px;font-size:0.9em;}
+            <!--.ipmAcrdnExpandDiv{border:1px #dce3e2 solid;}-->
+            .ipmAccordianDiv{border:1px #dce3e2 solid;}
+            .ipmAcrdnHeader{border-bottom:1px solid #dce3e2; padding:7px 10px;border-top: 1px solid #dce3e2;}
+            .ipmAcrdnHeader>div{padding:0;text-align:left;}
+        
+        .completedFilter .dropdown-menu{border:1px solid #252525;min-width: 136px;z-index:1;border-radius:4px 0px 4px 4px;background:#f9f9f9;margin-top: 0px;margin-right: -3px;} 
+        .completedFilter .dropdown-menu>li{padding:10px 0px 36px 10px !important;border-bottom: 1px solid #ddd;}
+        .completedFilter .dropdown-menu>li:last-child{border-bottom:0px;padding-left:0px !important;}
+        .completedFilter .dropdown-menu>li label{text-indent:30px;line-height:14px;font-weight: normal;}
+        
+        .mBottom{margin-bottom:10px;padding-bottom:10px;}
+        .commentArea textarea{width:100%;}
+        
+        .navbar-nav li:last-child > a > span{margin-top:2px !important;}
+                .navbar-default .navbar-nav>.active a, .navbar-default .navbar-nav>.active a:hover, .navbar-default .navbar-nav>.active a:focus{background-color: #fff; padding-right:0!important; padding-left:0!important;color:#007dbb!important; border-top-left-radius:3px!important;border-top-right-radius:3px!important; -webkit-border-top-left-radius:3px!important;-webkit-border-top-right-radius:3px!important; -moz-border-top-left-radius:3px!important;-moz-border-top-right-radius:3px!important;}
+        .greytxt{color:#666;}
+        .mt15{margin-top:15px;}
+        .mb15{margin-bottom:15px;}
+        .table>thead>tr>th>div{border-right:0px !important;}        
+        .notifyTeam input[type=checkbox]{right:6px;}
+        .panel-group{margin-bottom:0px !important;}
+        
+        /*new header template styling */
+        .ipmPageHeaderDiv{margin-bottom: 5px !important;}
+        .headerlogo{height: 50px;}
+        .ipmpanel-heading{font-weight: bold;padding-right:10px;font-size: 1.4em;color: #007dbb;word-wrap:break-word}
+        .subtitle{font-size: 0.95em;color: #666666;}
+        .headerglb {width: 25px;height: 25px;margin-right: 0px !important;/*border-left: 1px solid #ddd;*/padding: 5px 5px 5px 7px;display: block;float: left;margin-top: 2px;}
+        .grentxt {font-weight: bold;text-transform:uppercase;font-size: 0.8em;color: #5a9425;display: block;float: left;margin-top: 8px;}
+        .headEdit{position: relative;bottom: 0px;left: 15px;width: 100%;height: 100%;}
+        .pageTitle {color: #702f8a;font-weight: normal;font-size:1em;border-right:0px !important;}
+        .ipmFunnelPanel{position: relative;bottom: 33px;}
+        //.ipmNavMenuDiv{position: relative;bottom: 16px;}
+        .ipmNavMenuDiv .navbar-nav>li a > span{border-right:0px}
+        .navbar-nav li:last-child > a > span{margin-top:8px;}
+        .ipmNavMenuDiv .navbar-nav>li>.dropdown-menu{margin-top:0px;margin-left:4px;}
+        .navbar-nav>li a > span{padding:0px !important;}
+        .navbar-nav li ul.dropdown-menu li:last-child > a > span{margin-top:0px;}
+        .dispBlock{display:block;height:30px;}
+        .H30{height:30px;} 
+        
+        /*risk questionaire styles */
+        .rHeading{font-size:1em;font-weight:bold;color:#364354;display:block;margin-bottom:15px;}
+        .rQuestion{color:#666666;display:block;margin-bottom:10px;}
+        .rAnchor{display:block;padding:10px;background:#D5E1E5;color:#666666;margin-bottom:10px;width:16%;border-radius:2px;}
+        .anchorCount{color:#E98824;font-weight:bold;}
+        .rTextarea textarea{width:100%;margin-bottom:20px;}
+        
+        /* Char Count */
+        .panel.secEditSummary {position:relative;}
+        .panel.secEditSummary .charCount {margin-left:0;margin-right:0;/*position: absolute;width: 100%;bottom: 0px;*/background:#f8f8f8;left: 15px;box-shadow: 0px -2px 5px #ccc; border:1px solid #ccc;}
+        .panel.secEditSummary .charCount > div {padding:5px;}
+        
+        .asstmentSelect{padding: 5px 5px;background:#fff;border: 1px solid #dddddd;}
+   .selectBackground{padding:10px 15px;background:#f5f5f5;}
+   .ccContainer{border:1px solid #636363;border-bottom:0px;margin-bottom:0px;margin-top:20px;}
+   .noPadleft{padding-left:0px !important;}
+   .noPadright{padding-right:0px !important;}
+   .channelText{line-height:28px;}
+   .customerSelect:after{display: block;font-family: FontAwesome;content: "\f107";font-size: 1.4em;position: absolute;top: 3px;right: 0px;margin-right: 25px;top: 1px\9;right: 1px\9;width: 20px;height: 20px;text-align: center;background: #fff;color: #000;}
+   .keep-open1{height: 18px;width: 25px;position: relative;left: 45px;cursor: pointer;}
+   .dropdown-toggle1{padding: 0px;position: relative;top: -11px;left: 2px;}
+   .dropdown-toggle a{margin:-7px -2px;}
+   .asstmentList{border:1px solid #c9c9c9 !important;background:#fff !important;left: 15px !important;top: 41px;}
+   .asstmentList.ipmDropbuttons,.asstmentList.ipmDropreset{font-weight:bold;cursor:pointer;}
+   .asstmentList{left: 8%;top: -8px;position: absolute;border-top: 1px #c9c9c9 solid;border-right: 1px #c9c9c9 solid;background: #fff;content: " ";height: 15px;width: 15px;}
+   .customerstaticLabel{font-weight:normal;color:#666666;font-size:1em;padding-right: 8px !important;padding-top: 0px;padding-left: 8px !important;}
+   .ipmDropDown .dropdown-menu>li {padding: 10px 0px 36px 10px !important;border-bottom: 1px solid #ddd;margin: 0px;}  
+  
+    .bsFieldLabel {color: #565656;font-weight: bold;display:inline-block;font-size:14px;}
+    .ipmSelect {font-weight: normal;position: relative;z-index: 1;display:inline-block;width:100%;}
+    .inputField select {width: 100%;height: 30px;border-radius: 3px;border: 1px #a8a8a8 solid;color: #565656;
+    }
+    .ipmSelect:after {display: block;font-family: FontAwesome;content: "\f107";font-size: 1.4em;position: absolute;
+    top: 3px;right: 4px;top: 1px\9;right: 1px\9;z-index: -1;width: 20px;height: 20px;text-align: center;
+    background: #fff;color: #000;}
+    .assorttable {table-layout: fixed;width: 100%;max-width: 100%;border:1px solid #8c8c8c;margin-bottom:20px;}
+    .assorttable tr td{padding:10px;}
+    
+    .dateInput .dateInputBox {width: 100%;background-color: #fff;}
+    .mr10{margin-right:10px;}
+    input[type=text] {padding-left:3px;width: 80%;height: 30px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px #a8a8a8 solid;
+    }
+    .pt25{padding-top:25px;}
+    .dblock{display:block;}
+    .accorttable {table-layout: fixed;width: 100%;max-width: 100%;margin-bottom:20px;}
+    .accorttable tr td{padding:10px;}
+    .ipmSelect-sec {font-weight: normal;width: 100%;position: relative;z-index: 1;display:inline-block;}
+    .ipmSelect-sec:after {display: block;font-family: FontAwesome;content: "\f107";font-size: 1.4em;position: absolute;
+    top: 3px;right: 4px;top: 1px\9;right: 1px\9;z-index: -1;width: 20px;height: 20px;text-align: center;
+    background: #fff;color: #000;}
+   .mt7{margin-top:7px;}
+    .rollouttable {table-layout: fixed;width: 100%;max-width: 100%;}
+    span.expico {display: inline-block;cursor: pointer;font-family: FontAwesome;width: 21px;height: 21px;
+    text-align: center;font-weight: normal;line-height: 23px;background: #81bd42;position: relative;
+    margin-right: 5px;font-size: 0.8em;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;
+    color: #fff;}
+    .rollouttable thead tr th{padding:10px;}
+    .fa-plus:before {content: "\f067";}
+    span.dateInput input{padding-left:7px;} 
+    .ipmAcrdnExpan{border-left:1px solid #ddd;border-right:1px solid #ddd;border-top:0px;border-bottom:1px solid #ddd;}
+    .inputField{margin:10px;}
+    .m10{margin:10px;}
+    .pt20{padding-top:20px;}
+    .mtb22{margin-top:32px !important;margin-bottom:32px !important;}
+    .pt12{padding-top:12px;}
+    .accordian-sec{padding: 10px;border: 1px solid #ddd;margin-top: 10px;}
+    .w83{width:83%;}
+    .pt65{padding-top:40px;}https://unilever--cogdev--c.cs7.visual.force.com/s.gif
+    .infobox{padding-top: 15px;padding-right: 10px;text-align: center;margin-top: 15px;padding-bottom:20px;}    
+    /*--Eco Design---*/
+    .metric{overflow-x: scroll;margin: 6px;padding-top: 20px;}
+    .table>tbody>tr>td:first-child {text-align: left !important;}
+    .dblcolumn{padding: 4px;padding-left: 34px;}
+    .thirdcolumn{border-bottom:1px solid #ddd;}
+    .normalfont{font-weight:normal;}
+    .pt2{padding-top:2px;}
+    .infotxt{border-right: 1px solid #ddd;height: 23px;width: 126px;}
+    .postxt{position: relative;right: 41px;}
+    .bluetxt{color:#3b516d;}
+    .table>thead>tr>th:first-child{padding-left:7px !important;}
+    .table.ecoDesignCountry>thead>tr>th>div{border-right: 1px #ddd solid;}
+    .table.ecoDesignCountry>thead>tr>th:last-child>div{border-right: none!important;}
+    .table.ecoDesignCountry>thead>tr>th span {float:none!important;}
+    .inline{display:inline;}
+    .fullWidth {width:100%!important;}
+    .textwdth{width:38% !important;}  
+    .mb20{padding:15px;}
+    .secEcoDesign {border:1px solid #50657d;}
+    .outcometxt {padding:15px;}
+    .ipmButtonSet.edBtn {padding:0 10px;}
+    .edSelectCountry {padding:15px; border-top:1px solid #ddd; background:#f7f7f7;}
+    .edSelectCountry label {display:block;margin-bottom:10px;}     
+    .tblCRRTStat>tbody>tr:nth-of-type(even) td {background-color:#ffffff!important;}
+    .tblCRRTStat>tbody>tr:nth-of-type(odd) td {background-color:#f8f8f8!important;}
+    .altBGcolor {background:#ebf8fc!important;}
+    .CMIGateDoc .ipmAcrdnHeader{border-top:none !important;}
+    .CMIcountryAccordian{border: 1px #dce3e2 solid;margin: 10px 0;} 
+    .gkcStatus {text-align:center; color:#fff; font-size:12px; display:inline-block; min-width:85px;}
+    .alrtContainer{margin-top:10px;}
+    .alertsIcon img{position:relative;right:20px;}
+    .alertsIcon{margin-bottom:10px;}
+    .SecStatusUpdate.riskModal {text-align:center;cursor:pointer;}
+   </style>
+    <apex:composition template="ipmTemplateRevamp2"> 
+        <apex:define name="body" >
+         <div class="gradientbg">
+                <div class="row">
+                  <apex:form >
+                   <c:ipmProjectDetailsRevampNew />
+                 </apex:form>
+                </div>
+                <div class="row">
+                    <c:ipmNavMenuRevamp2 activeItem="gateDocument"/>
+                </div>
+            </div>
+         <div class="ipmContent">            
+         <apex:pagemessages id="pmsg"/>
+            <apex:form id="form">
+                <div class="row">        
+                    <div class="col-sm-12">
+                        <div class="panel-group pageHeadToolbar clearfix">
+                       <div class="row">
+                        <div class="col-sm-8 noPadleft noPadright pull-left pageHeading">
+                         <span class="SecButtonSet">
+                                <a class="icoButton arrow-left" href="/apex/ipm_gatedocument?id={!projectId}"></a>
+                         </span>
+                         <h2 class="pageTitle">
+                         <apex:outputText value="{!projDocSec.IPM_Section_Sequence__c}"/> &nbsp;
+                         <apex:outputText value="{!projDocSec.IPM_Section_Name__c }"/></h2>
+                         <apex:outputPanel id="changeType">
+                         <apex:outputPanel rendered="{!IF(projDocSec.IPM_Negotiable__c==true,false,false)}" >
+                         <span class="selLabel greytxt">Mark it as</span>
+                         <label class="ipmSelect">
+                          <apex:selectList multiselect="false" value="{!projDocSec.IPM_Negotiable__c}" size="1" onchange="change()" disabled="{! If(AND(IsEditableSumm=false),'true','false')}">
+                         <apex:selectOption itemLabel="Optional" itemValue="true" />
+                         <apex:selectOption itemLabel="Non-Negotiable" itemValue="false"/>
+                         
+                         </apex:selectList> 
+                        <!-- <select class="fieldFont drpfield"><option>Optional</option><option value="Optional">Optional</option>
+                                <option value="Optional">Optional</option>
+                                <option value="Optional">Optional</option>
+                                <option value="Optional">Optional</option>
+                                <option value="Optional">Optional</option>
+                            </select>-->
+                         <apex:actionFunction name="change" action="{!changeType}" reRender="changeType" />
+                         
+                         </label>
+                         </apex:outputPanel>
+                         </apex:outputPanel>
+                        </div>
+                        <div class="col-sm-3 SecButtonSet pull-right">
+                            <a class="icoButton history" data-toggle="modal" data-target="#ipmModal" value="/apex/IPMSectionHistory?Id={!projDocSecId}" data-backdrop="static" data-keyboard="false" title="View Update History" id="showHistory"></a>
+                         
+                             <!--<a class="icoButton print"   title="Print"></a>-->
+                             <!--<a class="icoButton download" title="Download"></a>-->                 
+                          </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+
+
+
+            <div class="row">
+                 <div class="col-sm-12">
+                      <div class="panel-group pageHelpToolbar clearfix">
+                       <div class="row clearfix mt15 mb15">
+                        <div class="col-sm-10 greytxt pull-left">
+                         <apex:outputText value="{!projDocSec.IPM_Section_Help_Text_Long__c }"/>
+                        </div>
+                       <div class="col-sm-2 SecButtonSet pull-right">
+                          <!-- <a class="icoButton question" title="Help">?</a>-->
+                           <a class="icoButton comments" data-toggle="modal" data-target="#ipmModal" value="/apex/IPMCommentsPage1?id={!projDocSec.Id}" data-backdrop="static" data-keyboard="false" title="{!projDocSec.IPM_Section_Sequence__c} {!projDocSec.IPM_Section_Name__c} Comments" id="showComment">
+                           <apex:outputPanel styleClass="count" rendered="{!IF(projDocSec.IPM_Count_of_Comments__c!=null && projDocSec.IPM_Count_of_Comments__c >0 ,True,False)}">{!projDocSec.IPM_Count_of_Comments__c}</apex:outputPanel>
+                           </a>
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+
+
+          
+        <div class="row ipmSectionEditor">
+            <div class="col-sm-12">
+                      <div class="panel-group clearfix">
+                       <div class="clearfix">
+                        <div class="col-sm-6">
+                         <div class="panel">
+         <apex:outputPanel rendered="{!if(OR(projDocSec.IPM_Section_Name__c=='Risk',projDocSec.IPM_Section_Name__c=='OTIF Status',projDocSec.IPM_Section_Name__c='Gate Keeper Checklist'),false,true)}">
+         <div class="row">
+         <div class="col-sm-12">
+         <div class="panel panelOutcome">         
+         <apex:outputText value="Functional input" styleClass="outcomeTxt"/><span class="SecButtonSet"><a class="icoButton info" data-toggle="tooltip" data-placement="top" data-original-title="Functional teams can use this space to update the output from their relevant tasks and activities."></a></span>
+         
+         </div>
+        </div>
+        </div>
+        <!-- <div class="row">
+         <div class="col-sm-12">
+         <div class="panel panelMessage">
+          <apex:outputText value="Does not appear in Gate document." styleClass="asterisk"/>
+          </div>
+        </div>
+        </div>-->
+         <div class="row">
+         <div class="col-sm-12">
+         <div class="panel-group">
+         <div class="row noMargin">
+         <apex:outputPanel rendered="{! If(AND(IsEditableOutC=true),'true','false')}">    
+         <!--<div class="col-sm-6 noPadleft notifyTeam">
+        <apex:inputCheckbox id="cbox1" value="{!projDocSec.IPM_Notify_Team__c}" styleClass="checkAll"  />
+         <apex:outputText value="Notify Team"/>
+             <span class="SecButtonSet SecButtonSetInfo"><a class="icoButton info" data-toggle="tooltip" data-placement="top" data-original-title="Functional teams can use this space to update the output from their relevant tasks and activities."></a></span>
+        </div>-->
+        <div class="panel clearfix">
+             <div class="noPadright ipmButtonSet pull-right">
+                 <apex:outputPanel rendered="{! If(AND(IsEditableOutC=true),'true','false')}">
+                 <apex:commandLink styleClass="ipmButton" value="Cancel" action="{!cancel}"/>
+                 <apex:commandLink styleClass="ipmButton primary" value="Save" action="{!save}" >
+                 <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
+                 </apex:commandLink>
+                 <apex:commandLink styleClass="ipmButton primary" value="Save & Notify" action="{!save}" >
+                 <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
+                 <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
+                 </apex:commandLink>
+                 </apex:outputPanel>
+             </div>
+         </div>
+        </apex:outputPanel>
+        <c:IPMOTIFSectionStatus otifType="Section" setEdit="true" getSectionId="{!projDocSec.Id}" isEdtable="{!IsEditableOutC}" ></c:IPMOTIFSectionStatus>
+         <c:IPM_Section_GateChecklist getDocType="{!projDoc.IPM_GateDocuments__c}" getSecid="{!projDocSecId}" editGateSect="{!IsEditableOutC}"></c:IPM_Section_GateChecklist>
+        <c:IPM_RND_Questions gateDocType="{!projDoc.IPM_GateDocuments__c}" rendered="{!if(projdocsec.IPM_Section_Name__c=='R&D Initial Outline (Product/Pack)',true,false)}" RNDEdit="{!IsEditableOutC}" ></c:IPM_RND_Questions>
+        <c:IPM_EcoDesignSection Ecoedit="{!isEcodesignEdit}" getSectionId="{!projDocSec.Id}" rendered="{!if(projdocsec.IPM_Section_Name__c=='Environmental Impact',true,false)}" ></c:IPM_EcoDesignSection>
+        <apex:outputPanel rendered="{!if(projDocSec.IPM_Section_Name__c='Customers/Channels',true,false)}">        
+        <c:IPM_Customer_Channels getProjectID="{!projectId}" getSecid="{!projDocSecId}" CCEdit="{!IsEditableOutC}"></c:IPM_Customer_Channels>
+        </apex:outputPanel>       
+       <!-- <c:IPM_AssortmentStrategy ProSecID="{!projDocSecId}" rendered="{!if(projDocSec.IPM_Section_Name__c='Assortment Strategy',true,false)}"></c:IPM_AssortmentStrategy>-->
+       
+        
+        <c:IPM_CRRT_Section Editable="{!IsCRRTEditable}" gateType="{!projDoc.IPM_GateDocuments__c}" getSectionId="{!projDocSec.Id}" rendered="{!if(OR(projDocSec.IPM_Section_Sequence__c='3.2.1',projDocSec.IPM_Section_Sequence__c='3.3.3'),true,false)}"></c:IPM_CRRT_Section>
+       
+          </div>
+         </div> 
+        </div>
+         </div>
+         <apex:outputPanel rendered="{!If(AND(CONTAINS(projDocSec.IPM_Section_Name__c,'Mix Qualification Plan and Action Standards'),countOfCountries<1,project.IPM_Phase__c='Ideas'),true,false)}" layout="block" styleClass="row alertBox">
+                        <div class="col-sm-12 alrtContainer noPadleft noPadright"> 
+                            <div class="col-sm-1 alertsIcon"><img class="alertimg" src="/resource/1422940358000/ipmResourceRevamp/images/alert_1a.png"/></div>
+                            <div class="col-sm-11 alerttext noPadright">
+                                 Please generate rollouts in order to enable country selection for tests                       
+                            </div>
+                        </div>
+            
+         </apex:outputPanel>
+         <div class="row">
+            <div class="col-sm-12">
+                <apex:outputPanel layout="block" rendered="{!project.IPM_Phase__c='Ideas'}">
+                <c:IPM_GateCMI Editable="{!isEditGateCMI}" getProjectId="{!projectId}" getSectionId="{!projDocSec.Id}" rendered="{!if(CONTAINS(projDocSec.IPM_Section_Name__c,'Mix Qualification Plan and Action Standards'),If(AND(project.IPM_Phase__c='Ideas',countOfCountries<1),false,true),false)}" />   
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" rendered="{!OR(project.IPM_Phase__c='Feasibility',project.IPM_Phase__c='Capability')}">
+                <c:IPM_GateCMI_Contract Editable="{!isEditGateCMI}" getProjectId="{!projectId}" getSectionId="{!projDocSec.Id}" rendered="{!if(CONTAINS(projDocSec.IPM_Section_Name__c,'Mix Qualification Plan and Action Standards'),If(AND(project.IPM_Phase__c='Ideas',countOfCountries<1),false,true),false)}" />                               
+                </apex:outputPanel>           
+             </div>
+         </div> 
+         <div class="row">
+         <div class="col-sm-12 dateUpdate">
+         <div class="panel">
+           <apex:outputText value="Last updated by: {!projDocSec.IPM_PDPHistoty__c} on" rendered="{! if(projDocSec.IPM_PDPHistoty__c !=null,'true','false')}" />
+           &nbsp; <apex:outputField value="{!projDocSec.IPM_PDPHistoty_Date__c}"/>    
+         </div>
+         </div> 
+        </div>
+        <!--SNT COmment-->
+          <div class="row">
+         <div class="col-sm-12">
+         <div class="panel panelMessage">
+          <apex:outputText value="Does not appear in Gate document." styleClass="asterisk"/>
+          </div>
+        </div>
+        </div>
+        <!--upto here-->
+        <div class="row">
+         <div class="col-sm-12">
+         <div class="panel">  
+         <!-- <apex:inputTextarea value="{!projDocSec.IPM_PDP_Document_Summary__c}" styleClass="ckeditor" id="pdp" />-->
+         <!--<apex:inputField value="{!projDocSec.IPM_PDP_Document_Summary__c}"/>-->
+           <!-- <apex:inputTextarea value="{!projDocSec.IPM_PDP_Document_Summary__c}" richText="True" id="pdp" disabled="{! If(AND(IsEditableOutC=false),'true','false')}"  />-->
+            <apex:inputField value="{!projDocSec.IPM_PDP_Document_Summary__c}" id="pdp"   rendered="{! If(AND(IsEditableOutC=true),'true','false')}" />
+            <apex:outputField value="{!projDocSec.IPM_PDP_Document_Summary__c}" id="pdp1"   rendered="{! If(AND(IsEditableOutC=true),'false','true')}" />
+            </div>
+         </div> 
+        </div>
+
+        <div class="row">
+         <div class="col-sm-12">
+         <div class="panel-group secAttachment">
+         <div class="row">
+         <div class="col-sm-6">
+         <div class="secTitle">
+           <apex:outputText value="Attachments"/>
+         </div>
+         </div>
+
+         <div class="col-sm-6">
+          <div class="secLink">
+          <apex:outputPanel rendered="{! If(AND(IsEditableOutC=true),'true','false')}">  
+          <a class="attachFiles" id="attachFilesOut" title="Attach Files" value="/apex/ipmFileUpload?Id={!projectId}&projDocSecId={!projDocSecId}&sectionType=outcome" data-toggle="modal" data-target="#ipmModal" data-backdrop="static" data-keyboard="false" >+ Add Attachments</a> 
+          </apex:outputPanel>
+          </div>
+         </div>
+          
+         </div>
+         <div class="row">
+         <div class="col-sm-12">
+         <div class="panelListFiles">
+          <apex:outputPanel id="outptattach">
+          <apex:repeat value="{!attachmentList}" var="attach">
+          <apex:outPutPanel rendered="{!attach.Description='outcome'}">
+          <div class="SecButtonSet delete">
+          <apex:outputLink styleClass="fileName" value="/servlet/servlet.FileDownload?file={!attach.Id}" target="_blank">{!attach.Name}</apex:outputLink>  
+          <apex:outputPanel rendered="{! If(AND(IsEditableOutC=true),'true','false')}">  
+          <a class="icoButton mdown delete" title="Delete" onclick="CallAttachDelete('{!attach.Id}')"></a>
+          </apex:outputPanel>
+        </div>
+        </apex:outputPanel>
+         </apex:repeat>
+         </apex:outputPanel>
+         <apex:actionFunction name="CallAttachId" action="{!delet}" reRender="outptattach">
+         <apex:param assignTo="{!attachId}" value="" name="Attached"/>
+         </apex:actionFunction>
+         </div>
+         </div>
+         </div>
+          </div>
+         </div>
+         </div>
+
+        <apex:outputPanel rendered="{! If(AND(IsEditableOutC=true),'true','false')}">  
+        <div class="row">
+         <div class="col-sm-12">
+         <div class="panel-group">
+         <div class="row Mtop">
+         <!--<div class="col-sm-6 notifyTeam">
+         
+        <apex:inputCheckbox id="cbox2" value="{!projDocSec.IPM_Notify_Team__c}" styleClass="checkAll" />
+         <apex:outputText value="Notify Team" />
+           
+                <span class="SecButtonSet SecButtonSetInfo"><a class="icoButton info" data-toggle="tooltip" data-placement="top" data-original-title="Functional teams can use this space to update the output from their relevant tasks and activities."></a></span>
+           
+         </div>-->
+           <div class="panel">
+            <div class="pull-right ipmButtonSet custMarginRight">
+             <apex:commandLink styleClass="ipmButton" value="Cancel" action="{!cancel}"  />
+             <apex:commandLink styleClass="ipmButton primary" value="Save" action="{!save}" >
+             <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
+             </apex:commandLink>
+             <apex:commandLink styleClass="ipmButton primary" value="Save & Notify" action="{!save}" >
+             <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
+             <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
+             </apex:commandLink>
+            </div>
+         </div>
+          </div>
+         </div> 
+        </div>
+         </div>     
+         </apex:outputPanel> 
+          </apex:outputPanel>  
+          </div>
+          </div>
+          <apex:outputPanel rendered="{!if(OR(projDocSec.IPM_Section_Name__c=='Risk',projDocSec.IPM_Section_Name__c=='OTIF Status',projDocSec.IPM_Section_Name__c='Gate Keeper Checklist'),false,true)}">
+          <div class="col-sm-6">
+           <div class="panel">   
+        <div class="row">
+          <div class="col-sm-12" id="ipmSecEditorTab">
+          <div class="row">
+           <div class="panel-group">                               
+           <ul class="ipmTabs">
+               <li class="summary"><span>Summary</span><span class="SecButtonSet SecButtonSetInfo"><a class="icoButton info" data-toggle="tooltip" data-placement="top" data-original-title="Project leader can use this space to update the summary output and this goes into the gate document"></a></span></li>
+               <li class="aTasks"><span>Associated To-Dos</span></li>
+           </ul>                               
+           </div>
+           </div>
+         <div class="ipmTabContent" id="summary">   
+            
+          <div class="row">
+         <div class="col-sm-12">
+         <div class="panel panelMessage">
+          <apex:outputText value="Does appear in Gate document." styleClass="asterisk"/>
+          </div>
+        </div>
+        </div>
+        <apex:outputPanel rendered="{! If(AND(IsEditableSumm=true),'true','false')}">  
+        <div class="row">
+         <div class="col-sm-12">
+         <div class="panel-group">
+         <div class="row marginFloatedBlock">
+         <!--<div class="col-sm-6 notifyTeam">
+            <apex:inputCheckbox id="cbox3" value="{!projDocSec.IPM_Notify_Team__c}" styleClass="checkAll1" />
+         <apex:outputText value="Notify Team"/>
+
+
+                <span class="SecButtonSet SecButtonSetInfo"><a class="icoButton info" data-toggle="tooltip" data-placement="top" data-original-title="Functional teams can use this space to update the output from their relevant tasks and activities."></a></span>
+
+         </div>-->
+          <div class="panel">
+            <div class="pull-right ipmButtonSet custMarginRight" >
+             <apex:commandLink styleClass="ipmButton" value="Cancel" action="{!cancel}"  /> 
+             <apex:commandLink styleClass="ipmButton primary" value="Save" action="{!save}" >
+             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
+             </apex:commandLink>
+             <apex:commandLink styleClass="ipmButton primary" value="Save & Notify" action="{!save}" >
+             <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
+             <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
+             </apex:commandLink>
+          </div>
+         </div>
+          </div>
+          
+         </div> 
+         <div class="row">
+         <!--<c:IPMOTIFSectionStatus otifType="Section" setEdit="false" getSectionId="{!projDocSec.Id}" isEdtable="{!IsEditableSumm}" ></c:IPMOTIFSectionStatus>-->
+         <!--<c:IPM_RND_Questions gateDocType="{!projDoc.IPM_GateDocuments__c}" rendered="{!if(projdocsec.IPM_Section_Name__c=='R&D Initial Outline (Product/Pack)',true,false)}" RNDEdit="false"></c:IPM_RND_Questions>-->
+            </div>
+        </div>
+         </div>
+         </apex:outputPanel>
+         <div class="row">
+         <div class="col-sm-12 dateUpdate">
+         <div class="panel">
+           <apex:outputText value="Last updated by: {!projDocSec.IPM_GateHistory__c} on" id="txtarea" rendered="{! if(projDocSec.IPM_GateHistory__c!=null,'true','false')}"/>
+            &nbsp; <apex:outputField value="{!projDocSec.IPM_GateHistory_Date__c}"/>  
+         </div>
+         </div> 
+        </div>
+              
+                
+       <div class="row">
+       <apex:outputPanel rendered="{!if(projDocSec.IPM_Section_Name__c='Risk',true,false)}">
+       <!-- <c:IPM_Risk_Questionnaire getProjectId="{!projectId}" getProjectSectionId="{!projDocSecId}" riskedit="{!IsEditableSumm}" editSection="true" gateType="{!projDoc.IPM_GateDocuments__c}"></c:IPM_Risk_Questionnaire>-->
+        </apex:outputPanel>
+        </div>
+        <div class="row">
+         <div class="col-sm-12">
+         <div class="panel secEditSummary">
+         <!--<apex:inputField value="{!projDocSec.IPM_Gate_Document_Summary__c}"/>-->
+         <apex:inputField styleClass="countTarget" value="{!projDocSec.IPM_Gate_Document_Summary__c}" id="gate"  rendered="{! If(AND(IsEditableSumm=true),'true','false')}" />
+         <apex:outputField styleClass="countTarget" value="{!projDocSec.IPM_Gate_Document_Summary__c}" id="gate1"  rendered="{! If(AND(IsEditableSumm=true),'false','true')}" />
+         <!-- <apex:inputTextarea richText="true" styleClass="countTarget" value="{!projDocSec.IPM_Gate_Document_Summary__c}" id="gate" disabled="{!If(AND(IsEditableSumm=false),'true','false')}"    />-->
+           <div class="row charCount">
+                 <apex:outputPanel styleClass="col-sm-6 pull-right charcount textRight" rendered="{! If(AND(IsEditableSumm=true),'true','false')}">
+                    Remaining characters: <b id="charCountRemaining">{!remainingChar}</b> 
+                </apex:outputPanel>
+            </div>
+           </div>
+          </div>
+        </div>  
+        <div class="row">
+         <div class="col-sm-12">
+         <div class="panel-group secAttachment">
+         <div class="row">
+         <div class="col-sm-6">
+         <div class="secTitle">
+           <apex:outputText value="Attachments"/>
+         </div>
+         </div>
+
+         <div class="col-sm-6">
+          <div class="secLink">
+          <apex:outputPanel rendered="{! If(AND(IsEditableSumm=true),'true','false')}">  
+          <a class="attachFiles" id="attachFilesSum" title="Attach Files" value="/apex/ipmFileUpload?Id={!projectId}&projDocSecId={!projDocSecId}&sectionType=summary" data-toggle="modal" data-target="#ipmModal" data-backdrop="static" data-keyboard="false">+ Add Attachments</a> 
+          </apex:outputPanel>
+          </div>
+         </div>
+          
+         </div>
+         <div class="row">
+         <div class="col-sm-12">
+         <div class="panelListFiles">
+          <apex:outputPanel id="outptattach1">
+          <apex:repeat value="{!attachmentList}" var="attach">
+          <apex:outPutPanel rendered="{!attach.Description='summary'}">
+          <div class="SecButtonSet delete">
+          <apex:outputLink styleClass="fileName" value="/servlet/servlet.FileDownload?file={!attach.Id}" target="_blank">{!attach.Name}</apex:outputLink>  
+          <apex:outputPanel rendered="{! If(AND(IsEditableSumm=true),'true','false')}">  
+          <a class="icoButton mdown delete" title="Delete" onclick="CallAttachDelete('{!attach.Id}')"></a>
+          </apex:outputPanel>
+        </div>
+        </apex:outputPanel>
+         </apex:repeat>
+         </apex:outputPanel>
+         <apex:actionFunction name="CallAttachId" action="{!delet}" reRender="outptattach1">
+         <apex:param assignTo="{!attachId}" value="" name="Attached"/>
+         </apex:actionFunction>
+         </div>
+         </div>
+         </div>
+          </div>
+         </div>
+         </div> 
+        <apex:actionFunction action="{!IsNotify}" name="Notify" reRender="pmsg">
+        <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
+        </apex:actionFunction>
+        <apex:actionFunction action="{!IsNotify}" name="Notify1" reRender="pmsg">
+        <apex:param assignTo="{!isChecked}" name="IsCheck" value=""/>
+        </apex:actionFunction>
+        <apex:outputPanel rendered="{! If(AND(IsEditableSumm=true),'true','false')}">  
+        <div class="row">
+         <div class="col-sm-12">
+         <div class="panel-group">
+         <div class="row marginFloatedBlock">
+         <!--<div class="col-sm-6 notifyTeam">
+          <apex:inputCheckbox id="cbox4" value="{!projDocSec.IPM_Notify_Team__c}" styleClass="checkAll1" />
+         <apex:outputText value="Notify Team" /> 
+                <span class="SecButtonSet SecButtonSetInfo"><a class="icoButton info" data-toggle="tooltip" data-placement="top" data-original-title="Functional teams can use this space to update the output from their relevant tasks and activities."></a></span>
+
+         </div>-->
+         <div class="panel">
+         <div class="pull-right ipmButtonSet custMarginRight" >
+             <apex:commandLink styleClass="ipmButton" value="Cancel" action="{!cancel}"  />
+             <apex:commandLink styleClass="ipmButton primary" value="Save" action="{!save}" >
+             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
+             </apex:commandLink>
+             <apex:commandLink styleClass="ipmButton primary" value="Save & Notify" action="{!save}" >
+             <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
+             <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
+             </apex:commandLink>
+        
+         
+         </div>
+         </div>
+          </div>
+         </div> 
+        </div>
+         </div>  
+        </apex:outputPanel> 
+         </div>
+         <div class="ipmTabContent" id="aTasks">
+          <div class="row">
+          <apex:outputPanel rendered="{! If(AND(isTaskeditable=true),'true','false')}">  
+             <div class="col-xs-4 pull-right addLink" id="addTask" data-toggle="modal" data-target="#ipmModal" value="/apex/ipmAddTaskNew?projectId={!projectId}&projDocSecId={!projDocSecId}" title="Add To-Do" data-backdrop="static" data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText">&nbsp;Add To-Do</span></div>
+          </apex:outputPanel>
+           </div>
+           
+        <apex:actionFunction action="{!TaskDelete}" name="DeleteTask" reRender="tasklist">
+            <apex:param name="taskid" assignTo="{!taskid}" value=""/>
+         </apex:actionFunction>
+         <apex:outputPanel id="tasklist">
+         <apex:repeat value="{!lsttask}" var="tk">
+         <div class="row">
+            <div class="aTabs">
+              <div class="col-sm-10 noPadright noPadleft">
+              <div class="col-xs-1 cboxPadding">
+                <apex:inputField value="{!tk.IPM_Completed__c}" styleClass="taskChkBox" rendered="{! If(AND(isTaskeditable=true),'true','false')}">
+                  <apex:actionSupport action="{!UpdateTask}" reRender="tasklist, hilightTaskScript" event="onchange">
+                       <apex:param assignTo="{!taskid}" name="UpdateTask" value="{!tk.Id}"/>
+                   </apex:actionSupport>
+               </apex:inputField>
+            </div>
+             <div class="col-xs-11 noPadleft">
+               <span class="wrapping"><b><apex:outputText value="{!tk.IPM_Task_Name__c}" ></apex:outputText></b></span>&nbsp; 
+               <apex:outputText value="is pending with" rendered="{!!tk.IPM_Completed__c}"></apex:outputText>&nbsp;
+               <apex:outputText value="is completed by" rendered="{!tk.IPM_Completed__c}"></apex:outputText>&nbsp;
+               <apex:outputText value="{!tk.IPM_Assignee__r.Name}"></apex:outputText>
+               <br/><span class="greytext">Due Date: <apex:outputfield value="{!tk.IPM_Due_Date1__c}" /></span>
+              </div>
+              </div> 
+              <apex:outputPanel rendered="{! If(AND(isTaskeditable=true),'true','false')}">
+              <div class="col-sm-2 SecButtonSet pull-right">
+              <a class="icoButton delete" data-toggle="modal" data-target="#ipmDeleteModal"  value="{!tk.Id}" 
+                                                onclick="myFunc('{!tk.Id}','{!countOfTask}','{!tk.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c}','{!tk.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}')" 
+                                                title="Delete" 
+                                                data-backdrop="static" data-keyboard="false"/>
+             
+              </div>
+              </apex:outputPanel>
+           </div>
+          </div>
+        </apex:repeat>
+         </apex:outputPanel>  
+        </div>
+         
+              </div>                            
+              </div>              
+                     </div>
+                     </div>
+                     </apex:outputPanel>
+                     <apex:outputPanel layout="block" rendered="{!if(OR(projDocSec.IPM_Section_Name__c=='Risk',projDocSec.IPM_Section_Name__c=='OTIF Status',projDocSec.IPM_Section_Name__c=='Gate Keeper Checklist'),true,false)}">
+          <div class="col-sm-12">
+           <div class="panel">   
+        <div class="row">
+          <div class="col-sm-12" id="ipmSecEditorTab">
+          <div class="row">
+           <div class="panel-group">                               
+           <ul class="ipmTabs">
+               <li class="summary"><span>Summary</span><span class="SecButtonSet SecButtonSetInfo"><a class="icoButton info" data-toggle="tooltip" data-placement="top" data-original-title="Functional teams can use this space to update the output from their relevant tasks and activities."></a></span></li>
+               <li class="aTasks"><span>Associated To-Dos</span></li>
+           </ul>                               
+           </div>
+           </div>
+         <div class="ipmTabContent" id="summary">   
+            
+          <div class="row">
+         <div class="col-sm-12">
+         <div class="panel panelMessage">
+          <apex:outputText value="Does appear in Gate document." styleClass="asterisk"/>
+          </div>
+        </div>
+        </div>
+        <apex:outputPanel rendered="{! If(AND(IsEditableSumm=true),'true','false')}">
+        <div class="row">
+         <div class="col-sm-12">
+         <div class="panel-group">
+         <div class="row marginFloatedBlock">
+         <!--<div class="col-sm-6 notifyTeam">
+            <apex:inputCheckbox id="cbox33" value="{!projDocSec.IPM_Notify_Team__c}" styleClass="checkAll1" />
+         <apex:outputText value="Notify Team"/>
+
+
+                <span class="SecButtonSet SecButtonSetInfo"><a class="icoButton info" data-toggle="tooltip" data-placement="top" data-original-title="Functional teams can use this space to update the output from their relevant tasks and activities."></a></span>
+
+         </div>-->
+         <div class="panel" >
+         <div class="col-sm-6 ipmButtonSet pull-right">
+             <apex:commandLink styleClass="ipmButton" value="Cancel" action="{!cancel}"  /> 
+             <apex:commandLink styleClass="ipmButton primary" value="Save" action="{!save}" >
+             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
+             </apex:commandLink>
+             <apex:commandLink styleClass="ipmButton primary" value="Save & Notify" action="{!save}" >
+             <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
+             <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
+             </apex:commandLink>
+          </div>
+         </div>
+          </div>
+         </div> 
+        </div>
+         </div>
+         </apex:outputPanel>
+         <div class="row">
+         <div class="col-sm-12 dateUpdate">
+         <div class="panel">
+           <apex:outputText value="Last updated by: {!projDocSec.IPM_GateHistory__c} on" id="txtarea1" rendered="{! if(projDocSec.IPM_GateHistory__c!=null,'true','false')}"/>
+            &nbsp; <apex:outputField value="{!projDocSec.IPM_GateHistory_Date__c}"/>  
+         </div>
+         </div> 
+        </div>
+        
+        
+        <apex:outputPanel rendered="{!if(projDocSec.IPM_Section_Name__c='OTIF Status',true,false)}">
+
+        <c:ipmOTIFStatusTable otifType="Table" setEdit="true" getSectionId="{!projDocSec.Id}" IsEdtable="{!IsEditableSumm}"/>
+        </apex:outputPanel>
+          
+        <apex:outputPanel rendered="{!if(projDocSec.IPM_Section_Name__c='Gate Keeper Checklist',true,false)}">
+            <c:ipmGateKeeperList setEdit="true" getDocType="{!projDoc.IPM_GateDocuments__c}"  GateEdit="{!IsEditableSumm}"></c:ipmGateKeeperList>
+        </apex:outputPanel>
+        
+       <!-- <c:IPM_CRRT_Section Editable="{!IsCRRTEditable}" gateType="{!projDoc.IPM_GateDocuments__c}" getSectionId="{!projDocSec.Id}" rendered="{!if(OR(projDocSec.IPM_Section_Sequence__c='3.2.1',projDocSec.IPM_Section_Sequence__c='3.3.3'),true,false)}"></c:IPM_CRRT_Section>-->
+        
+        <div class="row">
+        <apex:outputPanel rendered="{!if(projDocSec.IPM_Section_Name__c='Risk',true,false)}">
+       <c:IPM_Risk_Questionnaire getProjectId="{!projectId}" getProjectSectionId="{!projDocSecId}" riskedit="{!IsEditableSumm}" editSection="true" gateType="{!projDoc.IPM_GateDocuments__c}"></c:IPM_Risk_Questionnaire>
+        </apex:outputPanel>
+        <c:IPM_Section_GateChecklist getDocType="{!projDoc.IPM_GateDocuments__c}" getSecid="{!projDocSecId}" editGateSect="{!IsEditableSumm}"></c:IPM_Section_GateChecklist>
+        </div>
+        
+        <div class="row">
+         <div class="col-sm-12">
+         <div class="panel secEditSummary">
+         
+         <div class="row">
+        <div class="col-sm-5 pull-right charcount textRight">
+        Remaining Characters: <b>{!remainingChar}</b>
+        </div>
+        </div>
+        <!-- <apex:inputField value="{!projDocSec.IPM_Gate_Document_Summary__c}"/>-->
+        <apex:inputField styleClass="countTarget" value="{!projDocSec.IPM_Gate_Document_Summary__c}" id="gate2"  rendered="{! If(AND(IsEditableSumm=true),'true','false')}" />
+        <apex:outputField styleClass="countTarget" value="{!projDocSec.IPM_Gate_Document_Summary__c}" id="gate3"  rendered="{! If(AND(IsEditableSumm=true),'false','true')}" />
+         
+           <!--<apex:inputTextarea value="{!projDocSec.IPM_Gate_Document_Summary__c}"  styleClass="ckeditor" id="gate1" richText="true"  />  -->
+        <!--  <apex:inputTextarea value="{!projDocSec.IPM_Gate_Document_Summary__c}"  richText="true" id="gate1"  disabled="{! If(AND(IsEditableSumm=false),'true','false')}" />-->
+           
+           </div>
+          </div>
+        </div>
+        <div class="row">
+         <div class="col-sm-12">
+         <div class="panel-group secAttachment">
+         <div class="row">
+         <div class="col-sm-6">
+         <div class="secTitle">
+           <apex:outputText value="Attachments"/>
+         </div>
+         </div>
+
+         <div class="col-sm-6">
+          <div class="secLink">
+          <apex:outputPanel rendered="{! If(AND(IsEditableSumm=true),'true','false')}">  
+          <a class="attachFiles" id="attachFilesSum1" title="Attach Files" value="/apex/ipmFileUpload?Id={!projectId}&projDocSecId={!projDocSecId}&sectionType=summary" data-toggle="modal" data-target="#ipmModal" data-backdrop="static" data-keyboard="false">+ Add Attachments</a> 
+          </apex:outputPanel>
+          </div>
+         </div>
+          
+         </div>
+         <div class="row">
+         <div class="col-sm-12">
+         <div class="panelListFiles">
+          <apex:outputPanel id="outptattach2">
+          <apex:repeat value="{!attachmentList}" var="attach">
+          <apex:outPutPanel rendered="{!attach.Description='summary'}">
+          <div class="SecButtonSet delete">
+          <apex:outputLink styleClass="fileName" value="/servlet/servlet.FileDownload?file={!attach.Id}" target="_blank">{!attach.Name}</apex:outputLink>  
+          <apex:outputPanel rendered="{! If(AND(IsEditableSumm=true),'true','false')}">  
+          <a class="icoButton mdown delete" title="Delete" onclick="CallAttachDelete('{!attach.Id}')"></a>
+          </apex:outputPanel>
+        </div>
+        </apex:outputPanel>
+         </apex:repeat>
+         </apex:outputPanel>
+         <apex:actionFunction name="CallAttachId" action="{!delet}" reRender="outptattach2">
+         <apex:param assignTo="{!attachId}" value="" name="Attached"/>
+         </apex:actionFunction>
+         </div>
+         </div>
+         </div>
+          </div>
+         </div>
+         </div>
+        
+        <apex:actionFunction action="{!IsNotify}" name="Notify" reRender="pmsg">
+        <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
+        </apex:actionFunction>
+        <apex:actionFunction action="{!IsNotify}" name="Notify1" reRender="pmsg">
+        <apex:param assignTo="{!isChecked}" name="IsCheck" value=""/>
+        </apex:actionFunction>
+        <apex:outputPanel rendered="{! If(AND(IsEditableSumm=true),'true','false')}">
+        <div class="row">
+         <div class="col-sm-12">
+         <div class="panel-group">
+         <div class="row marginFloatedBlock">
+         <!--<div class="col-sm-6 notifyTeam">
+          <apex:inputCheckbox id="cbox44" value="{!projDocSec.IPM_Notify_Team__c}" styleClass="checkAll1" />
+         <apex:outputText value="Notify Team" /> 
+                <span class="SecButtonSet SecButtonSetInfo"><a class="icoButton info" data-toggle="tooltip" data-placement="top" data-original-title="Functional teams can use this space to update the output from their relevant tasks and activities."></a></span>
+
+         </div>-->
+         <div class="panel">
+         <div class="col-sm-6 ipmButtonSet pull-right">
+             <apex:commandLink styleClass="ipmButton" value="Cancel" action="{!cancel}"  />
+             <apex:commandLink styleClass="ipmButton primary" value="Save" action="{!save}" >
+             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
+             </apex:commandLink>
+             <apex:commandLink styleClass="ipmButton primary" value="Save & Notify" action="{!save}" >
+             <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
+             <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
+             </apex:commandLink>
+      
+           </div>
+         </div>
+          </div>
+         </div> 
+        </div>
+         </div>  
+         </apex:outputPanel>
+         </div>
+         <div class="ipmTabContent" id="aTasks">
+          <div class="row">
+          <apex:outputPanel rendered="{! If(AND(isTaskeditable=true),'true','false')}">
+             <div class="col-xs-4 pull-right addLink" id="addTask" data-toggle="modal" data-target="#ipmModal" value="/apex/ipmAddTaskNew?projectId={!projectId}&projDocSecId={!projDocSecId}" title="Add To-Do" data-backdrop="static" data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText">&nbsp;Add To-Do</span></div>
+        </apex:outputPanel>
+           </div>
+           
+        <apex:actionFunction action="{!TaskDelete}" name="DeleteTask" reRender="tasklist">
+            <apex:param name="taskid" assignTo="{!taskid}" value=""/>
+         </apex:actionFunction>
+         <apex:outputPanel id="tasklist1">
+         <apex:repeat value="{!lsttask}" var="tk">
+         <div class="row">
+            <div class="aTabs">
+              <div class="col-sm-10 noPadright noPadleft">
+              <div class="col-xs-1 cboxPadding">
+                <apex:inputField value="{!tk.IPM_Completed__c}" styleClass="taskChkBox" rendered="{! If(AND(isTaskeditable=true),'true','false')}">
+                  <apex:actionSupport action="{!UpdateTask}" reRender="tasklist, hilightTaskScript" event="onchange">
+                       <apex:param assignTo="{!taskid}" name="UpdateTask" value="{!tk.Id}"/>
+                   </apex:actionSupport>
+               </apex:inputField>
+            </div>
+             <div class="col-xs-11 noPadleft">
+               <span class="wrapping"><b><apex:outputText value="{!tk.IPM_Task_Name__c}" ></apex:outputText></b></span>&nbsp; 
+               <apex:outputText value="is pending with" rendered="{!!tk.IPM_Completed__c}"></apex:outputText>&nbsp;
+               <apex:outputText value="is completed by" rendered="{!tk.IPM_Completed__c}"></apex:outputText>&nbsp;
+               <apex:outputText value="{!tk.IPM_Assignee__r.Name}"></apex:outputText>
+               <br/><span class="greytext">Due Date: <apex:outputfield value="{!tk.IPM_Due_Date1__c}" /></span>
+              </div>
+              </div> 
+              <apex:outputPanel rendered="{! If(AND(isTaskeditable=true),'true','false')}">
+              <div class="col-sm-2 SecButtonSet pull-right">
+              <a class="icoButton delete" data-toggle="modal" data-target="#ipmDeleteModal"  value="{!tk.Id}" 
+                                                onclick="myFunc('{!tk.Id}','{!countOfTask}','{!tk.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c}','{!tk.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}')" 
+                                                title="Delete" 
+                                                data-backdrop="static" data-keyboard="false"/>
+               <!-- <a class="icoButton delete" data-toggle="modal" data-target="#ipmDeleteModal"  value="{!tk.Id}" onclick="openDeleteTaskModal('{!tk.Id}', '{!$Label.delete_task_msg}')" title="Delete" data-backdrop="static" data-keyboard="false"/>-->
+              </div>
+               </apex:outputPanel>
+           </div>
+          </div>
+        </apex:repeat>
+         </apex:outputPanel>  
+        </div>
+         
+              </div>                            
+              </div>              
+                     </div>
+                     </div>
+                     </apex:outputPanel>
+                  </div>
+               </div>
+            </div>
+           </div> 
+         
+         
+            <div id="ipmModalDiv">
+                <c:ipmModalRevamp />
+            </div>  
+            <div id="ipmDeleteModalDiv">
+               <c:ipmConfirmModalRevamp />
+            </div>
+            <apex:outPutPanel id="hilightTaskScript">
+                <script>
+                     var jq = jQuery.noConflict()
+                    jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");                    
+                </script>
+            </apex:outPutPanel>
+        </apex:form> 
+              
+        <script> 
+           function CallAttachDelete(attid){           
+             CallAttachId(attid);
+           } 
+            var jq = jQuery.noConflict();                 
+            jq(document).ready(function(){
+            if(navigator.appVersion.match(/MSIE [\d.]+/)){
+                    var placeholderText = 'Enter your action plan';
+                    jq('#riskCommentBox').val(placeholderText);
+                    jq('#riskCommentBox').blur(function(){
+                        jq(this).val() == '' ? jq(this).val(placeholderText) : false;
+                    });
+                    jq('#riskCommentBox').focus(function(){
+                        jq(this).val() == placeholderText ? jq(this).val('') : false;
+                    });
+                }
+            jq("#riskCommentBox").attr("placeholder", "Enter your action plan");
+            jq("[data-toggle=tooltip]").tooltip();
+            jq('#ipmSecEditorTab .ipmTabContent').hide();
+            var tabToBeSelected = getParameterByName('ipmTab');
+            
+            if(tabToBeSelected.length != 0){
+                jq('#ipmSecEditorTab .ipmTabs li.'+tabToBeSelected).addClass('active');
+                jq('div#'+tabToBeSelected).show();
+            }else{
+                jq('#ipmSecEditorTab .ipmTabs li:first').addClass('active'); 
+                jq('#ipmSecEditorTab .ipmTabContent:first').show();
+            }
+                          
+            jq('#ipmSecEditorTab .ipmTabs li').on('click', function(e){ 
+                e.preventDefault();
+                jq('#ipmSecEditorTab .ipmTabs li').removeClass('active');                   
+                var getId = jq(this).attr('class');
+                jq('#ipmSecEditorTab .ipmTabContent').hide();
+                jq(this).addClass('active');
+                jq('#'+getId).fadeIn("fast");                    
+            });                    
+            jq(".ipmSectionEditor .checkAll").each(function(){
+                jq(this).on("click", function(){
+                    if(jq(this).is(":checked")){
+                    jq(".ipmSectionEditor .checkAll").prop("checked", true);
+                    Notify();
+                    }else{
+                    jq(".ipmSectionEditor .checkAll").prop("checked", false);
+                    Notify1();
+                    }
+                });
+             });
+             jq(".ipmSectionEditor .checkAll1").each(function(){
+                jq(this).on("click", function(){
+                    if(jq(this).is(":checked")){
+                    jq(".ipmSectionEditor .checkAll1").prop("checked", true);
+                    Notify();
+                    }else{
+                    jq(".ipmSectionEditor .checkAll1").prop("checked", false);
+                    Notify1();
+                    }
+                });
+             });
+             jq(document).on("click", ".aTabs input[type=checkbox].taskChkBox", function(){
+                 if(jq(this).is(":checked")){
+                    //jq(this).closest(".aTabs").css("background","#e1f9dd");
+                 }else{
+                   // jq(this).closest(".aTabs").css("background","#ffffff");
+                 }
+             });
+            jq(document).on('click', '#addTask', function(e){
+                event.preventDefault ? event.preventDefault() : event.returnValue = false;                       
+                var url =jq(this).attr('value');
+                openModal(url);   
+                jq('#ipmModal .modal-title').html('Add To-Do');
+                jq('#ipmModal .modal-dialog').width('30%');
+                jq('#ipmModal .modal-dialog').height('90%');
+            });
+             
+            jq(".attachFiles,.comments,.history").each(function(){                            
+                var url =jq(this).attr('value');
+                var id=jq(this).attr('id');
+                var title=jq(this).attr('title');                   
+                jq(document).on('click', "#"+id, function(e){                       
+                event.preventDefault ? event.preventDefault() : event.returnValue = false; 
+                openModal(url);   
+                jq('#ipmModal .modal-title').html(title);
+                jq('#ipmModal .modal-dialog').width('50%');
+                jq('#ipmModal .modal-dialog').height('90%');
+                });                    
+                });
+            });
+            jq("#ipmModal .close").on("click", function(){ 
+                if(jq("#ipmModal .modal-title").text().indexOf("History") == -1){                  
+                      parent.location.assign('apex/ipmProjectDocumentSectionEditorv1?Id={!projectId}&projDocSecId={!projDocSecId}');
+                }
+            });
+            function getParameterByName(name) {
+                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                    results = regex.exec(location.search);
+                return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            }
+            jq(document).on('click', '#ipmDeleteModal .removeTask', function(){
+                deleteTaskJs(this);
+            }); 
+            
+    /* ***CRRT Section*** */
+    jq(".projectRadioButton input[type=radio]").each(function(){    
+    var statCRRT = jq(this).attr("data-checked");
+    if(statCRRT == "true"){
+    jq(this).prop("checked", true);
+    }else{
+    jq(this).prop("checked", false);
+    }
+    });
+    
+    jq(".projectRadioButton input[type=radio]").each(function(){    
+    var statCRRT = jq(this).attr("data-disabled");
+    if(statCRRT == "true"){
+    jq(this).attr("disabled", "disabled");
+    }else{
+    jq(this).removeAttr("disabled");
+    }
+    });    
+     /* \\** CRRT Section*** */
+            
+    
+    function myFunc(str,isLst,gateName,secName) {
+               // alert(isLst);
+                            var errMsg = ''
+                            if(isLst == 1) {
+                                errMsg = 'All tasks correlating to the ' + gateName + ' Section ' + secName + '  have been removed. Would you like to remove this section from the ' + gateName + ' Document?';
+                            }else {
+                                errMsg = '{!$Label.delete_task_msg}';
+                            }
+                           jq('#ipmDeleteModal .modal-title').html("Remove Task");
+                           jq('#ipmDeleteModal .confirmMsg').html(errMsg);
+                            
+                            jq('#ipmDeleteModal .confirmAction').attr('value', str);
+                            jq(".confirmAction").addClass("removeTask");
+                        }
+         </script> 
+       </div>
+    </apex:define>
+    </apex:composition>           
+</apex:page>
