@@ -1,0 +1,520 @@
+<apex:page controller="IPMFinancialController" sidebar="false" standardStylesheets="false" >
+    <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmModal1.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmHeader-new.css')}"/>
+    
+<style>
+    /* header new styles */
+    .ipmFunnelPanel {bottom: 4px;}
+    
+       // .htmlDetailElementTable img {width:44px!important;max-width: 100%; height: 44px!important; border-radius: 50% !important;}
+        .ipmProjectDetails .panel-title {line-height:2em!important;}  
+             
+        .uploadImg img {border-radius: 50% !important;max-width: 44px;} 
+        .ipmProjectDetails .panel {background:transparent;}
+        .ipmProjectDetails .uploadImg {overflow:hidden;padding:0!important;margin:0!important;}
+        
+        .ipmProjectDetails .panel-body .col-sm-3 {padding-left:3px!important;margin-top: 18px;}
+        .pageHeadToolbar { border-bottom:1px solid #ddd; margin:0;}       
+        .pageHeadToolbar h2.pageTitle {margin:35px 7px 20px 0!important;display:inline-block; font-size:1.8402083517355998em;color:#253b78; font-weight:bold;padding-right: 10px;border-right: 1px solid #929292;}
+        .pageHeadToolbar .SecFillProgress {display:inline-block; }
+        .pageHeadToolbar .SecFillProgress .fillProgress {display:inline-block;color:#e98824;font-size:22px; font-weight:normal;}
+        .pageHeadToolbar .SecFillProgress .fillProgress span {font-size:12px!important;}
+        .pageHeadToolbar .SecFillProgress .fillProgressTxt {color:#364354!important;display:inline-block; font-size:12px;}
+        .pageHeadToolbar .SecStatusUpdate {display:inline-block;margin:15px 0; padding-right:15px;border-right: 1px solid #929292;}        
+        .pageHeadToolbar .SecCurrentStatus {display:inline-block; color:#364354; margin: 15px;text-align:right;}
+        .pageHeadToolbar .status {color:#e98824;display:block;font-weight:bold;}
+        .pageHeadToolbar .SecButtonSet {margin-top: 35px}
+        .icoButton {cursor:pointer;}
+        
+        .leftSideBar {margin-top:10px;}
+        .leftSideBar h4 {color:#253b78; font-size:1.1em; font-weight:bold;}
+        //.leftSideBar ul.docFilter {padding:0!important; margin:20px 0 0!important; list-style:none;}
+        .leftSideBar ul.docFilter li {word-break:break-all;margin-left:0!important; display:block; /*background:#edeef0; color:#253b78; border-bottom:1px solid #d7e0e0;*/}
+        .leftSideBar ul.docFilter li > input[type=checkbox]{position:relative; margin-right:5px; top:2px;}
+        .leftSideBar ul.docFilter h4 {display:block; background:#edeef0; color:#253b78; margin-bottom:0!important; border-bottom:1px solid #d7e0e0; border-top:1px solid #d7e0e0; padding:10px 7px;}
+        .tempWrapper .expandTool {text-align:right;}
+        .tempWrapper .expandTool span {display:inline-block; margin:5px; font-weight:bold; color:#0f81bb; cursor:pointer; }
+        .contenWrapper { margin-top:11px;}
+        .leftSideBar .filterTitle{background: #e0eac2;font-size:1.20em;}
+        .projectContainer{margin-top:0 !important;}
+        .pHead.filterSubTitle{padding: 10px 7px;color:#3b516d;font-size:1em;background: #f0f7df;border-bottom: 1px solid #c0d3bf;}
+        .pHead a, .finRecord a{color:#3b516d;  vertical-align: middle;}
+        .expico-square{margin-top:2px;}
+        .finRecord{padding: 10px 7px;background-color:#f9faec !important;border-bottom: 1px solid #c0d3bf;}
+        .projectContainer > .ipmAcrdnExpand{margin-bottom:0 !important;}
+        .finLegends {margin-top:10px;color:#666666;font-size:0.8em;}
+        /* Generic Accordian Styles */
+        .ipmAccordian {display:block;}
+        .ipmAccordian .aHead {display:block;}
+        .ipmAccordian > .ipmAcrdnExpand {border:1px solid #dce3e2; display:block; border-top:none!important; margin-bottom:10px;}        
+        .ipmAccordian > .aHead {color: #253b78;font-size: 1.5em;font-weight: bold;display: block;background: #f7f7f7;border: 1px solid #dce3e2;margin-bottom: 2px;padding: 13px 10px 14px;}
+        .ipmAccordian > .ipmAcrdnExpand > .aHead {color:#0f7fb8!important; font-size:1.2em; font-style:normal; font-weight:bold; display:block;border-bottom:1px solid #dce3e2; margin:0 20px; padding:12px 0;}
+        .ipmAccordian > .ipmAcrdnExpand > .ipmAcrdnExpand > .aHead {font-size:1em;font-style:normal;font-weight:bold;color:#0f7fb8; display:block; border-bottom:1px solid #eee; padding: 12px 0 15px; margin:0 0 0 20px;}
+        .ipmAccordian > .ipmAcrdnExpand > .ipmAcrdnExpand > .aHead:first-child {padding-top:2px;}
+        .ipmAccordian .ipmAcrdnExpand .ipmAcrdnExpand {padding:10px 20px 0 45px;display:block;}
+        .ipmAccordian .ipmAcrdnExpand .col-sm-3 {padding-right:0!important; position:relative;}
+        .ipmAccordian .ipmAcrdnExpand .ipmAcrdnExpand .ipmAcrdnExpand {padding:10px 10px 0 45px;display:block;}
+        .ipmAccordian .ipmAcrdnExpand {color:#797979;display:block;}
+        .ipmAccordian > .aHead span.expico {display: inline-block; cursor:pointer; font-family: FontAwesome;width: 21px;height: 21px;text-align: center;font-weight: normal;line-height: 23px;background: #81bd42;position: relative;margin-right: 5px;
+        font-size: 0.8em;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;color: #fff;}
+        .ipmAccordian .ipmAcrdnExpand .aHead span.expico {display: inline-block; cursor:pointer; font-family: FontAwesome;width: 16px;height: 16px;text-align: center;font-weight: normal;line-height: 17px;background: #d4d4d4;position: relative;margin-right: 5px;
+        font-size: 0.7em;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;color: #fff;}
+        .ipmAccordian span.wrpHead {display: inline-block;padding: 5px 10px 5px 0;border-right: 1px solid #797979;}
+        .ipmAccordian .Filled-in {display: inline-block;padding: 0 8px;margin-left: 5px; border-left: 1px solid #797979; color:#e68627!important;font-size:13px!important; font-weight:normal!important; }
+        .ipmAccordian .Not.Started {display: inline-block;padding: 0 8px;margin-left: 5px; border-left: 1px solid #797979; color:#797979!important;font-size:13px!important; font-weight:normal!important; }
+        .ipmAccordian .Excluded {display: inline-block;padding: 0 8px;margin-left: 5px; color:#222!important; background:#ebebeb; font-size:13px!important; font-weight:normal!important; }
+        .ipmAccordian span.lastupdate {display:block; margin: 6px 0 0 0; color:#d4d4d4!important; font-weight:normal!important; }        
+        .ipmAccordian .acHead {padding-top:4px;}
+        .ipmAccordian .lastUpdate {color:#c2c2c2; display:block; margin-top:10px;font-size:0.9em;}
+        .messageBox .SecButtonSet {margin-top:0!important;margin-right:10px!important; position:relative; top:2px;}
+        .messageBox .SecButtonSet .icoButton {width:16px!important;height:16px!important;top: -2px; }
+        .messageBox .SecButtonSet a {display:block; float:left; border:1px solid #015ba7; cursor:default; border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%;}
+        .messageBox .SecButtonSet span.msgTxt {position: relative; top: -2px; display:block; margin-left:25px;text-align:left;}
+        
+        
+        .ipmAccordian .SecButtonSet {display:inline-block; text-align:right; margin-top:-5px;}
+        .ipmAccordian .SecButtonSet .icoButton {display:inline-block;width:30px; margin: 0 5px; height:30px;border:1px solid #1568b6;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}
+        
+        
+        .ipmProjectDetails .SecButtonSet {display:inline-block; text-align:right; position:relative;}
+
+       
+        .StatusComment {background:#d9ecc6;border:1px solid #bdbdbd;margin-top:20px;margin-bottom:20px;}
+        .StatusComment .panelTitle {font-size:1.2em; font-weight:bold;color: #364354; margin:0px 20px 0; padding:15px 0px; border-bottom:1px solid #aecaab;}
+        .StatusComment .panelRow {margin: 10px 20px 0;border-bottom:1px solid #aecaab;}
+        .StatusComment .innerHead {font-weight:bold; color:#333333;margin-left:10px;}
+        .StatusComment .updateStatus {color:#666;}
+        .StatusComment .panelRow:last-child {border:none!important;}
+        .StatusComment .marginbottom {margin-bottom:6px;}
+        .StatusComment .txtRight{text-align:right;}                
+        /* ipmModal Styles */
+        #ipmModal .modal-header{background: url({!URLFOR($Resource.ipmResourceRevamp, '/images/pop_header.png')}) repeat-x !important;padding:17.5px 10px 17.5px 17.5px; border-bottom:1px #d7d7d7 solid;border-radius:3px;-webkit-border-radius:3px;}
+        #ipmModal .modal-title{color:#253b78 !important;font-weight:bold;font-size:1em;}
+        #ipmModal .modal-header button.close{border: 1px #007dbb solid;border-radius: 50%;padding: 3px 5px;color: #007dbb;width: 30px; background: #fff; margin-top:-8px;opacity: 1;}
+        #ipmModal .modal-content{border-radius:3px;height:100%;}
+        #ipmModal .modal-body{height:90%;}
+        #ipmModal .modal-dialog{margin:15px auto;}
+        .dropdown-menu{min-width:246px;left:2px;}
+               
+        .messageBox{color:#0f81bb;background:#dbefff;border:1px solid #007DBB;position:relative;border-radius:3px;margin-left:60px;padding:7px;}
+         .closeMessage{color: #000;position: absolute;right: 6px;top:7px;cursor:pointer;}
+       .rHead{color: #797979;font-size: 0.8em;font-weight: normal;}
+         .greyline{color:#333;font-size:1em;border-top: 1px solid #aecaab;padding:0;margin-top:10px;}
+       .greyline>div {padding-top:10px;}
+       .commentPanel{margin-top:10px;padding-left:0px;}
+       .user{font-size:1em;font-weight:bold;color:#666666;padding-right:10px;border-right:1px solid #252525;padding-top:3px;padding-bottom:3px;margin-right:10px;}
+       .action-txt{font-size:1em;font-weight:bold;color:#585858;}
+       .status-date{font-size:0.8em;font-weight:normal;color:#797979;}
+       .pageContent {position:relative;}
+       .pageContent .initFilter {background:#fff url({!URLFOR($Resource.ipmResourceRevamp, 'images/ajax-loader.gif')}) no-repeat center 40px; width:100%; height:100%; padding: 20px; color:#000;  text-align:center; position:absolute; z-index:100; display:block; opacity:0.9; -moz-opacity:0.9; -webkit-opacity:0.9; filter:alpha(opacity=90); }
+        .circular.ipmImage {border-radius: 500rem !important;}
+
+    .heading3{text-transform:none!important;padding:10px;margin-top:10px;}
+    .staticLabel2{font-size:0.8em; color:#999;}
+   .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{border:1px #7fa29e solid;}
+    tr.innertd td{padding-left:11px;font-weight:Bold;font-size:15px;color:#3b516d;}
+    .ipmFinancetable thead th{height:40px;background-color:#dceefa;}
+    .ipmFinancetable tr{height:35px;1px #99b4b1 solid;}
+    .finproject{font-weight:Bold;font-size:1em;color:#3b516d;}
+    .fintotal{font-weight:Bold;font-size:1em;color:#253b78;}
+    .fintable td{font-size:0.95em;color:#3b516d;}
+    .fintlegreenbg{background-color:#f3ffe7 !important;}
+    .fintlegrybg{background-color:#f8f8f8;}
+    .finRecord.selected{background-color:#dceefa !important;}
+    .fininnertable td + td{font-weight:Bold;font-size:15px;color:#666666;}
+    .greenplus{font-weight:bold;font-size:15px;color:#81bf42 !important;} 
+    .redminus{font-weight:bold;font-size:15px;color:#d01620 !important;} 
+    .blockPos{position: relative;text-align: right;/*top: 38px;*/}
+    .drpfield{padding:6px;border-radius:4px;}
+    .table-bordered>thead>tr>th, .table-bordered>thead>tr>td {border-bottom-width: 0px;}
+    .fa-star-o:before{font-size:18px;}
+    .leftsidemenu{font-weight:bold;font-size:16px;color:#3b516d;}
+    .initAccordian {cursor:pointer;}
+    .progresscode{border-left:3px solid #e98824;}
+    .submitcode{border-left:3px solid #81bf42;}
+    .notstartedcode{border-left:3px solid #666;}
+    
+    //.docFilter li:first-child{background-color:#f8f8f8 !important;}
+    //.docFilter li:first-child + li{background-color:#eee;}
+    //.docFilter li:first-child + li + li{background-color:#d8dce6;}
+    //.fa-minus:before{font-size:16px;}
+    .notstarted{color:#666;}
+    .progresstatus{color:#e98824;}
+    .substatus{color:#81bf42;}
+    .keyCountryLegend{background: url({!URLFOR($Resource.ipmResourceRevamp, '/images/flag-legend.svg')}) no-repeat 4% 55%;}
+    .finLegends .keyCountryLegend{padding-left: 15px; background-position: 0;}
+   .ipmfinHeading1{font-weight:bold;font-size:1em;color:#253b78;padding:10px 0px;}
+    .ipmfinHeading2{font-weight:bold;font-size:1.2em;color:#3b516d;padding:10px 0px;}
+    .tab-panel{position: relative;/*bottom: 44px;*/}
+    .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+color: #007dbb !important;font-size:1em !important;font-weight:bold;}
+.nav-tabs>li>a{color: #666 !important;font-size:1em !important;font-weight:bold;}
+          .finwrapper{position: relative;bottom: 20px;}
+          
+    <!--Header css-->
+    
+    <!-- MISALIGNMENT CSS -->
+    td.misaligned{ border: solid 2px #e13728 !important;}
+    td.misaligned, td.misaligned a, td.misaligned a:hover{color: #e13728; text-decoration: none;}
+    .ipmFinancialNavbar li>a{padding-top:15px !important;}
+    .ipmFinancialNavbar li>a>span{text-transform: capitalize;}
+    .navbar-default{background-color: transparent !important;}
+   // .leftSideBar span.expico{display: inline-block;cursor: pointer;font-family: FontAwesome;width: 21px; height: 21px; text-align: center; font-weight: normal; line-height: 23px; background: #81bd42; position: relative; margin-right: 5px; font-size: 0.8em; border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%; color: #fff;}
+    ul.finNavTab{margin-left:0;padding-left: 15px;}
+    .finDropdown{width: 174px;margin-right:0;}
+    .finDropdown select,.finDropdown select>option{width:100%;}
+    .ipmFinancialNavbar{padding:0;}
+    .finArrow{width:25px;background-color: #e5f8ff;padding:5px 10px 5px 4px;color: #007dbb; font-size:28px;cursor: pointer;}
+     .finFilter{margin-top: -10px;}
+    .navbar-nav>li{margin-bottom: -4px;}
+    .ipmFinancialNavbarDiv{border-bottom: 1px #7fa19e solid;margin-left:0px;margin-right:0px;}
+    td.fintleblubg, td.finproject{text-align: left !important;}
+    //.ipmFinancetable{table-layout:fixed;}
+    .ipmFinancetable td>input, .fintable td input{padding:5px; width:100%;}
+    .ipmFinancetable thead th{border:1px #7fa19e solid !important;}
+    .fintleblubg {background: #f2f8fc !important;}
+   .ipmFinancetable tr.fintleblubg >td, .ipmFinancetable td.fintleblubg,.ipmFinancetable td.iPLBorderGay{border-left:none;border-right:none;}
+    .ipmFinancetable tr.fintlegreenbg >td:first-child,.ipmFinancetable tr.fintlegreenbg >td:nth-child(2), .ipmFinancetable tr.fintlegreenbg >td:nth-child(3) {border-right:none;border-left:none;}
+   .ipmFinancetable > tbody > tr > td { border-right: none;width:40px;}
+    .ipmFinancetable td.fintleblubg:first-child, .ipmFinancetable tr.fintlegreenbg >td:first-child{border-left:#99b4b1;}
+    .ipmFinancetable .blueBorder{border-right:1px #007dbb solid !important;}
+   // .ipmFinancetable > tbody > tr > td{border:1px solid #ddd;}
+     td.y0BorderGay, tr.fintlegreenbg td:nth-child(4){border-right:1px #799d9d solid !important;}
+    .ipmFinancetable > tbody > tr > td.iPLBorderGay{border-left:1px #799d9d solid !important;/*border-right:1px solid #ddd;border-bottom:1px solid #ddd;*/}
+    td.btmBleBorder,tr.btmBleBorder>td{border-bottom:1px #007dbb solid !important;}
+    .fintable >tbody>tr>td.fintleblubg{border-left:none; border-right:none;}
+    .fintable>tbody>tr>td:nth-child(2){color:#666;} 
+    .table-bordered{border: 1px solid #799d9d;}
+    .table>tbody>tr>td:first-child{text-align:left;}
+    .finSumTbl>tbody>tr>td.blueBorder{border-left:1px #007dbb solid;}
+    td.y0BorderGay.misaligned{border-right:solid 2px #e13728 !important} 
+    .finBtnDiv .ipmButton{margin-left:5px;} 
+    .sdropDownDiv{margin: 15px;width: 96%;background: #f8f8f8;padding: 10px 15px;}
+    .sdropDownDiv .requiredInput{margin-top:10px;}
+    .nav > li {margin-top: 0px !important;}
+    </style>
+
+    <apex:composition template="ipmTemplateRevamp2">
+        <apex:define name="body">
+            <apex:form >
+                <div class="gradientbg">
+                    <div class="row">
+                        <c:ipmProjectDetailsRevampNew />
+                    </div>
+                    <div class="row">
+                        <c:ipmNavMenuRevamp2 activeItem="financials"/>
+                    </div>
+                </div>
+
+                <!-- Page Head & Toolbar -->
+                <div class="row finwrapper">
+                    <div class="col-sm-12">
+                        <div class="panel-group pageHeadToolbar clearfix">
+                            <div class="row">
+                                <div class="col-sm-5 pull-left">
+                                    <h2 class="pageTitle">Financials</h2>                                        
+                                </div>
+                                <div class="col-sm-7 pull-right clearfix">
+                                    <div class="SecButtonSet pull-right">
+                                        <apex:commandLink action="{!uploadDownloadTemplate}" styleClass="icoButton download" title="Upload/Download Template" rendered="{!IF($ObjectType.IPM_Financial__c.updateable, IF(AND(project.IPMProject_Span__c == 'Global', project.IPM_Phase__c <> 'Ideas'), false, AND(NOT(isEditMode))), false)}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Page Head & Toolbar -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel-group pageContent clearfix">
+                            <!-- SIDE PANEL -->
+                            <div class="col-sm-2 pull-left leftSideBar noPadleft noPadright">   
+                                <div class="finArrow"><span class="fa fa-angle-left"></span></div>
+                                <apex:outputPanel id="rolloutPanel" rendered="{!NOT(isError)}" layout="block" styleClass="finFilter">     
+                                   <div class="ipmAccordion">
+                                        <div class="projectContainer">
+                                            <div class="pHead">
+                                                <div class="filterTitle">
+                                                    <span class='expico fa fa-minus'></span>
+                                                    <apex:commandLink value="Global" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel,scriptPanel" rendered="{! if(AND(project.IPMProject_Span__c == 'Global',isEditable),true,false)}" status="loadingStatus">
+                                                        <apex:param name="currentFinancialId" value="{!mapConsolidatedFinancials['Global'].Id}" assignTo="{!currentFinancialId}"/>
+                                                    </apex:commandLink>
+                                                    <apex:outputText value="Global" rendered="{!project.IPMProject_Span__c <> 'Global'}" />
+                                                </div>
+                                            </div> 
+                                            <div class="ipmAcrdnExpand"> 
+                                               <ul class="docFilter accordionFilters">
+                                                   <apex:repeat value="{!lstRolloutWrappers}" var="rolloutWrapper">
+                                                   <li>
+                                                       <div class="projectContainer">
+                                                            <div class="pHead accrHead filterSubTitle">
+                                                                <span class='expico-square fa fa-minus'></span>
+                                                                <apex:commandLink value="{!rolloutWrapper.regionName}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel,scriptPanel" rendered="{!if(project.IPMProject_Span__c != 'Local',true,false)}" status="loadingStatus">
+                                                                    <apex:param name="currentFinancialId" value="{!mapConsolidatedFinancials[rolloutWrapper.regionName].Id}" assignTo="{!currentFinancialId}"/>
+                                                                </apex:commandLink>
+                                                                <apex:outputText value="{!rolloutWrapper.regionName}" rendered="{!project.IPMProject_Span__c == 'Local'}" />
+                                                            </div> 
+                                                            <div class="ipmAcrdnExpand"> 
+                                                                <ul class="docFilter accordionFilters">
+                                                                    <apex:repeat value="{!rolloutWrapper.lstFinancials}" var="financial">  
+                                                                        <li class="{!IF(financial.Status__c == 'Submitted', 'submitcode', IF(financial.Status__c == 'In Progress', 'progresscode', 'notstartedcode'))} {!IF(currentFinancialId == financial.Id, 'selected', '')} finRecord">
+                                                                            <apex:commandLink value="{!financial.Financial_External_ID__c}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel,scriptPanel" status="loadingStatus" >
+                                                                                <apex:param name="currentFinancialId" value="{!financial.Id}" assignTo="{!currentFinancialId}"/>
+                                                                            </apex:commandLink>
+                                                                        </li>           
+                                                                   </apex:repeat>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    </apex:repeat>
+                                                </ul>
+                                            </div>   
+                                        </div>
+                                    </div>
+                                    <!-- <p><i class="fa fa-minus substatus"></i> Submitted</p> -->
+                                    <div class="finLegends">
+                                        <p><i class="fa fa-minus progresstatus"></i> In Progress</p>
+                                        <p><i class="fa fa-minus notstarted"></i> Not Started</p>
+                                        <!--<p><span class="keyCountryLegend">Key Country/MCO</span></p>-->                                        
+                                    </div>
+                                </apex:outputPanel>
+                            </div>
+                            <!-- MAIN PANEL -->
+                            <div class="col-sm-10 pull-right tempWrapper finTableData">
+                                <apex:pageMessages />
+                                <div class="row">                                                           
+                                    <div class="col-sm-12 noPadright">                    
+                                        <div class="panel">
+                                            <div role="tabpanel" class="tab-panel">
+
+                                                <!-- Nav tabs -->
+                                                <div class="row ipmFinancialNavbarDiv">
+                                                <div class="col-xs-9 noPadright noPadleft">
+                                                <apex:outputText rendered="{!NOT(isError)}">
+                                                    <nav class="navbar navbar-default" role="navigation">
+                                                        <div class="collapse navbar-collapse ipmFinancialNavbar">
+                                                            <ul class="nav navbar-nav finNavTab" role="tablist">
+                                                                <li role="presentation" class="tabOdd active">
+                                                                    <a href="#myView" aria-controls="myView" role="tab" data-toggle="tab" onclick="changeTabs('myview');"><span>{!tabLabelMyView}</span></a>
+                                                                </li>
+                                                                <apex:outputText rendered="{!showTopDownTab}">
+                                                                    <li role="presentation" class="tabEven">
+                                                                        <a href="#topDown" aria-controls="topDown" role="tab" data-toggle="tab" onclick="changeTabs('topdown');"><span>{!tabLabelTopDown}</span></a>
+                                                                    </li>
+                                                                </apex:outputText>
+                                                                <apex:outputText rendered="{!showRollupTab}">
+                                                                    <li role="presentation" class="tabOdd">
+                                                                        <a href="#rollup" aria-controls="rollup" role="tab" data-toggle="tab" onclick="changeTabs('rollup');"><span>{!tabLabelRollup}</span></a>
+                                                                    </li>
+                                                                </apex:outputText>
+                                                            </ul>
+                                                        </div>
+                                                    </nav>
+                                                </apex:outputText>
+                                                </div>
+                                                <div class="col-xs-3 finDropdown noPadright noPadleft pull-right">
+                                                    <div class="inputField blockPos">
+                                                        <apex:outputText rendered="{!NOT(isError)}">
+                                                            <div class="requiredInput">
+                                                                <div class="requiredBlock"></div>
+                                                                <apex:selectList styleClass="fieldFont drpfield" value="{!selectedDocumentSection}" multiselect="false" size="1">
+                                                                    <apex:selectOptions value="{!documentSections}" />
+                                                                    <apex:actionSupport event="onchange" action="{!goToSection}" status="loadingStatus"/>
+                                                                </apex:selectList>
+                                                            </div>    
+                                                        </apex:outputText>
+                                                    </div> 
+                                                </div>
+                                                </div>
+                                                <apex:actionFunction name="changeTabs" action="{!changeTabs}" reRender="rolloutPanel,tabContentPanel,headerPanel,scriptPanel" status="loadingStatus">
+                                                    <apex:param name="currentTab" value="" assignTo="{!currentTab}"/>
+                                                </apex:actionFunction>
+
+                                                <!-- Tab Content -->
+                                                <apex:outputPanel id="tabContentPanel" rendered="{!NOT(isError)}">
+                                                    <div class="tab-content">
+                                                        <!-- My View Tab -->
+                                                        <div role="tabpanel" class="tab-pane {!IF(currentTab == 'myview', 'active', '')}" id="myView">
+    <!-- Project Name Header -->
+    <div class="row">
+        <c:ipmFinancialTabHeader ipmFinancial="{!currentFinancial}"
+            fieldSuffix="{!fieldSuffix}"
+        />
+        <div class="col-sm-6 noPadleft finBtnDiv" style="text-align:right;margin-top:10px;">
+            <apex:outputPanel rendered="{!AND(currentFinancial.Misaligned__c, NOT(isEditMode), project.IPMProject_Span__c == 'Regional',isEditable=true)}">
+                <div class="ipmButton secondary" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromLocalJs('Overwrite Financial Business Case', 'You are about to refresh the Financial Business Case for {!currentFinancial.Financial_External_Id__c} from the Local Project Leader. Are you sure you want to continue?');">Accept Local BC</div>
+                <apex:actionFunction name="refreshFromLocal" action="{!refreshFromLocal}" reRender="tabContentPanel,scriptPanel" status="loadingStatus"/>
+            </apex:outputPanel>
+            
+            <apex:outputPanel rendered="{!AND(currentFinancial.Misaligned__c, NOT(isEditMode), project.IPMProject_Span__c == 'Local',isEditable=true)}">
+                <div class="ipmButton secondary" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromRegionalJs('Overwrite Financial Business Case', 'You are about to refresh the Financial Business Case for {!currentFinancial.Financial_External_Id__c} from the Regional Project Leader. Are you sure you want to continue?');">Accept Regional BC</div>
+                <apex:actionFunction name="refreshFromRegional" action="{!refreshFromRegional}" reRender="tabContentPanel,scriptPanel" status="loadingStatus"/>
+            </apex:outputPanel>
+
+            <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, IF(AND(project.IPMProject_Span__c == 'Global', project.IPM_Phase__c <> 'Ideas'), false, AND(NOT(isEditMode))), false)}">
+                <apex:outputPanel rendered="{!isEditable}">
+                <div class="ipmButton primary" onclick="editRecord();">Edit</div>
+                <apex:actionFunction name="editRecord" action="{!editFinancials}" reRender="tabContentPanel,scriptPanel" status="loadingStatus">
+                    <apex:param name="isEditMode" value="true" assignTo="{!isEditMode}"/>
+                </apex:actionFunction>
+                </apex:outputPanel>
+            </apex:outputPanel>
+
+            <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, isEditMode, false)}">
+                <div class="ipmButton" onclick="cancel();">Cancel</div>
+                <apex:actionFunction name="cancel" reRender="rolloutPanel,tabContentPanel,scriptPanel" status="loadingStatus">
+                    <apex:param name="isEditMode" value="false" assignTo="{!isEditMode}"/>
+                </apex:actionFunction>
+
+                <div class="ipmButton primary" onclick="saveRecord();">Save</div>
+                <apex:actionFunction name="saveRecord" action="{!saveFinancials}" reRender="rolloutPanel,tabContentPanel,scriptPanel" status="loadingStatus">
+                    <apex:param name="isEditMode" value="false" assignTo="{!isEditMode}"/>
+                </apex:actionFunction>
+            </apex:outputPanel>
+        </div>
+        <apex:outputText rendered="{!IF(AND(NOT(project.Sustainability_Period_Changed__c), (project.IPM_Phase__c == 'Ideas'),isEditable=true), TRUE, FALSE)}">
+            <div class="col-sm-12 sdropDownDiv">
+                <div>Please select sustainability period for this project. Please note that you will be able to select this ONLY ONCE.</div>
+                <div class="requiredInput">
+                    <div class="requiredBlock"></div>
+                    <apex:selectList styleClass="fieldFont drpfield" value="{!selectedSustainabilityPeriod}" multiselect="false" size="1">
+                        <apex:selectOptions value="{!lstSustainabilityPeriod}" />
+                        <apex:actionSupport event="onchange" action="{!changeSustainabilityPeriod}" rerender="tabContentPanel,scriptPanel" status="loadingStatus"/>
+                    </apex:selectList>
+                </div>    
+            </div>
+        </apex:outputText>
+    </div>
+    
+        <c:ipmFinancialTable ipmFinancial="{!currentFinancial}"
+            finWrapper="{!financialsInnovation}"
+            colSpan="{!colSpan}"
+            sustainabilityPeriod="{!sustainabilityPeriod}"
+            isInnovation="TRUE"
+            isEditMode="{!isEditMode}"
+            showMisalignment="{!showMisalignment}"
+            fieldSuffix="{!fieldSuffix}"
+        />
+
+        <c:ipmFinancialSummaryTable ipmFinancial="{!currentFinancial}"
+            fieldSuffix="{!fieldSuffix}"
+            isEditMode="{!isEditMode}"
+            showMisalignment="{!showMisalignment}"
+        />
+
+        <c:ipmFinancialTable ipmFinancial="{!currentFinancial}"
+            finWrapper="{!financialsCalendar}"
+            colSpan="{!colSpan}"
+            sustainabilityPeriod="{!sustainabilityPeriod}"
+            isInnovation="FALSE"
+            isEditMode="{!isEditMode}"
+            showMisalignment="{!showMisalignment}"
+            fieldSuffix="{!fieldSuffix}"
+        />
+                                                        </div>
+
+                                                        <!-- Top Down Summary Tab -->
+                                                        <div role="tabpanel" class="tab-pane {!IF(currentTab == 'topdown', 'active', '')}" id="topDown">
+                                                            <c:ipmFinancialTabContent ipmFinancial="{!currentFinancial}"
+                                                                financialsInnovation="{!financialsInnovation}"
+                                                                financialsCalendar="{!financialsCalendar}"
+                                                                colSpan="{!colSpan}"
+                                                                sustainabilityPeriod="{!sustainabilityPeriod}"
+                                                                fieldSuffix="{!fieldSuffix}"
+                                                            />
+                                                        </div>
+    
+                                                        <!-- Rollup Summary Tab -->
+                                                        <div role="tabpanel" class="tab-pane {!IF(currentTab == 'rollup', 'active', '')}" id="rollup">
+                                                            <c:ipmFinancialTabContent ipmFinancial="{!currentFinancial}"
+                                                                financialsInnovation="{!financialsInnovation}"
+                                                                financialsCalendar="{!financialsCalendar}"
+                                                                colSpan="{!colSpan}"
+                                                                sustainabilityPeriod="{!sustainabilityPeriod}"
+                                                                fieldSuffix="{!fieldSuffix}"
+                                                            />
+                                                        </div>                            
+                                                    </div>
+                                                </apex:outputPanel>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div id="ipmConfirmModalDiv">
+                    <c:ipmConfirmModalRevamp />
+                </div>
+                <apex:outputPanel id="scriptPanel">
+                    <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmFilter.css')}"/>
+                     <apex:stylesheet value="{!URLFOR($Resource.ipmResourceRevamp, 'css/ipmTable.css')}"/>
+                   <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/ipmAccordion.js')}"/>
+                    <script>
+                        var jq = jQuery.noConflict();
+                        
+                        jq(".initAccordian").on("click", function(){
+                            if(jq(this).parent().nextUntil(".leftsidemenu").is(":hidden")){
+                               jq(this).parent().nextUntil(".leftsidemenu").show(); 
+                               jq(this).removeClass("fa-plus-square");
+                               jq(this).addClass("fa-minus-square");
+                            }else{
+                               jq(this).parent().nextUntil(".leftsidemenu").hide(); 
+                               jq(this).removeClass("fa-minus-square");
+                               jq(this).addClass("fa-plus-square");
+                            }
+                        });
+                        
+                        jq(document).on('click', '#ipmDeleteModal .confirmAction.refreshFromLocal', function(){
+                            jq('#ipmDeleteModal').modal('hide');
+                            refreshFromLocal();
+                            
+                        });
+                        function refreshFromLocalJs(title, confirmMsg){
+                            modalFunc(title, confirmMsg);
+                            jq('#ipmDeleteModal .confirmAction').removeClass('refreshFromRegional');
+                            jq('#ipmDeleteModal .confirmAction').addClass('refreshFromLocal');
+                        }
+                        
+                        jq(document).on('click', '#ipmDeleteModal .confirmAction.refreshFromRegional', function(){
+                            jq('#ipmDeleteModal').modal('hide');
+                            refreshFromRegional();
+                        });
+                        function refreshFromRegionalJs(title, confirmMsg){
+                            modalFunc(title, confirmMsg);
+                            jq('#ipmDeleteModal .confirmAction').removeClass('refreshFromLocal');
+                            jq('#ipmDeleteModal .confirmAction').addClass('refreshFromRegional');
+                        }
+                        function modalFunc(title, confirmMsg){
+                            jq('#ipmDeleteModal .modal-title').html(title);
+                            jq('#ipmDeleteModal .confirmMsg').html(confirmMsg);
+                        }
+                         jq(function () {
+                          jq('[data-toggle="tooltip"]').tooltip()
+                        });
+                        jq(document).on('click', '.finArrow', function(){
+                            if(jq(this).children().hasClass('fa-angle-left')){
+                                jq('.finFilter').hide();
+                                jq('.finTableData').removeClass('col-sm-10');
+                                jq('.finTableData').addClass('col-sm-12');
+                                jq(this).children().removeClass('fa-angle-left');
+                                jq(this).children().addClass('fa-angle-right');
+                            }else{
+                                jq('.finTableData').removeClass('col-sm-12');
+                                jq('.finTableData').addClass('col-sm-10');
+                                jq('.finFilter').show();
+                                jq(this).children().removeClass('fa-angle-right');
+                                jq(this).children().addClass('fa-angle-left');
+                            }
+                        });
+                    </script>
+                </apex:outputPanel>
+                <!-- loadingStatus -->
+                <c:ipmLoadingStatus />
+            </apex:form>
+        </apex:define>
+    </apex:composition>
+</apex:page>

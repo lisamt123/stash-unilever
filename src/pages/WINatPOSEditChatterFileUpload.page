@@ -1,0 +1,113 @@
+<!--
+**********************************************************************
+Name: WINatPOSChatterUpload
+Copyright © 2014 Unilever.
+======================================================
+==========================================================
+Purpose: VisualForce page to support content upload process
+Used in: File New button
+==========================================================
+History
+-------
+VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
+1.0 -   Istvan Szegedi          17/09/2014      INITIAL DEVELOPMENT
+***********************************************************************
+-->
+<apex:page standardController="File__c" extensions="WINatPOSNewChatterUploadController">
+  <style type="text/css">
+           [id*=HelpLink] { float:right; font-weight: bold;  }
+           .requiredInputSection {
+                            background-color: #c00;
+                            position: absolute;
+                            left: -4px;
+                            width: 3px;
+                            top: 1px;
+                            bottom: 1px;
+            			}
+            .requiredInputBlock{position: relative; height: 100%;}
+            				
+            
+  </style>  
+  <apex:form >
+    <apex:pageMessages />  
+    <apex:pageBlock title="Edit File" rendered="{!file.Id != null}"> 
+      <apex:pageBlockButtons location="bottom">  
+        <apex:commandButton value="Save" action="{!save}" />
+        <apex:commandButton value="Cancel" action="{!cancel}"/>
+      </apex:pageBlockButtons>
+      <apex:pageBlockButtons location="top">  
+        <apex:outputLink value="{!$Resource.WinatPOSHelpFileUpload}" id="HelpLink" target="_blank">Help for File Upload <span class="helpButton" id="example-title-_help"><img src="/s.gif" class="helpOrb"/></span></apex:outputLink>
+      </apex:pageBlockButtons>
+      <script>
+       		sfdcPage.setHelp('example-title', '{!$Label.WinAtPOS_Helper_link_tooltip}');
+      </script>  
+      <apex:pageBlockSection title="File Information">
+        <apex:pageBlockSectionItem helpText="{!$Label.WinAtPOS_FileName_help_text}">
+            <apex:outputLabel value="{!$ObjectType.File__c.fields.Name.Label}" for="fileNameInput"></apex:outputLabel>
+            <apex:inputField id="fileNameInput" value="{!file.Name}" required="true"/>   
+        </apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem helpText="{!$ObjectType.File__c.fields.Sub_Type__c.inlineHelpText}">  
+           <apex:outputLabel value="File Type" for="fileType"></apex:outputLabel>
+             <apex:outputPanel >
+                 <div class="requiredInputBlock">        
+                     <div class="requiredInputSection"></div>
+                     <apex:selectList id="fileType" value="{!file.Sub_Type__c}" size="1" title="File Type">
+                        <apex:selectOptions value="{!fileSubType}"></apex:selectOptions>
+                     </apex:selectList>
+                 </div>    
+             </apex:outputPanel>    
+        </apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem helpText="{!$ObjectType.File__c.fields.OwnerId.inlineHelpText}" rendered="{!$Profile.Name == 'System Administrator'}">
+            <apex:outputLabel value="Owner" for="assetOwner"></apex:outputLabel>
+            <apex:inputField id="Owner" value="{!file.OwnerId}" />  
+        </apex:pageBlockSectionItem>
+          
+        <apex:pageBlockSectionItem helpText="{!$ObjectType.File__c.fields.OwnerId.inlineHelpText}" rendered="{!$Profile.Name != 'System Administrator'}">
+            <apex:outputLabel value="Owner" for="assetOwner"></apex:outputLabel>
+            <apex:outputField value="{!file.OwnerId}" />  
+        </apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem />
+          
+        <apex:outputField value="{!file.Asset__c}" rendered="{!NOT(isAssetEditable)}"/>
+        <apex:inputField value="{!file.Asset__c}" rendered="{!isAssetEditable}"/>  
+        <apex:pageBlockSectionItem rendered="{!isAssetTypeEditable}" helpText="{!$ObjectType.File__c.fields.POS_File_Type__c.inlineHelpText}" >  
+            <apex:outputLabel value="Asset Type" for="assetType"></apex:outputLabel>  
+            <apex:inputField id="assetType" value="{!file.POS_File_Type__c}" rendered="{!isAssetTypeEditable}" required="true"/>
+        </apex:pageBlockSectionItem>
+         
+        <apex:pageBlockSectionItem rendered="{!NOT(isAssetTypeEditable)}" helpText="{!$ObjectType.File__c.fields.POS_File_Type__c.inlineHelpText}" >  
+            <apex:outputLabel value="Asset Type" for="assetType"></apex:outputLabel>  
+            <apex:outputField id="assetType" value="{!file.POS_File_Type__c}" rendered="{!NOT(isAssetTypeEditable)}" />
+        </apex:pageBlockSectionItem>
+          
+        <!--<apex:outputField label="Asset Type" value="{!file.POS_File_Type__c}" rendered="{!NOT(isAssetTypeEditable)}"/>-->  
+        <apex:outputField value="{!file.Asset_Group__c}" rendered="{!NOT(isAssetGroupEditable)}"/>
+        <apex:pageBlockSectionItem helpText="{!$ObjectType.File__c.fields.Asset_Group__c.inlineHelpText}" rendered="{!isAssetGroupEditable}">  
+           <apex:outputLabel value="Asset Group" for="assetGroup"></apex:outputLabel>
+             <apex:selectList id="assetGroup" value="{!file.Asset_Group__c}" size="1" title="Asset Group">
+                <apex:selectOptions value="{!assetGroups}"></apex:selectOptions>
+             </apex:selectList>
+        </apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem />
+        <apex:outputField value="{!file.Category__c}" rendered="{!NOT(isCategoryEditable)}"/>
+        <apex:pageBlockSectionItem helpText="{!$ObjectType.File__c.fields.Category__c.inlineHelpText}" rendered="{!isCategoryEditable}">  
+           <apex:outputLabel value="Category" for="category"></apex:outputLabel>
+           <apex:selectList id="category" value="{!file.Category__c}" size="1" title="Category">
+               <apex:selectOptions value="{!categories}"></apex:selectOptions>
+            </apex:selectList>
+        </apex:pageBlockSectionItem>  
+        <apex:outputField value="{!file.Brand__c}" rendered="{!NOT(isBrandEditable)}"/>
+        <apex:pageBlockSectionItem helpText="{!$ObjectType.File__c.fields.Brand__c.inlineHelpText}" rendered="{!isBrandEditable}">
+           <apex:outputLabel value="Brand" for="brand"></apex:outputLabel>
+           <apex:selectList id="brand" value="{!file.Brand__c}" size="1" title="Brand">
+               <apex:selectOptions value="{!brands}"></apex:selectOptions>
+           </apex:selectList>
+        </apex:pageBlockSectionItem>  
+        <apex:pageBlockSectionItem helpText="{!$ObjectType.File__c.fields.Is_Primary_Image__c.inlineHelpText}">  
+            <apex:outputLabel value="{!$ObjectType.File__c.fields.Is_Primary_Image__c.Label}" for="primaryImage"></apex:outputLabel>  
+        	<apex:inputCheckbox id="primaryImage" value="{!file.Is_Primary_Image__c}" disabled="{!isPrimaryImageDisabled}"/>
+        </apex:pageBlockSectionItem>     
+      </apex:pageBlockSection>                           
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

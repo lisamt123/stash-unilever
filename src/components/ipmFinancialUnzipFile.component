@@ -1,0 +1,100 @@
+<apex:component >
+    <apex:attribute name="name" type="string" description="Name of the Javascript function generated to unzip files"/>
+    <apex:attribute name="state" type="string" description="Value passed to the JavaScript Remoting action calls as each file is unzipped."/>
+    <apex:attribute name="onreceive" type="string" description="Name of a JavaScript Remoting action to receive the zip file entries."/>
+    <apex:attribute name="oncomplete" type="string" description="JavaScript executed when all the zip files entries are unzipped."/>
+    <script type="text/javascript">
+        function receiveZipFileEntry(filename, path, data, state) {
+            Visualforce.remoting.Manager.invokeAction(
+                '{!onreceive}', 
+                filename, path, data, state,
+                function(result, event){
+                    if (event.status) {
+                        unzip{!name}Next(result);
+                    } else if (event.type === 'exception') {
+                        alert(event.message);
+                    } else {
+                        alert(event.message);
+                    }
+                }, 
+                {escape: true}
+            );
+        }
+        function receiveComplete(state) {
+            eval('{!oncomplete}');
+        }       
+    </script>   
+    <c:ipmFinancialUnzip name="unzip{!name}" state="{!state}" oncomplete="if(more) receiveZipFileEntry(filename, path, data, state); else receiveComplete(state);"/>    
+    <!--<input type="file" id="files"/>--> <!-- TODO: Make this Id unique -->  
+    <object id="files"></object>
+    <div id="showFile" style="word-break:break-all;width:200px;"></div>     
+    <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/jquery.js')}"/> 
+    <apex:includeScript value="{!URLFOR($Resource.ipmResourceRevamp, 'js/swfobject.js')}"/>     
+    <script>
+        var jq = jQuery.noConflict();
+        /*function handleFileSelect(evt) 
+        {
+           document.getElementById('{!$Component.statusComponent.loadingStatusComponent.loadingStatus}').firstElementChild.style.display = "block"
+           if(FileReader){
+            var file = evt.target.files[0];
+            var reader = new FileReader();
+            reader.onload = (function(file) 
+            {
+                return function(e) 
+                { 
+                    unzip{!name}Start(file.name, e.target.result.split(",")[1]); 
+                };
+            }(file));                                   
+            reader.readAsDataURL(file);
+            
+            }
+            else
+            {
+            jq("#files:eq(0)").fileReader();
+            }
+        }
+        document.getElementById('files').addEventListener('change', handleFileSelect, false);  */  
+        
+        // it's the function called by the swf file
+            var Flash = {
+              /* Flash.getFileData() is called after the file has been read */
+              getFileData: function(base64) {                             
+                    showResult(base64);     
+              },
+              /* getButtonLabel() permits to define another label for the "Load a file" button in the Flash version */
+              getButtonLabel: function() {
+                return "Load a file";
+              }
+            };
+
+            // we just want to show the result into the div
+            function showResult(b) {
+                document.getElementById('{!$Component.statusComponent.loadingStatusComponent.loadingStatus}').firstElementChild.style.display = "block";
+                jq("#showFile").text(b);              
+                return unzip{!name}Start(b.name, b);                
+            }
+
+            // check if the FileReader API exists... if not then load the Flash object
+            if (typeof FileReader !== "function")
+              // we use 80px by 23px, because we want the object to have the same size than the button
+              swfobject.embedSWF("{!URLFOR($Resource.ipmResourceRevamp, 'js/FileToDataURI.swf')}", "files", "80px", "23px", "10", "{!URLFOR($Resource.ipmResourceRevamp, 'js/FileToDataURI.swf')}", {}, {}, {});
+            else {
+              // replace the <object> by an input file
+              jq('#files').replaceWith('<input type="file" id="files" value="Load a file" />');
+              jq('#files').on('change', function(e) {
+              document.getElementById('{!$Component.statusComponent.loadingStatusComponent.loadingStatus}').firstElementChild.style.display = "block";
+                var files = e.target.files,file;
+                if (!files || files.length == 0) return;
+                file = files[0];
+                var fileReader = new FileReader();
+                fileReader.onload = (function (file) {               
+                  return function(e){ 
+                        unzip{!name}Start(file.name, e.target.result.split(",")[1]); 
+                    };                
+                }(file));
+                fileReader.readAsDataURL(file);
+              });
+            }
+      
+    </script>
+</apex:component>

@@ -1,0 +1,57 @@
+<apex:page controller="uw_BatchJobManagerController">
+
+
+<apex:sectionHeader title="Batch Job Manager" subtitle="Admins Only" >
+</apex:sectionHeader>
+
+<apex:form >
+<apex:pageMessages />
+<apex:pageBlock >
+
+<apex:pageBlockButtons location="bottom">
+<apex:commandButton action="{!refresh}" title="" value="Refresh" rendered="true" immediate="true" status="changeJobStatus"/>
+<apex:commandButton action="{!exit}" title="" value="Exit" rendered="true" immediate="true"/>
+<apex:commandButton action="{!exit}" title="" value="Start All Jobs" rendered="false" immediate="true"/>
+<apex:commandButton action="{!exit}" title="" value="Stop All Jobs" rendered="false" immediate="true"/>
+</apex:pageBlockButtons>
+
+<apex:outputPanel id="table2refresh">
+
+<apex:pageBlockTable value="{!BatchJobs}" var="job">
+    <apex:column rendered="true">
+        <apex:facet name="header">Job</apex:facet>
+        <apex:outputText value="{!job.Name}"/>
+    </apex:column>
+    
+    <apex:column rendered="true">
+        <apex:facet name="header">Status</apex:facet>
+        <apex:outputText value="{!job.DisplayStatus}"/>
+    </apex:column>
+    
+	<apex:column >
+        <apex:facet name="header"></apex:facet>
+        <apex:commandLink value="Start Job" action="{!startJob}" rendered="{!job.DisplayStatus = 'Stopped'}" rerender="table2refresh" status="changeJobStatus">
+            <apex:param name="jobName" value="{!job.Name}" />
+        </apex:commandLink>
+        <apex:commandLink value="Stop Job" action="{!stopJob}" rendered="{!job.DisplayStatus <> 'Stopped'}" rerender="table2refresh" status="changeJobStatus">
+            <apex:param name="jobName" value="{!job.Name}" />
+        </apex:commandLink>
+    </apex:column>
+    
+    
+</apex:pageBlockTable>
+
+<apex:actionStatus id="changeJobStatus"  startStyle="float:left">
+	<apex:facet name="start">
+    	<apex:image value="{!$Resource.ajaxIcon}" />
+    </apex:facet>
+    
+</apex:actionStatus>
+
+</apex:outputPanel>
+    
+</apex:pageBlock>
+
+</apex:form>
+
+</apex:page>

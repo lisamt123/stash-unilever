@@ -1,0 +1,36 @@
+<apex:page standardcontroller="uw_Brand_Link_Sections__c">
+
+ 
+ <div align="right">
+    
+    <a href="#" onclick="Popup=window.open('/apex/bc_help_pop_up5','Popup','toolbar=no,
+location=no,status=no,menubar=no,scrollbars=yes,resizable=no, width=720,height=750,left=600,top=23'); return false;">
+Help for this page</a><img  src="{!URLFOR($Resource.fuse_brief1_resources_1, 'help-icon.png')}" alt="Help"  />
+    
+    </div>
+    
+
+
+<apex:form >
+<apex:pageblock >
+
+<apex:pageBlockButtons >
+                <apex:commandbutton action="{!Edit}" value="Edit"/>
+                 
+            </apex:pageBlockButtons>
+
+<apex:pageblocksection >
+<apex:outputfield value="{!uw_Brand_Link_Sections__c.Brand_Centre_Link__c}"/>
+<apex:outputfield value="{!uw_Brand_Link_Sections__c.Name}"/>
+<apex:outputfield value="{!uw_Brand_Link_Sections__c.Position__c}"/>
+<apex:outputfield value="{!uw_Brand_Link_Sections__c.Ordinal__c}"/>
+<apex:outputfield value="{!uw_Brand_Link_Sections__c.Section_Image_ID__c}" rendered="{!uw_Brand_Link_Sections__c.Position__c == 'Vertical Menu'}"/>
+<apex:outputfield value="{!uw_Brand_Link_Sections__c.Style_Class__c}" rendered="{!uw_Brand_Link_Sections__c.Position__c == 'Vertical Menu'}"/>
+
+</apex:pageblocksection>
+</apex:pageblock>
+</apex:form>
+ <apex:relatedList list="Sub_Categories__r" rendered="{!uw_Brand_Link_Sections__c.Position__c == 'Horizontal Menu'}"/>
+    <apex:relatedList list="Links__r" rendered="{!uw_Brand_Link_Sections__c.Position__c == 'Vertical Menu'}"/>
+
+</apex:page>

@@ -1,0 +1,52 @@
+<apex:page docType="html-5.0" standardStylesheets="false" showHeader="false" title="Unilever Agency Portal - Login" controller="AR_Login">
+
+	<apex:composition template="AR_Template">
+	
+		<apex:define name="content">
+		
+			<section role="main" id="content" class="form global-content">
+			
+	            <header class="main-header">
+	                <h1>
+	                    Login
+	                </h1>
+	                <p></p>
+	            </header>
+	            
+	            <div class="form-fields-wrapper">
+	            
+	                <apex:form styleClass="form" forceSSL="true">
+	                
+	                    <ul class="form-errors active">
+	                        <apex:messages />
+	                    </ul>
+	                    
+	                    <div class="form-row text-row clearfix">
+		                    <label class="form-row-label">Username</label>
+		                    <div class="form-input">
+		                        <apex:inputText id="username" value="{!username}" />
+		                        <p class="helper">Your username as supplied by Unilever. This is generally your email address in most cases.</p>
+		                    </div>
+	               	 	</div>
+	               	 	
+	               	 	<div class="form-row text-row clearfix">
+	                    	<label class="form-row-label">Password</label>
+	                     	<div class="form-input">
+	                        	<apex:inputSecret id="password" value="{!password}" />
+	                    	</div>
+	                	</div>
+	                    
+	                    <div class="form-row clearfix">
+	                    	<apex:commandButton action="{!login}" value="Login" styleClass="submit" />
+	                   	 	<a href="{!$Page.AR_ForgotPassword}" class="forgot-password">Forgot your password?</a>
+	               	 	</div>
+	               	 	
+	                </apex:form>
+	            </div>
+	        </section>
+		
+		</apex:define>
+    
+	</apex:composition>
+	
+</apex:page>

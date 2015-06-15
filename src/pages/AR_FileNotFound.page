@@ -1,0 +1,21 @@
+<apex:page docType="html-5.0" standardStylesheets="false" showHeader="false" title="Unilever Agency Portal - File Not Found">
+
+	<apex:composition template="AR_Template">
+	
+		<apex:define name="content">
+		
+			<section role="main" id="content" class="global-content single-column clearfix">
+			
+	            <h1>404 - File Not Found</h1>   
+	                  
+	            <article>
+	            	<p>The page you were looking for could not be found.</p>
+	            </article>
+	            
+	        </section>
+		    
+		</apex:define>
+    
+	</apex:composition>
+	
+</apex:page>

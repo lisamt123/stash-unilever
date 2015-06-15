@@ -1,0 +1,146 @@
+<apex:component controller="IPM_GatekeeperChecklist" allowDML="true">
+  <apex:attribute name="editgatesect" type="Boolean" AssignTo="{!isEditable}" description="This is used for security"/>
+  <apex:attribute name="getDocType" description="Pass the document type parameter" type="String" required="true" assignTo="{!gateType}" />
+  <apex:attribute name="getSecid" description="Pass the document type parameter" type="ID" required="true" assignTo="{!SecId}" />
+  
+  <apex:outputPanel id="ren">
+ <div class="altBGcolor"> 
+  <table class="ipmTable table table-bordered gkTable otifTable"> 
+  <tbody>
+ <apex:repeat value="{!gkChecklist}" var="gk">
+ <apex:outputPanel rendered="{!if(projDocSec.IPM_Section_Sequence__c==gk.IPM_Section_Sequence_Number__c,true,false)}">
+  <tr>
+  <td>
+         <div class="panelMessage"><span class="asterisk">Does appear in Gate document.</span></div>
+      
+  </td>
+  </tr>
+  <tr>   
+    <th>GateKeeper checklist:</th>
+ </tr>
+  <tr>   
+    <td>
+     <apex:outputText value="{!gk.IPM_Question__c}"/>
+    </td>
+</tr>
+<tr>    
+
+    <td>
+
+           <apex:outputPanel rendered="{!isEditable}">
+           <input type="hidden" id="secGkans" name="secGkans" value="{!gk.IPM_GK_Answers__c}" style="display:none"/>
+            <apex:outputPanel id="gkSecSlide" styleClass="sliderGk" >
+               
+              <div class="legendSld gateKeeperSlider">
+                   <label for="s0" onclick="updateSecGKList('{!gk.Id}','0','{!gk.IPM_Comments__c}',false);">Select</label>
+                   <input type="radio" name="score" id="s0" value="0" />
+                   <label for="s1" onclick="updateSecGKList('{!gk.Id}','Yes','{!gk.IPM_Comments__c}',false);" data-toggle="tooltip" data-placement="bottom" data-original-title="{!gk.IPM_HelpText_Yes__c}">Yes</label>
+                   <input type="radio" name="score" id="s1" value="Yes"/>
+                   <label for="s2" onclick="updateSecGKList('{!gk.Id}','Partly','{!gk.IPM_Comments__c}',false);" data-toggle="tooltip" data-placement="bottom" data-original-title="{!gk.IPM_HelpText_Partly__c}">Partly</label>
+                   <input type="radio" name="score" id="s2" value="Partly"  />
+                   <label for="s3" onclick="updateSecGKList('{!gk.Id}','No','{!gk.IPM_Comments__c}',false);" data-toggle="tooltip" data-placement="bottom" data-original-title="{!gk.IPM_HelpText_No__c}">No</label>
+                   <input type="radio" name="score" id="s3" value="No"  />
+                   <label for="s4" onclick="updateSecGKList('{!gk.Id}','Not Applicable','{!gk.IPM_Comments__c}',false);" data-toggle="tooltip" data-placement="bottom" data-original-title="{!gk.IPM_Question_Help_Text__c}">N/A</label>
+                   <input type="radio" name="score" id="s4" value="Not Applicable"  />
+                  
+             </div> 
+             </apex:outputPanel>
+             </apex:outputPanel>
+             <apex:outputText value="{!gk.IPM_GK_Answers__c}" rendered="{!!isEditable}"/>
+             
+             
+         
+    </td>
+    </tr>
+    <tr>
+    
+    <td>
+        <apex:outputText value="{!gk.IPM_Comments__c}" rendered="{!!isEditable}"/> 
+       
+       <apex:inputTextarea styleClass="gkComments" value="{!gk.IPM_Comments__c}"  onchange="updateSecGKList('{!gk.Id}','{!gk.IPM_GK_Answers__c}',this.value,true);" rendered="{!isEditable}" />
+       <!-- <apex:outputField value="{!gk.IPM_Comments__c}" rendered="{!!isEditable}"/>-->
+
+            
+    </td>
+  </tr>
+  </apex:outputPanel>
+  </apex:repeat>
+ </tbody>
+</table>  
+</div>
+</apex:outputPanel>
+<apex:actionFunction name="callupdateSecGKList" action="{!updateGKchecklist}" reRender="" rendered="{!isEditable}" >
+<apex:param name="firstParam" assignTo="{!quesId}" value=""/>
+<apex:param name="secondParam" assignTo="{!ans}" value=""/>
+<apex:param name="thirdParam" assignTo="{!comment}" value=""/>
+<apex:param name="fourthParam" assignTo="{!cmts}" value=""/>
+</apex:actionFunction>
+       <!------------------Gatekeeper Checklist Section--------------->
+       
+       <script>
+
+            var jq = jQuery.noConflict();
+            jq(document).ready(function(){
+                    initSliderSecGk();                    
+            });
+            function updateSecGKList(id,ans,comment,cmnts)
+               {
+                   
+                    callupdateSecGKList(id,ans,comment,cmnts);
+               }
+               
+               function initSliderSecGk(){
+                          
+                var itemsGK = [ 'Select','Yes','Partly','No','Not Applicable'];
+                var s = jq(".sliderGk");                
+                var score;
+                var PointerT = 100 / (itemsGK.length-1);                
+                    
+                  s.slider({
+                  min:1,
+                  max:itemsGK.length,
+                  animate:'slow',
+                  stop: function(event, ui){   
+                            
+                            var pointer = ui.value-1;
+                            jq('#s'+ ui.value).prop('checked', true); 
+                            score=itemsGK[pointer];
+                      }
+                });
+                                
+                    jq(".legendSld label").on("click", function(){
+                    var lpos = jq(".legendSld label").offset().left;
+                    jq(this).parent().find('label').css({'color':'#555555', 'font-weight':'normal'});
+                    jq(this).css({'color':'#e98824', 'font-weight':'bold'});
+                    jq("toolTipMsg:before").css("left",lpos+"px"); 
+                        
+                });
+                jq("input[type=radio][id^='s']").hide();                
+               
+                 jq("input[name=secGkans]").each(function(){  
+                  var answerSecGK=jq(this).val(); 
+                   if(answerSecGK == "Yes"){                
+                     jq(this).next(".sliderGk").find(".ui-slider-handle").css("left", "25%");
+                     jq(this).next(".sliderGk").find("label[for=s1]").css({'color':'#e98824', 'font-weight':'bold'});
+                    }
+                    else if(answerSecGK == "Partly"){
+                     jq(this).next(".sliderGk").find(".ui-slider-handle").css("left", "50%");
+                     jq(this).next(".sliderGk").find("label[for=s2]").css({'color':'#e98824', 'font-weight':'bold'});
+                    }
+                    else if(answerSecGK == "No"){                
+                     jq(this).next(".sliderGk").find(".ui-slider-handle").css("left", "75%");
+                     jq(this).next(".sliderGk").find("label[for=s3]").css({'color':'#e98824', 'font-weight':'bold'});
+                    }
+                     else if(answerSecGK == "Not Applicable"){                
+                     jq(this).next(".sliderGk").find(".ui-slider-handle").css("left", "100%");
+                     jq(this).next(".sliderGk").find("label[for=s4]").css({'color':'#e98824', 'font-weight':'bold'});
+                    }else{
+                    jq(this).next(".sliderGk").find(".ui-slider-handle").css("left", "%");
+                     jq(this).next(".sliderGk").find("label[for=s0]").css({'color':'#e98824', 'font-weight':'bold'});
+                    }
+                    
+                    });
+                   
+                }
+</script>
+</apex:component>

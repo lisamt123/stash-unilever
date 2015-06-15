@@ -1,0 +1,126 @@
+<!--====================================================-->
+<!--Name:  CEC_NewAccountCase                           -->
+<!--Copyright notice:                                   -->
+<!--====================================================-->
+<!--====================================================-->
+<!-- Purpose:This page is used for creation of New      -->
+<!--      consumer as well as case in the same page     -->                                                                 
+<!--====================================================-->
+<!--====================================================-->
+<!-- History                                            -->
+<!-- -------                                            -->
+<!-- VERSION  AUTHOR        DATE            DETAIL                    RELEASE/CSR     -->
+<!-- 1.0 -    Shashank B   22/09/2014      INITIAL DEVELOPMENT        Sprint II       -->
+<!--====================================================-->
+
+<apex:page standardController="Contact"  showHeader="false" tabStyle="Account">
+<!--<apex:page standardController="Contact" extensions="CEC_NewAccountCaseController" showHeader="false" tabStyle="Account">-->
+<!--<apex:includeScript value="/soap/ajax/24.0/connection.js"/>
+<script type="text/javascript">__sfdcSessionId = '{!$Api.Session_Id}';</script>
+<script src="/soap/ajax/29.0/connection.js" type="text/javascript"></script>
+  <apex:sectionHeader title="Consumer and Case Capture" />
+   <apex:outputPanel id="errorMessages">
+    <apex:pageMessages escape="false"/>
+   </apex:outputPanel>
+   
+      <apex:form > 
+  <apex:include pageName="pca__Component"/>
+  
+     <apex:pageBlock >
+        
+      <apex:pageBlockButtons location="top" ><apex:outputPanel id="buttons"> 
+        <apex:commandButton value="Search/Create Consumer" action="{!searchConsumer}" rerender="buttons,duplicates,errorMessages" />
+        <apex:commandButton value="Proceed" action="{!proceed}" rerender="detail" disabled="{!buttonEnable}"/>
+        <apex:commandButton value="Cancel" immediate="true" action="{!cancelPage}"/>  
+         </apex:outputPanel> 
+      </apex:pageBlockButtons>           
+      <apex:pageBlockSection title="Possible Matches" columns="1" id="duplicates">
+        <apex:pageBlockTable value="{!duplicateConsumerList}" var="dupe" width="100%" id="duplicates">
+          <apex:column >
+          
+          
+            <apex:commandButton value="Preview" rerender="preview" action="{!populateRecordPreviewID}">            
+              <apex:param name="recordPreviewID" value="{!dupe.consumer.id}"/>
+            </apex:commandButton>            
+            <apex:commandButton value="Accept" rerender="buttons,duplicates" action="{!acceptAccount}">            
+              <apex:param name="acceptAccountID" value="{!dupe.consumer.id}" />
+            </apex:commandButton>            
+          </apex:column>          
+          <apex:column id="matchingFlag">
+            <apex:image url="{!dupe.matchingFlag}"/>
+          </apex:column>
+          <apex:column value="{!dupe.consumer.Salutation}"/>
+          <apex:column value="{!dupe.consumer.Name}"/>
+          <apex:column value="{!dupe.consumer.PersonEmail}"/>   
+          <apex:column value="{!dupe.consumer.PersonMailingStreet}"/>                   
+          <apex:column value="{!dupe.consumer.PersonMailingCity}"/>                   
+          <apex:column value="{!dupe.consumer.PersonMailingPostalCode}"/>                   
+          <apex:column value="{!dupe.consumer.PersonMailingState}"/>                   
+          <apex:column value="{!dupe.consumer.PersonMailingCountry}"/>                                                           
+        </apex:pageBlockTable>        
+        <apex:outputPanel id="preview" >
+          <apex:pageBlockSection columns="2" rendered="{!previewAccount.Id!=null}">          
+            <apex:outputField value="{!previewAccount.Name}"/>
+            <apex:outputField value="{!previewAccount.PersonEmail}"/> 
+            <apex:outputField value="{!previewAccount.PersonMailingStreet}"/>
+            <apex:outputField value="{!previewAccount.PersonMailingCity}"/>          
+            <apex:outputField value="{!previewAccount.PersonMailingPostalCode}"/>
+            <apex:outputField value="{!previewAccount.PersonMailingState}"/>
+            <apex:outputField value="{!previewAccount.PersonMailingCountry}"/>                    
+          </apex:pageBlockSection>          
+        </apex:outputPanel>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Consumer Details" columns="2" id="detail">
+        <apex:inputField value="{!newConsumer.Firstname}"/>
+        <apex:inputField value="{!newConsumer.Lastname}" id="lastName" required="false"/>
+        <apex:inputField value="{!newConsumer.Email}" id="eMail" />        
+        <apex:inputField value="{!newConsumer.Phone}"/>                
+        <apex:inputField id="vf_account_street" value="{!newConsumer.MailingStreet}"/>
+        <apex:inputField id="vf_account_city" value="{!newConsumer.MailingCity}"/>
+        <apex:inputField id="vf_account_postalcode" value="{!newConsumer.MailingPostalCode}"/>
+        <apex:inputField id="vf_account_state" value="{!newConsumer.MailingState}"/>
+        <apex:inputField id="vf_account_country" value="{!newConsumer.MailingCountry}"/>
+      </apex:pageBlockSection>     
+            
+  
+       <apex:pageBlockSection title="Case Detais and Additional Information" columns="2"> 
+          
+        <apex:selectList id="status" label="Status" value="{!newCase.status}" size="1" required="True">
+           <span style="color: #c00;background-color: #c00;font-size:small;"><big><b>|</b></big></span>&nbsp;<apex:selectOption itemValue="" itemLabel="--None--"/>
+            <apex:selectOptions value="{!StatusOptions}"/>         
+            </apex:selectList>
+                       
+        <apex:selectList id="Origin" label="Origin" value="{!newCase.Origin}" size="1" required="True">
+        <span style="color: #c00;background-color: #c00;font-size:small;"><big><b>|</b></big></span>&nbsp;<apex:selectOption itemValue="" itemLabel="--None--"/>
+            <apex:selectOptions value="{!OriginOptions}"/>
+         </apex:selectList>
+         
+          <apex:selectList id="Reason" label="Reason" value="{!newCase.Reason}" size="1" > 
+        <apex:selectOptions value="{!ReasonOptions}"/>
+            </apex:selectList>  
+         
+         <apex:inputField value="{!newCase.ParentId}" style="width:30%" /> -->
+         
+     <!--    <apex:selectList id="Market" label="Market" value="{!newCase.Market__c}" size="1" >  
+        <apex:selectOptions value="{!MarketOptions}"/> 
+        </apex:selectList>-->
+        
+       <!-- <apex:selectList id="Market" label="Market" value="{!newCase.Case_Market__c}" size="1" >  
+        <apex:selectOptions value="{!MarketOptions}"/> 
+        </apex:selectList>
+        
+        </apex:pageBlockSection>
+        
+        
+                
+        
+          
+        <apex:pageBlockSection title="Description Information" columns="1">   
+
+      <apex:inputField value="{!newCase.Subject}" style="width:70%"/>   
+      <apex:inputField value="{!newCase.Description}" style="width:70%"/> 
+       
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+  </apex:form> -->
+</apex:page>

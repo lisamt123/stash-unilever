@@ -1,0 +1,1407 @@
+<apex:page standardController="AF_OOPS_Actual__c" extensions="AF_OopsActualStdCtrlExt,AF_BrandEstimateRemote,AF_OopEstimateRemote,AF_MatrixAgencySummary" showHeader="false">
+<apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
+<head>
+    <meta charset="utf-8" />
+    <apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/js/jquery.colorbox-min.js')}"/>
+    <apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
+      <!-- Add fancyBox -->
+    <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.css?v=2.1.0')}" type="text/css" media="screen" />
+    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.pack.js?v=2.1.0')}"></script>
+    
+    
+    <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6')}" type="text/css" media="screen" />
+    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6')}"></script>
+      
+      <script type="text/javascript">
+            $('a.addfancy').fancybox({
+              autoSize: false,
+                    width: 900,
+                    height: 600,
+                    type: 'iframe',
+                    titlePosition: 'inside',
+                    hideOnOverlayClick:'false',
+                    hideOnContentClick:'false',
+                    helpers     : { 
+                    overlay : {closeClick: false} // prevents closing when clicking OUTSIDE fancybox
+                    },
+                    afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
+                        //parent.location.reload(true);
+                        location.reload();
+                    }
+            });
+            $('a.addfancy1').fancybox({
+              autoSize: false,
+                    width: 900,
+                    height: 600,
+                    type: 'iframe',
+                    titlePosition: 'inside',
+                    hideOnOverlayClick:'false',
+                    hideOnContentClick:'false',
+                    helpers     : { 
+                    overlay : {closeClick: false} // prevents closing when clicking OUTSIDE fancybox
+                    },
+                    afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
+                        location.reload();
+                    }
+            });
+        </script>
+    
+    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/lib/jquery.mousewheel-3.0.6.pack.js')}"></script>
+    <!-- Optionally add helpers - button, thumbnail and/or media -->
+    <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.css?v=1.0.3')}" type="text/css" media="screen" />
+    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.js?v=1.0.3')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-media.js?v=1.0.3')}"></script>
+    <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.filter.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/style.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.css')}" />
+    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0"/>
+
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/css/jquery.dataTables.css')}"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/syntax/shCore.css')}"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/demo.css')}"/>
+   <!-- <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/styles/AF_Uniform_Styles.css')}"/> -->
+ <script>
+ function callpagerefresh(){
+    var brandId = '{!brandId}';
+    var fiscalYear = '{!fiscalYear}';
+    var agencyId = '{!agencyId}';
+    var oopsactualid='{!OOpsActualId}'
+    
+    setTimeout(function(){
+        location.replace("apex/AF_UL_oopsMatrix?bId="+brandId+"&fy="+fiscalYear+"&aId="+agencyId+"&id="+oopsactualid.substring(0,15));
+    }, 3000);
+      
+ }
+ function callmsg(){
+ alert('Record saved successfully');
+ }
+ function callconstructor(){
+ redirecttosamepage();
+ }
+ 
+ </script>
+   
+<style>
+
+.tableborder th, .tableborder td { border:1px solid #000;}
+    .dataTables_wrapper .DTFC_LeftWrapper .DTFC_LeftBodyWrapper .DTFC_LeftBodyLiner{ overflow:hidden!important; }
+    #gridPanel table td.mydisplaytotal a.margin0{ margin-top:0px; }
+
+ .dataTables_scrollBody {
+overflow-y: hidden!important;
+height: auto!important;
+}
+.DTFC_LeftBodyWrapper {
+overflow: hidden!important;
+border-right:1px solid #000;
+}
+
+
+input {
+padding-top: 0;
+text-align: center;font-size: 16PX;
+
+}
+
+
+.submit_btn_oops_save{
+background: none repeat scroll 0 0 #004976 !important;
+border-radius: 5px !important;
+color: #FFFFFF!important;
+font-size: 14px!important;
+height: 30px;
+margin-top: 5px!important;
+/* padding-bottom: 0px; */
+/* padding-top: 0px; */
+width: 90px;
+margin-left: 10px!important;
+/* margin-bottom: 10px!important; */
+/* float: right; */
+/* margin-right: 25px!important;*/
+ }
+ 
+ .submit_btn_oops_submit_new{
+background: none repeat scroll 0 0 #E400A7 !important;
+border-radius: 5px !important;
+color: #FFFFFF!important;
+font-size: 14px!important;
+height: 30px;
+margin-top: 6px!important;
+/* padding-bottom: 0px; */
+/* padding-top: 0px; */
+width: 90px;
+margin-left: 0px !important;
+/* margin-bottom: 10px!important; */
+float: left;
+/* margin-right: 25px!important; */
+ }
+ 
+ 
+    .totalCell{
+        background:#C0C0C0;
+    }
+    .firstCol{
+     background: #FFFFFF!important;
+     /*border-left-width:0px!important;
+     border-right-width:0px!important;
+     border-top-width:0px!important;*/
+    }
+   .agencyBar {
+background-color: #61A631;
+float: right;
+width: 69.6%;
+text-indent: -8px;
+color: white;
+padding: 10px 18px;
+border-bottom: 1px solid #111111;
+clear: both;
+height: 25px;
+border: 1px solid green;
+border-radius: 4px;
+    }
+    .ulRowControl{
+        width:134px;
+    }
+  .values1
+   {
+background: none repeat scroll 0 0 #FFFFFF;
+border: 2px solid #74AE00;
+border-radius: 5px;
+color: #000000;
+font-size: 16px;
+height: 25px;
+margin-top: 5px;
+padding: 0;
+width: 60px;
+text-align: center;
+padding-top: 2px;
+padding-left: 0px;
+   }
+   
+    .agencyLeft{
+        float:left;
+        width: 294px;
+        font-size: 16px;
+        font-weight: bold;
+        display: inline;
+        margin-left: 0px;
+        margin-top: 2px!important;
+        margin-bottom: 3px;
+    }
+    .agencyRight{
+        height:8px;
+    }
+    .headFirstRow{background:#90C16F;color:black;}
+    .headRow{background: #D3E6B8;overflow-x:hiden}
+    .pencil_image{height: 20px;width: 20px;}
+    #progressbar.progressbar.ui-progressbar.ui-widget.ui-widget-content.ui-corner-all{
+    width: 20%;
+    float: right;
+    margin-right: 122px;margin-top: 5px;}
+    #progressbar1.progressbar.ui-progressbar.ui-widget.ui-widget-content.ui-corner-all{
+    width: 20%;
+    float: right;
+    margin-right: 122px;margin-top: 5px;}
+    
+    
+    .alignCenter { text-align: center; }
+    table#DataTables_Table_0.display.mydisplay.dataTable.no-footer{margin-left: 0px!important;}
+    
+    div.dataTables_scrollHead{
+    border-right: 1px solid grey!important;
+width: 99.8%!important;
+background: none;
+border-top: 1px solid grey!important;}
+    div.dataTables_scrollBody{border-right: 1px solid grey!important;width: 99.8%!important;}
+    
+    div.DTFC_ScrollWrapper{height: auto!important;}
+    .crossBorder{
+        background-color: #FF7E7E /*#FFD7D7*/ !important;
+    }
+    .comment{
+        background-color: #CAEDFF !important;
+    }
+    .crossComment{
+        background-color: #FF7E7E !important;
+    }
+    #wrapper {
+      width:100%;
+      clear:both;
+    }
+    #progressbar {
+    width: 20%;
+    float: right;
+    margin-right: 114px;
+    padding: 0px;
+    background-color : white!important;
+    }
+    
+     #progressbar1 {
+    width: 20%;
+    float: right;
+    margin-right: 114px;
+    padding: 0px;
+    background-color : white!important;
+    }
+    
+    
+    .ui-progressbar {
+        position: relative;
+        background-color : green !important;
+    }
+   
+    
+   #progressbar.progressbar.ui-progressbar.ui-widget.ui-widget-content.ui-corner-all {
+width: 20%;
+height: 35%;
+float: right;
+margin-right: 29px;
+border:1px solid black!important;
+
+}
+
+#progressbar1.progressbar.ui-progressbar.ui-widget.ui-widget-content.ui-corner-all {
+width: 20%;
+height: 35%;
+float: right;
+margin-right: 29px;
+border:1px solid black!important;
+
+}
+
+
+   .postSummary#progressbar.progressbar.ui-progressbar.ui-widget.ui-widget-content.ui-corner-all {
+width: 20%;
+float: right;
+margin-right: -82px;
+margin-top: 21px;
+}
+
+  .postSummary#progressbar1.progressbar.ui-progressbar.ui-widget.ui-widget-content.ui-corner-all {
+width: 20%;
+float: right;
+margin-right: -82px;
+margin-top: 21px;
+}
+
+    .progress-label {
+        position: absolute;
+        left: 50%;
+        top: 1px;
+        font-weight: bold;
+        color: black;
+    }
+    .postSummary {
+       clear: both;
+/* background: #bdc3c7!important; */
+height: 51px;
+width: 99.6%!important;
+border: 2px solid #74AE00;
+border-radius: 10px;
+margin-bottom: 1px;
+/*margin-bottom: -14px;*/
+    }
+    
+    .actionbar_second{
+       clear: both;
+/* background: #bdc3c7!important; */
+height: 44px;
+width: 99.6%!important;
+border: 2px solid #74AE00;
+border-radius: 10px;
+margin-bottom: 10px;
+    }
+    
+    .brandName {
+      width: 80%;
+float: left;
+display: inline;
+margin-left: 10px;
+margin-top: 13px;
+font-size: 16px;
+font-weight: bold;
+    }
+
+     #first {
+   /* width: 29%; */
+float: left;
+display: inline;
+margin-left: 5px;
+margin-top: 2px!important;
+margin-bottom: 3px;
+margin-right: 10px;
+    }
+  
+    #second {
+    width: 36%;
+float: left;
+display: block;
+/* margin-right: 164px; */
+/* margin-left: 88px; */
+/* margin-top: 14PX;
+        }
+        #third {
+   float: right;
+/* margin-top: 14px; */
+/* margin-right: 109px;
+    }
+        #fourth {
+   float: RIGHT!important;
+display: block;
+margin-left: 68px!important;
+width: 200px;
+/* border: 1px solid red; */
+    }
+    td.details-control {
+        cursor: pointer;
+    }
+    
+ /*  #gridPanel table tr {padding: 0px}*/
+ /* #gridPanel table td {width: 200px; height: 100%; padding: 0px; overflow: hidden}   */
+ /* #gridPanel table td { padding: 0px; overflow: hidden}    */
+   /* #gridPanel table td a {margin: -1em; padding: 1em; display: block;}  */
+ #gridPanel table td a {
+display: block;
+width: 106px;
+height: 25px;
+margin-top: -8PX;
+  } 
+   
+   td.details-control.alignCenter:hover {
+background:#D3E6B8;
+}
+    .panel{
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid;
+        width=75%; 
+        height=300px; 
+    }
+    .hidden {
+        display:none;
+    }
+    .spinner {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .displayed {
+        display:block;
+    }
+    .ui-widget-header {
+        border: 2px solid #74AE00;
+     /* background: #95bd4f 50% 50% repeat-x; */
+        background: #74AE00 !important; 
+        color: #ffffff;
+        font-weight: 50px;
+       /*  padding: 5px; */
+      /*  width:82%;
+       margin-left: 97px; */
+       /*  padding-top: 7px; */
+        
+    }
+    .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+     color: #fff;
+    }
+    .ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br{
+    border: 2px solid #74AE00;
+    padding-top: 7px;
+    color:black;
+    padding: 5px;
+   /* padding-bottom: 15px;*/
+    }
+    
+    .ui-state-default, .ui-widget-content {
+   /* background: green; */
+    color:black;
+    font-weight: bold;
+    }
+    .comment_box1{
+    margin-top: 5px;
+    width:977px;
+    height: 93px;
+    margin-bottom: 5px;
+    border: 2px solid #74AE00;
+    border-radius: 7px;
+    resize: none;
+    }
+    .panel{
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid;
+        width:75%; 
+        height:300px; 
+    }
+    .hidden {
+        display:none;
+    }
+     .submit_btn{
+    background: none repeat scroll 0 0 #E400A7 !important;
+    border: 1px solid red!important;
+    border-radius: 5px !important;
+    color: #FFFFFF!important;
+    font-size: 16px!important;
+    height: 35px;
+    margin-top: 13px ;
+    padding-bottom: 20px;
+    padding-top: 5px;
+    width: 135px;
+    margin-left:100px !important;
+ }
+ 
+   .submit_btn2{
+    background: none repeat scroll 0 0 #E400A7 !important;
+border: 1px solid red!important;
+border-radius: 5px !important;
+color: #FFFFFF!important;
+font-size: 14px!important;
+height: 30px;
+margin-top: 13px;
+padding-bottom: 20px;
+/* padding-top: 4px!important; */
+width: 100px;
+/* margin-left: 100px !important; */
+ }
+ 
+   .submit_btn3{
+   background: none repeat scroll 0 0 #E400A7 !important;
+border: 1px solid red!important;
+border-radius: 5px !important;
+color: #FFFFFF!important;
+font-size: 14px!important;
+height: 30px;
+margin-top: 13px;
+padding-bottom: 20px;
+padding-top: 5px;
+width: 100px;
+margin-left: 0px!important;
+ }
+ 
+    .submit_btn5{
+   background: none repeat scroll 0 0 #E400A7 !important;
+border: 1px solid red!important;
+border-radius: 5px !important;
+color: #FFFFFF!important;
+font-size: 14px!important;
+height: 30px;
+margin-top: 13px;
+padding-bottom: 20px;
+padding-top: 5px;
+width: 181px;
+margin-left: 0px!important;
+margin-right: 50px!important;
+ }
+ 
+ .submit_btn4
+ {
+    background: none repeat scroll 0 0 #E400A7 !important;
+    border: 1px solid red!important;
+    border-radius: 5px !important;
+    color: #FFFFFF!important;
+    font-size: 16px!important;
+    height: 35px;
+    margin-top: 13px;
+    padding-bottom: 20px;
+    padding-top: 5px;
+    width: 175px;
+    margin-left: 0px !important;
+    margin-right: 10px!important;
+    }
+ }
+ 
+    .spinner {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .displayed {
+        visibility: visible;
+    }
+    /* This is for the full screen DIV */
+    .popupBackground {
+        /* Background color */
+        background-color:black;
+        opacity: 0.5;
+        filter: alpha(opacity = 20);
+    
+        /* Dimensions */
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 998;
+        position: absolute;
+        
+        /* Mouse */
+        cursor:wait;
+    }
+ 
+    /* This is for the message DIV */
+    .PopupPanel {
+        /* Background color */
+        border: solid 2px blue;
+        background-color: white;
+ 
+        /* Dimensions */
+        left: 50%;
+        width: 200px;
+        margin-left: -100px;
+        top: 50%;
+        height: 50px;
+        margin-top: -25px;
+        z-index: 999;
+        position: fixed;
+        
+        /* Mouse */
+        cursor:pointer;
+    }
+    .margin10{margin-top:2px;}
+      .circle1
+    {
+        width:70px;
+        height:70px;
+        border-radius:70px;
+        text-align:center;
+        line-height: 68px;
+        background:whitesmoke;
+        border: 3px solid #74AE00;
+        font-size: 26px;
+        float:left;
+        margin-left: 17%;
+        margin-top: 10px;
+    }
+    
+    .circle_vertical
+    {
+        width:70px;
+        height:70px;
+        border-radius:70px;
+        text-align:center;
+        line-height: 94px;
+        background:whitesmoke;
+        border: 1px solid #BDC3C7;
+        font-size: 666%;
+    }
+    
+    .circle
+    {
+        width:70px;
+        height:70px;
+        border-radius:70px;
+        text-align:center;
+        line-height: 68px;
+        background:whitesmoke;
+        border: 3px solid #DA0600;
+        font-size: 26px;
+        float:left;
+        margin-left: 17%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+   .firstdiv
+  {
+      float: left;
+      width: 40%;
+  }
+ .seconddiv
+  {
+   float: left;
+/*margin-left: 46px !important;*/
+text-align: center;
+width: 12% !important;
+margin-top: 10px;
+  }
+  .thirddiv_oops
+  {
+float: left;
+font-size: 18px;
+padding-left: 20px;
+width: 45%;
+}
+
+    
+    .verticalLine {
+    border-left: 5px solid #808080;
+    height: 77px;
+    width: 4%;
+    }
+    #j_id0:formId:j_id59:j_id60:table{
+        width:100% !important;
+    }
+    .container {
+    width:100%;
+    margin-left:10px;
+    margin-right:10px;
+    }
+    .customPopup{
+    background-color: #D3E3DD;
+    border: 2px solid #74AE00;
+    border-radius: 15px;
+    display: block;
+    height: 225px;
+    left: 50%;
+    margin-left: -250px;
+    position: fixed;
+    top: 250px;
+    width: 500px;
+    z-index: 9999;
+        }
+         .popupBackground2{
+            /*background-color:#f6f6f6;*/
+            position: fixed;
+            opacity: .8%;
+            filter: alpha(opacity = 80);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+    
+    .input_select1 {
+    color: #000000;
+    height: 26px;
+    width: 126px;
+}
+    
+    .button_select1 {
+    background: none repeat scroll 0 0 #FF00FF;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-family: times new roman;
+    font-size: 17px;
+    font-weight: bold;
+    height: 30px;
+    margin-left: -23px;
+    width: 125px;
+    }
+        
+    .selectbrand {
+    margin-top: 67px;
+    }
+    .selectbrand1 {
+    display: inline;
+    margin-left: 88px;
+    margin-top: 67px;
+    }
+    .selectbrand2 {
+    display: inline;
+    margin-left: 78px;
+    }
+    .selectbrand3 {
+    margin-left: 213px;
+    margin-top: 32px;
+    }
+    .close{margin-left:500px; margin-top: -15px;}
+    
+    .createBrandPopUp{
+    background: none repeat scroll 0 0 #007DBB;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 13px;
+    margin-right: 20px;
+    padding: 10px;
+    position: absolute;
+    width: 978px;
+    }
+    
+    .createBrandPopup2{
+    background: none repeat scroll 0 0 #FF00FF;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-family: times new roman;
+    font-size: 17px;
+    font-weight: bold;
+    height: 30px;
+    margin-left: -23px;
+    width: 125px;
+    }
+    
+    html {
+    font-size: 16px;
+    }
+    
+    .charttable1{padding-left: 93px;padding-right: 49px;}
+    .charttable_agency{/*padding-left: 93px;padding-right: 49px;*/width:100%;}
+    .charttable2{border: 2px solid red;border-radius: 10px; padding:10px;width:100%;border-collapse:separate!important;}
+   .demo{
+    border: 0 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #0088cc url(Resource/arrow.png) no-repeat 90% center;
+    width: 100px;
+    text-indent: 0.01px;
+    text-overflow: "";
+    color: #FFF;
+    border-radius: 15px;
+    padding: 5px;
+    box-shadow: inset 0 0 5px rgba(000,000,000, 0.5);
+    }
+   .demo1{
+    border: 0 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #0088cc url(Static Resources/arrow_down/arrow.png) no-repeat 90% center;
+    width: 100px;
+    text-indent: 0.01px;
+    text-overflow: "";
+    color: #FFF;
+    border-radius: 15px;
+    padding: 5px;
+    box-shadow: inset 0 0 5px rgba(000,000,000, 0.5);
+    }
+
+  .btn-finance{ color: white!important;font-size: 14px!important;background: #007DBB!important;padding: 6px!important;border-radius: 5px!important;border:1px solid black!important;}
+   .center{text-align:center;}
+   a {
+      text-decoration: underline;color:#004976;
+     }
+   body{font-family: 'Lato', sans-serif!important;font-style: normal;font-weight: 400;  }
+  .Agency_fees{font-size:28px;font-weight: bold;color: #74AE00;padding-left: 15px;width: 410px;padding-top: 15px;}
+  .Profile_Name{width:170px;text-align:right;font-weight:bold;padding-top: 11px;}
+  .User_Name{color:#004976;width:145px;text-align:center;font-weight:bold;padding-top: 11px;}
+  
+    .heading_main{
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: -10px;
+        padding-bottom:11px;
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+        }
+    .heading_text{
+        background: none repeat scroll 0 0 #D4D4D4;
+        border: 1px solid #000000;
+        border-radius: 3px;
+        color: #222626 !important;
+        font-size: 20px!important;
+        height: 23px;
+        margin-right: 20px;
+        padding: 7px 1px 8px 8px;
+        position: absolute;
+        width: 98.6%;
+        font-family: Arial,Helvetica !important;
+        font-weight: bold;
+    }
+    
+    .heading_bottom{
+        display: block;
+        margin-top: 0;
+        padding-top: 80px;
+    }
+    .mydisplay{/* margin-left: 97px!important;width: 84%!important; */}
+    
+    body {
+    font: 12px Helvetica, arial, sans-serif;
+    }
+   /* .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: #D3E6B8; 
+    
+    }
+    */
+    .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: #D3E6B8; 
+    
+    }
+    
+    .ui-state-default{
+  background: white!important;
+  }
+    
+    
+    table.dataTable.display tbody tr.even > .sorting_1, table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
+     /* background-color: #D3E6B8!important; */
+    }
+    .ui-progressbar .ui-progressbar-value {
+    margin: -1px;
+    height: 100%;
+    background-color: #4E82BE !important;
+    border: 1px solid black!important;
+    }
+    .Crossborder_matrix{
+    float:right; 
+    height: 15px; 
+    width: 15px; 
+    border-style:solid; 
+    border-width:1px; 
+    border-color: rgb(212, 212, 212) rgb(212, 212, 212) -moz-use-text-color;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    background-color: rgb(255, 126, 126);
+    }
+    .table_control{width:93.96%;display: inline-block;float: left;}
+    .add_Agency_Entities{
+    display: block;
+font-weight: bold;
+/* margin-left: 119px; */
+margin-left: 382px;
+}
+    div.ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix
+    {background:grey;}
+    
+    
+      .centerdiv{
+        border-right: 1px solid #808080 !important;
+        float: left;
+        margin-left: 0px;
+        margin-top: 30px;
+        padding-top: 219px;
+        width: 1px;
+        /*margin-right: 35px; */
+  }
+  
+
+
+</style>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/js/jquery.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/js/jquery.dataTables.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/extensions/FixedColumns/js/dataTables.fixedColumns.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/extensions/ColVis/js/dataTables.colVis.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/syntax/shCore.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/demo.js')}"></script>
+    <script type="text/javascript" language="javascript">
+        //Page Initialisation....
+        var checkedValues = [];
+        var unCheckedValues = [];
+        var agencyEntities = [];
+        var rowsSelected, colsSelected;;
+        var rowsUnSelected = [];
+        var progressValue;
+        var agencyId = "{!agencyId}";
+        var sObjectId = '{!oopsActualId}';
+        var sObjectName = 'AF_OOPS_Actual__c';
+        var isRow = location.search.split('bRow=')[1];
+        var isCol = location.search.split('bCol=')[1];
+        var dataSet, cols, oTable, singleRow, singleCol;
+    </script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/functions.js')}"></script>
+    <script type="text/javascript">
+    
+        function runScript(e) {
+            if (e.keyCode == 13) {
+                
+                alert('test'); 
+                return false;
+            }
+        }
+        
+    </script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.filter.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.js')}"></script>
+    <script type="text/javascript" language="javascript">
+    
+    loadOOpsMatrix();
+    $(document).ready(function() {
+        $('#agCol').on( 'click', function (e) {
+            e.preventDefault();
+            $.when( addUnileverEntityToEstimates(colsSelected) ).then( function(status){
+                if(typeof isCol === 'undefined') {
+                    location.replace(addParameterToURL('bCol=Y'));
+                }else {
+                    location.reload();
+                }
+            },
+            function(status){
+                $("#gridPanel").html(status+', unable to load matrix page.');
+                //alert( status+', unable to load matrix page.' );
+            },
+            function(status){
+               //$("#agCol").html(status);
+            });
+        });
+        $('#ulRow').on( 'click', function () {
+            $.when( addAgencyEntityToEstimates(rowsSelected) ).then( function(status){
+                console.log('isRow :' + isRow);
+                //loadAgMatrix();
+                if(typeof isRow === 'undefined') {
+                    location.replace(addParameterToURL('bRow=Y'));
+                }else {
+                    location.reload();
+                }
+            },
+            function(status){
+                $("#gridPanel").html(status+', unable to load matrix page.');
+                //alert( status+', unable to load matrix page.' );
+            },
+            function(status){
+               //$("#ulRow").html(status);
+            });
+         });
+         $('#advFltr').on( 'click', function (e) {
+            $.each( advFilter, function( k, v ) {
+                $( ".display tbody tr td" ).each(function() {
+                    if(v == 't' || v == 'd' || v == 'a') {
+                        var selectedVal = $(this).attr(v);
+                        if(typeof selectedVal != 'undefined') {
+                            $(this).children("a").text(selectedVal);
+                        }
+                    }else {
+                        if(v != 'all') {
+                            var selectedVal = $(this).children("a").attr(v);
+                            if(typeof selectedVal != 'undefined') {
+                                $(this).children("a").text(selectedVal);
+                            }
+                        } else {
+                            location.reload();
+                        }
+                    }
+                });
+            });
+        });
+        $('.display tbody').on('click', 'td .archive', function () {
+            var entName = $(this).parent().text();
+            if(confirm('Are you sure? You want to remove the row ' + entName + ' from the matrix.')) {
+                $.when( archiveAgencyEntityToEstimates(entName) ).then( function(status){
+                    location.reload();
+                },
+                function(status){
+                    $("#gridPanel").html(status+', unable to load matrix page.');
+                    //alert( status+', unable to load matrix page.' );
+                },
+                function(status){
+                   //$("#ulRow").html(status);
+                });
+             }
+         });
+         $('.display thead tr').on('click', 'th .archive', function () {
+            var entName = $(this).parent().text();
+            if(confirm('Are you sure? You want to remove the column ' + entName + ' from  the matrix.')) {
+                $.when( archiveUnileverEntityToEstimates(entName) ).then( function(status){
+                    location.reload();
+                },
+                function(status){
+                    $("#gridPanel").html(status+', unable to load matrix page.');
+                    //alert( status+', unable to load matrix page.' );
+                },
+                function(status){
+                   //$("#ulRow").html(status);
+                });
+             }
+         });
+         $( "#ldMatrix" )
+        .click(function( event) {
+           event.preventDefault();
+           $.when( addSingleULAGEntity() ).then( function(status){
+               location.reload();
+           },
+           function(status){},
+           function(status){
+           });
+        });
+   });
+    </script>
+</head>
+
+<!---Header Summary section -->
+<apex:form id="formId">
+    
+<!-- Main Header Section -->
+   <div class="row">            
+     <div class="col-lg-12 charttable1"> 
+        <table style="width:92%;">
+        <tr>
+           <td style="text-align:center;width:5%"> <apex:image url="{!$Resource.logo_Unilever}" width="70px" height="70px"/> </td>        
+           <td class="Agency_fees">{!$Label.Agency_Fee_Title}</td>
+           <td class="Profile_Name"> {!$User.AF_UserTypeText__c} </td>
+           <td class="User_Name"> {!$User.FirstName} {!$User.LastName} </td>
+           <!--<td><apex:commandButton value="Email to Cat Finance" style="height:30px;background:#004976;padding:6px 10px 10px;border-radius:5px;color:white;font-size:13px;width:152px" onclick="Sendemailtofinance('{!categoryNameStr}','{!CategoryId}','{!financialYear}'); return false;" rendered="{!isCMCOSuperFlag}"/></td>-->
+           <!--<td style="text-align:center;width:5%"><apex:commandButton value="Reports" action="{!redirectToReportPage}" style=" background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 130px;"/></td>-->
+         <!--  <td style="width:10%;text-align:right;"> <apex:commandButton value="Back to Chatter" action="{!backToChatter}" style="width:120px;background:#007DBB;margin-top: 40px;margin-top: 26px;border:none;color:white;border-radius:10px;padding:10px;"/> </td>-->
+           <!--<td style="text-align:center;width:5%;padding-top:6px;padding-right: 16px;"> <apex:image url="{!$Resource.Help}" width="30px" height="30px" onclick="openHelpLink();"/> </td> -->
+       </tr>
+       </table>
+  </div>    
+   </div>
+     
+    <div class="row">           
+        <div class="col-lg-12 charttable1">         
+            <apex:image url="{!$Resource.header_new}" style="width:94%;height:37px;" />            
+        </div>          
+    </div>
+
+<div class="row">
+     <div class="col-lg-12 charttable1">
+        <div style="border: 2px solid #74AE00;border-radius: 10px; padding:0.8%;width:92%;border-collapse:separate!important;float: left;">
+          <div class="firstdiv">
+                          <div style="font-size:28px;width: 70%;"><b>{!oopsActObj.AF_Brand__r.name}</b> | <h6> {!oopsActObj.AF_Agency_lk__r.name} </h6>    </div>
+                              <div style="float: left;width: 62%;">
+                                  <div style="font-size: 20px; float: left; width: 42%; padding-top: 20px;">
+                                      <apex:outputLabel > OOPS </apex:outputLabel>  
+                                  </div>
+                                  
+                                  <div style="font-size: 32px; float: left; width: 56%;padding-top: 15px;">
+                                      <apex:outputPanel id="out1">
+                                      <apex:outputText value="{0,number,###,###,###}" >
+                                      €<apex:param value="{!oopsActObj.AF_OOPS_Estimate__c}"/>
+                                      </apex:outputText>
+                                      </apex:outputPanel>
+                                  </div>
+                           </div>                  
+                      <div style="float: left;width: 62%;">    
+                           <div style="font-size: 20px; float: left;  width: 42%; padding-top: 20px;">
+                               Base Fees 
+                           </div>
+                           <div style="font-size: 32px; float: left; width: 56%;padding-top: 15px;">
+                              <apex:outputText value="{0,number,###,###,###}">
+                              €<apex:param value="{!oopsActObj.Total_Base_Fee__c}"/>
+                              </apex:outputText>
+                           </div>
+                      </div>  
+                      
+                      <div style="float: left;width: 62%;">    
+                           <div style="font-size: 20px; float: left;  width: 42%; padding-top: 20px;">
+                               YTG 
+                           </div>
+                           <div style="font-size: 32px; float: left; width: 56%;padding-top: 15px;color: red;">
+                              <apex:outputText value="{0,number,###,###,###}">
+                              €<apex:param value="{!(oopsActObj.AF_OOPS_Estimate__c - ytgValue)}"/>
+                              </apex:outputText>
+                           </div>
+                      </div>
+                      
+                      <div style="float: left;width: 55%;">
+                      
+                      </div>  
+                      <div style="float: left;width: 51%;">    
+                          <div style="font-size: 18px; float: left; width: 53%; padding-top: 20px;">
+                              <apex:outputlabel value="Running OOPS" rendered="{!!isAgencyFlag}"/></div>
+                          <div style="font-size: 20px; float: left; width: 30%;padding-top: 19px;">
+                              <apex:outputLabel value="{!currentOOPSPer}%" rendered="{!!isAgencyFlag}" id="label1"/>
+                              
+                          </div>
+                      </div>   
+              
+      </div> <!-- First Div closed -->
+      
+      
+      
+      
+      <div class="seconddiv">
+         
+                        
+                              <div style="font-size: 16px; font-weight: bold; float: right; width: 118px; margin-right: 23px;text-align: center;"> Cross Border PO</div >
+                
+                        
+                     
+                             <div style="float: right; width: 118px;margin-right: 23px;text-align: center;"> 
+                                   <canvas id="mycrosscanvas" height="100" width="100" style="width: 100px; height: 100px;  text-align: center;"></canvas>
+                                    <div style="font-size: 20px; float: right; text-align: center; margin-right: 0px;width: 118px;" >
+                                    <apex:outputText value="{0,number,###,###,###}" id="cross1">
+                                        €<apex:param value="{!oopsActObj.Total_Crossborder__c}"/>
+                                    </apex:outputText> 
+                                    </div>
+                             </div>
+                         
+                                 
+             
+      </div>  <!-- Second Div closed -->
+      
+      
+      
+    <div class="centerdiv">
+  
+     
+      
+      </div>
+      
+        <div class="thirddiv_oops" id="thirddiv">
+        
+            <c:AF_ApproveActuals fy="{!fiscalYear}" agencyId="{!agencyId}" brandId="{!brandId}" /> 
+          </div>
+  </div>
+  </div>
+</div>
+</apex:form>
+
+<!--End of summary code -->
+
+<body class="dt-example">
+    <apex:form >
+    
+  <!--  <div id="agencySummary">
+    <table>
+    <tr>
+    <td><apex:commandButton value="Back To Home Page" action="{!backToHomePage}" style=" background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 130px;"/></td> 
+    <td class="Profile_Name"> {!$User.AF_UserTypeText__c} </td>
+    <td class="User_Name"> {!$User.FirstName} {!$User.LastName} </td>
+    <td><apex:commandButton value="Back To Chatter" action="{!backToChatter}" style=" background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 130px;"/></td>
+
+
+    </tr>  
+    </table> 
+    </div>
+    
+            <div class="postSummary">
+                <div align="left" class="brandName">{!AF_OOPS_Actual__c.Name}</div>
+            </div> -->
+    
+     <div class="row">
+    <div class="col-lg-12 charttable1">
+        
+        <table style="border: 2px solid #74AE00!important;border-radius: 10px; padding: 0px 0 0px 0px;width: 94%;border-collapse:separate!important;margin-top: 1px;float:left;margin-bottom: 1px;">
+           <tr>
+ 
+                                 <td id="first">
+                            <select multiple="multiple"  id="advFltr" >
+                                <option value="all">All Currency</option>
+                                <option value="l">Local</option>
+                                <option value="e">Euro</option>
+                            </select>
+                        </td>
+                               
+                                <td style="float:left;display:inline;">   
+                                         <div style="font-size: 18px; float: left; width: 62px; padding-top: 12px;">
+                              <apex:outputlabel value="OOPS" rendered="{!!isAgencyFlag}"/></div>  
+                                     </td>
+                                      <td style="float:left;display:inline;margin-right: -15px;"> 
+                                     <div style=" font-size:20px; /*width: 542px;*/ padding-top: 1px;display: block;">
+                              
+                              <apex:outputPanel rendered="{!!isAgencyFlag}" id="opt1">
+                                
+                             <apex:outputtext value="{!oopsActObj.Overall__c}" id="oops_Overall_dis" rendered="{!oopsActObj.AF_iS_OOPS_Percentage__c}" style="margin-top: 4px!important;font-weight:bold;border:1px solid black;border-radius:5px;color: white;font-size: 16px; display: inline-block;text-align: center;background-color:#7f8c8d;padding: 5px;width: 60px;height: 21px;padding-top: 4px;"/>
+                              
+                              <apex:inputField value="{!oopsActObj.Overall__c}" id="oops_Overall" rendered="{!!oopsActObj.AF_iS_OOPS_Percentage__c}" styleClass="values1"/>
+                             <apex:outputPanel rendered="{!isFinanace}">
+                             <span style="font-size:18px;margin-right: 10px;">%</span>
+                             
+                             
+                             
+                             
+                              <apex:pagemessages id="pm1"></apex:pagemessages>
+                            <!--   <apex:commandButton value="Submit" id="submittButton" action="{!SubmitOverall}" reRender="pm1,out1,oops_Overall_dis,oops_Overall_dis,label1,cross1,opt1" styleClass="submit_btn_oops_submit_new" rendered="{!!oopsActObj.AF_iS_OOPS_Percentage__c}" /> -->
+                               </apex:outputPanel>
+                               </apex:outputPanel>
+                               
+                              <!--<apex:outputField value="{!oopsActObj.Overall__c}" rendered="{!!isAgencyFlag}">
+                                <apex:inlineEditSupport showOnEdit="submit, cancel" 
+                                    event="ondblclick" resetFunction="resetInlineEdit" rendered="{!!isAgencyFlag}"/>-->
+                               <!--<apex:inputField value="{!oopsActObj.Overall__c}" rendered="{!!isAgencyFlag}"/> -->
+                           
+                              <!--<apex:commandButton value="Save" id="saveButton" action="{!save}" styleClass="submit_btn_oops_save" />
+                               <apex:commandButton value="Submit" id="submittButton" action="{!submit}" styleClass="submit_btn_oops_save" />-->
+                              
+                              
+                              
+                          </div>
+                                    
+                                      </td>
+                                      
+                                      
+                               <td style="float:left;display:inline;"> 
+                                        <apex:outputPanel rendered="{!!isAgencyFlag}">
+                                       <apex:commandButton value="Refresh" id="saveButton" reRender="out1,oops_Overall_dis,oops_Overall_dis,label1,cross1,opt1,pm1" action="{!save}" styleClass="submit_btn_oops_save" rendered="{!!oopsActObj.AF_iS_OOPS_Percentage__c}" oncomplete="callpagerefresh();"/>
+                                       </apex:outputPanel>
+                                     </td> 
+                               
+                               <td style="float:left;display:inline;margin-right: 10px;">       
+                                <span style="background: #004976; padding: 8px;width: 105px;margin-left: 13px;color: white;border: 0px solid black;border-radius: 5px;padding-left: 15px;display:inline;float: left;margin-top: 5px;/* height: 30px; */margin-bottom: 5px;padding-bottom: 8px;padding-top: 7px;"> 
+                                           <a onClick="commentsToggleOpen('commentAddTable');window.location.hash='commentAddTable';return false;" style="font-size: 13px;font-weight: bold;color: white;text-decoration:none;">Add Comment</a>
+                                      </span>
+                                     </td>  
+                                     
+                                    
+                                      <td style="float:left;margin-left: 24%;display: block;">  
+                                      <apex:outputPanel rendered="{!IF(AND(isFinanace,NOT(IsReadyforPO)),'true','false')}">
+                                        <apex:commandButton value="Submit" id="submittButton" action="{!SubmitOverall}" reRender="pm1,out1,oops_Overall_dis,oops_Overall_dis,label1,cross1,opt1" styleClass="submit_btn_oops_submit_new" rendered="{!!oopsActObj.AF_iS_OOPS_Percentage__c}" oncomplete="callmsg();"/>
+                                       </apex:outputPanel>
+                                      </td>
+                                   
+                                     
+                                     
+                                      
+                                       
+                          
+                                     <!-- <td style="background: #004976; padding: 5px;width: 120px;margin-left: 15px;color: white;border: 2px solid black;border-radius: 5px;padding-left: 15px;display:inline;float: left;margin-top: 6px;"> 
+                                           <a href="apex/AF_UploadAnAttachment?parentId={!oopsActualId}" class="addfancy" style="font-size: 13px;font-weight: bold;color: white;text-decoration: none;" >Upload Document</a>
+                                      </td> -->
+                                      
+                                      <td style="/* margin-left: 20px; */float: right;cursor: pointer; ">
+                                              <apex:image url="{!$Resource.print_icon}" width="40px" height="40px"  title="Please click to Print " onclick="PrintCurrentPage();" /> 
+                                      </td>
+                                  </tr>
+        </table>
+    </div>
+</div>
+
+
+  <div class="row">
+     <div class="col-lg-12 charttable1">
+ <div class="table_control">
+   <div class="postSummary">
+<div style="width: 50%;float:left;/* border: 1px solid red; */height: 59px;position: absolute;/* margin-left: 0px; */"> 
+
+      <div align="left" class="brandName">{!AF_OOPS_Actual__c.Name}</div>
+        
+</div> 
+
+ 
+     
+      
+  </div> 
+   
+ </div>
+ 
+  </div>
+ </div>
+
+
+
+
+
+
+
+
+   <!-- Matrix page loads from here -->
+  
+            <div class="row">
+               <div class="col-lg-12 charttable1">
+                
+               <div style="border: 2px solid #74AE00;border-radius: 10px; padding:0.8%;width:92%;border-collapse:separate!important;float: left;margin-bottom:1px;">
+                
+        
+        
+    <div id="gridPanel">
+    <!--- <c:AF_ApproveActuals fy="{!fiscalYear}" agencyId="{!agencyId}" brandId="{!brandId}" />  -->
+    <div align="right" style="font-size:16px;">{!$Label.Matrix_Currency_Desc}</div>
+        <div class="agencyBar">
+            <div align="left" class="agencyLeft">Agency Entities</div>
+            <div align="right" class="agencyRight">
+            <div id="colPanel" align="right">
+                <select multiple="multiple" class="toggle-vis" id="agCol" style="width:140px;margin-right: 10px;" />
+                <img id="submit-col" style="vertical-align:middle;" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" />
+             </div>
+             <div id="loadColSpinner" class="spinner">
+                loading Agency Entities...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' />
+             </div>
+             <img id="add-col-panel" style="vertical-align:middle;" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" />
+            </div>
+        </div>
+       <table class="display mydisplay tableborder " width="100%" border="0">
+            <thead style="border:none;">
+                <tr><th id="0" isDisplay="y" class="firstCol"></th><th id="1" isDisplay="y" class="firstCol custCol"></th></tr>
+            </thead>
+            <tbody style="font-size:14px;background:red!important;">
+            </tbody>
+        </table>
+         <div class="ulRowControl">
+             <div align="center">
+                 <img id="add-row-panel" style="vertical-align:top;" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" />
+             </div>
+         </div>
+         <div id="rowPanel">
+             <select multiple="multiple" id="ulRow" style="width:140px;"/>
+             <img id="submit-row" style="vertical-align:middle;" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" />
+         </div>
+         <div id="loadRowSpinner" class="spinner">
+             loading UL Entities...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' />
+         </div>
+         <div id="fourth" style="
+    float: right;">
+                        <table>
+                            <tr>
+                                <td align="right">
+                                    <div id="divpreview3" style="display:inline;float:left;">&nbsp;</div><img src="{!URLFOR($Resource.AF_isTax)}" height="15" width="15"/>&nbsp;Represents Cross Border billing&nbsp;
+                                </td>
+                            </tr>
+                         </table>
+            </div>
+            
+          
+    
+    </div>
+    <div id="gridSpinner" class="spinner">
+        loading Matrix...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' />
+    </div>
+    <apex:actionFunction name="redirecttosamepage" action="{!call_constructor}" id="redirectpage" reRender="opt2" />
+   <!-- <c:AF_ApprovalProcessForOOPS ParentRecordValue="{!oopsActualId}" />   -->
+    <c:AF_CommentsListComp ParentRecordValue="{!oopsActualId}" ParentObjectTypeDesc="AF_OOPS_Actual__c"  IsViewAllValue="false"  ReturnPageURLValue="AF_UL_oopsMatrix?Id={!oopsActualId}" /><br/>
+    <!--
+     <table>
+ 
+ <tr>
+      <td style="background: #D3E6B8; padding: 10px;width: 135px;margin-left: 15px;color: white;border: 2px solid #74AE00;border-radius: 6px;padding-left: 20px;display:inline;float: left;"> 
+           <a href="#" style="font-size: 15px;font-weight: bold;color: black;" onClick="openAttachmentWindow('/apex/AF_UploadAnAttachment?parentId={!oopsActualId}');return false;">Upload Document</a>
+      </td>
+  
+      <td style="margin-left: 20px;float: left;">
+              <apex:image url="{!$Resource.print_icon}" width="40px" height="40px"  onclick="PrintCurrentPage();" /> 
+      </td>
+  </tr>
+  </table>
+  
+   -->
+    
+    <c:AF_DocumentListComp ParentRecordValue="{!oopsActualId}"/>
+    </div></div></div>
+    </apex:form>
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/matrixControls.js')}"></script>
+   
+    <!--Chart script -->
+    <script>
+        window.onload = function() {
+            var myCrossBar = new Chart(document.getElementById("mycrosscanvas").getContext("2d")).Doughnut(DoughnutCrossData,crossopts);
+        }
+        var DoughnutCrossData = 
+       [{
+            value : 100,
+            color: "#FF0000",
+        },
+        {
+            value : 0,
+            color: "#E6E6E6",
+        }]
+    var crossper = {!oopsActObj.AF_No_Of_CrossBorder__c}+'';
+    var crossopts= {legend : true,
+       crossText : [crossper],
+       crossTextIter: ["all"],
+       crossTextOverlay :   [true],
+       crossTextFontSize : [20],
+       crossTextFontColor : ["black"],
+       crossTextRelativePosX : [2],
+       crossTextRelativePosY : [2],
+       crossTextPosX : [0],
+       crossTextPosY : [0],
+       crossTextAlign : ["center"],
+       crossTextBaseline : ["middle"],
+       canvasBorders : false,
+   
+    };
+    
+
+  function commentsToggleOpen(elementId) 
+  {
+      //alert(elementId);
+      document.getElementById(elementId).style.display = 'block';
+  }
+  function commentsToggleClose(elementId) 
+
+  { 
+      //alert(elementId);
+      document.getElementById(elementId).style.display = 'none';
+  }
+  commentsToggleClose('commentAddTable');
+
+
+    </script>
+
+
+</body>
+</apex:page>

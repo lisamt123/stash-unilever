@@ -1,0 +1,16 @@
+<apex:component id="ipmProgressBar">
+<div class="basic panel" style="margin-bottom: 100px; background: transparent;">
+    <div class="panel-body">
+    <div class="progress-wrap">
+        <ul class="progress-bar">
+            <li class="visited first">Idea</li>
+            <li class="next">Feasibility</li>
+            <li class="next">Capability</li>
+            <li class="next">Market Ready</li>
+            <li class="next">Market Deployment</li>
+            <li class="next">PLE</li>
+        </ul>
+    </div>
+    </div>
+</div>
+</apex:component>

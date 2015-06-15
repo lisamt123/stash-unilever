@@ -1,0 +1,99 @@
+<apex:page standardcontroller="Article__c" extensions="ArticleExtension" sidebar="false">
+ <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36302283-1']);
+    _gaq.push(['_setDomainName', 'na9.visual.force.com']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script> 
+<!--[if IE]>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'ie-fonts.css')}" />
+<![endif]-->
+
+        <link rel="stylesheet" href="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'grid.css')}" type="text/css" media="screen, projection" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.shared_brand_centre_resources, 'brand_centers_structure.css')}" type="text/css" media="screen, projection" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'style.css')}" type="text/css" media="screen, projection" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'jquery.tipsy.css')}" type="text/css" media="screen, projection" />
+
+        <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+        <script src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'jquery.tipsy.js')}"></script>
+        <script src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'jquery.tabify.js')}"></script>
+        <script src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'jquery.corner.js')}"></script>
+        <script src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'vallenato.js')}"></script>
+        <script src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'jcarousellite_1.0.1.min.js')}"></script>
+        <script src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'jquery.masonry.min.js')}"></script>
+        <script src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'scripts.js')}"></script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            if($.browser.msie){
+                $.getScript("{!URLFOR($Resource.ulw_brief_2_resources, 'js/PIE.js')}").done(function(){
+                    if (window.PIE) {
+                        $('.rounded').each(function() {
+                            PIE.attach(this);
+                        });
+                    }
+                });
+            }
+        });
+        </script>
+       
+        <div id="contentPage"><div id="innerPage">
+        <div class="container_12">
+            <div id="header" class="alpha omega grid_12">
+            
+            <img src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'logo.png')}" class="logo" />
+            <div id="subnav">
+                <ul>
+                   <li><a class="pagebuttons" href="/apex/familygoodness_brand_centre_sfdc?id={!brandId}">Home</a></li> 
+                </ul>
+            </div>
+            </div>
+            <div class="grid_20">
+                
+                <div class="title"><h1>All Stories</h1></div>
+                <div class="allarticles">
+<!-- 
+                    <table>
+                        <ul class="listarticle">
+-->
+                            <apex:repeat value="{!articlelist}" var="item">
+<!--                               <tr><td> 
+                                    <li> -->
+                                    <div class="article">
+                                        <a href="/apex/familygoodness_brand_single_sfdc?id={!item.id}&bid={!item.uw_brand__r.id}">
+                                            <img src="/sfc/servlet.shepherd/version/download/{!item.Picture_ID__c}" width="250" alt="{!item.Image_Caption__c}"/> 
+                                        </a>
+                                            <p class="title"><a href="/apex/familygoodness_brand_single_sfdc?id={!item.id}&bid={!item.uw_brand__r.id}">{!item.Name}</a></p>
+                                            <br/>
+                                            <p class="date">
+                                            <apex:outputField value="{!item.Publish_Date__c}"/>
+                                            </p>
+                                            <div class="content">
+                                                <p>{!item.Summary__c}</p>
+                                            </div>
+                                        <a class="more" href="/apex/familygoodness_brand_single_sfdc?id={!item.id}&bid={!item.uw_brand__r.id}">More</a>
+                                    </div>
+<!--                                    </li>
+                                </td></tr> -->
+                            </apex:repeat>
+<!-- 
+                        </ul>
+                    </table>
+-->
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+<script type="text/javascript">  
+jQuery(function(){
+    jQuery('.allarticles').masonry({      itemSelector: '.article'    });
+});
+</script>
+</apex:page>

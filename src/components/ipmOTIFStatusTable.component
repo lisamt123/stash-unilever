@@ -1,0 +1,224 @@
+<apex:component controller="IPM_OTIFStatusController" allowDML="true">
+<apex:attribute name="otifType" description="Describes Table or Releated Section" type="String" required="true" assignTo="{!type}" />
+<apex:attribute name="getSectionId" description="Pass the section id as parameter" type="ID" required="true" assignTo="{!projDocSecId}" />
+<apex:attribute name="setEdit" description="show on gateDocument as non-editable" type="Boolean" required="false" assignTo="{!edit}" />
+<apex:attribute name="IsEdtable" description="show on gateDocument as read only" type="Boolean" required="false" assignTo="{!Iseditable}" />
+        
+        <apex:outputPanel id="ren" >
+    
+        <table class="ipmTable table table-bordered otifTable" cellspacing="0"> 
+         <thead class="">
+         <tr>
+          <th class="  " width="5%" scope="col" colspan="1">
+           <div>
+             <div class="colCompleted incHeight">
+              <span>Sl.No</span>
+             </div>
+           </div>
+         </th>
+         <th class="  " width="5%" scope="col" colspan="1">
+           <div>
+             <div class="colCompleted incHeight">
+              <span><apex:outputText value="OTIF Measure"/></span>
+             </div>
+           </div>
+         </th>
+         <th class="  " width="5%" scope="col" colspan="1">
+           <div>
+             <div class="colProject incHeight">
+              <span><apex:outputText value="Responsibility"/></span>
+             
+            </div>
+          </div>
+         </th>
+         <th class="  " width="10%" scope="col" colspan="1">
+        
+           <div>
+             <div class="Brand incHeight">
+              <span><apex:outputText value="Section"/></span>
+              
+             </div>
+           </div>
+          
+         </th>
+         <th class="  " width="15%" scope="col" colspan="1">
+           <div>
+             <div class="Brand incHeight">
+              <span><apex:outputText value="Status"/></span>
+              
+             </div>
+           </div>
+        
+         </th>
+          
+         </tr>
+        </thead>
+        <tbody>
+                 <apex:repeat value="{!secConList}" var="con">
+                  <tr>
+                  <td>
+                       <apex:outputText value="{!con.IPM_OTIF_Sequence__c}" />
+                   </td>
+                    <td>
+                    
+                      <apex:outputText value="{!con.IPM_OTIF_Measure__c}"/>
+                    </td>
+                    <td>
+                     <apex:outputText value="{!con.IPM_OTIF_Responsibility__c}"/>
+                    </td>
+                    
+                    <td>
+                      <a href="apex/ipmProjectDocumentSectionEditorV1?Id={!projectId}&projDocSecId={!con.IPM_Section_Id__c}"> {!con.IPM_Section_Number__c}&nbsp;{!con.IPM_Section_Name__c}</a>
+                    </td>
+                    
+                    <td>
+                    <apex:outputPanel rendered="{!IF(AND(edit=true,Iseditable=true),'true','false')}">
+                     <input type="hidden" class="" id="answer{!con.Id}" name="answer" value="{!con.IPM_OTIF_Status__c}" style="display:none"/>  
+                    <apex:outputPanel rendered="{!con.IPM_OTIF_No_of_Status__c=4}" styleClass="sliderOTIF">
+                                 <div class="sld5 legendSld">
+                                   <label for="s0" onclick="changeStatus('{!con.Id}','');" data-toggle="tooltip" data-placement="bottom" data-original-title="Select">Select</label>
+                                   <input type="radio" name="score" id="s0" value="Not Applicable" />
+                                   <label for="s1" onclick="changeStatus('{!con.Id}','Green');" data-toggle="tooltip" data-placement="bottom" data-original-title="{!con.IPM_OTIF_HelpText_Green__c}">Green</label>
+                                   <input type="radio" name="score" id="s1" value="Green"/>
+                                   <label for="s2" onclick="changeStatus('{!con.Id}','Amber');" data-toggle="tooltip" data-placement="bottom" data-original-title="{!con.IPM_OTIF_HelpText_Amber__c}">Amber</label>
+                                   <input type="radio" name="score" id="s2" value="Amber"  />
+                                   <label for="s3" onclick="changeStatus('{!con.Id}','Red');" data-toggle="tooltip" data-placement="bottom" data-original-title="{!con.IPM_OTIF_HelpText_Red__c}">Red</label>
+                                   <input type="radio" name="score" id="s3" value="Red"  />  
+                                   <label for="s4" onclick="changeStatus('{!con.Id}','Not Applicable');" data-toggle="tooltip" data-placement="bottom" data-original-title="{!con.IPM_OTIF_HelpText_NA__c}">N/A</label>
+                                   <input type="radio" name="score" id="s4" value="Not Applicable" />
+                                           
+                             </div> 
+                                
+                                </apex:outputPanel>
+                               
+                                <apex:outputPanel rendered="{!con.IPM_OTIF_No_of_Status__c=3}" styleClass="sliderOTIF" >
+                                <div class="sld4 legendSld">
+                                   <label for="s0" onclick="changeStatus('{!con.Id}','');" data-toggle="tooltip" data-placement="bottom" data-original-title="Select">Select</label>
+                                   <input type="radio" name="score" id="s0" value="Not Applicable" />
+                                   <label for="s1" onclick="changeStatus('{!con.Id}','Green');" data-toggle="tooltip" data-placement="bottom" data-original-title="{!con.IPM_OTIF_HelpText_Green__c}">Green</label>
+                                   <input type="radio" name="score" id="s1" value="Green"/>
+                                   <label for="s2" onclick="changeStatus('{!con.Id}','Red');" data-toggle="tooltip" data-placement="bottom" data-original-title="{!con.IPM_OTIF_HelpText_Red__c}">Red</label>
+                                   <input type="radio" name="score" id="s2" value="Red"  /> <label for="s3" onclick="changeStatus('{!con.Id}','Not Applicable');" data-toggle="tooltip" data-placement="bottom" data-original-title="{!con.IPM_OTIF_HelpText_NA__c}">N/A</label>
+                                   <input type="radio" name="score" id="s3" value="Not Applicable" />                   
+                             </div> 
+                                </apex:outputPanel>
+                    </apex:outputPanel>  
+                     
+                     
+
+                                <apex:outputText rendered="{!IF(OR(edit==false,Iseditable=false),true,false)}"><div class="{!IF(con.IPM_OTIF_Status__c=='Not Applicable','notApplicable',con.IPM_OTIF_Status__c)}">{!con.IPM_OTIF_Status__c}</div></apex:outputtext>
+                    </td>       
+                  </tr>
+                  </apex:repeat>
+ </tbody>
+</table>  
+        
+
+</apex:outputPanel>
+
+<apex:actionFunction name="callupdateOtifList" action="{!updateOTIFStatus}" reRender="">
+<apex:param name="FirstParam" assignTo="{!secConId}" value="" />
+<apex:param name="SecondParam" assignTo="{!status}" value="" />
+</apex:actionFunction>
+<script>          
+            
+            var jq = jQuery.noConflict();
+            jq(document).ready(function(){
+                    initSliderOTIF();                    
+            });
+                        
+            function changeStatus(id,status)
+               {                   
+                    callupdateOtifList(id,status);
+               }
+               
+               function initSliderOTIF(){
+                          
+                var itemsGK = [ 'Select','Green','Amber','Red','Not Applicable'];
+                var itemsGK3 = [ 'Select','Green','Red','Not Applicable'];
+                
+                var s = jq(".sliderOTIF");                 
+               
+                var score;
+                var PointerT = 100 / (itemsGK.length-1);                
+                var PointerS = 100 / (itemsGK3.length-1); 
+                
+                jq(s).each(function(){
+                
+                if(jq('.sliderOTIF > div').has(".sld5")) {
+                  jq(".sld5").closest(s).slider({
+                  min:1,
+                  max:itemsGK.length,
+                  animate:'slow',
+                  stop: function(event, ui){   
+                            
+                            var pointer = ui.value-1;
+                            jq('#s'+ ui.value).prop('checked', true); 
+                            score=itemsGK[pointer];
+                      }
+                });
+                
+                }
+                if(jq('.sliderOTIF > div').has(".sld4")) {
+                
+                jq(".sld4").closest(s).slider({
+                  min:1,
+                  max:itemsGK3.length,
+                  animate:'slow',
+                  stop: function(event, ui){   
+                            
+                            var pointer = ui.value-1;
+                            jq('#s'+ ui.value).prop('checked', true); 
+                            score=itemsGK3[pointer];
+                      }
+                });
+                
+                       
+                
+                }
+                });          
+                    jq(".legendSld label").on("click", function(){
+                    var lpos = jq(".legendSld label").offset().left;
+                    jq(this).closest(".legendSld").find("label").css({'color':'#222222'});
+                    jq(this).css({'color':'#e98824'});
+                    jq("toolTipMsg:before").css("left",lpos+"px"); 
+                        
+                });
+                jq("input[type=radio][id^='s']").hide();                
+              
+               jq("input[name=answer]").each(function(){
+               var answer=jq(this).val();
+                       if(answer == "Green"){
+                         jq(this).next(".sliderOTIF").find(".sld5").next(".ui-slider-handle").css("left", "26%");
+                         jq(this).next(".sliderOTIF").find(".sld5 label[for=s1]").css({'color':'#e98824'});
+                         jq(this).next(".sliderOTIF").find(".sld4").next(".ui-slider-handle").css("left", "33%");
+                         jq(this).next(".sliderOTIF").find(".sld4 label[for=s1]").css({'color':'#e98824'});
+                        }
+                        else if(answer == "Amber"){
+                         jq(this).next(".sliderOTIF").find(".sld5").next(".ui-slider-handle").css("left", "51%");
+                         jq(this).next(".sliderOTIF").find(".sld5 label[for=s2]").css({'color':'#e98824'});
+                        }
+                        else if(answer == "Red"){                
+                         jq(this).next(".sliderOTIF").find(".sld5").next(".ui-slider-handle").css("left", "76%");
+                         jq(this).next(".sliderOTIF").find(".sld5 label[for=s3]").css({'color':'#e98824'});
+                         jq(this).next(".sliderOTIF").find(".sld4").next(".ui-slider-handle").css("left", "66%");
+                         jq(this).next(".sliderOTIF").find(".sld4 label[for=s2]").css({'color':'#e98824'});
+                        }
+                        else if(answer == "Not Applicable"){                
+                         jq(this).next(".sliderOTIF").find(".sld5").next(".ui-slider-handle").css("left", "100%");
+                         jq(this).next(".sliderOTIF").find(".sld5 label[for=s4]").css({'color':'#e98824'});
+                         jq(this).next(".sliderOTIF").find(".sld4").next(".ui-slider-handle").css("left", "100%");
+                         jq(this).next(".sliderOTIF").find(".sld4 label[for=s3]").css({'color':'#e98824'});
+                        }                       
+                        else{
+                        jq(this).next(".sliderOTIF").find(".sld5").next(".ui-slider-handle").css("left", "0%");
+                        jq(this).next(".sliderOTIF").find(".sld5 label[for=s0]").css({'color':'#e98824'});
+                        jq(this).next(".sliderOTIF").find(".sld4").next(".ui-slider-handle").css("left", "0%");
+                        jq(this).next(".sliderOTIF").find(".sld4 label[for=s0]").css({'color':'#e98824'});
+                        }
+                        
+                    }); 
+                }
+</script>
+
+</apex:component>

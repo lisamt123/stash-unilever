@@ -1,0 +1,298 @@
+<apex:page title="{!uw_Brand__c.Name} Brand Center - Unilever" showHeader="true" sidebar="false" standardcontroller="uw_Brand__c" extensions="BrandCentreExtension">
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36302283-1']);
+    _gaq.push(['_setDomainName', 'na9.visual.force.com']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<!--[if IE]>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'ie-fonts.css')}" />
+<![endif]-->
+
+<link rel="stylesheet" href="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'grid.css')}" type="text/css" media="screen, projection" />
+<link rel="stylesheet" href="{!URLFOR($Resource.shared_brand_centre_resources, 'brand_centers_structure.css')}" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'style.css')}" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'jquery.tipsy.css')}" type="text/css" media="screen, projection" />
+    
+    <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
+    <script src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'jquery.corner.js')}"></script>
+    <script src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'jquery.tipsy.js')}"></script>
+    <script src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'jquery.tabify.js')}"></script>
+    <script src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'vallenato.js')}"></script>
+    <script src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'jcarousellite_1.0.1.min.js')}"></script>
+    <script src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'jquery.colorbox-min.js')}"></script>
+    
+    <script src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'scripts.js')}"></script>
+    
+    <script type="text/javascript">
+    $(document).ready(function(){
+        if($.browser.msie){
+            $.getScript("{!URLFOR($Resource.familygoodness_brand_centre_resources, 'PIE.js')}").done(function(){
+                if (window.PIE) {
+                    $('.rounded').each(function() {
+                        PIE.attach(this);
+                    });
+                }
+            });
+        }
+    });
+    </script>
+   
+    <div id="contentPage"><div id="outterPage"><div id="innerPage">
+        <img src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'grass.png')}" style="position: absolute; bottom: 0; left: 10%" />
+        <div class="container_12">
+            
+            <div class="alpha grid_3">
+                
+                <div id="logo"><img src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'logo.png')}" class="logo" /></div>
+                
+                <div class="accordion">
+                    <div id="accordion-container-1">
+                        <div class="accordion-element">
+                            <h2 class="accordion-header"><img src="{!URLFOR($Resource.familygoodness_brand_centre_resources, 'who_is_who_ico.png')}" />  Who is Who</h2>
+                            <div style="width: 100%; height: 1px; display:block; background: none; border: none;" />
+                              <div class="accordion-content">
+                                <div class="chatter-links">
+                                <div class="linkslistwrapper">
+                                    
+                                    <ul class="linkslist">
+                                           <apex:repeat value="{!whoswholinks}" var="ww">                
+                                    <li>
+                                         <apex:outputlink value="{!ww.Link_Output__c}" target="_blank" >{!ww.Link_Name__c}</apex:outputlink>
+                                        </li>
+                                        </apex:repeat>
+                                   </ul>
+                                </div>
+                                
+                                
+                                </div>
+                                
+                                <div class="chatter-faces" style="width:180px;">
+                                
+                                   <chatter:followers entityId="{!uw_Brand__c.id}"/>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        
+                        
+                    <div class="accordion-element default-open">
+                        <div style="width: 100%; height: 1px; display:block; background: none; border: none;" />
+                        <h2 class="accordion-header"> Social Media World</h2>
+                        <div style="width: 100%; height: 1px; display:block; background: none; border: none;" />
+                        <div id="feeds" class="accordion-content clearfix">
+                            <div id="feeds_menu">
+                                <strong>Feed filter</strong>
+                                <ul class="clearfix">
+                                    <!--<li class=""><a class="facebook-posts-content-link" href="#facebook-posts-content" rel="https://www.facebook.com/feeds/page.php?id=200106643364694&format=rss20">Facebook</a></li>-->
+                                    
+                                    <li class="active"><a class="twitter-posts-content-link" href="#twitter-posts-content" rel="https://search.twitter.com/search.json?q=from%3A{!uw_Brand__c.twitter_url__c}&rpp=3">Twitter</a></li>
+
+                                    <li><a class="youtube-posts-content-link" href="#youtube-posts-content" rel="https://gdata.youtube.com/feeds/api/users/{!uw_Brand__c.you_tube_url__c}/uploads?alt=json&max-results=4">Youtube</a></li>
+                                    
+
+                                     <!-- WITH THE CMS -->
+                                    <!-- <li class="active"><a class="facebook-posts-content-link" href="#facebook-posts-content" rel="https://www.facebook.com/feeds/page.php?id={!brandFacebook}&format=rss20">Facebook</a></li>
+                                    <li><a class="youtube-posts-content-link" href="#youtube-posts-content" rel="https://gdata.youtube.com/feeds/api/users/{!brandYouTube1}/uploads?alt=json&max-results=4">Youtube</a></li>
+                                    <li><a class="twitter-posts-content-link" href="#twitter-posts-content" rel="https://search.twitter.com/search.json?q=from%3A{!brandTwitter}&rpp=3">Twitter</a></li> -->
+                                </ul>
+                            </div>
+                            <!--<div id="facebook-posts-content" class="tab-content">
+                                Loading...
+                            </div>-->
+                            <div id="youtube-posts-content" class="tab-content">
+                                Loading...
+                            </div>
+                            <div id="twitter-posts-content" class="tab-content">
+                                Loading...
+                            </div>
+                            
+                            <div style="width: 90%; height: 1px; display:block; background: none; border: none;" />
+                            <div id="seeBrand">
+                                <span>Follow us on &nbsp; </span> 
+                                <a href="http://www.facebook.com/{!uw_Brand__c.Facebook__c}" title="Find on Facebook" class="link fb">Facebook</a> 
+                                <a href="http://twitter.com/{!uw_Brand__c.Twitter__c}" title="Follow on Twitter" class="link twitter">Twitter</a>
+                                <a href="https://www.youtube.com/{!uw_Brand__c.Youtube__c}" title="Youtube channel" class="link youtube_link">Youtube</a>
+                                <a href="{!uw_Brand__c.Website__c}" title="Open"  class="link com">.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="grid_6">              
+                
+                <div id="chatter-accordion">
+                    <div class="user-info">
+                        <div class="profile-pic"><apex:outputlink value="/{!Profileid}"> <apex:image value="{!Photolink}" width="60"/></apex:outputlink></div>
+                        <div class="text-information">
+                            <div class="user-name"><apex:outputlink value="/{!Profileid}">{!Profilename}</apex:outputlink></div>
+                        </div>
+                    </div>
+        
+                    <div class="accordion-conversations accordion-element">
+                        
+                        <h2 class="accordion-header">Join the Conversation</h2>
+                        <div class="accordion-content" style="background: transparent;">
+                            <div class="conversations-wrapper scrollable-conv" style="background: transparent;">
+                                <a id="follow"/>
+                                <chatter:follow entityId="{!uw_Brand__c.id}"/> 
+                                <chatter:feed entityId="{!uw_Brand__c.id}"/>
+                            </div>
+                        </div>
+                        
+        
+                    </div>
+        
+                </div>
+                             
+                
+                
+                <div class="carousel-accordion default-open" id="imagesNews">
+
+                    <div class="inner">
+                        <div class="carousel carousel_1">
+                           
+                            
+                            <apex:variable value="{!1}" var="rowNum"/>
+                                
+                              <ul>
+                                <li>
+                                      <div class="slide">
+                                <apex:repeat value="{!articlelist}" var="item">
+                                 
+                                     
+                                    <apex:outputpanel rendered="{!FLOOR(rowNum)==1}">
+                                        <a href="/apex/familygoodness_brand_single_sfdc?id={!item.Id}&bid={!uw_brand__c.id}" class="bigbox">
+                                            <img src="/sfc/servlet.shepherd/version/download/{!item.Picture_ID__c}" alt="" />
+                                            <span><span>{!item.Name}</span></span>
+                                        </a>
+                                        </apex:outputpanel>
+                                        
+                                        <apex:outputpanel rendered="{!FLOOR(rowNum)==2 || FLOOR(rowNum)==3}">
+                                        <a href="/apex/familygoodness_brand_single_sfdc?id={!item.Id}&bid={!uw_brand__c.id}" class="smallbox smallbox_top">
+                                            <img src="/sfc/servlet.shepherd/version/download/{!item.Picture_ID__c}" width="165" alt="" />
+                                            <span><span>{!item.Name}</span></span>
+                                        </a>
+                                        </apex:outputpanel>
+                                      <apex:variable var="rowNum" value="{!rowNum + 1}"/> 
+                                                                
+                                </apex:repeat>
+                                    </div>
+                                 </li>
+                                 
+                                    <apex:variable value="{!1}" var="rowNum"/>
+                                  <li>
+                                      <div class="slide">
+                                <apex:repeat value="{!articlelist}" var="item">
+                                 
+                                     
+                                    <apex:outputpanel rendered="{!FLOOR(rowNum)==4}">
+                                        <a href="/apex/familygoodness_brand_single_sfdc?id={!item.Id}&bid={!uw_brand__c.id}" class="bigbox">
+                                            <img src="/sfc/servlet.shepherd/version/download/{!item.Picture_ID__c}" alt="" />
+                                            <span><span>{!item.Name}</span></span>
+                                        </a>
+                                        </apex:outputpanel>
+                                        
+                                        <apex:outputpanel rendered="{!FLOOR(rowNum)==5 || FLOOR(rowNum)==6}">
+                                        <a href="/apex/familygoodness_brand_single_sfdc?id={!item.Id}&bid={!uw_brand__c.id}" class="smallbox smallbox_top">
+                                            <img src="/sfc/servlet.shepherd/version/download/{!item.Picture_ID__c}" width="165" alt="" />
+                                            <span><span>{!item.Name}</span></span>
+                                        </a>
+                                        </apex:outputpanel>
+                                      <apex:variable var="rowNum" value="{!rowNum + 1}"/> 
+                                                                
+                                </apex:repeat>
+                                    </div>
+                                 </li>
+
+                                              
+                            </ul>
+                        </div>
+                        <a href="/apex/familygoodness_brand_articles_sfdc?bid={!uw_brand__c.id}" class="seeall" title="See all">See all</a>
+                        
+                        <br /><br />
+                        
+                        <strong class="carousel_title">Latest Stories</strong>
+                        
+                        <a href="#previous" class="prev disabled prev_1" title="Previous">Previous</a>
+                        <a href="#next" class="next next_1" title="Next">Next</a>
+                        
+                        <a href="#" class="fold" title="Reduce">Reduce</a>
+                        
+                    </div>
+                    <a href="#" class="extend" title="See latest familygoodness Stories">Latest Stories</a>
+                </div>
+                
+                <apex:outputPanel rendered="{!NOT(ISNULL(uw_Brand__c.You_Tube_2_URL__c))}">
+                    <div class="carousel-accordion" id="imagesNews">
+    
+                        <div class="inner">
+                            <div class="carousel carousel_2" rel="{!uw_brand__c.You_Tube_2_URL__c}">
+                                <ul></ul>
+                            </div>
+                            
+                            <strong class="carousel_title">Recent and Competitor Work</strong>
+                            <a href="#previous" class="prev disabled prev_2" title="Previous">Previous</a>
+                            <a href="#next" class="next next_2" title="Next">Next</a>
+                            <a href="#" class="fold" title="Reduce">Reduce</a>
+                            
+                            
+    
+                        </div>
+                        <a href="#" class="extend" title="See more">Recent and Competitor Work</a>
+                        
+                    </div>
+                </apex:outputPanel>
+                
+                
+
+            </div><!--  end content  -->
+
+           <div class="omega grid_3">
+               
+                <div class="accordion">
+                    <div id="accordion-container-2">
+                     <apex:repeat value="{!linksSections}" var="linksec" >
+                     <apex:outputpanel rendered="{!linksec.Position__c == 'Vertical Menu'}">
+                      <div class="accordion-element" ><h2 class="accordion-header"><apex:outputtext value="{!linksec.Name}" /></h2>
+                        <div class="accordion-content {!linksec.Style_Class__c}">
+                            <p><a href="#"> <span style="color:#FFFFFF;">  <apex:image value="/sfc/servlet.shepherd/version/download/{!linksec.Section_Image_ID__c}" rendered="{!linksec.Section_Image_ID__c <> null}" /></span></a></p>
+                            <div class="linkslistwrapper"><ul class="linkslist"><apex:repeat value="{!brandlinks}"  var="bl">
+                            <apex:outputtext value="<li>" escape="false"  rendered="{!bl.Brand_Link_Sections__c == linksec.id}"  />
+                            
+                            <apex:outputpanel rendered="{!bl.Brand_Link_Sections__c == linksec.id}" >
+                               <apex:outputLink value="{!bl.Link_Output__c}"  target="_blank">{!bl.Link_Name__c}</apex:outputLink><br></br> 
+                            </apex:outputpanel>
+                            <apex:outputtext value="</li>" escape="false" rendered="{!bl.Brand_Link_Sections__c == linksec.id}"  />
+                            
+                            </apex:repeat></ul></div>                                 
+                       </div></div>
+                       </apex:outputpanel>
+                       </apex:repeat>      
+                    </div>
+                </div>
+                
+                
+                    </div>
+                </div>
+
+       
+        
+        <div style="clear:both"></div>
+        
+    </div></div></div>
+
+</apex:page>

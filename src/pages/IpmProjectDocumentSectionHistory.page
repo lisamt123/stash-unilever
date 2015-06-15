@@ -1,0 +1,4 @@
+<apex:page Controller="IPM_ProjDocumentSectionHstryController" sidebar="false" standardStylesheets="false" showHeader="false" >
+<c:IPM_ObjectAllHistoryComponent getProjectId="{!projectId}" myObjectName="{!projSectionList}" recordLimitCount="50" rendered="{!!secHistory}"></c:IPM_ObjectAllHistoryComponent>
+<c:IPM_ObjectAllHistoryComponent getProjectId="{!projectId}" myObjectName="{!projSectionList}" getSectionId="{!sectionId}" recordLimitCount="50" rendered="{!secHistory}"></c:IPM_ObjectAllHistoryComponent>
+</apex:page>

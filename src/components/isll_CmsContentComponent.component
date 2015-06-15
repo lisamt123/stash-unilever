@@ -1,0 +1,304 @@
+<apex:component controller="isll_CmsContentComponentController" allowDML="true" extensions="isll_ReturnUrlExtention">
+<!--====================================================-->
+<!--Name:  isll_CmsContentComponent                     -->
+<!--Copyright © 2013  Unilever                          -->
+<!--====================================================-->
+<!-- Purpose:                                           -->
+<!-- Component shows Content from CMS_Content object    -->
+<!--====================================================-->
+<!-- History                                            -->
+<!-- VERSION        AUTHOR              DATE            DETAIL      RELEASE/CSR        -->
+<!-- 1.0            Liza Romanenko      16/07/2013      INITIAL DEVELOPMENT            -->
+<!--====================================================-->
+    
+    
+    <apex:attribute name="cmsContentName" description="This is name of CMS_Component__c to show." 
+            assignTo="{!cmsComponentName}" type="String" required="false"/>
+    <apex:attribute name="cmsContentId" description="This is Id of CMS_Component__c to show." 
+            assignTo="{!cmsComponentId}" type="String" required="false"/>
+    <apex:attribute name="cmsContentBody" description="This is body of CMS_Component__c to show." 
+            assignTo="{!cmsComponentContent}" type="String" required="false"/>
+    <apex:attribute name="cmsContentType" description="This is type of CMS_Component__c to show." 
+            assignTo="{!contentType}" type="String" required="false"/>
+    <apex:attribute name="rerender" description="This ids to rerender on page." type="String" required="false"/>
+    <apex:attribute name="editable" description="true if content is editable" type="Boolean" required="false" assignTo="{!isEditable}"/>
+    <apex:attribute name="downloadable" description="true if link is downloadable" type="Boolean" required="false" />
+    <apex:attribute name="inlineEditable" description="need to write one" type="Boolean" required="false" />
+    <apex:attribute name="mode" description="define mode in which content should be shown (view/edit/inlineEdit)" 
+        type="String" required="false" assignTo="{!showMode}"/>
+    <apex:attribute name="linkMode" description="define way link should be displayed (articleView/articleViewEdit)"
+        type="String" required="false"/>
+    <apex:attribute name="style" description="Css styles" type="String" required="false"/>
+    <apex:attribute name="isEventRelated" description="show if content related to event" type="Boolean" required="false"/>
+        
+        <apex:includeScript value="{!URLFOR($Resource.isll_VidComp, 'lib/jquery-1.9.1.min.js')}" />
+       <!-- <apex:includeScript value="{!URLFOR($Resource.tinymce_richTextEditor, '/tinymce.min.js')}" />  -->
+
+        <apex:includeScript value="{!URLFOR($Resource.tinymce_richTextEditorV4, 'tinymce_richV4/tinymce_richTextEditor2/js/tinymce/tinymce.min.js')}" /> 
+<script type="text/javascript">
+    /*
+    Code took out so that the full color palette is shown
+    Ioan Beschea Release 6
+
+    textcolor_map: [
+        "E59063", "E59063",
+        "E56DB1", "E56DB1",
+        "DF1995", "DF1995",
+        "3C1053", "3C1053",
+        "0E0E9A", "0E0E9A",
+        "0085CA", "0085CA",
+        "40A4D7", "40A4D7",
+        "7FC0B1", "7FC0B1",
+        "00B388", "00B388",
+        "E9D561", "E9D561",
+        "E1C72C", "E1C72C",
+        "AC4FC6", "AC4FC6",
+        "B288B9", "B288B9",
+        "DC6B2F", "DC6B2F",
+        "E4002B", "E4002B",
+        "DF1995", "DF1995",
+        "702F8A", "702F8A",
+        "0E0E9A", "0E0E9A",
+        "EDB597", "EDB597",
+        "DC6B2F", "DC6B2F",
+        "40A4DA", "40A4DA",
+        "00573F", "00573F",
+        "7FC2E4", "7FC2E4"
+    ],
+    textcolor_rows: 6,
+    textcolor_cols: 4,
+    */
+tinymce.init({
+    selector: "textarea.customRich",
+    theme: "modern",
+    removed_menuitems: 'newdocument',
+    theme_advanced_font_sizes: "10px,12px,13px,14px,16px,18px,20px",
+    font_size_style_values: "12px,13px,14px,16px,18px,20px",
+    plugins: [
+        "advlist autolink lists link image charmap hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor"
+    ],
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image| media | fontsizeselect forecolor backcolor emoticons",
+    image_advtab: true,
+     forced_root_block : false,
+   
+});
+</script>
+
+    <style type="text/css">
+        .videobox { position: relative; }
+        
+        .videobox span
+        {
+            display: inline;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 1;
+            background: url('{!URLFOR($Resource.isll_PlayButton)}') no-repeat center center;
+            background-size: 80px 80px;
+        }
+    </style>
+
+    <apex:outputpanel rendered="{!showMode!='edit'}">
+    
+        <apex:outputPanel id="textPanel" rendered="{!contentType == 'Text'}">
+            <apex:outputpanel rendered="{!showMode!='inlineEdit'}">
+                <apex:outputText id="theText" value="{!cmsComponentContent}" escape="false"/>
+            </apex:outputpanel>
+        </apex:outputPanel>
+        
+        <apex:outputPanel id="videoPanel" rendered="{!contentType == 'Video'}">
+            <apex:outputpanel rendered="{!showMode!='inlineEdit'}">
+                
+                <a href="javascript:void(0);" onclick="showVideo('{!cmsComponentContent}', 'my-video', 'inline_content');">
+                    <div class="videobox"><img src="{!cmsContent.ThumbnailLink__c}" width="98%" /><span></span></div>
+                </a>
+                
+                <div style='display:none'>
+                    <div id='inline_content' style='padding:10px; background:#fff;'>
+                        <div id='my-video'></div>
+                    </div>
+                </div>
+                
+            </apex:outputpanel>
+        </apex:outputPanel>
+        
+        <apex:outputPanel id="imagePanel" rendered="{!contentType == 'Image'}">
+            <apex:outputpanel rendered="{!showMode!='inlineEdit'}">
+                <apex:outputpanel rendered="{!isEventRelated && daysToGo != -100}">
+                    <span class = "cmsContentTitle" style="margin-bottom:0;">
+                        <apex:outputpanel rendered="{!daysToGo > 0}">
+                            {!daysToGo} {!IF(daysToGo > 1, "days", "day")} to go
+                        </apex:outputpanel>
+                        <apex:outputpanel rendered="{!daysToGo == 0}">
+                            Today
+                        </apex:outputpanel>
+                    </span>
+                </apex:outputpanel>
+                <apex:outputpanel rendered="{!null == cmsContent.Event__c || (null != cmsContent.Event__c && !cmsContent.Event__r.Locked__c)}">
+                <apex:outputPanel rendered="{!len(cmsContent.Link__c) > 0}">
+                    <a href = "{!cmsContent.Link__c}">
+                        <apex:image id="theImage" value="{!cmsComponentContent}" styleclass="imagePanel"/>
+                    </a>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!len(cmsContent.Link__c) == 0}">
+                    <apex:image id="theImage2" value="{!cmsComponentContent}" styleclass="imagePanel"/>
+                </apex:outputPanel>
+
+
+                </apex:outputpanel>
+                <apex:outputpanel rendered="{! null != cmsContent.Event__c && cmsContent.Event__r.Locked__c}">
+                    <apex:image id="theImage1" value="{!cmsComponentContent}" styleclass="imagePanel"/>
+                    
+                </apex:outputpanel>
+            </apex:outputpanel>
+        </apex:outputPanel>
+        
+        <apex:outputPanel id="linkPanel" rendered="{!contentType == 'Link'}">
+            <apex:outputpanel rendered="{!!isInlineEditMode}">
+            
+                <apex:outputpanel rendered="{!downloadable}">
+                    <a href="{!cmsComponentContent}"><apex:image value="{!URLFOR($Resource.isll_images, 'download.png')}" styleClass="linkImg"/></a>
+                </apex:outputpanel>
+            
+                <apex:outputpanel rendered="{!linkMode == 'articleView'}">
+                    <apex:image value="{!URLFOR($Resource.isll_images, 'plus.png')}" styleClass="linkImg"/>
+                    <apex:image value="{!URLFOR($Resource.isll_images, 'plus.png')}" styleClass="linkImg"/>
+                    <apex:image value="{!URLFOR($Resource.isll_images, 'download.png')}" styleClass="linkImg"/>
+                </apex:outputpanel>
+                <apex:outputpanel rendered="{!OR(linkMode == 'articleView', linkMode == 'articleViewEdit')}">
+                    <apex:outputLink value="{!cmsComponentContent}" id="theLink1">{!cmsComponentName}</apex:outputLink>&nbsp;&nbsp;
+                </apex:outputpanel>
+                <apex:outputpanel rendered="{!linkMode != 'articleView'}">
+                    <apex:outputPanel rendered="{!len(cmsComponentContent) > 0}">
+                        <apex:outputLink value="{!cmsComponentContent}" id="theLink" style="{!style}">{!cmsContent.LinkTitle__c}</apex:outputLink>&nbsp;&nbsp;
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!len(cmsComponentContent) == 0}">
+                        <apex:outputText value="{!cmsContent.LinkTitle__c}" />
+                    </apex:outputPanel>
+                    
+                </apex:outputpanel>
+                
+                <apex:commandLink action="{!editContent}" value="Edit" id="theEditLinkBtn" rerender="linkPanel" rendered="{!inlineEditable}"/>&nbsp;&nbsp;
+                <apex:commandLink action="{!deleteContent}" value="Del" id="theCommandLink" rerender="{!rerender}" rendered="{!inlineEditable}"/>
+            </apex:outputpanel>
+            <apex:outputpanel rendered="{!isInlineEditMode}">
+                <apex:outputLabel value="Text:"/><apex:inputText value="{!cmsContent.Name}" size="75"/>&nbsp;&nbsp;
+                <apex:outputLabel value="Url:"/><apex:inputText value="{!cmsContent.Content__c}" size="75"/>&nbsp;&nbsp;
+                <apex:commandButton action="{!saveInline}" value="Save" rerender="{!rerender}"/>
+                <apex:commandButton action="{!cancel}" value="Cancel" rerender="linkPanel"/>
+            </apex:outputpanel>
+        </apex:outputPanel>
+        
+        <apex:outputPanel id="titlePanel" rendered="{!contentType == 'Title'}">
+            <apex:outputpanel rendered="{!showMode!='inlineEdit'}">
+                <apex:outputText id="theTitle" value="{!cmsComponentContent}" styleClass="cmsContentTitle" escape="false"/>
+            </apex:outputpanel>
+        </apex:outputPanel>
+        
+        <apex:outputPanel id="textLinkPanel" rendered="{!contentType == 'TextLink'}">
+            <apex:outputpanel rendered="{!showMode!='inlineEdit'}">
+                <apex:outputPanel rendered="{!len(cmsContent.Link__c) > 0}">
+                    <apex:outputLink value="{!cmsContent.Link__c}" id="theTextLink">{!cmsContent.Content__c}</apex:outputLink>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!len(cmsContent.Link__c) == 0}">
+                    <apex:outputText value="{!cmsContent.Content__c}" />
+                </apex:outputPanel>
+            </apex:outputpanel>
+        </apex:outputPanel>
+        
+        <apex:outputLink value="isll_ContentEdit" styleClass="editLink" rendered="{!showEditLink && cmsContent.Id != null}">Edit
+            <apex:param name="id" value="{!cmsContent.Id}"/>
+            <apex:param name="returnPage" value="{!backUrl}" />
+            <apex:param name="event" value="{!isEventRelated}" />
+        </apex:outputLink>
+        <apex:outputpanel rendered="{!showEditLink && cmsContent.Id == null}">
+            <span style="color: red;">{!$Label.isll_ContentMissingMsg} {!cmsContentName}</span>
+        </apex:outputpanel>
+        
+    </apex:outputpanel>
+    
+    
+    
+    <apex:outputPanel rendered="{!showMode=='edit'}" id="editPanel">
+        <apex:pageBlock title="Edit Content">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!saveAndBack}" value="Save" rendered="{!!isChangeTypeMode}"/>
+                <apex:commandButton action="{!goBack}" value="Cancel" rendered="{!!isChangeTypeMode}"/>
+                <apex:commandButton action="{!changeType}" value="Change Type" rendered="{!!isChangeTypeMode}"/>
+                <apex:commandButton action="{!changeTypeSave}" value="Change" rendered="{!isChangeTypeMode}"/>
+                <apex:commandButton action="{!changeTypeCancel}" value="Cancel" rendered="{!isChangeTypeMode}"/>
+            </apex:pageBlockButtons>
+            
+            <apex:outputpanel id="changeTypePanel" rendered="{!isChangeTypeMode}">
+                <apex:inputField value="{!cmsContent.Type__c}"  />
+            </apex:outputpanel>
+            
+            <apex:outputpanel id="editDataPanel" rendered="{!!isChangeTypeMode}">
+                <apex:outputPanel id="textPanel" rendered="{!contentType == 'Text'}">
+                    <apex:inputTextarea value="{!cmsContent.Content__c}"  styleClass="customRich" />
+                </apex:outputPanel>
+        
+                <apex:outputPanel id="videoPanel" rendered="{!contentType == 'Video'}">
+                    <apex:outputLabel value="Media Source" />
+                    <apex:inputTextarea value="{!cmsContent.Content__c}" rows="2" style="width: 100%;"/>
+                    <apex:outputLabel value="Thumbnail Source" />
+                    <apex:inputTextarea value="{!cmsContent.ThumbnailLink__c}" rows="2" style="width: 100%;" />
+                    <apex:inputFile value="{!attach.Body}" filename="{!attach.Name}" />
+                </apex:outputPanel>
+                
+                <apex:outputPanel id="imagePanel" rendered="{!contentType == 'Image'}">
+                    <apex:outputpanel id="imgUrlPanel">
+                        <apex:inputTextarea value="{!cmsContent.Content__c}" rows="2" style="width: 100%;"/>
+                    </apex:outputpanel>
+                    <br/><br/>
+                    <apex:outputpanel id="uploadImgMainPanel">
+                        <apex:outputpanel id="uploadImgPanel" >
+                            <apex:inputFile value="{!attach.Body}" filename="{!attach.Name}" />
+                        </apex:outputpanel>
+                    </apex:outputpanel><br/><br/>
+                    <apex:outputPanel rendered="{!!showEvent}">v
+                        <apex:outputLabel value="Add link to image"/>
+                        <apex:inputTextarea value="{!cmsContent.Link__c}" rows="2" style="width: 100%;"/>
+                        <apex:outputLabel value="Link text"/>
+                        <apex:inputTextarea value="{!cmsContent.LinkTitle__c}" rows="2" style="width: 100%;"/>
+                    </apex:outputPanel>
+                    <br/><br/>
+                    <apex:outputpanel id="imgViewPanel">
+                        <div>
+                   <!--         <apex:image value="{!cmsComponentContent}" />--> 
+                        </div>
+                    </apex:outputpanel>
+                </apex:outputPanel>
+        
+                <apex:outputPanel id="linkPanel" rendered="{!contentType == 'Link'}">
+                
+                
+                    <apex:outputLabel value="Name:"/><apex:inputText value="{!cmsContent.Name}" size="75" disabled="{!IF((null != cmsContentName || '' != cmsContent.Name) , 'true', 'false')}"/><br/>
+                    <apex:outputLabel value="Url:"/><apex:inputText value="{!cmsContent.Content__c}" size="75"/><br/>
+                    <apex:outputLabel value="Text:"/><apex:inputText value="{!cmsContent.LinkTitle__c}" size="75"/>
+                </apex:outputpanel>
+        
+                <apex:outputPanel id="titlePanel" rendered="{!contentType == 'Title'}">
+                    <apex:inputTextarea value="{!cmsContent.Content__c}" rows="2" style="width: 100%;" styleClass="customRich"/>
+                </apex:outputPanel>
+        
+                <apex:outputPanel id="textLinkPanel" rendered="{!contentType == 'TextLink'}">
+                    <apex:inputTextarea value="{!cmsContent.Content__c}" richText="true"/>
+                    <apex:inputTextarea value="{!cmsContent.Link__c}" richText="true"/>
+                </apex:outputPanel>
+                
+                <apex:outputpanel rendered="{!showEvent}">
+                    <apex:outputLabel value="Event"/><br/>
+                    <apex:inputField value="{!cmsContent.Event__c}"/>
+                </apex:outputpanel>
+            </apex:outputpanel>
+        </apex:pageBlock>
+    </apex:outputPanel>
+
+</apex:component>

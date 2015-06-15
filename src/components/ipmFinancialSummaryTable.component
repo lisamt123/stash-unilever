@@ -1,0 +1,313 @@
+<apex:component >
+    <apex:attribute name="ipmFinancial" type="IPM_Financial__c" required="true" description="IPM Financial object record"/>
+    <apex:attribute name="fieldSuffix" type="String" required="true" description="Field Suffix - Global/Regional/Local"/>
+    <apex:attribute name="isEditMode" type="Boolean" default="false" description="Edit Mode"/>
+    <apex:attribute name="showMisalignment" type="Boolean" default="false" description="showMisalignment"/>
+
+    <!-- Variables -->
+    <apex:variable value="{!IF(CONTAINS(ipmFinancial.Financial_External_ID__c, '_CONSOLIDATED'), TRUE, FALSE)}" var="isConsolidated"/>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <table class="fintable table table-bordered finSumTbl" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="30%" class="finproject fintleblubg">NPV</td>
+                    <td width="30%" class="fintleblubg">&euro; &#39;000</td>
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment, ipmFinancial.NPV_Difference__c > 0), 'misaligned', '')}">
+                        <!-- Global Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputText rendered="{!AND(showMisalignment, ipmFinancial.NPV_Difference__c>0, NOT(isEditMode))}">
+                                <a href="#" data-toggle="tooltip" title="Misaligned by {!ipmFinancial.NPV_Difference__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.NPV_Global__c}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.NPV_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.NPV_Global__c}" />
+                            </apex:outputText>
+                            <apex:inputText value="{!ipmFinancial.NPV_Global__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}"/>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputText rendered="{!AND(showMisalignment, ipmFinancial.NPV_Difference__c>0, NOT(isEditMode))}">
+                                <a href="#" data-toggle="tooltip" title="Misaligned by {!ipmFinancial.NPV_Difference__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.NPV_Regional__c}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.NPV_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.NPV_Regional__c}" />
+                            </apex:outputText>
+                            <apex:inputText value="{!ipmFinancial.NPV_Regional__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}"/>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputText rendered="{!AND(showMisalignment, ipmFinancial.NPV_Difference__c>0, NOT(isEditMode))}">
+                                <a href="#" data-toggle="tooltip" title="Misaligned by {!ipmFinancial.NPV_Difference__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.NPV_Local__c}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.NPV_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.NPV_Local__c}" />
+                            </apex:outputText>
+                            <apex:inputText value="{!ipmFinancial.NPV_Local__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}"/>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%" class="finproject fintleblubg">IRR</td>
+                    <td width="30%" class="fintleblubg">%</td>
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment, ipmFinancial.IRR_Difference__c > 0), 'misaligned', '')}">
+                        <!-- Global Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputText rendered="{!AND(showMisalignment, ipmFinancial.IRR_Difference__c>0, NOT(isEditMode))}">
+                                <a href="#" data-toggle="tooltip" title="Misaligned by {!ipmFinancial.IRR_Difference__c}">
+                                    {!ipmFinancial.IRR_Global__c}
+                                </a>
+                            </apex:outputText>
+                            <apex:outputText value="{!ipmFinancial.IRR_Global__c}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.IRR_Difference__c==0), NOT(isEditMode))}"/>
+                            <apex:inputText value="{!ipmFinancial.IRR_Global__c}" size="3" rendered="{!isEditMode}"/>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputText rendered="{!AND(showMisalignment, ipmFinancial.IRR_Difference__c>0, NOT(isEditMode))}">
+                                <a href="#" data-toggle="tooltip" title="Misaligned by {!ipmFinancial.IRR_Difference__c}">
+                                    {!ipmFinancial.IRR_Regional__c}
+                                </a>
+                            </apex:outputText>
+                            <apex:outputText value="{!ipmFinancial.IRR_Regional__c}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.IRR_Difference__c==0), NOT(isEditMode))}"/>
+                            <apex:inputText value="{!ipmFinancial.IRR_Regional__c}" size="3" rendered="{!isEditMode}"/>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputText rendered="{!AND(showMisalignment, ipmFinancial.IRR_Difference__c>0, NOT(isEditMode))}">
+                                <a href="#" data-toggle="tooltip" title="Misaligned by {!ipmFinancial.IRR_Difference__c}">
+                                    {!ipmFinancial.IRR_Local__c}
+                                </a>
+                            </apex:outputText>
+                            <apex:outputText value="{!ipmFinancial.IRR_Local__c}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.IRR_Difference__c==0), NOT(isEditMode))}"/>
+                            <apex:inputText value="{!ipmFinancial.IRR_Local__c}" size="3" rendered="{!isEditMode}"/>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%" class="finproject fintleblubg">Payback</td>
+                    <td width="30%" class="fintleblubg">Years</td>
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment, ipmFinancial.NPV_Difference__c > 0), 'misaligned', '')}">
+                        <!-- Global Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputText rendered="{!AND(showMisalignment, ipmFinancial.Payback_Difference__c>0, NOT(isEditMode))}">
+                                <a href="#" data-toggle="tooltip" title="Misaligned by {!ipmFinancial.Payback_Difference__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.Payback_Global__c}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.Payback_Global__c}" />
+                            </apex:outputText>
+                            <apex:inputText value="{!ipmFinancial.Payback_Global__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}"/>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputText rendered="{!AND(showMisalignment, ipmFinancial.Payback_Difference__c>0, NOT(isEditMode))}">
+                                <a href="#" data-toggle="tooltip" title="Misaligned by {!ipmFinancial.Payback_Difference__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.Payback_Regional__c}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.Payback_Regional__c}" />
+                            </apex:outputText>
+                            <apex:inputText value="{!ipmFinancial.Payback_Regional__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}"/>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputText rendered="{!AND(showMisalignment, ipmFinancial.Payback_Difference__c>0, NOT(isEditMode))}">
+                                <a href="#" data-toggle="tooltip" title="Misaligned by {!ipmFinancial.Payback_Difference__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.Payback_Local__c}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.Payback_Local__c}" />
+                            </apex:outputText>
+                            <apex:inputText value="{!ipmFinancial.Payback_Local__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}"/>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-4">
+            <table class="fintable table table-bordered finSumTbl" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="40%" class="finproject fintleblubg">CAPEX</td>
+                    <td width="30%" class="fintleblubg">&euro; &#39;000</td>
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment, ipmFinancial.NPV_Difference__c > 0), 'misaligned', '')}">
+                        <!-- Global Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputText rendered="{!AND(showMisalignment, ipmFinancial.CAPEX_Difference__c>0, NOT(isEditMode))}">
+                                <a href="#" data-toggle="tooltip" title="Misaligned by {!ipmFinancial.CAPEX_Difference__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.CAPEX_Global__c}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.CAPEX_Global__c}" />
+                            </apex:outputText>
+                            <apex:inputText value="{!ipmFinancial.CAPEX_Global__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}"/>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputText rendered="{!AND(showMisalignment, ipmFinancial.CAPEX_Difference__c>0, NOT(isEditMode))}">
+                                <a href="#" data-toggle="tooltip" title="Misaligned by {!ipmFinancial.CAPEX_Difference__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.CAPEX_Regional__c}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.CAPEX_Regional__c}" />
+                            </apex:outputText>
+                            <apex:inputText value="{!ipmFinancial.CAPEX_Regional__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}"/>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputText rendered="{!AND(showMisalignment, ipmFinancial.CAPEX_Difference__c>0, NOT(isEditMode))}">
+                                <a href="#" data-toggle="tooltip" title="Misaligned by {!ipmFinancial.CAPEX_Difference__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.CAPEX_Local__c}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.CAPEX_Local__c}" />
+                            </apex:outputText>
+                            <apex:inputText value="{!ipmFinancial.CAPEX_Local__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}"/>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%" class="finproject fintleblubg">BIC</td>
+                    <td width="30%" class="fintleblubg">&euro; &#39;000</td>
+                    <td width="30%" class="blueBorder {!IF(AND(showMisalignment, ipmFinancial.NPV_Difference__c > 0), 'misaligned', '')}">
+                        <!-- Global Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputText rendered="{!AND(showMisalignment, ipmFinancial.BIC_Difference__c>0, NOT(isEditMode))}">
+                                <a href="#" data-toggle="tooltip" title="Misaligned by {!ipmFinancial.BIC_Difference__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.BIC_Global__c}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.BIC_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.BIC_Global__c}" />
+                            </apex:outputText>
+                            <apex:inputText value="{!ipmFinancial.BIC_Global__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}"/>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputText rendered="{!AND(showMisalignment, ipmFinancial.BIC_Difference__c>0, NOT(isEditMode))}">
+                                <a href="#" data-toggle="tooltip" title="Misaligned by {!ipmFinancial.BIC_Difference__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.BIC_Regional__c}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.BIC_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.BIC_Regional__c}" />
+                            </apex:outputText>
+                            <apex:inputText value="{!ipmFinancial.BIC_Regional__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}"/>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputText rendered="{!AND(showMisalignment, ipmFinancial.BIC_Difference__c>0, NOT(isEditMode))}">
+                                <a href="#" data-toggle="tooltip" title="Misaligned by {!ipmFinancial.BIC_Difference__c}">
+                                    <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <apex:param value="{!ipmFinancial.BIC_Local__c}" />
+                                    </apex:outputText>
+                                </a>
+                            </apex:outputText>
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.BIC_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                                <apex:param value="{!ipmFinancial.BIC_Local__c}" />
+                            </apex:outputText>
+                            <apex:inputText value="{!ipmFinancial.BIC_Local__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}"/>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-4">
+            <table class="fintable table table-bordered finSumTbl" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="70%" class="finproject fintleblubg">GM Y1 bps vs DNDS</td>
+                    <td width="30%" class="blueBorder">
+                        <!-- Global Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!ipmFinancial.GM_Y1_bps_vs_DNDS_Global__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!ipmFinancial.GM_Y1_bps_vs_DNDS_Regional__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!ipmFinancial.GM_Y1_bps_vs_DNDS_Local__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%" class="finproject fintleblubg">PBO Y1 bps vs DNDS Global</td>
+                    <td width="50%" class="blueBorder">
+                        <!-- Global Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!ipmFinancial.PBO_Y1_bps_vs_DNDS_Global__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Regional Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!ipmFinancial.PBO_Y1_bps_vs_DNDS_Regional__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+
+                        <!-- Local Values -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                <apex:param value="{!ipmFinancial.PBO_Y1_bps_vs_DNDS_Local__c}" />
+                            </apex:outputText>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+            </table>
+        </div>                                                        
+    </div>
+
+</apex:component>

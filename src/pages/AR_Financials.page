@@ -1,0 +1,155 @@
+<!--
+	Unilever
+
+	Page Name: AR_Financials
+	Marc Saelzler | 2013-09-06
+
+	Page for financials.
+
+	Timeline
+	Date 					| Name 				| Description
+	2013-09-06 01:44 (CET) 	| Marc Saelzler 	| Initial development.
+-->
+<apex:page docType="html-5.0" standardStylesheets="false" showHeader="false" applyHtmlTag="false" applyBodyTag="false" controller="AR_FinancialsController" action="{!InitPage}">
+	
+	<apex:composition template="AR_Template">
+	
+		<apex:define name="content">
+			
+			<section role="main" id="content" class="form global-content">
+			
+				<apex:form styleClass="form-validate">
+			
+		            <header class="main-header">
+		            
+		            	<nav class="steps-wrapper" style="margin-bottom:15px;">
+	                   		<c:AR_ProgressBar pController="{!this}" />
+		                </nav>
+		                
+		                <h1>Financials</h1>
+		                <p>
+		                     As part of Unilever’s Partner to Win initiative, we have committed to sourcing and engaging with partners who share a similar set of values and business principles.
+		                </p>
+		                <p>
+		                    Part of this requirement is to obtain financial information from suppliers, so that Unilever can ensure our suppliers have sufficient size to support Unilever and its business demands, that the supplier is not over-burdened with debt, and to identify potential conflicts of interest where suppliers work with both Unilever and its competitors. Any information provided will be treated as confidential, will only be used for the purpose stated, and will only be accessible to Unilever employees associated with the initial review process.
+		                </p>
+		                
+		            </header>
+	            
+	                <div class="form-fields-wrapper">
+	                
+						<ul class="form-errors active">
+							<apex:messages />
+	                    </ul>
+	                    
+	                    
+	                   	<div class="form-row select-row clearfix">
+	                        <label for="job-title" class="form-row-label">
+	                            Please indicate the currency which your organisation figures are reported in.
+	                        </label>
+	                        <div class="form-input">
+                        		 <label class="select-label">
+                        		 	<apex:inputField value="{!ApplicationObject.obj['Currency__c']}" styleClass="select" />
+	                        	</label>
+	                        </div>
+	                    </div>
+	                    
+	                    
+	                    <table class="table form table-financial">
+	                        <thead>
+	                            <tr>
+	                                <th></th>
+	                                <apex:repeat value="{!FinancialObjectList}" var="financial">
+	                                	<th>{!financial.obj['Name']}</th>
+	                                </apex:repeat>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+                        		<apex:repeat value="{!FieldSetMap['ar_Financial__c']['financials']}" var="field">
+                            		<tr>
+	                                	<th>
+	                                		<span style="float:left;">{!field.label}</span>
+	                                		<apex:outputText rendered="{!$ObjectType['ar_Financial__c'].fields[field.fieldPath].InlineHelpText != null}">
+	                                			<div class="helper-container">
+			                        				<p class="helper" style="display:none;">{!$ObjectType['ar_Financial__c'].fields[field.fieldPath].InlineHelpText}</p>
+			                        			</div>
+			                        		</apex:outputText>
+	                                	</th>
+	                                	<apex:repeat value="{!FinancialObjectList}" var="financial">
+	                                		<td>
+	                                			<apex:inputField value="{!financial.obj[field.fieldPath]}" style="width:90%;" styleClass="{!field.Type}" />
+	                                		</td>
+	                                	</apex:repeat>
+                            		</tr>
+                            	</apex:repeat>
+	                        </tbody>
+	                    </table>
+	                    
+	                    <div class="form-row clearfix">
+	                        <label for="job-title" class="form-row-label">
+	                            What is the average length of client relationships?
+	                        </label>
+	                        <div class="form-input">
+                        		 <label class="select-label">
+                        		 	<apex:inputField value="{!ApplicationObject.obj['Length_of_client_relationship__c']}" styleClass="select" />
+	                        	</label>
+	                        </div>
+	                    </div>
+	                    <apex:outputPanel layout="block" id="competitorTable">
+		                    <table class="table">
+		                        <thead>
+		                            <tr>
+		                                <th colspan="4">
+		                                    Please specify any clients you have worked with in the past 18 months that are a competitor to Unilever. Please also include the country and the service that was provided
+		                                </th>
+		                            </tr>
+		                            <tr>
+		                            	<apex:repeat value="{!FieldSetMap['ar_Competitor__c']['financial']}" var="field">
+		                                	<th>{!field.Label}</th>
+		                                </apex:repeat>
+		                                <td style="width:125px;">
+		                                	<apex:commandButton styleClass="btn-add-row" action="{!AddRowToCompetitorObjectList}" value="Add Row" status="addRowStatus" reRender="competitorTable" />
+		                                	<apex:actionStatus id="addRowStatus">
+		                                		<apex:facet name="start">
+		                                			<apex:image value="/img/loading.gif" />
+		                                		</apex:facet>
+		                                	</apex:actionStatus>
+		                                </td>
+		                            </tr>
+		                        </thead>
+		                        <tbody>
+		                        	<apex:repeat value="{!CompetitorObjectList}" var="competitor">
+		                            <tr style="{!IF(competitor.isDeleted,'display:none','')}">
+		                            	<apex:repeat value="{!FieldSetMap['ar_Competitor__c']['financial']}" var="field">
+			                                <td>
+			                                	<apex:inputText value="{!competitor.obj[field.fieldPath]}" rendered="{!field.Type=='textarea'}" />
+			                                	<apex:inputField value="{!competitor.obj[field.fieldPath]}" rendered="{!field.Type!='textarea'}" />
+			                                </td>
+			                            </apex:repeat>
+			                            <td>
+				                            <apex:commandLink action="{!competitor.remove}" rerender="competitorTable" status="addRowStatus">
+			                            		<img src="{!URLFOR($Resource.AR_StaticResources, 'img/delete-row.png')}" class="remove-row"/>
+											</apex:commandLink>
+										</td>	
+		                            </tr>
+		                            </apex:repeat>
+		                        </tbody>
+		                    </table>
+		                </apex:outputPanel>
+	                </div>
+	                
+	                <footer class="form-footer">
+		                <ul>
+		                    <li><apex:commandLink styleClass="next" action="{!nextStep}" /></li>
+		                    <li><apex:commandButton styleClass="save" action="{!save}" /></li>
+		                    <li><apex:commandLink styleClass="back" action="{!previousStep}"  /></li>
+		                </ul>
+		            </footer>
+	            </apex:form>
+	            
+	        </section>
+	        
+		</apex:define>
+		
+	</apex:composition>
+</apex:page>

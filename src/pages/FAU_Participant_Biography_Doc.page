@@ -1,0 +1,42 @@
+<apex:page standardcontroller="FAU_Program__c" extensions="FAU_Participant_Biography_Doc_Controller" renderAs="pdf" standardStylesheets="false">
+    <!--<apex:stylesheet value="{!$Resource.style}"/> -->
+    
+    <!--  <div class="header" align="center"><apex:image URL="{!resourceURL}" width="100%"/></div> -->
+    
+       
+    <apex:variable var="cnt" value="{!0}" />
+    <div style="font-family: Sans-serif; font-size: 10pt;">
+    <apex:repeat value="{!participantList}" var="p" >
+    
+        <div style="{!if(cnt < 1, 'page-break-before:avoid;','page-break-before:always;')}">
+        <apex:variable var="cnt" value="{!cnt+1}"/> 
+        </div> 
+        <br/><br/><br/>
+        <table width="100%"><tr><td>
+        
+        </td></tr></table>
+        <br/>
+        <table width="100%">
+            <tr>
+                <td>
+                    <apex:image value="{!p.FAU_User__r.FullPhotoURL}" alt="Smiley face" />
+                </td>
+                <td align="right">            
+                    <div style="font-size: 14pt;" align="right"> <b>Name: &nbsp; <apex:outputField value="{!p.FAU_User__r.Name}"/>  </b> </div> <br/><br/> <br/><br/><br/><br/>
+                    <b>E-mail:</b>&nbsp; <apex:outputField value="{!p.FAU_User__r.Email}"/> <br/>
+                    <b>Job Title:</b>&nbsp; <apex:outputField value="{!p.FAU_Job_Title__c}"/> <br/>
+                    <b>Business:</b>&nbsp; <apex:outputField value="{!p.FAU_Company_Name__c}"/> <br/>                    
+                    <b>Location:</b>&nbsp; <apex:outputField value="{!p.FAU_Company_City__c}"/> <br/>    
+                </td> 
+            </tr>
+        </table>
+        <br/><br/>
+        <b> Current Role and Responsibilities:</b><br/> <apex:outputField value="{!p.Current_Role_Responibilities__c }"/> <br /><br />
+        <b>Unilever Career: </b><br/> <apex:outputField value="{!p.FAU_Unilever_Career__c}"/> <br /><br />
+        <b>Prior Career:</b><br/> <apex:outputField value="{!p.FAU_Prior_Career__c}"/> <br /><br />
+        <b>Education:</b> <br/> <apex:outputField value="{!p.FAU_Education__c}"/> <br /><br />
+        <b>Personal:</b> <br/> <apex:outputField value="{!p.FAU_Personal__c}"/> <br />     
+            
+    </apex:repeat>
+    </div> 
+</apex:page>

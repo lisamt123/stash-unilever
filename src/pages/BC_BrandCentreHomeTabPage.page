@@ -1,0 +1,12 @@
+<!--
+-----------------------------------------------------------------------------------------------------------------------
+Name:        BC_BrandCentreHomeTabPage.page
+Description: VisualForce page that helps in redirecting to the BC_Landing_page with a specific Id.
+
+Date            Version     Author                      Summary of Changes
+----            -------     ------                      ------------------
+May 2014        1.0         IDC-Subhashish              Initial Release.
+-----------------------------------------------------------------------------------------------------------------------
+-->
+<apex:page controller="BC_BrandCentreHomeTabController" action="{!Redirect}" >        
+</apex:page>

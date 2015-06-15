@@ -1,0 +1,79 @@
+<apex:component controller="IPM_MyProjects" allowDML="true" >
+
+       <!-- <div>
+            <ul>
+                <apex:repeat var="key" value="{!alertMessage}">
+                <li>
+            {!key} Approval is due in {!alertMessage[key]} 
+            </li>
+        </apex:repeat>
+        
+               
+            </ul>
+        </div> -->
+    
+    <div class="myActiveProjects">
+        <div class="row borderBottom">
+            <div class="col-sm-5 heading3 blue width4 noPadleft">My Active Projects</div>
+            <div class="col-sm-2 blue heading3 padTop1 projectsListHeading  width1">{!projectcount}</div>
+        </div>
+        <!--<div class="row singleProject">
+            <div class="col-sm-3 noPadleft">
+                <img src="#" />
+            </div>
+            <div class="col-sm-7">
+                <a href="#" class="proTitle">Project AbsoluteMW</a><br/>
+                <span class="captions">Surf | Laundry | Idea</span><br/><br/>
+                <span class="projectsDetails">Charter Approval is due on 20-dec-2014.</span>
+                <span>Current status <b class="percentage">80%</b> Filled in</span>
+            </div>
+            <div class="col-sm-2">
+                <div class="col-sm-12 SecButtonSet pull-right">
+                    <a href="#" class="icoButton details" title="Details"></a>
+                </div>
+            </div>
+        </div>-->
+        <apex:repeat var="p" value="{!Projects}">
+            <div class="row singleProject">
+                <div class="col-sm-3 noPadleft">
+                   <!--<apex:image value="{!URLFOR($Resource.ipmResourceRevamp, 'images/img_pic1b.jpg')}" styleClass="ipmImage" />-->
+                   <apex:outputText value="{!if(p.projectObj.IPM_Project_Logo__c != null,p.projectObj.IPM_Project_Logo__c,p.projectObj.IPM_Bosscard__r.IPM_Bosscard_Logo__c)}" escape="false" styleClass="ipmImage"/>
+                   <span class="ipmImage">
+                       <apex:image value="{!URLFOR($Resource.ipmResourceRevamp, 'images/upload_img2b.png')}" rendered="{!If(and (p.projectObj.IPM_Bosscard__r.IPM_Bosscard_Logo__c==null,p.projectObj.IPM_Project_Logo__c==null,p.projectObj.IPM_Project_Logo__c == Null),true,false)}" title="Default Image"/>
+                   </span>
+                </div>
+                    
+                <div class="col-sm-7">
+                  <!--  <a href="#" class="proTitle"></a> -->
+                      <apex:form >
+                      
+                      <!--<apex:commandLink value="{!if(p.projectObj.IPM_Project_Name__c != null,p.projectObj.IPM_Project_Name__c,p.projectObj.IPM_Bosscard__r.Name)}" action="/apex/ipmProjectOverview?id={!p.projectObj.Id}"/> -->
+                      <!-- BossCard:{!p.projectObj.IPM_Bosscard__c}
+                      Status:{!p.projectObj.IPM_Bosscard_Status__c}
+                      B Name:{!p.projectObj.IPM_Bosscard__r.Name}
+                      P Name{!p.projectObj.IPM_Project_Name__c} -->
+                     <!-- <apex:commandLink value="{!if((p.projectObj.IPM_Bosscard__c != null && !(p.projectObj.IPM_Bosscard_Status__c)),p.projectObj.IPM_Bosscard__r.Name,p.projectObj.IPM_Project_Name__c)}" action="/apex/ipmProjectOverview?id={!p.projectObj.Id}"/>-->
+                      <apex:commandLink value="{!if((p.projectObj.IPM_Bosscard__c != null && !(p.projectObj.IPM_Bosscard_Status__c)),p.projectObj.IPM_Bosscard__r.Name,p.projectObj.IPM_Project_Name__c)}" action="{!if((p.projectObj.IPM_Bosscard__c != null && !(p.projectObj.IPM_Bosscard_Status__c)),'/apex/ipmBosscard_revamp?id='+p.projectObj.IPM_Bosscard__c,'/apex/ipmProjectOverview?id='+p.projectObj.Id)}"/>
+                    <br/>
+                    </apex:form> 
+                    <span class="captions">{!if(p.projectObj.IPM_Brand__c!= null,p.projectObj.IPM_Brand__c,p.projectObj.IPM_Bosscard__r.IPM_Brand__c)} | {!p.projectObj.IPM_Category_Text__c} | {!p.projectObj.IPM_Phase__c}</span><br/><br/>
+                    <!--p.projectObj.IPM_Bosscard_Status__c && -->
+                    <span class="projectsDetails">{!if((ISBLANK(p.projectObj.IPM_Bosscard__c)),p.phaseValue +' is due on '+ p.projectDocumentDate,'Bosscard status is pending')}
+                    </span>
+                    
+                    <apex:form >
+                    <span>Current status <b class="percentage">
+                    <apex:commandLink value="{!if(p.projectObj.IPM_Bosscard__c != null,if(p.projectObj.IPM_Bosscard__r.IPM_Filled_In_Percent__c != null,p.projectObj.IPM_Bosscard__r.IPM_Filled_In_Percent__c,0),if(p.projectObj.IPM_FilledIn_Percentage__c != null,p.projectObj.IPM_FilledIn_Percentage__c,0))}" action="/apex/ipmGetDocumentV5?id={!p.projectObj.Id}"/> % </b> Filled in</span>
+                    <!-- <apex:commandLink value="{!if(p.projectObj.IPM_FilledIn_Percentage__c != null,p.projectObj.IPM_FilledIn_Percentage__c,0)}" action="/apex/ipmGetDocumentV5?id={!p.projectObj.Id}"/> % </b> Filled in</span> -->
+                    </apex:form>
+                </div>
+                   
+                <div class="col-sm-2">
+                    <div class="col-sm-12 SecButtonSet pull-right">
+                        <a href="{!if((p.projectObj.IPM_Bosscard__c != null && !(p.projectObj.IPM_Bosscard_Status__c)),'/apex/ipmBosscard_revamp?id='+p.projectObj.IPM_Bosscard__c,'/apex/ipmProjectOverview?id='+p.projectObj.Id)}" class="icoButton details" title="Details"></a>
+                    </div>
+                </div>
+            </div>
+        </apex:repeat>
+    </div>
+</apex:component>

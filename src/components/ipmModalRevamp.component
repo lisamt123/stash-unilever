@@ -1,0 +1,19 @@
+<apex:component id="ipmModal">
+    <apex:attribute name="modalTitle" default="" type="string" description=""/>
+    <style>
+        .htmlDetailElementTable img {width:100%; max-width:100%;}
+    </style>
+    <div id="ipmModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <div class="modal-title">{!modalTitle}</div>
+                </div>
+                <div class="modal-body">
+                    
+                </div>
+            </div>
+        </div>
+    </div> 
+</apex:component>

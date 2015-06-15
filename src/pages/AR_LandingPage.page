@@ -1,0 +1,35 @@
+<apex:page docType="html-5.0" applyHtmlTag="false" applyBodyTag="false" standardstylesheets="false" sidebar="false" showHeader="false" controller="AR_LandingPage" action="{!init}">
+
+	<apex:composition template="AR_Template">
+		
+		<apex:define name="content" >
+		
+			<section role="main" id="content" class="page-landing global-content clearfix">
+			
+	            <header class="main-header">
+	                <h1><apex:outputText value="{!content.Title__c}" />	</h1>
+	                <p><apex:outputField value="{!content.Body__c}" /></p>
+	            </header>
+	            
+	            <aside class="aside-sign-in">
+	                <h1>On the list Already?</h1>
+	                <p>Good to see you again. Access your agency profile here.</p>
+	                <a href="{!$Page.AR_Login}" class="sign-in"><span class="link-arrows">Sign in here</span></a>
+	            </aside>
+	            
+	            <nav class="nav-create-application">
+	                <h1>
+	                    Not on the list yet?
+	                </h1>
+	                <ul>
+	                    <li><a href="{!$Page.AR_Registration}" class="btn btn-create"><span class="link-arrows">Create Application</span></a></li>
+	                    <li><a href="{!$Page.AR_ResumeApplication}" class="btn btn-resume"><span class="link-arrows">Resume / Revise Application</span></a></li>
+	                </ul>
+	            </nav>
+	            
+	        </section>
+	        
+		</apex:define>
+    
+	</apex:composition>
+</apex:page>

@@ -1,0 +1,44 @@
+<apex:page standardController="cp_Event__c" extensions="cp_EventDeleteController" title="{!mainEvent.Name}" action="{!confirmDelete}">
+	
+	<apex:sectionHeader title="Planner Event Delete"/>
+	
+	<!-- CSS STYLE -->
+	<style type="text/css">
+        .wheader {
+            font-size: 14px;
+            font-weight: bold;
+            font: bold 12px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+            color: black;
+        }
+        .wTable {
+            width: 100%;
+            padding: 8px;
+            collapse: collapse;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;  
+            background-color: #79B627;   
+        }
+	</style>
+
+	<apex:form id="theForm">
+		<apex:pageMessages />
+		<apex:outputPanel id="messagePanel" style="width:100%;">
+	        <table class="wTable" style="{!IF(!canDelete,'background-color:#fae478','')}">
+	            <tr>
+	                <td width="50px" style="vertical-align:middle">
+	                    <apex:image value="{!$Resource.cp_warning}" width="30" rendered="{!!canDelete}"/>
+	                    <apex:image value="{!$Resource.cp_whitecheck}" width="30" rendered="{!canDelete}"/>
+	                </td>
+	                <td style="vertical-align:middle">
+	            		<apex:outputText value="{!$Label.cp_DeleteWarning}" styleclass="wheader" rendered="{!!canDelete}" escape="false"/>     
+	            		<apex:outputText value="{!$Label.cp_DeleteConfirm}" styleclass="wheader" style="color:white;" rendered="{!canDelete}" escape="false"/>     
+	            	</td>
+	        	</tr>
+	        </table>
+	        <br/>
+	    </apex:outputPanel>
+	 	<center><apex:commandButton value="Back" action="{!back}" rendered="{!!canDelete}"/> </center> 
+    </apex:form>
+
+</apex:page>

@@ -1,0 +1,45 @@
+<apex:component id="ipmNavMenu" controller="IPM_ProjectIntermediateController">
+    <apex:attribute name="activeItem" type="String" description="TODO"/>
+    <style>
+        .navbar{
+        border:none !important; margin-bottom:0 !important;  
+        }        
+        .navbar-nav>li {position:relative; margin-left:-1px!important;}
+        .navbar-default .navbar-nav>.active a, .navbar-default .navbar-nav>.active a:hover, .navbar-default .navbar-nav>.active a:focus{background-color: #fff; padding-right:0!important; padding-left:0!important;color:#007dbb!important; border-top-left-radius:3px!important;border-top-right-radius:3px!important; -webkit-border-top-left-radius:3px!important;-webkit-border-top-right-radius:3px!important; -moz-border-top-left-radius:3px!important;-moz-border-top-right-radius:3px!important;}
+        .navbar-default .navbar-collapse, .navbar-default .navbar-form{background-color: #1b274a;}
+         ul.nav{margin-top:10px;}
+        .navbar-nav>li a{cursor:pointer; color:#e9f3ff!important; font-size:1.063em!important;font-weight:bold;padding-right:0!important; padding-left:0!important;}
+        .navbar-nav>li a > span  {display:block; padding:0 20px; border-right:1px solid #fff; }
+        .navbar-nav li:last-child > a > span {border:transparent!important;}  
+    </style>
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        .gradient {
+           filter: none;
+        }
+      </style>
+    <![endif]-->
+    <div class="ipmNavMenuDiv">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" 
+                 data-target="#ipm-navbar-collapse">
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="ipm-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="{!IF(activeItem=='overview', 'active', '')}"><a href="#"><span>Overview</span></a></li>
+                    <li class="{!IF(activeItem=='milestonesAndTasks', 'active', '')}"><a href="/apex/IPM_Tasklist?id={!project.Id}"><span>Milestones and Tasks</span></a></li>
+                    <li class="{!IF(activeItem=='coreParameters', 'active', '')}"><a href="/apex/ipmCoreParametersLandingPage?id={!project.Id}"><span>Core Parameters</span></a></li>
+                    <li class="{!IF(activeItem=='rolloutPlan', 'active', '')}"><a href="/apex/ipmProjectRollout?id={!project.Id}"><span>Rollout Plan</span></a></li>
+                    <li class="{!IF(activeItem=='teamAssignment', 'active', '')}"><a href="/apex/ipmProjectTeamMembers?id={!project.Id}"><span>Team Assignment</span></a></li>
+                    <li class="{!IF(activeItem=='financials', 'active', '')}"><a href="/apex/ipmFinancial?id={!project.Id}"><span>Financials</span></a></li>
+                    <li class="{!IF(activeItem=='gateDocument', 'active', '')}"><a href="/apex/ipmGetDocumentV5?id={!project.Id}"><span>Gate Document</span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</apex:component>

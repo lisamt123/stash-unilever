@@ -1,0 +1,4 @@
+<apex:component >
+    <footer class="ipmFooter">
+    </footer>
+</apex:component>

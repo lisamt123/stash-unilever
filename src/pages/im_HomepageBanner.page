@@ -1,0 +1,30 @@
+<apex:page sidebar="false" showHeader="false" tabStyle="im_IssuestoStakeholders__c">
+    <style>
+        #body{
+            font-size: 1.3em;
+        
+        }
+        #heading{
+            font-size: 1.3em;
+            font-weight: bold;
+            padding-right: 0px
+        }
+    </style>
+    
+    <apex:pageBlock >
+    
+        <div id="heading">
+        Welcome to Unilever Corporate Communications
+        </div>
+        <div id="body">
+            <p>
+               <a href="/01Zg00000009Z5y" target="__blank">Issue Management</a>&#09;<a href="/01Zg00000009b3B" target="__blank">Stakeholder Management</a>&#09;<a href="/01Zg00000009b7S" target="__blank">Events</a>
+               <br>
+               <a href="http://teamsites.unilever.com/global/central_issue/default.aspx" target="__blank">Issue Breifing Centre</a>
+               </br>
+            </p>
+        </div>
+        
+    </apex:pageBlock>
+    
+</apex:page>
