@@ -2186,6 +2186,7 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
     </listViews>
     <listViews>
         <fullName>CEC_Upload_Activate</fullName>
+        <booleanFilter>1 OR 2</booleanFilter>
         <columns>FULL_NAME</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CORE.USERS.USERNAME</columns>
@@ -2196,14 +2197,14 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <columns>MANAGER</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>CEC_User_Reference__c</field>
-            <operation>contains</operation>
-            <value>PM07</value>
+            <field>CORE.USERS.USERNAME</field>
+            <operation>equals</operation>
+            <value>fbohm1@guest.unilever.com,ivenzke@guest.unilever.com</value>
         </filters>
         <filters>
-            <field>CEC_User_Reference__c</field>
-            <operation>contains</operation>
-            <value>Activate</value>
+            <field>CORE.USERS.USERNAME</field>
+            <operation>equals</operation>
+            <value>vd&apos;agapiti@guest.unilever.com</value>
         </filters>
         <label>CEC Upload Activate</label>
         <language>en_US</language>
@@ -2220,12 +2221,12 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <columns>MANAGER</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>CEC_User_Reference__c</field>
+            <field>Language_Skills_List__c</field>
             <operation>contains</operation>
-            <value>PM07</value>
+            <value>PM01</value>
         </filters>
         <filters>
-            <field>CEC_User_Reference__c</field>
+            <field>Language_Skills_List__c</field>
             <operation>contains</operation>
             <value>Admin</value>
         </filters>
@@ -2244,12 +2245,12 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <columns>MANAGER</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>CEC_User_Reference__c</field>
+            <field>Language_Skills_List__c</field>
             <operation>contains</operation>
-            <value>PM07</value>
+            <value>PM01</value>
         </filters>
         <filters>
-            <field>CEC_User_Reference__c</field>
+            <field>Language_Skills_List__c</field>
             <operation>contains</operation>
             <value>Content</value>
         </filters>
@@ -2268,12 +2269,12 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <columns>MANAGER</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>CEC_User_Reference__c</field>
+            <field>Language_Skills_List__c</field>
             <operation>contains</operation>
-            <value>PM07</value>
+            <value>PM01</value>
         </filters>
         <filters>
-            <field>CEC_User_Reference__c</field>
+            <field>Language_Skills_List__c</field>
             <operation>contains</operation>
             <value>Manager</value>
         </filters>
@@ -2292,12 +2293,12 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <columns>MANAGER</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>CEC_User_Reference__c</field>
+            <field>Language_Skills_List__c</field>
             <operation>contains</operation>
-            <value>PM07</value>
+            <value>PM01</value>
         </filters>
         <filters>
-            <field>CEC_User_Reference__c</field>
+            <field>Language_Skills_List__c</field>
             <operation>contains</operation>
             <value>Advisor,Manager</value>
         </filters>
