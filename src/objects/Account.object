@@ -1764,6 +1764,11 @@
         <label>All Accounts</label>
     </listViews>
     <listViews>
+        <fullName>MyAccounts</fullName>
+        <filterScope>Mine</filterScope>
+        <label>My Accounts</label>
+    </listViews>
+    <listViews>
         <fullName>NewThisWeek</fullName>
         <columns>ACCOUNT.NAME</columns>
         <columns>ACCOUNT.SITE</columns>
@@ -1786,21 +1791,20 @@
         <columns>PC_PHONE3</columns>
         <columns>ACCOUNT.TYPE</columns>
         <columns>PC_ADDRESS2_CITY</columns>
-        <columns>PC_ADDRESS2_COUNTRY</columns>
         <columns>ACCOUNT.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CORE.USERS.FIRST_NAME</columns>
         <columns>CORE.USERS.LAST_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>ACCOUNT.RECORDTYPE</field>
+            <field>IS_PERSON_ACCOUNT</field>
             <operation>equals</operation>
-            <value>PersonAccount.PersonAccount</value>
+            <value>1</value>
         </filters>
         <filters>
-            <field>CORE.USERS.ALIAS</field>
+            <field>ACCOUNT.CREATED_DATE</field>
             <operation>equals</operation>
-            <value>sadmi</value>
+            <value>THIS_WEEK</value>
         </filters>
         <label>PM: My view</label>
         <language>en_US</language>

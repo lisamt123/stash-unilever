@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -1155,14 +1155,11 @@
     <searchLayouts>
         <customTabListAdditionalFields>Media_Channel_1__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields xsi:nil="true"/>
         <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
         <lookupDialogsAdditionalFields>Agency__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields xsi:nil="true"/>
         <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
         <searchResultsAdditionalFields>Location_Type__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Agency__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields xsi:nil="true"/>
         <searchResultsAdditionalFields>Media_Channel_1__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>

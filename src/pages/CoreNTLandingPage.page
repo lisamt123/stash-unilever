@@ -15,25 +15,9 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    <script src="https://ssl.google-analytics.com/ga.js" type="text/javascript" async=""></script>
+
     <apex:stylesheet value="{!URLFOR($Resource.CoreNTResources, 'css/Landing.css')}"/>
     
-    <script type="text/javascript">
- 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-36302283-1']);
-    _gaq.push(['_setDomainName', 'na9.visual.force.com']);
-    _gaq.push(['_setAllowLinker', true]);
-    _gaq.push(['_trackPageview']);
-     
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
- 
-    </script>
-
     <apex:form id="CoreNTLandingPageLoggedInUserDataForm" rendered="{!IF(logedInUserRoleKey==3,false,true)}">
         <apex:pageBlock >
             <apex:pageblockSection columns="1" >

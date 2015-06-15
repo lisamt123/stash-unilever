@@ -161,22 +161,6 @@
                 <fullName>Healthy Indulgence</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>I Need to Find…</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>I Need to Do…</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>I Work with Others On…</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>What’s relevant for me to see…</fullName>
-                <default>false</default>
-            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
