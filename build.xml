@@ -78,6 +78,6 @@
         deployRoot="${basedir}/undeploy"
         pollWaitMillis="${sfdc.pollWaitMillis}"
         maxPoll="${sfdc.maxPoll}"/>        
-    </target> 
+    </target>
 
 </project>
