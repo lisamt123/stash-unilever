@@ -34,6 +34,10 @@
         <relationshipLabel><!-- OOPS Estimates --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Agency ExchangeRateTemp --></label>
+        <name>AF_Agency_ExchangeRateTemp__c</name>
+    </fields>
+    <fields>
         <label><!-- Agency Exchange Rate --></label>
         <name>AF_Agency_Exchange_Rate__c</name>
     </fields>
@@ -124,6 +128,10 @@
         <name>AF_Locked__c</name>
     </fields>
     <fields>
+        <label><!-- MatrixCodeTemp --></label>
+        <name>AF_MatrixCodeTemp__c</name>
+    </fields>
+    <fields>
         <label><!-- Max Quarter --></label>
         <name>AF_Max_Quarter__c</name>
     </fields>
@@ -211,6 +219,14 @@
     <fields>
         <label><!-- Ready For PO Exchange Rate --></label>
         <name>AF_Ready_For_PO_Exchange_Rate__c</name>
+    </fields>
+    <fields>
+        <label><!-- ReadyforPOExchangeRateTemp --></label>
+        <name>AF_ReadyforPOExchangeRateTemp__c</name>
+    </fields>
+    <fields>
+        <label><!-- ReadyforPoCodeTemp --></label>
+        <name>AF_ReadyforPoCodeTemp__c</name>
     </fields>
     <fields>
         <label><!-- Status --></label>

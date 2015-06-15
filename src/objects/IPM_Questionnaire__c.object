@@ -366,6 +366,11 @@
         <type>Checkbox</type>
     </fields>
     <label>IPM Questionnaire</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>IQ-{0000}</displayFormat>
         <label>IPM Questionnaire Id</label>

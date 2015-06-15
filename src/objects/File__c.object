@@ -273,6 +273,18 @@ Feed_ID__c=&quot;&quot;, &quot;/img/samples/light_red.gif&quot;, &quot;/img/samp
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Prod_Id__c</fullName>
+        <description>Win@POS Production Id</description>
+        <externalId>true</externalId>
+        <label>Prod Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Show_Artwork__c</fullName>
         <externalId>false</externalId>
         <label>Show Artwork</label>

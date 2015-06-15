@@ -386,7 +386,7 @@ global class FA_Test_Trigger_CouFacilitator{
              test.startTest();
  
              Boolean flag1;
-             Boolean flag2; 
+             Boolean flag2=true;
        
              delete CoFac;                                            
       
@@ -404,21 +404,13 @@ global class FA_Test_Trigger_CouFacilitator{
                   }
                }    
                
-            for( FA_Course__Share tFacilShare2 : [select ParentId,Id from FA_Course__Share])
-                                                               
-                                                                  
+            for( FA_Course__Share tFacilShare2 : [select ParentId,Id from FA_Course__Share where UserOrGroupId =:ObjUser.Id and ParentId =: ObjCoOcc.FA_Course__c and RowCause ='FA_Facilitator_Access__c'])
                {            
-                  if (tFacilShare2.ParentId== ObjCoOcc.FA_Course__c)         
-                             {           
-                               flag2= True;  
-                             } 
-                             else
-                             {
-                               flag2=false;
-                             }
-   }                      
-          test.stopTest(); 
-          system.assertEquals(true,flag2);
+                    flag2= false;  
+               }                      
+           
+            test.stopTest(); 
+            system.assertEquals(true,flag2);
  }
      
   /** The following method is used to test whether course facilitators are added to course chatter groups

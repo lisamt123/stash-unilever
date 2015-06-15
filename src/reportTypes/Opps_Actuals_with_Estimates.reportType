@@ -388,6 +388,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>AF_Category_View__c</field>
+            <table>AF_OOPS_Actual__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>AF_Status_Q4__c</field>
             <table>AF_OOPS_Actual__c</table>
         </columns>
@@ -434,6 +439,12 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>AF_CategoryView__c</field>
+            <table>AF_OOPS_Actual__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Big Category</displayNameOverride>
+            <field>AF_Brand__c.AF_Super_category__c</field>
             <table>AF_OOPS_Actual__c</table>
         </columns>
         <masterLabel>OOPS Actuals</masterLabel>
@@ -600,6 +611,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Exchange Rate</displayNameOverride>
+            <field>AF_Agency_ExchangeRateTemp__c</field>
+            <table>AF_OOPS_Actual__c.OOPS_Estimates__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>LastActivityDate</field>
             <table>AF_OOPS_Actual__c.OOPS_Estimates__r</table>
         </columns>
@@ -706,6 +723,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Currency</displayNameOverride>
             <field>AF_Rate_Currency__c</field>
             <table>AF_OOPS_Actual__c.OOPS_Estimates__r</table>
         </columns>
@@ -741,6 +759,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>PO Value - Euro</displayNameOverride>
             <field>AF_PO_value_euro2014__c</field>
             <table>AF_OOPS_Actual__c.OOPS_Estimates__r</table>
         </columns>
@@ -769,7 +788,20 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>PO Value - LC</displayNameOverride>
             <field>AF_PO_Value_LC_2014__c</field>
+            <table>AF_OOPS_Actual__c.OOPS_Estimates__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Currency @Ready for PO</displayNameOverride>
+            <field>AF_ReadyforPoCodeTemp__c</field>
+            <table>AF_OOPS_Actual__c.OOPS_Estimates__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>ExchangeRate@ReadyforPO</displayNameOverride>
+            <field>AF_ReadyforPOExchangeRateTemp__c</field>
             <table>AF_OOPS_Actual__c.OOPS_Estimates__r</table>
         </columns>
         <masterLabel>OOPS Estimates</masterLabel>

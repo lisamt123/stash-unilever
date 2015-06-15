@@ -22,7 +22,9 @@ public class Test_SchedulableToBrandEstimatesBatch
       LocaleSidKey='en_US', ProfileId = p.Id, 
       TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
       UserName='testuserst@test123321.com',AF_Brand__c='Test Brandst',AF_Category__c='Test Beveragesst');
-     insert u;        
+     insert u;  
+     
+     System.Assert(u.Id != null, 'The User  record not inserted');      
       
      System.runAs(u)
      { 

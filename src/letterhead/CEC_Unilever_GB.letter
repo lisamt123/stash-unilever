@@ -18,6 +18,7 @@
         <backgroundColor>#FFFFFF</backgroundColor>
         <height>100</height>
         <horizontalAlignment>Left</horizontalAlignment>
+        <logo>CEC_Branding/Unilever_header01_gif.gif</logo>
         <verticalAlignment>Top</verticalAlignment>
     </header>
     <middleLine>

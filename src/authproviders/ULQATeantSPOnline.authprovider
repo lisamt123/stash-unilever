@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authorizeUrl>https://unileverdev.sharepoint.com/sites/salesforcedev/_layouts/15/OauthAuthorize.aspx</authorizeUrl>
+    <consumerKey>7bada6d0-351b-4f57-9a8e-08509d1aa871</consumerKey>
+    <consumerSecret>nB9EvgQFBlTajFnQZqLrFiDar+8sUK7kCImBBBGS9PhViPtC6k3wD0UMklyrcM2C</consumerSecret>
+    <friendlyName>ULQATeantSPOnline</friendlyName>
+    <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <providerType>MicrosoftACS</providerType>
+    <sendAccessTokenInHeader>false</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+    <tokenUrl>https://accounts.accesscontrol.windows.net/unileverdev.onmicrosoft.com/tokens/OAuth/2?resource=00000003-0000-0ff1-ce00-000000000000/unileverdev.sharepoint.com@unileverdev.onmicrosoft.com</tokenUrl>
+</AuthProvider>

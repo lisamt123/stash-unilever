@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalDataSource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authProvider>ULQATeantSPOnline</authProvider>
+    <customConfiguration>{&quot;singleSiteCollection&quot;:&quot;false&quot;,&quot;sharepointConnectorUrl&quot;:&quot;https://unileverdev.sharepoint.com/sites/salesforcedev&quot;}</customConfiguration>
+    <label>SPOnlineFilesConnectQA</label>
+    <principalType>PerUser</principalType>
+    <protocol>Oauth</protocol>
+    <type>ContentHubSharepointOffice365</type>
+</ExternalDataSource>

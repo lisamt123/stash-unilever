@@ -119,12 +119,6 @@
         <quickActionListItems>
             <quickActionName>FeedItem.TextPost</quickActionName>
         </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>Core_Approval_Header__c.Approve</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>Core_Approval_Header__c.Reject</quickActionName>
-        </quickActionListItems>
     </quickActionList>
     <relatedLists>
         <excludeButtons>New</excludeButtons>
@@ -158,7 +152,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hE000000FQrNC</masterLabel>
+        <masterLabel>00hc0000000HKs2</masterLabel>
         <sizeX>3</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

@@ -232,6 +232,16 @@
             <field>oopsEstimateStatus__c</field>
             <table>AF_OOPS_Actual__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AF_OOPSActualName__c</field>
+            <table>AF_OOPS_Actual__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AF_CategoryView__c</field>
+            <table>AF_OOPS_Actual__c</table>
+        </columns>
         <masterLabel>OOPS Actuals</masterLabel>
     </sections>
 </ReportType>
