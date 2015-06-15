@@ -1,0 +1,409 @@
+<apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false">
+<meta http-equiv="content-type" content="text/html; charset=UTF8" />
+    <!--<div class="iPhoneHomeScreenHeight">-->
+        <div class="headerBarBackground" name="top" id="pageTop">
+            <table class="headerBarWidth"> 
+                <tr>
+                    <td class="headerBarRowAlign" > <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/back.svg')}" ng-click='gotoHomePage()' class="homePageFilter" /></td> 
+                </tr>
+            </table>
+        </div>
+        <div class="homePageHeader" id="alignCenter">
+            <br/><img src="{!URLFOR($Resource.MyApprovalsSR, 'img/Approvals_Logo.svg')}" class="headerBarIconStyle" /><br/>
+            <div class="defaultTopSpace"><span class="homePageHeaderText">{{approvalRequestData.RequestName}}</span> </div>
+            <label class="detailPageHeaderText" ng-if="approvalRequestData.RequestType == 'Purchase Request'" ng-init="true">{{approvalRequestData.PreparedBy}}</label>
+            <label class="detailPageHeaderText" ng-if="approvalRequestData.RequestType == 'Expense'" ng-init="true">{{approvalRequestData.RequestedBy}}</label>
+            &nbsp;&nbsp;&nbsp;
+            <label class="detailPageHeaderText" > {{approvalRequestData.Currencies}} {{approvalRequestData.TotalAmount}}</label> 
+            <br/>
+        </div>
+        <tabset class="detailPageMenu"  >
+            <tab heading="{{'LBL_DETAILS'| translate}}" class="homePageMenuBody"  active="active.detail">       
+                <br/>
+                <div ng-if="approvalRequestData.RequestType == 'Expense'" ng-init="true" >
+                    <div class="template" ng-init="claimDetailPanelDisplay=false"> 
+                        <div class="defaultBottomBorder" ng-click="claimDetailPanelDisplay = (claimDetailPanelDisplay=='true' ? 'false' : 'true')">
+                            <span>
+                                <label class="detailSectionHeader" >{{'LBL_DETAIL_CLAIM_DETAILS' | translate}}</label>
+                            </span>
+                            <span class="alignRight">                    
+                                <img class="arrowButtonStyle" ng-hide="claimDetailPanelDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                                <img class="arrowButtonStyle" ng-show="claimDetailPanelDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
+                            </span>
+                        </div>
+                        <div ng-hide="claimDetailPanelDisplay" id="responsiveDetailSectionwrapper">
+                            <div class="row">
+                                <div class="responsiveDetailSectionData">   
+                                    <table class="responsiveDetailSectionTable">
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_REQUEST_ID' | translate}}</td>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_STATUS' | translate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.RequestName}}</td>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.RequestStatus}}</td>
+                                        </tr>
+                                    </table> 
+                                </div>                           
+                                <div class="responsiveDetailSectionData">
+                                    <table class="responsiveDetailSectionTable">
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_REQUESTED_BY' | translate}}</td>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_REPORT_NAME' | translate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.RequestedBy}}</td>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.ReportName}}</td>
+                                        </tr>
+                                    </table>                            
+                                </div>  
+                             </div>                     
+                        </div>
+                    </div><br/>
+                    <div class="template" ng-init="amountAndCostCenterPanel=false">
+                        <div class="defaultBottomBorder" ng-click="amountAndCostCenterPanel = (amountAndCostCenterPanel=='true' ? 'false' : 'true')">
+                            <span>
+                                <label class="detailSectionHeader">{{'LBL_EXP_DETAIL_AMOUNT_COSTCENTER' | translate}}</label>
+                            </span>
+                            <span class="alignRight">                    
+                                <img class="arrowButtonStyle" ng-hide="amountAndCostCenterPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                                <img class="arrowButtonStyle" ng-show="amountAndCostCenterPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
+                            </span>  
+                        </div>
+                        <div ng-hide="amountAndCostCenterPanel" id="responsiveDetailSectionwrapper">
+                            <div class="row">
+                                <div class="responsiveDetailSectionData">   
+                                    <table class="responsiveDetailSectionTable">
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_TOTAL_AMOUNT' | translate}}</td>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_CURRENCY' | translate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.TotalAmount}}</td>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.Currencies}}</td>
+                                        </tr>
+                                    </table> 
+                                </div>                           
+                                <div class="responsiveDetailSectionData">
+                                    <table class="responsiveDetailSectionTable">
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_ADVANCE_AMOUNT' | translate}}</td>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_NET_AMOUNT' | translate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.AdvanceAmount}}</td>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.NetAmount}}</td>
+                                        </tr>
+                                    </table>                            
+                                </div>  
+                            </div>
+                            <div class="row">
+                                <div class="responsiveDetailSectionData">
+                                    <table class="responsiveDetailSectionTable">
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_NON_REIMBURSABLE' | translate}}</td>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_DAYS' | translate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.NonReimbursable}}</td>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.Days}}</td>
+                                        </tr>
+                                    </table>                            
+                                </div>
+                                <div class="responsiveDetailSectionData">
+                                    <table class="responsiveDetailSectionTable">
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_CHARGE_TO' | translate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.ChargeTo}}</td>
+                                        </tr>
+                                    </table>                                                        
+                                </div>  
+                             </div>
+                        </div>
+                    </div><br/>
+                    <div class="template" ng-init="purposeAndReasonPanel=false">
+                        <div class="defaultBottomBorder" ng-click="purposeAndReasonPanel = (purposeAndReasonPanel=='true' ? 'false' : 'true')">
+                            <span>
+                                <label class="detailSectionHeader">{{'LBL_EXP_DETAIL_PURPOSE_REASON' | translate}}</label>
+                            </span>
+                            <span class="alignRight">                    
+                                <img class="arrowButtonStyle" ng-hide="purposeAndReasonPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                                <img class="arrowButtonStyle" ng-show="purposeAndReasonPanel"  src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
+                            </span> 
+                        </div>
+                        <div ng-hide="purposeAndReasonPanel">   
+                            <div class="responsiveDetailSectionTable">
+                                <span class="fieldLabel">{{'LBL_EXP_DETAIL_PURPOSE' | translate}}</span><br/>
+                                <span class="fieldValue">{{approvalRequestData.Purpose}}</span>
+                            </div>     
+                            <div class="responsiveDetailSectionTable">
+                                <span class="fieldLabel">{{'LBL_EXP_DETAIL_REASON' | translate}}</span><br/>
+                                <span class="fieldValue">{{approvalRequestData.Reason}}</span>
+                            </div> 
+                        </div>
+                    </div><br/>
+                    <div class="template" ng-init="claimExceptionsPanel=true">
+                        <div class="defaultBottomBorder" ng-click="claimExceptionsPanel = (claimExceptionsPanel=='false' ? 'true' : 'false')">
+                            <span>
+                                <label class="detailSectionHeader">{{'LBL_EXP_DETAIL_CLAIM_EXCEPTIONS' | translate}}</label>
+                            </span>
+                            <span class="alignRight">                    
+                                <img class="arrowButtonStyle" ng-hide="claimExceptionsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                                <img class="arrowButtonStyle" ng-show="claimExceptionsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
+                            </span>  
+                        </div>
+                        <div ng-hide="claimExceptionsPanel" class="responsiveDetailSectionTable">
+                            <div class="fieldValue" id="fieldValueRichTextFormate">{{approvalRequestData.ClaimExceptions}}</div>
+                        </div>
+                    </div><br/>
+                    <div class="template" ng-init="pretripDetailsPanel=true">
+                        <div class="defaultBottomBorder" ng-click="pretripDetailsPanel = (pretripDetailsPanel=='false' ? 'true' : 'false')">
+                            <span>
+                                <label class="detailSectionHeader">{{'LBL_EXP_DETAIL_PRE_TRIP_DETAILS' | translate}}</label>
+                            </span>
+                            <span class="alignRight">                    
+                                <img class="arrowButtonStyle" ng-hide="pretripDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                                <img class="arrowButtonStyle" ng-show="pretripDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
+                            </span> 
+                        </div>
+                        <div ng-hide="pretripDetailsPanel" id="responsiveDetailSectionwrapper">
+                            <div class="row">
+                                <div class="responsiveDetailSectionData">
+                                    <div class="responsiveDetailSectionTable">
+                                        <span class="fieldLabel">{{'LBL_EXP_DETAIL_PRE_TRIP_ID' | translate}}</span><br/>
+                                        <span class="fieldValue">{{approvalRequestData.PreTripDetails.Id}}</span>
+                                    </div>
+                                </div>
+                                <div class="responsiveDetailSectionData">
+                                    <div class="responsiveDetailSectionTable">
+                                        <span class="fieldLabel">{{'LBL_EXP_DETAIL_PRE_TRIP_PASSENGER_INFO' | translate}}</span><br/>
+                                        <span class="textLink">{{approvalRequestData.PreTripDetails.PassengerInfo}}</span>
+                                    </div>
+                                </div>
+                                <div class="responsiveDetailSectionData">                                
+                                    <div class="responsiveDetailSectionTable">
+                                        <span class="fieldLabel">{{'LBL_EXP_DETAIL_PRE_TRIP_LOCATION_DETAILS' | translate}}</span><br/>
+                                        <span class="fieldValue">{{approvalRequestData.PreTripDetails.LocationDetails}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br/>
+                    <div class="template" ng-init="lineItemsPanel=true">
+                        <div class="defaultBottomBorder" ng-click="lineItemsPanel = (lineItemsPanel=='false' ? 'true' : 'false')">
+                            <span>
+                                <label class="detailSectionHeader">{{'LBL_EXP_DETAIL_LINE_ITEMS' | translate}}</label>
+                            </span>
+                            <span class="alignRight">                    
+                                <img class="arrowButtonStyle" ng-hide="lineItemsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                                <img class="arrowButtonStyle" ng-show="lineItemsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
+                            </span>   
+                        </div>
+                        <div ng-hide="lineItemsPanel" class="responsiveDetailSectionTable">
+                            <table class="homePageMenuWidth" >
+                                <tr ng-repeat="approvalRequestLineItems in approvalRequestData.LineItems" ng-click='gotoApprovalLineDetailPage(approvalRequestLineItems)'>
+                                    <td><span class="textLink">{{approvalRequestLineItems.ItemName}}</span></td>
+                                    <td class="alignRight"><span class="fieldValue">{{approvalRequestLineItems.Currencies}}&nbsp;{{approvalRequestLineItems.Amount}}</span></td>
+                                </tr>                                                   
+                            </table>
+                        </div>
+                    </div><br/>
+                </div>
+                <div ng-if="approvalRequestData.RequestType == 'Purchase Request'" ng-init="true" >
+                    <div class="template" ng-init="summaryPanelDisplay=false">
+                        <div class="defaultBottomBorder" ng-click="summaryPanelDisplay = (summaryPanelDisplay=='true' ? 'false' : 'true')">
+                            <span>
+                                <label class="detailSectionHeader" >{{'LBL_DETAIL_SUMMARY' | translate}}</label>
+                            </span>
+                            <span class="alignRight">                    
+                                <img class="arrowButtonStyle" ng-hide="summaryPanelDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                                <img class="arrowButtonStyle" ng-show="summaryPanelDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
+                            </span>
+                        </div>
+                        <div ng-hide="summaryPanelDisplay" id="responsiveDetailSectionwrapper">
+                            <div class="row">
+                                <div class="responsiveDetailSectionData">   
+                                    <table class="responsiveDetailSectionTable">
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_REQUEST_ID' | translate}}</td>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_STATUS' | translate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.RequestName}}</td>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.RequestStatus}}</td>
+                                        </tr>
+                                    </table> 
+                                </div>                           
+                                <div class="responsiveDetailSectionData">
+                                    <table class="responsiveDetailSectionTable">
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_PUR_LINEDETAIL_CREATED_ON'|translate}}</td>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_PUR_DETAIL_DESCRIPTION'|translate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.CreatedOn}}</td>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.Description}}</td>
+                                        </tr>
+                                    </table>                            
+                                </div>  
+                             </div>
+                        </div>
+                    </div><br/>
+                    <div class="template" ng-init="headerDetailsPanel=false">
+                        <div class="defaultBottomBorder" ng-click="headerDetailsPanel = (headerDetailsPanel=='true' ? 'false' : 'true')">
+                            <span>
+                                <label class="detailSectionHeader"> {{'LBL_DETAIL_HEADER_DETAIL'| translate}}</label>
+                            </span>
+                            <span class="alignRight">                    
+                                <img class="arrowButtonStyle" ng-hide="headerDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                                <img class="arrowButtonStyle" ng-show="headerDetailsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
+                            </span>  
+                        </div>
+                        <div ng-hide="headerDetailsPanel" id="responsiveDetailSectionwrapper">                           
+                            <div class="row">                    
+                                <div class="responsiveDetailSectionData">
+                                    <table class="responsiveDetailSectionTable">
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_TOTAL_AMOUNT' | translate}}</td>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_CURRENCY' | translate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.TotalAmount}}</td>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.Currencies}}</td>
+                                        </tr>
+                                    </table> 
+                                </div>                           
+                                <div class="responsiveDetailSectionData">
+                                    <table class="responsiveDetailSectionTable">
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_REQUESTED_BY' | translate}}</td>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_PUR_DETAIL_PREPARED_BY' | translate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.RequestedBy}}</td>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.PreparedBy}}</td>
+                                        </tr>
+                                    </table>                            
+                                </div>
+                            </div>                                      
+                            <div class="row">      
+                                <div class="responsiveDetailSectionData">
+                                    <table class="responsiveDetailSectionTable">
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_PUR_DETAIL_COMPANY_NAME' | translate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.CompanyName}}</td>
+                                        </tr>
+                                    </table>                            
+                                </div>  
+                                <div class="responsiveDetailSectionData">                                                      
+                                </div> 
+                             </div>  
+                         </div>                  
+                    </div><br/>                               
+                    <div class="template" ng-init="lineItemsPanel=false">
+                        <div class="defaultBottomBorder" ng-click="lineItemsPanel = (lineItemsPanel=='true' ? 'false' : 'true')">
+                            <span>
+                                <label class="detailSectionHeader">{{'LBL_EXP_DETAIL_LINE_ITEMS' | translate}}</label>
+                            </span>
+                            <span class="alignRight">                    
+                                <img class="arrowButtonStyle" ng-hide="lineItemsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                                <img class="arrowButtonStyle" ng-show="lineItemsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
+                            </span>   
+                        </div>
+                        <div ng-hide="lineItemsPanel" class="responsiveDetailSectionTable">
+                            <table class="homePageMenuWidth" >
+                                <tr ng-repeat="approvalRequestLineItems in approvalRequestData.LineItems" ng-click='gotoApprovalLineDetailPage(approvalRequestLineItems)'>
+                                    <td><span class="textLink">{{approvalRequestLineItems.ItemName}}</span></td>
+                                    <td class="alignRight"><span class="fieldValue">{{approvalRequestLineItems.Currencies}}&nbsp;{{approvalRequestLineItems.Amount}}</span></td>
+                                </tr>                                                   
+                            </table>
+                        </div>
+                    </div><br/>
+                </div>
+                
+                <div class="template" ng-init="commentsPanel=true">
+                    <div class="defaultBottomBorder" ng-click="commentsPanel = (commentsPanel=='false' ? 'true' : 'false')">
+                        <span>
+                            <label class="detailSectionHeader">{{'LBL_EXP_DETAIL_CLAIM_COMMENTS' | translate}}</label>
+                        </span>
+                        <span class="alignRight">                    
+                            <img class="arrowButtonStyle" ng-hide="commentsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                            <img class="arrowButtonStyle" ng-show="commentsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
+                        </span>                
+                    </div>
+                    <div ng-hide="commentsPanel" class="responsiveDetailSectionTable">                        
+                        <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalRequestData.Comments}}</span>
+                    </div>
+                </div><br/>
+                <div class="template" ng-init="approvalHistoryPanel=true">
+                    <div class="defaultBottomBorder" ng-click="approvalHistoryPanel = (approvalHistoryPanel=='false' ? 'true' : 'false')">
+                        <span>
+                            <label class="detailSectionHeader">{{'LBL_EXP_DETAIL_APPROVAL_HISTORY' | translate}}</label>
+                        </span>
+                        <span class="alignRight" >                    
+                            <img class="arrowButtonStyle" ng-hide="approvalHistoryPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                            <img class="arrowButtonStyle" ng-show="approvalHistoryPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
+                        </span> 
+                    </div>        
+                    <!--<div ng-hide="approvalHistoryPanel" id="responsiveDetailSectionwrapper">
+                        <div class="row">
+                            <div class="responsiveDetailSectionData">   
+                                <table class="responsiveDetailSectionTable">
+                                    <tr ng-repeat="approvalRequestHistory in approvalRequestData.ApprovalHistory">
+                                        <td class="fieldValue">{{approvalRequestHistory.ApproverName}}</td>
+                                        <td class="fieldValue">{{approvalRequestHistory.ApproverAction}}</td>
+                                    </tr>
+                                </table> 
+                            </div> 
+                            <div class="responsiveDetailSectionData">   
+                            </div> 
+                        </div>  
+                    </div>-->                      
+                    <div ng-hide="approvalHistoryPanel" class="responsiveDetailSectionTable">
+                        <table class="homePageMenuWidth" >
+                            <tr ng-repeat="approvalRequestHistory in approvalRequestData.ApprovalHistory">
+                                <td><span class="fieldValue">{{approvalRequestHistory.ApproverName}}</span></td>
+                                <td><span class="alignRight">{{approvalRequestHistory.ApproverAction}}</span></td>
+                            </tr>                                                   
+                        </table>
+                    </div>
+                </div>  
+            </tab>
+            <tab heading="{{'LBL_FEED'| translate}}" class="homePageMenuBody" active="active.feed">
+                <!--<div class="chatterfeeddivision">
+                 /apex/testfeedpage?id={{approvalRequestData.RequestId}}
+                    <apex:iframe src="/apex/testfeedpage?id="+{{approvalRequestData.RequestId}}>-->
+                    
+                         <iframe ng-src="{{approvalRequestData.url}}"  style="position: absolute; height: 100%; width:100%;border: none;"></iframe>
+                     
+                    <!-- <apex:iframe src="/apex/testfeedpage?id=a0Jc0000007TOEREA4"/> -->
+                     <!-- <chatter:feed entityId="a0Jc0000007TOEREA4" showPublisher="true"/>-->
+                <!--</div>--
+                <!--<chatter:feed entityId="Id.valueOf({{approvalRequestData.RequestId}})"/>-->
+            </tab>
+        </tabset>
+        
+        <!-- Fixed APPROVE / REJECT / COMMENT Bar -->
+        <nav class="fixed-nav-bar">        
+            <div id="alignCenter" style="padding-top:5px;padding-bottom:5px;">
+                <table  class="homePageMenuWidth">
+                    <tr id="alignCenter">                    
+                        <td id="alignCenter">
+                            <img  class="headerBarIconStyle"  ng-click="activateTab('feed')" src="{!URLFOR($Resource.MyApprovalsSR, 'img/Comment.svg')}"/>
+                        </td>
+                        <td id="alignCenter" ng-show="showReject">
+                            <img  class="headerBarIconStyle"  ng-show="showReject"  ng-click='gotoApproveRejectPage("Reject")' src="{!URLFOR($Resource.MyApprovalsSR, 'img/Return.svg')}"/>
+                        </td>
+                        <td id="alignCenter" ng-show="showApprove">
+                            <img  class="headerBarIconStyle"  ng-show="showApprove"  ng-click='gotoApproveRejectPage("Approve")' src="{!URLFOR($Resource.MyApprovalsSR, 'img/Approve.svg')}"/>
+                        </td>
+                    </tr>
+                </table>    
+            </div> 
+        </nav>
+    <!--</div>-->
+</apex:page>

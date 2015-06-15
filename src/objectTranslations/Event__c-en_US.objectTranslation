@@ -30,6 +30,10 @@
         <name>Event_Summary_Document_Link__c</name>
     </fields>
     <fields>
+        <label><!-- ExtID --></label>
+        <name>ExtID__c</name>
+    </fields>
+    <fields>
         <label><!-- IsStarted --></label>
         <name>IsStarted__c</name>
     </fields>

@@ -130,6 +130,10 @@
         <label><!-- Market --></label>
         <name>Market__c</name>
     </fields>
+    <fields>
+        <label><!-- Test --></label>
+        <name>Test__c</name>
+    </fields>
     <layouts>
         <layout>Case Market Mapping Layout</layout>
         <sections>

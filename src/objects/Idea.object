@@ -98,19 +98,11 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Kids</fullName>
+                <fullName>Kids and Teens</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Teens</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Desi Flavors</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Indo Western Fusion</fullName>
+                <fullName>Desi Flavors and Indo Western Fusion</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -118,7 +110,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Healthy Indulgence</fullName>
+                <fullName>Better for You</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -264,114 +256,6 @@
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>Record_type_for_community_09aE0000000PLSXIA4_entity_Idea</fullName>
-        <active>true</active>
-        <description>Record type used to associate Idea with a specific zone</description>
-        <label>Ice Cream Day: Idea Record Type</label>
-        <picklistValues>
-            <picklist>Categories</picklist>
-            <values>
-                <fullName>Desi Flavors</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Healthy Indulgence</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Indo Western Fusion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Kids</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Teens</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Western Indulgence</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Status</picklist>
-            <values>
-                <fullName>New</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Reviewed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Under Consideration</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>Record_type_for_community_09aE0000000PLkaIAG_entity_Idea</fullName>
-        <active>true</active>
-        <description>Record type used to associate Idea with a specific zone</description>
-        <label>Ideas Lab 2015: Idea Record Type</label>
-        <picklistValues>
-            <picklist>Categories</picklist>
-            <values>
-                <fullName>Deodorants</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>General</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hair</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not Applicable</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oral Care</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Skin Care</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Skin Cleansing</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Status</picklist>
-            <values>
-                <fullName>Implemented</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Not Implemented</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Reviewed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Under Consideration</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
         <fullName>Record_type_for_community_09aE0000000YIk2IAG_entity_Idea</fullName>
         <active>true</active>
         <description>Record type used to associate Idea with a specific zone</description>
@@ -460,6 +344,46 @@
             <values>
                 <fullName>Not Implemented</fullName>
                 <default>false</default>
+            </values>
+            <values>
+                <fullName>Reviewed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Consideration</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Record_type_for_community_09ac00000004CrKAAU_entity_Idea</fullName>
+        <active>true</active>
+        <description>Record type used to associate Idea with a specific zone</description>
+        <label>Ice Cream Day: Idea Record Type</label>
+        <picklistValues>
+            <picklist>Categories</picklist>
+            <values>
+                <fullName>Better for You</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Desi Flavors and Indo Western Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kids and Teens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Western Indulgence</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>New</fullName>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Reviewed</fullName>

@@ -29,79 +29,7 @@
         <template>Network_Tracking/CoreNT_Task_Notification_Escalation_1_Week_Post_Task_Due_Date_Critical</template>
     </alerts>
     <alerts>
-        <fullName>CoreNT_Task_Escalation_1_week_Post_Task_Due_Date_Email_Alert_Critical1</fullName>
-        <description>CoreNT Task Escalation 1 week Post Task Due Date Email Alert (Critical)</description>
-        <protected>false</protected>
-        <recipients>
-            <field>L1_Manager_Email__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
-            <type>owner</type>
-        </recipients>
-        <recipients>
-            <field>Assigned_To__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>Network_Tracking/CoreNT_Task_Notification_Escalation_1_Week_Post_Task_Due_Date_Critical</template>
-    </alerts>
-    <alerts>
-        <fullName>CoreNT_Task_Escalation_1_week_Post_Task_Due_Date_Email_Alert_Critical_New</fullName>
-        <description>CoreNT Task Escalation 1 week Post Task Due Date Email Alert (Critical)</description>
-        <protected>false</protected>
-        <recipients>
-            <field>L1_Manager_Email__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
-            <type>owner</type>
-        </recipients>
-        <recipients>
-            <field>Assigned_To__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>Network_Tracking/CoreNT_Task_Notification_Escalation_1_Week_Post_Task_Due_Date_Critical</template>
-    </alerts>
-    <alerts>
-        <fullName>CoreNT_Task_Escalation_1_week_Post_Task_Due_Date_Email_Alert_Criticalnew</fullName>
-        <description>CoreNT Task Escalation 1 week Post Task Due Date Email Alert (Critical)</description>
-        <protected>false</protected>
-        <recipients>
-            <field>L1_Manager_Email__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
-            <type>owner</type>
-        </recipients>
-        <recipients>
-            <field>Assigned_To__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>Network_Tracking/CoreNT_Task_Notification_Escalation_1_Week_Post_Task_Due_Date_Critical</template>
-    </alerts>
-    <alerts>
         <fullName>CoreNT_Task_Escalation_3_week_Post_Task_Due_Date_Email_Alert_Critical</fullName>
-        <description>CoreNT Task Escalation 3 week Post Task Due Date Email Alert(Critical)</description>
-        <protected>false</protected>
-        <recipients>
-            <field>L2_Manager_Email__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
-            <type>owner</type>
-        </recipients>
-        <recipients>
-            <field>Assigned_To__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>Network_Tracking/CoreNT_Task_Notification_Escalation_1_Week_Post_Task_Due_Date_Critical</template>
-    </alerts>
-    <alerts>
-        <fullName>CoreNT_Task_Escalation_3_week_Post_Task_Due_Date_Email_Alert_Critical_new</fullName>
         <description>CoreNT Task Escalation 3 week Post Task Due Date Email Alert(Critical)</description>
         <protected>false</protected>
         <recipients>
@@ -207,24 +135,16 @@
         <senderType>CurrentUser</senderType>
         <template>Network_Tracking/CoreNT_Task_Notification_Reminder_1_week_post_Task_Due_Date_Non_Critical</template>
     </alerts>
-    <alerts>
-        <fullName>CoreNT_Task_Reminder_3_week_Post_Task_Due_Date_Email_Alert_Non_Critical_New</fullName>
-        <description>CoreNT Task Reminder 3 week Post Task Due Date Email Alert (Non-Critical)</description>
+    <fieldUpdates>
+        <fullName>L1_ManagerField_UpdateInWorkFlowNC</fullName>
+        <field>L1_Manager_Email__c</field>
+        <formula>Assigned_To__r.Manager.Email</formula>
+        <name>L1 Manager Field Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
         <protected>false</protected>
-        <recipients>
-            <field>L2_Manager_Email__c</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
-            <type>owner</type>
-        </recipients>
-        <recipients>
-            <field>Assigned_To__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>Network_Tracking/CoreNT_Task_Notification_Reminder_1_week_post_Task_Due_Date_Non_Critical</template>
-    </alerts>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
     <fieldUpdates>
         <fullName>L1_Manager_Field_Update</fullName>
         <field>L1_Manager_Email__c</field>
@@ -326,26 +246,6 @@
                 <type>FieldUpdate</type>
             </actions>
             <offsetFromField>CORE_NT_Task__c.Due_Date__c</offsetFromField>
-            <timeLength>21</timeLength>
-            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
-    </rules>
-    <rules>
-        <fullName>CoreNT Task Notification Escalation 3 Week Post Task Due Date %28Critical%29New</fullName>
-        <active>false</active>
-        <description>Task Escalation 3 week Post Task Due Date (Critical)</description>
-        <formula>AND((Complete__c ==false),(Critical__c ==true))</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-        <workflowTimeTriggers>
-            <actions>
-                <name>CoreNT_Task_Escalation_3_week_Post_Task_Due_Date_Email_Alert_Critical_new</name>
-                <type>Alert</type>
-            </actions>
-            <actions>
-                <name>L2_Manager_Field_Update</name>
-                <type>FieldUpdate</type>
-            </actions>
-            <offsetFromField>CORE_NT_Task__c.Due_Date__c</offsetFromField>
             <timeLength>3</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
@@ -416,6 +316,10 @@
                 <name>CoreNT_Task_Reminder_1_week_post_Task_Due_Date_Email_Alert_Non_Critical</name>
                 <type>Alert</type>
             </actions>
+            <actions>
+                <name>L1_ManagerField_UpdateInWorkFlowNC</name>
+                <type>FieldUpdate</type>
+            </actions>
             <offsetFromField>CORE_NT_Task__c.Due_Date__c</offsetFromField>
             <timeLength>7</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
@@ -430,26 +334,6 @@
         <workflowTimeTriggers>
             <actions>
                 <name>CoreNT_Task_Reminder_3_week_Post_Task_Due_Date_Email_Alert_Non_Critical</name>
-                <type>Alert</type>
-            </actions>
-            <actions>
-                <name>L2_Manager_Field_Update</name>
-                <type>FieldUpdate</type>
-            </actions>
-            <offsetFromField>CORE_NT_Task__c.Due_Date__c</offsetFromField>
-            <timeLength>21</timeLength>
-            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
-    </rules>
-    <rules>
-        <fullName>CoreNT Task Notification Reminder 3 week Post Task Due Date %28Non-Critical%29 New</fullName>
-        <active>false</active>
-        <description>Task Reminder 3 week Post Task Due Date (Non-Critical)</description>
-        <formula>AND((Complete__c ==false),(Critical__c ==false))</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-        <workflowTimeTriggers>
-            <actions>
-                <name>CoreNT_Task_Reminder_3_week_Post_Task_Due_Date_Email_Alert_Non_Critical_New</name>
                 <type>Alert</type>
             </actions>
             <actions>
@@ -494,31 +378,11 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
-                <name>CoreNT_Task_Escalation_1_week_Post_Task_Due_Date_Email_Alert_Critical1</name>
+                <name>CoreNT_Task_Escalation_1_week_Post_Task_Due_Date_Email_Alert_Critical</name>
                 <type>Alert</type>
             </actions>
             <actions>
-                <name>L1_Manager_Field_Update</name>
-                <type>FieldUpdate</type>
-            </actions>
-            <offsetFromField>CORE_NT_Task__c.Due_Date__c</offsetFromField>
-            <timeLength>7</timeLength>
-            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
-    </rules>
-    <rules>
-        <fullName>CoreNT Task notification Escalation 1 week Post Task Due Date %28Critical%29 New</fullName>
-        <active>false</active>
-        <description>Task Escalation 1 week Post Task Due Date (Critical) to Assigned User and Network Owner</description>
-        <formula>AND((Complete__c ==false),(Critical__c ==true))</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-        <workflowTimeTriggers>
-            <actions>
-                <name>CoreNT_Task_Escalation_1_week_Post_Task_Due_Date_Email_Alert_Criticalnew</name>
-                <type>Alert</type>
-            </actions>
-            <actions>
-                <name>L1_Manager_Field_Update</name>
+                <name>L1_ManagerField_UpdateInWorkFlowNC</name>
                 <type>FieldUpdate</type>
             </actions>
             <offsetFromField>CORE_NT_Task__c.Due_Date__c</offsetFromField>

@@ -138,19 +138,11 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Kids</fullName>
+                <fullName>Kids and Teens</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Teens</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Desi Flavors</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Indo Western Fusion</fullName>
+                <fullName>Desi Flavors and Indo Western Fusion</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -158,7 +150,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Healthy Indulgence</fullName>
+                <fullName>Better for You</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>

@@ -187,6 +187,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>ExtID__c</fullName>
+        <externalId>true</externalId>
+        <label>ExtID</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Footer__c</fullName>
         <description>Footer for Brand Centre.</description>
         <externalId>false</externalId>

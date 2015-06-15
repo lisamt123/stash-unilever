@@ -2824,6 +2824,11 @@
         <type>Date</type>
     </fields>
     <label>Additional Case Information</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>Additional Information Name</label>
         <type>Text</type>

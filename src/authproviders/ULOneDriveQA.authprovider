@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authorizeUrl>https://unileverdev-my.sharepoint.com/_layouts/15/OauthAuthorize.aspx</authorizeUrl>
+    <consumerKey>ffb691b5-adbf-4a76-85f3-a92c88979dd2</consumerKey>
+    <consumerSecret>8anjlC0bLrrrrgS6b8uAZd/qmh15cbdNmcMPBRSDoXxfKOafiBNAZ7Jlq4/CDMQp</consumerSecret>
+    <friendlyName>ULOneDriveQA</friendlyName>
+    <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <providerType>MicrosoftACS</providerType>
+    <sendAccessTokenInHeader>false</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+    <tokenUrl>https://accounts.accesscontrol.windows.net/unileverdev.onmicrosoft.com/tokens/OAuth/2?resource=00000003-0000-0ff1-ce00-000000000000/unileverdev-my.sharepoint.com@unileverdev.onmicrosoft.com</tokenUrl>
+</AuthProvider>
