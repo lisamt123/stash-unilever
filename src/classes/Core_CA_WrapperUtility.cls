@@ -10,8 +10,7 @@
 */
 
 
-global with sharing class Core_CA_WrapperUtility {
-    
+global with sharing class Core_CA_WrapperUtility { 
     /**** wrapper classes for MyApproval Home page starts ****/
     
     /*************************************************************************
@@ -64,6 +63,7 @@ global with sharing class Core_CA_WrapperUtility {
     * Wrapper class for GetExpenseDataResponseJSON-GTESARIBA
     **************************************************************************/ 
     global class RequestDetailResponseAribaGTES extends Core_CA_BaseApplicationWrapper{
+        public Boolean accessStatus; 
         public String RequestId;
         public String ApproverId;
         public String RequestName;
@@ -227,16 +227,7 @@ global with sharing class Core_CA_WrapperUtility {
         public String UpdateFunctionType;
         //public MyApprovalsDataResponse MyApprovalsDataResponse;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+       
     public class Comments{
         public String CommentsBy;
         public String Dates;
@@ -244,9 +235,7 @@ global with sharing class Core_CA_WrapperUtility {
         public string CommentsUserId;
     }
     
-    
-    
-    
+       
     /*
     public class SplitAccountingDetails{
         public Integer SplitNumber;
@@ -254,7 +243,5 @@ global with sharing class Core_CA_WrapperUtility {
         public String Currencies;
     }*/
     
-    
-    
-
+   
 }
