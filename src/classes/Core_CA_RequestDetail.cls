@@ -19,7 +19,25 @@ global with sharing class Core_CA_RequestDetail{
        try{
             //system.debug('@@@@@@@@@@'+ appWrapperObj);
            // system.debug('@@@@@@@@@@'+ appWrapperObj.expenseDetailRequest.RequestId);
-            objRequestDetailResponseAribaGTES = processReqDetailResponseAribaGTES(appWrapperObj.expenseDetailRequest.RequestId,appWrapperObj.expenseDetailRequest.ApproverId);
+            List<Core_Approval_Header__Share> lstHeaderShare = [SELECT Id FROM Core_Approval_Header__Share WHERE ParentId = : appWrapperObj.expenseDetailRequest.RequestId];
+            
+            if(!lstHeaderShare.isEmpty()){
+                List<Core_Approver_Details__c> approver = [select Interested_Party__c from Core_Approver_Details__c where Id =: appWrapperObj.expenseDetailRequest.ApproverId ];
+                objRequestDetailResponseAribaGTES = processReqDetailResponseAribaGTES(appWrapperObj.expenseDetailRequest.RequestId,appWrapperObj.expenseDetailRequest.ApproverId);
+                if(approver[0].Interested_Party__c  !=  UserInfo.getUserId()){
+                    List<Core_Approver_Details__c> lstApprover = [SELECT Id FROM Core_Approver_Details__c WHERE Approval_Header__c =: appWrapperObj.expenseDetailRequest.RequestId and Interested_Party__c  =: UserInfo.getUserId() ORDER BY CreatedDate ASC];                    
+                    objRequestDetailResponseAribaGTES.ApproverId = lstApprover[0].Id;
+                    objRequestDetailResponseAribaGTES.ApproverStatus=getCurrentApproverDetails(lstApprover[0].Id)[0].Status__c;
+                    objRequestDetailResponseAribaGTES.ApproverAction=getCurrentApproverDetails(lstApprover[0].Id)[0].Action__c;
+                    objRequestDetailResponseAribaGTES.IsActive=string.valueof(getCurrentApproverDetails(lstApprover[0].Id)[0].Is_Active__c);
+                }
+            }
+            else{
+                objRequestDetailResponseAribaGTES.accessStatus = false;
+                objRequestDetailResponseAribaGTES.StatusCode = Core_CA_AppConstants.RESPONSE_SUCCESS_CODE;
+                objRequestDetailResponseAribaGTES.Message = Core_CA_AppConstants.RESPONSE_SUCCESS_MSG;
+            }
+            
        }
        catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
@@ -47,6 +65,7 @@ global with sharing class Core_CA_RequestDetail{
                
            objRequestDetailResponseAribaGTES.StatusCode = Core_CA_AppConstants.RESPONSE_SUCCESS_CODE;
            objRequestDetailResponseAribaGTES.Message = Core_CA_AppConstants.RESPONSE_SUCCESS_MSG;
+           objRequestDetailResponseAribaGTES.accessStatus = true;
            if(objApprovalHeader.Source_System__c == 'Ariba')   
             objRequestDetailResponseAribaGTES.RequestType = Core_CA_AppConstants.DATA_REQUEST_TYPE_ARIBA;                    
            if(objApprovalHeader.Source_System__c == 'GTES')
@@ -102,15 +121,14 @@ global with sharing class Core_CA_RequestDetail{
             Core_CA_WrapperUtility.LineItems objlineItem;
             for(Core_Approval_Details__c lineitem : lstApprovalDetails){
                objlineItem =new Core_CA_WrapperUtility.LineItems();
-             
                objlineItem.LineItemId = lineitem.Id;
                objlineItem.Amount= lineitem.Amount__c;
                objlineItem.Currencies = lineitem.Currency__c;
-               
                if(lineitem.Source_System__c == 'Ariba'){
                 objlineItem.ItemName= lineitem.Description__c;}
-               if(lineitem.Source_System__c == 'GTES') {
-                objlineItem.ItemName= lineitem.Name; }
+               else if(lineitem.Source_System__c == 'GTES'){ 
+                objlineItem.ItemName= lineitem.Name;}
+               
                lstLineItems.add(objlineItem);
            }
         }  
@@ -172,7 +190,7 @@ global with sharing class Core_CA_RequestDetail{
    private static List<Core_Approval_Details__c> getApprovalDetails(string HeaderId){
        List<Core_Approval_Details__c> lstApprovalDetails = null;
        try{
-           lstApprovalDetails =[SELECT Amount__c,Name,Id,Currency__c,Description__c,Source_System__c  FROM Core_Approval_Details__c WHERE Approval_Header__c =: HeaderId];
+           lstApprovalDetails =[SELECT Amount__c,Name,Id,Currency__c,Description__c,Source_System__c FROM Core_Approval_Details__c WHERE Approval_Header__c =: HeaderId];
        }
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_CA_MyApprovalData : getPreTripDetails method ', ex);

@@ -4,7 +4,9 @@
         <div class="headerBarBackground" name="top" id="pageTop">
             <table class="headerBarWidth"> 
                 <tr>
+                    <!--<td class="headerBarRowAlign" > <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/back.svg')}" ng-click='gotoHomePage()' class="headerBarIconStyle"/></td> -->
                     <td class="headerBarRowAlign" > <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/back.svg')}" ng-click='gotoHomePage()' class="homePageFilter" /></td> 
+                    <!--<td class="headerBarRowAlign"><img src="{!URLFOR($Resource.MyApprovalsSR, 'img/back.svg')}" ng-click='gotoApproveRejectTestPage()' class="headerBarIconStyle"/></td>-->
                 </tr>
             </table>
         </div>
@@ -17,6 +19,13 @@
             <label class="detailPageHeaderText" > {{approvalRequestData.Currencies}} {{approvalRequestData.TotalAmount}}</label> 
             <br/>
         </div>
+        
+        <div ng-if='approvalRequestData.accessStatus == false' class="defaultLeftSpace">
+            <br/><br/>
+            <span class="Subtext3"> {{'LBL_EXP_DETAIL_ERROR_MSG' | translate}}</span>
+        </div>
+               
+        <div ng-if="approvalRequestData.accessStatus == true">
         <tabset class="detailPageMenu"  >
             <tab heading="{{'LBL_DETAILS'| translate}}" class="homePageMenuBody"  active="active.detail">       
                 <br/>
@@ -405,5 +414,6 @@
                 </table>    
             </div> 
         </nav>
+    </div>    
     <!--</div>-->
 </apex:page>
