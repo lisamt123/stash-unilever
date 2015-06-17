@@ -149,7 +149,7 @@ public class Core_CA_InterestedParty_Handler{
             
             
             //Check whether Interested Party is not null and dont have sharing permission for current record.
-            if(approverRec.Interested_Party__c != null && !(userId.contains(approverRec.Interested_Party__c)) ) 
+            if(approverRec.Interested_Party__c != null && approverRec.Role__c == 'APP'  && !(userId.contains(approverRec.Interested_Party__c)) ) 
                 userorGroupIds.add(approverRec.Interested_Party__c);
             
             for(Id id : userorGroupIds ){

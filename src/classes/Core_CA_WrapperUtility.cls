@@ -93,6 +93,7 @@ global with sharing class Core_CA_WrapperUtility {
         public List<LineItems> LineItems;//= new List<LineItems>() 
         public String Comments;
         public List<ApprovalHistory> ApprovalHistory;//= new List<ApprovalHistory>()
+        public Boolean isRecalled; 
     } 
     
     global class ExpenseDetailsDataRequest{

@@ -98,6 +98,24 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IsCEC__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>TO :</description>
+        <externalId>false</externalId>
+        <label>IsCEC</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsGeorge__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>TO :</description>
+        <externalId>false</externalId>
+        <label>IsGeorge</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>L0_Code__c</fullName>
         <externalId>false</externalId>
         <label>L0 Code</label>

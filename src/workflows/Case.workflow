@@ -233,6 +233,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>TO_IsEscalated_Update</fullName>
+        <description>TO : IsEscalated set to TRUE, if Status is set to Escalated.</description>
+        <field>IsEscalated</field>
+        <literalValue>1</literalValue>
+        <name>TO - IsEscalated Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>WorkIt2__WorkIt_Case_Overtime_Level_Green</fullName>
         <field>WorkIt2__Color__c</field>
         <literalValue>Green</literalValue>
@@ -687,6 +697,36 @@ ex: Case Origin : Email India then Update Market : India</description>
             <value>Duplicate</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>TO - IsEscalated Update</fullName>
+        <actions>
+            <name>TO_IsEscalated_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>Escalated</value>
+        </criteriaItems>
+        <description>TO : IsEscalated set to TRUE, If the status is set to Escalated.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TO France Market Field Update</fullName>
+        <actions>
+            <name>CEC_Case_Origin_to_email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>equals</operation>
+            <value>Email TO France</value>
+        </criteriaItems>
+        <description>TO: Market Field Update based on Case Origin Field</description>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>WorkIt2__WorkIt%21 Case Close</fullName>

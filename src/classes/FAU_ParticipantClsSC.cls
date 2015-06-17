@@ -15,7 +15,38 @@ VERSION  AUTHOR            DATE              DETAIL                 Description
 ***********************************************************************/
 public with sharing class FAU_ParticipantClsSC {
 
+ 	public static void submitforApprovals(FAU_Participant__c newParticipant, FAU_Participant__c oldParticipant)
+	{
+		// FAU Request New Personal Assistant User
+		//for (Integer i = 0; i < newParticipant.size(); i++) {
+		if (newParticipant.FAU_Request_PA_User_Email_Address__c <>  oldParticipant.FAU_Request_PA_User_Email_Address__c
+					&& newParticipant.FAU_Request_PA_User_Email_Address__c <> null 
+					&& newParticipant.FAU_Personal_Assistant__c == null) {
 
+            // create the new approval request to submit
+            Approval.ProcessSubmitRequest req = new Approval.ProcessSubmitRequest();
+            req.setComments('Submitted for approval. Please approve.');
+            req.setObjectId(newParticipant.Id);
+            // submit the approval request for processing
+            Approval.ProcessResult result = Approval.process(req);
+            // display if the reqeust was successful
+            System.debug('Submitted for approval successfully: '+result.isSuccess());
+
+        }
+		//} 
+		
+	}
+	 /*******************************************************************
+       Purpose:     Set FAU_Is_deferred_To_PA__c for participant
+    ********************************************************************/ 
+	public static void setIsdeferredToPA(FAU_Participant__c newParticipant){
+		if (newParticipant.FAU_Personal_Assistant__c <> null){
+			newParticipant.FAU_Is_deferred_To_PA__c = true;
+		}else{
+			newParticipant.FAU_Is_deferred_To_PA__c = false;
+		}
+	}
+	
 	public static void removeParticipantsFromChatterGroup(List<FAU_Participant__c> participants){
 		Set<String> members = new Set<String>();
 		Set<String> groups = new Set<String>();
@@ -25,7 +56,7 @@ public with sharing class FAU_ParticipantClsSC {
 			programs.add(participant.FAU_Program_Wave__c);
 		}
 		
-		for(FAU_Program__c program : [select FAU_Participant_Chatter_Group_Id__c from FAU_Program__c LIMIT 5000]){
+		for(FAU_Program__c program : [select FAU_Participant_Chatter_Group_Id__c from FAU_Program__c]){
 			programChatterGroup.put(program.id,program.FAU_Participant_Chatter_Group_Id__c);
 		}
 		
@@ -35,7 +66,7 @@ public with sharing class FAU_ParticipantClsSC {
 		}
 		delete [select id from CollaborationGroupMember where MemberId in: members and CollaborationGroupId in: groups];
 	}
-
+	
 	public static List<FAU_Participant__c> getDeclinedParticipants(List<FAU_Participant__c> participants, Map<Id,sObject> oldMap){
 		List<FAU_Participant__c> declined = new List<FAU_Participant__c>();
 		for(FAU_Participant__c participant : participants){

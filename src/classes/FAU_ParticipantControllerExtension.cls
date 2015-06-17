@@ -15,9 +15,7 @@ VERSION  AUTHOR            DATE              DETAIL                 Description
 ***********************************************************************/
 public with sharing class FAU_ParticipantControllerExtension
 {
-	
-	public Boolean declineReasonAvailable {get;set;}
-	
+
     public FAU_ParticipantControllerExtension(ApexPages.StandardController standardController)
     {
         this.webinars = new List<FAU_Webinar_Participant__c>();
@@ -30,7 +28,6 @@ public with sharing class FAU_ParticipantControllerExtension
         this.modules = modulesForParticipant(this.participant);
         this.selectedWebinars = new List<String>();
         this.idWebinarMap = new Map<Id, FAU_Webinar_Participant__c>(this.webinars);
-        declineReasonAvailable = false;
     }
 
 
@@ -84,22 +81,14 @@ public with sharing class FAU_ParticipantControllerExtension
     ********************************************************************/
     public PageReference declineInvite()
     {
-    	if(declineReasonAvailable){
-        	System.debug('Entering FAU_ParticipantControllerExtension.declineInvite');
-        	FAU_Participant__c recordToSave = (FAU_Participant__c)this.standardController.getRecord();
-        	if(recordToSave.FAU_Decline_Reason__c == null || recordToSave.FAU_Decline_Reason__c == '--None--') {
-        		ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Decline reason is mandatory'));
-        		return null;
-        	}
-        	this.stage = STAGE_DECLINED;
-			recordToSave.FAU_Invite_State__c = INVITE_STATE_DECLINED;
-        	System.debug('Exiting FAU_ParticipantControllerExtension.declineInvite');
+        System.debug('Entering FAU_ParticipantControllerExtension.declineInvite');
+        this.stage = STAGE_DECLINED;
+        FAU_Participant__c recordToSave = (FAU_Participant__c)this.standardController.getRecord();
+        recordToSave.FAU_Invite_State__c = INVITE_STATE_DECLINED;  
 
-        	return save();
-    	} else {
-    		declineReasonAvailable = true;
-    		return null;
-    	}
+        System.debug('Exiting FAU_ParticipantControllerExtension.declineInvite');
+
+        return save();
     }
 
     /*******************************************************************
@@ -117,12 +106,19 @@ public with sharing class FAU_ParticipantControllerExtension
     public PageReference deferToPA()
     {
         System.debug('Entering FAU_ParticipantControllerExtension.deferToPA');
-        this.stage = STAGE_GIVEN_TO_PA;
+        
         FAU_Participant__c recordToSave = (FAU_Participant__c)this.standardController.getRecord();
-        recordToSave.FAU_Is_deferred_To_PA__c = true;
-
-        System.debug('Exiting FAU_ParticipantControllerExtension.deferToPA');
-
+        //recordToSave.FAU_Is_deferred_To_PA__c = true;
+        if (recordToSave.FAU_Personal_Assistant__c == null && recordToSave.FAU_Request_PA_User_Email_Address__c == null){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,
+        									Label.FAU_To_Defer_To_PA_error_message));
+        }else{
+      
+			this.stage = STAGE_GIVEN_TO_PA;
+        }
+        
+		System.debug('Exiting FAU_ParticipantControllerExtension.deferToPA');
+		
         return save();
     }
 

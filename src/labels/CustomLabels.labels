@@ -1075,6 +1075,14 @@ Are you sure you wish to proceed?</value>
         <value>Your P.A. will receive instructions to complete the registration</value>
     </labels>
     <labels>
+        <fullName>FAU_To_Defer_To_PA_error_message</fullName>
+        <categories>FAU</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU To Defer To PA error message</shortDescription>
+        <value>To defer to your personal assistant. Please enter your personal assistant&apos;s user or email address.</value>
+    </labels>
+    <labels>
         <fullName>FAU_Webinar_Invitation_Template</fullName>
         <categories>FAU, Participant</categories>
         <language>en_US</language>
