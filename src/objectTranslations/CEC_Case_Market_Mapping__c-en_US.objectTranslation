@@ -131,6 +131,18 @@
         <name>Market__c</name>
     </fields>
     <fields>
+        <label><!-- Tag --></label>
+        <name>Tag__c</name>
+        <picklistValues>
+            <masterLabel>CEC</masterLabel>
+            <translation><!-- CEC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>George</masterLabel>
+            <translation><!-- George --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Test --></label>
         <name>Test__c</name>
     </fields>

@@ -135,7 +135,6 @@
         <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
-        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Interested_Party_Details__c</fields>
         <fields>Reason__c</fields>

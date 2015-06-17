@@ -428,7 +428,7 @@ public class CEC_CaseTriggerHelper{
      
                 System.debug('Case_Market_Mapping_Country__c~~~~~~~~~'+ caseitem.Case_Market_Mapping_Country__c);
                 caseitem.Country_Name__c=caseitem.Case_Market_Mapping_Country__c;
-               // caseitem.Tag__c=caseitem.Case_Market_Tag__c;
+                caseitem.Tag__c=caseitem.Case_Market_Tag__c;
                 System.debug('Country_Name__c~~~~~~~~~'+ caseitem.Country_Name__c);
         }
     

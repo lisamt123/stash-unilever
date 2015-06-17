@@ -100,11 +100,6 @@ private class FAU_ProgramTest {
             //System.AssertEquals(expectedExceptionThrown, true);
         } 
         Test.stopTest();
-
-        Integer iNoProg = [Select Id FROM FAU_Program__c LIMIT 1].size();
-
-        System.assertEquals(0, iNoProg); 
-	        
     } 
  
 
@@ -207,6 +202,9 @@ private class FAU_ProgramTest {
 	        Test.startTest();
 	
 	        participantRecord.FAU_Invite_State__c = PARTICIPANT_STATUS_ACCEPTED;
+	        participantRecord.FAU_Personal_Assistant__c = users[1].id;
+	        update participantRecord;
+	        participantRecord.FAU_Personal_Assistant__c = null;
 	        update participantRecord;
 	        
 	        Test.stopTest();
@@ -219,6 +217,40 @@ private class FAU_ProgramTest {
              
     }
     
+    @isTest
+    static void testUpdateRequestEmailAcceptParticipant()
+    {
+    	Profile pp = [select id from Profile where name ='System Administrator'];
+        User u = new User(firstName='vanessa', lastname='barros2', profileId= pp.id,Username = 'vanessa16688@dfg.com', 
+                Email='vanessa@dfg.com', Alias='dfg16688', CommunityNickname='dfg', TimeZoneSidKey = 'GMT', 
+                LocaleSidKey='en_US', EmailEncodingKey='ISO-8859-1', LanguageLocaleKey='en_US');
+        
+        insert u;   
+    	
+    	System.runAs(u){	
+	        User[] users = createUsersWithProfile(PROFILE_PARTICIPANT_HOLDS, 2);
+	        //User[] user2 = createUserWithProfile(PROFILE_PARTICIPANT_HOLDS, 1);
+	
+	        Date startDateFixture = Date.newInstance(2015, 10, 25);
+	        String locationFixture = 'Singapore';
+	        String inviteStateFixture = PARTICIPANT_STATUS_DECLINED;
+	
+	        FAU_Participant__c participantRecord
+	             = createParticipantFixture(users[0], startDateFixture, locationFixture, inviteStateFixture); 
+	             
+	        Test.startTest();
+	
+	        participantRecord.FAU_Request_PA_User_Email_Address__c = 'test@test.com';
+	        update participantRecord;
+	        
+	        Test.stopTest();
+	        
+	         // ensure that the opp was submitted for approval
+        	ProcessInstance[] processInstances = [select Id, Status from ProcessInstance where TargetObjectId = :participantRecord.id];
+    		System.assertEquals(processInstances.size(),1);
+    	}
+             
+    }
     
     @isTest
     static void testRemoveParticipant()
