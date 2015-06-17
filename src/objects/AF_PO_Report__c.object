@@ -516,6 +516,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_PO_Value_Tradition_OOPSEuro__c</fullName>
+        <externalId>false</externalId>
+        <formula>AF_Traditional__c *((AF_CountNoQuarters__c+ AF_QuatersAlreadyDone__c)/4) -  AF_Previous_Quarter_Value_TL_OOPSEuro__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PO Value Tradition OOPSEuro</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_Previous_Quarter_Value_AL__c</fullName>
         <defaultValue>0</defaultValue>
         <description>Value of PO raised in previous Quarter for Adaptation Local</description>
@@ -534,6 +547,18 @@
         <description>Value of PO raised in previous Quarter for Digital Local</description>
         <externalId>false</externalId>
         <label>Previous Quarter Value DL</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Previous_Quarter_Value_TL_OOPSEuro__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Previous Quarter Value TL OOPSEuro</label>
         <precision>14</precision>
         <required>false</required>
         <scale>2</scale>

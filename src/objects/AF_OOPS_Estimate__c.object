@@ -227,6 +227,18 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>AF_Brand__c</fullName>
+        <externalId>false</externalId>
+        <formula>AF_OOPS_Actual__r.AF_Brand__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Brand</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_Compound_key__c</fullName>
         <description>Composite Key used for quickly fiding all OOPS estimate records for the purpose of calculating total (yearly) PO value.</description>
         <externalId>false</externalId>
