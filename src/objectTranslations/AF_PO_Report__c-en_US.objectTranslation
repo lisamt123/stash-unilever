@@ -165,12 +165,20 @@
         <name>AF_PO_Value_Total_LC__c</name>
     </fields>
     <fields>
+        <label><!-- PO Value Tradition OOPSEuro --></label>
+        <name>AF_PO_Value_Tradition_OOPSEuro__c</name>
+    </fields>
+    <fields>
         <label><!-- Previous Quarter Value AL --></label>
         <name>AF_Previous_Quarter_Value_AL__c</name>
     </fields>
     <fields>
         <label><!-- Previous Quarter Value DL --></label>
         <name>AF_Previous_Quarter_Value_DL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Previous Quarter Value TL OOPSEuro --></label>
+        <name>AF_Previous_Quarter_Value_TL_OOPSEuro__c</name>
     </fields>
     <fields>
         <label><!-- Previous Quarter Value TL --></label>

@@ -59,6 +59,10 @@
         <relationshipLabel><!-- OOPS Estimates --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Brand --></label>
+        <name>AF_Brand__c</name>
+    </fields>
+    <fields>
         <help><!-- Composite Key used for quickly fiding all OOPS estimate records for the purpose of calculating total (yearly) PO value. --></help>
         <label><!-- Compound key --></label>
         <name>AF_Compound_key__c</name>
