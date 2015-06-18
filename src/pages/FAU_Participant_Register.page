@@ -473,7 +473,7 @@
                         <td>
                             <apex:inputField id="lineManagerSecretaryName"
                                 value="{!FAU_Participant__c.FAU_Line_Manager_s_Secretary_s_Name__c}"
-                                required="true"/>
+                                required="false"/>
                         </td>
                     </tr>
                     <tr>
