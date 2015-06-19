@@ -1,0 +1,5 @@
+<apex:page standardController="Core_Approval_Header__c" extensions="Core_CA_MiniPageView_Override_Controller"> 
+  <script type = "text/javascript">
+    win = window.open('{!customPageURL}','_parent');
+  </script>
+</apex:page>

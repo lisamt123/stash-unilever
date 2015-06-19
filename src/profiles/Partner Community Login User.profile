@@ -1399,6 +1399,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Core_CA_MiniPageView_Override_Controller</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Core_CA_MyApprovalData</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -24569,6 +24573,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_Line_Reject</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_MiniPageView_Override</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
