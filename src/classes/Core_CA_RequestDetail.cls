@@ -171,10 +171,14 @@ global with sharing class Core_CA_RequestDetail{
            for(Core_Approver_Details__c Approver:lstApproverDetails){
                objApprovalHistory =new Core_CA_WrapperUtility.ApprovalHistory();
                objApprovalHistory.ApproverName = Approver.Interested_Party_Details__c;
-               if(Approver.CA_Action__c == 'Approved' || Approver.CA_Action__c == 'Rejected' )
-                objApprovalHistory.ApproverAction =Approver.CA_Action__c;
-               else 
-                objApprovalHistory.ApproverAction =Approver.Status__c;
+               if(Approver.Action__c == 'APPR' || Approver.Action__c == 'REJC')
+                   objApprovalHistory.ApproverAction = Approver.CA_Action__c;
+               else{ 
+                   if(Approver.Status__c == 'Rejected')
+                       objApprovalHistory.ApproverAction = 'Returned';
+                   else
+                       objApprovalHistory.ApproverAction = Approver.Status__c;
+               }
                lstApprovalHistory.add(objApprovalHistory);
            }
        } 
@@ -227,7 +231,7 @@ global with sharing class Core_CA_RequestDetail{
    private static List<Core_Approver_Details__c> getApproverDetails(string HeaderId){
        List<Core_Approver_Details__c> lstApproverDetails = null;
        try{
-           lstApproverDetails =[SELECT CA_Action__c,Interested_Party_Details__c,Status__c FROM Core_Approver_Details__c WHERE Approval_Header__c =: HeaderId AND Role__c = 'APP' AND (Action__c = 'APPR' OR Action__c = 'REJC' OR  Status__c ='Approved' OR Status__c='Rejected')];
+           lstApproverDetails =[SELECT CA_Action__c,Interested_Party_Details__c,Status__c,Action__c FROM Core_Approver_Details__c WHERE Approval_Header__c =: HeaderId AND Role__c = 'APP' AND (Action__c = 'APPR' OR Action__c = 'REJC' OR  Status__c ='Approved' OR Status__c='Rejected')];
        }
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_CA_MyApprovalData : getPreTripDetails method ', ex);

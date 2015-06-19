@@ -207,7 +207,6 @@
         <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
-        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Interested_Party_Details__c</fields>
         <fields>CA_Action__c</fields>
