@@ -516,6 +516,25 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>India_Alerts</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>Alert_Type_Image__c</columns>
+        <columns>All_Market__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Threshold__c</columns>
+        <columns>Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>contains</operation>
+            <value>sujeet,pankaj</value>
+        </filters>
+        <label>India Alerts</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>phindia</fullName>
         <columns>NAME</columns>
         <columns>Active__c</columns>
