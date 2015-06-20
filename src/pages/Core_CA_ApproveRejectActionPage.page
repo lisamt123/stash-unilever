@@ -1,5 +1,6 @@
 <apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false">
 <meta http-equiv="content-type" content="text/html; charset=UTF8" />
+
         <div class="headerBarBackground" id="pageTop">
             <table class="headerBarWidth">
                 <tr>
@@ -17,13 +18,12 @@
        
        <div class="iPhoneScreenHeight" >          
             <span class="Subtext2">
-               {{'LBL_APPREJ_REQUIRED_PLACEHOLDER_MSG1' | translate}} <span class="noteText" ng-if="!(actionTakenonpage == 'Approve' && approvalRequestData.RequestType =='Expense')">{{'LBL_APPREJ_REQUIRED_PLACEHOLDER_MSG2' | translate}} </span><br/>
-               {{'LBL_APPREJ_REQUIRED_PLACEHOLDER_MSG3' | translate}} 
+               {{'LBL_APPREJ_REQUIRED_PLACEHOLDER_MSG1' | translate}} <span class="noteText" style="color:red" ng-if="!(actionTakenonpage == 'Approve' && approvalRequestData.RequestType =='Expense')">{{'LBL_APPREJ_REQUIRED_PLACEHOLDER_MSG2' | translate}} </span><br/>              
            </span>    
            
            <form name="myForm">           
                <!--{{approvalRequestData.RequestType =='Purchase Request'}} ? {{'LBL_APPREJ_REQUIRED_PLACEHOLDER' | translate}} : {{'LBL_APPREJ_PLACEHOLDER' | translate}}-->                             
-              <textarea  name="lastName" class="action-text-area" ng-class="{true:'action-text-area-error'}[myForm.submitted && (myForm.lastName.$error.required || myForm.lastName.$error.maxlength) ]" rows="5" cols="30" ng-required="!(actionTakenonpage == 'Approve' && approvalRequestData.RequestType =='Expense')" ng-model="myTextBox"  ng-focus='myForm.submitted=false' ng-maxlength="255" >
+              <textarea placeholder="{{'LBL_APPREJ_REQUIRED_PLACEHOLDER_MSG3' | translate}}"  name="lastName" class="action-text-area" ng-class="{true:'action-text-area-error'}[myForm.submitted && (myForm.lastName.$error.required || myForm.lastName.$error.maxlength) ]" rows="5" cols="30" ng-required="!(actionTakenonpage == 'Approve' && approvalRequestData.RequestType =='Expense')" ng-model="myTextBox"  ng-focus='myForm.submitted=false' ng-maxlength="255" >
               </textarea>
                             
               <div class="errorMessage" ng-show="myForm.lastName.$error.required && myForm.submitted">

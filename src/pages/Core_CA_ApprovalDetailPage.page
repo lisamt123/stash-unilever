@@ -121,12 +121,14 @@
                                 </div>
                                 <div class="responsiveDetailSectionData">
                                     <table class="responsiveDetailSectionTable">
+                                    <!--
                                         <tr>
                                             <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_CHARGE_TO' | translate}}</td>
                                         </tr>
                                         <tr>
                                             <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.ChargeTo}}</td>
                                         </tr>
+                                        -->
                                     </table>                                                        
                                 </div>  
                              </div>
@@ -151,6 +153,25 @@
                                 <span class="fieldLabel">{{'LBL_EXP_DETAIL_REASON' | translate}}</span><br/>
                                 <span class="fieldValue">{{approvalRequestData.Reason}}</span>
                             </div> 
+                        </div>
+                    </div><br/>
+                    <div class="template" ng-init="lineItemsPanel=false">
+                        <div class="defaultBottomBorder" ng-click="lineItemsPanel = (lineItemsPanel=='true' ? 'false' : 'true')">
+                            <span>
+                                <label class="detailSectionHeader">{{'LBL_EXP_DETAIL_LINE_ITEMS' | translate}}</label>
+                            </span>
+                            <span class="alignRight">                    
+                                <img class="arrowButtonStyle" ng-hide="lineItemsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
+                                <img class="arrowButtonStyle" ng-show="lineItemsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
+                            </span>   
+                        </div>
+                        <div ng-hide="lineItemsPanel" class="homePageMenuWidth">
+                            <table class="homePageMenuWidth" >
+                                <tr ng-repeat="approvalRequestLineItems in approvalRequestData.LineItems" class="lineItemsHeight" ng-click='gotoApprovalLineDetailPage(approvalRequestLineItems)'>
+                                    <td><span class="textLink">{{approvalRequestLineItems.ItemName}}</span></td>
+                                    <td id="defaultTopSpace" class="alignRight"><span class="fieldValue">{{approvalRequestLineItems.Currencies}}&nbsp;{{approvalRequestLineItems.Amount}}</span></td>
+                                </tr>                                                   
+                            </table>
                         </div>
                     </div><br/>
                     <div class="template" ng-init="claimExceptionsPanel=true">
@@ -198,25 +219,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div><br/>
-                    <div class="template" ng-init="lineItemsPanel=true">
-                        <div class="defaultBottomBorder" ng-click="lineItemsPanel = (lineItemsPanel=='false' ? 'true' : 'false')">
-                            <span>
-                                <label class="detailSectionHeader">{{'LBL_EXP_DETAIL_LINE_ITEMS' | translate}}</label>
-                            </span>
-                            <span class="alignRight">                    
-                                <img class="arrowButtonStyle" ng-hide="lineItemsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
-                                <img class="arrowButtonStyle" ng-show="lineItemsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
-                            </span>   
-                        </div>
-                        <div ng-hide="lineItemsPanel" class="responsiveDetailSectionTable">
-                            <table class="homePageMenuWidth" >
-                                <tr ng-repeat="approvalRequestLineItems in approvalRequestData.LineItems" ng-click='gotoApprovalLineDetailPage(approvalRequestLineItems)'>
-                                    <td><span class="textLink">{{approvalRequestLineItems.ItemName}}</span></td>
-                                    <td class="alignRight"><span class="fieldValue">{{approvalRequestLineItems.Currencies}}&nbsp;{{approvalRequestLineItems.Amount}}</span></td>
-                                </tr>                                                   
-                            </table>
                         </div>
                     </div><br/>
                 </div>
@@ -325,9 +327,9 @@
                         </div>
                         <div ng-hide="lineItemsPanel" class="responsiveDetailSectionTable">
                             <table class="homePageMenuWidth" >
-                                <tr ng-repeat="approvalRequestLineItems in approvalRequestData.LineItems" ng-click='gotoApprovalLineDetailPage(approvalRequestLineItems)'>
+                                <tr ng-repeat="approvalRequestLineItems in approvalRequestData.LineItems" ng-click='gotoApprovalLineDetailPage(approvalRequestLineItems)' class="lineItemsHeight">
                                     <td><span class="textLink">{{approvalRequestLineItems.ItemName}}</span></td>
-                                    <td class="alignRight"><span class="fieldValue">{{approvalRequestLineItems.Currencies}}&nbsp;{{approvalRequestLineItems.Amount}}</span></td>
+                                    <td id="defaultTopSpace" class="alignRight"><span class="fieldValue">{{approvalRequestLineItems.Currencies}}&nbsp;{{approvalRequestLineItems.Amount}}</span></td>
                                 </tr>                                                   
                             </table>
                         </div>
@@ -376,6 +378,7 @@
                         <table class="homePageMenuWidth" >
                             <tr ng-repeat="approvalRequestHistory in approvalRequestData.ApprovalHistory">
                                 <td><span class="fieldValue">{{approvalRequestHistory.ApproverName}}</span></td>
+                               <!-- <td><span class="fieldValue">{{approvalRequestHistory.AribaRole}}</span></td> -->
                                 <td><span class="alignRight">{{approvalRequestHistory.ApproverAction}}</span></td>
                             </tr>                                                   
                         </table>
