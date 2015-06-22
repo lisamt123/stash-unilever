@@ -149,10 +149,10 @@
                                 <span class="fieldLabel">{{'LBL_EXP_DETAIL_PURPOSE' | translate}}</span><br/>
                                 <span class="fieldValue">{{approvalRequestData.Purpose}}</span>
                             </div>     
-                            <div class="responsiveDetailSectionTable">
+                           <!-- <div class="responsiveDetailSectionTable">
                                 <span class="fieldLabel">{{'LBL_EXP_DETAIL_REASON' | translate}}</span><br/>
                                 <span class="fieldValue">{{approvalRequestData.Reason}}</span>
-                            </div> 
+                            </div> -->
                         </div>
                     </div><br/>
                     <div class="template" ng-init="lineItemsPanel=false">
