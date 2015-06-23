@@ -30,21 +30,12 @@ global with sharing class Core_CA_RequestDetail{
                     if(approver[0].Interested_Party__c  !=  UserInfo.getUserId()){                                 
                         List<Core_Approver_Details__c> lstApprover = [SELECT Id FROM Core_Approver_Details__c WHERE Approval_Header__c =: appWrapperObj.expenseDetailRequest.RequestId and Interested_Party__c  =: UserInfo.getUserId() and ((Source_System__c = 'Ariba' and Is_Active__c= true) or Source_System__c = 'GTES') ORDER BY CreatedDate ASC];                    
                         objRequestDetailResponseAribaGTES = processReqDetailResponseAribaGTES(appWrapperObj.expenseDetailRequest.RequestId,lstApprover[0].Id);
-                        //objRequestDetailResponseAribaGTES.ApproverId = lstApprover[0].Id;
-                        //objRequestDetailResponseAribaGTES.ApproverStatus=getCurrentApproverDetails(lstApprover[0].Id)[0].Status__c;
-                        //objRequestDetailResponseAribaGTES.ApproverAction=getCurrentApproverDetails(lstApprover[0].Id)[0].Action__c;
-                        //objRequestDetailResponseAribaGTES.IsActive=string.valueof(getCurrentApproverDetails(lstApprover[0].Id)[0].Is_Active__c);
                     }                        
                 }
                 
-                else{
-                    system.debug('inside doesnt contain');                   
+                else{                  
                     List<Core_Approver_Details__c> lstApprover = [SELECT Id FROM Core_Approver_Details__c WHERE Approval_Header__c =: appWrapperObj.expenseDetailRequest.RequestId and Interested_Party__c  =: UserInfo.getUserId() and ((Source_System__c = 'Ariba' and Is_Active__c= true) or Source_System__c = 'GTES') ORDER BY CreatedDate ASC];                    
-                    objRequestDetailResponseAribaGTES = processReqDetailResponseAribaGTES(appWrapperObj.expenseDetailRequest.RequestId,lstApprover[0].Id);
-                    //objRequestDetailResponseAribaGTES.ApproverId = lstApprover[0].Id;
-                    //objRequestDetailResponseAribaGTES.ApproverStatus=getCurrentApproverDetails(lstApprover[0].Id)[0].Status__c;
-                    //objRequestDetailResponseAribaGTES.ApproverAction=getCurrentApproverDetails(lstApprover[0].Id)[0].Action__c;
-                    //objRequestDetailResponseAribaGTES.IsActive=string.valueof(getCurrentApproverDetails(lstApprover[0].Id)[0].Is_Active__c);
+                    objRequestDetailResponseAribaGTES = processReqDetailResponseAribaGTES(appWrapperObj.expenseDetailRequest.RequestId,lstApprover[0].Id);                  
                 }
                 
             }

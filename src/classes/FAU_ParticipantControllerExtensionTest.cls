@@ -246,7 +246,7 @@ private class FAU_ParticipantControllerExtensionTest
         //}
         Test.stopTest();
 
-        System.assertEquals('Proceeding', controller.pageState);
+        System.assertEquals('WithPA', controller.pageState);
     }
 
 

@@ -59,6 +59,45 @@
         <!--Header Bar-->
         <!-- <div class="row page-header navbar-fixed-top">
         </div> -->
+     
+     <script type="text/javascript">           
+      var isMobile = getQueryVariableforMobile('isdtp');
+       if(isMobile != false){            
+           var strHeaderId  = getQueryVariableforMobile('headerId');
+           var strInterestedId = getQueryVariableforMobile('ipId');
+       }
+       else{
+           var strHeaderId  = getQueryVariableforDesktop('headerId');
+           var strInterestedId = getQueryVariableforDesktop('ipId');
+       } 
+       
+     
+       function getQueryVariableforMobile(param) {             
+           var query = window.location.search.substring(1);
+           var vars = query.split("&");
+           for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if (pair[0] == param) {
+                   return(pair[1]); 
+                }
+           } 
+           return(false);
+       }
+         
+       function getQueryVariableforDesktop(param) {         
+           var query = window.location.hash.substring(1);         
+           var query1 = query.split("?");
+           var vars = query1[1].split("&");
+           for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if (pair[0] == param) {
+                   return(pair[1]); 
+                }
+           } 
+           return(false);
+       }    
+    </script>
+    
         <div class="bodyStructure" >
             <!-- This is the app view-->
              <ui-view> </ui-view>

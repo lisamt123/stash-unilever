@@ -1,6 +1,7 @@
 <apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false">
 <meta http-equiv="content-type" content="text/html; charset=UTF8" />
     <!--<div class="iPhoneHomeScreenHeight">-->
+    
         <div class="headerBarBackground" name="top" id="pageTop">
             <table class="headerBarWidth"> 
                 <tr>
@@ -66,7 +67,21 @@
                                         </tr>
                                     </table>                            
                                 </div>  
-                             </div>                     
+                             </div> 
+                             <div class="row">
+                                <div class="responsiveDetailSectionData">
+                                    <table class="responsiveDetailSectionTable">
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_PURPOSE' | translate}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.Purpose}}</td>
+                                        </tr>
+                                    </table>                            
+                                </div>                                
+                                <div class="responsiveDetailSectionData">                                                      
+                                </div> 
+                            </div>                    
                         </div>
                     </div><br/>
                     <div class="template" ng-init="amountAndCostCenterPanel=false">
@@ -134,10 +149,10 @@
                              </div>
                         </div>
                     </div><br/>
-                    <div class="template" ng-init="purposeAndReasonPanel=false">
+                  <!--  <div class="template" ng-init="purposeAndReasonPanel=false">
                         <div class="defaultBottomBorder" ng-click="purposeAndReasonPanel = (purposeAndReasonPanel=='true' ? 'false' : 'true')">
                             <span>
-                                <label class="detailSectionHeader">{{'LBL_EXP_DETAIL_PURPOSE_REASON' | translate}}</label>
+                                <label class="detailSectionHeader">{{'LBL_EXP_DETAIL_PURPOSE' | translate}}</label>
                             </span>
                             <span class="alignRight">                    
                                 <img class="arrowButtonStyle" ng-hide="purposeAndReasonPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
@@ -149,12 +164,12 @@
                                 <span class="fieldLabel">{{'LBL_EXP_DETAIL_PURPOSE' | translate}}</span><br/>
                                 <span class="fieldValue">{{approvalRequestData.Purpose}}</span>
                             </div>     
-                           <!-- <div class="responsiveDetailSectionTable">
+                            <div class="responsiveDetailSectionTable">
                                 <span class="fieldLabel">{{'LBL_EXP_DETAIL_REASON' | translate}}</span><br/>
                                 <span class="fieldValue">{{approvalRequestData.Reason}}</span>
-                            </div> -->
+                            </div> 
                         </div>
-                    </div><br/>
+                    </div><br/> -->
                     <div class="template" ng-init="lineItemsPanel=false">
                         <div class="defaultBottomBorder" ng-click="lineItemsPanel = (lineItemsPanel=='true' ? 'false' : 'true')">
                             <span>
@@ -378,7 +393,7 @@
                         <table class="homePageMenuWidth" >
                             <tr ng-repeat="approvalRequestHistory in approvalRequestData.ApprovalHistory">
                                 <td><span class="fieldValue">{{approvalRequestHistory.ApproverName}}</span></td>
-                               <!-- <td><span class="fieldValue">{{approvalRequestHistory.AribaRole}}</span></td> -->
+                              <!--  <td><span class="fieldValue">{{approvalRequestHistory.AribaRole}}</span></td> -->
                                 <td><span class="alignRight">{{approvalRequestHistory.ApproverAction}}</span></td>
                             </tr>                                                   
                         </table>

@@ -83,9 +83,13 @@ global with sharing class Core_CA_LineItemDetail {
             objExpenseDetails.PaymentType = objApprovalDetails.CA_Payment_Type__c; 
             objExpenseDetails.City = objApprovalDetails.City__c; 
             objExpenseDetails.Country = objApprovalDetails.Expense_Country__c ;
-            if(objApprovalDetails.Expense_Date__c != null) 
-                objExpenseDetails.ExpenseDate = string.valueof(objApprovalDetails.Expense_Date__c) ; 
-            objExpenseDetails.EndDate = string.valueof(objApprovalDetails.End_Date__c); 
+            if(objApprovalDetails.Expense_Date__c != null){
+                objExpenseDetails.ExpenseDate=objApprovalDetails.Expense_Date__c.format('dd-MM-yyyy');
+            } 
+            if(objApprovalDetails.End_Date__c != null){
+                objExpenseDetails.EndDate =objApprovalDetails.End_Date__c.format('dd-MM-yyyy');
+            }    
+           
             if(objApprovalDetails.Reimbursable__c == True)
                 objExpenseDetails.Reimbursable = 'Yes';
             else
