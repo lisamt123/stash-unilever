@@ -247,8 +247,20 @@
                     </tbody>
                 </table> 
             </div>
-
-            <br/><br/><br/>
+ 
+            <br/>
+           
+            <div id="ReasonDiv" style="{!IF(declineReasonAvailable,'width:700px; margin:0 auto;','display:none;')}">
+                 <table>
+                          <tr>
+                                                    <td><apex:outputLabel value="Decline Reason" for="decreason" /></td>
+                                                    <td><apex:inputField value="{!FAU_Participant__c.FAU_Decline_Reason__c}"  id="decreason" style="width:200px;"/></td>
+                                            </tr>
+                                   </table>
+           </div>
+           
+            <br/><br/>
+             
             <h2><apex:commandButton style="color:#054976; height:30px; width:250px; background:#FFFFFF; border-radius:10px;"
                 id="proceed" 
                 value="Proceed with Registration" 
@@ -330,19 +342,20 @@
                         If you can't find your Personal Assistant, please enter your Personal Assistant's Email address below and we will activate them on the system.
                         While this email address is being verified and given access, you may not be able to access your registration page. This process takes around 1-2 working days. Thank you for your understanding.
                     </span>
-                    <br/><br/>
+                    <br/>
                     </h3>
-                     <br/><br/>
+                     <p></p>
+                     <div style="clear:both; height:20px;"></div>
                     <apex:inputField id="paUserRequestEmail"
                         value="{!FAU_Participant__c.FAU_Request_PA_User_Email_Address__c}"/>
                         <br/><br/>
-    
-                    <h2><apex:commandButton style="color:#054976; height:30px; width:150px; background:#FFFFFF; border-radius:10px;"
-                        id="deferToPaAction" 
-                        value="Give to PA" 
-                        action="{!deferToPA}"
-                        disabled="false"/></h2>
-                
+                    <div>
+                        <h2><apex:commandButton style="color:#054976; height:30px; width:150px; background:#FFFFFF; border-radius:10px;"
+                            id="deferToPaAction" 
+                            value="Give to PA" 
+                            action="{!deferToPA}"
+                            disabled="false"/></h2>
+                    </div>
     
                 <br/><br/>
                 </div>
@@ -481,7 +494,7 @@
                             <h2 style="color:#0D85C7 !important;"><apex:outputText value="Personal Assistant Details" /></h2>
                         <br/>
                             If you wish for your assistant to be requested for travel details then please identify your PA or request a new user by filling their email address below.
-							If you don’t want your PA receiving communicated from the system please skip.
+                            If you don’t want your PA receiving communicated from the system please skip.
                         </td>
                     </tr>
                     <tr>
