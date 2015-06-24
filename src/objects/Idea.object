@@ -137,6 +137,62 @@
                 <fullName>What’s relevant for me to see…</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>3D Printing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Big Data</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BioTech</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cloud</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Collaboration</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Crowd Sourcing (and ideation)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Crypto Currencies</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>eCommerce</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gamification</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In-Memory</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IoT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Social Media</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wearable Tech</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
@@ -190,6 +246,34 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Out-of-scope</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On roadmap as new POC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Merged with another POC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>POC in progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>POC completed – Not carried forward</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>POC completed – Carried forward</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Prodcution capability</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Planned at this time</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -485,6 +569,110 @@
             </values>
             <values>
                 <fullName>Under Review %E2%80%93 Technical</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Record_type_for_community_09aE0000000PLkzIAG_entity_Idea</fullName>
+        <active>true</active>
+        <description>Record type used to associate Idea with a specific zone</description>
+        <label>Spark: Idea Record Type</label>
+        <picklistValues>
+            <picklist>Categories</picklist>
+            <values>
+                <fullName>3D Printing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Big Data</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BioTech</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Collaboration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Crowd Sourcing %28and ideation%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Crypto Currencies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gamification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In-Memory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IoT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wearable Tech</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>eCommerce</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Merged with another POC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Not Planned at this time</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On roadmap as new POC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POC completed %E2%80%93 Carried forward</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POC completed %E2%80%93 Not carried forward</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POC in progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prodcution capability</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
