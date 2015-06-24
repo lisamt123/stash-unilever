@@ -162,14 +162,14 @@ global with sharing class Core_CA_RequestDetail{
            for(Core_Approver_Details__c Approver:lstApproverDetails){
                objApprovalHistory =new Core_CA_WrapperUtility.ApprovalHistory();
                objApprovalHistory.ApproverName = Approver.Interested_Party_Details__c;
-               if(Approver.Action__c == 'APPR' || Approver.Action__c == 'REJC')
+               
+               if(Approver.CA_Action__c == 'Approved')
                    objApprovalHistory.ApproverAction = Approver.CA_Action__c;
-               else{ 
-                   if(Approver.Status__c == 'Rejected')
-                       objApprovalHistory.ApproverAction = 'Returned';
-                   else
-                       objApprovalHistory.ApproverAction = Approver.Status__c;
-               }
+               else if(Approver.CA_Action__c == 'Returned') 
+                   objApprovalHistory.ApproverAction = 'Rejected';
+               else    
+                   objApprovalHistory.ApproverAction = Approver.Status__c;
+                   
                lstApprovalHistory.add(objApprovalHistory);
            }
        } 

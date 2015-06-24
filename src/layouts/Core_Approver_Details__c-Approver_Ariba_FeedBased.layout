@@ -82,6 +82,10 @@
                 <behavior>Edit</behavior>
                 <field>Interested_Party__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Visible_to_Supplier__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>

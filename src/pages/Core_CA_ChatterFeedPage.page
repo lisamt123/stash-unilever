@@ -45,6 +45,34 @@
         margin-left:10px; 
         //width:100%;
     }
+    @media (max-width: 480px) { 
+        .feedPagePadding{
+            width: 448px;
+            margin-bottom: 60px;
+            margin-left:10px; 
+        }
+    }  
+    @media (max-width: 450px) { 
+        .feedPagePadding{
+            width: 398px;
+            margin-bottom: 60px;
+            margin-left:10px; 
+        }
+    }
+    @media (max-width: 400px) { 
+        .feedPagePadding{
+            width: 348px;
+            margin-bottom: 60px;
+            margin-left:10px; 
+        }
+    }  
+     @media (max-width: 350px) { 
+        .feedPagePadding{
+            width: 300px;
+            margin-bottom: 60px;
+            margin-left:10px; 
+        }
+    }    
 </style>
 <div class="feedPagePadding" >
     <chatter:feed entityId="{!$CurrentPage.parameters.id}" showPublisher="true" />
