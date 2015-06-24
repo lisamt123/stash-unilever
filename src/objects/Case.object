@@ -3410,7 +3410,7 @@ var userSettingRecord=userSettingResult.getArray(&quot;records&quot;);
 
 if(userSettingRecord.length&gt;0){ 
 caseObj.Country__c = userSettingRecord[0].Country__c; 
-caseObj.Country_Name__c = userSettingRecord[0].Country_Name__c;
+//caseObj.Country_Name__c = userSettingRecord[0].Country_Name__c;
 } 
 }	
 var result = sforce.connection.create([caseObj]); 

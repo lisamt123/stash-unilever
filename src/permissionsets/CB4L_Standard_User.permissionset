@@ -24451,6 +24451,10 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>Idea.Record_type_for_community_09aE0000000PLkzIAG_entity_Idea</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>Idea.Record_type_for_community_09aE0000000YIk2IAG_entity_Idea</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
