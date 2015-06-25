@@ -9691,7 +9691,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.Relationship__c</field>
         <readable>true</readable>
     </fieldPermissions>
