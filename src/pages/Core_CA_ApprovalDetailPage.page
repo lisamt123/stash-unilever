@@ -308,8 +308,8 @@
                                             <td class="responsiveDetailSectionTableRowLabel">{{'LBL_PUR_DETAIL_PREPARED_BY' | translate}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.RequestedBy}}</td>
                                             <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.PreparedBy}}</td>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.RequestedBy}}</td>
                                         </tr>
                                     </table>                            
                                 </div>
