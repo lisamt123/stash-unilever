@@ -1985,12 +1985,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>notContain</operation>
-            <value>nordic,France,DACH,BENELUX,CEC ITALY,PORTUGAL,SPAIN,GREECE,HUNGARY</value>
+            <value>Nordic,France,DACH,BENELUX,ITALY,PORTUGAL,SPAIN,GREECE,HUNGARY,POLAND</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
             <operation>notContain</operation>
-            <value>Nordic,France,DACH,BENELUX,ITALY,PORTUGAL,SPAIN,GREECE,HUNGARY,SWEDEN,INDIA</value>
+            <value>Nordic,France,DACH,BENELUX,ITALY,PORTUGAL,SPAIN,GREECE,HUNGARY,SWEDEN,INDIA,POLA</value>
         </filters>
         <label>Out of SLA</label>
         <language>en_US</language>
@@ -2711,12 +2711,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>notContain</operation>
-            <value>CEC Nordic,CEC France,CEC DACH,CEC BENELUX,CEC ITALY</value>
+            <value>CEC Nordic,CEC France,CEC DACH,CEC BENELUX,CEC ITALY,SPAIN,POLAND,PORTUGAL</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
             <operation>notContain</operation>
-            <value>Nordic,France,DACH,BENELUX,ITALY</value>
+            <value>Nordic,France,DACH,BENELUX,ITALY,SPAIN,POLAND,PORTUGAL</value>
         </filters>
         <label>Within SLA</label>
         <language>en_US</language>
