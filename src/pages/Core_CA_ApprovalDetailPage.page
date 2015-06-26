@@ -235,7 +235,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div><br/>
+                    </div><br/>                    
                 </div>
                 <div ng-if="approvalRequestData.RequestType == 'Purchase Request'" ng-init="true" >
                     <div class="template" ng-init="summaryPanelDisplay=false">
@@ -349,14 +349,14 @@
                             </table>
                         </div>
                     </div><br/>
-                </div>
-                
+                </div>  
                 <div class="template" ng-init="commentsPanel=true">
                     <div class="defaultBottomBorder" ng-click="commentsPanel = (commentsPanel=='false' ? 'true' : 'false')">
                         <span>
-                            <label class="detailSectionHeader">{{'LBL_EXP_DETAIL_CLAIM_COMMENTS' | translate}}</label>
-                        </span>
-                        <span class="alignRight">                    
+                            <label ng-if="approvalRequestData.RequestType == 'Purchase Request'" ng-init="true" class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_COMMENTS' | translate}}</label>
+                            <label ng-if="approvalRequestData.RequestType == 'Expense'" ng-init="true" class="detailSectionHeader">{{'LBL_EXP_DETAIL_CLAIM_COMMENTS' | translate}}</label>                        
+                        </span> 
+                        <span class="alignRight">              
                             <img class="arrowButtonStyle" ng-hide="commentsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
                             <img class="arrowButtonStyle" ng-show="commentsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/hideArrow.svg')}"/>
                         </span>                
@@ -364,7 +364,7 @@
                     <div ng-hide="commentsPanel" class="responsiveDetailSectionTable">                        
                         <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalRequestData.Comments}}</span>
                     </div>
-                </div><br/>
+                </div><br/>  
                 <div class="template" ng-init="approvalHistoryPanel=true">
                     <div class="defaultBottomBorder" ng-click="approvalHistoryPanel = (approvalHistoryPanel=='false' ? 'true' : 'false')">
                         <span>
@@ -393,7 +393,7 @@
                         <table class="homePageMenuWidth" >
                             <tr ng-repeat="approvalRequestHistory in approvalRequestData.ApprovalHistory">
                                 <td><span class="fieldValue">{{approvalRequestHistory.ApproverName}}</span></td>
-                              <!--  <td><span class="fieldValue">{{approvalRequestHistory.AribaRole}}</span></td> -->
+                             <!--   <td><span class="fieldValue">{{approvalRequestHistory.AribaRole}}</span></td> -->
                                 <td><span class="alignRight">{{approvalRequestHistory.ApproverAction}}</span></td>
                             </tr>                                                   
                         </table>
@@ -401,16 +401,7 @@
                 </div>  
             </tab>
             <tab heading="{{'LBL_FEED'| translate}}" class="homePageMenuBody" active="active.feed">
-                <!--<div class="chatterfeeddivision">
-                 /apex/testfeedpage?id={{approvalRequestData.RequestId}}
-                    <apex:iframe src="/apex/testfeedpage?id="+{{approvalRequestData.RequestId}}>-->
-                    
-                         <iframe ng-src="{{approvalRequestData.url}}"  style="position: absolute; height: 100%; width:100%;border: none;"></iframe>
-                     
-                    <!-- <apex:iframe src="/apex/testfeedpage?id=a0Jc0000007TOEREA4"/> -->
-                     <!-- <chatter:feed entityId="a0Jc0000007TOEREA4" showPublisher="true"/>-->
-                <!--</div>--
-                <!--<chatter:feed entityId="Id.valueOf({{approvalRequestData.RequestId}})"/>-->
+                 <iframe ng-src="{{approvalRequestData.url}}"  style="position: absolute; height: 100%; width:100%;border: none;"></iframe>
             </tab>
         </tabset>
         

@@ -54,7 +54,7 @@
                                                        data-main="{!URLFOR($Resource.MyApprovalsSR, 'js/main.js')}"></script>
                                                                                                 
     <meta name="msapplication-tap-highlight" content="no" />
-    <title>Approvals</title>  
+    <!-- <title>Approvals</title>  -->
     <body ng-controller="baseController" class="homePageBackground" >
         <!--Header Bar-->
         <!-- <div class="row page-header navbar-fixed-top">
