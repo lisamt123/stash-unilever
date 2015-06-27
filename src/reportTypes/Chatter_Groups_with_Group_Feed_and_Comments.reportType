@@ -84,6 +84,11 @@
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>DerivedFeedItem</field>
+            <table>CollaborationGroup.FeedItems</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Id</field>
             <table>CollaborationGroup.FeedItems</table>
         </columns>
