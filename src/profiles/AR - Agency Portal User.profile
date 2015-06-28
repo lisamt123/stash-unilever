@@ -15499,6 +15499,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Idea.Function__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Idea.Idea_Theme__c</field>
         <readable>false</readable>
@@ -23138,11 +23143,11 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Idea-Idea Layout</layout>
-        <recordType>Idea.Record_type_for_community_09aE0000000PLkzIAG_entity_Idea</recordType>
+        <recordType>Idea.Record_type_for_community_09aE0000000YIk2IAG_entity_Idea</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Idea-Idea Layout</layout>
-        <recordType>Idea.Record_type_for_community_09aE0000000YIk2IAG_entity_Idea</recordType>
+        <layout>Idea-Spark Ideation Layout</layout>
+        <recordType>Idea.Record_type_for_community_09aE0000000PLkzIAG_entity_Idea</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>IdeaTheme-Idea Theme Layout</layout>
