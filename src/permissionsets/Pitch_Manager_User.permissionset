@@ -9596,7 +9596,7 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.Day_Rate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -9646,7 +9646,7 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.Homebase__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -9686,7 +9686,7 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.Referred_By__c</field>
         <readable>true</readable>
     </fieldPermissions>

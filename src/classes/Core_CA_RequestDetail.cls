@@ -205,7 +205,7 @@ global with sharing class Core_CA_RequestDetail{
    private static List<Core_Approval_Details__c> getApprovalDetails(string HeaderId){
        List<Core_Approval_Details__c> lstApprovalDetails = null;
        try{
-           lstApprovalDetails =[SELECT Amount__c,Name,Id,Currency__c,Description__c,Source_System__c FROM Core_Approval_Details__c WHERE Approval_Header__c =: HeaderId];
+           lstApprovalDetails =[SELECT Amount__c,Name,Id,Currency__c,Description__c,Source_System__c,Line_Item_Number__c FROM Core_Approval_Details__c WHERE Approval_Header__c =: HeaderId ORDER BY Line_Item_Number__c ASC];
        }
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_CA_MyApprovalData : getPreTripDetails method ', ex);

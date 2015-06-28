@@ -343,7 +343,7 @@
                         <div ng-hide="lineItemsPanel" class="responsiveDetailSectionTable">
                             <table class="homePageMenuWidth" >
                                 <tr ng-repeat="approvalRequestLineItems in approvalRequestData.LineItems" ng-click='gotoApprovalLineDetailPage(approvalRequestLineItems)' class="lineItemsHeight">
-                                    <td><span class="textLink">{{approvalRequestLineItems.ItemName}}</span></td>
+                                    <td><span class="textLinkExpenceNameTruncate">{{approvalRequestLineItems.ItemName}}</span></td>
                                     <td id="defaultTopSpace" class="alignRight"><span class="fieldValue">{{approvalRequestLineItems.Currencies}}&nbsp;{{approvalRequestLineItems.Amount}}</span></td>
                                 </tr>                                                   
                             </table>

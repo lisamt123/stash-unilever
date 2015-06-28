@@ -94,6 +94,7 @@ global with sharing class Core_CA_WrapperUtility {
         public String Comments;
         public List<ApprovalHistory> ApprovalHistory;//= new List<ApprovalHistory>()
         public Boolean isRecalled; 
+        public Boolean isinvalid; 
     } 
     
     global class ExpenseDetailsDataRequest{
@@ -112,6 +113,7 @@ global with sharing class Core_CA_WrapperUtility {
     public class ApprovalHistory{
         public String ApproverName;
         public String ApproverAction;
+        public String AribaRole;
     }
     
     public class PreTripDetails{
