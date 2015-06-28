@@ -92,10 +92,10 @@ global with sharing class Core_CA_MyApprovalData {
             for(Core_Approver_Details__c approver : lstApproverDetail){
                 setHeaderIds.add(approver.Approval_Header__c);
             }
-            Map<Id,Core_Approval_Header__c> mapHeaderRecord = new Map<Id,Core_Approval_Header__c>([Select Total_amount__c,Title_Summary__c,Currency__c,External_System_Id__c,External_Created_Date__c,Requested_For_Details__c,Requested_by_details__c, TF_Currency__c,TF_Currency1__c,TF_Currency2__c,TF_Currency3__c FROM Core_Approval_Header__c where Id in:setHeaderIds]);    
+            Map<Id,Core_Approval_Header__c> mapHeaderRecord = new Map<Id,Core_Approval_Header__c>([Select Description__c,Total_amount__c,Title_Summary__c,Currency__c,External_System_Id__c,External_Created_Date__c,Requested_For_Details__c,Requested_by_details__c, TF_Currency__c,TF_Currency1__c,TF_Currency2__c,TF_Currency3__c FROM Core_Approval_Header__c where Id in:setHeaderIds]);    
             for(Core_Approver_Details__c penddingExpense : lstApproverDetail){
                  objExpensedata = new Core_CA_WrapperUtility.ExpenseData();
-                 objExpensedata.ExpenseName = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Title_Summary__c;
+                 //objExpensedata.ExpenseName = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Title_Summary__c;
                  objExpensedata.ExpenseID = mapHeaderRecord.get(penddingExpense.Approval_Header__c).External_System_Id__c;                
                  objExpensedata.Amount = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Total_amount__c;
                  
@@ -107,12 +107,14 @@ global with sharing class Core_CA_MyApprovalData {
                  objExpensedata.Action=penddingExpense.Action__c;
                                  
                  if(penddingExpense.Source_System__c == 'Ariba'){    
-                     objExpensedata.ExpenseType = Core_CA_AppConstants.DATA_REQUEST_TYPE_ARIBA;   
+                     objExpensedata.ExpenseType = Core_CA_AppConstants.DATA_REQUEST_TYPE_ARIBA;
+                     objExpensedata.ExpenseName = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Description__c;      
                      objExpensedata.RequestedBy = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Requested_For_Details__c;
                      objExpensedata.Currencies = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Currency__c;                 
                  }
                  if(penddingExpense.Source_System__c == 'GTES'){
                      objExpensedata.ExpenseType = Core_CA_AppConstants.DATA_REQUEST_TYPE_GTES; 
+                     objExpensedata.ExpenseName = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Title_Summary__c; 
                      objExpensedata.RequestedBy = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Requested_by_details__c; 
                      
                      string currency0 = mapHeaderRecord.get(penddingExpense.Approval_Header__c).TF_Currency__c;

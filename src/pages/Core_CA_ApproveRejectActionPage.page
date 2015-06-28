@@ -17,14 +17,23 @@
        <br/>
        
        <div class="iPhoneScreenHeight" >          
-            <span class="Subtext2">
-               {{'LBL_APPREJ_REQUIRED_PLACEHOLDER_MSG1' | translate}} <span class="noteText" style="color:red" ng-if="!(actionTakenonpage == 'Approve' && approvalRequestData.RequestType =='Expense')">{{'LBL_APPREJ_REQUIRED_PLACEHOLDER_MSG2' | translate}} </span><br/>              
+           <span class="Subtext2" ng-if="!(actionTakenonpage == 'Approve' && approvalRequestData.RequestType =='Expense')">
+               {{'LBL_APPREJ_REQUIRED_PLACEHOLDER_MSG1' | translate}} <span class="noteText" style="color:red" ng-if="!(actionTakenonpage == 'Approve' && (approvalRequestData.RequestType =='Expense' || approvalRequestData.RequestType =='Purchase Request' ))">{{'LBL_APPREJ_REQUIRED_PLACEHOLDER_MSG2' | translate}} </span><br/>              
            </span>    
+           
+           <span ng-if="(actionTakenonpage == 'Approve' && approvalRequestData.RequestType =='Expense')">
+               <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/warning.svg')}"  class="warningImageStyle"/>&nbsp;           
+               <label class="detailSectionHeader"> {{'LBL_APPREJ_CONFIRM' | translate}} </label><br/>
+               <div class="warningMsgStyle"> {{'LBL_APPREJ_WARN_MSG' | translate}} </div><br/>
+           </span>   
            
            <form name="myForm">           
                <!--{{approvalRequestData.RequestType =='Purchase Request'}} ? {{'LBL_APPREJ_REQUIRED_PLACEHOLDER' | translate}} : {{'LBL_APPREJ_PLACEHOLDER' | translate}}-->                             
-              <textarea placeholder="{{'LBL_APPREJ_REQUIRED_PLACEHOLDER_MSG3' | translate}}"  name="lastName" class="action-text-area" ng-class="{true:'action-text-area-error'}[myForm.submitted && (myForm.lastName.$error.required || myForm.lastName.$error.maxlength) ]" rows="5" cols="30" ng-required="!(actionTakenonpage == 'Approve' && approvalRequestData.RequestType =='Expense')" ng-model="myTextBox"  ng-focus='myForm.submitted=false' ng-maxlength="255" >
-              </textarea>
+              
+              <span ng-show="!(actionTakenonpage == 'Approve' && approvalRequestData.RequestType =='Expense')">
+                  <textarea placeholder="{{'LBL_APPREJ_REQUIRED_PLACEHOLDER_MSG3' | translate}}"  name="lastName" class="action-text-area" ng-class="{true:'action-text-area-error'}[myForm.submitted && (myForm.lastName.$error.required || myForm.lastName.$error.maxlength) ]" rows="5" cols="30" ng-required="!(actionTakenonpage == 'Approve' && (approvalRequestData.RequestType =='Expense' || approvalRequestData.RequestType =='Purchase Request' ))" ng-model="myTextBox"  ng-focus='myForm.submitted=false' ng-maxlength="255" >
+                  </textarea>
+              </span>
                             
               <div class="errorMessage" ng-show="myForm.lastName.$error.required && myForm.submitted">
                   {{'LBL_APPREJ_REQUIRED_VALUE_MESSAGE' | translate}}
