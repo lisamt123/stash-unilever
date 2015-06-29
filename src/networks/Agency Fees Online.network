@@ -3,21 +3,19 @@
     <allowMembersToFlag>false</allowMembersToFlag>
     <branding>
         <loginFooterText>Unilever</loginFooterText>
-        <loginLogo>Communities_Shared_Document_Folder/CommunitiesLogo_jpg.jpg</loginLogo>
-        <primaryColor>#61A631</primaryColor>
-        <primaryComplementColor>#222222</primaryComplementColor>
+        <primaryColor>#1797C0</primaryColor>
+        <primaryComplementColor>#FFFFFF</primaryComplementColor>
         <quaternaryColor>#B1BAC1</quaternaryColor>
         <quaternaryComplementColor>#222222</quaternaryComplementColor>
-        <secondaryColor>#65B068</secondaryColor>
-        <tertiaryColor>#BBDABC</tertiaryColor>
+        <secondaryColor>#51606E</secondaryColor>
+        <tertiaryColor>#DDE4E9</tertiaryColor>
         <tertiaryComplementColor>#222222</tertiaryComplementColor>
-        <zeronaryColor>#AAD087</zeronaryColor>
-        <zeronaryComplementColor>#222222</zeronaryComplementColor>
+        <zeronaryColor>#51606E</zeronaryColor>
+        <zeronaryComplementColor>#FFFFFF</zeronaryComplementColor>
     </branding>
     <changePasswordTemplate>unfiled$public/CommunityChangePasswordEmailTemplate</changePasswordTemplate>
-    <description>Communities to access AgencyFees by agency users</description>
-    <emailSenderAddress>b.singh.saluja@accenture.com</emailSenderAddress>
-    <emailSenderName>Unilever - Agency Fees</emailSenderName>
+    <emailSenderAddress>Agency.Fees@unilever.com</emailSenderAddress>
+    <emailSenderName>Agency Fees Online</emailSenderName>
     <enableGuestChatter>false</enableGuestChatter>
     <enableInvitation>false</enableInvitation>
     <enableKnowledgeable>false</enableKnowledgeable>
@@ -28,7 +26,6 @@
     <networkMemberGroups>
         <profile>AF - Agency Portal User</profile>
     </networkMemberGroups>
-    <newSenderAddress>Agency.Fees@unilever.com</newSenderAddress>
     <picassoSite>Agency_Fees_Online1</picassoSite>
     <selfRegistration>false</selfRegistration>
     <sendWelcomeEmail>true</sendWelcomeEmail>
@@ -36,7 +33,7 @@
     <status>Live</status>
     <tabs>
         <customTab>Agency_Fees</customTab>
-        <defaultTab>01rE00000001wh9</defaultTab>
+        <defaultTab>01rc00000000koA</defaultTab>
     </tabs>
     <urlPathPrefix>AgencyFees</urlPathPrefix>
     <welcomeTemplate>unfiled$public/AF_Communities_New_Member_Welcome_Email_New</welcomeTemplate>

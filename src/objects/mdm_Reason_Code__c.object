@@ -98,6 +98,24 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IsCEC__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>TO :</description>
+        <externalId>false</externalId>
+        <label>IsCEC</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsGeorge__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>TO :</description>
+        <externalId>false</externalId>
+        <label>IsGeorge</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>L0_Code__c</fullName>
         <externalId>false</externalId>
         <label>L0 Code</label>
@@ -249,6 +267,26 @@
         <unique>true</unique>
     </fields>
     <label>Reason Code</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>L5_Short_Desc__c</columns>
+        <columns>Unique_Key__c</columns>
+        <columns>ISO_Country__c</columns>
+        <columns>ISO_Language__c</columns>
+        <columns>L1_Code__c</columns>
+        <columns>L2_Code__c</columns>
+        <columns>L3_Code__c</columns>
+        <columns>L4_Code__c</columns>
+        <columns>L5_Code__c</columns>
+        <columns>L1_Desc__c</columns>
+        <columns>L2_Desc__c</columns>
+        <columns>L3_Desc__c</columns>
+        <columns>L5_Desc__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <label>Reason Code Name</label>
         <type>Text</type>

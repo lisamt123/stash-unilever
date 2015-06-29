@@ -421,8 +421,43 @@ public class CEC_CaseTriggerHelper{
 
 
       public void updateCountryDetail(Map<Id, Case> newCaseMap){
+      
+      System.debug('newCaseMap~~~~~~~~'+newCaseMap);
+      
      for(Case caseitem:newCaseMap.values()){
+     
+                System.debug('Case_Market_Mapping_Country__c~~~~~~~~~'+ caseitem.Case_Market_Mapping_Country__c);
                 caseitem.Country_Name__c=caseitem.Case_Market_Mapping_Country__c;
+                //caseitem.Tag__c=caseitem.Case_Market_Tag__c;
+                System.debug('Country_Name__c~~~~~~~~~'+ caseitem.Country_Name__c);
         }
-     }     
+    
+        }
+        
+    /* Support team change starts
+    
+     -> Changes for incident INC000096161554 - [Information not transmitted in Salesforce]
+     -> To populate Country Name field when case is created by Contact-us form
+    
+   */
+       
+    public void insertCountryDetail(List<Case> newCaseList){
+      if(newCaseList!=null){
+      
+      System.debug('newCaseList~~~~~~~~'+newCaseList);
+      
+     for(Case caseitem:newCaseList){
+     
+                 
+                System.debug('Case_Market_Mapping_Country__c~~~~~~~~~'+ caseitem.Case_Market_Mapping_Country__c);
+                caseitem.Country_Name__c=caseitem.Case_Market_Mapping_Country__c;
+                System.debug('Country_Name__c~~~~~~~~~'+ caseitem.Country_Name__c);
+        }
+     }  
+        }
+     
+      /* Support team change ends*/
+     
+     
+        
      }

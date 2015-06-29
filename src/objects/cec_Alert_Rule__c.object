@@ -516,15 +516,13 @@
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>phindia</fullName>
-        <columns>NAME</columns>
-        <columns>Active__c</columns>
-        <columns>L0_Product_Category__c</columns>
-        <columns>Market__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <filterScope>Everything</filterScope>
-        <label>phindia</label>
-        <language>en_US</language>
+        <fullName>TO_France_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TO France Queue</label>
+        <queue>TO_France_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <nameField>
         <label>Alert Rule Name</label>

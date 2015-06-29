@@ -3,6 +3,7 @@
     <narrowComponents>standard-CreateNew</narrowComponents>
     <narrowComponents>standard-Tags</narrowComponents>
     <narrowComponents>standard-RecentItems</narrowComponents>
+    <narrowComponents>pca__Postcode Anywhere</narrowComponents>
     <wideComponents>.</wideComponents>
     <wideComponents>standard-ProcessWorkitems</wideComponents>
     <wideComponents>standard-Tasks</wideComponents>

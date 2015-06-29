@@ -26,6 +26,11 @@
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
+        <application>CEC_Standard</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
         <application>Comms_Planer</application>
         <default>false</default>
         <visible>false</visible>
@@ -78,7 +83,7 @@
     <applicationVisibilities>
         <application>Unilever</application>
         <default>false</default>
-        <visible>false</visible>
+        <visible>true</visible>
     </applicationVisibilities>
     <applicationVisibilities>
         <application>Unilever_Chatter_Only</application>
@@ -890,6 +895,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BET_BatchFixOldBetStatus_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BET_BatchMediaChannel1Mapping</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1018,6 +1027,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CEC_AdditionalCaseInfoTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CEC_AdditionalCaseInfoTriggerHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CEC_AlertActionHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1055,6 +1072,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CEC_IssueCreationPageController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CEC_IssueTriggerHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -1130,8 +1151,16 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CORE_CA_UnfollowUser_Batch</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CORE_CA_UnfollowUser_Scheduler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CORE_ChatterGroupFeed_Page_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CORE_ChatterHomePageControllerTest</apexClass>
@@ -1283,22 +1312,54 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_AutoComplete_Con</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_AppConstants</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_ApplicationWrapper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_ApprovalDetailsController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_ApproveRejectAction</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Approve_Reject_Test</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Approver_ApproveController</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Approver_RejectController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_BaseApplicationServices</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_BaseApplicationServicesTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_BaseApplicationWrapper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_BaseServiceException</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_BaseServiceException_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -1315,18 +1376,42 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_HelpContentController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_IBaseAppicationServices</apexClass>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_InterestedParty_Handler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Core_CA_Line_ApproveController</apexClass>
+        <apexClass>Core_CA_LineItemDetail</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Core_CA_Line_ApproveController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Core_CA_Line_RejectController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_MiniPageView_Override_Controller</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_MyApprovalData</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_RemoteServiceCallControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_RequestDetail</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -1338,12 +1423,20 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Core_SendToChatterController</apexClass>
+        <apexClass>Core_CA_Test_MobileAPP</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Core_SendToChatter_Test</apexClass>
+        <apexClass>Core_CA_WrapperUtility</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_SendToChatterController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_SendToChatter_Test</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CustomChatterConfig</apexClass>
@@ -1938,7 +2031,15 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>IPM_CreateTasks11</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>IPM_CreateTasks_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_CreateTasks_Test1</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -1987,6 +2088,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_FinancialActionStandards_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_FinancialFileShare</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_FinancialFileShare_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -2107,6 +2216,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_MyList_Test1</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_MyList_Test11</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -2243,6 +2356,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_ProjectResourceTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_ProjectRolloutHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_ProjectRolloutHandler_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -2422,6 +2543,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Istvan_BatchableFileMassUpdate_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>MyProfilePageController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -2455,6 +2580,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Redirect_Brand_Page</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>RemoteServiceCallController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SFDCTestExt</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -2778,10 +2911,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>UW_FetchFeedItemsOfChatterGrp</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>UpdateBrandEstimateCatApproverValues</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -2791,6 +2920,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>UserTestUtil</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Utility</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -3554,6 +3687,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>uw_BET_autocompletecontroller_TEST</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>uw_BET_before_delete_test_class</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -3748,15 +3885,11 @@
     </externalDataSourceAccesses>
     <externalDataSourceAccesses>
         <enabled>false</enabled>
-        <externalDataSource>Unilever_Messaging_Colloboration</externalDataSource>
+        <externalDataSource>SPOnlineFilesConnectQA</externalDataSource>
     </externalDataSourceAccesses>
     <externalDataSourceAccesses>
         <enabled>false</enabled>
-        <externalDataSource>Unilever_OneDrive</externalDataSource>
-    </externalDataSourceAccesses>
-    <externalDataSourceAccesses>
-        <enabled>false</enabled>
-        <externalDataSource>Unilever_SFDev</externalDataSource>
+        <externalDataSource>ULOneDriveQA</externalDataSource>
     </externalDataSourceAccesses>
     <fieldPermissions>
         <editable>false</editable>
@@ -4310,6 +4443,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Agency_ExchangeRateTemp__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Matrix__c.AF_Agency_Exchange_Rate__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -4380,7 +4518,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_IsCrossBorderReport__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Matrix__c.AF_IsCrossBorder__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_MatrixCodeTemp__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4426,6 +4574,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Bonus_Matrix__c.AF_Ready_For_PO_Exchange_Rate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_ReadyforPoCodeTemp__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4506,6 +4659,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Bonus_Matrix__c.PO_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.ReadyforPOExchangeRateTemp__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -6325,6 +6483,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Agency_ExchangeRateTemp__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_OOPS_Estimate__c.AF_Agency_Exchange_Rate__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -6351,6 +6514,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_OOPS_Estimate__c.AF_Brand_Estimate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Brand__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -6426,6 +6594,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_OOPS_Estimate__c.AF_Locked__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_MatrixCodeTemp__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -6535,6 +6708,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_ReadyforPOExchangeRateTemp__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_ReadyforPoCodeTemp__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_OOPS_Estimate__c.AF_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -6630,6 +6813,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Big_Category_New__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_PO_Report__c.AF_Brand_Estimate_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -6681,6 +6869,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_CountNoQuarters__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_CrossBorder__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -6785,12 +6978,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Value_Tradition_OOPSEuro__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_PO_Report__c.AF_Previous_Quarter_Value_AL__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_Previous_Quarter_Value_DL__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Previous_Quarter_Value_TL_OOPSEuro__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -7015,6 +7218,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Age__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Agency_Contact__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7065,6 +7273,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Children_under_12__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Club_Member_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Company_Structure__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7080,12 +7298,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Demandware_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Description</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Discipline__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Drinking_frequency__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -7101,6 +7329,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Featured__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Frequent_Caller__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Gender__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -7150,7 +7388,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Machine_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Next_Review_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.No_of_Tea_drinkers__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -7190,6 +7438,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Preferred_Tea_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Preferred_infusion_type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Previous_Names__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7201,6 +7459,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Rating</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Registration_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -7241,6 +7504,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Subcategories__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Tea_moment_of_the_day__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Tea_moment_of_the_week__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -7810,6 +8083,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Brand_Centre_Content__c.ExtID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Brand_Centre_Content__c.Front_End_link__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7945,6 +8223,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Brand_Centre_New__c.ExtID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Brand_Centre_New__c.Footer__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -8070,7 +8353,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CEC_Case_Market_Mapping__c.Tag__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_Case_Market_Mapping__c.Test__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CMS_Article__c.Body__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CMS_Article__c.ExtID__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8116,6 +8414,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CMS_Content__c.Event__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CMS_Content__c.ExtID__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8625,6 +8928,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Carousel__c.ExtID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Carousel__c.RotateSpeed__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -8651,6 +8959,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Brand__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Breakdown_Machine__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8700,6 +9013,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.Case_Market_Tag__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.Case_Market__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -8736,6 +9054,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Country__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.DW_Order_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8890,6 +9213,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.Machine_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.Market__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -8990,6 +9318,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.SEB_Case_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.SEB_Closed_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.Sapient_Campaign__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -9051,6 +9389,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.SuppliedPhone</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Tag__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -9489,9 +9832,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Core_Approval_Details__c.Allowance_details__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -9501,7 +9844,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Attachment__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -9609,9 +9952,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Core_Approval_Details__c.Miles__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -9774,9 +10117,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Core_Approval_Header__c.Attachment__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -9854,19 +10197,19 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Core_Approval_Header__c.Invalid_PR_Approver__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Core_Approval_Header__c.Invalid_PR_Reason__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Core_Approval_Header__c.Invalid_PR__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -10000,6 +10343,26 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Core_Approval_Header__c.TF_Currency1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.TF_Currency2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.TF_Currency3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.TF_Currency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Core_Approval_Header__c.Title_Summary__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -10044,9 +10407,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Core_Approver_Details__c.Ariba_Role__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -10129,9 +10492,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Core_Approver_Details__c.Sort_Order__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -10151,12 +10514,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.TF_Requested_By__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.TF_Requestor_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -10301,6 +10664,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Event__c.Event_Summary_Document_Link__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event__c.ExtID__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -11065,6 +11433,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FAU_Participant__c.FAU_Request_PA_User_Email_Address__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FAU_Participant__c.FAU_Title__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11076,11 +11449,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FAU_Participant__c.FAU_Unique_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FAU_Participant__c.FAU_Upload_final_IDP_on_Talent_Plus__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -12026,6 +12394,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>File__c.POS_File_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>File__c.Prod_Id__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -15581,6 +15954,21 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.Zone_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Issue_Knowledge_Article__c.Article_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Issue_Knowledge_Article__c.Product_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Issue_Knowledge_Article__c.Short_Reason_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -20594,9 +20982,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>kof_Contact__c.Blog__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20619,9 +21007,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>kof_Contact__c.Facebook__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20664,9 +21052,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>kof_Contact__c.Linkedin__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20714,9 +21102,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>kof_Contact__c.Other__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20779,9 +21167,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>kof_Contact__c.Twitter__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21630,6 +22018,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>mdm_Reason_Code__c.IsCEC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>mdm_Reason_Code__c.IsGeorge__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>mdm_Reason_Code__c.L0_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -21911,11 +22309,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>uw_BET__c.Border_Colour__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Brand_Experience_Tag__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -22615,10 +23008,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Account-Account Layout</layout>
-        <recordType>Account.Business_Account</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Account-Account Layout</layout>
         <recordType>Account.Standard</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -22698,6 +23087,21 @@
     <layoutAssignments>
         <layout>Brand_Centre_New__c-Brand Centre Layout Readonly</layout>
         <recordType>Brand_Centre_New__c.Brand_Centre_Read_only</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Brand_Experience_Content__c-Article</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Brand_Experience_Content__c-Article</layout>
+        <recordType>Brand_Experience_Content__c.Article</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Brand_Experience_Content__c-Article</layout>
+        <recordType>Brand_Experience_Content__c.Non_Video_Link</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Brand_Experience_Content__c-Article</layout>
+        <recordType>Brand_Experience_Content__c.Video_Link</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Brand_Master__c-WP Brand Layout</layout>
@@ -22799,7 +23203,7 @@
         <recordType>Core_Approval_Details__c.Ariba</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Core_Approval_Details__c-Line Details Ariba_FeedBased</layout>
+        <layout>Core_Approval_Details__c-Line Details GTES_FeedBased</layout>
         <recordType>Core_Approval_Details__c.GTES</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -22810,7 +23214,7 @@
         <recordType>Core_Approval_Header__c.Ariba</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Core_Approval_Header__c-Ariba_FeedBased</layout>
+        <layout>Core_Approval_Header__c-GTES_FeedBased</layout>
         <recordType>Core_Approval_Header__c.GTES</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -22821,7 +23225,7 @@
         <recordType>Core_Approver_Details__c.Ariba</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Core_Approver_Details__c-Approver_Ariba_FeedBased</layout>
+        <layout>Core_Approver_Details__c-Approver_GTES_FeedBased</layout>
         <recordType>Core_Approver_Details__c.GTES</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -22951,9 +23355,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>FilesConnect_One_Drive__x-FilesConnect-One Drive Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>FilesConnect_SFDev__x-FilesConnect-SFDev Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Global-Global Layout</layout>
@@ -23110,22 +23511,17 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Idea-Idea Layout</layout>
-        <recordType>Idea.Record_type_for_community_09aE0000000PLSXIA4_entity_Idea</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Idea-Idea Layout</layout>
-        <recordType>Idea.Record_type_for_community_09aE0000000PLkaIAG_entity_Idea</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Idea-Idea Layout</layout>
-        <recordType>Idea.Record_type_for_community_09aE0000000PLkuIAG_entity_Idea</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Idea-Idea Layout</layout>
         <recordType>Idea.Record_type_for_community_09aE0000000YIk2IAG_entity_Idea</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Idea-Idea Layout</layout>
+        <recordType>Idea.Record_type_for_community_09ac00000004CrKAAU_entity_Idea</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>IdeaTheme-Idea Theme Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Issue_Knowledge_Article__c-Issue Knowledge Article Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Lead-Lead Layout</layout>
@@ -23191,6 +23587,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Third_Party_Survey__c-ThirdParty Survey Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Unilever_SFQA__x-Unilever-SFQA Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>User-User Layout</layout>
@@ -23295,11 +23694,11 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>cec_Additional_Case_Information__c-Additional Information Layout</layout>
-        <recordType>cec_Additional_Case_Information__c.Adviser_Questionaire</recordType>
+        <recordType>cec_Additional_Case_Information__c.Close_Case_Survey</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>cec_Additional_Case_Information__c-Additional Information Layout</layout>
-        <recordType>cec_Additional_Case_Information__c.Close_Case_Survey</recordType>
+        <layout>cec_Additional_Case_Information__c-Questionaire PageLayout</layout>
+        <recordType>cec_Additional_Case_Information__c.Adviser_Questionaire</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>cec_Alert_Action__c-Alert Action Layout</layout>
@@ -24041,15 +24440,15 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>CoreChatterGroupFeedResponsive</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>CoreChatterMyNewsfeedResponsive</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>CoreChatterTopicFeedResponsive</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>CoreNTImport</apexPage>
@@ -24068,24 +24467,52 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>Core_CA_ApprovalDetailPage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Core_CA_ApprovalDetails</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_ApprovalFilter</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_ApprovalHomePage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_ApprovalRequestAribaLineDetail</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_ApprovalRequestGETSLineDetail</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_ApproveRejectActionPage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_Approver_Approve</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_Approver_Reject</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_ChatterFeedPage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_HeaderApprove</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_HeaderReject</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_IPHelp</apexPage>
@@ -24097,15 +24524,23 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_Line_Approve</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_Line_Reject</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_MiniPageView_Override</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_MyApprovalsHome</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_RequestDetails</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_SocialBusinessHelp</apexPage>
@@ -24360,6 +24795,10 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>SFDCTest</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>SSOManager</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -24369,7 +24808,7 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>SendToChatter</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>SiteLogin</apexPage>
@@ -24572,6 +25011,14 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>approvalscacheimages</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>approvalscacheimagesmanifest</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>babycare_brand_centre_articles_sfdc</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -24600,14 +25047,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>bc_help_pop_up5</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>bc_help_pop_up6</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>bc_help_pop_up7</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -24620,15 +25059,7 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>bc_help_pop_up_combined1</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>bc_help_pop_up_combined2</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>be_help_pop_up</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -25263,6 +25694,21 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Brand_Experience_Content__c.Article</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Brand_Experience_Content__c.Non_Video_Link</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Brand_Experience_Content__c.Video_Link</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Case.None</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -25453,22 +25899,12 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Idea.Record_type_for_community_09aE0000000PLSXIA4_entity_Idea</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Idea.Record_type_for_community_09aE0000000PLkaIAG_entity_Idea</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Idea.Record_type_for_community_09aE0000000PLkuIAG_entity_Idea</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
         <recordType>Idea.Record_type_for_community_09aE0000000YIk2IAG_entity_Idea</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Idea.Record_type_for_community_09ac00000004CrKAAU_entity_Idea</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -25596,11 +26032,19 @@
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>Core_Approval_Header__c</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>FA_Course_ChatterGroup__c</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Inside_Unilever</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>My_Requests</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -25665,6 +26109,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>uw_Asset__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>uw_Inoplan_Project__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Customer Portal User</userLicense>
