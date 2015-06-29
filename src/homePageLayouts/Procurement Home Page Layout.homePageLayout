@@ -6,6 +6,7 @@
     <narrowComponents>standard-UsefulLinks</narrowComponents>
     <narrowComponents>standard-Tags</narrowComponents>
     <narrowComponents>***HELP***</narrowComponents>
+    <narrowComponents>pca__Postcode Anywhere</narrowComponents>
     <wideComponents>standard-ProcessWorkitems</wideComponents>
     <wideComponents>standard-Calendar</wideComponents>
     <wideComponents>standard-Tasks</wideComponents>

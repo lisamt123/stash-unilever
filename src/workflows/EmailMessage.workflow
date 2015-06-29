@@ -23,7 +23,7 @@
             <operation>equals</operation>
             <value>True</value>
         </criteriaItems>
-        <description>CEC : Capture email responses so Case can be highlighted to an advisor</description>
+        <description>CEC:  Capture email responses so Case can be highlighted to an advisor</description>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <send>

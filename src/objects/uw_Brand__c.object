@@ -48,7 +48,6 @@
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
-    <customHelpPage>bc_help_pop_up_combined1</customHelpPage>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
@@ -466,10 +465,9 @@ HYPERLINK(&quot;/apex/&quot; +   Brand_Centre_URL__c +  &quot;?id=&quot; +Id,  N
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
-        <columns>Banner_Location__c</columns>
+        <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Brands Name</label>

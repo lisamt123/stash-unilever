@@ -155,6 +155,7 @@ public with sharing class uw_CustomAssetUploadExtension {
         } else {
             fi = ConnectApi.ChatterFeeds.getFeedItem(null, file.Related_Feed_Item__c);      
             ca = (ConnectApi.ContentAttachment) fi.attachment;
+             System.debug('__3___');
             file.URL_of_Asset__c = ca.downloadUrl;
             file.thumbnail__c = ca.renditionUrl;
         }
@@ -212,6 +213,7 @@ public with sharing class uw_CustomAssetUploadExtension {
                 file.Agency__c = 'A01123456789012';
             } 
             insert file;
+            System.debug('__1___');
             if (Test.isRunningTest() && throwUTException == 2) {
                 BET.Inoplan_Project__c = 'A01123456789012';
             } 
@@ -220,6 +222,7 @@ public with sharing class uw_CustomAssetUploadExtension {
             }
         } catch (Exception e) {
             Database.rollback(sp);
+             System.debug('__2___');
             //delete feed
             delete chatterContentPostList[0];
 
@@ -235,6 +238,7 @@ public with sharing class uw_CustomAssetUploadExtension {
                 assetTmp.Think_Big_Promotion_Date__c = file.Think_Big_Promotion_Date__c;
                 assetTmp.Big_Think_Pack__c = file.Big_Think_Pack__c;
                 assetTmp.uw_BET__c = file.uw_BET__c;
+                 System.debug('__4___');
                 file = assetTmp;
             }
 

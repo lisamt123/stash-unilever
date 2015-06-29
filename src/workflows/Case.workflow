@@ -67,6 +67,18 @@
         <template>CEC_Unilever/cec_Default_Auto_Response</template>
     </alerts>
     <alerts>
+        <fullName>US027_subjectMerged</fullName>
+        <ccEmails>kalpesh.thakur@capgemini.com</ccEmails>
+        <description>US027_subjectMerged</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>kalpesh.thakur@capgemini.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>CEC_Unilever/CEC_SubjectMerged</template>
+    </alerts>
+    <alerts>
         <fullName>close_Case_Survey</fullName>
         <description>close Case Survey</description>
         <protected>false</protected>
@@ -76,6 +88,17 @@
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/Close_Case_Survey</template>
+    </alerts>
+    <alerts>
+        <fullName>test</fullName>
+        <description>test</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ContactEmail</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>CEC_Unilever/CEC_AutoResponse_Unilever_IN</template>
     </alerts>
     <fieldUpdates>
         <fullName>CEC_Benelux_Market_Field_Update</fullName>
@@ -155,10 +178,66 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CEC_Update_Market_on_Case</fullName>
+        <description>CEC Update Market on Case</description>
+        <field>Market__c</field>
+        <literalValue>UK &amp; Ireland</literalValue>
+        <name>CEC Update Market on Case</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>India_Market_Update</fullName>
+        <field>Market__c</field>
+        <literalValue>India</literalValue>
+        <name>India_Market_Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Market_Update_India</fullName>
+        <field>Market__c</field>
+        <literalValue>India</literalValue>
+        <name>Market Update India</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Market_Update_UK</fullName>
+        <field>Market__c</field>
+        <literalValue>UK &amp; Ireland</literalValue>
+        <name>Market Update_UK</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Market_update</fullName>
+        <field>Market__c</field>
+        <literalValue>India</literalValue>
+        <name>Market_update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Set_Assignment_Fields_False</fullName>
         <field>Set_Assignment_Fields__c</field>
         <literalValue>0</literalValue>
         <name>Set Assignment Fields False</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TO_IsEscalated_Update</fullName>
+        <description>TO : IsEscalated set to TRUE, if Status is set to Escalated.</description>
+        <field>IsEscalated</field>
+        <literalValue>1</literalValue>
+        <name>TO - IsEscalated Update</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -437,6 +516,34 @@ ex: Case Origin : Email India then Update Market : India</description>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
+        <fullName>CEC_India_AutoResponse</fullName>
+        <actions>
+            <name>test</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>India_Market_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>equals</operation>
+            <value>Email</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.IsPersonAccount</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.BillingCountry</field>
+            <operation>equals</operation>
+            <value>India</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
         <fullName>CEC_India_Email_AutoResponse</fullName>
         <actions>
             <name>AutoResponse_Email_on_Case_Creation</name>
@@ -455,6 +562,27 @@ ex: Case Origin : Email India then Update Market : India</description>
         </criteriaItems>
         <criteriaItems>
             <field>Case.Market__c</field>
+            <operation>equals</operation>
+            <value>India</value>
+        </criteriaItems>
+        <description>Auto Response Email on Case Creation for India for Case Origin Email</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CEC_India_Email_AutoResponse2</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>equals</operation>
+            <value>Email</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.IsPersonAccount</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.BillingCountry</field>
             <operation>equals</operation>
             <value>India</value>
         </criteriaItems>
@@ -557,7 +685,7 @@ ex: Case Origin : Email India then Update Market : India</description>
             <name>close_Case_Survey</name>
             <type>Alert</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Status</field>
             <operation>equals</operation>
@@ -569,6 +697,36 @@ ex: Case Origin : Email India then Update Market : India</description>
             <value>Duplicate</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>TO - IsEscalated Update</fullName>
+        <actions>
+            <name>TO_IsEscalated_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>Escalated</value>
+        </criteriaItems>
+        <description>TO : IsEscalated set to TRUE, If the status is set to Escalated.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TO France Market Field Update</fullName>
+        <actions>
+            <name>CEC_Case_Origin_to_email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>equals</operation>
+            <value>Email TO France</value>
+        </criteriaItems>
+        <description>TO: Market Field Update based on Case Origin Field</description>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>WorkIt2__WorkIt%21 Case Close</fullName>

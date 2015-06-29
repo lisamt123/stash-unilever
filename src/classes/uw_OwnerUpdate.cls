@@ -1,3 +1,8 @@
+/**********************************************************************
+Name: uw_OwnerUpdate 
+
+1.1 -   Dnyaneshwar Kendre      17/06/2015      T0- To remove pending members issue 
+**********************************************************************/
 public without sharing class uw_OwnerUpdate {
     
     public Boolean addInitialMembersAsStandard(List<uw_BET__Share> toAddRows, String parentId) {
@@ -130,7 +135,9 @@ public without sharing class uw_OwnerUpdate {
                 usurperRow.StudioEnabled__c = true;
                 usurperRow.IsOwner__c = true;
                 usurperRow.Role__c = uw_Constants.BET_TEAM_ROLE_MANAGER;
-    
+                /*T0 start*/
+                usurperRow.Pending_Request__c = false;
+                /*T0 end*/
                 //system.debug('usurperRow: before: '+usurperRow);
                 if (isNew) {
                     insert usurperRow;                  

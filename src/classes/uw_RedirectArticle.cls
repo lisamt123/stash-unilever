@@ -130,6 +130,7 @@ ra.redirect();
 ra.redirectedit(); 
 Test.stopTest();
 }
+
 /** below lines of code have been commented since tools is deprecated
 private static testmethod void test_brilliantexample()
 {

@@ -240,11 +240,22 @@
         <columns>LAST_UPDATE</columns>
         <columns>CREATEDBY_USER</columns>
         <columns>Invite_Accepted__c</columns>
-        <columns>UPDATEDBY_USER</columns>
-        <columns>Studio_Chatter_Group__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Sent</value>
+        </filters>
+        <filters>
+            <field>Invitee_Email__c</field>
+            <operation>contains</operation>
+            <value>gayatri</value>
+        </filters>
+        <filters>
+            <field>Invite_Accepted__c</field>
+            <operation>equals</operation>
+        </filters>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Problematic_T_C</fullName>

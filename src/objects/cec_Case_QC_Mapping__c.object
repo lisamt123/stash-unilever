@@ -298,6 +298,15 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>TO_France_Queue_cec_Case_QC_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TO France Queue</label>
+        <queue>TO_France_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>Case QC Mapping Name</label>
         <type>Text</type>

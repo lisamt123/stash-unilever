@@ -246,6 +246,29 @@
         <name>Valid_Tax_Receipt__c</name>
     </fields>
     <layouts>
+        <layout>Line Details Ariba</layout>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Line Details --></label>
+            <section>Line Details</section>
+        </sections>
+        <sections>
+            <label><!-- Split Accounting --></label>
+            <section>Split Accounting</section>
+        </sections>
+    </layouts>
+    <layouts>
         <layout>Line Details Ariba_FeedBased</layout>
         <sections>
             <label><!-- Comments --></label>
@@ -260,12 +283,63 @@
             <section>Description</section>
         </sections>
         <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
             <label><!-- Line Item --></label>
             <section>Line Item</section>
         </sections>
         <sections>
             <label><!-- Split Accounting --></label>
             <section>Split Accounting</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Line Details GTES</layout>
+        <sections>
+            <label><!-- Air Details --></label>
+            <section>Air Details</section>
+        </sections>
+        <sections>
+            <label><!-- Attendees Details --></label>
+            <section>Attendees Details</section>
+        </sections>
+        <sections>
+            <label><!-- Car Details --></label>
+            <section>Car Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Expense Comments --></label>
+            <section>Expense Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Expense Description --></label>
+            <section>Expense Description</section>
+        </sections>
+        <sections>
+            <label><!-- Expense Details --></label>
+            <section>Expense Details</section>
+        </sections>
+        <sections>
+            <label><!-- Itemization Details --></label>
+            <section>Itemization Details</section>
+        </sections>
+        <sections>
+            <label><!-- Per Diem Details --></label>
+            <section>Per Diem Details</section>
+        </sections>
+        <sections>
+            <label><!-- Policy Exceptions --></label>
+            <section>Policy Exceptions</section>
+        </sections>
+        <sections>
+            <label><!-- Room Details --></label>
+            <section>Room Details</section>
         </sections>
     </layouts>
     <layouts>

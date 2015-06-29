@@ -182,10 +182,13 @@ public with sharing class FAU_ParticipantHandler
 	{
 		System.debug('Entering FAU_ParticipantHandler.beforeInsert');
 		if(triggerShouldExecute){
+			
+			//Set FAU_Is_deferred_To_PA__c
+			FAU_ParticipantClsSC.setIsdeferredToPA((FAU_Participant__c) so); 
+			
 			// Update Participant Record 'Biography' with 'About Me' from the User 
 			FAU_ParticipantClsSC.updateBiographyOnParticipant((FAU_Participant__c)so, mUser);
-		
-
+	
 
 		}
 		System.debug('Exiting FAU_ParticipantHandler.beforeInsert');
@@ -196,6 +199,9 @@ public with sharing class FAU_ParticipantHandler
 		System.debug('Entering FAU_ParticipantHandler.beforeUpdate');
 		if(triggerShouldExecute){ 
 
+			//Set FAU_Is_deferred_To_PA__c
+			FAU_ParticipantClsSC.setIsdeferredToPA((FAU_Participant__c) so);
+			
 			// Add the Participant to the Program Chatter Group
 			CollaborationGroupMember oCollaborationGroupMember = null;
 			 
@@ -232,6 +238,7 @@ public with sharing class FAU_ParticipantHandler
 	{
 		System.debug('Entering FAU_ParticipantHandler.afterInsert');
 		if(triggerShouldExecute){
+			
 			//Add Participant User Sharing to the Participant Record(Edit) and Program Record(Read)
 			FAU_ParticipantClsSC.addSharing((FAU_Participant__c) so, lAddParticipantShares, lAddProgramShares);
 
@@ -244,6 +251,7 @@ public with sharing class FAU_ParticipantHandler
 			
 			//Create Milestone Participant Records from the Program Webinars 
 			lAddMilestoneParticipants.addAll(FAU_ParticipantClsSC.addProgramMilestoneParticipants((FAU_Participant__c) so, lProgramMilestones));
+		
 		}
 		System.debug('Exiting FAU_ParticipantHandler.afterInsert');
 	}
@@ -260,7 +268,8 @@ public with sharing class FAU_ParticipantHandler
 									lAllParticipantShares, lAllProgramShares,
 									lRemoveParticipantShares, lRemoveProgramShares);
 
-
+			//Automatically Submit for Approvals() 
+			FAU_ParticipantClsSC.submitforApprovals((FAU_Participant__c) so, (FAU_Participant__c) oldSo);
 		}
 		System.debug('Exiting FAU_ParticipantHandler.afterUpdate');
 	}

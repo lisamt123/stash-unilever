@@ -97,7 +97,7 @@
             <filterItems>
                 <field>AF_Category_Brand__c.RecordType.Id</field>
                 <operation>equals</operation>
-                <value>012E00000002JkE</value>
+                <value>012c00000000eUd</value>
             </filterItems>
             <isOptional>false</isOptional>
         </lookupFilter>
@@ -471,7 +471,7 @@
             <filterItems>
                 <field>AF_Category_Brand__c.RecordType.Id</field>
                 <operation>equals</operation>
-                <value>012E00000002JkD</value>
+                <value>012c00000000eUc</value>
             </filterItems>
             <isOptional>false</isOptional>
         </lookupFilter>

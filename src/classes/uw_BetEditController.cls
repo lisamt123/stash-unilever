@@ -11,6 +11,7 @@ History
 -------
 VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   Maciej Krol             22/12/2014      INITIAL DEVELOPMENT
+1.1 -   Nikhil Mishra           17/06/2015      T0- method addded to close the settings page on cancel button click 
 **********************************************************************/
 public with sharing class uw_BetEditController {
     @TestVisible private Integer throwUTException;
@@ -218,7 +219,12 @@ public with sharing class uw_BetEditController {
 
         return null;
     }
-
+    /*****************************************************************************************
+    Purpose: Remove icon image from fronted
+    ******************************************************************************************/  
+    public void cancelBET(){
+        runJsSuccess = true;
+    }
     /*****************************************************************************************
     Purpose: Remove icon image from fronted
     ******************************************************************************************/  
