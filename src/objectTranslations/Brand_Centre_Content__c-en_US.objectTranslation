@@ -35,6 +35,10 @@
         <name>Embeb_URL__c</name>
     </fields>
     <fields>
+        <label><!-- ExtID --></label>
+        <name>ExtID__c</name>
+    </fields>
+    <fields>
         <help><!-- Provides a user click-able link to a Brand Centre Article rendered using the VF page. --></help>
         <label><!-- Front End link --></label>
         <name>Front_End_link__c</name>

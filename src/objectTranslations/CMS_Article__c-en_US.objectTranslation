@@ -13,6 +13,10 @@
         <name>Body__c</name>
     </fields>
     <fields>
+        <label><!-- ExtID --></label>
+        <name>ExtID__c</name>
+    </fields>
+    <fields>
         <label><!-- Link --></label>
         <name>Link__c</name>
     </fields>
