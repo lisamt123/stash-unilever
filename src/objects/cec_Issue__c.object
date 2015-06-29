@@ -685,24 +685,4 @@ null
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <startsWith>Vowel</startsWith>
-    <webLinks>
-        <fullName>Cosmetovigilence</fullName>
-        <availability>online</availability>
-        <description>CEC: link to the cosmetovigilence questionnaire</description>
-        <displayType>link</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <hasMenubar>false</hasMenubar>
-        <hasScrollbars>true</hasScrollbars>
-        <hasToolbar>false</hasToolbar>
-        <height>600</height>
-        <isResizable>true</isResizable>
-        <linkType>url</linkType>
-        <masterLabel>Cosmetovigilence</masterLabel>
-        <openType>newWindow</openType>
-        <position>fullScreen</position>
-        <protected>false</protected>
-        <showsLocation>false</showsLocation>
-        <showsStatus>false</showsStatus>
-        <url>http://survey.clicktools.com/go?iv={!$Setup.cec_Org_Settings__c.Cosmetovigilence_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!cec_Issue__c.CaseId__c}&amp;q59={!cec_Issue__c.Id}</url>
-    </webLinks>
 </CustomObject>

@@ -69,6 +69,7 @@ public class Core_CA_Header_Handler{
         
         // Iterate through the Header records          
         for(Core_Approval_Header__c headerRec : headerList){       
+           /*
            Set<Id> setUserId=new Set<Id>();
            Set<Id> userorGroupIds = new Set<Id>();
            
@@ -77,6 +78,7 @@ public class Core_CA_Header_Handler{
                if(shareid.ParentId  == headerRec.Id)
                 userorGroupIds.add(shareid.UserOrGroupId);
            }
+           
            
            //Check whether Manager is not null and dont have sharing permission for current record.
            if(headerRec.Manager__c!=null && !(userorGroupIds.contains(headerRec.Manager__c)))
@@ -87,7 +89,8 @@ public class Core_CA_Header_Handler{
            //Check whether Requested For is not null and dont have sharing permission for current record.
            if(headerRec.Requested_For__c!=null && !(userorGroupIds.contains(headerRec.Requested_For__c))) 
               setUserId.add(headerRec.Requested_For__c);
-                      
+             
+                    
            for(Id userId:setUserId){
             //Create Header Share object and assign the userId to whom the current record permission should be given. 
                Core_Approval_Header__Share shareObj=new Core_Approval_Header__Share();
@@ -95,7 +98,7 @@ public class Core_CA_Header_Handler{
                shareObj.UserOrGroupId=userId;
                shareObj.AccessLevel='Edit';
                lstShareHeader.add(shareObj);
-           }
+           }*/ 
            
            Set<Id> setUserIdForEntity=new Set<Id>();
            Set<Id> subscriberIdForEntity = new Set<Id>();

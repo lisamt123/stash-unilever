@@ -143,6 +143,18 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>AF_Agency_ExchangeRateTemp__c</fullName>
+        <externalId>false</externalId>
+        <label>Agency ExchangeRateTemp</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_Agency_Exchange_Rate__c</fullName>
         <description>AgencyFee#GLOBAL#To store Agency exchange rate values</description>
         <externalId>false</externalId>
@@ -225,6 +237,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Brand__c</fullName>
+        <externalId>false</externalId>
+        <formula>AF_OOPS_Actual__r.AF_Brand__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Brand</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>AF_Compound_key__c</fullName>
@@ -444,6 +468,17 @@ SUBSTITUTE(AF_OOPS_Actual__r.Name,AF_OOPS_Actual__r.AF_Brand__r.Name, &quot;&quo
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AF_MatrixCodeTemp__c</fullName>
+        <externalId>false</externalId>
+        <label>MatrixCodeTemp</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>AF_Max_Quarter__c</fullName>
@@ -747,6 +782,29 @@ SUBSTITUTE(AF_OOPS_Actual__r.Name,AF_OOPS_Actual__r.AF_Brand__r.Name, &quot;&quo
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_ReadyforPOExchangeRateTemp__c</fullName>
+        <externalId>false</externalId>
+        <label>ReadyforPOExchangeRateTemp</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_ReadyforPoCodeTemp__c</fullName>
+        <externalId>false</externalId>
+        <label>ReadyforPoCodeTemp</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>

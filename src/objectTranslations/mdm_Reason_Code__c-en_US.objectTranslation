@@ -26,6 +26,14 @@
         <name>ISO_Language__c</name>
     </fields>
     <fields>
+        <label><!-- IsCEC --></label>
+        <name>IsCEC__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsGeorge --></label>
+        <name>IsGeorge__c</name>
+    </fields>
+    <fields>
         <label><!-- L0 Code --></label>
         <name>L0_Code__c</name>
     </fields>

@@ -69,6 +69,10 @@
         <name>Chatter_Group_Id__c</name>
     </fields>
     <fields>
+        <label><!-- ExtID --></label>
+        <name>ExtID__c</name>
+    </fields>
+    <fields>
         <help><!-- The footer can be defined as an image, or text, or hyper links etc. Images are limited to a maximum size 1 MB. Only png, gif or jpeg. --></help>
         <label><!-- Footer --></label>
         <name>Footer__c</name>
