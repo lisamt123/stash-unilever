@@ -18,7 +18,7 @@
     <requireHttps>true</requireHttps>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
-    <siteAdmin>bhavneesh@uwprod.com</siteAdmin>
+    <siteAdmin>reetha.joseph@unilever.com</siteAdmin>
     <siteType>ChatterNetwork</siteType>
     <subdomain>unilever</subdomain>
     <urlPathPrefix>AgencyFees</urlPathPrefix>

@@ -6,7 +6,7 @@
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>Brand Experience List</value>
+        <value>Brand Experience</value>
     </caseValues>
     <fields>
         <help><!-- Help text --></help>
@@ -29,10 +29,6 @@
     <fields>
         <label><!-- Border colour --></label>
         <name>Border_Colour__c</name>
-    </fields>
-    <fields>
-        <label><!-- Brand Experience Tag --></label>
-        <name>Brand_Experience_Tag__c</name>
     </fields>
     <fields>
         <label><!-- Brand Keyword Search --></label>
@@ -508,7 +504,7 @@ The default image will be used if no file is uploaded here. --></help>
     <fields>
         <label><!-- Project --></label>
         <name>Project__c</name>
-        <relationshipLabel><!-- Brand Experience List --></relationshipLabel>
+        <relationshipLabel><!-- Brand Experience --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Region Keyword Search --></label>

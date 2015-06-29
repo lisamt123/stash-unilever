@@ -3,6 +3,50 @@
     <active>true</active>
     <dataCategory>
         <dataCategory>
+            <dataCategory>
+                <label>Dressings</label>
+                <name>Dressings</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Other Foods</label>
+                <name>Other_Foods</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Savoury</label>
+                <name>Savoury</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Spreads</label>
+                <name>Spreads</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Coffee &amp; Snacks</label>
+                <name>Coffee_Snacks</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Ice Cream</label>
+                <name>Ice_Cream</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Plantations</label>
+                <name>Plantations</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Tea and Soy &amp; Fruit Beverages</label>
+                <name>Tea_and_Soy_Fruit_Beverages</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Water Purification Category</label>
+                <name>Water_Purification_Category</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Weight Management</label>
+                <name>Weight_Management</name>
+            </dataCategory>
+            <label>Foods</label>
+            <name>Foods</name>
+        </dataCategory>
+        <dataCategory>
             <label>Food solutions</label>
             <name>Food_solutions</name>
         </dataCategory>
@@ -65,50 +109,6 @@
             </dataCategory>
             <label>Home and Personal Care</label>
             <name>Home_and_Personal_Care</name>
-        </dataCategory>
-        <dataCategory>
-            <dataCategory>
-                <label>Dressings</label>
-                <name>Dressings</name>
-            </dataCategory>
-            <dataCategory>
-                <label>Other Foods</label>
-                <name>Other_Foods</name>
-            </dataCategory>
-            <dataCategory>
-                <label>Savoury</label>
-                <name>Savoury</name>
-            </dataCategory>
-            <dataCategory>
-                <label>Spreads</label>
-                <name>Spreads</name>
-            </dataCategory>
-            <dataCategory>
-                <label>Coffee &amp; Snacks</label>
-                <name>Coffee_Snacks</name>
-            </dataCategory>
-            <dataCategory>
-                <label>Ice Cream</label>
-                <name>Ice_Cream</name>
-            </dataCategory>
-            <dataCategory>
-                <label>Plantations</label>
-                <name>Plantations</name>
-            </dataCategory>
-            <dataCategory>
-                <label>Tea and Soy &amp; Fruit Beverages</label>
-                <name>Tea_and_Soy_Fruit_Beverages</name>
-            </dataCategory>
-            <dataCategory>
-                <label>Water Purification Category</label>
-                <name>Water_Purification_Category</name>
-            </dataCategory>
-            <dataCategory>
-                <label>Weight Management</label>
-                <name>Weight_Management</name>
-            </dataCategory>
-            <label>Foods</label>
-            <name>Foods</name>
         </dataCategory>
         <label>All Product Groups</label>
         <name>All_Product_Groups</name>

@@ -437,6 +437,21 @@
         <unique>false</unique>
     </fields>
     <label>Product Category</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>L0_Product_Category__c</columns>
+        <columns>L1_Product_Category__c</columns>
+        <columns>L2_Product_Category__c</columns>
+        <columns>L3_Product_Category__c</columns>
+        <columns>L4_Product_Category__c</columns>
+        <columns>L5_Product_Category__c</columns>
+        <columns>L6_Product_Category__c</columns>
+        <columns>L7_Product_Category__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <label>Product Category Name</label>
         <type>Text</type>

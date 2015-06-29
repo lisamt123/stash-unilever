@@ -1,0 +1,97 @@
+<apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false">
+<meta http-equiv="content-type" content="text/html; charset=UTF8" />
+    <div class="iPhoneHomeScreenHeight">
+        <div id="homePage1" class="headerBarBackground">
+            <table class="headerBarWidth"> 
+                <tr>                    
+                    <td class="headerBarRowAlign" > <a href="/#home"><img src="{!URLFOR($Resource.MyApprovalsSR, 'img/back.svg')}"  class="homePageFilter" /></a></td>                     
+                </tr>
+            </table>
+        </div>
+        <script type="text/javascript">
+               var param1var = getQueryVariable();
+               if(param1var){
+                   document.getElementById("homePage1").style.display="none";
+               }
+                function getQueryVariable() {
+                  var query = window.location.search.substring(1);
+                  var vars = query.split("&");
+                  for (var i=0;i<vars.length;i++) {
+                    var pair = vars[i].split("=");
+                    if (pair[0] == 'isdtp') {
+                      return(true);
+                    }
+                  } 
+                  return(false);
+                }
+        </script>
+        <div class="homePageHeader">
+            <div class="defaultLeftSpace"><br/>
+                <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/Approvals_Logo.svg')}" class="headerBarIconStyle" />&nbsp;&nbsp;
+                <label class="homePageHeaderText">{{'LBL_MY_APPROVALS' | translate}}</label> <br/><br/>
+            </div>
+        </div>
+        <!--<div ng-if='pendingapprovalData.StatusCode != 200' ng-init="true">
+            <br/><br/>
+            <span class="Subtext3"> {{'LBL_ERROR_ONLOAD' | translate} </span>
+        </div> ng-if='pendingapprovalData.StatusCode == 200' ng-init="true"-->
+        <tabset class="homePageMenuWidth"> 
+            <tab heading="{{'LBL_PENDING' | translate}}" class="homePageMenuBody" ng-click="setSelectedTab('Pending')" active="tab1selected"> 
+                <div id="header">
+                    <span class="rightAlignOnHomeUI">  
+                        <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/filter.svg')}" class="homePageFilter" ng-click='gotoFilterPage()' />
+                    </span>
+                </div>
+                <div>
+                    <div ng-if='pendingApprovalList.length==0' class="defaultLeftSpace">
+                        <br/><br/>
+                        <span class="Subtext3">{{'MSG_NO_PENDING_REQUEST_APPROVAL' | translate}}</span>
+                    </div>
+                    <table ng-if='pendingApprovalList.length>0' class="homePageApprovalsListTable">
+                        <tr ng-repeat="pendingapprovalData in pendingApprovalList| filter:{ExpenseType: filterSelectedForPendingExp}" ng-click='gotoApprovalDetailPage(pendingapprovalData)' class="homePageApprovalsListTableData">
+                            <td class="defaultLeftSpace">
+                                <div class="Subtext1">{{pendingapprovalData.ExpenseID}}</div>                           
+                                <div class="textLinkExpenceNameTruncate">
+                                    {{ pendingapprovalData.ExpenseName }}
+                                </div> 
+                                <div class="Subtext2">{{pendingapprovalData.RequestedBy}},&nbsp;{{pendingapprovalData.Dates}}</div>
+                            </td>
+                            <td class="defaultRightSpacePendingAmountDetail" align="right">
+                                <span class="Subtext3">{{pendingapprovalData.Currencies}} {{pendingapprovalData.Amount}}</span> 
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </tab>
+            <tab heading="{{'LBL_CLOSED' | translate}}" class="homePageMenuBody" ng-click="setSelectedTab('Closed')" active="tab2selected">
+                <div id="header">
+                    <span class="rightAlignOnHomeUI">
+                        <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/filter.svg')}" class="homePageFilter" ng-click='gotoFilterPage()'/>
+                    </span>
+                </div>
+                <div>
+                    <div ng-if='closedApprovalList.length==0' class="defaultLeftSpace">
+                        <br/><br/>
+                        <span class="Subtext3">{{'MSG_NO_CLOSED_REQUEST_APPROVAL' | translate}}</span>
+                    </div>
+                    <table ng-if='closedApprovalList.length>0' class="homePageApprovalsListTable" >
+                        <tr ng-repeat="closedapprovalData in closedApprovalList | filter:{ExpenseType: filterSelectedForClosedExp}" ng-click='gotoApprovalDetailPage(closedapprovalData)' class="homePageApprovalsListTableData">
+                            <td class="defaultLeftSpace" >
+                                <div class="Subtext1">{{closedapprovalData.ExpenseID}}</div>
+                                <div class="textLinkExpenceNameTruncate">
+                                    {{closedapprovalData.ExpenseName}}
+                                </div> 
+                                <span class="Subtext2">{{closedapprovalData.RequestedBy}}, &nbsp;{{closedapprovalData.Dates}}</span>
+                            </td>
+                            <td class="defaultRightSpaceClosedAmountDetail" align="right" valign="bottom">
+                                <span class="Subtext3">{{closedapprovalData.Currencies}} {{closedapprovalData.Amount}}</span><br/>
+                                <button ng-if="closedapprovalData.Action == 'APPR' || (closedapprovalData.Action != 'APPR' && closedapprovalData.Action != 'REJC' &&  closedapprovalData.Status == 'Approved') " type="button" class="approveIndicatorText">{{'LBL_APPROVED' | translate}}</button>
+                                <button ng-if="closedapprovalData.Action == 'REJC' || (closedapprovalData.Action != 'APPR' && closedapprovalData.Action__c != 'REJC' && closedapprovalData.Status == 'Rejected') " type="button" class="rejectIndicatorText">{{'LBL_REJECTED'| translate}}</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>            
+            </tab>
+        </tabset>
+    </div>
+</apex:page>

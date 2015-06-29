@@ -148,6 +148,32 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_Big_Category_New__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( AF_Category__c , 
+&apos;Beverages&apos;, &apos;Refreshments&apos;,
+&apos;Axe&apos;,&apos;Personal Care&apos;,
+&apos;CMCO&apos;,&apos;CMCO&apos;,
+&apos;Deos&apos;,&apos;Personal Care&apos;,
+&apos;Hair&apos;,&apos;Personal Care&apos;,
+&apos;HHC&apos;,&apos;Home Care&apos;,
+&apos;Ice Cream&apos;,&apos;Refreshments&apos;,
+&apos;Laundry&apos;,&apos;Home Care&apos;,
+&apos;Oral Care&apos;,&apos;Personal Care&apos;,
+&apos;Savoury&apos;,&apos;Foods&apos;,
+&apos;SCC &amp; Dressing&apos;,&apos;Foods&apos;,
+&apos;Skin Care&apos;,&apos;Personal Care&apos;,
+&apos;Skin Cleansing&apos;,&apos;Personal Care&apos;,
+&apos;Water&apos;,&apos;Home Care&apos;,
+&apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Big Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_Brand_Estimate_ID__c</fullName>
         <description>Stores the Brand Estimate ID</description>
         <externalId>false</externalId>
@@ -279,6 +305,15 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_CrossBorder__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(CONTAINS(AF_Agency_Entity__c, AF_Unilever_Entity__c) || CONTAINS(AF_Unilever_Entity__c,AF_Agency_Entity__c) ,false,true)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CrossBorder</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>AF_Currency__c</fullName>
@@ -516,6 +551,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_PO_Value_Tradition_OOPSEuro__c</fullName>
+        <externalId>false</externalId>
+        <formula>AF_Traditional__c *((AF_CountNoQuarters__c+ AF_QuatersAlreadyDone__c)/4) -  AF_Previous_Quarter_Value_TL_OOPSEuro__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PO Value Tradition OOPSEuro</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_Previous_Quarter_Value_AL__c</fullName>
         <defaultValue>0</defaultValue>
         <description>Value of PO raised in previous Quarter for Adaptation Local</description>
@@ -534,6 +582,18 @@
         <description>Value of PO raised in previous Quarter for Digital Local</description>
         <externalId>false</externalId>
         <label>Previous Quarter Value DL</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Previous_Quarter_Value_TL_OOPSEuro__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Previous Quarter Value TL OOPSEuro</label>
         <precision>14</precision>
         <required>false</required>
         <scale>2</scale>

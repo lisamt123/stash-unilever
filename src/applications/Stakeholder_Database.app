@@ -3,7 +3,6 @@
     <defaultLandingTab>kof_Stakeholders</defaultLandingTab>
     <description>Stakeholder management</description>
     <label>Stakeholder Database</label>
-    <logo>Communications_Planner/Unilever_Logo_for_App.gif</logo>
     <tab>standard-Chatter</tab>
     <tab>kof_Account__c</tab>
     <tab>kof_Stakeholders</tab>

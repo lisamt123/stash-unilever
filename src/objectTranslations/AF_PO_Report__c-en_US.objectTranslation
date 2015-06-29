@@ -41,6 +41,10 @@
         <name>AF_Base_Fee_Status__c</name>
     </fields>
     <fields>
+        <label><!-- Big Category --></label>
+        <name>AF_Big_Category_New__c</name>
+    </fields>
+    <fields>
         <label><!-- Brand Estimate ID --></label>
         <name>AF_Brand_Estimate_ID__c</name>
     </fields>
@@ -83,6 +87,10 @@
     <fields>
         <label><!-- CountNoQuarters --></label>
         <name>AF_CountNoQuarters__c</name>
+    </fields>
+    <fields>
+        <label><!-- CrossBorder --></label>
+        <name>AF_CrossBorder__c</name>
     </fields>
     <fields>
         <label><!-- Currency --></label>
@@ -165,12 +173,20 @@
         <name>AF_PO_Value_Total_LC__c</name>
     </fields>
     <fields>
+        <label><!-- PO Value Tradition OOPSEuro --></label>
+        <name>AF_PO_Value_Tradition_OOPSEuro__c</name>
+    </fields>
+    <fields>
         <label><!-- Previous Quarter Value AL --></label>
         <name>AF_Previous_Quarter_Value_AL__c</name>
     </fields>
     <fields>
         <label><!-- Previous Quarter Value DL --></label>
         <name>AF_Previous_Quarter_Value_DL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Previous Quarter Value TL OOPSEuro --></label>
+        <name>AF_Previous_Quarter_Value_TL_OOPSEuro__c</name>
     </fields>
     <fields>
         <label><!-- Previous Quarter Value TL --></label>

@@ -5,10 +5,6 @@
         <fullName>Role</fullName>
         <picklist>
             <picklistValues>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Consumer</fullName>
                 <default>false</default>
             </picklistValues>
@@ -34,6 +30,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Journalist</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
