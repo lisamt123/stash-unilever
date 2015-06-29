@@ -12,14 +12,12 @@
         <backgroundColor>#FFFFFF</backgroundColor>
         <height>100</height>
         <horizontalAlignment>Left</horizontalAlignment>
-        <logo>FAU_Documents/FAU_Footer_Logo.jpg</logo>
         <verticalAlignment>Top</verticalAlignment>
     </footer>
     <header>
         <backgroundColor>#FFFFFF</backgroundColor>
         <height>100</height>
         <horizontalAlignment>Right</horizontalAlignment>
-        <logo>FAU_Documents/FAU_Logo.png</logo>
         <verticalAlignment>Top</verticalAlignment>
     </header>
     <middleLine>

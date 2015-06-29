@@ -1,4 +1,4 @@
 <apex:page sidebar="false" showHeader="false">
 <img src="{!URLFOR($Resource.UW_MarketingHomePageBanner)}" />
-<chatter:feed entityId="0F9E0000000IufE"/>
+<chatter:feed entityId="0F9c00000000Sca"/>
 </apex:page>

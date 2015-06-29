@@ -99,6 +99,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Prod Id --></label>
+        <name>Prod_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Show Artwork --></label>
         <name>Show_Artwork__c</name>
     </fields>

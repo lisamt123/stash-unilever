@@ -3,26 +3,6 @@
     <active>true</active>
     <dataCategory>
         <dataCategory>
-            <label>Health and Safety Concerns</label>
-            <name>Health_and_Safety_Concerns</name>
-        </dataCategory>
-        <dataCategory>
-            <label>Ingredients</label>
-            <name>Ingredients</name>
-        </dataCategory>
-        <dataCategory>
-            <label>Investigations</label>
-            <name>Investigations</name>
-        </dataCategory>
-        <dataCategory>
-            <label>Recipes</label>
-            <name>Recipes</name>
-        </dataCategory>
-        <dataCategory>
-            <label>Responses</label>
-            <name>Responses</name>
-        </dataCategory>
-        <dataCategory>
             <dataCategory>
                 <label>Contacts</label>
                 <name>Contacts</name>
@@ -49,6 +29,26 @@
             </dataCategory>
             <label>Corporate</label>
             <name>Corporate</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Health and Safety Concerns</label>
+            <name>Health_and_Safety_Concerns</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Ingredients</label>
+            <name>Ingredients</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Investigations</label>
+            <name>Investigations</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Recipes</label>
+            <name>Recipes</name>
+        </dataCategory>
+        <dataCategory>
+            <label>Responses</label>
+            <name>Responses</name>
         </dataCategory>
         <label>All Categories</label>
         <name>All_Categories</name>

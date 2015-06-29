@@ -300,12 +300,13 @@
                   options.errorHandler('Failed while uploading file');
               });
 
-              XHR.open('POST', '/services/data/v32.0/chatter/feed-elements');
+              XHR.open('POST', '/services/data/v34.0/chatter/feed-elements');
 
               //add headers
               XHR.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
               XHR.setRequestHeader('Authorization', 'Bearer ' + __sfdcSessionId);
               XHR.setRequestHeader('Accept', 'application/json');
+              XHR.setRequestHeader('Connection', 'keep-alive');
 
               //upload porgress bar
               if (XHR.upload && options.uploadHanlder) {
@@ -319,7 +320,7 @@
               return XHR;
           };
 
-          var _buildAndSendRequest = function(fileArrayBuffer, subjectId, options) {
+          var _buildAndSendRequest = function(blob1, subjectId, options) {
               var sfData = _getChatterJSONData(subjectId, options);
               // we'll store our body request as a string.
               var data1 = [];
@@ -339,7 +340,8 @@
               endMultipartFormData(data2);
 
               //build blob data
-              var blob = new Blob([data1.join('\r\n'), fileArrayBuffer, data2.join('\r\n')]);
+              //var blob1 = fileField.files[0].slice(0, 2048*1024*1024*1024);
+              var blob = new Blob([data1.join('\r\n'), blob1, data2.join('\r\n')]);
               var xhr = _getXHR(options);
               xhr.send(blob);
           };
@@ -380,11 +382,12 @@
               options.contentTitle = options.contentTitle || options.fileName;
               options.contentDescription = options.contentDescription || '';
               //readFile
-              var reader = _getFileReader(options, function() {
-                  _buildAndSendRequest(reader.result, subjectId, options);
-              });
+              // var reader = _getFileReader(options, function() {
+                 var blob1 = fileField.files[0].slice(0, 2048*1024*1024*1024);//slicing file
+                  _buildAndSendRequest(blob1, subjectId, options);
+              // });
 
-              reader.readAsArrayBuffer(fileField.files[0]);
+             // reader.readAsArrayBuffer(fileField.files[0]);
           };
 
           return {
@@ -665,7 +668,8 @@
         <br />        
         <p class="form-errors"></p> 
         <br />
-        <input type="button" value="Upload & save" onclick="saveForm();"/> 
+       <input type="button" value="Upload & save" onclick="saveForm();"/>
+
         <p class="process-status"></p> 
         <div id="ballsWaveG">
           <div id="ballsWaveG_1" class="ballsWaveG">

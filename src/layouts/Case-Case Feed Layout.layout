@@ -63,7 +63,7 @@
         </feedFilters>
         <fullWidthFeed>true</fullWidthFeed>
         <hideSidebar>false</hideSidebar>
-        <highlightExternalFeedItems>false</highlightExternalFeedItems>
+        <highlightExternalFeedItems>true</highlightExternalFeedItems>
         <rightComponents>
             <componentType>HelpAndToolLinks</componentType>
         </rightComponents>

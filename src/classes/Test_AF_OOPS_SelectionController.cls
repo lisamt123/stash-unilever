@@ -86,7 +86,7 @@ public class Test_AF_OOPS_SelectionController
      
      //Instantiate AF_OOPS_SelectionController  Class
      AF_OOPS_SelectionController selCtrl=new AF_OOPS_SelectionController();
-     
+     delete oopsActual;
      Test.stopTest();
     }
   }  
