@@ -525,6 +525,7 @@
         <columns>CREATED_DATE</columns>
         <columns>Threshold__c</columns>
         <columns>Type__c</columns>
+        <columns>Group_By_Day_Code__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CREATEDBY_USER</field>
