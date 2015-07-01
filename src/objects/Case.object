@@ -2318,6 +2318,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>TO_France_Escalation_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TO France Escalation Queue</label>
+        <queue>TO_France_Escalation_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>TO_France_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>TO France Queue</label>
@@ -2991,7 +3000,7 @@ IF(Case.Case_Market_Mapping_Country__c=&apos;Norway&apos;,$Setup.cec_Org_Setting
 IF(Case.Case_Market_Mapping_Country__c=&apos;Poland&apos;,$Setup.cec_Org_Settings__c.Poland_Questionnaire_Id__c,
 IF(Case.Case_Market_Mapping_Country__c=&apos;Portugal&apos;,$Setup.cec_Org_Settings__c.Portugal_Questionnaire_Id__c,
 IF(Case.Case_Market_Mapping_Country__c=&apos;Spain&apos;,$Setup.cec_Org_Settings__c.Spain_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Sweden&apos;,$Setup.cec_Org_Settings__c.Sweden_Questionnaire_Id__c,    IF(Case.Case_Market_Mapping_Country__c=&apos;Switzerland&apos;,$Setup.cec_Org_Settings__c.Switzerland_Questionnaire_Id__c, null))))))))))))))))))))}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}</url>
+IF(Case.Case_Market_Mapping_Country__c=&apos;Sweden&apos;,$Setup.cec_Org_Settings__c.Sweden_Questionnaire_Id__c,    IF(Case.Case_Market_Mapping_Country__c=&apos;Switzerland&apos;,$Setup.cec_Org_Settings__c.Switzerland_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Estonia&apos;,$Setup.cec_Org_Settings__c.Estonia_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Lithuania&apos;,$Setup.cec_Org_Settings__c.Lithuania_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Latvia&apos;,$Setup.cec_Org_Settings__c.Latvia_Questionnaire_Id__c, null)))))))))))))))))))))))}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}</url>
     </webLinks>
     <webLinks>
         <fullName>New_Case</fullName>
