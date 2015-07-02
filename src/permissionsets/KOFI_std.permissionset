@@ -25580,6 +25580,10 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>mdm_Global_Listening_Tree__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>mdm_Product_Category__c</tab>
         <visibility>None</visibility>
     </tabSettings>
