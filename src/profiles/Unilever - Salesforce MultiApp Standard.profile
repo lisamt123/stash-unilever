@@ -26423,6 +26423,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>mdm_Global_Listening_Tree__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>mdm_Product_Category__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
