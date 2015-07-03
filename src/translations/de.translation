@@ -1473,6 +1473,10 @@
         <name>FAU_PA_Will_Complete</name>
     </customLabels>
     <customLabels>
+        <label><!-- FAU To Defer To PA error message --></label>
+        <name>FAU_To_Defer_To_PA_error_message</name>
+    </customLabels>
+    <customLabels>
         <label><!-- FAU Webinar Invitation Template --></label>
         <name>FAU_Webinar_Invitation_Template</name>
     </customLabels>
