@@ -11086,6 +11086,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FAU_Participant__c.FAU_Request_PA_User_Email_Address__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FAU_Participant__c.FAU_Title__c</field>
         <readable>false</readable>
     </fieldPermissions>
