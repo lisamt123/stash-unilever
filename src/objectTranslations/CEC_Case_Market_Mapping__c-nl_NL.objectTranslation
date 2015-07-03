@@ -130,6 +130,18 @@
         <label>Markt</label>
         <name>Market__c</name>
     </fields>
+    <fields>
+        <label><!-- Tag --></label>
+        <name>Tag__c</name>
+        <picklistValues>
+            <masterLabel>CEC</masterLabel>
+            <translation><!-- CEC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>George</masterLabel>
+            <translation><!-- George --></translation>
+        </picklistValues>
+    </fields>
     <gender><!-- Neuter --></gender>
     <layouts>
         <layout>Case Market Mapping Layout</layout>
