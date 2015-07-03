@@ -1793,6 +1793,10 @@
         <name>TASK_OBJ_NAME</name>
     </customLabels>
     <customLabels>
+        <label><!-- TO_CaseIdentifier --></label>
+        <name>TO_CaseIdentifier</name>
+    </customLabels>
+    <customLabels>
         <label><!-- TermsOfUseTitle --></label>
         <name>TermsOfUseTitle</name>
     </customLabels>

@@ -209,6 +209,14 @@
         <name>CEC_Marketing_Opt_In__c</name>
     </fields>
     <fields>
+        <label><!-- Children Under 12 --></label>
+        <name>Children_under_12__c</name>
+    </fields>
+    <fields>
+        <label><!-- Club Member Number --></label>
+        <name>Club_Member_Number__c</name>
+    </fields>
+    <fields>
         <label><!-- Company Structure --></label>
         <name>Company_Structure__c</name>
     </fields>
@@ -681,6 +689,10 @@
         <name>D_B_Duns_Number__c</name>
     </fields>
     <fields>
+        <label><!-- Demandware Customer No --></label>
+        <name>Demandware_ID__c</name>
+    </fields>
+    <fields>
         <label><!-- Discipline --></label>
         <name>Discipline__c</name>
         <picklistValues>
@@ -795,6 +807,11 @@
             <masterLabel>Warehousing &amp; Logistics</masterLabel>
             <translation><!-- Warehousing &amp; Logistics --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Per Week --></help>
+        <label><!-- Tea Drinking Frequency --></label>
+        <name>Drinking_frequency__c</name>
     </fields>
     <fields>
         <label><!-- External Id --></label>
@@ -998,8 +1015,16 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Machine Id --></label>
+        <name>Machine_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Next Review Date --></label>
         <name>Next_Review_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- No of Tea Drinkers --></label>
+        <name>No_of_Tea_drinkers__c</name>
     </fields>
     <fields>
         <label><!-- Overall Rating --></label>
@@ -1041,6 +1066,10 @@
             <translation><!-- Letter --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Mobile App</masterLabel>
+            <translation><!-- Mobile App --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Phone</masterLabel>
             <translation><!-- Phone --></translation>
         </picklistValues>
@@ -1052,6 +1081,14 @@
             <masterLabel>Web</masterLabel>
             <translation><!-- Web --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Preferred Tea Type --></label>
+        <name>Preferred_Tea_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Preferred Infusion Type --></label>
+        <name>Preferred_infusion_type__c</name>
     </fields>
     <fields>
         <help><!-- Has your company operated under any other name within the last 10 years? If so, please specify. --></help>
@@ -1076,6 +1113,10 @@
             <masterLabel>Warm</masterLabel>
             <translation><!-- Warm --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Registration Date --></label>
+        <name>Registration_Date__c</name>
     </fields>
     <fields>
         <label><!-- Responsible Unilever Employee --></label>
@@ -1123,6 +1164,14 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Tea Moment of The Day --></label>
+        <name>Tea_moment_of_the_day__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tea Moment of The Week --></label>
+        <name>Tea_moment_of_the_week__c</name>
+    </fields>
+    <fields>
         <label><!-- Total Rating Count --></label>
         <name>Total_Rating_Count__c</name>
     </fields>
@@ -1135,6 +1184,10 @@
         <picklistValues>
             <masterLabel>Analyst</masterLabel>
             <translation><!-- Analyst --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Association</masterLabel>
+            <translation><!-- Association --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Competitor</masterLabel>
@@ -1151,6 +1204,14 @@
         <picklistValues>
             <masterLabel>Investor</masterLabel>
             <translation><!-- Investor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Legal</masterLabel>
+            <translation><!-- Legal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Logistic</masterLabel>
+            <translation><!-- Logistic --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Other</masterLabel>
@@ -1172,6 +1233,22 @@
             <masterLabel>Reseller</masterLabel>
             <translation><!-- Reseller --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>Retailer</masterLabel>
+            <translation><!-- Retailer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shop</masterLabel>
+            <translation><!-- Shop --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shop In Shop</masterLabel>
+            <translation><!-- Shop In Shop --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UL Careline</masterLabel>
+            <translation><!-- UL Careline --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- VIP --></label>
@@ -1191,6 +1268,18 @@
         <sections>
             <label>Informação adicional do endereço</label>
             <section>Additional Address Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TO Person Account Layout</layout>
+        <layoutType>PersonAccount</layoutType>
+        <sections>
+            <label><!-- Additional Address Information --></label>
+            <section>Additional Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Additional Demandware Information --></label>
+            <section>Additional Demandware Information</section>
         </sections>
     </layouts>
     <quickActions>

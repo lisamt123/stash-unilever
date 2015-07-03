@@ -164,6 +164,28 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>TO_Assign_France_Escalation_Queue</fullName>
+        <description>Assigns Case to France Escalation Queue</description>
+        <field>OwnerId</field>
+        <lookupValue>TO_France_Escalation_Queue</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>TO Assign France Escalation Queue</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TO_IsEscalated_Update</fullName>
+        <description>TO : IsEscalated set to TRUE, if Status is set to Escalated.</description>
+        <field>IsEscalated</field>
+        <literalValue>1</literalValue>
+        <name>TO - IsEscalated Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>WorkIt2__WorkIt_Case_Overtime_Level_Green</fullName>
         <field>WorkIt2__Color__c</field>
         <literalValue>Green</literalValue>
@@ -569,6 +591,61 @@ ex: Case Origin : Email India then Update Market : India</description>
             <value>Duplicate</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>TO - IsEscalated Update</fullName>
+        <actions>
+            <name>TO_IsEscalated_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>Escalated</value>
+        </criteriaItems>
+        <description>TO : IsEscalated set to TRUE, If the status is set to Escalated.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TO France Escalation Rule</fullName>
+        <actions>
+            <name>TO_Assign_France_Escalation_Queue</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.IsEscalated</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Case_Market_Tag__c</field>
+            <operation>equals</operation>
+            <value>George</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Case_Market_Mapping_Country__c</field>
+            <operation>equals</operation>
+            <value>France</value>
+        </criteriaItems>
+        <description>Rule to assign case to france escalation  queue</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>TO France Market Field Update</fullName>
+        <actions>
+            <name>CEC_Case_Origin_to_email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>equals</operation>
+            <value>Email TO France</value>
+        </criteriaItems>
+        <description>TO: Market Field Update based on Case Origin Field</description>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>WorkIt2__WorkIt%21 Case Close</fullName>
