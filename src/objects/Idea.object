@@ -257,6 +257,56 @@
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>Platform__c</fullName>
+        <externalId>false</externalId>
+        <label>Platform</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Adobe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BMC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Microsoft</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MuleSoft</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oracle</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SAP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Teradata</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Workday</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>MultiselectPicklist</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
         <fullName>Status</fullName>
         <picklist>
             <picklistValues>
@@ -488,6 +538,49 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Platform__c</picklist>
+            <values>
+                <fullName>Adobe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BMC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Microsoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MuleSoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oracle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teradata</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workday</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Status</picklist>
             <values>
                 <fullName>Implemented</fullName>
@@ -587,6 +680,49 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Platform__c</picklist>
+            <values>
+                <fullName>Adobe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BMC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Microsoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MuleSoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oracle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teradata</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workday</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Status</picklist>
             <values>
                 <fullName>New</fullName>
@@ -682,6 +818,49 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Platform__c</picklist>
+            <values>
+                <fullName>Adobe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BMC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Microsoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MuleSoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oracle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teradata</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workday</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Status</picklist>
             <values>
                 <fullName>Implemented</fullName>
@@ -769,6 +948,49 @@
             </values>
             <values>
                 <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Platform__c</picklist>
+            <values>
+                <fullName>Adobe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BMC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Microsoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MuleSoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oracle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teradata</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workday</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -900,6 +1122,49 @@
             </values>
             <values>
                 <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Platform__c</picklist>
+            <values>
+                <fullName>Adobe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BMC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Microsoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MuleSoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oracle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teradata</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workday</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1063,6 +1328,49 @@
             </values>
             <values>
                 <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Platform__c</picklist>
+            <values>
+                <fullName>Adobe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BMC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Microsoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MuleSoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oracle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teradata</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workday</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

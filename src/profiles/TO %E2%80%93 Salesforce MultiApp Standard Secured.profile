@@ -1286,7 +1286,19 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Core_CA_AppConstants</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_ApplicationWrapper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Core_CA_ApprovalDetailsController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_ApproveRejectAction</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -1299,6 +1311,18 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Approver_RejectController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_BaseApplicationServices</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_BaseApplicationWrapper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_BaseServiceException</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -1318,7 +1342,15 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Core_CA_IBaseAppicationServices</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Core_CA_InterestedParty_Handler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_LineItemDetail</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -1330,11 +1362,31 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Core_CA_MiniPageView_Override_Controller</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_MyApprovalData</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_RequestDetail</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Core_CA_RequestDetailsController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_Test_MobileAPP</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_WrapperUtility</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -2458,6 +2510,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>RemoteServiceCallController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>SSOSharepointController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -2791,6 +2847,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>UserTestUtil</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Utility</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -3655,10 +3715,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>uw_MiscTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>uw_ModifyAssetController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -10115,6 +10171,26 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Core_Approval_Header__c.TF_Currency1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.TF_Currency2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.TF_Currency3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.TF_Currency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Core_Approval_Header__c.Title_Summary__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -15609,6 +15685,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Idea.Platform__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Idea.Status</field>
         <readable>true</readable>
@@ -16227,11 +16308,6 @@
         <editable>true</editable>
         <field>Solution.SolutionNote</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Sub_Category__c.Brand_Link_Sections__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -22010,11 +22086,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>uw_Asset__c.Categorisation_3__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>uw_Asset__c.Country__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -22030,16 +22101,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>uw_Asset__c.Localisation_Requirement__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Asset__c.Location_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>uw_Asset__c.Media_Channel_1__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -22051,11 +22112,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>uw_Asset__c.Order_Of_Display__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Asset__c.Other_Media_Channel__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -22201,11 +22257,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>uw_BET__c.Border_Colour__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Brand_Experience_Tag__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -22420,41 +22471,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>uw_Brand_Link_Sections__c.Brand_Centre_Link__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Brand_Link_Sections__c.Brand_Centre__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Brand_Link_Sections__c.Horizontal_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Brand_Link_Sections__c.Ordinal__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Brand_Link_Sections__c.Position__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Brand_Link_Sections__c.Section_Image_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Brand_Link_Sections__c.Style_Class__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>uw_Brand__c.BETs_URL__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -22636,16 +22652,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>uw_Links__c.BC_Ordinal__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Links__c.Brand_Centre__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Links__c.Brand_Link_Sections__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -23787,9 +23793,6 @@
         <layout>uw_BET__c-BET Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>uw_Brand_Link_Sections__c-Brand Link Sections Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>uw_Brand__c-Brands Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -23817,992 +23820,8 @@
         <layout>uw_Terms_Conditions__c-Terms %26 Conditions Layout</layout>
     </layoutAssignments>
     <loginIpRanges>
-        <endAddress>1.23.255.255</endAddress>
-        <startAddress>1.23.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>1.39.255.255</endAddress>
-        <startAddress>1.39.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>2.26.255.255</endAddress>
-        <startAddress>2.26.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>2.97.255.255</endAddress>
-        <startAddress>2.96.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>2.100.255.255</endAddress>
-        <startAddress>2.100.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>2.122.255.255</endAddress>
-        <startAddress>2.122.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>2.126.255.255</endAddress>
-        <startAddress>2.126.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>2.220.255.255</endAddress>
-        <startAddress>2.216.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>2.223.255.255</endAddress>
-        <startAddress>2.222.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>2.241.255.255</endAddress>
-        <startAddress>2.241.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>5.69.255.255</endAddress>
-        <startAddress>5.64.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>5.71.255.255</endAddress>
-        <startAddress>5.71.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>5.83.255.255</endAddress>
-        <startAddress>5.83.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>5.148.255.255</endAddress>
-        <startAddress>5.148.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>10.226.255.255</endAddress>
-        <startAddress>10.226.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>10.232.255.255</endAddress>
-        <startAddress>10.232.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>10.234.255.255</endAddress>
-        <startAddress>10.234.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>14.97.255.255</endAddress>
-        <startAddress>14.96.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>14.99.255.255</endAddress>
-        <startAddress>14.99.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>14.140.255.255</endAddress>
-        <startAddress>14.140.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>23.22.255.255</endAddress>
-        <startAddress>23.22.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>24.30.255.255</endAddress>
-        <startAddress>24.30.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>27.7.255.255</endAddress>
-        <startAddress>27.7.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>27.34.255.255</endAddress>
-        <startAddress>27.34.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>27.57.255.255</endAddress>
-        <startAddress>27.56.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>27.106.255.255</endAddress>
-        <startAddress>27.106.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>27.251.255.255</endAddress>
-        <startAddress>27.251.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>31.48.255.255</endAddress>
-        <startAddress>31.48.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>31.51.255.255</endAddress>
-        <startAddress>31.51.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>31.55.255.255</endAddress>
-        <startAddress>31.55.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>31.69.255.255</endAddress>
-        <startAddress>31.68.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>31.79.255.255</endAddress>
-        <startAddress>31.79.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>31.122.255.255</endAddress>
-        <startAddress>31.122.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>37.219.255.255</endAddress>
-        <startAddress>37.219.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>46.236.255.255</endAddress>
-        <startAddress>46.236.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>46.245.255.255</endAddress>
-        <startAddress>46.245.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>50.17.255.255</endAddress>
-        <startAddress>50.16.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>50.19.255.255</endAddress>
-        <startAddress>50.19.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>52.0.255.255</endAddress>
-        <startAddress>52.0.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>54.83.255.255</endAddress>
-        <startAddress>54.80.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>54.87.255.255</endAddress>
-        <startAddress>54.87.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>54.89.255.255</endAddress>
-        <startAddress>54.89.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>54.92.255.255</endAddress>
-        <startAddress>54.91.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>54.147.255.255</endAddress>
-        <startAddress>54.144.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>54.159.255.255</endAddress>
-        <startAddress>54.157.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>54.163.255.255</endAddress>
-        <startAddress>54.161.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>54.167.255.255</endAddress>
-        <startAddress>54.166.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>54.196.255.255</endAddress>
-        <startAddress>54.196.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>54.198.255.255</endAddress>
-        <startAddress>54.198.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>54.205.255.255</endAddress>
-        <startAddress>54.205.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>54.211.255.255</endAddress>
-        <startAddress>54.211.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>54.221.255.255</endAddress>
-        <startAddress>54.221.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>54.225.255.255</endAddress>
-        <startAddress>54.224.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>54.234.255.255</endAddress>
-        <startAddress>54.234.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>54.237.255.255</endAddress>
-        <startAddress>54.237.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>54.242.255.255</endAddress>
-        <startAddress>54.242.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>59.93.255.255</endAddress>
-        <startAddress>59.93.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>59.95.255.255</endAddress>
-        <startAddress>59.95.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>62.47.255.255</endAddress>
-        <startAddress>62.46.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>62.57.255.255</endAddress>
-        <startAddress>62.57.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>62.169.255.255</endAddress>
-        <startAddress>62.169.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>62.180.255.255</endAddress>
-        <startAddress>62.180.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>62.208.255.255</endAddress>
-        <startAddress>62.208.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>72.14.255.255</endAddress>
-        <startAddress>72.14.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>72.76.255.255</endAddress>
-        <startAddress>72.76.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>77.193.255.255</endAddress>
-        <startAddress>77.193.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>77.233.255.255</endAddress>
-        <startAddress>77.233.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>78.7.255.255</endAddress>
-        <startAddress>78.7.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>78.50.255.255</endAddress>
-        <startAddress>78.50.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>78.54.255.255</endAddress>
-        <startAddress>78.54.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>78.64.255.255</endAddress>
-        <startAddress>78.64.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>79.152.255.255</endAddress>
-        <startAddress>79.152.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>80.6.255.255</endAddress>
-        <startAddress>80.6.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>80.41.255.255</endAddress>
-        <startAddress>80.41.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>80.146.255.255</endAddress>
-        <startAddress>80.146.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>80.171.255.255</endAddress>
-        <startAddress>80.171.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>80.216.255.255</endAddress>
-        <startAddress>80.216.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>81.99.255.255</endAddress>
-        <startAddress>81.99.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>81.100.255.255</endAddress>
-        <startAddress>81.100.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>81.132.255.255</endAddress>
-        <startAddress>81.132.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>81.136.255.255</endAddress>
-        <startAddress>81.136.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>81.141.255.255</endAddress>
-        <startAddress>81.140.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>81.149.255.255</endAddress>
-        <startAddress>81.149.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>81.151.255.255</endAddress>
-        <startAddress>81.151.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>81.156.255.255</endAddress>
-        <startAddress>81.155.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>82.3.255.255</endAddress>
-        <startAddress>82.3.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>82.16.255.255</endAddress>
-        <startAddress>82.16.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>82.44.255.255</endAddress>
-        <startAddress>82.44.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>82.54.255.255</endAddress>
-        <startAddress>82.54.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>82.71.255.255</endAddress>
-        <startAddress>82.71.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>82.121.255.255</endAddress>
-        <startAddress>82.121.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>82.124.255.255</endAddress>
-        <startAddress>82.124.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>82.132.255.255</endAddress>
-        <startAddress>82.131.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>82.144.255.255</endAddress>
-        <startAddress>82.144.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>82.224.255.255</endAddress>
-        <startAddress>82.224.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>83.93.255.255</endAddress>
-        <startAddress>83.93.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>83.112.255.255</endAddress>
-        <startAddress>83.112.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>83.138.255.255</endAddress>
-        <startAddress>83.138.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>83.200.255.255</endAddress>
-        <startAddress>83.199.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>83.209.255.255</endAddress>
-        <startAddress>83.209.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>83.251.255.255</endAddress>
-        <startAddress>83.251.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>84.1.255.255</endAddress>
-        <startAddress>84.0.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>84.2.255.255</endAddress>
-        <startAddress>84.2.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>84.78.255.255</endAddress>
-        <startAddress>84.78.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>84.176.255.255</endAddress>
-        <startAddress>84.176.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>85.69.255.255</endAddress>
-        <startAddress>85.69.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>85.177.255.255</endAddress>
-        <startAddress>85.176.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>85.255.255.255</endAddress>
-        <startAddress>85.255.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>86.2.255.255</endAddress>
-        <startAddress>86.2.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>86.11.255.255</endAddress>
-        <startAddress>86.11.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>86.16.255.255</endAddress>
-        <startAddress>86.16.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>86.59.255.255</endAddress>
-        <startAddress>86.59.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>86.150.255.255</endAddress>
-        <startAddress>86.150.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>86.153.255.255</endAddress>
-        <startAddress>86.153.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>86.159.255.255</endAddress>
-        <startAddress>86.155.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>86.166.255.255</endAddress>
-        <startAddress>86.166.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>86.176.255.255</endAddress>
-        <startAddress>86.176.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>86.180.255.255</endAddress>
-        <startAddress>86.178.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>86.182.255.255</endAddress>
-        <startAddress>86.182.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>86.185.255.255</endAddress>
-        <startAddress>86.185.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>87.82.255.255</endAddress>
-        <startAddress>87.82.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>87.97.255.255</endAddress>
-        <startAddress>87.97.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>87.245.255.255</endAddress>
-        <startAddress>87.245.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>88.202.255.255</endAddress>
-        <startAddress>88.202.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>89.115.255.255</endAddress>
-        <startAddress>89.114.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>89.133.255.255</endAddress>
-        <startAddress>89.133.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>89.241.255.255</endAddress>
-        <startAddress>89.239.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>90.3.255.255</endAddress>
-        <startAddress>90.3.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>90.24.255.255</endAddress>
-        <startAddress>90.24.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>90.35.255.255</endAddress>
-        <startAddress>90.35.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>90.61.255.255</endAddress>
-        <startAddress>90.61.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>90.196.255.255</endAddress>
-        <startAddress>90.195.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>90.203.255.255</endAddress>
-        <startAddress>90.201.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>90.208.255.255</endAddress>
-        <startAddress>90.206.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>90.211.255.255</endAddress>
-        <startAddress>90.210.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>90.215.255.255</endAddress>
-        <startAddress>90.213.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>91.83.255.255</endAddress>
-        <startAddress>91.82.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>91.113.255.255</endAddress>
-        <startAddress>91.113.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>91.115.255.255</endAddress>
-        <startAddress>91.115.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>92.17.255.255</endAddress>
-        <startAddress>92.16.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>92.21.255.255</endAddress>
-        <startAddress>92.21.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>92.27.255.255</endAddress>
-        <startAddress>92.26.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>92.154.255.255</endAddress>
-        <startAddress>92.154.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>92.210.255.255</endAddress>
-        <startAddress>92.210.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>92.233.255.255</endAddress>
-        <startAddress>92.232.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>94.0.255.255</endAddress>
-        <startAddress>94.0.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>94.6.255.255</endAddress>
-        <startAddress>94.6.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>94.8.255.255</endAddress>
-        <startAddress>94.8.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>94.10.255.255</endAddress>
-        <startAddress>94.10.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>94.117.255.255</endAddress>
-        <startAddress>94.117.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>94.175.255.255</endAddress>
-        <startAddress>94.175.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>95.95.255.255</endAddress>
-        <startAddress>95.95.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>95.195.255.255</endAddress>
-        <startAddress>95.195.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>101.56.255.255</endAddress>
-        <startAddress>101.56.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>101.59.255.255</endAddress>
-        <startAddress>101.58.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>101.63.255.255</endAddress>
-        <startAddress>101.63.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>106.51.255.255</endAddress>
-        <startAddress>106.51.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>106.78.255.255</endAddress>
-        <startAddress>106.78.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>106.206.255.255</endAddress>
-        <startAddress>106.206.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>106.216.255.255</endAddress>
-        <startAddress>106.216.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>107.20.255.255</endAddress>
-        <startAddress>107.20.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>107.107.255.255</endAddress>
-        <startAddress>107.107.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>107.167.255.255</endAddress>
-        <startAddress>107.167.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>108.35.255.255</endAddress>
-        <startAddress>108.35.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>109.1.255.255</endAddress>
-        <startAddress>109.1.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>109.51.255.255</endAddress>
-        <startAddress>109.51.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>109.145.255.255</endAddress>
-        <startAddress>109.144.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>109.147.255.255</endAddress>
-        <startAddress>109.147.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>109.151.255.255</endAddress>
-        <startAddress>109.151.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>109.156.255.255</endAddress>
-        <startAddress>109.155.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>109.158.255.255</endAddress>
-        <startAddress>109.158.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>115.113.255.255</endAddress>
-        <startAddress>115.112.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>115.117.255.255</endAddress>
-        <startAddress>115.117.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>115.184.255.255</endAddress>
-        <startAddress>115.184.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>115.242.255.255</endAddress>
-        <startAddress>115.241.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>115.246.255.255</endAddress>
-        <startAddress>115.244.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>115.248.255.255</endAddress>
-        <startAddress>115.248.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>116.75.255.255</endAddress>
-        <startAddress>116.75.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>117.96.255.255</endAddress>
-        <startAddress>117.96.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>117.214.255.255</endAddress>
-        <startAddress>117.214.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>117.220.255.255</endAddress>
-        <startAddress>117.220.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>117.248.255.255</endAddress>
-        <startAddress>117.248.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>120.61.255.255</endAddress>
-        <startAddress>120.61.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>120.138.255.255</endAddress>
-        <startAddress>120.138.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>121.245.255.255</endAddress>
-        <startAddress>121.245.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>122.167.255.255</endAddress>
-        <startAddress>122.166.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>122.172.255.255</endAddress>
-        <startAddress>122.171.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>122.178.255.255</endAddress>
-        <startAddress>122.178.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>123.239.255.255</endAddress>
-        <startAddress>123.239.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>124.40.255.255</endAddress>
-        <startAddress>124.40.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>125.16.255.255</endAddress>
-        <startAddress>125.16.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>125.99.255.255</endAddress>
-        <startAddress>125.99.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>131.227.255.255</endAddress>
-        <startAddress>131.227.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>144.36.255.255</endAddress>
-        <startAddress>144.36.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>149.12.255.255</endAddress>
-        <startAddress>149.12.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>149.254.255.255</endAddress>
-        <startAddress>149.254.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>151.230.255.255</endAddress>
-        <startAddress>151.230.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>154.58.255.255</endAddress>
-        <startAddress>154.58.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>166.49.255.255</endAddress>
-        <startAddress>166.49.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>166.171.255.255</endAddress>
-        <startAddress>166.171.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>170.252.255.255</endAddress>
-        <startAddress>170.252.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>171.76.255.255</endAddress>
-        <startAddress>171.76.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>173.63.255.255</endAddress>
-        <startAddress>173.63.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>176.12.255.255</endAddress>
-        <startAddress>176.12.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>176.24.255.255</endAddress>
-        <startAddress>176.24.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>176.25.255.255</endAddress>
-        <startAddress>176.25.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>176.27.255.255</endAddress>
-        <startAddress>176.26.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>176.248.255.255</endAddress>
-        <startAddress>176.248.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>176.254.255.255</endAddress>
-        <startAddress>176.254.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>178.115.255.255</endAddress>
-        <startAddress>178.115.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>178.191.255.255</endAddress>
-        <startAddress>178.189.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>180.222.255.255</endAddress>
-        <startAddress>180.222.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>182.156.255.255</endAddress>
-        <startAddress>182.156.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>184.73.255.255</endAddress>
-        <startAddress>184.72.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>188.23.255.255</endAddress>
-        <startAddress>188.22.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>193.83.255.255</endAddress>
-        <startAddress>193.83.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>193.154.255.255</endAddress>
-        <startAddress>193.154.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>194.60.255.255</endAddress>
-        <startAddress>194.60.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>194.118.255.255</endAddress>
-        <startAddress>194.118.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>194.166.255.255</endAddress>
-        <startAddress>194.166.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>195.23.255.255</endAddress>
-        <startAddress>195.23.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>195.212.255.255</endAddress>
-        <startAddress>195.212.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>202.60.255.255</endAddress>
-        <startAddress>202.60.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>202.90.255.255</endAddress>
-        <startAddress>202.90.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>203.143.255.255</endAddress>
-        <startAddress>203.143.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>203.191.255.255</endAddress>
-        <startAddress>203.191.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>204.110.255.255</endAddress>
-        <startAddress>204.110.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>205.223.255.255</endAddress>
-        <startAddress>205.223.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>207.244.255.255</endAddress>
-        <startAddress>207.244.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>212.88.255.255</endAddress>
-        <startAddress>212.88.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>212.98.255.255</endAddress>
-        <startAddress>212.98.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>212.167.255.255</endAddress>
-        <startAddress>212.167.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>212.250.255.255</endAddress>
-        <startAddress>212.250.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>213.61.255.255</endAddress>
-        <startAddress>213.61.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>213.83.255.255</endAddress>
-        <startAddress>213.83.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>213.93.255.255</endAddress>
-        <startAddress>213.93.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>213.112.255.255</endAddress>
-        <startAddress>213.112.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>213.114.255.255</endAddress>
-        <startAddress>213.114.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>213.137.255.255</endAddress>
-        <startAddress>213.137.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>213.205.255.255</endAddress>
-        <startAddress>213.205.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>213.240.255.255</endAddress>
-        <startAddress>213.240.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>217.110.255.255</endAddress>
-        <startAddress>217.110.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>217.247.255.255</endAddress>
-        <startAddress>217.247.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>219.64.255.255</endAddress>
-        <startAddress>219.64.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>223.180.255.255</endAddress>
-        <startAddress>223.180.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>223.227.255.255</endAddress>
-        <startAddress>223.227.0.0</startAddress>
-    </loginIpRanges>
-    <loginIpRanges>
-        <endAddress>223.229.255.255</endAddress>
-        <startAddress>223.229.0.0</startAddress>
+        <endAddress>10.80.64.21</endAddress>
+        <startAddress>10.80.64.0</startAddress>
     </loginIpRanges>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -25351,14 +24370,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Brand_Link_Section_Detail</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Brand_Link_Section_New</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>BrilliantExampleArticle</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -25487,7 +24498,31 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>Core_CA_ApprovalDetailPage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Core_CA_ApprovalDetails</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_ApprovalFilter</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_ApprovalHomePage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_ApprovalRequestAribaLineDetail</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_ApprovalRequestGETSLineDetail</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_ApproveRejectActionPage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -25496,6 +24531,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_Approver_Reject</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_ChatterFeedPage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -25520,6 +24559,14 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_Line_Reject</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_MiniPageView_Override</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_MyApprovalsHome</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -25748,10 +24795,6 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>New_Link</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>New_Link_Section</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -25991,16 +25034,12 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>babycare_brand_centre_articles_sfdc</apexPage>
-        <enabled>false</enabled>
+        <apexPage>approvalscacheimages</apexPage>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>babycare_brand_centre_sfdc</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>babycare_brand_centre_single_sfdc</apexPage>
-        <enabled>false</enabled>
+        <apexPage>approvalscacheimagesmanifest</apexPage>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>bc_help_pop_up</apexPage>
@@ -26048,30 +25087,6 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>be_help_pop_up</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>benandjerrys_brand_centre_articles_sfdc</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>benandjerrys_brand_centre_sfdc</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>benandjerrys_brand_centre_single_sfdc</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>cornetto_brand_centre_articles_sfdc</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>cornetto_brand_centre_sfdc</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>cornetto_brand_centre_single_sfdc</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -26129,18 +25144,6 @@
     <pageAccesses>
         <apexPage>createprojectsv</apexPage>
         <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>familygoodness_brand_articles_sfdc</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>familygoodness_brand_centre_sfdc</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>familygoodness_brand_single_sfdc</apexPage>
-        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>groupMaster</apexPage>
@@ -26515,48 +25518,12 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>magnum_brand_centre_articles_sfdc</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>magnum_brand_centre_sfdc</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>magnum_brand_centre_single_sfdc</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>maketingRedirect</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>myLogOut</apexPage>
         <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>rexona_brand_centre_articles_sfdc</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>rexona_brand_centre_sfdc</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>rexona_brand_centre_single_sfdc</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>sunsilk_brand_centre_articles_sfdc</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>sunsilk_brand_centre_sfdc</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>sunsilk_brand_centre_single_sfdc</apexPage>
-        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>unilever_way_home</apexPage>
@@ -27033,7 +26000,7 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>My_Approvals</tab>
+        <tab>My_Approvals_Custom</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
