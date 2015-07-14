@@ -268,6 +268,51 @@
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
+        <fullName>CEC Case Origin Update - Baltics</fullName>
+        <actions>
+            <name>CEC_Case_Origin_to_email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>equals</operation>
+            <value>Email Baltics</value>
+        </criteriaItems>
+        <description>Case Origin Update to Email.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CEC Case Origin Update - Cyprus</fullName>
+        <actions>
+            <name>CEC_Case_Origin_to_email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>equals</operation>
+            <value>Email Cyprus</value>
+        </criteriaItems>
+        <description>Case Origin Update to Email.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CEC Case Origin Update - Czech Republic</fullName>
+        <actions>
+            <name>CEC_Case_Origin_to_email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>equals</operation>
+            <value>Email Czech Republic</value>
+        </criteriaItems>
+        <description>Case Origin Update to Email.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
         <fullName>CEC Case Origin Update - DACH</fullName>
         <actions>
             <name>CEC_Case_Origin_to_email</name>

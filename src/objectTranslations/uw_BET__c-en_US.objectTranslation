@@ -31,10 +31,6 @@
         <name>Border_Colour__c</name>
     </fields>
     <fields>
-        <label><!-- Brand Experience Tag --></label>
-        <name>Brand_Experience_Tag__c</name>
-    </fields>
-    <fields>
         <label><!-- Brand Keyword Search --></label>
         <name>Brand_Keyword_Search__c</name>
     </fields>

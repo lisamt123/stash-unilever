@@ -10,7 +10,7 @@
                 <value>Email TO France</value>
             </criteriaItems>
             <notifyCcRecipients>false</notifyCcRecipients>
-            <senderEmail>marketing@unilever.com</senderEmail>
+            <senderEmail>no-reply@to-lipton.com</senderEmail>
             <senderName>Service-client T.O by Lipton (no reply)</senderName>
             <template>TO_Emails_France/TO_Auto_Response_Template</template>
         </ruleEntry>

@@ -8,11 +8,6 @@
         <plural>true</plural>
         <value>Sub Categories</value>
     </caseValues>
-    <fields>
-        <label><!-- Brand Link Sections --></label>
-        <name>Brand_Link_Sections__c</name>
-        <relationshipLabel><!-- Sub Categories --></relationshipLabel>
-    </fields>
     <layouts>
         <layout>Sub Category Layout</layout>
         <sections>

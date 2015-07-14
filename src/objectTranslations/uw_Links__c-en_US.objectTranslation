@@ -57,15 +57,6 @@
         <name>BC_Ordinal__c</name>
     </fields>
     <fields>
-        <label><!-- Brand Centre --></label>
-        <name>Brand_Centre__c</name>
-    </fields>
-    <fields>
-        <label><!-- Brand Link Sections --></label>
-        <name>Brand_Link_Sections__c</name>
-        <relationshipLabel><!-- Links --></relationshipLabel>
-    </fields>
-    <fields>
         <label><!-- Category Image URL --></label>
         <name>Category_Image_URL__c</name>
     </fields>

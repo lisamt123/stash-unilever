@@ -91,50 +91,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Categorisation_3__c</fullName>
-        <externalId>false</externalId>
-        <label>Categorisation 3</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Promotion - Engages people</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Place - Store as a media channel</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Price - Getting and Setting a competitive price</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Proposition - A compelling idea to buy into</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Pack - Exceptional packaging</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Product - Phenomenal product experience</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Place - Know the channels to activate</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Place - A trade story to win with</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>Country__c</fullName>
         <externalId>false</externalId>
         <label>Country</label>
@@ -638,76 +594,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Localisation_Requirement__c</fullName>
-        <externalId>false</externalId>
-        <inlineHelpText>Select level of localisation required for asset</inlineHelpText>
-        <label>Localisation Requirement</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Plug &amp; Play</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Adapt &amp; Amplify</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Create a Local Tactic</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Location_Type__c</fullName>
-        <externalId>false</externalId>
-        <inlineHelpText>This is where the asset is stored.</inlineHelpText>
-        <label>Location Type</label>
-        <picklist>
-            <picklistValues>
-                <fullName>BOX</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>DAM</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Salesforce</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sharepoint</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Vimeo</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Youtube</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Chatter</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>Media_Channel_1__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>What Media Channel are you using for your asset?</inlineHelpText>
@@ -911,18 +797,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Other_Media_Channel__c</fullName>
-        <externalId>false</externalId>
-        <label>Other Media Channel</label>
-        <length>144</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Promoted__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -1101,7 +975,6 @@
         <columns>uw_BET__c</columns>
         <columns>Media_Channel_1__c</columns>
         <columns>Agency__c</columns>
-        <columns>Location_Type__c</columns>
         <columns>LAST_UPDATE</columns>
         <columns>UPDATEDBY_USER</columns>
         <columns>CREATED_DATE</columns>
@@ -1133,10 +1006,8 @@
         <columns>Order_Of_Display__c</columns>
         <columns>URL_of_Asset__c</columns>
         <columns>Status__c</columns>
-        <columns>Categorisation_3__c</columns>
         <columns>CREATEDBY_USER</columns>
         <columns>Promoted__c</columns>
-        <columns>Location_Type__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>uw_BET__c</field>
@@ -1160,7 +1031,7 @@
         <lookupDialogsAdditionalFields>Agency__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields xsi:nil="true"/>
         <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
-        <searchResultsAdditionalFields>Location_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields xsi:nil="true"/>
         <searchResultsAdditionalFields>Agency__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields xsi:nil="true"/>
         <searchResultsAdditionalFields>Media_Channel_1__c</searchResultsAdditionalFields>

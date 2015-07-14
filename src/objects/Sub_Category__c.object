@@ -55,18 +55,6 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
-    <fields>
-        <fullName>Brand_Link_Sections__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Brand Link Sections</label>
-        <referenceTo>uw_Brand_Link_Sections__c</referenceTo>
-        <relationshipLabel>Sub Categories</relationshipLabel>
-        <relationshipName>Sub_Categories</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
     <label>Sub Category</label>
     <nameField>
         <label>Sub Category Name</label>

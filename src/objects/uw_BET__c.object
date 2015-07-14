@@ -122,18 +122,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Brand_Experience_Tag__c</fullName>
-        <externalId>false</externalId>
-        <label>Brand Experience Tag</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Brand_Keyword_Search__c</fullName>
         <externalId>false</externalId>
         <label>Brand Keyword Search</label>
