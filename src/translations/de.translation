@@ -2361,7 +2361,7 @@
         <name>Masterbrand</name>
     </customTabs>
     <customTabs>
-        <label><!-- My Approvals --></label>
+        <label>Meine Genehmigungen</label>
         <name>My_Approvals_Custom</name>
     </customTabs>
     <customTabs>
