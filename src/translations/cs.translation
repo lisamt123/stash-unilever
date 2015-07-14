@@ -2361,7 +2361,7 @@
         <name>Masterbrand</name>
     </customTabs>
     <customTabs>
-        <label><!-- My Approvals --></label>
+        <label>Moje schvalování</label>
         <name>My_Approvals_Custom</name>
     </customTabs>
     <customTabs>

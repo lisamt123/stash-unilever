@@ -27,9 +27,7 @@ private class uw_ArticleExtensionTest {
         Article__c article = new Article__c();
         insert article;
         
-        // set the test to point at a page that uses the standard controller/extension
-        Test.setCurrentPage(Page.cornetto_brand_centre_single_sfdc);
-        
+
         // set the parameter
         uw_Brand__c brand = uw_UnitTestDataFactory.createParentBrand();
         ApexPages.currentPage().getParameters().put('bid', brand.Id);    

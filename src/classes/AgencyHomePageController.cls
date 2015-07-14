@@ -66,6 +66,7 @@ public with sharing class AgencyHomePageController {
         for (PermissionSetAssignment Names:permissionSetAssign )
         {
             string permissionSetName = Names.PermissionSet.Name;
+            system.debug('permissionSetName...'+permissionSetName);
             if(permissionSetName.contains('CMCO')){
                 isCMCO=true;
             }
