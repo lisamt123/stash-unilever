@@ -1645,14 +1645,6 @@ Are you sure you wish to proceed?</value>
         <value>George</value>
     </labels>
     <labels>
-        <fullName>TO_CaseIdentifier</fullName>
-        <categories>TO - Case Idenifier Constant</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>TO_CaseIdentifier</shortDescription>
-        <value>George</value>
-    </labels>
-    <labels>
         <fullName>TermsOfUseTitle</fullName>
         <language>en_US</language>
         <protected>true</protected>
