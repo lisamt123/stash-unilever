@@ -17,10 +17,6 @@
         <name>CEC_Admin</name>
     </customApplications>
     <customApplications>
-        <label><!-- CEC Standard --></label>
-        <name>CEC_Standard</name>
-    </customApplications>
-    <customApplications>
         <label><!-- Communications Planner --></label>
         <name>Comms_Planer</name>
     </customApplications>
@@ -341,11 +337,11 @@
         <name>Bonus_Annual</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseAccountMissing --></label>
+        <label>Realizacja nie może zostać stworzona bez konta (konsumenta) dołączonego do sprawy</label>
         <name>CEC_CaseAccountMissing</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CaseAccountPersonDetailsError --></label>
+        <label>Jedna z wartości konta (konsumenta) UlicaAdresu/MiastoAdresu/PaństwoAdresu/KrajAdresu/KodPocztowyAdresu powinien być dostępny dla stworzenia Fulfilmentu</label>
         <name>CEC_CaseAccountPersonDetailsError</name>
     </customLabels>
     <customLabels>
@@ -357,7 +353,7 @@
         <name>CEC_Case_Factory_Survey_Reference</name>
     </customLabels>
     <customLabels>
-        <label><!-- Primary tab cannot be opened --></label>
+        <label>Błąd: Pierwotna zakładka nie może zostać otwarta.</label>
         <name>CEC_Case_TabNotOpened</name>
     </customLabels>
     <customLabels>
@@ -365,71 +361,71 @@
         <name>CEC_Category</name>
     </customLabels>
     <customLabels>
-        <label><!-- Primary tab not refresh --></label>
+        <label>Proszę zachowaj zmiany w rejestrze Twojej sprawy przed przystąpieniem do dodania nowego konsumenta</label>
         <name>CEC_Console_Message1</name>
     </customLabels>
     <customLabels>
-        <label><!-- Primary tab cannot be opened --></label>
+        <label>Pierwotna zakładka nie może zostać otwarta.</label>
         <name>CEC_Console_Message2</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error Occured --></label>
+        <label>Błąd: Wystąpił błąd</label>
         <name>CEC_Console_Message3</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerCreateContactButtonDisplay --></label>
+        <label>Stwórz nowy kontakt</label>
         <name>CEC_ConsumerCreateContactButtonDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerInfoDisplay --></label>
+        <label>Info: Konsument już dodany do sprawy</label>
         <name>CEC_ConsumerInfoDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerNotFoundInfo --></label>
+        <label>Nie znaleziono konsumenta?</label>
         <name>CEC_ConsumerNotFoundInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerResultsDisplay --></label>
+        <label>Wyniki</label>
         <name>CEC_ConsumerResultsDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerResultsTitleDisplay --></label>
+        <label>Twoje pasujące wyniki wyszukiwania:</label>
         <name>CEC_ConsumerResultsTitleDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerSearchDisplay --></label>
+        <label>Szukaj</label>
         <name>CEC_ConsumerSearchDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Consumer Duplicate Error --></label>
+        <label>Konto konsumenta nie może zostać utworzone, ponieważ istnieje już duplikat tego konsumenta</label>
         <name>CEC_Consumer_Duplicate_Error</name>
     </customLabels>
     <customLabels>
-        <label><!-- To Display Click Ok to replace the existing Consumer or Cancel to return to the --></label>
+        <label>Kniknij OK. aby zastąpić istniejącego Konsumenta lub Anuluj aby wrócić do strony Console Page</label>
         <name>CEC_Consumer_Message1</name>
     </customLabels>
     <customLabels>
-        <label><!-- Update action cannot be performed. --></label>
+        <label>Akcja aktualizacji nie może być wykonana. Rekord konsumenta jest już związana z rekordem sprawy</label>
         <name>CEC_Consumer_Record_Update</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_CreateContactDisplay --></label>
+        <label>Stwórz kontakt</label>
         <name>CEC_CreateContactDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- Create_Button --></label>
+        <label>Stwórz</label>
         <name>CEC_Create_Button</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Detail_Request_Info --></label>
+        <label>Proszę określ, które dane są znane/wiadome</label>
         <name>CEC_Detail_Request_Info</name>
     </customLabels>
     <customLabels>
-        <label><!-- records are being displayed --></label>
+        <label>zapisy są wyświetlane</label>
         <name>CEC_Display_Records</name>
     </customLabels>
     <customLabels>
-        <label><!-- To display Email required message --></label>
+        <label>Email: Musisz wprowadzić wartość</label>
         <name>CEC_Email</name>
     </customLabels>
     <customLabels>
@@ -437,7 +433,7 @@
         <name>CEC_Email_Label</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_FirstName --></label>
+        <label>Imię</label>
         <name>CEC_FirstName</name>
     </customLabels>
     <customLabels>
@@ -445,19 +441,19 @@
         <name>CEC_Fulfilment_PostOption_Complaints</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Fulfilment_PostOption_otherwise --></label>
+        <label>inaczej</label>
         <name>CEC_Fulfilment_PostOption_otherwise</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Label Action --></label>
+        <label>Akcja</label>
         <name>CEC_Label_Action</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Label Knowledge Articles --></label>
+        <label>Artykuły Wiedzy</label>
         <name>CEC_Label_Knowledge_Articles</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Label Subject --></label>
+        <label>Temat</label>
         <name>CEC_Label_Subject</name>
     </customLabels>
     <customLabels>
@@ -465,59 +461,59 @@
         <name>CEC_Label_Type</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Last_Name --></label>
+        <label>Nazwisko</label>
         <name>CEC_Last_Name</name>
     </customLabels>
     <customLabels>
-        <label><!-- To display Last Name required message --></label>
+        <label>Nazwisko: musisz wprowadzić nazwisko aby wyszukać konsumenta</label>
         <name>CEC_Lastname</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Marketing_Opt_in --></label>
+        <label>Marketing Opt In</label>
         <name>CEC_Marketing_Opt_in</name>
     </customLabels>
     <customLabels>
-        <label><!-- Consumer record could not be created --></label>
+        <label>[ERR002] Rekord konsumenta nie może zostać stworzony</label>
         <name>CEC_MatchingResponse_AccountNotCreated</name>
     </customLabels>
     <customLabels>
-        <label><!-- If Duplicate accounts found display this error message --></label>
+        <label>[ERR001] Istnieje wiele rekordów z tym samym adresem email, manualna aktualizacja jest wymagana</label>
         <name>CEC_MatchingResponse_DuplicateAccount</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Missing_Information --></label>
+        <label>Brakujące informacje</label>
         <name>CEC_Missing_Information</name>
     </customLabels>
     <customLabels>
-        <label><!-- Case Error Message --></label>
+        <label>Błąd: Nie można stworzyć nowej sprawy</label>
         <name>CEC_NewCaseError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC NewCaseError BeforeAddNewArticle --></label>
+        <label>Proszę zapisz zmiany do rekordu Twojej sprawy zanim przystąpisz do dodania nowego artykułu</label>
         <name>CEC_NewCaseError_BeforeAddNewArticle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Save case record before add a new consumer. --></label>
+        <label>Proszę najpierw zapisz bieżące zmiany do rekordu sprawy, następnie wyszukaj Konsumenta aby połączyć go ze sprawą. Jeśli próbowano stworzyć nowego Konsument, to Konsument może zostać znaleziony ponownie przez wyszukiwanie</label>
         <name>CEC_NewCaseError_BeforeAddNewConsumer</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC No Cases are available based on the skill --></label>
+        <label>Nie są dostępne żadne sprawy oparte na specjalizacji</label>
         <name>CEC_No_Cases_are_available_based_on_the_skill</name>
     </customLabels>
     <customLabels>
-        <label><!-- No matching consumers --></label>
+        <label>Brak pasujących Konsumentów.</label>
         <name>CEC_No_Matching_Consumer</name>
     </customLabels>
     <customLabels>
-        <label><!-- To displayOrigin as required message --></label>
+        <label>Źródło: Błąd zatwierdzenia: Podanie wartości jest wymagane.</label>
         <name>CEC_Origin</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_OtherDetailsSection --></label>
+        <label>Inne dane</label>
         <name>CEC_OtherDetailsSection</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ParentCaseNumber --></label>
+        <label>Sprawa pierwotna#</label>
         <name>CEC_ParentCaseNumber</name>
     </customLabels>
     <customLabels>
@@ -529,7 +525,7 @@
         <name>CEC_PhoneSearchValidationError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_PostCode --></label>
+        <label>Kod pocztowy</label>
         <name>CEC_PostCode</name>
     </customLabels>
     <customLabels>
@@ -541,7 +537,7 @@
         <name>CEC_Product_Hierarchy</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC Quick Code Change Error --></label>
+        <label>Proszę wprowadź Kod Kraju przed zmianą Szybkiego Kodu!</label>
         <name>CEC_Quick_Code_Change_Error</name>
     </customLabels>
     <customLabels>
@@ -557,27 +553,27 @@
         <name>CEC_Reason_Hierarchy</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_RelatedCases --></label>
+        <label>Sprawy powiązane</label>
         <name>CEC_RelatedCases</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Search_Button --></label>
+        <label>Szukaj</label>
         <name>CEC_Search_Button</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Specify Details in Missing Info --></label>
+        <label>Proszę określ, które dane są znane/wiadome</label>
         <name>CEC_Specify_Details_in_Missing_Info</name>
     </customLabels>
     <customLabels>
-        <label><!-- To display Case Status as required message --></label>
+        <label>Status: Błąd zatwierdzenia: Podanie wartości jest wymagane.</label>
         <name>CEC_Status</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Street --></label>
+        <label>Ulica</label>
         <name>CEC_Street</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_Title --></label>
+        <label>Tytuł</label>
         <name>CEC_Title</name>
     </customLabels>
     <customLabels>
@@ -585,15 +581,15 @@
         <name>CEC_ValidEmailTemplate</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_isFormKnown --></label>
+        <label>Forma jest znana?</label>
         <name>CEC_isFormKnown</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_isPacksizeKnown --></label>
+        <label>Wielkość opakowania jest znana?</label>
         <name>CEC_isPacksizeKnown</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_isVariantKnown --></label>
+        <label>Wariant jest znany?</label>
         <name>CEC_isVariantKnown</name>
     </customLabels>
     <customLabels>
@@ -2289,10 +2285,6 @@
         <name>Terms_Of_Use</name>
     </customPageWebLinks>
     <customPageWebLinks>
-        <label><!-- Web to Case --></label>
-        <name>Web_to_Case</name>
-    </customPageWebLinks>
-    <customPageWebLinks>
         <label><!-- Communications Planner Help! --></label>
         <name>gc_HELP</name>
     </customPageWebLinks>
@@ -2317,7 +2309,7 @@
         <name>Brand_Centres</name>
     </customTabs>
     <customTabs>
-        <label><!-- Brand Experience --></label>
+        <label><!-- Brand Experience (BET) --></label>
         <name>Brand_Experience2</name>
     </customTabs>
     <customTabs>
@@ -2361,7 +2353,7 @@
         <name>Masterbrand</name>
     </customTabs>
     <customTabs>
-        <label>Moje zatwierdzenia</label>
+        <label><!-- My Approvals --></label>
         <name>My_Approvals_Custom</name>
     </customTabs>
     <customTabs>
@@ -2686,26 +2678,6 @@
                 <name>Currency</name>
             </columns>
             <columns>
-                <label><!-- Currency @ Ready for PO --></label>
-                <name>Currency @ Ready for PO</name>
-            </columns>
-            <columns>
-                <label><!-- Currency @ReadyforPO --></label>
-                <name>Currency @ReadyforPO</name>
-            </columns>
-            <columns>
-                <label><!-- Exchange Rate --></label>
-                <name>Exchange Rate</name>
-            </columns>
-            <columns>
-                <label><!-- Exchange Rate@PO --></label>
-                <name>Exchange Rate@PO</name>
-            </columns>
-            <columns>
-                <label><!-- Exchange Rate@ReadyforPO --></label>
-                <name>Exchange Rate@ReadyforPO</name>
-            </columns>
-            <columns>
                 <label><!-- Legal Entity Name --></label>
                 <name>Legal Entity Name</name>
             </columns>
@@ -2738,14 +2710,6 @@
         <label><!-- Bonus Thresholds with Sub Results --></label>
         <name>Bonus_Thresholds_with_Sub_Results</name>
         <sections>
-            <columns>
-                <label><!-- Big Category --></label>
-                <name>Big Category</name>
-            </columns>
-            <columns>
-                <label><!-- Brand --></label>
-                <name>Brand</name>
-            </columns>
             <columns>
                 <label><!-- Category Name --></label>
                 <name>Category Name</name>
@@ -2977,6 +2941,23 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- Chatter activity + user + post body --></description>
+        <label><!-- Chatter activity + user + post body --></label>
+        <name>Chatter_activity_user_post_body</name>
+        <sections>
+            <label><!-- Group Feed --></label>
+            <name>Group Feed</name>
+        </sections>
+        <sections>
+            <label><!-- Groups (Last Modified By) --></label>
+            <name>Groups (Last Modified By)</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- Core Tasks Report Type --></description>
         <label><!-- Core Tasks Report Type --></label>
         <name>Core_Tasks_Report_Type</name>
@@ -3021,6 +3002,19 @@
         <sections>
             <label><!-- Feedback Questionnaire --></label>
             <name>Feedback Questionnaire</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Custom Objects Usage --></description>
+        <label><!-- Custom Objects Usage --></label>
+        <name>Custom_Objects_Usage</name>
+        <sections>
+            <label><!-- Custom Object Usage By User License Metrics --></label>
+            <name>Custom Object Usage By User License Metrics</name>
+        </sections>
+        <sections>
+            <label><!-- User Licenses --></label>
+            <name>User Licenses</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -3199,39 +3193,10 @@
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- OOPs PO Report --></description>
-        <label><!-- OOPs PO Report --></label>
-        <name>OOPs_PO_Report</name>
-        <sections>
-            <columns>
-                <label><!-- FY OOPS - Euro --></label>
-                <name>FY OOPS - Euro</name>
-            </columns>
-            <columns>
-                <label><!-- FY Year OOPs - LC --></label>
-                <name>FY Year OOPs - LC</name>
-            </columns>
-            <columns>
-                <label><!-- PO Value - Euro --></label>
-                <name>PO Value - Euro</name>
-            </columns>
-            <columns>
-                <label><!-- PO Value – LC --></label>
-                <name>PO Value – LC</name>
-            </columns>
-            <label><!-- PO Report --></label>
-            <name>PO Report</name>
-        </sections>
-    </reportTypes>
-    <reportTypes>
         <description><!-- Opps Actuals with Estimates --></description>
         <label><!-- Opps Actuals with Estimates --></label>
         <name>Opps_Actuals_with_Estimates</name>
         <sections>
-            <columns>
-                <label><!-- Big Category --></label>
-                <name>Big Category</name>
-            </columns>
             <columns>
                 <label><!-- Status --></label>
                 <name>Status</name>
@@ -3243,22 +3208,6 @@
             <columns>
                 <label><!-- Currency --></label>
                 <name>Currency</name>
-            </columns>
-            <columns>
-                <label><!-- Currency --></label>
-                <name>Currency</name>
-            </columns>
-            <columns>
-                <label><!-- Currency @Ready for PO --></label>
-                <name>Currency @Ready for PO</name>
-            </columns>
-            <columns>
-                <label><!-- Exchange Rate --></label>
-                <name>Exchange Rate</name>
-            </columns>
-            <columns>
-                <label><!-- ExchangeRate@ReadyforPO --></label>
-                <name>ExchangeRate@ReadyforPO</name>
             </columns>
             <columns>
                 <label><!-- FY OOPS - Euro --></label>
@@ -3279,14 +3228,6 @@
             <columns>
                 <label><!-- Legal Entity Name --></label>
                 <name>Legal Entity Name</name>
-            </columns>
-            <columns>
-                <label><!-- PO Value - Euro --></label>
-                <name>PO Value - Euro</name>
-            </columns>
-            <columns>
-                <label><!-- PO Value - LC --></label>
-                <name>PO Value - LC</name>
             </columns>
             <columns>
                 <label><!-- Unilever Entity --></label>
@@ -3458,6 +3399,15 @@
         <sections>
             <label><!-- Thanks --></label>
             <name>Thanks</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Topic Assignment --></description>
+        <label><!-- Topic Assignment --></label>
+        <name>Topic_Assignment</name>
+        <sections>
+            <label><!-- Topic Assignments --></label>
+            <name>Topic Assignments</name>
         </sections>
     </reportTypes>
     <reportTypes>

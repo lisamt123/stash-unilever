@@ -551,7 +551,7 @@
     </rules>
     <tasks>
         <fullName>FAU_Create_Personal_Assistant</fullName>
-        <assignedTo>ankit.bhardwaj@unilever.com</assignedTo>
+        <assignedTo>rangappa.a.gunda@unilever.com.prod</assignedTo>
         <assignedToType>user</assignedToType>
         <description>Can you create/upgrade the Personal Assistant User for this Participant using the email &apos;Request PA User Email Address&apos;. &amp;  Unilever - Force Multi Profile 
 

@@ -18,7 +18,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <type>Default</type>
+        <content>Edit_Link</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -31,7 +33,7 @@
     <actionOverrides>
         <actionName>New</actionName>
         <content>New_Link</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <skipRecordTypeSelect>true</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
@@ -50,6 +52,7 @@
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>bc_help_pop_up6</customHelpPage>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
@@ -59,6 +62,56 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>BC_Link_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Brand Centre Link Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Brand Asset</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brands - Brand Assets</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brands - Data</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand Essentials</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Categories - Brand Assets</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Categories - Data</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Induction Pack</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>More Resources - Brand Assets</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>More Resources - Data</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Who is Who</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
     <fields>
         <fullName>BC_Ordinal__c</fullName>
         <externalId>false</externalId>
@@ -71,6 +124,58 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Category_Image_URL__c</fullName>
+        <externalId>false</externalId>
+        <label>Category Image URL</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Link_Category_New__c</fullName>
+        <externalId>false</externalId>
+        <label>Section Header Title</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Link_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Link Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>E-Learning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Further Reading</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Guides</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>One page overview</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Templates</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tools</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Link_Description__c</fullName>
         <externalId>false</externalId>
         <label>Link Description</label>
@@ -79,10 +184,62 @@
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>Link_Icon__c</fullName>
+        <externalId>false</externalId>
+        <label>Section Header Icon</label>
+        <picklist>
+            <picklistValues>
+                <fullName>E-Learning</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Further Reading</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Guides</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>One Page Overview</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Templates</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tools</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Link_Name__c</fullName>
         <externalId>false</externalId>
         <label>Link Name</label>
         <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Link_Output__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( 
+OR((CONTAINS( Link_URL__c, &quot;http&quot;) &amp;&amp; CONTAINS(Link_URL__c, &quot;unilever&quot;)),
+(CONTAINS( Link_URL__c, &quot;https&quot;) &amp;&amp; CONTAINS(Link_URL__c, &quot;unilever&quot;)),
+(CONTAINS( Link_URL__c, &quot;https&quot;) &amp;&amp; CONTAINS(Link_URL__c, &quot;force&quot;)),
+(CONTAINS( Link_URL__c ,&quot;www&quot;) &amp;&amp; CONTAINS(Link_URL__c,&quot;http&quot;)) ) , 
+Link_URL__c, 
+if(CONTAINS(Link_URL__c, &quot;sfc&quot;) , substitute(Link_URL__c,&quot;http://&quot;,&quot;&quot;),  
+&quot;http://&quot; +Link_URL__c ))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Link Output</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -162,7 +319,36 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
+    <fields>
+        <fullName>uw_Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Brand</label>
+        <referenceTo>uw_Brand__c</referenceTo>
+        <relationshipLabel>Whos Who Links</relationshipLabel>
+        <relationshipName>B_Links</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
     <label>Links</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Link_Name__c</columns>
+        <columns>Link_URL__c</columns>
+        <columns>CREATEDBY_USER.ALIAS</columns>
+        <columns>NAME</columns>
+        <columns>Link_Type__c</columns>
+        <columns>uw_Brand__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Link_Type__c</field>
+            <operation>equals</operation>
+            <value>Whos Who</value>
+        </filters>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <displayFormat>BL-{0000}</displayFormat>
         <label>Brand Links Name</label>
@@ -174,23 +360,245 @@
         <active>true</active>
         <description>Create a Brand Centre Link</description>
         <label>Brand Centre Links</label>
+        <picklistValues>
+            <picklist>BC_Link_Type__c</picklist>
+            <values>
+                <fullName>Brand Asset</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand Essentials</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brands - Brand Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brands - Data</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Categories - Brand Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Categories - Data</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Induction Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>More Resources - Brand Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>More Resources - Data</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Who is Who</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Link_Category__c</picklist>
+            <values>
+                <fullName>E-Learning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Further Reading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>One page overview</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Templates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tools</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>HUB_Working_Resources</fullName>
         <active>true</active>
         <label>HUB - Working Resources</label>
+        <picklistValues>
+            <picklist>BC_Link_Type__c</picklist>
+            <values>
+                <fullName>Brand Asset</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand Essentials</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brands - Brand Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brands - Data</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Categories - Brand Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Categories - Data</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Induction Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>More Resources - Brand Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>More Resources - Data</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Who is Who</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Link_Category__c</picklist>
+            <values>
+                <fullName>E-Learning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Further Reading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>One page overview</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Templates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tools</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>Pinnovate_Wall_Link</fullName>
         <active>true</active>
         <description>Used for Pinning Links to the pinnovate wall for a group</description>
         <label>Pinnovate Wall Link</label>
+        <picklistValues>
+            <picklist>BC_Link_Type__c</picklist>
+            <values>
+                <fullName>Brand Asset</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand Essentials</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brands - Brand Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brands - Data</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Categories - Brand Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Categories - Data</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Induction Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>More Resources - Brand Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>More Resources - Data</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Who is Who</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Link_Category__c</picklist>
+            <values>
+                <fullName>E-Learning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Further Reading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>One page overview</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Templates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tools</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <searchLayouts>
         <searchResultsAdditionalFields>Link_Name__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Link_URL__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>New_Section_Link</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>New Section Link</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/New_Link?type=sectionlink</url>
+    </webLinks>
     <webLinks>
         <fullName>New_Sub_Category_Link</fullName>
         <availability>online</availability>

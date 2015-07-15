@@ -1,61 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoResponseRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <autoResponseRule>
-        <fullName>CEC_Consumer Response</fullName>
-        <active>false</active>
+        <fullName>TO Case Auto Response Rule</fullName>
+        <active>true</active>
         <ruleEntry>
             <criteriaItems>
                 <field>Case.Origin</field>
                 <operation>equals</operation>
-                <value>Email IN</value>
+                <value>Email TO France</value>
             </criteriaItems>
             <notifyCcRecipients>false</notifyCcRecipients>
-            <senderEmail>support-in@unilever.com</senderEmail>
-            <senderName>Unilever IN CEC Support</senderName>
-            <template>CEC_Unilever/CEC_AutoResponse_Unilever_IN</template>
-        </ruleEntry>
-        <ruleEntry>
-            <criteriaItems>
-                <field>Case.Origin</field>
-                <operation>equals</operation>
-                <value>Web</value>
-            </criteriaItems>
-            <criteriaItems>
-                <field>Case.Market__c</field>
-                <operation>equals</operation>
-                <value>India</value>
-            </criteriaItems>
-            <notifyCcRecipients>false</notifyCcRecipients>
-            <senderEmail>support-in@unilever.com</senderEmail>
-            <senderName>Unilever IN CEC Support</senderName>
-            <template>CEC_Unilever/CEC_AutoResponse_Unilever_IN</template>
-        </ruleEntry>
-        <ruleEntry>
-            <criteriaItems>
-                <field>Case.Origin</field>
-                <operation>equals</operation>
-                <value>Email UK</value>
-            </criteriaItems>
-            <notifyCcRecipients>false</notifyCcRecipients>
-            <senderEmail>support-uk@unilever.com</senderEmail>
-            <senderName>Unilever UK CEC Support</senderName>
-            <template>CEC_Unilever/CEC_AutoResponse_Unilever_UK</template>
-        </ruleEntry>
-        <ruleEntry>
-            <criteriaItems>
-                <field>Case.Origin</field>
-                <operation>equals</operation>
-                <value>Web</value>
-            </criteriaItems>
-            <criteriaItems>
-                <field>Case.Market__c</field>
-                <operation>equals</operation>
-                <value>UK &amp; Ireland</value>
-            </criteriaItems>
-            <notifyCcRecipients>false</notifyCcRecipients>
-            <senderEmail>support-uk@unilever.com</senderEmail>
-            <senderName>Unilever UK CEC Support</senderName>
-            <template>CEC_Unilever/CEC_AutoResponse_Unilever_UK</template>
+            <senderEmail>no-reply@to-lipton.com</senderEmail>
+            <senderName>Service-client T.O by Lipton (no reply)</senderName>
+            <template>TO_Emails_France/TO_Auto_Response_Template</template>
         </ruleEntry>
     </autoResponseRule>
 </AutoResponseRules>

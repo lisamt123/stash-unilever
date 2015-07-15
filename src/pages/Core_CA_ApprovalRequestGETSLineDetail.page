@@ -114,11 +114,11 @@
                 <div ng-hide="purposeAndReasonPanel">
                     <div class="responsiveDetailSectionTable">
                         <span class="fieldLabel">{{'LBL_EXP_DETAIL_PURPOSE' | translate}}</span><br/>
-                        <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.Purpose}}</span>
+                        <span class="fieldValue">{{approvalLineDetailRequestData.Purpose}}</span>
                     </div>     
                     <div class="responsiveDetailSectionTable">
                         <span class="fieldLabel">{{'LBL_EXP_DETAIL_REASON' | translate}}</span><br/>
-                        <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.Reason}}</span>
+                        <span class="fieldValue">{{approvalLineDetailRequestData.Reason}}</span>
                     </div>
                 </div>
             </div><br/>
@@ -133,7 +133,7 @@
                     </span>                
                 </div>
                 <div ng-hide="expenseDescriptionPanel" class="responsiveDetailSectionTable">
-                    <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.ExpenseDescription}}</span>
+                    <span class="fieldValue">{{approvalLineDetailRequestData.ExpenseDescription}}</span>
                 </div>
             </div><br/>
             <div class="template" ng-init="attendeesPanel=true">
@@ -205,11 +205,11 @@
                 <div ng-hide="prediemPanel" class="responsiveDetailSectionTable">
                     <div class="responsiveDetailSectionTable">
                         <span class="fieldLabel">{{'LBL_EXP_LINEITEM_DETAIL_PER_DIEM_AMOUNT' | translate}}</span><br/>
-                        <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.PerDiemAmount}}</span>
+                        <span class="fieldValue">{{approvalLineDetailRequestData.PerDiemAmount}}</span>
                     </div>     
                     <div class="responsiveDetailSectionTable">
                         <span class="fieldLabel">{{'LBL_EXP_LINEITEM_DETAIL_PER_DIEM_DETAILS' | translate}}</span><br/>
-                        <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.PerDiemDetails}}</span>
+                        <span class="fieldValue">{{approvalLineDetailRequestData.PerDiemDetails}}</span>
                     </div>
                 </div>
             </div><br/>
