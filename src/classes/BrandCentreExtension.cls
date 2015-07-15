@@ -11,7 +11,6 @@ public class BrandCentreExtension {
     public string recordtypename{get;set;}
     public string linktype{get;set;}
         List<uw_Links__c> whoswholinks = new List<uw_Links__c>();
-        List<uw_Brand_Link_Sections__c> LinksSections = new List<uw_Brand_Link_Sections__c>();
         List<uw_Links__c> brandlinks = new List<uw_Links__c>();
         List<Sub_Category__c> brandsubcategory = new List<Sub_Category__c>();
         
@@ -29,95 +28,7 @@ public class BrandCentreExtension {
     Profilename = u.FirstName + ' ' + u.LastName;
     Profileid = u.id;
     }
-        
-        public pagereference savesection()
-    {
-    string brandcentre = ApexPages.currentPage().getParameters().get('retURL');
-    
-    uw_Brand_Link_Sections__c linksec = new uw_Brand_Link_Sections__c (Name = name, Position__c = position, Section_Image_ID__c =SectionImage, Style_Class__c = Styleclass, Brand_Centre__c = brandcentre  );
-        insert linksec;
-    return new PageReference ('/' + brandcentre);
-    }
-    
-    public pagereference savelink()
-    {
-   
-    try{    
-    linktype = ApexPages.currentPage().getParameters().get('type');
-    }catch(exception e) {}
-    string returnurl = ApexPages.currentPage().getParameters().get('returnurl');
-    uw_links__c newulway;
-    if(linktype<>null)
-    {    
-    if (linktype.contains('subcategory') == true)
-    {
-        try{
-   
-    newulway = new uw_links__c(Sub_Categorys__c = returnurl, Link_Name__c = uwlink.Link_Name__c, Link_URL__c = uwlink.Link_URL__c , Link_Description__c = uwlink.Link_Description__c ,BC_Ordinal__c = uwlink.BC_Ordinal__c , Link_Type__c = 'Vertical Link');
-    insert newulway;
-        }
-        catch(exception e){}
-    }
-    
-    else if (linktype.contains('sectionlink') ==  true) 
-    {
-        try{
-                
-
-    newulway = new uw_links__c(Brand_Link_Sections__c =returnurl, Link_Name__c = uwlink.Link_Name__c, Link_URL__c = uwlink.Link_URL__c , Link_Description__c = uwlink.Link_Description__c ,BC_Ordinal__c = uwlink.BC_Ordinal__c, Link_Type__c = 'Horizontal Link' ); 
-    insert newulway;
-        }
-        catch(exception e){}
-    }
-        
-    else if (linktype.contains('whoswho') == true) 
-    {
-        try{
-
-    newulway = new uw_links__c(uw_brand__c = returnurl, Link_Name__c = uwlink.Link_Name__c, Link_URL__c = uwlink.Link_URL__c , Link_Description__c = uwlink.Link_Description__c ,BC_Ordinal__c = uwlink.BC_Ordinal__c, Link_Type__c = 'Whos Who' );  
-    insert newulway;
-        }
-        catch(exception e){}
-    }
-    else
-    {
-        
-        
-    }
-    }
-    return new PageReference ('/' + returnurl);
-    }
-        
-        
-        public List<uw_Links__c> getwhoswholinks()
-    { 
-        
-    whoswholinks = [select Link_Name__c, Link_Output__c, uw_brand__C from uw_Links__c where uw_brand__C = :ApexPages.currentPage().getParameters().get('id') and Link_Type__c = 'Whos Who' order by BC_Ordinal__c];
-    return whoswholinks;
-    }
-        
-        
-    public List<uw_Brand_Link_Sections__c> getlinksSections()
-    { 
-        LinksSections = [select id, Name, Brand_Centre__c, Style_Class__c, Position__c,Horizontal_Type__c,Section_Image_ID__c from uw_Brand_Link_Sections__c where Brand_Centre__c = :ApexPages.currentPage().getParameters().get('id') order by Position__c ASC, Ordinal__c ASC ];
-        return LinksSections;
-    }
-        
-    public List<uw_Links__c> getbrandlinks()
-    { 
-       brandlinks = [select Link_Name__c, Link_Output__c, Brand_Link_Sections__c, Sub_Category__c, Sub_Categorys__c from uw_Links__c 
-                     WHERE Brand_Link_Sections__r.Brand_Centre__r.Id = :ApexPages.currentPage().getParameters().get('id') 
-                     order by BC_Ordinal__c];
- 
-       return brandlinks;
-    }
-        
-    public List<Sub_Category__c> getbrandsubcategory()
-    { 
-    brandsubcategory = [select Name, Brand_Link_Sections__c from Sub_Category__c where  Brand_Link_Sections__r.Brand_Centre__r.Id = :ApexPages.currentPage().getParameters().get('id')];
-    return brandsubcategory;
-    }
-        
+          
         private static Integer articleImageCounter {get {
     if (articleImageCounter == null) {
     articleImageCounter = 0;

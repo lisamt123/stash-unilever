@@ -693,8 +693,8 @@
         <name>D_B_Duns_Number__c</name>
     </fields>
     <fields>
-        <label><!-- Demandware Id --></label>
-        <name>Demandware_Id__c</name>
+        <label><!-- Demandware Customer No --></label>
+        <name>Demandware_ID__c</name>
     </fields>
     <fields>
         <label><!-- Discipline --></label>
@@ -730,7 +730,7 @@
     </fields>
     <fields>
         <help><!-- Per Week --></help>
-        <label><!-- Drinking Frequency --></label>
+        <label><!-- Tea Drinking Frequency --></label>
         <name>Drinking_frequency__c</name>
     </fields>
     <fields>

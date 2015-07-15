@@ -911,10 +911,10 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Demandware_Id__c</fullName>
+        <fullName>Demandware_ID__c</fullName>
         <description>TO: Unique identifier of Demandware Customer Id</description>
         <externalId>true</externalId>
-        <label>Demandware Id</label>
+        <label>Demandware Customer No</label>
         <length>100</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -968,8 +968,8 @@
         <description>TO: Tea drinking frequency per week</description>
         <externalId>false</externalId>
         <inlineHelpText>Per Week</inlineHelpText>
-        <label>Drinking Frequency</label>
-        <length>10</length>
+        <label>Tea Drinking Frequency</label>
+        <length>50</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>

@@ -2273,9 +2273,9 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <columns>MANAGER</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>LAST_UPDATE</field>
-            <operation>equals</operation>
-            <value>4/8/2015 12:00 AM</value>
+            <field>CORE.USERS.USERNAME</field>
+            <operation>contains</operation>
+            <value>af_reg_catfinc@unilever.com.agencyfees</value>
         </filters>
         <label>New USERS</label>
         <language>en_US</language>

@@ -109,7 +109,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Demandware_Id__c</field>
+                <field>Demandware_ID__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -194,6 +194,14 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
+    <miniLayout>
+        <fields>Name</fields>
+        <fields>PersonEmail</fields>
+        <fields>Phone</fields>
+        <fields>PersonMailingAddress</fields>
+        <fields>VIP__c</fields>
+        <fields>PersonMobilePhone</fields>
+    </miniLayout>
     <relatedLists>
         <fields>CASES.CASE_NUMBER</fields>
         <fields>PARENT.CASE_NUMBER</fields>

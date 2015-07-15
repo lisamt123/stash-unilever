@@ -1,0 +1,3593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customApplications>
+        <label><!-- Agency Fees --></label>
+        <name>Agency_Fees</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Agency Roster Management --></label>
+        <name>Agency_Roster_Management</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Brand Centre Management --></label>
+        <name>Brand_Centre_Management</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- CEC Admin --></label>
+        <name>CEC_Admin</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- CEC Standard --></label>
+        <name>CEC_Standard</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Communications Planner --></label>
+        <name>Comms_Planer</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Four Acres --></label>
+        <name>FAU_FourAcres</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Four Acres Collaboration --></label>
+        <name>Four_Acres_Collaboration</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- IPM-NG --></label>
+        <name>IPM_NG</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Issue Management --></label>
+        <name>Issue_Briefing_Centre</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Network Accelerator --></label>
+        <name>Network_Tracking</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- New Win@POS --></label>
+        <name>New_Win_POS</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Pitch --></label>
+        <name>Pitch</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Stakeholder Database --></label>
+        <name>Stakeholder_Database</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Sustainable Living Lab --></label>
+        <name>Sustainable_Living_Lab</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Unilever --></label>
+        <name>Unilever</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Unilever Chatter Only --></label>
+        <name>Unilever_Chatter_Only</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Unilever Four Acres --></label>
+        <name>Unilever_Fouracres</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- WIN@POS --></label>
+        <name>WIN_POS</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- cB4L --></label>
+        <name>cB4L</name>
+    </customApplications>
+    <customLabels>
+        <label><!-- AF Adjust Quarters --></label>
+        <name>AF_Adjust_Quarters</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_AgencyEstimateSuccess --></label>
+        <name>AF_AgencyEstimateSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_AgencyEstimate_Entity_Message --></label>
+        <name>AF_AgencyEstimate_Entity_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_AgencyUrlLink --></label>
+        <name>AF_AgencyUrlLink</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Agency Bonus Access --></label>
+        <name>AF_Agency_Bonus_Access</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_AnnualBonus_Qual --></label>
+        <name>AF_AnnualBonus_Qual</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_BonusQuarterly --></label>
+        <name>AF_BonusQuarterly</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_BonusSummaryId --></label>
+        <name>AF_BonusSummaryId</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Bonus threshold error message --></label>
+        <name>AF_Bonus_threshold_error_message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_BrandEstimateDisplayText --></label>
+        <name>AF_BrandEstimateDisplayText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_BrandEstimateId --></label>
+        <name>AF_BrandEstimateId</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_BrandEstimate_TriggerDate --></label>
+        <name>AF_BrandEstimate_TriggerDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Brandestimate --></label>
+        <name>AF_Brandestimate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_CMCO_Rights --></label>
+        <name>AF_CMCO_Rights</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_CatFinanceThreshold --></label>
+        <name>AF_CatFinanceThreshold</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Category --></label>
+        <name>AF_Category</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Central Billing Hub --></label>
+        <name>AF_Central_Billing_Hub</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_CommunityLink --></label>
+        <name>AF_CommunityLink</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_ControllerReview --></label>
+        <name>AF_ControllerReview</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Country breakdown percentage --></label>
+        <name>AF_Country_breakdown_percentage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- To store the document id for the help page for Agency Fee Application --></label>
+        <name>AF_DocumentId</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_DummyUserID --></label>
+        <name>AF_DummyUserID</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Email To CatFinance --></label>
+        <name>AF_Email_To_CatFinance</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_EntityException --></label>
+        <name>AF_EntityException</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP_Base_Fee_Targets --></label>
+        <name>AF_LP_Base_Fee_Targets</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Lock Records --></label>
+        <name>AF_Lock</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Mandatory Fields --></label>
+        <name>AF_Mandatory_Fields</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF No Bonus --></label>
+        <name>AF_No_Bonus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_OOPS_Approval --></label>
+        <name>AF_OOPS_Approval</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_OOPS_Reject --></label>
+        <name>AF_OOPS_Reject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_OOPS_RejectWithComments --></label>
+        <name>AF_OOPS_RejectWithComments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_OOPS_Submit --></label>
+        <name>AF_OOPS_Submit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_OopsPercentage --></label>
+        <name>AF_OopsPercentage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PiliotError message --></label>
+        <name>AF_PiliotError_message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Pilot Model Instructions --></label>
+        <name>AF_Pilot_Model_Instructions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_QuarterlyBonus --></label>
+        <name>AF_QuarterlyBonus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_RaiseNewPOConfirmMsg --></label>
+        <name>AF_RaiseNewPOConfirmMsg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF Raise New PO --></label>
+        <name>AF_Raise_New_PO</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_Success --></label>
+        <name>AF_Success</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_TriggerDate --></label>
+        <name>AF_TriggerDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_UBFLB-Type_of_Fees --></label>
+        <name>AF_UBFLB_Type_of_Fees</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_UrlLink --></label>
+        <name>AF_UrlLink</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ViewAllHistory_AgencyEstimates --></label>
+        <name>AF_ViewAllHistory_AgencyEstimates</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ViewAllHistory_BonusEstimate --></label>
+        <name>AF_ViewAllHistory_BonusEstimate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ViewAllHistory_oopEstimate --></label>
+        <name>AF_ViewAllHistory_oopEstimate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF Yes Bonus --></label>
+        <name>AF_Yes_Bonus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_brand --></label>
+        <name>AF_brand</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_isBonusLinkForAgency --></label>
+        <name>AF_isBonusLinkForAgency</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_oopsActualId --></label>
+        <name>AF_oopsActualId</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AR StepEight --></label>
+        <name>AR_StepEight</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AR StepEleven --></label>
+        <name>AR_StepEleven</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AR StepFive --></label>
+        <name>AR_StepFive</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AR StepFour --></label>
+        <name>AR_StepFour</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AR StepNine --></label>
+        <name>AR_StepNine</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AR StepOne --></label>
+        <name>AR_StepOne</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AR StepSeven --></label>
+        <name>AR_StepSeven</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AR StepSix --></label>
+        <name>AR_StepSix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AR StepTen --></label>
+        <name>AR_StepTen</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AR StepThree --></label>
+        <name>AR_StepThree</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AR StepTwelve --></label>
+        <name>AR_StepTwelve</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AR StepTwo --></label>
+        <name>AR_StepTwo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Agency Email Alerts --></label>
+        <name>Agency_Email_Alerts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Agency Fee Title --></label>
+        <name>Agency_Fee_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Brand is not linked to Category --></label>
+        <name>BET_BrandCategoryNotRelated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Bonus_Annual --></label>
+        <name>Bonus_Annual</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CaseAccountMissing --></label>
+        <name>CEC_CaseAccountMissing</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CaseAccountPersonDetailsError --></label>
+        <name>CEC_CaseAccountPersonDetailsError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CaseNumber --></label>
+        <name>CEC_CaseNumber</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Case_Factory_Survey_Reference --></label>
+        <name>CEC_Case_Factory_Survey_Reference</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Primary tab cannot be opened --></label>
+        <name>CEC_Case_TabNotOpened</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Category --></label>
+        <name>CEC_Category</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Primary tab not refresh --></label>
+        <name>CEC_Console_Message1</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Primary tab cannot be opened --></label>
+        <name>CEC_Console_Message2</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Occured --></label>
+        <name>CEC_Console_Message3</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ConsumerCreateContactButtonDisplay --></label>
+        <name>CEC_ConsumerCreateContactButtonDisplay</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ConsumerInfoDisplay --></label>
+        <name>CEC_ConsumerInfoDisplay</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ConsumerNotFoundInfo --></label>
+        <name>CEC_ConsumerNotFoundInfo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ConsumerResultsDisplay --></label>
+        <name>CEC_ConsumerResultsDisplay</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ConsumerResultsTitleDisplay --></label>
+        <name>CEC_ConsumerResultsTitleDisplay</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ConsumerSearchDisplay --></label>
+        <name>CEC_ConsumerSearchDisplay</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC Consumer Duplicate Error --></label>
+        <name>CEC_Consumer_Duplicate_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- To Display Click Ok to replace the existing Consumer or Cancel to return to the --></label>
+        <name>CEC_Consumer_Message1</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Update action cannot be performed. --></label>
+        <name>CEC_Consumer_Record_Update</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CreateContactDisplay --></label>
+        <name>CEC_CreateContactDisplay</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Create_Button --></label>
+        <name>CEC_Create_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Detail_Request_Info --></label>
+        <name>CEC_Detail_Request_Info</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- records are being displayed --></label>
+        <name>CEC_Display_Records</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- To display Email required message --></label>
+        <name>CEC_Email</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Email_Label --></label>
+        <name>CEC_Email_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_FirstName --></label>
+        <name>CEC_FirstName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Fulfilment_PostOption_Complaints --></label>
+        <name>CEC_Fulfilment_PostOption_Complaints</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Fulfilment_PostOption_otherwise --></label>
+        <name>CEC_Fulfilment_PostOption_otherwise</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC Label Action --></label>
+        <name>CEC_Label_Action</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC Label Knowledge Articles --></label>
+        <name>CEC_Label_Knowledge_Articles</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC Label Subject --></label>
+        <name>CEC_Label_Subject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC Label Type --></label>
+        <name>CEC_Label_Type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Last_Name --></label>
+        <name>CEC_Last_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- To display Last Name required message --></label>
+        <name>CEC_Lastname</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Marketing_Opt_in --></label>
+        <name>CEC_Marketing_Opt_in</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Consumer record could not be created --></label>
+        <name>CEC_MatchingResponse_AccountNotCreated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- If Duplicate accounts found display this error message --></label>
+        <name>CEC_MatchingResponse_DuplicateAccount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Missing_Information --></label>
+        <name>CEC_Missing_Information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Case Error Message --></label>
+        <name>CEC_NewCaseError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC NewCaseError BeforeAddNewArticle --></label>
+        <name>CEC_NewCaseError_BeforeAddNewArticle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save case record before add a new consumer. --></label>
+        <name>CEC_NewCaseError_BeforeAddNewConsumer</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC No Cases are available based on the skill --></label>
+        <name>CEC_No_Cases_are_available_based_on_the_skill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- No matching consumers --></label>
+        <name>CEC_No_Matching_Consumer</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- To displayOrigin as required message --></label>
+        <name>CEC_Origin</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_OtherDetailsSection --></label>
+        <name>CEC_OtherDetailsSection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ParentCaseNumber --></label>
+        <name>CEC_ParentCaseNumber</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Phone --></label>
+        <name>CEC_Phone</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_PhoneSearchValidationError --></label>
+        <name>CEC_PhoneSearchValidationError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_PostCode --></label>
+        <name>CEC_PostCode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Product --></label>
+        <name>CEC_Product</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Product_Hierarchy --></label>
+        <name>CEC_Product_Hierarchy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC Quick Code Change Error --></label>
+        <name>CEC_Quick_Code_Change_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Reason --></label>
+        <name>CEC_Reason</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ReasonCode --></label>
+        <name>CEC_ReasonCode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Reason_Hierarchy --></label>
+        <name>CEC_Reason_Hierarchy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_RelatedCases --></label>
+        <name>CEC_RelatedCases</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Search_Button --></label>
+        <name>CEC_Search_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Specify Details in Missing Info --></label>
+        <name>CEC_Specify_Details_in_Missing_Info</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- To display Case Status as required message --></label>
+        <name>CEC_Status</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Street --></label>
+        <name>CEC_Street</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Title --></label>
+        <name>CEC_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ValidEmailTemplate --></label>
+        <name>CEC_ValidEmailTemplate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_isFormKnown --></label>
+        <name>CEC_isFormKnown</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_isPacksizeKnown --></label>
+        <name>CEC_isPacksizeKnown</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_isVariantKnown --></label>
+        <name>CEC_isVariantKnown</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Auto-Convert - Add New Field Mapping --></label>
+        <name>CRMfusionDBR101__DB_AC_Add_New_Field_Mapping</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Auto-Convert - Clear Mappings --></label>
+        <name>CRMfusionDBR101__DB_AC_Clear_Mappings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Auto-Convert - Clear Mappings Help --></label>
+        <name>CRMfusionDBR101__DB_AC_Clear_Mappings_Help</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Auto-Convert - Conversion Action Select Help --></label>
+        <name>CRMfusionDBR101__DB_AC_Conversion_Action_Select_Help</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Auto-Convert - Opportunity Assignment Email Body --></label>
+        <name>CRMfusionDBR101__DB_AC_Opp_Assignment_Email_Body</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Auto-Convert - Opportunity Assignment Email Subject --></label>
+        <name>CRMfusionDBR101__DB_AC_Opp_Assignment_Email_Subject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Auto-Convert - Primary Settings Block Title --></label>
+        <name>CRMfusionDBR101__DB_AC_Primary_Settings_Block_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Auto-Convert - Settings Edit Title --></label>
+        <name>CRMfusionDBR101__DB_AC_Settings_Edit_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Auto-Convert - Target Filter Select Help --></label>
+        <name>CRMfusionDBR101__DB_AC_Target_Filter_Select_Help</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Auto-Convert - Target Object Select Help --></label>
+        <name>CRMfusionDBR101__DB_AC_Target_Object_Select_Help</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Auto-Convert - Task Description Start --></label>
+        <name>CRMfusionDBR101__DB_AC_Task_Description_Start</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Auto-Merge - Add New Merge Mapping --></label>
+        <name>CRMfusionDBR101__DB_AM_Add_New_Merge_Mapping</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Auto-Merge - Merge Action Select Help --></label>
+        <name>CRMfusionDBR101__DB_AM_Merge_Action_Select_Help</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Auto-Merge - Primary Settings Block Title --></label>
+        <name>CRMfusionDBR101__DB_AM_Primary_Settings_Block_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Auto-Merge - Settings Edit Title --></label>
+        <name>CRMfusionDBR101__DB_AM_Settings_Edit_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Actions Header --></label>
+        <name>CRMfusionDBR101__DB_Actions_Header</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Add Word --></label>
+        <name>CRMfusionDBR101__DB_Add_Word</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Cancel Word --></label>
+        <name>CRMfusionDBR101__DB_Cancel_Word</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Clone Word --></label>
+        <name>CRMfusionDBR101__DB_Clone_Word</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Convert Word --></label>
+        <name>CRMfusionDBR101__DB_Convert_Word</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Current Field Mappings --></label>
+        <name>CRMfusionDBR101__DB_Current_Field_Mappings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Delete Mapping Confirmation --></label>
+        <name>CRMfusionDBR101__DB_Delete_Mapping_Confirmation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Delete Word --></label>
+        <name>CRMfusionDBR101__DB_Delete_Word</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Documentation Title --></label>
+        <name>CRMfusionDBR101__DB_Documentation_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Duplicate Found on Insert Action Message --></label>
+        <name>CRMfusionDBR101__DB_Duplicate_Found_Insert</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Duplicate Found on Undelete Action Message --></label>
+        <name>CRMfusionDBR101__DB_Duplicate_Found_Undelete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Duplicate Found on Update Action Message --></label>
+        <name>CRMfusionDBR101__DB_Duplicate_Found_Update</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Enable Objects - Object Select Label --></label>
+        <name>CRMfusionDBR101__DB_EO_Object_Select_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Edit Word --></label>
+        <name>CRMfusionDBR101__DB_Edit_Word</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Auto-Convert - Account Not Found --></label>
+        <name>CRMfusionDBR101__DB_Error_AC_Account_Not_Found</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Auto-Convert - Contact Not Found --></label>
+        <name>CRMfusionDBR101__DB_Error_AC_Contact_Not_Found</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Auto-Convert - Converting Lead Not Found --></label>
+        <name>CRMfusionDBR101__DB_Error_AC_Lead_Not_Found</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Auto-Convert - Master Not Found --></label>
+        <name>CRMfusionDBR101__DB_Error_AC_Master_Not_Found</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Auto-Convert - Missing Matching Data --></label>
+        <name>CRMfusionDBR101__DB_Error_AC_Missing_Matching_Data</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Auto-Convert - No Convert Id --></label>
+        <name>CRMfusionDBR101__DB_Error_AC_No_Convert_ID</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Auto-Convert - Opportunity Not Found --></label>
+        <name>CRMfusionDBR101__DB_Error_AC_Opp_Not_Found</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Auto-Convert - SFDC Conversion Error --></label>
+        <name>CRMfusionDBR101__DB_Error_AC_SFDC_Conversion_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Auto-Convert - Settings Not Found --></label>
+        <name>CRMfusionDBR101__DB_Error_AC_Settings_Not_Found</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Auto-Convert - Unknown Exception Creating Task --></label>
+        <name>CRMfusionDBR101__DB_Error_AC_Unknown_Exception_Task</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Auto-Merge - Master Record Not Found --></label>
+        <name>CRMfusionDBR101__DB_Error_AM_No_Master</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Auto-Merge - Missing Matching Data --></label>
+        <name>CRMfusionDBR101__DB_Error_AM_No_Matching_Data</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Auto-Merge - No Merge Id --></label>
+        <name>CRMfusionDBR101__DB_Error_AM_No_Merge_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Auto-Merge - No Merge Record --></label>
+        <name>CRMfusionDBR101__DB_Error_AM_No_Merge_Record</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - AM - No Settings Found --></label>
+        <name>CRMfusionDBR101__DB_Error_AM_No_Settings_Found</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Auto-Merge - Unkown Task Creation Error --></label>
+        <name>CRMfusionDBR101__DB_Error_AM_Unknown_Task_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Async Build Failed --></label>
+        <name>CRMfusionDBR101__DB_Error_Async_Build_Failed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - DML Error Message --></label>
+        <name>CRMfusionDBR101__DB_Error_DML_Error_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - DML Row Error --></label>
+        <name>CRMfusionDBR101__DB_Error_DML_Row_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - DML Row Level Errors --></label>
+        <name>CRMfusionDBR101__DB_Error_DML_Row_Level_Errors</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Exception Email Body Part 1 --></label>
+        <name>CRMfusionDBR101__DB_Error_Email_Body_1</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Exception Email Body Part 2 --></label>
+        <name>CRMfusionDBR101__DB_Error_Email_Body_2</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Exception Email Body Part 2 Alternate --></label>
+        <name>CRMfusionDBR101__DB_Error_Email_Body_2_Alt</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Exception Email Signature --></label>
+        <name>CRMfusionDBR101__DB_Error_Email_Signature</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Exception Email Subject --></label>
+        <name>CRMfusionDBR101__DB_Error_Email_Subject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Empty Dupe Warning --></label>
+        <name>CRMfusionDBR101__DB_Error_Empty_Dupe_Warning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Empty Field Name In List --></label>
+        <name>CRMfusionDBR101__DB_Error_Empty_Field_Name_In_List</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Empty Key Hash Map --></label>
+        <name>CRMfusionDBR101__DB_Error_Empty_Key_Hash_Map</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Empty Match Key Map --></label>
+        <name>CRMfusionDBR101__DB_Error_Empty_Match_Key_Map</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Field Names Empty --></label>
+        <name>CRMfusionDBR101__DB_Error_Field_Names_Empty</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Field Not Found In Types --></label>
+        <name>CRMfusionDBR101__DB_Error_Field_Not_Found_In_Types</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Hash Value Empty --></label>
+        <name>CRMfusionDBR101__DB_Error_Hash_Value_Empty</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Inactive Scenario Owner --></label>
+        <name>CRMfusionDBR101__DB_Error_Inactive_Scenario_Owner</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Invalid Ids In Filter --></label>
+        <name>CRMfusionDBR101__DB_Error_Invalid_Ids_In_Filter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Invalid Matching Type --></label>
+        <name>CRMfusionDBR101__DB_Error_Invalid_Matching_Type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Key Builder - No Scenarios Selected --></label>
+        <name>CRMfusionDBR101__DB_Error_KB_No_Scenarios_Selected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Key Builder - Some Scenarios Not Deployed --></label>
+        <name>CRMfusionDBR101__DB_Error_KB_Some_Scenarios_Not_Deployed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Key Value Empty --></label>
+        <name>CRMfusionDBR101__DB_Error_Key_Value_Empty</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - No Blocked Count --></label>
+        <name>CRMfusionDBR101__DB_Error_No_Blocked_Count</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - No Filter Criteria --></label>
+        <name>CRMfusionDBR101__DB_Error_No_Filter_Criteria</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - No Merge Count --></label>
+        <name>CRMfusionDBR101__DB_Error_No_Merge_Count</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - No Object Type --></label>
+        <name>CRMfusionDBR101__DB_Error_No_Object_Type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - No Scenario Id --></label>
+        <name>CRMfusionDBR101__DB_Error_No_Scenario_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Not Auto-Merge or Auto-Convert --></label>
+        <name>CRMfusionDBR101__DB_Error_Not_AutoMerge_or_AutoConvert</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Not Configured Warning --></label>
+        <name>CRMfusionDBR101__DB_Error_Not_Configured_Warning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Numeric Filter Empty --></label>
+        <name>CRMfusionDBR101__DB_Error_Numeric_Filter_Empty</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Rule Limit Exceeded --></label>
+        <name>CRMfusionDBR101__DB_Error_Rule_Limit_Exceeded</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Rule Param - Invalid Number of Letters --></label>
+        <name>CRMfusionDBR101__DB_Error_Rule_Param_Invalid_Number_of_Letters</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Rule Param - Invalid Number of Words --></label>
+        <name>CRMfusionDBR101__DB_Error_Rule_Param_Invalid_Number_of_Words</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Rule Param - Invalid Regex --></label>
+        <name>CRMfusionDBR101__DB_Error_Rule_Param_Invalid_Regex</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Scenario Filter Empty --></label>
+        <name>CRMfusionDBR101__DB_Error_Scenario_Filter_Empty</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Scenario Filter Invalid or Empty --></label>
+        <name>CRMfusionDBR101__DB_Error_Scenario_Filter_Invalid_or_Empty</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Scenario Needs Rules --></label>
+        <name>CRMfusionDBR101__DB_Error_Scenario_Needs_Rules</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Scenario Not Deployed --></label>
+        <name>CRMfusionDBR101__DB_Error_Scenario_Not_Deployed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Scenario Not Found --></label>
+        <name>CRMfusionDBR101__DB_Error_Scenario_Not_Found</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Scenario Type Cannot Be Changed --></label>
+        <name>CRMfusionDBR101__DB_Error_Scenario_Type_Cannot_Be_Changed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Scenarios Not Loaded --></label>
+        <name>CRMfusionDBR101__DB_Error_Scenarios_Not_Loaded</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Single Database Error Wrapper --></label>
+        <name>CRMfusionDBR101__DB_Error_Single_Database_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Too Many Queries --></label>
+        <name>CRMfusionDBR101__DB_Error_Too_Many_Queries</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Too Many Script Statements --></label>
+        <name>CRMfusionDBR101__DB_Error_Too_Many_Script_Statements</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Trigger After Delete Line --></label>
+        <name>CRMfusionDBR101__DB_Error_Trigger_After_Delete_Line</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Trigger After Insert Line --></label>
+        <name>CRMfusionDBR101__DB_Error_Trigger_After_Insert_Line</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Trigger After Undelete Line --></label>
+        <name>CRMfusionDBR101__DB_Error_Trigger_After_Undelete_Line</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Trigger After Update Line --></label>
+        <name>CRMfusionDBR101__DB_Error_Trigger_After_Update_Line</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Trigger Before Delete Line --></label>
+        <name>CRMfusionDBR101__DB_Error_Trigger_Before_Delete_Line</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Trigger Before Insert Line --></label>
+        <name>CRMfusionDBR101__DB_Error_Trigger_Before_Insert_Line</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Trigger Before Undelete Line --></label>
+        <name>CRMfusionDBR101__DB_Error_Trigger_Before_Undelete_Line</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Trigger Before Update Line --></label>
+        <name>CRMfusionDBR101__DB_Error_Trigger_Before_Update_Line</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Trigger Ids Label --></label>
+        <name>CRMfusionDBR101__DB_Error_Trigger_Ids_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Trigger Org Info --></label>
+        <name>CRMfusionDBR101__DB_Error_Trigger_Org_Info</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Trigger User Info --></label>
+        <name>CRMfusionDBR101__DB_Error_Trigger_User_Info</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Unknown Error --></label>
+        <name>CRMfusionDBR101__DB_Error_Unknown_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Unknown Object Type For Id --></label>
+        <name>CRMfusionDBR101__DB_Error_Unknown_Object_Type_For_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Unknown Error Deleting Orphaned Dupe --></label>
+        <name>CRMfusionDBR101__DB_Error_Unkown_Error_Deleting_Orphaned_Dupe</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Upsert Dupes Unknown Exception --></label>
+        <name>CRMfusionDBR101__DB_Error_Upsert_Dupes_Unknown_Ex</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Web Services - SetScenarioKeySizes Invalid Parameters --></label>
+        <name>CRMfusionDBR101__DB_Error_WS_SSKS_Invalid_Parameters</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - Web Services Permissions --></label>
+        <name>CRMfusionDBR101__DB_Error_Web_Services_Permissions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Error - X Param Empty --></label>
+        <name>CRMfusionDBR101__DB_Error_X_Param_Empty</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Export Settings Button --></label>
+        <name>CRMfusionDBR101__DB_Export_Settings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Import Settings Button --></label>
+        <name>CRMfusionDBR101__DB_Import_Settings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Key Builder - Do Not Leave Message --></label>
+        <name>CRMfusionDBR101__DB_KB_Do_Not_Leave_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Keys Word --></label>
+        <name>CRMfusionDBR101__DB_Keys_Word</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Lead Conversion Tool Title --></label>
+        <name>CRMfusionDBR101__DB_Lead_Conversion_Tool_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Merge Tool Title --></label>
+        <name>CRMfusionDBR101__DB_Merge_Tool_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Merge Word --></label>
+        <name>CRMfusionDBR101__DB_Merge_Word</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB New Scenario Name --></label>
+        <name>CRMfusionDBR101__DB_New_Scenario_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Online Help URL --></label>
+        <name>CRMfusionDBR101__DB_Online_Help_URL</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Redirecting Notice --></label>
+        <name>CRMfusionDBR101__DB_Redirecting_Notice</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Remove Word --></label>
+        <name>CRMfusionDBR101__DB_Remove_Word</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Filter - Adding Item --></label>
+        <name>CRMfusionDBR101__DB_SF_Adding_Item</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Filter - Edit Block Title --></label>
+        <name>CRMfusionDBR101__DB_SF_Edit_Block_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Filter - Edit Page Title --></label>
+        <name>CRMfusionDBR101__DB_SF_Edit_Page_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Filter - Information Section Title --></label>
+        <name>CRMfusionDBR101__DB_SF_Information_Section_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Filter - No Records Selected --></label>
+        <name>CRMfusionDBR101__DB_SF_No_Records_Selected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Filter - Profile Filter Label --></label>
+        <name>CRMfusionDBR101__DB_SF_Profile_Filter_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Filter - Record Type Filter Label --></label>
+        <name>CRMfusionDBR101__DB_SF_Record_Type_Filter_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Filter - Removing Item Status --></label>
+        <name>CRMfusionDBR101__DB_SF_Removing_Item_Status</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Filter - Role Filter Label --></label>
+        <name>CRMfusionDBR101__DB_SF_Role_Filter_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Filter - Select Profile Help --></label>
+        <name>CRMfusionDBR101__DB_SF_Select_Profile_Help</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Filter - Select Record Type Help --></label>
+        <name>CRMfusionDBR101__DB_SF_Select_Record_Type_Help</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Filter - Select Role Help --></label>
+        <name>CRMfusionDBR101__DB_SF_Select_Role_Help</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Filter - Selected Items Block Title --></label>
+        <name>CRMfusionDBR101__DB_SF_Selected_Items_Block_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Filter - Too Many Results --></label>
+        <name>CRMfusionDBR101__DB_SF_Too_Many_Results</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Filter - View Detail Section Header --></label>
+        <name>CRMfusionDBR101__DB_SF_View_Detail_Section_Header</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Filter - View Main Block Title --></label>
+        <name>CRMfusionDBR101__DB_SF_View_Main_Block_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Rule - Edit Block Title --></label>
+        <name>CRMfusionDBR101__DB_SR_Edit_Block_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Rule - Edit Section Title --></label>
+        <name>CRMfusionDBR101__DB_SR_Edit_Section_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Rule - Information Block Title --></label>
+        <name>CRMfusionDBR101__DB_SR_Information_Block_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Rule - Match Field Label Suffix --></label>
+        <name>CRMfusionDBR101__DB_SR_Match_Field_Label_Suffix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Rule - View Main Block Title --></label>
+        <name>CRMfusionDBR101__DB_SR_View_Main_Block_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Rule - View Section Title --></label>
+        <name>CRMfusionDBR101__DB_SR_View_Section_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Target Filter - Adding Item --></label>
+        <name>CRMfusionDBR101__DB_STF_Adding_Item</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Target Filter - Edit Block Title --></label>
+        <name>CRMfusionDBR101__DB_STF_Edit_Block_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Target Filter - Edit Page Title --></label>
+        <name>CRMfusionDBR101__DB_STF_Edit_Page_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Target Filter - Information Section Title --></label>
+        <name>CRMfusionDBR101__DB_STF_Information_Section_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Target Filter - No Records Selected --></label>
+        <name>CRMfusionDBR101__DB_STF_No_Records_Selected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Target Filter - Profile Filter Label --></label>
+        <name>CRMfusionDBR101__DB_STF_Profile_Filter_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Target Filter - Record Type Filter Label --></label>
+        <name>CRMfusionDBR101__DB_STF_Record_Type_Filter_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Target Filter - Removing Item Status --></label>
+        <name>CRMfusionDBR101__DB_STF_Removing_Item_Status</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Target Filter - Role Filter Label --></label>
+        <name>CRMfusionDBR101__DB_STF_Role_Filter_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Target Filter - Select Profile Help --></label>
+        <name>CRMfusionDBR101__DB_STF_Select_Profile_Help</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Target Filter - Select Record Type Help --></label>
+        <name>CRMfusionDBR101__DB_STF_Select_Record_Type_Help</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Target Filter - Select Role Help --></label>
+        <name>CRMfusionDBR101__DB_STF_Select_Role_Help</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Target Filter - Selected Items Block Title --></label>
+        <name>CRMfusionDBR101__DB_STF_Selected_Items_Block_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Target Filter - Too Many Results --></label>
+        <name>CRMfusionDBR101__DB_STF_Too_Many_Results</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Target Filter - View Detail Section Header --></label>
+        <name>CRMfusionDBR101__DB_STF_View_Detail_Section_Header</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario Target Filter - View Main Block Title --></label>
+        <name>CRMfusionDBR101__DB_STF_View_Main_Block_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Save Word --></label>
+        <name>CRMfusionDBR101__DB_Save_Word</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario - Edit Block Title --></label>
+        <name>CRMfusionDBR101__DB_Scenario_Edit_Block_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario - Edit Page Title --></label>
+        <name>CRMfusionDBR101__DB_Scenario_Edit_Page_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario - Information Section Title --></label>
+        <name>CRMfusionDBR101__DB_Scenario_Information_Section_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Scenario - New Title --></label>
+        <name>CRMfusionDBR101__DB_Scenario_New_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Scenario Rule Text --></label>
+        <name>CRMfusionDBR101__DB_Scenario_Rule_Text</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Scenario Text --></label>
+        <name>CRMfusionDBR101__DB_Scenario_Text</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Search For --></label>
+        <name>CRMfusionDBR101__DB_Search_For</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Search Go --></label>
+        <name>CRMfusionDBR101__DB_Search_Go</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Search Word --></label>
+        <name>CRMfusionDBR101__DB_Search_Word</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB_Searching --></label>
+        <name>CRMfusionDBR101__DB_Searching</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Custom Apex Code --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_Apex_Code</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Auto-Convert Lead --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_AutoConvert_Lead</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Auto-Merge --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_AutoMerge</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Contains --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_Contains</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Current User --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_Current_User</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Does Not Contain --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_DNC</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Does Not End With --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_DNEW</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Does Not Start With --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_DNSW</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Do Not Insert --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_Do_Not_Insert</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Do Nothing --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_Do_Nothing</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Ends With --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_Ends_With</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Equals Null --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_Equals_Null</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Is Not Null --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_INN</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Ignore --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_Ignore</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - L2A --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_L2A</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - L2C --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_L2C</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Merge Values --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_Merge_Values</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Non-Standard --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_Non_Standard</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - None --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_None</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Overwrite --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_Overwrite</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Redirect to Existing --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_Redirect_to_Existing</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Redirect to VF Page --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_Redirect_to_VF_Page</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Report Duplicate --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_Report_Duplicate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Starts With --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_Starts_With</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Select Option - Update if Blank --></label>
+        <name>CRMfusionDBR101__DB_Select_Option_Update_if_Blank</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - String Merge Separator --></label>
+        <name>CRMfusionDBR101__DB_String_Merge_Separator</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - String Merge Truncated --></label>
+        <name>CRMfusionDBR101__DB_String_Merge_Truncated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB To Word --></label>
+        <name>CRMfusionDBR101__DB_To_Word</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Today Page - License Expiration Label --></label>
+        <name>CRMfusionDBR101__DB_Today_Page_License_Expiration_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Today Page - Rule Count Label --></label>
+        <name>CRMfusionDBR101__DB_Today_Page_Rule_Count_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Today Page - Status Label --></label>
+        <name>CRMfusionDBR101__DB_Today_Page_Status_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Today Page - Title --></label>
+        <name>CRMfusionDBR101__DB_Today_Page_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Today Page - Unlimited Word --></label>
+        <name>CRMfusionDBR101__DB_Today_Page_Unlimited_Word</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Today Page - Updating Status --></label>
+        <name>CRMfusionDBR101__DB_Today_Page_Updating_Status</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Today Page - User Count Label --></label>
+        <name>CRMfusionDBR101__DB_Today_Page_User_Count_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Today URL --></label>
+        <name>CRMfusionDBR101__DB_Today_URL</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB - Updating Available Options --></label>
+        <name>CRMfusionDBR101__DB_Updating_Available_Options</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Warning Task Description --></label>
+        <name>CRMfusionDBR101__DB_Warning_Task_Description</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DB Warning Task Subject --></label>
+        <name>CRMfusionDBR101__DB_Warning_Task_Subject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Core NT App Url --></label>
+        <name>Core_NT_App_Url</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Core NT Import File Max Size --></label>
+        <name>Core_NT_Import_File_Max_Size</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Core NT Network Library Id --></label>
+        <name>Core_NT_Network_Library_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Generic error message for request failures --></label>
+        <name>ERROR_generic_request_failure</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Entity RT Agency --></label>
+        <name>Entity_RT_Agency</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Entity RT Unilever --></label>
+        <name>Entity_RT_Unilever</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FAU Invite Accept Problem --></label>
+        <name>FAU_Invite_Accept_Problem</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FAU_Invite_Accepted --></label>
+        <name>FAU_Invite_Accepted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FAU Invite Decline Problem --></label>
+        <name>FAU_Invite_Decline_Problem</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FAU Invite Declined --></label>
+        <name>FAU_Invite_Declined</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FAU Invite Invited --></label>
+        <name>FAU_Invite_Invited</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FAU_Invite_Smallprint --></label>
+        <name>FAU_Invite_Smallprint</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FAU Invite Title --></label>
+        <name>FAU_Invite_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FAU_PA_Will_Complete --></label>
+        <name>FAU_PA_Will_Complete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FAU To Defer To PA error message --></label>
+        <name>FAU_To_Defer_To_PA_error_message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FAU Webinar Invitation Template --></label>
+        <name>FAU_Webinar_Invitation_Template</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_Agile_LoginDetailImage --></label>
+        <name>FA_Agile_LoginDetailImage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_Agile_LoginImage --></label>
+        <name>FA_Agile_LoginImage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Help Page : Calender Image --></label>
+        <name>FA_Help_CalenderImage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Help Page : Centre Collapsed Image --></label>
+        <name>FA_Help_CentreCollapsedImage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Help Page : Centre Image --></label>
+        <name>FA_Help_CentreImage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Help Page : ChatterGroups Image --></label>
+        <name>FA_Help_ChatterGroupsImage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Help Page : FBDetail Image --></label>
+        <name>FA_Help_FBDetailimage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Help Page : Feedback Image --></label>
+        <name>FA_Help_FeedbackImage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- To store the help group ID --></label>
+        <name>FA_Help_GroupID</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Help Image : View Map --></label>
+        <name>FA_Help_Image_View_Map</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Help Page : ProgPrefImage --></label>
+        <name>FA_Help_ProgPrefImage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Help Page : Programmes Image --></label>
+        <name>FA_Help_ProgrammesImage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_Loginpagefor Desktop Browsers --></label>
+        <name>FA_Loginpagefor_Desktop_Browsers</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_Loginpagefor iPad Browsers --></label>
+        <name>FA_Loginpagefor_iPad_Browsers</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_Logout_URL --></label>
+        <name>FA_Logout_URL</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA-Participant-Planner - Central CB4L Hybrid User PLATFORM --></label>
+        <name>FA_Participant_Planner_Central_CB4L_Hybrid_User_PLATFORM</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA-Participant-Planner-Central user PLATFORM --></label>
+        <name>FA_Participant_Planner_Central_user_PLATFORM</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA-Participant-Planner - Market CB4L Hybrid User PLATFORM --></label>
+        <name>FA_Participant_Planner_Market_CB4L_Hybrid_User_PLATFORM</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA-Participant-Planner-Market User PLATFORM --></label>
+        <name>FA_Participant_Planner_Market_User_PLATFORM</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA-Participant-RR Brand Manager --></label>
+        <name>FA_Participant_RR_Brand_Manager</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA-Participant-RR Brand Moderator --></label>
+        <name>FA_Participant_RR_Brand_Moderator</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA-Participant-RR Brand Owner --></label>
+        <name>FA_Participant_RR_Brand_Owner</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA-Participant-RR Community manager --></label>
+        <name>FA_Participant_RR_Community_manager</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA-Participant-RR Customer service --></label>
+        <name>FA_Participant_RR_Customer_service</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA-Participant-Unilever Way - Marketing - Standard Marketing User --></label>
+        <name>FA_Participant_Unilever_Way_Marketing_Standard_Marketing_User</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_SG_Axe Room --></label>
+        <name>FA_SG_Axe_Room</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_SG_BEN_JERRY_S_Multi_Purpose_Hall --></label>
+        <name>FA_SG_BEN_JERRY_S_Multi_Purpose_Hall</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_SG_CIF_Room --></label>
+        <name>FA_SG_CIF_Room</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_SG_Dove_Amphitheatre --></label>
+        <name>FA_SG_Dove_Amphitheatre</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_SG_Hellmann_s_Room --></label>
+        <name>FA_SG_Hellmann_s_Room</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_SG_Knorr_Room --></label>
+        <name>FA_SG_Knorr_Room</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_SG_Lifebuoy_Room --></label>
+        <name>FA_SG_Lifebuoy_Room</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_SG_Lipton_Room --></label>
+        <name>FA_SG_Lipton_Room</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_SG_Lux_Room --></label>
+        <name>FA_SG_Lux_Room</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA SG Map --></label>
+        <name>FA_SG_Map</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA SG Route Map --></label>
+        <name>FA_SG_Route_Map</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_SG_Sunsilk_Open_Space --></label>
+        <name>FA_SG_Sunsilk_Open_Space</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_SG_Surf_and_Flora_Room --></label>
+        <name>FA_SG_Surf_and_Flora_Room</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_SG_Taste_Cafeteria --></label>
+        <name>FA_SG_Taste_Cafeteria</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FA_SG_Wall_Room --></label>
+        <name>FA_SG_Wall_Room</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- HideTermsOfUseLabel --></label>
+        <name>HideTermsOfUseLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Bosscard Save Before Share --></label>
+        <name>IPM_Bosscard_Save_Before_Share</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Bosscard Shared Chatter --></label>
+        <name>IPM_Bosscard_Shared_Chatter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Category list --></label>
+        <name>IPM_Category_list</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM CoreParameters validation --></label>
+        <name>IPM_CoreParameters_validation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Deployment Char Limit --></label>
+        <name>IPM_Deployment_Char_Limit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Description Restricted --></label>
+        <name>IPM_Description_Restricted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM External Char Limit --></label>
+        <name>IPM_External_Char_Limit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Finance Char Limit --></label>
+        <name>IPM_Finance_Char_Limit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM GateStatus msg --></label>
+        <name>IPM_GateStatus_msg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_GenerateRollout --></label>
+        <name>IPM_GenerateRollout</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- GlobalOperationalProject --></label>
+        <name>IPM_GlobalOperationalProject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- GlobalProject --></label>
+        <name>IPM_GlobalProject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_ImageLogo_URL --></label>
+        <name>IPM_ImageLogo_URL</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Image format --></label>
+        <name>IPM_Image_format</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Introduction Char Limit --></label>
+        <name>IPM_Introduction_Char_Limit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Milestone Due Date Error --></label>
+        <name>IPM_Milestone_Due_Date_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Mix Char Limit --></label>
+        <name>IPM_Mix_Char_Limit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Not applicable --></label>
+        <name>IPM_Not_applicable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM ProjectManagement Char Limit --></label>
+        <name>IPM_ProjectManagement_Char_Limit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Project Name Exists --></label>
+        <name>IPM_Project_Name_Exists</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Project Name Mandatory --></label>
+        <name>IPM_Project_Name_Mandatory</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Record Insert Success --></label>
+        <name>IPM_Record_Insert_Success</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Record Saved Archives --></label>
+        <name>IPM_Record_Saved_Archives</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_Skip_Bosscard --></label>
+        <name>IPM_Skip_Bosscard</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Stopmsg --></label>
+        <name>IPM_Stopmsg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Strategic Intent message --></label>
+        <name>IPM_Strategic_Intent_message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Technical Char Limit --></label>
+        <name>IPM_Technical_Char_Limit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM backto intermediate --></label>
+        <name>IPM_backto_intermediate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM image --></label>
+        <name>IPM_image</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_LAUNCH_PINNOVATE_CMD --></label>
+        <name>LAUNCH_PINNOVATE_CMD</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- MLST_OBJ_NAME --></label>
+        <name>MLST_OBJ_NAME</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Matrix Currency Desc --></label>
+        <name>Matrix_Currency_Desc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PD_OBJ_NAME --></label>
+        <name>PD_OBJ_NAME</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PS_OBJ_NAME --></label>
+        <name>PS_OBJ_NAME</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Project Name Contains Brand Name Target Launch Date --></label>
+        <name>Project_Name_Contains_Brand_Name_Target_Launch_Date</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Rollout No Records Msg --></label>
+        <name>Rollout_No_Records_Msg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TASK_OBJ_NAME --></label>
+        <name>TASK_OBJ_NAME</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TO_CaseIdentifier --></label>
+        <name>TO_CaseIdentifier</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TermsOfUseTitle --></label>
+        <name>TermsOfUseTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_ASSET_IN_TOOLKIT --></label>
+        <name>UW_ASSET_IN_TOOLKIT</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_ASSET_NOT_IN_TOOLKIT --></label>
+        <name>UW_ASSET_NOT_IN_TOOLKIT</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_AddMembers_Save_Success --></label>
+        <name>UW_BET_AddMembers_Save_Success</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_AddSelectedButton --></label>
+        <name>UW_BET_AddSelectedButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_Add_Internal_Members --></label>
+        <name>UW_BET_Add_Internal_Members</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_BackButton --></label>
+        <name>UW_BET_BackButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_ConfirmMembers_Button --></label>
+        <name>UW_BET_ConfirmMembers_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_External_Chatter_Profile_Name --></label>
+        <name>UW_BET_External_Chatter_Profile_Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_GoToPageCommandLink --></label>
+        <name>UW_BET_GoToPageCommandLink</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_Groups_Radio_Button --></label>
+        <name>UW_BET_Groups_Radio_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_HelpAndGuide_Button --></label>
+        <name>UW_BET_HelpAndGuide_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_HelpAndGuide_Id --></label>
+        <name>UW_BET_HelpAndGuide_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_HelpAndGuide_Text --></label>
+        <name>UW_BET_HelpAndGuide_Text</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_HelpAndGuide_WelcomeText --></label>
+        <name>UW_BET_HelpAndGuide_WelcomeText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_MANAGER_REQUIRED --></label>
+        <name>UW_BET_MANAGER_REQUIRED</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_MembersAccesslevel_HelpText --></label>
+        <name>UW_BET_MembersAccesslevel_HelpText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_MembersSelected_Count --></label>
+        <name>UW_BET_MembersSelected_Count</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_Members_Radio_Button --></label>
+        <name>UW_BET_Members_Radio_Button</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_Next_Page --></label>
+        <name>UW_BET_Next_Page</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_NoAccess_HelpText --></label>
+        <name>UW_BET_NoAccess_HelpText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_Previous_Page --></label>
+        <name>UW_BET_Previous_Page</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_ReadMoreCommandLink --></label>
+        <name>UW_BET_ReadMoreCommandLink</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_SearchText_Error_MSG --></label>
+        <name>UW_BET_SearchText_Error_MSG</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_Search_NoResult_Message --></label>
+        <name>UW_BET_Search_NoResult_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_TabHome_Heading --></label>
+        <name>UW_BET_TabHome_Heading</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_Users_To_Show_In_List --></label>
+        <name>UW_BET_Users_To_Show_In_List</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_BET_membersRoleName_HelpText --></label>
+        <name>UW_BET_membersRoleName_HelpText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_CANNOT_LAUNCH_WALL --></label>
+        <name>UW_CANNOT_LAUNCH_WALL</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_CANNOT_MODIFY_PREFS --></label>
+        <name>UW_CANNOT_MODIFY_PREFS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_CANNOT_PIN --></label>
+        <name>UW_CANNOT_PIN</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_ERR_DUPE_BET_NAME --></label>
+        <name>UW_ERR_DUPE_BET_NAME</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_OPEN_STUDIO_FROM_GROUP --></label>
+        <name>UW_OPEN_STUDIO_FROM_GROUP</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_PINNOVATE_ALREADY_LAUNCHED --></label>
+        <name>UW_PINNOVATE_ALREADY_LAUNCHED</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_PINNOVATE_LAUNCHED --></label>
+        <name>UW_PINNOVATE_LAUNCHED</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_SET_BACKGROUND_CMD --></label>
+        <name>UW_SET_BACKGROUND_CMD</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UW_SET_HEADER_CMD --></label>
+        <name>UW_SET_HEADER_CMD</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WINatPOS Empty Param --></label>
+        <name>WINatPOS_Empty_Param</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WINatPOS_Salesforce_Base_URL --></label>
+        <name>WINatPOS_Salesforce_Base_URL</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP Download Item Text --></label>
+        <name>WP_Download_Item_Text</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP Download Range Text --></label>
+        <name>WP_Download_Range_Text</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP File Type Download --></label>
+        <name>WP_File_Type_Download</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP File Type Generated --></label>
+        <name>WP_File_Type_Generated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP File Type Image --></label>
+        <name>WP_File_Type_Image</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP File Type Toolkit --></label>
+        <name>WP_File_Type_Toolkit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP In Store Executions Mode --></label>
+        <name>WP_In_Store_Executions_Mode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP In Store Executions Page --></label>
+        <name>WP_In_Store_Executions_Page</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP Innovations Mode --></label>
+        <name>WP_Innovations_Mode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP Innovations Page --></label>
+        <name>WP_Innovations_Page</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP Masterbrand Mode --></label>
+        <name>WP_Masterbrand_Mode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP Masterbrand Page --></label>
+        <name>WP_Masterbrand_Page</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP No File Specified --></label>
+        <name>WP_No_File_Specified</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP Repeatable Models Mode --></label>
+        <name>WP_Repeatable_Models_Mode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP Repeatable Models Page --></label>
+        <name>WP_Repeatable_Models_Page</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP Search String Too Short --></label>
+        <name>WP_Search_String_Too_Short</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP Select Brand --></label>
+        <name>WP_Select_Brand</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP Select Category --></label>
+        <name>WP_Select_Category</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP User Admin Error Saving Changes --></label>
+        <name>WP_User_Admin_Error_Saving_Changes</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP User Admin Help Text --></label>
+        <name>WP_User_Admin_Help_Text</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP User Admin Too Many Results Part 1 --></label>
+        <name>WP_User_Admin_Too_Many_Results_Part_1</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WP User Admin Too Many Results Part 2 --></label>
+        <name>WP_User_Admin_Too_Many_Results_Part_2</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WinAtPOS AssetGroupName help text --></label>
+        <name>WinAtPOS_AssetGroupName_help_text</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WinAtPOS AssetName help text --></label>
+        <name>WinAtPOS_AssetName_help_text</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WinAtPOS Asset Group Info message --></label>
+        <name>WinAtPOS_Asset_Group_Info_message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WinAtPOS FileName help text --></label>
+        <name>WinAtPOS_FileName_help_text</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WinAtPOS File Upload msg --></label>
+        <name>WinAtPOS_File_Upload_msg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WinAtPOS Helper link tooltip --></label>
+        <name>WinAtPOS_Helper_link_tooltip</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WinatPOS Asset Delete Status --></label>
+        <name>WinatPOS_Asset_Delete_Status</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WinatPOS File Error primary image --></label>
+        <name>WinatPOS_File_Error_primary_image</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WinatPOS  File empty file type --></label>
+        <name>WinatPOS_File_empty_file_type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WinatPOS Upload Error No Chatter File --></label>
+        <name>WinatPOS_Upload_Error_No_Chatter_File</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button cancel --></label>
+        <name>button_cancel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- close button --></label>
+        <name>close</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Default submit warning --></label>
+        <name>cp_DefaultSubmitWarning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Delete confirm message --></label>
+        <name>cp_DeleteConfirm</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Delete warning message --></label>
+        <name>cp_DeleteWarning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Edit warning message --></label>
+        <name>cp_EditWarning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Event Already Activated Warning --></label>
+        <name>cp_EventAlreadyActivatedWarning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EventTriggerHandler_General_Exception --></label>
+        <name>cp_EventTriggerHandler_General_Exception</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Do not translate - code variable --></label>
+        <name>cp_EventTriggerHandler_not_central_statuses</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Global Approval Error --></label>
+        <name>cp_GlobalApprovalError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Local Save Error --></label>
+        <name>cp_LocalSaveError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- No planner selected --></label>
+        <name>cp_NoPlannerSelected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Opt out no reason --></label>
+        <name>cp_OptOutNoReason</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Opt Out Warning Message --></label>
+        <name>cp_OptOutWarning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Do not translate - code variable --></label>
+        <name>cp_Planner_Code_AT_I_Approced_Statuses</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Do not translate - code variable --></label>
+        <name>cp_Planner_Code_AT_I_Global</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Do not translate - code variable --></label>
+        <name>cp_Planner_Code_AT_I_Statuses</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- User Preference Validation Message --></label>
+        <name>cp_UserPreferenceValidationMessage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation messages displayed while deleting milestone --></label>
+        <name>delete_milestone_msg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation messages displayed while deleting task --></label>
+        <name>delete_task_msg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- im_issueCreationDialogue_New --></label>
+        <name>im_issueCreationDialogue_New</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- im_issueCreationDialogue_NewTagline --></label>
+        <name>im_issueCreationDialogue_NewTagline</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- im_issueCreationDialogue_Reviewed --></label>
+        <name>im_issueCreationDialogue_Reviewed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- im_issueCreationDialogue_ReviewedTagline --></label>
+        <name>im_issueCreationDialogue_ReviewedTagline</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- im_issueCreationDialogue_Submitted --></label>
+        <name>im_issueCreationDialogue_Submitted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- im_issueCreationDialogue_SubmittedTagline --></label>
+        <name>im_issueCreationDialogue_SubmittedTagline</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- isllBrain_ClearAndFindMore --></label>
+        <name>isllBrain_ClearAndFindMore</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- isllBrain_FindMore --></label>
+        <name>isllBrain_FindMore</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- isllBrain_First --></label>
+        <name>isllBrain_First</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- isllBrain_Last --></label>
+        <name>isllBrain_Last</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- isllBrain_Loading --></label>
+        <name>isllBrain_Loading</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- isllBrain_Next --></label>
+        <name>isllBrain_Next</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- isllBrain_Next_Batch --></label>
+        <name>isllBrain_Next_Batch</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- isllBrain_Previous --></label>
+        <name>isllBrain_Previous</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- isllBrain_Previous_Batch --></label>
+        <name>isllBrain_Previous_Batch</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- isllBrain_StartOver --></label>
+        <name>isllBrain_StartOver</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- isll_ChatterGroupMissingForEventMsg --></label>
+        <name>isll_ChatterGroupMissingForEventMsg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- isll_ContentMissingMsg --></label>
+        <name>isll_ContentMissingMsg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Heading text for information dialogs --></label>
+        <name>modal_info_heading</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Page title for the Chatter page --></label>
+        <name>page_title_chatter_feed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Display text when loading data via pull to refresh --></label>
+        <name>pull_to_refresh_loading_text</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Display text for pull to refresh release state --></label>
+        <name>pull_to_refresh_release_text</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Display text for pull to refresh --></label>
+        <name>pull_to_refresh_text</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Refresh --></label>
+        <name>refresh</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text for the link in the upper left corner --></label>
+        <name>toolbar_app_top_nav_lbl_title_text</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- uw_BET_Chattergrouparchived --></label>
+        <name>uw_BET_Chattergrouparchived</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- uw_BET_Chattergrouplimit --></label>
+        <name>uw_BET_Chattergrouplimit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- uw_BET_standardchatterlimitmessage --></label>
+        <name>uw_BET_standardchatterlimitmessage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- User enters a project name which is already associated to another BET --></label>
+        <name>uw_Inoplan_error_duplicateValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos; --></label>
+        <name>uw_Inoplan_error_nullvalue</name>
+    </customLabels>
+    <customPageWebLinks>
+        <label><!-- Terms of Use --></label>
+        <name>Terms_Of_Use</name>
+    </customPageWebLinks>
+    <customPageWebLinks>
+        <label><!-- Web to Case --></label>
+        <name>Web_to_Case</name>
+    </customPageWebLinks>
+    <customPageWebLinks>
+        <label><!-- Communications Planner Help! --></label>
+        <name>gc_HELP</name>
+    </customPageWebLinks>
+    <customTabs>
+        <label><!-- Agency Fees --></label>
+        <name>Agency_Fees</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Agency List --></label>
+        <name>Agency_List</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- All Projects --></label>
+        <name>All_Projects</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Assign Category --></label>
+        <name>Assign_Category</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Brand Centres --></label>
+        <name>Brand_Centres</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Brand Experience --></label>
+        <name>Brand_Experience2</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Content Uploader --></label>
+        <name>Content_Uploader</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Custom Settings --></label>
+        <name>Custom_Settings</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Delete Chatter History --></label>
+        <name>Delete_Chatter_History</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Four Acres App --></label>
+        <name>FourAcres_App</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- GroupMaster --></label>
+        <name>GroupMaster</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- IPM Home --></label>
+        <name>IPM_Home</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- In Store Executions --></label>
+        <name>In_Store_Executions</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Innovations --></label>
+        <name>Innovations</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Inside Unilever --></label>
+        <name>Inside_Unilever</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Masterbrand --></label>
+        <name>Masterbrand</name>
+    </customTabs>
+    <customTabs>
+        <label>Moje schválenia</label>
+        <name>My_Approvals_Custom</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- My Requests --></label>
+        <name>My_Requests</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- My To-Do List --></label>
+        <name>My_To_Do_List</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Network Accelerator --></label>
+        <name>Network_Tracking</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Repeatable Models --></label>
+        <name>Repeatable_Models</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- SME Selection --></label>
+        <name>SME_Selection</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Sustainable Living Lab --></label>
+        <name>Sustainable_Living_Lab</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- User Admin --></label>
+        <name>User_Admin</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Welcome --></label>
+        <name>Welcome</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- WinatPOS --></label>
+        <name>WinatPOS</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Planner --></label>
+        <name>cp_Planner</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Plan on a Page --></label>
+        <name>cp_PoaP</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Issues --></label>
+        <name>im_Issues</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Stakeholders --></label>
+        <name>kof_Stakeholders</name>
+    </customTabs>
+    <quickActions>
+        <label><!-- LogACall --></label>
+        <name>LogACall</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewAccount --></label>
+        <name>NewAccount</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewCase --></label>
+        <name>NewCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewContact --></label>
+        <name>NewContact</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewEvent --></label>
+        <name>NewEvent</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewGroup --></label>
+        <name>NewGroup</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewLead --></label>
+        <name>NewLead</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewNote --></label>
+        <name>NewNote</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewOpportunity --></label>
+        <name>NewOpportunity</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewTask --></label>
+        <name>NewTask</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- BET File Upload --></label>
+        <name>Publisher_Action</name>
+    </quickActions>
+    <reportTypes>
+        <description><!-- Agency Estimates --></description>
+        <label><!-- Agency Estimates --></label>
+        <name>AF_Agency_Estimates</name>
+        <sections>
+            <columns>
+                <label><!-- Agency --></label>
+                <name>Agency</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Category --></label>
+                <name>Category</name>
+            </columns>
+            <columns>
+                <label><!-- Status --></label>
+                <name>Status</name>
+            </columns>
+            <columns>
+                <label><!-- Unilever Entity --></label>
+                <name>Unilever Entity</name>
+            </columns>
+            <label><!-- Agency Estimates --></label>
+            <name>Agency Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Base Fee Estimates --></description>
+        <label><!-- Base Fee Estimates --></label>
+        <name>AF_Base_Fee_Estimates</name>
+        <sections>
+            <label><!-- Brand Estimates --></label>
+            <name>Brand Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Bonus Matriix --></description>
+        <label><!-- Bonus Matriix --></label>
+        <name>AF_Bonus_Matriix</name>
+        <sections>
+            <label><!-- Bonus Matrix --></label>
+            <name>Bonus Matrix</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Brand Estimates with or Without Reviews --></description>
+        <label><!-- Brand Estimates with or Without Reviews --></label>
+        <name>AF_Brand_Estimates_with_or_Without_Reviews</name>
+        <sections>
+            <label><!-- Brand Estimates --></label>
+            <name>Brand Estimates</name>
+        </sections>
+        <sections>
+            <label><!-- Controller Reviews --></label>
+            <name>Controller Reviews</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- AF_Comments --></description>
+        <label><!-- AF_Comments --></label>
+        <name>AF_Comments</name>
+        <sections>
+            <label><!-- Comments --></label>
+            <name>Comments</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Activity --></description>
+        <label><!-- Activity --></label>
+        <name>Activity</name>
+        <sections>
+            <label><!-- Chatter Activity (Parent) --></label>
+            <name>Chatter Activity (Parent)</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Agency Entities with or Without Estimates --></description>
+        <label><!-- Agency Entities with or Without Estimates --></label>
+        <name>Agency_Entities_with_or_Without_Estimates</name>
+        <sections>
+            <label><!-- Agency Estimates (Agency Entity) --></label>
+            <name>Agency Estimates (Agency Entity)</name>
+        </sections>
+        <sections>
+            <label><!-- Entity --></label>
+            <name>Entity</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Agency Estimate with Country Breakdown --></description>
+        <label><!-- Agency Estimate with Country Breakdown --></label>
+        <name>Agency_Estimate_with_Country_Breakdown</name>
+        <sections>
+            <label><!-- Agency Estimates --></label>
+            <name>Agency Estimates</name>
+        </sections>
+        <sections>
+            <label><!-- Entity Exceptions --></label>
+            <name>Entity Exceptions</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- All BETs with members --></description>
+        <label><!-- All BETs with members --></label>
+        <name>All_BETs_with_members</name>
+        <sections>
+            <label><!-- BET Team Members --></label>
+            <name>BET Team Members</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Base Fee Brand Status --></description>
+        <label><!-- Base Fee Brand Status --></label>
+        <name>Base_Fee_Brand_Status</name>
+        <sections>
+            <label><!-- Agency Estimates --></label>
+            <name>Agency Estimates</name>
+        </sections>
+        <sections>
+            <label><!-- Brand Estimates --></label>
+            <name>Brand Estimates</name>
+        </sections>
+        <sections>
+            <label><!-- Category-Brands --></label>
+            <name>Category-Brands</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Base Fee Estimates for PO Report --></description>
+        <label><!-- Base Fee Estimates for PO Report --></label>
+        <name>Base_Fee_Estimates</name>
+        <sections>
+            <label><!-- Agency Estimates --></label>
+            <name>Agency Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Bonus Results --></description>
+        <label><!-- Bonus Results --></label>
+        <name>Bonus_Results</name>
+        <sections>
+            <columns>
+                <label><!-- Agency Name --></label>
+                <name>Agency Name</name>
+            </columns>
+            <columns>
+                <label><!-- Bonus Measure --></label>
+                <name>Bonus Measure</name>
+            </columns>
+            <columns>
+                <label><!-- Bonus Threshold --></label>
+                <name>Bonus Threshold</name>
+            </columns>
+            <columns>
+                <label><!-- Bonusable Fee --></label>
+                <name>Bonusable Fee</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Country --></label>
+                <name>Country</name>
+            </columns>
+            <columns>
+                <label><!-- Digital --></label>
+                <name>Digital</name>
+            </columns>
+            <columns>
+                <label><!-- Minimum --></label>
+                <name>Minimum</name>
+            </columns>
+            <columns>
+                <label><!-- Outstanding --></label>
+                <name>Outstanding</name>
+            </columns>
+            <columns>
+                <label><!-- Pilot Model --></label>
+                <name>Pilot Model</name>
+            </columns>
+            <columns>
+                <label><!-- Quant Result --></label>
+                <name>Quant Result</name>
+            </columns>
+            <columns>
+                <label><!-- Stretching --></label>
+                <name>Stretching</name>
+            </columns>
+            <columns>
+                <label><!-- Traditional --></label>
+                <name>Traditional</name>
+            </columns>
+            <columns>
+                <label><!-- Year --></label>
+                <name>Year</name>
+            </columns>
+            <label><!-- Bonus Results --></label>
+            <name>Bonus Results</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Bonus Summary with Matrix --></description>
+        <label><!-- Bonus Summary with Matrix --></label>
+        <name>Bonus_Summary_with_Matrix</name>
+        <sections>
+            <columns>
+                <label><!-- Bonus - LC --></label>
+                <name>Bonus - LC</name>
+            </columns>
+            <columns>
+                <label><!-- Currency --></label>
+                <name>Currency</name>
+            </columns>
+            <columns>
+                <label><!-- Currency @ Ready for PO --></label>
+                <name>Currency @ Ready for PO</name>
+            </columns>
+            <columns>
+                <label><!-- Currency @ReadyforPO --></label>
+                <name>Currency @ReadyforPO</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate --></label>
+                <name>Exchange Rate</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate@PO --></label>
+                <name>Exchange Rate@PO</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate@ReadyforPO --></label>
+                <name>Exchange Rate@ReadyforPO</name>
+            </columns>
+            <columns>
+                <label><!-- Legal Entity Name --></label>
+                <name>Legal Entity Name</name>
+            </columns>
+            <columns>
+                <label><!-- Unilever Entity --></label>
+                <name>Unilever Entity</name>
+            </columns>
+            <label><!-- Bonus Matrix --></label>
+            <name>Bonus Matrix</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Agency --></label>
+                <name>Agency</name>
+            </columns>
+            <columns>
+                <label><!-- Big category --></label>
+                <name>Big category</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <label><!-- Bonus Summaries --></label>
+            <name>Bonus Summaries</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Bonus Thresholds with Sub Results --></description>
+        <label><!-- Bonus Thresholds with Sub Results --></label>
+        <name>Bonus_Thresholds_with_Sub_Results</name>
+        <sections>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Category Name --></label>
+                <name>Category Name</name>
+            </columns>
+            <label><!-- Bonus Thresholds --></label>
+            <name>Bonus Thresholds</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Qual-Result --></label>
+                <name>Qual-Result</name>
+            </columns>
+            <columns>
+                <label><!-- Quant-Result --></label>
+                <name>Quant-Result</name>
+            </columns>
+            <label><!-- Sub Result --></label>
+            <name>Sub Result</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Bonus Thresholds with or without Results --></description>
+        <label><!-- Bonus Thresholds with or without Results --></label>
+        <name>Bonus_Thresholds_with_or_without_Results</name>
+        <sections>
+            <label><!-- Bonus Results --></label>
+            <name>Bonus Results</name>
+        </sections>
+        <sections>
+            <label><!-- Bonus Thresholds --></label>
+            <name>Bonus Thresholds</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Bonus Threshols without Results --></description>
+        <label><!-- Bonus Threshols without Results --></label>
+        <name>Bonus_Threshols_without_Results</name>
+        <sections>
+            <label><!-- Bonus Thresholds --></label>
+            <name>Bonus Thresholds</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Brand Estimate with Agency Estimates --></description>
+        <label><!-- Brand Estimate with Agency Estimates --></label>
+        <name>Brand_Estimate_with_Agency_Estimates</name>
+        <sections>
+            <columns>
+                <label><!--  Exchange Rate --></label>
+                <name> Exchange Rate</name>
+            </columns>
+            <columns>
+                <label><!--  Exchange Rate --></label>
+                <name> Exchange Rate</name>
+            </columns>
+            <columns>
+                <label><!-- Currency --></label>
+                <name>Currency</name>
+            </columns>
+            <columns>
+                <label><!-- Currency --></label>
+                <name>Currency</name>
+            </columns>
+            <columns>
+                <label><!-- Currency @ Ready for PO --></label>
+                <name>Currency @ Ready for PO</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate PO --></label>
+                <name>Exchange Rate PO</name>
+            </columns>
+            <columns>
+                <label><!-- LC @ Ready for PO --></label>
+                <name>LC @ Ready for PO</name>
+            </columns>
+            <columns>
+                <label><!-- Total FY Fee - EUR --></label>
+                <name>Total FY Fee - EUR</name>
+            </columns>
+            <columns>
+                <label><!-- Total FY Fee - LC --></label>
+                <name>Total FY Fee - LC</name>
+            </columns>
+            <label><!-- Agency Estimates --></label>
+            <name>Agency Estimates</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Status --></label>
+                <name>Status</name>
+            </columns>
+            <label><!-- Brand Estimates --></label>
+            <name>Brand Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Brand Estimates Approvers --></description>
+        <label><!-- Brand Estimates Approvers --></label>
+        <name>Brand_Estimates_Approevrs</name>
+        <sections>
+            <label><!-- Brand Estimates --></label>
+            <name>Brand Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- CEC Account, Case &amp; Fulfilment Info --></description>
+        <label><!-- CEC Account, Case &amp; Fulfilment Info --></label>
+        <name>CEC_Account_Case_Fulfilment_Info</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
+        </sections>
+        <sections>
+            <label><!-- Fulfilment --></label>
+            <name>Fulfilment</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- CEC Approval Process --></description>
+        <label><!-- CEC Approval Process --></label>
+        <name>CEC_Approval_Process</name>
+        <sections>
+            <label><!-- Process Instance --></label>
+            <name>Process Instance</name>
+        </sections>
+        <sections>
+            <label><!-- Process Instance Node --></label>
+            <name>Process Instance Node</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- CEC Fulfillment &amp; Enclosure --></description>
+        <label><!-- CEC Fulfillment &amp; Enclosure --></label>
+        <name>CEC_Fulfillment_Enclosure</name>
+        <sections>
+            <label><!-- Fulfilment --></label>
+            <name>Fulfilment</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Cases with AdditionalCaseInfo --></description>
+        <label><!-- Cases with AdditionalCaseInfo --></label>
+        <name>Cases_with_AdditionalCaseInfo</name>
+        <sections>
+            <label><!-- Additional Case Informations --></label>
+            <name>Additional Case Informations</name>
+        </sections>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Chatter Groups with Group Feed --></description>
+        <label><!-- Chatter Groups with Group Feed --></label>
+        <name>Chatter_Groups_with_Group_Feed</name>
+        <sections>
+            <label><!-- Chatter Group Feed --></label>
+            <name>Chatter Group Feed</name>
+        </sections>
+        <sections>
+            <label><!-- Chatter Groups --></label>
+            <name>Chatter Groups</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Chatter Groups with Group Feed and Comments --></description>
+        <label><!-- Chatter Groups with Group Feed and Comments --></label>
+        <name>Chatter_Groups_with_Group_Feed_and_Comments</name>
+        <sections>
+            <label><!-- Chatter Group Feed --></label>
+            <name>Chatter Group Feed</name>
+        </sections>
+        <sections>
+            <label><!-- Chatter Groups --></label>
+            <name>Chatter Groups</name>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <name>Comments</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Chatter Groups with Group Members --></description>
+        <label><!-- Chatter Groups with Group Members --></label>
+        <name>Chatter_Groups_with_Group_Members</name>
+        <sections>
+            <label><!-- Chatter Group Members --></label>
+            <name>Chatter Group Members</name>
+        </sections>
+        <sections>
+            <label><!-- Chatter Groups --></label>
+            <name>Chatter Groups</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Chatter Groups with Users --></description>
+        <label><!-- Chatter Groups with Users --></label>
+        <name>Chatter_Groups_with_Users</name>
+        <sections>
+            <label><!-- Chatter Group Members --></label>
+            <name>Chatter Group Members</name>
+        </sections>
+        <sections>
+            <label><!-- Chatter Groups --></label>
+            <name>Chatter Groups</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Chatter Topics --></description>
+        <label><!-- Chatter Topics --></label>
+        <name>Chatter_Topics</name>
+        <sections>
+            <label><!-- Topics --></label>
+            <name>Topics</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Chatter activity --></description>
+        <label><!-- Chatter activity --></label>
+        <name>Chatter_activity</name>
+        <sections>
+            <label><!-- Chatter Activity --></label>
+            <name>Chatter Activity</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Core Tasks Report Type --></description>
+        <label><!-- Core Tasks Report Type --></label>
+        <name>Core_Tasks_Report_Type</name>
+        <sections>
+            <label><!-- Core Tasks --></label>
+            <name>Core Tasks</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Course with Course Occurence and Occurence Member --></description>
+        <label><!-- Course with Course Occurence and Occurence Member --></label>
+        <name>Course_with_Course_Occurence_and_Occurence_Member</name>
+        <sections>
+            <label><!-- Course Occurence --></label>
+            <name>Course Occurence</name>
+        </sections>
+        <sections>
+            <label><!-- Courses --></label>
+            <name>Courses</name>
+        </sections>
+        <sections>
+            <label><!-- Occurence Member --></label>
+            <name>Occurence Member</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Courses with Course Occurence with Feedback with Feedback Questionnaire --></description>
+        <label><!-- Courses with Course Occurence with Feedback with Feedback Questionnaire --></label>
+        <name>Courses_with_Course_Occurence_with_Feedback_with_Feedback_Questionnaire</name>
+        <sections>
+            <label><!-- Course Occurence --></label>
+            <name>Course Occurence</name>
+        </sections>
+        <sections>
+            <label><!-- Courses --></label>
+            <name>Courses</name>
+        </sections>
+        <sections>
+            <label><!-- Feedback --></label>
+            <name>Feedback</name>
+        </sections>
+        <sections>
+            <label><!-- Feedback Questionnaire --></label>
+            <name>Feedback Questionnaire</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Dashboards --></description>
+        <label><!-- Dashboards --></label>
+        <name>Dashboards</name>
+        <sections>
+            <label><!-- Dashboards --></label>
+            <name>Dashboards</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Detailed Report of Course Occurrence --></description>
+        <label><!-- Detailed Report of Course Occurrence --></label>
+        <name>Detailed_Report_of_Course_Occurrence</name>
+        <sections>
+            <label><!-- Course Occurence --></label>
+            <name>Course Occurence</name>
+        </sections>
+        <sections>
+            <label><!-- Occurence Member --></label>
+            <name>Occurence Member</name>
+        </sections>
+        <sections>
+            <label><!-- User Preferences --></label>
+            <name>User Preferences</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Detailed Report of Occurence Member Tasks --></description>
+        <label><!-- Detailed Report of Occurence Member Tasks --></label>
+        <name>Detailed_Report_of_Occurence_Member_Tasks</name>
+        <sections>
+            <label><!-- Course Occurence --></label>
+            <name>Course Occurence</name>
+        </sections>
+        <sections>
+            <label><!-- Occurence Member --></label>
+            <name>Occurence Member</name>
+        </sections>
+        <sections>
+            <label><!-- Pre Work Tasks --></label>
+            <name>Pre Work Tasks</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Events with ULE --></description>
+        <label><!-- Events with ULE --></label>
+        <name>Events_with_ULE</name>
+        <sections>
+            <label><!-- Events --></label>
+            <name>Events</name>
+        </sections>
+        <sections>
+            <label><!-- ULE Spokesperson / Representative --></label>
+            <name>ULE Spokesperson / Representative</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Events with/without Locations --></description>
+        <label><!-- Events with/without Locations --></label>
+        <name>Events_with_without_Locations</name>
+        <sections>
+            <label><!-- Planner Events --></label>
+            <name>Planner Events</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Forex Issues Base Fee --></description>
+        <label><!-- Forex Issues Base Fee --></label>
+        <name>Forex_Issues_Base_Fee</name>
+        <sections>
+            <label><!-- Agency Estimates --></label>
+            <name>Agency Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Hashtag Definitions --></description>
+        <label><!-- Hashtag Definitions --></label>
+        <name>Hashtag_Definitions</name>
+        <sections>
+            <label><!-- Hashtag Definitions --></label>
+            <name>Hashtag Definitions</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Ideas --></description>
+        <label><!-- Ideas --></label>
+        <name>Ideas</name>
+        <sections>
+            <label><!-- Ideas --></label>
+            <name>Ideas</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Last Password Report Type --></description>
+        <label><!-- Last Password Report Type --></label>
+        <name>Last_Password_Report_Type</name>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- MC Mobile Usage --></description>
+        <label><!-- MC Mobile Usage --></label>
+        <name>MC_Mobile_Usage</name>
+        <sections>
+            <label><!-- Mobile Session --></label>
+            <name>Mobile Session</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Mobile Users --></description>
+        <label><!-- Mobile Users --></label>
+        <name>Mobile_Users</name>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- OOPS --></description>
+        <label><!-- OOPS --></label>
+        <name>OOPS</name>
+        <sections>
+            <label><!-- OOPS Actuals --></label>
+            <name>OOPS Actuals</name>
+        </sections>
+        <sections>
+            <label><!-- OOPS Estimates --></label>
+            <name>OOPS Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- OOPS Actuals --></description>
+        <label><!-- OOPS Actuals --></label>
+        <name>OOPS_Actuals</name>
+        <sections>
+            <columns>
+                <label><!-- Status --></label>
+                <name>Status</name>
+            </columns>
+            <label><!-- OOPS Actuals --></label>
+            <name>OOPS Actuals</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- OOPS Actuals with Estimates --></description>
+        <label><!-- OOPS Actuals with Estimates --></label>
+        <name>OOPS_Actuals_with_Estimates</name>
+        <sections>
+            <label><!-- OOPS Actuals --></label>
+            <name>OOPS Actuals</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- PO Value - Euro --></label>
+                <name>PO Value - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value - LC --></label>
+                <name>PO Value - LC</name>
+            </columns>
+            <label><!-- OOPS Estimates --></label>
+            <name>OOPS Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- OOPS Estimate --></description>
+        <label><!-- OOPS Estimate --></label>
+        <name>OOPS_Estimate</name>
+        <sections>
+            <label><!-- OOPS Estimates --></label>
+            <name>OOPS Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- OOPs PO Report --></description>
+        <label><!-- OOPs PO Report --></label>
+        <name>OOPs_PO_Report</name>
+        <sections>
+            <columns>
+                <label><!-- FY OOPS - Euro --></label>
+                <name>FY OOPS - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- FY Year OOPs - LC --></label>
+                <name>FY Year OOPs - LC</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value - Euro --></label>
+                <name>PO Value - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value – LC --></label>
+                <name>PO Value – LC</name>
+            </columns>
+            <label><!-- PO Report --></label>
+            <name>PO Report</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Opps Actuals with Estimates --></description>
+        <label><!-- Opps Actuals with Estimates --></label>
+        <name>Opps_Actuals_with_Estimates</name>
+        <sections>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Status --></label>
+                <name>Status</name>
+            </columns>
+            <label><!-- OOPS Actuals --></label>
+            <name>OOPS Actuals</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Currency --></label>
+                <name>Currency</name>
+            </columns>
+            <columns>
+                <label><!-- Currency --></label>
+                <name>Currency</name>
+            </columns>
+            <columns>
+                <label><!-- Currency @Ready for PO --></label>
+                <name>Currency @Ready for PO</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate --></label>
+                <name>Exchange Rate</name>
+            </columns>
+            <columns>
+                <label><!-- ExchangeRate@ReadyforPO --></label>
+                <name>ExchangeRate@ReadyforPO</name>
+            </columns>
+            <columns>
+                <label><!-- FY OOPS - Euro --></label>
+                <name>FY OOPS - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- FY Year OOPs - LC --></label>
+                <name>FY Year OOPs - LC</name>
+            </columns>
+            <columns>
+                <label><!-- FY Year OOPs - LC --></label>
+                <name>FY Year OOPs - LC</name>
+            </columns>
+            <columns>
+                <label><!-- FY Year OOPs - LC --></label>
+                <name>FY Year OOPs - LC</name>
+            </columns>
+            <columns>
+                <label><!-- Legal Entity Name --></label>
+                <name>Legal Entity Name</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value - Euro --></label>
+                <name>PO Value - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value - LC --></label>
+                <name>PO Value - LC</name>
+            </columns>
+            <columns>
+                <label><!-- Unilever Entity --></label>
+                <name>Unilever Entity</name>
+            </columns>
+            <columns>
+                <label><!-- Unilever Entity --></label>
+                <name>Unilever Entity</name>
+            </columns>
+            <label><!-- OOPS Estimates --></label>
+            <name>OOPS Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- PO Report --></description>
+        <label><!-- PO Report --></label>
+        <name>PO_Report</name>
+        <sections>
+            <columns>
+                <label><!-- Adaptation Local Currency --></label>
+                <name>Adaptation Local Currency</name>
+            </columns>
+            <label><!-- PO Report --></label>
+            <name>PO Report</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Planner Events with Planners --></description>
+        <label><!-- Planner Events with Planners --></label>
+        <name>Planner_Events_with_Planners</name>
+        <sections>
+            <label><!-- Planner Events --></label>
+            <name>Planner Events</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Planner Events with ULE with Planners --></description>
+        <label><!-- Planner Events with ULE with Planners --></label>
+        <name>Planner_Events_with_ULE_with_Planners</name>
+        <sections>
+            <label><!-- Planner Events --></label>
+            <name>Planner Events</name>
+        </sections>
+        <sections>
+            <label><!-- ULE Spokesperson / Representative --></label>
+            <name>ULE Spokesperson / Representative</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Planner Preferences with Profiles --></description>
+        <label><!-- Planner Preferences with Profiles --></label>
+        <name>Planner_Preferences_with_Profiles</name>
+        <sections>
+            <label><!-- Planner Preferences --></label>
+            <name>Planner Preferences</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Programs with FAU Participants with Module Participants --></description>
+        <label><!-- Programs with FAU Participants with Module Participants --></label>
+        <name>Programs_with_FAU_Participants_with_Module_Participants</name>
+        <sections>
+            <label><!-- Programs --></label>
+            <name>Programs</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Programs with Milestones with Milestone Participants --></description>
+        <label><!-- Programs with Milestones with Milestone Participants --></label>
+        <name>Programs_with_Milestones_with_Milestone_Participants</name>
+        <sections>
+            <label><!-- Milestone Participants --></label>
+            <name>Milestone Participants</name>
+        </sections>
+        <sections>
+            <label><!-- Milestones --></label>
+            <name>Milestones</name>
+        </sections>
+        <sections>
+            <label><!-- Participant --></label>
+            <name>Participant</name>
+        </sections>
+        <sections>
+            <label><!-- Programs --></label>
+            <name>Programs</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Programs with Modules with Module Participants --></description>
+        <label><!-- Programs with Modules with Module Participants --></label>
+        <name>Programs_with_Modules_with_Module_Participants</name>
+        <sections>
+            <label><!-- Module Participants --></label>
+            <name>Module Participants</name>
+        </sections>
+        <sections>
+            <label><!-- Modules --></label>
+            <name>Modules</name>
+        </sections>
+        <sections>
+            <label><!-- Participant --></label>
+            <name>Participant</name>
+        </sections>
+        <sections>
+            <label><!-- Programs --></label>
+            <name>Programs</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Programs with Webinars with Webinar Participants --></description>
+        <label><!-- Programs with Webinars with Webinar Participants --></label>
+        <name>Programs_with_Webinars_with_Webinar_Participants</name>
+        <sections>
+            <label><!-- Programs --></label>
+            <name>Programs</name>
+        </sections>
+        <sections>
+            <label><!-- Webinar Participants --></label>
+            <name>Webinar Participants</name>
+        </sections>
+        <sections>
+            <label><!-- Webinars --></label>
+            <name>Webinars</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Reports --></description>
+        <label><!-- Reports --></label>
+        <name>Reports</name>
+        <sections>
+            <label><!-- Reports --></label>
+            <name>Reports</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Reports_and_Dashboards --></description>
+        <label><!-- Reports_and_Dashboards --></label>
+        <name>Reports_and_Dashboards</name>
+        <sections>
+            <label><!-- Dashboard Components --></label>
+            <name>Dashboard Components</name>
+        </sections>
+        <sections>
+            <label><!-- Reports --></label>
+            <name>Reports</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Stakeholders with Issues --></description>
+        <label><!-- Stakeholders with Issues --></label>
+        <name>Stakeholders_with_Issues</name>
+        <sections>
+            <label><!-- Issues --></label>
+            <name>Issues</name>
+        </sections>
+        <sections>
+            <label><!-- Stakeholders --></label>
+            <name>Stakeholders</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Thanks given by users --></description>
+        <label><!-- Thanks given by users --></label>
+        <name>Thanks_given_by_users</name>
+        <sections>
+            <label><!-- Badges --></label>
+            <name>Badges</name>
+        </sections>
+        <sections>
+            <label><!-- Thanks --></label>
+            <name>Thanks</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Topics Report --></description>
+        <label><!-- Topics Report --></label>
+        <name>Topics_Report</name>
+        <sections>
+            <label><!-- Topics --></label>
+            <name>Topics</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Topics User --></description>
+        <label><!-- Topics User --></label>
+        <name>Topics_User_Report</name>
+        <sections>
+            <label><!-- Topics --></label>
+            <name>Topics</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- User &amp; Chatter Activity --></description>
+        <label><!-- User &amp; Chatter Activity --></label>
+        <name>User_Chatter_Activity</name>
+        <sections>
+            <label><!-- Chatter Activity (Parent) --></label>
+            <name>Chatter Activity (Parent)</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Users Chatter Groups and Feeds and Comment --></description>
+        <label><!-- Users Chatter Groups and Feeds and Comment --></label>
+        <name>Users_Chatter_Groups_and_Feeds_and_Comment</name>
+        <sections>
+            <label><!-- Chatter Group Feed --></label>
+            <name>Chatter Group Feed</name>
+        </sections>
+        <sections>
+            <label><!-- Chatter Groups (Last Modified By) --></label>
+            <name>Chatter Groups (Last Modified By)</name>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <name>Comments</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Users Test --></description>
+        <label><!-- Users Test --></label>
+        <name>Users_Test</name>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Users with Followers --></description>
+        <label><!-- Users with Followers --></label>
+        <name>Users_with_Followers</name>
+        <sections>
+            <label><!-- Followers --></label>
+            <name>Followers</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Users with User Feed --></description>
+        <label><!-- Users with User Feed --></label>
+        <name>Users_with_User_Feed</name>
+        <sections>
+            <label><!-- User Feed --></label>
+            <name>User Feed</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Users with User Feed and Comments --></description>
+        <label><!-- Users with User Feed and Comments --></label>
+        <name>Users_with_User_Feed_and_Comments</name>
+        <sections>
+            <label><!-- Comments --></label>
+            <name>Comments</name>
+        </sections>
+        <sections>
+            <label><!-- User Feed --></label>
+            <name>User Feed</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Win@POS Upload Stats --></description>
+        <label><!-- Win@POS Upload Stats --></label>
+        <name>Win_POS_Upload_Stats</name>
+        <sections>
+            <label><!-- Assets --></label>
+            <name>Assets</name>
+        </sections>
+        <sections>
+            <label><!-- Files --></label>
+            <name>Files</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- win@POS Download Statistics --></description>
+        <label><!-- win@POS Download Statistics --></label>
+        <name>win_POS_Download_Statistics</name>
+        <sections>
+            <label><!-- Files --></label>
+            <name>Files</name>
+        </sections>
+        <sections>
+            <label><!-- WINatPOS Download Statistics --></label>
+            <name>WINatPOS Download Statistics</name>
+        </sections>
+    </reportTypes>
+</Translations>
