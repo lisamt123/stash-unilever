@@ -1797,6 +1797,10 @@
         <name>TASK_OBJ_NAME</name>
     </customLabels>
     <customLabels>
+        <label><!-- TO_CaseIdentifier --></label>
+        <name>TO_CaseIdentifier</name>
+    </customLabels>
+    <customLabels>
         <label><!-- TermsOfUseTitle --></label>
         <name>TermsOfUseTitle</name>
     </customLabels>
@@ -2357,7 +2361,7 @@
         <name>Masterbrand</name>
     </customTabs>
     <customTabs>
-        <label><!-- My Approvals --></label>
+        <label>Le mie approvazioni</label>
         <name>My_Approvals_Custom</name>
     </customTabs>
     <customTabs>

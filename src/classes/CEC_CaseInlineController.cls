@@ -69,6 +69,9 @@ global with sharing class CEC_CaseInlineController{
 
     /* List to maintain matching Product knowledge articles*/
     public List<cec_Product_Information__kav> matchingProductArticlesList {get; set;}
+
+    /* List to maintain matching Product knowledge articles for TO*/
+    public List<TO_Product_Information__kav> matchingTOProductArticlesList {get; set;}
     
     /* List to maintain matching Reason knowledge articles*/
     public List<cec_Reason_Information__kav> matchingReasonArticlesList {get; set;}
@@ -90,6 +93,9 @@ global with sharing class CEC_CaseInlineController{
 
         /* Reference to product article */
         public cec_Product_Information__kav productArticle{ get; set; }
+
+        /* Reference to product article */
+        public TO_Product_Information__kav TOProductArticle{ get; set; }
         
         /* flag to indicate whether article is selected */
         public boolean isSelected{ get; set; }
@@ -121,7 +127,7 @@ global with sharing class CEC_CaseInlineController{
                           
             caseRecord = [Select Id, CaseNumber,Reason_Code__c,Parent.CaseNumber,ParentId, Reason_Code__r.Name,Status, CEC_Product__c, CEC_Product__r.Name,CEC_Product__r.Global_CPG_Code__c,
                           isFormKnown__c, isVariantKnown__c, isPacksizeKnown__c,Case_product_category__c, Production_Code__c, DayCode__c,CEC_Product__r.Global_CPG_Code__r.L2_Product_Category__c,
-                          Date_of_Manufacture_str__c,Subject,Description,Market__c,Country_Name__c,Country__c,Country__r.Country__r.ISO_3166_1_Code__c,CEC_Product_Hierarchy__c From case Where Id = :caseRecord.Id];
+                          Date_of_Manufacture_str__c,Subject,Description,Market__c,Country_Name__c,Country__c,Country__r.Country__r.ISO_3166_1_Code__c,CEC_Product_Hierarchy__c,Case_Market_Tag__c From case Where Id = :caseRecord.Id];
             
             selectedCountryCode = caseRecord.Country__r.Country__r.ISO_3166_1_Code__c;
             
@@ -840,24 +846,46 @@ global with sharing class CEC_CaseInlineController{
         /* identifying the matching PRODUCT knowledge articles */        
         if (productUPC  != null && productUPC != '') {
 
-            String query = 'select id, ArticleType, Title, KnowledgeArticleId from cec_Product_Information__kav where language = \'en_US\' and publishStatus = \'Online\' and Product_Code__c =: productUPC';
-            
-            if(caseRecord.Country_Name__c != null && caseRecord.Country_Name__c != ''){
-                query += ' WITH DATA CATEGORY Market__c AT '+caseRecord.Country_Name__c.replaceAll(' ','_')+'__c';                
-            }
-            
-            matchingProductArticlesList = Database.query(query);
-            
-            if (matchingProductArticlesList != null && matchingProductArticlesList .size() > 0){
-                for(cec_Product_Information__kav productArticle : matchingProductArticlesList ){
-                    KnowledgeArticleWrapper wrapperObj =  new KnowledgeArticleWrapper();
-                    wrapperObj.productArticle = productArticle;
-                    wrapperObj.isSelected = false;
-                    wrapperObj.articleType = 'Product Information';
-                    wrapperObj.subject= productArticle.Title ;   
-                    wrapperObj.articleId= productArticle.id;
-                    wrapperObj.knowledgeArticleId = productArticle.knowledgeArticleId;    
-                    knowledgeWrapperList.add(wrapperObj);
+            String query;
+            // If the Case is of type George then fetch only the French language Product Info articles from 'TO - Product Information' article type - As per the business process the George will be creating/uploading the articles only in French language.
+
+            if (caseRecord.Case_Market_Tag__c == Label.TO_CaseIdentifier) {
+                query = 'select id, ArticleType, Title, KnowledgeArticleId from TO_Product_Information__kav where language = \'fr\' and publishStatus = \'Online\' and TO_Product_Code__c =: productUPC';
+                if(caseRecord.Country_Name__c != null && caseRecord.Country_Name__c != ''){
+                    query += ' WITH DATA CATEGORY Market__c AT '+caseRecord.Country_Name__c.replaceAll(' ','_')+'__c';                
+                }
+                matchingTOProductArticlesList = Database.query(query);
+                if (matchingTOProductArticlesList != null && matchingTOProductArticlesList .size() > 0){
+
+                    for(TO_Product_Information__kav productArticle : matchingTOProductArticlesList ){
+                        KnowledgeArticleWrapper wrapperObj =  new KnowledgeArticleWrapper();
+                        wrapperObj.TOProductArticle = productArticle;
+                        wrapperObj.isSelected = false;
+                        wrapperObj.articleType = 'Product Information';
+                        wrapperObj.subject= productArticle.Title ;   
+                        wrapperObj.articleId= productArticle.id;
+                        wrapperObj.knowledgeArticleId = productArticle.knowledgeArticleId;    
+                        knowledgeWrapperList.add(wrapperObj);
+                    }             
+                }
+            } else {
+                query = 'select id, ArticleType, Title, KnowledgeArticleId from cec_Product_Information__kav where language = \'en_US\' and publishStatus = \'Online\' and Product_Code__c =: productUPC';
+                if(caseRecord.Country_Name__c != null && caseRecord.Country_Name__c != ''){
+                    query += ' WITH DATA CATEGORY Market__c AT '+caseRecord.Country_Name__c.replaceAll(' ','_')+'__c';                
+                }
+                matchingProductArticlesList = Database.query(query);
+                if (matchingProductArticlesList != null && matchingProductArticlesList .size() > 0){
+                    for(cec_Product_Information__kav productArticle : matchingProductArticlesList ){
+                        KnowledgeArticleWrapper wrapperObj =  new KnowledgeArticleWrapper();
+                        wrapperObj.productArticle = productArticle;
+                        wrapperObj.isSelected = false;
+                        wrapperObj.articleType = 'Product Information';
+                        wrapperObj.subject= productArticle.Title ;   
+                        wrapperObj.articleId= productArticle.id;
+                        wrapperObj.knowledgeArticleId = productArticle.knowledgeArticleId;    
+                        knowledgeWrapperList.add(wrapperObj);
+                    }
+             
                 }
             }
         }
@@ -885,7 +913,13 @@ global with sharing class CEC_CaseInlineController{
         /* identifying the matching REASON knowledge articles */  
         if (reasonShortCode != null && reasonShortCode != '') {
 
-            String query = 'select id, ArticleType, Title, KnowledgeArticleId from cec_Reason_Information__kav where language = \'en_US\' and publishStatus = \'Online\' and Short_Code__c =: reasonShortCode';
+            String query;
+            // If the Case is of type George then fetch only the French language Reason Code articles - As per the business process the George will be creating/uploading the articles only in French language.
+            if (caseRecord.Case_Market_Tag__c == Label.TO_CaseIdentifier) {
+                query = 'select id, ArticleType, Title, KnowledgeArticleId from cec_Reason_Information__kav where language = \'fr\' and publishStatus = \'Online\' and Short_Code__c =: reasonShortCode';
+            } else {
+                query = 'select id, ArticleType, Title, KnowledgeArticleId from cec_Reason_Information__kav where language = \'en_US\' and publishStatus = \'Online\' and Short_Code__c =: reasonShortCode';
+            }
             
             if(caseRecord.Country_Name__c != null && caseRecord.Country_Name__c != ''){
                 query += ' WITH DATA CATEGORY Market__c AT '+caseRecord.Country_Name__c.replaceAll(' ','_')+'__c';                
@@ -924,9 +958,12 @@ global with sharing class CEC_CaseInlineController{
                 caseArticleObj.CaseId = caseRecord.Id;
                 caseArticleObj.KnowledgeArticleId = Id.valueOf(selectedArticleId);
  
-                /* setting article language */
-                caseArticleObj.ArticleLanguage = 'en_US';
-
+                /* setting article language for French if it is for George Case else English*/
+                if (caseRecord.Case_Market_Tag__c == Label.TO_CaseIdentifier) {
+                    caseArticleObj.ArticleLanguage = 'fr';
+                } else {
+                    caseArticleObj.ArticleLanguage = 'en_US';
+                }
                 insert caseArticleObj;
             }
            
