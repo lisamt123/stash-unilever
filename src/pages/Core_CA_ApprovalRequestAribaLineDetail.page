@@ -22,7 +22,7 @@
                     </span>                
                 </div>
                 <div ng-hide="productDescriptionPanel" class="responsiveDetailSectionTable">
-                    <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.ProductDesc}}</span>
+                    <span class="fieldValue">{{approvalLineDetailRequestData.ProductDesc}}</span>
                 </div>
             </div><br/>
             <div class="template" ng-init="pricingAndSupplierDetailsPanel=false">

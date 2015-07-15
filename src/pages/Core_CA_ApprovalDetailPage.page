@@ -1,5 +1,6 @@
 <apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false">
 <meta http-equiv="content-type" content="text/html; charset=UTF8" />
+    <!--<div class="iPhoneHomeScreenHeight">-->
     
         <div class="headerBarBackground" name="top" id="pageTop">
             <table class="headerBarWidth"> 
@@ -217,19 +218,19 @@
                                 <div class="responsiveDetailSectionData">
                                     <div class="responsiveDetailSectionTable">
                                         <span class="fieldLabel">{{'LBL_EXP_DETAIL_PRE_TRIP_ID' | translate}}</span><br/>
-                                        <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalRequestData.PreTripDetails.Id}}</span>
+                                        <span class="fieldValue">{{approvalRequestData.PreTripDetails.Id}}</span>
                                     </div>
                                 </div>
                                 <div class="responsiveDetailSectionData">
                                     <div class="responsiveDetailSectionTable">
                                         <span class="fieldLabel">{{'LBL_EXP_DETAIL_PRE_TRIP_PASSENGER_INFO' | translate}}</span><br/>
-                                        <span class="textLink" id="fieldValueRichTextFormate">{{approvalRequestData.PreTripDetails.PassengerInfo}}</span>
+                                        <span class="textLink">{{approvalRequestData.PreTripDetails.PassengerInfo}}</span>
                                     </div>
                                 </div>
                                 <div class="responsiveDetailSectionData">                                
                                     <div class="responsiveDetailSectionTable">
                                         <span class="fieldLabel">{{'LBL_EXP_DETAIL_PRE_TRIP_LOCATION_DETAILS' | translate}}</span><br/>
-                                        <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalRequestData.PreTripDetails.LocationDetails}}</span>
+                                        <span class="fieldValue">{{approvalRequestData.PreTripDetails.LocationDetails}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -342,9 +343,7 @@
                         <div ng-hide="lineItemsPanel" class="responsiveDetailSectionTable">
                             <table class="homePageMenuWidth" >
                                 <tr ng-repeat="approvalRequestLineItems in approvalRequestData.LineItems" ng-click='gotoApprovalLineDetailPage(approvalRequestLineItems)' class="lineItemsHeight">
-                                    <td>
-                                        <span class="textLinkExpenceNameTruncate">{{approvalRequestLineItems.ItemName}}</span>
-                                    </td>
+                                    <td><span class="textLinkExpenceNameTruncate">{{approvalRequestLineItems.ItemName}}</span></td>
                                     <td id="defaultTopSpace" class="alignRight"><span class="fieldValue">{{approvalRequestLineItems.Currencies}}&nbsp;{{approvalRequestLineItems.Amount}}</span></td>
                                 </tr>                                                   
                             </table>
@@ -354,7 +353,7 @@
                 <div class="template" ng-init="commentsPanel=true">
                     <div class="defaultBottomBorder" ng-click="commentsPanel = (commentsPanel=='false' ? 'true' : 'false')">
                         <span>
-                            <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_COMMENTS' | translate}}</label>                     
+                            <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_COMMENTS' | translate}}</label>                      
                         </span> 
                         <span class="alignRight">              
                             <img class="arrowButtonStyle" ng-hide="commentsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
@@ -392,31 +391,26 @@
                     <div ng-hide="approvalHistoryPanel" class="responsiveDetailSectionTable">
                         <table class="homePageMenuWidth" >
                             <tr ng-repeat="approvalRequestHistory in approvalRequestData.ApprovalHistory">
-                                <td class="ipRowAllignLeft"><span class="fieldValue">{{approvalRequestHistory.ApproverName}}</span></td>
-                                <td class="ipRowAllignCenter"><span class="fieldValue">{{approvalRequestHistory.AribaRole}}</span></td>
-                                <td class="ipRowAllignRight"><span class="fieldValue">{{approvalRequestHistory.ApproverAction}}</span></td>
+                                <td><span class="fieldValue">{{approvalRequestHistory.ApproverName}}</span></td>
+                             <!--   <td><span class="fieldValue">{{approvalRequestHistory.AribaRole}}</span></td> -->
+                                <td><span class="alignRight">{{approvalRequestHistory.ApproverAction}}</span></td>
                             </tr>                                                   
                         </table>
                     </div>
                 </div>  
             </tab>
-            <tab heading="{{'LBL_FEED'| translate}}" class="homePageMenuBody" active="active.feed" ng-show="showFeed">
-                <div class="feedIFrameSectionDiv">
-                    <iframe ng-src="{{approvalRequestData.url}}" class="feedIFrameSectionDetail"></iframe>
-                </div>
+            <tab heading="{{'LBL_FEED'| translate}}" class="homePageMenuBody" active="active.feed">
+                 <iframe ng-src="{{approvalRequestData.url}}"  style="position: absolute; height: 100%; width:100%;border: none;"></iframe>
             </tab>
         </tabset>
         
         <!-- Fixed APPROVE / REJECT / COMMENT Bar -->
-        <!--<nav class="navbar navbar-default navbar-fixed-bottom">        
-            <div id="alignCenter" class="fixed-nav-bar-padding container">-->
-         <nav class="fixed-nav-bar">        
-            <div id="alignCenter" class="fixed-nav-bar-padding">
-
+        <nav class="fixed-nav-bar">        
+            <div id="alignCenter" style="padding-top:5px;padding-bottom:5px;">
                 <table  class="homePageMenuWidth">
                     <tr id="alignCenter">                    
                         <td id="alignCenter">
-                            <img  class="headerBarIconStyle"  ng-show="showFeed" ng-click="activateTab('feed')" src="{!URLFOR($Resource.MyApprovalsSR, 'img/Comment.svg')}"/>
+                            <img  class="headerBarIconStyle"  ng-click="activateTab('feed')" src="{!URLFOR($Resource.MyApprovalsSR, 'img/Comment.svg')}"/>
                         </td>
                         <td id="alignCenter" ng-show="showReject">
                             <img  class="headerBarIconStyle"  ng-show="showReject"  ng-click='gotoApproveRejectPage("Reject")' src="{!URLFOR($Resource.MyApprovalsSR, 'img/Return.svg')}"/>
