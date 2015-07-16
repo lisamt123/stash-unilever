@@ -233,6 +233,10 @@
                 <fullName>Wearable Tech</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Misc</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
