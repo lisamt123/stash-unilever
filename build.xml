@@ -7,6 +7,12 @@
     <property file="${basedir}/build.properties"/>
     <property environment="env"/>
 
+    <import file="${basedir}/lib/exec_anon.xml"/>
+    <import file="${basedir}/lib/deploy.xml"/>
+    <import file="${basedir}/lib/undeploy.xml"/>
+    <import file="${basedir}/lib/run_tests.xml"/>
+    <import file="${basedir}/lib/package_generator.xml"/>    
+
     <target name="retrieve" description="Recreate the deployment directory and retrieve all metadata from your org">
         <echo level="info">Performing a retrieve</echo>     
         <mkdir dir="${basedir}/${sfdc.retrieveTarget}"/>
