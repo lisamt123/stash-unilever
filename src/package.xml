@@ -325,6 +325,7 @@
         <members>Product2History</members>
         <members>Profile</members>
         <members>PushTopic</members>
+        <members>Question</members>
         <members>QueueSobject</members>
         <members>RecentlyViewed</members>
         <members>RecordType</members>
@@ -422,6 +423,40 @@
         <name>CustomTab</name>
     </types>
     <types>
+        <members>CEC_Images</members>
+        <members>CEC_Images/CEC_CareLines_Logo.png</members>
+        <members>TO_Branding</members>
+        <members>TO_Branding/TO_Header.jpg </members>
+        <members>agf__GUS</members>
+        <members>agf__GUS/agf__Agile_Accelerator_270_x_72.png</members>
+        <members>Unilever_Images</members>
+        <members>Unilever_Images/New_Unilever_Way_Logo.png</members>
+        <members>AF_Images</members>
+        <members>AF_Images/Agency_Fees_Masthead.png</members>
+        <members>CEC_Logos</members>
+        <members>CEC_Logos/CEC_Ben_Jerry_Header_Logo_with_Cloud_background.png</members>     
+        <members>CEC_Logos/CEC_Ben_Jerry_logo.png</members>     
+        <members>CEC_Logos/CEC_Greece_Header.png</members> 
+        <members>CEC_Logos/CEC_Unilever_Belgium.png</members> 
+        <members>CEC_Logos/CEC_Spain_Header.png</members>       
+        <members>CEC_Logos/CEC_Unilever_France_Footer.png</members>             
+        <members>CEC_Branding</members>    
+        <members>CEC_Branding/b_j_email_logo_jpg.jpg</members>  
+        <members>CEC_Branding/flora_email_logo_jpg.jpg</members>  
+        <members>CEC_Branding/knorr_email_logo_jpg.jpg</members>  
+        <members>CEC_Branding/lipton_email_logo_jpg.jpg</members>  
+        <members>CEC_Branding/magnum_email_logo_jpg.jpg</members>  
+        <members>CEC_Branding/Marmite_header01_jpg.jpg</members> 
+        <members>CEC_Branding/PGTipsHeader01_jpg.jpg</members>  
+        <members>CEC_Branding/SlimFast_header01_jpg.jpg</members>  
+        <members>CEC_Branding/Unilever_header01_gif.gif</members> 
+        <members>FAU_Documents</members> 
+        <members>FAU_Documents/FAU_Logo.png</members> 
+        <members>IPMNG</members>
+        <members>IPMNG/IPMNG_Logo.png</members>          
+        <name>Document</name>
+    </types>    
+    <types>
         <members>*</members>
         <name>Dashboard</name>
     </types>
@@ -434,7 +469,8 @@
         <name>Document</name>
     </types>
     <types>
-        <members>*</members>
+        <members>TO_Emails_France</members>
+        <members>TO_Emails_France/TO_Auto_Response_Template</members>
         <name>EmailTemplate</name>
     </types>
     <types>
