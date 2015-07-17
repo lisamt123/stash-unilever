@@ -317,33 +317,6 @@
         <name>Urgency__c</name>
     </fields>
     <layouts>
-        <layout>Ariba</layout>
-        <sections>
-            <label><!-- Basic Details --></label>
-            <section>Basic Details</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Delegation Details --></label>
-            <section>Delegation Details</section>
-        </sections>
-        <sections>
-            <label><!-- Preparer Details --></label>
-            <section>Preparer Details</section>
-        </sections>
-        <sections>
-            <label><!-- Requester Details --></label>
-            <section>Requester Details</section>
-        </sections>
-        <sections>
-            <label><!-- Requisition Details --></label>
-            <section>Requisition Details</section>
-        </sections>
-    </layouts>
-    <layouts>
         <layout>Ariba_FeedBased</layout>
         <sections>
             <label><!-- Basic Details --></label>
@@ -356,41 +329,6 @@
         <sections>
             <label><!-- Requisition Details --></label>
             <section>Requisition Details</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>GTES</layout>
-        <sections>
-            <label><!-- Amounts &amp; Cost Centre --></label>
-            <section>Amounts &amp; Cost Centre</section>
-        </sections>
-        <sections>
-            <label><!-- Claim Comments --></label>
-            <section>Claim Comments</section>
-        </sections>
-        <sections>
-            <label><!-- Claim Description --></label>
-            <section>Claim Description</section>
-        </sections>
-        <sections>
-            <label><!-- Claim Details --></label>
-            <section>Claim Details</section>
-        </sections>
-        <sections>
-            <label><!-- Claim Exceptions --></label>
-            <section>Claim Exceptions</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- PreTrip Location Details --></label>
-            <section>PreTrip Location Details</section>
-        </sections>
-        <sections>
-            <label><!-- PreTrip Passenger Info --></label>
-            <section>PreTrip Passenger Info</section>
         </sections>
     </layouts>
     <layouts>

@@ -95,11 +95,6 @@
         <unique>true</unique>
     </fields>
     <label>Case Reason Product</label>
-    <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
     <nameField>
         <label>Reason Product Name</label>
         <type>Text</type>

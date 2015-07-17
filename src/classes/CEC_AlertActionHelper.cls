@@ -348,38 +348,17 @@ public without sharing class CEC_AlertActionHelper {
         
         Integer caseIndex = 0;
         
-         Map<Id,List<cec_Alert_Tracker_Item__c>> alertTrackerMap = new Map<Id,List<cec_Alert_Tracker_Item__c>>();
-          
-          
-          
-          
-          for(cec_Alert_Tracker_Item__c atItem:alertTrackerItemList){
-          
-          
-          if(alertTrackerMap.get(atItem.Alert_Tracker_Id__c) == null){
-                    alertTrackerMap.put(atItem.Alert_Tracker_Id__c,new List<cec_Alert_Tracker_Item__c>());  
-                }
-                
-                alertTrackerMap.get(atItem.Alert_Tracker_Id__c).add(atItem);
-          
-          
-          }
-        
-        
-        for(Id alertTrackerId:alertTrackerMap.keyset()){
-        caseStr = '';
-        caseIndex = 0;
-        
-        for(cec_Alert_Tracker_Item__c AlertTrackerItem:alertTrackerMap.get(alertTrackerId))
-        {
-            caseObj = caseMap.get(AlertTrackerItem.Case_Id__c);
+        for(cec_Alert_Tracker_Item__c atItem:alertTrackerItemList){
             
-             caseStr += '\r\nCase #' + ++caseIndex + '\r\nCase Product: ' + caseObj.Product_Code__c + '\r\nCase Reason: ' + caseObj.CEC_Reason_Code__c + '\r\nCase Number: ' + caseObj.CaseNumber + '\r\nCase Opened Date: ' + caseObj.CreatedDate + '\r\nDescription: ' + caseObj.Description + '\r\nStore: ' + caseObj.Store__r.Name + '\r\nStore Location: ' + caseObj.Store_Location__c + '\r\nDate of Manufacture: ' + caseObj.Date_of_Manufacture_str__c + '\r\nPurchase Date: ' + caseObj.Purchase_Date__c + '\r\n';
+            caseObj = caseMap.get(atItem.Case_Id__c);
+
+            if(alertTrackerCaseMap.get(atItem.Alert_Tracker_Id__c) != null){
+                caseStr = alertTrackerCaseMap.get(atItem.Alert_Tracker_Id__c);
+            }
             
-        }
-                alertTrackerCaseMap.put(alertTrackerId, caseStr);
-                
-                
+            caseStr += '\r\nCase #' + ++caseIndex + '\r\nCase Product: ' + caseObj.Product_Code__c + '\r\nCase Reason: ' + caseObj.CEC_Reason_Code__c + '\r\nCase Number: ' + caseObj.CaseNumber + '\r\nCase Opened Date: ' + caseObj.CreatedDate + '\r\nDescription: ' + caseObj.Description + '\r\nStore: ' + caseObj.Store__r.Name + '\r\nStore Location: ' + caseObj.Store_Location__c + '\r\nDate of Manufacture: ' + caseObj.Date_of_Manufacture_str__c + '\r\nPurchase Date: ' + caseObj.Purchase_Date__c + '\r\n';
+
+            alertTrackerCaseMap.put(atItem.Alert_Tracker_Id__c, caseStr);
         }
         
         return alertTrackerCaseMap;

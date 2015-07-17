@@ -235,21 +235,6 @@
         <name>Visible_to_Supplier__c</name>
     </fields>
     <layouts>
-        <layout>Approver_Ariba</layout>
-        <sections>
-            <label><!-- Comments --></label>
-            <section>Comments</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Interested Party Details --></label>
-            <section>Interested Party Details</section>
-        </sections>
-    </layouts>
-    <layouts>
         <layout>Approver_Ariba_FeedBased</layout>
         <sections>
             <label><!-- Approval Status --></label>
@@ -265,29 +250,11 @@
         </sections>
     </layouts>
     <layouts>
-        <layout>Approver_GTES</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Interested Party Details --></label>
-            <section>Interested Party Details</section>
-        </sections>
-    </layouts>
-    <layouts>
         <layout>Approver_GTES_FeedBased</layout>
         <sections>
             <label><!-- Approval Status --></label>
             <section>Approval Status</section>
         </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Interested Party Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>List</customSettingsType>
-    <description>This custom Setting is storing profiles which has access to Brand Center landing page.</description>
+    <description>This custom setting is storing profiles which has access to brand centre landing page</description>
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>Profile__c</fullName>
