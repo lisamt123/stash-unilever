@@ -4,6 +4,18 @@
     <dataCategory>
         <dataCategory>
             <dataCategory>
+                <dataCategory>
+                    <label>Estonia</label>
+                    <name>Estonia</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Latvia</label>
+                    <name>Latvia</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Lithuania</label>
+                    <name>Lithuania</name>
+                </dataCategory>
                 <label>Baltics</label>
                 <name>Baltics</name>
             </dataCategory>
