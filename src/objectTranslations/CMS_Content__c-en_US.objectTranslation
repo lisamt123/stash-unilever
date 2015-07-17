@@ -18,10 +18,6 @@
         <relationshipLabel><!-- CMS Contents --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- ExtID --></label>
-        <name>ExtID__c</name>
-    </fields>
-    <fields>
         <label><!-- LinkTitle --></label>
         <name>LinkTitle__c</name>
     </fields>

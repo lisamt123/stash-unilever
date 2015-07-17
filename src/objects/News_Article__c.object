@@ -68,7 +68,7 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Admin_Chatter_Group__c</fullName>
-        <defaultValue>&quot;abc@test.com&quot;</defaultValue>
+        <defaultValue>&quot;news.centre@unilever.com&quot;</defaultValue>
         <description>Id&apos;s of the Admin Chatter Groups (delimited by comma)</description>
         <externalId>false</externalId>
         <label>Admin Chatter Group</label>
@@ -93,6 +93,7 @@
     </fields>
     <fields>
         <fullName>Chatter_Groups__c</fullName>
+        <defaultValue>&quot;0F9E0000000JHbo&quot;</defaultValue>
         <description>Local setting for which Chatter Groups this Article should be posted to. Enter Group Ids, separated by commas.</description>
         <externalId>false</externalId>
         <inlineHelpText>Local override to configure which Chatter Groups this Article should be socialised to. Enter Group Ids, separated by commas.</inlineHelpText>
@@ -320,11 +321,15 @@
         <columns>Comment_Count__c</columns>
         <columns>Sharepoint_URL__c</columns>
         <columns>Socialise_Activity__c</columns>
-        <columns>UPDATEDBY_USER</columns>
+        <columns>Comment_GA_URL__c</columns>
+        <columns>Like_GA_URL__c</columns>
+        <columns>Post_GA_URL__c</columns>
+        <columns>Chatter_Groups__c</columns>
+        <columns>Admin_Chatter_Group__c</columns>
         <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Bangladesh</fullName>
@@ -686,6 +691,27 @@
             <value>Malaysia&amp;Singapore</value>
         </filters>
         <label>Malaysia&amp;Singapore</label>
+    </listViews>
+    <listViews>
+        <fullName>Marketing_CB4L</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>Sub_Title__c</columns>
+        <columns>Summary__c</columns>
+        <columns>Comment_Count__c</columns>
+        <columns>Like_Count_RSF__c</columns>
+        <columns>Sharepoint_URL__c</columns>
+        <columns>Site_Name__c</columns>
+        <columns>Site_Type__c</columns>
+        <columns>Title__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Site_Name__c</field>
+            <operation>equals</operation>
+            <value>crafting Brands for Life</value>
+        </filters>
+        <label>Marketing-CB4L</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Mexico</fullName>
@@ -1062,9 +1088,10 @@
         <filters>
             <field>Site_Name__c</field>
             <operation>equals</operation>
-            <value>UK&amp;Ireland</value>
+            <value>UK &amp; Ireland</value>
         </filters>
         <label>UK&amp;Ireland</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>USCE</fullName>

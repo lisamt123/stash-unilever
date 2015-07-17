@@ -8,5 +8,5 @@
     <tab>Brand_Experience2</tab>
     <tab>Agency_List</tab>
     <tab>Sustainable_Living_Lab</tab>
-    <tab>uw_Inoplan_Project__c</tab>
+    <tab>uw_BET__c</tab>
 </CustomApplication>

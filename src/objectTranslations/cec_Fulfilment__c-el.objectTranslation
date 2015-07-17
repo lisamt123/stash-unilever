@@ -358,10 +358,6 @@
         <name>FulfilmentType_MandatoryCheck</name>
     </validationRules>
     <webLinks>
-        <label><!-- Fulfilment_Lookup --></label>
-        <name>Fulfilment_Lookup</name>
-    </webLinks>
-    <webLinks>
         <label>Νέα Εκπλήρωση</label>
         <name>New_Fulfilment</name>
     </webLinks>

@@ -42,26 +42,6 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>*</members>
-        <name>AccountCriteriaBasedSharingRule</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>AccountOwnerSharingRule</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CampaignCriteriaBasedSharingRule</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CampaignOwnerSharingRule</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>CaseCriteriaBasedSharingRule</name>
-    </types>
-    <types>
-        <members>*</members>
         <name>SharingCriteriaRule</name>
     </types>
     <types>

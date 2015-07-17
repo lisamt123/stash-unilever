@@ -138,11 +138,19 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Kids and Teens</fullName>
+                <fullName>Kids</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Desi Flavors and Indo Western Fusion</fullName>
+                <fullName>Teens</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Desi Flavors</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Indo Western Fusion</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -150,7 +158,23 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Better for You</fullName>
+                <fullName>Healthy Indulgence</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>I Need to Find…</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>I Need to Do…</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>I Work with Others On…</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>What’s relevant for me to see…</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -207,6 +231,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Wearable Tech</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Misc</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>

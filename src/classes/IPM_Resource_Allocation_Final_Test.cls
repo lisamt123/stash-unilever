@@ -108,7 +108,7 @@ private class IPM_Resource_Allocation_Final_Test{
             IPM_TestDataUtils testData = new IPM_TestDataUtils();
             IPM_Resource_Allocation_FinalRevamp   sic = new IPM_Resource_Allocation_FinalRevamp  ();   
             
-            List<IPM_Bosscard__c> listBosscard= createIPMBosscard();
+            List<IPM_Bosscard__c> listBosscard= testdata.createIPMBosscard();
             
             List<IPM_Project__c> ipmProjects= testdata.createIPMProjects(listBosscard[0].Id);
                     
@@ -326,12 +326,9 @@ private class IPM_Resource_Allocation_Final_Test{
             IPM_TestDataUtils testData = new IPM_TestDataUtils();
             IPM_Resource_Allocation_FinalRevamp   sic = new IPM_Resource_Allocation_FinalRevamp  ();  
             
-           //List<IPM_Bosscard__c> listBosscard= testdata.createIPMBosscard();
-            IPM_Bosscard__c bosscard3=new IPM_Bosscard__c();
-        bosscard3.Name='Test Data03';
-        bosscard3.IPM_IsSaved__c=true;
-        insert bosscard3;
-            List<IPM_Project__c> ipmProjects= testdata.createIPMProjects(bosscard3.Id);
+            List<IPM_Bosscard__c> listBosscard= testdata.createIPMBosscard();
+            
+            List<IPM_Project__c> ipmProjects= testdata.createIPMProjects(listBosscard[0].Id);
                     
  
             
@@ -384,12 +381,9 @@ private class IPM_Resource_Allocation_Final_Test{
             ipm_Resource_Allocation_Final_TestConstructor();
             IPM_TestDataUtils testData = new IPM_TestDataUtils();
             IPM_Resource_Allocation_FinalRevamp   sic = new IPM_Resource_Allocation_FinalRevamp  ();  
-            //List<IPM_Bosscard__c> listBosscard= testdata.createIPMBosscard();
-            IPM_Bosscard__c bosscard2=new IPM_Bosscard__c();
-        bosscard2.Name='Test Data02';
-        bosscard2.IPM_IsSaved__c=true;
-        insert bosscard2;
-            List<IPM_Project__c> ipmProjects= testdata.createIPMProjects(bosscard2.Id);
+            List<IPM_Bosscard__c> listBosscard= testdata.createIPMBosscard();
+            
+            List<IPM_Project__c> ipmProjects= testdata.createIPMProjects(listBosscard[0].Id);
                     
  
                     
@@ -456,21 +450,15 @@ private class IPM_Resource_Allocation_Final_Test{
             Test.stopTest();  
     }
     
-    static testMethod  void testGetIpmuserType(){
+   /* static testMethod  void testGetIpmuserType(){
             Test.startTest();
             ipm_Resource_Allocation_Final_TestConstructor();
             IPM_TestDataUtils testData = new IPM_TestDataUtils();
             IPM_Resource_Allocation_FinalRevamp   sic = new IPM_Resource_Allocation_FinalRevamp  ();  
             
-           //List<IPM_Bosscard__c> listBosscard= testdata.createIPMBosscard();
-           
-             IPM_Bosscard__c bosscard1=new IPM_Bosscard__c();
-        bosscard1.Name='Test Data01';
-        bosscard1.IPM_IsSaved__c=true;
-        insert bosscard1;
+            List<IPM_Bosscard__c> listBosscard= testdata.createIPMBosscard();
             
-            //List<IPM_Project__c> ipmProjects= testdata.createIPMProjects(listBosscard[0].Id);
-            List<IPM_Project__c> ipmProjects= testdata.createIPMProjects(bosscard1.Id);
+            List<IPM_Project__c> ipmProjects= testdata.createIPMProjects(listBosscard[0].Id);
                     
                 
             try{   
@@ -483,7 +471,7 @@ private class IPM_Resource_Allocation_Final_Test{
             }
             
             
-    }
+    }*/
     
    static testMethod  void testShowEditTeam(){
             Test.startTest();
@@ -498,53 +486,5 @@ private class IPM_Resource_Allocation_Final_Test{
             Test.stopTest();  
     }
     
-
-   
-   static  List<IPM_Bosscard__c> createIPMBosscard(){     
-        
-       List<IPM_Bosscard__c> bosscard= [SELECT IPM_BosscardName__c,IPM_IsSaved__c  from IPM_Bosscard__c where IPM_BosscardName__c  ='Testcd1' ];
-       List<IPM_Bosscard__c> ipmBosscards = new List<IPM_Bosscard__c>();
-       
-       IPM_Bosscard__c ipmBosscard  = new IPM_Bosscard__c();
-           
-       if(bosscard.size()==0){
-                  
-
-           ipmBosscard .IPM_BosscardName__c ='Testcd1';
-           ipmBosscard.IPM_Assumptions__c = 'LOjjiihishfifhsifTestcd1';
-           ipmBosscard.IPM_Background__c= 'LOjjiihishfifhsifhifhTestcd1';
-           ipmBosscard.IPM_Constraints__c= 'LOjjiihishfifhsifhTestcd1';
-           ipmBosscard.IPM_Consumer_Need__c= 'LOjjiihishfifhsiTestcd1';
-           ipmBosscard.IPM_Deliverables__c= 'LOjjiihishfifhsifhTestcd1';
-           ipmBosscard.IPM_Potential_Business_Opportunity__c= 'LOjjiihisTestcd1';
-           ipmBosscard.IPM_Resources__c= 'LOjjiihishfifhsifTestcd1';
-           ipmBosscard.IPM_Scope__c= 'LOjjiihishfifhsifhiTestcd1';
-           ipmBosscard.IPM_IsSaved__c = true;
-          // ipmBosscard.IPM_Brand__c= 'LOjjii';
-           //ipmBosscard.IPM_Category__c= 'LOjjii';
-           ipmBosscard.IPM_Brand_Positioning__c= 'Testcd1';
-           //ipmBosscard.IPM_Gate_Keeper__c= 'LOjjii';
-           ipmBosscard.IPM_Target_Launch_Date__c= 'LOjjii';
-           ipmBosscard.IPM_Is_Archived__c= false;
-           
-           insert ipmBosscard;
-           ipmBosscards.add(ipmBosscard);  
-           
-       }
-       
-       else{
-           
-                ipmBosscards= bosscard;  
-           
-       }
-       
-           
-                  
-       return ipmBosscards ;
-       
-       
-   }
-
-
 
 }

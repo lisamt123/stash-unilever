@@ -176,11 +176,6 @@
         <unique>false</unique>
     </fields>
     <label>Global Listening Tree</label>
-    <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
     <nameField>
         <label>Global Listening Tree  Name</label>
         <type>Text</type>

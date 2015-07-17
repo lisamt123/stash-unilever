@@ -1273,13 +1273,7 @@ ToDelete=Asset will be removed by the system automatically at the scheduled dele
         <columns>Channels__c</columns>
         <columns>POS_Asset_Type__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>Carousel_Published__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Asset Name</label>
