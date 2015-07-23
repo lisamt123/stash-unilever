@@ -291,11 +291,6 @@
     </fields>
     <label>Enclosure</label>
     <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
-    <listViews>
         <fullName>CEC_Baltics_Queue_cec_Enclosure</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Baltics Queue</label>
@@ -306,129 +301,281 @@
     </listViews>
     <listViews>
         <fullName>CEC_Benelux_Queue_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>FileName__c</columns>
+        <columns>MailItemName__c</columns>
+        <columns>UPDATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Benelux Queue</label>
+        <language>en_US</language>
         <queue>CEC_Benelux_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Benelux</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_User_Benelux</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Cyprus_Queue_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>FileName__c</columns>
+        <columns>MailItemName__c</columns>
+        <columns>UPDATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Cyprus Queue</label>
+        <language>en_US</language>
         <queue>CEC_Cyprus_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Cyprus</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_User_Cyprus</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Czech_Republic_Queue_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>FileName__c</columns>
+        <columns>ItemValue__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>Active__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Czech Republic Queue</label>
+        <language>en_US</language>
         <queue>CEC_Czech_Republic_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Czech_Republic</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_User_Czech_Republic</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_DACH_Queue_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>FileName__c</columns>
+        <columns>MailItemName__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>Active__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC DACH Queue</label>
+        <language>en_US</language>
         <queue>CEC_DACH_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_DACH</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_User_DACH</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_France_Queue_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>FileName__c</columns>
+        <columns>MailItemName__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>Active__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC France Queue</label>
+        <language>en_US</language>
         <queue>CEC_France_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_General_Queue_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>FileName__c</columns>
+        <columns>MailItemName__c</columns>
+        <columns>Active__c</columns>
+        <columns>UPDATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>General Queue</label>
+        <language>en_US</language>
         <queue>CEC_General_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_UK</role>
+            <role>CEC_User_UK</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Greece_Queue_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>FileName__c</columns>
+        <columns>MailItemName__c</columns>
+        <columns>Brand__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>Active__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Greece Queue</label>
+        <language>en_US</language>
         <queue>CEC_Greece_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_Greece</role>
+            <role>CEC_User_Greece</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Hungary_Queue_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>FileName__c</columns>
+        <columns>MailItemName__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>Active__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Hungary Queue</label>
+        <language>en_US</language>
         <queue>CEC_Hungary_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_Hungary</role>
+            <role>CEC_User_Hungary</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_India_Tier_1_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>FileName__c</columns>
+        <columns>MailItemName__c</columns>
+        <columns>Active__c</columns>
+        <columns>UPDATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>CEC India Tier 1</label>
+        <language>en_US</language>
         <queue>CEC_India_Tier_1</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_India</role>
+            <role>CEC_Manager_South_Asia</role>
+            <role>CEC_User_India</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Italy_Queue_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>FileName__c</columns>
+        <columns>MailItemName__c</columns>
+        <columns>Active__c</columns>
+        <columns>UPDATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Italy Queue</label>
+        <language>en_US</language>
         <queue>CEC_Italy_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_Italy</role>
+            <role>CEC_User_Italy</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Nordic_Queue_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>FileName__c</columns>
+        <columns>MailItemName__c</columns>
+        <columns>Active__c</columns>
+        <columns>OWNER.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Nordic Queue</label>
+        <language>en_US</language>
         <queue>CEC_Nordic_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_Nordic</role>
+            <role>CEC_User_Nordic</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Poland_Queue_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>FileName__c</columns>
+        <columns>MailItemName__c</columns>
+        <columns>Active__c</columns>
+        <columns>UPDATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Poland Queue</label>
+        <language>en_US</language>
         <queue>CEC_Poland_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_Poland</role>
+            <role>CEC_User_Poland</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Portugal_Queue_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>FileName__c</columns>
+        <columns>MailItemName__c</columns>
+        <columns>Active__c</columns>
+        <columns>UPDATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Portugal Queue</label>
+        <language>en_US</language>
         <queue>CEC_Portugal_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_Portugal</role>
+            <role>CEC_User_Portugal</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Spain_Queue_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>FileName__c</columns>
+        <columns>MailItemName__c</columns>
+        <columns>Active__c</columns>
+        <columns>UPDATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Spain Queue</label>
+        <language>en_US</language>
         <queue>CEC_Spain_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_Spain</role>
+            <role>CEC_User_Spain</role>
         </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>test</fullName>
+        <columns>NAME</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>startsWith</operation>
+            <value>D</value>
+        </filters>
+        <label>test D</label>
+        <language>de</language>
     </listViews>
     <nameField>
         <label>Enclosure Name</label>

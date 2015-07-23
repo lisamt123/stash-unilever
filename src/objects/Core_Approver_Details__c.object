@@ -49,7 +49,7 @@
     <compactLayouts>
         <fullName>Ariba_Approver_Compact_Layout</fullName>
         <fields>Interested_Party__c</fields>
-        <fields>Action__c</fields>
+        <fields>CA_Action__c</fields>
         <fields>CA_Role__c</fields>
         <fields>Comments__c</fields>
         <label>Ariba Approver Compact Layout</label>
@@ -805,8 +805,8 @@ NULL))))))))))</formula>
     </recordTypes>
     <searchLayouts>
         <excludedStandardButtons>New</excludedStandardButtons>
-        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <lookupDialogsAdditionalFields>Interested_Party__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Action__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Action_Date__c</lookupDialogsAdditionalFields>

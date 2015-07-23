@@ -93,7 +93,7 @@
 
 <!-- <chatter:feedWithFollowers entityId="{!$CurrentPage.parameters.groupId}"/> -->
 
-<chatter:feed entityId="{!$CurrentPage.parameters.groupId}" rendered="{!bol_grp_member_message}"  />
+<chatter:feed entityId="{!$CurrentPage.parameters.groupId}" rendered="{!bol_grp_member_message}"/>
  <apex:PageMessages escape="false"/>
  
 </apex:page>

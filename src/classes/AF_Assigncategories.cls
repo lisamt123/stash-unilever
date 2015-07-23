@@ -1,7 +1,5 @@
 Public class AF_Assigncategories
 {
-
-
   Public boolean catpanel{set;get;}
     public AF_Assigncategories(ApexPages.StandardController controller) {
           Lead1 =  (Lead) controller.getRecord();
@@ -87,5 +85,8 @@ Public class AF_Assigncategories
                  ulist = uu;
               }
     }
-
+   /* public list<user> getuserdata()
+    {
+       return ulist;
+    }*/
 }

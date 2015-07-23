@@ -81,15 +81,6 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_key</fullName>
-        <field>Key__c</field>
-        <formula>AF_Brand_Estimate__r.Name &amp;&quot;|&quot;&amp; text(AF_Agency_Entity__r.AF_Country__c) &amp;&quot;|&quot;&amp; text(AF_Unilever_Entity__r.AF_Country__c)</formula>
-        <name>Update key</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
     <rules>
         <fullName>Check FY</fullName>
         <actions>

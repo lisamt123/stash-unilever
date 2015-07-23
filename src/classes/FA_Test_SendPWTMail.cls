@@ -5,7 +5,7 @@ public class FA_Test_SendPWTMail
     {
         Id profId = [SELECT Id FROM Profile WHERE Name=: profileName].Id;
         User userData = new User(FirstName='Test', LastName='User', Alias=aliasId, IsActive=True, Email='rejeesh.raghavan@accenture.com',
-                                 ProfileId=profId, Username=aliasId+'@test.com', EmailEncodingKey='UTF-8', CommunityNickname='Test',
+                                 ProfileId=profId, Username=aliasId+'@test.com', EmailEncodingKey='UTF-8', CommunityNickname='Test12345',
                                  LanguageLocaleKey='en_US', LocaleSidKey='en_US', TimeZoneSidKey='GMT');
         insert userData;
         return userData;

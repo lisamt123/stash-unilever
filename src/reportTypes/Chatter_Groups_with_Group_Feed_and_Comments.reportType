@@ -74,6 +74,11 @@
             <field>Owner.Market_Cluster__c</field>
             <table>CollaborationGroup</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CanHaveGuests</field>
+            <table>CollaborationGroup</table>
+        </columns>
         <masterLabel>Chatter Groups</masterLabel>
     </sections>
     <sections>
@@ -168,6 +173,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>CreatedBy</field>
+            <table>CollaborationGroup.FeedItems.Comments</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IsBest</field>
             <table>CollaborationGroup.FeedItems.Comments</table>
         </columns>
         <columns>
