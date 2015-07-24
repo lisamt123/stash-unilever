@@ -2,7 +2,7 @@
 
 	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js" />
 	<apex:attribute name="betobj" assignTo="{!bet}" description="Identifier of an related BET" type="uw_BET__c" required="true"/>
-	<apex:attribute name="cdata" assignTo="{!compData}" description="Data transfer object" type="CategoryComponentData" required="false"/>
+	<apex:attribute name="cdata" assignTo="{!compData}" description="Data transfer object" type="BET_CategoryComponentData" required="false"/>
 
     <script type="text/javascript">
 

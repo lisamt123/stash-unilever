@@ -1,10 +1,9 @@
 <apex:component controller="BET_NewBetComponentController" allowDML="true">
 
 	<apex:attribute name="betobj" description="Current BET object" type="uw_BET__c" required="true" assignTo="{!bet}"/>
-	<apex:attribute name="cdata" description="Component Data Transfer Object" type="CategoryComponentData" required="true" assignTo="{!compData}" />
+	<apex:attribute name="cdata" description="Component Data Transfer Object" type="BET_CategoryComponentData" required="true" assignTo="{!compData}" />
 	<apex:attribute name="cancelURL" description="Cancel action redirect URL" type="String" required="false" assignTo="{!retUrl}" />
 	<apex:attribute name="saveURL" description="Save action redirect URL" type="String" required="false" assignTo="{!forwardUrl}" />
-    <apex:attribute name="foredit" description="smth" type="String" required="true"/>
 
     <apex:outputPanel id="mainBETPanel" rendered="{!NOT(goToMemberSelection)}">
 		<div class="form-header">
