@@ -17,7 +17,7 @@ public class BET_MasterDataServiceTest {
 	@isTest static void getBETBrandPositioningsForGivenCategoryAndGroupTest() {
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
-		MDO_BrandPositions__c positioning = BET_TestUtils.createBrandPositioning(category);
+		BET_TestUtils.createBrandPosition(category);
 		List<MDO_BrandPosition__c> positions = BET_MasterDataService.getBETBrandPositioningsForGivenCategoryAndGroup(category.id);
 		System.assertEquals(positions.size(),1);
 	}
