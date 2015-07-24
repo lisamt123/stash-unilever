@@ -73,11 +73,9 @@ public without sharing class BET_MasterDataService{
 			return new Set<String>();
 		} else {
 			Set<String> subcategories = new Set<String>{};
-			List<MDO_Category__c> firsAndSecondSublevels = [select id from MDO_Category__c where parent_id__r.parent_id__c =: category or parent_id__c =: category];
-			List<MDO_Category__c> thirdSubLevel = [select id from MDO_Category__c where parent_id__c in:firsAndSecondSublevels];
-			firsAndSecondSublevels.addAll(thirdSubLevel);
+			List<MDO_Category__c> firsAndSecondAndThirdSublevels = [select id from MDO_Category__c where parent_id__r.parent_id__r.parent_id__c =: category or parent_id__r.parent_id__c =:category or parent_id__c =: category];
 			subcategories.add(category);
-			for(MDO_Category__c cat : firsAndSecondSublevels){
+			for(MDO_Category__c cat : firsAndSecondAndThirdSublevels){
 				subcategories.add(cat.id);
 			}
 		return subcategories;
@@ -94,19 +92,6 @@ public without sharing class BET_MasterDataService{
 	public static List<sObject> getBETBrandsForGivenPositioning(String position){
 		System.debug('Entering getBETBrandsForGivenPositioning : ' + position);
 		return  [select id,name from MDO_Brand__C where id in (select brand_id__c from MDO_BrandPositions__c where brand_position_id__c =:position) order by name asc];
-	}
-
-	/************************************************************
-		Purpose: Method indicates id given category has been migrated to IPM
-		Parameters: Id of related category
-		Returns: Boolean : true if it has been migrated to IPM otherwise false
-		Throws: -
-	*************************************************************/
-
-	public static Boolean isCategoryMigratedToIPM(String category){
-		System.debug('Entering isCategoryMigratedToIPM : ' + category);
-		List<sObject> categories = [select id from MDO_ProductCategorysubscriptions__c where product_category_id__c =: category];
-		return !categories.isEmpty();
 	}
 
 	/************************************************************
