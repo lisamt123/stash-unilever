@@ -10,7 +10,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 public with sharing class BET_NewBetComponentController {
 
-    public CategoryComponentData compData {get;set;}
+    public BET_CategoryComponentData compData {get;set;}
     public Boolean goToMemberSelection {get;set;}
     public String retURL {get;set;}
     public String forwardUrl {get;set;}
@@ -118,10 +118,10 @@ public with sharing class BET_NewBetComponentController {
     private List<String> validateBET(uw_BET__c betObject){
         List<String> errors = new List<String>();
         
-        if(String.isBlank(betObject.name)) errors.add('Name Field is mandatory');
-        if(String.isBlank(betObject.Category_Group__c)) errors.add('Category Group Name is mandatory');
-        if(String.isBlank(betObject.Product_Category__c)) errors.add('Category Name is mandatory');
-        if(String.isBlank(betObject.Brand_Position__c)) errors.add('Brand Position is mandatory');
+        if(String.isBlank(betObject.name)) errors.add(Label.BET_BetNameMandatory);
+        if(String.isBlank(betObject.Category_Group__c)) errors.add(Label.BET_BetCategoryGroupMandatory);
+        if(String.isBlank(betObject.Product_Category__c)) errors.add(Label.BET_BetCategoryMandatory);
+        if(String.isBlank(betObject.Brand_Position__c)) errors.add(Label.BET_BetBrandPositionMandatory);
         
         return errors;
     }

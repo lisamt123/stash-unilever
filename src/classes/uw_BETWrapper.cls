@@ -202,7 +202,9 @@ public with sharing class uw_BETWrapper {
         public String betBrandName;
         public String betRegion;
         public String betProjectName;
+        public String betProjectId;
         public String betIPMProjectName;
+        public String betIPMProjectId;
         public String betStatus;
         public Datetime betLastUpdated;
         public Boolean betActive;
@@ -227,8 +229,11 @@ public with sharing class uw_BETWrapper {
         public String betBorderColor;
         public String betIconLocation; 
         public Datetime betLaunchDate;
+
+        public Boolean currentUserHasAccessToIPM;
         
-        public BetSearchItem(String betId, String betName, String betChatterGroupId, Datetime betFinalRelease, String betPresentationId, String betIconLocation, String betDescription, String betBrandName, String betRegion, String betProjectName, 
+        public BetSearchItem(String betId, String betName, String betChatterGroupId, Datetime betFinalRelease, String betPresentationId, String betIconLocation, String betDescription, String betBrandName, String betRegion, String betProjectName,
+            String betIPMProjectName,  
             String betStatus, Datetime betLastUpdated, String betOwnerName, Boolean betActive, Boolean betHasAccess, Boolean betOwner, String betBrandKeyword, 
             String betCategoryKeyword, String betOwnerKeyword, String betRegionKeyword, String betInfoprojectKeyword){
             
@@ -238,6 +243,10 @@ public with sharing class uw_BETWrapper {
         	this.betBrandName = betBrandName;
         	this.betRegion = betRegion; 
         	this.betProjectName = betProjectName;
+            this.betIPMProjectName = betIPMProjectName;
+            if(String.isBlank(this.betProjectName)){
+                this.betProjectName = this.betIPMProjectName;
+            }
         	this.betStatus = betStatus;
         	this.betLastUpdated = betLastUpdated;
         	this.betActive = betActive;
@@ -263,7 +272,9 @@ public with sharing class uw_BETWrapper {
             this.betBrandName = bet.Product_Brand__r.Name;
             this.betRegion = bet.Region__c; 
             this.betProjectName = bet.Inoplan_Project__r.Name;
+            this.betProjectId = bet.Inoplan_Project__c;
             this.betIPMProjectName = bet.IPM_Project__r.Name;
+            this.betIPMProjectId = bet.IPM_Project__c;
             this.betStatus = bet.Status__c;
             this.betLastUpdated = bet.LastModifiedDate;
             this.betActive = betActive; 

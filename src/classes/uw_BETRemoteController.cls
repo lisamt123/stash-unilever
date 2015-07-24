@@ -149,7 +149,9 @@ public with sharing class uw_BETRemoteController {
         Map<String, Object> resultMap = new Map<String, Object>();
         try{
             uw_BETWrapper.DetailWrapper results = uw_BETDetailService.getBETDetails(betId, currentUserId);
-
+            if(results.bet.betIPMProjectId != null) {
+                results.bet.currentUserHasAccessToIPM = IPM_BETUpdateService.UserAccess((Id)betId, results.bet.betIPMProjectId,currentUserId);
+            }
             resultMap.put('bet', results.bet);
             resultMap.put('members', results.memberSetting);
             return new uw_BETWrapper('Result', '0', resultMap,'');        

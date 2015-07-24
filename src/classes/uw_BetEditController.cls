@@ -38,7 +38,7 @@ public with sharing class uw_BetEditController {
     public Boolean showClearBanner{get;set;}
     public Boolean showClearIcon{get;set;}
 
-    public CategoryComponentData compData {get;set;}
+    public BET_CategoryComponentData compData {get;set;}
 
     /*****************************************************************************************
     Purpose: Constructor 
@@ -66,7 +66,7 @@ public with sharing class uw_BetEditController {
         categoryMigrated = BET_MasterDataService.isCategoryMigratedToIPM(bet.Product_Category__c);
         categoryNotMigrated = !categoryMigrated;
 
-        compData = new CategoryComponentData(bet);
+        compData = new BET_CategoryComponentData(bet);
         compData.categoryMigrated = categoryMigrated;
         compData.categoryNotMigrated = categoryNotMigrated;
 
@@ -196,9 +196,16 @@ public with sharing class uw_BetEditController {
                     Database.rollback(sp);
                     return null;
                 }
+            } else {
+                moveComponentDataToBET();
+                List<String> errorMessages = validateBET(bet);
+                if(errorMessages.isEmpty()){
+                    update bet;   
+                } else {
+                    displayErrors(errorMessages);
+                }
             }
-            
-            update bet;
+
             
         } catch (Exception e){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception Saving record '+e));
