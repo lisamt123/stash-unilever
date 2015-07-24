@@ -1,0 +1,98 @@
+<apex:component controller="BET_NewBetComponentController" allowDML="true">
+
+	<apex:attribute name="betobj" description="Current BET object" type="uw_BET__c" required="true" assignTo="{!bet}"/>
+	<apex:attribute name="cdata" description="Component Data Transfer Object" type="CategoryComponentData" required="true" assignTo="{!compData}" />
+	<apex:attribute name="cancelURL" description="Cancel action redirect URL" type="String" required="false" assignTo="{!retUrl}" />
+	<apex:attribute name="saveURL" description="Save action redirect URL" type="String" required="false" assignTo="{!forwardUrl}" />
+    <apex:attribute name="foredit" description="smth" type="String" required="true"/>
+
+    <apex:outputPanel id="mainBETPanel" rendered="{!NOT(goToMemberSelection)}">
+		<div class="form-header">
+    		<div class="form-item">
+                <div class="item-label">
+    				<apex:outputLabel >Brand experience details</apex:outputLabel>
+        		</div>
+        	</div>
+        </div>
+
+        <div>
+        	<div class="form-mandatory">
+                <div class="item-label">
+        			<apex:outputLabel >* Marked fields are mandatory</apex:outputLabel>
+        		</div>
+        	</div>
+    	</div>
+
+        <div class="form-item-wrapper">
+            <div class="form-item">
+                <div class="item-label">
+                    <apex:outputLabel >*BET Name</apex:outputLabel>
+                    <apex:outputPanel layout="inline" styleClass="question-icon"
+                                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Name.inlineHelpText)}"
+                                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Name.inlineHelpText}" />
+                </div>
+                <div class="item-input">
+                    <apex:inputfield id="betnameid" value="{!bet.Name}"/>
+                </div>
+            </div>             
+        </div>
+
+        <div>
+            <c:BET_CategoryBrandSelectionComponent betobj="{!bet}" cdata="{!compData}"/>
+
+            <div class="clear">&nbsp;</div>
+
+            <div class="form-item">
+                <div class="item-label">
+                  	<apex:outputLabel >Inherit Branding</apex:outputLabel>
+                    <apex:outputPanel layout="inline" styleClass="question-icon"
+                        		rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Inherit_Branding__c.inlineHelpText)}"
+                        		html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Inherit_Branding__c.inlineHelpText}" />
+                </div>
+                <div class="item-input-checkbox">
+                  	<apex:inputfield id="inheritbrandngid" value="{!bet.Inherit_Branding__c}"/>
+                    <script>document.getElementById('{!$Component.inheritbrandngid}').disabled = {!compData.leadIPM}</script>
+                </div>
+            </div>
+            <div class="form-item">
+                <div class="item-label">
+                  	<apex:outputLabel >Target Launch Date</apex:outputLabel>
+                    <apex:outputPanel layout="inline" styleClass="question-icon"
+                        		rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText)}"
+                        		html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText}" />
+                </div>
+                <div class="item-input-date">
+                  	<apex:inputField id="tldid" value="{!bet.Launch_Date__c}"/>
+                    <script>document.getElementById('{!$Component.tldid}').disabled = {!compData.leadIPM}</script>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="form-item">
+                <div class="item-label">
+                    <apex:outputLabel >Description</apex:outputLabel>
+                    <apex:outputPanel layout="inline" styleClass="question-icon"
+                                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText)}"
+                                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText}" />
+                </div>
+                <div class="item-input">
+                    <apex:inputTextarea id="descid" rows="5" value="{!bet.Description__c}"/>
+                    <script>document.getElementById('{!$Component.descid}').disabled = {!compData.leadIPM}</script>
+                </div>
+            </div>
+        </div>
+
+        <div class="betActionButtons">
+            <apex:commandButton value="Cancel" styleClass="btn-cancel" action="{!cancelBET}" immediate="true"/>
+            <apex:commandButton value="Create new BET & add members" styleClass="btn-create-bet" action="{!saveBETandAddMembers}" rendered="{!bet.id == null}"/>
+            <apex:commandButton value="Update BET & add members" styleClass="btn-create-bet" action="{!saveBETandAddMembers}" rendered="{!bet.id != null}"/>
+        </div>
+
+    </apex:outputPanel>
+
+    <apex:outputPanel id="betMembers">
+        <!--<c:BET_SuggestMembers rendered="{!goToMemberSelection}"/>-->
+    </apex:outputPanel>
+
+</apex:component>

@@ -38,6 +38,8 @@ public with sharing class uw_BetEditController {
     public Boolean showClearBanner{get;set;}
     public Boolean showClearIcon{get;set;}
 
+    public CategoryComponentData compData {get;set;}
+
     /*****************************************************************************************
     Purpose: Constructor 
     ******************************************************************************************/  
@@ -47,6 +49,8 @@ public with sharing class uw_BetEditController {
         runJsSuccess = false;
         moveHome = false;
         currentId = System.currentPageReference().getParameters().get('Id');
+        Boolean categoryMigrated = null;
+        Boolean categoryNotMigrated = null;
 
         banner = new Document(); 
         icon = new Document(); 
@@ -54,9 +58,17 @@ public with sharing class uw_BetEditController {
 
         bet = [ SELECT Id, Name, Inoplan_Project__c, uw_Brand__c, Category__c, Sub_Category__c, Scope__c, Market_Clusters__c,
                         Launch_Date__c, Sharing__c, Description__c, Banner_1_Location__c, Background_Colour__c, Icon_Location__c, OwnerId,
-                        Font_Colour__c, Banner_Colour__c, Component_Colour__c, Is_Archived__c, Studio_Chatter_Group__c  FROM uw_BET__c WHERE Id = :currentId ];
+                        Font_Colour__c, Banner_Colour__c, Component_Colour__c, Is_Archived__c, Studio_Chatter_Group__c,
+                        Category_Group__c, IPM_Project__c,IPM_Project__r.name,Brand_Position__c, Product_Category__c,Product_Brand__c,Inherit_Branding__c FROM uw_BET__c WHERE Id = :currentId ];
 
         initialOwnerId = initialBETShare.UserOrGroupId;
+
+        categoryMigrated = BET_MasterDataService.isCategoryMigratedToIPM(bet.Product_Category__c);
+        categoryNotMigrated = !categoryMigrated;
+
+        compData = new CategoryComponentData(bet);
+        compData.categoryMigrated = categoryMigrated;
+        compData.categoryNotMigrated = categoryNotMigrated;
 
         if(bet.Banner_1_Location__c != null){
             showClearBanner = true;
@@ -155,23 +167,29 @@ public with sharing class uw_BetEditController {
 
             if (bet.ownerId != initialOwnerId) {
                 Savepoint sp = Database.setSavepoint();
-                try {                    
-                    update bet;   
+                try {                   
+                    moveComponentDataToBET();
+                    List<String> errorMessages = validateBET(bet);
+                    if(errorMessages.isEmpty()){
+                        update bet;   
                     
-                    if (Test.isRunningTest() && throwUTException == 1) {
-                        throw new BetException('Exception');
-                    }                                      
+                        if (Test.isRunningTest() && throwUTException == 1) {
+                            throw new BetException('Exception');
+                        }                                      
                         
-                    uw_OwnerUpdate ou = new uw_OwnerUpdate();
-                    ou.addInitialSharersAsStandard(bet, bet.ownerId, bet.Id);
-                    ou.updateCollaborationOwner(bet, initialOwnerId, bet.ownerId);
+                        uw_OwnerUpdate ou = new uw_OwnerUpdate();
+                        ou.addInitialSharersAsStandard(bet, bet.ownerId, bet.Id);
+                        ou.updateCollaborationOwner(bet, initialOwnerId, bet.ownerId);
                     
-                    banner = new Document();    
-                    icon = new Document();
+                        banner = new Document();    
+                        icon = new Document();
                     
-                    runJsSuccess = true;
+                        runJsSuccess = true;
 
-                    return null;
+                        return null;
+                    } else {
+                        displayErrors(errorMessages);
+                    }
                 }catch (Exception e) {
                     System.Debug('Problem with BET Owner change' + e.getMessage()); 
                     ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Problem with BET Owner change' + e.getMessage()));
@@ -193,6 +211,54 @@ public with sharing class uw_BetEditController {
         runJsSuccess = true;
 
         return null;
+    }
+
+    /************************************************************
+        Purpose: Method copies BET attributes from DTO to actual BET record
+        Parameters: -
+        Returns: -
+        Throws: -
+    *************************************************************/
+    @TestVisible
+    private void moveComponentDataToBET(){
+        System.debug('Entering moveComponentDataToBET : ' + bet + ', ' + compData);
+        bet.Inoplan_Project__c = compData.inoplanProject;
+        bet.IPM_Project__c = compData.impProject;
+        bet.Category_Group__c = compData.categoryGroup;
+        bet.Product_Category__c = compData.category;
+        bet.Brand_Position__c = compData.brandpositioning;
+        bet.Product_Brand__c = compData.brand;
+    }
+
+    /************************************************************
+        Purpose: Method validates BET record
+        Parameters: Related Bet record
+        Returns: List of error messages
+        Throws: -
+    *************************************************************/
+    @TestVisible
+    private List<String> validateBET(uw_BET__c betObject){
+        List<String> errors = new List<String>();
+        
+        if(String.isBlank(betObject.name)) errors.add('Name Field is mandatory');
+        if(String.isBlank(betObject.Category_Group__c)) errors.add('Category Group Name is mandatory');
+        if(String.isBlank(betObject.Product_Category__c)) errors.add('Category Name is mandatory');
+        if(String.isBlank(betObject.Brand_Position__c)) errors.add('Brand Position is mandatory');
+        
+        return errors;
+    }
+
+    /************************************************************
+        Purpose: Method displays error messages
+        Parameters: List of error messages
+        Returns: -
+        Throws: -
+    *************************************************************/
+    @TestVisible
+    private void displayErrors(List<String> errorsForDisplay){
+        for(String error : errorsForDisplay){
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,error));
+        }
     }
 
     /*****************************************************************************************

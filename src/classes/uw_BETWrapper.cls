@@ -202,6 +202,7 @@ public with sharing class uw_BETWrapper {
         public String betBrandName;
         public String betRegion;
         public String betProjectName;
+        public String betIPMProjectName;
         public String betStatus;
         public Datetime betLastUpdated;
         public Boolean betActive;
@@ -259,9 +260,10 @@ public with sharing class uw_BETWrapper {
             this.betId = bet.Id;
             this.betName = bet.Name;
             this.betDescription = bet.Description__c;
-            this.betBrandName = bet.uw_Brand__r.Name;
+            this.betBrandName = bet.Product_Brand__r.Name;
             this.betRegion = bet.Region__c; 
             this.betProjectName = bet.Inoplan_Project__r.Name;
+            this.betIPMProjectName = bet.IPM_Project__r.Name;
             this.betStatus = bet.Status__c;
             this.betLastUpdated = bet.LastModifiedDate;
             this.betActive = betActive; 

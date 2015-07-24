@@ -1,0 +1,33 @@
+<apex:page showHeader="true" sidebar="false" standardController="uw_BET__c" extensions="BET_NewBetController">
+
+	<apex:includeScript value="{!URLFOR($Resource.jscolor_1_4_1, 'jscolor/jscolor.js')}" />
+	<apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />    
+	<apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />    
+	<apex:stylesheet value="{!$Resource.BETNewBetStyles}" />
+    
+	<style>
+		.question-icon, .question-icon-left {
+    		display: inline-block;
+    		width: 13px;
+    		height: 13px;
+    		margin-left: 5px;
+    		background: url({!$Resource.BETApp}/images/question-mark.png) center center/100% no-repeat;
+    		cursor: pointer;
+		}
+	</style>
+
+	<apex:form >
+    	<apex:pageMessages escape="false"/>
+    	<c:BET_NewBetComponent betobj="{!bet}" cdata="{!componentData}"/>
+    	<!--<c:BET_upsertBET ProjectId="a4Xc00000003MSV" 
+    					 Project_name="Project Name" 
+    					 Category_name="a6Fc00000004J5EEAU" 
+    					 Category="a6Fc00000004J5TEAU" 
+    					 Brand_Position="a1xc0000001R0CzAAK" 
+    					 OwnerId="005c0000001tW5X" 
+    					 TLD="{!TODAY()}" 
+    					 Description="This is some description"
+    					 Callback="/apex/bet"/>-->
+	</apex:form>
+
+</apex:page>
