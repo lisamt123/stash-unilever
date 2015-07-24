@@ -73,9 +73,9 @@ public without sharing class BET_MasterDataService{
 			return new Set<String>();
 		} else {
 			Set<String> subcategories = new Set<String>{};
-			List<MDO_Category__c> firsAndSecondAndThirdSublevels = [select id from MDO_Category__c where parent_id__r.parent_id__r.parent_id__c =: category or parent_id__r.parent_id__c =:category or parent_id__c =: category];
+			List<MDO_Category__c> firsAndSecondSublevels = [select id from MDO_Category__c where parent_id__r.parent_id__c =:category or parent_id__c =: category];
 			subcategories.add(category);
-			for(MDO_Category__c cat : firsAndSecondAndThirdSublevels){
+			for(MDO_Category__c cat : firsAndSecondSublevels){
 				subcategories.add(cat.id);
 			}
 		return subcategories;
