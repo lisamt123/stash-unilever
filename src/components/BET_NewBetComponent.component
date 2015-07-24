@@ -36,6 +36,15 @@
             </div>             
         </div>
 
+        <div class="form-item">
+            <div class="item-label">
+                <apex:outputLabel >BET Owner</apex:outputLabel>
+            </div>
+            <div class="item-input">
+                <apex:inputfield styleClass="hideOwner" value="{!bet.ownerId}"/>
+            </div>
+        </div>
+
         <div>
             <c:BET_CategoryBrandSelectionComponent betobj="{!bet}" cdata="{!compData}"/>
 
