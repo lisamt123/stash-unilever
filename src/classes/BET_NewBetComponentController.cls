@@ -81,7 +81,7 @@ public with sharing class BET_NewBetComponentController {
     *************************************************************/
     @TestVisible
     private void proceedWithSave(Boolean redirectToMembersComponent){
-        moveComponentDataToBET();
+        bet = moveComponentDataToBET(bet,compData);
         List<String> errorMessages = validateBET(bet);
         if(errorMessages.isEmpty()){
             upsert bet;
@@ -93,19 +93,13 @@ public with sharing class BET_NewBetComponentController {
 
     /************************************************************
         Purpose: Method copies BET attributes from DTO to actual BET record
-        Parameters: -
-        Returns: -
+        Parameters: - bet object, dto object
+        Returns: - initiated bet object
         Throws: -
     *************************************************************/
     @TestVisible
-    private void moveComponentDataToBET(){
-        System.debug('Entering moveComponentDataToBET : ' + bet + ', ' + compData);
-        bet.Inoplan_Project__c = compData.inoplanProject;
-        bet.IPM_Project__c = compData.impProject;
-        bet.Category_Group__c = compData.categoryGroup;
-        bet.Product_Category__c = compData.category;
-        bet.Brand_Position__c = compData.brandpositioning;
-        bet.Product_Brand__c = compData.brand;
+    private uw_BET__c moveComponentDataToBET(uw_BET__c bet,BET_CategoryComponentData compData){
+        return uw_BETUtil.moveComponentDataToBET(bet,compData);
     }
 
     /************************************************************
@@ -116,14 +110,7 @@ public with sharing class BET_NewBetComponentController {
     *************************************************************/
     @TestVisible
     private List<String> validateBET(uw_BET__c betObject){
-        List<String> errors = new List<String>();
-        
-        if(String.isBlank(betObject.name)) errors.add(Label.BET_BetNameMandatory);
-        if(String.isBlank(betObject.Category_Group__c)) errors.add(Label.BET_BetCategoryGroupMandatory);
-        if(String.isBlank(betObject.Product_Category__c)) errors.add(Label.BET_BetCategoryMandatory);
-        if(String.isBlank(betObject.Brand_Position__c)) errors.add(Label.BET_BetBrandPositionMandatory);
-        
-        return errors;
+        return uw_BETUtil.validateBET(betObject);
     }
 
     /************************************************************

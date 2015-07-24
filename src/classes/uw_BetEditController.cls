@@ -63,7 +63,7 @@ public with sharing class uw_BetEditController {
 
         initialOwnerId = initialBETShare.UserOrGroupId;
 
-        categoryMigrated = BET_MasterDataService.isCategoryMigratedToIPM(bet.Product_Category__c);
+        categoryMigrated = IPM_BETUpdateService.CategoryCheck(bet.Product_Category__c);
         categoryNotMigrated = !categoryMigrated;
 
         compData = new BET_CategoryComponentData(bet);
@@ -168,7 +168,7 @@ public with sharing class uw_BetEditController {
             if (bet.ownerId != initialOwnerId) {
                 Savepoint sp = Database.setSavepoint();
                 try {                   
-                    moveComponentDataToBET();
+                    bet = moveComponentDataToBET(bet,compData);
                     List<String> errorMessages = validateBET(bet);
                     if(errorMessages.isEmpty()){
                         update bet;   
@@ -197,7 +197,7 @@ public with sharing class uw_BetEditController {
                     return null;
                 }
             } else {
-                moveComponentDataToBET();
+                bet = moveComponentDataToBET(bet,compData);
                 List<String> errorMessages = validateBET(bet);
                 if(errorMessages.isEmpty()){
                     update bet;   
@@ -222,19 +222,13 @@ public with sharing class uw_BetEditController {
 
     /************************************************************
         Purpose: Method copies BET attributes from DTO to actual BET record
-        Parameters: -
-        Returns: -
+        Parameters: - bet object, dto object
+        Returns: - initiated bet object
         Throws: -
     *************************************************************/
     @TestVisible
-    private void moveComponentDataToBET(){
-        System.debug('Entering moveComponentDataToBET : ' + bet + ', ' + compData);
-        bet.Inoplan_Project__c = compData.inoplanProject;
-        bet.IPM_Project__c = compData.impProject;
-        bet.Category_Group__c = compData.categoryGroup;
-        bet.Product_Category__c = compData.category;
-        bet.Brand_Position__c = compData.brandpositioning;
-        bet.Product_Brand__c = compData.brand;
+    private uw_BET__c moveComponentDataToBET(uw_BET__c bet,BET_CategoryComponentData compData){
+        return uw_BETUtil.moveComponentDataToBET(bet,compData);
     }
 
     /************************************************************
@@ -245,14 +239,7 @@ public with sharing class uw_BetEditController {
     *************************************************************/
     @TestVisible
     private List<String> validateBET(uw_BET__c betObject){
-        List<String> errors = new List<String>();
-        
-        if(String.isBlank(betObject.name)) errors.add('Name Field is mandatory');
-        if(String.isBlank(betObject.Category_Group__c)) errors.add('Category Group Name is mandatory');
-        if(String.isBlank(betObject.Product_Category__c)) errors.add('Category Name is mandatory');
-        if(String.isBlank(betObject.Brand_Position__c)) errors.add('Brand Position is mandatory');
-        
-        return errors;
+        return uw_BETUtil.validateBET(betObject);
     }
 
     /************************************************************
