@@ -46,7 +46,6 @@
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <customHelpPage>be_help_pop_up</customHelpPage>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -134,6 +133,20 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Brand_Position__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>BrandPosition</label>
+        <referenceTo>MDO_BrandPosition__c</referenceTo>
+        <relationshipLabel>Brand Experience List</relationshipLabel>
+        <relationshipName>Brand_Experience_List</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Brand__c</fullName>
         <externalId>false</externalId>
         <formula>HYPERLINK(&quot;/&quot; +  uw_Brand__r.Id , uw_Brand__r.Name  , &quot;_self&quot;)</formula>
@@ -144,6 +157,20 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Category_Group__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Category Group</label>
+        <referenceTo>MDO_Category__c</referenceTo>
+        <relationshipLabel>Brand Experience List</relationshipLabel>
+        <relationshipName>Brand_Experience_List</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Category_Keyword_Search__c</fullName>
@@ -661,6 +688,20 @@ DATE(YEAR(Launch_Date__c)-1, 6, 30)
         <type>Url</type>
     </fields>
     <fields>
+        <fullName>IPM_Project__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>IPM Project</label>
+        <referenceTo>IPM_Project__c</referenceTo>
+        <relationshipLabel>Brand Experience List</relationshipLabel>
+        <relationshipName>Brand_Experience_List</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Icon_Location__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>The Icon appears on the Search pages. 
@@ -872,6 +913,20 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Product_Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Brand</label>
+        <referenceTo>MDO_Brand__c</referenceTo>
+        <relationshipLabel>Brand Experience List</relationshipLabel>
+        <relationshipName>Brand_Experience_List</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Product_Category_Sub_Division__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Which category this BET will sit under. For example, &apos;Foods&apos; or &apos;Refreshment&apos;.</inlineHelpText>
@@ -907,6 +962,20 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Product_Category__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Product Category</label>
+        <referenceTo>MDO_Category__c</referenceTo>
+        <relationshipLabel>Brand Experience List (Product Category)</relationshipLabel>
+        <relationshipName>Brand_Experience_List1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Project_ID__c</fullName>
