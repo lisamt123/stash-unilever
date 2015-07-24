@@ -1567,6 +1567,7 @@
         <members>AF_Brand_Estimate__c.Brand_Estimate_with_Cat_Finance</members>
         <members>AF_Brand_Estimate__c.Brand_Estimate_with_Controller_Review</members>
         <members>AF_Brand_Estimate__c.Brand_Estimate_with_ReadyForPO</members>
+        <members>FAU_Participant__c.FAU_Request_New_Personal_Assistant_User</members>
         <members>ar_Application__c.AR_Application_approval_process</members>
         <members>cec_Fulfilment__c.CEC_Baltics_Quality_Check</members>
         <members>cec_Fulfilment__c.CEC_Benelux_Quality_Check</members>
@@ -2882,6 +2883,9 @@
         <name>Document</name>
     </types>
     <types>
+        <members>FAU_Program_Protected</members>
+        <members>FAU_Program_Protected/FAU_PA_Introduction</members>
+        <members>FAU_Program_Protected/FAU_Request_New_Upgrade_Personal_Assistant_User</members>
         <members>TO_Emails_France</members>
         <members>TO_Emails_France/TO_Auto_Response_Template</members>
         <name>EmailTemplate</name>
@@ -3716,6 +3720,7 @@
         <members>FAU_Milestone__c</members>
         <members>FAU_Module_Participant__c</members>
         <members>FAU_Module__c</members>
+        <members>FAU_Participant__c</members>
         <members>FAU_Program__c</members>
         <members>FAU_Webinar_Participant__c</members>
         <members>FAU_Webinar__c</members>
