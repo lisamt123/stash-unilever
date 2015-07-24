@@ -134,4 +134,11 @@
         <fullName>FA_Member_Access__c</fullName>
         <label>Member Access</label>
     </sharingReasons>
+    <validationRules>
+        <fullName>FA_CourseName_Instructor</fullName>
+        <active>false</active>
+        <description>Instructor should not be able to edit the course name.</description>
+        <errorConditionFormula>IF($Profile.Name=&apos;FA - Instructor&apos;,  ISCHANGED( Name ) ,  false)</errorConditionFormula>
+        <errorMessage>Instructor cannot edit the Course Name.</errorMessage>
+    </validationRules>
 </CustomObject>
