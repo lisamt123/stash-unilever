@@ -13,7 +13,8 @@ public with sharing class IPM_BETUpdateService {
 
 	public static Boolean CategoryCheck(String selectedCategory) {
 		try{
-			return true;
+			List<MDO_ProductCategorysubscriptions__c> subscriptions = [select id from MDO_ProductCategorysubscriptions__c where product_category_id__c=:selectedCategory limit 1];
+			return !subscriptions.isEmpty();
 		}catch(Exception e) {
 			throw new IPM_CustomException(e);
 		}
