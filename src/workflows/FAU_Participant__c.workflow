@@ -71,7 +71,7 @@
         <description>FAU Send Email to Administrator Create/Upgrade User</description>
         <protected>false</protected>
         <recipients>
-            <recipient>ankit.bhardwaj@unilever.com</recipient>
+            <recipient>suryanarayanan.ramachandran@unilever.com</recipient>
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
