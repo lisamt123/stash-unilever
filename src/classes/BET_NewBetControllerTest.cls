@@ -11,7 +11,7 @@ private class BET_NewBetControllerTest {
 		insert bet;
 		ApexPages.currentPage().getParameters().put('id',bet.id);
 		BET_NewBetController controller = new BET_NewBetController(new ApexPages.StandardController(new uw_BET__c()));
-		System.assert(controller.bet.id != null);
+		System.assertEquals(controller.bet.id,bet.id);
 	}
 	
 }

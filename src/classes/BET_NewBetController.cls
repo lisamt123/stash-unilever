@@ -31,7 +31,7 @@ public with sharing class BET_NewBetController {
                             Product_Category__c,Product_Brand__c 
                     FROM uw_BET__c WHERE Id = :currentId ];
 
-            categoryMigrated = BET_MasterDataService.isCategoryMigratedToIPM(bet.Product_Category__c);
+            categoryMigrated = IPM_BETUpdateService.CategoryCheck(bet.Product_Category__c);
             categoryNotMigrated = !categoryMigrated;
         } else {
             bet = new uw_BET__c();
