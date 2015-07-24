@@ -347,7 +347,6 @@ if(CONTAINS(Link_URL__c, &quot;sfc&quot;) , substitute(Link_URL__c,&quot;http://
             <value>Whos Who</value>
         </filters>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>BL-{0000}</displayFormat>
@@ -587,18 +586,6 @@ if(CONTAINS(Link_URL__c, &quot;sfc&quot;) , substitute(Link_URL__c,&quot;http://
         <searchResultsAdditionalFields>Link_URL__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
-    <webLinks>
-        <fullName>New_Section_Link</fullName>
-        <availability>online</availability>
-        <displayType>massActionButton</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <linkType>url</linkType>
-        <masterLabel>New Section Link</masterLabel>
-        <openType>replace</openType>
-        <protected>false</protected>
-        <requireRowSelection>true</requireRowSelection>
-        <url>/apex/New_Link?type=sectionlink</url>
-    </webLinks>
     <webLinks>
         <fullName>New_Sub_Category_Link</fullName>
         <availability>online</availability>

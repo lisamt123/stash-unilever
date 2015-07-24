@@ -13,7 +13,7 @@
         <name>Brand__c</name>
     </fields>
     <fields>
-        <label>Panne Machine</label>
+        <label><!-- Breakdown Machine --></label>
         <name>Breakdown_Machine__c</name>
     </fields>
     <fields>
@@ -176,7 +176,7 @@
         <relationshipLabel><!-- Cases --></relationshipLabel>
     </fields>
     <fields>
-        <label>N° de commande</label>
+        <label><!-- DW Order Number --></label>
         <name>DW_Order_Number__c</name>
     </fields>
     <fields>
@@ -273,7 +273,7 @@
         <name>Legacy_Reference__c</name>
     </fields>
     <fields>
-        <label>N° de série Machine</label>
+        <label><!-- Machine Serial Number --></label>
         <name>Machine_ID__c</name>
     </fields>
     <fields>
@@ -595,11 +595,11 @@
         <name>Reason_L5_desc__c</name>
     </fields>
     <fields>
-        <label>N° du cas Seb</label>
+        <label><!-- SEB Case Number --></label>
         <name>SEB_Case_Number__c</name>
     </fields>
     <fields>
-        <label>Date de clôture du cas SEB</label>
+        <label><!-- SEB Closed Date --></label>
         <name>SEB_Closed_Date__c</name>
     </fields>
     <fields>
@@ -863,15 +863,15 @@
     <layouts>
         <layout>TO Case Feed Layout</layout>
         <sections>
-            <label>Informations produit supplémentaires</label>
+            <label><!-- Additional Issue Information --></label>
             <section>Additional Issue Information</section>
         </sections>
         <sections>
-            <label>Informations produit supplémentaires</label>
+            <label><!-- Issue Information --></label>
             <section>Issue Information</section>
         </sections>
         <sections>
-            <label>Requête liée</label>
+            <label><!-- Related Cases --></label>
             <section>Related Cases</section>
         </sections>
     </layouts>

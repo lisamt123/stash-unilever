@@ -199,10 +199,6 @@
     </recordTypes>
     <startsWith>Consonant</startsWith>
     <webLinks>
-        <label><!-- New_Section_Link --></label>
-        <name>New_Section_Link</name>
-    </webLinks>
-    <webLinks>
         <label><!-- New_Sub_Category_Link --></label>
         <name>New_Sub_Category_Link</name>
     </webLinks>

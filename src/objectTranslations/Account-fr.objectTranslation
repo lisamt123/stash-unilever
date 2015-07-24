@@ -209,11 +209,11 @@
         <name>CEC_Marketing_Opt_In__c</name>
     </fields>
     <fields>
-        <label>Enfants de moins de 12 ans</label>
+        <label><!-- Children Under 12 --></label>
         <name>Children_under_12__c</name>
     </fields>
     <fields>
-        <label>N° de membre</label>
+        <label><!-- Club Member Number --></label>
         <name>Club_Member_Number__c</name>
     </fields>
     <fields>
@@ -689,7 +689,7 @@
         <name>D_B_Duns_Number__c</name>
     </fields>
     <fields>
-        <label>N° client DW</label>
+        <label><!-- Demandware Customer No --></label>
         <name>Demandware_ID__c</name>
     </fields>
     <fields>
@@ -810,7 +810,7 @@
     </fields>
     <fields>
         <help><!-- Per Week --></help>
-        <label>Nombre de tasses / semaine</label>
+        <label><!-- Tea Drinking Frequency --></label>
         <name>Drinking_frequency__c</name>
     </fields>
     <fields>
@@ -1015,7 +1015,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>N° de série Machine</label>
+        <label><!-- Machine Id --></label>
         <name>Machine_Id__c</name>
     </fields>
     <fields>
@@ -1023,7 +1023,7 @@
         <name>Next_Review_Date__c</name>
     </fields>
     <fields>
-        <label>Nombre de buveurs de thé</label>
+        <label><!-- No of Tea Drinkers --></label>
         <name>No_of_Tea_drinkers__c</name>
     </fields>
     <fields>
@@ -1083,11 +1083,11 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Type de thé préféré</label>
+        <label><!-- Preferred Tea Type --></label>
         <name>Preferred_Tea_Type__c</name>
     </fields>
     <fields>
-        <label>Type d&apos;infusion préféré</label>
+        <label><!-- Preferred Infusion Type --></label>
         <name>Preferred_infusion_type__c</name>
     </fields>
     <fields>
@@ -1115,7 +1115,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Date d&apos;inscription</label>
+        <label><!-- Registration Date --></label>
         <name>Registration_Date__c</name>
     </fields>
     <fields>
@@ -1164,11 +1164,11 @@
         </picklistValues>
     </fields>
     <fields>
-        <label>Moment thé de la journée</label>
+        <label><!-- Tea Moment of The Day --></label>
         <name>Tea_moment_of_the_day__c</name>
     </fields>
     <fields>
-        <label>Moment thé de la semaine</label>
+        <label><!-- Tea Moment of The Week --></label>
         <name>Tea_moment_of_the_week__c</name>
     </fields>
     <fields>
@@ -1187,7 +1187,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Association</masterLabel>
-            <translation>Association</translation>
+            <translation><!-- Association --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Competitor</masterLabel>
@@ -1195,7 +1195,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Customer</masterLabel>
-            <translation>Consommateur</translation>
+            <translation><!-- Customer --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Integrator</masterLabel>
@@ -1207,19 +1207,19 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Legal</masterLabel>
-            <translation>Juridique / Légal</translation>
+            <translation><!-- Legal --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Logistic</masterLabel>
-            <translation>Logistique</translation>
+            <translation><!-- Logistic --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Other</masterLabel>
-            <translation>Autres</translation>
+            <translation><!-- Other --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Partner</masterLabel>
-            <translation>Partenaire</translation>
+            <translation><!-- Partner --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Press</masterLabel>
@@ -1227,7 +1227,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Prospect</masterLabel>
-            <translation>Prospect</translation>
+            <translation><!-- Prospect --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Reseller</masterLabel>
@@ -1235,19 +1235,19 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>Retailer</masterLabel>
-            <translation>Revendeur</translation>
+            <translation><!-- Retailer --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Shop</masterLabel>
-            <translation>Boutique / Magasin</translation>
+            <translation><!-- Shop --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Shop In Shop</masterLabel>
-            <translation>Shop-in-shop</translation>
+            <translation><!-- Shop In Shop --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>UL Careline</masterLabel>
-            <translation>Service Consommateur UL</translation>
+            <translation><!-- UL Careline --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -1274,11 +1274,11 @@
         <layout>TO Person Account Layout</layout>
         <layoutType>PersonAccount</layoutType>
         <sections>
-            <label>Informations de contact supplémentaires</label>
+            <label><!-- Additional Address Information --></label>
             <section>Additional Address Information</section>
         </sections>
         <sections>
-            <label>Informations supplémentaires sur le compte personnel</label>
+            <label><!-- Additional Demandware Information --></label>
             <section>Additional Demandware Information</section>
         </sections>
     </layouts>

@@ -417,7 +417,6 @@
         <columns>Country__c</columns>
         <columns>FileName__c</columns>
         <columns>MailItemName__c</columns>
-        <columns>Brand__c</columns>
         <columns>UPDATEDBY_USER</columns>
         <columns>Active__c</columns>
         <filterScope>Queue</filterScope>
@@ -564,18 +563,6 @@
             <role>CEC_Manager_Spain</role>
             <role>CEC_User_Spain</role>
         </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>test</fullName>
-        <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
-        <filters>
-            <field>NAME</field>
-            <operation>startsWith</operation>
-            <value>D</value>
-        </filters>
-        <label>test D</label>
-        <language>de</language>
     </listViews>
     <nameField>
         <label>Enclosure Name</label>

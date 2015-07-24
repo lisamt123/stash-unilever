@@ -239,6 +239,18 @@
         <name>AF_OOPs_Agency_Formula__c</name>
     </fields>
     <fields>
+        <label><!-- Override PO Adaptation – LC --></label>
+        <name>AF_OverridePO_Adaptation_LC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Override PO Digital – LC --></label>
+        <name>AF_OverridePO_Digital_LC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Override PO Traditional – LC --></label>
+        <name>AF_OverridePO_Traditional_LC__c</name>
+    </fields>
+    <fields>
         <help><!-- PO number from Ariba --></help>
         <label><!-- PO Number --></label>
         <name>AF_PO_Number__c</name>

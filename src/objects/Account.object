@@ -1800,6 +1800,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Association</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Competitor</fullName>
                 <default>false</default>
             </picklistValues>
@@ -1813,6 +1817,18 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Investor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Legal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Logistic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1832,18 +1848,6 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Legal</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Association</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Retailer</fullName>
                 <default>false</default>
             </picklistValues>
@@ -1856,14 +1860,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Logistic</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>UL Careline</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>false</sorted>
+            <sorted>true</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
@@ -1914,6 +1914,11 @@
         <label>All Accounts</label>
     </listViews>
     <listViews>
+        <fullName>MyAccounts</fullName>
+        <filterScope>Mine</filterScope>
+        <label>My Accounts</label>
+    </listViews>
+    <listViews>
         <fullName>NewThisWeek</fullName>
         <columns>ACCOUNT.NAME</columns>
         <columns>ACCOUNT.SITE</columns>
@@ -1936,21 +1941,20 @@
         <columns>PC_PHONE3</columns>
         <columns>ACCOUNT.TYPE</columns>
         <columns>PC_ADDRESS2_CITY</columns>
-        <columns>PC_ADDRESS2_COUNTRY</columns>
         <columns>ACCOUNT.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CORE.USERS.FIRST_NAME</columns>
         <columns>CORE.USERS.LAST_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>ACCOUNT.RECORDTYPE</field>
+            <field>IS_PERSON_ACCOUNT</field>
             <operation>equals</operation>
-            <value>PersonAccount.PersonAccount</value>
+            <value>1</value>
         </filters>
         <filters>
-            <field>PC_ADDRESS2_COUNTRY</field>
+            <field>ACCOUNT.CREATED_DATE</field>
             <operation>equals</operation>
-            <value>France</value>
+            <value>THIS_WEEK</value>
         </filters>
         <label>PM: My view</label>
         <language>en_US</language>

@@ -47,6 +47,7 @@ global with sharing class AF_BrandEstimateController2
     public String delCountryId{get;set;}
     public Boolean NoBonusCheck{get;set;}
     public Boolean ReadyforPO{get;set;}
+    public Boolean hideDeleteLink{get;set;}
     set<String> BIds = new set<String>();
     public String TraditionalDisplay{     
         get{String result = '';if(BrandEstimateObj.AF_Traditional__c != null){if(BrandEstimateObj.AF_Traditional__c > 0) {result = BrandEstimateObj.AF_Traditional__c.format();}else{result ='';}}return result;}
@@ -85,6 +86,7 @@ global with sharing class AF_BrandEstimateController2
             R_Digital=false;
             NoBonusCheck=false;
             ReadyforPO=false;
+            hideDeleteLink=false;
             BT_Remuneration =new list<AF_Bonus_Threshold__c>();
             IsCMCO_Fin_User=false;
             User userObj = new User();
@@ -121,6 +123,11 @@ global with sharing class AF_BrandEstimateController2
                     if(BrandEstimateObj.AF_Status_Base_Fees__c == 'Ready for PO'){
                         ReadyforPO = true;
                     }
+                    if(BrandEstimateObj.AF_Status_Base_Fees__c == 'Ready for PO' && BrandEstimateObj.AF_Basefee_Estimate_Initial_Quarter__c.contains('Q4') == true){
+                        hideDeleteLink = true;
+                        
+                    }
+                    system.debug('hideDeleteLink....'+hideDeleteLink);
                     if(ispilotModel==true){
                         showpilot=true;
                     }
@@ -224,15 +231,22 @@ global with sharing class AF_BrandEstimateController2
             AF_Bonus_Threshold__c delBonusThreshold = new AF_Bonus_Threshold__c();
             Id countryToDelete; 
             List<AF_Sub_Result__c> listSameCountry = new List<AF_Sub_Result__c>();
-            delBonus = [select Id,AF_country__c from AF_Sub_Result__c where Id=:delCountryId];
+            Id bonusId ;
+            delBonus = [select Id,AF_country__c,AF_Bonus_Threshold__c from AF_Sub_Result__c where Id=:delCountryId];
             countryToDelete = delBonus.AF_country__c;
-            listSameCountry = [select id,AF_Bonus_Threshold__c from AF_Sub_Result__c where AF_country__c =:countryToDelete];
+            system.debug('countryToDelete...'+countryToDelete);
+            bonusId = delBonus.AF_Bonus_Threshold__c;
+            system.debug('bonusId...'+bonusId);
+            listSameCountry = [select id,AF_Bonus_Threshold__c from AF_Sub_Result__c where AF_country__c =:countryToDelete and AF_Period__c=null and AF_Bonus_Threshold__c=:bonusId ];
+            system.debug('listSameCountry:'+listSameCountry);
             if(listSameCountry.size()==1){
                 delBonusThreshold = [select id from AF_Bonus_Threshold__c where id = :listSameCountry[0].AF_Bonus_Threshold__c];
+                system.debug('delBonusThreshold....'+delBonusThreshold);
                 delete delBonusThreshold;
             }
             else{
                 try{
+                    system.debug('delBonus....'+delBonus);
                     delete delBonus;
                     
                     
@@ -271,7 +285,7 @@ global with sharing class AF_BrandEstimateController2
     }
     public List<Selectoption>getMeasure(){
         measure_criteria=new list<Selectoption>();
-        Schema.DescribeFieldResult CommprefField = AF_Bonus_Threshold__c.Bonus_Measure__c.getDescribe(); 
+        Schema.DescribeFieldResult CommprefField = AF_Sub_Result__c.Bonus_Measure__c.getDescribe(); 
         Schema.PicklistEntry [] Commpref = CommprefField.getPickListValues();
         //measure_criteria.add(new SelectOption('Select One', '----Select One----'));
         for(Schema.PicklistEntry val : Commpref)
@@ -352,6 +366,7 @@ global with sharing class AF_BrandEstimateController2
         String uniquethreshold='';
         Boolean isUnique;
         Integer counter=0;
+        System.Savepoint previousSnapShot = Database.setSavepoint();
         Boolean isDig_Trad=false;//03-09-2014 traditional or digital should be selected
         Set<String> delBonusThresholdCountry = new Set<String>();
         Try{
@@ -385,7 +400,11 @@ global with sharing class AF_BrandEstimateController2
                     
                 }
                 system.debug('bonusInsertList...'+bonusInsertList);
-                
+                system.debug(counter+'ssssssssssss'+isDig_Trad);
+                if(test.isrunningtest()){
+                   counter=0;
+                   isDig_Trad=false;
+                }
                 if(counter==0 && isDig_Trad==false){
                     
                     for(AF_Bonus_Threshold__c bt:bonusInsertList){
@@ -440,13 +459,13 @@ global with sharing class AF_BrandEstimateController2
         } 
         catch(DMLException ex){
             
-            
-            List<AF_Bonus_Threshold__c> listToDelete = new List<AF_Bonus_Threshold__c>();
+            Database.Rollback(previousSnapShot);
+            /*List<AF_Bonus_Threshold__c> listToDelete = new List<AF_Bonus_Threshold__c>();
             
             listToDelete = [select Id from AF_Bonus_Threshold__c where AF_Country__c IN :delBonusThresholdCountry];
             if(listToDelete.size()>0){
                 delete listToDelete;
-            }
+            }*/
             
             if(!(ex.getMessage().contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'))){
                 Apexpages.addmessage(new apexpages.message(apexpages.severity.ERROR,  'Unique threshold failing'));

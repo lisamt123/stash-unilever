@@ -683,20 +683,41 @@
     <label>Fulfilment</label>
     <listViews>
         <fullName>CEC_Baltics_Quality_Check_cec_Fulfilment</fullName>
-        <filterScope>Queue</filterScope>
+        <columns>NAME</columns>
+        <columns>isApproved__c</columns>
+        <columns>Full_Name__c</columns>
+        <columns>Enclosure1__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>QA_flag__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>isApproved__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>isSubmitted__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>Baltics</value>
+        </filters>
         <label>CEC Baltics Quality Check</label>
-        <queue>CEC_Baltics_Quality_Check</queue>
+        <language>en_US</language>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Baltics_Queue_cec_Fulfilment</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CEC Baltics Queue</label>
-        <queue>CEC_Baltics_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Baltics</role>
+            <role>CEC_Manager_CEE</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_User_Baltics</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -739,35 +760,10 @@
     </listViews>
     <listViews>
         <fullName>CEC_Cyprus_Quality_Check_cec_Fulfilment</fullName>
-        <columns>NAME</columns>
-        <columns>isApproved__c</columns>
-        <columns>Full_Name__c</columns>
-        <columns>Enclosure1__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>UPDATEDBY_USER</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>QA_flag__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>isApproved__c</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>isSubmitted__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>Cyprus</value>
-        </filters>
+        <filterScope>Queue</filterScope>
         <label>CEC Cyprus Quality Check</label>
         <language>en_US</language>
+        <queue>CEC_Cyprus_Quality_Check</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Cyprus</role>
@@ -808,6 +804,7 @@
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Global_Head</role>
+            <role>CEC_Manager_CEE</role>
             <role>CEC_Manager_Czech_Republic</role>
             <role>CEC_Manager_Europe</role>
             <role>CEC_User_Czech_Republic</role>
@@ -933,44 +930,13 @@
         </filters>
         <label>CEC Greece Quality Check</label>
         <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_Europe</role>
-            <role>CEC_Manager_Greece</role>
-            <role>CEC_User_Greece</role>
-        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Hungary_Quality_Check_cec_Fulfilment</fullName>
-        <columns>NAME</columns>
-        <columns>isApproved__c</columns>
-        <columns>Full_Name__c</columns>
-        <columns>Enclosure1__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>UPDATEDBY_USER</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>QA_flag__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>isApproved__c</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>isSubmitted__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>Hungary</value>
-        </filters>
+        <filterScope>Queue</filterScope>
         <label>CEC Hungary Quality Check</label>
         <language>en_US</language>
+        <queue>CEC_Hungary_Quality_Check</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Europe</role>
@@ -1056,35 +1022,10 @@
     </listViews>
     <listViews>
         <fullName>CEC_Nordic_Quality_Check_cec_Fulfilment</fullName>
-        <columns>NAME</columns>
-        <columns>isApproved__c</columns>
-        <columns>Full_Name__c</columns>
-        <columns>Enclosure1__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>UPDATEDBY_USER</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>QA_flag__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>isApproved__c</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>isSubmitted__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>Nordic</value>
-        </filters>
+        <filterScope>Queue</filterScope>
         <label>CEC Nordic Quality Check</label>
         <language>en_US</language>
+        <queue>CEC_Nordic_Quality_Check</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Europe</role>
@@ -1094,35 +1035,10 @@
     </listViews>
     <listViews>
         <fullName>CEC_Poland_Quality_Check_cec_Fulfilment</fullName>
-        <columns>NAME</columns>
-        <columns>isApproved__c</columns>
-        <columns>Full_Name__c</columns>
-        <columns>Enclosure1__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>UPDATEDBY_USER</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>QA_flag__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>isApproved__c</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>isSubmitted__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>Poland</value>
-        </filters>
+        <filterScope>Queue</filterScope>
         <label>CEC Poland Quality Check</label>
         <language>en_US</language>
+        <queue>CEC_Poland_Quality_Check</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Europe</role>
@@ -1161,12 +1077,6 @@
         </filters>
         <label>CEC Portugal Quality Check</label>
         <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_Europe</role>
-            <role>CEC_Manager_Portugal</role>
-            <role>CEC_User_Portugal</role>
-        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Spain_Quality_Check_cec_Fulfilment</fullName>
@@ -1199,11 +1109,31 @@
         </filters>
         <label>CEC Spain Quality Check</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>QC_Not_Approved</fullName>
+        <columns>NAME</columns>
+        <columns>Brand_Logo__c</columns>
+        <columns>Case__c</columns>
+        <columns>Enclosure1__c</columns>
+        <columns>Enclosure2__c</columns>
+        <columns>Full_Name__c</columns>
+        <columns>isApproved__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>QA_flag__c</columns>
+        <columns>Document_Approval__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>isApproved__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>QC - Not Approved</label>
+        <language>en_US</language>
         <sharedTo>
-            <role>CEC_Global_Head</role>
             <role>CEC_Manager_Europe</role>
-            <role>CEC_Manager_Spain</role>
-            <role>CEC_User_Spain</role>
+            <roleAndSubordinatesInternal>CEC_Manager_Europe</roleAndSubordinatesInternal>
         </sharedTo>
     </listViews>
     <listViews>
@@ -1224,7 +1154,6 @@
             <value>1</value>
         </filters>
         <label>QC view fulfilment</label>
-        <language>pl</language>
         <sharedTo>
             <role>CEC_Manager_Europe</role>
         </sharedTo>
@@ -1237,7 +1166,6 @@
         <columns>Full_Name__c</columns>
         <columns>Enclosure1__c</columns>
         <columns>UPDATEDBY_USER</columns>
-        <columns>IsPrintedLocally__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>QA_flag__c</field>
