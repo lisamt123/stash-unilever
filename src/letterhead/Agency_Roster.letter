@@ -11,14 +11,12 @@
         <backgroundColor>#FFFFFF</backgroundColor>
         <height>100</height>
         <horizontalAlignment>Left</horizontalAlignment>
-        <logo>Agency_Roster/Unilever_Agency_List_Footer.jpg</logo>
         <verticalAlignment>Top</verticalAlignment>
     </footer>
     <header>
         <backgroundColor>#FFFFFF</backgroundColor>
         <height>100</height>
         <horizontalAlignment>Left</horizontalAlignment>
-        <logo>Agency_Roster/Unilever_Agency_List_Header.jpg</logo>
         <verticalAlignment>Top</verticalAlignment>
     </header>
     <middleLine>

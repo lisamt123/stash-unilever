@@ -13,8 +13,12 @@
         <name>Brand_Centre_Management</name>
     </customApplications>
     <customApplications>
-        <label>Administrateur CEC</label>
+        <label><!-- CEC Admin --></label>
         <name>CEC_Admin</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- CEC Standard --></label>
+        <name>CEC_Standard</name>
     </customApplications>
     <customApplications>
         <label><!-- Communications Planner --></label>
@@ -425,11 +429,11 @@
         <name>Bonus_Annual</name>
     </customLabels>
     <customLabels>
-        <label>La résolution ne peut pas être créée sans compte attaché au dossier.</label>
+        <label><!-- CEC_CaseAccountMissing --></label>
         <name>CEC_CaseAccountMissing</name>
     </customLabels>
     <customLabels>
-        <label>Une des valeurs du compte rue/ville/Etat/Pays/code postal devrait être disponible pour la création de la résolution</label>
+        <label><!-- CEC_CaseAccountPersonDetailsError --></label>
         <name>CEC_CaseAccountPersonDetailsError</name>
     </customLabels>
     <customLabels>
@@ -441,7 +445,7 @@
         <name>CEC_Case_Factory_Survey_Reference</name>
     </customLabels>
     <customLabels>
-        <label>Erreur: l\&apos;onglet prinicpal ne peut pas être ouvert.</label>
+        <label><!-- Primary tab cannot be opened --></label>
         <name>CEC_Case_TabNotOpened</name>
     </customLabels>
     <customLabels>
@@ -449,71 +453,71 @@
         <name>CEC_Category</name>
     </customLabels>
     <customLabels>
-        <label>Merci de sauvegarder les changements enregistrés dans votre dossier avant d\&apos;essayer d\&apos;ajouter un nouveau consommateur.</label>
+        <label><!-- Primary tab not refresh --></label>
         <name>CEC_Console_Message1</name>
     </customLabels>
     <customLabels>
-        <label>L\&apos;onglet prinicpal ne peut pas être ouvert.</label>
+        <label><!-- Primary tab cannot be opened --></label>
         <name>CEC_Console_Message2</name>
     </customLabels>
     <customLabels>
-        <label>Erreur: une erreur s\&apos;est produite</label>
+        <label><!-- Error Occured --></label>
         <name>CEC_Console_Message3</name>
     </customLabels>
     <customLabels>
-        <label>Créer un nouveau contact</label>
+        <label><!-- CEC_ConsumerCreateContactButtonDisplay --></label>
         <name>CEC_ConsumerCreateContactButtonDisplay</name>
     </customLabels>
     <customLabels>
-        <label>Info: Consommateur déjà attaché au dossier</label>
+        <label><!-- CEC_ConsumerInfoDisplay --></label>
         <name>CEC_ConsumerInfoDisplay</name>
     </customLabels>
     <customLabels>
-        <label>Consommateur non trouvé?</label>
+        <label><!-- CEC_ConsumerNotFoundInfo --></label>
         <name>CEC_ConsumerNotFoundInfo</name>
     </customLabels>
     <customLabels>
-        <label>Résultats</label>
+        <label><!-- CEC_ConsumerResultsDisplay --></label>
         <name>CEC_ConsumerResultsDisplay</name>
     </customLabels>
     <customLabels>
-        <label>Les résultats correpondants à votre recherche:</label>
+        <label><!-- CEC_ConsumerResultsTitleDisplay --></label>
         <name>CEC_ConsumerResultsTitleDisplay</name>
     </customLabels>
     <customLabels>
-        <label>Chercher</label>
+        <label><!-- CEC_ConsumerSearchDisplay --></label>
         <name>CEC_ConsumerSearchDisplay</name>
     </customLabels>
     <customLabels>
-        <label>Le consommateur pourrait ne pas être créé car un consommateur doublon existe.</label>
+        <label><!-- CEC Consumer Duplicate Error --></label>
         <name>CEC_Consumer_Duplicate_Error</name>
     </customLabels>
     <customLabels>
-        <label>Cliquez sur OK pour remplacer le consommateur existant ou sur Annuler pour revenir à la page d\&apos;accueil.</label>
+        <label><!-- To Display Click Ok to replace the existing Consumer or Cancel to return to the --></label>
         <name>CEC_Consumer_Message1</name>
     </customLabels>
     <customLabels>
-        <label>La mise à jour de l&apos;action ne peut pas être effectuée. L&apos;enregistrement du consommateur est déjà associé avec le dossier enregistré.</label>
+        <label><!-- Update action cannot be performed. --></label>
         <name>CEC_Consumer_Record_Update</name>
     </customLabels>
     <customLabels>
-        <label>Créer un contact</label>
+        <label><!-- CEC_CreateContactDisplay --></label>
         <name>CEC_CreateContactDisplay</name>
     </customLabels>
     <customLabels>
-        <label>Créer</label>
+        <label><!-- Create_Button --></label>
         <name>CEC_Create_Button</name>
     </customLabels>
     <customLabels>
-        <label>Merci de spécifier les informations connues</label>
+        <label><!-- CEC_Detail_Request_Info --></label>
         <name>CEC_Detail_Request_Info</name>
     </customLabels>
     <customLabels>
-        <label>Les enregistrements sont en cours d\&apos;affichage</label>
+        <label><!-- records are being displayed --></label>
         <name>CEC_Display_Records</name>
     </customLabels>
     <customLabels>
-        <label>E-mail : Vous devez entrer une valeur</label>
+        <label><!-- To display Email required message --></label>
         <name>CEC_Email</name>
     </customLabels>
     <customLabels>
@@ -521,7 +525,7 @@
         <name>CEC_Email_Label</name>
     </customLabels>
     <customLabels>
-        <label>Prénom</label>
+        <label><!-- CEC_FirstName --></label>
         <name>CEC_FirstName</name>
     </customLabels>
     <customLabels>
@@ -529,7 +533,7 @@
         <name>CEC_Fulfilment_PostOption_Complaints</name>
     </customLabels>
     <customLabels>
-        <label>autrement</label>
+        <label><!-- CEC_Fulfilment_PostOption_otherwise --></label>
         <name>CEC_Fulfilment_PostOption_otherwise</name>
     </customLabels>
     <customLabels>
@@ -537,11 +541,11 @@
         <name>CEC_Label_Action</name>
     </customLabels>
     <customLabels>
-        <label>Articles de base de connaissance</label>
+        <label><!-- CEC Label Knowledge Articles --></label>
         <name>CEC_Label_Knowledge_Articles</name>
     </customLabels>
     <customLabels>
-        <label>Sujet</label>
+        <label><!-- CEC Label Subject --></label>
         <name>CEC_Label_Subject</name>
     </customLabels>
     <customLabels>
@@ -549,39 +553,39 @@
         <name>CEC_Label_Type</name>
     </customLabels>
     <customLabels>
-        <label>Nom</label>
+        <label><!-- CEC_Last_Name --></label>
         <name>CEC_Last_Name</name>
     </customLabels>
     <customLabels>
-        <label>Nom : vous devez entrer le nom pour rechercher le consommateur</label>
+        <label><!-- To display Last Name required message --></label>
         <name>CEC_Lastname</name>
     </customLabels>
     <customLabels>
-        <label>Opt In Marketing</label>
+        <label><!-- CEC_Marketing_Opt_in --></label>
         <name>CEC_Marketing_Opt_in</name>
     </customLabels>
     <customLabels>
-        <label>[ERR002] L&apos;enregistrement du consommateur ne peut pas être créé.</label>
+        <label><!-- Consumer record could not be created --></label>
         <name>CEC_MatchingResponse_AccountNotCreated</name>
     </customLabels>
     <customLabels>
-        <label>[ERR001] Plusieurs enregistrements de consommateurs existent avec le même e-mail, une mise à jour manuelle est nécessaire.</label>
+        <label><!-- If Duplicate accounts found display this error message --></label>
         <name>CEC_MatchingResponse_DuplicateAccount</name>
     </customLabels>
     <customLabels>
-        <label>Information manquante</label>
+        <label><!-- CEC_Missing_Information --></label>
         <name>CEC_Missing_Information</name>
     </customLabels>
     <customLabels>
-        <label>Erreur: Impossible de créer un nouveau dossier</label>
+        <label><!-- Case Error Message --></label>
         <name>CEC_NewCaseError</name>
     </customLabels>
     <customLabels>
-        <label>Merci d\&apos;enregistrer les modifications faites à votre dossier avant de tenter d\&apos;ajouter un nouvel article.</label>
+        <label><!-- CEC NewCaseError BeforeAddNewArticle --></label>
         <name>CEC_NewCaseError_BeforeAddNewArticle</name>
     </customLabels>
     <customLabels>
-        <label>Merci de sauvegarder d\&apos;abord les modifications en attente au dossier enregistré et ensuite de chercher le consommateur lié au dossier. Si une nouvelle création de consommateur est tentée dans cette affaire, alors ce consommateur peut être retrouvé avec \&apos;chercher\&apos;</label>
+        <label><!-- Save case record before add a new consumer. --></label>
         <name>CEC_NewCaseError_BeforeAddNewConsumer</name>
     </customLabels>
     <customLabels>
@@ -589,19 +593,19 @@
         <name>CEC_No_Cases_are_available_based_on_the_skill</name>
     </customLabels>
     <customLabels>
-        <label>Pas de consommateurs correspondants</label>
+        <label><!-- No matching consumers --></label>
         <name>CEC_No_Matching_Consumer</name>
     </customLabels>
     <customLabels>
-        <label>Origine: Erreur de validation: Une valeur est nécessaire.</label>
+        <label><!-- To displayOrigin as required message --></label>
         <name>CEC_Origin</name>
     </customLabels>
     <customLabels>
-        <label>Autres détails</label>
+        <label><!-- CEC_OtherDetailsSection --></label>
         <name>CEC_OtherDetailsSection</name>
     </customLabels>
     <customLabels>
-        <label>Dossier parent</label>
+        <label><!-- CEC_ParentCaseNumber --></label>
         <name>CEC_ParentCaseNumber</name>
     </customLabels>
     <customLabels>
@@ -613,7 +617,7 @@
         <name>CEC_PhoneSearchValidationError</name>
     </customLabels>
     <customLabels>
-        <label>Code postal</label>
+        <label><!-- CEC_PostCode --></label>
         <name>CEC_PostCode</name>
     </customLabels>
     <customLabels>
@@ -625,7 +629,7 @@
         <name>CEC_Product_Hierarchy</name>
     </customLabels>
     <customLabels>
-        <label>Veuillez entrer le code pays avant de changer le code rapide du dossier !</label>
+        <label><!-- CEC Quick Code Change Error --></label>
         <name>CEC_Quick_Code_Change_Error</name>
     </customLabels>
     <customLabels>
@@ -641,27 +645,27 @@
         <name>CEC_Reason_Hierarchy</name>
     </customLabels>
     <customLabels>
-        <label>Dossiers liés</label>
+        <label><!-- CEC_RelatedCases --></label>
         <name>CEC_RelatedCases</name>
     </customLabels>
     <customLabels>
-        <label>Chercher</label>
+        <label><!-- CEC_Search_Button --></label>
         <name>CEC_Search_Button</name>
     </customLabels>
     <customLabels>
-        <label>Merci de spécifier les informations connues</label>
+        <label><!-- CEC_Specify Details in Missing Info --></label>
         <name>CEC_Specify_Details_in_Missing_Info</name>
     </customLabels>
     <customLabels>
-        <label>Etat: Erreur de validation: Unr valeur est nécessaire</label>
+        <label><!-- To display Case Status as required message --></label>
         <name>CEC_Status</name>
     </customLabels>
     <customLabels>
-        <label>Rue</label>
+        <label><!-- CEC_Street --></label>
         <name>CEC_Street</name>
     </customLabels>
     <customLabels>
-        <label>Titre</label>
+        <label><!-- CEC_Title --></label>
         <name>CEC_Title</name>
     </customLabels>
     <customLabels>
@@ -669,15 +673,15 @@
         <name>CEC_ValidEmailTemplate</name>
     </customLabels>
     <customLabels>
-        <label>La forme est-elle connue ?</label>
+        <label><!-- CEC_isFormKnown --></label>
         <name>CEC_isFormKnown</name>
     </customLabels>
     <customLabels>
-        <label>La taille de l&apos;emballage est-elle connue ?</label>
+        <label><!-- CEC_isPacksizeKnown --></label>
         <name>CEC_isPacksizeKnown</name>
     </customLabels>
     <customLabels>
-        <label>La variante est-elle connue ?</label>
+        <label><!-- CEC_isVariantKnown --></label>
         <name>CEC_isVariantKnown</name>
     </customLabels>
     <customLabels>
@@ -1341,7 +1345,7 @@
         <name>CRMfusionDBR101__DB_Search_Go</name>
     </customLabels>
     <customLabels>
-        <label>Chercher</label>
+        <label><!-- DB Search Word --></label>
         <name>CRMfusionDBR101__DB_Search_Word</name>
     </customLabels>
     <customLabels>
@@ -1457,7 +1461,7 @@
         <name>CRMfusionDBR101__DB_String_Merge_Truncated</name>
     </customLabels>
     <customLabels>
-        <label>A</label>
+        <label><!-- DB To Word --></label>
         <name>CRMfusionDBR101__DB_To_Word</name>
     </customLabels>
     <customLabels>
@@ -2381,6 +2385,10 @@
         <name>Terms_Of_Use</name>
     </customPageWebLinks>
     <customPageWebLinks>
+        <label><!-- Web to Case --></label>
+        <name>Web_to_Case</name>
+    </customPageWebLinks>
+    <customPageWebLinks>
         <label><!-- Communications Planner Help! --></label>
         <name>gc_HELP</name>
     </customPageWebLinks>
@@ -2405,7 +2413,7 @@
         <name>Brand_Centres</name>
     </customTabs>
     <customTabs>
-        <label><!-- Brand Experience (BET) --></label>
+        <label><!-- Brand Experience --></label>
         <name>Brand_Experience2</name>
     </customTabs>
     <customTabs>
@@ -2449,7 +2457,7 @@
         <name>Masterbrand</name>
     </customTabs>
     <customTabs>
-        <label><!-- My Approvals --></label>
+        <label>Mes Approbations</label>
         <name>My_Approvals_Custom</name>
     </customTabs>
     <customTabs>
@@ -2993,7 +3001,7 @@
         <label><!-- CEC Fulfillment &amp; Enclosure --></label>
         <name>CEC_Fulfillment_Enclosure</name>
         <sections>
-            <label>Résolution</label>
+            <label><!-- Fulfilment --></label>
             <name>Fulfilment</name>
         </sections>
     </reportTypes>
@@ -3085,23 +3093,6 @@
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- Chatter activity + user + post body --></description>
-        <label><!-- Chatter activity + user + post body --></label>
-        <name>Chatter_activity_user_post_body</name>
-        <sections>
-            <label><!-- Group Feed --></label>
-            <name>Group Feed</name>
-        </sections>
-        <sections>
-            <label><!-- Groups (Last Modified By) --></label>
-            <name>Groups (Last Modified By)</name>
-        </sections>
-        <sections>
-            <label><!-- Users --></label>
-            <name>Users</name>
-        </sections>
-    </reportTypes>
-    <reportTypes>
         <description><!-- Core Tasks Report Type --></description>
         <label><!-- Core Tasks Report Type --></label>
         <name>Core_Tasks_Report_Type</name>
@@ -3146,19 +3137,6 @@
         <sections>
             <label><!-- Feedback Questionnaire --></label>
             <name>Feedback Questionnaire</name>
-        </sections>
-    </reportTypes>
-    <reportTypes>
-        <description><!-- Custom Objects Usage --></description>
-        <label><!-- Custom Objects Usage --></label>
-        <name>Custom_Objects_Usage</name>
-        <sections>
-            <label><!-- Custom Object Usage By User License Metrics --></label>
-            <name>Custom Object Usage By User License Metrics</name>
-        </sections>
-        <sections>
-            <label><!-- User Licenses --></label>
-            <name>User Licenses</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -3620,15 +3598,6 @@
         <sections>
             <label><!-- Thanks --></label>
             <name>Thanks</name>
-        </sections>
-    </reportTypes>
-    <reportTypes>
-        <description><!-- Topic Assignment --></description>
-        <label><!-- Topic Assignment --></label>
-        <name>Topic_Assignment</name>
-        <sections>
-            <label><!-- Topic Assignments --></label>
-            <name>Topic Assignments</name>
         </sections>
     </reportTypes>
     <reportTypes>

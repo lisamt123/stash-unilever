@@ -143,7 +143,7 @@
     </rules>
     <rules>
         <fullName>FAU PA Request Travel Details</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>FAU_Module_Participant__c.FAU_Module_Complete_Flag__c</field>
             <operation>equals</operation>
@@ -167,7 +167,7 @@
                 <type>Alert</type>
             </actions>
             <actions>
-                <name>FAU_Request_Travel_Details_3</name>
+                <name>FAU_Request_Travel_Details_2</name>
                 <type>FieldUpdate</type>
             </actions>
             <offsetFromField>FAU_Module_Participant__c.FAU_Module_Start_Date__c</offsetFromField>
@@ -180,7 +180,7 @@
                 <type>Alert</type>
             </actions>
             <actions>
-                <name>FAU_Request_Travel_Details_2</name>
+                <name>FAU_Request_Travel_Details_3</name>
                 <type>FieldUpdate</type>
             </actions>
             <offsetFromField>FAU_Module_Participant__c.FAU_Module_Start_Date__c</offsetFromField>

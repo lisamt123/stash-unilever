@@ -17,6 +17,10 @@
         <name>CEC_Admin</name>
     </customApplications>
     <customApplications>
+        <label><!-- CEC Standard --></label>
+        <name>CEC_Standard</name>
+    </customApplications>
+    <customApplications>
         <label><!-- Communications Planner --></label>
         <name>Comms_Planer</name>
     </customApplications>
@@ -2381,6 +2385,10 @@
         <name>Terms_Of_Use</name>
     </customPageWebLinks>
     <customPageWebLinks>
+        <label><!-- Web to Case --></label>
+        <name>Web_to_Case</name>
+    </customPageWebLinks>
+    <customPageWebLinks>
         <label><!-- Communications Planner Help! --></label>
         <name>gc_HELP</name>
     </customPageWebLinks>
@@ -2405,7 +2413,7 @@
         <name>Brand_Centres</name>
     </customTabs>
     <customTabs>
-        <label><!-- Brand Experience (BET) --></label>
+        <label><!-- Brand Experience --></label>
         <name>Brand_Experience2</name>
     </customTabs>
     <customTabs>
@@ -2449,7 +2457,7 @@
         <name>Masterbrand</name>
     </customTabs>
     <customTabs>
-        <label><!-- My Approvals --></label>
+        <label>Οι εγκρίσεις μου</label>
         <name>My_Approvals_Custom</name>
     </customTabs>
     <customTabs>
@@ -3085,23 +3093,6 @@
         </sections>
     </reportTypes>
     <reportTypes>
-        <description><!-- Chatter activity + user + post body --></description>
-        <label><!-- Chatter activity + user + post body --></label>
-        <name>Chatter_activity_user_post_body</name>
-        <sections>
-            <label><!-- Group Feed --></label>
-            <name>Group Feed</name>
-        </sections>
-        <sections>
-            <label><!-- Groups (Last Modified By) --></label>
-            <name>Groups (Last Modified By)</name>
-        </sections>
-        <sections>
-            <label><!-- Users --></label>
-            <name>Users</name>
-        </sections>
-    </reportTypes>
-    <reportTypes>
         <description><!-- Core Tasks Report Type --></description>
         <label><!-- Core Tasks Report Type --></label>
         <name>Core_Tasks_Report_Type</name>
@@ -3146,19 +3137,6 @@
         <sections>
             <label><!-- Feedback Questionnaire --></label>
             <name>Feedback Questionnaire</name>
-        </sections>
-    </reportTypes>
-    <reportTypes>
-        <description><!-- Custom Objects Usage --></description>
-        <label><!-- Custom Objects Usage --></label>
-        <name>Custom_Objects_Usage</name>
-        <sections>
-            <label><!-- Custom Object Usage By User License Metrics --></label>
-            <name>Custom Object Usage By User License Metrics</name>
-        </sections>
-        <sections>
-            <label><!-- User Licenses --></label>
-            <name>User Licenses</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -3620,15 +3598,6 @@
         <sections>
             <label><!-- Thanks --></label>
             <name>Thanks</name>
-        </sections>
-    </reportTypes>
-    <reportTypes>
-        <description><!-- Topic Assignment --></description>
-        <label><!-- Topic Assignment --></label>
-        <name>Topic_Assignment</name>
-        <sections>
-            <label><!-- Topic Assignments --></label>
-            <name>Topic Assignments</name>
         </sections>
     </reportTypes>
     <reportTypes>

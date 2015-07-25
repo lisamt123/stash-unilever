@@ -44,6 +44,14 @@
                 <name>sandra.fontano@unilever.com</name>
                 <type>user</type>
             </approver>
+            <approver>
+                <name>test.user9@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>victoria.hickson@unilever.com</name>
+                <type>user</type>
+            </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <entryCriteria>
@@ -80,6 +88,14 @@
             </approver>
             <approver>
                 <name>sandra.fontano@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>test.user9@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>victoria.hickson@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

@@ -83,14 +83,13 @@
                 <value>False</value>
             </criteriaItems>
             <criteriaItems>
-                <field>Case.Case_Market_Tag__c</field>
+                <field>Case.Tag__c</field>
                 <operation>equals</operation>
                 <value>CEC</value>
             </criteriaItems>
             <criteriaItems>
-                <field>Case.Case_Market_Tag__c</field>
+                <field>Case.Tag__c</field>
                 <operation>equals</operation>
-                <value>null</value>
             </criteriaItems>
         </ruleEntry>
         <ruleEntry>

@@ -150,10 +150,14 @@ global with sharing class AF_OopEstimateRemote {
             href = 'apex/af_oopsEstimate?id='+agSObj.Id;
             rowDetailToReturn += '<td title=\"\" class=\"details-control\"';
             rowDetailToReturn += ' t=\"' + disptotalA + '\" d=\"' + dispLocalTotalA + '\" a=\"ob\">';
-            rowDetailToReturn += '<a href=\"' + href +  '\"';
+            rowDetailToReturn += '<a data-src=\"' + href +  '\"';
+            rowDetailToReturn += 'data-toggle=\"modal\"';
+            rowDetailToReturn += 'data-backdrop=\"static\"';
+            rowDetailToReturn += 'data-keyboard=\"false\"';
+            rowDetailToReturn += 'data-target=\"#myModal3\"';
+            rowDetailToReturn += 'class=\"modalButton3\"';
             rowDetailToReturn += ' e=\"' + disptotal + '\"';
             rowDetailToReturn += ' l=\"' + dispLocalTotal + '\"';
-            rowDetailToReturn += ' class=\"addfancy\">';
             if(total != 0) {
                 rowDetailToReturn += '<div style=float:left;>' + crsBrdrImg + '<br/>' + cmntImg;
                 rowDetailToReturn += '</div><div align=\"center\">' + 'EUR ' + AF_BrandEstimateRemote.currencyFormatted(total);

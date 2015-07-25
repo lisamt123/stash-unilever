@@ -1000,21 +1000,19 @@
         <label>All Assets at Agencies</label>
     </listViews>
     <listViews>
-        <fullName>bane</fullName>
+        <fullName>Riddler</fullName>
         <columns>NAME</columns>
-        <columns>uw_BET__c</columns>
-        <columns>Order_Of_Display__c</columns>
-        <columns>URL_of_Asset__c</columns>
         <columns>Status__c</columns>
-        <columns>CREATEDBY_USER</columns>
+        <columns>uw_BET__c</columns>
         <columns>Promoted__c</columns>
+        <columns>URL_of_Asset__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>uw_BET__c</field>
+            <field>NAME</field>
             <operation>contains</operation>
-            <value>Bane</value>
+            <value>TVC Riddle</value>
         </filters>
-        <label>Bane</label>
+        <label>Riddler</label>
     </listViews>
     <nameField>
         <label>Asset Name</label>

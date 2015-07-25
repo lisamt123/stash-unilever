@@ -5,15 +5,15 @@
         <fullName>ParentOrigin</fullName>
         <picklist>
             <picklistValues>
-                <fullName>Email</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Phone</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Web</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Store</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -25,7 +25,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Store</fullName>
+                <fullName>Email</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

@@ -26,7 +26,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
         });
        function notifyUser(id, memberrole) {
            alert('Value has changed: ' + id);
-            alert('Value has changed: ' + document.getElementById(memberrole).value);
+           alert('Value has changed: ' + document.getElementById(memberrole).value);
        }
         
        function updateRole(id, memberrole) {
@@ -35,6 +35,21 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
            //alert('Value has changed: ' + document.getElementById(memberrole).value);
            changeRole(id, document.getElementById(memberrole).value);
        }
+       
+        
+       function deleteClose()
+       {
+         alert('Test alert..............1');
+          if(teamMember.Team_Member__c == Userinfo.getUserId())
+           {
+            alert('Test alert');
+            //self.close();
+           //window.top.postMessage({action: 'saveBetPreferences',moveHome}, document.location.protocol + '//' + document.domain);
+           // window.parent.location.href="https://unilever--cb4ldev--c.cs14.visual.force.com/apex/BET?sfdc.tabName=01rE00000001xai#/home";
+           }
+           return true;
+       }
+       
   </script>
   <style type="text/css">
         @font-face{ font-family:DINWebPro;src:url("{!URLFOR($Resource.fuse_brief1_resources_1, 'fonts/DINWebPro.eot')}")}
@@ -258,6 +273,9 @@ body .bPageBlock .requiredInput {
     word-wrap: break-word;
 }
     </style>
+    
+
+    
   <apex:pageBlock >
     <apex:outputPanel style="font-size: 24px;" >
     </apex:outputPanel>
@@ -268,6 +286,7 @@ body .bPageBlock .requiredInput {
   </apex:pageBlock>
   
   <apex:form >
+     
   <apex:outputpanel id="showpage">
   <apex:pageMessages /> 
   <apex:pageBlock title="Add Members" id="addmembers" rendered="{!hasModifyAccess}">
@@ -425,7 +444,7 @@ body .bPageBlock .requiredInput {
            <apex:outputField id="memberRoleExternal" value="{!member.Role__c}" rendered="{!member.Role__c == 'External Agency User'}"/> 
          -->
          </apex:column>      
-         <apex:column rendered="{!hasModifyAccess && $User.Id != member.Team_Member__c}">
+         <apex:column rendered="{!hasModifyAccess}">
             <apex:facet name="header">Delete</apex:facet>  
             <!--
             <apex:outputField value="{!pending.id}" rendered="true"/>
@@ -433,15 +452,15 @@ body .bPageBlock .requiredInput {
             <!--<apex:commandButton value="Delete" action="{!deleteMember}" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="browsemembers" > -->
             <!-- T1 Start -->    
              <!-- T2 Start -->
-              <!--<apex:commandButton value="Delete" action="{!deleteMember}" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="browsemembers" status="saveStatus4"> -->
-              <apex:commandButton value="Delete" rendered="{!member.IsOwner__c == false}" action="{!deleteMember}" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="browsemembers" status="saveStatus4">
-             <!-- T2 End -->
-             <apex:actionStatus id="saveStatus4">
-              <apex:facet name="start">
-               <apex:image value="/img/loading.gif" height="16" width="16" />
-              </apex:facet> 
-             </apex:actionStatus>
-            <!-- T1 End -->   
+             <!--<apex:commandButton value="Delete" action="{!deleteMember}" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="browsemembers" status="saveStatus4"> -->
+             <apex:commandButton value="Delete" rendered="{!member.IsOwner__c == false }" action="{!deleteMember}" onclick="deleteClose();" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="browsemembers" status="saveStatus4">
+              <!-- T2 End -->
+               <apex:actionStatus id="saveStatus4">
+                <apex:facet name="start">
+                 <apex:image value="/img/loading.gif" height="16" width="16" />
+                </apex:facet> 
+               </apex:actionStatus>
+             <!-- T1 End -->   
                 <apex:param name="id" value="{!member.id}" assignTo="{!recordId}" />
            </apex:commandButton>
             <!--
@@ -456,7 +475,10 @@ body .bPageBlock .requiredInput {
         <apex:param id="role" name="role" value=""/>
     </apex:actionFunction>
   
+    <apex:actionFunction name="calldeleteMember" action="{!deleteMember}" />
+  
   </apex:pageBlock>
   </apex:outputpanel>
   </apex:form>
+  <script src="{!$Resource.BETApp}/js/main.js"></script>
 </apex:page>

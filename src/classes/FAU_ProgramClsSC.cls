@@ -4,51 +4,52 @@
  ======================================================
 ======================================================
 Purpose:  This class handles the Program trigger functionality.                                                      
-			                                                           
+                                                                       
 ======================================================
 ======================================================
 History                                                            
 -------                                                            
 VERSION  AUTHOR            DATE              DETAIL                 Description
-   1.0   Jack Dermody      14/09/2014        INITIAL DEVELOPMENT            
+   1.0   Jack Dermody      14/09/2014        INITIAL DEVELOPMENT       
+   1.1    Rangappa Gunda    23/07/2015       Fix to add missing Information to complete on Milestone when program created from Template     
 ***********************************************************************/
 public with sharing class FAU_ProgramClsSC {
 
     public static final String TEMPLATE_RECORDTYPE_DEVELOPERNAME = 'Template';
 
-	public static List<CollaborationGroupMember> getChatterGroupMembersForParticipants(List<FAU_Participant__c> participants){
-		if(participants.isEmpty()) {
-			return new List<CollaborationGroupMember>();
-		} else {
-			Set<String> members = new Set<String>();
-			Set<String> groups = new Set<String>();
-			Map<Id,String> programChatterGroup = new Map<Id,String>();
-			Set<Id> programs = new Set<Id>();
-			for(FAU_Participant__c participant : participants){
-				programs.add(participant.FAU_Program_Wave__c);
-			}
-		
-			for(FAU_Program__c program : [select FAU_Participant_Chatter_Group_Id__c from FAU_Program__c LIMIT 5000]){
-				programChatterGroup.put(program.id,program.FAU_Participant_Chatter_Group_Id__c);
-			}
-		
-			for(FAU_Participant__c participant : participants){
-				members.add(participant.FAU_User__c);
-				groups.add(programChatterGroup.get(participant.FAU_Program_Wave__c));
-			}
-			return [select id from CollaborationGroupMember where MemberId in: members and CollaborationGroupId in: groups];
-		}
-	}
+    public static List<CollaborationGroupMember> getChatterGroupMembersForParticipants(List<FAU_Participant__c> participants){
+        if(participants.isEmpty()) {
+            return new List<CollaborationGroupMember>();
+        } else {
+            Set<String> members = new Set<String>();
+            Set<String> groups = new Set<String>();
+            Map<Id,String> programChatterGroup = new Map<Id,String>();
+            Set<Id> programs = new Set<Id>();
+            for(FAU_Participant__c participant : participants){
+                programs.add(participant.FAU_Program_Wave__c);
+            }
+        
+            for(FAU_Program__c program : [select FAU_Participant_Chatter_Group_Id__c from FAU_Program__c LIMIT 5000]){
+                programChatterGroup.put(program.id,program.FAU_Participant_Chatter_Group_Id__c);
+            }
+        
+            for(FAU_Participant__c participant : participants){
+                members.add(participant.FAU_User__c);
+                groups.add(programChatterGroup.get(participant.FAU_Program_Wave__c));
+            }
+            return [select id from CollaborationGroupMember where MemberId in: members and CollaborationGroupId in: groups];
+        }
+    }
 
-	/*******************************************************************
+    /*******************************************************************
        Purpose:     Gets and Completes participants related to programs
     ********************************************************************/     
     public static List<FAU_Participant__c> getAndCompleteProgramsRelatedParticipants(List<FAU_Program__c> programs){
-    	List<FAU_Participant__c> participants = [select id , FAU_Invite_State__c,FAU_Program_Wave__r.FAU_Participant_Chatter_Group_Id__c from FAU_Participant__c where FAU_Program_Wave__c in: programs];
-    	for(FAU_Participant__c participant : participants){
-    		participant.FAU_Invite_State__c = 'Completed';
-    	}
-    	return participants;
+        List<FAU_Participant__c> participants = [select id , FAU_Invite_State__c,FAU_Program_Wave__r.FAU_Participant_Chatter_Group_Id__c from FAU_Participant__c where FAU_Program_Wave__c in: programs];
+        for(FAU_Participant__c participant : participants){
+            participant.FAU_Invite_State__c = 'Completed';
+        }
+        return participants;
     }
     
     /*******************************************************************
@@ -92,7 +93,8 @@ public with sharing class FAU_ProgramClsSC {
     public static FAU_Milestone__c[] retrieveProgramMilestones(FAU_Program__c oProgram){
         
         return [select CreatedById, CreatedDate, FAU_1st_Reminder__c, FAU_2nd_Reminder__c, FAU_Description__c, 
-                        FAU_Due_Date__c, FAU_Milestone_Completition__c, FAU_Program_Wave__c, FAU_Type__c, Id, Name 
+                        FAU_Due_Date__c, FAU_Milestone_Completition__c, FAU_Program_Wave__c, FAU_Type__c, Id, Name,
+                        FAU_Information_to_Complete__c // Fix to add missing Information to complete on Milestone 
                         FROM FAU_Milestone__c
                         WHERE FAU_Program_Wave__c = :oProgram.Id];
 
@@ -159,8 +161,6 @@ public with sharing class FAU_ProgramClsSC {
         if (oProgram.FAU_Biography_Deadline__c <> null){
             oProgramInsert.FAU_Biography_Deadline__c = oProgram.FAU_Biography_Deadline__c.addDays(iNumberOfDays);
         }
-
-
 
         return oProgramInsert;
     }
@@ -231,12 +231,15 @@ public with sharing class FAU_ProgramClsSC {
             FAU_Milestone__c oMilestoneInsert = oMilestone.clone(false, true, false, false);               //See sObject Clone Method
             oMilestoneInsert.FAU_Program_Wave__c = oProgramInsert.Id;
             if (oMilestone.FAU_Due_Date__c <> null){
+                System.debug('oMilestone.FAU_Due_Date__c----------'+oMilestone.FAU_Due_Date__c);
                 oMilestoneInsert.FAU_Due_Date__c = oMilestone.FAU_Due_Date__c.addDays(iNumberOfDays);
             }
             if (oMilestone.FAU_1st_Reminder__c <> null){
+                System.debug('oMilestone.FAU_1st_Reminder__c----------'+oMilestone.FAU_1st_Reminder__c);
                 oMilestoneInsert.FAU_1st_Reminder__c = oMilestone.FAU_1st_Reminder__c.addDays(iNumberOfDays);
             }
             if (oMilestone.FAU_2nd_Reminder__c <> null){
+                 System.debug('oMilestone.FAU_2nd_Reminder__c----------'+oMilestone.FAU_2nd_Reminder__c);
                 oMilestoneInsert.FAU_2nd_Reminder__c = oMilestone.FAU_2nd_Reminder__c.addDays(iNumberOfDays);
             }
 

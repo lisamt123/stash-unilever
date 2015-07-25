@@ -439,7 +439,7 @@ public without sharing class BET_ManageMembersController {
         if(!hasModifyAccess){
             return null;
         }
-        
+        System.Debug('delete member method called');
         // recordId = BET_Member Id
         System.Debug('Record Id: ' + recordId);
          

@@ -54,7 +54,6 @@
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Link_Name__c</fields>
-        <fields>Link_Output__c</fields>
         <fields>BC_Ordinal__c</fields>
         <relatedList>uw_Links__c.Sub_Categorys__c</relatedList>
     </relatedLists>

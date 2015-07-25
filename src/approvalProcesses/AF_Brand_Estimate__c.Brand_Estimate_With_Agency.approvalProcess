@@ -22,11 +22,11 @@
                 <type>relatedUserField</type>
             </approver>
             <approver>
-                <name>AF_Cat_Finance_Approver_8__c</name>
+                <name>AF_Cat_Finance_Approver_4__c</name>
                 <type>relatedUserField</type>
             </approver>
             <approver>
-                <name>AF_Cat_Finance_Approver_9__c</name>
+                <name>AF_Cat_Finance_Approver_5__c</name>
                 <type>relatedUserField</type>
             </approver>
             <approver>
@@ -42,15 +42,15 @@
                 <type>relatedUserField</type>
             </approver>
             <approver>
+                <name>AF_Cat_Finance_Approver_9__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <approver>
                 <name>AF_Cat_Finance_Approver_2__c</name>
                 <type>relatedUserField</type>
             </approver>
             <approver>
-                <name>AF_Cat_Finance_Approver_5__c</name>
-                <type>relatedUserField</type>
-            </approver>
-            <approver>
-                <name>AF_Cat_Finance_Approver_4__c</name>
+                <name>AF_Cat_Finance_Approver_8__c</name>
                 <type>relatedUserField</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

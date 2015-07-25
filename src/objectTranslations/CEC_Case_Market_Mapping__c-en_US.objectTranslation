@@ -142,6 +142,10 @@
             <translation><!-- George --></translation>
         </picklistValues>
     </fields>
+    <fields>
+        <label><!-- Test --></label>
+        <name>Test__c</name>
+    </fields>
     <layouts>
         <layout>Case Market Mapping Layout</layout>
         <sections>
