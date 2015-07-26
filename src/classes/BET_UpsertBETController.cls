@@ -118,7 +118,7 @@ public with sharing class BET_UpsertBETController {
 	private uw_Bet__c buildBETObject(){
 		uw_Bet__c newBET = new uw_Bet__c();
 		newBET.name = projectName;
-		newBet.ownerId = betobject.ownerId;
+		newBet.ownerId = getBetobject().ownerId;
 		newBet.IPM_Project__c = projectIdentifier;
 		newBet.Launch_Date__c = betobject.Launch_Date__c;
 		newBet.Category_Group__c = categoryName;

@@ -35,6 +35,7 @@ public with sharing class BET_NewBetController {
             categoryNotMigrated = !categoryMigrated;
         } else {
             bet = new uw_BET__c();
+            bet.ownerId = UserInfo.getUserId();
         }
 
         componentData = new BET_CategoryComponentData(bet);

@@ -32,12 +32,14 @@ private class BET_UpsertBETControllerTest {
 		controller.categoryName = categoryGroup.id;
 		controller.brandPosition = position.id;
 		controller.projectName = 'TestProjectName';
+		controller.owner = UserInfo.getUserId();
 
 		System.assert(controller.upsertBet() != null);
 	}
 	
 	@isTest static void skipForNowTest() {
 		BET_UpsertBETController controller = new BET_UpsertBETController();
+		controller.cback = '/apex/bet';
 		System.assert(controller.skipForNow() != null);
 	}
 
@@ -51,7 +53,7 @@ private class BET_UpsertBETControllerTest {
 		controller.categoryName = categoryGroup.id;
 		controller.brandPosition = position.id;
 
-		System.assertEquals(controller.getBrands().size(),1);
+		System.assertEquals(controller.getBrands().size(),2);
 	}
 	
 }
