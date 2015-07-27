@@ -10,12 +10,14 @@
 	<apex:attribute name="Description" type="String" required="false" description="Description of project" assignTo="{!projectDescription}"/>
 	<apex:attribute name="Callback" type="String" required="true" description="URL to which page will be redirected after record creation" assignTo="{!cback}"/>
 
+        <apex:pageMessages/>
+
         <div class="form-item">
             <div class="item-label">
                 <apex:outputLabel >BET Name</apex:outputLabel>
             </div>
             <div class="item-input">
-                <apex:inputText value="{!projectName}"/>
+                <apex:inputText value="{!betobject.name}"/>
             </div>
         </div>             
 

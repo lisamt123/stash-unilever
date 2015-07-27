@@ -110,7 +110,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
               </div>
               <div class="form-item">
                 <div class="item-label">
-                    <apex:outputLabel >Target Launch Date</apex:outputLabel>
+                    <apex:outputLabel>*Target Launch Date</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
                             rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText)}"
                             html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText}" />

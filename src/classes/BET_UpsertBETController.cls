@@ -23,7 +23,7 @@ public with sharing class BET_UpsertBETController {
 
 	public String selectedBrand {get;set;}
 
-	public uw_Bet__c betobject = new uw_Bet__c();
+	//public uw_Bet__c betobject = new uw_Bet__c();
 
 	public static final String MISSING_DATA_TEXT = 'Missing';
 
@@ -60,10 +60,16 @@ public with sharing class BET_UpsertBETController {
 
 	public BET_UpsertBETController() {}
 
-	public uw_Bet__c getBetobject(){
-		betobject.ownerId = owner;
-		betobject.Launch_Date__c = targetLaunchDate;
-		return betobject;
+	public uw_Bet__c betobject{
+		get{
+				if(betobject == null) betobject = new uw_Bet__c();
+				if(betobject.ownerId == null) betobject.ownerId = owner;
+				if(betobject.Launch_Date__c == null) betobject.Launch_Date__c = targetLaunchDate;
+				if(betobject.name == null) betobject.name = projectName;
+				return betobject;
+			} set {
+				betobject = value;
+			}
 	}
 
 	/************************************************************
@@ -128,14 +134,15 @@ public with sharing class BET_UpsertBETController {
 	private uw_Bet__c buildBETObject(){
 		System.debug('Entering buildBETObject');
 		uw_Bet__c newBET = new uw_Bet__c();
-		newBET.name = projectName;
-		newBet.ownerId = getBetobject().ownerId;
+		newBET.name = betobject.name;
+		newBet.ownerId = betobject.ownerId;
 		newBet.IPM_Project__c = projectIdentifier;
 		newBet.Launch_Date__c = betobject.Launch_Date__c;
 		newBet.Category_Group__c = categoryName;
 		newBet.Product_Category__c = cat;
 		newBet.Brand_Position__c = brandPosition;
 		newBet.Product_Brand__c = selectedBrand;
+		newBet.Description__c = projectDescription;
 		System.debug('Exit buildBETObject ' + newBet);
 		return newBET;
 	}

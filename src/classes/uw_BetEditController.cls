@@ -239,6 +239,7 @@ public with sharing class uw_BetEditController {
     *************************************************************/
     @TestVisible
     private List<String> validateBET(uw_BET__c betObject){
+        compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(betObject.Product_Category__c);
         return uw_BETUtil.validateBET(betObject,compData.categoryMigrated);
     }
 
