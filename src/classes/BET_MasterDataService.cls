@@ -13,17 +13,6 @@ public without sharing class BET_MasterDataService{
 
 	/************************************************************
 		Purpose: Method retrieves all Master Data category groups
-		Parameters: name prefix
-		Returns: List of MDO_Category__c objects
-		Throws: -
-	*************************************************************/
-
-	public static List<sObject> getBETCategoryGroups(String nameStr){
-		return [select id,name from MDO_Category__c where category_type__c = 'Category Group' and name=:nameStr order by name asc];
-	}
-
-	/************************************************************
-		Purpose: Method retrieves all Master Data category groups
 		Parameters: -
 		Returns: List of MDO_Category__c objects
 		Throws: -

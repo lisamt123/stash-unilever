@@ -11,8 +11,6 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 
 public with sharing class BET_CategoryBrandSelectionController {
 
-	public Id betIdentifier {get;set;}
-
 	public String selectedCategoryGroup {get;set;}
 	public String selectedCategory {get;set;}
 	public String selectedBrandPositioning {get;set;}
@@ -117,11 +115,7 @@ public with sharing class BET_CategoryBrandSelectionController {
         Throws: -
     *************************************************************/
 	public List<SelectOption> getCategoryGroups(){
-		List<SelectOption> values = new List<SelectOption>{new SelectOption('','--None--')};
-		for(sObject mdo : BET_MasterDataService.getBETCategoryGroups()){
-			values.add(new SelectOption((String)mdo.get('id'),(String)mdo.get('name')));
-		}
-		return values;
+		return getSelectOptionsForList(BET_MasterDataService.getBETCategoryGroups());
 	}
 
     /************************************************************
