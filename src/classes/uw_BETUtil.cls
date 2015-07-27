@@ -105,13 +105,15 @@ public with sharing class uw_BETUtil {
         return bet;
     }
 
-    public static List<String> validateBET(uw_BET__c betObject){
+    public static List<String> validateBET(uw_BET__c betObject,Boolean isCategoryMigrated){
         List<String> errors = new List<String>();
         
         if(String.isBlank(betObject.name)) errors.add(Label.BET_BetNameMandatory);
         if(String.isBlank(betObject.Category_Group__c)) errors.add(Label.BET_BetCategoryGroupMandatory);
         if(String.isBlank(betObject.Product_Category__c)) errors.add(Label.BET_BetCategoryMandatory);
         if(String.isBlank(betObject.Brand_Position__c)) errors.add(Label.BET_BetBrandPositionMandatory);
+        if(String.isBlank(betObject.Inoplan_Project__c) && !isCategoryMigrated) errors.add(Label.BET_InoplanProjectMandatory);
+        if(betObject.Launch_Date__c == null) errors.add(Label.BET_LaunchDateMandatory);
         
         return errors;
     }

@@ -124,7 +124,7 @@
         <apex:outputPanel rendered="{!categoryNotMigrated}">
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
-                    <apex:outputLabel >Project Name</apex:outputLabel>
+                    <apex:outputLabel >*Project Name</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
                                         rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Inoplan_Project__c.inlineHelpText)}"
                                         html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Inoplan_Project__c.inlineHelpText}"/>

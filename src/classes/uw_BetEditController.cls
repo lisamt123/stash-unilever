@@ -239,7 +239,7 @@ public with sharing class uw_BetEditController {
     *************************************************************/
     @TestVisible
     private List<String> validateBET(uw_BET__c betObject){
-        return uw_BETUtil.validateBET(betObject);
+        return uw_BETUtil.validateBET(betObject,compData.categoryMigrated);
     }
 
     /************************************************************
