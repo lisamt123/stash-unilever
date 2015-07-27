@@ -25,7 +25,7 @@ public with sharing class BET_NewBetController {
         Boolean categoryMigrated = null;
         Boolean categoryNotMigrated = null;
         if(currentId != null){
-            bet = [ SELECT  Id, Name, Inoplan_Project__c, uw_Brand__c,Launch_Date__c,
+            bet = [ SELECT  Id, Name, Inoplan_Project__c,Launch_Date__c,
                             Description__c, OwnerId,Inherit_Branding__c,Category_Group__c,
                             IPM_Project__c,IPM_Project__r.name,Brand_Position__c,
                             Product_Category__c,Product_Brand__c 

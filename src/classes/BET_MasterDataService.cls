@@ -62,7 +62,7 @@ public without sharing class BET_MasterDataService{
 
 
 	/************************************************************
-		Purpose: Method retrieves all 3 levels of subcategories for given category
+		Purpose: Method retrieves all 2 levels of subcategories for given category
 		Parameters: Id of related category
 		Returns: Set of categories ids
 		Throws: -
@@ -113,7 +113,7 @@ public without sharing class BET_MasterDataService{
 	/************************************************************
 		Purpose: Method retrieves category name for given id
 		Parameters: Id of related category
-		Returns: String : groups name or null when there is not such record
+		Returns: String : category name or null when there is not such record
 		Throws: -
 	*************************************************************/
 	public static String getCategoryName(Id recordId){
@@ -127,10 +127,9 @@ public without sharing class BET_MasterDataService{
 	}
 
 	/************************************************************
-		Purpose: Method indicates id given category has been migrated to IPM
-		Parameters: Id of related positioning
-		Returns: String : groups name or null when there is not such record
-		Throws: -
+		Purpose: Method retrieves brand name for given id
+		Parameters: Id of related brand
+		Returns: String : brand name  or null when there is not such record
 	*************************************************************/
 	public static String getBrandPositionName(Id recordId){
 		System.debug('Entering getBrandPositionName : ' + recordId);
