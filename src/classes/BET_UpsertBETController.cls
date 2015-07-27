@@ -25,10 +25,12 @@ public with sharing class BET_UpsertBETController {
 
 	public uw_Bet__c betobject = new uw_Bet__c();
 
+	public static final String MISSING_DATA_TEXT = 'Missing';
+
 	public String categoryGroupName{
 		get{
 			String name = BET_MasterDataService.getCategoryGroupName(categoryName);
-			return name == null ? 'Missing' : name;
+			return name == null ? MISSING_DATA_TEXT : name;
 		}
 		set{
 			categoryGroupName = value;
@@ -38,7 +40,7 @@ public with sharing class BET_UpsertBETController {
 	public String catName{
 		get{
 			String name = BET_MasterDataService.getCategoryName(cat);
-			return name == null ? 'Missing' : name;
+			return name == null ? MISSING_DATA_TEXT : name;
 		}
 		set{
 			catName = value;
@@ -48,7 +50,7 @@ public with sharing class BET_UpsertBETController {
 	public String brandPositionName{
 		get{
 			String name = BET_MasterDataService.getBrandPositionName(brandPosition);
-			return name == null ? 'Missing' : name;
+			return name == null ? MISSING_DATA_TEXT : name;
 		}
 		set{
 			brandPositionName = value;
@@ -71,7 +73,10 @@ public with sharing class BET_UpsertBETController {
         Throws: -
     *************************************************************/
 	public List<SelectOption> getBrands(){
-		return getSelectOptionsForList(BET_MasterDataService.getBETBrandsForGivenPositioning(brandPosition));
+		System.debug('Entering getBrands : ' + brandPosition);
+		List<SelectOption> options = getSelectOptionsForList(BET_MasterDataService.getBETBrandsForGivenPositioning(brandPosition));
+		System.debug('Exit getBrands : ' + options);
+		return options;
 	}
 
 	/************************************************************
@@ -81,6 +86,7 @@ public with sharing class BET_UpsertBETController {
         Throws: -
     *************************************************************/
 	private List<SelectOption> getSelectOptionsForList(List<sObject> records){
+		System.debug('Entering getSelectOptionsForList : ' + records);
 		List<SelectOption> values = new List<SelectOption>{new SelectOption('','--None--')};
 		Set<String> unique = new Set<String>();
 		for(sObject mdo : records){
@@ -89,6 +95,7 @@ public with sharing class BET_UpsertBETController {
 				values.add(new SelectOption((String)mdo.get('id'),(String)mdo.get('name')));
 			}
 		}
+		System.debug('Exit getSelectOptionsForList : ' + values);
 		return values;
 	}
 
@@ -99,14 +106,17 @@ public with sharing class BET_UpsertBETController {
         Throws: -
     *************************************************************/
 	public PageReference upsertBet(){
+		System.debug('Entering upsertBet');
+		PageReference pageRef = null;
 		try{
 			uw_Bet__c newBET = buildBETObject();
 			upsert newBET;
-			return new PageReference(cback+'?id='+newBET.id);
+			pageRef = new PageReference(cback+'?id='+newBET.id);
 		}catch(Exception e){
 			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception Saving BET record'+e));
 		}
-		return null;
+		System.debug('Exit upsertBet : ' + pageRef);
+		return pageRef;
 	}
 
 	/************************************************************
@@ -116,6 +126,7 @@ public with sharing class BET_UpsertBETController {
         Throws: -
     *************************************************************/
 	private uw_Bet__c buildBETObject(){
+		System.debug('Entering buildBETObject');
 		uw_Bet__c newBET = new uw_Bet__c();
 		newBET.name = projectName;
 		newBet.ownerId = getBetobject().ownerId;
@@ -125,6 +136,7 @@ public with sharing class BET_UpsertBETController {
 		newBet.Product_Category__c = cat;
 		newBet.Brand_Position__c = brandPosition;
 		newBet.Product_Brand__c = selectedBrand;
+		System.debug('Exit buildBETObject ' + newBet);
 		return newBET;
 	}
 

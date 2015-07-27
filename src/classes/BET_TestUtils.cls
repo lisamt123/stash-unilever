@@ -17,6 +17,7 @@ public class BET_TestUtils {
 		Throws: -
 	*************************************************************/
 	public static uw_BET__c getTestBet(){
+		System.debug('Entering getTestBet');
 		uw_Brand__c brand = new uw_Brand__c();
         brand.Name = 'Axe';
         insert brand;
@@ -28,11 +29,9 @@ public class BET_TestUtils {
         uw_BET__c bet = new uw_BET__c();
         bet.uw_Brand__c = brand.Id;
         bet.Status__c = 'First release';
-        bet.Sharing__c = 'Private';
-        bet.Product_Category_Sub_Division__c = 'Deodorants';
-        bet.Category_Level_2__c ='Deodorants & Fragrances';
         bet.Inoplan_Project__c = inoProject.id;
         bet.Name = 'AxeBrandExperience';
+        System.debug('Exit getTestBet : ' + bet);
         return bet;
 	}
 
@@ -43,10 +42,12 @@ public class BET_TestUtils {
 		Throws: -
 	*************************************************************/
 	public static MDO_Category__c createCategoryGroup(){
+		System.debug('Entering createCategoryGroup');
 		MDO_Category__c cgroup = new MDO_Category__c();
 		cgroup.name='TestCategoryGroup';
 		cgroup.category_type__c = 'Category Group';
 		insert cgroup;
+		System.debug('Exit createCategoryGroup : ' + cgroup);
 		return cgroup;
 	}
 
@@ -57,6 +58,8 @@ public class BET_TestUtils {
 		Throws: -
 	*************************************************************/
 	public static MDO_Category__c createCategory(MDO_Category__c categoryGroup){
+
+		System.debug('Entering createCategory : ' + categoryGroup);
 
 		MDO_Category__c sdivcategory = new MDO_Category__c();
 		sdivcategory.name='TestCategory';
@@ -73,7 +76,7 @@ public class BET_TestUtils {
 		MDO_ProductCategorysubscriptions__c pcs = new MDO_ProductCategorysubscriptions__c();
 		pcs.product_category_id__c=category.id;
 		insert pcs;
-
+		System.debug('Exit createCategory : ' + category);
 		return category;
 	}
 
@@ -84,6 +87,7 @@ public class BET_TestUtils {
 		Throws: -
 	*************************************************************/
 	public static MDO_BrandPositions__c createBrandPositioning(MDO_Category__c category){
+		System.debug('Entering createBrandPositioning : ' + category);
 		MDO_Brand__c brand = new MDO_Brand__c();
 		brand.name = 'battle Axe';
 		insert brand;
@@ -91,6 +95,7 @@ public class BET_TestUtils {
 		positioning.product_category_id__c = category.id;
 		positioning.brand_id__c = brand.Id;
 		insert positioning;
+		System.debug('Exit createBrandPositioning : ' + positioning);
 		return positioning;
 	}
 
@@ -101,6 +106,7 @@ public class BET_TestUtils {
 		Throws: -
 	*************************************************************/
 	public static MDO_BrandPosition__c createBrandPosition(MDO_Category__c category){
+		System.debug('Entering createBrandPosition : ' + category);
 		MDO_Brand__c brand = new MDO_Brand__c();
 		brand.name = 'battle Axe';
 		insert brand;
@@ -114,7 +120,7 @@ public class BET_TestUtils {
 		positioning.brand_id__c = brand.Id;
 		positioning.brand_position_id__c = position.id;
 		insert positioning;
-
+		System.debug('Exit createBrandPosition : ' + positioning);
 		return position;
 	}
 

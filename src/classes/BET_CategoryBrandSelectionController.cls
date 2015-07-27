@@ -155,6 +155,7 @@ public with sharing class BET_CategoryBrandSelectionController {
         Throws: -
     *************************************************************/
 	private List<SelectOption> getSelectOptionsForList(List<sObject> records){
+		System.debug('Entering getSelectOptionsForList : ' + records);
 		List<SelectOption> values = new List<SelectOption>{new SelectOption('','--None--')};
 		Set<String> unique = new Set<String>();
 		for(sObject mdo : records){
@@ -163,6 +164,7 @@ public with sharing class BET_CategoryBrandSelectionController {
 				values.add(new SelectOption((String)mdo.get('id'),(String)mdo.get('name')));
 			}
 		}
+		System.debug('Exit getSelectOptionsForList : ' + values);
 		return values;
 	}
 }

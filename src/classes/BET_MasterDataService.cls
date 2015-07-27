@@ -19,7 +19,10 @@ public without sharing class BET_MasterDataService{
 	*************************************************************/
 
 	public static List<sObject> getBETCategoryGroups(){
-		return [select id,name from MDO_Category__c where category_type__c = 'Category Group' order by name asc];
+		System.debug('Entering getBETCategoryGroups');
+		List<sObject> categoryGroups = [select id,name from MDO_Category__c where category_type__c = 'Category Group' order by name asc];
+		System.debug('Exit getBETCategoryGroups : ' + categoryGroups);
+		return categoryGroups;
 	}
 	
 
@@ -32,7 +35,14 @@ public without sharing class BET_MasterDataService{
 
 	public static List<sObject> getBETCategoriesForGivenGroup(String categoryGroup){
 		System.debug('Entering getBETCategoriesForGivenGroup : ' + categoryGroup);
-		return String.isBlank(categoryGroup) ? new List<sObject>() : [select id,name from MDO_Category__c where parent_id__r.parent_id__c =: categoryGroup and category_type__c = 'Category' order by name asc];
+		List<sObject> categories;
+		if(String.isBlank(categoryGroup)) {
+			categories = new List<sObject>(); 
+		} else {
+		 	categories = [select id,name from MDO_Category__c where parent_id__r.parent_id__c =: categoryGroup and category_type__c = 'Category' order by name asc];
+		}
+		System.debug('Exit getBETCategoriesForGivenGroup : ' + categories);
+		return categories;
 	}
 
 	/************************************************************
@@ -46,6 +56,7 @@ public without sharing class BET_MasterDataService{
 		System.debug('Entering getBETBrandPositioningsForGivenCategoryAndGroup : ' + category);
 		Set<String> categoryAndSubs = getSubCategoriesForGivenCategory(category);
 		List<MDO_BrandPosition__c> positions = [Select id, name from MDO_BrandPosition__c where id in (select brand_position_id__c from MDO_BrandPositions__c where product_category_id__c in: categoryAndSubs) order by name asc];		
+		System.debug('Exit getBETBrandPositioningsForGivenCategoryAndGroup : ' + positions);
 		return positions;
 	}
 
@@ -58,17 +69,16 @@ public without sharing class BET_MasterDataService{
 	*************************************************************/
 	private static Set<String> getSubCategoriesForGivenCategory(String category){
 		System.debug('Entering getSubCategoriesForGivenCategory : ' + category);
-		if(String.isBlank(category)) {
-			return new Set<String>();
-		} else {
-			Set<String> subcategories = new Set<String>{};
+		Set<String> subcategories = new Set<String>{};
+		if(!String.isBlank(category)) {
 			List<MDO_Category__c> firsAndSecondSublevels = [select id from MDO_Category__c where parent_id__r.parent_id__c =:category or parent_id__c =: category];
 			subcategories.add(category);
 			for(MDO_Category__c cat : firsAndSecondSublevels){
 				subcategories.add(cat.id);
 			}
-		return subcategories;
 		}
+		System.debug('Exit getSubCategoriesForGivenCategory : ' + subcategories);
+		return subcategories;
 	}
 
 	/************************************************************
@@ -80,7 +90,9 @@ public without sharing class BET_MasterDataService{
 
 	public static List<sObject> getBETBrandsForGivenPositioning(String position){
 		System.debug('Entering getBETBrandsForGivenPositioning : ' + position);
-		return  [select id,name from MDO_Brand__C where id in (select brand_id__c from MDO_BrandPositions__c where brand_position_id__c =:position) order by name asc];
+		List<sObject> brands = [select id,name from MDO_Brand__C where id in (select brand_id__c from MDO_BrandPositions__c where brand_position_id__c =:position) order by name asc];
+		System.debug('Exit getBETBrandsForGivenPositioning : ' + brands);
+		return brands;
 	}
 
 	/************************************************************
@@ -91,12 +103,15 @@ public without sharing class BET_MasterDataService{
 	*************************************************************/
 	public static String getCategoryGroupName(Id recordId){
 		System.debug('Entering getCategoryGroupName : ' + recordId);
+		String categoryGroupName;
 		try{
 			MDO_Category__c categoryGroup = [select id,name from MDO_Category__c where id=:recordId and category_type__c = 'Category Group'];
-			return categoryGroup.name;
+			categoryGroupName = categoryGroup.name;
 		}catch(Exception e){
-			return null;
+			categoryGroupName = null;
 		}
+		System.debug('Exit getCategoryGroupName : ' + categoryGroupName);
+		return categoryGroupName;
 	}
 
 	/************************************************************
@@ -107,12 +122,15 @@ public without sharing class BET_MasterDataService{
 	*************************************************************/
 	public static String getCategoryName(Id recordId){
 		System.debug('Entering getCategoryName : ' + recordId);
+		String categoryName;
 		try{
 			MDO_Category__c category = [select id,name from MDO_Category__c where id=:recordId and category_type__c = 'Category'];
-			return category.name;
+			categoryName = category.name;
 		}catch(Exception e){
-			return null;
+			categoryName = null;
 		}
+		System.debug('Exit getCategoryName : ' + categoryName);
+		return categoryName;
 	}
 
 	/************************************************************
@@ -122,12 +140,15 @@ public without sharing class BET_MasterDataService{
 	*************************************************************/
 	public static String getBrandPositionName(Id recordId){
 		System.debug('Entering getBrandPositionName : ' + recordId);
+		String positionName;
 		try{
 			MDO_BrandPosition__c position = [select id,name from MDO_BrandPosition__c where id=:recordId];
-			return position.name;
+			positionName = position.name;
 		}catch(Exception e){
-			return null;
+			positionName = null;
 		}
+		System.debug('Exit getBrandPositionName : ' + positionName);
+		return positionName;
 	}
 
 }

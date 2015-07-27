@@ -37,7 +37,14 @@ public with sharing class BET_NewBetComponentController {
 
     public PageReference cancelBET(){     
         System.debug('Entering cancelBET : ' + retUrl);
-        return retURL == null ? Page.BET : new PageReference(retUrl);
+        PageReference pageRef;
+        if(retURL == null){
+            pageRef = Page.BET;
+        } else {
+            pageRef = new PageReference(retUrl);
+        }
+        System.debug('Exit cancelBET : ' + pageRef);
+        return pageRef;
     }
 
     /************************************************************
@@ -49,12 +56,19 @@ public with sharing class BET_NewBetComponentController {
 
     public PageReference saveBET(){
         System.debug('Entering saveBET : ' + bet + ', ' + compData);
+        PageReference pageRef = null;
         try{
             proceedWithSave(false);
+            if(forwardUrl == null){
+                pageRef = null;
+            } else {
+                pageRef = new PageReference(forwardUrl);
+            }
         }catch(Exception e){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception Saving BET record'+e));
         }
-        return forwardUrl == null ? null : new PageReference(forwardUrl);
+        System.debug('Exit saveBET : ' + pageRef);
+        return pageRef;
     }
 
     /************************************************************
@@ -70,6 +84,7 @@ public with sharing class BET_NewBetComponentController {
         }catch(Exception e){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception Saving BET record'+e));
         }
+        System.debug('Exit saveBETandAddMembers');
         return null;
     }
 
@@ -81,6 +96,7 @@ public with sharing class BET_NewBetComponentController {
     *************************************************************/
     @TestVisible
     private void proceedWithSave(Boolean redirectToMembersComponent){
+        System.debug('Entering proceedWithSave : ' + redirectToMembersComponent);
         bet = moveComponentDataToBET(bet,compData);
         List<String> errorMessages = validateBET(bet);
         if(errorMessages.isEmpty()){
@@ -89,6 +105,7 @@ public with sharing class BET_NewBetComponentController {
         } else {
             displayErrors(errorMessages);
         }
+        System.debug('Exit proceedWithSave');
     }
 
     /************************************************************
@@ -99,7 +116,10 @@ public with sharing class BET_NewBetComponentController {
     *************************************************************/
     @TestVisible
     private uw_BET__c moveComponentDataToBET(uw_BET__c bet,BET_CategoryComponentData compData){
-        return uw_BETUtil.moveComponentDataToBET(bet,compData);
+        System.debug('Entering moveComponentDataToBET : ' + bet + ', ' + compData);
+        uw_BET__c modbet =  uw_BETUtil.moveComponentDataToBET(bet,compData);
+        System.debug('Exit moveComponentDataToBET : ' + modbet);
+        return modbet;
     }
 
     /************************************************************
@@ -110,7 +130,10 @@ public with sharing class BET_NewBetComponentController {
     *************************************************************/
     @TestVisible
     private List<String> validateBET(uw_BET__c betObject){
-        return uw_BETUtil.validateBET(betObject);
+        System.debug('Entering validateBET : ' + betObject);
+        List<String> errors = uw_BETUtil.validateBET(betObject);
+        System.debug('Exit validateBET : ' + errors);
+        return errors;
     }
 
     /************************************************************
@@ -121,8 +144,10 @@ public with sharing class BET_NewBetComponentController {
     *************************************************************/
     @TestVisible
     private void displayErrors(List<String> errorsForDisplay){
+        System.debug('Entering displayErrors : ' + errorsForDisplay);
         for(String error : errorsForDisplay){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,error));
         }
+        System.debug('Exit displayErrors');
     }
 }
