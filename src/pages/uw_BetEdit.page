@@ -71,7 +71,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             <div class="form-item-wrapper">
               <div class="form-item">
                 <div class="item-label">
-                    <apex:outputLabel >*BET Name</apex:outputLabel>
+                    <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_Name}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
                                 rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Name.inlineHelpText)}"
                                 html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Name.inlineHelpText}" />
@@ -84,7 +84,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
             <div class="form-item">
               <div class="item-label">
-                <apex:outputLabel >BET Owner</apex:outputLabel>
+                <apex:outputLabel >{!$Label.BET_Owner}</apex:outputLabel>
               </div>
               <div class="item-input">
                 <apex:inputfield styleClass="hideOwner" value="{!bet.ownerId}"/>
@@ -98,7 +98,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
               <div class="form-item">
                 <div class="item-label">
-                    <apex:outputLabel >Inherit Branding</apex:outputLabel>
+                    <apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.Inherit_Branding__c.Label}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
                             rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Inherit_Branding__c.inlineHelpText)}"
                             html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Inherit_Branding__c.inlineHelpText}" />
@@ -110,7 +110,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
               </div>
               <div class="form-item">
                 <div class="item-label">
-                    <apex:outputLabel>*Target Launch Date</apex:outputLabel>
+                    <apex:outputLabel>{!$Label.BET_MandatoryStar}{!$Label.BET_TargetLaunchDate}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
                             rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText)}"
                             html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText}" />
@@ -126,7 +126,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             
               <div class="form-item">
                 <div class="item-label">
-                    <apex:outputLabel >Description</apex:outputLabel>
+                    <apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.Description__c.Label}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
                                 rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText)}"
                                 html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText}" />

@@ -18,10 +18,10 @@
 
     <div class="form-item">
         <div class="item-label">
-            <apex:outputLabel >*Category Group</apex:outputLabel>
+            <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$ObjectType.uw_Bet__c.Fields.Category_Group__c.Label}</apex:outputLabel>
             <apex:outputPanel layout="inline" styleClass="question-icon"
-                                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Category__c.inlineHelpText)}"
-                                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Category__c.inlineHelpText}" />
+                                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Category_Group__c.inlineHelpText)}"
+                                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Category_Group__c.inlineHelpText}" />
         </div>
         <div class="item-input">
             <apex:actionRegion >
@@ -36,10 +36,10 @@
     <apex:outputPanel id="categoryPanel">
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >*Category</apex:outputLabel>
+                <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$ObjectType.uw_Bet__c.Fields.Product_Category__c.Label}</apex:outputLabel>
                 <apex:outputPanel layout="inline" styleClass="question-icon"
-                                	rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Sub_Category__c.inlineHelpText)}"
-                                	html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Sub_Category__c.inlineHelpText}" />
+                                	rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Product_Category__c.inlineHelpText)}"
+                                	html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Product_Category__c.inlineHelpText}" />
             </div>
             <div class="item-input">
                 <apex:actionRegion >
@@ -58,10 +58,10 @@
     <apex:outputPanel id="brandPositioningPanel">
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >*Brand Positioning</apex:outputLabel>
+                <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$ObjectType.uw_Bet__c.Fields.Brand_Position__c.Label}</apex:outputLabel>
                 <apex:outputPanel layout="inline" styleClass="question-icon"
-                                	rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Sub_Category__c.inlineHelpText)}"
-                                	html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Sub_Category__c.inlineHelpText}" />
+                                	rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Brand_Position__c.inlineHelpText)}"
+                                	html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Brand_Position__c.inlineHelpText}" />
             </div>
             <div class="item-input">
                 <apex:actionRegion >
@@ -81,7 +81,7 @@
     <apex:outputPanel id="brandPanel">
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >Brand</apex:outputLabel>
+                <apex:outputLabel>{!$ObjectType.uw_Bet__c.Fields.Product_Brand__c.Label}</apex:outputLabel>
                 <apex:outputPanel layout="inline" styleClass="question-icon"
                         			rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.uw_Brand__c.inlineHelpText)}"
                         			html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.uw_Brand__c.inlineHelpText}" />
@@ -89,7 +89,7 @@
             <div class="item-input">
                 <apex:actionRegion >
                     <apex:selectList value="{!selectedBrand}" size="1" multiselect="false">
-                        <apex:actionSupport event="onchange" action="{!onBrandChange}"/>
+                        <apex:actionSupport event="onchange" action="{!onBrandChange}" reRender="projectsPanels"/>
                         <apex:selectOptions value="{!brands}" />
                     </apex:selectList>
                 </apex:actionRegion>
@@ -102,7 +102,7 @@
 
     <div class="form-item-brandtip">
         <div class="item-label">
-              <apex:outputLabel >If different to brand positioning ... </apex:outputLabel>
+              <apex:outputLabel>{!$Label.BET_BrandTip}</apex:outputLabel>
         </div>
     </div>
 
@@ -110,7 +110,7 @@
         <apex:outputPanel rendered="{!categoryMigrated}">
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
-                    <apex:outputLabel >Project Name</apex:outputLabel>
+                    <apex:outputLabel >{!$Label.BET_ProjectName}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
                                         rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.IPM_Project__c.inlineHelpText)}"
                                         html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.IPM_Project__c.inlineHelpText}" />
@@ -124,15 +124,17 @@
         <apex:outputPanel rendered="{!categoryNotMigrated}">
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
-                    <apex:outputLabel >*Project Name</apex:outputLabel>
+                    <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_ProjectName}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
                                         rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Inoplan_Project__c.inlineHelpText)}"
                                         html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Inoplan_Project__c.inlineHelpText}"/>
                 </div>
                 <div class="item-input">
-                    <apex:inputField id="inopproject" value="{!bet.Inoplan_Project__c}">
-                        <apex:actionSupport event="onchange" action="{!onProjectChange}"/>
-                    </apex:inputField>
+                    <apex:actionRegion >
+                        <apex:inputField id="inopproject" value="{!bet.Inoplan_Project__c}">
+                            <apex:actionSupport event="onchange" action="{!onProjectChange}" rerender="projectsPanels"/>  
+                        </apex:inputField>
+                    </apex:actionRegion >
                 </div>
             </div>
         </apex:outputPanel>

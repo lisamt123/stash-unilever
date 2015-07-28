@@ -46,7 +46,6 @@
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <customHelpPage>be_help_pop_up</customHelpPage>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -137,7 +136,7 @@
         <fullName>Brand_Position__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>BrandPosition</label>
+        <label>Brand Positioning</label>
         <referenceTo>MDO_BrandPosition__c</referenceTo>
         <relationshipLabel>Brand Experience List</relationshipLabel>
         <relationshipName>Brand_Experience_List</relationshipName>
@@ -968,7 +967,7 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
         <fullName>Product_Category__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Product Category</label>
+        <label>Category</label>
         <referenceTo>MDO_Category__c</referenceTo>
         <relationshipLabel>Brand Experience List (Product Category)</relationshipLabel>
         <relationshipName>Brand_Experience_List1</relationshipName>

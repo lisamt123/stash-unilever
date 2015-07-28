@@ -9,7 +9,7 @@
 		<div class="form-header">
     		<div class="form-item">
                 <div class="item-label">
-    				<apex:outputLabel >Brand experience details</apex:outputLabel>
+    				<apex:outputLabel >{!$Label.BET_Header}</apex:outputLabel>
         		</div>
         	</div>
         </div>
@@ -17,7 +17,7 @@
         <div>
         	<div class="form-mandatory">
                 <div class="item-label">
-        			<apex:outputLabel >* Marked fields are mandatory</apex:outputLabel>
+        			<apex:outputLabel >{!$Label.BET_MandatoryStar} {!$Label.BET_MarkedFieldsMandatory}</apex:outputLabel>
         		</div>
         	</div>
     	</div>
@@ -25,7 +25,7 @@
         <div class="form-item-wrapper">
             <div class="form-item">
                 <div class="item-label">
-                    <apex:outputLabel >*BET Name</apex:outputLabel>
+                    <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_Name}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
                                 rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Name.inlineHelpText)}"
                                 html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Name.inlineHelpText}" />
@@ -38,7 +38,7 @@
 
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >BET Owner</apex:outputLabel>
+                <apex:outputLabel >{!$Label.BET_Owner}</apex:outputLabel>
             </div>
             <div class="item-input">
                 <apex:inputfield styleClass="hideOwner" value="{!bet.ownerId}"/>
@@ -52,7 +52,7 @@
 
             <div class="form-item">
                 <div class="item-label">
-                  	<apex:outputLabel >Inherit Branding</apex:outputLabel>
+                  	<apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.Inherit_Branding__c.Label}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
                         		rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Inherit_Branding__c.inlineHelpText)}"
                         		html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Inherit_Branding__c.inlineHelpText}" />
@@ -64,7 +64,7 @@
             </div>
             <div class="form-item">
                 <div class="item-label">
-                  	<apex:outputLabel >*Target Launch Date</apex:outputLabel>
+                  	<apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_TargetLaunchDate}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
                         		rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText)}"
                         		html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText}" />
@@ -79,7 +79,7 @@
         <div>
             <div class="form-item">
                 <div class="item-label">
-                    <apex:outputLabel >Description</apex:outputLabel>
+                    <apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.Description__c.Label}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
                                 rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText)}"
                                 html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText}" />
@@ -92,9 +92,9 @@
         </div>
 
         <div class="betActionButtons">
-            <apex:commandButton value="Cancel" styleClass="btn-cancel" action="{!cancelBET}" immediate="true"/>
-            <apex:commandButton value="Create new BET & add members" styleClass="btn-create-bet" action="{!saveBETandAddMembers}" rendered="{!bet.id == null}"/>
-            <apex:commandButton value="Update BET & add members" styleClass="btn-create-bet" action="{!saveBETandAddMembers}" rendered="{!bet.id != null}"/>
+            <apex:commandButton value="{!$Label.BET_Cancel}" styleClass="btn-cancel" action="{!cancelBET}" immediate="true"/>
+            <apex:commandButton value="{!$Label.BET_CreateBetAddMembers}" styleClass="btn-create-bet" action="{!saveBETandAddMembers}" rendered="{!bet.id == null}"/>
+            <apex:commandButton value="{!$Label.BET_UpdateBetAddMembers}" styleClass="btn-create-bet" action="{!saveBETandAddMembers}" rendered="{!bet.id != null}"/>
         </div>
 
     </apex:outputPanel>

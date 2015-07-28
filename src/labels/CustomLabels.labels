@@ -508,6 +508,46 @@ Are you sure you wish to proceed?</value>
         <value>Selected brand is not linked to chosen category. Please change your selection</value>
     </labels>
     <labels>
+        <fullName>BET_BrandTip</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BrandTip</shortDescription>
+        <value>If different to brand positioning ...</value>
+    </labels>
+    <labels>
+        <fullName>BET_Cancel</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>BET_CreateBetAddMembers</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_CreateBetAddMembers</shortDescription>
+        <value>Create new BET &amp; add members</value>
+    </labels>
+    <labels>
+        <fullName>BET_CreateNewBet</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_CreateNewBet</shortDescription>
+        <value>Create new BET</value>
+    </labels>
+    <labels>
+        <fullName>BET_Header</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Header</shortDescription>
+        <value>Brand experience details</value>
+    </labels>
+    <labels>
         <fullName>BET_InoplanProjectMandatory</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -524,11 +564,87 @@ Are you sure you wish to proceed?</value>
         <value>Target Launch Date is mandatory</value>
     </labels>
     <labels>
+        <fullName>BET_MandatoryStar</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_MandatoryStar</shortDescription>
+        <value>*</value>
+    </labels>
+    <labels>
+        <fullName>BET_MarkedFieldsMandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_MarkedFieldsMandatory</shortDescription>
+        <value>Marked fields are mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_Name</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>BET_Owner</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Owner</shortDescription>
+        <value>BET Owner</value>
+    </labels>
+    <labels>
+        <fullName>BET_ProjectName</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_ProjectName</shortDescription>
+        <value>Project Name</value>
+    </labels>
+    <labels>
+        <fullName>BET_SkipForNow</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_SkipForNow</shortDescription>
+        <value>Skip for now</value>
+    </labels>
+    <labels>
         <fullName>BET_SuggestedMemberAddOtherMember</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET SuggestedMemberAddOtherMember</shortDescription>
         <value>Add Other Members</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberComponentAddMember</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberComponentAddMember</shortDescription>
+        <value>Add Bet members</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberComponentCollapse</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_SuggestedMemberComponentCollapse</shortDescription>
+        <value>Collapse all</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberComponentExpand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_SuggestedMemberComponentExpand</shortDescription>
+        <value>Expand all |</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberComponentSkipForNow</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberComponentSkipForNow</shortDescription>
+        <value>Skip for now</value>
     </labels>
     <labels>
         <fullName>BET_SuggestedMemberComponentWarn</fullName>
@@ -550,6 +666,22 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET SuggestedMemberOtherMembers</shortDescription>
         <value>Other Members</value>
+    </labels>
+    <labels>
+        <fullName>BET_TargetLaunchDate</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_TargetLaunchDate</shortDescription>
+        <value>Target Launch Date</value>
+    </labels>
+    <labels>
+        <fullName>BET_UpdateBetAddMembers</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UpdateBetAddMembers</shortDescription>
+        <value>Update BET &amp; add members</value>
     </labels>
     <labels>
         <fullName>Bonus_Annual</fullName>
