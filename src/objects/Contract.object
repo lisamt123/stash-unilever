@@ -120,6 +120,11 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Pricebook2Id</fullName>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>ShippingAddress</fullName>
         <trackHistory>true</trackHistory>
     </fields>

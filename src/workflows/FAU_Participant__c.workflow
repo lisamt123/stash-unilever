@@ -66,6 +66,28 @@
         <senderType>CurrentUser</senderType>
         <template>FAU_Program_Protected/FAU_eXcel_rator_Invitation_Reminder</template>
     </alerts>
+    <alerts>
+        <fullName>FAU_Send_Email_to_Administrator_Create_Upgrade_User</fullName>
+        <description>FAU Send Email to Administrator Create/Upgrade User</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>suryanarayanan.ramachandran@unilever.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>FAU_Program_Protected/FAU_Request_New_Upgrade_Personal_Assistant_User</template>
+    </alerts>
+    <alerts>
+        <fullName>FAU_Send_Introduction_to_PA</fullName>
+        <description>FAU Send Introduction to PA</description>
+        <protected>false</protected>
+        <recipients>
+            <field>FAU_Personal_Assistant__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>FAU_Program_Protected/FAU_PA_Introduction</template>
+    </alerts>
     <fieldUpdates>
         <fullName>FAU_Program_Invitation</fullName>
         <description>FAU Program Invitation</description>
@@ -326,6 +348,21 @@
         </workflowTimeTriggers>
     </rules>
     <rules>
+        <fullName>FAU Send Introduction to PA</fullName>
+        <actions>
+            <name>FAU_Send_Introduction_to_PA</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>FAU_Participant__c.FAU_Is_deferred_To_PA__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>EMAIL: Send Introduction to participant PA</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>FAU Send Invite</fullName>
         <actions>
             <name>FAU_Program_Invitation</name>
@@ -512,4 +549,18 @@
         <formula>True</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
+    <tasks>
+        <fullName>FAU_Create_Personal_Assistant</fullName>
+        <assignedTo>rangappa.a.gunda@unilever.com.prod</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Can you create/upgrade the Personal Assistant User for this Participant using the email &apos;Request PA User Email Address&apos;. &amp;  Unilever - Force Multi Profile 
+
+After you create the user, add the user to &apos;Personal Assistant&apos; field.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Create Personal Assistant</subject>
+    </tasks>
 </Workflow>

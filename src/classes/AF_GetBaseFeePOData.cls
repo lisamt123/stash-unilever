@@ -49,6 +49,7 @@ global class AF_GetBaseFeePOData{
                eachPORecord.AF_Ready_for_PO_Code__c=mypo.AF_Ready_For_PO_Entry_Currency__c;
                eachPORecord.AF_Brand__c = mypo.Brand__c;
                eachPORecord.AF_Unilever_Entity__c=mypo.AF_Unilever_Entity__r.name;
+               //eachPORecord.AF_Big_Category__c = mypo.AF_Big_Category__c;
               
                system.debug('eachPORecord...'+eachPORecord);
                if (mapPO.containsKey(mypo.id))
@@ -110,7 +111,7 @@ global class AF_GetBaseFeePOData{
        }
            
             if(OopsEstimateIds.size()>0 && deletePOReport==false){
-           for(AF_OOPS_Estimate__c mypo:[SELECT AF_PO_Report_Type__c,AF_EstimateLocal__c,af_estimate__c,AF_PO_Number__c,AF_Unilever_Entity__r.name,AF_OOPS_Actual__r.name,AF_OOPS_Actual__r.AF_Status__c,AF_OOPS_Actual__r.AF_Fiscal_year__c,AF_OOPS_Actual__c,id,AF_OOPS_Actual__r.AF_Brand__r.AF_Category_Brands__r.Name,AF_Compound_key__c,AF_Agency_Entity__r.af_legal_entity_name__c,AF_Agency_Entity__r.name,Unilever_Entity_Name__c,AF_Total__c,AF_Max_Quarter__c,AF_CountNoQuarters__c,AF_QuatersAlreadyDone__c,AF_Traditional__c,AF_Digital__c,AF_Adaptation__c,AF_OOPS_Matrix_Currency_Code__c,AF_Ready_For_PO_Entry_Currency__c,AF_OOPS_Actual__r.AF_Agency_lk__r.name FROM AF_OOPS_Estimate__c where Id IN:OopsEstimateIds])
+           for(AF_OOPS_Estimate__c mypo:[SELECT AF_PO_Report_Type__c,AF_Status__c,AF_Brand__c,AF_EstimateLocal__c,af_estimate__c,AF_PO_Number__c,AF_Unilever_Entity__r.name,AF_OOPS_Actual__r.name,AF_OOPS_Actual__r.AF_Status__c,AF_OOPS_Actual__r.AF_Fiscal_year__c,AF_OOPS_Actual__c,id,AF_OOPS_Actual__r.AF_Brand__r.AF_Category_Brands__r.Name,AF_Compound_key__c,AF_Agency_Entity__r.af_legal_entity_name__c,AF_Agency_Entity__r.name,Unilever_Entity_Name__c,AF_Total__c,AF_Max_Quarter__c,AF_CountNoQuarters__c,AF_QuatersAlreadyDone__c,AF_Traditional__c,AF_Digital__c,AF_Adaptation__c,AF_OOPS_Matrix_Currency_Code__c,AF_Ready_For_PO_Entry_Currency__c,AF_OOPS_Actual__r.AF_Agency_lk__r.name FROM AF_OOPS_Estimate__c where Id IN:OopsEstimateIds])
            {
                eachPORecord = new af_po_report__c();
                eachPORecord.AF_PO_Report_Type__c= mypo.AF_PO_Report_Type__c;
@@ -122,7 +123,7 @@ global class AF_GetBaseFeePOData{
                eachPORecord.AF_Traditional_Local__c=mypo.AF_EstimateLocal__c;
                eachPORecord.AF_Traditional__c=mypo.af_estimate__c;
                eachPORecord.AF_OOPS_Name__c=mypo.AF_OOPS_Actual__r.name;
-               eachPORecord.AF_Base_Fee_Status__c=mypo.AF_OOPS_Actual__r.AF_Status__c;
+               eachPORecord.AF_Base_Fee_Status__c=mypo.AF_Status__c;
                eachPORecord.AF_Fiscal_Year__c=mypo.AF_OOPS_Actual__r.AF_Fiscal_year__c;
                eachPORecord.Fiscal_Year__c=mypo.AF_OOPS_Actual__r.AF_Fiscal_year__c;
                eachPORecord.Oops_Actual_Id__c=mypo.AF_OOPS_Actual__c;
@@ -139,7 +140,8 @@ global class AF_GetBaseFeePOData{
                eachPORecord.AF_QuatersAlreadyDone__c=mypo.AF_QuatersAlreadyDone__c;
                eachPORecord.AF_Matrix_Code__c=mypo.AF_OOPS_Matrix_Currency_Code__c;
                eachPORecord.AF_Ready_for_PO_Code__c=mypo.AF_Ready_For_PO_Entry_Currency__c;
-               //eachPORecord.AF_Brand__c = mypo.Brand__c;
+               eachPORecord.AF_Brand__c = mypo.AF_Brand__c;
+               //eachPORecord.AF_Big_Category__c = mypo.AF_Big_Category__c;
               // eachPORecord.AF_Unilever_Entity__c=mypo.AF_Unilever_Entity__r.name;
               
                system.debug('eachPORecord...'+eachPORecord);
@@ -207,7 +209,7 @@ global class AF_GetBaseFeePOData{
                                 }
                                 po_Report_List.clear();
                                 if(oopsKey.size()>0){
-                                po_Report_List = [select AF_Total__c,AF_CountNoQuarters__c,AF_Traditional_Local__c,AF_Digital_Local__c,AF_PO_Report_Type__c,AF_Adaptation_Local__c,af_max_quarter__c,AF_QuatersAlreadyDone__c,AF_Calculated_PO_Value_Formula__c,AF_Previous_Quarter_Value__c,AF_Compound_Key__c,AF_Calculate_Tradition_Local__c,AF_Previous_Quarter_Value_TL__c,AF_Calculate_Digital_Local__c,AF_Previous_Quarter_Value_DL__c,AF_Calculate_Adaptation_Local__c,AF_Previous_Quarter_Value_AL__c from AF_PO_Report__c where AF_PO_Report_Type__c='OOPS' and AF_Compound_Key__c in:oopsKey order by AF_Compound_Key__c,AF_QuatersAlreadyDone__c ASC];
+                                po_Report_List = [select AF_Total__c,AF_Previous_Quarter_Value_TL_OOPSEuro__c,AF_CountNoQuarters__c,AF_Traditional_Local__c,AF_Digital_Local__c,AF_PO_Report_Type__c,AF_Adaptation_Local__c,af_max_quarter__c,AF_QuatersAlreadyDone__c,AF_Calculated_PO_Value_Formula__c,AF_Previous_Quarter_Value__c,AF_Compound_Key__c,AF_Calculate_Tradition_Local__c,AF_Previous_Quarter_Value_TL__c,AF_Calculate_Digital_Local__c,AF_Previous_Quarter_Value_DL__c,AF_Calculate_Adaptation_Local__c,AF_Previous_Quarter_Value_AL__c,AF_Traditional__c from AF_PO_Report__c where AF_PO_Report_Type__c='OOPS' and AF_Compound_Key__c in:oopsKey order by AF_Compound_Key__c,AF_QuatersAlreadyDone__c ASC];
                                 calculateBaseOopsvalues(po_Report_List);
                                 }
                
@@ -233,11 +235,14 @@ global class AF_GetBaseFeePOData{
                 Decimal totalTL=0;
                 Decimal totalAL=0;
                 Decimal totalDL=0;
+                Decimal totalOOPSEUROTL=0;
+                Decimal calcTLOOPSEURO=0.0;
                 if(!uniqueKey.contains(poReport.AF_Compound_Key__c)){
                           poReport.AF_Previous_Quarter_Value__c =0;
                           poReport.AF_Previous_Quarter_Value_TL__c =0;
                           poReport.AF_Previous_Quarter_Value_AL__c =0;
                           poReport.AF_Previous_Quarter_Value_DL__c =0;
+                          poReport.AF_Previous_Quarter_Value_TL_OOPSEuro__c=0;
                           calcPO=0.0;          
                     }
                                                                                                                                
@@ -265,6 +270,12 @@ global class AF_GetBaseFeePOData{
                         system.debug('quarters...'+quarters);
                         system.debug('quartersdone...'+quartersdone);
                         system.debug('calcTL...'+calcTL);
+                        if(poReport.AF_PO_Report_Type__c == 'OOPS'){
+                            
+                            if(po_Report_List[i-1].AF_Traditional__c==null){totalOOPSEUROTL=0;}else{totalOOPSEUROTL=po_Report_List[i-1].AF_Traditional__c;}
+                            calcTLOOPSEURO = calcTLOOPSEURO+(totalOOPSEUROTL * (quarters+ quartersdone)/4);
+                            poReport.AF_Previous_Quarter_Value_TL_OOPSEuro__c=calcTLOOPSEURO;
+                        }
                    // }             
                     //Adapation Previous Quarter value Calculation
                     if(poReport.AF_PO_Report_Type__c == 'Base Fees'){

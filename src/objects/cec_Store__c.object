@@ -199,6 +199,16 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Poland_Queue</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Poland Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Poland_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Portugal_Queue_cec_Store</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Portugal Queue</label>
@@ -212,6 +222,15 @@
         <filterScope>Queue</filterScope>
         <label>CEC Spain Queue</label>
         <queue>CEC_Spain_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TO_France_Queue_cec_Store</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TO France Queue</label>
+        <queue>TO_France_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

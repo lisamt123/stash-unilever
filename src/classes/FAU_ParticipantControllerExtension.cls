@@ -15,9 +15,9 @@ VERSION  AUTHOR            DATE              DETAIL                 Description
 ***********************************************************************/
 public with sharing class FAU_ParticipantControllerExtension
 {
-	
-	public Boolean declineReasonAvailable {get;set;}
-	
+  
+  public Boolean declineReasonAvailable {get;set;}
+  
     public FAU_ParticipantControllerExtension(ApexPages.StandardController standardController)
     {
         this.webinars = new List<FAU_Webinar_Participant__c>();
@@ -84,22 +84,22 @@ public with sharing class FAU_ParticipantControllerExtension
     ********************************************************************/
     public PageReference declineInvite()
     {
-    	if(declineReasonAvailable){
-        	System.debug('Entering FAU_ParticipantControllerExtension.declineInvite');
-        	FAU_Participant__c recordToSave = (FAU_Participant__c)this.standardController.getRecord();
-        	if(recordToSave.FAU_Decline_Reason__c == null || recordToSave.FAU_Decline_Reason__c == '--None--') {
-        		ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Decline reason is mandatory'));
-        		return null;
-        	}
-        	this.stage = STAGE_DECLINED;
-			recordToSave.FAU_Invite_State__c = INVITE_STATE_DECLINED;
-        	System.debug('Exiting FAU_ParticipantControllerExtension.declineInvite');
+      if(declineReasonAvailable){
+          System.debug('Entering FAU_ParticipantControllerExtension.declineInvite');
+          FAU_Participant__c recordToSave = (FAU_Participant__c)this.standardController.getRecord();
+          if(recordToSave.FAU_Decline_Reason__c == null || recordToSave.FAU_Decline_Reason__c == '--None--') {
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Decline reason is mandatory'));
+            return null;
+          }
+          this.stage = STAGE_DECLINED;
+      recordToSave.FAU_Invite_State__c = INVITE_STATE_DECLINED;
+          System.debug('Exiting FAU_ParticipantControllerExtension.declineInvite');
 
-        	return save();
-    	} else {
-    		declineReasonAvailable = true;
-    		return null;
-    	}
+          return save();
+      } else {
+        declineReasonAvailable = true;
+        return null;
+      }
     }
 
     /*******************************************************************
@@ -198,7 +198,7 @@ public with sharing class FAU_ParticipantControllerExtension
             {
                 webinar.FAU_Has_Accepted__c = true;
                 if(webinar.FAU_Webinar__r.FAU_Recordtype_Developer_Name__c == 'FAU_Registration'){
-                	 webinar.FAU_Status__c = 'Invited';
+                   webinar.FAU_Status__c = 'Invited';
                 } 
                 updatedWebinars.add(webinar);
             }
