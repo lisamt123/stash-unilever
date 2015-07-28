@@ -299,6 +299,9 @@ Declined - The Participant Declined a place on the program --></help>
     </fields>
     <fields>
         <label><!-- Personal Assistant --></label>
+        <lookupFilter>
+            <errorMessage><!-- An active standard user needs to be chosen. --></errorMessage>
+        </lookupFilter>
         <name>FAU_Personal_Assistant__c</name>
         <relationshipLabel><!-- Participants (Personal Assistant) --></relationshipLabel>
     </fields>
@@ -380,6 +383,11 @@ Declined - The Participant Declined a place on the program --></help>
         <name>FAU_RSVP_Deadline__c</name>
     </fields>
     <fields>
+        <help><!-- This gets filled when the participant can&apos;t find the Personal Assistant User and is requesting a user login for the PA. --></help>
+        <label><!-- Request PA User Email Address --></label>
+        <name>FAU_Request_PA_User_Email_Address__c</name>
+    </fields>
+    <fields>
         <label><!-- Title --></label>
         <name>FAU_Title__c</name>
         <picklistValues>
@@ -417,6 +425,10 @@ Declined - The Participant Declined a place on the program --></help>
     </fields>
     <fields>
         <label><!-- User --></label>
+        <lookupFilter>
+            <errorMessage><!-- An active standard user needs to be chosen. --></errorMessage>
+            <informationalMessage><!-- Select the Salesforce User who you want to participate in this program wave. --></informationalMessage>
+        </lookupFilter>
         <name>FAU_User__c</name>
         <relationshipLabel><!-- Participants (User) --></relationshipLabel>
     </fields>
@@ -445,6 +457,10 @@ Declined - The Participant Declined a place on the program --></help>
         <sections>
             <label><!-- Participants Workbook --></label>
             <section>Participants Workbook</section>
+        </sections>
+        <sections>
+            <label><!-- Personal Assistant --></label>
+            <section>Personal Assistant</section>
         </sections>
         <sections>
             <label><!-- Personal Details --></label>
@@ -485,4 +501,11 @@ Change the program status to &apos;Active&apos; to continue. --></errorMessage>
         <label><!-- FAU_Send_Email --></label>
         <name>FAU_Send_Email</name>
     </webLinks>
+    <workflowTasks>
+        <description><!-- Can you create/upgrade the Personal Assistant User for this Participant using the email &apos;Request PA User Email Address&apos;. &amp;  Unilever - Force Multi Profile 
+
+After you create the user, add the user to &apos;Personal Assistant&apos; field. --></description>
+        <name>FAU_Create_Personal_Assistant</name>
+        <subject><!-- Create Personal Assistant --></subject>
+    </workflowTasks>
 </CustomObjectTranslation>

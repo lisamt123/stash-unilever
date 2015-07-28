@@ -193,12 +193,6 @@
         <quickActionListItems>
             <quickActionName>FeedItem.TextPost</quickActionName>
         </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>Core_Approval_Header__c.Approve</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
-            <quickActionName>Core_Approval_Header__c.Reject</quickActionName>
-        </quickActionListItems>
     </quickActionList>
     <relatedLists>
         <excludeButtons>New</excludeButtons>
@@ -213,7 +207,6 @@
         <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
-        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Interested_Party_Details__c</fields>
         <fields>CA_Action__c</fields>

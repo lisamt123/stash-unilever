@@ -474,7 +474,7 @@ body .bPageBlock .requiredInput {
             <!-- <apex:commandButton value="Cancel"  styleClass="btn-cancel" /> -->
             <!--T1 start-->
             <apex:commandButton value="Save" styleClass="btn-save" action="{!saveBET}" onclick="this.value = 'Saving...'"/>
-            <apex:commandButton value="Cancel"  styleClass="btn-cancel" onclick="this.value = 'Canceling ...'"/>
+            <apex:commandButton value="Cancel"  styleClass="btn-cancel" action="{!cancelBET}"  onclick="this.value = 'Canceling ...'"/>
             <!--T1 end-->
     
 

@@ -210,7 +210,7 @@ null))))))</formula>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
         <label>Description</label>
-        <length>700</length>
+        <length>1000</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>

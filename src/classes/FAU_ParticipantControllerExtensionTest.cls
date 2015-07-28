@@ -246,7 +246,7 @@ private class FAU_ParticipantControllerExtensionTest
         //}
         Test.stopTest();
 
-        System.assertEquals('Proceeding', controller.pageState);
+        System.assertEquals('WithPA', controller.pageState);
     }
 
 
@@ -261,7 +261,7 @@ private class FAU_ParticipantControllerExtensionTest
 
         Account a = new Account(Name = 'Test Account ');
         insert a;
-        Contact c = new Contact(firstname='Test',lastname='Test',AccountId=a.Id, email='test@test.com');
+        Contact c = new Contact(firstname='Test',lastname='Test',AccountId=a.Id, email='fautestcontact@unilever.com');
         insert c;
 
 

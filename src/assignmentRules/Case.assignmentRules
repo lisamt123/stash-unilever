@@ -71,6 +71,7 @@
         <ruleEntry>
             <assignedTo>CEC_France_Queue</assignedTo>
             <assignedToType>Queue</assignedToType>
+            <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
             <criteriaItems>
                 <field>Case.Case_Market__c</field>
                 <operation>equals</operation>
@@ -80,6 +81,35 @@
                 <field>Case.Out_of_Hours__c</field>
                 <operation>equals</operation>
                 <value>False</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Market_Tag__c</field>
+                <operation>equals</operation>
+                <value>CEC</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Case_Market_Tag__c</field>
+                <operation>equals</operation>
+                <value>null</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>TO_France_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Case_Market__c</field>
+                <operation>equals</operation>
+                <value>France</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Tag__c</field>
+                <operation>equals</operation>
+                <value>George</value>
             </criteriaItems>
         </ruleEntry>
         <ruleEntry>
@@ -187,6 +217,20 @@
                 <field>Case.Origin</field>
                 <operation>equals</operation>
                 <value>Email France</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Out_of_Hours__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>TO_France_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email TO France</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Case.Out_of_Hours__c</field>

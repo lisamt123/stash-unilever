@@ -42,8 +42,10 @@ global class CORE_CA_ReminderAlert_Batch implements Database.Batchable<SObject>{
                         strBody = CORE_Chatter_Approval__c.getinstance('Ariba-ApprovalOverdue').Text_Value__c;
                         strBody = strBody.replace('YYY',lstApprovalHeader[0].Name); 
                         strBody = strBody.replace('XXX',mapUser.get(approverDetail.Interested_Party__c).Name);                  
-                        feedItemsToInsert.add(new FeedItem( Type = 'LinkPost', Body = strBody , ParentId = approverDetail.Approval_Header__c,
-                                                             LinkURL =baseUrl+'/'+lstApprovalHeader[0].Id , Title = lstApprovalHeader[0].Name, CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c )); 
+                       feedItemsToInsert.add(new FeedItem( Type = 'LinkPost', Body = strBody , ParentId = approverDetail.Approval_Header__c,
+                                                             LinkURL =baseUrl+'/'+lstApprovalHeader[0].Id , Title = lstApprovalHeader[0].Name, CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c ));
+                        /* feedItemsToInsert.add(new FeedItem( Type = 'LinkPost', Body = strBody , ParentId = approverDetail.Approval_Header__c,
+                                                             LinkURL = baseUrl+'/apex/Core_CA_ApprovalHomePage#/MyApprovalsHome?headerId='+lstApprovalHeader[0].Id+'&ipId='+approverDetail.Id , Title = lstApprovalHeader[0].Name, CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c )); */
                     }
                 }
                 
@@ -56,6 +58,8 @@ global class CORE_CA_ReminderAlert_Batch implements Database.Batchable<SObject>{
                          strBody = strBody.replace('YYY',mapUser.get(approverDetail.Interested_Party__c).Name);                      
                         feedItemsToInsert.add(new FeedItem( Type = 'LinkPost', Body = strBody , ParentId = approverDetail.Approval_Header__c,
                                                             LinkURL =baseUrl+'/'+lstApprovalHeader[0].Id , Title =lstApprovalHeader[0].Name, CreatedById = CORE_Chatter_Approval__c.getinstance('GTES').Text_Value__c )); 
+                        /*feedItemsToInsert.add(new FeedItem( Type = 'LinkPost', Body = strBody , ParentId = approverDetail.Approval_Header__c,
+                                                            LinkURL =baseUrl+'/apex/Core_CA_ApprovalHomePage#/MyApprovalsHome?headerId='+lstApprovalHeader[0].Id+'&ipId='+approverDetail.Id , Title =lstApprovalHeader[0].Name, CreatedById = CORE_Chatter_Approval__c.getinstance('GTES').Text_Value__c ));*/
                     }
                 }                        
             } 
