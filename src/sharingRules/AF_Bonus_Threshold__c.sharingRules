@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>Bonus_Threshold_Internal_Users</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Bonus Threshold Internal Users</label>
+        <sharedTo>
+            <group>AF_Agency_Fee_Internal_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>AF_Agency_Fee_Internal_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Bonus_threshold_72_Sunny_AgencyUser</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Bonus threshold 72&amp;Sunny AgencyUser</label>
+        <sharedTo>
+            <portalRole>x72SunnyPartnerUser</portalRole>
+        </sharedTo>
+        <sharedFrom>
+            <group>AF_Agency_Fee_Internal_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Bonus_threshold_BBH_User</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Bonus threshold BBH User</label>
+        <sharedTo>
+            <portalRole>BBHPartnerUser</portalRole>
+        </sharedTo>
+        <sharedFrom>
+            <group>AF_Agency_Fee_Internal_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Bonus_threshold_Cognizant_AgencyUser</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Bonus threshold Cognizant AgencyUser</label>
+        <sharedTo>
+            <portalRole>CognizantAgencyPartnerUser</portalRole>
+        </sharedTo>
+        <sharedFrom>
+            <group>AF_Agency_Fee_Internal_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Bonus_threshold_DDB_User</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Bonus threshold DDB User</label>
+        <sharedTo>
+            <portalRole>DDBPartnerUser</portalRole>
+        </sharedTo>
+        <sharedFrom>
+            <group>AF_Agency_Fee_Internal_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Bonus_threshold_JWT_User</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Bonus threshold JWT User</label>
+        <sharedTo>
+            <portalRole>JWTPartnerUser</portalRole>
+        </sharedTo>
+        <sharedFrom>
+            <group>AF_Agency_Fee_Internal_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Bonus_threshold_Lowe_User</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Bonus threshold Lowe User</label>
+        <sharedTo>
+            <portalRole>LowePartnerUser</portalRole>
+        </sharedTo>
+        <sharedFrom>
+            <group>AF_Agency_Fee_Internal_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Bonus_threshold_Ogilvy_User</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Bonus threshold Ogilvy User</label>
+        <sharedTo>
+            <portalRole>OgilvyPartnerUser</portalRole>
+        </sharedTo>
+        <sharedFrom>
+            <group>AF_Agency_Fee_Internal_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

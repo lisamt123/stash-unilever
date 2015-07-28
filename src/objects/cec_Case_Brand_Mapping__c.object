@@ -292,6 +292,7 @@
         <columns>Language__c</columns>
         <columns>Brand__c</columns>
         <columns>OWNER.ALIAS</columns>
+        <columns>Brand_Market__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
@@ -498,6 +499,15 @@
         <filterScope>Queue</filterScope>
         <label>CEC Spain Queue</label>
         <queue>CEC_Spain_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TO_France_Queue_cec_Case_Brand_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TO France Queue</label>
+        <queue>TO_France_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

@@ -767,10 +767,22 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
         <label>Personal Assistant</label>
         <lookupFilter>
             <active>true</active>
+            <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+            <errorMessage>An active standard user needs to be chosen.</errorMessage>
             <filterItems>
                 <field>User.IsActive</field>
                 <operation>equals</operation>
                 <value>True</value>
+            </filterItems>
+            <filterItems>
+                <field>User.User_License__c</field>
+                <operation>equals</operation>
+                <value>Salesforce</value>
+            </filterItems>
+            <filterItems>
+                <field>User.User_License__c</field>
+                <operation>equals</operation>
+                <value>Salesforce Platform</value>
             </filterItems>
             <isOptional>false</isOptional>
         </lookupFilter>
@@ -1011,6 +1023,18 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>FAU_Request_PA_User_Email_Address__c</fullName>
+        <description>This gets filled when the participant can&apos;t find the Personal Assistant User and is requesting a user login for the PA.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This gets filled when the participant can&apos;t find the Personal Assistant User and is requesting a user login for the PA.</inlineHelpText>
+        <label>Request PA User Email Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FAU_Title__c</fullName>
         <externalId>false</externalId>
         <label>Title</label>
@@ -1087,10 +1111,22 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
         <label>User</label>
         <lookupFilter>
             <active>true</active>
+            <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+            <errorMessage>An active standard user needs to be chosen.</errorMessage>
             <filterItems>
                 <field>User.IsActive</field>
                 <operation>equals</operation>
                 <value>True</value>
+            </filterItems>
+            <filterItems>
+                <field>User.User_License__c</field>
+                <operation>equals</operation>
+                <value>Salesforce</value>
+            </filterItems>
+            <filterItems>
+                <field>User.User_License__c</field>
+                <operation>equals</operation>
+                <value>Salesforce Platform</value>
             </filterItems>
             <infoMessage>Select the Salesforce User who you want to participate in this program wave.</infoMessage>
             <isOptional>false</isOptional>
@@ -1138,6 +1174,15 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
         <columns>FAU_Completeness_Icon__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>FAU_PA_User_Request_FAU_Participant</fullName>
+        <filterScope>Queue</filterScope>
+        <label>FAU PA User Request</label>
+        <queue>FAU_PA_User_Request</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Program_Update_List</fullName>

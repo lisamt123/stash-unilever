@@ -37,6 +37,10 @@
         <name>Denmark_Questionnaire_Id__c</name>
     </fields>
     <fields>
+        <label><!-- Estonia Questionnaire Id --></label>
+        <name>Estonia_Questionnaire_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Factory Investigation Survey ID --></label>
         <name>Factory_Investigation_Survey_ID__c</name>
     </fields>
@@ -67,6 +71,14 @@
     <fields>
         <label><!-- Italy Questionnaire Id --></label>
         <name>Italy_Questionnaire_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Latvia Questionnaire Id --></label>
+        <name>Latvia_Questionnaire_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lithuania Questionnaire Id --></label>
+        <name>Lithuania_Questionnaire_Id__c</name>
     </fields>
     <fields>
         <label><!-- Mulesoft User Id --></label>

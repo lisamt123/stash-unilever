@@ -206,15 +206,14 @@
     </fields>
     <fields>
         <fullName>Locale__c</fullName>
-        <caseSensitive>false</caseSensitive>
         <description>CEC: contains the Key value which will be used in webtocase scenario by integration team</description>
-        <externalId>false</externalId>
+        <externalId>true</externalId>
         <label>Locale</label>
         <length>20</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>true</unique>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Market__c</fullName>
@@ -226,6 +225,25 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tag__c</fullName>
+        <description>TO: Picklist to differentiate between CEC and George Case Market Mapping</description>
+        <externalId>false</externalId>
+        <label>Tag</label>
+        <picklist>
+            <picklistValues>
+                <fullName>CEC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>George</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <label>Case Market Mapping</label>
     <listViews>
@@ -239,6 +257,7 @@
         <columns>Account_Owner_Active_Flag__c</columns>
         <columns>DefaultAccountOwnerId__c</columns>
         <columns>DefaultCaseOwnerId__c</columns>
+        <columns>Tag__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
@@ -401,6 +420,15 @@
         <filterScope>Queue</filterScope>
         <label>CEC Spain Queue</label>
         <queue>CEC_Spain_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TO_France_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TO France Queue</label>
+        <queue>TO_France_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

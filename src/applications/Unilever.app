@@ -11,5 +11,5 @@
     <tab>standard-File</tab>
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
-    <tab>My_Approvals</tab>
+    <tab>My_Approvals_Custom</tab>
 </CustomApplication>

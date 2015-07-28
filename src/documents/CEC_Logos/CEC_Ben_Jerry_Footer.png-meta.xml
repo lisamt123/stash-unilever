@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>CEC: This document is used in &quot;CEC Ben &amp; Jerry&apos;s - Belgium&quot; Letterhead as a Footer</description>
+    <internalUseOnly>false</internalUseOnly>
+    <name>CEC Ben &amp; Jerry Footer</name>
+    <public>true</public>
+</Document>

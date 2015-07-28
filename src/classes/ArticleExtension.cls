@@ -1,7 +1,7 @@
 public with sharing class ArticleExtension {
 
   list <article__c> articlelist;
-  List<uw_Brand_Link_Sections__c> LinksSections = new List<uw_Brand_Link_Sections__c>();
+  //List<uw_Brand_Link_Sections__c> LinksSections = new List<uw_Brand_Link_Sections__c>();
   List<uw_Links__c> brandlinks = new List<uw_Links__c>();
   List<Sub_Category__c> brandsubcategory = new List<Sub_Category__c>();
   
@@ -37,13 +37,13 @@ public with sharing class ArticleExtension {
     return articlelist;
     }
     
- 
+ /**
     public List<uw_Brand_Link_Sections__c> getlinksSections()
     { 
     LinksSections = [select id, Name, Brand_Centre__c, Style_Class__c, Position__c,Horizontal_Type__c,Section_Image_ID__c from uw_Brand_Link_Sections__c where Brand_Centre__c = :ApexPages.currentPage().getParameters().get('bid') order by Position__c ASC, Ordinal__c ASC ];      
     return LinksSections;
     }
-              
+             
 
     public List<uw_Links__c> getbrandlinks()
     { 
@@ -59,5 +59,5 @@ public with sharing class ArticleExtension {
     brandsubcategory = [select Name, Brand_Link_Sections__c from Sub_Category__c where  Brand_Link_Sections__r.Brand_Centre__r.Id = :ApexPages.currentPage().getParameters().get('bid')];
     return brandsubcategory;
     }
-                
+       **/          
      }
