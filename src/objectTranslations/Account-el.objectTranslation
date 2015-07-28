@@ -52,10 +52,6 @@
         <name>Additional_Information__c</name>
     </fields>
     <fields>
-        <label><!-- Age --></label>
-        <name>Age__c</name>
-    </fields>
-    <fields>
         <label><!-- Agency Contact --></label>
         <name>Agency_Contact__c</name>
         <relationshipLabel><!-- Accounts --></relationshipLabel>
@@ -693,19 +689,39 @@
         <name>D_B_Duns_Number__c</name>
     </fields>
     <fields>
-        <label><!-- Demandware Id --></label>
-        <name>Demandware_Id__c</name>
+        <label><!-- Demandware Customer No --></label>
+        <name>Demandware_ID__c</name>
     </fields>
     <fields>
         <label><!-- Discipline --></label>
         <name>Discipline__c</name>
         <picklistValues>
-            <masterLabel>Comps</masterLabel>
-            <translation><!-- Comps --></translation>
+            <masterLabel>Activations and Promotions</masterLabel>
+            <translation><!-- Activations and Promotions --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Creative (Advertising)</masterLabel>
-            <translation><!-- Creative (Advertising) --></translation>
+            <masterLabel>Advertising</masterLabel>
+            <translation><!-- Advertising --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Advertising Production</masterLabel>
+            <translation><!-- Advertising Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Artwork</masterLabel>
+            <translation><!-- Artwork --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Co-op marketing</masterLabel>
+            <translation><!-- Co-op marketing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consumer &amp; Customer Response</masterLabel>
+            <translation><!-- Consumer &amp; Customer Response --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer Care</masterLabel>
+            <translation><!-- Customer Care --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Design (Adaptive)</masterLabel>
@@ -716,21 +732,85 @@
             <translation><!-- Design (Creative) --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Digital</masterLabel>
-            <translation><!-- Digital --></translation>
+            <masterLabel>Distribution &amp; Mailing Services</masterLabel>
+            <translation><!-- Distribution &amp; Mailing Services --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Production (Advertising)</masterLabel>
-            <translation><!-- Production (Advertising) --></translation>
+            <masterLabel>Field Sales</masterLabel>
+            <translation><!-- Field Sales --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Interactive (Digital)</masterLabel>
+            <translation><!-- Interactive (Digital) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marketing Materials</masterLabel>
+            <translation><!-- Marketing Materials --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media</masterLabel>
+            <translation><!-- Media --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media Agency</masterLabel>
+            <translation><!-- Media Agency --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging Print Production</masterLabel>
+            <translation><!-- Packaging Print Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Point of Sale Materials (POSM)</masterLabel>
+            <translation><!-- Point of Sale Materials (POSM) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Premiums</masterLabel>
+            <translation><!-- Premiums --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Print Media Placement</masterLabel>
+            <translation><!-- Print Media Placement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Printed Material</masterLabel>
+            <translation><!-- Printed Material --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotional Merchandise</masterLabel>
+            <translation><!-- Promotional Merchandise --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Public Relations</masterLabel>
             <translation><!-- Public Relations --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>Research - Ad hoc</masterLabel>
+            <translation><!-- Research - Ad hoc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Research – Continuous</masterLabel>
+            <translation><!-- Research – Continuous --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales &amp; Business Promotion Activities</masterLabel>
+            <translation><!-- Sales &amp; Business Promotion Activities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Channel Operations</masterLabel>
+            <translation><!-- Sales Channel Operations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Promotion Print Production (Commercial Print)</masterLabel>
+            <translation><!-- Sales Promotion Print Production (Commercial Print) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Warehousing &amp; Logistics</masterLabel>
+            <translation><!-- Warehousing &amp; Logistics --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <help><!-- Per Week --></help>
-        <label><!-- Drinking Frequency --></label>
+        <label><!-- Tea Drinking Frequency --></label>
         <name>Drinking_frequency__c</name>
     </fields>
     <fields>
@@ -740,22 +820,6 @@
     <fields>
         <label><!-- Featured --></label>
         <name>Featured__c</name>
-    </fields>
-    <fields>
-        <label><!-- Frequent Caller --></label>
-        <name>Frequent_Caller__c</name>
-    </fields>
-    <fields>
-        <label><!-- Gender --></label>
-        <name>Gender__c</name>
-        <picklistValues>
-            <masterLabel>Female</masterLabel>
-            <translation><!-- Female --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Male</masterLabel>
-            <translation><!-- Male --></translation>
-        </picklistValues>
     </fields>
     <fields>
         <label><!-- General Email --></label>
@@ -1178,8 +1242,8 @@
             <translation><!-- Shop --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Shop in Shop</masterLabel>
-            <translation><!-- Shop in Shop --></translation>
+            <masterLabel>Shop In Shop</masterLabel>
+            <translation><!-- Shop In Shop --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>UL Careline</masterLabel>
@@ -1229,6 +1293,10 @@
     <recordTypes>
         <label><!-- Agency Fee --></label>
         <name>Agency_Fee</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Business Account --></label>
+        <name>Business_Account</name>
     </recordTypes>
     <recordTypes>
         <label><!-- Pitch Agency --></label>

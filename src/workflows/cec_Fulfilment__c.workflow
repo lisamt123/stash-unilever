@@ -62,12 +62,12 @@
         <assignedToType>owner</assignedToType>
         <description>Your consumer correspondence has been rejected by the Quality Check team and needs further amendments before being sent.
 
-Please follow the link to the record and amend as requested.
+Please follow the link to the record and amend as requested. 
 
 Thank you.</description>
         <dueDateOffset>0</dueDateOffset>
         <notifyAssignee>false</notifyAssignee>
-        <priority>Normal</priority>
+        <priority>High</priority>
         <protected>false</protected>
         <status>Not Started</status>
         <subject>Rejected correspondence</subject>

@@ -258,10 +258,15 @@
     <label>Case Product</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>OBJECT_ID</columns>
         <columns>NAME</columns>
         <columns>Brand__c</columns>
-        <columns>GTIN_EAN_UPC_Code__c</columns>
+        <columns>Consumer_Product_Descriptor_Local_Lang__c</columns>
+        <columns>Global_CPG_Code__c</columns>
+        <columns>Form__c</columns>
+        <columns>ISO_Country_Code__c</columns>
+        <columns>Pack_Size_Net_Content__c</columns>
+        <columns>Variant_Flavour__c</columns>
+        <columns>Active_for_CEC__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>

@@ -7,12 +7,12 @@ public class IPM_CreateProjectsTasks_Test{
 
 
               
-              u2 = new User(Alias = 'standtyv', Email='vstandardusery@testorg14.com', 
-              EmailEncodingKey='UTF-8', LastName='vTestingy44', LanguageLocaleKey='en_US', 
+              u2 = new User(Alias = 'standt14', Email='standarduser@testorg14.com', 
+              EmailEncodingKey='UTF-8', LastName='Testing4', LanguageLocaleKey='en_US', 
               LocaleSidKey='en_US', ProfileId = p1.Id, 
-              TimeZoneSidKey='America/Los_Angeles', UserName='vstandardusery@testorg14007.com', 
-              IPM_Category__c = 'vtesty141'  , IPM_Brand_Positioning__c= 'vtesty14',IPM_Brand_Name__c ='vtesty2',
-              IPM_Role__c='Gate Keeper' ,IPM_Sub_Category__c='vtest', isActive =true);
+              TimeZoneSidKey='America/Los_Angeles', UserName='standarduser@testorg14.com', 
+              IPM_Category__c = 'test14'  , IPM_Brand_Positioning__c= 'test14',IPM_Brand_Name__c ='test1',
+              IPM_Role__c='Gate Keeper' ,IPM_Sub_Category__c='test', isActive =true);
               insert u2;
        List<PermissionSetAssignment> newPermissionSetAccess = new List<PermissionSetAssignment>(); //list for new permission sets
        PermissionSet Fps=new PermissionSet();
