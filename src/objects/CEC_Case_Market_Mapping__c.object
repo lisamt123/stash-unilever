@@ -245,16 +245,6 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
-    <fields>
-        <fullName>Test__c</fullName>
-        <externalId>false</externalId>
-        <label>Test</label>
-        <length>30</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <label>Case Market Mapping</label>
     <listViews>
         <fullName>All</fullName>
@@ -264,9 +254,10 @@
         <columns>Language__c</columns>
         <columns>Locale__c</columns>
         <columns>OWNER.ALIAS</columns>
-        <columns>DefaultCaseOwnerId__c</columns>
-        <columns>DefaultAccountOwnerId__c</columns>
         <columns>Account_Owner_Active_Flag__c</columns>
+        <columns>DefaultAccountOwnerId__c</columns>
+        <columns>DefaultCaseOwnerId__c</columns>
+        <columns>Tag__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
@@ -282,8 +273,17 @@
     </listViews>
     <listViews>
         <fullName>CEC_Benelux_Queue_CEC_Case_Market_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>Language__c</columns>
+        <columns>Locale__c</columns>
+        <columns>Market__c</columns>
+        <columns>Account_Owner_Active_Flag__c</columns>
+        <columns>DefaultAccountOwnerId__c</columns>
+        <columns>DefaultCaseOwnerId__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Benelux Queue</label>
+        <language>en_US</language>
         <queue>CEC_Benelux_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -318,8 +318,17 @@
     </listViews>
     <listViews>
         <fullName>CEC_France_Queue_CEC_Case_Market_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>Language__c</columns>
+        <columns>Locale__c</columns>
+        <columns>Market__c</columns>
+        <columns>Account_Owner_Active_Flag__c</columns>
+        <columns>DefaultAccountOwnerId__c</columns>
+        <columns>DefaultCaseOwnerId__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC France Queue</label>
+        <language>en_US</language>
         <queue>CEC_France_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -372,8 +381,17 @@
     </listViews>
     <listViews>
         <fullName>CEC_Nordic_Queue_CEC_Case_Market_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>Language__c</columns>
+        <columns>Locale__c</columns>
+        <columns>Market__c</columns>
+        <columns>Account_Owner_Active_Flag__c</columns>
+        <columns>DefaultAccountOwnerId__c</columns>
+        <columns>DefaultCaseOwnerId__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Nordic Queue</label>
+        <language>en_US</language>
         <queue>CEC_Nordic_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

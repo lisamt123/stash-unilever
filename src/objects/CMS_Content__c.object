@@ -78,16 +78,6 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>ExtID__c</fullName>
-        <externalId>true</externalId>
-        <label>ExtID</label>
-        <length>18</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>LinkTitle__c</fullName>
         <externalId>false</externalId>
         <label>LinkTitle</label>
@@ -202,6 +192,14 @@
         <type>Picklist</type>
     </fields>
     <label>CMS Content</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Type__c</columns>
+        <columns>Content__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>CMS Content Name</label>
         <type>Text</type>

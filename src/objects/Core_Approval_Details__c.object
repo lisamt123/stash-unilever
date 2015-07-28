@@ -119,7 +119,7 @@
         <fullName>Attachment__c</fullName>
         <externalId>false</externalId>
         <label>Attachment</label>
-        <length>2000</length>
+        <length>1000</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
@@ -755,8 +755,8 @@ null))))))</formula>
     </recordTypes>
     <searchLayouts>
         <excludedStandardButtons>New</excludedStandardButtons>
-        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <searchFilterFields>NAME</searchFilterFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>

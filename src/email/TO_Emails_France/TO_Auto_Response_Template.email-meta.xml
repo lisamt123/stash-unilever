@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>TO : An Email Template which is used to send to a customer as an auto response for George Cases</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>TO Auto Response Template</name>
+    <style>none</style>
+    <subject>Merci pour votre courriel: {!Case.Subject}</subject>
+    <type>custom</type>
+</EmailTemplate>

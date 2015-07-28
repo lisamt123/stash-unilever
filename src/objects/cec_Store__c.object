@@ -71,6 +71,14 @@
     </fields>
     <label>Store</label>
     <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>CEC_Baltics_Queue_cec_Store</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Baltics Queue</label>
@@ -81,11 +89,18 @@
     </listViews>
     <listViews>
         <fullName>CEC_Benelux_Queue_cec_Store</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>UPDATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Benelux Queue</label>
+        <language>en_US</language>
         <queue>CEC_Benelux_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Benelux</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_User_Benelux</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -117,8 +132,13 @@
     </listViews>
     <listViews>
         <fullName>CEC_France_Queue_cec_Store</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>UPDATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>CEC France Queue</label>
+        <language>en_US</language>
         <queue>CEC_France_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -179,9 +199,10 @@
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Poland_Queue_cec_Store</fullName>
+        <fullName>CEC_Poland_Queue</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Poland Queue</label>
+        <language>en_US</language>
         <queue>CEC_Poland_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

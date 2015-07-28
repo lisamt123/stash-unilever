@@ -66,11 +66,9 @@
                 <behavior>Readonly</behavior>
                 <field>AF_Agency_Name__c</field>
             </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_Role__c</field>
+                <field>IPM_Brand_Positioning__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -78,9 +76,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_Brand_Positioning__c</field>
+                <field>IPM_Role__c</field>
             </layoutItems>
         </layoutColumns>
+        <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>

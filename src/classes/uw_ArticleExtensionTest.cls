@@ -28,7 +28,7 @@ private class uw_ArticleExtensionTest {
         insert article;
         
         // set the test to point at a page that uses the standard controller/extension
-        Test.setCurrentPage(Page.cornetto_brand_centre_single_sfdc);
+       // Test.setCurrentPage(Page.cornetto_brand_centre_single_sfdc);
         
         // set the parameter
         uw_Brand__c brand = uw_UnitTestDataFactory.createParentBrand();
@@ -41,9 +41,10 @@ private class uw_ArticleExtensionTest {
         // create the extension
         ArticleExtension ext = new ArticleExtension(sc);
         ext.back();
-        ext.getlinksSections(); 
-        ext.getbrandlinks();
-        ext.getbrandsubcategory();
+        //bet cleanup
+       // ext.getlinksSections(); 
+       // ext.getbrandlinks();
+       // ext.getbrandsubcategory();
                
 
         system.assert(ext!=null);

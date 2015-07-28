@@ -6,7 +6,7 @@
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>Brand Experience</value>
+        <value>Brand Experience List</value>
     </caseValues>
     <fields>
         <help><!-- Help text --></help>
@@ -504,7 +504,7 @@ The default image will be used if no file is uploaded here. --></help>
     <fields>
         <label><!-- Project --></label>
         <name>Project__c</name>
-        <relationshipLabel><!-- Brand Experience --></relationshipLabel>
+        <relationshipLabel><!-- Brand Experience List --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Region Keyword Search --></label>
