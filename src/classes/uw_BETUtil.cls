@@ -96,8 +96,13 @@ public with sharing class uw_BETUtil {
 
     public static uw_BET__c moveComponentDataToBET(uw_BET__c bet,BET_CategoryComponentData compData){
         System.debug('Entering moveComponentDataToBET : ' + bet + ', ' + compData);
-        bet.Inoplan_Project__c = compData.inoplanProject;
-        bet.IPM_Project__c = compData.impProject;
+        if(compData.categoryMigrated){
+            bet.Inoplan_Project__c = null;
+            bet.IPM_Project__c = compData.impProject;
+        } else {
+            bet.Inoplan_Project__c = compData.inoplanProject;
+            bet.IPM_Project__c = null;
+        }
         bet.Category_Group__c = compData.categoryGroup;
         bet.Product_Category__c = compData.category;
         bet.Brand_Position__c = compData.brandpositioning;

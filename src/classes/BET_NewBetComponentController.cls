@@ -97,6 +97,7 @@ public with sharing class BET_NewBetComponentController {
     @TestVisible
     private void proceedWithSave(Boolean redirectToMembersComponent){
         System.debug('Entering proceedWithSave : ' + redirectToMembersComponent);
+        compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
         bet = moveComponentDataToBET(bet,compData);
         List<String> errorMessages = validateBET(bet);
         if(errorMessages.isEmpty()){
@@ -131,7 +132,6 @@ public with sharing class BET_NewBetComponentController {
     @TestVisible
     private List<String> validateBET(uw_BET__c betObject){
         System.debug('Entering validateBET : ' + betObject);
-        compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(bet.Product_Category__c);
         List<String> errors = uw_BETUtil.validateBET(betObject,compData.categoryMigrated);
         System.debug('Exit validateBET : ' + errors);
         return errors;
