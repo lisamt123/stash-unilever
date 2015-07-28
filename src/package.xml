@@ -173,6 +173,8 @@
         <members>BC_picker_color</members>
         <members>BC_picker_color_Test</members>
         <members>BC_updateEmbedURL_Test</members>
+		<members>BET_AccessService</members>
+		<members>BET_AccessServiceTest</members>
         <members>BET_BatchAssetStatusMapping</members>
         <members>BET_BatchAssetStatusMapping_Test</members>
         <members>BET_BatchBETStatusMapping</members>
@@ -195,16 +197,28 @@
         <members>BET_BatchScheduler_Test</members>
         <members>BET_BatchUpdateChatterGroupInfo</members>
         <members>BET_BatchUpdateChatterGroupInfo_Test</members>
+		<members>BET_BETHandler</members>
+		<members>BET_BETHandlerCls</members>
+		<members>BET_CategoryBrandSelectionController</members>
+		<members>BET_CategoryBrandSelectionControllerTest</members>
+		<members>BET_CategoryComponentData</members>
         <members>BET_ChatterController</members>
         <members>BET_ChatterController_Test</members>
         <members>BET_CommonService</members>
         <members>BET_CommonServiceTest</members>
+		<members>BET_CustomBETException</members>
         <members>BET_EditAssetController</members>
         <members>BET_EditAssetController_Test</members>
         <members>BET_ManageMembersController</members>
         <members>BET_ManageMembersController_Test</members>
         <members>BET_ManageMembersController_Test2</members>
         <members>BET_ManageMembersController_Test3</members>
+		<members>BET_MasterDataService</members>
+		<members>BET_MasterDataServiceTest</members>
+		<members>BET_NewBetComponentController</members>
+		<members>BET_NewBetComponentControllerTest</members>
+		<members>BET_NewBetController</members>
+		<members>BET_NewBetControllerTest</members>
         <members>BET_PresentationBatch</members>
         <members>BET_PresentationBatch_Test</members>
         <members>BET_ReleaseDateEmails</members>
@@ -214,8 +228,12 @@
         <members>BET_SoslFieldsBatch</members>
         <members>BET_SoslFieldsBatch_Test</members>
         <members>BET_TestingHelper</members>
+		<members>BET_TestUtils</members>
+		<members>BET_TriggerFactory</members>
         <members>BET_Triggers_Test</members>
         <members>BET_UpdateBETSearchHandler</members>
+		<members>BET_UpsertBETController</members>
+		<members>BET_UpsertBETControllerTest</members>
         <members>BasicMenuItem</members>
         <members>BrandCentreExtension</members>
         <members>Brand_Controller_Review</members>
@@ -420,6 +438,7 @@
         <members>IPM_AssortmentStrategy</members>
         <members>IPM_BCCController</members>
         <members>IPM_BCCController_Test</members>
+		<members>IPM_BETUpdateService</members>
         <members>IPM_BosscardController</members>
         <members>IPM_BosscardController_Test</members>
         <members>IPM_BosscardStatusController</members>
@@ -935,6 +954,9 @@
         <members>AR_RateReviewPopup</members>
         <members>BackgroundImageStyleRule</members>
         <members>BasicMenu</members>
+		<members>BET_CategoryBrandSelectionComponent</members>
+		<members>BET_NewBetComponent</members>
+		<members>BET_UpsertBET</members>
         <members>Core_AutoComplete</members>
         <members>IPMBackButton</members>
         <members>IPMOTIFSectionStatus</members>
@@ -1145,6 +1167,7 @@
         <members>BET_Chatter</members>
         <members>BET_EditAsset</members>
         <members>BET_ManageMembers</members>
+		<members>BET_NewBet</members>
         <members>BandwidthExceeded</members>
         <members>BatchJobManager</members>
         <members>BrandLayoutEdit</members>
@@ -1551,6 +1574,7 @@
         <members>user_after_insert</members>
         <members>user_after_update</members>
         <members>uw_Asset_AfterInsertAfterUpdate</members>
+		<members>uw_BET_Trigger</members>
         <members>uw_BET_Trigger_Team_member</members>
         <members>uw_BET_after_insert</members>
         <members>uw_BET_after_update</members>
@@ -3602,6 +3626,9 @@
         <name>SharingOwnerRule</name>
     </types>
     <types>
+		<members>BETApp</members>
+		<members>BETEditBetStyles</members>
+		<members>BETNewBetStyles</members>
         <members>MyApprovalsSR</members>
         <members>resource_robertson</members>
         <members>resource_sunsilk</members>

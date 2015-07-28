@@ -19,7 +19,7 @@ public without sharing class uw_BETSearchService {
 
     private static Map<String, String> fieldToLabel = new Map<String, String>{
         'betName'       =>  'Name',
-        'betBrandName'  =>  'uw_Brand__r.Name',
+        'betBrandName'  =>  'Product_Brand__r.Name',
         'betRegion'     =>  'Region__c',
         'betProjectName'=>  'Inoplan_Project__r.Name',
         'betStatus'     =>  'Status__c',
@@ -46,12 +46,12 @@ public without sharing class uw_BETSearchService {
         List<uw_BETWrapper.BetSearchItem> betsIamOwnerOf = new List<uw_BETWrapper.BetSearchItem>(); 
         List<uw_BETWrapper.BetSearchItem> betsIamMemberOf = new List<uw_BETWrapper.BetSearchItem>();         
 
-        for(uw_BET__c bet: [SELECT Id, Name, Is_Archived__c, Studio_Chatter_Group__c, Final_release_date__c, Presentation_Id__c, Icon_Location__c, Description__c, uw_Brand__r.Name, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name FROM uw_BET__c WHERE Id IN :betsIds ORDER BY Name]){
+        for(uw_BET__c bet: [SELECT Id, Name, Is_Archived__c, Studio_Chatter_Group__c, Final_release_date__c, Presentation_Id__c, Icon_Location__c, Description__c, Product_Brand__r.Name, Region__c, Inoplan_Project__r.Name,IPM_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name FROM uw_BET__c WHERE Id IN :betsIds ORDER BY Name]){
             Boolean betActive = ! bet.Is_Archived__c;
             if(currentUserId == bet.Owner.Id){
-                betsIamOwnerOf.add(new uw_BETWrapper.BetSearchItem(bet.Id, bet.Name, bet.Studio_Chatter_Group__c, bet.Final_release_date__c, bet.Presentation_Id__c, bet.Icon_Location__c, bet.Description__c, bet.uw_Brand__r.Name, bet.Region__c, bet.Inoplan_Project__r.Name, bet.Status__c, bet.LastModifiedDate, bet.Owner.Name, betActive, true, true, '','','','',''));
+                betsIamOwnerOf.add(new uw_BETWrapper.BetSearchItem(bet.Id, bet.Name, bet.Studio_Chatter_Group__c, bet.Final_release_date__c, bet.Presentation_Id__c, bet.Icon_Location__c, bet.Description__c, bet.Product_Brand__r.Name,bet.Region__c, bet.Inoplan_Project__r.Name,bet.IPM_Project__r.Name, bet.Status__c, bet.LastModifiedDate, bet.Owner.Name, betActive, true, true, '','','','',''));
             }else{
-                betsIamMemberOf.add(new uw_BETWrapper.BetSearchItem(bet.Id, bet.Name, bet.Studio_Chatter_Group__c, bet.Final_release_date__c, bet.Presentation_Id__c, bet.Icon_Location__c, bet.Description__c, bet.uw_Brand__r.Name, bet.Region__c, bet.Inoplan_Project__r.Name, bet.Status__c, bet.LastModifiedDate, bet.Owner.Name, betActive, true, false, '','','','',''));
+                betsIamMemberOf.add(new uw_BETWrapper.BetSearchItem(bet.Id, bet.Name, bet.Studio_Chatter_Group__c, bet.Final_release_date__c, bet.Presentation_Id__c, bet.Icon_Location__c, bet.Description__c, bet.Product_Brand__r.Name,bet.Region__c, bet.Inoplan_Project__r.Name,bet.IPM_Project__r.Name, bet.Status__c, bet.LastModifiedDate, bet.Owner.Name, betActive, true, false, '','','','',''));
             }
         }
         

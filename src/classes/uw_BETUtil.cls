@@ -94,6 +94,30 @@ public with sharing class uw_BETUtil {
         return filterInfoList;
     }
 
+    public static uw_BET__c moveComponentDataToBET(uw_BET__c bet,BET_CategoryComponentData compData){
+        System.debug('Entering moveComponentDataToBET : ' + bet + ', ' + compData);
+        bet.Inoplan_Project__c = compData.inoplanProject;
+        bet.IPM_Project__c = compData.impProject;
+        bet.Category_Group__c = compData.categoryGroup;
+        bet.Product_Category__c = compData.category;
+        bet.Brand_Position__c = compData.brandpositioning;
+        bet.Product_Brand__c = compData.brand;
+        return bet;
+    }
+
+    public static List<String> validateBET(uw_BET__c betObject,Boolean isCategoryMigrated){
+        List<String> errors = new List<String>();
+        
+        if(String.isBlank(betObject.name)) errors.add(Label.BET_BetNameMandatory);
+        if(String.isBlank(betObject.Category_Group__c)) errors.add(Label.BET_BetCategoryGroupMandatory);
+        if(String.isBlank(betObject.Product_Category__c)) errors.add(Label.BET_BetCategoryMandatory);
+        if(String.isBlank(betObject.Brand_Position__c)) errors.add(Label.BET_BetBrandPositionMandatory);
+        if(String.isBlank(betObject.Inoplan_Project__c) && !isCategoryMigrated) errors.add(Label.BET_InoplanProjectMandatory);
+        if(betObject.Launch_Date__c == null) errors.add(Label.BET_LaunchDateMandatory);
+        
+        return errors;
+    }
+
     /*******************************************************************
 	Purpose: Method resposible for paging search results 
     used for reports porpouse
