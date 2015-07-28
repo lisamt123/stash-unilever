@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>BBH_Agency</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>BBH Agency</label>
+        <sharedTo>
+            <portalRole>BBHPartnerUser</portalRole>
+        </sharedTo>
+        <criteriaItems>
+            <field>AF_Agency__c</field>
+            <operation>equals</operation>
+            <value>BBH</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Cognizant_Agency</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Cognizant Agency</label>
+        <sharedTo>
+            <portalRole>CognizantAgencyPartnerUser</portalRole>
+        </sharedTo>
+        <criteriaItems>
+            <field>AF_Agency__c</field>
+            <operation>equals</operation>
+            <value>Cognizant Agency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>DDB_Agency</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>DDB Agency</label>
+        <sharedTo>
+            <portalRole>DDBPartnerUser</portalRole>
+        </sharedTo>
+        <criteriaItems>
+            <field>AF_Agency__c</field>
+            <operation>equals</operation>
+            <value>DDB</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>JWT_Agency</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>JWT Agency</label>
+        <sharedTo>
+            <portalRole>JWTPartnerUser</portalRole>
+        </sharedTo>
+        <criteriaItems>
+            <field>AF_Agency__c</field>
+            <operation>equals</operation>
+            <value>JWT</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Lowe_Agency</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Lowe Agency</label>
+        <sharedTo>
+            <portalRole>LowePartnerUser</portalRole>
+        </sharedTo>
+        <criteriaItems>
+            <field>AF_Agency__c</field>
+            <operation>equals</operation>
+            <value>Lowe</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Ogilvy_Agency</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Ogilvy Agency</label>
+        <sharedTo>
+            <portalRole>OgilvyPartnerUser</portalRole>
+        </sharedTo>
+        <criteriaItems>
+            <field>AF_Agency__c</field>
+            <operation>equals</operation>
+            <value>Ogilvy</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>X72_and_Sunny</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>72 and Sunny</label>
+        <sharedTo>
+            <portalRole>x72SunnyPartnerUser</portalRole>
+        </sharedTo>
+        <criteriaItems>
+            <field>AF_Agency__c</field>
+            <operation>equals</operation>
+            <value>72 &amp; Sunny</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

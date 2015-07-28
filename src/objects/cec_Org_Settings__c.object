@@ -81,6 +81,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Estonia_Questionnaire_Id__c</fullName>
+        <description>CEC: Id of the Estonia cosmetovigilence questionnaire</description>
+        <externalId>false</externalId>
+        <label>Estonia Questionnaire Id</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Factory_Investigation_Survey_ID__c</fullName>
         <description>CEC: Id of the Factory Investigation Survey</description>
         <externalId>false</externalId>
@@ -162,6 +173,28 @@
         <description>CEC: Id of the Italy cosmetovigilence questionnaire</description>
         <externalId>false</externalId>
         <label>Italy Questionnaire Id</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Latvia_Questionnaire_Id__c</fullName>
+        <description>CEC: Id of the Latvia cosmetovigilence questionnaire</description>
+        <externalId>false</externalId>
+        <label>Latvia Questionnaire Id</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lithuania_Questionnaire_Id__c</fullName>
+        <description>CEC: Id of the Lithuania cosmetovigilence questionnaire</description>
+        <externalId>false</externalId>
+        <label>Lithuania Questionnaire Id</label>
         <length>30</length>
         <required>false</required>
         <trackTrending>false</trackTrending>

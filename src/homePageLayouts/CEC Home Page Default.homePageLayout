@@ -4,6 +4,7 @@
     <narrowComponents>standard-RecentItems</narrowComponents>
     <narrowComponents>Home Links</narrowComponents>
     <narrowComponents>pca__Postcode Anywhere</narrowComponents>
+    <narrowComponents>TH1__ONE Widget</narrowComponents>
     <wideComponents>standard-ProcessWorkitems</wideComponents>
     <wideComponents>standard-Calendar</wideComponents>
     <wideComponents>standard-Tasks</wideComponents>

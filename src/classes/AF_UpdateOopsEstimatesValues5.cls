@@ -115,8 +115,14 @@ Public Class AF_UpdateOopsEstimatesValues5
          
          
          // Query for USD Currency
-         AF_Currency__c USDCurrencyTable=[select id,Country_Currency__c,AF_Currency_Code__c,AF_Average_Exchange_Rate_To_EUR__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,Ready_For_PO_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and AF_Currency_Code__c=:'USD'  and AF_Fiscal_Year_new__c IN :fYear  Order by Createddate limit 1];
-         if(USDCurrencyTable!=null)
+         AF_Currency__c USDCurrencyTable;
+         try{
+        USDCurrencyTable=[select id,Country_Currency__c,AF_Currency_Code__c,AF_Average_Exchange_Rate_To_EUR__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,Ready_For_PO_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and AF_Currency_Code__c=:'USD'  and AF_Fiscal_Year_new__c IN :fYear  Order by Createddate limit 1];
+        }
+        catch(Exception e){
+            system.debug(e);
+         }      
+        if(USDCurrencyTable!=null)
          if(USDCurrencyTable.AF_Average_Exchange_Rate_To_EUR__c!=null)
          {
                      EURValue=USDCurrencyTable.AF_Average_Exchange_Rate_To_EUR__c;
@@ -126,8 +132,13 @@ Public Class AF_UpdateOopsEstimatesValues5
          
  
          // Query for Retrieve Currency Records
-         List<AF_Currency__c> currencyrecords=[select id,Country_Currency__c,Ready_For_PO_Exchange_Rate_To_EUR__c,AF_Currency_Code__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,AF_Average_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and Country_Currency__c IN:currncycodes  and AF_Fiscal_Year_new__c IN :fYear limit 50000];
-        
+         List<AF_Currency__c> currencyrecords;
+        try{    
+         currencyrecords=[select id,Country_Currency__c,Ready_For_PO_Exchange_Rate_To_EUR__c,AF_Currency_Code__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,AF_Average_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and Country_Currency__c IN:currncycodes  and AF_Fiscal_Year_new__c IN :fYear limit 50000];
+        }
+        catch(Exception e){
+            system.debug(e);
+         }
         if(currencyrecords.size()>0)
          for(AF_Currency__c  curren:currencyrecords)
          {
@@ -189,23 +200,16 @@ Public Class AF_UpdateOopsEstimatesValues5
                                    system.debug('Here:' +readypcode);
                                    system.debug('Here:' +CurrencyMapforGBP.get(readypcode));
                                    system.debug('Here:' +CurrencyMapforUSD.get(readypcode));
-                                   if(MatrixReadyforConversion.get(mt.id)!='--None--' && MatrixReadyforConversion.get(mt.id)=='GBP'){
+                                   if(MatrixReadyforConversion.get(mt.id)!='--None--' && MatrixReadyforConversion.get(mt.id)=='GBP')
                                    agencyEst.AF_Ready_For_PO_Exchange_Rate__c= CurrencyMapforUSD.get(readypcode);
-                                   agencyEst.AF_ReadyforPOExchangeRateTemp__c= CurrencyMapforUSD.get(readypcode);
-                                   }
-                                   else if(MatrixReadyforConversion.get(mt.id)!='--None--' && MatrixReadyforConversion.get(mt.id)=='USD'){
+                                   else if(MatrixReadyforConversion.get(mt.id)!='--None--' && MatrixReadyforConversion.get(mt.id)=='USD')
                                    agencyEst.AF_Ready_For_PO_Exchange_Rate__c= CurrencyMapforGBP.get(readypcode);
-                                   agencyEst.AF_ReadyforPOExchangeRateTemp__c= CurrencyMapforGBP.get(readypcode);
-                                   }
                                    system.debug('Here:' +agencyEst.AF_Ready_For_PO_Exchange_Rate__c);
                                    
                                    
                                    if(agencyEst.AF_OOPS_Code__c!=matrixDataEntryCurrency.get(mt.id))
                                    {
                                        agencyEst.AF_Agency_Exchange_Rate__c= CurrencyMap.get(Matccode);
-                                   }
-                                   if(agencyEst.AF_ReadyforPOExchangeRateTemp__c==null){
-                                    agencyEst.AF_ReadyforPOExchangeRateTemp__c = CurrencyMap.get(Matccode);
                                    }
                                    
                                    if(agencyEst.AF_Ready_For_PO_Exchange_Rate__c!= null && agencyEst.AF_Ready_For_PO_Exchange_Rate__c!= 0 && agencyEst.AF_OOPS_Estimate_Local__c!= null  && agencyEst.AF_Agency_Exchange_Rate__c!=null)
@@ -231,7 +235,6 @@ Public Class AF_UpdateOopsEstimatesValues5
                                    }*/
                                    
                                    agencyEst.AF_Agency_Exchange_Rate__c= CurrencyMap.get(Matccode);
-                                   agencyEst.AF_Agency_ExchangeRateTemp__c= CurrencyMap.get(Matccode);
                                    if(agencyEst.AF_Agency_Exchange_Rate__c != null && agencyEst.AF_Agency_Exchange_Rate__c!= 0 && agencyEst.AF_Estimate__c!= null)
                                    agencyEst.AF_OOPS_Estimate_Local__c= agencyEst.AF_Estimate__c*agencyEst.AF_Agency_Exchange_Rate__c;
                                         
@@ -249,12 +252,7 @@ Public Class AF_UpdateOopsEstimatesValues5
                            else
                            {
                                 agencyEst.AF_OOPS_Matrix_Currency_Code__c=matrixDataEntryCurrency.get(mt.id);
-                                agencyEst.AF_MatrixCodeTemp__c = matrixDataEntryCurrency.get(mt.id);
                                 agencyEst.AF_Ready_For_PO_Entry_Currency__c=matrixReadyforconversion.get(mt.id);
-                                agencyEst.AF_ReadyforPoCodeTemp__c=matrixReadyforconversion.get(mt.id);
-                                if(agencyEst.AF_ReadyforPoCodeTemp__c==null){
-                                    agencyEst.AF_ReadyforPoCodeTemp__c = matrixDataEntryCurrency.get(mt.id);
-                                }
                            }
 
                            Testexit=true;

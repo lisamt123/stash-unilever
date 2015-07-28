@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>TO Emails - France</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <role>TO_Global_Head</role>
+        <role>TO_Manager_Europe</role>
+        <role>TO_Manager_France</role>
+        <role>TO_User_France</role>
+    </sharedTo>
+</EmailFolder>

@@ -211,6 +211,40 @@
         <unique>false</unique>
     </fields>
     <label>BET Team Member</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Invite_Pending__c</columns>
+        <columns>Pending_Request__c</columns>
+        <columns>Request_Status__c</columns>
+        <columns>Team_Member__c</columns>
+        <columns>BET__c</columns>
+        <columns>Access_Level__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Udele</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>Access_Level__c</columns>
+        <columns>BET__c</columns>
+        <columns>Editing__c</columns>
+        <columns>email__c</columns>
+        <columns>Invite_Pending__c</columns>
+        <columns>IsOwner__c</columns>
+        <columns>Role__c</columns>
+        <columns>StudioEnabled__c</columns>
+        <columns>Team_Member__c</columns>
+        <columns>BETEnabled__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>BET__c</field>
+            <operation>equals</operation>
+            <value>Udele</value>
+        </filters>
+        <label>Udele</label>
+    </listViews>
     <nameField>
         <displayFormat>BTM-{0000}</displayFormat>
         <label>BET Team Member Name</label>

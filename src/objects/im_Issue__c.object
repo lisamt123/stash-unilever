@@ -2016,16 +2016,15 @@ CASE(Issue_Severity__c ,
     <label>Issue</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>Date_Raised__c</columns>
         <columns>NAME</columns>
         <columns>Issue_Type__c</columns>
+        <columns>Date_Raised__c</columns>
         <columns>Issue_Status__c</columns>
         <columns>severity_RAG__c</columns>
         <columns>Original_Flag__c</columns>
         <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
         <label>All Issues</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Global_Issues</fullName>

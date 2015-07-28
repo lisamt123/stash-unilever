@@ -2,6 +2,6 @@
 <CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
     <label>Brand Centres</label>
     <mobileReady>false</mobileReady>
-    <motif>Custom20: Airplane</motif>
+    <motif>Custom108: TV Widescreen</motif>
     <page>BC_BrandCentreHomeTabPage</page>
 </CustomTab>

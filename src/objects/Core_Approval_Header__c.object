@@ -42,7 +42,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <content>Core_CA_MiniPageView_Override</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -883,11 +885,6 @@
     </fields>
     <label>Approval Console</label>
     <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
-    <listViews>
         <fullName>Ariba</fullName>
         <columns>NAME</columns>
         <columns>Status__c</columns>
@@ -1054,8 +1051,8 @@
         <customTabListAdditionalFields>Title_Summary__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Reason__c</customTabListAdditionalFields>
         <excludedStandardButtons>New</excludedStandardButtons>
-        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <lookupDialogsAdditionalFields>Source_System__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Title_Summary__c</lookupDialogsAdditionalFields>

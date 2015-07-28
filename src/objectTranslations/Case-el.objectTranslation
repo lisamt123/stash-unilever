@@ -892,10 +892,6 @@
         <name>Spam</name>
     </recordTypes>
     <validationRules>
-        <errorMessage><!-- Cannot Mark the case as &apos;Duplicate&apos;. Its not associated with any Consumer. --></errorMessage>
-        <name>CEC_DuplicateCase_Closure</name>
-    </validationRules>
-    <validationRules>
         <errorMessage><!-- You Must Select a Product Code &amp; Reason code --></errorMessage>
         <name>Product_and_Reason_Code_Required</name>
     </validationRules>

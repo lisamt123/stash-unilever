@@ -54,7 +54,8 @@
                                 <div class="textLinkExpenceNameTruncate">
                                     {{ pendingapprovalData.ExpenseName }}
                                 </div> 
-                                <div class="Subtext2">{{pendingapprovalData.RequestedBy}},&nbsp;{{pendingapprovalData.Dates}}</div>
+                               <!-- <div class="Subtext2">{{pendingapprovalData.RequestedBy}},&nbsp;{{pendingapprovalData.Dates}}</div> -->
+                                 <div class="Subtext2">{{pendingapprovalData.RequestedBy}}</div>
                             </td>
                             <td class="defaultRightSpacePendingAmountDetail" align="right">
                                 <span class="Subtext3">{{pendingapprovalData.Currencies}} {{pendingapprovalData.Amount}}</span> 
@@ -81,7 +82,8 @@
                                 <div class="textLinkExpenceNameTruncate">
                                     {{closedapprovalData.ExpenseName}}
                                 </div> 
-                                <span class="Subtext2">{{closedapprovalData.RequestedBy}}, &nbsp;{{closedapprovalData.Dates}}</span>
+                              <!--  <span class="Subtext2">{{closedapprovalData.RequestedBy}}, &nbsp;{{closedapprovalData.Dates}}</span> -->
+                                <span class="Subtext2">{{closedapprovalData.RequestedBy}}</span>
                             </td>
                             <td class="defaultRightSpaceClosedAmountDetail" align="right" valign="bottom">
                                 <span class="Subtext3">{{closedapprovalData.Currencies}} {{closedapprovalData.Amount}}</span><br/>
