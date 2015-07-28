@@ -5,21 +5,21 @@ private class uw_BrandCentreExtensionTest {
     {
         BrandCentreExtension brandcentreex = new BrandCentreExtension(new ApexPages.StandardController(new uw_Brand__c()));   
     
-    
-    brandcentreex.savesection();
+  //BET cleanup  
+  //  brandcentreex.savesection();
    // brandcentreex.linkret = 'a0e';
-    brandcentreex.savelink();
-    brandcentreex.getlinksSections();
-    brandcentreex.getbrandlinks();
-    brandcentreex.getbrandsubcategory();
+    //brandcentreex.savelink();
+//    brandcentreex.getlinksSections();
+//    brandcentreex.getbrandlinks();
+//    brandcentreex.getbrandsubcategory();
     
         //kj 04/10
         brandcentreex.getUWLink();
         
 brandcentreex.getwhoswholinks();
-brandcentreex.getlinksSections();
-brandcentreex.getbrandlinks();
-brandcentreex.getbrandsubcategory();
+//brandcentreex.getlinksSections();
+//brandcentreex.getbrandlinks();
+//brandcentreex.getbrandsubcategory();
 brandcentreex.getarticlelist();
         //TODO : pass in a valid brand to the controller
         // brandcentreex.savelink();

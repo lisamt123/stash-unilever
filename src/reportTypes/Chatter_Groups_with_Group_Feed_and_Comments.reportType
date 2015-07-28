@@ -74,9 +74,19 @@
             <field>Owner.Market_Cluster__c</field>
             <table>CollaborationGroup</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CanHaveGuests</field>
+            <table>CollaborationGroup</table>
+        </columns>
         <masterLabel>Chatter Groups</masterLabel>
     </sections>
     <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>DerivedFeedItem</field>
+            <table>CollaborationGroup.FeedItems</table>
+        </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Id</field>
@@ -147,6 +157,11 @@
             <field>CreatedBy.Id</field>
             <table>CollaborationGroup.FeedItems</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedBy.Country</field>
+            <table>CollaborationGroup.FeedItems</table>
+        </columns>
         <masterLabel>Chatter Group Feed</masterLabel>
     </sections>
     <sections>
@@ -158,6 +173,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>CreatedBy</field>
+            <table>CollaborationGroup.FeedItems.Comments</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IsBest</field>
             <table>CollaborationGroup.FeedItems.Comments</table>
         </columns>
         <columns>

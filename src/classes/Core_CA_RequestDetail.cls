@@ -88,7 +88,9 @@ global with sharing class Core_CA_RequestDetail{
            objRequestDetailResponseAribaGTES.RequestedBy= objApprovalHeader.Requested_By_Details__c;
            objRequestDetailResponseAribaGTES.PreparedBy= objApprovalHeader.Requested_For_Details__c;
            objRequestDetailResponseAribaGTES.CompanyName= objApprovalHeader.Ariba_Company_Code__c;
-           objRequestDetailResponseAribaGTES.CreatedOn= String.valueOf(objApprovalHeader.External_Created_Date__c);
+           if(objApprovalHeader.External_Created_Date__c != null){
+               objRequestDetailResponseAribaGTES.CreatedOn = objApprovalHeader.External_Created_Date__c.format('dd-MM-yyyy');
+           }
            objRequestDetailResponseAribaGTES.ReportName= objApprovalHeader.Title_Summary__c;           
            objRequestDetailResponseAribaGTES.AdvanceAmount=objApprovalHeader.Advance_Amount__c;
            objRequestDetailResponseAribaGTES.NetAmount=objApprovalHeader.Net_Amount__c;

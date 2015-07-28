@@ -22,42 +22,6 @@
         <name>Big_Think_Pack__c</name>
     </fields>
     <fields>
-        <label><!-- Categorisation 3 --></label>
-        <name>Categorisation_3__c</name>
-        <picklistValues>
-            <masterLabel>Pack - Exceptional packaging</masterLabel>
-            <translation><!-- Pack - Exceptional packaging --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Place - A trade story to win with</masterLabel>
-            <translation><!-- Place - A trade story to win with --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Place - Know the channels to activate</masterLabel>
-            <translation><!-- Place - Know the channels to activate --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Place - Store as a media channel</masterLabel>
-            <translation><!-- Place - Store as a media channel --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Price - Getting and Setting a competitive price</masterLabel>
-            <translation><!-- Price - Getting and Setting a competitive price --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Product - Phenomenal product experience</masterLabel>
-            <translation><!-- Product - Phenomenal product experience --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Promotion - Engages people</masterLabel>
-            <translation><!-- Promotion - Engages people --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Proposition - A compelling idea to buy into</masterLabel>
-            <translation><!-- Proposition - A compelling idea to buy into --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- Country --></label>
         <name>Country__c</name>
         <picklistValues>
@@ -539,60 +503,6 @@
         <name>Is_bucket_field__c</name>
     </fields>
     <fields>
-        <help><!-- Select level of localisation required for asset --></help>
-        <label><!-- Localisation Requirement --></label>
-        <name>Localisation_Requirement__c</name>
-        <picklistValues>
-            <masterLabel>Adapt &amp; Amplify</masterLabel>
-            <translation><!-- Adapt &amp; Amplify --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Create a Local Tactic</masterLabel>
-            <translation><!-- Create a Local Tactic --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Plug &amp; Play</masterLabel>
-            <translation><!-- Plug &amp; Play --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <help><!-- This is where the asset is stored. --></help>
-        <label><!-- Location Type --></label>
-        <name>Location_Type__c</name>
-        <picklistValues>
-            <masterLabel>BOX</masterLabel>
-            <translation><!-- BOX --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Chatter</masterLabel>
-            <translation><!-- Chatter --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>DAM</masterLabel>
-            <translation><!-- DAM --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Salesforce</masterLabel>
-            <translation><!-- Salesforce --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Sharepoint</masterLabel>
-            <translation><!-- Sharepoint --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Vimeo</masterLabel>
-            <translation><!-- Vimeo --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Youtube</masterLabel>
-            <translation><!-- Youtube --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <help><!-- What Media Channel are you using for your asset? --></help>
         <label><!-- Category --></label>
         <name>Media_Channel_1__c</name>
@@ -757,10 +667,6 @@
     <fields>
         <label><!-- Order Of Display --></label>
         <name>Order_Of_Display__c</name>
-    </fields>
-    <fields>
-        <label><!-- Other Media Channel --></label>
-        <name>Other_Media_Channel__c</name>
     </fields>
     <fields>
         <help><!-- Do you want this asset to be visible in the Toolkit for other people to see and use? If so then tick this box. Otherwise it will remain in the studio until you are ready to send it to the Toolkit. --></help>

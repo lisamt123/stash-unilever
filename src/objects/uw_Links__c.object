@@ -18,7 +18,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <type>Default</type>
+        <content>Edit_Link</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -31,7 +33,7 @@
     <actionOverrides>
         <actionName>New</actionName>
         <content>New_Link</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <skipRecordTypeSelect>true</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
@@ -50,6 +52,7 @@
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>bc_help_pop_up6</customHelpPage>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
@@ -119,29 +122,6 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Brand_Centre__c</fullName>
-        <externalId>false</externalId>
-        <formula>HYPERLINK( &quot;/&quot; +  Brand_Link_Sections__r.Brand_Centre__r.Id ,   Brand_Link_Sections__r.Brand_Centre__r.Name ,&quot;_Self&quot;)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Brand Centre</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Brand_Link_Sections__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Brand Link Sections</label>
-        <referenceTo>uw_Brand_Link_Sections__c</referenceTo>
-        <relationshipLabel>Links</relationshipLabel>
-        <relationshipName>Links</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Category_Image_URL__c</fullName>
@@ -360,7 +340,6 @@ if(CONTAINS(Link_URL__c, &quot;sfc&quot;) , substitute(Link_URL__c,&quot;http://
         <columns>NAME</columns>
         <columns>Link_Type__c</columns>
         <columns>uw_Brand__c</columns>
-        <columns>Brand_Centre__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Link_Type__c</field>
@@ -368,6 +347,7 @@ if(CONTAINS(Link_URL__c, &quot;sfc&quot;) , substitute(Link_URL__c,&quot;http://
             <value>Whos Who</value>
         </filters>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>BL-{0000}</displayFormat>
@@ -617,7 +597,7 @@ if(CONTAINS(Link_URL__c, &quot;sfc&quot;) , substitute(Link_URL__c,&quot;http://
         <openType>replace</openType>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
-        <url>/apex/New_Link?type=sectionlink&amp;returnurl={!uw_Brand_Link_Sections__c.Id}</url>
+        <url>/apex/New_Link?type=sectionlink</url>
     </webLinks>
     <webLinks>
         <fullName>New_Sub_Category_Link</fullName>

@@ -41,10 +41,6 @@
         <name>AF_Base_Fee_Status__c</name>
     </fields>
     <fields>
-        <label><!-- Big Category --></label>
-        <name>AF_Big_Category_New__c</name>
-    </fields>
-    <fields>
         <label><!-- Brand Estimate ID --></label>
         <name>AF_Brand_Estimate_ID__c</name>
     </fields>
@@ -87,10 +83,6 @@
     <fields>
         <label><!-- CountNoQuarters --></label>
         <name>AF_CountNoQuarters__c</name>
-    </fields>
-    <fields>
-        <label><!-- CrossBorder --></label>
-        <name>AF_CrossBorder__c</name>
     </fields>
     <fields>
         <label><!-- Currency --></label>
