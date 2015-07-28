@@ -168,7 +168,7 @@ public without sharing class FAU_EmailSender {
     {
          // Pick a dummy Contact
          System.Debug('##### FAU_EmailSender - Pick a dummy Contact'); 
-         Contact c = [select id, Email from Contact where email <> null limit 1];
+         Contact c = [select id, Email from Contact where email = 'fautestcontact@unilever.com' limit 1];
 
         // Construct the list of emails we want to send
         List<Messaging.SingleEmailMessage> lstMsgs = new List<Messaging.SingleEmailMessage>();

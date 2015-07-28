@@ -353,8 +353,7 @@
                 <div class="template" ng-init="commentsPanel=true">
                     <div class="defaultBottomBorder" ng-click="commentsPanel = (commentsPanel=='false' ? 'true' : 'false')">
                         <span>
-                            <label ng-if="approvalRequestData.RequestType == 'Purchase Request'" ng-init="true" class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_COMMENTS' | translate}}</label>
-                            <label ng-if="approvalRequestData.RequestType == 'Expense'" ng-init="true" class="detailSectionHeader">{{'LBL_EXP_DETAIL_CLAIM_COMMENTS' | translate}}</label>                        
+                            <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_COMMENTS' | translate}}</label>                      
                         </span> 
                         <span class="alignRight">              
                             <img class="arrowButtonStyle" ng-hide="commentsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>

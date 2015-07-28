@@ -3,8 +3,7 @@
     <narrowComponents>standard-RecentItems</narrowComponents>
     <narrowComponents>standard-CreateNew</narrowComponents>
     <narrowComponents>standard-Tags</narrowComponents>
-    <narrowComponents>pca__Postcode Anywhere</narrowComponents>
-    <wideComponents>Old Welcome to Unilever Chatter</wideComponents>
+    <wideComponents>Welcome to Unilever Chatter Old</wideComponents>
     <wideComponents>standard-Calendar</wideComponents>
     <wideComponents>standard-Tasks</wideComponents>
 </HomePageLayout>

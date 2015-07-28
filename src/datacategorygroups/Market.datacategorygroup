@@ -4,6 +4,18 @@
     <dataCategory>
         <dataCategory>
             <dataCategory>
+                <dataCategory>
+                    <label>Estonia</label>
+                    <name>Estonia</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Latvia</label>
+                    <name>Latvia</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Lithuania</label>
+                    <name>Lithuania</name>
+                </dataCategory>
                 <label>Baltics</label>
                 <name>Baltics</name>
             </dataCategory>
@@ -13,8 +25,8 @@
                     <name>Belgium</name>
                 </dataCategory>
                 <dataCategory>
-                    <label>Netherland</label>
-                    <name>Netherland</name>
+                    <label>Netherlands</label>
+                    <name>Netherlands</name>
                 </dataCategory>
                 <label>Benelux</label>
                 <name>Benelux</name>
