@@ -147,12 +147,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Position__c</fields>
-        <fields>Ordinal__c</fields>
-        <relatedList>uw_Brand_Link_Sections__c.Brand_Centre__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <relatedList>BET_Category_Brands__c.BET_Brand__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

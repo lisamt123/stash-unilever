@@ -84,6 +84,11 @@
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>DerivedFeedItem</field>
+            <table>CollaborationGroup.FeedItems</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Id</field>
             <table>CollaborationGroup.FeedItems</table>
         </columns>
@@ -150,6 +155,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>CreatedBy.Id</field>
+            <table>CollaborationGroup.FeedItems</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedBy.Country</field>
             <table>CollaborationGroup.FeedItems</table>
         </columns>
         <masterLabel>Chatter Group Feed</masterLabel>

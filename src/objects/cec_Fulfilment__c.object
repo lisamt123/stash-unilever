@@ -556,7 +556,7 @@
     <fields>
         <fullName>PostOption__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(Case__r.Reason_Code__r.L1_Desc__c=&apos;Complaints&apos;  , $Label.CEC_Fulfilment_PostOption_Complaints, $Label.CEC_Fulfilment_PostOption_otherwise)</formula>
+        <formula>IF(OR(Case__r.Reason_Code__r.L1_Desc__c=&apos;Complaints&apos;,Case__r.Reason_Code__r.L1_Desc__c=&apos;Complaint&apos;), $Label.CEC_Fulfilment_PostOption_Complaints, $Label.CEC_Fulfilment_PostOption_otherwise)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Post Option</label>
         <required>false</required>

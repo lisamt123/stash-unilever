@@ -281,6 +281,22 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- TF_Currency1 --></label>
+        <name>TF_Currency1__c</name>
+    </fields>
+    <fields>
+        <label><!-- TF_Currency2 --></label>
+        <name>TF_Currency2__c</name>
+    </fields>
+    <fields>
+        <label><!-- TF_Currency3 --></label>
+        <name>TF_Currency3__c</name>
+    </fields>
+    <fields>
+        <label><!-- TF_Currency --></label>
+        <name>TF_Currency__c</name>
+    </fields>
+    <fields>
         <label><!-- Report Name --></label>
         <name>Title_Summary__c</name>
     </fields>

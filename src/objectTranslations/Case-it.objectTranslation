@@ -13,6 +13,10 @@
         <name>Brand__c</name>
     </fields>
     <fields>
+        <label><!-- Breakdown Machine --></label>
+        <name>Breakdown_Machine__c</name>
+    </fields>
+    <fields>
         <label><!-- Product Hierarchy --></label>
         <name>CEC_Product_Hierarchy__c</name>
     </fields>
@@ -49,6 +53,10 @@
     <fields>
         <label><!-- Case Market Mapping Country --></label>
         <name>Case_Market_Mapping_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Case Market Tag --></label>
+        <name>Case_Market_Tag__c</name>
     </fields>
     <fields>
         <label><!-- Case Market --></label>
@@ -168,6 +176,10 @@
         <relationshipLabel><!-- Cases --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- DW Order Number --></label>
+        <name>DW_Order_Number__c</name>
+    </fields>
+    <fields>
         <label><!-- Date of Manufacture --></label>
         <name>Date_of_Manufacture__c</name>
     </fields>
@@ -259,6 +271,10 @@
     <fields>
         <label><!-- Legacy Reference --></label>
         <name>Legacy_Reference__c</name>
+    </fields>
+    <fields>
+        <label><!-- Machine Serial Number --></label>
+        <name>Machine_ID__c</name>
     </fields>
     <fields>
         <label>Mercato</label>
@@ -357,6 +373,10 @@
         <picklistValues>
             <masterLabel>Email Spain</masterLabel>
             <translation><!-- Email Spain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email TO France</masterLabel>
+            <translation><!-- Email TO France --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Email UK</masterLabel>
@@ -575,6 +595,14 @@
         <name>Reason_L5_desc__c</name>
     </fields>
     <fields>
+        <label><!-- SEB Case Number --></label>
+        <name>SEB_Case_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- SEB Closed Date --></label>
+        <name>SEB_Closed_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- Campaign --></label>
         <name>Sapient_Campaign__c</name>
     </fields>
@@ -649,6 +677,18 @@
         <label>Punto Vendita</label>
         <name>Store__c</name>
         <relationshipLabel><!-- Cases --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Tag --></label>
+        <name>Tag__c</name>
+        <picklistValues>
+            <masterLabel>CEC</masterLabel>
+            <translation><!-- CEC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>George</masterLabel>
+            <translation><!-- George --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <name>Type</name>
@@ -818,6 +858,21 @@
         <sections>
             <label><!-- Issue Information --></label>
             <section>Issue Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>TO Case Feed Layout</layout>
+        <sections>
+            <label><!-- Additional Issue Information --></label>
+            <section>Additional Issue Information</section>
+        </sections>
+        <sections>
+            <label><!-- Issue Information --></label>
+            <section>Issue Information</section>
+        </sections>
+        <sections>
+            <label><!-- Related Cases --></label>
+            <section>Related Cases</section>
         </sections>
     </layouts>
     <quickActions>

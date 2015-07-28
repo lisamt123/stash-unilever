@@ -158,6 +158,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Breakdown_Machine__c</fullName>
+        <description>TO: Breakdown Machine</description>
+        <externalId>false</externalId>
+        <label>Breakdown Machine</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>BusinessHoursId</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -274,6 +287,19 @@ ISO Country Dependency Medium Name</description>
         <formula>Country__r.Country__r.ISO_Country_Dependency_Medium_Name__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Case Market Mapping Country</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Case_Market_Tag__c</fullName>
+        <description>TO : Formula field to copy the value of Tag__c field from Case Market Mapping object.</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Country__r.Tag__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Case Market Tag</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -471,6 +497,19 @@ ISO Country Dependency Medium Name</description>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>DW_Order_Number__c</fullName>
+        <description>TO: DW Order Number</description>
+        <externalId>false</externalId>
+        <label>DW Order Number</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Date_of_Manufacture__c</fullName>
@@ -783,6 +822,19 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Machine_ID__c</fullName>
+        <description>TO: Machine ID</description>
+        <externalId>false</externalId>
+        <label>Machine Serial Number</label>
+        <length>22</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Market__c</fullName>
         <externalId>false</externalId>
         <label>Market</label>
@@ -926,6 +978,10 @@ ISO Country Dependency Medium Name</description>
             </picklistValues>
             <picklistValues>
                 <fullName>Email Baltics</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email TO France</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -1274,6 +1330,30 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>SEB_Case_Number__c</fullName>
+        <description>TO: SEB Case Number</description>
+        <externalId>false</externalId>
+        <label>SEB Case Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SEB_Closed_Date__c</fullName>
+        <description>TO: SEB Closed Date</description>
+        <externalId>false</externalId>
+        <label>SEB Closed Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>Sapient_Campaign__c</fullName>
         <description>Data retrieved from Sapient web forms</description>
         <externalId>false</externalId>
@@ -1474,6 +1554,27 @@ ISO Country Dependency Medium Name</description>
     <fields>
         <fullName>SuppliedPhone</fullName>
         <trackTrending>false</trackTrending>
+    </fields>
+    <fields>
+        <fullName>Tag__c</fullName>
+        <description>TO: Picklist to differentiate between CEC and George Case Market Mapping</description>
+        <externalId>false</externalId>
+        <label>Tag</label>
+        <picklist>
+            <picklistValues>
+                <fullName>CEC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>George</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Type</fullName>
@@ -1963,12 +2064,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>notContain</operation>
-            <value>nordic,France,DACH,BENELUX,CEC ITALY,PORTUGAL,SPAIN,GREECE,HUNGARY</value>
+            <value>Nordic,France,DACH,BENELUX,ITALY,PORTUGAL,SPAIN,GREECE,HUNGARY,POLAND</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
             <operation>notContain</operation>
-            <value>Nordic,France,DACH,BENELUX,ITALY,PORTUGAL,SPAIN,GREECE,HUNGARY,SWEDEN,INDIA</value>
+            <value>Nordic,France,DACH,BENELUX,ITALY,PORTUGAL,SPAIN,GREECE,HUNGARY,SWEDEN,INDIA,POLA</value>
         </filters>
         <label>Out of SLA</label>
         <language>en_US</language>
@@ -1991,7 +2092,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CONTACT.ACCOUNT</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>Brand__c</columns>
         <columns>CASES.STATUS</columns>
+        <columns>Language__c</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
@@ -2521,6 +2625,33 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>Dot_com</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CONTACT.FIRST_NAME</field>
+            <operation>contains</operation>
+            <value>Unilever Consumerlink</value>
+        </filters>
+        <label>Dot com</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_UK</role>
+            <role>CEC_User_UK</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Kittys_Queue</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -2625,6 +2756,38 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>TO_France_Escalation_Queue_Case</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>TO France Escalation Queue</label>
+        <language>en_US</language>
+        <queue>TO_France_Escalation_Queue</queue>
+    </listViews>
+    <listViews>
+        <fullName>TO_France_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <label>TO France Queue</label>
+        <language>en_US</language>
+        <queue>TO_France_Queue</queue>
+        <sharedTo>
+            <role>TO_Global_Head</role>
+            <role>TO_Manager_Europe</role>
+            <role>TO_Manager_France</role>
+            <role>TO_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Within_SLA</fullName>
         <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
@@ -2660,12 +2823,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>notContain</operation>
-            <value>CEC Nordic,CEC France,CEC DACH,CEC BENELUX,CEC ITALY</value>
+            <value>CEC Nordic,CEC France,CEC DACH,CEC BENELUX,CEC ITALY,SPAIN,POLAND,PORTUGAL</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
             <operation>notContain</operation>
-            <value>Nordic,France,DACH,BENELUX,ITALY</value>
+            <value>Nordic,France,DACH,BENELUX,ITALY,SPAIN,POLAND,PORTUGAL</value>
         </filters>
         <label>Within SLA</label>
         <language>en_US</language>
@@ -3331,7 +3494,7 @@ IF(Case.Case_Market_Mapping_Country__c=&apos;Norway&apos;,$Setup.cec_Org_Setting
 IF(Case.Case_Market_Mapping_Country__c=&apos;Poland&apos;,$Setup.cec_Org_Settings__c.Poland_Questionnaire_Id__c,
 IF(Case.Case_Market_Mapping_Country__c=&apos;Portugal&apos;,$Setup.cec_Org_Settings__c.Portugal_Questionnaire_Id__c,
 IF(Case.Case_Market_Mapping_Country__c=&apos;Spain&apos;,$Setup.cec_Org_Settings__c.Spain_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Sweden&apos;,$Setup.cec_Org_Settings__c.Sweden_Questionnaire_Id__c,    IF(Case.Case_Market_Mapping_Country__c=&apos;Switzerland&apos;,$Setup.cec_Org_Settings__c.Switzerland_Questionnaire_Id__c, null))))))))))))))))))))}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}</url>
+IF(Case.Case_Market_Mapping_Country__c=&apos;Sweden&apos;,$Setup.cec_Org_Settings__c.Sweden_Questionnaire_Id__c,    IF(Case.Case_Market_Mapping_Country__c=&apos;Switzerland&apos;,$Setup.cec_Org_Settings__c.Switzerland_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Estonia&apos;,$Setup.cec_Org_Settings__c.Estonia_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Lithuania&apos;,$Setup.cec_Org_Settings__c.Lithuania_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Latvia&apos;,$Setup.cec_Org_Settings__c.Latvia_Questionnaire_Id__c, null)))))))))))))))))))))))}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}</url>
     </webLinks>
     <webLinks>
         <fullName>New_Case</fullName>
@@ -3359,7 +3522,7 @@ var userSettingRecord=userSettingResult.getArray(&quot;records&quot;);
 
 if(userSettingRecord.length&gt;0){ 
 caseObj.Country__c = userSettingRecord[0].Country__c; 
-caseObj.Country_Name__c = userSettingRecord[0].Country_Name__c;
+//caseObj.Country_Name__c = userSettingRecord[0].Country_Name__c;
 } 
 }	
 var result = sforce.connection.create([caseObj]); 
