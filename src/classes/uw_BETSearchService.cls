@@ -77,7 +77,7 @@ public without sharing class uw_BETSearchService {
             if(brandId != null && brandId != '' ){
                 isVailidId = Id.valueOf(brandId);
                                 
-                whereClauseForBet += ' AND uw_Brand__c = \''+brandId+'\'';
+                whereClauseForBet += ' AND Product_Brand__c = \''+brandId+'\'';
             }
             
             if(categoryId != null  && categoryId != ''){
@@ -119,7 +119,7 @@ public without sharing class uw_BETSearchService {
         Boolean isSoslQuery = false;
         String finalSoslQuery = '';
         //String finalSoqlQuery = 'SELECT Id, Name, Studio_Chatter_Group__c, Final_release_date__c, Presentation_Id__c, Icon_Location__c, Description__c, uw_Brand__r.Name, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name FROM uw_BET__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir;
-        String finalSoqlQuery = 'SELECT Id, Name, Studio_Chatter_Group__c, First_release_date__c, Final_release_date__c, Presentation_Id__c, Icon_Location__c, Description__c, uw_Brand__r.Name, uw_Brand__c, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name, Brand_Keyword_Search__c, Category_Keyword_Search__c, Inoplan_Project_Keyword_Search__c, Owner_Keyword_Search__c, Region_Keyword_Search__c, Banner_1_Location__c, Background_Colour__c, Banner_Colour__c, Border_Colour__c, Font_Colour__c, Sharing__c, Launch_Date__c FROM uw_BET__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir +' LIMIT '+pageSize+' OFFSET '+startIndex ;
+        String finalSoqlQuery = 'SELECT Id, Name, Studio_Chatter_Group__c, First_release_date__c, Final_release_date__c, Presentation_Id__c, Icon_Location__c, Description__c, Product_Brand__r.Name, Product_Brand__c, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name, Brand_Keyword_Search__c, Category_Keyword_Search__c, Inoplan_Project_Keyword_Search__c, Owner_Keyword_Search__c, Region_Keyword_Search__c, Banner_1_Location__c, Background_Colour__c, Banner_Colour__c, Border_Colour__c, Font_Colour__c, Sharing__c, Launch_Date__c FROM uw_BET__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir +' LIMIT '+pageSize+' OFFSET '+startIndex ;
         if(keyWord != null && keyWord !='' && keyWord.trim() !=''){    
             keyWord = String.escapeSingleQuotes(keyWord);       
             finalSoslQuery += 'FIND \''+keyWord+'*\' ';
@@ -129,7 +129,7 @@ public without sharing class uw_BETSearchService {
         List<uw_BET__c> betSearchList = new List<uw_BET__c>();
         if(isSoslQuery){            
             //finalSoslQuery += 'IN ALL FIELDS RETURNING uw_BET__c (Id, Name, Studio_Chatter_Group__c, Final_release_date__c, Presentation_Id__c, Icon_Location__c, Description__c, uw_Brand__r.Name, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name ' + whereClauseForBet + ' ORDER BY LastModifiedDate '+ orderDir +')';
-            finalSoslQuery += 'IN ALL FIELDS RETURNING uw_BET__c (Id, Name, Studio_Chatter_Group__c, First_release_date__c, Final_release_date__c, Presentation_Id__c, Icon_Location__c, Description__c, uw_Brand__r.Name, uw_Brand__c, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name, Brand_Keyword_Search__c, Category_Keyword_Search__c, Inoplan_Project_Keyword_Search__c, Owner_Keyword_Search__c, Region_Keyword_Search__c, Banner_1_Location__c, Background_Colour__c, Banner_Colour__c, Border_Colour__c, Font_Colour__c, Sharing__c, Launch_Date__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir +' LIMIT '+pageSize+' OFFSET '+startIndex+ ')';
+            finalSoslQuery += 'IN ALL FIELDS RETURNING uw_BET__c (Id, Name, Studio_Chatter_Group__c, First_release_date__c, Final_release_date__c, Presentation_Id__c, Icon_Location__c, Description__c, Product_Brand__r.Name, Product_Brand__c, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name, Brand_Keyword_Search__c, Category_Keyword_Search__c, Inoplan_Project_Keyword_Search__c, Owner_Keyword_Search__c, Region_Keyword_Search__c, Banner_1_Location__c, Background_Colour__c, Banner_Colour__c, Border_Colour__c, Font_Colour__c, Sharing__c, Launch_Date__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir +' LIMIT '+pageSize+' OFFSET '+startIndex+ ')';
 
                        
             List<List<SObject>> searchList = Search.Query(finalSoslQuery);            

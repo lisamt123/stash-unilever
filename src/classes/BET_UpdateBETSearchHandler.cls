@@ -23,7 +23,7 @@ public with sharing class BET_UpdateBETSearchHandler {
         for (uw_BET__c b : newList) {
             projectIds.add(b.Inoplan_Project__c);
             ownersIds.add(b.OwnerId);
-            brandsIds.add(b.uw_Brand__c);
+            brandsIds.add(b.Product_Brand__c);
             categoriesIds.add(b.Sub_Category__c);
         }
 
@@ -43,8 +43,8 @@ public with sharing class BET_UpdateBETSearchHandler {
             if (b.OwnerId != oldMap.get(b.Id).OwnerId) {
                 ownersIds.add(b.OwnerId);
             }
-            if (b.uw_Brand__c != oldMap.get(b.Id).Inoplan_Project__c) {
-                brandsIds.add(b.uw_Brand__c);
+            if (b.Product_Brand__c != oldMap.get(b.Id).Product_Brand__c) {
+                brandsIds.add(b.Product_Brand__c);
             }
             if (b.Sub_Category__c != oldMap.get(b.Id).Sub_Category__c) {
                 categoriesIds.add(b.Sub_Category__c);
@@ -75,8 +75,8 @@ public with sharing class BET_UpdateBETSearchHandler {
         }
 
         if (!brandsIds.isEmpty()) {
-            List<uw_Brand__c> brands = [SELECT Id, Name FROM uw_Brand__c WHERE Id IN :brandsIds];
-            for(uw_Brand__c brand : brands){
+            List<MDO_Brand__c> brands = [SELECT Id, Name FROM MDO_Brand__c WHERE Id IN :brandsIds];
+            for(MDO_Brand__c brand : brands){
                 idBrandToName.put(brand.Id, brand.Name);
             }
         }
@@ -98,7 +98,7 @@ public with sharing class BET_UpdateBETSearchHandler {
                 b.Owner_Keyword_Search__c = idOwnerToName.get(b.OwnerId);
             }
             if(idBrandToName.containsKey(b.uw_Brand__c)){
-                b.Brand_Keyword_Search__c = idBrandToName.get(b.uw_Brand__c);
+                b.Brand_Keyword_Search__c = idBrandToName.get(b.Product_Brand__c);
             }
             if(idCategoryToName.containsKey(b.Sub_Category__c)){
                 b.Category_Keyword_Search__c = idCategoryToName.get(b.Sub_Category__c);
