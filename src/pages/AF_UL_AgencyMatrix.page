@@ -17,11 +17,30 @@
     <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6')}" type="text/css" media="screen" />
     <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6')}"></script>
       <style>
+      /*body.AF_UL_AgencyMatrix .tableborder th, 
+      body.AF_UL_AgencyMatrix .tableborder td
+      {
+         height:40px;
+      }*/
        body.AF_UL_AgencyMatrix a.modalButton3 div:last-child {
-        font-size: 13px !important;
-        text-decoration:underline;
-      }
-    </style> 
+          font-size: 13px !important;
+        }
+        body.AF_UL_AgencyMatrix #gridPanel table td a {
+            width:100%!important;
+            margin:0 auto;
+            text-decoration:underline;
+        }
+        body.AF_UL_AgencyMatrix #gridPanel table td a div {
+            text-decoration:underline!important;
+        }
+        body.AF_UL_AgencyMatrix a.modalButton3 div img {
+          margin: 1px 10px 0px 0px !important;
+         }
+         
+        body.AF_UL_AgencyMatrix a.modalButton3 div.imageHolder{
+          width:25px;
+        }
+      </style>
       <script>
   $(document).ready(function(){
     $(".outText1").hover(function(){
@@ -657,7 +676,7 @@ $(document).ready(function(){
  $(document).on('click','.modalButton3', function(e) {
     $("#iframe_cont").contents().find("body").html('');
     var src = $(this).attr('data-src');
-    var height = $(this).attr('data-height') || 400;
+    var height = $(this).attr('data-height') || 466;
     var width = $(this).attr('data-width') || 900;
     
     $("#myModal3 iframe").attr({'src':src,

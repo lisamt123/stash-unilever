@@ -849,9 +849,9 @@ h5.titleHelpStyle
                      <h5 class="titleHelpStyle">Help on this functionality:</h5>
                     <div>
                       <ul class="helpListStyle">
-                       <li>Leave the field blank if you raised the correct PO for the period</li>
-                       <li>Insert zero into the field if you didn’t raise a PO for the period</li>
-                       <li>Insert value into the field if you have raised a different number on your PO than advised on the PO report</li>
+                       <li>Leave the fields blank if you raised the correct PO for the period</li>
+                       <li>Insert zero’s into the fields if you didn’t raise a PO for the period</li>
+                       <li>Insert values into the fields if you have raised different numbers on your PO than advised on the PO report</li>
                      </ul>
                     </div>
                   </td>
@@ -933,8 +933,8 @@ bsjQuery(document).ready(function(){
  bsjQuery(document).on('click','.modalButton3', function(e) {
     bsjQuery("#iframe_cont").contents().find("body").html('');
     var src = bsjQuery(this).attr('data-src');
-    var height = bsjQuery(this).attr('data-height') || 300;
-    var width = bsjQuery(this).attr('data-width') || 600;
+    var height = bsjQuery(this).attr('data-height') || 360;
+    var width = bsjQuery(this).attr('data-width') || 800;
     bsjQuery('#myModal3').on('hidden.bs.modal',shouldRefreshPage);
     bsjQuery("#myModal3 iframe").attr({'src':src,
                         'height': height,

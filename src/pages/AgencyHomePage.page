@@ -49,7 +49,17 @@ $('document').ready(function(){
 });
 </script>
 <!-- Bootstrap Tooltip methods End -->
-
+<style>
+ .modal-dialog
+ {
+    margin:17px auto !important;
+ }
+ .modal-body
+ {
+     padding:2px 15px 14px 15px;
+ }
+ 
+</style>
 
 <!-- <apex:includeScript value="{!$Resource.ChartJs}"/> -->
   <script>
@@ -388,20 +398,26 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
            <td class="Agency_fees">{!$Label.Agency_Fee_Title}</td>
            <td class="Profile_Name"> {!$User.AF_UserTypeText__c} </td>
            <td class="User_Name"> {!$User.FirstName} {!$User.LastName} </td>
-           <td class="Emailto_Cat">
-           <apex:commandButton value="Email to Cat Finance" 
-            rendered="{!isCMCOSuperFlag}" styleClass="modalButton" 
-           html-data-toggle="modal" html-data-target="#myModal" html-data-backdrop="static" html-data-src="/apex/AF_EmailToCatFinance?Year={!financialYear}"  html-data-keyboard="false" />
+           <td class="Emailto_Cat Adjust_Quarters">
+           <apex:outputPanel rendered="{!isCMCOSuperFlag}">
+              <input type="button" value="Email to Cat Finance" 
+           class="modalButton btn" 
+           data-toggle="modal" style="width:150px" data-target="#myModal" data-backdrop="static" data-src="/apex/AF_EmailToCatFinance?Year={!financialYear}"  data-keyboard="false" />
+           </apex:outputPanel>
+           
            </td>
-           <td class="Batch_Copy">
-           <apex:commandButton value="Batch Job Copy" onclick="BatchJobCopy('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}');" rendered="{!isbatchcopy }"
-           html-data-src="/apex/AF_BatchProcess_Copy"
-           html-data-target="#myModal"
-           html-data-toggle="modal"
-           html-data-backdrop="static"
-           html-data-keyboard="false"
-           styleClass="modalButton"
+           <td class="Batch_Copy Adjust_Quarters">
+           <apex:outputPanel rendered="{!isbatchcopy}">
+               <input type="button" value="Batch Job Copy" onclick="BatchJobCopy('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}');" 
+           data-src="/apex/AF_BatchProcess_Copy"
+           data-target="#myModal"
+           data-toggle="modal"
+           data-backdrop="static"
+           data-keyboard="false"
+           Class="modalButton btn"
            />
+           </apex:outputPanel>
+           
            </td>
            <td class="Reports"><apex:commandButton value="Reports" action="{!redirectToReportPage}"/></td>
            <!--<td style="width:10%;text-align:right;"> <apex:commandButton value="Back to Chatter" action="{!redirectToChatterPage}" style="width:120px;background:#007DBB;margin-top: 40px;margin-top: 26px;border:none;color:white;border-radius:10px;padding:10px;"/> </td> -->
@@ -634,7 +650,7 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
    data-keyboard="false">€ {!best.Base_Fee_Total__c}</a>-->
                                 <apex:outputLink onclick="TargetBaseFees('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}','{!Best.Id}');return false;" html-data-toggle="modal" html-data-target="#myModal" html-data-backdrop="static" html-data-src="/apex/AF_BrandEstimate?Id={!Best.Id}" title="{!$Label.AF_LP_Base_Fee_Targets}" id="theLink" styleClass="custom-link modalButton firstlabelValue">
                                 <apex:outputText value="{0,number,###,###,###}">
-                                €<apex:param value="{!best.Base_Fee_Total__c}"/>
+                                €&nbsp;<apex:param value="{!best.Base_Fee_Total__c}"/>
                                 </apex:outputText>
                                 </apex:outputLink>
                                 </td>
@@ -883,8 +899,8 @@ $(document).ready(function(){
 $('.modalButton1').on('click', function(e) {
     $("#iframe_cont").contents().find("body").html('');
     var src = $(this).attr('data-src');
-    var height = $(this).attr('data-height') || 540;
-    var width = $(this).attr('data-width') || 1250;
+    var height = $(this).attr('data-height') || 575;
+    var width = $(this).attr('data-width') || 1280;
     
     $("#myModal iframe").attr({'src':src,
                         'height': height,

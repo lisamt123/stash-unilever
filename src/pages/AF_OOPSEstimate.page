@@ -3,6 +3,7 @@
  {!oopsEstimate.AF_OOPS_Actual__r.AF_Status__c}<br/>
  {!LoggedinUser.AF_Agency_Fees_User_Type__c} -->
  <style>
+
 .paddingTB5
 {
    padding:5px 0px;
@@ -318,13 +319,13 @@ h5.titleHelpStyle
       </tr>
       
       <tr>
-        <td width="14%">
-            <span class="poNumLable">
+        <td width="17%">
+            <span class="poNumLable floatL" style="font-size:15.7px">
             <apex:outputLabel >PO Number</apex:outputLabel>
             </span>
         </td>
-        <td width="14%">
-            <apex:inputField id="po_number" value="{!polist.AF_PO_Number__c}" styleClass="values1_oops" rendered="{!isPOEditable}"/>
+        <td width="17%">
+            <apex:inputField id="po_number" value="{!polist.AF_PO_Number__c}" styleClass="values1_oops" style="margin-left:0px" rendered="{!isPOEditable}"/>
             <apex:outputPanel rendered="{!IsReadonlyPO}">
             <span class="txtEditable">
             <apex:outputField value="{!polist.AF_PO_Number__c}" rendered="{!!isPOEditable}" />
@@ -333,7 +334,7 @@ h5.titleHelpStyle
             
             
         </td>
-        <td width="72%">
+        <td width="66%">
            <apex:commandButton value="Save" action="{!SavePO}" StyleClass="btn submit_btn" rendered="{!isPOEditable}" reRender="pm2,po_number,po_estimateLocal" style="margin:-1px 0px 0px 10px !important"/>
         </td>
     </tr>
@@ -353,18 +354,18 @@ h5.titleHelpStyle
     </td>
     </tr>
     <tr>
-    <td width="14%" class="paddingTB5">
-       <apex:outputPanel rendered="{!IF(AND(oopsEstimate.AF_Ready_For_PO_Exchange_Rate__c!=null,oopsEstimate.AF_Status__c=='Ready for PO'),'true','false')}" styleClass="poOvRideLable">
+    <td width="17%" class="paddingTB5">
+       <apex:outputPanel rendered="{!IF(AND(oopsEstimate.AF_Ready_For_PO_Exchange_Rate__c!=null,oopsEstimate.AF_Status__c=='Ready for PO'),'true','false')}" styleClass="poOvRideLable flaotL">
             <apex:outputText styleClass="oopsMatrixCurrencyCode">
             LC-{!oopsEstimate.AF_OOPS_Matrix_Currency_Code__c}</apex:outputText>
         </apex:outputPanel>
-        <apex:outputPanel rendered="{!IF(AND(oopsEstimate.AF_Ready_For_PO_Exchange_Rate__c==null,oopsEstimate.AF_Status__c=='Ready for PO'),'true','false')}" styleClass="poOvRideLable" >
-            <apex:outputText styleClass="oopsMatrixCurrencyCode">
+        <apex:outputPanel rendered="{!IF(AND(oopsEstimate.AF_Ready_For_PO_Exchange_Rate__c==null,oopsEstimate.AF_Status__c=='Ready for PO'),'true','false')}" styleClass="poOvRideLable floatL">
+            <apex:outputText styleClass="oopsMatrixCurrencyCode" >
             LC-{!oopsEstimate.AF_OOPS_Matrix_Currency_Code__c}</apex:outputText>
         </apex:outputPanel>
     </td>
-    <td width="14%" class="paddingTB5">
-      <apex:inputField id="po_estimateLocal" value="{!polist.AF_Override_Estimate_Local__c}" styleClass="values1_oops" rendered="{!isPOEditable}"/>
+    <td width="17%" class="paddingTB5">
+      <apex:inputField id="po_estimateLocal" value="{!polist.AF_Override_Estimate_Local__c}" styleClass="values1_oops" style="margin-left:0px" rendered="{!isPOEditable}"/>
        <apex:outputPanel rendered="{!IsReadonlyPO}">
        <span class="txtEditable">
        <apex:outputField value="{!polist.AF_Override_Estimate_Local__c}" rendered="{!!isPOEditable}"/>
@@ -372,7 +373,7 @@ h5.titleHelpStyle
        </apex:outputPanel>
        
     </td>
-    <td width="72%" class="paddingTB5">
+    <td width="66%" class="paddingTB5">
        <apex:commandButton value="Save" action="{!confirmBox}" StyleClass="btn submit_btn" rendered="{!isCMCOSuperUser}" reRender="popuprej" style="margin:-1px 0px 0px 10px !important"/>
     </td>
     </tr>
@@ -464,8 +465,8 @@ bsjQuery(document).ready(function(){
  bsjQuery(document).on('click','.modalButton3', function(e) {
     bsjQuery("#iframe_cont").contents().find("body").html('');
     var src = bsjQuery(this).attr('data-src');
-    var height = bsjQuery(this).attr('data-height') || 300;
-    var width = bsjQuery(this).attr('data-width') || 600;
+    var height = bsjQuery(this).attr('data-height') || 360;
+    var width = bsjQuery(this).attr('data-width') || 800;
     bsjQuery('#myModal3').on('hidden.bs.modal',shouldRefreshPage);
     bsjQuery("#myModal3 iframe").attr({'src':src,
                         'height': height,

@@ -30,7 +30,8 @@
             <field>FAU_User__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>b.singh.saluja@accenture.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_Program_Protected/FAU_eXcel_rator_Invitation</template>
     </alerts>
     <alerts>

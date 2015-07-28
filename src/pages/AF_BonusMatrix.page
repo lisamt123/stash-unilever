@@ -18,9 +18,21 @@
     <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6')}" type="text/css" media="screen" />
     <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6')}"></script>
       <style>
+      /*div.AF_BonusMatrix .tableborder th, 
+      div.AF_BonusMatrix .tableborder td {
+  border: 1px solid #000;
+  height: 40px;
+}*/
         div.AF_BonusMatrix a.modalButton3 div:last-child {
-          font-size: 13px !important;
-          text-decoration:underline;
+  font-size: 13px !important;
+}
+    div.AF_BonusMatrix #gridPanel table td a {
+        width:92px!important;
+        margin:0 auto!important;        
+        }
+    div.AF_BonusMatrix #gridPanel table td a div {
+        text-decoration:underline;
+        text-align: left!important;
         }
       </style>
       <script type="text/javascript">
@@ -577,8 +589,8 @@ $(document).ready(function(){
  $(document).on('click','.modalButton3', function(e) {
     $("#iframe_cont").contents().find("body").html('');
     var src = $(this).attr('data-src');
-    var height = $(this).attr('data-height') || 430;
-    var width = $(this).attr('data-width') || 900;
+    var height = $(this).attr('data-height') || 450;
+    var width = $(this).attr('data-width') || 1200;
     
     $("#myModal3 iframe").attr({'src':src,
                         'height': height,

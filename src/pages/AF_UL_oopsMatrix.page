@@ -25,6 +25,21 @@
           font-size: 13px !important;
           text-decoration:underline;
         }
+        .details-control.alignCenter {
+            position:relative!important;
+        }
+        td.details-control.alignCenter a {
+            width:100%!important;
+            margin:0 auto !important;
+        }
+        div.agencyCOlcanter {          
+          text-decoration: underline!important;
+          color: #004976!important;
+          
+        }
+        div.AF_UL_oopsMatrix a.modalButton3 div {
+  width: 111px !important;
+}
      </style>
       <script type="text/javascript">
             $('a.addfancy').fancybox({
@@ -613,7 +628,7 @@ $(document).ready(function(){
  $(document).on('click','.modalButton3', function(e) {
     $("#iframe").contents().find("body").html('');
     var src = $(this).attr('data-src');
-    var height = $(this).attr('data-height') || 435;
+    var height = $(this).attr('data-height') || 466;
     var width = $(this).attr('data-width') || 900;
     
     $("#myModal3 iframe").attr({'src':src,
