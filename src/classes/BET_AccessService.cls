@@ -46,7 +46,7 @@ public with sharing class BET_AccessService {
 				}
 			}
 		}catch(Exception e){
-			throw new BET_CustomBETException(e);
+			throw new BET_CustomBETException('Unable to check user access',e);
 		}
 		System.debug('Exit HasUserAccess : ' + status);
 		return status;
@@ -104,7 +104,7 @@ public with sharing class BET_AccessService {
 				requestIds.add(mrequest.id);
 			}
 		}catch(Exception e){
-			throw new BET_CustomBETException(e);
+			throw new BET_CustomBETException('Unable to create access request',e);
 		}
 		System.debug('Exit RequestAccess : ' + requestIds);
 		return requestIds;
@@ -127,7 +127,7 @@ public with sharing class BET_AccessService {
 			insert mrequest;
 			requestId = mrequest.id;
 		}catch(Exception e){
-			throw new BET_CustomBETException(e);
+			throw new BET_CustomBETException('Unable to create access request',e);
 		}
 		System.debug('Exit RequestExternalUserAccess : ' + requestId);
 		return requestId;

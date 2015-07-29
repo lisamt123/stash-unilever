@@ -23,8 +23,6 @@ public with sharing class BET_UpsertBETController {
 
 	public String selectedBrand {get;set;}
 
-	//public uw_Bet__c betobject = new uw_Bet__c();
-
 	public static final String MISSING_DATA_TEXT = 'Missing';
 
 	public String categoryGroupName{
