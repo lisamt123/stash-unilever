@@ -70,7 +70,6 @@ public with sharing class BET_BETHandlerCls {
 
 	public static void deleteBETRelatedCollaborationGroup(){ // Taken from uw_BET_before_delete trigger
 		List<Id> delete_BET_group_Ids = new List<Id>();
-    	List<CollaborationGroup> delete_BET_chatter_group = new List<CollaborationGroup>();
     	List<Id> BET_Ids = new List<Id>();
     	List<uw_BET_Team_Member__c> delete_BET_Team_Member = new List<uw_BET_Team_Member__c>();
     
@@ -83,8 +82,7 @@ public with sharing class BET_BETHandlerCls {
     
     	/* Below code is added to delete the Chatter groupo associated with the deleted BET */
     	try {
-       		List<Database.DeleteResult> result_delete_BET_Group = null;
-       		result_delete_BET_Group = Database.delete(delete_BET_group_Ids,false);//deleted BET related Chatter group
+       		Database.delete(delete_BET_group_Ids,false);//deleted BET related Chatter group
     	} catch(System.DmlException e) {
         	System.debug('Error in deleting the BET Group');
     	}
@@ -92,14 +90,13 @@ public with sharing class BET_BETHandlerCls {
     	/* Below code is added to delete the BET Team members associated with the deleted BET */
 
     	try {
-        	delete_BET_Team_Member =[Select u.Id, u.BET__c From uw_BET_Team_Member__c u where u.BET__c in:BET_Ids];//BET team members
+        	delete_BET_Team_Member = [Select u.Id, u.BET__c From uw_BET_Team_Member__c u where u.BET__c in:BET_Ids];//BET team members
     	} catch(Exception e) {
           System.debug('Error in retrieving team member');
     	}
 
     	try {
-       		List<Database.DeleteResult> result_delete_BET_Member = null;
-       		result_delete_BET_Member = Database.delete(delete_BET_Team_Member,false);//deleted BET team members
+       	  Database.delete(delete_BET_Team_Member,false);//deleted BET team members
     	} catch(System.DmlException e) {
         	System.debug('Error in deleting the BET Member');
     	}
