@@ -50,5 +50,20 @@ public class BET_MasterDataServiceTest {
 		String name = BET_MasterDataService.getBrandPositionName(positioning.id);
 		System.assertEquals(name,positioning.brand_position_id__r.name);
 	}
+
+	@isTest static void getAllAvailableCategoriesTest(){
+		System.assertEquals(BET_MasterDataService.getAllAvailableCategories().size(),0);
+		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
+		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
+		System.assertEquals(BET_MasterDataService.getAllAvailableCategories().size(),1);
+	}
+
+	@isTest static void getAllAvailableUniqueBrandsForCategoryTest(){
+		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
+		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
+		System.assertEquals(BET_MasterDataService.getAllAvailableUniqueBrandsForCategory(category.id).size(),0);
+		BET_TestUtils.createBrandPosition(category);
+		System.assertEquals(BET_MasterDataService.getAllAvailableUniqueBrandsForCategory(category.id).size(),1);
+	}
 	
 }

@@ -71,7 +71,7 @@ private class BET_Triggers_Test {
         System.assertEquals(countFeedItems+1, countFeedItemsAfter);
     }
 
-static testMethod void testMethodTwo(){
+    static testMethod void testMethodTwo(){
         
         uw_Inoplan_Project__c inoplan = BET_TestingHelper.initInoplan('Test Inoplan', true);
         MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
