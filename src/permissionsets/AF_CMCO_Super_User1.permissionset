@@ -4854,6 +4854,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Summary__c.No_of_Matrix_Cells__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Summary__c.VisbleToAgency__c</field>
         <readable>true</readable>
     </fieldPermissions>

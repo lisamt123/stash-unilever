@@ -36,7 +36,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
            changeRole(id, document.getElementById(memberrole).value);
        }
        
-        
+       /* 
        function deleteClose()
        {
          alert('Test alert..............1');
@@ -44,11 +44,12 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
            {
             alert('Test alert');
             //self.close();
-           //window.top.postMessage({action: 'saveBetPreferences',moveHome}, document.location.protocol + '//' + document.domain);
+           window.top.postMessage({action: 'saveBetPreferences',moveHome}, document.location.protocol + '//' + document.domain);
            // window.parent.location.href="https://unilever--cb4ldev--c.cs14.visual.force.com/apex/BET?sfdc.tabName=01rE00000001xai#/home";
            }
            return true;
        }
+       */
        
   </script>
   <style type="text/css">
@@ -453,7 +454,7 @@ body .bPageBlock .requiredInput {
             <!-- T1 Start -->    
              <!-- T2 Start -->
              <!--<apex:commandButton value="Delete" action="{!deleteMember}" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="browsemembers" status="saveStatus4"> -->
-             <apex:commandButton value="Delete" rendered="{!member.IsOwner__c == false }" action="{!deleteMember}" onclick="deleteClose();" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="browsemembers" status="saveStatus4">
+             <apex:commandButton value="Delete" rendered="{!member.IsOwner__c == false }" action="{!deleteMember}" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="browsemembers" status="saveStatus4">
               <!-- T2 End -->
                <apex:actionStatus id="saveStatus4">
                 <apex:facet name="start">

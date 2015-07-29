@@ -231,15 +231,12 @@ public with sharing class FAU_ProgramClsSC {
             FAU_Milestone__c oMilestoneInsert = oMilestone.clone(false, true, false, false);               //See sObject Clone Method
             oMilestoneInsert.FAU_Program_Wave__c = oProgramInsert.Id;
             if (oMilestone.FAU_Due_Date__c <> null){
-                System.debug('oMilestone.FAU_Due_Date__c----------'+oMilestone.FAU_Due_Date__c);
                 oMilestoneInsert.FAU_Due_Date__c = oMilestone.FAU_Due_Date__c.addDays(iNumberOfDays);
             }
             if (oMilestone.FAU_1st_Reminder__c <> null){
-                System.debug('oMilestone.FAU_1st_Reminder__c----------'+oMilestone.FAU_1st_Reminder__c);
                 oMilestoneInsert.FAU_1st_Reminder__c = oMilestone.FAU_1st_Reminder__c.addDays(iNumberOfDays);
             }
             if (oMilestone.FAU_2nd_Reminder__c <> null){
-                 System.debug('oMilestone.FAU_2nd_Reminder__c----------'+oMilestone.FAU_2nd_Reminder__c);
                 oMilestoneInsert.FAU_2nd_Reminder__c = oMilestone.FAU_2nd_Reminder__c.addDays(iNumberOfDays);
             }
 

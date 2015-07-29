@@ -38,9 +38,6 @@ public with sharing class FAU_CreateProgramController {
                             WHERE SobjectType = 'FAU_Program__c'
                             AND DeveloperName = :oProgram.FAU_Category__c LIMIT 1];
 
-        System.debug('--------FAU_CreateProgramController -----gr oProgram.FAU_Start_Date__c----------'+(oProgram.FAU_Start_Date__c));
-        System.debug('--------FAU_CreateProgramController -----gr2---oFAUProgram.FAU_Start_Date__c-------'+(oFAUProgram.FAU_Start_Date__c));
-        System.debug('--------FAU_CreateProgramController -----gr---diff-------'+ (oProgram.FAU_Start_Date__c.daysBetween(oFAUProgram.FAU_Start_Date__c)));
         FAU_Program__c oProgramInsert = FAU_ProgramClsSC.createProgram(oProgram, oFAUProgram.Name, oRecordtype, oProgram.FAU_Start_Date__c.daysBetween(oFAUProgram.FAU_Start_Date__c));
 
 
