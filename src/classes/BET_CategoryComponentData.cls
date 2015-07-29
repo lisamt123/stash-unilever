@@ -29,6 +29,6 @@ public with sharing class BET_CategoryComponentData {
 		category = bet.Product_category__c;
 		brandpositioning = bet.Brand_Position__c;
 		brand = bet.Product_Brand__c;
-		leadIPM = bet.IPM_Project__c !=null ? true : false;
+		leadIPM = bet.IPM_Project__c == null ? false : true;
 	}
 }

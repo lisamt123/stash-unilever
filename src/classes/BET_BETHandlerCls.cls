@@ -10,6 +10,8 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 public with sharing class BET_BETHandlerCls {
 
+  private BET_BETHandlerCls(){}
+
 	public static Map<Id,uw_BET__c> buildBetMap(Map<Id,SObject> sobjectMap){
 		Map<Id,uw_Bet__c> betmap = new Map<Id,uw_Bet__c>();
 		for(Id id : sobjectMap.keySet()){
@@ -92,7 +94,7 @@ public with sharing class BET_BETHandlerCls {
     	try {
         	delete_BET_Team_Member =[Select u.Id, u.BET__c From uw_BET_Team_Member__c u where u.BET__c in:BET_Ids];//BET team members
     	} catch(Exception e) {
-
+          System.debug('Error in retrieving team member');
     	}
 
     	try {

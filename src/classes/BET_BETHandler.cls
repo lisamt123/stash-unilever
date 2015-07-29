@@ -37,11 +37,11 @@ public with sharing class BET_BETHandler implements ITrigger {
     	}
 	}
 
-	public void beforeInsert(SObject so) {}
-	public void beforeUpdate(SObject oldSo, SObject so)	{}
-	public void beforeDelete(SObject so) {}
-	public void afterInsert(SObject so) {}
-	public void afterUpdate(SObject oldSo, SObject so) {}
-	public void afterDelete(SObject so) {}
-	public void andFinally() {}
+	public void beforeInsert(SObject so) {System.debug('before insert ' + so);}
+	public void beforeUpdate(SObject oldSo, SObject so)	{System.debug('before update ' + so + ', ' + oldSo);}
+	public void beforeDelete(SObject so) {System.debug('before delete ' + so);}
+	public void afterInsert(SObject so) {System.debug('after insert ' + so);}
+	public void afterUpdate(SObject oldSo, SObject so) {System.debug('after update ' + so + ', ' + oldSo);}
+	public void afterDelete(SObject so) {System.debug('after delete ' + so);}
+	public void andFinally() {System.debug('finally');}
 }

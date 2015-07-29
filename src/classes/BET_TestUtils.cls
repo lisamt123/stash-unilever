@@ -10,6 +10,8 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 public class BET_TestUtils {
 
+	private BET_TestUtils (){}
+
 	/************************************************************
 		Purpose: Method creates BET record used in unit test classes
 		Parameters:

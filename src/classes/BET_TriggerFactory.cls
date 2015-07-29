@@ -1,5 +1,7 @@
 public with sharing class BET_TriggerFactory {
 
+	private BET_TriggerFactory(){}
+
 	/****************************************************************************************
 	 * Public static method to create and execute a trigger handler
 	 * Arguments:	Schema.sObjectType soType - Object type to process (SObject.sObjectType)

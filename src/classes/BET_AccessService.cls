@@ -21,6 +21,8 @@ public with sharing class BET_AccessService {
 	private static final String MEMBER_ROLE = 'Member';
 
 
+	private BET_AccessService(){}
+
 	/************************************************************
 		Purpose: Method checks if user has access to bet
 		Parameters: Id of related user , Id of related bet

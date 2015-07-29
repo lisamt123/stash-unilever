@@ -13,10 +13,15 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.1 -   Michal Bluj             29/07/2015      MDO Objects related changes
 **********************************************************************/
 public with sharing class uw_BETUtil {
+
 	//available search types in applications
 	public static final String brandSearch='brandSearch';
 	public static final String categorySearch='categorySearch';
 	public static final String keywordSearch='keywordSearch';
+
+    public static final String CLEAR_FILTERS = 'Clear filter';
+    public static final String CATEGORIES = 'Categories';
+    public static final String BRANDS = 'Brands';
 
 	/*******************************************************************
 	Purpose: Method return filters for bet used in search page  
@@ -29,17 +34,17 @@ public with sharing class uw_BETUtil {
         List<uw_BETWrapper.FilterLineItemWrapper> filterInfoList = new List<uw_BETWrapper.FilterLineItemWrapper>();
         
         List<uw_BETWrapper.FilterOptions> categoryFilterOptions=new List<uw_BETWrapper.FilterOptions>();
-        categoryFilterOptions.add(new uw_BETWrapper.FilterOptions('','Clear filter'));
+        categoryFilterOptions.add(new uw_BETWrapper.FilterOptions('',CLEAR_FILTERS));
 
         for(MDO_Category__c category : BET_MasterDataService.getAllAvailableCategories()){
             categoryFilterOptions.add(new uw_BETWrapper.FilterOptions(category.id,category.name));
         }       
 
         String categoriesSelectedValue = categoryId == null ? '' : categoryId;
-        filterInfoList.add(new uw_BETWrapper.FilterLineItemWrapper('Categories', false,categoryFilterOptions,categoriesSelectedValue));
+        filterInfoList.add(new uw_BETWrapper.FilterLineItemWrapper(CATEGORIES,false,categoryFilterOptions,categoriesSelectedValue));
             
         List<uw_BETWrapper.FilterOptions> brandFilterOptions=new List<uw_BETWrapper.FilterOptions>();
-        brandFilterOptions.add(new uw_BETWrapper.FilterOptions('','Clear filter'));
+        brandFilterOptions.add(new uw_BETWrapper.FilterOptions('',CLEAR_FILTERS));
 
         if(!String.isBlank(categoryId)){
             for(MDO_Brand__c brand : BET_MasterDataService.getAllAvailableUniqueBrandsForCategory(categoryId)){
@@ -48,7 +53,7 @@ public with sharing class uw_BETUtil {
         }
  
         String brandsSelectedValue = brandId == null ? '' : brandId;
-        filterInfoList.add(new uw_BETWrapper.FilterLineItemWrapper('Brands', false,brandFilterOptions,brandsSelectedValue));
+        filterInfoList.add(new uw_BETWrapper.FilterLineItemWrapper(BRANDS,false,brandFilterOptions,brandsSelectedValue));
         System.debug('Exit getFiltersForBet : ' + filterInfoList);
         return filterInfoList;
     }

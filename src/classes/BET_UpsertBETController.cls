@@ -163,6 +163,6 @@ public with sharing class BET_UpsertBETController {
         Throws: -
     *************************************************************/
 	private void sendAlertWhenSkipped(){
-
+		System.debug('Entering sendAlertWhenSkipped');
 	}
 }

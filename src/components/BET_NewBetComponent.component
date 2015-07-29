@@ -1,9 +1,13 @@
 <apex:component controller="BET_NewBetComponentController" allowDML="true">
 
-	<apex:attribute name="betobj" description="Current BET object" type="uw_BET__c" required="true" assignTo="{!bet}"/>
-	<apex:attribute name="cdata" description="Component Data Transfer Object" type="BET_CategoryComponentData" required="true" assignTo="{!compData}" />
-	<apex:attribute name="cancelURL" description="Cancel action redirect URL" type="String" required="false" assignTo="{!retUrl}" />
-	<apex:attribute name="saveURL" description="Save action redirect URL" type="String" required="false" assignTo="{!forwardUrl}" />
+	<apex:attribute name="betobj" description="Current BET object" 
+                    type="uw_BET__c" required="true" assignTo="{!bet}"/>
+	<apex:attribute name="cdata" description="Component Data Transfer Object" 
+                    type="BET_CategoryComponentData" required="true" assignTo="{!compData}" />
+	<apex:attribute name="cancelURL" description="Cancel action redirect URL" 
+                    type="String" required="false" assignTo="{!retUrl}" />
+	<apex:attribute name="saveURL" description="Save action redirect URL" 
+                    type="String" required="false" assignTo="{!forwardUrl}" />
 
     <apex:outputPanel id="mainBETPanel" rendered="{!NOT(goToMemberSelection)}">
 		<div class="form-header">
@@ -17,7 +21,9 @@
         <div>
         	<div class="form-mandatory">
                 <div class="item-label">
-        			<apex:outputLabel >{!$Label.BET_MandatoryStar} {!$Label.BET_MarkedFieldsMandatory}</apex:outputLabel>
+        			<apex:outputLabel >
+                        {!$Label.BET_MandatoryStar} {!$Label.BET_MarkedFieldsMandatory}
+                    </apex:outputLabel>
         		</div>
         	</div>
     	</div>
@@ -54,12 +60,14 @@
                 <div class="item-label">
                   	<apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.Inherit_Branding__c.Label}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
-                        		rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Inherit_Branding__c.inlineHelpText)}"
-                        		html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Inherit_Branding__c.inlineHelpText}" />
+                        rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Inherit_Branding__c.inlineHelpText)}"
+                        html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Inherit_Branding__c.inlineHelpText}" />
                 </div>
                 <div class="item-input-checkbox">
                   	<apex:inputfield id="inheritbrandngid" value="{!bet.Inherit_Branding__c}"/>
-                    <script>document.getElementById('{!$Component.inheritbrandngid}').disabled = {!compData.leadIPM}</script>
+                    <script>
+                        document.getElementById('{!$Component.inheritbrandngid}').disabled = {!compData.leadIPM}
+                    </script>
                 </div>
             </div>
             <div class="form-item">
@@ -71,7 +79,9 @@
                 </div>
                 <div class="item-input-date">
                   	<apex:inputField id="tldid" value="{!bet.Launch_Date__c}"/>
-                    <script>document.getElementById('{!$Component.tldid}').disabled = {!compData.leadIPM}</script>
+                    <script>
+                        document.getElementById('{!$Component.tldid}').disabled = {!compData.leadIPM}
+                    </script>
                 </div>
             </div>
         </div>
@@ -92,15 +102,21 @@
         </div>
 
         <div class="betActionButtons">
-            <apex:commandButton value="{!$Label.BET_Cancel}" styleClass="btn-cancel" action="{!cancelBET}" immediate="true"/>
-            <apex:commandButton value="{!$Label.BET_CreateBetAddMembers}" styleClass="btn-create-bet" action="{!saveBETandAddMembers}" rendered="{!bet.id == null}"/>
-            <apex:commandButton value="{!$Label.BET_UpdateBetAddMembers}" styleClass="btn-create-bet" action="{!saveBETandAddMembers}" rendered="{!bet.id != null}"/>
+            <apex:commandButton value="{!$Label.BET_Cancel}" styleClass="btn-cancel" 
+                                action="{!cancelBET}" immediate="true"/>
+            <apex:commandButton value="{!$Label.BET_CreateBetAddMembers}" styleClass="btn-create-bet" 
+                                action="{!saveBETandAddMembers}" rendered="{!bet.id == null}"/>
+            <apex:commandButton value="{!$Label.BET_UpdateBetAddMembers}" styleClass="btn-create-bet" 
+                                action="{!saveBETandAddMembers}" rendered="{!bet.id != null}"/>
         </div>
 
     </apex:outputPanel>
 
     <apex:outputPanel id="betMembers">
-        <c:BET_SuggestMembers BetID="{!bet.id}" ProjectId="{!IF(bet.IPM_Project__c == null,bet.Inoplan_Project__c,bet.IPM_Project__c)}" Callback="/apex/bet" rendered="{!goToMemberSelection}"/>
+        <c:BET_SuggestMembers BetID="{!bet.id}" 
+                            ProjectId="{!IF(bet.IPM_Project__c == null,bet.Inoplan_Project__c,bet.IPM_Project__c)}" 
+                            Callback="/apex/bet" 
+                            rendered="{!goToMemberSelection}"/>
     </apex:outputPanel>
 
 </apex:component>
