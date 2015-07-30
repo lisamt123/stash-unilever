@@ -932,6 +932,18 @@
         <members>uw_futureHandler</members>
         <members>uw_testTrigger</members>
         <members>uw_uploadBCImage</members>
+        <members>BET_MemberRequestHandlerCls</members>
+        <members>BET_MemberRequestHandlerClsTest</members>
+        <members>BET_Member_RequestHandler</members>
+        <members>BET_SuggestMembersController</members>
+        <members>BET_SuggestMembersControllerTest</members>
+        <members>BET_SuggestedMemberServiceTest</members>
+        <members>BET_SuggestedMemberService</members>
+        <members>BET_TriggerFactory</members>
+        <members>BET_BETWrapper</members>
+        <members>BET_MemberBucketWrapper</members>
+		<members>BET_BETService</members>
+        <members>BET_BETServiceTest</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -1080,6 +1092,7 @@
         <members>isll_UserpicWithFlag</members>
         <members>isll_UserpicWithFlagV2</members>
         <members>isll_WordCloudComponent</members>
+        <members>BET_SuggestMembers</members>
         <name>ApexComponent</name>
     </types>
     <types>
@@ -1584,6 +1597,7 @@
         <members>uw_ContentVersion_after_insert</members>
         <members>uw_UpdateInfoprojectKeywordSearch</members>
         <members>validationOnAmounts</members>
+        <members>BET_Member_Request_Trigger</members>
         <name>ApexTrigger</name>
     </types>
     <types>
@@ -1998,6 +2012,21 @@
         <members>uw_BET_standardchatterlimitmessage</members>
         <members>uw_Inoplan_error_duplicateValue</members>
         <members>uw_Inoplan_error_nullvalue</members>
+        <members>BETManagerRole</members>
+        <members>BETTeamMemberRequestApprovedStatus</members>
+        <members>BETTeamMemberRequestNewStatus</members>
+        <members>BET_SuggestedMemberAddOtherMember</members>
+        <members>BET_SuggestedMemberComponentAddMember</members>
+        <members>BET_SuggestedMemberComponentCollapse</members>
+        <members>BET_SuggestedMemberComponentExpand</members>
+        <members>BET_SuggestedMemberComponentSkipForNow</members>
+        <members>BET_SuggestedMemberComponentWarn</members>
+        <members>BET_SuggestedMemberDuplicateError</members>
+        <members>BET_SuggestedMemberModalAddSelected</members>
+        <members>BET_SuggestedMemberModalCancel</members>
+        <members>BET_SuggestedMemberModalHeader</members>
+        <members>BET_SuggestedMemberModalNoResults</members>
+        <members>BetTeamMemberRoleMember</members>
         <name>CustomLabel</name>
     </types>
     <types>
@@ -2271,6 +2300,8 @@
         <members>uw_Links__c</members>
         <members>uw_SSO_Settings__c</members>
         <members>uw_Terms_Conditions__c</members>
+        <members>BET_Follow_Request__c</members>
+        <members>BET_Member_Request__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -3633,6 +3664,7 @@
         <members>resource_robertson</members>
         <members>resource_sunsilk</members>
         <members>walls_brand_centre_resources</members>
+        <members>BETSuggestedMembers</members>
         <name>StaticResource</name>
     </types>
     <types>
