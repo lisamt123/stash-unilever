@@ -116,7 +116,7 @@
     <apex:outputPanel id="betMembers">
         <c:BET_SuggestMembers BetID="{!bet.id}" 
                             ProjectId="{!IF(bet.IPM_Project__c == null,bet.Inoplan_Project__c,bet.IPM_Project__c)}" 
-                            Callback="/apex/bet" 
+                            Callback="/apex/bet#/detail/{!bet.id}" 
                             rendered="{!goToMemberSelection}"/>
     </apex:outputPanel>
 
