@@ -33,7 +33,8 @@ private class BET_MemberRequestHandlerClsTest {
         }
         //BET_CustomBETException should occure for invailid ProjectID wrong format
         try{
-        	insert betMembersToInsert;    
+        	insert betMembersToInsert;
+            system.assertEquals(0, 1, 'Exception should be thrown so this code instruction should not be executed in test');
         }catch(Exception ex){
             system.assertEquals(true, ex.getMessage().containsIgnoreCase(Label.BetMemberRequestInvailidProjectIDError));
         }
@@ -72,6 +73,7 @@ private class BET_MemberRequestHandlerClsTest {
         //try to insert one more time the sampe collection
         try{
             insert betMembersToInsert1;
+            system.assertEquals(0, 1, 'Exception should be thrown so this code instruction should not be executed in test');
         }catch(System.DmlException ex){
             system.assertEquals(true,ex.getMessage().containsIgnoreCase('is already defined'));
             
