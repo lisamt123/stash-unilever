@@ -942,7 +942,8 @@
         <members>BET_TriggerFactory</members>
         <members>BET_BETWrapper</members>
         <members>BET_MemberBucketWrapper</members>
-
+		<members>BET_BETService</members>
+        <members>BET_BETServiceTest</members>
         <name>ApexClass</name>
     </types>
     <types>
