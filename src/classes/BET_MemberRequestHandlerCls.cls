@@ -65,19 +65,21 @@ public with sharing class BET_MemberRequestHandlerCls {
                 recordsToInsertMap.get(existingRequest.ConcatenatedField__c).addError(String.format(Label.BET_SuggestedMemberDuplicateError,new List<String>{existingRequest.UserId__r.Name}));
             }
         }
+        System.debug('Exiting BET_MemberRequestHandlerCls.preventMemberRequestDuplicatesWhileInsert method did not found any duplicated records');
         
         
         
     }
     
     /************************************************************
-        Purpose: Method responsible for creating Team Members record from Team Member Request record
+        Purpose: Method responsible for creating Team Members record for Approved Team Member Request record
         Parameters: -
         Returns: 
         Throws: -
     *************************************************************/
     public static void createTeamMemberForApprovedRequest(List<BET_Member_Request__c> memberRequestLst,Map<Id,BET_Member_Request__c> oldMap){
-        
+        System.debug('Entring createTeamMemberForApprovedRequest  with param @memberRequestLst:'+memberRequestLst+
+                    ' @memberRequestLst: '+oldMap);
         List<uw_BET_Team_Member__c> teamMembersToInsert = new List<uw_BET_Team_Member__c>();
         for(BET_Member_Request__c memberRequest : memberRequestLst){
             //if old map null then it's a newly created record check if status if apporved
@@ -92,13 +94,20 @@ public with sharing class BET_MemberRequestHandlerCls {
                 }
             }
         }
-        
-        Database.SaveResult [] result = Database.insert(teamMembersToInsert);
+        System.debug('Exiting createTeamMemberForApprovedRequest  following Team Members will be created: '+teamMembersToInsert);
+        insert teamMembersToInsert;
         //return memberRequestToInsert;
         
     }
     
+     /************************************************************
+        Purpose: Method responsible for creating Team Members record from Team Member Request record
+        Parameters: -
+        Returns: 
+        Throws: -
+    *************************************************************/
     public static uw_BET_Team_Member__c createTeamMemberFromRequest(BET_Member_Request__c memberRequest){
+        System.debug('Entring method createTeamMemberFromRequest with param @memberRequest: '+memberRequest);
         uw_BET_Team_Member__c memberRequestToInsert = new uw_BET_Team_Member__c();
         memberRequestToInsert.Access_Level__c = 'Toolkit Experience (Toolkit only)';
         memberRequestToInsert.BETEnabled__c = true;
@@ -108,6 +117,7 @@ public with sharing class BET_MemberRequestHandlerCls {
         memberRequestToInsert.Role__c = memberRequest.Role__c;
         memberRequestToInsert.StudioEnabled__c = true;
         memberRequestToInsert.Team_Member__c = memberRequest.UserId__c;
+        System.debug('Exiting method createTeamMemberFromRequest following Memeber Request returned:'+memberRequestToInsert);
         return memberRequestToInsert;
     }
     
