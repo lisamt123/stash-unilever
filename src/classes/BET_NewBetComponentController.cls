@@ -62,7 +62,7 @@ public with sharing class BET_NewBetComponentController {
             if(forwardUrl == null){
                 pageRef = null;
             } else {
-                pageRef = new PageReference(forwardUrl);
+                pageRef = new PageReference(forwardUrl+bet.id);
             }
         }catch(Exception e){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception Saving BET record'+e));

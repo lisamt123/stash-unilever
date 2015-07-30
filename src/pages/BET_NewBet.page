@@ -18,7 +18,7 @@
 
 	<apex:form >
     	<apex:pageMessages escape="false"/>
-    	<c:BET_NewBetComponent betobj="{!bet}" cdata="{!componentData}"/>
+    	<c:BET_NewBetComponent betobj="{!bet}" cdata="{!componentData}" saveUrl="/apex/bet#/detail/"/>
 	</apex:form>
 
 </apex:page>

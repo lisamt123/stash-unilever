@@ -56,7 +56,7 @@
 
             <div class="clear">&nbsp;</div>
 
-            <div class="form-item">
+            <!--<div class="form-item">
                 <div class="item-label">
                   	<apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.Inherit_Branding__c.Label}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
@@ -69,7 +69,8 @@
                         document.getElementById('{!$Component.inheritbrandngid}').disabled = {!compData.leadIPM}
                     </script>
                 </div>
-            </div>
+            </div> -->
+            
             <div class="form-item">
                 <div class="item-label">
                   	<apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_TargetLaunchDate}</apex:outputLabel>
@@ -96,7 +97,7 @@
                 </div>
                 <div class="item-input">
                     <apex:inputTextarea id="descid" rows="5" value="{!bet.Description__c}"/>
-                    <script>document.getElementById('{!$Component.descid}').disabled = {!compData.leadIPM}</script>
+                    <!--<script>document.getElementById('{!$Component.descid}').disabled = {!compData.leadIPM}</script>-->
                 </div>
             </div>
         </div>

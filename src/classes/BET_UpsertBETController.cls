@@ -120,6 +120,7 @@ public with sharing class BET_UpsertBETController {
 			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception Saving BET record'+e));
 		}
 		System.debug('Exit upsertBet : ' + pageRef);
+		if(pageRef != null) pageRef.setRedirect(true);
 		return pageRef;
 	}
 

@@ -203,5 +203,54 @@ public class BET_TestUtils {
 		System.debug('Exit createBrand : ' + brand);
 		return brand;
 	}
+    
+    /************************************************************
+		Purpose: Method creates creates test data for Suggested Members Component
+		Parameters: 
+		Returns: 
+		Throws: -
+	*************************************************************/
+    public static  void generateTestDataForSuggestedMembers(List<Id> suggested_MembersCtrl, List<Id> suggested_ManagersCtrl, List<BET_MemberBucketWrapper> user_bucketsCtrl){
+        system.debug('Entring generateTestDataForSuggestedMembers with param @suggested_MembersCtrl:'+suggested_MembersCtrl
+                     +'@suggested_ManagersCtrl:'+suggested_ManagersCtrl+'@user_bucketsCtrl:'+user_bucketsCtrl);
+        Integer i = 0;
+        BET_MemberBucketWrapper itemWrap = new BET_MemberBucketWrapper();
+        
+        
+        for(User u : [Select id From User Limit 12]){
+            
+            if(Math.mod(i, 4) == 0){
+                itemWrap = new BET_MemberBucketWrapper();
+                itemWrap.GroupName ='Test User Gropup'+i;
+                itemWrap.GroupUserIds = new List<Id>();
+                user_bucketsCtrl.add(itemWrap);
+                suggested_ManagersCtrl.add(u.id);
+            }
+			
+            itemWrap.GroupUserIds.add(u.id);
+            suggested_MembersCtrl.add(u.id);
+            i++;
+        }
+        system.debug('Exiting generateTestDataForSuggestedMembers properties were set to @suggested_MembersCtrl:'+suggested_MembersCtrl
+                     +'@suggested_ManagersCtrl:'+suggested_ManagersCtrl+'@user_bucketsCtrl:'+user_bucketsCtrl);
+    }
+    
+    /************************************************************
+		Purpose: Method creates creates test BET_Follow_Request__c record
+		Parameters: 
+		Returns: 
+		Throws: -
+	*************************************************************/
+    public static  BET_Follow_Request__c createBetFollowRequest(id betId,String projectId){
+        system.debug('Entring createBetFollowRequest with params @betId:'+betId+' @projectId:'+projectId);
+        BET_Follow_Request__c testFollowRequest = new BET_Follow_Request__c();
+        testFollowRequest.Brand_Experience_Toolkit__c = betId;
+        testFollowRequest.Project_Id__c = projectId;
+        testFollowRequest.Project_Lead__c = UserInfo.getUserId();
+        system.debug('Exiting createBetFollowRequest following BetFollowRequest was created:'+testFollowRequest);
+        return testFollowRequest;
+    }
+    
+    
 
 }
