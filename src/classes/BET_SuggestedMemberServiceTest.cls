@@ -68,7 +68,8 @@ private class BET_SuggestedMemberServiceTest {
         }
         //BET_CustomBETException should occure for invailid ProjectID wrong format
         try{
-        	betMembersToInsert = BET_SuggestedMemberService.removeMemberRequestDuplicatesWhileInsert(betMembersToInsert);    
+        	betMembersToInsert = BET_SuggestedMemberService.removeMemberRequestDuplicatesWhileInsert(betMembersToInsert);
+            system.assertEquals(0, 1, 'Exception should be thrown so this code instruction should not be executed in test');
         }catch(BET_CustomBETException ex){
             system.assertEquals(Label.BetMemberRequestInvailidProjectIDError, ex.getMessage());
         }
