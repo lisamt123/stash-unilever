@@ -1,0 +1,383 @@
+<!--*************************************************************************************
+Name : BET_SuggestMembers
+
+Purpose : Compoment responsible for adding the members
+
+History
+
+VERSION  AUTHOR                DATE        DETAIL   Description
+1.0      k.szepietowski@polsource.com  20-07-2015  Initial
+*************************************************************************************-->
+
+<apex:component controller="BET_SuggestMembersController" allowDML="true">
+    <apex:includeScript value="{!URLFOR($Resource.jscolor_1_4_1, 'jscolor/jscolor.js')}" />
+	<!--<apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />-->    
+	<!--<apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />-->
+    
+    <apex:includeScript value="{!$Resource.BETSuggestedMembers}/scripts/jquery.min.js" />
+    <apex:includeScript value="{!$Resource.BETSuggestedMembers}/scripts/blockUI.js" />
+    <apex:includeScript value="{!$Resource.BETSuggestedMembers}/scripts/bootstrap.min.js" />
+    <apex:stylesheet value="{!$Resource.BETSuggestedMembers}/css/bootstrap.min.css"/>
+	<apex:stylesheet value="{!$Resource.BETSuggestedMembers}/css/betSuggestedMembers.css"/>  
+    
+    
+	
+    <!--<apex:image url="{!$Resource.BETSuggestedMembers}/images/trashIcon.png"/>-->
+    <apex:attribute name="BetID" description="BET ID" type="Id" 
+                        required="false" assignTo="{!betIdCtrl}"/>						
+
+	<apex:attribute name="ProjectID" description="IPM project ID" type="Id" 
+                        required="false" assignTo="{!projectIdCtrl}"/>
+
+	<apex:attribute name="Callback" description="URL to which page will be redirected after record creation" type="String" 
+                        required="false" assignTo="{!callbackCtrl}"/>
+
+	<apex:attribute name="Suggested_Members" description="List of suggested members Ids" type="Id[]" 
+                        required="false" assignTo="{!suggested_MembersCtrl}"/>
+
+	<apex:attribute name="User_buckets" description="List of user buckets with user Ids belonging to it" type="BET_MemberBucketWrapper[]" 
+                        required="false" assignTo="{!user_bucketsCtrl}"/>
+
+	<apex:attribute name="Suggested_Managers" description="List of suggested manager Ids" type="Id[]" 
+                        required="false" assignTo="{!suggested_managersCtrl}"/>
+    
+    <!--<apex:stylesheet value="{!$Resource.BETNewBetStyles}" />-->
+    
+    <p class="suggestedMembersInfo">
+        {!$Label.BET_SuggestedMemberComponentWarn}
+    </p>
+    
+    <div id="betOwner" class="memberContainer">
+        <img class="circular"  src="{!OnwerPhoto}"/>
+        
+        <div class="userTitle" >
+            <span>{!betOwnerInfo.Name}</span>
+        </div>
+        
+        <div style="margin-top: 10px;">
+            <span>BET Owner</span>
+        </div>
+        
+        <div class="editCircle">
+            <a href="/{!betOwnerInfo.id}" target="blank">
+            	<img  src="{!$Resource.BETSuggestedMembers}/images/pencil.jpg"/>
+            </a>    
+        </div>
+    </div>
+    <apex:outputPanel id="betManager" layout="block" styleClass="memberContainer" rendered="{!ManagerPhoto != ''}">
+        <img class="circular"  src="{!managerInfo.FullPhotoUrl}"/>
+        
+        <div class="userTitle" >
+            <span>{!managerInfo.Name}</span>
+        </div>
+        
+        <div style="margin-top: 10px;">
+            <span>{!$Label.BETManagerRole}</span>
+        </div>
+    </apex:outputPanel>
+    
+    
+    <apex:actionFunction name="deleteMember" action="{!deleteMember}"  oncomplete="unlockUI();">
+        <apex:param id="memberToDelete" name="memberToDelete" value="" assignTo="{!memberToDelete}"/>
+    </apex:actionFunction>
+    <apex:actionFunction name="addMembers" action="{!addMembers}" >
+    </apex:actionFunction>
+    <apex:actionFunction action="{!skipPage}" name="skipPage" />
+    <apex:actionFunction action="{!searchUsers}" name="searchUsers" oncomplete="unlockUI();" reRender="modalSearchResult">
+            
+    </apex:actionFunction>
+        
+    <apex:actionFunction action="{!addNewMembers}" name="addNewMembers" oncomplete="clearSearchForm();" reRender="suggestedMembersContainer">
+        <apex:param name="newlyAddedUsers" value="" assignTo="{!newlyAddedUsers}"/>
+    </apex:actionFunction>
+    
+    <apex:outputPanel layout="block" id="suggestedMembersContainer">
+        <apex:variable value="{!1}" var="rowNum"/>
+        <apex:repeat value="{!SuggestedMembers}" var="member">
+            <div id="groupName_{!rowNum}" style="margin-top:10px;">
+                <div id="groupName_Colapse_{!rowNum}" style="float:left;" onclick="colapseGroup('{!rowNum}')">
+                    <img class="collapseExpandItem" src="{!$Resource.BETSuggestedMembers}/images/colapse.png"/>
+                </div>
+                <div id="groupName_Expand_{!rowNum}" style="float:left" onclick="expandGroup('{!rowNum}')">
+                    <img class="collapseExpandItem" src="{!$Resource.BETSuggestedMembers}/images/expand.png"/>
+                </div>
+                <span style="font-weight:bold;">{!member.groupName}</span>
+                <span style="color:gray"> |  </span>
+                <span id="groupMembersCount" style="font-weight:bold;">{!member.groupUsers.size}</span>
+                <span>{!$Label.BET_SuggestedMemberMembers}</span>
+                
+                <apex:outputPanel styleClass="collapseExpand" onclick="collapseMembers();" rendered="{!rowNum == 1}">
+                  &nbsp; {!$Label.BET_SuggestedMemberComponentCollapse} 
+                </apex:outputPanel>
+                <apex:outputPanel styleClass="collapseExpand" onclick="expandMembers();" rendered="{!rowNum == 1}">
+                    {!$Label.BET_SuggestedMemberComponentExpand}
+                </apex:outputPanel>
+                <div style="clear: both;"/>
+                <div class="horizontalLine"/>
+                	<apex:variable value="{!1}" var="UserRowNum"/>
+                    <apex:repeat value="{!member.groupUsers}" var="memeberItem">
+                    <div id="userId_{!memeberItem.userInfo.id}" class="memberContainer">
+                        <img class="circular" src="{!memeberItem.userInfo.FullPhotoUrl}"/>
+                        
+                        <div class="userTitle" >
+                                <span>{!memeberItem.userInfo.Name}</span>
+                        </div>
+                        <apex:outputPanel layout="block" styleClass="leadBlock"  rendered="{!memeberItem.isManager}">
+                            <span>Leader</span>
+                        </apex:outputPanel>
+                        <div class="trashIcon" style="background: url({!$Resource.BETSuggestedMembers}/images/trashIcon.png) no-repeat;" onclick="delMemeber('{!memeberItem.userInfo.id}');">
+                            
+                        </div>
+                    </div>
+                        
+                    <apex:variable var="UserRowNum" value="{!UserRowNum + 1}"/>
+                        
+                    </apex:repeat>
+                
+                
+            </div >
+            
+            <div style="clear: both;"/>
+            <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+        </apex:repeat>
+        
+        <div style="clear: both;"/>
+        <div  class="memberContainer">
+            
+            <a data-toggle="modal" data-target="#myModal">
+                <img  class="addMemeberBtn" src="{!$Resource.BETSuggestedMembers}/images/add_2.png"/>
+            </a>    
+           
+            <div class="userTitle" onclick="addOtherMembers();">
+                <span>{!$Label.BET_SuggestedMemberAddOtherMember}</span>
+            </div>
+             
+        </div>
+        <div style="clear: both;"/>
+        <div  class="addMembersBtn" onclick="addMembers();">
+            {!$Label.BET_SuggestedMemberComponentAddMember}
+        </div>
+        <div class="addMembersBtn" onclick="skipPage();">
+            {!$Label.BET_SuggestedMemberComponentSkipForNow}
+        </div>
+    </apex:outputPanel>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div id="#ipmAddMemberModal" class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{!$Label.BET_SuggestedMemberModalHeader}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="searchModal">
+                        <apex:inputText style="width:250px;" styleClass="form-control" value="{!searchUserName}"/>
+                    </div>
+                    
+                    <div class="searchModal" style="width: 50px;height: 33px;">
+                        <button type="button" onclick="searchUsersBtn();" style="padding: 6px 4px;" class="bootstrap.min.btn bootstrap.min.btn-default">Search</button>
+                    </div>
+                    
+                    <apex:outputPanel styleClass="scroll" id="modalSearchResult" layout="block">
+                        <apex:outputLabel id="noResultsFound" rendered="{!freeAddMembers.size == 0}" value="{!$Label.BET_SuggestedMemberModalNoResults}"/>
+                        <apex:repeat value="{!freeAddMembers}" var="memberItem">
+                            <div class="searchMemberItem">
+                                <input type="checkbox" onclick="selectOrUnselect($(this));" id="userIdCheckbox_{!memberItem.id}"  value="{!memberItem}"/>
+                                <img class="circularSmall" src="{!memberItem.SmallPhotoUrl}"/>
+                                <span>{!memberItem.name}</span>
+                            </div>
+                        </apex:repeat>
+                        
+                    </apex:outputPanel>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="bootstrap.min.btn bootstrap.min.btn-default" data-dismiss="modal">{!$Label.BET_SuggestedMemberModalCancel}</button>
+                    <button type="button" onclick="addAllNewMembers();" class="bootstrap.min.btn bootstrap.min.btn-default" data-dismiss="modal">{!$Label.BET_SuggestedMemberModalAddSelected}</button>  
+                </div>
+            </div>
+            
+        </div>
+    </div>   
+          
+      
+    <!--</div>-->
+    <script>
+    	var $ = jQuery.noConflict();
+    	function selectOrUnselect(obj){
+            if(obj){
+                if(obj.attr('checked')){
+                    obj.attr('checked',false);
+                }else{
+                    obj.attr('checked',true);
+                }
+            }
+        }
+    
+    	function resizeModalAfrerSearch(){
+            unlockUI();
+            //if($('[id $= noResultsFound]'){
+               
+            //}   
+            //alert('{!freeAddMembers.size}');
+        }
+    
+    	function searchUsersBtn(){
+            $.blockUI({ css: { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff'
+        	},
+            message: 'Searching...' });
+            searchUsers();
+        }
+    
+    	function clearSearchForm(){
+            if($('.searchMemberItem')){
+                if($('.searchMemberItem').children()){
+                    $('.searchMemberItem').children().remove();
+                }
+            }
+            unlockUI();
+            clearExpandColapseAfterRender();
+        }
+    
+    	function addOtherMembers(){
+        }
+    
+    	function addAllNewMembers(){ 
+            var searchMembers = $('.searchMemberItem');
+            if(searchMembers){
+                var selectedMembers = searchMembers.find('[id^="userIdCheckbox_"]');
+                var selectedUsers = '';
+                if(selectedMembers){
+                    selectedMembers.each(function () {
+                        if($(this).attr('checked')){
+                            selectedUsers += $(this).val()+','; 
+                        }
+                        
+                    });
+                }
+                if(selectedUsers.length>0){
+                    selectedUsers = selectedUsers.substring(0, selectedUsers.length-1);
+                }
+                lockUI();
+                addNewMembers(selectedUsers);
+            }
+        }
+    
+        function delMemeber(elemId){
+            lockUI();
+            var divId = 'userId_'+elemId;
+            $('#'+divId).slideUp(100, function() {
+                $('#'+divId).remove();
+            });
+            
+            var numOfMembers = $('#'+divId).parent().find('span[id="groupMembersCount"]');
+            
+            if(numOfMembers){
+                try{
+                	numOfMembers.html(parseInt(numOfMembers.html()) -1);
+                }catch(e){
+                    
+                }
+            }
+            
+            deleteMember(elemId);
+        }
+    	
+    	function deleteFromUI(){
+            
+        }
+    	
+    	function lockUI(){
+            $.blockUI({ css: { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff' 
+        	},
+            message: 'Please wait...' }); 
+        }
+    
+    	function collapseMembers(){
+            var expandIconprefix = 'groupName_Expand_';
+            var colapseIconprefix = 'groupName_Colapse_';
+            $('[id $= suggestedMembersContainer]').find('div[id^="userId_"]').hide();
+            $('[id $= suggestedMembersContainer]').find('div[id^='+expandIconprefix+']').show();
+            $('[id $= suggestedMembersContainer]').find('div[id^='+colapseIconprefix+']').hide();
+        }
+    
+    	function expandMembers(){
+            var expandIconprefix = 'groupName_Expand_';
+            var colapseIconprefix = 'groupName_Colapse_';
+            $('[id $= suggestedMembersContainer]').find('div[id^="userId_"]').show();
+            $('[id $= suggestedMembersContainer]').find('div[id^='+expandIconprefix+']').hide();
+            $('[id $= suggestedMembersContainer]').find('div[id^='+colapseIconprefix+']').show();
+            
+        }
+    
+    	function colapseGroup(elementId){
+            var elementFullId = 'groupName_'+elementId;
+            var parentElement = $('div[id='+elementFullId+']');
+            if(parentElement){
+                parentElement.find('div[id^="userId_"]').hide();
+            }
+            var expandIconId = 'groupName_Expand_'+elementId;
+            var colapseIconId = 'groupName_Colapse_'+elementId;
+            var expandIconElement = $('div[id='+expandIconId+']');
+            var colapseIconElement = $('div[id='+colapseIconId+']');
+            if(expandIconElement){
+                expandIconElement.show();
+            }
+            if(colapseIconElement){
+                colapseIconElement.hide();
+            }
+        }
+    
+    	function expandGroup(elementId){
+            var elementFullId = 'groupName_'+elementId;
+            var parentElement = $('div[id='+elementFullId+']');
+            if(parentElement){
+                parentElement.find('div[id^="userId_"]').show();
+            }
+            var expandIconId = 'groupName_Expand_'+elementId;
+            var colapseIconId = 'groupName_Colapse_'+elementId;
+            var expandIconElement = $('div[id='+expandIconId+']');
+            var colapseIconElement = $('div[id='+colapseIconId+']');
+            if(expandIconElement){
+                expandIconElement.hide();
+            }
+            if(colapseIconElement){
+                colapseIconElement.show();
+            }
+        }    
+    	
+    	function unlockUI(){
+            $.unblockUI();
+        }
+    
+    	$( document ).ready(function() {
+            clearExpandColapseAfterRender();
+    		
+		});
+    	
+    	function clearExpandColapseAfterRender(){
+            var itemsToHide = $('div[id^="groupName_Expand_"]');
+            if(itemsToHide){
+                itemsToHide.hide();
+            }
+        }
+    </script>
+
+    
+</apex:component>
