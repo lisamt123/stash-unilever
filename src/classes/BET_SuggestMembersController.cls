@@ -93,12 +93,6 @@ public with sharing class BET_SuggestMembersController {
     public List<SuggestedMembersWrapper> getSuggestedMembers(){
         System.debug('Entering method getSuggestedMembers');
         List<SuggestedMembersWrapper> membersToDisplay = new List<SuggestedMembersWrapper>();
-        /*
-        system.debug('check current suggested members:'+suggested_MembersCtrl);
-        if(suggested_MembersCtrl == null){
-            suggested_MembersCtrl = new List<ID>();
-        }
-        */
         
         if(user_bucketsCtrl == null){
             user_bucketsCtrl = new List<BET_MemberBucketWrapper>();
