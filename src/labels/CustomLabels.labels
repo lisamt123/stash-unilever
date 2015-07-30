@@ -469,59 +469,11 @@ Are you sure you wish to proceed?</value>
         <value>New</value>
     </labels>
     <labels>
-        <fullName>BET_BetBrandPositionMandatory</fullName>
-        <categories>BET</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>BET_BetBrandPositionMandatory</shortDescription>
-        <value>Brand position is mandatory</value>
-    </labels>
-    <labels>
-        <fullName>BET_BetCategoryGroupMandatory</fullName>
-        <categories>BET</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>BET_BetCategoryGroupMandatory</shortDescription>
-        <value>Category Name is mandatory</value>
-    </labels>
-    <labels>
-        <fullName>BET_BetCategoryMandatory</fullName>
-        <categories>BET</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>BET_BetCategoryMandatory</shortDescription>
-        <value>Category is mandatory</value>
-    </labels>
-    <labels>
-        <fullName>BET_BetNameMandatory</fullName>
-        <categories>BET</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>BET_BetNameMandatory</shortDescription>
-        <value>Bet Name is mandatory</value>
-    </labels>
-    <labels>
         <fullName>BET_BrandCategoryNotRelated</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Brand is not linked to Category</shortDescription>
         <value>Selected brand is not linked to chosen category. Please change your selection</value>
-    </labels>
-    <labels>
-        <fullName>BET_InoplanProjectMandatory</fullName>
-        <categories>BET</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>BET_InoplanProjectMandatory</shortDescription>
-        <value>Inoplan Project is mandatory</value>
-    </labels>
-    <labels>
-        <fullName>BET_LaunchDateMandatory</fullName>
-        <categories>BET</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>BET_LaunchDateMandatory</shortDescription>
-        <value>Target Launch Date is mandatory</value>
     </labels>
     <labels>
         <fullName>BET_SuggestedMemberAddOtherMember</fullName>
@@ -531,6 +483,34 @@ Are you sure you wish to proceed?</value>
         <value>Add Other Members</value>
     </labels>
     <labels>
+        <fullName>BET_SuggestedMemberComponentAddMember</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberComponentAddMember</shortDescription>
+        <value>Add Bet members</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberComponentCollapse</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_SuggestedMemberComponentCollapse</shortDescription>
+        <value>Collapse all</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberComponentExpand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_SuggestedMemberComponentExpand</shortDescription>
+        <value>Expand all |</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberComponentSkipForNow</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberComponentSkipForNow</shortDescription>
+        <value>Skip for now</value>
+    </labels>
+    <labels>
         <fullName>BET_SuggestedMemberComponentWarn</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -538,18 +518,46 @@ Are you sure you wish to proceed?</value>
         <value>Now we just need to capture the details of any team members who need acess to the BET. If  you miss anyone here they can always request access later individually</value>
     </labels>
     <labels>
-        <fullName>BET_SuggestedMemberMembers</fullName>
+        <fullName>BET_SuggestedMemberDuplicateError</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>BET SuggestedMemberMembers</shortDescription>
-        <value>members</value>
+        <shortDescription>BET_SuggestedMemberDuplicateError</shortDescription>
+        <value>Member {0} is already defined</value>
     </labels>
     <labels>
-        <fullName>BET_SuggestedMemberOtherMembers</fullName>
+        <fullName>BET_SuggestedMemberModalAddSelected</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>BET SuggestedMemberOtherMembers</shortDescription>
-        <value>Other Members</value>
+        <shortDescription>BET SuggestedMemberModalAddSelected</shortDescription>
+        <value>Add selected members</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberModalCancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberModalCancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberModalHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberModalHeader</shortDescription>
+        <value>Add Team member</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberModalNoResults</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberModalNoResults</shortDescription>
+        <value>No Results</value>
+    </labels>
+    <labels>
+        <fullName>BetTeamMemberRoleMember</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BetTeamMemberRoleMember</shortDescription>
+        <value>Member</value>
     </labels>
     <labels>
         <fullName>Bonus_Annual</fullName>
