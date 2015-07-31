@@ -66,7 +66,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 
 	@isTest static void getCategoriesTest(){
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
-		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
+		BET_TestUtils.createCategory(categoryGroup);
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
 		controller.selectedCategoryGroup = categoryGroup.id;
 		System.assert(!controller.getCategories().isEmpty());
@@ -75,7 +75,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 	@isTest static void getBrandPositioningsTest(){
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
-		MDO_BrandPositions__c positioning = BET_TestUtils.createBrandPositioning(category);
+		BET_TestUtils.createBrandPositioning(category);
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
 		controller.selectedCategory = category.id;
 		System.assert(!controller.getBrandPositionings().isEmpty());

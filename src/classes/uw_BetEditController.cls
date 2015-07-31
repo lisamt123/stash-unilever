@@ -168,6 +168,7 @@ public with sharing class uw_BetEditController {
             if (bet.ownerId != initialOwnerId) {
                 Savepoint sp = Database.setSavepoint();
                 try {                   
+                    compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
                     bet = moveComponentDataToBET(bet,compData);
                     List<String> errorMessages = validateBET(bet);
                     if(errorMessages.isEmpty()){
@@ -197,6 +198,7 @@ public with sharing class uw_BetEditController {
                     return null;
                 }
             } else {
+                compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
                 bet = moveComponentDataToBET(bet,compData);
                 List<String> errorMessages = validateBET(bet);
                 if(errorMessages.isEmpty()){
@@ -239,7 +241,6 @@ public with sharing class uw_BetEditController {
     *************************************************************/
     @TestVisible
     private List<String> validateBET(uw_BET__c betObject){
-        compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(betObject.Product_Category__c);
         return uw_BETUtil.validateBET(betObject,compData.categoryMigrated);
     }
 

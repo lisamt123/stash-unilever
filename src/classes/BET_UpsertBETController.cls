@@ -20,10 +20,9 @@ public with sharing class BET_UpsertBETController {
 	public Date targetLaunchDate {get;set;}
 	public String projectDescription {get;set;}
 	public String cback {get;set;}
+	public String cbackskipped {get;set;}
 
 	public String selectedBrand {get;set;}
-
-	//public uw_Bet__c betobject = new uw_Bet__c();
 
 	public static final String MISSING_DATA_TEXT = 'Missing';
 
@@ -122,6 +121,7 @@ public with sharing class BET_UpsertBETController {
 			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception Saving BET record'+e));
 		}
 		System.debug('Exit upsertBet : ' + pageRef);
+		if(pageRef != null) pageRef.setRedirect(true);
 		return pageRef;
 	}
 
@@ -155,7 +155,7 @@ public with sharing class BET_UpsertBETController {
     *************************************************************/
 	public PageReference skipForNow(){
 		sendAlertWhenSkipped();
-		return new PageReference(cback);
+		return cbackskipped == null ? null : new PageReference(cbackskipped);
 	}
 
 	/************************************************************
@@ -165,6 +165,6 @@ public with sharing class BET_UpsertBETController {
         Throws: -
     *************************************************************/
 	private void sendAlertWhenSkipped(){
-
+		System.debug('Entering sendAlertWhenSkipped');
 	}
 }

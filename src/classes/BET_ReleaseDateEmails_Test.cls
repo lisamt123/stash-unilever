@@ -16,9 +16,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 @isTest
 private class BET_ReleaseDateEmails_Test {
     static testMethod void test(){
-      BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1', true);
+      BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1' + system.now(), true);
 
-      BET_TestingHelper.BET_TestingData wrap2 = BET_TestingHelper.initBET('Test BET2', true);
+      BET_TestingHelper.BET_TestingData wrap2 = BET_TestingHelper.initBET('Test BET2' + system.now(), true);
 
       Date myDate = date.today();
       Date launchDate = Date.newInstance(myDate.year()+1, 1, 15);
@@ -51,7 +51,7 @@ private class BET_ReleaseDateEmails_Test {
     } 
 
     static testMethod void testTwo(){
-      BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1', true);
+      BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1' + system.now(), true);
 
       Date myDate = date.today();
       Date launchDate = Date.newInstance(myDate.year()+1, 1, 15);
@@ -78,7 +78,7 @@ private class BET_ReleaseDateEmails_Test {
     }
 
     static testMethod void testThree(){
-      BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1', true);
+      BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1' + system.now(), true);
 
       Date myDate = date.today();
       Date launchDate = Date.newInstance(myDate.year()+1, 1, 15);
@@ -101,7 +101,7 @@ private class BET_ReleaseDateEmails_Test {
     }
 
     static testMethod void testFourGenerateTemplateFirstRelease(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1', true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1' + system.now(), true);
 
         Date myDate = date.today();
         Date launchDate = Date.newInstance(myDate.year()+1, 1, 15);
@@ -124,7 +124,7 @@ private class BET_ReleaseDateEmails_Test {
     }
 
     static testMethod void testFiveGenerateTemplateFinalRelease(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1', true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1' + system.now(), true);
 
         Date myDate = date.today();
         Date launchDate = Date.newInstance(myDate.year()+1, 1, 15);

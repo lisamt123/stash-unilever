@@ -11,6 +11,8 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 
 public with sharing class IPM_BETUpdateService {
 
+	private IPM_BETUpdateService(){}
+
 	public static Boolean CategoryCheck(String selectedCategory) {
 		try{
 			List<MDO_ProductCategorysubscriptions__c> subscriptions = [select id from MDO_ProductCategorysubscriptions__c where product_category_id__c=:selectedCategory limit 1];

@@ -3947,5 +3947,10 @@
         <members>uw_Terms_Conditions__c</members>
         <name>Workflow</name>
     </types>
+    <types>
+        <members>CB4L_HUB_Admin</members>
+        <members>CB4L_Standard_User</members>
+        <name>PermissionSet</name>
+    </types>
     <version>34.0</version>
 </Package>

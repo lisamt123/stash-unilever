@@ -1,8 +1,12 @@
 <apex:component controller="BET_CategoryBrandSelectionController">
 
 	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js" />
-	<apex:attribute name="betobj" assignTo="{!bet}" description="Identifier of an related BET" type="uw_BET__c" required="true"/>
-	<apex:attribute name="cdata" assignTo="{!compData}" description="Data transfer object" type="BET_CategoryComponentData" required="false"/>
+	<apex:attribute name="betobj" assignTo="{!bet}" 
+                    description="Identifier of an related BET"
+                    type="uw_BET__c" required="true"/>
+	<apex:attribute name="cdata" assignTo="{!compData}" 
+                    description="Data transfer object" 
+                    type="BET_CategoryComponentData" required="false"/>
 
     <script type="text/javascript">
 
@@ -18,17 +22,24 @@
 
     <div class="form-item">
         <div class="item-label">
-            <apex:outputLabel >*Category Group</apex:outputLabel>
+            <apex:outputLabel >
+                {!$Label.BET_MandatoryStar}{!$ObjectType.uw_BET__c.Fields.Category_Group__c.Label}
+            </apex:outputLabel>
             <apex:outputPanel layout="inline" styleClass="question-icon"
-                                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Category__c.inlineHelpText)}"
-                                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Category__c.inlineHelpText}" />
+                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Category_Group__c.inlineHelpText)}"
+                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Category_Group__c.inlineHelpText}" />
         </div>
         <div class="item-input">
             <apex:actionRegion >
-                <apex:selectList value="{!selectedCategoryGroup}" size="1" multiselect="false">
-                    <apex:actionSupport event="onchange" onsubmit="showProcessing('catspinner')" oncomplete="hideProcessing('catspinner')" action="{!onCategoryGroupChange}" reRender="categoryPanel,projectsPanels,brandPositioningPanel,brandPanel"/>
+                <apex:selectList id="scgid" value="{!selectedCategoryGroup}" size="1" multiselect="false">
+                    <apex:actionSupport event="onchange" onsubmit="showProcessing('catspinner')" 
+                                        oncomplete="hideProcessing('catspinner')" action="{!onCategoryGroupChange}" 
+                                        reRender="categoryPanel,projectsPanels,brandPositioningPanel,brandPanel"/>
                     <apex:selectOptions value="{!categoryGroups}" />
                 </apex:selectList>
+                <script>
+                    document.getElementById('{!$Component.scgid}').disabled = {!compData.leadIPM}
+                </script>
             </apex:actionRegion>
         </div>
     </div>
@@ -36,17 +47,24 @@
     <apex:outputPanel id="categoryPanel">
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >*Category</apex:outputLabel>
+                <apex:outputLabel >
+                    {!$Label.BET_MandatoryStar}{!$ObjectType.uw_BET__c.Fields.Product_Category__c.Label}
+                </apex:outputLabel>
                 <apex:outputPanel layout="inline" styleClass="question-icon"
-                                	rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Sub_Category__c.inlineHelpText)}"
-                                	html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Sub_Category__c.inlineHelpText}" />
+                    rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Product_Category__c.inlineHelpText)}"
+                    html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Product_Category__c.inlineHelpText}" />
             </div>
             <div class="item-input">
                 <apex:actionRegion >
-                    <apex:selectList value="{!selectedCategory}" size="1" multiselect="false">
-                        <apex:actionSupport event="onchange" onsubmit="showProcessing('posspinner')" oncomplete="hideProcessing('posspinner')" action="{!onCategoryChange}" reRender="projectsPanels,brandPositioningPanel"/>
+                    <apex:selectList id="scid" value="{!selectedCategory}" size="1" multiselect="false">
+                        <apex:actionSupport event="onchange" onsubmit="showProcessing('posspinner')" 
+                                            oncomplete="hideProcessing('posspinner')" action="{!onCategoryChange}" 
+                                            reRender="projectsPanels,brandPositioningPanel"/>
                         <apex:selectOptions value="{!categories}" />
                     </apex:selectList>
+                    <script>
+                        document.getElementById('{!$Component.scid}').disabled = {!compData.leadIPM}
+                    </script>
                 </apex:actionRegion>
             </div>
             <div id="catspinner" style="display:none;" class="spinnerclass">
@@ -58,17 +76,25 @@
     <apex:outputPanel id="brandPositioningPanel">
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >*Brand Positioning</apex:outputLabel>
+                <apex:outputLabel >
+                    {!$Label.BET_MandatoryStar}{!$ObjectType.uw_BET__c.Fields.Brand_Position__c.Label}
+                </apex:outputLabel>
                 <apex:outputPanel layout="inline" styleClass="question-icon"
-                                	rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Sub_Category__c.inlineHelpText)}"
-                                	html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Sub_Category__c.inlineHelpText}" />
+                    rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Brand_Position__c.inlineHelpText)}"
+                    html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Brand_Position__c.inlineHelpText}" />
             </div>
             <div class="item-input">
                 <apex:actionRegion >
-                    <apex:selectList value="{!selectedBrandPositioning}" size="1" multiselect="false">
-                        <apex:actionSupport event="onchange" onsubmit="showProcessing('brandspinner')" oncomplete="hideProcessing('brandspinner')" action="{!onBrandPositioningChange}" reRender="brandPanel"/>
+                    <apex:selectList id="spbid" value="{!selectedBrandPositioning}" size="1" multiselect="false">
+                        <apex:actionSupport event="onchange" onsubmit="showProcessing('brandspinner')" 
+                                            oncomplete="hideProcessing('brandspinner')" 
+                                            action="{!onBrandPositioningChange}" 
+                                            reRender="brandPanel"/>
                         <apex:selectOptions value="{!brandPositionings}" />
                     </apex:selectList>
+                    <script>
+                        document.getElementById('{!$Component.spbid}').disabled = {!compData.leadIPM}
+                    </script>
                 </apex:actionRegion>
             </div>
             <div id="posspinner" style="display:none;" class="spinnerclass">
@@ -81,15 +107,17 @@
     <apex:outputPanel id="brandPanel">
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >Brand</apex:outputLabel>
+                <apex:outputLabel >
+                    {!$ObjectType.uw_BET__c.Fields.Product_Brand__c.Label}
+                </apex:outputLabel>
                 <apex:outputPanel layout="inline" styleClass="question-icon"
-                        			rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.uw_Brand__c.inlineHelpText)}"
-                        			html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.uw_Brand__c.inlineHelpText}" />
+                    rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.uw_Brand__c.inlineHelpText)}"
+                    html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.uw_Brand__c.inlineHelpText}" />
             </div>
             <div class="item-input">
                 <apex:actionRegion >
                     <apex:selectList value="{!selectedBrand}" size="1" multiselect="false">
-                        <apex:actionSupport event="onchange" action="{!onBrandChange}"/>
+                        <apex:actionSupport event="onchange" action="{!onBrandChange}" reRender="projectsPanels"/>
                         <apex:selectOptions value="{!brands}" />
                     </apex:selectList>
                 </apex:actionRegion>
@@ -102,37 +130,40 @@
 
     <div class="form-item-brandtip">
         <div class="item-label">
-              <apex:outputLabel >If different to brand positioning ... </apex:outputLabel>
+              <apex:outputLabel >{!$Label.BET_BrandTip}</apex:outputLabel>
         </div>
     </div>
 
     <apex:outputPanel id="projectsPanels" style="padding-top:30px;">
-        <apex:outputPanel rendered="{!categoryMigrated}">
+
+        <apex:outputPanel rendered="{!AND(categoryMigrated,bet.id != null)}">
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
-                    <apex:outputLabel >Project Name</apex:outputLabel>
+                    <apex:outputLabel >{!$Label.BET_ProjectName}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
-                                        rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.IPM_Project__c.inlineHelpText)}"
-                                        html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.IPM_Project__c.inlineHelpText}" />
+                        rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.IPM_Project__c.inlineHelpText)}"
+                        html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.IPM_Project__c.inlineHelpText}" />
                 </div>
                 <div class="item-input">
                     <apex:inputText value="{!bet.IPM_Project__r.name}" disabled="true"/>
                 </div>
             </div>
         </apex:outputPanel>
-
+      
         <apex:outputPanel rendered="{!categoryNotMigrated}">
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
-                    <apex:outputLabel >*Project Name</apex:outputLabel>
+                    <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_ProjectName}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
-                                        rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Inoplan_Project__c.inlineHelpText)}"
-                                        html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Inoplan_Project__c.inlineHelpText}"/>
+                        rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Inoplan_Project__c.inlineHelpText)}"
+                        html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Inoplan_Project__c.inlineHelpText}"/>
                 </div>
                 <div class="item-input">
-                    <apex:inputField id="inopproject" value="{!bet.Inoplan_Project__c}">
-                        <apex:actionSupport event="onchange" action="{!onProjectChange}"/>
-                    </apex:inputField>
+                    <apex:actionRegion >
+                        <apex:inputField id="inopproject" value="{!bet.Inoplan_Project__c}">
+                            <apex:actionSupport event="onchange" action="{!onProjectChange}" rerender="projectsPanels"/>  
+                        </apex:inputField>
+                    </apex:actionRegion>
                 </div>
             </div>
         </apex:outputPanel>

@@ -469,11 +469,147 @@ Are you sure you wish to proceed?</value>
         <value>New</value>
     </labels>
     <labels>
+        <fullName>BET_BetBrandPositionMandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BetBrandPositionMandatory</shortDescription>
+        <value>Brand position is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_BetCategoryGroupMandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BetCategoryGroupMandatory</shortDescription>
+        <value>Category Name is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_BetCategoryMandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BetCategoryMandatory</shortDescription>
+        <value>Category is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_BetNameMandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BetNameMandatory</shortDescription>
+        <value>Bet Name is mandatory</value>
+    </labels>
+    <labels>
         <fullName>BET_BrandCategoryNotRelated</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Brand is not linked to Category</shortDescription>
         <value>Selected brand is not linked to chosen category. Please change your selection</value>
+    </labels>
+    <labels>
+        <fullName>BET_BrandTip</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BrandTip</shortDescription>
+        <value>If different to brand positioning ...</value>
+    </labels>
+    <labels>
+        <fullName>BET_Cancel</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>BET_CreateBetAddMembers</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_CreateBetAddMembers</shortDescription>
+        <value>Create new BET &amp; add members</value>
+    </labels>
+    <labels>
+        <fullName>BET_CreateNewBet</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_CreateNewBet</shortDescription>
+        <value>Create new BET</value>
+    </labels>
+    <labels>
+        <fullName>BET_Header</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Header</shortDescription>
+        <value>Brand experience details</value>
+    </labels>
+    <labels>
+        <fullName>BET_InoplanProjectMandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_InoplanProjectMandatory</shortDescription>
+        <value>Inoplan Project is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_LaunchDateMandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_LaunchDateMandatory</shortDescription>
+        <value>Target Launch Date is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_MandatoryStar</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_MandatoryStar</shortDescription>
+        <value>*</value>
+    </labels>
+    <labels>
+        <fullName>BET_MarkedFieldsMandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_MarkedFieldsMandatory</shortDescription>
+        <value>Marked fields are mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_Name</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>BET_Owner</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Owner</shortDescription>
+        <value>BET Owner</value>
+    </labels>
+    <labels>
+        <fullName>BET_ProjectName</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_ProjectName</shortDescription>
+        <value>Project Name</value>
+    </labels>
+    <labels>
+        <fullName>BET_SkipForNow</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_SkipForNow</shortDescription>
+        <value>Skip for now</value>
     </labels>
     <labels>
         <fullName>BET_SuggestedMemberAddOtherMember</fullName>
@@ -525,6 +661,13 @@ Are you sure you wish to proceed?</value>
         <value>Member {0} is already defined</value>
     </labels>
     <labels>
+        <fullName>BET_SuggestedMemberMembers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberMembers</shortDescription>
+        <value>members</value>
+    </labels>
+    <labels>
         <fullName>BET_SuggestedMemberModalAddSelected</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -551,6 +694,50 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET SuggestedMemberModalNoResults</shortDescription>
         <value>No Results</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberOtherMembers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberOtherMembers</shortDescription>
+        <value>Other Members</value>
+    </labels>
+    <labels>
+        <fullName>BET_TargetLaunchDate</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_TargetLaunchDate</shortDescription>
+        <value>Target Launch Date</value>
+    </labels>
+    <labels>
+        <fullName>BET_UpdateBetAddMembers</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UpdateBetAddMembers</shortDescription>
+        <value>Update BET &amp; add members</value>
+    </labels>
+    <labels>
+        <fullName>BetMemberRequestInvailidProjectIDError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BetMemberRequestInvailidProjectIDError</shortDescription>
+        <value>Field Project_Id__c under Bet Member Request record have invailid format should have at list 15 chars</value>
+    </labels>
+    <labels>
+        <fullName>BetServiceGetBetError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BetServiceGetBetError</shortDescription>
+        <value>Bet with following Id {0} was not found</value>
+    </labels>
+    <labels>
+        <fullName>BetTeamMemberRoleManager</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BetTeamMemberRoleManager</shortDescription>
+        <value>Manager</value>
     </labels>
     <labels>
         <fullName>BetTeamMemberRoleMember</fullName>

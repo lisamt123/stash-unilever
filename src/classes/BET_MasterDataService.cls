@@ -11,6 +11,8 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 
 public without sharing class BET_MasterDataService{
 
+	private BET_MasterDataService(){}
+
 	/************************************************************
 		Purpose: Method retrieves all Master Data category groups
 		Parameters: -
@@ -149,6 +151,41 @@ public without sharing class BET_MasterDataService{
 		}
 		System.debug('Exit getBrandPositionName : ' + positionName);
 		return positionName;
+	}
+
+	/************************************************************
+		Purpose: Method retrieves all available categories
+		Parameters: -
+		Returns: List of MDO_Category__c objects
+	*************************************************************/
+	public static List<MDO_Category__c> getAllAvailableCategories(){
+		System.debug('Entering getAllAvailableCategories');
+		List<MDO_Category__c> categories = [select id,name from MDO_Category__c where parent_id__r.parent_id__r.category_type__c = 'Category Group' and category_type__c = 'Category' order by name asc];
+		System.debug('Exit getAllAvailableCategories : ' + categories);
+		return categories;
+	}
+
+	/************************************************************
+		Purpose: Method retrieves all available brands for given category
+		Parameters: Category identifier
+		Returns: List of MDO_Brand__c objects
+	*************************************************************/
+	public static List<MDO_Brand__c> getAllAvailableUniqueBrandsForCategory(String categoryId){
+		System.debug('Entering getAllAvailableUniqueBrandsForCategory : ' + categoryId);
+		List<MDO_Brand__c> uniqueBrands = new List<MDO_Brand__c>();
+		if(!String.isBlank(categoryId)){
+			Set<String> categoryAndSubs = getSubCategoriesForGivenCategory(categoryId);
+			List<MDO_BrandPosition__c> positions = [Select id, name from MDO_BrandPosition__c where id in (select brand_position_id__c from MDO_BrandPositions__c where product_category_id__c in: categoryAndSubs)];
+			Set<String> uniqueNames = new Set<String>();
+			for(MDO_Brand__C bObject : [select id,name from MDO_Brand__c where id in (select brand_id__c from MDO_BrandPositions__c where brand_position_id__c in :positions) order by name,id asc]){
+				if(!uniqueNames.contains(bObject.name)){
+					uniqueBrands.add(bObject);
+					uniqueNames.add(bObject.name);
+				}
+			}
+		}
+		System.debug('Exit getAllAvailableUniqueBrandsForCategory : ' + uniqueBrands);
+		return uniqueBrands;
 	}
 
 }

@@ -23,8 +23,8 @@ public with sharing class BET_UpdateBETSearchHandler {
         for (uw_BET__c b : newList) {
             projectIds.add(b.Inoplan_Project__c);
             ownersIds.add(b.OwnerId);
-            brandsIds.add(b.uw_Brand__c);
-            categoriesIds.add(b.Sub_Category__c);
+            brandsIds.add(b.Product_Brand__c);
+            categoriesIds.add(b.Product_Category__c);
         }
 
         prepareDataCommon(projectIds, ownersIds, brandsIds, categoriesIds);
@@ -43,11 +43,11 @@ public with sharing class BET_UpdateBETSearchHandler {
             if (b.OwnerId != oldMap.get(b.Id).OwnerId) {
                 ownersIds.add(b.OwnerId);
             }
-            if (b.uw_Brand__c != oldMap.get(b.Id).Inoplan_Project__c) {
-                brandsIds.add(b.uw_Brand__c);
+            if (b.Product_Brand__c != oldMap.get(b.Id).Product_Brand__c) {
+                brandsIds.add(b.Product_Brand__c);
             }
-            if (b.Sub_Category__c != oldMap.get(b.Id).Sub_Category__c) {
-                categoriesIds.add(b.Sub_Category__c);
+            if (b.Product_Category__c != oldMap.get(b.Id).Product_Category__c) {
+                categoriesIds.add(b.Product_Category__c);
             }
         }
 
@@ -75,15 +75,15 @@ public with sharing class BET_UpdateBETSearchHandler {
         }
 
         if (!brandsIds.isEmpty()) {
-            List<uw_Brand__c> brands = [SELECT Id, Name FROM uw_Brand__c WHERE Id IN :brandsIds];
-            for(uw_Brand__c brand : brands){
+            List<MDO_Brand__c> brands = [SELECT Id, Name FROM MDO_Brand__c WHERE Id IN :brandsIds];
+            for(MDO_Brand__c brand : brands){
                 idBrandToName.put(brand.Id, brand.Name);
             }
         }
 
         if (!categoriesIds.isEmpty()) {
-            List<BET_Category__c> categories = [SELECT Id, Name FROM BET_Category__c WHERE Id IN :categoriesIds];
-            for(BET_Category__c cat : categories){
+            List<MDO_Category__c> categories = [SELECT Id, Name FROM MDO_Category__c WHERE Id IN :categoriesIds];
+            for(MDO_Category__c cat : categories){
                 idCategoryToName.put(cat.Id, cat.Name);
             }
         }
@@ -97,11 +97,11 @@ public with sharing class BET_UpdateBETSearchHandler {
             if(idOwnerToName.containsKey(b.OwnerId)){
                 b.Owner_Keyword_Search__c = idOwnerToName.get(b.OwnerId);
             }
-            if(idBrandToName.containsKey(b.uw_Brand__c)){
-                b.Brand_Keyword_Search__c = idBrandToName.get(b.uw_Brand__c);
+            if(idBrandToName.containsKey(b.Product_Brand__c)){
+                b.Brand_Keyword_Search__c = idBrandToName.get(b.Product_Brand__c);
             }
-            if(idCategoryToName.containsKey(b.Sub_Category__c)){
-                b.Category_Keyword_Search__c = idCategoryToName.get(b.Sub_Category__c);
+            if(idCategoryToName.containsKey(b.Product_Category__c)){
+                b.Category_Keyword_Search__c = idCategoryToName.get(b.Product_Category__c);
             }
         }        
     }
