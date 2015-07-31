@@ -20,6 +20,7 @@ public with sharing class BET_UpsertBETController {
 	public Date targetLaunchDate {get;set;}
 	public String projectDescription {get;set;}
 	public String cback {get;set;}
+	public String cbackskipped {get;set;}
 
 	public String selectedBrand {get;set;}
 
@@ -154,7 +155,7 @@ public with sharing class BET_UpsertBETController {
     *************************************************************/
 	public PageReference skipForNow(){
 		sendAlertWhenSkipped();
-		return new PageReference(cback);
+		return cbackskipped == null ? null : new PageReference(cbackskipped);
 	}
 
 	/************************************************************

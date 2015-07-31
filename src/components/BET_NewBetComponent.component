@@ -70,7 +70,7 @@
                     </script>
                 </div>
             </div> -->
-            
+
             <div class="form-item">
                 <div class="item-label">
                   	<apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_TargetLaunchDate}</apex:outputLabel>
@@ -116,7 +116,7 @@
     <apex:outputPanel id="betMembers">
         <c:BET_SuggestMembers BetID="{!bet.id}" 
                             ProjectId="{!IF(bet.IPM_Project__c == null,bet.Inoplan_Project__c,bet.IPM_Project__c)}" 
-                            Callback="/apex/bet#/detail/{!bet.id}" 
+                            Callback="/apex/bet" 
                             rendered="{!goToMemberSelection}"/>
     </apex:outputPanel>
 
