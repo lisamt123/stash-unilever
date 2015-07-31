@@ -4367,6 +4367,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Agency_ExchangeRateTemp__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Matrix__c.AF_Agency_Exchange_Rate__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -4442,6 +4447,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_MatrixCodeTemp__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Bonus_Matrix__c.AF_Overidden__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -4483,6 +4493,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Bonus_Matrix__c.AF_Ready_For_PO_Exchange_Rate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_ReadyforPoCodeTemp__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4563,6 +4578,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Bonus_Matrix__c.PO_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.ReadyforPOExchangeRateTemp__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -6382,6 +6402,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Agency_ExchangeRateTemp__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_OOPS_Estimate__c.AF_Agency_Exchange_Rate__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -6492,6 +6517,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_MatrixCodeTemp__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_OOPS_Estimate__c.AF_Max_Quarter__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -6593,6 +6623,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_OOPS_Estimate__c.AF_Ready_For_PO_Exchange_Rate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_ReadyforPOExchangeRateTemp__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_ReadyforPoCodeTemp__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

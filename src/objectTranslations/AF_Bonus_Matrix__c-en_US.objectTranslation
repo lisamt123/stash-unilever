@@ -18,6 +18,10 @@
         <relationshipLabel><!-- Bonus Matrix --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Agency ExchangeRateTemp --></label>
+        <name>AF_Agency_ExchangeRateTemp__c</name>
+    </fields>
+    <fields>
         <label><!-- Agency Exchange Rate --></label>
         <name>AF_Agency_Exchange_Rate__c</name>
     </fields>
@@ -88,6 +92,10 @@
         <name>AF_IsCrossBorder__c</name>
     </fields>
     <fields>
+        <label><!-- MatrixCodeTemp --></label>
+        <name>AF_MatrixCodeTemp__c</name>
+    </fields>
+    <fields>
         <label><!-- Overidden --></label>
         <name>AF_Overidden__c</name>
     </fields>
@@ -122,6 +130,10 @@
     <fields>
         <label><!-- Ready For PO Exchange Rate --></label>
         <name>AF_Ready_For_PO_Exchange_Rate__c</name>
+    </fields>
+    <fields>
+        <label><!-- ReadyforPoCodeTemp --></label>
+        <name>AF_ReadyforPoCodeTemp__c</name>
     </fields>
     <fields>
         <label><!-- Status --></label>
@@ -199,6 +211,10 @@
     <fields>
         <label><!-- PO Number --></label>
         <name>PO_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- ReadyforPOExchangeRateTemp --></label>
+        <name>ReadyforPOExchangeRateTemp__c</name>
     </fields>
     <fields>
         <label><!-- Unilever Entity Name --></label>

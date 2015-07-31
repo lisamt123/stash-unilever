@@ -83,6 +83,19 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>AF_Agency_ExchangeRateTemp__c</fullName>
+        <description>This field is used for Reporting backup</description>
+        <externalId>false</externalId>
+        <label>Agency ExchangeRateTemp</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_Agency_Exchange_Rate__c</fullName>
         <defaultValue>0</defaultValue>
         <description>AgencyFee#GLOBAL#To Store agency exchange rate.</description>
@@ -306,6 +319,18 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>AF_MatrixCodeTemp__c</fullName>
+        <description>This field created,for reporting backup</description>
+        <externalId>false</externalId>
+        <label>MatrixCodeTemp</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_Overidden__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Set when user overides a cell value. Subsequent save or submits of Bonus results will not overide this value</description>
@@ -414,6 +439,18 @@
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_ReadyforPoCodeTemp__c</fullName>
+        <description>This field is used for reporting backup</description>
+        <externalId>false</externalId>
+        <label>ReadyforPoCodeTemp</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -632,6 +669,18 @@ if( AF_Bonus_Results__r.AF_IsPilotModel__c , AF_Bonus_Results__r.AF_Total_Remune
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReadyforPOExchangeRateTemp__c</fullName>
+        <externalId>false</externalId>
+        <label>ReadyforPOExchangeRateTemp</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>

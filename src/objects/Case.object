@@ -2081,7 +2081,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>CEC_Baltics_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
         <label>CEC Baltics Queue</label>
+        <language>en_US</language>
         <queue>CEC_Baltics_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
