@@ -654,11 +654,46 @@ Are you sure you wish to proceed?</value>
         <value>Now we just need to capture the details of any team members who need acess to the BET. If  you miss anyone here they can always request access later individually</value>
     </labels>
     <labels>
+        <fullName>BET_SuggestedMemberDuplicateError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_SuggestedMemberDuplicateError</shortDescription>
+        <value>Member {0} is already defined</value>
+    </labels>
+    <labels>
         <fullName>BET_SuggestedMemberMembers</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET SuggestedMemberMembers</shortDescription>
         <value>members</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberModalAddSelected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberModalAddSelected</shortDescription>
+        <value>Add selected members</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberModalCancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberModalCancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberModalHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberModalHeader</shortDescription>
+        <value>Add Team member</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberModalNoResults</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberModalNoResults</shortDescription>
+        <value>No Results</value>
     </labels>
     <labels>
         <fullName>BET_SuggestedMemberOtherMembers</fullName>
@@ -682,6 +717,34 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_UpdateBetAddMembers</shortDescription>
         <value>Update BET &amp; add members</value>
+    </labels>
+    <labels>
+        <fullName>BetMemberRequestInvailidProjectIDError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BetMemberRequestInvailidProjectIDError</shortDescription>
+        <value>Field Project_Id__c under Bet Member Request record have invailid format should have at list 15 chars</value>
+    </labels>
+    <labels>
+        <fullName>BetServiceGetBetError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BetServiceGetBetError</shortDescription>
+        <value>Bet with following Id {0} was not found</value>
+    </labels>
+    <labels>
+        <fullName>BetTeamMemberRoleManager</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BetTeamMemberRoleManager</shortDescription>
+        <value>Manager</value>
+    </labels>
+    <labels>
+        <fullName>BetTeamMemberRoleMember</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BetTeamMemberRoleMember</shortDescription>
+        <value>Member</value>
     </labels>
     <labels>
         <fullName>Bonus_Annual</fullName>
