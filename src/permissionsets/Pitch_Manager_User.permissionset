@@ -24555,7 +24555,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Account.Standard</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Article__c.Brand_Centre_Article</recordType>

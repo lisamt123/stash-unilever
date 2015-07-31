@@ -27,10 +27,12 @@ trigger Core_CA_Line_Details_BI on Core_Approval_Details__c (Before Insert) {
            }
            //Updating Name field with Expense Type for GTES.
            else if(a.Source_System__c == 'GTES'){
-               if(a.Expense_Type__c.length()>80)
-                   a.Name = a.Expense_Type__c.SubString(0,80);
-               else    
-                   a.Name = a.Expense_Type__c;              
+               if(a.Expense_Type__c != null){
+                   if(a.Expense_Type__c.length()>80)
+                       a.Name = a.Expense_Type__c.SubString(0,80);
+                   else    
+                       a.Name = a.Expense_Type__c;  
+               }                    
                a.RecordTypeId = gtesRecordType[0].Id;
            }
            //Updating Record type for Remedy
