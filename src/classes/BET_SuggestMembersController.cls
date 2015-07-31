@@ -24,7 +24,6 @@ public with sharing class BET_SuggestMembersController {
     public List<User> freeAddMembers{get;set;}
     public String newlyAddedUsers{get;set;}
     
-    public List<Id> suggested_MembersComponentCtrl{get;set;}
     public List<Id> suggested_MembersCtrl{
         get{
             if(suggested_MembersCtrl == null){
@@ -201,7 +200,8 @@ public with sharing class BET_SuggestMembersController {
     *************************************************************/
     public void  searchUsers(){
         System.debug('Entering method searchUsers');
-        String query = 'SELECT Id,Name,SmallPhotoUrl from User where   name like \'%'+searchUserName+'%\' and isActive = true {0} Limit 50';
+        Id betOwnerId = [SELECT OwnerId FROM uw_BET__c WHERE Id =: betIdCtrl Limit 1].get(0).OwnerId;
+        String query = 'SELECT Id,Name,SmallPhotoUrl from User where   name like \'%'+searchUserName+'%\' and isActive = true {0} and Id !=: betOwnerId Limit 50';
         
         if(suggested_MembersCtrl != null){
             query = query.replace('{0}','and id not in : suggested_MembersCtrl');
