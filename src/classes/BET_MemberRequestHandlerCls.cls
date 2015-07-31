@@ -11,6 +11,7 @@ VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 *******************************************************************************************************************************/
 public with sharing class BET_MemberRequestHandlerCls {
     
+    private BET_MemberRequestHandlerCls(){}
     /************************************************************
         Purpose: Method responsible for preventing adding duplacted records for object BET_Member_Request__c
         Parameters: -
@@ -43,7 +44,7 @@ public with sharing class BET_MemberRequestHandlerCls {
                     uniqItem += request.Project_Id__c.substring(0,15);
                 }catch(Exception ex){
                     system.debug('Method removeMemberRequestDuplicatesWhileInsert throw an error : '+ex.getMessage());
-                    Throw new BET_CustomBETException(Label.BetMemberRequestInvailidProjectIDError);
+                    Throw new BET_CustomBETException(Label.BetMemberRequestInvailidProjectIDError,ex);
                 }
             }
             if(request.Status__c != null){

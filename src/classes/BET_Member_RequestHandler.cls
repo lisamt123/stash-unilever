@@ -24,12 +24,6 @@ public with sharing class BET_Member_RequestHandler implements ITrigger {
 			BET_MemberRequestHandlerCls.preventMemberRequestDuplicatesWhileInsert(Trigger.new); 
         	
 		}
-		if(Trigger.isUpdate){
-			
-		}
-		if(Trigger.isDelete){
-			
-		}
 	}
 	
     /************************************************************
@@ -47,12 +41,26 @@ public with sharing class BET_Member_RequestHandler implements ITrigger {
     	}
 	}
 
-	public void beforeInsert(SObject so) {}
-	public void beforeUpdate(SObject oldSo, SObject so)	{}
-	public void beforeDelete(SObject so) {}
-	public void afterInsert(SObject so) {}
-	public void afterUpdate(SObject oldSo, SObject so) {}
-	public void afterDelete(SObject so) {}
-	public void andFinally() {}
+	public void beforeInsert(SObject so) {
+		System.debug('before Insert ' + so);
+	}
+	public void beforeUpdate(SObject oldSo, SObject so)	{
+		System.debug('before Update ' + so + ', ' + oldSo);
+	}
+	public void beforeDelete(SObject so) {
+		System.debug('before Delete ' + so);
+	}
+	public void afterInsert(SObject so) {
+		System.debug('after Insert ' + so);
+	}
+	public void afterUpdate(SObject oldSo, SObject so) {
+		System.debug('after Update ' + so + ', ' + oldSo);
+	}
+	public void afterDelete(SObject so) {
+		System.debug('after Delete ' + so);
+	}
+	public void andFinally() {
+		System.debug('and Finally');
+	}
 
 }
