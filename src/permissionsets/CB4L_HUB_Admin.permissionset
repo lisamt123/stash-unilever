@@ -289,6 +289,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>IPM_BETWrapper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>uw_BETDetailService</apexClass>
         <enabled>false</enabled>
     </classAccesses>
