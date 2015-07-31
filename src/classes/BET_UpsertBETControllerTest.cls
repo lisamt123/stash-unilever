@@ -7,7 +7,7 @@ private class BET_UpsertBETControllerTest {
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
 		MDO_BrandPosition__c position = BET_TestUtils.createBrandPosition(category);
-		List<sObject> brands = BET_MasterDataService.getBETBrandsForGivenPositioning(position.id);
+		BET_MasterDataService.getBETBrandsForGivenPositioning(position.id);
 
 		BET_UpsertBETController controller = new BET_UpsertBETController();
 		controller.cat = category.id;
@@ -25,7 +25,7 @@ private class BET_UpsertBETControllerTest {
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
 		MDO_BrandPosition__c position = BET_TestUtils.createBrandPosition(category);
-		List<sObject> brands = BET_MasterDataService.getBETBrandsForGivenPositioning(position.id);
+		BET_MasterDataService.getBETBrandsForGivenPositioning(position.id);
 
 		BET_UpsertBETController controller = new BET_UpsertBETController();
 		controller.cat = category.id;
@@ -48,7 +48,7 @@ private class BET_UpsertBETControllerTest {
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
 		MDO_BrandPosition__c position = BET_TestUtils.createBrandPosition(category);
-		List<sObject> brands = BET_MasterDataService.getBETBrandsForGivenPositioning(position.id);
+		BET_MasterDataService.getBETBrandsForGivenPositioning(position.id);
 		controller.cat = category.id;
 		controller.categoryName = categoryGroup.id;
 		controller.brandPosition = position.id;
