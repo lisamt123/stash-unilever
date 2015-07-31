@@ -11,6 +11,8 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 
 public with sharing class BET_SuggestedMemberService {
     
+    private BET_SuggestedMemberService(){}
+    
     /************************************************************
         Purpose: Method responsible for is Bet Owner or Manager
         Parameters: -
@@ -77,7 +79,7 @@ public with sharing class BET_SuggestedMemberService {
                     uniqItem += request.Project_Id__c.substring(0,15);
                 }catch(Exception ex){
                     system.debug('Method removeMemberRequestDuplicatesWhileInsert throw an error : '+ex.getMessage());
-                    Throw new BET_CustomBETException(Label.BetMemberRequestInvailidProjectIDError);
+                    Throw new BET_CustomBETException(Label.BetMemberRequestInvailidProjectIDError,ex);
                     
                 }
             }
@@ -97,7 +99,15 @@ public with sharing class BET_SuggestedMemberService {
             
         }
         
-        //retrive records from database
+        List<BET_Member_Request__c> records = retrieveRecordsFromDatabase(recordsToInsertMap,uniqRecords);
+        System.debug('Exiting method removeMemberRequestDuplicatesWhileInsert with value: '+ records);
+        return records;
+        
+        
+    }
+
+    private static List<BET_Member_Request__c> retrieveRecordsFromDatabase(Map<String,BET_Member_Request__c> recordsToInsertMap, Set<String> uniqRecords){
+        System.debug('Entereing method retrieveRecordsFromDatabase with value: ' + recordsToInsertMap + ', ' + uniqRecords);
         for(BET_Member_Request__c existingRequest : [SELECT ConcatenatedField__c FROM BET_Member_Request__c WHERE ConcatenatedField__c in : uniqRecords]){
             
             if(recordsToInsertMap.containsKey(existingRequest.ConcatenatedField__c)){
@@ -115,10 +125,8 @@ public with sharing class BET_SuggestedMemberService {
                 }
             }
         }
-        System.debug('Exiting method removeMemberRequestDuplicatesWhileInsert with value: '+recordsToInsertMap.values());
+        System.debug('Exiting method retrieveRecordsFromDatabase with value: '+recordsToInsertMap.values());
         return recordsToInsertMap.values();
-        
-        
     }
     
    

@@ -10,6 +10,9 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 public class BET_TestUtils {
 
+	public static final String DIVISION_CAT_TYPE_NAME = 'TestCategory Sub Division 2';
+	public static final String CATEGORY_TYPE_NAME = 'TestCategory';
+
 	private BET_TestUtils (){}
 
 	/************************************************************
@@ -29,13 +32,13 @@ public class BET_TestUtils {
 		insert cgroup;
 
 		MDO_Category__c sdivcategory = new MDO_Category__c();
-		sdivcategory.name='TestCategory';
+		sdivcategory.name = DIVISION_CAT_TYPE_NAME;
 		sdivcategory.category_type__c = 'Sub Division 2';
 		sdivcategory.parent_id__c = cgroup.id;
 		insert sdivcategory;
 
 		MDO_Category__c category = new MDO_Category__c();
-		category.name='TestCategory';
+		category.name = CATEGORY_TYPE_NAME;
 		category.category_type__c = 'Category';
 		category.parent_id__c = sdivcategory.id;
 		insert category;
@@ -102,13 +105,13 @@ public class BET_TestUtils {
 		System.debug('Entering createCategory : ' + categoryGroup);
 
 		MDO_Category__c sdivcategory = new MDO_Category__c();
-		sdivcategory.name='TestCategory';
+		sdivcategory.name = DIVISION_CAT_TYPE_NAME;
 		sdivcategory.category_type__c = 'Sub Division 2';
 		sdivcategory.parent_id__c = categoryGroup.id;
 		insert sdivcategory;
 
 		MDO_Category__c category = new MDO_Category__c();
-		category.name='TestCategory';
+		category.name = CATEGORY_TYPE_NAME;
 		category.category_type__c = 'Category';
 		category.parent_id__c = sdivcategory.id;
 		insert category;
@@ -130,7 +133,7 @@ public class BET_TestUtils {
 		System.debug('Entering createCategory : ' + categoryGroup + ', ' + categoryName);
 
 		MDO_Category__c sdivcategory = new MDO_Category__c();
-		sdivcategory.name='TestCategory';
+		sdivcategory.name = CATEGORY_TYPE_NAME;
 		sdivcategory.category_type__c = 'Sub Division 2';
 		sdivcategory.parent_id__c = categoryGroup.id;
 		insert sdivcategory;
