@@ -50,7 +50,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
     </p>
     
     <div id="betOwner" class="memberContainer">
-        <img class="circular"  src="{!OnwerPhoto}" alt=""/>
+        <img class="circular"  src="{!OnwerPhoto}" alt="{!OnwerPhoto}"/>
         
         <div class="userTitle" >
             <span>{!betOwnerInfo.Name}</span>
@@ -62,12 +62,12 @@ VERSION  AUTHOR                DATE        DETAIL   Description
         
         <div class="editCircle">
             <a href="/{!betOwnerInfo.id}" target="blank">
-            	<img  src="{!$Resource.BETSuggestedMembers}/images/pencil.jpg" alt="" />
+            	<img  src="{!$Resource.BETSuggestedMembers}/images/pencil.jpg" alt="{!$Resource.BETSuggestedMembers}/images/pencil.jpg" />
             </a>    
         </div>
     </div>
     <apex:outputPanel id="betManager" layout="block" styleClass="memberContainer" rendered="{!ManagerPhoto != ''}">
-        <img class="circular"  src="{!managerInfo.FullPhotoUrl}" alt="" />
+        <img class="circular"  src="{!managerInfo.FullPhotoUrl}" alt="{!managerInfo.FullPhotoUrl}" />
         
         <div class="userTitle" >
             <span>{!managerInfo.Name}</span>
