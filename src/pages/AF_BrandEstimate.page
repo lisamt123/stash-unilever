@@ -3,8 +3,10 @@
     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.js')}"></script>
     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.min.js')}"></script>
    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.css')}"/>
-    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.min.css')}"/>-->
-    
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.min.css')}"/>--> 
+    <!-- Bootstrap_css File By Kumar start-->
+<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.css')}" type="text/css"/>
+<!-- Bootstrap_css File By Kumar End-->
 <SCRIPT language="javascript">
         
         function isTraditionalEmpty()
@@ -86,282 +88,45 @@
     //alert('inside the script');
     bonusThresholdfunction();
     }
-        
- 
     </SCRIPT>
-    <style>
-    #salesFroceSource_StatusBox
-    {
-      top:130px !important;
-      left:330px !important;
-    }
-    </style>
-   <style>
     
-    .Drop_Unilever
-   {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 2px solid #74AE00;
-    border-radius: 5px;
-    color: #000000;
-    font-size: 16px;
-    height: 30px;
-    margin-top: 10px;
-    padding: 0;
-    width: 200px;
-    padding-top: 2px;
-    padding-left: 5px;
-   }
-   .values1
-   {
-    background: none repeat scroll 0 0 #FFFFFF;
-border: 2px solid #74AE00;
-border-radius: 5px;
-color: #000000;
-font-size: 16px;
-height: 25px;
-margin-top: 10px;
-padding: 0;
-width: 120px!important;
-padding-top: 2px;
-padding-left: 5px;
-text-align: center;
-/*display: block;*/
-   }
-   
-    .values_Unileverestimate
-   {
-    background: none repeat scroll 0 0 #FFFFFF;
-border-radius: 5px;
-background-color:#7f8c8d;
-color: #000000;
-font-size: 16px;
-height: 26px;
-margin-top: 10px;
-padding: 0;
-width: 120px!important;
-padding-top: 5px;
-padding-left: 5px;
-text-align: center;
-display: block;
-   }
-   
-   .values_estimate{
-    color: #000000;
-font-size: 16px;
-margin-top: 10px;
-padding: 0px 0 0 5px;
-width: 120px!important;
-text-align: left;
-margin-bottom: 10px;
-display: inline-block;
-   }
-   .values_total
-   {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 2px solid #74AE00;
-    border-radius: 5px;
-    color: #000000;
-    font-size: 16px;
-    height: 30px;
-    margin-top: 10px;
-    padding: 0;
-    width: 120px;
-    padding-top: 2px;
-    padding-left: 5px;
-    font-weight:bold;
-    position:relative;
-    text-align: center;
-   }
-     .values_total1
-   {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 2px solid #74AE00;
-    border-radius: 5px;
-    color: #000000;
-    font-size: 16px;
-    font-weight: bold;
-    height: 30px;
-    margin-top: 10px;
-    padding:11px 52px 4px 4px;
-    width: 120px !important;
-    text-align: center;
-   }
-   
-   .updatetotal_btn {
-    background: none repeat scroll 0 0 #7F8C8D !important;
-    border: 1px solid black;
-    border-radius: 5px !important;
-    color: #FFFFFF;
-    float: right;
-    font-size: 14px;
-    height: 35px;
-    margin-top: 13px;
-    padding-bottom: 20px;
-    padding-top: 5px;
-    width: 91px;
-    padding-right: 10px;
-    cursor: pointer;
-}
- .submit_btn_basefee1{
-   background: none repeat scroll 0 0 #004976 !important;
-border-radius: 5px !important;
-color: #FFFFFF!important;
-font-size: 14px!important;
-height: 30px;
-margin-top: 0px!important;
-padding-bottom: 0px;
-padding-top: 0px;
-width: 65px;
-/* margin-left: 630px!important; */
-margin-bottom: 10px!important;
-float: right;
-margin-right: 20px!important;
- }
- 
- .submit_btn_basefee2{
-    background: none repeat scroll 0 0 #E400A7 !important;
-border: 1px solid red!important;
-border-radius: 5px !important;
-color: #FFFFFF!important;
-font-size: 14px!important;
-height: 30px;
-margin-top: 13px;
-padding-bottom: 0px;
-padding-top: 0px;
-width: 70px;
-/* margin-left: 56px !important; */
-float: right;
-margin-right: 10px!important;
- }
- 
- .submit_btn{
-   background: none repeat scroll 0 0 #E400A7 !important;
-border: 1px solid red!important;
-border-radius: 5px !important;
-color: #FFFFFF!important;
-font-size: 14px!important;
-height: 30px;
-margin-top: 0px!important;
-padding-bottom: 0px;
-padding-top: 0px;
-width: 100px;
-/* margin-left: 494px!important; */
-/* margin-bottom: 10px!important; */
-/* float: right;*/
-margin-right: 30px!important;
- }
- 
- .bPageBlock .list {
-    width: 99%!important;
-}
-.heading_main{
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    padding-bottom:11px;
-    padding-left: 0;
-    padding-right: 0;
-    width: 100%;
-    }
-.heading_text{
-    color: black;
-    font-size: 20px;
-    margin-right: 20px;
-    padding: 7px 1px 8px 8px;
-}
-
-    </style>
-    <style type="text/css">
-    .custPopup{
-    background-color: #FFFFFF;
-    border-color: #74AE00;
-    border-radius: 15px;
-    border-style: solid;
-    border-width: 3px;
-    left: 50%;
-    margin-left: -250px;
-    padding: 10px;
-    position: absolute;
-    top: 100px;
-    width: 500px;
-    z-index: 9999;
-        }
-        
-        .custPopup1{color:black;font-size: 15px;}
-        
-        .popupBackground{
-            background-color:Green;
-            opacity: 0.20;
-            filter: alpha(opacity = 20);
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 9998;
-        }
+<!-- Common_Style File Start -->
+<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<!-- Common_Style File End -->
     
-    .closeButton {
-    display:block;
-    position:absolute;
-    top:-10px;
-    right:-10px;
-}
-.odd { 
-         background-color: #FCF7F7;font-size: 16px!important;
-}
-.even {
-         background-color: #DFF0D8;font-size: 16px;
-}
+<apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/>
+<script type="text/javascript">
+$.noConflict();
+</script>
+<!-- Bootstrap_Js File By Kumar start-->
+<apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"/>
+<script type="text/javascript">
+//var bsjQuery = jQuery.noConflict();
+        //bsjQuery(document).ready(function() {
+           //bsjQuery(myFunction);
+         //}); 
+        //function myFunction() {
+            //bsjQuery('[data-toggle=tooltip]').tooltip();    
+        //}
+jQuery(document).ready(function(){
+   jQuery('.custom-link').tooltip();
+   
+});
 
+ //jQuery('.custom-link').not("[data-original-title]").tooltip();
 
-.continue_btn{
-   background: none repeat scroll 0 0 #E400A7 !important;
-    border-radius: 5px !important;
-    color: #FFFFFF !important;
-    float: right;
-    font-size: 13px !important;
-    height: 30px;
-    margin-top: 13px !important;
-    width: 15%;
-    }
-.bPageBlock .list {
-    width: 99%!important;
-}
-.heading_main{
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    padding-bottom:11px;
-    padding-left: 0;
-    padding-right: 0;
-    width: 100%;
-    }
-
-body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th {
- background:#61A631;
- color: white;
- font-size: 16px;
- }
- .pbBody, .pbBody a, .pbBody td, .lbBody a, .lbBodyDescription, .list .headerRow .noRowsHeader {
-    color: black;
-}
-</style>
-<style>
-    .activeTab {background-color: #61A631;color: white;background-image: none;padding: 10px;cursor: pointer;font-size:16px;font-weight:bold;}
-    .inactiveTab { background-color: lightgrey; color:black; background-image:none;cursor: pointer;font-size:16px;}
-</style>
-<apex:form id="MainForm" >       
+</script>
+<!-- Bootstrap_Js File By Kumar End -->
+<apex:form id="MainForm" styleClass="AF_BrandEstimate">       
     
    
   <div class="row">           
         <div class="col-lg-12 charttable1">         
-            <apex:image url="{!$Resource.header_new}" style="width:100%;height:37px;" />            
+            <apex:image url="{!$Resource.header_new}" styleClass="headimg"/>            
         </div>          
     </div>
   
-  <apex:tabPanel switchType="ajax" id="MainPanel" tabClass="activeTab" inactiveTabClass="inactiveTab" selectedTab="BrandEstimate">
+  <apex:tabPanel id="MainPanel" tabClass="activeTab" inactiveTabClass="inactiveTab" selectedTab="BrandEstimate" >
      
       <apex:tab label="Brand Estimates" name="BrandEstimate" id="BrandEstimate" >
       <!--<apex:actionSupport action="{!clearErrorMsg}" event="onchange" rerender="pm2,pgb2"/>-->
@@ -369,7 +134,7 @@ body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
       <div class="heading_main">
        <h1 class="heading_text"> Target Base Fees </h1>
       </div>
-    <apex:outputText value="{!$Label.AF_BrandEstimateDisplayText}" id="pageinstructions" style="font-size: 16px;margin-left: 12px;/* margin-bottom:10px; */display: block;"/>
+    <apex:outputText value="{!$Label.AF_BrandEstimateDisplayText}" id="pageinstructions" styleClass="brandEstimatetxt"/>
        <apex:pageBlock id="pgb2">
               <!--<apex:outputtext value="{!$Label.AF_Brandestimate_instruction}" id="pageinstructions" style="font-size: 16px;margin-left: 12px;/* margin-bottom:10px; */display: block;" />-->
        <table>
@@ -380,31 +145,31 @@ body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
                  <span class="values_estimate">  €<apex:OutputText value="{!TotalDisplay}" id="totalFigure" /></span>    
             </td> 
                  -->
-             <td style="padding-left: 20px;">
-                 <span style="font-size: 16px; display: block;text-align: center;font-weight: bold;">Financial Year:
+             <td class="padL20">
+                 <span class="fiscalYear">Financial Year:
                  <apex:OutputText value="{!BrandEstimateObj.AF_Fiscal_Year__c}" id="financialYear" StyleClass="values_estimate" />           
                  </span>   
             </td>         
         </tr>
     </table>
     <table>      
-        <tr style="display: block;float: left;">                               
-           <td style=" padding-left: 66px;padding-top: 31px;">
-           <span style="font-size: 20px;font-weight:bold;">€ </span>
+        <tr class="tablerow">                               
+           <td class="fisrtcell paddingR10">
+           <span>€ </span>
            </td>
-           <td style="padding-top: 30px;">
-          <apex:image id="isRequired" value="{!$Resource.AF_isRequired}" width="4" height="30"/>
+           <td class="paddingR10">
+          <apex:image id="isRequired" value="{!$Resource.AF_isRequired}" width="2" height="21" styleClass="marginT30"/>
            </td>
-            <td style="padding-right: 10px;">                 
-               <span style="font-size: 16px; display: block;text-align: center;font-weight:bold;">Traditional: </span>                             
+            <td class="paddingR10">                 
+               <span class="labelName">Traditional: </span>                             
             <apex:inputText value="{!TraditionalDisplay}" onkeypress="return isNumberKey(event)" id="traditionalInput"  styleClass="values1"> 
                 <apex:actionSupport event="onchange" 
                                 action="{!CalculateTotal}" 
                                 rerender="totalFigure" /> 
             </apex:inputText>
             </td> 
-                <td style="padding-right: 10px;"> 
-              <span style="font-size: 16px; display: block;text-align: center;font-weight:bold;">Digital:</span>            
+                <td class="paddingR10"> 
+              <span class="labelName">Digital:</span>            
                 <apex:inputText value="{!DigitalDisplay}" onkeypress="return isNumberKey(event)" styleClass="values1" >                                               
                             <apex:actionSupport event="onchange" 
                                 action="{!CalculateTotal}" 
@@ -412,8 +177,8 @@ body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
             </apex:inputText>
                     
                     </td> 
-            <td style="padding-right: 8px;"> 
-              <span style="padding-right: 20px;font-size: 16px; display: block;text-align: center;font-weight:bold;">Adaptation:</span>                       
+            <td class="paddingR10"> 
+              <span class="labelName">Adaptation:</span>                       
                 <apex:inputText onkeypress="return isNumberKey(event)" value="{!AdaptationDisplay}" styleClass="values1" >                                 
                             <apex:actionSupport event="onchange" 
                                 action="{!CalculateTotal}" 
@@ -421,23 +186,23 @@ body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
             </apex:inputText>
                     </td>
             <td> 
-              <span style="padding-right: 20px;font-size: 16px; display: block;text-align: center;font-weight:bold;">Unilever Estimate:</span>                       
+              <span class="labelName">Unilever Estimate:</span>                       
                 <apex:outputText value="{0,number,###,###,###}" id="totalFigure" styleClass="values_Unileverestimate">
                  <apex:param value="{!TotalDisplayN}"/> 
                 </apex:outputText>    
             </td>   
 
             
-            <td><div style="font-family:arial;color:red;font-size:14px;text-align:center" id="regTitle"></div></td>
+            <td><div class="reg_Title" id="regTitle"></div></td>
              
              </tr>
-             <tr style="display: block;float: left; margin-left: 545px;margin-top: 10px;">
+             <tr class="tablerowlast">
              <td>
-             <div style="display:block">
+             <div class="dispBlock">
                             
                        
-                       <span style="margin-left: -9px;">
-                       <apex:commandButton action="{!Save}" value="Save" rendered="{!AND(IsLocked,IsCMCO_Fin_User)}" styleClass="submit_btn" reRender="pm2" status="status" />
+                       <span class="marginL-9P">
+                       <apex:commandButton action="{!Save}" value="Save" rendered="{!AND(IsLocked,IsCMCO_Fin_User)}" styleClass="submit_btn" reRender="pm2" status="status"/>
                        </span>
                     </div>
                     </td>
@@ -464,20 +229,20 @@ body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
    </apex:tab>
    
    
-   <apex:tab label="Bonus Thresholds" name="BonusThresholds" id="Bonus_Thresholds"  oncomplete="bonusThresholdCheck();" rendered="{!!NoBonusCheck}">
+   <apex:tab label="Bonus Thresholds" name="BonusThresholds" id="Bonus_Thresholds"  oncomplete="bonusThresholdCheck();" title="Please select the box if your brand is part of the pilot remuneration model" rendered="{!!NoBonusCheck}">
   <!-- <apex:actionSupport action="{!clearErrorMsg}" event="onchange" reRender="pm3,pilotmainpage,out1,pb1"/>-->
    <apex:PageMessages id="pm3" />
    <apex:outputPanel id="pilotmainpage" >
-   <div style="margin-left: 20px;margin-bottom: 10px;" >
-       <apex:outputtext value="{!$Label.AF_Pilot_Model_Instructions}" id="pageinstructions2" style="font-size: 16px;margin-left: 4px;/* margin-bottom:10px; */display: block;" /><br/>
-   <apex:inputcheckbox value="{!ispilotModel}">
+   <div style="" class="lable_message">
+       <apex:outputtext value="{!$Label.AF_Pilot_Model_Instructions}" id="pageinstructions2"/><br/>
+   <apex:inputcheckbox value="{!ispilotModel}" styleClass="checkbox_pilotmodel">
 
    <apex:actionSupport action="{!checkpilot}" event="onclick" reRender="pm3,pilotmainpage,out1,Remuneration" disabled="{!Not(IsCMCO_Fin_User)}"/>
    </apex:inputcheckbox>
-   <apex:outputLabel style="font-size: 16px;font-weight:bold;display: inline;">Pilot Model</apex:outputLabel>
+   <apex:outputLabel styleClass="pilotModelLable">Pilot Model</apex:outputLabel>
     <br/>
-
-   <apex:outputtext value="{!$Label.AF_UBFLB_Type_of_Fees}" rendered="{!ispilotModel}" id="pageinstructions3" style="font-size: 16px;margin-left: 4px;/* margin-bottom:10px; */display: block;" />
+     <br/>
+   <apex:outputtext value="{!$Label.AF_UBFLB_Type_of_Fees}" id="pageinstructions3" styleClass="toggle_span pilotModelLabletxt" />
    <br/>
    
   
@@ -502,51 +267,52 @@ body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
   -->
  
  <apex:pageblock id="pb1">
-  <apex:pageBlockTable value="{!BonusThresholds}" var="BT" id="pbt" style="font-size:16px;height:25px!important;">
+  <apex:pageBlockTable value="{!BonusThresholds}" var="BT" id="pbt" styleClass="tablegrid">
   
   <apex:column headerValue="Country" style="" rendered="{!not(ispilotModel)}">
-  <apex:selectList id="Countryname" value="{!BT.bonusthresholds.AF_country__c}" size="1" style="border: 2px solid #74AE00;border-radius: 3px; color: #000000;height: 30px;margin-left: 0.5px;padding-bottom: 3px;padding-top: 1px;width: 130px;font-size: 16px;" rendered="{!not(ispilotModel)}">
+  <apex:selectList id="Countryname" value="{!BT.bonusthresholds.AF_country__c}" styleClass="custom-link label_tooltip" title="{!$Label.AF_UBFLB_Thresholds}"  size="1" rendered="{!not(ispilotModel)}">
       <apex:selectOptions value="{!Countrynames}"/>
    </apex:selectList>
   </apex:Column>
   <apex:column headerValue="Bonus Measure">
-   <apex:selectList id="Measure" value="{!BT.bonusthresholds.Bonus_Measure__c}" size="1"  style="border: 2px solid #74AE00;border-radius: 3px; color: #000000;height: 30px;margin-left: 0.5px;padding-bottom: 3px;padding-top: 1px;width: 150px;font-size: 16px;" >
+   <apex:selectList id="Measure" value="{!BT.bonusthresholds.Bonus_Measure__c}" size="1">
       <apex:selectOptions value="{!measure_criteria}"/>
    </apex:selectList>   
   </apex:column> 
   <apex:column headerValue="Minimum">
-  <apex:inputText id="minimum" value="{!BT.bonusthresholds.AF_Minimum__c}" style="width: 60px;font-size: 16px;border: 2px solid #74AE00;border-radius: 3px;"/>
+  <apex:inputText id="minimum" value="{!BT.bonusthresholds.AF_Minimum__c}"/>
   </apex:column>
   <apex:column headerValue="Stretching">
-  <apex:inputText id="Stretch" value="{!BT.bonusthresholds.AF_Stretching__c}" style="width: 60px;font-size: 16px;border: 2px solid #74AE00;border-radius: 3px;"/>
+  <apex:inputText id="Stretch" value="{!BT.bonusthresholds.AF_Stretching__c}"/>
   </apex:column>
   <apex:column headerValue="Outstanding">
-  <apex:inputText id="Outstanding" value="{!BT.bonusthresholds.AF_Outstanding__c}" style="width: 60px;font-size: 16px;border: 2px solid #74AE00;border-radius: 3px;"/>
+  <apex:inputText id="Outstanding" value="{!BT.bonusthresholds.AF_Outstanding__c}"/>
   </apex:column>
    <apex:column headerValue="Digital">
-  <apex:inputcheckbox id="Digital" value="{!BT.bonusthresholds.AF_Digital__c}" style="width: 50px;font-size: 16px;"/>
+  <apex:inputcheckbox id="Digital" value="{!BT.bonusthresholds.AF_Digital__c}"/>
   </apex:column>
   <apex:column headerValue="Traditional">
-  <apex:inputcheckbox id="Traditional" value="{!BT.bonusthresholds.AF_Traditional__c}" style="width: 50px;font-size: 16px;"/>
+  <apex:inputcheckbox id="Traditional" value="{!BT.bonusthresholds.AF_Traditional__c}"/>
   </apex:column> 
  
  
   <apex:column >
-    <apex:outputPanel rendered="false">
+  <apex:outputPanel rendered="{!!hideDeleteLink}" >
+  
     <apex:commandLink action="{!delCounrtyRecord}" rerender="pm3,pbt" rendered="{!IF(AND(IsCMCO_Fin_User,BT.bonusthresholds.AF_Bonus_Threshold__r.AF_of_Bonus_Result__c==0),'true','false')}" oncomplete="bonusThresholdCheck();" status="status">Delete
         <apex:param name="DelCountry" value="{!BT.bonusthresholds.Id}" assignTo="{!delCountryId}"/>
         <apex:param name="PosDelete" value="{!BT.position}" assignTo="{!posDelete}"/>
     </apex:commandLink>
-    </apex:outputPanel>
+ </apex:outputPanel>
  </apex:column>  
  
   </apex:pageBlockTable>
   </apex:pageblock>  
   
-    
-  <apex:commandButton value="Add" action="{!createBonusThreshold}" rendered="{!IsCMCO_Fin_User}" styleClass="submit_btn_basefee1" reRender="pbt"/>   
-  <apex:commandButton value="Save" action="{!SaveBonusThresholds}" rendered="{!IsCMCO_Fin_User}" styleClass="submit_btn_basefee2" reRender="pm3,pilotmainpage" status="status" />             
-
+  <apex:outputPanel rendered="{!!hideDeleteLink}" styleClass="floatR">  
+  <apex:commandButton value="Add" action="{!createBonusThreshold}" rendered="{!IsCMCO_Fin_User}" styleClass="submit_btn_basefee1 floatL" reRender="pbt"/>   
+  <apex:commandButton value="Save" action="{!SaveBonusThresholds}" rendered="{!IsCMCO_Fin_User}" styleClass="submit_btn_basefee2 floatL" reRender="pm3,pilotmainpage" status="status" />             
+  </apex:outputPanel>
   </apex:outputPanel>
   </apex:outputPanel>
  
@@ -554,15 +320,15 @@ body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
   <apex:tab label="No Bonus" name="NoBonus" id="NoBonusTab" title="Please select this option if this Brand has no Bonus" rendered="{!!ReadyforPO}">
     <apex:PageMessages id="pm4" />
    <apex:outputpanel id="NoBonusMessage">    
-   <apex:outputtext value="{!$Label.AF_No_Bonus}" id="NoBonusinstructions" style="font-size: 16px;margin-left: 4px;/* margin-bottom:10px; */display: block;" rendered="{!!NoBonusCheck}" />
-   <apex:outputtext value="{!$Label.AF_Yes_Bonus}" id="NoBonusinstructions1" style="font-size: 16px;margin-left: 4px;/* margin-bottom:10px; */display: block;" rendered="{!NoBonusCheck}"/>
+   <apex:outputtext value="{!$Label.AF_No_Bonus}" id="NoBonusinstructions" styleClass="no_Bonusinstructions" rendered="{!!NoBonusCheck}" />
+   <apex:outputtext value="{!$Label.AF_Yes_Bonus}" id="NoBonusinstructions1" styleClass="yes_Bonusinstructions" rendered="{!NoBonusCheck}"/>
    </apex:outputpanel>
        <br/>
    
        <apex:inputcheckbox value="{!NoBonusCheck}" >
     <apex:actionSupport action="{!bonusCheck}" event="onclick" reRender="MainForm,pm4" />
     </apex:inputcheckbox>
-    <apex:outputLabel style="font-size: 16px;font-weight:bold;display: inline;">No Bonus</apex:outputLabel>
+    <apex:outputLabel styleClass="noBonusOutlable">No Bonus</apex:outputLabel>
     
    </apex:tab>
   

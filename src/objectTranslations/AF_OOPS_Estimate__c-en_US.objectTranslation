@@ -161,6 +161,18 @@
         <name>AF_Overall_OOPS__c</name>
     </fields>
     <fields>
+        <label><!-- Override PO Adaptation – LC --></label>
+        <name>AF_OverridePO_Adaptation_LC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Override PO Digital – LC --></label>
+        <name>AF_OverridePO_Digital_LC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Override Estimate Local --></label>
+        <name>AF_Override_Estimate_Local__c</name>
+    </fields>
+    <fields>
         <label><!-- PO Number --></label>
         <name>AF_PO_Number__c</name>
     </fields>

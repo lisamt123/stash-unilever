@@ -827,6 +827,43 @@ IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_OverridePO_Adaptation_LC__c</fullName>
+        <description>This field is used to override the PO Adaptation value for the PO report</description>
+        <externalId>false</externalId>
+        <label>Override PO Adaptation – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OverridePO_Digital_LC__c</fullName>
+        <externalId>false</externalId>
+        <label>Override PO Digital – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OverridePO_Traditional_LC__c</fullName>
+        <externalId>false</externalId>
+        <label>Override PO Traditional – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_PO_Number__c</fullName>
         <description>PO number from Ariba</description>
         <externalId>false</externalId>

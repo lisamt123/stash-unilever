@@ -43,6 +43,37 @@
         <value>This is used for calculate qualitative annual bonus.</value>
     </labels>
     <labels>
+        <fullName>AF_BFML_Label_4k7g</fullName>
+        <categories>Base Fee Matrix Lightbox,BF Matrix</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BFML-Label_4k7g</shortDescription>
+        <value>Enter full year fees , only whole numbers. Based on the agency entity the tool converts to local currency using Unilever average exchange rates.</value>
+    </labels>
+    <labels>
+        <fullName>AF_BFMX_General_feedback</fullName>
+        <categories>Base Fee Matrix,Add Comment,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BFMX-General_feedback</shortDescription>
+        <value>This lets you add General feedback and comments to this estimate</value>
+    </labels>
+    <labels>
+        <fullName>AF_BNMXLB_Override</fullName>
+        <categories>Bonus Matrix Lightbox,Bonus Matrix</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BNMXLB-Override</shortDescription>
+        <value>Lets you override the annual bonus value. Input a revised figure into the “Override Bonus Value” and click on Save.</value>
+    </labels>
+    <labels>
+        <fullName>AF_BonusMatrixHelp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BonusMatrixHelp</shortDescription>
+        <value>First , click on Annual Bonus to manually enter the quantitative bonus scores for each country , save and submit  the results. If you  have an agreement with the agency to bill the bonus out of one central entity go back to the matrix and  click on any cell to amend the value. The system performs an ongoing check to ensure the values in the matrix reconcile back to the total bonus results you initially saved.</value>
+    </labels>
+    <labels>
         <fullName>AF_BonusQuarterly</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -173,12 +204,92 @@ Are you sure you wish to proceed?</value>
         <value>Country Breakdown saved successfully</value>
     </labels>
     <labels>
+        <fullName>AF_LP_2nyf</fullName>
+        <categories>Landing Page,Bonus Quarterley Link,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP-2nyf</shortDescription>
+        <value>Click to enter quarterly bonus results - Q1-Q3 only</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_Action_Pending</fullName>
+        <categories>Landing Page,Brand Box Action Icons,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP-Action_Pending</shortDescription>
+        <value>Indicates if there is an action.</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_Annual_Base_Fee_Target</fullName>
+        <categories>Landing Page,Unilever Base Fee Link,Tool Tip</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP_Annual_Base_Fee_Target</shortDescription>
+        <value>This is your annual base fees target</value>
+    </labels>
+    <labels>
         <fullName>AF_LP_Base_Fee_Targets</fullName>
         <categories>Landing Page,Unilever Base Fee Link,Hover / Tool tip</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AF_LP_Base_Fee_Targets</shortDescription>
         <value>Click to enter base fee targets and bonus thresholds</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_Can_Rename</fullName>
+        <categories>Landing Page,Adjust Quarters</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP_Can_Rename</shortDescription>
+        <value>Click to re-name base fee matrix for additional quarters</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_Enter_BF_estimates</fullName>
+        <categories>Landing Page,Base Fee Link,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP-Enter_BF_estimates</shortDescription>
+        <value>Click to enter full year billing splits on the brand scope of work,</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_Naming_Convention</fullName>
+        <categories>Landing Page,Base Fee Link,Tool Tip</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP-Naming_Convention</shortDescription>
+        <value>Each matrix will be named according to the quarters for which the purchase order should be raised.</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_New_PO_Hover</fullName>
+        <categories>Landing Page,Raise New PO,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP-New_PO_Hover</shortDescription>
+        <value>Click to roll-over base fee matrix to new quarters</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_Running_Total</fullName>
+        <categories>Landing Page,Agency Base Fee Link ,Tool Tip</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP_Running_Total</shortDescription>
+        <value>This is a running total of the base fee matrix</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_ey31</fullName>
+        <categories>Landing Page,Bonus Link,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP-ey31</shortDescription>
+        <value>Click to enter full year bonus results and approve the bonus billing splits</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_y81a</fullName>
+        <categories>Landing Page,OOPS Link,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP-y81a</shortDescription>
+        <value>Click to enter full year out of pocket expense targets</value>
     </labels>
     <labels>
         <fullName>AF_Lock</fullName>
@@ -202,11 +313,43 @@ Are you sure you wish to proceed?</value>
         <value>By ticking this option you are confirming that this brands agency fees will not be subject to a bonus</value>
     </labels>
     <labels>
+        <fullName>AF_OOPSMX_General_feedback</fullName>
+        <categories>OOPS Matrix,Add Comment,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPSMX-General_feedback</shortDescription>
+        <value>This lets you add general feedback and comments to this estimate</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPSMX_Override</fullName>
+        <categories>OOPs Matrix Lightbox,OOPs Matrix</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPSMX-Override</shortDescription>
+        <value>To set a target against one entity or to a value that is not linked to a “% of base fees”, enter a revised figure into the “Override OOPS Estimate” and save. You can revert back to the original view at any time by putting an OOPs % in the main matrix and hitting refresh</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPSMX_Percentage</fullName>
+        <categories>OOPs Matrix,OOP&apos;s Percentage,Hover</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPSMX-Percentage</shortDescription>
+        <value>Change this percentage to update the values in the matrix.</value>
+    </labels>
+    <labels>
         <fullName>AF_OOPS_Approval</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AF_OOPS_Approval</shortDescription>
         <value>You are approving this record. Are you sure you wish to proceed?</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPS_Help</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPS_Help</shortDescription>
+        <value>The OOP matrix pre-populates to the same footprint as the Base Fees. Default values are 4% of FY fees. Changing the % automatically re-calculates the value in each cell. Cells can be over-ridden to allow a target to be set against just one    
+entity or to a value that is not linked to a “% of base fees”.</value>
     </labels>
     <labels>
         <fullName>AF_OOPS_Reject</fullName>
@@ -235,6 +378,27 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>AF_OopsPercentage</shortDescription>
         <value>This holds the oops percentage</value>
+    </labels>
+    <labels>
+        <fullName>AF_PONumberTab_Header</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_PONumberTab_Header</shortDescription>
+        <value>If your purchase order has been raised to a different value than advised in the PO Report, please amend below</value>
+    </labels>
+    <labels>
+        <fullName>AF_POOveride_Warning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_POOveride_Warning</shortDescription>
+        <value>WARNING: If you have raised your PO to a different local currency than advised in the PO report, you cannot use this functionality.Press X to reject or Confirm to proceed.</value>
+    </labels>
+    <labels>
+        <fullName>AF_PO_OverrideHelp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_PO_OverrideHelp</shortDescription>
+        <value>Enter the PO number of the purchase order you have raised. In addition and if required , the tool allows you to override the PO amount indicated in the tool.</value>
     </labels>
     <labels>
         <fullName>AF_PiliotError_message</fullName>
@@ -286,6 +450,14 @@ Are you sure you wish to proceed?</value>
         <value>This setting is used to store the Trigger Date</value>
     </labels>
     <labels>
+        <fullName>AF_UBFLB_Thresholds</fullName>
+        <categories>Unilever Base Fee Light Box,Bonus Thresholds,Tool Tip</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_UBFLB-Thresholds</shortDescription>
+        <value>Thresholds must be added for each country where fees will be paid. For each country select which type of fees will be included in the Bonus calculations</value>
+    </labels>
+    <labels>
         <fullName>AF_UBFLB_Type_of_Fees</fullName>
         <categories>Unilever Base Fee Light Box,Bonus Threshold,Tool Tip</categories>
         <language>en_US</language>
@@ -298,7 +470,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AF_UrlLink</shortDescription>
-        <value>https://unilever.content.force.com</value>
+        <value>https://unilever--c.na9.content.force.com</value>
     </labels>
     <labels>
         <fullName>AF_ViewAllHistory_AgencyEstimates</fullName>
@@ -2170,6 +2342,20 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <protected>false</protected>
         <shortDescription>WinatPOS Upload Error No Chatter File</shortDescription>
         <value>No File has been uploaded. Please ensure that you upload your file – click on &apos;File&apos; and then select either &apos;Select a file from Salesforce&apos; or &apos;Upload a file from your Computer&apos;. After you have selected your file click on &apos;Share&apos;. Once the upload is finished click on &apos;Store&apos;.</value>
+    </labels>
+    <labels>
+        <fullName>af_lp_AgencyFeeTarget</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>af_lp_AgencyFeeTarget</shortDescription>
+        <value>This is the sum of the latest base fee matrix for the category</value>
+    </labels>
+    <labels>
+        <fullName>af_lp_UnileverBaseFee</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>af_lp_UnileverBaseFee</shortDescription>
+        <value>This is the sum of annual base fee targets for the category</value>
     </labels>
     <labels>
         <fullName>button_cancel</fullName>

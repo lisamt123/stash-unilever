@@ -3,7 +3,7 @@
     <fieldUpdates>
         <fullName>update_key</fullName>
         <field>key__c</field>
-        <formula>AF_Agency__r.Name &amp;&quot;|&quot;&amp;  AF_Brand__r.Name</formula>
+        <formula>AF_Agency__r.Name &amp;&quot;|&quot;&amp;  AF_Brand__r.Name &amp;&quot;|&quot;&amp; AF_Fiscal_Year__c</formula>
         <name>update key</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

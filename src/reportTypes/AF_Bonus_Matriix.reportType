@@ -2,10 +2,15 @@
 <ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
     <baseObject>AF_Bonus_Matrix__c</baseObject>
     <category>other</category>
-    <deployed>false</deployed>
+    <deployed>true</deployed>
     <description>Agency Fees Bonus Matrix</description>
     <label>Bonus Matriix</label>
     <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Agency_Entity_Name__c</field>
+            <table>AF_Bonus_Matrix__c</table>
+        </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>AF_Agency_Entity__c</field>
@@ -118,6 +123,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Agency</displayNameOverride>
             <field>AF_Agency_Entity__c.AF_Agency__c.Name</field>
             <table>AF_Bonus_Matrix__c</table>
         </columns>
@@ -154,6 +160,34 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>AF_Bonus_Summary__c.AF_Status__c</field>
+            <table>AF_Bonus_Matrix__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Big Category</displayNameOverride>
+            <field>AF_Bonus_Summary__c.AF_Brand__c.AF_Super_category__c</field>
+            <table>AF_Bonus_Matrix__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Brand</displayNameOverride>
+            <field>AF_Bonus_Summary__c.AF_Brand__c.Name</field>
+            <table>AF_Bonus_Matrix__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AF_IsCrossBorderReport__c</field>
+            <table>AF_Bonus_Matrix__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AF_Fiscal_Year_FF__c</field>
+            <table>AF_Bonus_Matrix__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Big Category</displayNameOverride>
+            <field>AF_Bonus_Summary__c.AF_Brand__c.AF_Category_Brands__c.AF_Super_category__c</field>
             <table>AF_Bonus_Matrix__c</table>
         </columns>
         <masterLabel>Bonus Matrix</masterLabel>

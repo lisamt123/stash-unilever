@@ -88,6 +88,10 @@
         <name>AF_IsCrossBorderNew__c</name>
     </fields>
     <fields>
+        <label><!-- IsCrossBorderReport --></label>
+        <name>AF_IsCrossBorderReport__c</name>
+    </fields>
+    <fields>
         <label><!-- Is Crossborder --></label>
         <name>AF_IsCrossBorder__c</name>
     </fields>

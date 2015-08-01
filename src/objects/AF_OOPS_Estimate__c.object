@@ -576,6 +576,43 @@ SUBSTITUTE(AF_OOPS_Actual__r.Name,AF_OOPS_Actual__r.AF_Brand__r.Name, &quot;&quo
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_OverridePO_Adaptation_LC__c</fullName>
+        <description>This field is used to override the PO Adaptation value for the PO report of OOPSEstimate</description>
+        <externalId>false</externalId>
+        <label>Override PO Adaptation – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OverridePO_Digital_LC__c</fullName>
+        <externalId>false</externalId>
+        <label>Override PO Digital – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Override_Estimate_Local__c</fullName>
+        <externalId>false</externalId>
+        <label>Override Estimate Local</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_PO_Number__c</fullName>
         <description>Stores PO number from ariba</description>
         <externalId>false</externalId>

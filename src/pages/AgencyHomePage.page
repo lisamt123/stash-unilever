@@ -1,27 +1,65 @@
 <apex:page controller="AgencyHomePageController" showHeader="true" sidebar="false">
-<apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>
-<apex:includeScript value="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/js/jquery.colorbox-min.js')}"/> 
+<!--<apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>-->
+
+<!--<apex:includeScript value="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/js/jquery.colorbox-min.js')}"/>-->
 <apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
 
-<script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/lib/jquery.mousewheel-3.0.6.pack.js')}"></script>
+<!--<script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/lib/jquery.mousewheel-3.0.6.pack.js')}"></script>-->
 
 <!-- Add fancyBox -->
-<link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.css?v=2.1.0')}" type="text/css" media="screen" />
-<script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.pack.js?v=2.1.0')}"></script>
+<!--<link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.css?v=2.1.0')}" type="text/css" media="screen" />
+<script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.pack.js?v=2.1.0')}"></script>-->
 
 <!-- Optionally add helpers - button, thumbnail and/or media -->
-<link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.css?v=1.0.3')}" type="text/css" media="screen" />
+<!--<link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.css?v=1.0.3')}" type="text/css" media="screen" />
 <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.js?v=1.0.3')}"></script>
-<script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-media.js?v=1.0.3')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-media.js?v=1.0.3')}"></script>-->
 
-<link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6')}" type="text/css" media="screen" />
-<script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6')}"></script>
+<!--<link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6')}" type="text/css" media="screen" />
+<script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6')}"></script>-->
 
 
-<script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.js')}"></script>
-<script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.min.js')}"></script>
-<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.css')}"/>
-<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.min.css')}"/>
+<!--<script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.js')}"></script>-->
+<!--<script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.min.js')}"></script>--> 
+
+<!-- Bootstrap_css File Start -->
+<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.css')}" type="text/css"/>
+<!-- Bootstrap_css File End -->
+
+<!-- Common_Style File Start -->
+<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<!-- Common_Style File End -->
+
+
+<!-- jquery library Start-->
+<apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/>
+<!-- jquery library End-->
+
+<!--<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.css')}"/>-->
+<!--<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.min.css')}"/>-->
+
+<!-- Bootstrap_Js File start-->
+<apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"/>
+<!--Bootstrap Js File End -->
+
+<!-- Bootstrap Tooltip methods Start -->
+<script type="text/javascript">
+$('document').ready(function(){
+   $('.custom-link').tooltip();
+});
+</script>
+<!-- Bootstrap Tooltip methods End -->
+<style>
+ .modal-dialog
+ {
+    margin:17px auto !important;
+ }
+ .modal-body
+ {
+     padding:2px 15px 14px 15px;
+ }
+ 
+</style>
 
 <!-- <apex:includeScript value="{!$Resource.ChartJs}"/> -->
   <script>
@@ -354,25 +392,44 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
    <!-- Main Header Section -->
    <div class="row">            
      <div class="col-lg-12 charttable1"> 
-        <table style="width: 96%;">
+        <table class="wid96P">
         <tr>
-           <td style="text-align:center;width:5%"> <apex:image url="{!$Resource.logo_Unilever}" width="70px" height="70px"/> </td>        
+           <td class="logoImg"> <apex:image url="{!$Resource.logo_Unilever}"/> </td>        
            <td class="Agency_fees">{!$Label.Agency_Fee_Title}</td>
            <td class="Profile_Name"> {!$User.AF_UserTypeText__c} </td>
            <td class="User_Name"> {!$User.FirstName} {!$User.LastName} </td>
-           <td><apex:commandButton value="Email to Cat Finance" style="height:30px;background:#004976;padding:6px 10px 10px;border-radius:5px;color:white;font-size:13px;width:150px" onclick="Sendemailtofinance('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}'); return false;" rendered="{!isCMCOSuperFlag}"/></td>
-           <td><apex:commandButton value="Batch Job Copy" style="height:30px;background:#004976;padding:6px 10px 10px;border-radius:5px;color:white;font-size:13px;width:160px" onclick="BatchJobCopy('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}'); return false;" rendered="{!isbatchcopy }"/></td>
-           <td style="text-align:center;width:5%"><apex:commandButton value="Reports" action="{!redirectToReportPage}" style=" background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;"/></td>
+           <td class="Emailto_Cat Adjust_Quarters">
+           <apex:outputPanel rendered="{!isCMCOSuperFlag}">
+              <input type="button" value="Email to Cat Finance" 
+           class="modalButton btn" 
+           data-toggle="modal" style="width:150px" data-target="#myModal" data-backdrop="static" data-src="/apex/AF_EmailToCatFinance?Year={!financialYear}"  data-keyboard="false" />
+           </apex:outputPanel>
+           
+           </td>
+           <td class="Batch_Copy Adjust_Quarters">
+           <apex:outputPanel rendered="{!isbatchcopy}">
+               <input type="button" value="Batch Job Copy" onclick="BatchJobCopy('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}');" 
+           data-src="/apex/AF_BatchProcess_Copy"
+           data-target="#myModal"
+           data-toggle="modal"
+           data-backdrop="static"
+           data-keyboard="false"
+           Class="modalButton btn"
+           />
+           </apex:outputPanel>
+           
+           </td>
+           <td class="Reports"><apex:commandButton value="Reports" action="{!redirectToReportPage}"/></td>
            <!--<td style="width:10%;text-align:right;"> <apex:commandButton value="Back to Chatter" action="{!redirectToChatterPage}" style="width:120px;background:#007DBB;margin-top: 40px;margin-top: 26px;border:none;color:white;border-radius:10px;padding:10px;"/> </td> -->
-           <td style="text-align:center;width:5%;padding-top:6px;padding-right: 16px;"> <apex:image url="{!$Resource.Help}" width="30px" height="30px" onclick="openHelpLink();"/> </td>
+           <td class="Help"> <apex:image url="{!$Resource.Help}" onclick="openHelpLink();"/> </td>
        </tr>
        </table>
   </div>    
    </div>
      
     <div class="row">           
-        <div class="col-lg-12 charttable1">         
-            <apex:image url="{!$Resource.header_new}" style="width:94%;height:37px;" />            
+        <div class="col-lg-12 charttable1 HeaderImg_Bar">         
+            <apex:image url="{!$Resource.header_new}"/>            
         </div>          
     </div>
 <!-- End of Main Header Section -->
@@ -380,22 +437,22 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
 <!-- RollUp data section -->
 <div class="row">
      <div class="col-lg-12 charttable1">
-        <div style="border: 2px solid #74AE00;border-radius: 10px; padding:0.8%;width:92%;border-collapse:separate!important;float: left;">
+        <div class="Chart_Container">
             <div class="firstdiv">
-               <div style="font-size:28px;width: 70%;"><b>{!categoryNameStr}</b></div>
-                    <div style="float: left;width: 102%;/* border: 2px solid yellow; */">
-                       <div style="font-size: 20px; float: left; width: 50%; padding-top: 10px;"><apex:outputLabel rendered="{!!isAgencyFlag}"> Unilever Base Fees </apex:outputLabel></div >
-                       <div style="font-size: 32px; float: left; width: 46%;padding-top: 5px;/* border: 2px solid blue; */">
-                           <apex:outputText value="{0,number,###,###,###}" rendered="{!!isAgencyFlag}" title="{!$Label.AF_LP_Base_Fee_Targets}">
+               <div class="Product_Name"><b>{!categoryNameStr}</b></div>
+                    <div class="Unilever_Fees">
+                       <div class="Unilever_Label"><apex:outputLabel rendered="{!!isAgencyFlag}"> Unilever Base Fees </apex:outputLabel></div >
+                       <div class="Unilever_Amount"> 
+                           <apex:outputText value="{0,number,###,###,###}" rendered="{!!isAgencyFlag}" title="{!$Label.af_lp_UnileverBaseFee}">
                            €<apex:param value="{!totalUnileverFee}"/>
                            </apex:outputText>
                         </div>
                     </div>      
                             
-                    <div style="float: left;width: 102%;/* border: 2px solid green; */">    
-                        <div style="font-size: 20px; float: left; width: 50%; padding-top: 10px;/* border: 1px solid green; */">Agency Base Fees </div>
-                        <div style="font-size: 32px; float: left; width: 47%;padding-top: 5px;/* border: 2px solid blue; */">
-                            <apex:outputText value="{0,number,###,###,###}">
+                    <div class="Agency_Fees">    
+                        <div class="Agency_Label">Agency Base Fees </div>
+                        <div class="Agency_Amount">
+                            <apex:outputText value="{0,number,###,###,###}" title="{!$Label.af_lp_AgencyFeeTarget}">
                                 €<apex:param value="{!totalAgencyFee}"/>
                             </apex:outputText>
                         </div>
@@ -405,38 +462,38 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
    
             <div class="seconddiv">
                     <div>
-                        <div style="font-size: 16px; font-weight: bold; width: 23%;height:18px; float: left;margin-left: 5%;/* height: 18px; *//* border: 1px solid red; */"> Cross Border PO</div >
-                        <div style="font-size: 16px; width: 3%; float: left;">&nbsp;&nbsp;&nbsp;&nbsp;</div >
-                        <div style="font-size: 16px; font-weight: bold; float: left; width: 21%;"> Traditional </div >
-                        <div style="font-size: 16px; float: left; width: 21%; font-weight: bold;"> Digital </div >
-                        <div style="float: left;font-size:16px;font-weight: bold;width: 21%;margin-left: 2px;  "> Adaptation </div >
+                        <div class="CrossBorder_PO"> Cross Border PO</div >
+                        <div class="Div_Space">&nbsp;&nbsp;&nbsp;&nbsp;</div >
+                        <div class="Traditional"> Traditional </div >
+                        <div class="Digital"> Digital </div >
+                        <div class="Adaptation"> Adaptation </div >
                     </div>
                     <div>  
-                        <div style="float: left; width: 21%;margin-left: 5%;"> 
+                        <div class="Chart_CrossBorder"> 
                         <!--   <span class="circle">{!crosPerStr}</span>-->
                         <canvas id="mycrosscanvas" height="100" width="150"></canvas>
                         </div> 
-                        <div style="float: left;width: 5%;">  <span class="circle_vertical"></span></div>
-                        <div style="float: left;width: 21%;"> <!-- 
+                        <div class="Char_divider">  <span class="circle_vertical"></span></div>
+                        <div class="Chart_Traditional"> <!-- 
                         <span class="circle1">{!tradPerStr}%</span> -->
                         <canvas id="mytradcanvas" height="100" width="150"></canvas></div> 
-                        <div style="float: left;width: 21%;"> 
+                        <div  class="Chart_Digital"> 
                         <!--  <span class="circle1">{!digitPerStr}%</span> -->
                         <canvas id="mydigitcanvas" height="100" width="150"></canvas>
                         </div> 
-                        <div style="float: left; width: 21%;"> 
+                        <div class="Chart_Adaptation"> 
                         <!--  <span class="circle1">{!adaptPerStr}%</span>  -->
                         <canvas id="myadapcanvas" height="100" width="150"></canvas>
                         </div> 
                     </div>
-                    <div style="float: left;width: 100%;font-size: 16px;">
-                        <div style="float: left;width: 21%;margin-left: 5%;">
+                    <div class="Char_AmountDiv">
+                        <div class="Chart_CrossBorderAmount">
                             <apex:outputText value="{0,number,###,###,###}">
                             €<apex:param value="{!totalCroBordFee}"/>
                             </apex:outputText> 
                         </div>
-                        <div style="float: left; width: 5%;">&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                        <div style="float: left; width: 21%;">
+                        <div class="Chart_Amountspace">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <div class="Chart_Traditional">
                             
                             <apex:outputText styleclass="outText1" value="{0,number,###,###,###}">
                                
@@ -448,14 +505,14 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
                         </div>
                         
                         
-                        <div style="float: left; width: 21%;">
+                        <div class="Chart_Digital">
                             <apex:outputText styleclass="outText2" value="{0,number,###,###,###}">
                                 €<apex:param value="{!totalDigitalFee}"/>
                             </apex:outputText>
                             
                             
                         </div>
-                        <div style="float: left; width: 21%;">
+                        <div class="Chart_Adaptation">
                             <apex:outputText styleclass="outText3" value="{0,number,###,###,###}">
                                 €<apex:param value="{!totalAdaptiveFee}"/>
                             </apex:outputText>
@@ -492,41 +549,56 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
 <apex:outputpanel id="CMCOPanelId">
 <div class="row">
     <div class="col-lg-12 charttable1">
-        <table style="border: 2px solid #74AE00!important;border-radius: 10px; padding:0px 0 0px 0px;width:94%;border-collapse:separate!important;margin-top: 1px;float:left;">
+        <table class="DropDown_Container">
            <tr>
-            <td style="width: 10px;">  </td>
-            <td style="width: 100px;">  
-                <apex:selectList value="{!financialYear}" multiselect="false" size="1" id="fyId" style="background: #FFFFFF;padding: 0px;padding-top:2px;width: 125px;color: black;height: 30px;border: 2px solid #74AE00;border-radius: 5px;font-size: 16px;" onchange="refreshPage();">
+            <td></td>
+            <td class="Fiscal_Yearselect">
+                <apex:selectList value="{!financialYear}" multiselect="false" size="1" id="fyId" onchange="refreshPage();">
                     <apex:selectOptions value="{!financialYearOption}"></apex:selectOptions>
                 </apex:selectList> 
             </td>
              
-             <td style="width: 100px;">  
-                <apex:selectList value="{!categoryStr}" multiselect="false" size="1" id="CatId" onchange="refreshPage();" style="background: #FFFFFF;padding:0px;width: 125px;color: black;height: 30px;border: 2px solid #74AE00;border-radius: 5px;font-size: 16px;padding-top:2px;">
+             <td class="Category_Select">  
+                <apex:selectList value="{!categoryStr}" multiselect="false" size="1" id="CatId" onchange="refreshPage();">
                     <apex:selectOptions value="{!categoryOption}"></apex:selectOptions>
                 </apex:selectList>
             </td>
-            <td style="width: 160px;">  
-                <apex:selectList value="{!selectedBrandOption}" multiselect="false" size="1" id="BrandId" onchange="refreshBrandPage();" style="background: #FFFFFF;padding:0px;width: 125px;color: black;height: 30px;border: 2px solid #74AE00;border-radius: 5px;font-size: 16px;padding-top:2px;">
+            <td Class="Brand_Select">  
+                <apex:selectList value="{!selectedBrandOption}" multiselect="false" size="1" id="BrandId" onchange="refreshBrandPage();">
                     <apex:selectOptions value="{!BrandsOption}"></apex:selectOptions>
                 </apex:selectList>
             </td>
              
-              <td style="width: 0px;">  </td>
-             <td style="width: 100px;"> 
-                <apex:commandButton value="Adjust Quarters" style="height:30px;background:#004976;padding:6px 6px 10px;border-radius:5px;color:white;font-size:13px;width:110px" onclick="adjustQuarter('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}'); return false;" status="statusSaveTrip" rendered="{!AND(Not(isAgencyFlag),Not(isNotCurrentFy),NOT(isNonCMCONFinFlag))}"/>
+              <td class="Wid190PX"></td>
+             <td class="Adjust_Quarters"> 
+                <!--<apex:commandButton value="Adjust Quarters"  onclick="adjustQuarter('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}'); return false;" status="statusSaveTrip" rendered="{!AND(Not(isAgencyFlag),Not(isNotCurrentFy),NOT(isNonCMCONFinFlag))}" styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Can_Rename}"/>-->
+                <apex:outputpanel rendered="{!AND(Not(isAgencyFlag),Not(isNotCurrentFy),NOT(isNonCMCONFinFlag))}">
+                <input type="button" value="Adjust Quarters" class="modalButton btn custom-link label_tooltip" data-toggle="modal" data-backdrop="static" 
+                 data-keyboard="false" data-src="/apex/AF_AjustBaseQuater?category={!CategoryId}&Year={!financialYear}"  data-target="#myModal"  title="{!$Label.AF_LP_Can_Rename}"/>
+               </apex:outputpanel>
             </td>
             
-            <td style="width: 100px;"> 
-                <apex:commandButton value="Raise New PO" style="height:30px;background:#004976;padding:6px 6px 10px;border-radius:5px;color:white;font-size:13px;width:110px" onclick="raiseNewPO('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}'); return false;" rendered="{!AND(Not(isAgencyFlag),Not(isNotCurrentFy),NOT(isNonCMCONFinFlag))}"/>
+            <td class="Raise_NewPO"> 
+                <!--<apex:commandButton value="Raise New PO"  onclick="raiseNewPO('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}'); return false;" rendered="{!AND(Not(isAgencyFlag),Not(isNotCurrentFy),NOT(isNonCMCONFinFlag))}" styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_New_PO_Hover}"/>-->
+                 <apex:outputpanel rendered="{!AND(Not(isAgencyFlag),Not(isNotCurrentFy),NOT(isNonCMCONFinFlag))}">
+                 <input type="button" value="Raise New PO" class="modalButton btn custom-link label_tooltip" data-toggle="modal" data-backdrop="static" 
+                 data-keyboard="false" data-src="/apex/AF_RaisenewPO_Homepage_lightbox?category={!CategoryId}&Year={!financialYear}"  data-target="#myModal"  title="{!$Label.AF_LP_New_PO_Hover}"/>
+                </apex:outputpanel>
             </td >
              
-            <td style="width: 100px;">  
-                <apex:commandButton value="Create Brand/Agency" style="height:30px;background:#004976;padding:6px 6px 10px;border-radius:5px;color:white;font-size:13px;width:150px" onclick="BrandAgency('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}'); return false;" reRender="mainSecId" status="statusSaveTrip" rendered="{!AND(NOT(isAgencyFlag),isCMCOSuperFlag)}" />
+            <td class="Create_BrandAgency">  
+                <!--<apex:commandButton value="Create Brand/Agency"  onclick="BrandAgency('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}'); return false;" reRender="mainSecId" status="statusSaveTrip" rendered="{!AND(NOT(isAgencyFlag),isCMCOSuperFlag)}" />-->
+                <apex:outputpanel rendered="{!AND(NOT(isAgencyFlag),isCMCOSuperFlag)}">
+                <input type="button" value="Create Brand/Agency" class="modalButton btn" data-toggle="modal" data-backdrop="static" 
+   data-keyboard="false" data-src="/apex/AF_BrandAgencyCombination?Year={!financialyear}"  data-target="#myModal"/>
+   
+   
+                </apex:outputpanel>
+                <!--<a class="modalButton custom-link" title="{!$Label.AF_LP_Base_Fee_Targets}" data-toggle="modal" data-src="/apex/AF_BrandAgencyCombination?Year=2014"  data-target="#myModal" style="color:#004976;font-weight: bold; cursor:pointer">€ {!best.Base_Fee_Total__c}</a>-->
             </td>
-             <td style="width: 10px;">  </td>
-           <td style="cursor: pointer; float: right; margin-right: 15px;">  
-              <apex:image url="{!$Resource.print_icon}" width="40px" height="40px" title="Please click to Print " onclick="PrintCurrentPage();" /> 
+             <td>  </td>
+           <td class="Print_img">  
+              <apex:image url="{!$Resource.print_icon}" title="Please click to Print " onclick="PrintCurrentPage();" /> 
              </td>
             </tr>
         </table>
@@ -538,82 +610,93 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
 <!-- This panel will be loaded in case of Internal Users -->
 <apex:outputPanel > 
 <div class="row">
-     <div class="col-lg-12 charttable1 margin10"> 
-        <table style="border: 2px solid #74AE00 !important;border-collapse: separate !important;border-radius: 10px;margin-top: 1px;padding: 10px;width: 94%;float:left;">
+     <div class="col-lg-12 charttable1"> 
+        <table class="Product_Tiles_Container">
         <tr>
             <td>
                 <apex:repeat value="{!brandEstimateDetailList}" var="best" id="resultId">
-                    <table  style=" float: left; font-size: 16px; margin-left: 1 px; margin-right: 1 px; margin-top: 1 px; width: 50%; border-collapse: separate;">
+                    <table class="tiles">
                       <tbody>                       
 
                        <tr>
-                            <td style="border:solid 1px #74AE00;border-radius:10px;background: white;">
+                            <td class="tiles_container">
+                            <div class="tileHead">
                             <table>
                                 <tr>
-                                     <td style="padding: 10px; float: left; word-wrap: break-word; color: black; background: white; width: 350px; font-size: 19px; height: 15px; "><b> {!best.Brand__r.Name} </b> 
+                                     <td class="labelHead"><b> {!best.Brand__r.Name} </b> 
                                      <h6> {!best.AF_Agency__r.Name}  </h6> </td>              
                                   
                               
-                                <td ROWSPAN="3" style=" color: #000000;
-    display: block;
-    float: right;
-    font-family: 'Arial','Helvetica',sans-serif;
-    height: 27px;
-    margin:5 0 0 0px;
-    padding: 0;">
+                                <td ROWSPAN="3" class="brandLogo">
                                <div class="image-container">
 
-                                  <apex:outputField value="{!best.Brand__r.AF_Brand_Logo__c}" style="margin-left: 110px;margin-top: 16px;"/>
+                                  <apex:outputField value="{!best.Brand__r.AF_Brand_Logo__c}" styleClass="img_cont"/>
                                </div>
                               
                                 </td>
                             </tr>
                         </table> 
+                        </div>
                        <apex:outputPanel rendered="{!!isAgencyFlag}">
-                       <table style="background: #FFFFFF;">   
+                       <table>   
                             <tr>
-                                <td style="padding-left: 70px;padding-right: 10px;">Unilever Base Fee</td>
-                                <td>
-                                <apex:outputLink onclick="TargetBaseFees('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}','{!Best.Id}');return false;" id="theLink" style="color:#004976;font-weight: bold;">
+                                <td class="firstlabelName">
+                                <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Annual_Base_Fee_Target}">Unilever Base Fee</apex:outputLink>
+                                
+                                </td>
+                                <td> 
+                                
+                                <!--<a class="custom-link modalButton firstlabelValue" title="{!$Label.AF_LP_Base_Fee_Targets}" data-toggle="modal" data-src="/apex/AF_BrandEstimate?Id={!Best.Id}"  data-target="#myModal" data-backdrop="static" 
+   data-keyboard="false">€ {!best.Base_Fee_Total__c}</a>-->
+                                <apex:outputLink onclick="TargetBaseFees('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}','{!Best.Id}');return false;" html-data-toggle="modal" html-data-target="#myModal" html-data-backdrop="static" html-data-src="/apex/AF_BrandEstimate?Id={!Best.Id}" title="{!$Label.AF_LP_Base_Fee_Targets}" id="theLink" styleClass="custom-link modalButton firstlabelValue">
                                 <apex:outputText value="{0,number,###,###,###}">
-                                €<apex:param value="{!best.Base_Fee_Total__c}"/>
+                                €&nbsp;<apex:param value="{!best.Base_Fee_Total__c}"/>
                                 </apex:outputText>
                                 </apex:outputLink>
                                 </td>
                             </tr> 
                         </table>
                         </apex:outputPanel>
-                        <table width="100%" border="0px" style="border-bottom:1px solid #74AE00; padding: 0 10px 18px 70px; border-collapse: separate;background:white;"> 
+                        <table class="secondValueCont"> 
                             <tr>
-                                <td style="width: 132px;">Agency Base Fee</td>
-                                <td style="padding-left: 8px;font-weight: bold;float: left;">
-                                <apex:outputText value="{0,number,###,###,###}">
-                                €<apex:param value="{!best.Agency_Base_Fee__c}"/>
+                                <td class="wid132P">
+                                  <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Running_Total}">Agency Base Fee</apex:outputLink>
+                                </td>
+                                <td class="secondValueAmount">
+                                <apex:outputText value="{0,number,###,###,###}" title="{!$Label.AF_LP_Running_Total}">
+                                <span>€</span><apex:param value="{!best.Agency_Base_Fee__c}"/>
                                 </apex:outputText>
                                 </td>
                             </tr>
                         </table>
-                        <table width="100%" style="border-collapse: separate;font-size: 16px;">
+                        <table class="Tile_Grid">
                             <thead>
                                 <tr>
-                                    <th style="font:bold;width: 17%;padding-bottom: 5px;background:#61A631;color: #FFFFFF;text-align: center;">Process</th>
-                                    <th style="font:bold;width: 16%;padding-bottom: 5px;text-align: center;background:#61A631;color: #FFFFFF;">Status</th>
-                                    <th style="font:bold;width: 14%; text-align: center;padding-bottom: 5px;background:#61A631;color: #FFFFFF;">Cross Border PO</th>
-                                    <th style="font:bold;width: 7%;text-align: center;padding-bottom: 5px;background:#61A631;color: #FFFFFF;">Action</th>
+                                    <th width="17%">Process</th>
+                                    <th width="16%">Status</th>
+                                    <th width="14%">Cross Border PO</th>
+                                    <th width="7%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style="padding-bottom:5px;padding-top:5px;width: 19%;background:#FFFFFF; padding-left: 8px;"><apex:outputLink onclick="AgencyMatrix('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}','{!Best.Brand__c}','{!Best.AF_Agency__c}');return false;" >Base Fees</apex:outputLink></td>
-                                    <td style="padding-bottom:5px;padding-top:5px;width: 24%;background:#FFFFFF;text-align: center;">
+                                    <td >
+                                    <!--<apex:outputLink onclick="AgencyMatrix('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}','{!Best.Brand__c}','{!Best.AF_Agency__c}');return false;" styleClass="custom-link modalButton" title="{!$Label.AF_LP_Enter_BF_estimates} {!$Label.AF_LP_Naming_Convention}">
+                                    Base Fees</apex:outputLink>-->
+                                     <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-src="apex/AF_UL_BrandEstimate_Matrices?bId={!Best.Brand__c}&fy={!financialYear}&aId={!Best.AF_Agency__c}&brandvalue={!selectedBrandOption}&category={!categoryNameStr}+'::'+{!CategoryId}&Year={!financialYear}" data-target="#myModal" class="custom-link modalButton1 cursorStyle" 
+                                     title="{!$Label.AF_LP_Enter_BF_estimates} {!$Label.AF_LP_Naming_Convention}">Base Fees</a>
+                                    </td>
+                                    <td >
                                     <apex:outputField value="{!best.AF_Status_Base_Fees__c}" rendered="{!IF(best.AF_Status_Base_Fees__c!='With Category Finance','true','false')}"></apex:outputField>
                                     <apex:outputLabel value="W/Cat Finance" rendered="{!IF(best.AF_Status_Base_Fees__c=='With Category Finance','true','false')}"></apex:outputLabel>
                                     </td>
-                                    <td style="color:red;background:#FFFFFF;text-align: center;"><apex:outputField value="{!best.AF_No_CrossBorders__c}"></apex:outputField></td>
-                                    <td style="background:#FFFFFF;text-align: center;">
+                                    <td class="CrossBorderPOcell"><apex:outputField value="{!best.AF_No_CrossBorders__c}"></apex:outputField></td>
+                                    <td class="ActionCell">
+                                    <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Action_Pending}">
                                     <apex:image url="{!$Resource.NoAction}" rendered="{!IF(OR(AND(IsFinance,best.AF_Status_Base_Fees__c!='With Category Finance'), AND(IsCMCOFinance,best.AF_Status_Base_Fees__c!='With CMCO') ) , 'true', 'false') }"/> 
                                     <apex:image url="{!$Resource.Review}" rendered="{!IF(OR(AND(IsFinance,best.AF_Status_Base_Fees__c=='With Category Finance'), AND(IsCMCOFinance,best.AF_Status_Base_Fees__c=='With CMCO') ) , 'true', 'false') }" />
                                     <apex:image url="{!$Resource.NoAction}" rendered="{!IF(AND(isAgencyFlag,best.AF_Status_Base_Fees__c!='With Agency',best.AF_Status_Base_Fees__c!='With Agency (Draft)'),'true','false')}"/> 
+                                    
                                    <!-- <apex:image url="{!$Resource.NoAction}" rendered="{!IF(OR(OR(isAgencyFlag,best.AF_Status_Base_Fees__c!='With Agency'),OR(isAgencyFlag,best.AF_Status_Base_Fees__c!='With Agency (Draft)')),'true','false')}" />-->
                                     <apex:image url="{!$Resource.Review}" rendered="{!IF(AND(isAgencyFlag,best.AF_Status_Base_Fees__c=='With Agency (Draft)'),'true','false')}" />
                                     <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(isAgencyFlag,best.AF_Status_Base_Fees__c=='With Agency'),'true','false')}"/>
@@ -622,12 +705,16 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
                                     <apex:image url="{!$Resource.NoAction}" rendered="{!isProcurement}"/> 
                                     <apex:image url="{!$Resource.NoAction}" rendered="{!IsCatFinanceRegional}"/> 
                                     <apex:image url="{!$Resource.NoAction}" rendered="{!IF(AND(isCMCOSuperFlag),'true','false')}"/> 
-                                  
+                                    </apex:outputLink>
                                     </td>
                                 </tr>
                                 <tr>
-                                       <td style="padding-bottom:5px;padding-top:5px;width: 19%;background:#DFF0D8; padding-left: 8px;"><apex:outputLink onclick="oopsMatrix('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!Best.Brand__c}','{!financialYear}','{!Best.AF_Agency__c}');return false;" >OOPs</apex:outputLink></td>
-                                    <td style="padding-bottom:5px;padding-top:5px;width: 24%;background:#DFF0D8;text-align: center;">
+                                    <td >
+                                    <!--<apex:outputLink onclick="oopsMatrix('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!Best.Brand__c}','{!financialYear}','{!Best.AF_Agency__c}');return false;" styleClass="custom-link" title="{!$Label.AF_LP_y81a}">OOPs</apex:outputLink>-->
+                                    <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-src="apex/AF_UL_OOPS_SelectMatrices?bId={!Best.Brand__c}&fy={!financialYear}&aId={!Best.AF_Agency__c}" data-target="#myModal" class="custom-link modalButton1 cursorStyle" 
+                                     title="{!$Label.AF_LP_y81a}">OOPs</a>
+                                    </td>
+                                    <td >
                                     <apex:outputField value="{!best.AF_Status_OOPs_Estimate__c}" rendered="{!IF(best.AF_Status_OOPs_Estimate__c!='with category finance','true','false')}"/>
                                     <apex:outputLabel value="W/Cat Finance" rendered="{!IF(best.AF_Status_OOPs_Estimate__c=='with category finance','true','false')}"></apex:outputLabel>
                                     </td>                   
@@ -635,8 +722,9 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
                                    <!-- <td style="padding-bottom:5px;padding-top:5px;width: 24%;background:#FFFFFF;text-align: center;"><apex:outputField value="{!best.AF_Status_OOPs_Estimate__c}" /></td>
                                       <td style="color:red;background:#FFFFFF;text-align: center;"><apex:outputField value="{!best.AF_No_of_OOPS_Crossborder__c}"/></td>
                                   <td style="text-align: center;padding-bottom:5px;padding-top:5px;" > <apex:image url="{!$Resource.Start}"/></td> -->
-                                    <td style="color:red;background:#DFF0D8;text-align: center;"><apex:outputField value="{!best.AF_No_of_OOPS_Crossborder__c}"/></td>
-                                    <td style="background:#DFF0D8;text-align: center;">
+                                    <td class="CrossBorderPOcell"><apex:outputField value="{!best.AF_No_of_OOPS_Crossborder__c}"/></td>
+                                    <td clas="ActionCell">
+                                    <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Action_Pending}">
                                      <!--<apex:image url="{!$Resource.Review}" rendered="{!IF(OR(AND(IsFinance,best.AF_Status_OOPs_Estimate__c=='with category finance'), AND(IsFinance,best.AF_Status_OOPs_Estimate__c=='Pending Approval') ) , 'true', 'false') }" />-->
                                     <apex:image url="{!$Resource.NoAction}" rendered="{!IF(OR(AND(IsFinance,best.AF_Status_OOPs_Estimate__c=='Ready for PO'), AND(isAgencyFlag,best.AF_Status_OOPs_Estimate__c=='Ready for PO'),AND(IsCMCO),AND(isAgencyFlag,best.AF_Status_OOPs_Estimate__c!='with agency'),AND(IsFinance,best.AF_Status_OOPs_Estimate__c!='with category finance')) , 'true', 'false') }" />
                                     <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(isAgencyFlag,best.AF_Status_OOPs_Estimate__c=='with agency') , 'true', 'false') }" />
@@ -645,18 +733,22 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
                                     <apex:image url="{!$Resource.NoAction}" rendered="{!isController}"/> 
                                     <apex:image url="{!$Resource.NoAction}" rendered="{!isProcurement}"/> 
                                     <apex:image url="{!$Resource.NoAction}" rendered="{!IsCatFinanceRegional}"/> 
-                                   
+                                   </apex:outputLink>
                                     </td>
                                 </tr>
                                  <apex:outputPanel rendered="{!IF(AND(NOT(isAgencyFlag),NOT(Best.AF_No_Bonus__c)),'true', 'false')}">
-                                <tr>    
-                                    
-                                    <td style="padding-bottom:5px;padding-top:5px;width: 19%;background:#FFFFFF; padding-left: 8px;"><apex:outputLink onclick="BonusQuartely('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!Best.Brand__c}','{!financialYear}','{!Best.AF_Agency__c}');return false;" >Bonus Quarterly</apex:outputLink></td>
-                                    <td style="padding-bottom:5px;padding-top:5px;width: 24%;background:#FFFFFF;text-align: center;"><apex:outputField value="{!best.AF_Bonus_Quaterly_Status__c}" rendered="{!!best.AF_Pilot_Model__c}" /></td>
+                                <tr>                                                                            
+                                    <td>
+                                    <!--<apex:outputLink onclick="BonusQuartely('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!Best.Brand__c}','{!financialYear}','{!Best.AF_Agency__c}');return false;" styleClass="custom-link" title="{!$Label.AF_LP_2nyf}">Bonus Quarterly</apex:outputLink>-->
+                                     <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-src="/apex/AF_QuarterlyBonus?Brandid={!Best.Brand__c}&Year={!financialYear}&Agencyid={!Best.AF_Agency__c}" data-target="#myModal" class="custom-link modalButton1 cursorStyle" 
+                                     title="{!$Label.AF_LP_2nyf}">Bonus Quarterly</a>
+                                    </td>
+                                    <td><apex:outputField value="{!best.AF_Bonus_Quaterly_Status__c}" rendered="{!!best.AF_Pilot_Model__c}" /></td>
                         <!--        <td style="text-align: center;padding-bottom:5px;padding-top:5px;"></td>
                                     <td style="text-align: center;padding-bottom:5px;padding-top:5px;" ><apex:image url="{!$Resource.Review}"/></td> -->
-                                    <td style="background:#FFFFFF;text-align: center;"></td>
-                                    <td style="background:#FFFFFF;text-align: center;">
+                                    <td class="CrossBorderPOcell"></td>
+                                    <td class="ActionCell">
+                                    <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Action_Pending}">
                                     <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(isFinance,best.AF_Bonus_Quaterly_Status__c=='W/Cat Finance',NOT(best.AF_Pilot_Model__c)),'true','false')}"/> 
                                    <!-- <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(IsCMCOFinance,best.AF_Bonus_Quaterly_Status__c=='with CMCO',NOT(best.AF_Pilot_Model__c)),'true','false')}"/> -->
                                    <apex:image url="{!$Resource.NoAction}" rendered="{!IF(AND(IsCMCOFinance,best.AF_Bonus_Quaterly_Status__c=='with CMCO',NOT(best.AF_Pilot_Model__c)),'true','false')}"/> 
@@ -664,23 +756,32 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
                                     <apex:image url="{!$Resource.NoAction}" rendered="{!IF(OR(AND(NOT(IsFinance),best.AF_Bonus_Quaterly_Status__c=='W/Cat Finance'),best.AF_Pilot_Model__c,best.AF_Bonus_Quaterly_Status__c=='',IsCatFinanceRegional,AND(NOT(IsCMCOFinance),best.AF_Bonus_Quaterly_Status__c=='with CMCO')),'true', 'false')}"/>
                           <!--          <apex:image url="{!$Resource.NoAction}" rendered="{!IF(OR(best.AF_Pilot_Model__c,best.AF_Bonus_Quaterly_Status__c=='',IsCatFinanceRegional),'true', 'false')}"/>
                                     <apex:image url="{!$Resource.NoAction}" rendered="{!IF(AND(NOT(IsFinance),best.AF_Bonus_Quaterly_Status__c=='W/Cat Finance'),'true', 'false')}"/> -->
+                                    </apex:outputLink>
                                     </td>
                                 
                                 </tr>
                                 </apex:outputPanel>
                                 <apex:outputPanel rendered="{!!Best.AF_No_Bonus__c}">
                                 <tr>
-                                    <td style="padding-bottom:5px;padding-top:5px;width: 19%;background:#DFF0D8; padding-left: 8px;"><apex:commandLink value="Bonus Matrix"  onclick="BonusMatrix('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!Best.Brand__c}','{!financialYear}','{!Best.AF_Agency__c}');return false;" rendered="{!!Best.AF_No_Bonus__c}" /></td>
-                                    <td style="padding-bottom:5px;padding-top:5px;width: 24%;background:#DFF0D8;text-align: center;"><apex:outputField value="{!best.AF_Bonus_Yearly_Status__c}" /></td>
+                                    <td>
+                                    <!--<apex:commandLink value="Bonus Matrix"    onclick="BonusMatrix('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!Best.Brand__c}','{!financialYear}','{!Best.AF_Agency__c}');return false;" styleClass="custom-link" title="{!$Label.AF_LP_ey31}"/>-->
+                                    <apex:outputpanel rendered="{!!Best.AF_No_Bonus__c}">
+                    <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-src="apex/AF_middlebonusmatrix?Brandid={!Best.Brand__c}&Year={!financialYear}&Agencyid={!Best.AF_Agency__c}" data-target="#myModal" class="custom-link modalButton1 cursorStyle" 
+                                     title="{!$Label.AF_LP_ey31}">Bonus Matrix</a>
+                     </apex:outputpanel>
+                                    <!--<apex:outputLink onclick="BonusMatrix('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!Best.Brand__c}','{!financialYear}','{!Best.AF_Agency__c}');return false;" styleClass="custom-link" title="{!$Label.AF_LP_ey31}">Bonus Matrix</apex:outputLink> -->
+                                    </td>
+                                    <td><apex:outputField value="{!best.AF_Bonus_Yearly_Status__c}" /></td>
                            <!--     <td style="text-align: center;padding-bottom:5px;padding-top:5px;" ></td>
                                     <td style="text-align: center;padding-bottom:5px;padding-top:5px;" ><apex:image url="{!$Resource.Review}"/></td> -->
-                                    <td style="color:red;background:#DFF0D8;text-align: center;"><apex:outputField value="{!best.AF_No_Of_Bonus_Matrix_Crossborders__c}" /></td>
-                                    <td style="background:#DFF0D8;text-align: center;">
+                                    <td class="CrossBorderPOcell"><apex:outputField value="{!best.AF_No_Of_Bonus_Matrix_Crossborders__c}" /></td>
+                                    <td class="ActionCell">
+                                    <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Action_Pending}">
                                    <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(isFinance,best.AF_Bonus_Yearly_Status__c=='W/Cat Finance'),'true','false')}"/>
                                    <apex:image url="{!$Resource.NoAction}" rendered="{!IF (OR(best.AF_Bonus_Yearly_Status__c=='Ready For PO',best.AF_Bonus_Yearly_Status__c=='',isController,isProcurement,IsCatFinanceRegional,AND(NOT(isFinance),best.AF_Bonus_Yearly_Status__c=='W/Cat Finance')),'true','false')}"/>
                                  <!--  <apex:image url="{!$Resource.NoAction}" rendered="{!IF(best.AF_Bonus_Yearly_Status__c=='','true','false')}"/>
                                    <apex:image url="{!$Resource.NoAction}" rendered="{!IF(best.AF_Bonus_Yearly_Status__c=='Ready For PO','true','false')}"/> -->
-                                   
+                                   </apex:outputLink>
                                     </td>
                                 
                                 </tr>
@@ -710,10 +811,42 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
 <!-- for footer image -->
 <div class="row margin10">
     <div class="col-lg-12 charttable1">
-        <apex:image url="{!$Resource.header_new}" style="width:94%;height:37px;"/>
+        <apex:image url="{!$Resource.header_new}" styleClass="footerBackgroundImg"/>
     </div>
 </div>
 
+<!-- Bootstrap bootstrap modal window Start -->
+
+<div class="model_container">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+           </div>
+         <div class="modal-body">
+              <!--<img src="Loading.gif" id="loader1"  width="36" height="36" alt="loading gif"/>-->
+              <apex:image url="{!$Resource.Loading}" height="36" width="36" styleClass="loading_img"/>
+              <div id="loader_cont">
+                
+              </div>
+              
+              <iframe frameborder="0" name="remotepage" id="iframe_cont"></iframe>
+         </div>
+         <!--
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+         </div>
+         -->
+        </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div> 
+
+<!-- Bootstrap bootstrap modal window End--> 
+  
 </html>
 <!-- <apex:actionFunction name="refreshPage" action="{!changeCatName}" status="statusSaveTrip"  reRender="mainSecId"/> -->
 <apex:actionFunction name="refreshPage" action="{!changeCatName}" status="statusSaveTrip"/>
@@ -737,230 +870,96 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
     </apex:facet>
 </apex:actionStatus>
 </apex:form>
-<style>
-    /* This is for the full screen DIV */
-    .popupBackground {
-        /* Background color */
-        background-color:black;
-        opacity: 0.5;
-        filter: alpha(opacity = 20);
-    
-        /* Dimensions */
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        z-index: 998;
-        position: absolute;
-        
-        /* Mouse */
-        cursor:wait;
-    }
- 
-    /* This is for the message DIV */
-    .PopupPanel {
-        /* Background color */
-        border: solid 2px blue;
-        background-color: white;
- 
-        /* Dimensions */
-        left: 50%;
-        width: 200px;
-        margin-left: -100px;
-        top: 50%;
-        height: 50px;
-        margin-top: -25px;
-        z-index: 999;
-        position: fixed;
-        
-        /* Mouse */
-        cursor:pointer;
-    }
-    
-    .margin10{margin-top:2px;}
-      .circle1
-    {
-        width:70px;
-        height:70px;
-        border-radius:70px;
-        text-align:center;
-        line-height: 68px;
-        background:whitesmoke;
-        border: 3px solid #74AE00;
-        font-size: 26px;
-        float:left;
-        margin-left: 17%;
-        margin-top: 10px;
-    }
-    
-    .circle_vertical
-    {
-        width:70px;
-        height:70px;
-        border-radius:70px;
-        text-align:center;
-        line-height: 94px;
-        background:whitesmoke;
-        border: 1px solid #BDC3C7;
-        font-size: 666%;
-    }
-    
-    .circle
-    {
-        width:70px;
-        height:70px;
-        border-radius:70px;
-        text-align:center;
-        line-height: 68px;
-        background:whitesmoke;
-        border: 3px solid #DA0600;
-        font-size: 26px;
-        float:left;
-        margin-left: 17%;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    
-   .firstdiv
- {
-float: left;
-width: 32%;
-/* border: 2px solid red; */
-  }
-  .seconddiv
-  {
-   float: left; 
-width: 65%;
-text-align: center;
-/* margin-left: 3%; */
-height: auto;
-/* border: 1px solid red; */
-display: inline-block;
-  }
-    
-    .verticalLine {
-    border-left: 5px solid #808080;
-    height: 77px;
-    width: 4%;
-    }
-    
-    .container {
-    width:100%;
-    margin-left:10px;
-    margin-right:10px;
-    }
-         
-    
-    .input_select1 {
-    color: #000000;
-    height: 26px;
-    width: 126px;
-}
-    
-    .button_select1 {
-    background: none repeat scroll 0 0 #FF00FF;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    color: #FFFFFF;
-    font-family: times new roman;
-    font-size: 17px;
-    font-weight: bold;
-    height: 30px;
-    margin-left: -23px;
-    width: 125px;
-    }
-        
-    
-    .close{margin-left:500px; margin-top: -15px;}
-    
-    html {
-    font-size: 16px;
-    }
-    
-    .charttable1{padding-left: 98px;padding-right: 40px;}
-    .charttable2{border: 2px solid red;border-radius: 10px; padding:10px;width:100%;border-collapse:separate!important;}
-   .demo{
-    border: 0 !important;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background: #0088cc url(Resource/arrow.png) no-repeat 90% center;
-    width: 100px;
-    text-indent: 0.01px;
-    text-overflow: "";
-    color: #FFF;
-    border-radius: 15px;
-    padding: 5px;
-    box-shadow: inset 0 0 5px rgba(000,000,000, 0.5);
-    }
-   .demo1{
-    border: 0 !important;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background: #0088cc url(Static Resources/arrow_down/arrow.png) no-repeat 90% center;
-    width: 100px;
-    text-indent: 0.01px;
-    text-overflow: "";
-    color: #FFF;
-    border-radius: 15px;
-    padding: 5px;
-    box-shadow: inset 0 0 5px rgba(000,000,000, 0.5);
-    }
 
-  .btn-finance{ color: white!important;font-size: 14px!important;background: #007DBB!important;padding: 6px!important;border-radius: 5px!important;border:1px solid black!important;}
-   .center{text-align:center;}
-   a {
-      text-decoration: underline;color:#004976;
-     }
-   body{font-family: 'Lato', sans-serif!important;font-style: normal;font-weight: 400;  }
-  .Agency_fees{font-size:28px;font-weight: bold;color: #74AE00;padding-left: 15px;width: 410px;padding-top: 0px;}
-  .Profile_Name{width:170px;text-align:right;font-weight:bold;padding-top: 0px;}
-  .User_Name{color:#004976;width:145px;text-align:center;font-weight:bold;padding-top: 0px;}
-   
-   #phSearchContainer.headerSearchContainer {
-     display: none;
-   }
-  
-  /* #AppBodyHeader.headerSearchContainer {
-     display: block!important;
-   } */
-   
-    .image-container {
-      display: table-cell;
-    float: right;
-    margin-left: -28px;
-   /* margin-top: 9px; */
-    text-align: center;
-    vertical-align: middle;
-}
-
-.text-container{
-     display: table-cell;
-    float: right;
-    margin-left: 15px;
-    margin-top: 6px;
-    text-align: center;
-    vertical-align: middle;
-}
-
-.text-container div {
-    max-width: 100px;
-    max-height: 100px;        
-}
-
-  h6{ 
-    font-size: 18px;
-    font-weight: normal;
-    }
-
-
-.image-container img {
-    max-width: 81px;
-    max-height: 100px;        
-}
-
-
-</style>
 </div>
+
+<!-- Bootstrap bootstrap modal window methods  Start-->
+<script>
+top.document.body.setAttribute("data-shouldRefreshPage", "0");
+$(document).ready(function(){
+ $('.modalButton').on('click', function(e) {
+    $("#iframe_cont").contents().find("body").html('');
+    var src = $(this).attr('data-src');
+    var height = $(this).attr('data-height') || 500;
+    var width = $(this).attr('data-width') || 896;
+    
+    $("#myModal iframe").attr({'src':src,
+                        'height': height,
+                        'width': width});
+   $('#myModal').on('hidden.bs.modal', function () {
+   if(top.document.body.getAttribute("data-shouldRefreshPage") != "0"){
+    top.document.body.setAttribute("data-shouldRefreshPage", "0");
+    window.location.reload(true);
+   }
+    
+});                                   
+});
+
+
+$('.modalButton1').on('click', function(e) {
+    $("#iframe_cont").contents().find("body").html('');
+    var src = $(this).attr('data-src');
+    var height = $(this).attr('data-height') || 575;
+    var width = $(this).attr('data-width') || 1280;
+    
+    $("#myModal iframe").attr({'src':src,
+                        'height': height,
+                        'width': width});
+   $('#myModal').on('hidden.bs.modal', function () {
+   if(top.document.body.getAttribute("data-shouldRefreshPage") != "0"){
+    top.document.body.setAttribute("data-shouldRefreshPage", "0");
+    window.location.reload(true);
+   }
+    
+});                                   
+});
+
+});
+/*
+$('#iframe_cont').load(function(){
+    $("#iframe_cont").contents().find("iframe#contentPane").load(function(){
+        var tmp = $("#iframe_cont").contents().find("iframe#contentPane").contents().find(".save_btn").attr("onclick");
+        $("#iframe_cont").contents().find("iframe#contentPane").contents().find(".save_btn").attr("onclick", 'top.document.body.setAttribute("data-shouldRefreshPage", "1");' + tmp);
+    });
+});
+*/
+/* Change the click attributes of save buttons to set Flag on Top document to refresh page on close of modal */
+function initializePageRefresh(){
+    var originalClick = $(this).attr("onclick");
+    $(this).attr("onclick", 'top.document.body.setAttribute("data-shouldRefreshPage", "1");' + originalClick);
+}
+
+$("#iframe_cont").contents().find("body").html('');
+$('#iframe_cont').load(function(){
+    var popupFrame = $("#iframe_cont").contents();
+    if(popupFrame.find("iframe").length ){
+        popupFrame.find("iframe").each(function(){
+            $(this).contents().find(".save_btn, .submit_btn, .submit_btn_basefee2, .submit_btn1, .continue_btn, .submit_btn_basefee1, .submit_btn_addcomment, .submit_btn_oops_submit_new, .createMatrix, .savebutton, .confirmbutton, .submit_btn2Appoval").each(initializePageRefresh);
+        });
+    } 
+    popupFrame.find(".save_btn, .submit_btn, .submit_btn_basefee2, .submit_btn1, .continue_btn, .submit_btn_basefee1, .submit_btn_addcomment, .submit_btn_oops_submit_new, .createMatrix, .savebutton, .confirmbutton, .submit_btn2Appoval").each(initializePageRefresh);
+    
+});
+
+</script>
+<!-- Bootstrap bootstrap modal window methods End-->
+
+<!-- Bootstrap bootstrap modal window data loading_gif Animation methods Start-->
+<script> 
+    
+    $(document).ready(function () {
+        $('#iframe_cont').on('load', function () {
+         $('#loader_cont, .loading_img').show();
+            console.log("madhu");
+            $('#loader_cont, .loading_img').delay(1000).hide(0);
+            //setTimeout("jQuery('#loader_cont, .loading_img').hide();",1000 );
+        });
+              
+    });  
+</script>
+<!-- Bootstrap bootstrap modal window data loading_gif Animation methods End-->
+
+
 <!--Chart script -->
 <script>
 window.onload = function() {

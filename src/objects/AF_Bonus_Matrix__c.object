@@ -308,6 +308,16 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>AF_IsCrossBorderReport__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(TEXT(AF_Agency_Entity__r.AF_Country__c) != TEXT(AF_Unilever_Entity__r.AF_Country__c),true,false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IsCrossBorderReport</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>AF_IsCrossBorder__c</fullName>
         <description>This field will be useful for cross border calculations in Agencyfee Application</description>
         <externalId>false</externalId>

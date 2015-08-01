@@ -2819,7 +2819,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Market__c</field>
             <operation>notContain</operation>
-            <value>India,Nordic,Benelux,France,DACH</value>
+            <value>Hungary,India,Nordic,France,DACH,BENELUX,ITALY,SPAIN,POLAND,PORTUGAL,GREECE</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -2829,12 +2829,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>notContain</operation>
-            <value>CEC Nordic,CEC France,CEC DACH,CEC BENELUX,CEC ITALY,SPAIN,POLAND,PORTUGAL</value>
+            <value>Hungary,India,Nordic,France,DACH,BENELUX,ITALY,SPAIN,POLAND,PORTUGAL,GREECE</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
             <operation>notContain</operation>
-            <value>Nordic,France,DACH,BENELUX,ITALY,SPAIN,POLAND,PORTUGAL</value>
+            <value>Hungary,India,Nordic,France,DACH,BENELUX,ITALY,SPAIN,POLAND,PORTUGAL,GREECE</value>
         </filters>
         <label>Within SLA</label>
         <language>en_US</language>
@@ -2842,6 +2842,25 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Manager_UK</role>
             <role>CEC_User_UK</role>
         </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>spam_pp</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>contains</operation>
+            <value>PepsiCola</value>
+        </filters>
+        <label>spam pp Spain</label>
+        <language>es</language>
+        <queue>CEC_Spain_Queue</queue>
     </listViews>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
