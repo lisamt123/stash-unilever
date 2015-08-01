@@ -40,13 +40,27 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
         function deleteClose()
         {
             alert('Test alert..............1');
-           
-                deleteMember();
-                deleteMem();
+            
+            //if(team_member ==userId)
+           // {
+                alert('Test alert 2');
+
+                //deleteMember();
+               // deleteMem();
                 //self.close();
                // window.open('',)
+            var __sfdcSessionId = '{!GETSESSIONID()}';
+            var user = sforce.connection.getUserInfo(); 
+            sforce.connection.sessionId = "{!$Api.Session_ID}";
+            alert(sforce.connection.sessionId);
+            sforce.apex.execute("BET_ManageMembersController","deleteMember",{});
+            sforce.apex.execute("BET_ManageMembersController","deleteMem",{});
+
             window.parent.closeMembers();
-               // window.top.postMessage({action: 'saveBetPreferences',moveHome}, document.location.protocol + '//' + document.domain);
+
+            window.location.hash = 'home';
+
+            // window.top.postMessage({action: 'saveBetPreferences',moveHome}, document.location.protocol + '//' + document.domain);
                 // window.parent.location.href="https://unilever--cb4ldev--c.cs14.visual.force.com/apex/BET?sfdc.tabName=01rE00000001xai#/home";
            // }
            // return true;
@@ -54,6 +68,11 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
 
     </script>
+    <script src="/soap/ajax/15.0/connection.js" type="text/javascript"></script>
+
+    <script src="/soap/ajax/15.0/apex.js" type="text/javascript"></script>
+    
+
     <style type="text/css">
         @font-face{ font-family:DINWebPro;src:url("{!URLFOR($Resource.fuse_brief1_resources_1, 'fonts/DINWebPro.eot')}")}
         @font-face{ font-family:DINWebPro;src:url("{!URLFOR($Resource.fuse_brief1_resources_1, 'fonts/DINWebPro.woff')}") format("woff")}
@@ -456,7 +475,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                             <!-- T1 Start -->
                             <!-- T2 Start -->
                             <!--<apex:commandButton value="Delete" action="{!deleteMember}" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="browsemembers" status="saveStatus4"> -->
-                            <apex:commandButton value="Delete" rendered="{!member.IsOwner__c == false }" onclick="deleteClose()" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="browsemembers" status="saveStatus4">
+                            <apex:commandButton value="Delete" rendered="{!member.IsOwner__c == false }" action="{!deleteMember}" onclick="deleteClose()" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="browsemembers" status="saveStatus4">
                                 <!-- T2 End -->
                                 <apex:actionStatus id="saveStatus4">
                                     <apex:facet name="start">
