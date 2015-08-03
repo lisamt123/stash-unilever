@@ -54,7 +54,7 @@ public class BET_MasterDataServiceTest {
 	@isTest static void getAllAvailableCategoriesTest(){
 		System.assertEquals(BET_MasterDataService.getAllAvailableCategories().size(),0);
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
-		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
+		BET_TestUtils.createCategory(categoryGroup);
 		System.assertEquals(BET_MasterDataService.getAllAvailableCategories().size(),1);
 	}
 
