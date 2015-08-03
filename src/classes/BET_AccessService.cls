@@ -41,10 +41,8 @@ public with sharing class BET_AccessService {
 			if(!teamMembersRecords.isEmpty()){
 				uw_BET_Team_Member__c tMember = teamMembersRecords.get(0);
 				status = getStatus(tMember);
-				if(status == NO_BET_ACCESS){
-					if(checkIfRequestAccessIsPending(userId,betId)){
-						status = BET_ACCESS_PENDING;
-					}
+				if(status == NO_BET_ACCESS && checkIfRequestAccessIsPending(userId,betId)){
+					status = BET_ACCESS_PENDING;
 				}
 			}
 		}catch(Exception e){
