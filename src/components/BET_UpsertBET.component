@@ -91,7 +91,7 @@
                 <apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.Description__c.Label}</apex:outputLabel>
             </div>
             <div class="item-input">
-                <apex:inputTextarea rows="5" value="{!projectDescription}" />
+                <apex:inputTextarea rows="5" value="{!betobject.Description__c}" />
             </div>
         </div>
 

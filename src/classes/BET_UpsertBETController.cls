@@ -65,6 +65,7 @@ public with sharing class BET_UpsertBETController {
 				if(betobject.ownerId == null) betobject.ownerId = owner;
 				if(betobject.Launch_Date__c == null) betobject.Launch_Date__c = targetLaunchDate;
 				if(betobject.name == null) betobject.name = projectName;
+				if(betobject.Description__c == null) betobject.Description__c = projectDescription;
 				return betobject;
 			} set {
 				betobject = value;
@@ -142,7 +143,7 @@ public with sharing class BET_UpsertBETController {
 		newBet.Product_Category__c = cat;
 		newBet.Brand_Position__c = brandPosition;
 		newBet.Product_Brand__c = selectedBrand;
-		newBet.Description__c = projectDescription;
+		newBet.Description__c = betobject.Description__C;
 		System.debug('Exit buildBETObject ' + newBet);
 		return newBET;
 	}
