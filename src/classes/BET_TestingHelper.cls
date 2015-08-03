@@ -88,7 +88,7 @@ global with sharing class BET_TestingHelper {
 
             insert BETTeamMember;
             
-            String accessLevel = (BETTeamMember.Role__c.equalsIgnoreCase('Manager') == true ) ? 'Edit' : 'Read';
+            String accessLevel = (BETTeamMember.Role__c.equalsIgnoreCase('Manager')) ? 'Edit' : 'Read';
             createBETShare(BETTeamMember.Team_Member__c, accessLevel, BETTeamMember.BET__c);
             createCollaborationGroupMemberRecord(this.BET.Studio_Chatter_Group__c, memberUser.Id, role);
         }

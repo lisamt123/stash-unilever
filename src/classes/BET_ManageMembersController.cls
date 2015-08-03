@@ -14,6 +14,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                                                  add the same user to the bet associated it is showing error
 1.2    Kendre Dnyaneshwar       27 Apr 2015   T1: Modified the query in getmembers method to remove delete button for BET 
                                                  owner                                      
+1.3     Michal Bluj             03/08/2015      Sonar related issues fixes
 ***********************************************************************/
 
 public without sharing class BET_ManageMembersController {
@@ -70,7 +71,7 @@ public without sharing class BET_ManageMembersController {
 
        BETTeamMember = new uw_BET_Team_Member__c();
        List<RecordType> recordTypeIdList = [SELECT Id FROM RecordType WHERE SobjectType = :BETMemberObjectName and Name = :InternalUserRecordType LIMIT 1];
-       if ( recordTypeIdList.size() == 0 ) {
+       if ( recordTypeIdList.isEmpty()) {
            System.Debug('No RecordType found');
            return;
        }     
@@ -88,7 +89,7 @@ public without sharing class BET_ManageMembersController {
         System.Debug('getBetName Bet ID: ' + betId);
         
         List<uw_BET__c> betList = [SELECT Id, Name FROM uw_BET__c WHERE Id = :betId LIMIT 1];
-        if ( betList.size() == 0 ) {
+        if (betList.isEmpty()) {
              System.Debug('No BET found');
              return null;
         }
@@ -153,7 +154,7 @@ public without sharing class BET_ManageMembersController {
          
          System.Debug('Approve Request: ' + recordId);
          List<uw_BET_Team_Member__c> betMemberList = [SELECT Id, Name, Role__c, Team_Member__c, BET__c, BET__r.Studio_Chatter_Group__c FROM uw_BET_Team_Member__c WHERE Id = :recordId AND BET__c = :betId];
-         if ( betMemberList.size() == 0 ) {
+         if (betMemberList.isEmpty()) {
              System.Debug('Bet Member record not found: ' + recordId);
              return null;
          }
@@ -164,7 +165,7 @@ public without sharing class BET_ManageMembersController {
          
          System.Debug('Role: ' + betMember.Role__c);
          
-         String accessLevel = (betMember.Role__c.equalsIgnoreCase(ManagerRole) == true ) ? 'Edit' : 'Read';
+         String accessLevel = (betMember.Role__c.equalsIgnoreCase(ManagerRole)) ? 'Edit' : 'Read';
          uw_BET__Share betShare = createBETShare(betMember.Team_Member__c, accessLevel, betMember.BET__c);
          
          CollaborationGroupMember cgm = createCollaborationGroupMemberRecord(betMember);
@@ -205,7 +206,7 @@ public without sharing class BET_ManageMembersController {
 
          System.Debug('Deny Request: ' + recordId);    
          List<uw_BET_Team_Member__c> betMemberList = [SELECT Id, Name FROM uw_BET_Team_Member__c WHERE Id = :recordId AND BET__c = :betId];
-         if ( betMemberList.size() == 0 ) {
+         if ( betMemberList.isEmpty()) {
              System.Debug('Bet Member record not found: ' + recordId);
              return null;
          }
@@ -299,7 +300,7 @@ public without sharing class BET_ManageMembersController {
          //      return true;
          //}
          
-         return ( teamMemberList.size() == 0 ) ? false : true;
+         return ( teamMemberList.isEmpty()) ? false : true;
      }
      
     /*****************************************************************************************
@@ -378,7 +379,7 @@ public without sharing class BET_ManageMembersController {
          if ( Test.isRunningTest()) {
                   if ( BETTeamMember.Request_Status__c == 'DMLExceptionAfterInsert' ) betMemberList.clear();        
          } 
-         if ( betMemberList.size() == 0 ) {
+         if (betMemberList.isEmpty()) {
              System.Debug('Bet Member record not found: ' + recordId);
              Database.rollback(sp);
              BETTeamMember.Team_Member__c = null;
@@ -388,7 +389,7 @@ public without sharing class BET_ManageMembersController {
          }
          uw_BET_Team_Member__c betMember = betMemberList[0];
 
-         String accessLevel = (betMember.Role__c.equalsIgnoreCase(ManagerRole) == true ) ? 'Edit' : 'Read';
+         String accessLevel = (betMember.Role__c.equalsIgnoreCase(ManagerRole)) ? 'Edit' : 'Read';
          uw_BET__Share betShare = createBETShare(betMember.Team_Member__c, accessLevel, betMember.BET__c);
          /*T0-Begin To check if member to add is already added to chatter group associated to BET*/
          Id memid = betMemberList[0].Team_Member__c;
@@ -402,7 +403,7 @@ public without sharing class BET_ManageMembersController {
                   if ( BETTeamMember.Request_Status__c == 'DMLExceptionBETShareInsert' ) throw new MyDMLException();        
             }
             /*T0-Begin*/
-             if(cglist.size()==0){
+             if(cglist.isEmpty()){
                   CollaborationGroupMember cgm =  createCollaborationGroupMemberRecord(betMember); 
           insert cgm;
          }
@@ -446,7 +447,7 @@ public without sharing class BET_ManageMembersController {
         uw_BET__Share betShare = deleteBETShare(betId, recordId);
         
         List<uw_BET_Team_Member__c> teamMemberList = [SELECT Id, Name, Role__c, BET__c, BET__r.Studio_Chatter_Group__c, Team_Member__c FROM uw_BET_Team_Member__c WHERE Id = :recordId AND BET__c = :betId];
-        if ( teamMemberList.size() == 0 ) {
+        if ( teamMemberList.isEmpty()) {
             System.Debug('TeamMemberList is empty');
             return null;
         }
@@ -531,14 +532,14 @@ public without sharing class BET_ManageMembersController {
     ******************************************************************************************/ 
     private uw_BET__Share deleteBETShare(String betId, String memberId) {
         List<uw_BET_Team_Member__c> teamMemberList = [SELECT Id, Team_Member__c FROM uw_BET_Team_Member__c WHERE Id = :memberId AND BET__c = :betId];
-        if ( teamMemberList.size() == 0 ) {
+        if (teamMemberList.isEmpty()) {
              System.Debug('No BET TeamMember found');
              return null;
         }
         uw_BET_Team_Member__c teamMember = teamMemberList[0];
         
         List<uw_BET__Share> betShareList = [SELECT Id FROM uw_BET__Share WHERE parentId = :betId AND userOrGroupId = :teamMember.Team_Member__c LIMIT 1]; 
-        if (betShareList.size() == 0 ) {
+        if (betShareList.isEmpty()) {
            System.Debug('No BET Share is found');
            return null;
         }
@@ -554,7 +555,7 @@ public without sharing class BET_ManageMembersController {
     private CollaborationGroupMember deleteCollaborationGroupMember(uw_BET_Team_Member__c teamMember) {
         Id chatterGroupId = teamMember.BET__r.Studio_Chatter_Group__c;
         List<CollaborationGroupMember> cgmList = [SELECT Id FROM CollaborationGroupMember WHERE CollaborationGroupId =: chatterGroupId AND memberId=:teamMember.Team_Member__c];
-        if ( cgmList.size() == 0 ) {
+        if (cgmList.isEmpty()) {
            System.Debug('No CollaborationGroupMember found.');
            return null;
         }
@@ -569,7 +570,7 @@ public without sharing class BET_ManageMembersController {
     ******************************************************************************************/
     private EntitySubscription deleteEntitySubscription(uw_BET_Team_Member__c teamMember) {
         List<EntitySubscription> entitySubscriptionList = [Select Id,SubscriberId,ParentId from EntitySubscription where SubscriberId=:teamMember.Team_Member__c and ParentId=:betId LIMIT 1];
-        if ( entitySubscriptionList.size() == 0 ) {
+        if ( entitySubscriptionList.isEmpty() ) {
            System.Debug('No CollaborationGroupMember found.');
            return null;
         }
@@ -584,7 +585,7 @@ public without sharing class BET_ManageMembersController {
     ******************************************************************************************/
     private CollaborationGroupMember updateCollaborationGroupMember(Id betId , Id memberId) {
          List<uw_BET_Team_Member__c> teamMemberList = [SELECT Id, Team_Member__c, Role__c, BET__c, BET__r.Studio_Chatter_Group__c FROM uw_BET_Team_Member__c WHERE Id = :memberId AND BET__c = :betId];
-         if ( teamMemberList.size() == 0 ) {
+         if ( teamMemberList.isEmpty()) {
              System.Debug('BET Team Member not found');
              return null;
          }
@@ -597,7 +598,7 @@ public without sharing class BET_ManageMembersController {
          List<CollaborationGroupMember> cgmList = [SELECT Id FROM CollaborationGroupMember 
                                          WHERE CollaborationGroupId = :chatterGroupId
                                          AND MemberId = :teamMember.Team_Member__c];
-         if (cgmList.size() == 0) {
+         if (cgmList.isEmpty()) {
              System.Debug('No CollaborationGroupMember found');
              return null;
          }
@@ -614,7 +615,7 @@ public without sharing class BET_ManageMembersController {
     ******************************************************************************************/ 
     private uw_Bet__Share updateBetShare (String betId, String memberId) {
          List<uw_BET_Team_Member__c> teamMemberList = [SELECT Id, Team_Member__c FROM uw_BET_Team_Member__c WHERE Id = :memberId AND BET__c = :betId];
-         if ( teamMemberList.size() == 0 ) {
+         if ( teamMemberList.isEmpty()) {
              System.Debug('No BET TeamMember found');
              return null;
          }
@@ -627,7 +628,7 @@ public without sharing class BET_ManageMembersController {
          }
          List<uw_BET__Share> betShareList = [SELECT Id FROM uw_BET__Share WHERE parentId = :betId AND userOrGroupId = :teamMember.Team_Member__c LIMIT 1];
          
-         if ( betShareList.size() == 0 ) {
+         if ( betShareList.isEmpty() ) {
              System.Debug('No BETShare found');
              return null;
          }
@@ -648,7 +649,7 @@ public without sharing class BET_ManageMembersController {
             setEmailAdd = emailAddEntered.trim();
             //check if there is already an user in the system.
             List<User> nonAgent = [SELECT id, email,IsActive, Name FROM user where email =:setEmailAdd AND profileID != :chatterExternalProfile.Id limit 1];
-            if (nonAgent.size()>0) {
+            if (!nonAgent.isEmpty()) {
                 if(nonAgent[0].IsActive){
                     setErrorMessage='This email id belongs to an existing internal Unilever user: '+nonAgent[0].Name +' who already has a Chatter account. Please add them as an internal member to your BET from the Manage Members page';
                 }else if (!nonAgent[0].IsActive) {
@@ -696,7 +697,7 @@ public without sharing class BET_ManageMembersController {
             return;
         }else{
             List<User> userList = isExistingExternalUser();
-            if ((userList != null) && (userList.size() > 0) ) {
+            if ((userList != null) && (!userList.isEmpty()) ) {
                 if(!userList[0].isActive){
                     Apexpages.Message m = new apexpages.Message(ApexPages.Severity.ERROR, setEmailAdd +' is an existing user (External Agent) but inactive at the moment. Please send an email to marketing@unilever.com for further clarification.');
                     apexpages.addMessage(m);  
@@ -710,7 +711,7 @@ public without sharing class BET_ManageMembersController {
                 skipCreation = true;
             }else{
                 List<uw_BET__c> betList = [SELECT Id, Name, Studio_Chatter_Group__c FROM uw_BET__c WHERE Id = :betId LIMIT 1];
-                if ( betList.size() == 0 ) {Apexpages.Message m = new apexpages.Message(ApexPages.Severity.ERROR, 'No BET found');return;}
+                if ( betList.isEmpty()) {Apexpages.Message m = new apexpages.Message(ApexPages.Severity.ERROR, 'No BET found');return;}
 
                 uw_Terms_Conditions__c tnc = new uw_Terms_Conditions__c();
                 tnc.Status__c = 'New';
@@ -742,9 +743,9 @@ public without sharing class BET_ManageMembersController {
                 isPending = true;      
             }
 
-            if (skipCreation == false) {
+            if (!skipCreation) {
                 userList = isExistingExternalUser();
-                if ((userList != null) && (userList.size() > 0) ) {
+                if ((userList != null) && (!userList.isEmpty()) ) {
                     addId = userList[0].Id;
                 } else {
                     addId = null;
@@ -768,7 +769,7 @@ public without sharing class BET_ManageMembersController {
                 }catch (Exception e) {Database.rollback(sp);return;}
                 if (handAddToCollaborationGroup) {
                     List<uw_BET_Team_Member__c> betMemberList = [SELECT Id, Name, Role__c, Team_Member__c, BET__c, BET__r.Studio_Chatter_Group__c FROM uw_BET_Team_Member__c WHERE Id = :tm.Id AND BET__c = :betId];
-                    if ( betMemberList.size() == 0 ) {return; }
+                    if (betMemberList.isEmpty()) {return; }
 
                     uw_BET_Team_Member__c betMember = betMemberList[0];
 

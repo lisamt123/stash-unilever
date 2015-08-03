@@ -9,54 +9,22 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
     <apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />    
     <apex:stylesheet value="{!$Resource.BETEditBetStyles}" />
     <script>
-        jQuery.noConflict();
-        jQuery( document ).ready(function( $ ) {
-            jQuery('.question-icon[data-tooltip!=""]').qtip({
-                content: {
-                    attr: 'data-tooltip'
-                }
-            });
-            jQuery('.question-icon-left[data-tooltip!=""]').qtip({
-                content: {
-                    attr: 'data-tooltip'
-                },
-                position: {
-                  my: 'bottom right',
-                  at: 'top left'
-                }
-            });
-            jQuery('.launchDateArea a').attr('href', null);
-            jQuery('.launchDateArea a').on('click', function() {
-                var name = jQuery('.launchDateArea input').attr('name');
-                jQuery('input[name="'+name+'"]').focus();
-                return false;
-            });      
-
-            jQuery('#clearCurrentBanner').on('click', function(){
-                jQuery('#banner-container').hide('');
-                clearBannerAction();
-            });
-
-            jQuery('#clearFutureBanner').on('click', function(){
-                var input = jQuery('[id$="upload_banner"]');
-                input.replaceWith(input.val('').clone(true));               
-            });
-
-            jQuery('#clearCurrentIcon').on('click', function(){
-                jQuery('#icon-container').hide('');
-                clearIconAction();  
-            }); 
-
-            jQuery('#clearFutureIcon').on('click', function(){
-                var input = jQuery('[id$="upload_icon"]');
-                input.replaceWith(input.val('').clone(true));               
-            });
-
-            if ( jQuery('[id$="runJsSuccess"]').val() == "true" ){
-                //alert('test');
-                window.top.postMessage({action: 'saveBetPreferences',moveHome:{!if(moveHome,'true','false')}}, document.location.protocol + '//' + document.domain);
-            }
-        });
+    jQuery.noConflict();
+    jQuery( document ).ready(function( $ ) {
+        jQuery('.question-icon[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' } });
+        jQuery('.question-icon-left[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' },position: { my: 'bottom right', at: 'top left' } });
+        jQuery('.launchDateArea a').attr('href', null);
+        jQuery('.launchDateArea a').on('click', function() {var name = jQuery('.launchDateArea input').attr('name');
+            jQuery('input[name="'+name+'"]').focus(); return false;});      
+        jQuery('#clearCurrentBanner').on('click', function(){jQuery('#banner-container').hide('');clearBannerAction();});
+        jQuery('#clearFutureBanner').on('click', function(){
+            var input = jQuery('[id$="upload_banner"]');input.replaceWith(input.val('').clone(true));});
+        jQuery('#clearCurrentIcon').on('click', function(){jQuery('#icon-container').hide('');clearIconAction();}); 
+        jQuery('#clearFutureIcon').on('click', function(){ var input = jQuery('[id$="upload_icon"]');input.replaceWith(input.val('').clone(true));});
+        if (jQuery('[id$="runJsSuccess"]').val() == "true" ){
+            window.top.postMessage({action: 'saveBetPreferences',moveHome:{!if(moveHome,'true','false')}}, document.location.protocol + '//' + document.domain);
+        }
+    });
     </script>
             
     <!-- Create Tab panel -->
