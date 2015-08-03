@@ -254,6 +254,17 @@ public class BET_TestUtils {
         return testFollowRequest;
     }
     
+    /************************************************************
+		Purpose: Method creates creates test IPM_Project__c record
+		Parameters: String project's name
+		Returns: IPM_Project__c record
+		Throws: -
+	*************************************************************/
+    public static IPM_Project__c createIPMProject(String projectName){
+    	IPM_Project__c project = new IPM_Project__c(name=projectName);
+    	insert project;
+    	return project;
+    }
     
 
 }
