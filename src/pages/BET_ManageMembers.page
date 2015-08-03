@@ -22,17 +22,8 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                     attr: 'data-tooltip'
                 }
             });
-
         });
-       function notifyUser(id, memberrole) {
-           alert('Value has changed: ' + id);
-            alert('Value has changed: ' + document.getElementById(memberrole).value);
-       }
-        
        function updateRole(id, memberrole) {
-           //alert('Value has changed: ' + id);
-           //alert('Value has changed: ' + memberrole);
-           //alert('Value has changed: ' + document.getElementById(memberrole).value);
            changeRole(id, document.getElementById(memberrole).value);
        }
   </script>
