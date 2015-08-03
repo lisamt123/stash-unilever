@@ -27,6 +27,9 @@ public without sharing class uw_BETSearchService {
         'betOwnerName'  =>  'Owner.Name'
     };
 
+
+    private uw_BETSearchService(){}
+
     /*******************************************************************
     Purpose: Method returns list of BET Owned by current logged in user
     or list of BET that current logged in user is member of
@@ -59,8 +62,7 @@ public without sharing class uw_BETSearchService {
         betsMap.put('betsIamMemberOf', betsIamMemberOf);
         betsMap.put('betsIamOwnerOf', betsIamOwnerOf);
 
-        uw_BETWrapper remoteWrapper = new uw_BETWrapper('BETs Owned by current logged in user or BETS that current logged user is member of','0',betsMap,'');
-        return remoteWrapper;
+        return new uw_BETWrapper('BETs Owned by current logged in user or BETS that current logged user is member of','0',betsMap,'');
     }
 
     /*******************************************************************
@@ -73,16 +75,13 @@ public without sharing class uw_BETSearchService {
     private static String buildWhereClausesForSearch(String brandId, String categoryId){
         String whereClauseForBet = 'where Id != \'\'';
         try{
-            Id isVailidId;
             if(brandId != null && brandId != '' ){
-                isVailidId = Id.valueOf(brandId);
-                                
+                Id.valueOf(brandId);             
                 whereClauseForBet += ' AND Product_Brand__c = \''+brandId+'\'';
             }
             
             if(categoryId != null  && categoryId != ''){
-                isVailidId = Id.valueOf(categoryId);
-
+                Id.valueOf(categoryId);
                 whereClauseForBet += ' AND Product_Category__c = \''+categoryId+'\'';
             }          
         }catch(Exception ex){
@@ -102,13 +101,15 @@ public without sharing class uw_BETSearchService {
     Throws [Exceptions]: [optional] 
     ********************************************************************/
     //private static List<uw_BET__c> gatherResultsForSearch(String brandId, String categoryId, String keyWord, Boolean lastUpdatedSortAsc){
-    private static List<uw_BET__c> gatherResultsForSearch(String brandId, String categoryId, String keyWord, Boolean sortAsc, String sortField, Integer pageSize, Integer pageNumber){
+    private static List<uw_BET__c> gatherResultsForSearch(String brandId, String categoryId, String keyWordStr, Boolean sortAsc, String sortFieldStr, Integer pageSize, Integer pageNumber){
         Integer startIndex=pageSize*(pageNumber-1);
 
         String whereClauseForBet = uw_BETSearchService.buildWhereClausesForSearch(brandId, categoryId);
 
-        if( sortField != null && sortField.trim() != '' && uw_BETSearchService.fieldToLabel.containsKey(sortField.trim())){
-            sortField = uw_BETSearchService.fieldToLabel.get(sortField.trim());
+        String sortField;
+
+        if( sortFieldStr != null && sortFieldStr.trim() != '' && uw_BETSearchService.fieldToLabel.containsKey(sortFieldStr.trim())){
+            sortField = uw_BETSearchService.fieldToLabel.get(sortFieldStr.trim());
         }else{
             sortField = 'LastModifiedDate';
         }
@@ -118,10 +119,11 @@ public without sharing class uw_BETSearchService {
         //Start building final query
         Boolean isSoslQuery = false;
         String finalSoslQuery = '';
+        String keyWord;
         //String finalSoqlQuery = 'SELECT Id, Name, Studio_Chatter_Group__c, Final_release_date__c, Presentation_Id__c, Icon_Location__c, Description__c, uw_Brand__r.Name, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name FROM uw_BET__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir;
         String finalSoqlQuery = 'SELECT Id, Name, Studio_Chatter_Group__c, First_release_date__c, Final_release_date__c, Presentation_Id__c, Icon_Location__c, Description__c, Product_Brand__r.Name, Product_Brand__c, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name, Brand_Keyword_Search__c, Category_Keyword_Search__c, Inoplan_Project_Keyword_Search__c, Owner_Keyword_Search__c, Region_Keyword_Search__c, Banner_1_Location__c, Background_Colour__c, Banner_Colour__c, Border_Colour__c, Font_Colour__c, Sharing__c, Launch_Date__c,IPM_Project__c,IPM_Project__r.Name FROM uw_BET__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir +' LIMIT '+pageSize+' OFFSET '+startIndex ;
-        if(keyWord != null && keyWord !='' && keyWord.trim() !=''){    
-            keyWord = String.escapeSingleQuotes(keyWord);       
+        if(keyWordStr != null && keyWordStr !='' && keyWordStr.trim() !=''){    
+            keyWord = String.escapeSingleQuotes(keyWordStr);       
             finalSoslQuery += 'FIND \''+keyWord+'*\' ';
             isSoslQuery = true;
         }
@@ -165,7 +167,7 @@ public without sharing class uw_BETSearchService {
         Set<Id> myPendingBetsIds = new Set<Id>();
         List<uw_BET_Team_Member__c> betMembers = [SELECT BET__c, Pending_Request__c FROM uw_BET_Team_Member__c WHERE Team_Member__c =:currentUserId AND BET__c IN :allBetsIds];
         for(uw_BET_Team_Member__c m : betMembers){
-            if(m.Pending_Request__c == true){
+            if(m.Pending_Request__c){
                 myPendingBetsIds.add(m.BET__c);
             }else{
                 myBetsIds.add(m.BET__c);

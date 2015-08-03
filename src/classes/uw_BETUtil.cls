@@ -23,6 +23,8 @@ public with sharing class uw_BETUtil {
     public static final String CATEGORIES = 'Categories';
     public static final String BRANDS = 'Brands';
 
+    private uw_BETUtil(){}
+
 	/*******************************************************************
 	Purpose: Method return filters for bet used in search page  
 	Parameters: [String,String]

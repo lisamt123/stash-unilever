@@ -91,11 +91,13 @@ public with sharing class uw_BetEditController {
     public Id saveDocument(Document documentToSave){
         if (documentToSave != null && documentToSave.name != null && documentToSave.body != null){
             try{
+                Database.Saveresult result;
                 if (Test.isRunningTest() && throwUTException == 2) {
-                    documentToSave = null;
+                    Document documentToSaveTest = null;
+                    Database.insert(documentToSaveTest, false);
                 }  
 
-                Database.Saveresult result = Database.insert(documentToSave, false);
+                result = Database.insert(documentToSave, false);
 
                 if (!result.isSuccess()){
                     ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Error attaching image '+result.getErrors()[0].getMessage()));
@@ -111,6 +113,75 @@ public with sharing class uw_BetEditController {
         }else{
             return null;
         }
+    }
+
+
+    private void doClearBanner(){
+        if(!showClearBanner){
+            if(bet.Banner_1_Location__c != null){
+                List<Document> bannerList = [SELECT Id FROM Document WHERE Id =:bet.Banner_1_Location__c];
+                if(bannerList.size() > 0){
+                    delete bannerList[0];
+                }
+            }
+            bet.Banner_1_Location__c = null;
+        } 
+    }
+
+    private void doSaveBanner(Id userId,Folder currentfolder){
+        if(banner != null && banner.body != null){
+            banner.folderId = currentfolder.ID;  
+            banner.AuthorId = userId;
+            Id bannerId = saveDocument(banner);
+            bet.Banner_1_Location__c = bannerId;
+            showClearBanner = true;
+        } 
+    }
+
+    private void doClearIcon(){
+        if(!showClearIcon){
+            if(bet.Icon_Location__c != null){
+                List<Document> iconList = [SELECT Id FROM Document WHERE Id =:bet.Icon_Location__c];
+                if(iconList.size() > 0){
+                    delete iconList[0];
+                }
+            }
+            bet.Icon_Location__c = null;
+        }
+    }
+
+    private void doSaveIcon(Id userId,Folder currentfolder){
+        if(icon != null && icon.body != null){
+            icon.folderId = currentfolder.ID;  
+            icon.AuthorId = userId;
+            Id iconId = saveDocument(icon);
+            bet.Icon_Location__c = iconId;
+            showClearIcon = true;
+        }    
+    }
+
+    private void initialOwnerMatches(){
+        compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
+        bet = moveComponentDataToBET(bet,compData);
+        List<String> errorMessages = validateBET(bet);
+        if(errorMessages.isEmpty()){
+            update bet;   
+        } else {
+            displayErrors(errorMessages);
+        }
+    }
+
+    private void initialOwnerDoesNotMatch(){
+        update bet;                     
+        if (Test.isRunningTest() && throwUTException == 1) {
+            throw new BetException('Exception');
+        }                                                       
+        uw_OwnerUpdate ou = new uw_OwnerUpdate();
+        ou.addInitialSharersAsStandard(bet, bet.ownerId, bet.Id);
+        ou.updateCollaborationOwner(bet, initialOwnerId, bet.ownerId);            
+        banner = new Document();    
+        icon = new Document();          
+        runJsSuccess = true;
     }
 
     /*****************************************************************************************
@@ -129,41 +200,10 @@ public with sharing class uw_BetEditController {
                 delete bet;
             }  
 
-            if(!showClearBanner){
-                if(bet.Banner_1_Location__c != null){
-                    List<Document> bannerList = [SELECT Id FROM Document WHERE Id =:bet.Banner_1_Location__c];
-                    if(bannerList.size() > 0){
-                        delete bannerList[0];
-                    }
-                }
-                bet.Banner_1_Location__c = null;
-            } 
- 
-            if(!showClearIcon){
-                if(bet.Icon_Location__c != null){
-                    List<Document> iconList = [SELECT Id FROM Document WHERE Id =:bet.Icon_Location__c];
-                    if(iconList.size() > 0){
-                        delete iconList[0];
-                    }
-                }
-                bet.Icon_Location__c = null;
-            }
-
-            if(icon != null && icon.body != null){
-                icon.folderId = currentfolder.ID;  
-                icon.AuthorId = userId;
-                Id iconId = saveDocument(icon);
-                bet.Icon_Location__c = iconId;
-                showClearIcon = true;
-            }    
-
-            if(banner != null && banner.body != null){
-                banner.folderId = currentfolder.ID;  
-                banner.AuthorId = userId;
-                Id bannerId = saveDocument(banner);
-                bet.Banner_1_Location__c = bannerId;
-                showClearBanner = true;
-            }    
+            doClearBanner();
+            doClearIcon();
+            doSaveIcon(userId,currentfolder);
+            doSaveBanner(userId,currentfolder);
 
             if (bet.ownerId != initialOwnerId) {
                 Savepoint sp = Database.setSavepoint();
@@ -172,21 +212,7 @@ public with sharing class uw_BetEditController {
                     bet = moveComponentDataToBET(bet,compData);
                     List<String> errorMessages = validateBET(bet);
                     if(errorMessages.isEmpty()){
-                        update bet;   
-                    
-                        if (Test.isRunningTest() && throwUTException == 1) {
-                            throw new BetException('Exception');
-                        }                                      
-                        
-                        uw_OwnerUpdate ou = new uw_OwnerUpdate();
-                        ou.addInitialSharersAsStandard(bet, bet.ownerId, bet.Id);
-                        ou.updateCollaborationOwner(bet, initialOwnerId, bet.ownerId);
-                    
-                        banner = new Document();    
-                        icon = new Document();
-                    
-                        runJsSuccess = true;
-
+                        initialOwnerDoesNotMatch();
                         return null;
                     } else {
                         displayErrors(errorMessages);
@@ -198,14 +224,7 @@ public with sharing class uw_BetEditController {
                     return null;
                 }
             } else {
-                compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
-                bet = moveComponentDataToBET(bet,compData);
-                List<String> errorMessages = validateBET(bet);
-                if(errorMessages.isEmpty()){
-                    update bet;   
-                } else {
-                    displayErrors(errorMessages);
-                }
+                initialOwnerMatches();
             }
 
             

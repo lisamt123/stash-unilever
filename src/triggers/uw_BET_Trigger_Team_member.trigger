@@ -13,7 +13,7 @@ after update, before delete, before insert, before update )
 
 if((Trigger.isInsert && Trigger.isafter) || (Trigger.isdelete && Trigger.isafter) || (Trigger.isupdate && Trigger.isafter)|| (Trigger.isundelete && Trigger.isafter))
 //Making sure trigger is called only once
-  if ( uw_bet_update_totalnumberof_betmembers.firstRun_updatetotalnum == true)
+  if ( uw_bet_update_totalnumberof_betmembers.firstRun_updatetotalnum)
             {
                 uw_bet_update_totalnumberof_betmembers.firstRun_updatetotalnum = false;
                 //This makes sure  trigger on uw_bet__C is called

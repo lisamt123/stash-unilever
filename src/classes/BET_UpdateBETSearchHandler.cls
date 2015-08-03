@@ -4,6 +4,8 @@ public with sharing class BET_UpdateBETSearchHandler {
     private static Map<Id, String> idBrandToName;
     private static Map<Id, String> idCategoryToName;
 
+    private BET_UpdateBETSearchHandler(){}
+
     public static void beforeInsert(List<uw_BET__c> newList) {
         prepareData(newList);
         updateSearchField(newList);

@@ -205,7 +205,7 @@ public static boolean isHubAdmin(){
         try {
             insert teamMember;   
         }catch(Exception qe) {
-            throw new BetException('Problem with inserting BET member.');
+            throw new BetException('Problem with inserting BET member.',qe);
         }       
         
         return teamMember;
@@ -248,7 +248,7 @@ public static boolean isHubAdmin(){
                     }
                     return true;
                 }catch(Exception e){
-                    throw new BetException ('Problem occured while creating new member or sending mail');
+                    throw new BetException ('Problem occured while creating new member or sending mail',e);
                 }
             }
         }else{
@@ -264,7 +264,7 @@ public static boolean isHubAdmin(){
     ******************************************************************************************/  
     public Static Boolean deleteBetTeamMember(Id userId, Id betId) {
         List<uw_BET_Team_Member__c> teamMemberList = [SELECT Id, Name, Role__c, BET__c, BET__r.Studio_Chatter_Group__c, Team_Member__c FROM uw_BET_Team_Member__c WHERE Team_Member__c = :userId AND BET__c = :betId];
-        if ( teamMemberList.size() == 0 ) {
+        if (teamMemberList.isEmpty()) {
             throw new BetException ('No Team Member Found');
         }
         uw_BET_Team_Member__c teamMember = teamMemberList[0];
@@ -286,7 +286,7 @@ public static boolean isHubAdmin(){
            if ( entitySubscription != null ) delete entitySubscription;
         } catch (Exception e) {
             Database.rollback(sp);
-            throw new BetException ('Update Exception for BET Share record: '+ e.getMessage()+ 'BET Member Id: ' + teamMember.Id);
+            throw new BetException ('Update Exception for BET Share record: '+ e.getMessage()+ 'BET Member Id: ' + teamMember.Id,e);
         }
          
         return true;
@@ -371,7 +371,7 @@ public static boolean isHubAdmin(){
                     
                 }
             } catch (Exception e){
-                throw new BetException('No BET found.');
+                throw new BetException('No BET found.',e);
             }
         }
     }
@@ -443,7 +443,7 @@ public static boolean isHubAdmin(){
           
         } catch (Exception e) {
             Database.rollback(sp);
-            throw new BetException('Cannot access BET');
+            throw new BetException('Cannot access BET',e);
         }
     }
     

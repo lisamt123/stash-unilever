@@ -313,7 +313,7 @@ public with sharing class BET_SuggestMembersController {
     public PageReference addMembers(){
         System.debug('Entering method addMembers for following user: '+suggested_MembersCtrl);
         if(suggested_MembersCtrl != null && !suggested_MembersCtrl.isEmpty()){
-             Map<Id,Id> managersMap = convertSuggestedManagersToMap();
+            //Map<Id,Id> managersMap = convertSuggestedManagersToMap();
             //check if betID and project Id was passed if yes then try to get Bet Follow Request record
             List<BET_Follow_Request__c> betFollowRequest = new List<BET_Follow_Request__c>();
             if(betIdCtrl != null && projectIdCtrl != null){
