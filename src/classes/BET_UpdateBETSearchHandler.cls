@@ -1,4 +1,5 @@
 public with sharing class BET_UpdateBETSearchHandler {
+    private static Map<Id, String> idIPMProjectToName;
     private static Map<Id, String> idProjectToName;
     private static Map<Id, String> idOwnerToName;
     private static Map<Id, String> idBrandToName;
@@ -17,28 +18,34 @@ public with sharing class BET_UpdateBETSearchHandler {
     }
 
     private static void prepareData(List<uw_BET__c> newList) {
+        Set<Id> projectIPMIds = new Set<Id>();
         Set<Id> projectIds = new Set<Id>();
         Set<Id> ownersIds = new Set<Id>();
         Set<Id> brandsIds = new Set<Id>();
         Set<Id> categoriesIds = new Set<Id>();
 
         for (uw_BET__c b : newList) {
+            projectIPMIds.add(b.IPM_Project__c);
             projectIds.add(b.Inoplan_Project__c);
             ownersIds.add(b.OwnerId);
             brandsIds.add(b.Product_Brand__c);
             categoriesIds.add(b.Product_Category__c);
         }
 
-        prepareDataCommon(projectIds, ownersIds, brandsIds, categoriesIds);
+        prepareDataCommon(projectIPMIds,projectIds, ownersIds, brandsIds, categoriesIds);
     }
 
     private static void prepareData(List<uw_BET__c> newList, Map<id, uw_BET__c> oldMap) {
+        Set<Id> projectIPMIds = new Set<Id>();
         Set<Id> projectIds = new Set<Id>();
         Set<Id> ownersIds = new Set<Id>();
         Set<Id> brandsIds = new Set<Id>();
         Set<Id> categoriesIds = new Set<Id>();
 
         for (uw_BET__c b : newList) {
+            if (b.IPM_Project__c != oldMap.get(b.Id).IPM_Project__c) {
+                projectIPMIds.add(b.IPM_Project__c);
+            }
             if (b.Inoplan_Project__c != oldMap.get(b.Id).Inoplan_Project__c) {
                 projectIds.add(b.Inoplan_Project__c);
             }
@@ -53,14 +60,22 @@ public with sharing class BET_UpdateBETSearchHandler {
             }
         }
 
-        prepareDataCommon(projectIds, ownersIds, brandsIds, categoriesIds);        
+        prepareDataCommon(projectIPMIds,projectIds, ownersIds, brandsIds, categoriesIds);        
     }
 
-    private static void prepareDataCommon(Set<Id> projectIds, Set<Id> ownersIds, Set<Id> brandsIds, Set<Id> categoriesIds) {
+    private static void prepareDataCommon(Set<Id> projectIPMIds, Set<Id> projectIds, Set<Id> ownersIds, Set<Id> brandsIds, Set<Id> categoriesIds) {
+        idIPMProjectToName = new Map<Id, String>();
         idProjectToName = new Map<Id, String>();
         idOwnerToName = new Map<Id, String>();
         idBrandToName = new Map<Id, String>();
         idCategoryToName = new Map<Id, String>();
+
+        if (!projectIPMIds.isEmpty()) {
+            List<IPM_Project__c> ipmProjects = [SELECT Id, Name FROM IPM_Project__c WHERE Id IN :projectIPMIds];
+            for(IPM_Project__c proj : ipmProjects){
+                idIPMProjectToName.put(proj.Id, proj.Name);
+            }
+        }  
 
         if (!projectIds.isEmpty()) {
             List<uw_Inoplan_Project__c> infoplanProjects = [SELECT Id, Name FROM uw_Inoplan_Project__c WHERE Id IN :projectIds];
@@ -92,9 +107,12 @@ public with sharing class BET_UpdateBETSearchHandler {
     }
 
     private static void updateSearchField(List<uw_BET__c> newList) {
-        for(uw_BET__c b : newList){         
+        for(uw_BET__c b : newList){
             if(idProjectToName.containsKey(b.Inoplan_Project__c)){
                 b.Inoplan_Project_Keyword_Search__c = idProjectToName.get(b.Inoplan_Project__c);
+            }
+            if(idIPMProjectToName.containsKey(b.IPM_Project__c)){
+                b.Inoplan_Project_Keyword_Search__c = idIPMProjectToName.get(b.IPM_Project__c);
             }
             if(idOwnerToName.containsKey(b.OwnerId)){
                 b.Owner_Keyword_Search__c = idOwnerToName.get(b.OwnerId);
