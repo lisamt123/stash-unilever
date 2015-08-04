@@ -9285,6 +9285,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.Original_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.Out_of_Hours__c</field>
         <readable>false</readable>
     </fieldPermissions>

@@ -63,7 +63,7 @@
         </feedFilters>
         <fullWidthFeed>true</fullWidthFeed>
         <hideSidebar>false</hideSidebar>
-        <highlightExternalFeedItems>true</highlightExternalFeedItems>
+        <highlightExternalFeedItems>false</highlightExternalFeedItems>
         <rightComponents>
             <componentType>HelpAndToolLinks</componentType>
         </rightComponents>
@@ -278,8 +278,8 @@
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Matching_Response__c</field>
+                <behavior>Readonly</behavior>
+                <field>Original_Description__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -290,6 +290,13 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SuppliedEmail</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Matching_Response__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -402,6 +409,9 @@
         <relatedList>RelatedActivityList</relatedList>
     </relatedLists>
     <relatedLists>
+        <relatedList>RelatedEmailMessageList</relatedList>
+    </relatedLists>
+    <relatedLists>
         <excludeButtons>MailMerge</excludeButtons>
         <excludeButtons>RequestUpdate</excludeButtons>
         <excludeButtons>SendEmail</excludeButtons>
@@ -437,7 +447,7 @@
     <runAssignmentRulesDefault>true</runAssignmentRulesDefault>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
-    <showInteractionLogPanel>false</showInteractionLogPanel>
+    <showInteractionLogPanel>true</showInteractionLogPanel>
     <showKnowledgeComponent>false</showKnowledgeComponent>
     <showRunAssignmentRulesCheckbox>true</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>true</showSubmitAndAttachButton>

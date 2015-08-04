@@ -984,12 +984,27 @@ ISO Country Dependency Medium Name</description>
                 <fullName>Email TO France</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Email Sri Lanka</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Original_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Original Description</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Out_of_Hours__c</fullName>
@@ -2268,6 +2283,38 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Sri_Lanka_Escalation_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Sri Lanka Escalation Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Sri_Lanka_Escalation_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_South_Asia</role>
+            <role>CEC_Manager_Sri_Lanka</role>
+            <role>CEC_User_Sri_Lanka</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Sri_Lanka_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Sri Lanka Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Sri_Lanka_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_South_Asia</role>
+            <role>CEC_Manager_Sri_Lanka</role>
+            <role>CEC_User_Sri_Lanka</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Careline_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>Careline Queue</label>
@@ -3000,7 +3047,8 @@ IF(Case.Case_Market_Mapping_Country__c=&apos;Norway&apos;,$Setup.cec_Org_Setting
 IF(Case.Case_Market_Mapping_Country__c=&apos;Poland&apos;,$Setup.cec_Org_Settings__c.Poland_Questionnaire_Id__c,
 IF(Case.Case_Market_Mapping_Country__c=&apos;Portugal&apos;,$Setup.cec_Org_Settings__c.Portugal_Questionnaire_Id__c,
 IF(Case.Case_Market_Mapping_Country__c=&apos;Spain&apos;,$Setup.cec_Org_Settings__c.Spain_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Sweden&apos;,$Setup.cec_Org_Settings__c.Sweden_Questionnaire_Id__c,    IF(Case.Case_Market_Mapping_Country__c=&apos;Switzerland&apos;,$Setup.cec_Org_Settings__c.Switzerland_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Estonia&apos;,$Setup.cec_Org_Settings__c.Estonia_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Lithuania&apos;,$Setup.cec_Org_Settings__c.Lithuania_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Latvia&apos;,$Setup.cec_Org_Settings__c.Latvia_Questionnaire_Id__c, null)))))))))))))))))))))))}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}</url>
+IF(Case.Case_Market_Mapping_Country__c=&apos;Sweden&apos;,$Setup.cec_Org_Settings__c.Sweden_Questionnaire_Id__c,    IF(Case.Case_Market_Mapping_Country__c=&apos;Switzerland&apos;,$Setup.cec_Org_Settings__c.Switzerland_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Estonia&apos;,$Setup.cec_Org_Settings__c.Estonia_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Lithuania&apos;,$Setup.cec_Org_Settings__c.Lithuania_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Latvia&apos;,$Setup.cec_Org_Settings__c.Latvia_Questionnaire_Id__c,
+IF(Case.Case_Market_Mapping_Country__c=&apos;Sri Lanka&apos;,$Setup.cec_Org_Settings__c.Sri_Lanka_Questionnaire_Id__c,null))))))))))))))))))))))))}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}</url>
     </webLinks>
     <webLinks>
         <fullName>New_Case</fullName>

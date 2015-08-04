@@ -256,10 +256,31 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Safety_Alert_Email_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Safety Alert Email Id</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Spain_Questionnaire_Id__c</fullName>
         <description>CEC: Id of the Spain cosmetovigilence questionnaire</description>
         <externalId>false</externalId>
         <label>Spain Questionnaire Id</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sri_Lanka_Questionnaire_Id__c</fullName>
+        <description>CEC: Id of the Sri Lanka cosmetovigilence questionnaire</description>
+        <externalId>false</externalId>
+        <label>Sri Lanka Questionnaire Id</label>
         <length>30</length>
         <required>false</required>
         <trackTrending>false</trackTrending>

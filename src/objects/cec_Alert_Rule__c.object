@@ -516,6 +516,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Sri_Lanka_Queue_cec_Alert_Rule</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Sri Lanka Queue</label>
+        <queue>CEC_Sri_Lanka_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>TO_France_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>TO France Queue</label>

@@ -92,6 +92,10 @@
                 <fullName>Email TO France</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Email Sri Lanka</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
