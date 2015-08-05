@@ -1,0 +1,26 @@
+<apex:component controller="BET_LinkedProjectsComponentController">
+
+	<apex:attribute name="betId" assignTo="{!betIdentifier}" description="Id of an related BET" required="true" type="Id" />
+
+	<div class="linkedInfo">
+    	<apex:outputLabel>{!$Label.BET_LinkedProjectHeaderOne}</apex:outputLabel>
+    </div>
+
+    <div class="linkedInfo">
+    	<apex:outputLabel escape="false">{!$Label.BET_LinkedProjectHeaderTwo}</apex:outputLabel>
+    </div>
+
+    <div class="clear">&nbsp;</div> 
+
+    <apex:repeat value="{!linkedProjects}" var="project">
+    	<div class="linkedProjectName">
+    		<apex:outputLink value="/{!project.projectId}" target="_blank">
+                <apex:outputText>{!project.projectName}</apex:outputText>
+            </apex:outputLink>
+    	</div>
+    	<div class="linkedProjectNameLead" style="{!IF(project.isLeadProject,'','display:none;')}">
+    		Lead project
+    	</div>
+    </apex:repeat>
+
+</apex:component>

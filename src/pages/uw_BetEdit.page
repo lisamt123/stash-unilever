@@ -27,90 +27,77 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
     });
     </script>
             
-    <!-- Create Tab panel -->
     <apex:form >
         <apex:pageMessages escape="false"/>
         <apex:inputHidden value="{!runJsSuccess}" id="runJsSuccess"/>
 
         <apex:tabPanel switchType="client" selectedTab="name1" id="AccountTabPanel" tabClass="activeTab" inactiveTabClass="inactiveTab">
-          <apex:tab label="Toolkit Info" name="name1" id="tabOne">
+            <apex:tab label="Toolkit Info" 
+                      ontabenter="document.getElementById('{!$Component.bottomButtonsPanel}').style.display='';"
+                      name="name1" id="tabOne">
 
-
-            <div class="form-item-wrapper">
-              <div class="form-item">
-                <div class="item-label">
-                    <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_Name}</apex:outputLabel>
-                    <apex:outputPanel layout="inline" styleClass="question-icon"
-                                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Name.inlineHelpText)}"
-                                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Name.inlineHelpText}" />
+                <div class="form-item-wrapper">
+                  <div class="form-item">
+                    <div class="item-label">
+                        <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_Name}</apex:outputLabel>
+                        <apex:outputPanel layout="inline" styleClass="question-icon"
+                                    rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Name.inlineHelpText)}"
+                                    html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Name.inlineHelpText}" />
+                    </div>
+                    <div class="item-input">
+                        <apex:inputfield id="betnameid" value="{!bet.Name}"/>
+                    </div>
+                  </div>             
                 </div>
-                <div class="item-input">
-                    <apex:inputfield id="betnameid" value="{!bet.Name}"/>
+
+                <div class="form-item">
+                  <div class="item-label">
+                    <apex:outputLabel >{!$Label.BET_Owner}</apex:outputLabel>
+                  </div>
+                  <div class="item-input">
+                    <apex:inputfield styleClass="hideOwner" value="{!bet.ownerId}"/>
+                  </div>
                 </div>
-              </div>             
-            </div>
 
-            <div class="form-item">
-              <div class="item-label">
-                <apex:outputLabel >{!$Label.BET_Owner}</apex:outputLabel>
-              </div>
-              <div class="item-input">
-                <apex:inputfield styleClass="hideOwner" value="{!bet.ownerId}"/>
-              </div>
-            </div>
+                <div>
+                    <c:BET_CategoryBrandSelectionComponent betobj="{!bet}" cdata="{!compData}"/>
 
-            <div>
-              <c:BET_CategoryBrandSelectionComponent betobj="{!bet}" cdata="{!compData}"/>
+                    <div class="clear">&nbsp;</div>
 
-              <div class="clear">&nbsp;</div>
+                    <div class="form-item">
+                        <div class="item-label">
+                            <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_TargetLaunchDate}</apex:outputLabel>
+                            <apex:outputPanel layout="inline" styleClass="question-icon"
+                                    rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText)}"
+                                    html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText}" />
+                        </div>
+                        <div class="item-input-date">
+                            <apex:inputField id="tldid" value="{!bet.Launch_Date__c}"/>
+                            <script>document.getElementById('{!$Component.tldid}').disabled = {!compData.leadIPM}</script>
+                        </div>
+                        </div>
+                    </div>
 
-              <!--<div class="form-item">
-                <div class="item-label">
-                    <apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.Inherit_Branding__c.Label}</apex:outputLabel>
-                    <apex:outputPanel layout="inline" styleClass="question-icon"
-                            rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Inherit_Branding__c.inlineHelpText)}"
-                            html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Inherit_Branding__c.inlineHelpText}" />
+                    <div>
+                
+                    <div class="form-item">
+                        <div class="item-label">
+                            <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
+                            <apex:outputPanel layout="inline" styleClass="question-icon"
+                                        rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText)}"
+                                        html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText}" />
+                        </div>
+                        <div class="item-input">
+                            <apex:inputTextarea id="descid" rows="5" value="{!bet.Description__c}"/>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="item-input-checkbox">
-                    <apex:inputfield id="inheritbrandngid" value="{!bet.Inherit_Branding__c}"/>
-                    <script>document.getElementById('{!$Component.inheritbrandngid}').disabled = {!compData.leadIPM}</script>
-                </div>
-              </div> -->
+            </apex:tab>
 
-              <div class="form-item">
-                <div class="item-label">
-                    <apex:outputLabel>{!$Label.BET_MandatoryStar}{!$Label.BET_TargetLaunchDate}</apex:outputLabel>
-                    <apex:outputPanel layout="inline" styleClass="question-icon"
-                            rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText)}"
-                            html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText}" />
-                </div>
-                <div class="item-input-date">
-                    <apex:inputField id="tldid" value="{!bet.Launch_Date__c}"/>
-                    <script>document.getElementById('{!$Component.tldid}').disabled = {!compData.leadIPM}</script>
-                </div>
-              </div>
-            </div>
-
-            <div>
-            
-              <div class="form-item">
-                <div class="item-label">
-                    <apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.Description__c.Label}</apex:outputLabel>
-                    <apex:outputPanel layout="inline" styleClass="question-icon"
-                                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText)}"
-                                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText}" />
-                </div>
-                <div class="item-input">
-                    <apex:inputTextarea id="descid" rows="5" value="{!bet.Description__c}"/>
-                    <!--<script>document.getElementById('{!$Component.descid}').disabled = {!compData.leadIPM}</script>-->
-                </div>
-              </div>
-
-            </div>
-          </apex:tab>
-
-          <apex:tab label="Branding options" name="name2" id="tabTwo">
-            <apex:actionFunction action="{!clearBanner}" name="clearBannerAction"></apex:actionFunction>
+            <apex:tab label="Branding options" name="name2" id="tabTwo" 
+                      ontabenter="document.getElementById('{!$Component.bottomButtonsPanel}').style.display='';">
+                <apex:actionFunction action="{!clearBanner}" name="clearBannerAction"></apex:actionFunction>
                 <div id="banner-container">
                     <apex:outputPanel rendered="{!showClearBanner}"> 
                         <div id="banner-area">
@@ -148,30 +135,39 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                     <button type="button" id="clearFutureIcon" class="clearButton">Clear</button> 
                 </div>              
                 <div class="clear">&nbsp;</div> 
-              <div class="clear">&nbsp;</div> 
+                <div class="clear">&nbsp;</div> 
             </apex:tab>
-          </apex:tabPanel>
-      <div class="clear">&nbsp;</div>
-        <div style="float:right">
-     <!-- <apex:commandButton value="Archive BET" styleClass="btn-save" action="{!archiveBET}" rendered="{!bet.Is_Archived__c == false}" /> -->
-     
-       <!--T1 start--> 
-      <apex:commandButton value="Archive BET" styleClass="btn-save" action="{!archiveBET}" rendered="{!bet.Is_Archived__c == false}" onclick="this.value = 'Archiving...'"/>
-       <!--T1 end-->  
-       
-        <apex:outputPanel layout="inline" styleClass="question-icon-left question-icon-large"
-            html-data-tooltip="Archived BETs are moved to the Archive area on the Home Page and Search" />
-        </div>
-        <div style="float:left;">
-            <!-- <apex:commandButton value="Save" styleClass="btn-save" action="{!saveBET}" />  -->
-            <!-- <apex:commandButton value="Cancel"  styleClass="btn-cancel" /> -->
-            <!--T1 start-->
-            <apex:commandButton value="Save" styleClass="btn-save" action="{!saveBET}" onclick="this.value = 'Saving...'"/>
-            <apex:commandButton value="Cancel"  styleClass="btn-cancel" action="{!cancelBET}"  onclick="this.value = 'Canceling ...'"/>
-            <!--T1 end-->
-    
 
-        </div>
+            <apex:tab label="{!$Label.BET_LinkedProjectsTabName}" 
+                      ontabenter="document.getElementById('{!$Component.bottomButtonsPanel}').style.display='none';" 
+                      name="{!$Label.BET_LinkedProjectsTabName}" id="tabThree">
+                <c:BET_LinkedProjectsComponent betId="{!bet.id}"/>
+            </apex:tab>
+
+            <apex:tab label="{!$Label.BET_ApproveProjectsTabName}"
+                      ontabenter="document.getElementById('{!$Component.bottomButtonsPanel}').style.display='none';" 
+                      name="{!$Label.BET_ApproveProjectsTabName}" id="tabFour" rendered="{!hasProjectsToApprove}">
+                <c:BET_ApproveProjectsComponent betId="{!bet.id}"/>
+            </apex:tab>
+
+        </apex:tabPanel>
+
+        <apex:outputPanel id="bottomButtonsPanel">
+            <div class="clear">&nbsp;</div>
+            <div style="float:right">
+
+            <apex:commandButton value="Archive BET" styleClass="btn-save" action="{!archiveBET}" rendered="{!bet.Is_Archived__c == false}" onclick="this.value = 'Archiving...'"/>
+
+            <apex:outputPanel layout="inline" styleClass="question-icon-left question-icon-large"
+                html-data-tooltip="Archived BETs are moved to the Archive area on the Home Page and Search" />
+            </div>
+
+            <div style="float:left;">
+                <apex:commandButton value="Save" styleClass="btn-save" action="{!saveBET}" onclick="this.value = 'Saving...'"/>
+                <apex:commandButton value="Cancel"  styleClass="btn-cancel" action="{!cancelBET}"  onclick="this.value = 'Canceling ...'"/>
+            </div>
+        </apex:outputPanel>
+
     </apex:form>
 
     

@@ -265,6 +265,39 @@ public class BET_TestUtils {
     	insert project;
     	return project;
     }
+
+
+    /************************************************************
+		Purpose: Method creates creates test BET_Follow_Request__c record
+		Parameters: uw_Bet__c bet, IPM_Project__c project
+		Returns: BET_Follow_Request__c record
+		Throws: -
+	*************************************************************/
+    public static BET_Follow_Request__c createApprovedFollowRequest(uw_Bet__c bet, IPM_Project__c project){
+		BET_Follow_Request__c request = new BET_Follow_Request__c();
+		request.Brand_Experience_Toolkit__c = bet.id;
+		request.Project_Id__c = project.id;
+		request.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED;
+		request.Project_Name__c = project.name;
+		insert request;
+		return request;
+    }
+
+     /************************************************************
+		Purpose: Method creates creates test BET_Follow_Request__c record
+		Parameters: uw_Bet__c bet, IPM_Project__c project
+		Returns: BET_Follow_Request__c record
+		Throws: -
+	*************************************************************/
+    public static BET_Follow_Request__c createNewFollowRequest(uw_Bet__c bet, IPM_Project__c project){
+		BET_Follow_Request__c request = new BET_Follow_Request__c();
+		request.Brand_Experience_Toolkit__c = bet.id;
+		request.Project_Id__c = project.id;
+		request.Status__c = BET_LinkingService.FOLLOW_STATUS_NEW;
+		request.Project_Name__c = project.name;
+		insert request;
+		return request;
+    }
     
 
 }

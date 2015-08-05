@@ -318,4 +318,9 @@ public with sharing class uw_BetEditController {
     public void clearBanner(){
         showClearBanner = false;
     }
+
+    public Boolean getHasProjectsToApprove(){
+        List<BET_Follow_Request__c> followRequests = [select Project_Name__c,Project_Id__c,Project_Lead__r.name,CreatedDate from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: bet.id and Status__c =: BET_LinkingService.FOLLOW_STATUS_NEW limit 1];
+        return !followRequests.isEmpty();
+    }
 }
