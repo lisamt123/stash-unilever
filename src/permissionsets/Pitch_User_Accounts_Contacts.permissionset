@@ -22981,7 +22981,7 @@
         <field>uw_Terms_Conditions__c.uw_BET__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <label>Pitch - Test</label>
+    <label>Pitch User - Accounts &amp; Contacts</label>
     <pageAccesses>
         <apexPage>AF_AgencyEstimate</apexPage>
         <enabled>false</enabled>
@@ -25348,7 +25348,7 @@
     </tabSettings>
     <tabSettings>
         <tab>standard-Account</tab>
-        <visibility>Visible</visibility>
+        <visibility>Available</visibility>
     </tabSettings>
     <tabSettings>
         <tab>standard-CollaborationGroup</tab>
@@ -25356,7 +25356,7 @@
     </tabSettings>
     <tabSettings>
         <tab>standard-Contact</tab>
-        <visibility>None</visibility>
+        <visibility>Available</visibility>
     </tabSettings>
     <tabSettings>
         <tab>standard-Dashboard</tab>

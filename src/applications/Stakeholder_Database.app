@@ -6,7 +6,6 @@
     <tab>standard-Chatter</tab>
     <tab>kof_Account__c</tab>
     <tab>kof_Stakeholders</tab>
-    <tab>kof_Unilever_Project__c</tab>
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
 </CustomApplication>
