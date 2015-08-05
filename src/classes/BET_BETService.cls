@@ -20,7 +20,7 @@ public with sharing class BET_BETService {
         Returns: 
         Throws: -[BET_CustomBETException]
     *************************************************************/
-    public static BET_BETWrapper SearchBet(String searchText){
+    public static List<BET_BETWrapper> searchBet(String searchText){
         system.debug('Entring method SearchBet with param @searchText: '+searchText);
         BET_BETWrapper betWrapper = new BET_BETWrapper();
         system.debug('Exiting method SearchBet following wrapper will be returned:'+betWrapper);
@@ -33,7 +33,7 @@ public with sharing class BET_BETService {
         Returns: 
         Throws: -[BET_CustomBETException]
     *************************************************************/
-    public static void UpdateBet(Id BetId,IPM_BETWrapper IPMProject){
+    public static void updateBet(Id BetId,IPM_BETWrapper IPMProject){
         system.debug('Entring method Update with param @BetId: '+BetId+' @IPMProject: '+IPMProject);
         BET_BETWrapper betWrapper = new BET_BETWrapper();
         system.debug('Exiting method SearchBet following wrapper will be returned:'+betWrapper);
@@ -46,7 +46,7 @@ public with sharing class BET_BETService {
         Returns: 
         Throws: -[BET_CustomBETException]
     *************************************************************/
-    public static Date GetFirstReleaseDueDate(Date targetLaunchDate){
+    public static Date getFirstReleaseDueDate(Date targetLaunchDate){
         system.debug('Entring method GetFirstReleaseDueDate with param @targetLaunchDate: '+targetLaunchDate);
         
         system.debug('Exiting method GetFirstReleaseDueDate following date was returned:');
@@ -60,7 +60,7 @@ public with sharing class BET_BETService {
         Returns: 
         Throws: -[BET_CustomBETException]
     *************************************************************/
-    public static Date GetFinalReleaseDueDate(Date targetLaunchDate){
+    public static Date getFinalReleaseDueDate(Date targetLaunchDate){
         system.debug('Entring method GetFinalReleaseDueDate with param @targetLaunchDate: '+targetLaunchDate);
         
         system.debug('Exiting method GetFinalReleaseDueDate following date was returned:');
@@ -73,7 +73,7 @@ public with sharing class BET_BETService {
         Returns: 
         Throws: -[BET_CustomBETException]
     *************************************************************/
-    public static BET_BETWrapper GetBet(Id betId){
+    public static BET_BETWrapper getBet(Id betId){
         system.debug('Entring BET_BETService.GetBet with param @betd:'+betId);
         BET_BETWrapper betWrapper = new BET_BETWrapper();
         
