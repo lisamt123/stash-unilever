@@ -381,6 +381,18 @@
                 <fullName>Not Planned at this time</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Idea accepted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Idea - Implementation in progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
@@ -1001,7 +1013,15 @@
         <picklistValues>
             <picklist>Status</picklist>
             <values>
-                <fullName>In-scope</fullName>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Idea - Implementation in progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Idea accepted</fullName>
                 <default>false</default>
             </values>
             <values>
