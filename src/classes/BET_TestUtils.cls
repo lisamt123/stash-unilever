@@ -5,15 +5,14 @@ Purpose : Utility class for Unit Test purpose
 
 History
 
-VERSION  AUTHOR                DATE        DETAIL   Description
-1.0      m.bluj@polsource.com  17-07-2015  Initial
+VERSION  AUTHOR                			DATE        DETAIL   Description
+1.0      m.bluj@polsource.com  			17-07-2015  Initial
+1.1      piotr.czechusmki@gmail.com    	05-08-2015  Add instance methods
 *************************************************************************************/
 public class BET_TestUtils {
 
 	public static final String DIVISION_CAT_TYPE_NAME = 'TestCategory Sub Division 2';
 	public static final String CATEGORY_TYPE_NAME = 'TestCategory';
-
-	private BET_TestUtils (){}
 
 	/************************************************************
 		Purpose: Method creates BET record used in unit test classes
@@ -201,7 +200,7 @@ public class BET_TestUtils {
 	public static MDO_Brand__c createBrand(String brandName){
 		System.debug('Entering createBrand : ' + brandName);
 		MDO_Brand__c brand = new MDO_Brand__c();
-		brand.name = 'brandName';
+		brand.name = brandName;
 		insert brand;
 		System.debug('Exit createBrand : ' + brand);
 		return brand;
@@ -274,13 +273,7 @@ public class BET_TestUtils {
 		Throws: -
 	*************************************************************/
     public static BET_Follow_Request__c createApprovedFollowRequest(uw_Bet__c bet, IPM_Project__c project){
-		BET_Follow_Request__c request = new BET_Follow_Request__c();
-		request.Brand_Experience_Toolkit__c = bet.id;
-		request.Project_Id__c = project.id;
-		request.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED;
-		request.Project_Name__c = project.name;
-		insert request;
-		return request;
+		return createBetFollowRequest(bet,project,BET_LinkingService.FOLLOW_STATUS_APPROVED);
     }
 
      /************************************************************
@@ -290,14 +283,79 @@ public class BET_TestUtils {
 		Throws: -
 	*************************************************************/
     public static BET_Follow_Request__c createNewFollowRequest(uw_Bet__c bet, IPM_Project__c project){
-		BET_Follow_Request__c request = new BET_Follow_Request__c();
-		request.Brand_Experience_Toolkit__c = bet.id;
-		request.Project_Id__c = project.id;
-		request.Status__c = BET_LinkingService.FOLLOW_STATUS_NEW;
-		request.Project_Name__c = project.name;
+		return createBetFollowRequest(bet,project,BET_LinkingService.FOLLOW_STATUS_NEW);
+    }
+
+    /************************************************************
+		Purpose: Method creates creates test BET_Follow_Request__c record with given status
+		Parameters: uw_Bet__c bet, IPM_Project__c project,String status
+		Returns: BET_Follow_Request__c record
+		Throws: -
+	*************************************************************/
+    private static BET_Follow_Request__c createBetFollowRequest(uw_Bet__c bet, IPM_Project__c project,String status){
+    	BET_Follow_Request__c request  = createBetFollowRequest(bet.id,project.id);
+    	request.Status__c = status;
 		insert request;
 		return request;
     }
-    
+
+    public List<MDO_Brand__c> liBrands = new List<MDO_Brand__c>();
+ 	public List<MDO_Category__c> liGroupCategories = new List<MDO_Category__c>(); 
+ 	public List<MDO_Category__c> liSubDevisions2= new List<MDO_Category__c>();
+ 	public List<MDO_Category__c> liCategories = new List<MDO_Category__c>();
+ 	public List<uw_Inoplan_Project__c>liInoplanProjects = new List<uw_Inoplan_Project__c>();
+ 	public List<uw_BET__c> liBets = new List<uw_BET__c>();
+
+    /************************************************************
+		Purpose: Method intialize records for BET - for tests
+		Parameters: String project's name
+		Returns: IPM_Project__c record
+		Throws: -
+	*************************************************************/
+ 	public void initBET(){
+ 		System.debug('Entring method initBET');
+ 		MDO_Brand__c brand = new MDO_Brand__c();
+		brand.name = 'battle Axe';
+		insert brand;
+		liBrands.add(brand);
+          
+		MDO_Category__c cgroup = new MDO_Category__c();
+		cgroup.name='TestCategoryGroup';
+		cgroup.category_type__c = 'Category Group';
+		insert cgroup;
+		liGroupCategories.add(cgroup);
+
+		MDO_Category__c sdivcategory = new MDO_Category__c();
+		sdivcategory.name = DIVISION_CAT_TYPE_NAME;
+		sdivcategory.category_type__c = 'Sub Division 2';
+		sdivcategory.parent_id__c = cgroup.id;
+		insert sdivcategory;
+		liSubDevisions2.add(sdivcategory);
+
+		MDO_Category__c category = new MDO_Category__c();
+		category.name = CATEGORY_TYPE_NAME;
+		category.category_type__c = 'Category';
+		category.parent_id__c = sdivcategory.id;
+		insert category;
+		liCategories.add(category);
+
+        uw_Inoplan_Project__c inoProject = new uw_Inoplan_Project__c();
+        inoProject.name = 'No Inoplan Project' + Math.random();
+        insert inoProject;
+        liInoplanProjects.add(inoProject);
+
+        uw_BET__c bet = new uw_BET__c();
+        bet.Product_Brand__c = brand.Id;
+        bet.Product_Category__c = category.Id;
+        bet.Category_Group__c = cgroup.id;
+        bet.Status__c = 'First release';
+        bet.Inoplan_Project__c = inoProject.id;
+        bet.Name = 'AxeBrandExperience';
+        insert bet;
+        liBets.add(bet);
+
+        System.debug('Exit initBET ');
+
+ 	}
 
 }
