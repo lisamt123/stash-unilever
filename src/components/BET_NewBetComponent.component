@@ -90,7 +90,7 @@
         <div>
             <div class="form-item">
                 <div class="item-label">
-                    <apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.Description__c.Label}</apex:outputLabel>
+                    <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
                                 rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText)}"
                                 html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText}" />
@@ -116,7 +116,7 @@
     <apex:outputPanel id="betMembers">
         <c:BET_SuggestMembers BetID="{!bet.id}" 
                             ProjectId="{!IF(bet.IPM_Project__c == null,bet.Inoplan_Project__c,bet.IPM_Project__c)}" 
-                            Callback="/apex/bet" 
+                            Callback="/{!bet.id}" 
                             rendered="{!goToMemberSelection}"/>
     </apex:outputPanel>
 
