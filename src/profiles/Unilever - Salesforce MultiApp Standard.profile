@@ -11680,6 +11680,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>FAU_Program__c.Test_Bio_Deadline__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FAU_Program__c.test_Bhavneesh__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>FAU_Webinar_Participant__c.FAU_Bio_Fill_Deadline__c</field>
         <readable>false</readable>
     </fieldPermissions>

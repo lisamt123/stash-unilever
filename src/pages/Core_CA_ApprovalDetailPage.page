@@ -125,11 +125,11 @@
                                     <table class="responsiveDetailSectionTable">
                                         <tr>
                                             <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_NON_REIMBURSABLE' | translate}}</td>
-                                            <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_DAYS' | translate}}</td>
+                                            <!--<td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_DAYS' | translate}}</td>-->
                                         </tr>
                                         <tr>
                                             <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.NonReimbursable}}</td>
-                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.Days}}</td>
+                                            <!--<td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.Days}}</td>-->
                                         </tr>
                                     </table>                            
                                 </div>

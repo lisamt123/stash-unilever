@@ -530,6 +530,27 @@
         <trackTrending>false</trackTrending>
         <type>Url</type>
     </fields>
+    <fields>
+        <fullName>Test_Bio_Deadline__c</fullName>
+        <externalId>false</externalId>
+        <formula>FAU_Start_Date__c +7</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Test Bio Deadline</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>test_Bhavneesh__c</fullName>
+        <externalId>false</externalId>
+        <label>test Bhavneesh</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
     <label>Program</label>
     <listViews>
         <fullName>All</fullName>
@@ -1029,6 +1050,12 @@
         <errorConditionFormula>ISPICKVAL(FAU_Primary_Location__c,&quot;&quot;)</errorConditionFormula>
         <errorDisplayField>FAU_Primary_Location__c</errorDisplayField>
         <errorMessage>The Primary Location is not chosen. Please select the Primary Location of the Wave.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Test_Deadline_Webnar</fullName>
+        <active>false</active>
+        <errorConditionFormula>IF(FAU_Biography_Deadline__c &lt;= FAU_Start_Date__c +6, True, False)</errorConditionFormula>
+        <errorMessage>Please Provide correct Dates</errorMessage>
     </validationRules>
     <webLinks>
         <fullName>FAU_Create_Program_from_Template</fullName>

@@ -85,16 +85,18 @@
                                 <tr>
                                      <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.EndDate}}</td>
                                      <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Reimbursable}}</td>
-                                </tr>
+                                 </tr>
                               </table> 
                          </div>
                          <div class="responsiveDetailSectionData">   
                             <table class="responsiveDetailSectionTable">
                                 <tr>
-                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_RECEIPT' | translate}}</td>
+                                    <td ng-show="approvalLineDetailRequestData.ExpenseDetails.ExpenseType!='Per Diem'" class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_RECEIPT' | translate}}</td>                                
+                                    <!--<td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_RECEIPT' | translate}}</td>-->
                                 </tr>
                                 <tr>
-                                    <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Receipt}}</td>
+                                    <td ng-show="approvalLineDetailRequestData.ExpenseDetails.ExpenseType!='Per Diem'" class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Receipt}}</td>
+                                    <!--<td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Receipt}}</td>-->
                                 </tr>
                               </table> 
                          </div>    
@@ -203,10 +205,10 @@
                     </span>                
                 </div>
                 <div ng-hide="prediemPanel" class="responsiveDetailSectionTable">
-                    <div class="responsiveDetailSectionTable">
+                    <!--<div class="responsiveDetailSectionTable">
                         <span class="fieldLabel">{{'LBL_EXP_LINEITEM_DETAIL_PER_DIEM_AMOUNT' | translate}}</span><br/>
                         <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.PerDiemAmount}}</span>
-                    </div>     
+                    </div>-->     
                     <div class="responsiveDetailSectionTable">
                         <span class="fieldLabel">{{'LBL_EXP_LINEITEM_DETAIL_PER_DIEM_DETAILS' | translate}}</span><br/>
                         <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.PerDiemDetails}}</span>

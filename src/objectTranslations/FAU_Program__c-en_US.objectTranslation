@@ -231,6 +231,14 @@
         <label><!-- Video Introduction --></label>
         <name>FAU_Video_Introduction__c</name>
     </fields>
+    <fields>
+        <label><!-- Test Bio Deadline --></label>
+        <name>Test_Bio_Deadline__c</name>
+    </fields>
+    <fields>
+        <label><!-- test Bhavneesh --></label>
+        <name>test_Bhavneesh__c</name>
+    </fields>
     <layouts>
         <layout>FAU Core</layout>
         <sections>
@@ -346,6 +354,10 @@
     <validationRules>
         <errorMessage><!-- The Primary Location is not chosen. Please select the Primary Location of the Wave. --></errorMessage>
         <name>FAU_Program_Wave_Location</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please Provide correct Dates --></errorMessage>
+        <name>Test_Deadline_Webnar</name>
     </validationRules>
     <webLinks>
         <label><!-- FAU_Create_Program_from_Template --></label>
