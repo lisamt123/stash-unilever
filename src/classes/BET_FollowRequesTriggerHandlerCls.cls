@@ -64,7 +64,7 @@ public with sharing class BET_FollowRequesTriggerHandlerCls {
 		}
 		if(!leadRequests.isEmpty()) updateBetsWithLeadProjects(leadRequests);
 		if(!approvedRequests.isEmpty()) approveAllRelatedMemberRequests(getIds(approvedRequests));
-		notifyIPMProjectLeads(approvedRequests,'Approved');
+		notifyIPMProjectLeads(approvedRequests,BET_LinkingService.FOLLOW_STATUS_APPROVED);
 	}
 
 	/************************************************************
@@ -85,12 +85,12 @@ public with sharing class BET_FollowRequesTriggerHandlerCls {
 	*************************************************************/
 	private static void handleRejectedRequests(List<BET_Follow_Request__c> rejectedRequests){
 		rejectAllRelatedMemberRequests(getIds(rejectedRequests));
-		notifyIPMProjectLeads(rejectedRequests,'Rejected');
+		notifyIPMProjectLeads(rejectedRequests,BET_LinkingService.FOLLOW_STATUS_REJECTED);
 	}
 
 	private static void notifyIPMProjectLeads(List<BET_Follow_Request__c> rejectedRequests,String status){
 		for(BET_Follow_Request__c request : rejectedRequests){
-			IPM_BETLinkingService.notifyIPM(request.Brand_Experience_Toolkit__c,(Id)request.Project_Id__c,status);
+			IPM_BETUpdateService.ipm_BETLinkingService(request.Brand_Experience_Toolkit__c,(Id)request.Project_Id__c,status);
 		}
 	}
 

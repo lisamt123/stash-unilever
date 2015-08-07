@@ -39,7 +39,7 @@ private class BET_UpsertBETControllerTest {
 	
 	@isTest static void skipForNowTest() {
 		BET_UpsertBETController controller = new BET_UpsertBETController();
-		controller.cback = '/apex/bet';
+		controller.cbackskipped = '/apex/bet';
 		System.assert(controller.skipForNow() != null);
 	}
 
