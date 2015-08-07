@@ -12,6 +12,8 @@ History
 -------
 VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   Maciej Krol             26/11/2014      INITIAL DEVELOPMENT
+1.1 -   Piotr Czechumski        05/08/2015      Add new master data, IPM project and remove archive bets from results
+
 **********************************************************************/
 
 public without sharing class uw_BETSearchService {
@@ -73,7 +75,7 @@ public without sharing class uw_BETSearchService {
     Throws [Exceptions]: [optional] 
     ********************************************************************/
     private static String buildWhereClausesForSearch(String brandId, String categoryId){
-        String whereClauseForBet = 'where Id != \'\'';
+        String whereClauseForBet = 'where Is_Archived__c = false AND Id != \'\'';
         try{
             if(brandId != null && brandId != '' ){
                 Id.valueOf(brandId);             
