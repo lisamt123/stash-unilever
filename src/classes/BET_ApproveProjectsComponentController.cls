@@ -15,79 +15,12 @@ public with sharing class BET_ApproveProjectsComponentController {
 	public BET_Follow_Request__c followReguest {get;set;}
 	public Id elementId {get;set;}
 
-	public String ipmProjectName {
-		get{
-			if(followReguest == null){
-				try{
-					followReguest = [select Project_Name__c,Project_Id__c,Project_Lead__r.name,CreatedDate from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: betIdentifier and Status__c =: BET_LinkingService.FOLLOW_STATUS_NEW order by createddate desc limit 1 ];
-					return followReguest.Project_Name__c;
-				}catch(Exception e){
-					return null;
-				}
-			} else {
-				return followReguest.Project_Name__c;
-			}
-		}
-		set{
-			ipmProjectName = value;
-		}
-	}
-
-	public String ipmProjectTLD {
-		get{
-			if(project != null){
-				return String.valueOf(project.IPM_Target_Launch_Dates__c);
-			} else {
-				if(followReguest == null){
-					return null;
-				} else {
-					project = [select IPM_Target_Launch_Dates__c from IPM_Project__c where id=:followReguest.Project_Id__c];
-					return String.valueOf(project.IPM_Target_Launch_Dates__c);
-				}
-			}
-		}
-		set{
-			ipmProjectTLD = value;
-		}
-	}
-
-	public String ipmProjectLead {
-		get{
-			if(followReguest == null){
-				try{
-					followReguest = [select Project_Lead__r.name,Project_Id__c,CreatedDate,Project_Name__c from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: betIdentifier and Status__c =: BET_LinkingService.FOLLOW_STATUS_NEW order by createddate desc limit 1 ];
-					return followReguest.Project_Lead__r.name;
-				}catch(Exception e){
-					return null;
-				}
-			} else {
-				return followReguest.Project_Lead__r.name;
-			}
-		}
-		set{
-			ipmProjectLead = value;
-		}
-	}
-	public String remainder {
-		get{
-			if(followReguest != null) { 
-				String autoApproveDate = String.valueOf(followReguest.createdDate.addDays(3));
-				return String.format(Label.BET_ProjectApproveRemainder, new List<String> {autoApproveDate});
-			}
-			return null;
-		}
-		set{
-			remainder = value;
-		}
-	}
-
-
 	public BET_ApproveProjectsComponentController() {}
 
 	/************************************************************
 		Purpose: Method denies linking request
 		Parameters: -
-		Returns: Page reference
+		Returns: -
 		Throws: -
 	*************************************************************/
 	public void doDeny(){
@@ -97,9 +30,9 @@ public with sharing class BET_ApproveProjectsComponentController {
 	}
 
 	/************************************************************
-		Purpose: Method sapproves linking request
+		Purpose: Method approves linking request
 		Parameters: -
-		Returns: PageReference
+		Returns: -
 		Throws: -
 	*************************************************************/
 	public void doApprove(){
@@ -108,6 +41,12 @@ public with sharing class BET_ApproveProjectsComponentController {
 		update followReguest;
 	}
 
+	/************************************************************
+		Purpose: Method retrieves list of new follow requests related to bet
+		Parameters: -
+		Returns: List<FollowRequestWrapper>
+		Throws: -
+	*************************************************************/
 	public List<FollowRequestWrapper> getPendingRequests(){
 		List<FollowRequestWrapper> result = new List<FollowRequestWrapper>();
 		Map<String,Date> projectIdTLDMap = new Map<String,Date>();
@@ -136,7 +75,10 @@ public with sharing class BET_ApproveProjectsComponentController {
 		return result;
 	}
 
-
+	/**********************************************************
+		Name : FollowRequestWrapper
+		Purpose : Wrapper class for BET_Follow_Request__c object
+	***********************************************************/
 	public class FollowRequestWrapper{
 		public Id id {get;set;}
 		public String ipmProject {get;set;}

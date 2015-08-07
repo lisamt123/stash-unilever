@@ -14,7 +14,6 @@ public with sharing class BET_LinkedProjectsComponentController {
 
 	public BET_LinkedProjectsComponentController() {}
 
-
 	/************************************************************
 		Purpose: Method retreives all linked projects related to given bet
 		Parameters: -
@@ -35,6 +34,10 @@ public with sharing class BET_LinkedProjectsComponentController {
 		return requests;
 	}
 
+	/**********************************************************
+		Name : FollowRequestWrapper
+		Purpose : Wrapper class for BET_Follow_Request__c object
+	***********************************************************/
 	public class FollowRequestWrapper{
 		public String projectId {get;set;}
 		public String projectName {get;set;}
