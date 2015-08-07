@@ -100,6 +100,7 @@ public with sharing class BET_LinkingService {
 		request.Project_Name__c = project.name;
 		request.Project_Lead__c = managersIds.get(0);
 		request.Is_Lead_Request__c = shouldMarkRequestAsLeadRequest(bet);
+		request.Bet_owner__c = bet.ownerId;
 		insert request;
 		System.debug('Exit createFollowRequest : ' + request);
 		return request;
