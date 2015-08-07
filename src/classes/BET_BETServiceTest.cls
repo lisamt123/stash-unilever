@@ -17,7 +17,7 @@ private class BET_BETServiceTest {
 		uw_BET__c betObject = BET_TestUtils.getTestBet();
         //test for not created bet 
         try{
-            BET_BETWrapper betWrap = BET_BETService.GetBet(betObject.id);
+            BET_BETService.GetBet(betObject.id);
             system.assertEquals(0,1,'method should throw BET_CustomBETException');
         }catch(BET_CustomBETException ex){
             system.assertEquals(String.format(Label.BetServiceGetBetError,new List<String>{betObject.id}),ex.getMessage());

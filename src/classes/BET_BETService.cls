@@ -24,18 +24,19 @@ public with sharing class BET_BETService {
     public static List<BET_BETWrapper> searchBet(String searchText, Id categoryId, String categoryMDOId){
         system.debug('Entring method SearchBet with param @searchText: '+searchText);
         List<BET_BETWrapper> retVal;
+        Id catId = categoryId;
         try{
-            if (categoryId == null && String.isNotBlank(categoryMDOId)){
-                categoryId = getProductCategoryByMDOId(categoryMDOId).id;
+            if (catId == null && String.isNotBlank(categoryMDOId)){
+                catId = getProductCategoryByMDOId(categoryMDOId).id;
             }
             retVal = convertSearchResultsToBETWrapper(
-                uw_BETSearchService.search('', categoryId, searchText, 2000, 1, true,true, 'betName'));
+                uw_BETSearchService.search('', catId, searchText, 2000, 1, true,true, 'betName'));
         }
         catch (Exception ex){
             // All exception are cauthed and rethrow as BET_CustomBETException as per design this in only
             // one exception expected from this service method 
             system.debug('Exception catched - ' + ex.getTypeName() + ' :' + ex.getMessage());
-            throw new BET_CustomBETException (ex.getMessage());
+            throw new BET_CustomBETException (ex.getMessage() + 'Stack: ' + ex.getStackTraceString());
         }
         system.debug('Exiting method SearchBet following wrapper will be returned:'+retVal);
         return retVal;
