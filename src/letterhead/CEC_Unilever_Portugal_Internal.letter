@@ -16,7 +16,7 @@
     </footer>
     <header>
         <backgroundColor>#FFFFFF</backgroundColor>
-        <height>80</height>
+        <height>50</height>
         <horizontalAlignment>Right</horizontalAlignment>
         <verticalAlignment>Top</verticalAlignment>
     </header>

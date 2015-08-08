@@ -427,9 +427,9 @@
     </listViews>
     <listViews>
         <fullName>CEC_France_Queue_cec_Alert_Rule</fullName>
-        <filterScope>Queue</filterScope>
+        <filterScope>Mine</filterScope>
         <label>CEC France Queue</label>
-        <queue>CEC_France_Queue</queue>
+        <language>fr</language>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
