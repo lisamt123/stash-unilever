@@ -1,9 +1,9 @@
-<apex:component controller="BET_ApproveProjectsComponentController" allowDML="true">
+<apex:component controller="BET_ApproveProjectsComponentController" allowDML="true" >
 
 	<apex:attribute name="betId" assignTo="{!betIdentifier}" description="Id of an related BET" required="true" type="Id" />
 
 
-    <apex:outputPanel id="apcComponent">
+    <apex:outputPanel id="approvpanel">
 
         <apex:repeat value="{!pendingRequests}" var="preq">
 
@@ -50,17 +50,15 @@
 
             <div class="betActionButtons">
                 <apex:actionRegion>
-                    <apex:commandButton value="{!$Label.BET_Deny}" styleClass="btn-deny" action="{!doDeny}" rerender="apcComponent">
+                    <apex:commandButton value="{!$Label.BET_Deny}" styleClass="btn-deny" action="{!doDeny}" rerender="approvpanel">
                         <apex:param name="elementNo" value="{!preq.id}" assignTo="{!elementId}"/>
                     </apex:commandButton>
-                    <apex:commandButton value="{!$Label.BET_Approve}" styleClass="btn-approve" action="{!doApprove}" rerender="apcComponent">
+                    <apex:commandButton value="{!$Label.BET_Approve}" styleClass="btn-approve" action="{!doApprove}" rerender="approvpanel">
                         <apex:param name="elementNo" value="{!preq.id}" assignTo="{!elementId}"/>
                     </apex:commandButton>
                 </apex:actionRegion>
             </div>
-
             <div class="clear">&nbsp;</div> 
-                
         </apex:repeat>
     </apex:outputPanel>
 </apex:component>

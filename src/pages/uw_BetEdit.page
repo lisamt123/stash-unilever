@@ -31,7 +31,8 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
         <apex:pageMessages escape="false"/>
         <apex:inputHidden value="{!runJsSuccess}" id="runJsSuccess"/>
 
-        <apex:tabPanel switchType="client" selectedTab="name1" id="AccountTabPanel" tabClass="activeTab" inactiveTabClass="inactiveTab">
+        <apex:tabPanel switchType="client" selectedTab="{!tabInFocus}" id="AccountTabPanel" tabClass="activeTab" value="{!tabInFocus}" 
+                       inactiveTabClass="inactiveTab">
             <apex:tab label="Toolkit Info" 
                       ontabenter="document.getElementById('{!$Component.bottomButtonsPanel}').style.display='';"
                       name="name1" id="tabOne">
@@ -140,19 +141,19 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
             <apex:tab label="{!$Label.BET_LinkedProjectsTabName}" 
                       ontabenter="document.getElementById('{!$Component.bottomButtonsPanel}').style.display='none';" 
-                      name="{!$Label.BET_LinkedProjectsTabName}" id="tabThree">
+                      name="tabThree" id="tabThree">
                 <c:BET_LinkedProjectsComponent betId="{!bet.id}"/>
             </apex:tab>
 
             <apex:tab label="{!$Label.BET_ApproveProjectsTabName}"
                       ontabenter="document.getElementById('{!$Component.bottomButtonsPanel}').style.display='none';" 
-                      name="{!$Label.BET_ApproveProjectsTabName}" id="tabFour" rendered="{!hasProjectsToApprove}">
-                <c:BET_ApproveProjectsComponent betId="{!bet.id}"/>
+                      name="tabFour" id="tabFour" rendered="{!hasProjectsToApprove}">
+                <c:BET_ApproveProjectsComponent betId="{!bet.id}" id="apcComponent"/>
             </apex:tab>
 
         </apex:tabPanel>
 
-        <apex:outputPanel id="bottomButtonsPanel">
+        <apex:outputPanel id="bottomButtonsPanel" rendered="{!IF(OR(tabInFocus == 'tabFour',tabInFocus == 'tabThree'),false,true)}">
             <div class="clear">&nbsp;</div>
             <div style="float:right">
 

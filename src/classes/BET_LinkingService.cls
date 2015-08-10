@@ -28,21 +28,24 @@ public with sharing class BET_LinkingService {
 		List<IPM_Project__c> projects = [select id,name,IPM_Target_Launch_Dates__c from IPM_Project__c where id=:ProjectId];
 		validateParams(betRecords,projects);
 		try{
-			updateBet(betRecords.get(0),projects.get(0));
+			updateBetRecord(betRecords.get(0),projects.get(0));
 		}catch(Exception e){
 			throw new BET_CustomBETException(Label.BET_SetAsLeadExceptionMessage,e);
 		}
 		System.debug('Exit setASLead');
 	}
 
-	private static void updateBet(uw_Bet__c bet,IPM_Project__c project){
-		bet.Launch_Date__c = project.IPM_Target_Launch_Dates__c;
-		bet.IPM_Project__c = project.id;
-		// final relase oraz first release same sie przekalkuluja bo to formuly 
-		//bet.Category_Group__c = null;
-		//bet.Product_Category__c = null;
-		//bet.Brand_Position__c = null;
-		// skad brac powyzsze ??
+	public static void updateBetRecord(uw_Bet__c bet,IPM_Project__c project){
+		updateBet(bet,project.id);
+	}
+
+	public static void updateBet(uw_Bet__c bet,Id projectId){
+		IPM_BETWrapper projectWrapper = IPM_BETUpdateService.ipm_Wrapper(projectId);
+		bet.Launch_Date__c = projectWrapper.targetLaunchDate;
+		bet.IPM_Project__c = projectWrapper.projectId;
+		bet.Category_Group__c = projectWrapper.categoryGroupName;
+		bet.Product_Category__c = projectWrapper.categoryName;
+		bet.Brand_Position__c = projectWrapper.brandPosition;
 		update bet;
 	}
 
@@ -153,11 +156,14 @@ public with sharing class BET_LinkingService {
 	private static List<Id> createRelatedMemberRequests(BET_Follow_Request__c followRequest,uw_Bet__c relatedBet,List<Id> managersIds){
 		System.debug('Entering crateRelatedMemberRequests : ' + followRequest + ', ' + relatedBet + ', ' + managersIds);
 		List<BET_Member_Request__c> mRequestsToBeCreated = new List<BET_Member_Request__c>();
+		Integer counter = 0;
 		for(Id managerId : managersIds){
-			mRequestsToBeCreated.add( new BET_Member_Request__c(Brand_Experience_Toolkit__c=relatedBet.id,
-																UserId__c=managerId,
-																ProjectRequest__c=followRequest.id,
-																Project_Id__c=followRequest.Project_Id__c));
+			mRequestsToBeCreated.add( new BET_Member_Request__c(Brand_Experience_Toolkit__c = relatedBet.id,
+																UserId__c = managerId,
+																Role__c = counter == 0 ? 'Manager' : 'Member',
+																ProjectRequest__c = followRequest.id,
+																Project_Id__c = followRequest.Project_Id__c));
+			counter ++;
 		}
 		insert mRequestsToBeCreated;
 		List<Id> requestIds = new List<Id>();

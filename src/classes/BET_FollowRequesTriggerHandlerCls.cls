@@ -74,7 +74,18 @@ public with sharing class BET_FollowRequesTriggerHandlerCls {
 		Throws: -
 	*************************************************************/
 	private static void updateBetsWithLeadProjects(List<BET_Follow_Request__c> leadRequests){
-
+		Map<Id,uw_Bet__c> betMap = new Map<Id,uw_Bet__c>();
+		Set<Id> betIds = new Set<Id>();
+		for(BET_Follow_Request__c fr : leadRequests){
+			betIds.add(fr.Brand_Experience_Toolkit__c);
+		}
+		for(uw_Bet__c bet : [select id,Launch_Date__c,IPM_Project__c,Category_Group__c,Product_Category__c,Brand_Position__c 
+							 from uw_Bet__c where id in : betIds]){
+			betMap.put(bet.id,bet);
+		}
+		for(BET_Follow_Request__c request : leadRequests){
+			BET_LinkingService.updateBet(betMap.get(request.Brand_Experience_Toolkit__c),(Id)request.Project_Id__c);
+		}
 	}
 
 	/************************************************************
@@ -117,7 +128,7 @@ public with sharing class BET_FollowRequesTriggerHandlerCls {
 	private static void rejectAllRelatedMemberRequests(List<Id> rejectedRequestsIds){
 		List<BET_Member_Request__c> relatedMemberRequest = [select id, Status__c from BET_Member_Request__c where 	ProjectRequest__c in: rejectedRequestsIds];
 		for(BET_Member_Request__c request : relatedMemberRequest){
-			request.Status__c = 'Rejected';
+			request.Status__c = BET_SuggestedMemberService.REJECTED;
 		}
 		update relatedMemberRequest;
 	}
@@ -131,7 +142,7 @@ public with sharing class BET_FollowRequesTriggerHandlerCls {
 	private static void approveAllRelatedMemberRequests(List<Id> approvedRequestsIds){
 		List<BET_Member_Request__c> relatedMemberRequest = [select id, Status__c from BET_Member_Request__c where 	ProjectRequest__c in: approvedRequestsIds];
 		for(BET_Member_Request__c request : relatedMemberRequest){
-			request.Status__c = 'Approved';
+			request.Status__c = BET_SuggestedMemberService.APPROVED;
 		}
 		update relatedMemberRequest;
 	}

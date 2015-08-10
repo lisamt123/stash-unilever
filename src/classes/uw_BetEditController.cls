@@ -24,6 +24,8 @@ public with sharing class uw_BetEditController {
     public Boolean runJsSuccess{get;set;}
     public Boolean moveHome{get; protected set;}
 
+    public String tabInFocus{get;set;}
+
     private String initialOwnerId {get; set;}
     private uw_BET__Share initialBETShare {get {
         if (initialBETShare == null) {
@@ -49,6 +51,7 @@ public with sharing class uw_BetEditController {
         runJsSuccess = false;
         moveHome = false;
         currentId = System.currentPageReference().getParameters().get('Id');
+        tabInFocus = System.currentPageReference().getParameters().get('activeTab') == null ? 'name1' : (String)System.currentPageReference().getParameters().get('activeTab');
         Boolean categoryMigrated = null;
         Boolean categoryNotMigrated = null;
 

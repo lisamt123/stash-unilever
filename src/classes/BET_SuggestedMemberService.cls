@@ -10,6 +10,9 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 
 public with sharing class BET_SuggestedMemberService {
+
+    public static final String APPROVED = 'Approved';
+    public static final String REJECTED = 'Rejected';
     
     private BET_SuggestedMemberService(){}
     
