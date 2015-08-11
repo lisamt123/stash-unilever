@@ -72,7 +72,12 @@ public with sharing class BET_FollowRequesTriggerHandlerCls {
 		updateBetsWithLeadProjectsWhenThereIsNoLeadProjectOnBET(approvedRequests,leadReguestRelatedBets);
 	}
 
-
+	/************************************************************
+		Purpose: Method sets lead project on bet when there is no lead yet and ther is no lead request in batch
+		Parameters: List<BET_Follow_Request__c> approvedRequests,Set<Id> leadReguestRelatedBets
+		Returns: -
+		Throws: -
+	*************************************************************/
 	private static void updateBetsWithLeadProjectsWhenThereIsNoLeadProjectOnBET(List<BET_Follow_Request__c> approvedRequests,Set<Id> leadReguestRelatedBets){
 		Map<Id,uw_Bet__c> betMap = new Map<Id,uw_Bet__c>();
 		Set<Id> betIds = new Set<Id>();

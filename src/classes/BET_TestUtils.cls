@@ -13,6 +13,10 @@ public class BET_TestUtils {
 
 	public static final String DIVISION_CAT_TYPE_NAME = 'TestCategory Sub Division 2';
 	public static final String CATEGORY_TYPE_NAME = 'TestCategory';
+	public static final String CATEGORY_TYPE_CAT_GROUP = 'Category Group';
+	public static final String CATEGORY_TYPE_SUBDEVISION2 = 'Sub Division 2';
+	public static final String CATEGORY_TYPE_CATEGORY = 'Category';
+	
 
 	/************************************************************
 		Purpose: Method creates BET record used in unit test classes
@@ -27,18 +31,18 @@ public class BET_TestUtils {
           
 		MDO_Category__c cgroup = new MDO_Category__c();
 		cgroup.name='TestCategoryGroup';
-		cgroup.category_type__c = 'Category Group';
+		cgroup.category_type__c = CATEGORY_TYPE_CAT_GROUP;
 		insert cgroup;
 
 		MDO_Category__c sdivcategory = new MDO_Category__c();
 		sdivcategory.name = DIVISION_CAT_TYPE_NAME;
-		sdivcategory.category_type__c = 'Sub Division 2';
+		sdivcategory.category_type__c = CATEGORY_TYPE_SUBDEVISION2;
 		sdivcategory.parent_id__c = cgroup.id;
 		insert sdivcategory;
 
 		MDO_Category__c category = new MDO_Category__c();
 		category.name = CATEGORY_TYPE_NAME;
-		category.category_type__c = 'Category';
+		category.category_type__c = CATEGORY_TYPE_SUBDEVISION2;
 		category.parent_id__c = sdivcategory.id;
 		insert category;
 
@@ -87,7 +91,7 @@ public class BET_TestUtils {
 		System.debug('Entering createCategoryGroup');
 		MDO_Category__c cgroup = new MDO_Category__c();
 		cgroup.name='TestCategoryGroup';
-		cgroup.category_type__c = 'Category Group';
+		cgroup.category_type__c = CATEGORY_TYPE_CAT_GROUP;
 		insert cgroup;
 		System.debug('Exit createCategoryGroup : ' + cgroup);
 		return cgroup;
@@ -105,13 +109,13 @@ public class BET_TestUtils {
 
 		MDO_Category__c sdivcategory = new MDO_Category__c();
 		sdivcategory.name = DIVISION_CAT_TYPE_NAME;
-		sdivcategory.category_type__c = 'Sub Division 2';
+		sdivcategory.category_type__c = CATEGORY_TYPE_SUBDEVISION2;
 		sdivcategory.parent_id__c = categoryGroup.id;
 		insert sdivcategory;
 
 		MDO_Category__c category = new MDO_Category__c();
 		category.name = CATEGORY_TYPE_NAME;
-		category.category_type__c = 'Category';
+		category.category_type__c = CATEGORY_TYPE_CATEGORY;
 		category.parent_id__c = sdivcategory.id;
 		insert category;
 
@@ -133,13 +137,13 @@ public class BET_TestUtils {
 
 		MDO_Category__c sdivcategory = new MDO_Category__c();
 		sdivcategory.name = CATEGORY_TYPE_NAME;
-		sdivcategory.category_type__c = 'Sub Division 2';
+		sdivcategory.category_type__c = CATEGORY_TYPE_SUBDEVISION2;
 		sdivcategory.parent_id__c = categoryGroup.id;
 		insert sdivcategory;
 
 		MDO_Category__c category = new MDO_Category__c();
 		category.name=categoryName;
-		category.category_type__c = 'Category';
+		category.category_type__c = CATEGORY_TYPE_CATEGORY;
 		category.parent_id__c = sdivcategory.id;
 		insert category;
 
@@ -315,27 +319,28 @@ public class BET_TestUtils {
  	public void initBET(){
  		System.debug('Entring method initBET');
  		MDO_Brand__c brand = new MDO_Brand__c();
-		brand.name = 'battle Axe';
+		brand.name = 'Omo';
 		insert brand;
 		liBrands.add(brand);
           
 		MDO_Category__c cgroup = new MDO_Category__c();
-		cgroup.name='TestCategoryGroup';
-		cgroup.category_type__c = 'Category Group';
+		cgroup.name='Home Care';
+		cgroup.category_type__c = CATEGORY_TYPE_CAT_GROUP;
 		insert cgroup;
 		liGroupCategories.add(cgroup);
 
 		MDO_Category__c sdivcategory = new MDO_Category__c();
 		sdivcategory.name = DIVISION_CAT_TYPE_NAME;
-		sdivcategory.category_type__c = 'Sub Division 2';
+		sdivcategory.category_type__c = CATEGORY_TYPE_SUBDEVISION2;
 		sdivcategory.parent_id__c = cgroup.id;
 		insert sdivcategory;
 		liSubDevisions2.add(sdivcategory);
 
 		MDO_Category__c category = new MDO_Category__c();
 		category.name = CATEGORY_TYPE_NAME;
-		category.category_type__c = 'Category';
+		category.category_type__c = CATEGORY_TYPE_SUBDEVISION2;
 		category.parent_id__c = sdivcategory.id;
+		category.mdm_id__c = ''+ Integer.valueOf(Math.random()*10000);
 		insert category;
 		liCategories.add(category);
 
