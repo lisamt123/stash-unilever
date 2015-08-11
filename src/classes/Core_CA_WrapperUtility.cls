@@ -96,6 +96,7 @@ global with sharing class Core_CA_WrapperUtility {
         public Boolean isRecalled; 
         public Boolean hasPermSet;
         //public Boolean isinvalid; 
+        
     } 
     
     global class ExpenseDetailsDataRequest{
@@ -153,6 +154,7 @@ global with sharing class Core_CA_WrapperUtility {
         public String PolicyExceptions;
         public String Comments;
         public String Attendees;
+        public Boolean IsPerDiem;
     }
     
     public class PricingSuplierDetails{

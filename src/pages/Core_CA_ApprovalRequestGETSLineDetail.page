@@ -54,48 +54,48 @@
                                 <tr>
                                     
                                     <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_PAYMENT_TYPE' | translate}}</td>
-                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_CITY' | translate}}</td>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_REIMBURSABLE' | translate}}</td>
                                 </tr>
                                 <tr>
                                      <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.PaymentType}}</td>
-                                     <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.City}}</td>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Reimbursable}}</td> 
                                 </tr>
                               </table> 
                          </div>
                          <div class="responsiveDetailSectionData">   
-                            <table class="responsiveDetailSectionTable">
+                            <table class="responsiveDetailSectionTable" ng-hide="approvalLineDetailRequestData.IsPerDiem">
                                 <tr>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_CITY' | translate}}</td>
                                     <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_COUNTRY' | translate}}</td>
-                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_EXPENSE_DATE' | translate}}</td>
                                 </tr>
                                 <tr>
+                                     <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.City}}</td>
                                      <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Country}}</td>
-                                     <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.ExpenseDate}}</td>
                                 </tr>
                               </table> 
                          </div>
                     </div>
-                    <div class="row">
+                    <div class="row" ng-hide="approvalLineDetailRequestData.IsPerDiem">
                          <div class="responsiveDetailSectionData">   
                             <table class="responsiveDetailSectionTable">
                                 <tr>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_EXPENSE_DATE' | translate}}</td>
                                     <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_END_DATE' | translate}}</td>
-                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_REIMBURSABLE' | translate}}</td>
                                 </tr>
                                 <tr>
-                                     <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.EndDate}}</td>
-                                     <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Reimbursable}}</td>
-                                 </tr>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.ExpenseDate}}</td>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.EndDate}}</td>                                   
+                                </tr>
                               </table> 
                          </div>
                          <div class="responsiveDetailSectionData">   
                             <table class="responsiveDetailSectionTable">
                                 <tr>
-                                    <td ng-show="approvalLineDetailRequestData.ExpenseDetails.ExpenseType!='Per Diem'" class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_RECEIPT' | translate}}</td>                                
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_RECEIPT' | translate}}</td>                                
                                     <!--<td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_RECEIPT' | translate}}</td>-->
                                 </tr>
                                 <tr>
-                                    <td ng-show="approvalLineDetailRequestData.ExpenseDetails.ExpenseType!='Per Diem'" class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Receipt}}</td>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Receipt}}</td>
                                     <!--<td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Receipt}}</td>-->
                                 </tr>
                               </table> 
@@ -104,7 +104,7 @@
                 </div>
             </div><br/>
             <div class="template" ng-init="purposeAndReasonPanel=false">
-                <div class="defaultBottomBorder" ng-click="purposeAndReasonPanel= (purposeAndReasonPanel=='true' ? 'false' : 'true')">
+                <div class="defaultBottomBorder" ng-click="purposeAndReasonPanel=!purposeAndReasonPanel">
                     <span>
                         <label class="detailSectionHeader">{{'LBL_EXP_DETAIL_PURPOSE_REASON' | translate}}</label>
                     </span>
@@ -205,10 +205,10 @@
                     </span>                
                 </div>
                 <div ng-hide="prediemPanel" class="responsiveDetailSectionTable">
-                    <!--<div class="responsiveDetailSectionTable">
+                    <div class="responsiveDetailSectionTable" ng-hide="approvalLineDetailRequestData.IsPerDiem">
                         <span class="fieldLabel">{{'LBL_EXP_LINEITEM_DETAIL_PER_DIEM_AMOUNT' | translate}}</span><br/>
                         <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.PerDiemAmount}}</span>
-                    </div>-->     
+                    </div>     
                     <div class="responsiveDetailSectionTable">
                         <span class="fieldLabel">{{'LBL_EXP_LINEITEM_DETAIL_PER_DIEM_DETAILS' | translate}}</span><br/>
                         <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.PerDiemDetails}}</span>
