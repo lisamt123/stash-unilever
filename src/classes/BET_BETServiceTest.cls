@@ -7,9 +7,10 @@ History
 
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      k.szepietowski@polsource.com  30-07-2015  Initial
+1.1      piotr.czechusmki@gmail.com    05-08-2015  Add search service
 *************************************************************************************/
 
-@isTest
+@isTest (seeAllData=false)
 private class BET_BETServiceTest {
 	
     @isTest static void testGetBet(){
@@ -32,5 +33,34 @@ private class BET_BETServiceTest {
         betWrap = BET_BETService.GetBet(betObject.id);
         //check id release date is populated
         system.assert(betWrap.FinalReleaseDate != null);
+    }
+
+    @isTest static void shouldSearchBets(){
+        // given
+        BET_TestUtils tu = new BET_TestUtils();
+        tu.initBET();
+
+        // when
+        Id [] fixedSearchResults= new Id[1];
+
+        // then
+        List<BET_BETWrapper> searchResults;
+
+        // Search by name
+        fixedSearchResults[0] = tu.liBets.get(0).id; // seting expected results for SOSL
+        Test.setFixedSearchResults(fixedSearchResults);
+        searchResults = BET_BETService.searchBet(tu.liBets.get(0).name, null, '');
+        system.assertEquals(1, searchResults.size(), 'Should return single record by name');
+        system.assertEquals(tu.liBets.get(0).name, searchResults.get(0).BetName, 
+            'Should return single record with matching name');
+        // with Cat Id
+        searchResults = BET_BETService.searchBet(tu.liBets.get(0).name, tu.liCategories[0].id, null); 
+        // with Cat Mdo Id
+        searchResults = BET_BETService.searchBet(tu.liBets.get(0).name, null, tu.liCategories[0].mdm_id__c); 
+
+        fixedSearchResults= new Id[0];
+        Test.setFixedSearchResults(fixedSearchResults);
+        searchResults = BET_BETService.searchBet('BetWithThisNameCannotExist1.1', null, null);
+        system.assertEquals(0, searchResults.size(), 'Should not find any Bet');
     }
 }

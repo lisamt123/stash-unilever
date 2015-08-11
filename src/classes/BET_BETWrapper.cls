@@ -52,26 +52,9 @@ public with sharing class BET_BETWrapper {
         Returns: 
         Throws: -
     *************************************************************/
-    public BET_BETWrapper(Id betId){
-        system.debug('Entring BET_BETWrapper constructor with param @betd:'+betId);
-        
-        List<uw_BET__c> betLst = [Select Id,Name,Status__c,First_release_date__c,Final_release_date__c,Is_Archived__c,OwnerID FROM uw_BET__c WHERE Id =: betId];
-        
-        if(!betLst.isEmpty()){
-            uw_BET__c tmpBet = betLst.get(0);
-            this.BetId = tmpBet.id;
-            this.BetName = tmpBet.Name;
-            this.Status = tmpBet.Status__c;
-            this.FirstReleaseDate = tmpBet.First_release_date__c;
-            //it's temporary implemnetation need to be change in next sprint
-            this.FirstReleaseDueDate = tmpBet.First_release_date__c;
-            this.FinalReleaseDate = tmpBet.Final_release_date__c;
-            //it's temporary implemnetation need to be change in next sprint
-            this.FinalReleaseDueDate = tmpBet.Final_release_date__c;
-            this.isArchived = tmpBet.Is_Archived__c;
-            this.BetOwner = tmpBet.OwnerId;
-
-        }
+    public BET_BETWrapper(uw_BET__c bet){
+        system.debug('Entring BET_BETWrapper constructor with param @bet:'+bet);
+        betToWrapper(bet);       
         system.debug('Exiting BET_BETWrapper constructor');
     }
     
@@ -82,6 +65,71 @@ public with sharing class BET_BETWrapper {
         Throws: -
     *************************************************************/
     public BET_BETWrapper(){}
+
+    /************************************************************
+        Purpose: BET_BETWrapper constructor
+        Parameters: -
+        Returns: 
+        Throws: -
+    *************************************************************/
+    public BET_BETWrapper(uw_BETWrapper.BetSearchItem bsi){
+        system.debug('Entring BET_BETWrapper constructor with param '+ bsi);
+        betSearchItemToBetWrapper(bsi);         
+        system.debug('Exiting BET_BETWrapper constructor');
+    }
+
+    /************************************************************
+        Purpose: betToWrapper converts bet record to wrapper
+        Parameters: -
+        Returns: 
+        Throws: -
+    *************************************************************/
+    public void betToWrapper(uw_BET__c tmpBet){
+        system.debug('Entring betToWrapper with params'+ tmpBet);
+        
+        this.BetId                  = tmpBet.id;
+        this.BetName                = tmpBet.Name;
+        this.Status                 = tmpBet.Status__c;
+        this.FirstReleaseDate       = tmpBet.First_release_date__c;
+        //it's temporary implemnetation need to be change in next sprint
+        this.FirstReleaseDueDate    = tmpBet.First_release_date__c;
+        this.FinalReleaseDate       = tmpBet.Final_release_date__c;
+        //it's temporary implemnetation need to be change in next sprint
+        this.FinalReleaseDueDate    = tmpBet.Final_release_date__c;
+        this.isArchived             = tmpBet.Is_Archived__c;
+        this.BetOwner               = tmpBet.OwnerId;
+
+        system.debug('Exiting betToWrapper');
+    }
+
+    /************************************************************
+        Purpose: betSearchItemToBetWrapper converts bet serach item to this wrapper
+        Parameters: -
+        Returns: 
+        Throws: -
+    *************************************************************/
+    public void betSearchItemToBetWrapper(uw_BETWrapper.BetSearchItem bsi){
+        system.debug('Entring betSearchItemToBetWrapper with params'+ bsi);
+        
+        this.BetId                  = bsi.betId;
+        this.BetName                = bsi.betName;
+        this.Status                 = bsi.betStatus;
+        if (bsi.betFirstRelease != null){
+            this.FirstReleaseDate       = bsi.betFirstRelease.date();
+            //it's temporary implemnetation need to be change in next sprint
+            this.FirstReleaseDueDate    = bsi.betFirstRelease.date();    
+        }
+        if(bsi.betFinalRelease != null){
+            this.FinalReleaseDate       = bsi.betFinalRelease.date();
+            //it's temporary implemnetation need to be change in next sprint
+            this.FinalReleaseDueDate    = bsi.betFinalRelease.date();
+        }
+        // it's temporart implemenations need to be change with new atchive functions
+        this.isArchived             = false;
+        this.BetOwner               = bsi.betOwnerId;
+
+        system.debug('Exiting betSearchItemToBetWrapper');
+    }
 
 
 }
