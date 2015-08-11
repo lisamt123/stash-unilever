@@ -61,6 +61,9 @@ public with sharing class BET_TriggerFactory {
 	 * Returns:		ITrigger - A trigger handler if one exists or null.
 	 ************************************************************************************/
 	private static ITrigger getHandler(Schema.sObjectType soType){
+
+		System.debug('get handler soType ' + soType);
+
 		if (soType == uw_BET__c.sObjectType){
 			return new BET_BETHandler();
 		}

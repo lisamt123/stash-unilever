@@ -59,14 +59,42 @@ public with sharing class BET_FollowRequesTriggerHandlerCls {
 	*************************************************************/
 	private static void handleApprovedRequests(List<BET_Follow_Request__c> approvedRequests){
 		List<BET_Follow_Request__c> leadRequests = new List<BET_Follow_Request__c>();
+		Set<Id> leadReguestRelatedBets = new Set<Id>();
 		for(BET_Follow_Request__c request : approvedRequests){
 			if(request.Is_Lead_Request__c){
 				leadRequests.add(request);
+				leadReguestRelatedBets.add(request.Brand_Experience_Toolkit__c);
 			}
 		}
 		if(!leadRequests.isEmpty()) updateBetsWithLeadProjects(leadRequests);
 		if(!approvedRequests.isEmpty()) approveAllRelatedMemberRequests(getIds(approvedRequests));
 		notifyIPMProjectLeads(approvedRequests,BET_LinkingService.FOLLOW_STATUS_APPROVED);
+		updateBetsWithLeadProjectsWhenThereIsNoLeadProjectOnBET(approvedRequests,leadReguestRelatedBets);
+	}
+
+
+	private static void updateBetsWithLeadProjectsWhenThereIsNoLeadProjectOnBET(List<BET_Follow_Request__c> approvedRequests,Set<Id> leadReguestRelatedBets){
+		Map<Id,uw_Bet__c> betMap = new Map<Id,uw_Bet__c>();
+		Set<Id> betIds = new Set<Id>();
+		for(BET_Follow_Request__c fr : approvedRequests){
+			if(!leadReguestRelatedBets.contains(fr.Brand_Experience_Toolkit__c)){
+				betIds.add(fr.Brand_Experience_Toolkit__c);
+			}
+		}
+		for(uw_Bet__c bet : [select id,Launch_Date__c,IPM_Project__c,Category_Group__c,
+							 Product_Category__c,Brand_Position__c 
+							 from uw_Bet__c where id in : betIds and IPM_Project__c = null]){
+			betMap.put(bet.id,bet);
+		}
+		Set<Id> processedBets = new Set<Id>();
+		for(BET_Follow_Request__c request : approvedRequests){
+			if(betMap.get(request.Brand_Experience_Toolkit__c) != null){
+				if(!processedBets.contains(request.Brand_Experience_Toolkit__c)) {
+					BET_LinkingService.updateBet(betMap.get(request.Brand_Experience_Toolkit__c),(Id)request.Project_Id__c);
+					processedBets.add(request.Brand_Experience_Toolkit__c);
+				}
+			}
+		}
 	}
 
 	/************************************************************
@@ -116,7 +144,7 @@ public with sharing class BET_FollowRequesTriggerHandlerCls {
 	*************************************************************/
 	private static void notifyIPMProjectLeads(List<BET_Follow_Request__c> requests,String status){
 		for(BET_Follow_Request__c request : requests){
-			IPM_BETUpdateService.ipm_BETLinkingService(request.Brand_Experience_Toolkit__c,(Id)request.Project_Id__c,status);
+			IPM_BETUpdateService.ipm_BETLinkingService((Id)request.Project_Id__c,request.Brand_Experience_Toolkit__c,status);
 		}
 	}
 
