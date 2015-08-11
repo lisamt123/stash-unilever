@@ -469,6 +469,22 @@ Are you sure you wish to proceed?</value>
         <value>New</value>
     </labels>
     <labels>
+        <fullName>BET_Approve</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Approve</shortDescription>
+        <value>Approve</value>
+    </labels>
+    <labels>
+        <fullName>BET_ApproveProjectsTabName</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_ApproveProjectsTabName</shortDescription>
+        <value>Approve projects</value>
+    </labels>
+    <labels>
         <fullName>BET_BetBrandPositionMandatory</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -540,12 +556,60 @@ Are you sure you wish to proceed?</value>
         <value>Create new BET</value>
     </labels>
     <labels>
+        <fullName>BET_Deny</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Deny</shortDescription>
+        <value>Deny</value>
+    </labels>
+    <labels>
+        <fullName>BET_FollowBetArchivedMessage</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_FollowBetArchivedMessage</shortDescription>
+        <value>Bet with given id is archived</value>
+    </labels>
+    <labels>
+        <fullName>BET_FollowBetNotExistsMessage</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_FollowBetNotExistsMessage</shortDescription>
+        <value>Bet with given id does not exist</value>
+    </labels>
+    <labels>
+        <fullName>BET_FollowExceptionMessage</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_FollowExceptionMessage</shortDescription>
+        <value>Unable to follow</value>
+    </labels>
+    <labels>
+        <fullName>BET_FollowProjectNotExistsMessage</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_FollowProjectNotExistsMessage</shortDescription>
+        <value>Project with given id does not exist</value>
+    </labels>
+    <labels>
         <fullName>BET_Header</fullName>
         <categories>BET</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Header</shortDescription>
         <value>Brand experience details</value>
+    </labels>
+    <labels>
+        <fullName>BET_IPMProject</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_IPMProject</shortDescription>
+        <value>IPM project</value>
     </labels>
     <labels>
         <fullName>BET_InoplanProjectMandatory</fullName>
@@ -562,6 +626,30 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_LaunchDateMandatory</shortDescription>
         <value>Target Launch Date is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_LinkedProjectHeaderOne</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_LinkedProjectHeaderOne</shortDescription>
+        <value>The lead project governs the release date of the toolkit.</value>
+    </labels>
+    <labels>
+        <fullName>BET_LinkedProjectHeaderTwo</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_LinkedProjectHeaderTwo</shortDescription>
+        <value>To change the lead project please contact a system administrator. To unlink an IPM project, please do so from IPM.</value>
+    </labels>
+    <labels>
+        <fullName>BET_LinkedProjectsTabName</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_LinkedProjectsTabName</shortDescription>
+        <value>Linked projects</value>
     </labels>
     <labels>
         <fullName>BET_MandatoryStar</fullName>
@@ -588,6 +676,14 @@ Are you sure you wish to proceed?</value>
         <value>Name</value>
     </labels>
     <labels>
+        <fullName>BET_NewIPMProjectIsLinking</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_NewIPMProjectIsLinking</shortDescription>
+        <value>A new IPM Project is linking to this BET</value>
+    </labels>
+    <labels>
         <fullName>BET_Owner</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -596,12 +692,36 @@ Are you sure you wish to proceed?</value>
         <value>BET Owner</value>
     </labels>
     <labels>
+        <fullName>BET_ProjectApproveRemainder</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_ProjectApproveRemainder</shortDescription>
+        <value>Please action this request by {0}. After this time, the link will be automatically approved.</value>
+    </labels>
+    <labels>
+        <fullName>BET_ProjectLead</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_ProjectLead</shortDescription>
+        <value>Project Lead</value>
+    </labels>
+    <labels>
         <fullName>BET_ProjectName</fullName>
         <categories>BET</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_ProjectName</shortDescription>
         <value>Project Name</value>
+    </labels>
+    <labels>
+        <fullName>BET_SetAsLeadExceptionMessage</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_SetAsLeadExceptionMessage</shortDescription>
+        <value>Unable to set project as lead</value>
     </labels>
     <labels>
         <fullName>BET_SkipForNow</fullName>
@@ -709,6 +829,14 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_TargetLaunchDate</shortDescription>
         <value>Target Launch Date</value>
+    </labels>
+    <labels>
+        <fullName>BET_UnFollowExceptionMessage</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UnFollowExceptionMessage</shortDescription>
+        <value>Unable to unfollow</value>
     </labels>
     <labels>
         <fullName>BET_UpdateBetAddMembers</fullName>
@@ -1670,6 +1798,20 @@ Are you sure you wish to proceed?</value>
         <value>I Accept</value>
     </labels>
     <labels>
+        <fullName>IPM_BETApprovalLinkProcessing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BETApprovalLinkProcessing</shortDescription>
+        <value>Error in processing IPM BET link approval/rejection.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BETIdNullMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BETIdNullMsg</shortDescription>
+        <value>BET Id cannot be null.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Bosscard_Save_Before_Share</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1682,6 +1824,13 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>IPM Bosscard Shared Chatter</shortDescription>
         <value>BOSSCARD Shared Via Chatter</value>
+    </labels>
+    <labels>
+        <fullName>IPM_CategoryNameNotNull</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_CategoryNameNotNull</shortDescription>
+        <value>Category name cannot be null.</value>
     </labels>
     <labels>
         <fullName>IPM_Category_list</fullName>
@@ -1710,6 +1859,13 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>IPM Description Restricted</shortDescription>
         <value>Description Restricted to 255 Characters</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ErrorRetrievingCategories</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ErrorRetrievingCategories</shortDescription>
+        <value>Error in retrieving Categories.</value>
     </labels>
     <labels>
         <fullName>IPM_External_Char_Limit</fullName>
@@ -1752,6 +1908,20 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>GlobalProject</shortDescription>
         <value>Original</value>
+    </labels>
+    <labels>
+        <fullName>IPM_IdsApprovalNotNullMSg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_IdsApprovalNotNullMSg</shortDescription>
+        <value>IPM Project Id, BET Id or Approval Action cannot be null.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_IdsNotNullMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_IdsNotNullMsg</shortDescription>
+        <value>BET id, IPM Project ID or User ID cannot be null.</value>
     </labels>
     <labels>
         <fullName>IPM_ImageLogo_URL</fullName>
@@ -1801,6 +1971,13 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>IPM ProjectManagement Char Limit</shortDescription>
         <value>4860</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ProjectNotRetrieved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ProjectNotRetrieved</shortDescription>
+        <value>IPM Project could not be retrieved.</value>
     </labels>
     <labels>
         <fullName>IPM_Project_Name_Exists</fullName>
@@ -1857,6 +2034,13 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>IPM Technical Char Limit</shortDescription>
         <value>4860</value>
+    </labels>
+    <labels>
+        <fullName>IPM_UserAccessRetrivalMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_UserAccessRetrivalMsg</shortDescription>
+        <value>Error in retriving User access.</value>
     </labels>
     <labels>
         <fullName>IPM_backto_intermediate</fullName>
