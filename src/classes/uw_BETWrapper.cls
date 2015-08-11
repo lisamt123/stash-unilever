@@ -12,6 +12,7 @@ History
 -------
 VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   Maciej Krol         	26/11/2014     	INITIAL DEVELOPMENT
+1.1 -   Piotr Czechumski        10/09/2015      Add to BetSearchItem fields Group category, category, brand position, brand
 **********************************************************************/
 
 /*******************************************************************
@@ -229,6 +230,13 @@ public with sharing class uw_BETWrapper {
         public String betBorderColor;
         public String betIconLocation; 
         public Datetime betLaunchDate;
+        public String betOwnerId;
+
+
+        public String groupCategory;
+        public String category;
+        public String brandPosition;
+        public String brand;
 
         public Boolean currentUserHasAccessToIPM;
         
@@ -280,7 +288,8 @@ public with sharing class uw_BETWrapper {
             this.betActive = betActive; 
             this.betHasAccess = betHasAccess;  
             this.betOwner = betOwner;     
-            this.betOwnerName = bet.Owner.Name;   
+            this.betOwnerName = bet.Owner.Name;
+            this.betOwnerId = bet.OwnerId;   
             this.betBrandKeyword = bet.Brand_Keyword_Search__c;
             this.betCategoryKeyword = bet.Category_Keyword_Search__c;
             this.betOwnerKeyword = bet.Owner_Keyword_Search__c;
@@ -300,6 +309,12 @@ public with sharing class uw_BETWrapper {
             this.betFontColor = bet.Font_Colour__c;
             this.betIsPublic = bet.sharing__c == 'Public';
             this.betLaunchDate = bet.Launch_Date__c;
+
+            this.groupCategory          = bet.Category_Group__c;
+            this.category               = bet.Product_Category__c;
+            this.brandPosition          = bet.Brand_Position__c;
+            this.brand                  = bet.Product_Brand__c;
+            
         }
     }
 }
