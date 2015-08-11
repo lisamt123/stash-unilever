@@ -42,7 +42,8 @@ public with sharing class uw_BETDetailService {
                                 Launch_Date__c, Presentation_Id__c, Region__c, Status__c, Sharing__c, LastModifiedDate, CreatedDate, 
                                 Studio_Chatter_Group__c, OwnerId, Owner.Name, Brand_Keyword_Search__c, Category_Keyword_Search__c, 
                                 Owner_Keyword_Search__c, Region_Keyword_Search__c, 
-                                Inoplan_Project_Keyword_Search__c,Product_Brand__c, Product_Brand__r.name, IPM_Project__c, IPM_Project__r.name 
+                                Inoplan_Project_Keyword_Search__c,Product_Brand__c, Product_Brand__r.name, IPM_Project__c, IPM_Project__r.name, 
+                                Category_Group__c, Product_Category__c, Brand_Position__c 
                                 FROM uw_BET__c WHERE Id = :betId ];
             return bet;
         }catch(QueryException qe) {

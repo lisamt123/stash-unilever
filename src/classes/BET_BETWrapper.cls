@@ -9,28 +9,37 @@ History
 
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      k.szepietowski@polsource.com  20-07-2015  Initial
+1.1      piotr.czechumski              10-06-2015  Add Group category, category, brand position, brand
 *************************************************************************************/
 
 public with sharing class BET_BETWrapper {
     
     //Id of Bet
-    public Id BetId{get;set;}
+    public Id betId{get;set;}
     //Name of Bet
-    public String BetName{get;set;}
+    public String betName{get;set;}
     //Bet Status
-    public String Status{get;set;}
+    public String status{get;set;}
     //Date of First release
-    public Date FirstReleaseDate{get;set;}
+    public Date firstReleaseDate{get;set;}
     //Due date of first release
-    public Date FirstReleaseDueDate{get;set;}
+    public Date firstReleaseDueDate{get;set;}
     //Date of final release
-    public Date FinalReleaseDate{get;set;}
+    public Date finalReleaseDate{get;set;}
     //Due date of final release
-    public Date FinalReleaseDueDate{get;set;}
+    public Date finalReleaseDueDate{get;set;}
     //Value indicating if BET is archived
     public Boolean isArchived{get;set;}
     //Id of BET owner user
-    public Id BetOwner{get;set;}
+    public Id betOwner{get;set;}
+    //Id of BET group category lookup (ProductCategory)
+    public Id groupCategory{get;set;}
+    //Id of BET category lookup (ProductCategory)
+    public Id category{get;set;}
+    //Id of BET owner user
+    public Id brandPosition{get;set;}
+    //Id of BET owner user
+    public Id brand{get;set;}
     
     
     /************************************************************
@@ -99,6 +108,11 @@ public with sharing class BET_BETWrapper {
         this.isArchived             = tmpBet.Is_Archived__c;
         this.BetOwner               = tmpBet.OwnerId;
 
+        this.groupCategory          = tmpBet.Category_Group__c;
+        this.category               = tmpBet.Product_Category__c;
+        this.brandPosition          = tmpBet.Brand_Position__c;
+        this.brand                  = tmpBet.Product_Brand__c;
+
         system.debug('Exiting betToWrapper');
     }
 
@@ -127,6 +141,12 @@ public with sharing class BET_BETWrapper {
         // it's temporart implemenations need to be change with new atchive functions
         this.isArchived             = false;
         this.BetOwner               = bsi.betOwnerId;
+
+
+        this.groupCategory          = bsi.groupCategory;
+        this.category               = bsi.category;
+        this.brandPosition          = bsi.brandPosition;
+        this.brand                  = bsi.brand;
 
         system.debug('Exiting betSearchItemToBetWrapper');
     }

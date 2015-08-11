@@ -92,7 +92,9 @@ public with sharing class BET_BETService {
         system.debug('Entring BET_BETService.GetBet with param @betd:'+betId);
         BET_BETWrapper betWrapper;
         
-        List<uw_BET__c> betLst = [Select Id,Name,Status__c,First_release_date__c,Final_release_date__c,Is_Archived__c,OwnerID FROM uw_BET__c WHERE Id =: betId];
+        List<uw_BET__c> betLst = [Select Id,Name,Status__c,First_release_date__c,Final_release_date__c,Is_Archived__c,OwnerID,
+                                        Category_Group__c, Product_Category__c, Brand_Position__c,Product_Brand__c
+                                    FROM uw_BET__c WHERE Id =: betId];
         
         if(!betLst.isEmpty()){
             betWrapper = new BET_BETWrapper(betLst.get(0));
