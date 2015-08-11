@@ -52,13 +52,13 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <criteriaItems>
-            <field>BET_Follow_Request__c.Status__c</field>
-            <operation>equals</operation>
-            <value>Approved</value>
-        </criteriaItems>
-        <description>Runs when follow request is approved</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <description>Runs when lead  follow request is approved</description>
+        <formula>AND(
+PRIORVALUE(Status__c) &lt;&gt; &apos;Approved&apos;, 
+ISPICKVAL(Status__c, &apos;Approved&apos;),
+Is_Lead_Request__c
+)</formula>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>BET_FollowRequestCreated</fullName>
@@ -82,13 +82,13 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <criteriaItems>
-            <field>BET_Follow_Request__c.Status__c</field>
-            <operation>equals</operation>
-            <value>Rejected</value>
-        </criteriaItems>
         <description>Runs when follow request is rejected</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <formula>AND(
+PRIORVALUE(Status__c) &lt;&gt; &apos;Rejected&apos;, 
+ISPICKVAL(Status__c, &apos;Rejected&apos;),
+Is_Lead_Request__c
+)</formula>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>BET_FollowRequestWaitForAutoApprove</fullName>
