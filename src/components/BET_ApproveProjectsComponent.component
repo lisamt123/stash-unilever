@@ -1,6 +1,7 @@
 <apex:component controller="BET_ApproveProjectsComponentController" allowDML="true" >
 
 	<apex:attribute name="betId" assignTo="{!betIdentifier}" description="Id of an related BET" required="true" type="Id" />
+    <apex:attribute name="owner" assignTo="{!betOwner}" description="Current user is bet owner" required="true" type="Boolean" />
 
 
     <apex:outputPanel id="approvpanel">
@@ -50,10 +51,16 @@
 
             <div class="betActionButtons">
                 <apex:actionRegion>
-                    <apex:commandButton value="{!$Label.BET_Deny}" styleClass="btn-deny" action="{!doDeny}" rerender="approvpanel">
+                    <apex:commandButton value="{!$Label.BET_Deny}" styleClass="btn-deny" 
+                                        action="{!doDeny}" 
+                                        rendered="{!betOwner}"
+                                        rerender="approvpanel">
                         <apex:param name="elementNo" value="{!preq.id}" assignTo="{!elementId}"/>
                     </apex:commandButton>
-                    <apex:commandButton value="{!$Label.BET_Approve}" styleClass="btn-approve" action="{!doApprove}" rerender="approvpanel">
+                    <apex:commandButton value="{!$Label.BET_Approve}" styleClass="btn-approve" 
+                                        action="{!doApprove}" 
+                                        rendered="{!betOwner}"
+                                        rerender="approvpanel">
                         <apex:param name="elementNo" value="{!preq.id}" assignTo="{!elementId}"/>
                     </apex:commandButton>
                 </apex:actionRegion>

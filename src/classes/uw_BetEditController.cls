@@ -42,6 +42,8 @@ public with sharing class uw_BetEditController {
 
     public BET_CategoryComponentData compData {get;set;}
 
+    public Boolean currentUserIsOwner {get;set;}
+
     /*****************************************************************************************
     Purpose: Constructor 
     ******************************************************************************************/  
@@ -84,7 +86,9 @@ public with sharing class uw_BetEditController {
         }else{
             showClearIcon = false;               
         }
-    }
+
+        currentUserIsOwner = bet.ownerid == UserInfo.getUserId();
+    } 
 
     /*****************************************************************************************
     Purpose: Saves documents in db

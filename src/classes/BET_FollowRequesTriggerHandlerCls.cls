@@ -23,9 +23,11 @@ public with sharing class BET_FollowRequesTriggerHandlerCls {
 		List<BET_Follow_Request__c> approvedRequests = new List<BET_Follow_Request__c>();
 		List<BET_Follow_Request__c> rejectedRequests = new List<BET_Follow_Request__c>();
 		for(BET_Follow_Request__c request : requests){
-			if(request.Status__c == BET_LinkingService.FOLLOW_STATUS_APPROVED && oldMap.get(request.id).Status__c != BET_LinkingService.FOLLOW_STATUS_APPROVED){
+			if(request.Status__c == BET_LinkingService.FOLLOW_STATUS_APPROVED 
+				&& oldMap.get(request.id).Status__c != BET_LinkingService.FOLLOW_STATUS_APPROVED){
 				approvedRequests.add(request);
-			} else if (request.Status__c == BET_LinkingService.FOLLOW_STATUS_REJECTED && oldMap.get(request.id).Status__c != BET_LinkingService.FOLLOW_STATUS_REJECTED){
+			} else if (request.Status__c == BET_LinkingService.FOLLOW_STATUS_REJECTED 
+				&& oldMap.get(request.id).Status__c != BET_LinkingService.FOLLOW_STATUS_REJECTED){
 				rejectedRequests.add(request);
 			}
 		}
@@ -79,7 +81,8 @@ public with sharing class BET_FollowRequesTriggerHandlerCls {
 		for(BET_Follow_Request__c fr : leadRequests){
 			betIds.add(fr.Brand_Experience_Toolkit__c);
 		}
-		for(uw_Bet__c bet : [select id,Launch_Date__c,IPM_Project__c,Category_Group__c,Product_Category__c,Brand_Position__c 
+		for(uw_Bet__c bet : [select id,Launch_Date__c,IPM_Project__c,Category_Group__c,
+							 Product_Category__c,Brand_Position__c 
 							 from uw_Bet__c where id in : betIds]){
 			betMap.put(bet.id,bet);
 		}
@@ -95,12 +98,24 @@ public with sharing class BET_FollowRequesTriggerHandlerCls {
 		Throws: -
 	*************************************************************/
 	private static void handleRejectedRequests(List<BET_Follow_Request__c> rejectedRequests){
+		List<BET_Follow_Request__c> leadRequests = new List<BET_Follow_Request__c>();
+		for(BET_Follow_Request__c request : rejectedRequests){
+			if(request.Is_Lead_Request__c){
+				leadRequests.add(request);
+			}
+		}
 		rejectAllRelatedMemberRequests(getIds(rejectedRequests));
 		notifyIPMProjectLeads(rejectedRequests,BET_LinkingService.FOLLOW_STATUS_REJECTED);
 	}
 
-	private static void notifyIPMProjectLeads(List<BET_Follow_Request__c> rejectedRequests,String status){
-		for(BET_Follow_Request__c request : rejectedRequests){
+	/************************************************************
+		Purpose: Method notifies IPM if lead request has been approved or rejected
+		Parameters: List<BET_Follow_Request__c> requests,String status
+		Returns: -
+		Throws: -
+	*************************************************************/
+	private static void notifyIPMProjectLeads(List<BET_Follow_Request__c> requests,String status){
+		for(BET_Follow_Request__c request : requests){
 			IPM_BETUpdateService.ipm_BETLinkingService(request.Brand_Experience_Toolkit__c,(Id)request.Project_Id__c,status);
 		}
 	}
@@ -126,11 +141,7 @@ public with sharing class BET_FollowRequesTriggerHandlerCls {
 		Throws: -
 	*************************************************************/
 	private static void rejectAllRelatedMemberRequests(List<Id> rejectedRequestsIds){
-		List<BET_Member_Request__c> relatedMemberRequest = [select id, Status__c from BET_Member_Request__c where 	ProjectRequest__c in: rejectedRequestsIds];
-		for(BET_Member_Request__c request : relatedMemberRequest){
-			request.Status__c = BET_SuggestedMemberService.REJECTED;
-		}
-		update relatedMemberRequest;
+		updateRelatedMemberRequests(rejectedRequestsIds,BET_SuggestedMemberService.REJECTED);
 	}
 
 	/************************************************************
@@ -140,9 +151,19 @@ public with sharing class BET_FollowRequesTriggerHandlerCls {
 		Throws: -
 	*************************************************************/
 	private static void approveAllRelatedMemberRequests(List<Id> approvedRequestsIds){
-		List<BET_Member_Request__c> relatedMemberRequest = [select id, Status__c from BET_Member_Request__c where 	ProjectRequest__c in: approvedRequestsIds];
+		updateRelatedMemberRequests(approvedRequestsIds,BET_SuggestedMemberService.APPROVED);
+	}
+
+	/************************************************************
+		Purpose: Method updates status to member requests associated with follow requests
+		Parameters: List<Id> requestsIds, String status
+		Returns: -
+		Throws: -
+	*************************************************************/
+	private static void updateRelatedMemberRequests(List<Id> requestsIds,String status){
+		List<BET_Member_Request__c> relatedMemberRequest = [select id, Status__c from BET_Member_Request__c where 	ProjectRequest__c in: requestsIds];
 		for(BET_Member_Request__c request : relatedMemberRequest){
-			request.Status__c = BET_SuggestedMemberService.APPROVED;
+			request.Status__c = status;
 		}
 		update relatedMemberRequest;
 	}

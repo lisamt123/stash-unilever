@@ -148,7 +148,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             <apex:tab label="{!$Label.BET_ApproveProjectsTabName}"
                       ontabenter="document.getElementById('{!$Component.bottomButtonsPanel}').style.display='none';" 
                       name="tabFour" id="tabFour" rendered="{!hasProjectsToApprove}">
-                <c:BET_ApproveProjectsComponent betId="{!bet.id}" id="apcComponent"/>
+                <c:BET_ApproveProjectsComponent betId="{!bet.id}" id="apcComponent" owner="{!currentUserIsOwner}"/>
             </apex:tab>
 
         </apex:tabPanel>

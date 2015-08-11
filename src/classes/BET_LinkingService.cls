@@ -162,7 +162,8 @@ public with sharing class BET_LinkingService {
 																UserId__c = managerId,
 																Role__c = counter == 0 ? 'Manager' : 'Member',
 																ProjectRequest__c = followRequest.id,
-																Project_Id__c = followRequest.Project_Id__c));
+																Project_Id__c = followRequest.Project_Id__c,
+																BET_owner__c = relatedBet.ownerid));
 			counter ++;
 		}
 		insert mRequestsToBeCreated;
@@ -193,6 +194,7 @@ public with sharing class BET_LinkingService {
 				List<IPM_Project__c> otherFollowProjects = getOtherFollowingProjects(ProjectId,BetId);
 				if(otherFollowProjects.isEmpty()){
 					archiveAndUnLeadBet(betRecords.get(0));
+					
 				} else {
 					setNewLeadProjectAndOwner(betRecords.get(0),otherFollowProjects.get(0),projects.get(0));
 				}

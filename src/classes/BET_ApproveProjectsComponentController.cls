@@ -10,16 +10,19 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 public with sharing class BET_ApproveProjectsComponentController {
 
+	public static final Integer AUTOAPPROVE_TIME = 3;
+
 	public Id betIdentifier{get;set;}
 	public BET_Follow_Request__c followReguest {get;set;}
 	public Id elementId {get;set;}
+	public Boolean betOwner {get;set;}
 
 	public BET_ApproveProjectsComponentController() {}
 
 	/************************************************************
 		Purpose: Method denies linking request
 		Parameters: -
-		Returns: -
+		Returns: PageReference
 		Throws: -
 	*************************************************************/
 	public PageReference doDeny(){
@@ -32,7 +35,7 @@ public with sharing class BET_ApproveProjectsComponentController {
 	/************************************************************
 		Purpose: Method approves linking request
 		Parameters: -
-		Returns: -
+		Returns: PageReference
 		Throws: -
 	*************************************************************/
 	public PageReference doApprove(){
@@ -42,20 +45,33 @@ public with sharing class BET_ApproveProjectsComponentController {
 		return forwardAction();
 	}
 
+	/************************************************************
+		Purpose: Method displays appropriate tab depends on number of pending requests
+		Parameters: -
+		Returns: PageReference
+		Throws: -
+	*************************************************************/
 	private PageReference forwardAction(){
+		PageReference pr;
 		if(areThereOtherPendingRequests()){
-			PageReference pr =  new PageReference('/apex/uw_BETEdit?id='+betIdentifier+'&activeTab=tabFour');
-			pr.setRedirect(true);
-			return pr;
+			pr =  new PageReference('/apex/uw_BETEdit?id='+betIdentifier+'&activeTab=tabFour');
 		} else {
-			PageReference pr =  new PageReference('/apex/uw_BETEdit?id='+betIdentifier+'&activeTab=tabOne');
-			pr.setRedirect(true);
-			return pr;
+			pr =  new PageReference('/apex/uw_BETEdit?id='+betIdentifier+'&activeTab=tabOne');
 		}
+		pr.setRedirect(true);
+		return pr;
 	}
 
+	/************************************************************
+		Purpose: Method checks if there are still some pending follow requests
+		Parameters: -
+		Returns: Boolean true if there are pending request , false otherwise
+		Throws: -
+	*************************************************************/
 	private Boolean areThereOtherPendingRequests(){
-		List<BET_Follow_Request__c> requests = [select id,Project_Name__c,Project_Id__c,Project_Lead__r.name,CreatedDate from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: betIdentifier and Status__c =: BET_LinkingService.FOLLOW_STATUS_NEW ];
+		List<BET_Follow_Request__c> requests = [select id,Project_Name__c,Project_Id__c,Project_Lead__r.name,
+												CreatedDate from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: betIdentifier 
+												and Status__c =: BET_LinkingService.FOLLOW_STATUS_NEW ];
 		return !requests.isEmpty();
 	}
 
@@ -74,21 +90,12 @@ public with sharing class BET_ApproveProjectsComponentController {
 		for(BET_Follow_Request__c request : requests){
 			projectIds.add(request.Project_Id__c);
 		}
-
 		for(IPM_Project__c project : [select IPM_Target_Launch_Dates__c from IPM_Project__c where id in : projectIds]){
 			projectIdTLDMap.put(String.valueOf(project.id),project.IPM_Target_Launch_Dates__c);
 		}
-
 		for(BET_Follow_Request__c request : requests){
-			FollowRequestWrapper wrapper = new FollowRequestWrapper();
-			wrapper.id = request.id;
-			wrapper.ipmProject = request.Project_Name__c;
-			wrapper.ipmLead = request.Project_Lead__r.name;
-			wrapper.tld = String.valueOf(projectIdTLDMap.get(String.valueOf((ID)request.Project_Id__c)));
-			wrapper.remainder = String.format(Label.BET_ProjectApproveRemainder, new List<String> {String.valueOf(request.createdDate.addDays(3))});
-			result.add(wrapper);
+			result.add(new FollowRequestWrapper(request,projectIdTLDMap));
 		}
-
 		return result;
 	}
 
@@ -102,6 +109,14 @@ public with sharing class BET_ApproveProjectsComponentController {
 		public String ipmLead {get;set;}
 		public String tld {get;set;}
 		public String remainder {get;set;}
+
+		public FollowRequestWrapper(BET_Follow_Request__c request,Map<String,Date> projectIdTLDMap){
+			id = request.id;
+			ipmProject = request.Project_Name__c;
+			ipmLead = request.Project_Lead__r.name;
+			tld = String.valueOf(projectIdTLDMap.get(String.valueOf((ID)request.Project_Id__c)));
+			remainder = String.format(Label.BET_ProjectApproveRemainder, new List<String> {String.valueOf(request.createdDate.addDays(AUTOAPPROVE_TIME))});
+		}
 	} 
 
 }
