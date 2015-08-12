@@ -43,9 +43,9 @@ public with sharing class BET_LinkingService {
 		IPM_BETWrapper projectWrapper = IPM_BETUpdateService.ipm_Wrapper(projectId);
 		bet.Launch_Date__c = projectWrapper.targetLaunchDate;
 		bet.IPM_Project__c = projectWrapper.projectId;
-		//bet.Category_Group__c = projectWrapper.categoryGroupName;
-		//bet.Product_Category__c = projectWrapper.categoryName;
-		//bet.Brand_Position__c = projectWrapper.brandPosition;
+		bet.Category_Group__c = projectWrapper.categoryGroupName;
+		bet.Product_Category__c = projectWrapper.categoryName;
+		bet.Brand_Position__c = projectWrapper.brandPosition;
 		update bet;
 	}
 
@@ -183,7 +183,7 @@ public with sharing class BET_LinkingService {
 		4.12.
 		3.5.
 	*************************************************************/
-	public static void UnFollow(Id ProjectId, Id BetId){
+	public static void UnFollow(Id ProjectId, Id BetId){ //US 23
 		System.debug('Entering UnFollow : ' + ProjectId + ', ' + BetId);
 		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c from uw_Bet__c where id =: BetId];
 		List<IPM_Project__c> projects = [select id,name,IPM_Project_Leader__c from IPM_Project__c where id=:ProjectId];
@@ -193,13 +193,14 @@ public with sharing class BET_LinkingService {
 			if(projectIsALead){
 				List<IPM_Project__c> otherFollowProjects = getOtherFollowingProjects(ProjectId,BetId);
 				if(otherFollowProjects.isEmpty()){
-					archiveAndUnLeadBet(betRecords.get(0));
-					
+					archiveAndUnLeadBet(betRecords.get(0)); //US26
+					BET_EmailNotificationService.notifyBetOwnerOfUnfollow(betRecords.get(0),projects.get(0)); //US22
 				} else {
 					setNewLeadProjectAndOwner(betRecords.get(0),otherFollowProjects.get(0),projects.get(0));
+					BET_EmailNotificationService.notifyBetOwnerAndProjectLeadOfNewLeadProject(betRecords.get(0),otherFollowProjects.get(0),projects.get(0));
 				}
 			}
-			removeIPMProjectMembersFromBet(ProjectId,BetId);
+			removeIPMProjectMembersFromBet(ProjectId,BetId); //US25
 		}catch(Exception e){
 			throw new BET_CustomBETException(Label.BET_UnFollowExceptionMessage,e);
 		}
@@ -283,15 +284,21 @@ public with sharing class BET_LinkingService {
 	}
 
 	/************************************************************
-		Purpose: Method deletes project releted members
+		Purpose: Method deletes project releted member requests and tem members
 		Parameters: Id ProjectId, Id BetId
 		Returns: -
 		Throws: -
 	*************************************************************/
 	private static void removeIPMProjectMembersFromBet(Id ProjectId, Id BetId){
 		System.debug('Entering setNewLeadProjectAndOwner : ' + ProjectId + ', ' + BetId);
-		List<BET_Member_Request__c> requests = [select id from BET_Member_Request__c where Project_Id__c =: ProjectId and Brand_Experience_Toolkit__c =: BetId];
-		System.debug('Exit setNewLeadProjectAndOwner : ' + requests);
+		List<BET_Member_Request__c> requests = [select id,Brand_Experience_Toolkit__c,UserId__c from BET_Member_Request__c where Project_Id__c =: ProjectId and Brand_Experience_Toolkit__c =: BetId];
+		Set<Id> userIds = new Set<Id>();
+		for(BET_Member_Request__c request : requests){
+			userIds.add(request.UserId__c);
+		}
+		List<uw_BET_Team_Member__c> teamMembers = [select id from uw_BET_Team_Member__c where BET__c =: betId and Team_Member__c =: userIds];
+		System.debug('Exit setNewLeadProjectAndOwner : ' + requests + ', '+teamMembers);
 		delete requests;
+		delete teamMembers;
 	}
 }
