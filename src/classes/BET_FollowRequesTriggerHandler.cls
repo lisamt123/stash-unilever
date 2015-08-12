@@ -22,14 +22,11 @@ public with sharing class BET_FollowRequesTriggerHandler implements ITrigger {
 		for(sObject sobj : Trigger.new){
 			newList.add((BET_Follow_Request__c)sobj);
 		}
-
-		Map<Id,BET_Follow_Request__c> oldMap = new Map<Id,BET_Follow_Request__c>();
 		if(Trigger.isUpdate){
+			Map<Id,BET_Follow_Request__c> oldMap = new Map<Id,BET_Follow_Request__c>();
 			for(Id identifier : Trigger.oldMap.keySet()){
 				oldMap.put(identifier,(BET_Follow_Request__c)Trigger.oldMap.get(identifier));
 			}
-		}
-		if(Trigger.isUpdate){
 			BET_FollowRequesTriggerHandlerCls.handleUpdatedFollowRequests(newList,oldMap); 
 		}
 		if(Trigger.isInsert){
