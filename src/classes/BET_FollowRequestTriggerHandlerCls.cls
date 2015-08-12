@@ -1,5 +1,5 @@
 /*****************************************************************************************************************************
-Name: BET_FollowRequesTriggerHandlerCls
+Name: BET_FollowRequestTriggerHandlerCls
 Copyright © 2015 Unilever. 
 
 Purpose: Holds all Follow Request trigger related logic
@@ -9,9 +9,9 @@ History
 VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   m.bluj@polsource.com            06/08/2015      INITIAL DEVELOPMENT
 *******************************************************************************************************************************/
-public with sharing class BET_FollowRequesTriggerHandlerCls {
+public with sharing class BET_FollowRequestTriggerHandlerCls {
 
-	private BET_FollowRequesTriggerHandlerCls() {}
+	private BET_FollowRequestTriggerHandlerCls() {}
 
 	/************************************************************
 		Purpose: Method handles all updates made on follow requests

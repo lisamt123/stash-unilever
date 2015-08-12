@@ -1,5 +1,5 @@
 @isTest
-private class BET_FollowRequesTriggerHandlerClsTest {
+private class BET_FollowRequestTriggerHandlerClsTest {
 	
 	@isTest static void handleUpdatedFollowRequestsApprovedTest() {
 		uw_BET__c bet = BET_TestUtils.getTestBet();

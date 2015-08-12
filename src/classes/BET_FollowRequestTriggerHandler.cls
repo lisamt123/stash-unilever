@@ -9,9 +9,9 @@ History
 VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   m.bluj@polsource.com            06/08/2015      INITIAL DEVELOPMENT
 *******************************************************************************************************************************/
-public with sharing class BET_FollowRequesTriggerHandler implements ITrigger {
+public with sharing class BET_FollowRequestTriggerHandler implements ITrigger {
 	
-	public BET_FollowRequesTriggerHandler() {}
+	public BET_FollowRequestTriggerHandler() {}
 
 	public void bulkBefore() {
 		System.debug('bulk before');
@@ -27,10 +27,10 @@ public with sharing class BET_FollowRequesTriggerHandler implements ITrigger {
 			for(Id identifier : Trigger.oldMap.keySet()){
 				oldMap.put(identifier,(BET_Follow_Request__c)Trigger.oldMap.get(identifier));
 			}
-			BET_FollowRequesTriggerHandlerCls.handleUpdatedFollowRequests(newList,oldMap); 
+			BET_FollowRequestTriggerHandlerCls.handleUpdatedFollowRequests(newList,oldMap); 
 		}
 		if(Trigger.isInsert){
-			BET_FollowRequesTriggerHandlerCls.handleInsertedFollowRequests(newList); 
+			BET_FollowRequestTriggerHandlerCls.handleInsertedFollowRequests(newList); 
 		}
 	}
 
