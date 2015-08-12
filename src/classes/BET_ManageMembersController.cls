@@ -40,7 +40,7 @@ public without sharing class BET_ManageMembersController {
             memberRequests.add(new MemberRequestWrapper(request));
         }
 
-        MemberRequestWrapper test = new MemberRequestWrapper();
+        /*MemberRequestWrapper test = new MemberRequestWrapper();
         test.firstName = 'Michał';
         test.lastName = 'Bluj';
         test.projectName = 'Project 1';
@@ -60,12 +60,12 @@ public without sharing class BET_ManageMembersController {
 
         memberRequests.add(test);
         memberRequests.add(test1);
-        memberRequests.add(test2);
+        memberRequests.add(test2);*/
 
 
         members = new List<MemberWrapper>();
 
-        MemberWrapper wrap = new MemberWrapper();
+        /*MemberWrapper wrap = new MemberWrapper();
         wrap.firstName = 'Michał';
         wrap.lastName = 'Bluj';
         wrap.isSelected = false;
@@ -80,7 +80,7 @@ public without sharing class BET_ManageMembersController {
         wrap1.obj = new uw_BET_Team_Member__c();
 
         members.add(wrap);
-        members.add(wrap1);
+        members.add(wrap1);*/
 
     }
 
