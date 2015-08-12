@@ -8,6 +8,8 @@ private class BET_FollowRequesTriggerHandlerClsTest {
 		BET_Follow_Request__c request = BET_TestUtils.createNewFollowRequest(bet,project);
 		request.Status__c = 'Approved';
 		update request;
+		request = [select Status__c from BET_Follow_Request__c where id=:request.id];
+		System.assertEquals(request.Status__c,'Approved');
 	}
 
 	@isTest static void handleUpdatedFollowRequestsRejectedTest() {
@@ -17,6 +19,8 @@ private class BET_FollowRequesTriggerHandlerClsTest {
 		BET_Follow_Request__c request = BET_TestUtils.createNewFollowRequest(bet,project);
 		request.Status__c = 'Rejected';
 		update request;
+		request = [select Status__c from BET_Follow_Request__c where id=:request.id];
+		System.assertEquals(request.Status__c,'Rejected');
 	}
 	
 	@isTest static void handleInsertedFollowRequestsTest() {
