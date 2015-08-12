@@ -156,15 +156,13 @@ public with sharing class BET_LinkingService {
 	private static List<Id> createRelatedMemberRequests(BET_Follow_Request__c followRequest,uw_Bet__c relatedBet,List<Id> managersIds){
 		System.debug('Entering crateRelatedMemberRequests : ' + followRequest + ', ' + relatedBet + ', ' + managersIds);
 		List<BET_Member_Request__c> mRequestsToBeCreated = new List<BET_Member_Request__c>();
-		Integer counter = 0;
 		for(Id managerId : managersIds){
 			mRequestsToBeCreated.add( new BET_Member_Request__c(Brand_Experience_Toolkit__c = relatedBet.id,
 																UserId__c = managerId,
-																Role__c = counter == 0 ? 'Manager' : 'Member',
+																Role__c = 'Manager',
 																ProjectRequest__c = followRequest.id,
 																Project_Id__c = followRequest.Project_Id__c,
 																BET_owner__c = relatedBet.ownerid));
-			counter ++;
 		}
 		insert mRequestsToBeCreated;
 		List<Id> requestIds = new List<Id>();

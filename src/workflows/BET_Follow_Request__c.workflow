@@ -28,7 +28,8 @@
         <description>BET_FollowRequestRejectedNotification</description>
         <protected>false</protected>
         <recipients>
-            <type>creator</type>
+            <field>Project_Lead__c</field>
+            <type>userLookup</type>
         </recipients>
         <senderAddress>cb4l@unilever.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
@@ -55,8 +56,7 @@
         <description>Runs when lead  follow request is approved</description>
         <formula>AND(
 PRIORVALUE(Status__c) &lt;&gt; &apos;Approved&apos;, 
-ISPICKVAL(Status__c, &apos;Approved&apos;),
-Is_Lead_Request__c
+ISPICKVAL(Status__c, &apos;Approved&apos;)
 )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
@@ -85,8 +85,7 @@ Is_Lead_Request__c
         <description>Runs when follow request is rejected</description>
         <formula>AND(
 PRIORVALUE(Status__c) &lt;&gt; &apos;Rejected&apos;, 
-ISPICKVAL(Status__c, &apos;Rejected&apos;),
-Is_Lead_Request__c
+ISPICKVAL(Status__c, &apos;Rejected&apos;)
 )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
