@@ -67,7 +67,7 @@ private class BET_SuggestMembersControllerTest {
         componentController.suggested_MembersCtrl = suggested_MembersCtrl;
         componentController.suggested_ManagersCtrl = suggested_ManagersCtrl;
         componentController.user_bucketsCtrl = user_bucketsCtrl;
-        List<BET_SuggestMembersController.SuggestedMembersWrapper> result = componentController.getSuggestedMembers();
+        componentController.getSuggestedMembers();
         //try to add new members
         //search users whose name cointains a character
         componentController.searchUserName = 'a';
@@ -88,7 +88,7 @@ private class BET_SuggestMembersControllerTest {
         
          //check if user's were aggregated properly
         for(BET_SuggestMembersController.SuggestedMembersWrapper item : result1){
-            Boolean isManagerInGroup = false;
+            //Boolean isManagerInGroup = false;
             if(item.groupName == Label.BET_SuggestedMemberOtherMembers){
                 //check if memebers where added under other users section
                 system.assertEquals(numberOfNewlyAddedUsers, item.groupUsers.size()); 
@@ -164,13 +164,13 @@ private class BET_SuggestMembersControllerTest {
         componentController.suggested_MembersCtrl = suggested_MembersCtrl;
         componentController.suggested_ManagersCtrl = suggested_ManagersCtrl;
         componentController.user_bucketsCtrl = user_bucketsCtrl;
-        List<BET_SuggestMembersController.SuggestedMembersWrapper> result = componentController.getSuggestedMembers();
+        componentController.getSuggestedMembers();
         //try to add new members
         //search users whose name cointains a character
         componentController.searchUserName = 'a';
         componentController.searchUsers();
         componentController.newlyAddedUsers = '';
-        Id userForDeletion = null;
+        //Id userForDeletion = null;
         for(User u : componentController.freeAddMembers){
             componentController.newlyAddedUsers += u.id+',';
         }
