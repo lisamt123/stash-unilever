@@ -41,11 +41,16 @@ public with sharing class BET_LinkingService {
 
 	public static void updateBet(uw_Bet__c bet,Id projectId){
 		IPM_BETWrapper projectWrapper = IPM_BETUpdateService.ipm_Wrapper(projectId);
+		System.debug('projectWrapper ' + projectWrapper + ' , ' +projectId);
 		bet.Launch_Date__c = projectWrapper.targetLaunchDate;
 		bet.IPM_Project__c = projectWrapper.projectId;
-		bet.Category_Group__c = projectWrapper.categoryGroupName;
-		bet.Product_Category__c = projectWrapper.categoryName;
-		bet.Brand_Position__c = projectWrapper.brandPosition;
+		try{
+			bet.Category_Group__c = projectWrapper.categoryGroupName;
+			bet.Product_Category__c = projectWrapper.categoryName;
+			bet.Brand_Position__c = projectWrapper.brandPosition;
+		} catch(Exception e){
+			System.debug(e);
+		}
 		update bet;
 	}
 

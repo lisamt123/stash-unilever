@@ -18,19 +18,28 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.4     Michal Bluj             11/08/2015      IPM Member Related Changes
 ***********************************************************************/
 
-public without sharing class BET_ManageMembersController {
-    public BET_Member_Request__c BETTeamMember {get;set;}
+global without sharing class BET_ManageMembersController {
+    public BET_Member_Request__c betMemberRequest {get;set;}
+    public uw_Bet__c bet {get;set;}
     public Id betId {get;set;}
     public Boolean selectAll {get;set;}
     public List<MemberRequestWrapper> memberRequests {get;set;}
     public List<MemberWrapper> members {get;set;}
 
     public Id selectedRequestId {get;set;}
+    public Id selectedMemberId {get;set;}
     public Boolean isBetOwnerOrManager {get;set;}
     
+    /************************************************************
+        Purpose: Controller constructor
+        Parameters: ApexPages.StandardController controller
+        Returns: 
+        Throws: -
+    *************************************************************/
     public BET_ManageMembersController(ApexPages.StandardController controller) {
         betId = (Id)ApexPages.currentPage().getParameters().get('bet');
-        BETTeamMember = new BET_Member_Request__c();
+        bet = [select id , ownerid, Studio_Chatter_Group__c from uw_Bet__c where id=:betId];
+        betMemberRequest = new BET_Member_Request__c(Brand_Experience_Toolkit__c = betId);
         selectAll = false;
         isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
 
@@ -40,62 +49,118 @@ public without sharing class BET_ManageMembersController {
             memberRequests.add(new MemberRequestWrapper(request));
         }
 
-        /*MemberRequestWrapper test = new MemberRequestWrapper();
-        test.firstName = 'Michał';
-        test.lastName = 'Bluj';
-        test.projectName = 'Project 1';
-        test.isSelected = false;
-
-        MemberRequestWrapper test1 = new MemberRequestWrapper();
-        test1.firstName = 'Piotr';
-        test1.lastName = 'Czechumski';
-        test1.projectName = 'Project 2';
-        test1.isSelected = false;
-
-        MemberRequestWrapper test2 = new MemberRequestWrapper();
-        test2.firstName = 'Michael';
-        test2.lastName = 'Baker';
-        test2.projectName = 'Project 3';
-        test2.isSelected = false;
-
-        memberRequests.add(test);
-        memberRequests.add(test1);
-        memberRequests.add(test2);*/
-
-
         members = new List<MemberWrapper>();
-
-        /*MemberWrapper wrap = new MemberWrapper();
-        wrap.firstName = 'Michał';
-        wrap.lastName = 'Bluj';
-        wrap.isSelected = false;
-        wrap.role = 'Member';
-        wrap.obj = new uw_BET_Team_Member__c();
-
-        MemberWrapper wrap1 = new MemberWrapper();
-        wrap1.firstName = 'Piotr';
-        wrap1.lastName = 'Czechumski';
-        wrap1.isSelected = false;
-        wrap1.role = 'Manager';
-        wrap1.obj = new uw_BET_Team_Member__c();
-
-        members.add(wrap);
-        members.add(wrap1);*/
-
+        for(uw_BET_Team_Member__c member : [select id,email__c, Role__c, Team_Member__r.FirstName,Team_Member__r.LastName,Team_Member__r.SmallPhotoUrl,BET__c,Team_Member__c
+                                                from uw_BET_Team_Member__c where BET__c =:betId ]){
+            members.add(new MemberWrapper(member,bet.ownerId));
+        }
     }
 
-    public void addMember(){
-
+    /************************************************************
+        Purpose: Method adds member ( by creating approved member request)
+        Parameters: -
+        Returns: PageReference
+        Throws: -
+    *************************************************************/
+    public PageReference addMember(){
+        if(betMemberRequest.UserId__c != null){
+            betMemberRequest.Bet_owner__c = bet.ownerid;
+            betMemberRequest.Status__c = 'Approved';
+            betMemberRequest.External_User_Request__c = false;
+            insert betMemberRequest;
+            return forward();
+        } else {
+            return null;
+        }
     }
 
-    public void addExternalMember(){
-
+    /************************************************************
+        Purpose: Method adds external member ( by creating approved member request)
+        Parameters: -
+        Returns: PageReference
+        Throws: -
+    *************************************************************/
+    public PageReference addExternalMember(){
+        if(!String.isEmpty(betMemberRequest.External_User_Email__c)){
+            betMemberRequest.Bet_owner__c = bet.ownerid;
+            betMemberRequest.Status__c = 'Approved';
+            betMemberRequest.External_User_Request__c = true;
+            insert betMemberRequest;
+            return forward();
+        } else {
+            return null;
+        }
     }
 
+    /************************************************************
+        Purpose: Method responsible for delete operation
+        Parameters: -
+        Returns: PageReference
+        Throws: -
+    *************************************************************/
     public PageReference doDelete(){
-        return null;
+        uw_BET_Team_Member__c member = [select id,BET__c,Team_Member__c from uw_BET_Team_Member__c where id =:selectedMemberId];
+        delete member;
+        deleteRelatedMemberRequests(new List<uw_BET_Team_Member__c> {member});
+        cleanUpSharesGroupsSubscriptions(new List<uw_BET_Team_Member__c> {member});
+        return forward();
     }
 
+    /************************************************************
+        Purpose: Method responsible for mass delete operation
+        Parameters: -
+        Returns: PageReference
+        Throws: -
+    *************************************************************/
+    public PageReference massDelete(){
+        List<uw_BET_Team_Member__c> membersToDelete = new List<uw_BET_Team_Member__c>();
+        for(MemberWrapper member : members){
+            if(member.isSelected){
+                membersToDelete.add(member.obj);
+            }
+        }
+        delete membersToDelete;
+        deleteRelatedMemberRequests(membersToDelete);
+        cleanUpSharesGroupsSubscriptions(membersToDelete);
+        return forward();
+    }
+
+    /************************************************************
+        Purpose: Method cleans up after removed tem members
+        Parameters: -
+        Returns: -
+        Throws: -
+    *************************************************************/
+    public void cleanUpSharesGroupsSubscriptions(List<uw_BET_Team_Member__c> deletedMembers){
+        Set<Id> usersIds = new Set<Id>();
+        for(uw_BET_Team_Member__c teamMember : deletedMembers){
+            usersIds.add(teamMember.Team_Member__c);
+        }
+        delete [SELECT Id FROM uw_BET__Share WHERE parentId = :betId AND userOrGroupId in:usersIds]; 
+        delete [SELECT Id FROM CollaborationGroupMember WHERE CollaborationGroupId =: bet.Studio_Chatter_Group__c AND memberId in : usersIds];
+        delete [Select Id,SubscriberId,ParentId from EntitySubscription where SubscriberId in:usersIds and ParentId=:bet.id];
+    }
+
+    /************************************************************
+        Purpose: Method deletes related member requests
+        Parameters: List<uw_BET_Team_Member__c> deletedMembers
+        Returns: -
+        Throws: -
+    *************************************************************/
+    private void deleteRelatedMemberRequests(List<uw_BET_Team_Member__c> deletedMembers){
+        Set<Id> usersIds = new Set<Id>();
+        for(uw_BET_Team_Member__c teamMember : deletedMembers){
+            usersIds.add(teamMember.Team_Member__c);
+        }
+        delete [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c =: betId and UserId__c in :usersIds];
+    }
+
+    /************************************************************
+        Purpose: Method responsible for approve operation
+        Parameters: -
+        Returns: PageReference
+        Throws: -
+    *************************************************************/
     public PageReference doApprove(){
         BET_Member_Request__c request = [select Status__c from BET_Member_Request__c where id=:selectedRequestId];
         request.Status__c = 'Approved';
@@ -103,6 +168,12 @@ public without sharing class BET_ManageMembersController {
         return forward();
     }
 
+    /************************************************************
+        Purpose: Method responsible for deny operation
+        Parameters: -
+        Returns: PageReference
+        Throws: -
+    *************************************************************/
     public PageReference doDeny(){
         BET_Member_Request__c request = [select Status__c from BET_Member_Request__c where id=:selectedRequestId];
         request.Status__c = 'Rejected';
@@ -110,6 +181,12 @@ public without sharing class BET_ManageMembersController {
         return forward();
     }
 
+    /************************************************************
+        Purpose: Method responsible for mass approve operation
+        Parameters: -
+        Returns: PageReference
+        Throws: -
+    *************************************************************/
     public PageReference massApprove(){
         List<BET_Member_Request__c> requests = new List<BET_Member_Request__c>();
         for(MemberRequestWrapper memberRequest : memberRequests){
@@ -122,6 +199,12 @@ public without sharing class BET_ManageMembersController {
         return forward();
     }
 
+    /************************************************************
+        Purpose: Method responsible for mass deny operation
+        Parameters: -
+        Returns: PageReference
+        Throws: -
+    *************************************************************/
     public PageReference massDeny(){
         List<BET_Member_Request__c> requests = new List<BET_Member_Request__c>();
         for(MemberRequestWrapper memberRequest : memberRequests){
@@ -134,16 +217,131 @@ public without sharing class BET_ManageMembersController {
         return forward();
     }
 
-    public PageReference massDelete(){
-        return null;
-    }
-
+    /************************************************************
+        Purpose: Method refreshes page
+        Parameters: -
+        Returns: PageReference
+        Throws: -
+    *************************************************************/
     private PageReference forward(){
         PageReference pr = new PageReference('/apex/BET_ManageMembers?bet='+betId);
         pr.setRedirect(true);
         return pr;
     }
 
+    /************************************************************
+        Purpose: Remote method updates members role
+        Parameters: String memberid, String role
+        Returns: -
+        Throws: -
+    *************************************************************/
+    @RemoteAction
+    global static void updateMemberRole(String memberid, String role){
+        uw_BET_Team_Member__c member = [select Role__c,BET__c from uw_BET_Team_Member__c where id=:memberid];
+        member.Role__c = role;
+
+        BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues('BETManageMembersConfig');
+        String managerRole = BETManageMembersConfig.ManagerRole__c;
+
+        CollaborationGroupMember cgm = getCollaborationGroupMemberForUpdate(member.BET__c, member.id);
+        uw_BET__Share betShare = getBETShareForUpdate(member.BET__c, member.id);  
+        if(cgm != null) {
+           if (role.equalsIgnoreCase(managerRole)){
+               cgm.CollaborationRole = 'Admin';
+           }else {                
+               cgm.CollaborationRole = 'Standard';
+           }
+         } 
+         
+        if(betShare!= null) {
+           if (role.equalsIgnoreCase(managerRole)){
+               betShare.AccessLevel = 'Edit';
+           }else {                
+               betShare.AccessLevel = 'Read';
+           }
+        }
+
+        if(cgm != null) update cgm;
+        if(betShare != null) update betShare;
+        update member;
+    }
+
+    /************************************************************
+        Purpose: Method gets bet and member related sharing object
+        Parameters: Id betId , Id memberId
+        Returns: uw_Bet__Share
+        Throws: -
+    *************************************************************/
+    private static uw_Bet__Share getBETShareForUpdate (String betId, String memberId) {
+         uw_BET_Team_Member__c teamMember = [SELECT Id, Team_Member__c FROM uw_BET_Team_Member__c WHERE Id = :memberId AND BET__c = :betId];
+         List<uw_BET__Share> betShareList = [SELECT Id FROM uw_BET__Share WHERE parentId = :betId AND userOrGroupId = :teamMember.Team_Member__c  and  AccessLevel in ('Edit','Read')];
+         if(betShareList.isEmpty()) {
+             return null;
+         }
+         return betShareList[0];
+    }
+
+    /************************************************************
+        Purpose: Method gets bet and member related collaboration group member object
+        Parameters: Id betId , Id memberId
+        Returns: CollaborationGroupMember
+        Throws: -
+    *************************************************************/
+    private static CollaborationGroupMember getCollaborationGroupMemberForUpdate(Id betId , Id memberId) {
+         uw_BET_Team_Member__c teamMember = [SELECT Id, Team_Member__c, Role__c, BET__c, BET__r.Studio_Chatter_Group__c FROM 
+                                            uw_BET_Team_Member__c WHERE Id = :memberId AND BET__c = :betId];
+         
+         Id chatterGroupId = teamMember.BET__r.Studio_Chatter_Group__c;
+         
+         List<CollaborationGroupMember> cgmList = [SELECT Id FROM CollaborationGroupMember 
+                                         WHERE CollaborationGroupId = :chatterGroupId
+                                         AND MemberId = :teamMember.Team_Member__c];
+         if (cgmList.isEmpty()) {
+             return null;
+         }
+         return cgmList[0];
+    }
+
+    /************************************************************
+        Purpose: Method retrieves member request roles
+        Parameters: -
+        Returns: List<selectOption> 
+        Throws: -
+    *************************************************************/
+    public List<selectOption> getMemberRequestRoles() {
+        Schema.DescribeFieldResult fieldResult = BET_Member_Request__c.Role__c.getDescribe();
+        return getRoles(fieldResult);
+    }
+
+    /************************************************************
+        Purpose: Method retrieves member roles
+        Parameters: -
+        Returns: List<selectOption>
+        Throws: -
+    *************************************************************/
+    public List<selectOption> getMemberRoles() {
+        Schema.DescribeFieldResult fieldResult = uw_BET_Team_Member__c.Role__c.getDescribe(); 
+        return getRoles(fieldResult);
+    }
+
+    /************************************************************
+        Purpose: Method retrieves picklist value for given fieldresult
+        Parameters: Schema.DescribeFieldResult fieldResult
+        Returns: List<selectOption>
+        Throws: -
+    *************************************************************/
+    private List<selectOption> getRoles(Schema.DescribeFieldResult fieldResult){
+        List<selectOption> options = new List<selectOption>();           
+        List<Schema.PicklistEntry> picklistEntryList = fieldResult.getPicklistValues();
+        for(Schema.PicklistEntry picklistEntry : picklistEntryList){
+             options.add(new SelectOption(picklistEntry.getLabel(), picklistEntry.getValue()));
+        }       
+        return options;
+    }
+
+    /************************************************************
+        Purpose: Member request wrapper class
+    *************************************************************/
     public class MemberRequestWrapper{
         public BET_Member_Request__c obj {get;set;}
         public Boolean isSelected {get;set;}
@@ -167,6 +365,9 @@ public without sharing class BET_ManageMembersController {
 
     }
 
+    /************************************************************
+        Purpose: Member wrapper class
+    *************************************************************/
     public class MemberWrapper{
         public Boolean isSelected {get;set;}
         public String firstName {get;set;}
@@ -175,6 +376,21 @@ public without sharing class BET_ManageMembersController {
         public Id objectId {get;set;}
         public String role {get;set;}
         public uw_BET_Team_Member__c obj {get;set;}
+        public Boolean isbetOwner {get;set;}
+
+        public MemberWrapper(){}
+
+        public MemberWrapper(uw_BET_Team_Member__c member, Id betOwnerId ){
+            this.obj = member;
+            role = member.Role__c;
+            firstName = member.Team_Member__c == null ? member.email__c : member.Team_Member__r.FirstName;
+            lastName = member.Team_Member__r.LastName;
+            photo = member.Team_Member__r.SmallPhotoUrl;
+            this.isSelected = false;
+            objectId = member.id;
+            isbetOwner = member.Team_Member__c == betOwnerId;
+        }
+
     }
   
 }

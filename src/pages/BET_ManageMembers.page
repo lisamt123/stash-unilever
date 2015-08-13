@@ -172,7 +172,7 @@ body .lookupIconOn {
 }
 
 .memberRow img{
-  width: 70px;
+  width: 82px;
   height: 82px;
 }
 
@@ -193,6 +193,22 @@ body .lookupIconOn {
   </style>
 
   <script>
+
+  function updateRoleOnMember(memId, role, idx){
+    var idid = 'memberpage:form:repeater:'+idx+':role';
+    document.getElementById(idid).innerHTML = 'Processing ...';
+    Visualforce.remoting.Manager.invokeAction(
+      '{!$RemoteAction.BET_ManageMembersController.updateMemberRole}',
+      memId,
+      role,
+      function(result, event){
+        if (event.status) {
+          document.getElementById(idid).innerHTML = role;
+        }
+      },
+      {escape: true}
+    );
+  }
 
   function selectOrDeselectkAllBrowse(){
     var ch;
@@ -234,11 +250,13 @@ body .lookupIconOn {
         <table>
           <tr>
             <td>
-              <apex:inputField value="{!BETTeamMember.Role__c}" styleClass="addMembersDropdown" required="false"/>
+              <apex:selectList value="{!betMemberRequest.Role__c}" styleClass="addMembersDropdown" required="false" size="1" multiselect="false">
+                <apex:selectOptions value="{!memberRequestRoles}" />
+              </apex:selectList>
             </td>
             <td>
               <div class="hideOwner">   
-                <apex:inputField value="{!BETTeamMember.UserId__c}"/>
+                <apex:inputField value="{!betMemberRequest.UserId__c}"/>
               </div>
             </td>
             <td>
@@ -256,7 +274,7 @@ body .lookupIconOn {
           <table>
             <tr>
               <td>
-                  <apex:inputField value="{!BETTeamMember.External_User_Email__c}" styleClass="addmemberEmailInput" />
+                  <apex:inputField value="{!betMemberRequest.External_User_Email__c}" styleClass="addmemberEmailInput" />
               </td>
               <td>
                 <div style="padding-left:5px;">
@@ -294,10 +312,11 @@ body .lookupIconOn {
           <th class="browseMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'','display:none')}">
             Delete
           </th>
-          <apex:repeat value="{!members}" var="member">
-            <tr class="memberRow">
+          <apex:variable var="cnt" value="{!0}" /> 
+          <apex:repeat value="{!members}" var="member" id="repeater">
+            <tr class="memberRow" id="{!member.objectId}" >
               <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
-                <apex:inputCheckbox value="{!member.isSelected}"/>
+                <apex:inputCheckbox value="{!member.isSelected}" rendered="{!NOT(member.isbetOwner)}"/>
               </td>
               <td>
                 <apex:image url="{!member.photo}"/>
@@ -306,16 +325,20 @@ body .lookupIconOn {
                 <apex:outputText value="{!member.firstName} {!member.lastName}"/>
               </td>
               <td>
-                <apex:outputText value="{!member.role}"/>
+                <apex:outputText id="role" value="{!member.role}"/>
               </td>
               <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
-                <apex:inputField value="{!member.obj.Role__c}"/>
+                <apex:selectList value="{!member.obj.Role__c}" required="false" size="1" disabled="{!member.isbetOwner}" multiselect="false" onchange="updateRoleOnMember('{!member.objectId}',this.value,{!cnt})">
+                  <apex:selectOptions value="{!memberRoles}" />
+                </apex:selectList>
               </td>
               <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
-                <apex:commandLink action="{!doDelete}" value="Delete">
+                <apex:commandLink action="{!doDelete}" value="Delete" rendered="{!NOT(member.isbetOwner)}">
+                  <apex:param name="obid" assignTo="{!selectedMemberId}" value="{!member.objectId}"/>
                 </apex:commandLink>
               </td>
             </tr>
+            <apex:variable var="cnt" value="{!cnt+1}"/>
           </apex:repeat>
         </table>
 

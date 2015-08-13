@@ -11,5 +11,5 @@ VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 *******************************************************************************************************************************/
 
 trigger uw_BET_Trigger on uw_Bet__c (before insert,before update,before delete,after insert,after update) {
-	BET_TriggerFactory.createHandler(uw_Bet__C.sObjectType);
+	BET_TriggerFactory.createHandler(uw_Bet__c.sObjectType);
 }

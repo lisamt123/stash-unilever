@@ -75,6 +75,11 @@ public with sharing class BET_TriggerFactory {
 		if (soType == BET_Follow_Request__c.sObjectType){
 			return new BET_FollowRequestTriggerHandler();
 		}
+
+		if (soType == uw_BET_Team_Member__c.sObjectType){
+			return new BET_Team_MemberHandler();
+		}
+
 		return null;
 	}
 }

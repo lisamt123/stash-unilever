@@ -87,7 +87,7 @@ public with sharing class uw_BetEditController {
             showClearIcon = false;               
         }
 
-        currentUserIsOwner = bet.ownerid == UserInfo.getUserId();
+        currentUserIsOwner = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(bet.id, UserInfo.getUserId());
     } 
 
     /*****************************************************************************************
