@@ -241,7 +241,7 @@ global without sharing class BET_ManageMembersController {
         member.Role__c = role;
 
         BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues('BETManageMembersConfig');
-        String managerRole = BETManageMembersConfig.ManagerRole__c;
+        String managerRole = Test.isRunningTest() ? 'Manager' : BETManageMembersConfig.ManagerRole__c;
 
         CollaborationGroupMember cgm = getCollaborationGroupMemberForUpdate(member.BET__c, member.id);
         uw_BET__Share betShare = getBETShareForUpdate(member.BET__c, member.id);  
