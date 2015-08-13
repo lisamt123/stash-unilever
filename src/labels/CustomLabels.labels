@@ -469,6 +469,22 @@ Are you sure you wish to proceed?</value>
         <value>New</value>
     </labels>
     <labels>
+        <fullName>BET_Add_Internal_User</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Add_Internal_User</shortDescription>
+        <value>Add Internal User</value>
+    </labels>
+    <labels>
+        <fullName>BET_Add_Member</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Add_Member</shortDescription>
+        <value>Add Member</value>
+    </labels>
+    <labels>
         <fullName>BET_Approve</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -483,6 +499,22 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_ApproveProjectsTabName</shortDescription>
         <value>Approve projects</value>
+    </labels>
+    <labels>
+        <fullName>BET_Approve_members</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Approve_members</shortDescription>
+        <value>Approve members</value>
+    </labels>
+    <labels>
+        <fullName>BET_Approve_selected</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Approve_selected</shortDescription>
+        <value>Approve selected</value>
     </labels>
     <labels>
         <fullName>BET_BetBrandPositionMandatory</fullName>
@@ -532,6 +564,14 @@ Are you sure you wish to proceed?</value>
         <value>If different to brand positioning ...</value>
     </labels>
     <labels>
+        <fullName>BET_Browse_members</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Browse_members</shortDescription>
+        <value>Browse members</value>
+    </labels>
+    <labels>
         <fullName>BET_Cancel</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -556,12 +596,44 @@ Are you sure you wish to proceed?</value>
         <value>Create new BET</value>
     </labels>
     <labels>
+        <fullName>BET_Delete</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>BET_Delete_selected</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Delete_selected</shortDescription>
+        <value>Delete selected</value>
+    </labels>
+    <labels>
         <fullName>BET_Deny</fullName>
         <categories>BET</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Deny</shortDescription>
         <value>Deny</value>
+    </labels>
+    <labels>
+        <fullName>BET_Deny_selected</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Deny_selected</shortDescription>
+        <value>Deny selected</value>
+    </labels>
+    <labels>
+        <fullName>BET_External_Agency_User</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_External_Agency_User</shortDescription>
+        <value>External Agency User</value>
     </labels>
     <labels>
         <fullName>BET_FollowBetArchivedMessage</fullName>
@@ -690,6 +762,22 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_Owner</shortDescription>
         <value>BET Owner</value>
+    </labels>
+    <labels>
+        <fullName>BET_Photo</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Photo</shortDescription>
+        <value>Photo</value>
+    </labels>
+    <labels>
+        <fullName>BET_Project</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Project</shortDescription>
+        <value>Project</value>
     </labels>
     <labels>
         <fullName>BET_ProjectApproveRemainder</fullName>
@@ -2936,6 +3024,62 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>isll_ContentMissingMsg</shortDescription>
         <value>Edit link is not visible: please add content</value>
     </labels>
+	    <labels>
+        <fullName>IPM_BETApprovalLinkProcessing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BETApprovalLinkProcessing</shortDescription>
+        <value>Error in processing IPM BET link approval/rejection.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BETIdNullMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BETIdNullMsg</shortDescription>
+        <value>BET Id cannot be null.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_CategoryNameNotNull</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_CategoryNameNotNull</shortDescription>
+        <value>Category name cannot be null.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ErrorRetrievingCategories</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ErrorRetrievingCategories</shortDescription>
+        <value>Error in retrieving Categories.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_IdsApprovalNotNullMSg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_IdsApprovalNotNullMSg</shortDescription>
+        <value>IPM Project Id, BET Id or Approval Action cannot be null.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_IdsNotNullMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_IdsNotNullMsg</shortDescription>
+        <value>BET id, IPM Project ID or User ID cannot be null.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ProjectNotRetrieved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ProjectNotRetrieved</shortDescription>
+        <value>IPM Project could not be retrieved.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_UserAccessRetrivalMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_UserAccessRetrivalMsg</shortDescription>
+        <value>Error in retriving User access.</value>
+    </labels>
     <labels>
         <fullName>modal_info_heading</fullName>
         <language>en_US</language>
@@ -3022,61 +3166,5 @@ Which Communications team do you represent? You must be associated to one Planne
         <protected>false</protected>
         <shortDescription>User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos;</shortDescription>
         <value>Please enter your Inoplan project name. If you do not have an Inoplan project please select No Inoplan Project</value>
-    </labels>
-	<labels>
-        <fullName>IPM_BETApprovalLinkProcessing</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_BETApprovalLinkProcessing</shortDescription>
-        <value>Error in processing IPM BET link approval/rejection.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_BETIdNullMsg</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_BETIdNullMsg</shortDescription>
-        <value>BET Id cannot be null.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_CategoryNameNotNull</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_CategoryNameNotNull</shortDescription>
-        <value>Category name cannot be null.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_ErrorRetrievingCategories</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_ErrorRetrievingCategories</shortDescription>
-        <value>Error in retrieving Categories.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_IdsApprovalNotNullMSg</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_IdsApprovalNotNullMSg</shortDescription>
-        <value>IPM Project Id, BET Id or Approval Action cannot be null.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_IdsNotNullMsg</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_IdsNotNullMsg</shortDescription>
-        <value>BET id, IPM Project ID or User ID cannot be null.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_ProjectNotRetrieved</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_ProjectNotRetrieved</shortDescription>
-        <value>IPM Project could not be retrieved.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_UserAccessRetrivalMsg</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_UserAccessRetrivalMsg</shortDescription>
-        <value>Error in retriving User access.</value>
     </labels>
 </CustomLabels>

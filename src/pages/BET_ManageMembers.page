@@ -242,10 +242,10 @@ body .lookupIconOn {
   <apex:tabPanel switchType="client" selectedTab="browseMembers" id="MembersTabPanel" tabClass="activeTab" 
                        inactiveTabClass="inactiveTab">
 
-    <apex:tab label="Browse members" name="browseMembers" id="browseMembersid">
+    <apex:tab label="{!$Label.BET_Browse_members}" name="browseMembers" id="browseMembersid">
      
         <div>
-          <apex:outputText value="Add Internal User" styleClass="addMembersUserLabel"/>
+          <apex:outputText value="{!$Label.BET_Add_Internal_User}" styleClass="addMembersUserLabel"/>
         </div>
         <table>
           <tr>
@@ -261,7 +261,7 @@ body .lookupIconOn {
             </td>
             <td>
               <div style="padding-left:40px;">
-                <apex:commandButton value="Add Member" action="{!addMember}" rendered="{!isBetOwnerOrManager}"
+                <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addMember}" rendered="{!isBetOwnerOrManager}"
                                     styleClass="buttong2y" style="background: #e6007e; color:white;" />
               </div>
             </td>
@@ -269,7 +269,7 @@ body .lookupIconOn {
         </table>
     
         <div>
-          <apex:outputText value="External Agency User" styleClass="addMembersUserLabel"/>
+          <apex:outputText value="{!$Label.BET_External_Agency_User}" styleClass="addMembersUserLabel"/>
         </div>
           <table>
             <tr>
@@ -278,7 +278,7 @@ body .lookupIconOn {
               </td>
               <td>
                 <div style="padding-left:5px;">
-                <apex:commandButton value="Add Member" action="{!addExternalMember}" rendered="{!isBetOwnerOrManager}"
+                <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addExternalMember}" rendered="{!isBetOwnerOrManager}"
                                     styleClass="buttong2y" style="background: #e6007e; color:white;"/> 
                 </div>
               </td>
@@ -288,7 +288,7 @@ body .lookupIconOn {
 
         <div class="headerButtonsBrowsMembers">
         
-          <apex:commandButton value="Delete selected" action="{!massDelete}"  rendered="{!isBetOwnerOrManager}"
+          <apex:commandButton value="{!$Label.BET_Delete_selected}" action="{!massDelete}"  rendered="{!isBetOwnerOrManager}"
             styleClass="buttong2y" style="background: #e6007e; color:white;height: 30px;"/> 
        
         </div>
@@ -298,19 +298,19 @@ body .lookupIconOn {
             <apex:inputCheckbox value="{!selectAll}" id="globcheckboxbrowse" onchange="selectOrDeselectkAllBrowse();"/>
           </th>
           <th class="browseMembersheaderStyle">
-            Photo
+            {!$Label.BET_Photo}
           </th>
           <th class="browseMembersheaderStyle">
-            Name
+            {!$Label.BET_Name}
           </th>
           <th class="browseMembersheaderStyle">
-            Role
+            {!$ObjectType.BET_Member_Request__c.Fields.Role__c.Label}
           </th>
           <th class="browseMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'','display:none')}">
-            Role
+            {!$ObjectType.BET_Member_Request__c.Fields.Role__c.Label}
           </th>
           <th class="browseMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'','display:none')}">
-            Delete
+            {!$Label.BET_Delete}
           </th>
           <apex:variable var="cnt" value="{!0}" /> 
           <apex:repeat value="{!members}" var="member" id="repeater">
@@ -333,7 +333,7 @@ body .lookupIconOn {
                 </apex:selectList>
               </td>
               <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
-                <apex:commandLink action="{!doDelete}" value="Delete" rendered="{!NOT(member.isbetOwner)}">
+                <apex:commandLink action="{!doDelete}" value="{!$Label.BET_Delete}" rendered="{!NOT(member.isbetOwner)}">
                   <apex:param name="obid" assignTo="{!selectedMemberId}" value="{!member.objectId}"/>
                 </apex:commandLink>
               </td>
@@ -344,14 +344,14 @@ body .lookupIconOn {
 
     </apex:tab>
 
-    <apex:tab label="Approve members" name="approveMembers" id="approveMembersid">
+    <apex:tab label="{!$Label.BET_Approve_members}" name="approveMembers" id="approveMembersid">
 
       <div class="headerButtons">
         
-        <apex:commandButton value="Approve selected" action="{!massApprove}" rendered="{!isBetOwnerOrManager}"
+        <apex:commandButton value="{!$Label.BET_Approve_selected}" action="{!massApprove}" rendered="{!isBetOwnerOrManager}"
           styleClass="buttong2y" style="background: #e6007e; color:white;height: 30px;"/> 
        
-        <apex:commandButton value="Deny selected" action="{!massDeny}" rendered="{!isBetOwnerOrManager}"
+        <apex:commandButton value="{!$Label.BET_Deny_selected}" action="{!massDeny}" rendered="{!isBetOwnerOrManager}"
           styleClass="buttong2y" style="background: #e6007e; color:white;height: 30px;"/> 
        
       </div>
@@ -361,16 +361,16 @@ body .lookupIconOn {
             <apex:inputCheckbox value="{!selectAll}" id="globcheckbox" onchange="selectOrDeselectkAll();"/>
         </th>
         <th class="approveMembersheaderStyle">
-            Photo
+            {!$Label.BET_Photo}
         </th>
         <th class="approveMembersheaderStyle">
-            Name
+            {!$Label.BET_Name}
         </th>
         <th class="approveMembersheaderStyle">
-            Project
+            {!$Label.BET_Project}
         </th>
         <th class="approveMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'','display:none')}">
-            Approve
+            {!$Label.BET_Approve}
         </th>
 
         <apex:repeat value="{!memberRequests}" var="memberRequest">
@@ -388,11 +388,11 @@ body .lookupIconOn {
               <apex:outputText value="{!memberRequest.projectName }"/>
             </td>
             <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
-              <apex:commandLink action="{!doApprove}" value="Approve">
+              <apex:commandLink action="{!doApprove}" value="{!$Label.BET_Approve}">
                 <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
               </apex:commandLink>
               &nbsp;|&nbsp; 
-              <apex:commandLink action="{!doDeny}" value="Deny">
+              <apex:commandLink action="{!doDeny}" value="{!$Label.BET_Deny}">
                 <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
               </apex:commandLink>
             </td>
