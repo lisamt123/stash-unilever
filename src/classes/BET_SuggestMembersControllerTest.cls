@@ -10,7 +10,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 @isTest
 private class BET_SuggestMembersControllerTest {
-    
+	
     @isTest static void testGetSuggestedMembers(){
         uw_BET__c betObject = BET_TestUtils.getTestBet();
         insert betObject;
@@ -67,7 +67,7 @@ private class BET_SuggestMembersControllerTest {
         componentController.suggested_MembersCtrl = suggested_MembersCtrl;
         componentController.suggested_ManagersCtrl = suggested_ManagersCtrl;
         componentController.user_bucketsCtrl = user_bucketsCtrl;
-        componentController.getSuggestedMembers();
+        List<BET_SuggestMembersController.SuggestedMembersWrapper> result = componentController.getSuggestedMembers();
         //try to add new members
         //search users whose name cointains a character
         componentController.searchUserName = 'a';
@@ -88,7 +88,7 @@ private class BET_SuggestMembersControllerTest {
         
          //check if user's were aggregated properly
         for(BET_SuggestMembersController.SuggestedMembersWrapper item : result1){
-            //Boolean isManagerInGroup = false;
+            Boolean isManagerInGroup = false;
             if(item.groupName == Label.BET_SuggestedMemberOtherMembers){
                 //check if memebers where added under other users section
                 system.assertEquals(numberOfNewlyAddedUsers, item.groupUsers.size()); 
@@ -145,12 +145,12 @@ private class BET_SuggestMembersControllerTest {
     
     @isTest static void testDuplicatedRecordsWhileInsertTeamMemberRequest(){
         Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator'];
-        User testUser = new User(Alias = 'newBet', Email='nebetTestUSr@testorg.com',
+      	User testUser = new User(Alias = 'newBet', Email='nebetTestUSr@testorg.com',
                           EmailEncodingKey='UTF-8', LastName='newBetTestUsr', LanguageLocaleKey='en_US',
                           LocaleSidKey='en_US', ProfileId = p.Id,
-                          TimeZoneSidKey='America/Los_Angeles', UserName='nebetTestUSr@testorg.com');
+                          TimeZoneSidKey='America/Los_Angeles', UserName='nebetTestUSr@testorg.com',isActive = true);
         
-        uw_BET__c betObject = BET_TestUtils.getTestBet();
+		uw_BET__c betObject = BET_TestUtils.getTestBet();
         insert betObject;
         List<Id> suggested_MembersCtrl = new List<Id>();
         List<Id> suggested_ManagersCtrl = new List<Id>();
@@ -164,13 +164,13 @@ private class BET_SuggestMembersControllerTest {
         componentController.suggested_MembersCtrl = suggested_MembersCtrl;
         componentController.suggested_ManagersCtrl = suggested_ManagersCtrl;
         componentController.user_bucketsCtrl = user_bucketsCtrl;
-        componentController.getSuggestedMembers();
+        List<BET_SuggestMembersController.SuggestedMembersWrapper> result = componentController.getSuggestedMembers();
         //try to add new members
         //search users whose name cointains a character
         componentController.searchUserName = 'a';
         componentController.searchUsers();
         componentController.newlyAddedUsers = '';
-        //Id userForDeletion = null;
+        Id userForDeletion = null;
         for(User u : componentController.freeAddMembers){
             componentController.newlyAddedUsers += u.id+',';
         }
@@ -184,10 +184,10 @@ private class BET_SuggestMembersControllerTest {
          
         
         System.runAs(testUser){
-            //try to add the same members ito database - check if duplicated records are not created
-            //Tema member requests created in status New but there already exist such records in Approved 
-            //status no records should be added
-            componentController.addMembers();
+        	//try to add the same members ito database - check if duplicated records are not created
+        	//Tema member requests created in status New but there already exist such records in Approved 
+        	//status no records should be added
+        	componentController.addMembers();
             system.assertEquals(numberOfNewlyAddedUsers+12, [Select id FROM BET_Member_Request__c].size());
         }
     }

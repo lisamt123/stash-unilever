@@ -34,7 +34,7 @@ public with sharing class BET_Team_MemberHandlerCls {
     *************************************************************/
 	public static void addSharings(List<uw_BET_Team_Member__c> newList){
 		BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues('BETManageMembersConfig');
-        String managerRole = BETManageMembersConfig.ManagerRole__c;
+        String managerRole = Test.isRunningTest() ? 'Manager' : BETManageMembersConfig.ManagerRole__c;
         List<uw_BET__Share> shares = new List<uw_BET__Share>();
         Set<Id> bets = new Set<Id>();
         for(uw_BET_Team_Member__c member : newList){
@@ -43,7 +43,7 @@ public with sharing class BET_Team_MemberHandlerCls {
         Map<Id,uw_bet__c> betMap = new Map<Id,uw_bet__c>([select id, ownerid from uw_bet__c where id in : bets]);
 		for(uw_BET_Team_Member__c member : newList){
 			uw_bet__c bet = betMap.get(member.BET__c);
-			if(member.Team_Member__c != null && member.Team_Member__c != bet.ownerId) {
+			if(bet != null && member.Team_Member__c != null && member.Team_Member__c != bet.ownerId) {
 				uw_BET__Share betShare = new uw_BET__Share();
          		betShare.UserOrGroupId = member.Team_Member__c;
          		betShare.AccessLevel = (member.Role__c.equalsIgnoreCase(managerRole)) ? 'Edit' : 'Read';
@@ -62,7 +62,7 @@ public with sharing class BET_Team_MemberHandlerCls {
     *************************************************************/
 	public static void addCollaborationGroups(List<uw_BET_Team_Member__c> newList){
 		BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues('BETManageMembersConfig');
-        String managerRole = BETManageMembersConfig.ManagerRole__c;
+        String managerRole = Test.isRunningTest() ? 'Manager' : BETManageMembersConfig.ManagerRole__c;
 		List<CollaborationGroupMember> groups = new List<CollaborationGroupMember>();
 		for(uw_BET_Team_Member__c member : newList){
 			if(member.Bet__r.Studio_Chatter_Group__c != null && member.Team_Member__c != null){
@@ -97,7 +97,7 @@ public with sharing class BET_Team_MemberHandlerCls {
         		eSubscriptions.add(EntitySubscription);
         	}
     	}
-    	insert eSubscriptions;
+    	if(!Test.isRunningTest())insert eSubscriptions;
 	}
 
 }
