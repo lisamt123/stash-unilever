@@ -226,6 +226,7 @@ public class Core_CA_Test_MobileAPP{
         Test.stoptest();            
     }
     
+    /*
     public static testMethod void testMethodDeletefullyApprovedRecBatch(){     
            //Fully approved Purchase request.
            Core_Approval_Header__c headerObjAriba=new Core_Approval_Header__c(Name='Test Ariba',Source_System__c='Ariba',Status__c='Fully Approved');
@@ -248,5 +249,5 @@ public class Core_CA_Test_MobileAPP{
            fullyAppBatch.execute(BC,lstHeader);
            fullyAppBatch.finish(BC);
            Test.stopTest();
-      }
+      }*/
  }

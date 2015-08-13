@@ -248,6 +248,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Test_Bhavn</fullName>
+        <field>FAU_Email_Address__c</field>
+        <formula>FAU_Program_Wave__r.Owner:User.Email</formula>
+        <name>Test Bhavn</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_BIo_to_not_Complete</fullName>
         <field>FAU_Bio_Completeness_Flag__c</field>
         <literalValue>0</literalValue>
