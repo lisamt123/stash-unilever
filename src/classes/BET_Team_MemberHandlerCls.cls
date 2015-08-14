@@ -10,7 +10,7 @@ VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   m.bluj@polsource.com            13/08/2015      INITIAL DEVELOPMENT
 *******************************************************************************************************************************/
 
-public with sharing class BET_Team_MemberHandlerCls {
+public without sharing class BET_Team_MemberHandlerCls {
 
 	private BET_Team_MemberHandlerCls() {}
 

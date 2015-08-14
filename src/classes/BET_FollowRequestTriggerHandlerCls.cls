@@ -9,7 +9,7 @@ History
 VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   m.bluj@polsource.com            06/08/2015      INITIAL DEVELOPMENT
 *******************************************************************************************************************************/
-public with sharing class BET_FollowRequestTriggerHandlerCls {
+public without sharing class BET_FollowRequestTriggerHandlerCls {
 
 	private BET_FollowRequestTriggerHandlerCls() {}
 
