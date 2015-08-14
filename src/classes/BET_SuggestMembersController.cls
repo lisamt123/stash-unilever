@@ -323,12 +323,14 @@ public with sharing class BET_SuggestMembersController {
             List<BET_Member_Request__c> betMembersToInsert = new List<BET_Member_Request__c>();
             Boolean isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betIdCtrl, UserInfo.getUserId());
             system.debug('check if requestOnwer'+betIdCtrl+'is owner '+isBetOwnerOrManager);
+            Id betOwnerId = [select ownerid from uw_BET__c where id=:betIdCtrl].ownerid;
             for(ID userId : suggested_MembersCtrl){
             	BET_Member_Request__c betMemeberItem = new BET_Member_Request__c();
                 betMemeberItem.Brand_Experience_Toolkit__c = betIdCtrl;
                 betMemeberItem.ProjectRequest__c = betFollowRequestId;
                 betMemeberItem.UserId__c = userId;
                 betMemeberItem.Project_Id__c = projectIdCtrl;
+                betMemeberItem.Bet_owner__c = betOwnerId;
                 if(isBetOwnerOrManager){
                     betMemeberItem.Status__c = Label.BETTeamMemberRequestApprovedStatus;
                 }else{

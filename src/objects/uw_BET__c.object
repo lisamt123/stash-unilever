@@ -698,7 +698,7 @@ DATE(YEAR(Launch_Date__c)-1, 6, 30)
         <relationshipName>Brand_Experience_List</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -729,8 +729,9 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
     </fields>
     <fields>
         <fullName>Inoplan_Project_Keyword_Search__c</fullName>
+        <description>Field holds related project name. If toolkit is related to Inoplan project it holds Inoplan project&apos;s name if it is related to IPM Project it holds IPM project&apos;s name</description>
         <externalId>false</externalId>
-        <label>Inoplan Project Keyword Search</label>
+        <label>Project Keyword Search</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>

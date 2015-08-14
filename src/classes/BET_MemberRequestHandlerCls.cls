@@ -118,6 +118,8 @@ public with sharing class BET_MemberRequestHandlerCls {
         memberRequestToInsert.Role__c = memberRequest.Role__c;
         memberRequestToInsert.StudioEnabled__c = true;
         memberRequestToInsert.Team_Member__c = memberRequest.UserId__c;
+        if(memberRequest.External_User_Request__c) memberRequestToInsert.Role__c = 'External Agency User';
+        memberRequestToInsert.email__c = memberRequest.External_User_Request__c ? memberRequest.External_User_Email__c : null;
         System.debug('Exiting method createTeamMemberFromRequest following Memeber Request returned:'+memberRequestToInsert);
         return memberRequestToInsert;
     }

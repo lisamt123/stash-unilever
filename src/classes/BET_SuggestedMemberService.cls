@@ -10,8 +10,39 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 
 public with sharing class BET_SuggestedMemberService {
+
+    public static final String APPROVED = 'Approved';
+    public static final String REJECTED = 'Rejected';
     
     private BET_SuggestedMemberService(){}
+
+
+    /************************************************************
+        Purpose: Method responsible for is Bet Owner or Manager for list of users
+        Parameters: Id betId, List<Id> users)
+        Returns: Map<Id,Boolean>
+        Throws: -
+    *************************************************************/
+    public static Map<Id,Boolean> checkIfUsersAreManagerOrOwnerOfBet(Id betId, List<Id> users){
+        Map<Id,Boolean> usersMap = new Map<Id,Boolean>();
+        List<uw_BET__c> betInfo = [SELECT OwnerId FROM uw_BET__c where id =: betId];
+        for(Id userid : users){
+            if(userid == betInfo.get(0).ownerId){
+                usersMap.put(userId,true);
+            } else {
+                usersMap.put(userId,false);
+            }
+        }
+
+        for(uw_BET_Team_Member__c manager : [SELECT Team_Member__c FROM uw_BET_Team_Member__c WHERE Team_Member__c in: users and Role__c =: Label.BETManagerRole and BET__c =: betId]){
+            if(usersMap.get(manager.Team_Member__c) == null || !usersMap.get(manager.Team_Member__c)){
+                usersMap.put(manager.Team_Member__c,true);
+            }
+        }
+
+        return usersMap;
+    }
+
     
     /************************************************************
         Purpose: Method responsible for is Bet Owner or Manager

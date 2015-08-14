@@ -24,6 +24,8 @@ public with sharing class uw_BetEditController {
     public Boolean runJsSuccess{get;set;}
     public Boolean moveHome{get; protected set;}
 
+    public String tabInFocus{get;set;}
+
     private String initialOwnerId {get; set;}
     private uw_BET__Share initialBETShare {get {
         if (initialBETShare == null) {
@@ -40,6 +42,8 @@ public with sharing class uw_BetEditController {
 
     public BET_CategoryComponentData compData {get;set;}
 
+    public Boolean currentUserIsOwner {get;set;}
+
     /*****************************************************************************************
     Purpose: Constructor 
     ******************************************************************************************/  
@@ -49,6 +53,7 @@ public with sharing class uw_BetEditController {
         runJsSuccess = false;
         moveHome = false;
         currentId = System.currentPageReference().getParameters().get('Id');
+        tabInFocus = System.currentPageReference().getParameters().get('activeTab') == null ? 'name1' : (String)System.currentPageReference().getParameters().get('activeTab');
         Boolean categoryMigrated = null;
         Boolean categoryNotMigrated = null;
 
@@ -81,7 +86,9 @@ public with sharing class uw_BetEditController {
         }else{
             showClearIcon = false;               
         }
-    }
+
+        currentUserIsOwner = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(bet.id, UserInfo.getUserId());
+    } 
 
     /*****************************************************************************************
     Purpose: Saves documents in db
@@ -317,5 +324,10 @@ public with sharing class uw_BetEditController {
     ******************************************************************************************/  
     public void clearBanner(){
         showClearBanner = false;
+    }
+
+    public Boolean getHasProjectsToApprove(){
+        List<BET_Follow_Request__c> followRequests = [select Project_Name__c,Project_Id__c,Project_Lead__r.name,CreatedDate from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: bet.id and Status__c =: BET_LinkingService.FOLLOW_STATUS_NEW limit 1];
+        return !followRequests.isEmpty();
     }
 }

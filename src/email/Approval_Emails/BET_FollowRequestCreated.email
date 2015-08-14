@@ -1,0 +1,13 @@
+<html>
+This project {!BET_Follow_Request__c.Project_Name__c} 
+<br/>
+ is linking to your BET 
+
+<a href="{!BET_Follow_Request__c.Bet_Link__c}"> {!BET_Follow_Request__c.Brand_Experience_Toolkit__c} 
+</a> , 
+
+<br/>
+ this means....,
+<br/>
+This  will  happen  automatically  in  72 hours,  if you do not want this to happen then please deny the request before this time
+</html>
