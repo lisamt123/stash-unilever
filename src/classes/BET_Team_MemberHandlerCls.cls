@@ -21,9 +21,11 @@ public with sharing class BET_Team_MemberHandlerCls {
         Throws: -
     *************************************************************/
 	public static void runPostApprovalInsertTeamMemberOperations(List<uw_BET_Team_Member__c> newList){
+		System.debug('Entering runPostApprovalInsertTeamMemberOperations : ' + newList);
 		addSharings(newList);
 		addCollaborationGroups(newList);
 		addEntitySubscriptions(newList);
+		System.debug('Exit runPostApprovalInsertTeamMemberOperations');
 	}
 
 	/************************************************************
@@ -33,6 +35,7 @@ public with sharing class BET_Team_MemberHandlerCls {
         Throws: -
     *************************************************************/
 	public static void addSharings(List<uw_BET_Team_Member__c> newList){
+		System.debug('Entering addSharings : ' + newList);
 		BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues('BETManageMembersConfig');
         String managerRole = Test.isRunningTest() ? 'Manager' : BETManageMembersConfig.ManagerRole__c;
         List<uw_BET__Share> shares = new List<uw_BET__Share>();
@@ -52,6 +55,7 @@ public with sharing class BET_Team_MemberHandlerCls {
         	}
 		}
 		insert shares;
+		System.debug('Exit addSharings : ' + shares);
 	}
 
 	/************************************************************
@@ -61,6 +65,7 @@ public with sharing class BET_Team_MemberHandlerCls {
         Throws: -
     *************************************************************/
 	public static void addCollaborationGroups(List<uw_BET_Team_Member__c> newList){
+		System.debug('Entering addCollaborationGroups : ' + newList);
 		BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues('BETManageMembersConfig');
         String managerRole = Test.isRunningTest() ? 'Manager' : BETManageMembersConfig.ManagerRole__c;
 		List<CollaborationGroupMember> groups = new List<CollaborationGroupMember>();
@@ -79,6 +84,7 @@ public with sharing class BET_Team_MemberHandlerCls {
         	}
         }
         insert groups;
+        System.debug('Exit addCollaborationGroups : ' + groups);
 	}
 
 	/************************************************************
@@ -88,6 +94,7 @@ public with sharing class BET_Team_MemberHandlerCls {
         Throws: -
     *************************************************************/
 	public static void addEntitySubscriptions(List<uw_BET_Team_Member__c> newList){
+		System.debug('Entering addEntitySubscriptions : ' + newList);
 		List<EntitySubscription> eSubscriptions = new List<EntitySubscription>();
 		for(uw_BET_Team_Member__c teamMember : newList){
 			if(teamMember.Team_Member__c != null){
@@ -98,6 +105,7 @@ public with sharing class BET_Team_MemberHandlerCls {
         	}
     	}
     	if(!Test.isRunningTest())insert eSubscriptions;
+    	System.debug('Exit addEntitySubscriptions : ' + eSubscriptions);
 	}
 
 }

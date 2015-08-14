@@ -63,15 +63,17 @@ global without sharing class BET_ManageMembersController {
         Throws: -
     *************************************************************/
     public PageReference addMember(){
+        System.debug('Entering addMember');
+        PageReference pr = null;
         if(betMemberRequest.UserId__c != null){
             betMemberRequest.Bet_owner__c = bet.ownerid;
             betMemberRequest.Status__c = 'Approved';
             betMemberRequest.External_User_Request__c = false;
             insert betMemberRequest;
-            return forward();
-        } else {
-            return null;
+            pr = forward();
         }
+        System.debug('Exit addMember : ' + pr);
+        return pr;
     }
 
     /************************************************************
@@ -81,15 +83,17 @@ global without sharing class BET_ManageMembersController {
         Throws: -
     *************************************************************/
     public PageReference addExternalMember(){
+        System.debug('Entering addExternalMember');
+        PageReference pr = null;
         if(!String.isEmpty(betMemberRequest.External_User_Email__c)){
             betMemberRequest.Bet_owner__c = bet.ownerid;
             betMemberRequest.Status__c = 'Approved';
             betMemberRequest.External_User_Request__c = true;
             insert betMemberRequest;
-            return forward();
-        } else {
-            return null;
+            pr = forward();
         }
+        System.debug('Exit addExternalMember : ' + pr);
+        return pr;
     }
 
     /************************************************************
@@ -99,11 +103,14 @@ global without sharing class BET_ManageMembersController {
         Throws: -
     *************************************************************/
     public PageReference doDelete(){
+        System.debug('Entering doDelete : ' + selectedMemberId);
         uw_BET_Team_Member__c member = [select id,BET__c,Team_Member__c from uw_BET_Team_Member__c where id =:selectedMemberId];
         delete member;
         deleteRelatedMemberRequests(new List<uw_BET_Team_Member__c> {member});
         cleanUpSharesGroupsSubscriptions(new List<uw_BET_Team_Member__c> {member});
-        return forward();
+        PageReference pr = forward();
+        System.debug('Exit doDelete : ' + pr);
+        return pr;
     }
 
     /************************************************************
@@ -113,6 +120,7 @@ global without sharing class BET_ManageMembersController {
         Throws: -
     *************************************************************/
     public PageReference massDelete(){
+        System.debug('Entering massDelete');
         List<uw_BET_Team_Member__c> membersToDelete = new List<uw_BET_Team_Member__c>();
         for(MemberWrapper member : members){
             if(member.isSelected){
@@ -122,7 +130,9 @@ global without sharing class BET_ManageMembersController {
         delete membersToDelete;
         deleteRelatedMemberRequests(membersToDelete);
         cleanUpSharesGroupsSubscriptions(membersToDelete);
-        return forward();
+        PageReference pr = forward();
+        System.debug('Exit massDelete : ' + pr);
+        return pr;
     }
 
     /************************************************************
@@ -132,6 +142,7 @@ global without sharing class BET_ManageMembersController {
         Throws: -
     *************************************************************/
     public void cleanUpSharesGroupsSubscriptions(List<uw_BET_Team_Member__c> deletedMembers){
+        System.debug('Entering cleanUpSharesGroupsSubscriptions : ' + deletedMembers);
         Set<Id> usersIds = new Set<Id>();
         for(uw_BET_Team_Member__c teamMember : deletedMembers){
             usersIds.add(teamMember.Team_Member__c);
@@ -139,6 +150,7 @@ global without sharing class BET_ManageMembersController {
         delete [SELECT Id FROM uw_BET__Share WHERE parentId = :betId AND userOrGroupId in:usersIds]; 
         delete [SELECT Id FROM CollaborationGroupMember WHERE CollaborationGroupId =: bet.Studio_Chatter_Group__c AND memberId in : usersIds];
         delete [Select Id,SubscriberId,ParentId from EntitySubscription where SubscriberId in:usersIds and ParentId=:bet.id];
+        System.debug('Exit cleanUpSharesGroupsSubscriptions');
     }
 
     /************************************************************
@@ -148,11 +160,13 @@ global without sharing class BET_ManageMembersController {
         Throws: -
     *************************************************************/
     private void deleteRelatedMemberRequests(List<uw_BET_Team_Member__c> deletedMembers){
+        System.debug('Entering deleteRelatedMemberRequests : ' + deletedMembers);
         Set<Id> usersIds = new Set<Id>();
         for(uw_BET_Team_Member__c teamMember : deletedMembers){
             usersIds.add(teamMember.Team_Member__c);
         }
         delete [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c =: betId and UserId__c in :usersIds];
+        System.debug('Entering deleteRelatedMemberRequests');
     }
 
     /************************************************************
@@ -162,10 +176,13 @@ global without sharing class BET_ManageMembersController {
         Throws: -
     *************************************************************/
     public PageReference doApprove(){
+        System.debug('Entering doApprove : ' + selectedRequestId);
         BET_Member_Request__c request = [select Status__c from BET_Member_Request__c where id=:selectedRequestId];
         request.Status__c = 'Approved';
         update request;
-        return forward();
+        PageReference pr = forward();
+        System.debug('Exit doApprove');
+        return pr;
     }
 
     /************************************************************
@@ -175,10 +192,13 @@ global without sharing class BET_ManageMembersController {
         Throws: -
     *************************************************************/
     public PageReference doDeny(){
+        System.debug('Entering doDeny : ' + selectedRequestId);
         BET_Member_Request__c request = [select Status__c from BET_Member_Request__c where id=:selectedRequestId];
         request.Status__c = 'Rejected';
         update request;
-        return forward();
+        PageReference pr = forward();
+        System.debug('Exit doDeny');
+        return pr;
     }
 
     /************************************************************
@@ -188,6 +208,7 @@ global without sharing class BET_ManageMembersController {
         Throws: -
     *************************************************************/
     public PageReference massApprove(){
+        System.debug('Entering massApprove');
         List<BET_Member_Request__c> requests = new List<BET_Member_Request__c>();
         for(MemberRequestWrapper memberRequest : memberRequests){
             if(memberRequest.isSelected){
@@ -196,7 +217,9 @@ global without sharing class BET_ManageMembersController {
             }
         }
         update requests;
-        return forward();
+        PageReference pr = forward();
+        System.debug('Exit massApprove : ' + pr);
+        return pr;
     }
 
     /************************************************************
@@ -206,6 +229,7 @@ global without sharing class BET_ManageMembersController {
         Throws: -
     *************************************************************/
     public PageReference massDeny(){
+        System.debug('Entering massDeny');
         List<BET_Member_Request__c> requests = new List<BET_Member_Request__c>();
         for(MemberRequestWrapper memberRequest : memberRequests){
             if(memberRequest.isSelected){
@@ -214,7 +238,9 @@ global without sharing class BET_ManageMembersController {
             }
         }
         update requests;
-        return forward();
+        PageReference pr = forward();
+        System.debug('Exit massDeny : ' + pr);
+        return pr;
     }
 
     /************************************************************
@@ -224,8 +250,10 @@ global without sharing class BET_ManageMembersController {
         Throws: -
     *************************************************************/
     private PageReference forward(){
+        System.debug('Entering forward');
         PageReference pr = new PageReference('/apex/BET_ManageMembers?bet='+betId);
         pr.setRedirect(true);
+        System.debug('Exit forward ' + pr);
         return pr;
     }
 
@@ -237,6 +265,7 @@ global without sharing class BET_ManageMembersController {
     *************************************************************/
     @RemoteAction
     global static void updateMemberRole(String memberid, String role){
+        System.debug('Entering updateMemberRole : ' + memberid + ', ' + role);
         uw_BET_Team_Member__c member = [select Role__c,BET__c from uw_BET_Team_Member__c where id=:memberid];
         member.Role__c = role;
 
@@ -264,6 +293,7 @@ global without sharing class BET_ManageMembersController {
         if(cgm != null) update cgm;
         if(betShare != null) update betShare;
         update member;
+        System.debug('Exit updateMemberRole : ' + member);
     }
 
     /************************************************************
@@ -273,12 +303,13 @@ global without sharing class BET_ManageMembersController {
         Throws: -
     *************************************************************/
     private static uw_Bet__Share getBETShareForUpdate (String betId, String memberId) {
-         uw_BET_Team_Member__c teamMember = [SELECT Id, Team_Member__c FROM uw_BET_Team_Member__c WHERE Id = :memberId AND BET__c = :betId];
-         List<uw_BET__Share> betShareList = [SELECT Id FROM uw_BET__Share WHERE parentId = :betId AND userOrGroupId = :teamMember.Team_Member__c  and  AccessLevel in ('Edit','Read')];
-         if(betShareList.isEmpty()) {
-             return null;
-         }
-         return betShareList[0];
+        System.debug('Entering getBETShareForUpdate : ' + betId + ', ' + memberId);
+        uw_BET_Team_Member__c teamMember = [SELECT Id, Team_Member__c FROM uw_BET_Team_Member__c WHERE Id = :memberId AND BET__c = :betId];
+        List<uw_BET__Share> betShareList = [SELECT Id FROM uw_BET__Share WHERE parentId = :betId AND userOrGroupId = :teamMember.Team_Member__c  and  AccessLevel in ('Edit','Read')];
+        if(betShareList.isEmpty()) {
+            return null;
+        }
+        return betShareList[0];
     }
 
     /************************************************************

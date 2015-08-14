@@ -1,4 +1,3 @@
-
 /*****************************************************************************************************************************
 Name: BET_Team_MemberHandler
 Copyright © 2015 Unilever. 
@@ -19,6 +18,7 @@ public with sharing class BET_Team_MemberHandler  implements ITrigger {
 	}
 	
 	public void bulkAfter() {
+		System.debug('bulk after');
 		if(Trigger.isInsert){
 			BET_Team_MemberHandlerCls.runPostApprovalInsertTeamMemberOperations((List< uw_BET_Team_Member__c>)Trigger.new);
 		}
