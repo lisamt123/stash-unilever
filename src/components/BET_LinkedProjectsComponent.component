@@ -1,9 +1,9 @@
-<apex:component controller="BET_LinkedProjectsComponentController">
+<apex:component controller="BET_LinkedProjectsComponentController" allowDML="true">
 
 	<apex:attribute name="betId" assignTo="{!betIdentifier}" description="Id of an related BET" required="true" type="Id" />
 
 	<div class="linkedInfo">
-    	<apex:outputLabel>{!$Label.BET_LinkedProjectHeaderOne}</apex:outputLabel>
+    	<apex:outputLabel >{!$Label.BET_LinkedProjectHeaderOne}</apex:outputLabel>
     </div>
 
     <div class="linkedInfo">
@@ -15,12 +15,17 @@
     <apex:repeat value="{!linkedProjects}" var="project">
     	<div class="linkedProjectName">
     		<apex:outputLink value="/{!project.projectId}" target="_blank">
-                <apex:outputText>{!project.projectName}</apex:outputText>
+                <apex:outputText >{!project.projectName}</apex:outputText>
             </apex:outputLink>
     	</div>
     	<div class="linkedProjectNameLead" style="{!IF(project.isLeadProject,'','display:none;')}">
     		Lead project
     	</div>
+        <div  class="linkedProjectNameLead" style="{!IF(NOT(project.isLeadProject),'','display:none;')}">
+            <apex:commandLink action="{!setAsLeadProject}" value="Set As Lead">
+                <apex:param name="proid" assignTo="{!selectedProjectId}" value="{!project.projectId}"/>
+            </apex:commandLink>
+        </div>
     </apex:repeat>
 
 </apex:component>

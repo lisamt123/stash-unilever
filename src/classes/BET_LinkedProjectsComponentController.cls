@@ -11,6 +11,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 public with sharing class BET_LinkedProjectsComponentController {
 
 	public Id betIdentifier {get;set;}
+	public String selectedProjectId {get;set;}
 
 	public BET_LinkedProjectsComponentController() {}
 
@@ -33,6 +34,13 @@ public with sharing class BET_LinkedProjectsComponentController {
 			requests.add(new FollowRequestWrapper(req.Project_Id__c,req.Project_Name__c,false));
 		}
 		return requests;
+	}
+
+	public PageReference setAsLeadProject(){
+		BET_LinkingService.setASLead((Id)selectedProjectId, betIdentifier);
+		PageReference pr =  new PageReference('/apex/uw_BETEdit?id='+betIdentifier+'&activeTab=tabThree');
+		pr.setRedirect(true);
+		return pr;
 	}
 
 	/**********************************************************
