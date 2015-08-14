@@ -383,6 +383,10 @@
             <translation><!-- Email Spain --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Email Sri Lanka</masterLabel>
+            <translation><!-- Email Sri Lanka --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email TO France</masterLabel>
             <translation><!-- Email TO France --></translation>
         </picklistValues>
@@ -410,6 +414,10 @@
             <masterLabel>White Mail</masterLabel>
             <translation><!-- White Mail --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Original Description --></label>
+        <name>Original_Description__c</name>
     </fields>
     <fields>
         <label><!-- Out of Hours --></label>

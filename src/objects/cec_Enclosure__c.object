@@ -566,6 +566,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Sri_Lanka_Queue_cec_Enclosure</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Sri Lanka Queue</label>
+        <queue>CEC_Sri_Lanka_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>test</fullName>
         <columns>NAME</columns>
         <filterScope>Mine</filterScope>

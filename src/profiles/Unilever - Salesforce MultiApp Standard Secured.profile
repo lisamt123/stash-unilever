@@ -9166,6 +9166,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Original_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Case.Out_of_Hours__c</field>
         <readable>true</readable>
@@ -24610,6 +24615,10 @@
         <startAddress>109.158.0.0</startAddress>
     </loginIpRanges>
     <loginIpRanges>
+        <endAddress>113.59.211.251</endAddress>
+        <startAddress>113.59.211.251</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
         <endAddress>115.113.255.255</endAddress>
         <startAddress>115.112.0.0</startAddress>
     </loginIpRanges>
@@ -24820,6 +24829,10 @@
     <loginIpRanges>
         <endAddress>202.90.255.255</endAddress>
         <startAddress>202.90.0.0</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>255.255.255.248</endAddress>
+        <startAddress>203.115.15.112</startAddress>
     </loginIpRanges>
     <loginIpRanges>
         <endAddress>203.143.255.255</endAddress>

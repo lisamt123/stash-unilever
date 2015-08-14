@@ -98,6 +98,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CEC_Copy_Case_Description</fullName>
+        <description>CEC : To keep the original comments from customer when a case is created</description>
+        <field>Original_Description__c</field>
+        <formula>Description</formula>
+        <name>CEC Copy Case Description</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CEC_India_CaseOrigin_Field_Update</fullName>
         <description>Update the CaseOrigin Field to Email</description>
         <field>Origin</field>
@@ -401,6 +411,35 @@
         </criteriaItems>
         <description>Case Origin Update to Email.</description>
         <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CEC Case Origin Update - Sri Lanka</fullName>
+        <actions>
+            <name>CEC_Case_Origin_to_email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>equals</operation>
+            <value>Email Sri Lanka</value>
+        </criteriaItems>
+        <description>Case Origin Update to Email.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CEC Copy Case Description</fullName>
+        <actions>
+            <name>CEC_Copy_Case_Description</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>To copy the Description of the cases created.</description>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>CEC France Market Field Update</fullName>

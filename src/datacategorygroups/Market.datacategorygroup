@@ -112,6 +112,10 @@
         </dataCategory>
         <dataCategory>
             <dataCategory>
+                <label>Sri Lanka</label>
+                <name>Sri_Lanka</name>
+            </dataCategory>
+            <dataCategory>
                 <label>India</label>
                 <name>India</name>
             </dataCategory>

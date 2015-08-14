@@ -15,7 +15,11 @@ VERSION    AUTHOR            DATE            DETAIL
  ***********************************************************************/
 
 public without sharing class CEC_AlertActionHelper {
-    
+
+    String latestCaseBrand;
+    String latestCaseCountry;
+    String latestL2ProdCategory;
+            
     /**
         This method creates safety alerts for the eligible cases
     */
@@ -23,7 +27,7 @@ public without sharing class CEC_AlertActionHelper {
         
         Case newCase, oldCase;
         Boolean result;
-        
+       
         try{
         
             List<Id> caseIds = new List<Id>();
@@ -266,13 +270,36 @@ public without sharing class CEC_AlertActionHelper {
         // Get alert tracker case string map        
         Map<Id,String> alertTrackerCaseMap = getAlertTrackerCaseMap(alertTrackerIds);
         
+        //Get the From address through custom settings
+        cec_Org_Settings__c FromAddress = [select Id, Safety_Alert_Email_Id__c FROM cec_Org_Settings__c];
+        system.debug('FromAddress>>>>'+FromAddress.Safety_Alert_Email_Id__c);
+        
+        
+        // set the 'from' Address through Org wide Email Address
+        OrgWideEmailAddress[] owea = [select Id from OrgWideEmailAddress where Address = :FromAddress.Safety_Alert_Email_Id__c];
+        system.debug('OWEA Contains>>>>>>'+owea.size());
+        
         // Send mail logic
         List<Messaging.SingleEmailMessage> mails = new List<Messaging.SingleEmailMessage>();
         String[] toAddresses;               
         EmailTemplate eTemplate;
-        Messaging.SingleEmailMessage mail;
-        
+        Messaging.SingleEmailMessage mail;        
         String plainBody;
+        String additionalSubjectInfo = ' ';
+        
+        // Set the Subject header's additional details.
+        
+        if (latestL2ProdCategory != null) {
+            additionalSubjectInfo += latestL2ProdCategory;
+        }
+        
+        if (latestCaseBrand != null) {
+            additionalSubjectInfo += '-' + latestCaseBrand;
+        }
+        
+        if (latestCaseCountry != null) {
+            additionalSubjectInfo += '-' + latestCaseCountry;
+        }
         
         cec_Alert_Tracker__c aTracker;
         
@@ -287,6 +314,10 @@ public without sharing class CEC_AlertActionHelper {
     
                 toAddresses = alertAction.To__c.split(';');
                 mail.setToAddresses(toAddresses);
+                
+                if (owea.size() > 0) {
+                    mail.setOrgWideEmailAddressId(owea.get(0).Id);
+                }
 
                 eTemplate = emailTemplateMap.get(alertAction.Email_Template_Name__c);
                 
@@ -311,7 +342,7 @@ public without sharing class CEC_AlertActionHelper {
                 plainBody = plainBody.replace('{!cec_Alert_Tracker__c.caseList}',alertTrackerCaseMap.get(atId));
                 
                 // Set email text body
-                mail.setSubject(eTemplate.Subject);
+                mail.setSubject(eTemplate.Subject + additionalSubjectInfo);
                 mail.setPlainTextBody(plainBody);
                 
                 mails.add(mail);
@@ -331,7 +362,7 @@ public without sharing class CEC_AlertActionHelper {
     private Map<Id,String> getAlertTrackerCaseMap(Set<Id> alertTrackerIds){
     
         // Get all alert tracker items associated with the alert trackers
-        List<cec_Alert_Tracker_Item__c> alertTrackerItemList = [SELECT Alert_Tracker_Id__c, Case_Id__c FROM cec_Alert_Tracker_Item__c WHERE Alert_Tracker_Id__c IN :alertTrackerIds];
+        List<cec_Alert_Tracker_Item__c> alertTrackerItemList = [SELECT Alert_Tracker_Id__c, Case_Id__c FROM cec_Alert_Tracker_Item__c WHERE Alert_Tracker_Id__c IN :alertTrackerIds ORDER BY LastModifiedDate DESC];
         
         // Get case records
         List<Id> caseIdList = new List<Id>();
@@ -339,31 +370,24 @@ public without sharing class CEC_AlertActionHelper {
             caseIdList.add(atItem.Case_Id__c);          
         }
 
-        Map<Id,Case> caseMap = new Map<Id,Case>([SELECT Product_Code__c,CEC_Reason_Code__c,CaseNumber,CreatedDate,Description, Store__r.Name, Store_Location__c, Date_of_Manufacture__c, Date_of_Manufacture_str__c, Purchase_Date__c FROM Case WHERE ID IN :caseIdList]);
+        Map<Id,Case> caseMap = new Map<Id,Case>([SELECT Product_Code__c,CEC_Reason_Code__c,CaseNumber,CreatedDate,Description, Store__r.Name, Store_Location__c, Date_of_Manufacture__c, Date_of_Manufacture_str__c, Purchase_Date__c, Brand__c, Country_Name__c, L2_Product_Category__c, Production_Code__c FROM Case WHERE ID IN :caseIdList]);
         
         // Construct a map of alert tracker id and case numbers string (all cases belong to the alert tracker)
         Map<Id,String> alertTrackerCaseMap = new Map<Id,String>();
         Case caseObj;
         String caseStr = '';
+        Boolean isSubjectInfoSet = false;
         
         Integer caseIndex = 0;
         
          Map<Id,List<cec_Alert_Tracker_Item__c>> alertTrackerMap = new Map<Id,List<cec_Alert_Tracker_Item__c>>();
           
-          
-          
-          
-          for(cec_Alert_Tracker_Item__c atItem:alertTrackerItemList){
-          
-          
-          if(alertTrackerMap.get(atItem.Alert_Tracker_Id__c) == null){
-                    alertTrackerMap.put(atItem.Alert_Tracker_Id__c,new List<cec_Alert_Tracker_Item__c>());  
-                }
-                
-                alertTrackerMap.get(atItem.Alert_Tracker_Id__c).add(atItem);
-          
-          
-          }
+        for(cec_Alert_Tracker_Item__c atItem:alertTrackerItemList){
+            if(alertTrackerMap.get(atItem.Alert_Tracker_Id__c) == null){
+                alertTrackerMap.put(atItem.Alert_Tracker_Id__c,new List<cec_Alert_Tracker_Item__c>());  
+            }
+            alertTrackerMap.get(atItem.Alert_Tracker_Id__c).add(atItem);
+        }
         
         
         for(Id alertTrackerId:alertTrackerMap.keyset()){
@@ -374,10 +398,21 @@ public without sharing class CEC_AlertActionHelper {
         {
             caseObj = caseMap.get(AlertTrackerItem.Case_Id__c);
             
-             caseStr += '\r\nCase #' + ++caseIndex + '\r\nCase Product: ' + caseObj.Product_Code__c + '\r\nCase Reason: ' + caseObj.CEC_Reason_Code__c + '\r\nCase Number: ' + caseObj.CaseNumber + '\r\nCase Opened Date: ' + caseObj.CreatedDate + '\r\nDescription: ' + caseObj.Description + '\r\nStore: ' + caseObj.Store__r.Name + '\r\nStore Location: ' + caseObj.Store_Location__c + '\r\nDate of Manufacture: ' + caseObj.Date_of_Manufacture_str__c + '\r\nPurchase Date: ' + caseObj.Purchase_Date__c + '\r\n';
+            //caseStr += '\r\nCase #' + ++caseIndex + '\r\nCase Product: ' + caseObj.Product_Code__c + '\r\nCase Reason: ' + caseObj.CEC_Reason_Code__c + '\r\nCase Number: ' + caseObj.CaseNumber + '\r\nCase Opened Date: ' + caseObj.CreatedDate + '\r\nDescription: ' + caseObj.Description + '\r\nStore: ' + caseObj.Store__r.Name + '\r\nStore Location: ' + caseObj.Store_Location__c + '\r\nDate of Manufacture: ' + caseObj.Date_of_Manufacture_str__c + '\r\nPurchase Date: ' + caseObj.Purchase_Date__c + '\r\n';
+            
+            caseStr += '\r\nCase #' + ++caseIndex + '\r\nCase Number: ' + caseObj.CaseNumber + '\r\nCase Opened Date: ' + caseObj.CreatedDate +  '\r\nCase Reason: ' + caseObj.CEC_Reason_Code__c + '\r\nCase Product: ' + caseObj.Product_Code__c +    '\r\nDescription: ' + caseObj.Description +  '\r\nStore: ' + caseObj.Store__r.Name + '\r\nStore Location: ' + caseObj.Store_Location__c +  '\r\nProduction Code: ' + caseObj.Production_Code__c + '\r\nDate of Manufacture: ' + caseObj.Date_of_Manufacture_str__c + '\r\nPurchase Date: ' + caseObj.Purchase_Date__c +  '\r\n';
+
+            // Collect the required details to set the subject of the email alert to be sent. This has to be from the latest case and since the alertTrackerItemList is sorted by the last modified date so the case linked to it would be the latest case.        
+            if(!isSubjectInfoSet) {
+                latestCaseBrand = caseObj.Brand__c;
+                latestCaseCountry = caseObj.Country_Name__c;
+                latestL2ProdCategory = caseObj.L2_Product_Category__c;
+                isSubjectInfoSet = true;
+            }
             
         }
-                alertTrackerCaseMap.put(alertTrackerId, caseStr);
+        
+            alertTrackerCaseMap.put(alertTrackerId, caseStr);
                 
                 
         }
