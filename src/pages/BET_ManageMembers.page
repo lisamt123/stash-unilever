@@ -3,55 +3,14 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.1     Kendre Dnyaneshwar      19 Mar 2015     T1- code changes to make custom buttons(Add members,Approve,Deny,Delete)
                                                 action progress visible.        
 1.2     Kendre Dnyaneshwar      27 Apr 2015     T2- Rendered attribute added in delete commnad button to hide delete option
-                                                for owner of the BET.                                                                                
+                                                for owner of the BET.       
+1.3     Michal Bluj             14 Aug 2015     IPM related changes                                                                         
 -->
 
 <apex:page standardController="BET_Member_Request__c" showHeader="false" extensions="BET_ManageMembersController"  id="memberpage">
 
   <apex:stylesheet value="{!$Resource.BETManageMembersStyles}" />
-
-  <script>
-
-  function updateRoleOnMember(memId, role, idx){
-    var idid = 'memberpage:form:repeater:'+idx+':role';
-    document.getElementById(idid).innerHTML = 'Processing ...';
-    Visualforce.remoting.Manager.invokeAction(
-      '{!$RemoteAction.BET_ManageMembersController.updateMemberRole}',
-      memId,
-      role,
-      function(result, event){
-        if (event.status) {
-          document.getElementById(idid).innerHTML = role;
-        }
-      },
-      {escape: true}
-    );
-  }
-
-  function selectOrDeselectkAllBrowse(){
-    var ch;
-    var a = document.querySelectorAll(".browseMembersheaderStyle input[type=checkbox]");
-    for (var i = 0; i < a.length; i++){
-       ch = a[i].checked;
-    }
-    var aa = document.querySelectorAll(".memberRow input[type=checkbox]");
-    for (var i = 0; i < aa.length; i++){
-       aa[i].checked = ch;
-    }
-  }
-
-  function selectOrDeselectkAll(){
-    var ch;
-    var a = document.querySelectorAll(".approveMembersheaderStyle input[type=checkbox]");
-    for (var i = 0; i < a.length; i++){
-       ch = a[i].checked;
-    }
-    var aa = document.querySelectorAll(".memberRequestRow input[type=checkbox]");
-    for (var i = 0; i < aa.length; i++){
-       aa[i].checked = ch;
-    }
-  }
-  </script>
+  <apex:includeScript value="{!$Resource.BETManageMembersJS}" />
 
   <apex:form id="form">
   <apex:outputpanel id="showpage">
