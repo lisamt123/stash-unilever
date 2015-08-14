@@ -200,9 +200,9 @@ public with sharing class BET_LinkingService {
 					BET_EmailNotificationService.notifyBetOwnerOfUnfollow(betRecords.get(0),projects.get(0)); //US22
 				} else {
 					setNewLeadProjectAndOwner(betRecords.get(0),otherFollowProjects.get(0),projects.get(0));
-					BET_EmailNotificationService.notifyBetOwnerAndProjectLeadOfNewLeadProject(betRecords.get(0),otherFollowProjects.get(0),projects.get(0));
 				}
 			}
+			removeIPMProjectFollowRequestsFromBet(ProjectId,BetId);
 			removeIPMProjectMembersFromBet(ProjectId,BetId); //US25
 		}catch(Exception e){
 			throw new BET_CustomBETException(Label.BET_UnFollowExceptionMessage,e);
@@ -251,7 +251,7 @@ public with sharing class BET_LinkingService {
 		for(BET_Follow_Request__c aRequest : approvedRequests){
 			projectsList.add(aRequest.Project_Id__c);
 		}
-		List<IPM_Project__c> followingProjects = [select id,IPM_Project_Leader__c from IPM_Project__c where id in : projectsList and id !=: ProjectId order by IPM_Target_Launch_Dates__c asc limit 1];
+		List<IPM_Project__c> followingProjects = [select id,IPM_Project_Leader__c,name from IPM_Project__c where id in : projectsList and id !=: ProjectId order by IPM_Target_Launch_Dates__c asc limit 1];
 		System.debug('Exit getOtherFollowingProjects : ' + followingProjects);
 		return followingProjects;
 	}
@@ -280,7 +280,10 @@ public with sharing class BET_LinkingService {
 		System.debug('Entering setNewLeadProjectAndOwner : ' + bet + ', ' + project + ', ' + oldProject);
 		if(oldProject.IPM_Project_Leader__c != null && oldProject.IPM_Project_Leader__c == bet.ownerId){
 			bet.ownerId = project.IPM_Project_Leader__c;
+		} else {
+			BET_EmailNotificationService.notifyBetOwnerThatProjectIsUnlinked(bet,oldProject); //US23
 		}
+		BET_EmailNotificationService.notifyBetOwnerAndProjectLeadOfNewLeadProject(bet,project); //US23
 		bet.IPM_Project__c = project.id;
 		update bet;
 		System.debug('Exit setNewLeadProjectAndOwner : ' + bet);
@@ -303,5 +306,17 @@ public with sharing class BET_LinkingService {
 		System.debug('Exit setNewLeadProjectAndOwner : ' + requests + ', '+teamMembers);
 		delete requests;
 		delete teamMembers;
+	}
+
+	/************************************************************
+		Purpose: Method deletes project releted project follow requests
+		Parameters: Id ProjectId, Id BetId
+		Returns: -
+		Throws: -
+	*************************************************************/
+	private static void removeIPMProjectFollowRequestsFromBet(Id ProjectId, Id BetId){
+		System.debug('Entering removeIPMProjectFollowRequestsFromBet : ' + ProjectId + ', ' + BetId);
+		delete [select id from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: BetId and Project_Id__c =: ProjectId];
+		System.debug('Exit removeIPMProjectFollowRequestsFromBet');
 	}
 }
