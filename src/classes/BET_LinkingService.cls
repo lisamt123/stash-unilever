@@ -35,10 +35,22 @@ public with sharing class BET_LinkingService {
 		System.debug('Exit setASLead');
 	}
 
+	/************************************************************
+		Purpose: Method updates bet record based on given project
+		Parameters: uw_Bet__c bet,IPM_Project__c project
+		Returns: -
+		Throws: -
+	*************************************************************/
 	public static void updateBetRecord(uw_Bet__c bet,IPM_Project__c project){
 		updateBet(bet,project.id);
 	}
 
+	/************************************************************
+		Purpose: Method updates bet record based on given project
+		Parameters: uw_Bet__c bet,Id projectId
+		Returns: -
+		Throws: -
+	*************************************************************/
 	public static void updateBet(uw_Bet__c bet,Id projectId){
 		IPM_BETWrapper projectWrapper = IPM_BETUpdateService.ipm_Wrapper(projectId);
 		System.debug('projectWrapper ' + projectWrapper + ' , ' +projectId);

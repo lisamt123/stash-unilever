@@ -12,6 +12,7 @@ public with sharing class BET_LinkedProjectsComponentController {
 
 	public Id betIdentifier {get;set;}
 	public String selectedProjectId {get;set;}
+	public Boolean betOwnerOrManager{get;set;}
 
 	public BET_LinkedProjectsComponentController() {}
 

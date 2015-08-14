@@ -142,7 +142,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             <apex:tab label="{!$Label.BET_LinkedProjectsTabName}" 
                       ontabenter="document.getElementById('{!$Component.bottomButtonsPanel}').style.display='none';" 
                       name="tabThree" id="tabThree">
-                <c:BET_LinkedProjectsComponent betId="{!bet.id}"/>
+                <c:BET_LinkedProjectsComponent betId="{!bet.id}" ownerOrManager="{!currentUserIsOwner}"/>
             </apex:tab>
 
             <apex:tab label="{!$Label.BET_ApproveProjectsTabName}"
