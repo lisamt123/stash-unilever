@@ -102,6 +102,7 @@ public with sharing class BET_LinkingService {
 		} else if(betRecords.get(0).Is_Archived__c) {
 			throw new BET_CustomBETException(Label.BET_FollowBetArchivedMessage);
 		}
+		System.debug('Exit validateFollowRequest');
 	}
 
 	/************************************************************

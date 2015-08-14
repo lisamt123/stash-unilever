@@ -26,6 +26,7 @@ public with sharing class BET_ApproveProjectsComponentController {
 		Throws: -
 	*************************************************************/
 	public PageReference doDeny(){
+		System.debug('Entering doDeny : ' + elementId);
 		followReguest = [select Status__c from BET_Follow_Request__c where id=:elementId];
 		followReguest.Status__c = BET_LinkingService.FOLLOW_STATUS_REJECTED;
 		update followReguest;
@@ -39,6 +40,7 @@ public with sharing class BET_ApproveProjectsComponentController {
 		Throws: -
 	*************************************************************/
 	public PageReference doApprove(){
+		System.debug('Entering doApprove : ' + elementId);
 		followReguest = [select Status__c from BET_Follow_Request__c where id=:elementId];
 		followReguest.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED;
 		update followReguest;
@@ -52,6 +54,7 @@ public with sharing class BET_ApproveProjectsComponentController {
 		Throws: -
 	*************************************************************/
 	private PageReference forwardAction(){
+		System.debug('Entering forwardAction');
 		PageReference pr;
 		if(areThereOtherPendingRequests()){
 			pr =  new PageReference('/apex/uw_BETEdit?id='+betIdentifier+'&activeTab=tabFour');
@@ -59,6 +62,7 @@ public with sharing class BET_ApproveProjectsComponentController {
 			pr =  new PageReference('/apex/uw_BETEdit?id='+betIdentifier+'&activeTab=tabOne');
 		}
 		pr.setRedirect(true);
+		System.debug('Exit forwardAction : ' + pr);
 		return pr;
 	}
 
@@ -69,9 +73,11 @@ public with sharing class BET_ApproveProjectsComponentController {
 		Throws: -
 	*************************************************************/
 	private Boolean areThereOtherPendingRequests(){
+		System.debug('Entering areThereOtherPendingRequests : ' + betIdentifier);
 		List<BET_Follow_Request__c> requests = [select id,Project_Name__c,Project_Id__c,Project_Lead__r.name,
 												CreatedDate from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: betIdentifier 
-												and Status__c =: BET_LinkingService.FOLLOW_STATUS_NEW ];
+												and Status__c =: BET_LinkingService.FOLLOW_STATUS_NEW limit 1];
+		System.debug('Exit areThereOtherPendingRequests : ' + requests);
 		return !requests.isEmpty();
 	}
 
@@ -83,6 +89,7 @@ public with sharing class BET_ApproveProjectsComponentController {
 		Throws: -
 	*************************************************************/
 	public List<FollowRequestWrapper> getPendingRequests(){
+		System.debug('Entering getPendingRequests');
 		List<FollowRequestWrapper> result = new List<FollowRequestWrapper>();
 		Map<String,Date> projectIdTLDMap = new Map<String,Date>();
 		Set<String> projectIds = new Set<String>();
@@ -96,6 +103,7 @@ public with sharing class BET_ApproveProjectsComponentController {
 		for(BET_Follow_Request__c request : requests){
 			result.add(new FollowRequestWrapper(request,projectIdTLDMap));
 		}
+		System.debug('Exit getPendingRequests : ' + result);
 		return result;
 	}
 

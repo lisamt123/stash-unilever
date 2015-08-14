@@ -24,6 +24,7 @@ public with sharing class BET_LinkedProjectsComponentController {
 		Throws: -
 	*************************************************************/
 	public List<FollowRequestWrapper> getLinkedProjects(){
+		System.debug('Entering getLinkedProjects');
 		uw_Bet__c bet = [select id, IPM_Project__c , IPM_Project__r.name from uw_Bet__c where id=:betIdentifier];
 		List<FollowRequestWrapper> requests = new List<FollowRequestWrapper>();
 		if(bet.IPM_Project__c != null){
@@ -34,10 +35,12 @@ public with sharing class BET_LinkedProjectsComponentController {
 										 and Project_Id__c !=: bet.IPM_Project__c]){
 			requests.add(new FollowRequestWrapper(req.Project_Id__c,req.Project_Name__c,false));
 		}
+		System.debug('Exit getLinkedProjects : ' + requests);
 		return requests;
 	}
 
 	public PageReference setAsLeadProject(){
+		System.debug('Entering setAsLeadProject : ' + selectedProjectId + ', ' +  betIdentifier);
 		BET_LinkingService.setASLead((Id)selectedProjectId, betIdentifier);
 		PageReference pr =  new PageReference('/apex/uw_BETEdit?id='+betIdentifier+'&activeTab=tabThree');
 		pr.setRedirect(true);
