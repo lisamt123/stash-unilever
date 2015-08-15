@@ -6,10 +6,10 @@ private class BET_FollowRequestTriggerHandlerClsTest {
 		insert bet;
 		IPM_Project__c project = BET_TestUtils.createIPMProject('Unit Test IPM Project');
 		BET_Follow_Request__c request = BET_TestUtils.createNewFollowRequest(bet,project);
-		request.Status__c = 'Approved';
+		request.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED;
 		update request;
 		request = [select Status__c from BET_Follow_Request__c where id=:request.id];
-		System.assertEquals(request.Status__c,'Approved');
+		System.assertEquals(request.Status__c,BET_LinkingService.FOLLOW_STATUS_APPROVED);
 	}
 
 	@isTest static void handleUpdatedFollowRequestsRejectedTest() {
@@ -17,10 +17,10 @@ private class BET_FollowRequestTriggerHandlerClsTest {
 		insert bet;
 		IPM_Project__c project = BET_TestUtils.createIPMProject('Unit Test IPM Project');
 		BET_Follow_Request__c request = BET_TestUtils.createNewFollowRequest(bet,project);
-		request.Status__c = 'Rejected';
+		request.Status__c = BET_LinkingService.FOLLOW_STATUS_REJECTED;
 		update request;
 		request = [select Status__c from BET_Follow_Request__c where id=:request.id];
-		System.assertEquals(request.Status__c,'Rejected');
+		System.assertEquals(request.Status__c,BET_LinkingService.FOLLOW_STATUS_REJECTED);
 	}
 	
 	@isTest static void handleInsertedFollowRequestsTest() {
@@ -28,7 +28,8 @@ private class BET_FollowRequestTriggerHandlerClsTest {
 		insert bet;
 		IPM_Project__c project = BET_TestUtils.createIPMProject('Unit Test IPM Project');
 		BET_Follow_Request__c request = BET_TestUtils.createApprovedFollowRequest(bet,project);
-		System.assert(true);
+		request = [select Status__c from BET_Follow_Request__c where id=:request.id];
+		System.assertEquals(request.Status__c,BET_LinkingService.FOLLOW_STATUS_APPROVED);
 	}
 	
 }
