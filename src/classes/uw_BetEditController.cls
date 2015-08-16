@@ -48,6 +48,7 @@ public with sharing class uw_BetEditController {
     Purpose: Constructor 
     ******************************************************************************************/  
     public uw_BetEditController(ApexPages.StandardController stdController){
+        System.debug(stdController);
         throwUTException = 0;
 
         runJsSuccess = false;
@@ -127,7 +128,7 @@ public with sharing class uw_BetEditController {
         if(!showClearBanner){
             if(bet.Banner_1_Location__c != null){
                 List<Document> bannerList = [SELECT Id FROM Document WHERE Id =:bet.Banner_1_Location__c];
-                if(bannerList.size() > 0){
+                if(!bannerList.isEmpty()){
                     delete bannerList[0];
                 }
             }
@@ -149,7 +150,7 @@ public with sharing class uw_BetEditController {
         if(!showClearIcon){
             if(bet.Icon_Location__c != null){
                 List<Document> iconList = [SELECT Id FROM Document WHERE Id =:bet.Icon_Location__c];
-                if(iconList.size() > 0){
+                if(!iconList.isEmpty()){
                     delete iconList[0];
                 }
             }

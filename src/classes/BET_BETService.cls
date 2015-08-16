@@ -36,7 +36,7 @@ public with sharing class BET_BETService {
             // All exception are cauthed and rethrow as BET_CustomBETException as per design this in only
             // one exception expected from this service method 
             system.debug('Exception catched - ' + ex.getTypeName() + ' :' + ex.getMessage());
-            throw new BET_CustomBETException (ex.getMessage() + 'Stack: ' + ex.getStackTraceString());
+            throw new BET_CustomBETException (ex.getMessage() + 'Stack: ' + ex.getStackTraceString(),ex);
         }
         system.debug('Exiting method SearchBet following wrapper will be returned:'+retVal);
         return retVal;
