@@ -76,16 +76,16 @@ public with sharing class uw_BetEditController {
         compData.categoryMigrated = categoryMigrated;
         compData.categoryNotMigrated = categoryNotMigrated;
 
-        if(bet.Banner_1_Location__c != null){
-            showClearBanner = true;
-        }else{
+        if(bet.Banner_1_Location__c == null){
             showClearBanner = false;
+        }else{
+            showClearBanner = true;
         }
 
-        if(bet.Icon_Location__c != null){
-            showClearIcon = true;               
-        }else{
+        if(bet.Icon_Location__c == null){
             showClearIcon = false;               
+        }else{
+            showClearIcon = true;               
         }
 
         currentUserIsOwner = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(bet.id, UserInfo.getUserId());
@@ -107,11 +107,11 @@ public with sharing class uw_BetEditController {
 
                 result = Database.insert(documentToSave, false);
 
-                if (!result.isSuccess()){
+                if (result.isSuccess()){
+                    return documentToSave.Id;
+                }else{
                     ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Error attaching image '+result.getErrors()[0].getMessage()));
                     return null;
-                }else{
-                    return documentToSave.Id;
                 }
             
             } catch (Exception e){
@@ -213,7 +213,9 @@ public with sharing class uw_BetEditController {
             doSaveIcon(userId,currentfolder);
             doSaveBanner(userId,currentfolder);
 
-            if (bet.ownerId != initialOwnerId) {
+            if (bet.ownerId == initialOwnerId) {
+                initialOwnerMatches();
+            } else {
                 Savepoint sp = Database.setSavepoint();
                 try {                   
                     compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
@@ -231,8 +233,6 @@ public with sharing class uw_BetEditController {
                     Database.rollback(sp);
                     return null;
                 }
-            } else {
-                initialOwnerMatches();
             }
 
             

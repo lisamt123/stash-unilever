@@ -50,9 +50,16 @@ public with sharing class BET_BETService {
     *************************************************************/
     public static void updateBet(Id BetId,IPM_BETWrapper IPMProject){
         system.debug('Entring method Update with param @BetId: '+BetId+' @IPMProject: '+IPMProject);
-        BET_BETWrapper betWrapper = new BET_BETWrapper();
-        system.debug('Exiting method SearchBet following wrapper will be returned:'+betWrapper);
-        
+        try{
+            uw_BET__c relatedBet = [select id,Launch_Date__c,Brand_Position__c,Product_Category__c,Category_Group__c from uw_Bet__c where id = : BetId];
+            relatedBet.Launch_Date__c = IPMProject.targetLaunchDate;
+            relatedBet.Brand_Position__c = IPMProject.brandPosition;
+            relatedBet.Product_Category__c = IPMProject.categoryName;
+            relatedBet.Category_Group__c = IPMProject.brandPosition;
+            update relatedBet;
+        }catch(Exception e){
+            throw new BET_CustomBETException(e);
+        }
     }
     
     /************************************************************
@@ -96,11 +103,11 @@ public with sharing class BET_BETService {
                                         Category_Group__c, Product_Category__c, Brand_Position__c,Product_Brand__c
                                     FROM uw_BET__c WHERE Id =: betId];
         
-        if(!betLst.isEmpty()){
-            betWrapper = new BET_BETWrapper(betLst.get(0));
-        }else{
+        if(betLst.isEmpty()){
             //bet was not found throw an error
             throw new BET_CustomBETException(String.format(Label.BetServiceGetBetError,new List<String>{betId}));
+        }else{
+            betWrapper = new BET_BETWrapper(betLst.get(0));
         }
         
         system.debug('Exiting BET_BETService.GetBet returned folowing BET_BETWrapper: '+ betWrapper);

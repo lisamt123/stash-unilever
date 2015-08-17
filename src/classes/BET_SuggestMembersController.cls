@@ -204,10 +204,10 @@ public with sharing class BET_SuggestMembersController {
         System.debug('Preparing searchUsers query : ' + searchUserName  +', ' + betOwnerId);
         String query = 'SELECT Id,Name,SmallPhotoUrl from User where   name like \'%'+searchUserName+'%\' and isActive = true {0} and Id !=: betOwnerId Limit 50';
         
-        if(suggested_MembersCtrl != null){
-            query = query.replace('{0}','and id not in : suggested_MembersCtrl');
-        }else{
+        if(suggested_MembersCtrl == null){
             query = query.replace('{0}','');
+        } else {
+            query = query.replace('{0}','and id not in : suggested_MembersCtrl');
         }
         
         freeAddMembers = Database.query(query);
@@ -379,15 +379,15 @@ public with sharing class BET_SuggestMembersController {
     public String getOnwerPhoto(){
         System.debug('Entering method getOnwerPhoto get BetOwner for following BET: '+betIdCtrl);
         List<uw_BET__c> betRecord = [SELECT OwnerId from uw_BET__c where id =: betIdCtrl LIMIT 1];
-        if(!betRecord.isEmpty()){
-            betOwnerInfo = [SELECT FullPhotoUrl,id,Name from user where id =: betRecord.get(0).OwnerId Limit 1];
-            System.debug('Exiting method getOnwerPhoto with following photoUrl: '+betOwnerInfo.FullPhotoUrl);
-        	return betOwnerInfo.FullPhotoUrl;
-        }else{
+        if(betRecord.isEmpty()){
             //set new instance for user to not trigger an error
             betOwnerInfo = new User();
             System.debug('Exiting method getOnwerPhoto no bet record found with such returned empty string');
             return '';
+        }else{
+            betOwnerInfo = [SELECT FullPhotoUrl,id,Name from user where id =: betRecord.get(0).OwnerId Limit 1];
+            System.debug('Exiting method getOnwerPhoto with following photoUrl: '+betOwnerInfo.FullPhotoUrl);
+            return betOwnerInfo.FullPhotoUrl;
         }
         
     }

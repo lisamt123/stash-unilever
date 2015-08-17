@@ -161,7 +161,8 @@ public without sharing class uw_BETSearchService {
     /*******************************************************************
     Purpose: Method is unified method for searching appropriate bets in system.
     Parameterd Description:   
-    Parameters: [String searchType, String brandId, String categoryId, String keyWord, Integer pageSize,Integer pageNumber,Boolean withFilters, Boolean sortAsc, String sortField]
+    Parameters: [String searchType, String brandId, String categoryId, String keyWord, 
+    Integer pageSize,Integer pageNumber,Boolean withFilters, Boolean sortAsc, String sortField]
     Returns: [Map<String, Object>]
     Throws [Exceptions]: [optional] 
     ********************************************************************/

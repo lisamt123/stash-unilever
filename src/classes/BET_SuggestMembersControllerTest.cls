@@ -32,7 +32,10 @@ private class BET_SuggestMembersControllerTest {
          //check if user's were aggregated properly
         for(BET_SuggestMembersController.SuggestedMembersWrapper item : result){
             Boolean isManagerInGroup = false;
-            if(item.groupName != Label.BET_SuggestedMemberOtherMembers){
+            if(item.groupName == Label.BET_SuggestedMemberOtherMembers){
+                //other group shouldn't have any members
+                system.assertEquals(0, item.groupUsers.size());
+            }else{
                 for(BET_SuggestMembersController.SuggestedMemberItemWrapper userItem : item.groupUsers){
                     if(userItem.isManager){
                         isManagerInGroup = true;
@@ -43,9 +46,6 @@ private class BET_SuggestMembersControllerTest {
                 //each group should have 4 memebers
                 system.assertEquals(4, item.groupUsers.size());
                 
-            }else{
-                //other group shouldn't have any members
-                system.assertEquals(0, item.groupUsers.size());
             }
         }
         

@@ -117,7 +117,7 @@ public with sharing class BET_UpsertBETController {
 		try{
 			uw_Bet__c newBET = buildBETObject();
 			upsert newBET;
-			pageRef = new PageReference(cback+'?id='+newBET.id);
+			pageRef = new PageReference(cback+newBET.id);
 		}catch(Exception e){
 			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception Saving BET record'+e));
 		}
