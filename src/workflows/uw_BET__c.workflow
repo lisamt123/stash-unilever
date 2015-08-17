@@ -17,7 +17,7 @@
             <name>BET_TLDChangedNotification</name>
             <type>Alert</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <description>Runs when Target Launch Data has been changed</description>
         <formula>AND(NOT(ISNEW()),ISCHANGED(Launch_Date__c))</formula>
         <triggerType>onAllChanges</triggerType>
