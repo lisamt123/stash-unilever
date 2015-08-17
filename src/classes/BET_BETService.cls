@@ -60,6 +60,7 @@ public with sharing class BET_BETService {
         }catch(Exception e){
             throw new BET_CustomBETException(e);
         }
+        system.debug('Exit method Update with param @BetId: '+BetId+' @IPMProject: '+IPMProject);
     }
     
     /************************************************************

@@ -63,4 +63,21 @@ private class BET_BETServiceTest {
         searchResults = BET_BETService.searchBet('BetWithThisNameCannotExist1.1', null, null);
         system.assertEquals(0, searchResults.size(), 'Should not find any Bet');
     }
+
+    @isTest static void updateBetTest(){
+        uw_BET__c betObject = BET_TestUtils.getTestBet();
+        insert betObject;
+
+        IPM_Project__c project = BET_TestUtils.createIPMProject('Unit Test IPM Project');
+
+        IPM_BETWrapper IPMProject = new IPM_BETWrapper(project);
+        IPMProject.targetLaunchDate = date.today();
+
+        System.assert(betObject.Launch_Date__c == null);
+
+        BET_BETService.updateBet(betObject.id,IPMProject);
+        betObject = [select Launch_Date__c from uw_BET__c where id=: betObject.id];
+
+        System.assertEquals(betObject.Launch_Date__c,date.today());
+    }
 }

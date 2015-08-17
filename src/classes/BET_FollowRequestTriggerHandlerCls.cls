@@ -93,7 +93,7 @@ public without sharing class BET_FollowRequestTriggerHandlerCls {
 		}
 		Set<Id> processedBets = new Set<Id>();
 		for(BET_Follow_Request__c request : approvedRequests){
-			if(betMap.get(request.Brand_Experience_Toolkit__c) != null && !processedBets.contains(request.Brand_Experience_Toolkit__c)){
+			if(betMap.get(reques.tBrand_Experience_Toolkit__c) != null && !processedBets.contains(request.Brand_Experience_Toolkit__c)){
 				BET_LinkingService.updateBet(betMap.get(request.Brand_Experience_Toolkit__c),(Id)request.Project_Id__c);
 				processedBets.add(request.Brand_Experience_Toolkit__c);
 			}
