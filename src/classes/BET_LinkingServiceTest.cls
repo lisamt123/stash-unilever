@@ -22,8 +22,9 @@ private class BET_LinkingServiceTest {
 		Id BetId = bet.id;
 		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
 		try{
-			BET_LinkingService.Follow(ProjectId, BetId, new List<Id> {UserInfo.getUserId()});
-			System.assert(true);
+			BET_LinkingService.Follow(ProjectId, BetId, new List<Id>{UserInfo.getUserId()});
+			List<BET_Member_Request__c> relatedMemberRequests = [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c =: BetId];
+			System.assertEquals(relatedMemberRequests.size(),1);
 		}catch(Exception e){
 			System.assert(false);
 		}
@@ -89,15 +90,15 @@ private class BET_LinkingServiceTest {
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
 		BET_Follow_Request__c request = BET_LinkingService.createFollowRequest(BET_TestUtils.createIPMProject(IPM_PROJECT_NAME), 
-										bet, new List<Id> {UserInfo.getUserId()},true);
-		System.assertEquals(request.Status__c,BET_LinkingService.FOLLOW_STATUS_APPROVED);
+										bet, new List<Id> {UserInfo.getUserId()});
+		System.assertEquals(request.Status__c,BET_LinkingService.FOLLOW_STATUS_NEW);
 	}
 
 	@isTest static void createRelatedMemberRequestsTest(){
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
 		BET_Follow_Request__c request = BET_LinkingService.createFollowRequest(BET_TestUtils.createIPMProject(IPM_PROJECT_NAME), 
-										bet, new List<Id> {UserInfo.getUserId()},true);
+										bet, new List<Id> {UserInfo.getUserId()});
 		List<Id> requests = BET_LinkingService.createRelatedMemberRequests(request,bet,new List<Id> {UserInfo.getUserId()});
 		System.assertEquals(requests.size(),1);
 	}

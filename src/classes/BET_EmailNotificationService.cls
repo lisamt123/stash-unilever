@@ -15,7 +15,7 @@ public with sharing class BET_EmailNotificationService {
 
         mail.setOrgWideEmailAddressId(owea.id);
         mail.setSubject('Project ' + oldProject.name + ' unlinked from your BET');
-      	final String body = 'Project ' + oldProject.name + ' unlinked from your BET ' + bet.name + ' ';
+      	String body = 'Project ' + oldProject.name + ' unlinked from your BET ' + bet.name + ' ';
       	body += '<br/> the next project with the earliest TLD is now your leading/controlling project,';
       	body += '<br/> if you want to change this please contact system admin';
       	mail.setHtmlBody(body);
@@ -52,7 +52,7 @@ public with sharing class BET_EmailNotificationService {
 
         mail.setOrgWideEmailAddressId(owea.id);
         mail.setSubject('Project ' + project.name + ' unlinked from your BET');
-      	final String body = 'Project ' + project.name + ' unlinked from your BET ' + bet.name + ' ';
+      	String body = 'Project ' + project.name + ' unlinked from your BET ' + bet.name + ' ';
       	body += '<br/> there is no lead/controlling project assigned to your BET. ';
       	body += '<br/> BET has been archived but can be unarchived if required';
       	mail.setHtmlBody(body);

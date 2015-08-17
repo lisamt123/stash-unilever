@@ -1,0 +1,1 @@
+Target Launch Date on BET {!uw_BET__c.Name} was changed. New value is {!uw_BET__c.Launch_Date__c}
