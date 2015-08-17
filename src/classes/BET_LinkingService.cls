@@ -79,8 +79,12 @@ public with sharing class BET_LinkingService {
 		BET_LinkingServiceHelper.validateFollowRequest(betRecords,projects);
 		try{
 			Boolean shouldBeAutoApproved = checkIfFollowRequestShouldBeAutoapproved(betRecords.get(0),managersIds);
-			BET_Follow_Request__c followRequest = createFollowRequest(projects.get(0),betRecords.get(0),managersIds,shouldBeAutoApproved);
+			BET_Follow_Request__c followRequest = createFollowRequest(projects.get(0),betRecords.get(0),managersIds);
 			createRelatedMemberRequests(followRequest,betRecords.get(0),managersIds);
+			if(shouldBeAutoApproved) {
+				followRequest.Status__c = FOLLOW_STATUS_APPROVED;
+				update followRequest;
+			}
 		}catch(Exception e){
 			throw new BET_CustomBETException(Label.BET_FollowExceptionMessage,e);
 		}
@@ -94,12 +98,12 @@ public with sharing class BET_LinkingService {
 		Throws: -
 	*************************************************************/
 	@TestVisible
-	private static BET_Follow_Request__c createFollowRequest(IPM_Project__c project, uw_Bet__c bet, List<Id> managersIds,Boolean autoApproved){
-		System.debug('Entering createFollowRequest : ' + project + ', ' + bet + ', ' + managersIds + ', ' + autoApproved);
+	private static BET_Follow_Request__c createFollowRequest(IPM_Project__c project, uw_Bet__c bet, List<Id> managersIds){
+		System.debug('Entering createFollowRequest : ' + project + ', ' + bet + ', ' + managersIds);
 		BET_Follow_Request__c request = new BET_Follow_Request__c();
 		request.Brand_Experience_Toolkit__c = bet.id;
 		request.Project_Id__c = project.id;
-		request.Status__c = autoApproved ? FOLLOW_STATUS_APPROVED : FOLLOW_STATUS_NEW;
+		request.Status__c = FOLLOW_STATUS_NEW;
 		request.Project_Name__c = project.name;
 		request.Project_Lead__c = managersIds.get(0);
 		request.Is_Lead_Request__c = shouldMarkRequestAsLeadRequest(bet);
@@ -156,14 +160,20 @@ public with sharing class BET_LinkingService {
 	private static List<Id> createRelatedMemberRequests(BET_Follow_Request__c followRequest,uw_Bet__c relatedBet,List<Id> managersIds){
 		System.debug('Entering crateRelatedMemberRequests : ' + followRequest + ', ' + relatedBet + ', ' + managersIds);
 		List<BET_Member_Request__c> mRequestsToBeCreated = new List<BET_Member_Request__c>();
+		IPM_BETWrapper projectWrapper = IPM_BETUpdateService.ipm_Wrapper(followRequest.Project_Id__c);
+		Boolean projectLeadAlreadyIncluded = false;
 		for(Id managerId : managersIds){
-			mRequestsToBeCreated.add( new BET_Member_Request__c(Brand_Experience_Toolkit__c = relatedBet.id,
-																UserId__c = managerId,
-																Role__c = 'Manager',
-																ProjectRequest__c = followRequest.id,
-																Project_Id__c = followRequest.Project_Id__c,
-																BET_owner__c = relatedBet.ownerid));
+			if(projectWrapper.pLId!= null && ((Id)projectWrapper.pLId) == ((Id)managerId)){
+				projectLeadAlreadyIncluded = true;
+			}
+			mRequestsToBeCreated.add(createMemberRequest(followRequest,relatedBet,'Manager',managerId));
 		}
+
+
+		if(!projectLeadAlreadyIncluded && projectWrapper.pLId != null){
+			mRequestsToBeCreated.add(createMemberRequest(followRequest,relatedBet,'Manager',projectWrapper.pLId));
+		}
+
 		insert mRequestsToBeCreated;
 		List<Id> requestIds = new List<Id>();
 		for(BET_Member_Request__c mrequest : mRequestsToBeCreated){
@@ -171,6 +181,17 @@ public with sharing class BET_LinkingService {
 		}
 		System.debug('Exit crateRelatedMemberRequests : ' + requestIds);
 		return requestIds;
+	}
+
+	/************************************************************
+		Purpose: Method creates member requests
+		Parameters: BET_Follow_Request__c followRequest,uw_Bet__c relatedBet,String Role, String user
+		Returns: BET_Member_Request__c object
+		Throws: -
+	*************************************************************/
+	private static BET_Member_Request__c createMemberRequest(BET_Follow_Request__c followRequest,uw_Bet__c relatedBet,String Role, String user){
+		return new BET_Member_Request__c(Brand_Experience_Toolkit__c = relatedBet.id, UserId__c = user, Role__c = role,
+										ProjectRequest__c = followRequest.id, Project_Id__c = followRequest.Project_Id__c, BET_owner__c = relatedBet.ownerid);
 	}
 
     /************************************************************

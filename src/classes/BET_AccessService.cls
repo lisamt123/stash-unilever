@@ -91,19 +91,14 @@ public with sharing class BET_AccessService {
 		System.debug('Entering RequestAccess : ' + memberRequests + ', ' + betId);
 		List<Id> requestIds = new List<Id>();
 		try{
-			//List<Id> users = new List<Id>();
-			//for(BET_BETWrapper.MemberRequest request : memberRequests){
-			//	users.add(request.UserId);
-			//}
-			//Map<Id,Boolean> managetOwnerMap =  BET_SuggestedMemberService.checkIfUsersAreManagerOrOwnerOfBet(betId,users);
 			List<BET_Member_Request__c> mRequestsToBeCreated = new List<BET_Member_Request__c>();
 			for(BET_BETWrapper.MemberRequest request : memberRequests){
 				mRequestsToBeCreated.add(
 					new BET_Member_Request__c(
 						Brand_Experience_Toolkit__c=betId,
 						UserId__c=request.UserId,
+						Role__c = request.AccessLevel,
 						Status__c=BET_LinkingService.FOLLOW_STATUS_APPROVED)
-						//Status__c = managetOwnerMap.get(request.UserId) ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW)
 				);
 			}
 			insert mRequestsToBeCreated;
