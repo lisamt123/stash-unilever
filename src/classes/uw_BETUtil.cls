@@ -123,35 +123,4 @@ public with sharing class uw_BETUtil {
         System.debug('Exit validateBET : ' + errors);
         return errors;
     }
-
-    /*******************************************************************
-	Purpose: Method resposible for paging search results 
-    used for reports porpouse
-	Parameters: [List<uw_BETWrapper.BetSearchItem> searchResults, Integer pageSize,Integer pageNumber]
-	Returns: []
-	Throws [Exceptions]: [optional] 
-	********************************************************************/
-    //public static List<uw_BETWrapper.BetSearchItem> getResultsForPage(List<uw_BETWrapper.BetSearchItem> searchResults, Integer pageSize,Integer pageNumber){
-    //    System.Debug('*** BET getResultsForPage input parameter pageSize: ' + pageSize +' pageNumber: ' +pageNumber);
-    //    if(!searchResults.isEmpty()){
-    //        if(pageNumber<1){
-    //            //set page on first page
-    //            pageNumber=1;
-    //        }
-    //        Integer startIndex=pageSize*(pageNumber-1);
-    //        system.debug('*** BET getResultsForPage start Index: '+startIndex);
-    //        List<uw_BETWrapper.BetSearchItem> pagedResults=new List<uw_BETWrapper.BetSearchItem>();
-    //        Boolean firstIteration=true;
-    //        for(Integer i=startIndex;i<startIndex+pageSize;i++){
-    //            if(searchResults.size() > i){
-    //                pagedResults.add(searchResults[i]);
-    //            }
-    //        }
-    //        System.Debug('*** BET getResultsForPage number of items which will be returned:' +pagedResults.size());
-    //        return pagedResults;
-    //    }else{
-    //        //list of results is empty then return empty list
-    //        return searchResults;
-    //    }
-    //}
 }
