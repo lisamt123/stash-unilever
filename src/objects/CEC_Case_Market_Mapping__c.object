@@ -66,6 +66,16 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>CaseOrigin__c</fullName>
+        <externalId>false</externalId>
+        <label>CaseOrigin</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Country__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>CEC: contains the country value which will be used in webtocase scenario by integration team</description>

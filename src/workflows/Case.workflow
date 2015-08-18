@@ -328,6 +328,25 @@
         <protected>false</protected>
     </fieldUpdates>
     <rules>
+        <fullName>CEC %3A CaseOrigin Update</fullName>
+        <actions>
+            <name>CEC_Case_Origin_to_email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>contains</operation>
+            <value>Email UK,Email India,Email Nordic,Email France,Email Benelux,Email DACH,Email Cyprus,Email Czech Republic,Email Greece,Email Hungary,Email Italy,Email Poland,Email Portugal,Email Spain,Email Baltics,Email TO France,Email Sri Lanka</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Country_Name__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>CEC : To update the Case Origin field.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
         <fullName>CEC Benelux Market Field Update</fullName>
         <actions>
             <name>CEC_Benelux_Market_Field_Update</name>
@@ -337,7 +356,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -352,7 +371,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -382,7 +401,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -397,7 +416,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -412,7 +431,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -427,7 +446,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -442,7 +461,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -457,7 +476,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -472,7 +491,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -487,7 +506,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -516,7 +535,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -535,7 +554,7 @@
             <name>CEC_India_Market_Field_Update</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -555,7 +574,7 @@ ex: Case Origin : Email India then Update Market : India</description>
             <name>CEC_Nordic_Market_Field_Update</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -574,7 +593,7 @@ ex: Case Origin : Email India then Update Market : India</description>
             <name>CEC_UK_Market_Field_Update</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -766,7 +785,7 @@ ex: Case Origin : Email India then Update Market : India</description>
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -840,7 +859,7 @@ ex: Case Origin : Email India then Update Market : India</description>
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>

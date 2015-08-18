@@ -634,6 +634,38 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Bonus Annual</value>
     </labels>
     <labels>
+        <fullName>CEC_AlertActionSchedulerName</fullName>
+        <categories>CEC: Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_AlertActionSchedulerName</shortDescription>
+        <value>CEC AlertAction Scheduler</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CBM_NotificationBodyFooter</fullName>
+        <categories>CEC : Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CBM_NotificationBodyFooter</shortDescription>
+        <value>&lt;BR/&gt;&lt;BR/&gt;Thank You&lt;/Body&gt;&lt;/Html&gt;</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CBM_NotificationBodyHeader</fullName>
+        <categories>CEC : Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CBM_NotificationBodyHeader</shortDescription>
+        <value>&lt;Html&gt;&lt;Body&gt; This is an automated email&lt;BR/&gt;&lt;BR/&gt;Following are the list of Email Cases where CaseBrandMapping record is not found &lt;BR/&gt;&lt;BR/&gt;</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CBM_NotificationSubject</fullName>
+        <categories>CEC : Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CBM_NotificationSubject</shortDescription>
+        <value>CEC Alert : Missing CaseBrandMapping value</value>
+    </labels>
+    <labels>
         <fullName>CEC_CaseAccountMissing</fullName>
         <categories>CEC:Case_Error</categories>
         <language>en_US</language>

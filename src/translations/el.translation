@@ -429,6 +429,22 @@
         <name>Bonus_Annual</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_AlertActionSchedulerName --></label>
+        <name>CEC_AlertActionSchedulerName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CBM_NotificationBodyFooter --></label>
+        <name>CEC_CBM_NotificationBodyFooter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CBM_NotificationBodyHeader --></label>
+        <name>CEC_CBM_NotificationBodyHeader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CBM_NotificationSubject --></label>
+        <name>CEC_CBM_NotificationSubject</name>
+    </customLabels>
+    <customLabels>
         <label>Η εκπλήρωση δεν μπορεί να δημιουργηθεί χωρίς λογαριασμό όψεως που συνδέεται με την υπόθεση</label>
         <name>CEC_CaseAccountMissing</name>
     </customLabels>
