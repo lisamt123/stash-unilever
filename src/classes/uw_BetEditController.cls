@@ -97,7 +97,9 @@ public with sharing class uw_BetEditController {
     Returns: Id
     ******************************************************************************************/  
     public Id saveDocument(Document documentToSave){
-        if (documentToSave != null && documentToSave.name != null && documentToSave.body != null){
+        if (documentToSave == null || documentToSave.name == null || documentToSave.body == null){
+             return null;
+        }else{
             try{
                 Database.Saveresult result;
                 if (Test.isRunningTest() && throwUTException == 2) {
@@ -118,11 +120,8 @@ public with sharing class uw_BetEditController {
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception attaching image '+e));
                 return null;
             }
-        }else{
-            return null;
         }
     }
-
 
     private void doClearBanner(){
         if(!showClearBanner){
