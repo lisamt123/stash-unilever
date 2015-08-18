@@ -35,6 +35,39 @@ public with sharing class BET_BETHandlerCls {
   private BET_BETHandlerCls(){}
 
   /************************************************************
+    Purpose: Method updates IPM when changes on Bet made. Temporary commented due to lack od understanding
+    Parameters: List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap
+    Returns: -
+    Throws: -
+  *************************************************************/
+  public static void informIPMOnBetChanges(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
+    for(uw_BET__c bet : newBetList){
+      if(  bet.status__c != oldBetMap.get(bet.id).Status__c
+        || bet.ownerid != oldBetMap.get(bet.id).ownerid
+        || bet.FinalReleaseDate__c != oldBetMap.get(bet.id).FinalReleaseDate__c
+        || bet.FirstReleaseDate__c != oldBetMap.get(bet.id).FirstReleaseDate__c
+        || bet.Final_Release_Due_Date__c != oldBetMap.get(bet.id).Final_Release_Due_Date__c
+        || bet.First_Release_Due_Date__c != oldBetMap.get(bet.id).First_Release_Due_Date__c) {
+        //IPM_BETWrapper wrapper = null;
+        //IPM_BETUpdateService.updateIPM(bet.id,wrapper);
+      }
+    }
+  }
+
+  /************************************************************
+    Purpose: Method updates final due dates of BET
+    Parameters: List<uw_BET__c> bets
+    Returns: -
+    Throws: -
+  *************************************************************/
+  public static void updateReleaseDueDates(List<uw_BET__c> bets){
+    for(uw_BET__c bet : bets){
+      bet.Final_Release_Due_Date__c = BET_BETService.getFinalReleaseDueDate(bet.Launch_Date__c);
+      bet.First_Release_Due_Date__c = BET_BETService.getFirstReleaseDueDate(bet.Launch_Date__c);
+    }
+  }
+
+  /************************************************************
     Purpose: Builds BET map from sObject map
     Parameters: Map<Id,SObject> sobjectMap
     Returns: Map<Id,uw_BET__c>

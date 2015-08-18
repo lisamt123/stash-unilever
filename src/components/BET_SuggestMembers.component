@@ -50,7 +50,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
     </p>
     
     <div id="betOwner" class="memberContainer">
-        <img class="circular"  src="{!OnwerPhoto}" alt="{!OnwerPhoto}"/>
+        <img class="circular"  src="{!OnwerPhoto}" alt="{!OnwerPhoto}" width="80px" height="80px" />
         
         <div class="userTitle" >
             <span>{!betOwnerInfo.Name}</span>
@@ -62,12 +62,12 @@ VERSION  AUTHOR                DATE        DETAIL   Description
         
         <div class="editCircle">
             <a href="/{!betOwnerInfo.id}" target="blank">
-            	<img  src="{!$Resource.BETSuggestedMembers}/images/pencil.jpg" alt="{!$Resource.BETSuggestedMembers}/images/pencil.jpg" />
+            	<img  src="{!$Resource.BETSuggestedMembers}/images/pencil.jpg" alt="{!$Resource.BETSuggestedMembers}/images/pencil.jpg" width="16px" height="16px" />
             </a>    
         </div>
     </div>
     <apex:outputPanel id="betManager" layout="block" styleClass="memberContainer" rendered="{!ManagerPhoto != ''}">
-        <img class="circular"  src="{!managerInfo.FullPhotoUrl}" alt="{!managerInfo.FullPhotoUrl}" />
+        <img class="circular"  src="{!managerInfo.FullPhotoUrl}" alt="{!managerInfo.FullPhotoUrl}" width="80px" height="80px" />
         
         <div class="userTitle" >
             <span>{!managerInfo.Name}</span>
@@ -98,10 +98,10 @@ VERSION  AUTHOR                DATE        DETAIL   Description
         <apex:repeat value="{!SuggestedMembers}" var="member">
             <div id="groupName_{!rowNum}" style="margin-top:10px;">
                 <div id="groupName_Colapse_{!rowNum}" style="float:left;" onclick="colapseGroup('{!rowNum}')">
-                    <img class="collapseExpandItem" alt="Collapse" src="{!$Resource.BETSuggestedMembers}/images/colapse.png"/>
+                    <img class="collapseExpandItem" alt="Collapse" src="{!$Resource.BETSuggestedMembers}/images/colapse.png" width="16px" height="16px"/>
                 </div>
                 <div id="groupName_Expand_{!rowNum}" style="float:left" onclick="expandGroup('{!rowNum}')">
-                    <img class="collapseExpandItem" alt="Expand" src="{!$Resource.BETSuggestedMembers}/images/expand.png"/>
+                    <img class="collapseExpandItem" alt="Expand" src="{!$Resource.BETSuggestedMembers}/images/expand.png" width="16px" height="16px"/>
                 </div>
                 <span style="font-weight:bold;">{!member.groupName}</span>
                 <span style="color:gray"> |  </span>
@@ -119,7 +119,8 @@ VERSION  AUTHOR                DATE        DETAIL   Description
                 	<apex:variable value="{!1}" var="UserRowNum"/>
                     <apex:repeat value="{!member.groupUsers}" var="memeberItem">
                     <div id="userId_{!memeberItem.userInfo.id}" class="memberContainer">
-                        <img class="circular" alt="{!memeberItem.userInfo.Name}" src="{!memeberItem.userInfo.FullPhotoUrl}"/>
+                        <img class="circular" alt="{!memeberItem.userInfo.Name}" src="{!memeberItem.userInfo.FullPhotoUrl}" 
+                         width="80px" height="80px" />
                         
                         <div class="userTitle" >
                                 <span>{!memeberItem.userInfo.Name}</span>
@@ -147,7 +148,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
         <div  class="memberContainer">
             
             <a data-toggle="modal" data-target="#myModal">
-                <img alt="{!$Label.BET_SuggestedMemberAddOtherMember}"  class="addMemeberBtn" src="{!$Resource.BETSuggestedMembers}/images/add_2.png"/>
+                <img alt="{!$Label.BET_SuggestedMemberAddOtherMember}"  class="addMemeberBtn" src="{!$Resource.BETSuggestedMembers}/images/add_2.png" width="80px" height="80px"/>
             </a>    
            
             <div class="userTitle" onclick="addOtherMembers();">
@@ -187,7 +188,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
                         <apex:repeat value="{!freeAddMembers}" var="memberItem">
                             <div class="searchMemberItem">
                                 <input type="checkbox" onclick="selectOrUnselect($(this));" id="userIdCheckbox_{!memberItem.id}"  value="{!memberItem}"/>
-                                <img class="circularSmall" alt="{!memberItem.name}" src="{!memberItem.SmallPhotoUrl}"/>
+                                <img class="circularSmall" alt="{!memberItem.name}" src="{!memberItem.SmallPhotoUrl}" width="45px" height="45px"/>
                                 <span>{!memberItem.name}</span>
                             </div>
                         </apex:repeat>

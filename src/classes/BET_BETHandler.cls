@@ -18,9 +18,11 @@ public with sharing class BET_BETHandler implements ITrigger {
 		if(Trigger.isInsert){
 			BET_UpdateBETSearchHandler.beforeInsert(Trigger.new); // Taken from BET_UpdateBETSearch trigger
         	handler.handleBetBeforeInserts(Trigger.new); // Taken from uw_BET_before_insert trigger
+        	BET_BETHandlerCls.updateReleaseDueDates(Trigger.new);
 		}
 		if(Trigger.isUpdate){
 			BET_UpdateBETSearchHandler.beforeUpdate(Trigger.new,BET_BETHandlerCls.buildBetMap(Trigger.oldMap)); // Taken from BET_UpdateBETSearch trigger
+			BET_BETHandlerCls.updateReleaseDueDates(Trigger.new);
 		}
 		if(Trigger.isDelete){
 			BET_BETHandlerCls.deleteBETRelatedCollaborationGroup(); // Taken from uw_BET_before_delete trigger
@@ -31,6 +33,7 @@ public with sharing class BET_BETHandler implements ITrigger {
 		if (Trigger.isUpdate){ // Taken from uw_BET_after_update trigger
     		handler.handleBetAfterUpdates(BET_BETHandlerCls.buildBetMap(Trigger.newMap),BET_BETHandlerCls.buildBetMap(Trigger.oldMap));
     		BET_BETHandlerCls.logChanges(); // Taken from BET_LogChanges trigger
+    		BET_BETHandlerCls.informIPMOnBetChanges(Trigger.new,BET_BETHandlerCls.buildBetMap(Trigger.oldMap));
     	}
     	if(Trigger.isInsert){
     		handler.handleBetAfterInserts(Trigger.new); // Taken from uw_BET_after_insert trigger

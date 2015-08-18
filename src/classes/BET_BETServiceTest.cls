@@ -80,4 +80,26 @@ private class BET_BETServiceTest {
 
         System.assertEquals(betObject.Launch_Date__c,date.today());
     }
+
+    @isTest static void getFirstReleaseDueDateTest(){
+        Date dateInJulyOrAfter = BET_BETService.getFirstReleaseDueDate(Date.newInstance(2015,7,10));
+        Date dateBeforeJuly = BET_BETService.getFirstReleaseDueDate(Date.newInstance(2015,6,10));
+
+        System.assertEquals(dateInJulyOrAfter.year(),2014);
+        System.assertEquals(dateInJulyOrAfter.month(),6);
+        System.assertEquals(dateInJulyOrAfter.day(),30);
+
+        System.assertEquals(dateBeforeJuly.year(),2014);
+        System.assertEquals(dateBeforeJuly.month(),4);
+        System.assertEquals(dateBeforeJuly.day(),15);
+
+    }
+
+    @isTest static void getFinalReleaseDueDateTest(){
+        Date tld = BET_BETService.getFinalReleaseDueDate(Date.newInstance(2015,9,10));
+
+        System.assertEquals(tld.year(),2015);
+        System.assertEquals(tld.month(),3);
+        System.assertEquals(tld.day(),1);
+    }
 }
