@@ -100,4 +100,8 @@ public class IPM_BETUpdateService{
     public class IPM_CustomException extends Exception{
           
     }
+
+    public static void updateIPM(Id BETId, IPM_BETWrapper wrapper) {
+
+    }
 }

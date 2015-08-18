@@ -12,7 +12,10 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 
 public with sharing class BET_BETService {
     
-    
+    private static final Integer APRIL = 4;
+    private static final Integer JUNE = 6;
+    private static final Integer JULY = 7;
+
     private BET_BETService(){}
     
     /************************************************************
@@ -51,43 +54,54 @@ public with sharing class BET_BETService {
     public static void updateBet(Id BetId,IPM_BETWrapper IPMProject){
         system.debug('Entring method Update with param @BetId: '+BetId+' @IPMProject: '+IPMProject);
         try{
-            uw_BET__c relatedBet = [select id,Launch_Date__c,Brand_Position__c,Product_Category__c,Category_Group__c from uw_Bet__c where id = : BetId];
+            uw_BET__c relatedBet = [select id,Launch_Date__c,Brand_Position__c,Product_Category__c,Category_Group__c,Final_Release_Due_Date__c,First_Release_Due_Date__c from uw_Bet__c where id = : BetId];
             relatedBet.Launch_Date__c = IPMProject.targetLaunchDate;
             relatedBet.Brand_Position__c = IPMProject.brandPosition;
             relatedBet.Product_Category__c = IPMProject.categoryName;
             relatedBet.Category_Group__c = IPMProject.brandPosition;
+            relatedBet.First_Release_Due_Date__c = getFirstReleaseDueDate(IPMProject.targetLaunchDate);
+            relatedBet.Final_Release_Due_Date__c = getFinalReleaseDueDate(IPMProject.targetLaunchDate);
             update relatedBet;
         }catch(Exception e){
-            throw new BET_CustomBETException(e);
+            throw new BET_CustomBETException(e.getMessage() + 'Stack: ' + e.getStackTraceString(),e);
         }
         system.debug('Exit method Update with param @BetId: '+BetId+' @IPMProject: '+IPMProject);
     }
     
     /************************************************************
         Purpose: Returns first release due date based on provided TLD (Target Launch Date)
-        Parameters: -BetId,IPMProject
-        Returns: 
-        Throws: -[BET_CustomBETException]
+        Parameters: Date targetLaunchDate
+        Returns: Calculated date
+        Throws: -
     *************************************************************/
     public static Date getFirstReleaseDueDate(Date targetLaunchDate){
         system.debug('Entring method GetFirstReleaseDueDate with param @targetLaunchDate: '+targetLaunchDate);
-        
-        system.debug('Exiting method GetFirstReleaseDueDate following date was returned:');
-        return null;
+        if(targetLaunchDate == null) return null;
+        Integer tldMonth = targetLaunchDate.month();
+        Date calculatedDate = null;
+        if(tldMonth < JULY){
+            calculatedDate = Date.newInstance(targetLaunchDate.year() - 1, APRIL, 15);
+        } else {
+            calculatedDate = Date.newInstance(targetLaunchDate.year() - 1, JUNE, 30);
+        }
+        system.debug('Exiting method GetFirstReleaseDueDate following date was returned: ' + calculatedDate);
+        return calculatedDate;
     }
     
     
     /************************************************************
         Purpose: Returns final release due date based on provided TLD (Target Launch Date)
-        Parameters: -BetId,IPMProject
-        Returns: 
-        Throws: -[BET_CustomBETException]
+        Parameters: Date targetLaunchDate
+        Returns: Calculated date
+        Throws: -
     *************************************************************/
     public static Date getFinalReleaseDueDate(Date targetLaunchDate){
         system.debug('Entring method GetFinalReleaseDueDate with param @targetLaunchDate: '+targetLaunchDate);
-        
-        system.debug('Exiting method GetFinalReleaseDueDate following date was returned:');
-        return null;
+        if(targetLaunchDate == null) return null;
+        Date substractedDate = targetLaunchDate.addMonths(-6);
+        Date calculatedDate = Date.newInstance(substractedDate.year(), substractedDate.month(), 1);
+        system.debug('Exiting method GetFinalReleaseDueDate following date was returned: ' + calculatedDate);
+        return calculatedDate;
     }
     
     /************************************************************
@@ -100,8 +114,9 @@ public with sharing class BET_BETService {
         system.debug('Entring BET_BETService.GetBet with param @betd:'+betId);
         BET_BETWrapper betWrapper;
         
-        List<uw_BET__c> betLst = [Select Id,Name,Status__c,First_release_date__c,Final_release_date__c,Is_Archived__c,OwnerID,
-                                        Category_Group__c, Product_Category__c, Brand_Position__c,Product_Brand__c
+        List<uw_BET__c> betLst = [Select Id,Name,Status__c,FirstReleaseDate__c,FinalReleaseDate__c,Final_Release_Due_Date__c,
+                                    First_Release_Due_Date__c,Is_Archived__c,OwnerID,
+                                    Category_Group__c, Product_Category__c, Brand_Position__c,Product_Brand__c
                                     FROM uw_BET__c WHERE Id =: betId];
         
         if(betLst.isEmpty()){

@@ -99,12 +99,10 @@ public with sharing class BET_BETWrapper {
         this.BetId                  = tmpBet.id;
         this.BetName                = tmpBet.Name;
         this.Status                 = tmpBet.Status__c;
-        this.FirstReleaseDate       = tmpBet.First_release_date__c;
-        //it's temporary implemnetation need to be change in next sprint
-        this.FirstReleaseDueDate    = tmpBet.First_release_date__c;
-        this.FinalReleaseDate       = tmpBet.Final_release_date__c;
-        //it's temporary implemnetation need to be change in next sprint
-        this.FinalReleaseDueDate    = tmpBet.Final_release_date__c;
+        this.FirstReleaseDate       = tmpBet.FirstReleaseDate__c;
+        this.FirstReleaseDueDate    = tmpBet.First_Release_Due_Date__c;
+        this.FinalReleaseDate       = tmpBet.FinalReleaseDate__c;
+        this.FinalReleaseDueDate    = tmpBet.Final_Release_Due_Date__c;
         this.isArchived             = tmpBet.Is_Archived__c;
         this.BetOwner               = tmpBet.OwnerId;
 
@@ -131,12 +129,12 @@ public with sharing class BET_BETWrapper {
         if (bsi.betFirstRelease != null){
             this.FirstReleaseDate       = bsi.betFirstRelease.date();
             //it's temporary implemnetation need to be change in next sprint
-            this.FirstReleaseDueDate    = bsi.betFirstRelease.date();    
+            this.FirstReleaseDueDate    = bsi.betFirstReleaseDueDate.date();    
         }
         if(bsi.betFinalRelease != null){
             this.FinalReleaseDate       = bsi.betFinalRelease.date();
             //it's temporary implemnetation need to be change in next sprint
-            this.FinalReleaseDueDate    = bsi.betFinalRelease.date();
+            this.FinalReleaseDueDate    = bsi.betFinalReleaseDueDate.date();
         }
         // it's temporart implemenations need to be change with new atchive functions
         this.isArchived             = false;

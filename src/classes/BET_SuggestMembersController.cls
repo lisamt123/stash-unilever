@@ -265,8 +265,9 @@ public with sharing class BET_SuggestMembersController {
         System.debug('Entering method convertUserBucketToMap with following param @bucket:'+bucket);
         Map<String,Map<Id,Id>> userBucketMap = new Map<String,Map<Id,Id>>();
         for(BET_MemberBucketWrapper member : bucket){
-            if(member.GroupUserIds != null && !member.GroupUserIds.isEmpty()){
-                
+            if(member.GroupUserIds == null || member.GroupUserIds.isEmpty()){
+                userBucketMap.put(member.GroupName,new Map<Id,Id>());
+            } else {
                 for(Id memberItem : member.GroupUserIds){
                     if(userBucketMap.containsKey(member.GroupName)){
                         userBucketMap.get(member.GroupName).put(memberItem,memberItem);
@@ -274,9 +275,6 @@ public with sharing class BET_SuggestMembersController {
                         userBucketMap.put(member.GroupName, new Map<Id,Id>{memberItem => memberItem});
                     }
                 }
-                
-            }else{
-                userBucketMap.put(member.GroupName,new Map<Id,Id>());
             }
         }
         System.debug('Exiting method convertUserBucketToMap following map was returned: '+userBucketMap);

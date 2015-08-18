@@ -18,14 +18,54 @@ public with sharing class BET_BETHandlerCls {
   private static final String BET_BRAND_POSITIONING_CHANGED = 'BET Brand Position has been changed. ';
   private static final String BET_BRAND_CHANGED = 'BET Brand has been changed. ';
   private static final String BET_DESCRIPTION_CHANGED = 'BET Description has been changed. ';
+  private static final String BET_TO = ' to ';
 
-  private static final Map<Id,String> projectsMap = new Map<Id,String>();
-  private static final Map<Id,String> categoryGroupsMap = new Map<Id,String>();
-  private static final Map<Id,String> categoriesMap = new Map<Id,String>();
-  private static final Map<Id,String> brandPositionsMap = new Map<Id,String>();
-  private static final Map<Id,String> brandsMap = new Map<Id,String>();
+  private static Map<Id,String> projectsMap = new Map<Id,String>();
+  private static Map<Id,String> categoryGroupsMap = new Map<Id,String>();
+  private static Map<Id,String> categoriesMap = new Map<Id,String>();
+  private static Map<Id,String> brandPositionsMap = new Map<Id,String>();
+  private static Map<Id,String> brandsMap = new Map<Id,String>();
+
+  private static Set<Id> projects = new Set<Id>();
+  private static Set<Id> categoryGroups = new Set<Id>();
+  private static Set<Id> categories = new Set<Id>();
+  private static Set<Id> positionings = new Set<Id>();
+  private static Set<Id> brands = new Set<Id>();
 
   private BET_BETHandlerCls(){}
+
+  /************************************************************
+    Purpose: Method updates IPM when changes on Bet made. Temporary commented due to lack od understanding
+    Parameters: List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap
+    Returns: -
+    Throws: -
+  *************************************************************/
+  public static void informIPMOnBetChanges(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
+    for(uw_BET__c bet : newBetList){
+      if(  bet.status__c != oldBetMap.get(bet.id).Status__c
+        || bet.ownerid != oldBetMap.get(bet.id).ownerid
+        || bet.FinalReleaseDate__c != oldBetMap.get(bet.id).FinalReleaseDate__c
+        || bet.FirstReleaseDate__c != oldBetMap.get(bet.id).FirstReleaseDate__c
+        || bet.Final_Release_Due_Date__c != oldBetMap.get(bet.id).Final_Release_Due_Date__c
+        || bet.First_Release_Due_Date__c != oldBetMap.get(bet.id).First_Release_Due_Date__c) {
+        //IPM_BETWrapper wrapper = null;
+        //IPM_BETUpdateService.updateIPM(bet.id,wrapper);
+      }
+    }
+  }
+
+  /************************************************************
+    Purpose: Method updates final due dates of BET
+    Parameters: List<uw_BET__c> bets
+    Returns: -
+    Throws: -
+  *************************************************************/
+  public static void updateReleaseDueDates(List<uw_BET__c> bets){
+    for(uw_BET__c bet : bets){
+      bet.Final_Release_Due_Date__c = BET_BETService.getFinalReleaseDueDate(bet.Launch_Date__c);
+      bet.First_Release_Due_Date__c = BET_BETService.getFirstReleaseDueDate(bet.Launch_Date__c);
+    }
+  }
 
   /************************************************************
     Purpose: Builds BET map from sObject map
@@ -64,16 +104,70 @@ public with sharing class BET_BETHandlerCls {
     Throws: -
   *************************************************************/
 	private static Map<Id, List<String>> fillFeeds(){
-		Map<Id, List<String>> feedsMap = new Map<Id, List<String>>();
+    retrieveReletedReferencesIds();
+    fillMapObjects();
+    return buildFeedMap();
+	}
+
+  private static Map<Id, List<String>> buildFeedMap(){
+    Map<Id, List<String>> feedsMap = new Map<Id, List<String>>();
     Boolean changed = false;
     List<String> diffs = new List<String>();
+    for(Integer i=0; i< Trigger.new.size(); i++){
+      changed = false;
+      diffs = new List<String>();
 
-    Set<Id> projects = new Set<Id>();
-    Set<Id> categoryGroups = new Set<Id>();
-    Set<Id> categories = new Set<Id>();
-    Set<Id> positionings = new Set<Id>();
-    Set<Id> brands = new Set<Id>();
+      uw_BET__c oldRecord = (uw_BET__c)Trigger.old[i];
+      uw_BET__c newRecord = (uw_BET__c)Trigger.new[i];
 
+      if(oldRecord.Status__c != newRecord.Status__c){
+        diffs.add(BET_STATUS_CHANGED+oldRecord.Status__c+BET_TO+newRecord.Status__c);
+        changed = true;
+      }
+
+      if(oldRecord.Launch_Date__c != newRecord.Launch_Date__c){
+        diffs.add(BET_LAUNCH_DATE_CHANGED+oldRecord.Launch_Date__c+BET_TO+newRecord.Launch_Date__c);
+        changed = true;
+      }
+
+      if(oldRecord.IPM_Project__c != newRecord.IPM_Project__c){
+        diffs.add(BET_PROJECT_CHANGED+projectsMap.get(oldRecord.IPM_Project__c)+BET_TO+projectsMap.get(newRecord.IPM_Project__c));
+        changed = true;
+      }
+
+      if(oldRecord.Category_Group__c != newRecord.Category_Group__c){
+        diffs.add(BET_CATEGORY_GROUP_CHANGED+categoryGroupsMap.get(oldRecord.Category_Group__c)+BET_TO+categoryGroupsMap.get(newRecord.Category_Group__c));
+        changed = true;
+      }
+
+      if(oldRecord.Product_Category__c != newRecord.Product_Category__c){
+        diffs.add(BET_CATEGORY_CHANGED+categoriesMap.get(oldRecord.Product_Category__c)+BET_TO+categoriesMap.get(newRecord.Product_Category__c));
+        changed = true;
+      }
+
+      if(oldRecord.Brand_Position__c != newRecord.Brand_Position__c){
+        diffs.add(BET_BRAND_POSITIONING_CHANGED+brandPositionsMap.get(oldRecord.Brand_Position__c)+BET_TO+brandPositionsMap.get(newRecord.Brand_Position__c));
+        changed = true;
+      }
+
+      if(oldRecord.Product_Brand__c != newRecord.Product_Brand__c){
+        diffs.add(BET_BRAND_CHANGED+brandsMap.get(oldRecord.Product_Brand__c)+BET_TO+brandsMap.get(newRecord.Product_Brand__c));
+        changed = true;
+      }
+
+      if(oldRecord.Description__c != newRecord.Description__c){
+        diffs.add(BET_DESCRIPTION_CHANGED+oldRecord.Description__c+BET_TO+newRecord.Description__c);
+        changed = true;
+      }
+          
+      if(changed){
+        feedsMap.put(oldRecord.Studio_Chatter_Group__c, diffs);
+      }
+    }
+    return feedsMap;
+  }
+
+  private static void retrieveReletedReferencesIds(){
     for(Integer i=0; i< Trigger.new.size(); i++){
 
       uw_BET__c oldRecord = (uw_BET__c)Trigger.old[i];
@@ -103,64 +197,8 @@ public with sharing class BET_BETHandlerCls {
         brands.add(oldRecord.Product_Brand__c);
         brands.add(newRecord.Product_Brand__c);
       }
-
     }
-
-    fillMapObjects(projects,categoryGroups,categories,positionings,brands);
-
-    for(Integer i=0; i< Trigger.new.size(); i++){
-      changed = false;
-      diffs = new List<String>();
-
-      uw_BET__c oldRecord = (uw_BET__c)Trigger.old[i];
-      uw_BET__c newRecord = (uw_BET__c)Trigger.new[i];
-
-      if(oldRecord.Status__c != newRecord.Status__c){
-        diffs.add(BET_STATUS_CHANGED+oldRecord.Status__c+' to '+newRecord.Status__c);
-        changed = true;
-      }
-
-      if(oldRecord.Launch_Date__c != newRecord.Launch_Date__c){
-        diffs.add(BET_LAUNCH_DATE_CHANGED+oldRecord.Launch_Date__c+' to '+newRecord.Launch_Date__c);
-        changed = true;
-      }
-
-      if(oldRecord.IPM_Project__c != newRecord.IPM_Project__c){
-        diffs.add(BET_PROJECT_CHANGED+projectsMap.get(oldRecord.IPM_Project__c)+' to '+projectsMap.get(newRecord.IPM_Project__c));
-        changed = true;
-      }
-
-      if(oldRecord.Category_Group__c != newRecord.Category_Group__c){
-        diffs.add(BET_CATEGORY_GROUP_CHANGED+categoryGroupsMap.get(oldRecord.Category_Group__c)+' to '+categoryGroupsMap.get(newRecord.Category_Group__c));
-        changed = true;
-      }
-
-      if(oldRecord.Product_Category__c != newRecord.Product_Category__c){
-        diffs.add(BET_CATEGORY_CHANGED+categoriesMap.get(oldRecord.Product_Category__c)+' to '+categoriesMap.get(newRecord.Product_Category__c));
-        changed = true;
-      }
-
-      if(oldRecord.Brand_Position__c != newRecord.Brand_Position__c){
-        diffs.add(BET_BRAND_POSITIONING_CHANGED+brandPositionsMap.get(oldRecord.Brand_Position__c)+' to '+brandPositionsMap.get(newRecord.Brand_Position__c));
-        changed = true;
-      }
-
-      if(oldRecord.Product_Brand__c != newRecord.Product_Brand__c){
-        diffs.add(BET_BRAND_CHANGED+brandsMap.get(oldRecord.Product_Brand__c)+' to '+brandsMap.get(newRecord.Product_Brand__c));
-        changed = true;
-      }
-
-      if(oldRecord.Description__c != newRecord.Description__c){
-        diffs.add(BET_DESCRIPTION_CHANGED+oldRecord.Description__c+' to '+newRecord.Description__c);
-        changed = true;
-      }
-          
-      if(changed){
-        feedsMap.put(oldRecord.Studio_Chatter_Group__c, diffs);
-      }
-    }
-    	return feedsMap;
-	}
+  }
 
   /************************************************************
     Purpose: Method create set of maps with objects ids and related names
@@ -168,7 +206,8 @@ public with sharing class BET_BETHandlerCls {
     Returns: -
     Throws: -
   *************************************************************/
-  private static void fillMapObjects(Set<Id>projects,Set<Id>categoryGroups,Set<Id>categories,Set<Id>positionings,Set<Id>brands){
+
+  private static void fillMapObjects(){
     for(IPM_Project__c project : [select id, name from IPM_Project__c where id in : projects]){
       projectsMap.put(project.id,project.name);
     }
