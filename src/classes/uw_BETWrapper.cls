@@ -222,6 +222,8 @@ public with sharing class uw_BETWrapper {
         public String betChatterGroupId;  
         public Datetime betFirstRelease;  
         public Datetime betFinalRelease;  
+        public Datetime betFirstReleaseDueDate;  
+        public Datetime betFinalReleaseDueDate;
         public String betPresentationId;
         public String betBackgroundColor;
         public String betBannerLocation;
@@ -297,8 +299,10 @@ public with sharing class uw_BETWrapper {
             this.betInfoprojectKeyword = bet.Inoplan_Project_Keyword_Search__c;
             this.betHasAccessPending = betPending;
             this.betChatterGroupId = bet.Studio_Chatter_Group__c;
-            this.betFirstRelease = bet.First_release_date__c;
-            this.betFinalRelease = bet.Final_release_date__c;
+            this.betFirstRelease = bet.FirstReleaseDate__c;
+            this.betFinalRelease = bet.FinalReleaseDate__c;
+            this.betFirstReleaseDueDate = bet.First_Release_Due_Date__c;
+            this.betFinalReleaseDueDate = bet.Final_Release_Due_Date__c;
             this.betPresentationId = bet.Presentation_Id__c;
             this.betIconLocation = bet.Icon_Location__c;
 
