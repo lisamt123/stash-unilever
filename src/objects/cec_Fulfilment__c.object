@@ -172,7 +172,7 @@
     <fields>
         <fullName>Country_BrandLogo__c</fullName>
         <externalId>false</externalId>
-        <formula>TEXT(Country__c) +&quot;_&quot;+ Brand_Logo__c +&quot;_&quot;+ &quot;Logo&quot;</formula>
+        <formula>TEXT(Country__c) +&quot;_&quot;+ Brand_Logo__r.Logo__c  +&quot;_&quot;+ &quot;Logo&quot;</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Country &amp; BrandLogo</label>
         <required>false</required>
