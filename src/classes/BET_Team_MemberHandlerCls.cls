@@ -96,12 +96,29 @@ public without sharing class BET_Team_MemberHandlerCls {
 	public static void addEntitySubscriptions(List<uw_BET_Team_Member__c> newList){
 		System.debug('Entering addEntitySubscriptions : ' + newList);
 		List<EntitySubscription> eSubscriptions = new List<EntitySubscription>();
+
+		Map<Id,Set<Id>> betMembersSubscrMap = new Map<Id,Set<Id>>();
+		Set<Id> bets = new Set<Id>();
+		for(uw_BET_Team_Member__c m : newList){
+			bets.add(m.Bet__c);
+		}
+
+		for(EntitySubscription es : [select SubscriberId,ParentId from EntitySubscription where ParentId in:bets]){
+			if(betMembersSubscrMap.keySet().contains(es.ParentId)){
+				betMembersSubscrMap.get(es.ParentId).add(es.SubscriberId);
+			} else {
+				betMembersSubscrMap.put(es.ParentId,new Set<Id>{es.SubscriberId});
+			}
+		}
+
 		for(uw_BET_Team_Member__c teamMember : newList){
 			if(teamMember.Team_Member__c != null){
-				EntitySubscription entitySubscription = new EntitySubscription();
-        		entitySubscription.SubscriberId = teamMember.Team_Member__c;
-        		entitySubscription.ParentId = teamMember.Bet__c;
-        		eSubscriptions.add(EntitySubscription);
+				if(betMembersSubscrMap.get(teamMember.Bet__c) != null && !betMembersSubscrMap.get(teamMember.Bet__c).contains(teamMember.Team_Member__c)){
+					EntitySubscription entitySubscription = new EntitySubscription();
+        			entitySubscription.SubscriberId = teamMember.Team_Member__c;
+        			entitySubscription.ParentId = teamMember.Bet__c;
+        			eSubscriptions.add(EntitySubscription);
+        		}
         	}
     	}
     	if(!Test.isRunningTest())insert eSubscriptions;

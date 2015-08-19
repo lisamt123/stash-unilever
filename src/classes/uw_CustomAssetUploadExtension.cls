@@ -188,7 +188,7 @@ public with sharing class uw_CustomAssetUploadExtension {
                     updateBet = true;
                 }
 
-                if(file.Media_Type__c == 'Key Visual' && file.Status__c == 'Approved'){
+                if(file.Media_Type__c == 'Key Visual' && file.Status__c == 'Approved'){ // IPM-BET US43
                     brandExperiencePresnetationIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 
                                                           where Studio_Asset_Type__c = 'Brand Experience Presentation'
                                                           and Status__c = 'Approved'
@@ -205,7 +205,7 @@ public with sharing class uw_CustomAssetUploadExtension {
         //@todo: how to determine if it's main presentation or not
         if(file.Studio_Asset_Type__c == 'Brand Experience Presentation'){
 
-            if(file.Status__c == 'Approved'){
+            if(file.Status__c == 'Approved'){ // IPM-BET US43
                 bet.FirstReleaseDate__c = date.today();
 
                 Boolean keyVisualIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 

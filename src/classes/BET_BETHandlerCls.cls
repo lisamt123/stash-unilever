@@ -35,23 +35,46 @@ public with sharing class BET_BETHandlerCls {
   private BET_BETHandlerCls(){}
 
   /************************************************************
-    Purpose: Method updates IPM when changes on Bet made. Temporary commented due to lack od understanding
+    Purpose: Method updates IPM when changes on Bet made.
     Parameters: List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap
     Returns: -
     Throws: -
   *************************************************************/
   public static void informIPMOnBetChanges(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
+    List<String> updatedFields = new List<String>();
     for(uw_BET__c bet : newBetList){
-      if(  bet.status__c != oldBetMap.get(bet.id).Status__c
-        || bet.ownerid != oldBetMap.get(bet.id).ownerid
-        || bet.FinalReleaseDate__c != oldBetMap.get(bet.id).FinalReleaseDate__c
-        || bet.FirstReleaseDate__c != oldBetMap.get(bet.id).FirstReleaseDate__c
-        || bet.Final_Release_Due_Date__c != oldBetMap.get(bet.id).Final_Release_Due_Date__c
-        || bet.First_Release_Due_Date__c != oldBetMap.get(bet.id).First_Release_Due_Date__c) {
-        System.debug('calling updateIPM');
-        //IPM_BETWrapper wrapper = null;
-        //IPM_BETUpdateService.updateIPM(bet.id,wrapper);
+      Boolean changesDone = false;
+
+      if(bet.status__c != oldBetMap.get(bet.id).Status__c){
+        changesDone = true;
+        updatedFields.add('Status');
       }
+      if(bet.ownerid != oldBetMap.get(bet.id).ownerid){
+        changesDone = true;
+        updatedFields.add('BetOwner');
+      }
+      if(bet.FinalReleaseDate__c != oldBetMap.get(bet.id).FinalReleaseDate__c){
+        changesDone = true;
+        updatedFields.add('FinalReleaseDate');
+      }
+      if(bet.FirstReleaseDate__c != oldBetMap.get(bet.id).FirstReleaseDate__c){
+        changesDone = true;
+        updatedFields.add('FirstReleaseDate');
+      }
+      if(bet.Final_Release_Due_Date__c != oldBetMap.get(bet.id).Final_Release_Due_Date__c){
+        changesDone = true;
+        updatedFields.add('FinalReleaseDueDate');
+      }
+      if(bet.First_Release_Due_Date__c != oldBetMap.get(bet.id).First_Release_Due_Date__c) {
+        changesDone = true;
+        updatedFields.add('FirstReleaseDueDate');
+      }
+
+      if(changesDone) {
+        BET_BETWrapper wrapper = new BET_BETWrapper(bet);
+        IPM_BETUpdateService.updateIPM(bet.id,wrapper,updatedFields, UserInfo.getUserId());
+      }
+      
     }
   }
 

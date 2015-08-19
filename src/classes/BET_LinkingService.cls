@@ -77,7 +77,7 @@ public with sharing class BET_LinkingService {
 		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c from uw_Bet__c where id =: BetId];
 		List<IPM_Project__c> projects = [select id,name from IPM_Project__c where id=:ProjectId];
 		BET_LinkingServiceHelper.validateFollowRequest(betRecords,projects);
-		try{
+		//try{
 			Boolean shouldBeAutoApproved = checkIfFollowRequestShouldBeAutoapproved(betRecords.get(0),managersIds);
 			BET_Follow_Request__c followRequest = createFollowRequest(projects.get(0),betRecords.get(0),managersIds);
 			createRelatedMemberRequests(followRequest,betRecords.get(0),managersIds);
@@ -85,9 +85,9 @@ public with sharing class BET_LinkingService {
 				followRequest.Status__c = FOLLOW_STATUS_APPROVED;
 				update followRequest;
 			}
-		}catch(Exception e){
-			throw new BET_CustomBETException(Label.BET_FollowExceptionMessage,e);
-		}
+		//}catch(Exception e){
+		//	throw new BET_CustomBETException(Label.BET_FollowExceptionMessage,e);
+		//}
 		System.debug('Exit Follow');
 	}
 
@@ -166,11 +166,13 @@ public with sharing class BET_LinkingService {
 			if(projectWrapper.pLId!= null && ((Id)projectWrapper.pLId) == ((Id)managerId)){
 				projectLeadAlreadyIncluded = true;
 			}
+			if(managerId == relatedBet.ownerId){ // if manager is bet owner there is already an member record
+				continue;
+			}
 			mRequestsToBeCreated.add(createMemberRequest(followRequest,relatedBet,'Manager',managerId));
 		}
 
-
-		if(!projectLeadAlreadyIncluded && projectWrapper.pLId != null){
+		if(!projectLeadAlreadyIncluded && projectWrapper.pLId != null && projectWrapper.pLId != relatedBet.ownerId){
 			mRequestsToBeCreated.add(createMemberRequest(followRequest,relatedBet,'Manager',projectWrapper.pLId));
 		}
 
