@@ -43,7 +43,7 @@ public class BET_LinkingServiceHelper {
 	*************************************************************/	
 	public static Boolean isProjectALead(Id ProjectId, uw_Bet__c bet){
 		System.debug('Entering isProjectALead : ' + bet + ', ' + ProjectId);
-		Boolean result = bet.IPM_Project__c != null && bet.Inoplan_Project__c == ProjectId;
+		Boolean result = bet.IPM_Project__c != null && bet.IPM_Project__c == ProjectId;
 		System.debug('Exit isProjectALead : ' + result);
 		return result;
 	}

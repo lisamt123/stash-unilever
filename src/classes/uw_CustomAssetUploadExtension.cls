@@ -109,7 +109,7 @@ public with sharing class uw_CustomAssetUploadExtension {
     ********************************************************************/
     public boolean isVisualApproved()
     {
-    List<uw_Asset__c> fl=  [SELECT Name, Sub_Function__c, Studio_Asset_Type__c, Media_Type__c, Country__c, Status__c, Is_bucket_field__c, Id, uw_BET__c, Related_Feed_Item__c FROM uw_Asset__c WHERE uw_bet__c =: file.uw_BET__c];
+    List<uw_Asset__c> fl=  [SELECT Name, Is_bucket_field__c, Id, uw_BET__c, Related_Feed_Item__c FROM uw_Asset__c WHERE uw_bet__c =: file.uw_BET__c];
               for(uw_Asset__c flist:fl)
               {
               if(flist.Media_Type__c == 'Key Visual'&&flist.Status__c == 'Approved')
@@ -125,6 +125,7 @@ public with sharing class uw_CustomAssetUploadExtension {
     public PageReference saveFileAndConnect(){     
         runJsSuccess = false;
         isPresentationUploaded = false;
+        Boolean brandExperiencePresnetationIsThere = false;
         message = '';
         System.debug('__________________________'+feedid );
         
@@ -180,26 +181,52 @@ public with sharing class uw_CustomAssetUploadExtension {
                    
                 
             }else if(file.Studio_Asset_Type__c == 'Creative Work'){
+
                 if(file.Media_Type__c == 'Key Visual' && bet.Status__c == 'First release'){
                     bet.Status__c = 'Final release';
                     message = 'Your BET is now in Final Release';
                     updateBet = true;
                 }
+
+                if(file.Media_Type__c == 'Key Visual' && file.Status__c == 'Approved'){
+                    brandExperiencePresnetationIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 
+                                                          where Studio_Asset_Type__c = 'Brand Experience Presentation'
+                                                          and Status__c = 'Approved'
+                                                          and uw_bet__c =: file.uw_BET__c].isEmpty();
+                    if(brandExperiencePresnetationIsThere) {
+                        bet.FinalReleaseDate__c = date.today();
+                        updateBet = true;
+                    }
+                }
+
             }
         }
 
         //@todo: how to determine if it's main presentation or not
         if(file.Studio_Asset_Type__c == 'Brand Experience Presentation'){
+
+            if(file.Status__c == 'Approved'){
+                bet.FirstReleaseDate__c = date.today();
+
+                Boolean keyVisualIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 
+                                                          where Studio_Asset_Type__c = 'Creative Work'
+                                                          and Media_Type__c = 'Key Visual'
+                                                          and Status__c = 'Approved'
+                                                          and uw_bet__c =: file.uw_BET__c].isEmpty();
+                if(keyVisualIsThere){
+                    bet.FinalReleaseDate__c = date.today();
+                }
+            }
+
             file.Think_Big_Promotion_Date__c = Datetime.now();
             file.Big_Think_Pack__c = true;
             file.Media_Type__c = 'BET Presentation';
             if (Test.isRunningTest()) {
                 bet.Presentation_Id__c = BET_TestingHelper.UT_PRESENTATIONID;
-                updateBet = true;
             } else {
                 bet.Presentation_Id__c = ca.id;
-                updateBet = true;
             }
+            updateBet = true;
             isPresentationUploaded = true;
         }
 

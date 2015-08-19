@@ -93,7 +93,7 @@ public with sharing class BET_LinkingService {
 
 	/************************************************************
 		Purpose: Method creates ipm project's follow request record
-		Parameters: IPM_Project__c project , uw_Bet__c bet, list of managers, list of managers, Boolean autoApproved
+		Parameters: IPM_Project__c project , uw_Bet__c bet, list of managers, list of managers
 		Returns: BET_Follow_Request__c record
 		Throws: -
 	*************************************************************/
