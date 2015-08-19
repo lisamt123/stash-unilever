@@ -35,22 +35,46 @@ public with sharing class BET_BETHandlerCls {
   private BET_BETHandlerCls(){}
 
   /************************************************************
-    Purpose: Method updates IPM when changes on Bet made. Temporary commented due to lack od understanding
+    Purpose: Method updates IPM when changes on Bet made.
     Parameters: List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap
     Returns: -
     Throws: -
   *************************************************************/
   public static void informIPMOnBetChanges(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
+    List<String> updatedFields = new List<String>();
     for(uw_BET__c bet : newBetList){
-      if(  bet.status__c != oldBetMap.get(bet.id).Status__c
-        || bet.ownerid != oldBetMap.get(bet.id).ownerid
-        || bet.FinalReleaseDate__c != oldBetMap.get(bet.id).FinalReleaseDate__c
-        || bet.FirstReleaseDate__c != oldBetMap.get(bet.id).FirstReleaseDate__c
-        || bet.Final_Release_Due_Date__c != oldBetMap.get(bet.id).Final_Release_Due_Date__c
-        || bet.First_Release_Due_Date__c != oldBetMap.get(bet.id).First_Release_Due_Date__c) {
-        //IPM_BETWrapper wrapper = null;
-        //IPM_BETUpdateService.updateIPM(bet.id,wrapper);
+      Boolean changesDone = false;
+
+      if(bet.status__c != oldBetMap.get(bet.id).Status__c){
+        changesDone = true;
+        updatedFields.add('Status');
       }
+      if(bet.ownerid != oldBetMap.get(bet.id).ownerid){
+        changesDone = true;
+        updatedFields.add('BetOwner');
+      }
+      if(bet.FinalReleaseDate__c != oldBetMap.get(bet.id).FinalReleaseDate__c){
+        changesDone = true;
+        updatedFields.add('FinalReleaseDate');
+      }
+      if(bet.FirstReleaseDate__c != oldBetMap.get(bet.id).FirstReleaseDate__c){
+        changesDone = true;
+        updatedFields.add('FirstReleaseDate');
+      }
+      if(bet.Final_Release_Due_Date__c != oldBetMap.get(bet.id).Final_Release_Due_Date__c){
+        changesDone = true;
+        updatedFields.add('FinalReleaseDueDate');
+      }
+      if(bet.First_Release_Due_Date__c != oldBetMap.get(bet.id).First_Release_Due_Date__c) {
+        changesDone = true;
+        updatedFields.add('FirstReleaseDueDate');
+      }
+
+      if(changesDone) {
+        BET_BETWrapper wrapper = new BET_BETWrapper(bet);
+        IPM_BETUpdateService.updateIPM(bet.id,wrapper,updatedFields, UserInfo.getUserId());
+      }
+      
     }
   }
 
@@ -111,60 +135,51 @@ public with sharing class BET_BETHandlerCls {
 
   private static Map<Id, List<String>> buildFeedMap(){
     Map<Id, List<String>> feedsMap = new Map<Id, List<String>>();
-    Boolean changed = false;
-    List<String> diffs = new List<String>();
     for(Integer i=0; i< Trigger.new.size(); i++){
-      changed = false;
-      diffs = new List<String>();
-
       uw_BET__c oldRecord = (uw_BET__c)Trigger.old[i];
       uw_BET__c newRecord = (uw_BET__c)Trigger.new[i];
-
-      if(oldRecord.Status__c != newRecord.Status__c){
-        diffs.add(BET_STATUS_CHANGED+oldRecord.Status__c+BET_TO+newRecord.Status__c);
-        changed = true;
-      }
-
-      if(oldRecord.Launch_Date__c != newRecord.Launch_Date__c){
-        diffs.add(BET_LAUNCH_DATE_CHANGED+oldRecord.Launch_Date__c+BET_TO+newRecord.Launch_Date__c);
-        changed = true;
-      }
-
-      if(oldRecord.IPM_Project__c != newRecord.IPM_Project__c){
-        diffs.add(BET_PROJECT_CHANGED+projectsMap.get(oldRecord.IPM_Project__c)+BET_TO+projectsMap.get(newRecord.IPM_Project__c));
-        changed = true;
-      }
-
-      if(oldRecord.Category_Group__c != newRecord.Category_Group__c){
-        diffs.add(BET_CATEGORY_GROUP_CHANGED+categoryGroupsMap.get(oldRecord.Category_Group__c)+BET_TO+categoryGroupsMap.get(newRecord.Category_Group__c));
-        changed = true;
-      }
-
-      if(oldRecord.Product_Category__c != newRecord.Product_Category__c){
-        diffs.add(BET_CATEGORY_CHANGED+categoriesMap.get(oldRecord.Product_Category__c)+BET_TO+categoriesMap.get(newRecord.Product_Category__c));
-        changed = true;
-      }
-
-      if(oldRecord.Brand_Position__c != newRecord.Brand_Position__c){
-        diffs.add(BET_BRAND_POSITIONING_CHANGED+brandPositionsMap.get(oldRecord.Brand_Position__c)+BET_TO+brandPositionsMap.get(newRecord.Brand_Position__c));
-        changed = true;
-      }
-
-      if(oldRecord.Product_Brand__c != newRecord.Product_Brand__c){
-        diffs.add(BET_BRAND_CHANGED+brandsMap.get(oldRecord.Product_Brand__c)+BET_TO+brandsMap.get(newRecord.Product_Brand__c));
-        changed = true;
-      }
-
-      if(oldRecord.Description__c != newRecord.Description__c){
-        diffs.add(BET_DESCRIPTION_CHANGED+oldRecord.Description__c+BET_TO+newRecord.Description__c);
-        changed = true;
-      }
-          
-      if(changed){
+      List<String> diffs = addDifferences(oldRecord,newRecord);
+      if(!diffs.isEmpty()){
         feedsMap.put(oldRecord.Studio_Chatter_Group__c, diffs);
       }
     }
     return feedsMap;
+  }
+
+  private static List<String> addDifferences(uw_BET__c oldRecord,uw_BET__c newRecord ){
+    List<String> diffs = new List<String>();
+    if(oldRecord.Status__c != newRecord.Status__c){
+      diffs.add(BET_STATUS_CHANGED+oldRecord.Status__c+BET_TO+newRecord.Status__c);
+    }
+
+    if(oldRecord.Launch_Date__c != newRecord.Launch_Date__c){
+      diffs.add(BET_LAUNCH_DATE_CHANGED+oldRecord.Launch_Date__c+BET_TO+newRecord.Launch_Date__c);
+    }
+
+    if(oldRecord.IPM_Project__c != newRecord.IPM_Project__c){
+      diffs.add(BET_PROJECT_CHANGED+projectsMap.get(oldRecord.IPM_Project__c)+BET_TO+projectsMap.get(newRecord.IPM_Project__c));
+    }
+
+    if(oldRecord.Category_Group__c != newRecord.Category_Group__c){
+      diffs.add(BET_CATEGORY_GROUP_CHANGED+categoryGroupsMap.get(oldRecord.Category_Group__c)+BET_TO+categoryGroupsMap.get(newRecord.Category_Group__c));
+    }
+
+    if(oldRecord.Product_Category__c != newRecord.Product_Category__c){
+      diffs.add(BET_CATEGORY_CHANGED+categoriesMap.get(oldRecord.Product_Category__c)+BET_TO+categoriesMap.get(newRecord.Product_Category__c));
+    }
+
+    if(oldRecord.Brand_Position__c != newRecord.Brand_Position__c){
+      diffs.add(BET_BRAND_POSITIONING_CHANGED+brandPositionsMap.get(oldRecord.Brand_Position__c)+BET_TO+brandPositionsMap.get(newRecord.Brand_Position__c));
+    }
+
+    if(oldRecord.Product_Brand__c != newRecord.Product_Brand__c){
+      diffs.add(BET_BRAND_CHANGED+brandsMap.get(oldRecord.Product_Brand__c)+BET_TO+brandsMap.get(newRecord.Product_Brand__c));
+    }
+
+    if(oldRecord.Description__c != newRecord.Description__c){
+      diffs.add(BET_DESCRIPTION_CHANGED+oldRecord.Description__c+BET_TO+newRecord.Description__c);
+    }
+    return diffs;
   }
 
   private static void retrieveReletedReferencesIds(){
