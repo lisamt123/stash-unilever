@@ -5,7 +5,7 @@
     <deployed>false</deployed>
     <description>Report on number of users who have given thanks</description>
     <join>
-        <outerJoin>true</outerJoin>
+        <outerJoin>false</outerJoin>
         <relationship>Badges</relationship>
     </join>
     <label>Thanks given by users</label>

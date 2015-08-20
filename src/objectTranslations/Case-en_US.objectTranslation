@@ -383,6 +383,10 @@
             <translation><!-- Email Spain --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Email Sri Lanka</masterLabel>
+            <translation><!-- Email Sri Lanka --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email TO France</masterLabel>
             <translation><!-- Email TO France --></translation>
         </picklistValues>
@@ -410,6 +414,10 @@
             <masterLabel>White Mail</masterLabel>
             <translation><!-- White Mail --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Original Description --></label>
+        <name>Original_Description__c</name>
     </fields>
     <fields>
         <label><!-- Out of Hours --></label>
@@ -899,6 +907,10 @@
         <label><!-- Spam --></label>
         <name>Spam</name>
     </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Cannot Mark the case as &apos;Duplicate&apos;. Its not associated with any Consumer. --></errorMessage>
+        <name>CEC_DuplicateCase_Closure</name>
+    </validationRules>
     <validationRules>
         <errorMessage><!-- You Must Select a Product Code &amp; Reason code --></errorMessage>
         <name>Product_and_Reason_Code_Required</name>

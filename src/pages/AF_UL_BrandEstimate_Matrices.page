@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/syntax/shCore.css')}"/>
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/demo.css')}"/>
     <style>
-        a:hover{background-color: #74ae00 !important;}
+        form.AF_UL_BrandEstimate_Matrices a:hover{background-color: #74ae00 !important;}
     </style>
     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/js/jquery.js')}"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
@@ -39,7 +39,9 @@
     var isRed = '{!linkRed}';
     var brandId = '{!$CurrentPage.parameters.brandvalue}';
     var fiscalYear = '{!fiscalYear}';
-    var category1='{!$CurrentPage.parameters.category}';
+    var category_param = "{!$CurrentPage.parameters.category}".split("'");
+    var category1 = '';
+    $.each(category_param, function(i, e){category1 += e;});
     if(isRed != '') {
         location.replace("apex/AF_UL_AgencyMatrix?Id="+isRed+'&brandvalue='+brandId+'&category='+category1+'&Year='+fiscalYear);
     } 
@@ -49,54 +51,18 @@
     .button()
     });
     </script>
-    <style type="text/css">
-    .heading_main{
-   margin-left: 0;
-margin-right: 0;
-margin-top: 5px;
-padding-bottom: 11px;
-padding-left: 0;
-padding-right: 0;
-width: 100%;
-    }
-.heading_text{
-   color: black;
-font-size: 20px;
-margin-left: 32px;
-padding: 7px 1px 8px 8px;
-font-family: Helvetica, arial, sans-serif;
-font-weight: bold;
-}
- #mydiv_bold a {
-cursor: pointer;
-color: #3174c7;
-text-decoration: none;
-font-weight: bold;
-margin-right: 20px;
-padding: 10px 5px 10px 5px;
-border-radius: 10px;
-border: 2px solid #74AE00!important;
-margin-top: 5px!important;
-display: inline-block;
-width: 295px;
-margin-left: 10px;
-}
+    
+<!-- Common_Style File Start -->
+<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<!-- Common_Style File End -->
 
-.ui-button-text-only .ui-button-text {
-padding: .4em 1em;
-}
-.ui-button .ui-button-text {
-display: block;
-line-height: normal;
-}
-    </style>
 </head>
 <body>
-<apex:form >
+<apex:form styleClass="AF_UL_BrandEstimate_Matrices">
    
    <div class="row">           
         <div class="col-lg-12 charttable1">         
-            <apex:image url="{!$Resource.header_new}" style="width:100%;height:37px;" />            
+            <apex:image url="{!$Resource.header_new}" styleClass="headimg"/>            
         </div>          
     </div>
    
@@ -104,15 +70,15 @@ line-height: normal;
        <h1 class="heading_text"> Select Agency Base Fee Matrix </h1>
       </div>
      
-    <div align="center" style="font-size: 16px;" id="mydiv_bold" >
+    <div align="center" id="mydiv_bold" class="fontSize16P">
        
         
       
-        <apex:dataTable var="bEst" value="{!brandEstimates}" id="dt1" style="border: 2px solid #74AE00!important;border-radius: 10px; padding: 5px;width: 44%;border-collapse:separate!important;margin-top: 5px;float:left;margin-bottom: 0px;margin-left: 26%;">
+        <apex:dataTable var="bEst" value="{!brandEstimates}" id="dt1" styleClass="brandEstimatetable">
            <apex:column >
                <a href="apex/AF_UL_AgencyMatrix?id={!bEst.Id}&brandvalue={!$CurrentPage.parameters.brandvalue}&category={!$CurrentPage.parameters.category}&Year={!$CurrentPage.parameters.Year}">{!bEst.Name}</a><br /><br />
            </apex:column>
-           <apex:column style="margin-top: 16px;display: inline-block;">
+           <apex:column styleClass="tablecolumn">
                {!bEst.AF_Status_Base_Fees__c}<br /><br />
            </apex:column>
         </apex:dataTable>

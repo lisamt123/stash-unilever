@@ -169,11 +169,11 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Mr./Ms.</fullName>
+                <fullName>Miss</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Miss</fullName>
+                <fullName>Mr./Ms.</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>

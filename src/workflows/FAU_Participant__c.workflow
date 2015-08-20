@@ -30,7 +30,8 @@
             <field>FAU_User__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>b.singh.saluja@accenture.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>FAU_Program_Protected/FAU_eXcel_rator_Invitation</template>
     </alerts>
     <alerts>
@@ -71,7 +72,7 @@
         <description>FAU Send Email to Administrator Create/Upgrade User</description>
         <protected>false</protected>
         <recipients>
-            <recipient>suryanarayanan.ramachandran@unilever.com</recipient>
+            <recipient>rangappa.a.gunda@unilever.com.prod</recipient>
             <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
@@ -242,6 +243,15 @@
         <field>FAU_Unique_ID__c</field>
         <formula>FAU_Program_Wave__r.Id + &apos;:&apos; + FAU_User__r.Id</formula>
         <name>FAU Update Unique ID</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Test_Bhavn</fullName>
+        <field>FAU_Email_Address__c</field>
+        <formula>FAU_Program_Wave__r.Owner:User.Email</formula>
+        <name>Test Bhavn</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -551,7 +561,7 @@
     </rules>
     <tasks>
         <fullName>FAU_Create_Personal_Assistant</fullName>
-        <assignedTo>rangappa.a.gunda@unilever.com.prod</assignedTo>
+        <assignedTo>ankit.bhardwaj@unilever.com</assignedTo>
         <assignedToType>user</assignedToType>
         <description>Can you create/upgrade the Personal Assistant User for this Participant using the email &apos;Request PA User Email Address&apos;. &amp;  Unilever - Force Multi Profile 
 

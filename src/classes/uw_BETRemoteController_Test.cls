@@ -311,7 +311,7 @@ private class uw_BETRemoteController_Test {
         System.runAs(wrap.owner){
             response = uw_BETRemoteController.getBETBBAssets('Wrong Id', BET_TestingHelper.ASSET_MEDIATYPE_KEYVISUAL, 'United Kingdom', 5, 1, true, false, '');
         }   
-        System.assertEquals(response.status, '-1'); 	
+        System.assertEquals(response.status, '-1');     
     }
     
     //cover catch block
@@ -491,4 +491,6 @@ private class uw_BETRemoteController_Test {
         }                                  
         System.assertEquals(response.status, '-1'); 
     }
+    
+    
 }

@@ -239,9 +239,16 @@
             <section>Fields</section>
         </sections>
     </layouts>
+    <layouts>
+        <layout>Issue Layout2</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
     <startsWith>Vowel</startsWith>
-    <webLinks>
-        <label><!-- Cosmetovigilence --></label>
-        <name>Cosmetovigilence</name>
-    </webLinks>
 </CustomObjectTranslation>

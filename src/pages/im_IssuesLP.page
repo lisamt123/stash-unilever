@@ -2,32 +2,32 @@
     <apex:includeScript value="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"/>
     <script>
         var j$=jQuery.noConflict();
- 
+
         j$(document).ready(function() {
             var ifw = j$('[id$=iframeWrapper]');
             j$('[id$=dash_shield]').css('top', ifw.position().top);
             j$('[id$=dash_shield]').css('left', ifw.position().left);
             j$('[id$=dash_shield]').css('width', ifw.width());
             j$('[id$=dash_shield]').css('height', ifw.height());
-            
+
             j$('[id$=dash_shield]').click(
                 function(){
                     window.parent.location = '/{!DashboardId}';
                 }
             );
-         
+
             //Change the New Issue button at the top of the list view to "Report an Issue"
             j$('[id$=listViewWrapper]').contents().find('input').each(
                 function(index, value){
                     if(value.value == 'New Issue'){
-                        value.value = 'Report an Issue';                
+                        value.value = 'Report an Issue';
                     }
                 }
             );
         });
-       
+
     </script>
-    
+
     <style>
         #dash_shield{
             display: block;
@@ -41,7 +41,7 @@
         #dash_shield:hover{
             cursor: pointer;
         }
-        
+
         #iframeWrapper
         {
             width: 100%;
@@ -49,20 +49,20 @@
             overflow: hidden;
             position: relative;
         }
-        
+
         #dashFrame
         {
             position: absolute;
             top: -70px;
             width: 100%;
         }
-        
+
         #title{
             font-size: 2em;
             font-weight: bold;
             line-height:2;
         }
-        
+
         #advice{
             font-size: 1.3em;
             text-align: justify;
@@ -72,13 +72,13 @@
             background-color: #f3f3ec;
         }
     </style>
-    
+
     <div id="title">
         Issues
     </div>
-    
+
     <div id="dash_shield"/>
-  
+
     <apex:form id="main">
         <apex:pageBlock id="adviceBlock">
             <apex:pageblockButtons location="bottom">
@@ -87,12 +87,12 @@
             <div id="advice">
                 <apex:outputText value="{!Introduction}" escape="false"/>
             </div>
-            
+
             <br/>
 
             <table id="linksTable">
                 <tr id="linksRow">
-                    
+
                     <apex:repeat id="linksRepeater" value="{!Links}" var="link">
                         <td id="tabelCell">
                             <apex:commandLink id="commandLinkText" value="{!link.LinkText}" action="{!OpenLink}">
@@ -105,17 +105,17 @@
             </table>
         </apex:pageBlock>
     </apex:form>
-    
+
     <apex:pageBlock id="iframePageBlock">
         <div id="iframeWrapper">
             <apex:iframe id="dashFrame" src="/{!DashboardId}?isdtp=mn"/>
         </div>
     </apex:pageBlock>
-    
+
     <br/>
-    
+
     <div id="listViewWrapper">
         <apex:ListViews id="listViewArea" type="im_Issue__c" />
     </div>
-    
+
 </apex:page>

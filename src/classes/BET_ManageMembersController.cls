@@ -428,6 +428,30 @@ public without sharing class BET_ManageMembersController {
          //return pageRef;
     }
     
+    
+    
+    
+    Public Boolean deleteMem(){
+    System.Debug('Deletemem method called');
+     
+        List<uw_BET_Team_Member__c> teamMemberList = [SELECT Id, Name, Role__c, BET__c, BET__r.Studio_Chatter_Group__c, Team_Member__c FROM uw_BET_Team_Member__c WHERE Id = :recordId AND BET__c = :betId];
+        if ( teamMemberList.size() == 0 ) {
+            System.Debug('TeamMemberList is empty');
+           // return null;
+        }
+         uw_BET_Team_Member__c teamMember = teamMemberList[0];
+        CollaborationGroupMember cgm = deleteCollaborationGroupMember(teamMember); 
+        
+    if(teamMember.Team_Member__c==Userinfo.getUserId()){
+    System.Debug('If block executed');
+    return true;
+    }
+    else
+    {
+    return false;
+    }
+    return null;
+    }
     /*****************************************************************************************
     Purpose: Delete a BET member 
              It also deletes BETShare, CollaborationGroupMember and EntitySubscription records
@@ -439,7 +463,7 @@ public without sharing class BET_ManageMembersController {
         if(!hasModifyAccess){
             return null;
         }
-        
+        System.Debug('delete member method called');
         // recordId = BET_Member Id
         System.Debug('Record Id: ' + recordId);
          

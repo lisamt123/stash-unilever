@@ -268,17 +268,23 @@
     </fields>
     <label>Reason Code</label>
     <listViews>
-        <fullName>All_Reason_Codes</fullName>
+        <fullName>All</fullName>
         <columns>NAME</columns>
-        <columns>ISO_Country__c</columns>
-        <columns>Active__c</columns>
-        <columns>L5_Code__c</columns>
-        <columns>L5_Desc__c</columns>
-        <columns>L5_Global_Code__c</columns>
         <columns>L5_Short_Desc__c</columns>
         <columns>Unique_Key__c</columns>
+        <columns>ISO_Country__c</columns>
+        <columns>ISO_Language__c</columns>
+        <columns>L1_Code__c</columns>
+        <columns>L2_Code__c</columns>
+        <columns>L3_Code__c</columns>
+        <columns>L4_Code__c</columns>
+        <columns>L5_Code__c</columns>
+        <columns>L1_Desc__c</columns>
+        <columns>L2_Desc__c</columns>
+        <columns>L3_Desc__c</columns>
+        <columns>L5_Desc__c</columns>
         <filterScope>Everything</filterScope>
-        <label>All Reason Codes</label>
+        <label>All</label>
         <language>en_US</language>
     </listViews>
     <nameField>

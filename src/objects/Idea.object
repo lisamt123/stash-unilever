@@ -98,19 +98,11 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Kids</fullName>
+                <fullName>Kids and Teens</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Teens</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Desi Flavors</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Indo Western Fusion</fullName>
+                <fullName>Desi Flavors and Indo Western Fusion</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -118,139 +110,12 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Healthy Indulgence</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>I Need to Find…</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>I Need to Do…</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>I Work with Others On…</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>What’s relevant for me to see…</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>3D Printing</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Big Data</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BioTech</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cloud</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Collaboration</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Crowd Sourcing (and ideation)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Crypto Currencies</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>eCommerce</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Gamification</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>In-Memory</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>IoT</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Mobile</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Social Media</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Wearable Tech</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Misc</fullName>
+                <fullName>Better for You</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Function__c</fullName>
-        <description>Unilever Function</description>
-        <externalId>false</externalId>
-        <label>Function</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Customer Development</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Employee Services</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Enterprise Architecture</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Information &amp; Analytics</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Legal</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Marketing</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Master Data and Integration</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Research &amp; Development</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Security</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Supply Chain</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <type>MultiselectPicklist</type>
-        <visibleLines>7</visibleLines>
     </fields>
     <fields>
         <fullName>Idea_Theme__c</fullName>
@@ -259,56 +124,6 @@
         <label>Idea Theme</label>
         <required>false</required>
         <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Platform__c</fullName>
-        <externalId>false</externalId>
-        <label>Platform</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Adobe</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BMC</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Microsoft</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MuleSoft</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Oracle</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Salesforce</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SAP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Teradata</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Workday</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <type>MultiselectPicklist</type>
-        <visibleLines>6</visibleLines>
     </fields>
     <fields>
         <fullName>Status</fullName>
@@ -331,54 +146,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Not Implemented</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Pending Review</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Under Review – Benefit</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Under Review – Technical</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>In-scope</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Out-of-scope</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>On roadmap as new POC</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Merged with another POC</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>POC in progress</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>POC completed – Not carried forward</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>POC completed – Carried forward</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Prodcution capability</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Not Planned at this time</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -428,6 +195,7 @@
         </filters>
         <label>Last 7 Days</label>
     </listViews>
+<<<<<<< HEAD
     <listViews>
         <fullName>In_Scope_Ideas</fullName>
         <columns>IDEA.TITLE</columns>
@@ -462,6 +230,208 @@
         <label>Pending Review</label>
         <language>en_US</language>
     </listViews>
+=======
+    <recordTypes>
+        <fullName>InternalIdeasIdeaRecordType</fullName>
+        <active>true</active>
+        <description>Record Type used to associate ideas with a specific community</description>
+        <label>Internal Ideas: Idea Record Type</label>
+        <picklistValues>
+            <picklist>Categories</picklist>
+            <values>
+                <fullName>Deodorants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>General</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oral Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Implemented</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Not Implemented</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reviewed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Consideration</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Record_type_for_community_09aE0000000YIk2IAG_entity_Idea</fullName>
+        <active>true</active>
+        <description>Record type used to associate Idea with a specific zone</description>
+        <label>Sunset Portal: Idea Record Type</label>
+        <picklistValues>
+            <picklist>Categories</picklist>
+            <values>
+                <fullName>CD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deodorants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fragrance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>General</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ice-Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Labelling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oral Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Packaging Shape</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Packaging Size</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Usage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Implemented</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Implemented</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reviewed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Consideration</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Record_type_for_community_09ac00000004CrKAAU_entity_Idea</fullName>
+        <active>true</active>
+        <description>Record type used to associate Idea with a specific zone</description>
+        <label>Ice Cream Day: Idea Record Type</label>
+        <picklistValues>
+            <picklist>Categories</picklist>
+            <values>
+                <fullName>Better for You</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Desi Flavors and Indo Western Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kids and Teens</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Western Indulgence</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>New</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Reviewed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Consideration</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+>>>>>>> dd000f2d9ee18b42f923a0dc0691c3a923a28deb
     <searchLayouts>
         <customTabListAdditionalFields>IDEA.TITLE</customTabListAdditionalFields>
         <customTabListAdditionalFields>IDEA.BODY</customTabListAdditionalFields>

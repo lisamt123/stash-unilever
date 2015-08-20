@@ -63,6 +63,14 @@ public class AF_AgencyEstimateController
     public Decimal traditionalUSD{get;set;}
     public Decimal DigitalUSD{get;set;}
     public Decimal AdaptationUSD{get;set;}
+    public Boolean bConfirmBox{get;set;}
+    public Decimal OverrideTotal{get;set;}
+    public Decimal overrideTrad{get;set;}
+    public Decimal overrideDigital{get;set;}
+    public Decimal overrideAdapt{get;set;}
+    public String overridePONumber{get;set;}
+    Public String brandEstQuarter;
+    public Boolean POOverrideDisplay{get;set;}
     public String TraditionalDisplay{     
         get{String result = '';if(AgencyEstimate .AF_Traditional__c != null){if(AgencyEstimate .AF_Traditional__c > 0) {result = AgencyEstimate .AF_Traditional__c.format();}else{result ='';}}return result;}
         set{/*System.debug('TraditionalDisplay: ' + value);*/value = CommaFilter(value);System.debug('TraditionalDisplay: ' + value);if(value != ''){AgencyEstimate .AF_Traditional__c = Integer.valueOf(value);}else{AgencyEstimate.AF_Traditional__c = 0.00;}}
@@ -176,6 +184,7 @@ public class AF_AgencyEstimateController
     }
     Public user LoggedinUser{set;get;}
     public boolean SubmitButtonDisplay {set;get;}
+    public AF_PO_Report__c poReportObj{get;set;}
     
     public AF_AgencyEstimateController()
     {           
@@ -210,9 +219,14 @@ public class AF_AgencyEstimateController
         EntityException = new AF_Entity_Exception__c(); 
         Wrapperlist =new  list<Entitywrapper>();
         isCMCOReadyPOEdit = false;
+        bConfirmBox = false;
         cmcoEditDateList = new List<AF_CMCO__c>();
         CallEntityWrapper();
-        
+        poReportObj = new AF_PO_Report__c();
+        OverrideTotal=0;
+        brandEstQuarter='';
+        POOverrideDisplay = false;
+       
       /**            
         List<PermissionSetAssignment> permissionSetAssign =[select PermissionSet.Name from PermissionSetAssignment where Assignee.Id = :userId and (PermissionSet.Name like'%CMCO%' or PermissionSet.Name like'%Category%' or PermissionSet.Name like'%Agency%')  order by PermissionSet.Name];
         for (PermissionSetAssignment Names:permissionSetAssign ){
@@ -271,7 +285,7 @@ public class AF_AgencyEstimateController
                 IsUpdate = true;
                 IsInsert = false;               
                                        
-            AgencyEstimate = [select Id,AF_Category_Finance_Flag__c,AF_Total_USD__c,AF_Total_Local__c,Traditional_USD_Formula__c,AF_Digital_USD_Formula__c,Adaptation_USD_Formula__c,AF_IsCrossborder__c,AF_Ready_For_PO_Entry_Currency__c,AF_Agency_Spot_Rate__c,AF_Quarter_PO_Raised__c,AF_PO_Value__c,AF_Adaptation__c,AF_PO_Number__c,AF_Brand_Estimate__r.AF_CMCO_Rejected__c,AF_Brand_Estimate__r.AF_Status_Base_Fees__c,AF_Is_Unilever_Central_Hub__c,AF_CentralBilling__c, AF_Unilever_Entity_Name__c,AF_Agency_Entity_Name__c,AF_isLocked__c, AF_Digital__c, AF_Traditional__c,AF_Agency_Entity__c,AF_Unilever_Entity__c,AF_Total__c,AF_Matrix_Data_Entry_Currency__c, AF_Traditional_Local__c, AF_Digital_Local__c, AF_Adaptation_Local__c,AF_Agency_Exchange_Rate__c,AF_CentralBillingMessage__c,AF_LC_Traditional__c,AF_LC_Digital__c,AF_LC_Adaptation__c,AF_LC_Total__c  FROM AF_Agency_Estimate__c WHERE Id = : ParentId];
+            AgencyEstimate = [select Id,AF_OverridePO_Adaptation_LC__c,AF_OverridePO_Digital_LC__c,AF_OverridePO_Traditional_LC__c,AF_Category_Finance_Flag__c,AF_Total_USD__c,AF_Total_Local__c,Traditional_USD_Formula__c,AF_Digital_USD_Formula__c,Adaptation_USD_Formula__c,AF_IsCrossborder__c,AF_Ready_For_PO_Entry_Currency__c,AF_Agency_Spot_Rate__c,AF_Quarter_PO_Raised__c,AF_PO_Value__c,AF_Adaptation__c,AF_PO_Number__c,AF_Brand_Estimate__r.AF_CMCO_Rejected__c,AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c,AF_Brand_Estimate__r.AF_Status_Base_Fees__c,AF_Is_Unilever_Central_Hub__c,AF_CentralBilling__c, AF_Unilever_Entity_Name__c,AF_Agency_Entity_Name__c,AF_isLocked__c, AF_Digital__c, AF_Traditional__c,AF_Agency_Entity__c,AF_Unilever_Entity__c,AF_Total__c,AF_Matrix_Data_Entry_Currency__c, AF_Traditional_Local__c, AF_Digital_Local__c, AF_Adaptation_Local__c,AF_Agency_Exchange_Rate__c,AF_CentralBillingMessage__c,AF_LC_Traditional__c,AF_LC_Digital__c,AF_LC_Adaptation__c,AF_LC_Total__c  FROM AF_Agency_Estimate__c WHERE Id = : ParentId];
             EntityExceptionCollection = [select Id, AF_Agency_Estimate__c, AF_Value_Euro__c,AF_Value__c,AF_Country__c FROM AF_Entity_Exception__c where AF_Agency_Estimate__c = : ParentId];
             if(EntityExceptionCollection != null){if(EntityExceptionCollection.size() > 0){DisplayExceptionList = true;}}            
             if(AgencyEstimate != null)
@@ -302,6 +316,13 @@ public class AF_AgencyEstimateController
                     cmcoFieldsReadOnly = true;
                 }
                 
+                if(AgencyEstimate.AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c!=null){
+                    brandEstQuarter = AgencyEstimate.AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c;
+                    if(!brandEstQuarter.contains('Q4')){
+                        POOverrideDisplay = true;
+                    }
+                }
+                
                 if(AgencyEstimate.AF_isLocked__c == null || AgencyEstimate.AF_isLocked__c == false)IsLocked = true;else{IsLocked = false;}
                 CalculateTotal();
                 if(AgencyEstimate.af_total__c >0)
@@ -312,6 +333,32 @@ public class AF_AgencyEstimateController
                 {
                     IsEditMode=true;
                 }
+                try{
+                poReportObj = [SELECT AF_Calculate_Tradition_Local__c,AF_Calculate_Adaptation_Local__c,AF_Calculate_Digital_Local__c,AF_PO_Value_Total_LC__c from AF_PO_Report__c where AF_Agency_Estimate_ID__c=:ParentId];
+                }
+                catch(Exception e){
+                    system.debug(e);
+                }
+                if(AgencyEstimate.AF_OverridePO_Adaptation_LC__c!=null)
+                OverrideTotal = OverrideTotal + AgencyEstimate.AF_OverridePO_Adaptation_LC__c;
+                if(AgencyEstimate.AF_OverridePO_Digital_LC__c!=null)
+                OverrideTotal = OverrideTotal + AgencyEstimate.AF_OverridePO_Digital_LC__c; 
+                if(AgencyEstimate.AF_OverridePO_Traditional_LC__c!=null)
+                OverrideTotal = OverrideTotal + AgencyEstimate.AF_OverridePO_Traditional_LC__c;
+                
+                system.debug('OverrideTotal..1.'+OverrideTotal);
+                //if(AgencyEstimate.AF_OverridePO_Adaptation_LC__c!=null)
+                overrideTrad =  AgencyEstimate.AF_OverridePO_Traditional_LC__c;
+                //if(AgencyEstimate.AF_OverridePO_Digital_LC__c!=null)
+                overrideDigital = AgencyEstimate.AF_OverridePO_Digital_LC__c;
+                //if(AgencyEstimate.AF_OverridePO_Traditional_LC__c!=null)
+                overrideAdapt = AgencyEstimate.AF_OverridePO_Adaptation_LC__c;
+                overridePONumber = AgencyEstimate.AF_PO_Number__c;
+                
+                system.debug('overrideTrad.1.'+overrideTrad);
+            system.debug('overrideDigital.1.'+overrideDigital);
+            system.debug('overrideAdapt.1.'+overrideAdapt);
+                
             }            
                   
         }
@@ -392,10 +439,69 @@ public class AF_AgencyEstimateController
         AF_Entity__c entity = [select id, IsCentralHub__c FROM AF_Entity__c where Id = : pId];
         return entity.IsCentralHub__c;
     }
+    public void confirmBox(){
+    bConfirmBox = true;
+    }
+    public void closePopupReject(){
+    bConfirmBox = false;
+    }
     public void UpdatPO(){
-    // AgencyEstimate.AF_PO_Number__c=String.Valueof(PoNumber);
-     update AgencyEstimate;
-     apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,'Record successfully saved'));    
+    
+        if(AgencyEstimate.AF_PO_Number__c!=null){
+            system.debug('inside....');
+            system.debug('overrideTrad..'+overrideTrad);
+            system.debug('overrideDigital..'+overrideDigital);
+            system.debug('overrideAdapt..'+overrideAdapt);
+            if(overrideTrad != AgencyEstimate.AF_OverridePO_Traditional_LC__c)
+             AgencyEstimate.AF_OverridePO_Traditional_LC__c = overrideTrad;
+            if(overrideDigital != AgencyEstimate.AF_OverridePO_Digital_LC__c)
+             AgencyEstimate.AF_OverridePO_Digital_LC__c = overrideDigital;
+             if(overrideAdapt != AgencyEstimate.AF_OverridePO_Adaptation_LC__c)
+             AgencyEstimate.AF_OverridePO_Adaptation_LC__c = overrideAdapt;
+            system.debug('AgencyEstimate.AF_OverridePO_Traditional_LC__c..'+AgencyEstimate.AF_OverridePO_Traditional_LC__c);
+            system.debug('AgencyEstimate.AF_OverridePO_Digital_LC__c..'+AgencyEstimate.AF_OverridePO_Digital_LC__c);
+            system.debug('AgencyEstimate.AF_OverridePO_Adaptation_LC__c.'+AgencyEstimate.AF_OverridePO_Adaptation_LC__c);
+            update AgencyEstimate;
+            overridePONumber = AgencyEstimate.AF_PO_Number__c;
+            apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,'Record successfully saved'));
+        }    
+    }
+    public void OverridePO(){
+    OverrideTotal=0;
+    Boolean errMsgOverride=false;
+    bConfirmBox = false;
+            if(overridePONumber != AgencyEstimate.AF_PO_Number__c)
+              AgencyEstimate.AF_PO_Number__c = overridePONumber;
+            if(AgencyEstimate.AF_OverridePO_Adaptation_LC__c!=null)
+                OverrideTotal = OverrideTotal + AgencyEstimate.AF_OverridePO_Adaptation_LC__c;
+                if(AgencyEstimate.AF_OverridePO_Digital_LC__c!=null)
+                OverrideTotal = OverrideTotal + AgencyEstimate.AF_OverridePO_Digital_LC__c;
+                if(AgencyEstimate.AF_OverridePO_Traditional_LC__c!=null)
+                OverrideTotal = OverrideTotal + AgencyEstimate.AF_OverridePO_Traditional_LC__c;
+                
+                if(OverrideTotal>AgencyEstimate.AF_LC_Total__c){
+                    errMsgOverride=true;
+                    
+                    apexpages.addmessage(new apexpages.message(apexpages.severity.Error,'POOverride value cannot be more than the BaseFee'));
+                }
+                
+                system.debug('OverrideTotal..2.'+OverrideTotal);
+    
+    if(errMsgOverride==false){
+        
+    update AgencyEstimate;
+    overrideTrad =  AgencyEstimate.AF_OverridePO_Traditional_LC__c;
+    overrideDigital =  AgencyEstimate.AF_OverridePO_Digital_LC__c;
+    overrideAdapt =  AgencyEstimate.AF_OverridePO_Adaptation_LC__c;
+    try{
+     poReportObj = [SELECT AF_Calculate_Tradition_Local__c,AF_Calculate_Adaptation_Local__c,AF_Calculate_Digital_Local__c,AF_PO_Value_Total_LC__c from AF_PO_Report__c where AF_Agency_Estimate_ID__c=:ParentId];
+     system.debug('poReportObj....'+poReportObj);
+     }
+     catch(Exception e){
+        system.debug(e);
+     }
+      apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,'Record successfully saved')); 
+     }
     }
     
     public PageReference Save()
@@ -665,7 +771,7 @@ public class AF_AgencyEstimateController
           {
               Countrynames.add(new selectoption(UE.name,UE.name));
           }
-		*/
+        */
           for (Schema.PicklistEntry a : pick_list_values) {
                       Countrynames.add(new selectOption(a.getValue(), a.getValue()));
           }

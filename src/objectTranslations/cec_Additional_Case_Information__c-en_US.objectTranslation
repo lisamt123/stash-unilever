@@ -1055,6 +1055,13 @@
         <name>q9__c</name>
     </fields>
     <layouts>
+        <layout>Additional Case Information Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
         <layout>Additional Information Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
@@ -1066,6 +1073,17 @@
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Questionaire PageLayout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
         </sections>
     </layouts>
     <recordTypes>

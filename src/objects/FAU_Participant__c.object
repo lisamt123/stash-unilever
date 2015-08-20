@@ -1084,15 +1084,6 @@ IMAGE(&apos;/img/msg_icons/error16.png&apos;, &apos;False&apos;) + &apos;: You h
         <unique>true</unique>
     </fields>
     <fields>
-        <fullName>FAU_Upload_final_IDP_on_Talent_Plus__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Upload final IDP on Talent Plus</label>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>FAU_User_License__c</fullName>
         <externalId>false</externalId>
         <formula>FAU_User__r.User_License__c</formula>

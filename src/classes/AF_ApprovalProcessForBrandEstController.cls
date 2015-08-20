@@ -29,6 +29,7 @@ public Class AF_ApprovalProcessForBrandEstController
     public boolean Controllerflag1{set;get;}
     public boolean ApprovalButton{set;get;}
     Public boolean IsCatFinanceEdited{get;set;}
+    Public boolean isAgency{get;set;}
     
     public void RejectBrandEstComment()
     {
@@ -197,6 +198,7 @@ public Class AF_ApprovalProcessForBrandEstController
         
         
         brandEstimateId = ApexPages.currentPage().getParameters().get('id');
+        isAgency = false;
         LoggedinUser=[select id,IsActive,Username,Name,AF_Brand__c,AF_Agency_Fees_User_Type__c  from  User  where id=:Userinfo.getuserid()   and IsActive=true  Order by CreatedDate Limit 50000];  
         TempConstructor();
          
@@ -226,6 +228,9 @@ public Class AF_ApprovalProcessForBrandEstController
         }
         if(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance' && BrandEstRecord.AF_Status_Base_Fees__c=='With Category Finance' &&  BrandEstRecord.AF_Category_Finance_Flag__c>0){
            IsCatFinanceEdited=true;
+        }
+        if(LoggedinUser.AF_Agency_Fees_User_Type__c=='Agency'){
+            isAgency = true;
         }
         if((BrandEstRecord.AF_Status_Base_Fees__c=='With Agency' && LoggedinUser.AF_Agency_Fees_User_Type__c=='Agency') || 
            (BrandEstRecord.AF_Status_Base_Fees__c=='With CMCO' && LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO User'))
@@ -260,7 +265,7 @@ public Class AF_ApprovalProcessForBrandEstController
         /*if(BrandEstRecord.AF_Status_Base_Fees__c=='With Agency' && BrandEstRecord.ExceptionsComplete__c!=1&&BrandEstRecord.AF_No_of_Central_Billing__c >0)
         {
            // ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Please check the country Breakdown percentage'));
-            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please Check the Country Breakdown percentage');
+            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please indicate the country breakdown percentage within UK');
             apexpages.addmessage(msg); 
             return null;
         }
@@ -285,7 +290,7 @@ public Class AF_ApprovalProcessForBrandEstController
         if((BrandEstRecord.AF_Status_Base_Fees__c=='With Agency' || BrandEstRecord.AF_Status_Base_Fees__c=='With Category Finance') && myresult )
         {
            // ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Please check the country Breakdown percentage'));
-            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please Check the Country Breakdown percentage');
+            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please indicate the country breakdown percentage within UK');
             apexpages.addmessage(msg); 
             return null;
         }
@@ -306,7 +311,7 @@ public Class AF_ApprovalProcessForBrandEstController
         if(BrandEstRecord.AF_Status_Base_Fees__c=='With Category Finance' && myresult )
         {
            // ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Please check the country Breakdown percentage'));
-            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please Check the Country Breakdown percentage');
+            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please indicate the country breakdown percentage within UK');
             apexpages.addmessage(msg); 
             return null;
         }
@@ -417,7 +422,7 @@ public Class AF_ApprovalProcessForBrandEstController
             }
         else if ((BrandEstRecord.AF_Status_Base_Fees__c=='With Category Finance'||BrandEstRecord.AF_Status_Base_Fees__c=='With CMCO') && myresult)    
         {
-            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please Check the Country Breakdown percentage');
+            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please indicate the country breakdown percentage within UK');
             apexpages.addmessage(msg); 
             
         }

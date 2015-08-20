@@ -10,5 +10,4 @@
     <tab>standard-Dashboard</tab>
     <tab>cp_Planner__c</tab>
     <tab>cp_PlannerPreference__c</tab>
-    <tab>cp_ULE_Contact__c</tab>
 </CustomApplication>

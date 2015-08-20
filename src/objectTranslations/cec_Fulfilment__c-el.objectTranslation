@@ -83,6 +83,10 @@
         <relationshipLabel>Εκπλήρωση</relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Country &amp; BrandLogo --></label>
+        <name>Country_BrandLogo__c</name>
+    </fields>
+    <fields>
         <label>χώρα</label>
         <name>Country__c</name>
         <picklistValues>
@@ -357,6 +361,10 @@
         <errorMessage>«Τύπος» λείπουν οι πληροφορίες για τη δημιουργία ενός Εκπλήρωση</errorMessage>
         <name>FulfilmentType_MandatoryCheck</name>
     </validationRules>
+    <webLinks>
+        <label><!-- Fulfilment_Lookup --></label>
+        <name>Fulfilment_Lookup</name>
+    </webLinks>
     <webLinks>
         <label>Νέα Εκπλήρωση</label>
         <name>New_Fulfilment</name>

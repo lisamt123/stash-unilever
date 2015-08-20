@@ -12,7 +12,11 @@ Test Class: testWrappers,testController are test methods in this class
                               nature-100 groupd limit  and display message
                               as appropriate                                        T01             
 13-August-2014   Bhavneesh    Removal of duplicate Inoplan proejct Logic            T02       
-10-Sept-2014     Accenture    Bug fix for inoplan logic is mandatory                T03                                     
+10-Sept-2014     Accenture    Bug fix for inoplan logic is mandatory                T03  
+
+20-July-2015       Nikhil Mishra    Fix to prevent new collaberation groups         T04
+                                    from being autoArchieved
+                                  
 -----------------------------------------------------------------</T01>----------------------------*/
 //New ADFS
 public with sharing class uw_TriggerHandler { 
@@ -1461,6 +1465,9 @@ private Boolean canDemoteAsset(String objId, uw_Asset__c asset, SObject so) {
             newGroup.Description = bet.Description__c; 
             newGroup.CollaborationType = 'Private';
             newGroup.CanHaveGuests = true;
+            //T4--Code added to make auto archive disabled by Nikhil Mishra
+            newGroup.IsAutoArchiveDisabled = true;
+            //End T4
             // START NEW CODE ADDED BY Istvan Szegedi January 6th, 2015
             // This is to ensure that the BET Owner is the same as the Collaboration Group Owner.
             newGroup.OwnerId = bet.OwnerId;
@@ -1882,5 +1889,5 @@ private Boolean canDemoteAsset(String objId, uw_Asset__c asset, SObject so) {
         }
 
     }
-   
+  
 }
