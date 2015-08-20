@@ -885,6 +885,11 @@
     </fields>
     <label>Approval Console</label>
     <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
         <fullName>Ariba</fullName>
         <columns>NAME</columns>
         <columns>Status__c</columns>
@@ -1051,8 +1056,8 @@
         <customTabListAdditionalFields>Title_Summary__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Reason__c</customTabListAdditionalFields>
         <excludedStandardButtons>New</excludedStandardButtons>
-        <excludedStandardButtons>Accept</excludedStandardButtons>
         <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
         <lookupDialogsAdditionalFields>Source_System__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Title_Summary__c</lookupDialogsAdditionalFields>

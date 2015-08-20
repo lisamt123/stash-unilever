@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Issue Knowledge Article</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Issue Knowledge Articles</value>
+    </caseValues>
+    <fields>
+        <label><!-- Article Id --></label>
+        <name>Article_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Code --></label>
+        <name>Product_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Short Reason Code --></label>
+        <name>Short_Reason_Code__c</name>
+    </fields>
+    <startsWith>Vowel</startsWith>
+    <webLinks>
+        <label><!-- Attach_To_Case --></label>
+        <name>Attach_To_Case</name>
+    </webLinks>
+</CustomObjectTranslation>

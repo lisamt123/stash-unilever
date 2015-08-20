@@ -3,7 +3,6 @@
     <allowMembersToFlag>false</allowMembersToFlag>
     <branding>
         <loginFooterText>Unilever Ratings and Reviews</loginFooterText>
-        <loginLogo>Communities_Shared_Document_Folder/servlet_jpg.jpg</loginLogo>
         <primaryColor>#022072</primaryColor>
         <primaryComplementColor>#FFFFFF</primaryComplementColor>
         <quaternaryColor>#C3DFFC</quaternaryColor>
@@ -28,7 +27,11 @@
     <networkMemberGroups>
         <profile>Unilever Way - Marketing - System Administrator Lite</profile>
         <profile>AR - Agency Portal User</profile>
+<<<<<<< HEAD
         <profile>community profile</profile>
+=======
+        <profile>Ratings and Review - User external</profile>
+>>>>>>> dd000f2d9ee18b42f923a0dc0691c3a923a28deb
         <profile>Admin</profile>
     </networkMemberGroups>
     <picassoSite>Agencies1</picassoSite>

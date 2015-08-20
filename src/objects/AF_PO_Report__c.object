@@ -148,6 +148,32 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_Big_Category_New__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( AF_Category__c , 
+&apos;Beverages&apos;, &apos;Refreshments&apos;,
+&apos;Axe&apos;,&apos;Personal Care&apos;,
+&apos;CMCO&apos;,&apos;CMCO&apos;,
+&apos;Deos&apos;,&apos;Personal Care&apos;,
+&apos;Hair&apos;,&apos;Personal Care&apos;,
+&apos;HHC&apos;,&apos;Home Care&apos;,
+&apos;Ice Cream&apos;,&apos;Refreshments&apos;,
+&apos;Laundry&apos;,&apos;Home Care&apos;,
+&apos;Oral Care&apos;,&apos;Personal Care&apos;,
+&apos;Savoury&apos;,&apos;Foods&apos;,
+&apos;SCC &amp; Dressing&apos;,&apos;Foods&apos;,
+&apos;Skin Care&apos;,&apos;Personal Care&apos;,
+&apos;Skin Cleansing&apos;,&apos;Personal Care&apos;,
+&apos;Water&apos;,&apos;Home Care&apos;,
+&apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Big Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_Brand_Estimate_ID__c</fullName>
         <description>Stores the Brand Estimate ID</description>
         <externalId>false</externalId>
@@ -184,8 +210,7 @@
         <fullName>AF_Calculate_Adaptation_Local__c</fullName>
         <description>Calculates the Adaptation Local PO Value for Quarter</description>
         <externalId>false</externalId>
-        <formula>AF_Adaptation_Local__c *((AF_CountNoQuarters__c+ AF_QuatersAlreadyDone__c)/4) -  AF_Previous_Quarter_Value_AL__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>IF(ISBLANK(AF_OverridePO_Adaptation_LC__c), AF_Adaptation_Local__c *((AF_CountNoQuarters__c+ AF_QuatersAlreadyDone__c)/4) -  AF_Previous_Quarter_Value_AL__c,AF_OverridePO_Adaptation_LC__c)</formula>
         <label>PO Value Adaptation – LC</label>
         <precision>18</precision>
         <required>false</required>
@@ -198,8 +223,7 @@
         <fullName>AF_Calculate_Digital_Local__c</fullName>
         <description>Calculates the Digital Local PO Value for Quarter</description>
         <externalId>false</externalId>
-        <formula>AF_Digital_Local__c *((AF_CountNoQuarters__c+ AF_QuatersAlreadyDone__c)/4) -  AF_Previous_Quarter_Value_DL__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>IF(ISBLANK(AF_OverridePO_Digital_LC__c), AF_Digital_Local__c *((AF_CountNoQuarters__c+ AF_QuatersAlreadyDone__c)/4) -  AF_Previous_Quarter_Value_DL__c,AF_OverridePO_Digital_LC__c)</formula>
         <label>PO Value Digital – LC</label>
         <precision>18</precision>
         <required>false</required>
@@ -212,8 +236,7 @@
         <fullName>AF_Calculate_Tradition_Local__c</fullName>
         <description>Calculates the Traditional Local PO Value for Quarter</description>
         <externalId>false</externalId>
-        <formula>AF_Traditional_Local__c *((AF_CountNoQuarters__c+ AF_QuatersAlreadyDone__c)/4) -  AF_Previous_Quarter_Value_TL__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>IF(ISBLANK(AF_OverridePO_Traditional_LC__c) ,AF_Traditional_Local__c *((AF_CountNoQuarters__c+ AF_QuatersAlreadyDone__c)/4) -  AF_Previous_Quarter_Value_TL__c,AF_OverridePO_Traditional_LC__c)</formula>
         <label>PO Value Tradition – LC</label>
         <precision>18</precision>
         <required>false</required>
@@ -279,6 +302,15 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_CrossBorder__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(CONTAINS(AF_Agency_Entity__c, AF_Unilever_Entity__c) || CONTAINS(AF_Unilever_Entity__c,AF_Agency_Entity__c) ,false,true)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CrossBorder</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>AF_Currency__c</fullName>
@@ -415,6 +447,43 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OverridePO_Adaptation_LC__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Override PO Adaptation – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OverridePO_Digital_LC__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field is used to override the PO_Value_Digital</description>
+        <externalId>false</externalId>
+        <label>Override PO Digital – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OverridePO_Traditional_LC__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Override PO Traditional – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>AF_PO_Check__c</fullName>
@@ -630,6 +699,14 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_Show_In_Report__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( AND(AF_OverridePO_Adaptation_LC__c =0, AF_OverridePO_Digital_LC__c =0, AF_OverridePO_Traditional_LC__c =0),true,false)</formula>
+        <label>Show In Report</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>AF_Total_Local__c</fullName>
         <description>Hold total for Traditional local,digital local and adaptation local</description>
         <externalId>false</externalId>
@@ -752,17 +829,24 @@
     <label>PO Report</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
         <columns>AF_Brand_Estimate_Name__c</columns>
-        <columns>AF_Compound_Key__c</columns>
-        <columns>AF_Total__c</columns>
-        <columns>AF_Calculated_PO_Value_Formula__c</columns>
-        <columns>AF_Previous_Quarter_Value__c</columns>
         <columns>AF_QuatersAlreadyDone__c</columns>
         <columns>AF_CountNoQuarters__c</columns>
         <columns>AF_Max_Quarter__c</columns>
-        <columns>AF_Fiscal_Year__c</columns>
+        <columns>AF_Traditional__c</columns>
+        <columns>AF_Traditional_Local__c</columns>
+        <columns>AF_Previous_Quarter_Value_TL__c</columns>
+        <columns>AF_Calculate_Tradition_Local__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>AF_PO_Report_Type__c</field>
+            <operation>equals</operation>
+            <value>OOPS</value>
+        </filters>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>PO-{000000}</displayFormat>

@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/syntax/shCore.css')}"/>
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/demo.css')}"/>
     <style>
-        a:hover{background-color: #74ae00 !important;}
+        body.AF_UL_OOPS_SelectMatrices a:hover{background-color: #74ae00 !important;}
     </style>
     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/js/jquery.js')}"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
@@ -43,44 +43,16 @@
     });
     </script>
     
-        <style type="text/css">
-    .heading_main{
-   margin-left: 0;
-margin-right: 0;
-margin-top: 5px;
-padding-bottom: 11px;
-padding-left: 0;
-padding-right: 0;
-width: 100%;
-    }
-.heading_text{
-   color: black;
-font-size: 20px;
-margin-left: 32px;
-padding: 7px 1px 8px 8px;
-font-family: Helvetica, arial, sans-serif;
-font-weight: bold;
-}
- #mydiv_bold a {
-cursor: pointer;
-color: #3174c7;
-text-decoration: none;
-font-weight: bold;
-margin-right: 20px;
-padding: 3px 5px 3px 3px;
-border-radius: 10px;
-border: 2px solid #74AE00!important;
-margin-top: 5px!important;
-display: inline-block;
-}
-
-    </style>
+    <!-- Common_Style File Start -->
+    <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+    <!-- Common_Style File End -->
+        
 </head>
-<body>
+<body class="AF_UL_OOPS_SelectMatrices">
 
 <div class="row">           
         <div class="col-lg-12 charttable1">         
-            <apex:image url="{!$Resource.header_new}" style="width:100%;height:37px;" />            
+            <apex:image url="{!$Resource.header_new}" styleClass="headimg" />            
         </div>          
     </div>
     
@@ -89,11 +61,11 @@ display: inline-block;
       </div>
       
     
-    <div align="center" style="font-size: 16px;" id="mydiv_bold">
+    <div align="center" class="fontSize16P" id="mydiv_bold">
        
        
        
-        <apex:dataTable var="oops" value="{!oopsActuals}" style="border: 2px solid #74AE00!important;border-radius: 10px; padding: 5px;width:35%;border-collapse:separate!important;margin-top: 5px;float:left;margin-bottom: 0px;margin-left: 34%;">
+        <apex:dataTable var="oops" value="{!oopsActuals}" styleClass="oopsGrid">
            <apex:column >
               <apex:outputPanel rendered="{!isAgencyFlag}">
                <a href="apex/AF_UL_oopsMatrix?bId={!brandId}&fy={!fiscalYear}&aId={!agencyId}&Id={!oops.Id}">{!oops.Name}</a><br /><br />
@@ -103,7 +75,7 @@ display: inline-block;
            </apex:outputPanel>
            
            </apex:column>
-           <apex:column style="margin-top: 8px;display: inline-block;">
+           <apex:column styleClass="oopsColumn">
                {!oops.oopsEstimateStatus__c}<br /><br />
            </apex:column>
         </apex:dataTable>

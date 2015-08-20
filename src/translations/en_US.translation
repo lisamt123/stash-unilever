@@ -17,6 +17,10 @@
         <name>CEC_Admin</name>
     </customApplications>
     <customApplications>
+        <label><!-- CEC Standard --></label>
+        <name>CEC_Standard</name>
+    </customApplications>
+    <customApplications>
         <label><!-- Communications Planner --></label>
         <name>Comms_Planer</name>
     </customApplications>
@@ -97,6 +101,22 @@
         <name>AF_AnnualBonus_Qual</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_BFML-Label_4k7g --></label>
+        <name>AF_BFML_Label_4k7g</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_BFMX-General_feedback --></label>
+        <name>AF_BFMX_General_feedback</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_BNMXLB-Override --></label>
+        <name>AF_BNMXLB_Override</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_BonusMatrixHelp --></label>
+        <name>AF_BonusMatrixHelp</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF_BonusQuarterly --></label>
         <name>AF_BonusQuarterly</name>
     </customLabels>
@@ -169,8 +189,48 @@
         <name>AF_EntityException</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_LP-2nyf --></label>
+        <name>AF_LP_2nyf</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-Action_Pending --></label>
+        <name>AF_LP_Action_Pending</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP_Annual_Base_Fee_Target --></label>
+        <name>AF_LP_Annual_Base_Fee_Target</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF_LP_Base_Fee_Targets --></label>
         <name>AF_LP_Base_Fee_Targets</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP_Can_Rename --></label>
+        <name>AF_LP_Can_Rename</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-Enter_BF_estimates --></label>
+        <name>AF_LP_Enter_BF_estimates</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-Naming_Convention --></label>
+        <name>AF_LP_Naming_Convention</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-New_PO_Hover --></label>
+        <name>AF_LP_New_PO_Hover</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP_Running_Total --></label>
+        <name>AF_LP_Running_Total</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-ey31 --></label>
+        <name>AF_LP_ey31</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-y81a --></label>
+        <name>AF_LP_y81a</name>
     </customLabels>
     <customLabels>
         <label><!-- Lock Records --></label>
@@ -185,8 +245,24 @@
         <name>AF_No_Bonus</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_OOPSMX-General_feedback --></label>
+        <name>AF_OOPSMX_General_feedback</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_OOPSMX-Override --></label>
+        <name>AF_OOPSMX_Override</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_OOPSMX-Percentage --></label>
+        <name>AF_OOPSMX_Percentage</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF_OOPS_Approval --></label>
         <name>AF_OOPS_Approval</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_OOPS_Help --></label>
+        <name>AF_OOPS_Help</name>
     </customLabels>
     <customLabels>
         <label><!-- AF_OOPS_Reject --></label>
@@ -203,6 +279,18 @@
     <customLabels>
         <label><!-- AF_OopsPercentage --></label>
         <name>AF_OopsPercentage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_PONumberTab_Header --></label>
+        <name>AF_PONumberTab_Header</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_POOveride_Warning --></label>
+        <name>AF_POOveride_Warning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_PO_OverrideHelp --></label>
+        <name>AF_PO_OverrideHelp</name>
     </customLabels>
     <customLabels>
         <label><!-- PiliotError message --></label>
@@ -231,6 +319,10 @@
     <customLabels>
         <label><!-- AF_TriggerDate --></label>
         <name>AF_TriggerDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_UBFLB-Thresholds --></label>
+        <name>AF_UBFLB_Thresholds</name>
     </customLabels>
     <customLabels>
         <label><!-- AF_UBFLB-Type_of_Fees --></label>
@@ -331,6 +423,22 @@
     <customLabels>
         <label><!-- Bonus_Annual --></label>
         <name>Bonus_Annual</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_AlertActionSchedulerName --></label>
+        <name>CEC_AlertActionSchedulerName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CBM_NotificationBodyFooter --></label>
+        <name>CEC_CBM_NotificationBodyFooter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CBM_NotificationBodyHeader --></label>
+        <name>CEC_CBM_NotificationBodyHeader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CBM_NotificationSubject --></label>
+        <name>CEC_CBM_NotificationSubject</name>
     </customLabels>
     <customLabels>
         <label><!-- CEC_CaseAccountMissing --></label>
@@ -1253,6 +1361,14 @@
         <name>WinatPOS_Upload_Error_No_Chatter_File</name>
     </customLabels>
     <customLabels>
+        <label><!-- af_lp_AgencyFeeTarget --></label>
+        <name>af_lp_AgencyFeeTarget</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- af_lp_UnileverBaseFee --></label>
+        <name>af_lp_UnileverBaseFee</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Button cancel --></label>
         <name>button_cancel</name>
     </customLabels>
@@ -1457,6 +1573,10 @@
         <name>Terms_Of_Use</name>
     </customPageWebLinks>
     <customPageWebLinks>
+        <label><!-- Web to Case --></label>
+        <name>Web_to_Case</name>
+    </customPageWebLinks>
+    <customPageWebLinks>
         <label><!-- Communications Planner Help! --></label>
         <name>gc_HELP</name>
     </customPageWebLinks>
@@ -1481,7 +1601,7 @@
         <name>Brand_Centres</name>
     </customTabs>
     <customTabs>
-        <label><!-- Brand Experience (BET) --></label>
+        <label><!-- Brand Experience --></label>
         <name>Brand_Experience2</name>
     </customTabs>
     <customTabs>
@@ -1663,6 +1783,22 @@
         <label><!-- Bonus Matriix --></label>
         <name>AF_Bonus_Matriix</name>
         <sections>
+            <columns>
+                <label><!-- Agency --></label>
+                <name>Agency</name>
+            </columns>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
             <label><!-- Bonus Matrix --></label>
             <name>Bonus Matrix</name>
         </sections>
@@ -1842,6 +1978,26 @@
                 <name>Currency</name>
             </columns>
             <columns>
+                <label><!-- Currency @ Ready for PO --></label>
+                <name>Currency @ Ready for PO</name>
+            </columns>
+            <columns>
+                <label><!-- Currency @ReadyforPO --></label>
+                <name>Currency @ReadyforPO</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate --></label>
+                <name>Exchange Rate</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate@PO --></label>
+                <name>Exchange Rate@PO</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate@ReadyforPO --></label>
+                <name>Exchange Rate@ReadyforPO</name>
+            </columns>
+            <columns>
                 <label><!-- Legal Entity Name --></label>
                 <name>Legal Entity Name</name>
             </columns>
@@ -1874,6 +2030,14 @@
         <label><!-- Bonus Thresholds with Sub Results --></label>
         <name>Bonus_Thresholds_with_Sub_Results</name>
         <sections>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
             <columns>
                 <label><!-- Category Name --></label>
                 <name>Category Name</name>
@@ -1961,6 +2125,10 @@
             <name>Agency Estimates</name>
         </sections>
         <sections>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
             <columns>
                 <label><!-- Status --></label>
                 <name>Status</name>
@@ -2322,8 +2490,53 @@
         <label><!-- OOPS Estimate --></label>
         <name>OOPS_Estimate</name>
         <sections>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Category --></label>
+                <name>Category</name>
+            </columns>
             <label><!-- OOPS Estimates --></label>
             <name>OOPS Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- OOPs PO Report --></description>
+        <label><!-- OOPs PO Report --></label>
+        <name>OOPs_PO_Report</name>
+        <sections>
+            <columns>
+                <label><!-- FY OOPS - Euro --></label>
+                <name>FY OOPS - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- FY Year OOPs - LC --></label>
+                <name>FY Year OOPs - LC</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value - Euro --></label>
+                <name>PO Value - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value – LC --></label>
+                <name>PO Value – LC</name>
+            </columns>
+            <label><!-- PO Report --></label>
+            <name>PO Report</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -2331,6 +2544,14 @@
         <label><!-- Opps Actuals with Estimates --></label>
         <name>Opps_Actuals_with_Estimates</name>
         <sections>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
             <columns>
                 <label><!-- Status --></label>
                 <name>Status</name>
@@ -2342,6 +2563,22 @@
             <columns>
                 <label><!-- Currency --></label>
                 <name>Currency</name>
+            </columns>
+            <columns>
+                <label><!-- Currency --></label>
+                <name>Currency</name>
+            </columns>
+            <columns>
+                <label><!-- Currency @Ready for PO --></label>
+                <name>Currency @Ready for PO</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate --></label>
+                <name>Exchange Rate</name>
+            </columns>
+            <columns>
+                <label><!-- ExchangeRate@ReadyforPO --></label>
+                <name>ExchangeRate@ReadyforPO</name>
             </columns>
             <columns>
                 <label><!-- FY OOPS - Euro --></label>
@@ -2362,6 +2599,14 @@
             <columns>
                 <label><!-- Legal Entity Name --></label>
                 <name>Legal Entity Name</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value - Euro --></label>
+                <name>PO Value - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value - LC --></label>
+                <name>PO Value - LC</name>
             </columns>
             <columns>
                 <label><!-- Unilever Entity --></label>

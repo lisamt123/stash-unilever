@@ -288,6 +288,37 @@
         <unique>false</unique>
     </fields>
     <label>Unilever Geography</label>
+    <listViews>
+        <fullName>AZN</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>Country_Cluster_Code__c</columns>
+        <columns>Country_Cluster__c</columns>
+        <columns>Region_Code__c</columns>
+        <columns>ISO_3166_1_Alpha_Code__c</columns>
+        <columns>Market_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Country_Group__c</field>
+            <operation>equals</operation>
+            <value>ANZ</value>
+        </filters>
+        <label>AZN</label>
+    </listViews>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>World__c</columns>
+        <columns>World_Code__c</columns>
+        <columns>Country_Cluster__c</columns>
+        <columns>Country_Cluster_Code__c</columns>
+        <columns>Country_Group__c</columns>
+        <columns>Country_Group_Code__c</columns>
+        <columns>Country_Sub_Group_Code__c</columns>
+        <columns>Country_Sub_Group_Name__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <label>Unilever Geography   Name</label>
         <type>Text</type>

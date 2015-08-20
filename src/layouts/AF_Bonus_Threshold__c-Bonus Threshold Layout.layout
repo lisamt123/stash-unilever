@@ -138,6 +138,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>AF_country__c</fields>
+        <fields>Bonus_Measure__c</fields>
         <fields>AF_Period__c</fields>
         <fields>AF_Minimum__c</fields>
         <fields>AF_Stretching__c</fields>
@@ -153,7 +154,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hL0000000G09J</masterLabel>
+        <masterLabel>00hc0000000Gvd6</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

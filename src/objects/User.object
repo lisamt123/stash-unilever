@@ -533,6 +533,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -882,6 +883,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Sri Lanka</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>United Kingdom</fullName>
                 <default>false</default>
             </picklistValues>
@@ -966,6 +971,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -984,6 +990,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1002,6 +1009,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1020,6 +1028,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1038,6 +1047,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1056,6 +1066,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1074,6 +1085,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1092,6 +1104,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1110,6 +1123,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1128,6 +1142,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1146,6 +1161,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1164,6 +1180,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1182,6 +1199,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1200,6 +1218,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1218,6 +1237,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1236,6 +1256,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1254,6 +1275,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1272,6 +1294,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1290,6 +1313,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1308,6 +1332,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1326,6 +1351,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1344,6 +1370,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1362,6 +1389,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1380,6 +1408,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -2038,24 +2067,7 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <type>Checkbox</type>
     </fields>
     <listViews>
-        <fullName>ActiveUsers</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CORE.USERS.USERNAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CORE.USERS.ACTIVE</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <label>Active Users</label>
-    </listViews>
-    <listViews>
         <fullName>Active_SMU_Never_Logged_on</fullName>
-        <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
         <columns>FULL_NAME</columns>
         <columns>CORE.USERS.USERNAME</columns>
         <columns>CORE.USERS.LAST_LOGIN</columns>
@@ -2077,44 +2089,10 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
             <operation>equals</operation>
             <value>Unilever Way - Marketing - Standard Marketing User</value>
         </filters>
-        <filters>
-            <field>CORE.PROFILE.NAME</field>
-            <operation>equals</operation>
-            <value>Unilever - Force MultiApp Marketing</value>
-        </filters>
         <label>Active - SMU - Never Logged on</label>
         <sharedTo>
             <group>Admins</group>
         </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>AdminUsers</fullName>
-        <booleanFilter>3 AND (1 OR 2)</booleanFilter>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CORE.USERS.USERNAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.USERS.ACTIVE</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <columns>CORE.USERS.SAML_SUBJECT</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CORE.PROFILE.NAME</field>
-            <operation>contains</operation>
-            <value>System Administrator</value>
-        </filters>
-        <filters>
-            <field>CORE.PROFILE.NAME</field>
-            <operation>contains</operation>
-            <value>System Admin</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ACTIVE</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <label>Active Admin Users</label>
     </listViews>
     <listViews>
         <fullName>AllUsers</fullName>
@@ -2126,8 +2104,10 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <columns>CORE.PROFILE.NAME</columns>
         <columns>CREATED_DATE</columns>
         <columns>CREATED_BY_NAME</columns>
+        <columns>UPDATEDBY_USER.NAME</columns>
         <filterScope>Everything</filterScope>
         <label>All Users</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Brand_Centre_or_Hub_Admins</fullName>
@@ -2155,154 +2135,6 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <sharedTo>
             <group>Admins</group>
         </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Upload_001</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CORE.USERS.USERNAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.USERS.ACTIVE</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <columns>MANAGER</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CREATED_DATE</field>
-            <operation>equals</operation>
-            <value>11/24/2014 12:00 AM</value>
-        </filters>
-        <filters>
-            <field>CREATED_BY_NAME</field>
-            <operation>equals</operation>
-            <value>Mahesh Kumar</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.EMAIL</field>
-            <operation>contains</operation>
-            <value>@careline-mail.eu</value>
-        </filters>
-        <label>CEC Upload 001</label>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Upload_Activate</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CORE.USERS.USERNAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.USERS.ACTIVE</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <columns>MANAGER</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CEC_User_Reference__c</field>
-            <operation>contains</operation>
-            <value>PM07</value>
-        </filters>
-        <filters>
-            <field>CEC_User_Reference__c</field>
-            <operation>contains</operation>
-            <value>Activate</value>
-        </filters>
-        <label>CEC Upload Activate</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Upload_Admin</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CORE.USERS.USERNAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.USERS.ACTIVE</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <columns>MANAGER</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CEC_User_Reference__c</field>
-            <operation>contains</operation>
-            <value>PM07</value>
-        </filters>
-        <filters>
-            <field>CEC_User_Reference__c</field>
-            <operation>contains</operation>
-            <value>Admin</value>
-        </filters>
-        <label>CEC Upload Admin</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Upload_Content</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CORE.USERS.USERNAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.USERS.ACTIVE</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <columns>MANAGER</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CEC_User_Reference__c</field>
-            <operation>contains</operation>
-            <value>PM07</value>
-        </filters>
-        <filters>
-            <field>CEC_User_Reference__c</field>
-            <operation>contains</operation>
-            <value>Content</value>
-        </filters>
-        <label>CEC Upload Content</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Upload_Manager</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CORE.USERS.USERNAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.USERS.ACTIVE</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <columns>MANAGER</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CEC_User_Reference__c</field>
-            <operation>contains</operation>
-            <value>PM07</value>
-        </filters>
-        <filters>
-            <field>CEC_User_Reference__c</field>
-            <operation>contains</operation>
-            <value>Manager</value>
-        </filters>
-        <label>CEC Upload Manager</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Upload_User</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CORE.USERS.USERNAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.USERS.ACTIVE</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <columns>MANAGER</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CEC_User_Reference__c</field>
-            <operation>contains</operation>
-            <value>PM07</value>
-        </filters>
-        <filters>
-            <field>CEC_User_Reference__c</field>
-            <operation>contains</operation>
-            <value>Advisor,Manager</value>
-        </filters>
-        <label>CEC Upload User</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>CEC_User</fullName>
@@ -2470,21 +2302,12 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <columns>MANAGER</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>LAST_UPDATE</field>
-            <operation>equals</operation>
-            <value>TODAY</value>
-        </filters>
-        <filters>
-            <field>UPDATEDBY_USER.NAME</field>
-            <operation>equals</operation>
-            <value>SFDC2 Admin2</value>
-        </filters>
-        <filters>
-            <field>CREATED_BY_NAME</field>
-            <operation>equals</operation>
-            <value>SFDC2 Admin2</value>
+            <field>CORE.USERS.USERNAME</field>
+            <operation>contains</operation>
+            <value>af_reg_catfinc@unilever.com.agencyfees</value>
         </filters>
         <label>New USERS</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>No_Federation_ID</fullName>
@@ -2562,16 +2385,17 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
     <listViews>
         <fullName>Unilever_Way_Role</fullName>
         <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
         <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
         <columns>CORE.USER_ROLE.NAME</columns>
         <columns>CORE.USERS.ACTIVE</columns>
         <columns>CORE.PROFILE.NAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>MANAGER</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CORE.USER_ROLE.NAME</field>
             <operation>equals</operation>
-            <value>Unilever Way</value>
         </filters>
         <label>Unilever Way Role</label>
     </listViews>

@@ -1,95 +1,10 @@
 <apex:page controller="AF_AnnualBonus" showHeader="false" sidebar="false" docType="HTML-5.0">
-<style>
-body .pbBody table.list tr th {
-background: #61A631;
-color: #FFFFFF;
-font-size: 16px;
-font-weight: bold;
-text-align: center;
- }
 
-body .pbBody table.list tr td {
-    background: none repeat scroll 0 0 #D3e6b8 !important;
-    color: black !important;
-    text-align: center;
-}
+<!-- Common_Style File Start -->
+<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<!-- Common_Style File End -->
 
- .submit_btn1{
-background: none repeat scroll 0 0 #E400A7 !important;
-border: 1px solid red!important;
-border-radius: 5px !important;
-color: #FFFFFF!important;
-font-size: 14px!important;
-height: 30px;
-width: 100px;
-margin-left: 10px !important;
-float: left;
-margin-right: 0px!important;
- }
-  .submit_btn2{
-background: none repeat scroll 0 0 #E400A7 !important;
-border: 1px solid red!important;
-border-radius: 5px !important;
-color: #FFFFFF!important;
-font-size: 14px!important;
-height: 30px;
-width: 100px;
-margin-left: 10px !important;
-float: left;
- }
- 
-.values1 {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 2px solid #74AE00;
-    border-radius: 5px;
-    color: #000000;
-    font-size: 16px;
-    height: 30px;
-    margin-top: 10px;
-    padding: 2px 0 0 5px;
-    text-align: center;
-    width: 120px !important;
-}
-.heading_main{
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    padding-bottom:5px;
-    padding-left: 0;
-    padding-right: 0;
-    width: 100%;
-    }
-.heading_text{
-    color: black;
-    font-size: 20px;
-    margin-right: 20px;
-    padding: 7px 1px 8px 8px;
-}
 
-.odd { 
-         background-color: #FCF7F7;
-}
-.even {
-         background-color: #DFF0D8;
-}
-
-body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th {
-background: #61A631;
-color: #FFFFFF;
-font-size: 16px;
-font-weight: bold;
-width: 80px!important;
-word-break: normal;
-white-space: normal;
- }
- 
-
-body .bPageBlock {
-    background: #F8F8F8 !important;
-    border:none!important;
-
-}
-</style>
  <script>
  
   function isNumberKey(evt)
@@ -143,10 +58,11 @@ body .bPageBlock {
   
      
  </script>
+ <div class="AF_AnnualBonus">
   <apex:message />
   <div class="row">           
         <div class="col-lg-12 charttable1">         
-            <apex:image url="{!$Resource.header_new}" style="width:100%;height:37px;" />            
+            <apex:image url="{!$Resource.header_new}" styleClass="headimg"/>            
         </div>          
     </div>
    <div class="heading_main">
@@ -161,20 +77,20 @@ body .bPageBlock {
  
 <apex:actionFunction name="call_calculate_bonus" action="{!Calculate_Bonus}" reRender="bonus1,bonus2,totals,totalbonus,bonus6,bonus7,totalQualValue1,totalQualPer1,totalQualValue,totalQualPer,totalQuant_Qual_Val,totalQuant_Qual_Per"/>
  
- <div style="float: left;font-size: 16px;font-weight: bold;">Bonusable Fees </div>
+ <div class="bonusableFeesLabel">Bonusable Fees </div>
   <apex:outputPanel >
-  <div style="font-size: 16px;margin-left: 248px;font-weight:bold;">
+  <div class="digitalCont">
     
-      <span style="margin-left: 4px;">Digital 
-        <span style="margin-left: 61px;">&euro;</span>
+      <span class="marginL4P">Digital 
+        <span class="marginL61P">&euro;</span>
         <apex:outputText value="{0,number,###,###,###}" >
         <apex:param value="{!Totals_BonusMeasureDigital}"/>
        </apex:outputText> </span> <br/>
   </div>
-  <div style="font-size: 16px; margin-left: 248px;font-weight:bold;">
+  <div class="traditionalCont">
          
-          <span style="margin-left: 2px;">Traditional
-           <span style="margin-left: 30px;">&euro;</span>
+          <span class="marginL2P">Traditional
+           <span class="marginL30P">&euro;</span>
          <apex:outputText value="{0,number,###,###,###}">
           <apex:param value="{!Totals_BonusMeasureTrad}"/>
        </apex:outputText> </span> 
@@ -184,9 +100,9 @@ body .bPageBlock {
  <br/>
  
 
-  <div style="font-size: 16px;">
+  <div class="fontSize16P overflowA">
  
- <apex:pageblockTable value="{!QuartelyBonus}" var="QB" id="pbt" style="text-align: center;font-size: 16px;width:130%; overflow-y: scroll" rowClasses="even,odd">
+ <apex:pageblockTable value="{!QuartelyBonus}" styleClass="quartelyBonusGrid" var="QB" id="pbt" rowClasses="even,odd">
  
   <apex:column headerValue="Bonus Measure" rendered="{!!AF_Pilot_Model}">
    <apex:outputText value="{!QB.bonusMeasureMatrix}"/>
@@ -197,16 +113,22 @@ body .bPageBlock {
     <apex:outputText value="Totals"/>
   </apex:facet>
  </apex:column>
- <apex:column headerValue="Bonusable Fees" style="width:50px;" >
+ <apex:column headerValue="Bonusable Fees" styleClass="wid50P">
 <!--<apex:outputText value="{0,number,###,###,###}">
           <apex:param value="{!QB.total_bonus_fees}"/>
  </apex:outputText>-->
+ <apex:outputPanel >
  <apex:outputPanel rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c))}">
  <apex:inputText value="{!QB.total_bonus_fees}" rendered="{!IF(QB.countryCount>1,'true','false')}">
     <apex:actionSupport event="onchange"  action="{!Calculate_Bonus}" reRender="bonus1,totalbonusper,bonus2,totals,totalbonus,bonus6,bonus7,totalQualValue1,totalQualPer1,totalQualValue,totalQualPer,totalQuant_Qual_Val,totalQuant_Qual_Per,totalBonusableFees" >
     </apex:actionSupport>
  </apex:inputText>
  <apex:outputText value="{!QB.total_bonus_fees}" rendered="{!IF(QB.countryCount==1,'true','false')}"/>
+ </apex:outputPanel>
+ <apex:outputPanel rendered="{!AND(isAgency,NOT(QB.bonusResObj.AF_Locked__c))}">
+ <apex:outputText value="{!QB.total_bonus_fees}" rendered="{!IF(QB.countryCount==1,'true','false')}"/>
+ <apex:outputText value="{!QB.total_bonus_fees}" rendered="{!IF(QB.countryCount>1,'true','false')}"/>
+ </apex:outputPanel>
  </apex:outputPanel>
  <apex:outputPanel rendered="{!QB.bonusResObj.AF_Locked__c}">
   <apex:outputText value="{!QB.total_bonus_fees}" rendered="{!IF(QB.countryCount>1,'true','false')}"/>
@@ -229,14 +151,14 @@ body .bPageBlock {
   <apex:outputText value="{!QB.Outstanding_bonus}"/>
  </apex:column>
  
- <apex:column headerValue="Quant Result" rendered="{!AND(IsEditable,!AF_Pilot_Model)}" id="c1" >
+ <apex:column headerValue="Quant Result" rendered="{!AND(OR(IsEditable,isAgency),!AF_Pilot_Model)}" id="c1" >
 
  <apex:outputPanel >
 
-  <apex:outputField value="{!QB.bonusResObj.AF_Quant__c}"  id="txtquant1" rendered="{!AND(IsEditable,QB.bonusResObj.AF_Locked__c)}" />
+  <apex:outputField value="{!QB.bonusResObj.AF_Quant__c}"  id="txtquant1" rendered="{!AND(OR(IsEditable,isAgency),QB.bonusResObj.AF_Locked__c)}" />
  <apex:outputPanel layout="block" styleClass="requiredBlock">
- <apex:inputfield value="{!QB.bonusResObj.AF_Quant__c}" id="txtquant"  style="text-align: center;width: 50px;" onFocus="javascript:this.maxLength=5;"  onkeypress="return isNumberKey(event)" rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c),NOT(ISNULL(QB.total_bonus_fees)))}">
-  <div style="font-family:arial;color:red;font-size:16px;text-align:center" id="regTitle"></div>
+ <apex:inputfield value="{!QB.bonusResObj.AF_Quant__c}" id="txtquant" styleClass="bonusResInput" onFocus="javascript:this.maxLength=5;"  onkeypress="return isNumberKey(event)" rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c),NOT(ISNULL(QB.total_bonus_fees)))}">
+  <div class="regTitlecont" id="regTitle"></div>
  <apex:actionSupport event="onchange"  action="{!Calculate_Bonus}" reRender="bonus1,totalbonusper,bonus2,totals,totalbonus,bonus6,bonus7,totalQualValue1,totalQualPer1,totalQualValue,totalQualPer,totalQuant_Qual_Val,totalQuant_Qual_Per,totalBonusableFees" >
  </apex:actionSupport>
  
@@ -271,11 +193,11 @@ body .bPageBlock {
  
  
  
- <apex:column headervalue="Qual Result" rendered="{!!AF_Pilot_Model}" style="width:50px;">
+ <apex:column headervalue="Qual Result" rendered="{!!AF_Pilot_Model}" styleClass="wid50P">
   <apex:outputpanel id="bonus3" >
- <apex:outputText value="{!QB.bonusResObj.AF_Qual__c}" rendered="{!AND(IsEditable,QB.bonusResObj.AF_Locked__c)}"/>
+ <apex:outputText value="{!QB.bonusResObj.AF_Qual__c}" rendered="{!AND(OR(IsEditable,isAgency),QB.bonusResObj.AF_Locked__c)}"/>
   <apex:inputfield value="{!QB.bonusResObj.AF_Qual__c}"   id="txtqual1" onkeypress="return isNumberKey(event)" rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c))}" style="text-align: center;width:50px;">
-  <div style="font-family:arial;color:red;font-size:14px;text-align:center" id="regTitle"></div>
+  <div class="regTitlecont2" id="regTitle"></div>
  <apex:actionSupport event="onchange" action="{!Calculate_Qual}" reRender="bonus1,bonus3,totalbonusper,bonus2,bonus4,totals,totalbonus,bonus5,bonus6,bonus7,totalQualValue1,totalQualPer1,totalQualValue,totalQualPer,totalQuant_Qual_Val,totalQuant_Qual_Per" >
  
  </apex:actionSupport>
@@ -336,8 +258,7 @@ body .bPageBlock {
  </apex:column>
  
  <apex:column headerValue="Comment"  rendered="{!!AF_Pilot_Model}">
-    <apex:outputText value="{!QB.bonusResObj.AF_Comment__c}" title="{!QB.bonusResObj.AF_Comment__c}" rendered="{!AND(IsEditable,QB.bonusResObj.AF_Locked__c)}" style="
-   white-space: nowrap; width:100px; overflow: hidden; text-overflow: ellipsis; float:left; display:block"/>
+    <apex:outputText value="{!QB.bonusResObj.AF_Comment__c}" title="{!QB.bonusResObj.AF_Comment__c}" rendered="{!AND(OR(IsEditable,isAgency),QB.bonusResObj.AF_Locked__c)}" styleClass="bonusResOutputtxt"/>
     <apex:inputfield value="{!QB.bonusResObj.AF_Comment__c}"  rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c))}"/>
  </apex:column>
  </apex:pageblockTable>
@@ -347,10 +268,10 @@ body .bPageBlock {
  
  
 
- <div style="font-size:16px; float: left;margin-left: 10px;"> Note: On Submit, these records will be locked. Please contact to CMCO Super User to unlock. </div>
+ <div class="NoteStyle"> Note: On Submit, these records will be locked. Please contact to CMCO Super User to unlock. </div>
  <br/>
  <br/>
- <apex:outputPanel rendered="{!IsEditable}">
+ <apex:outputPanel rendered="{!AND(IsEditable,NOT(isAgency))}" styleClass="floatR wid222P">
  <div id="Savebutton">
  <apex:commandButton id="UpdateBonus"  action="{!UpdateBonus}" Value="Save" reRender="pbt,pmsg" styleClass="submit_btn1" rendered="{!IsDraft}" status="status"/>
  </div>
@@ -363,41 +284,41 @@ body .bPageBlock {
  <apex:form >
     <apex:outputpanel rendered="{!AF_Pilot_Model}">
     <apex:pageBlock id="pg2">
-    <div style="float: left;font-size: 16px;font-weight: bold;">Bonusable Fees </div>
+    <div class="bonusableFeesLabel2">Bonusable Fees </div>
         
   
 
  <br/><br/>
-    <apex:pageblockTable value="{!renumBonus}" var="renum" id="pbt3" style="text-align: center;width:60%;" rendered="{!noDisplay}">
-        <apex:column headerValue="Bonusable Fees" style="width:135px">
-             <apex:outputText value="{0,number,###,###,###}" style="font-size: 16px;">
+    <apex:pageblockTable value="{!renumBonus}" var="renum" id="pbt3" styleClass="renumBonusGrid" rendered="{!noDisplay}">
+        <apex:column headerValue="Bonusable Fees" styleClass="wid135P">
+             <apex:outputText value="{0,number,###,###,###}" styleClass="fontSize16P">
               <apex:param value="{!renum.bonusableFees}"/>
              </apex:outputText>
         </apex:column>
-        <apex:column headervalue="Remuneration Rating" style="width:135px" >
+        <apex:column headervalue="Remuneration Rating" styleClass="wid135P">
             <apex:outputpanel id="panel1">
-                <apex:outputText value="{!renum.renumRating}"  id="renum7" rendered="{!AND(IsEditable,renum.Locked)}" style="font-size: 16px;"/>
+                <apex:outputText value="{!renum.renumRating}"  id="renum7" rendered="{!AND(OR(IsEditable,isAgency),renum.Locked)}" style="font-size: 16px;"/>
                
-                <apex:inputtext value="{!renum.renumRating}" rendered="{!!renum.Locked}" onFocus="javascript:this.maxLength=2;"   id="renum2" onkeypress="return isNumberKey(event)"  style="text-align: center;font-size: 16px;width:60px;">
-                    <div style="font-family:arial;color:red;font-size:14px;text-align:center" id="renum3"></div>
+                <apex:inputtext value="{!renum.renumRating}" rendered="{!AND(NOT(renum.Locked),NOT(isAgency))}" onFocus="javascript:this.maxLength=2;"   id="renum2" onkeypress="return isNumberKey(event)"  style="text-align: center;font-size: 16px;width:60px;">
+                    <div class="regTitlecont2" id="renum3"></div>
                        <!-- <apex:actionSupport event="onchange" action="{!Calculate_Remun2}" reRender="renum4,renum6" >
                         </apex:actionSupport>-->
                 </apex:inputtext>
             </apex:outputpanel>
         </apex:column>
-        <apex:column headerValue="Remuneration %" style="width:135px">
+        <apex:column headerValue="Remuneration %" styleClass="wid135P">
             <apex:outputPanel id="renum4">
-                <apex:outputText value="{!renum.renumPercentage}"  id="renum8" rendered="{!AND(IsEditable,renum.Locked)}"/>
-                <apex:inputtext value="{!renum.renumPercentage}" rendered="{!!renum.Locked}" onFocus="javascript:this.maxLength=5;"  onkeypress="return isNumberKeyforRenum(event)" style="text-align: center;font-size: 16px;width:60px;">
+                <apex:outputText value="{!renum.renumPercentage}"  id="renum8" rendered="{!AND(OR(IsEditable,isAgency),renum.Locked)}"/>
+                <apex:inputtext value="{!renum.renumPercentage}" rendered="{!AND(NOT(renum.Locked),NOT(isAgency))}" onFocus="javascript:this.maxLength=5;"  onkeypress="return isNumberKeyforRenum(event)" style="text-align: center;font-size: 16px;width:60px;">
                     <apex:actionSupport event="onchange" action="{!Calculate_Remun_Per2}"   reRender="renum6" >
-                        <div style="font-family:arial;color:red;font-size:14px;text-align:center" id="renum5"></div>
+                        <div class="regTitlecont2" id="renum5"></div>
                     </apex:actionSupport>
                 </apex:inputtext>
             </apex:outputPanel>
         </apex:column>
-        <apex:column headerValue="Remuneration €" style="width:135px">
+        <apex:column headerValue="Remuneration €" styleClass="wid135P">
             <apex:outputPanel id="renum6">
-            <apex:outputText value="{0,number,###,###,###.##}" style="font-size: 16px;">
+            <apex:outputText value="{0,number,###,###,###.##}" styleClass="fontSize16P">
               <apex:param value="{!renum.renumCalcAmount}"/>
              </apex:outputText>
              
@@ -406,13 +327,15 @@ body .bPageBlock {
         </apex:pageblockTable>
     </apex:pageBlock>
  
- <div style="font-size:16px; float: left;margin-left: 10px;"> Note: On Submit, these records will be locked. Please contact to CMCO Super User to unlock. </div>
+ <div class="NoteStyle"> Note: On Submit, these records will be locked. Please contact to CMCO Super User to unlock. </div>
  <br/>
  <br/>
+ <apex:outputPanel rendered="{!AND(IsEditable,NOT(isAgency))}" styleClass="floatR wid222P">
  <div id="Savebutton">
  <apex:commandButton id="UpdateBonus"  action="{!UpdateBonus2}" Value="Save" reRender="pmsg" styleClass="submit_btn1" rendered="{!IsDraft}"/>
  </div>
  <apex:commandButton id="Confirm" action="{!ConfirmBonus2}" value="Submit" reRender="pmsg" styleClass="submit_btn2" oncomplete="calldisable()" />
+ </apex:outputPanel>
  </apex:outputpanel>
  <apex:ActionStatus id="status" >
         <apex:facet name="start">
@@ -420,6 +343,7 @@ body .bPageBlock {
         </apex:facet>
         </apex:ActionStatus>
  </apex:form>
+</div>
   <script>
   function calldisable(){
           

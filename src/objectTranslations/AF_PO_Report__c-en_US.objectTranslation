@@ -41,6 +41,10 @@
         <name>AF_Base_Fee_Status__c</name>
     </fields>
     <fields>
+        <label><!-- Big Category --></label>
+        <name>AF_Big_Category_New__c</name>
+    </fields>
+    <fields>
         <label><!-- Brand Estimate ID --></label>
         <name>AF_Brand_Estimate_ID__c</name>
     </fields>
@@ -83,6 +87,10 @@
     <fields>
         <label><!-- CountNoQuarters --></label>
         <name>AF_CountNoQuarters__c</name>
+    </fields>
+    <fields>
+        <label><!-- CrossBorder --></label>
+        <name>AF_CrossBorder__c</name>
     </fields>
     <fields>
         <label><!-- Currency --></label>
@@ -131,6 +139,18 @@
     <fields>
         <label><!-- Oops Estimate ID --></label>
         <name>AF_Oops_Estimate_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Override PO Adaptation – LC --></label>
+        <name>AF_OverridePO_Adaptation_LC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Override PO Digital – LC --></label>
+        <name>AF_OverridePO_Digital_LC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Override PO Traditional – LC --></label>
+        <name>AF_OverridePO_Traditional_LC__c</name>
     </fields>
     <fields>
         <label><!-- PO Check --></label>
@@ -199,6 +219,10 @@
     <fields>
         <label><!-- Ready for PO Code --></label>
         <name>AF_Ready_for_PO_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show In Report --></label>
+        <name>AF_Show_In_Report__c</name>
     </fields>
     <fields>
         <label><!-- Total FY Fee – LC --></label>

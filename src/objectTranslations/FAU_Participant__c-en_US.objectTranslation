@@ -416,10 +416,6 @@ Declined - The Participant Declined a place on the program --></help>
         <name>FAU_Unique_ID__c</name>
     </fields>
     <fields>
-        <label><!-- Upload final IDP on Talent Plus --></label>
-        <name>FAU_Upload_final_IDP_on_Talent_Plus__c</name>
-    </fields>
-    <fields>
         <label><!-- User License --></label>
         <name>FAU_User_License__c</name>
     </fields>

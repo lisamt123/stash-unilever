@@ -531,13 +531,13 @@
                                      <c:ipmOTIFStatusTable otifType="Table" setEdit="false" getSectionId="{!sub.Id}" rendered="{!IF(sub.IPM_Section__r.IPM_Section_Name__c=='OTIF Status',true,false)}"></c:ipmOTIFStatusTable>
                                   
                                      <c:ipmCMIGateSection rendered="{!IF(sub.IPM_Section__r.IPM_Section_Name__c=='Mix Qualification Plan and Action Standards (Table)',true,false)}"></c:ipmCMIGateSection>
-                                 <c:IPM_Financial_ActionStandards projId="{!project.Id}" rendered="{!If(AND(sub.IPM_Section__r.IPM_Section_Sequence__c=='6.1'),true,false)}"></c:IPM_Financial_ActionStandards>
+                             <!-- <c:IPM_Financial_ActionStandards projId="{!project.Id}" rendered="{!If(AND(sub.IPM_Section__r.IPM_Section_Sequence__c=='6.1'),true,false)}"></c:IPM_Financial_ActionStandards>-->
                                   <!-- <c:ipmFinGate projId="{!projectID}" rendered="{!If(AND(sub.IPM_Section__r.IPM_Section_Sequence__c=='6.2',project.IPM_Phase__c='Ideas'),true,false)}"></c:ipmFinGate>-->
                                      <!--  <c:IPM_Financial_EstimateOpportunity rendered="{!If(OR(sub.IPM_Section__r.IPM_Section_Sequence__c=='6.2'),true,false)}" ></c:IPM_Financial_EstimateOpportunity>-->
                                     
-                                    <c:IPM_Gate_RollOuts rendered="{!if(AND(sub.IPM_Section__r.IPM_Section_Name__c='Rollout Plans',contains(sub.IPM_Section__r.IPM_Section_Sequence__c,'8.')),true,false)}"></c:IPM_Gate_RollOuts>
-                                    </apex:form>     
-                                   <c:IPM_MilestoneList_PDF pId="{!projectId}" rendered="{!if(AND(sub.IPM_Section__r.IPM_Section_Name__c='Milestones',contains(sub.IPM_Section__r.IPM_Section_Sequence__c,'8.')),true,false)}"> </c:IPM_MilestoneList_PDF>
+                                   <!-- <c:IPM_Gate_RollOuts rendered="{!if(AND(sub.IPM_Section__r.IPM_Section_Name__c='Rollout Plans',contains(sub.IPM_Section__r.IPM_Section_Sequence__c,'8.')),true,false)}"></c:IPM_Gate_RollOuts>-->   
+                                    </apex:form>  
+                                  <!-- <c:IPM_MilestoneList_PDF pId="{!projectId}" rendered="{!if(AND(sub.IPM_Section__r.IPM_Section_Name__c='Milestones',contains(sub.IPM_Section__r.IPM_Section_Sequence__c,'8.')),true,false)}"> </c:IPM_MilestoneList_PDF>-->
                                   
                                      <!--Appendix Sections {!if(sub.IPM_Section__r.IPM_Section_Name__c='Customers/Channels',sub.ID,sub.ID)}-->
                                     <apex:repeat value="{!projSubSectionList}" var="appendixCC" rendered="{!if(sub.IPM_Section__r.IPM_Section_Name__c='Customers / Channels',true,false)}"  >

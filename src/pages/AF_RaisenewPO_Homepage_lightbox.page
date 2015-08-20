@@ -41,153 +41,44 @@
   }   
         
 </script>
-<style type="text/css">
-.btnDisabled
-{
-cursor: inherit;
-border: solid 0px #ff0000;
-height: 58px;
-width: 58px;
-background: none repeat scroll 0 0 #004976 !important;
-border: 1px solid #FF0000 !important;
-border-radius: 5px !important;
-background-color: #ddd;
-font-size: 16px !important;
-height: 35px;
-margin-left: 251px !important;
-margin-top: 13px;
-padding-bottom: 20px;
-padding-top: 5px;
-width: 132px;
-  
-    
-}
-      .custPopup{
-    background-color: #FFFFFF;
-    border-color: #74AE00;
-    border-radius: 15px;
-    border-style: solid;
-    border-width: 10px;
-    left: 50%;
-    margin-left: -250px;
-    padding: 10px;
-    position: fixed;
-    top: 30%;
-   
-    width: 500px;
-    z-index: 9999;
-        }
-        
-  .custPopup1{color:purple;font-size: 17px;}
-  .popupBackground{
-                position:fixed;
-                top:0;
-                left:0;
-                background:#5A5757;
-                opacity:0.8;
-                z-index:998;
-                height:100%;
-                width:100%;
-        }
-    
-    .closeButton2
-{
- border: 1px solid #000000;
-    border-radius: 22px;
-    height: 30px;
-    width: 30px;
-    right: -23px;
-    top: -16px;
-    position: absolute;
-    display: block;
-}
-    
-    .closeButton {
-    display:block;
-    position:absolute;
-    top:-10px;
-    right:-10px;
-}
-.odd { 
-         background-color: #FCF7F7;
-}
-.even {
-         background-color: #DFF0D8;
-}
 
-.continue_btn{
-   background: none repeat scroll 0 0 #004976 !important;
-    border-radius: 5px !important;
-    color: #FFFFFF !important;
-    float: right;
-    font-size: 14px !important;
-    height: 30px;
-    margin-top: 13px !important;
-    width: 100px;
-    }
-.bPageBlock .list {
-    width: 99%!important;
-}
+<!-- Common_Style File Start -->
+<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<!-- Common_Style File End -->
 
-.heading_main{
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    padding-bottom:5px;
-    padding-left: 0;
-    padding-right: 0;
-    width: 100%;
-    }
-.heading_text{
-    color: black;
-    font-size: 20px;
-    margin-right: 20px;
-    padding: 7px 1px 8px 1px;
-}
-
-
-body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th {
- background:#61A631;
- color: #FFFFFF;
- }
- .pbBody, .pbBody a, .pbBody td, .lbBody a, .lbBodyDescription, .list .headerRow .noRowsHeader {
-    color: black;
-}
-
-</style>
-<apex:form >
+<apex:form styleClass="AF_RaisenewPO_Homepage_lightbox">
       
     <apex:pageBlock id="pb1">
     <apex:pageMessages ></apex:pageMessages>
    
    <div class="row">           
         <div class="col-lg-12 charttable1">         
-            <apex:image url="{!$Resource.header_new}" style="width:100%;height:37px;" />            
+            <apex:image url="{!$Resource.header_new}" styleClass="headimg" />            
         </div>          
     </div>
      <div class="heading_main">
-       <h1 class="heading_text">Raise New PO  </h1>
+       <h1 class="heading_text">Raise New PO</h1>
       </div>
      
-        <apex:outputlabel value="{!$Label.AF_Raise_New_PO}" style="font-size:16px;font-weight:bold;"/>
+        <apex:outputlabel value="{!$Label.AF_Raise_New_PO}" styleClass="titleDescription"/>
         <br/>
-     <apex:outputPanel style="overflow:auto;width:770px;height:250px" layout="block">
-    <apex:pageBlockTable value="{!QuarterEstimate}"  var="QE" rendered="{!noBrandEstimateRecords}" rowClasses="even,odd" style="font-size: 16px;">
+     <apex:outputPanel layout="block" styleClass="tableCont">
+    <apex:pageBlockTable value="{!QuarterEstimate}"  var="QE" rendered="{!noBrandEstimateRecords}" rowClasses="even,odd">
         <apex:column headerValue="Select">
             <apex:facet name="header">       
                 <apex:outputPanel >
                    
                        
-                <apex:outputLabel value="Select All" style="font-size: 16px;"/><br/>
-                 <apex:inputCheckbox value="{!QE.selected}" onclick="selectAllCheckboxes(this,'chk1')" style="margin-left: 30px;"/>
+                <apex:outputLabel value="Select All"/><br/>
+                 <apex:inputCheckbox value="{!QE.selected}" onclick="selectAllCheckboxes(this,'chk1')"/>
                 </apex:outputPanel>
             </apex:facet>
-            <apex:inputCheckbox value="{!QE.selected}" id="chk1" onselect="selectedCheckbox()" style="margin-left: 30px;"/>
+            <apex:inputCheckbox value="{!QE.selected}" id="chk1" onselect="selectedCheckbox()"/>
         </apex:column>
     
         <apex:column headerValue="">
             <apex:facet name="header">       
-            <apex:commandLink action="{!queryBrandEstimate}" rerender="pb1" style="color:white;font-size: 16px;" > Current Base Fee Name
+            <apex:commandLink action="{!queryBrandEstimate}" rerender="pb1" styleClass="basefeeName" > Current Base Fee Name
              
             <img src="/img/sort_asc_arrow.gif" alt="Sorted Ascending" title="Sorted Ascending" width="21" align="texttop" height="14" style="{!IF((sortDir = 'asc'),'','display:none')}"/>            
             <img src="/img/sort_desc_arrow.gif" alt="Sorted Descending" title="Sorted Descending" width="21" align="texttop" height="14" style="{!IF((sortDir = 'desc'),'','display:none')}"/>              
@@ -195,7 +86,7 @@ body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
             </apex:facet>
             <apex:outputText value="{!QE.BrandRecord.name}" />
         </apex:column>
-        <apex:column headerValue="" style="font-size: 16px!important;">
+        <apex:column headerValue="">
             <apex:inputCheckbox value="{!QE.Q1}" disabled="{!QE.Q1}" />
             <apex:outputLabel >Q1</apex:outputLabel>
         </apex:column> 
@@ -245,7 +136,7 @@ body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
                  <apex:commandButton value="Confirm" id="theUpdate" onclick="this.disabled=true;" action="{!saveBrandEstimate}" styleClass="continue_btn" reRender="pb1"/>
                 <!-- <apex:commandButton value="X" styleClass="closeButton" action="{!closePopup}" rerender="ContinuePopup"/>-->
                 <apex:actionFunction name="CallClose" action="{!closePopup}" reRender="ContinuePopup"/>
-                <apex:image url="{!$Resource.fancy_close}" styleClass="closeButton2" onclick="callclosepopup();" />
+                <apex:image url="{!$Resource.Green_Close}" styleClass="closeButton2" onclick="callclosepopup();" />
             </apex:outputPanel>
         </apex:outputPanel>
     </apex:pageBlock>

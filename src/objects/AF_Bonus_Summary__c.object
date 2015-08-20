@@ -237,6 +237,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>No_of_Matrix_Cells__c</fullName>
+        <externalId>false</externalId>
+        <label>No of Matrix Cells</label>
+        <summaryForeignKey>AF_Bonus_Matrix__c.AF_Bonus_Summary__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>VisbleToAgency__c</fullName>
         <externalId>false</externalId>
         <formula>if( year($Setup.BonusReportVisibletoAgency__c.AccessDate__c)-value(AF_Fiscal_Year__c) &gt;0 &amp;&amp;  TODAY() &gt;=$Setup.BonusReportVisibletoAgency__c.AccessDate__c,true,false)</formula>

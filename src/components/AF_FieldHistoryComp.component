@@ -2,38 +2,33 @@
     <apex:attribute name="ParentRecordValue" type="String" AssignTo="{!ParentRecordId}" Description="The parent record that the component is to work with."  />
     <apex:attribute name="ParentObjectName" type="String" AssignTo="{!ParentObjectType}" Description="The parent record object type which the component will query."  />
     <apex:attribute name="IsViewAllValue" type="String" AssignTo="{!IsViewAll}" Description="The Is View All FLAG"  /> 
-    <style>
     
-        .odd { 
-         background-color: #FCF7F7;
-}
-.even {
-         background-color: #DFF0D8;
-}
+    
+<!-- Common_Style File Start -->
+<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<!-- Common_Style File End -->
 
-body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th {
- background:#61A631;
- color: #FFFFFF;
- font-size:16px;
- }
  
- h2.mainTitle {
-font-size: 16px!important;
-}
-    
-   </style> 
+   <div class="AF_FieldHistoryComp">
     <apex:pageBlock title="Field History">              
-            <apex:outputPanel rendered="{!IsViewAllLink}">
-            <apex:outputLink rendered="{!!isAgencyFlag}" value="/apex/AF_ViewAll?CHParentId={!ParentRecordId}" id="theLink1" style="font-size:16px;">View All</apex:outputLink>
-            <apex:outputLink rendered="{!isAgencyFlag}" value="{!$Label.AF_AgencyUrlLink}/apex/AF_ViewAll?CHParentId={!ParentRecordId}" id="theLink2" style="font-size:16px;">View All</apex:outputLink>
+            <apex:outputPanel rendered="{!IsViewAllLink}" styleClass="viewAllLink">
+            <!--<apex:outputLink rendered="{!!isAgencyFlag}" value="/apex/AF_ViewAll?CHParentId={!ParentRecordId}" id="theLink1">View All</apex:outputLink>-->
+            <apex:outputLink styleClass="modalButton3" html-data-backdrop="static" html-data-keyboard="false"
+            html-data-src="/apex/AF_ViewAll?CHParentId={!ParentRecordId}" html-data-target="#myModal3" html-data-toggle="modal"
+             rendered="{!!isAgencyFlag}" id="theLink1">View All</apex:outputLink>
+            
+            <!--<apex:outputLink rendered="{!isAgencyFlag}" value="{!$Label.AF_AgencyUrlLink}/apex/AF_ViewAll?CHParentId={!ParentRecordId}" id="theLink2">View All</apex:outputLink>-->
+            <apex:outputLink styleClass="modalButton3" html-data-backdrop="static" html-data-keyboard="false"
+            html-data-src="{!$Label.AF_AgencyUrlLink}/apex/AF_ViewAll?CHParentId={!ParentRecordId}" html-data-target="#myModal3" html-data-toggle="modal"
+             rendered="{!isAgencyFlag}" id="theLink2">View All</apex:outputLink>
             </apex:outputPanel>
             <br />
-             <apex:pageBlockTable title="Change History" value="{!FieldHistoryList}" var="objH" rowClasses="even,odd" style="font-size:16px;"  >
+             <apex:pageBlockTable title="Change History" value="{!FieldHistoryList}" var="objH" rowClasses="even,odd" styleClass="fontSize16P">
              <apex:column ><apex:facet name="header">Field</apex:facet>{!objH.FieldLabel}</apex:column>
              <apex:column ><apex:facet name="header">Change Description</apex:facet>{!objH.Description}</apex:column>
              <apex:column ><apex:facet name="header">Change By</apex:facet>{!objH.CreatedBy}</apex:column>
             <apex:column ><apex:facet name="header">Change Date</apex:facet>{!objH.CreatedDate}</apex:column>
         </apex:pageBlockTable>        
     </apex:pageBlock>
-    
+    </div>
 </apex:component>

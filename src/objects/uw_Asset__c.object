@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -1000,21 +1000,19 @@
         <label>All Assets at Agencies</label>
     </listViews>
     <listViews>
-        <fullName>bane</fullName>
+        <fullName>Riddler</fullName>
         <columns>NAME</columns>
-        <columns>uw_BET__c</columns>
-        <columns>Order_Of_Display__c</columns>
-        <columns>URL_of_Asset__c</columns>
         <columns>Status__c</columns>
-        <columns>CREATEDBY_USER</columns>
+        <columns>uw_BET__c</columns>
         <columns>Promoted__c</columns>
+        <columns>URL_of_Asset__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>uw_BET__c</field>
+            <field>NAME</field>
             <operation>contains</operation>
-            <value>Bane</value>
+            <value>TVC Riddle</value>
         </filters>
-        <label>Bane</label>
+        <label>Riddler</label>
     </listViews>
     <nameField>
         <label>Asset Name</label>
@@ -1026,14 +1024,10 @@
     <searchLayouts>
         <customTabListAdditionalFields>Media_Channel_1__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields xsi:nil="true"/>
         <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
         <lookupDialogsAdditionalFields>Agency__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields xsi:nil="true"/>
         <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
-        <searchResultsAdditionalFields xsi:nil="true"/>
         <searchResultsAdditionalFields>Agency__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields xsi:nil="true"/>
         <searchResultsAdditionalFields>Media_Channel_1__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
