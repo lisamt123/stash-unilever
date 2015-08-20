@@ -265,7 +265,7 @@ public Class AF_ApprovalProcessForBrandEstController
         /*if(BrandEstRecord.AF_Status_Base_Fees__c=='With Agency' && BrandEstRecord.ExceptionsComplete__c!=1&&BrandEstRecord.AF_No_of_Central_Billing__c >0)
         {
            // ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Please check the country Breakdown percentage'));
-            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please Check the Country Breakdown percentage');
+            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please indicate the country breakdown percentage within UK');
             apexpages.addmessage(msg); 
             return null;
         }
@@ -290,7 +290,7 @@ public Class AF_ApprovalProcessForBrandEstController
         if((BrandEstRecord.AF_Status_Base_Fees__c=='With Agency' || BrandEstRecord.AF_Status_Base_Fees__c=='With Category Finance') && myresult )
         {
            // ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Please check the country Breakdown percentage'));
-            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please Check the Country Breakdown percentage');
+            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please indicate the country breakdown percentage within UK');
             apexpages.addmessage(msg); 
             return null;
         }
@@ -311,7 +311,7 @@ public Class AF_ApprovalProcessForBrandEstController
         if(BrandEstRecord.AF_Status_Base_Fees__c=='With Category Finance' && myresult )
         {
            // ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Please check the country Breakdown percentage'));
-            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please Check the Country Breakdown percentage');
+            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please indicate the country breakdown percentage within UK');
             apexpages.addmessage(msg); 
             return null;
         }
@@ -422,7 +422,7 @@ public Class AF_ApprovalProcessForBrandEstController
             }
         else if ((BrandEstRecord.AF_Status_Base_Fees__c=='With Category Finance'||BrandEstRecord.AF_Status_Base_Fees__c=='With CMCO') && myresult)    
         {
-            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please Check the Country Breakdown percentage');
+            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please indicate the country breakdown percentage within UK');
             apexpages.addmessage(msg); 
             
         }

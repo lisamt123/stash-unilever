@@ -221,6 +221,10 @@
         <name>AF_Ready_for_PO_Code__c</name>
     </fields>
     <fields>
+        <label><!-- Show In Report --></label>
+        <name>AF_Show_In_Report__c</name>
+    </fields>
+    <fields>
         <label><!-- Total FY Fee – LC --></label>
         <name>AF_Total_Local__c</name>
     </fields>

@@ -51,7 +51,7 @@
             </apex:commandLink>
           </apex:column>
            <apex:column headerValue="Date" width="10%">
-           <apex:outputText value="{!doc.LastModifiedDate}"/>
+           <apex:outputField value="{!doc.LastModifiedDate}"/>
            </apex:column>
     
           <apex:column headerValue="Type" width="10%">

@@ -7,8 +7,8 @@ global class af_SendCurrencyReminder implements Schedulable
         String DayofMonth;
         if(!Test.isRunningtest())
         {
-            //DayofMonth=string.valueOf(system.now().day());
-            DayofMonth='08';
+            DayofMonth=string.valueOf(system.now().day());
+            
         }
         else
         {
@@ -16,7 +16,7 @@ global class af_SendCurrencyReminder implements Schedulable
         }
           
 
-        if(DayofMonth=='08')
+        if(DayofMonth=='01')
         {
             Send_Email__c mynewmail = new Send_Email__c();
             mynewmail.AF_CurrencyUpdateRequired__c = true;

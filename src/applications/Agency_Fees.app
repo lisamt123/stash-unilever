@@ -8,4 +8,5 @@
     <tab>standard-report</tab>
     <tab>Custom_Settings</tab>
     <tab>Agency_Fee_Field_History__c</tab>
+    <tab>standard-Chatter</tab>
 </CustomApplication>

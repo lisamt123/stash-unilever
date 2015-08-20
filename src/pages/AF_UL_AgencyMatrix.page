@@ -40,6 +40,32 @@
         body.AF_UL_AgencyMatrix a.modalButton3 div.imageHolder{
           width:25px;
         }
+        
+        
+        
+        
+        #iframe_cont
+{
+    width:100%;
+}
+.modal-body
+{
+    height: 93%;
+} 
+.modal-body #iframe_cont
+{
+   height:100%;
+}
+.modal-dialog
+{
+  width:90% !important;
+  height:95% !important;
+  margin-top:8px;
+}
+.modal-content
+{
+  height:102%;
+}
       </style>
       <script>
   $(document).ready(function(){
@@ -213,6 +239,7 @@
             var entName = $(this).parent().text();
             if(confirm('Are you sure? You want to remove the row ' + entName + ' from the matrix.')) {
                 $.when( archiveAgencyEntityToEstimates(entName) ).then( function(status){
+                    alert('Warning: This entity combination will not be deleted if it already exists in previous quarters.');
                     location.reload();
                 },
                 function(status){
@@ -228,6 +255,7 @@
             var entName = $(this).parent().text();
             if(confirm('Are you sure? You want to remove the column ' + entName + ' from  the matrix.')) {
                 $.when( archiveUnileverEntityToEstimates(entName) ).then( function(status){
+                    alert('Warning: This entity combination will not be deleted if it already exists in previous quarters.');
                     location.reload();
                 },
                 function(status){

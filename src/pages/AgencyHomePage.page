@@ -50,15 +50,29 @@ $('document').ready(function(){
 </script>
 <!-- Bootstrap Tooltip methods End -->
 <style>
- .modal-dialog
- {
-    margin:17px auto !important;
- }
- .modal-body
- {
-     padding:2px 15px 14px 15px;
- }
- 
+#iframe_cont
+{
+    width:100%;
+}
+.modal-body
+{
+    height: 95%;
+    padding:2px 15px 14px 15px;
+} 
+.modal-body #iframe_cont
+{
+   height:100%;
+}
+.modal-dialog
+{
+  width:92% !important;
+  height:95% !important;
+  margin-top:8px;
+}
+.modal-content
+{
+  height:102%;
+}
 </style>
 
 <!-- <apex:includeScript value="{!$Resource.ChartJs}"/> -->
@@ -650,7 +664,7 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
    data-keyboard="false">€ {!best.Base_Fee_Total__c}</a>-->
                                 <apex:outputLink onclick="TargetBaseFees('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}','{!Best.Id}');return false;" html-data-toggle="modal" html-data-target="#myModal" html-data-backdrop="static" html-data-src="/apex/AF_BrandEstimate?Id={!Best.Id}" title="{!$Label.AF_LP_Base_Fee_Targets}" id="theLink" styleClass="custom-link modalButton firstlabelValue">
                                 <apex:outputText value="{0,number,###,###,###}">
-                                €&nbsp;<apex:param value="{!best.Base_Fee_Total__c}"/>
+                                €<apex:param value="{!best.Base_Fee_Total__c}"/>
                                 </apex:outputText>
                                 </apex:outputLink>
                                 </td>
