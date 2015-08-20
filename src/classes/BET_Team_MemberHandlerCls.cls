@@ -112,16 +112,17 @@ public without sharing class BET_Team_MemberHandlerCls {
 		}
 
 		for(uw_BET_Team_Member__c teamMember : newList){
-			if(teamMember.Team_Member__c != null){
-				if(betMembersSubscrMap.get(teamMember.Bet__c) != null && !betMembersSubscrMap.get(teamMember.Bet__c).contains(teamMember.Team_Member__c)){
-					EntitySubscription entitySubscription = new EntitySubscription();
-        			entitySubscription.SubscriberId = teamMember.Team_Member__c;
-        			entitySubscription.ParentId = teamMember.Bet__c;
-        			eSubscriptions.add(EntitySubscription);
-        		}
+			if(teamMember.Team_Member__c != null && betMembersSubscrMap.get(teamMember.Bet__c) != null && !betMembersSubscrMap.get(teamMember.Bet__c).contains(teamMember.Team_Member__c)){
+				EntitySubscription entitySubscription = new EntitySubscription();
+        		entitySubscription.SubscriberId = teamMember.Team_Member__c;
+        		entitySubscription.ParentId = teamMember.Bet__c;
+        		eSubscriptions.add(EntitySubscription);
         	}
+        	
     	}
-    	if(!Test.isRunningTest())insert eSubscriptions;
+    	if(!Test.isRunningTest()) {
+    		insert eSubscriptions;
+    	}
     	System.debug('Exit addEntitySubscriptions : ' + eSubscriptions);
 	}
 

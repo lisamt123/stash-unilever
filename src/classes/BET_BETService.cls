@@ -76,16 +76,19 @@ public with sharing class BET_BETService {
     *************************************************************/
     public static Date getFirstReleaseDueDate(Date targetLaunchDate){
         system.debug('Entring method GetFirstReleaseDueDate with param @targetLaunchDate: '+targetLaunchDate);
-        if(targetLaunchDate == null) return null;
-        Integer tldMonth = targetLaunchDate.month();
-        Date calculatedDate = null;
-        if(tldMonth < JULY){
-            calculatedDate = Date.newInstance(targetLaunchDate.year() - 1, APRIL, 15);
-        } else {
-            calculatedDate = Date.newInstance(targetLaunchDate.year() - 1, JUNE, 30);
+        if(targetLaunchDate == null) {
+            return null;
+        } else { 
+            Integer tldMonth = targetLaunchDate.month();
+            Date calculatedDate = null;
+            if(tldMonth < JULY){
+                calculatedDate = Date.newInstance(targetLaunchDate.year() - 1, APRIL, 15);
+            } else {
+                calculatedDate = Date.newInstance(targetLaunchDate.year() - 1, JUNE, 30);
+            }
+            system.debug('Exiting method GetFirstReleaseDueDate following date was returned: ' + calculatedDate);
+            return calculatedDate;
         }
-        system.debug('Exiting method GetFirstReleaseDueDate following date was returned: ' + calculatedDate);
-        return calculatedDate;
     }
     
     
@@ -97,11 +100,14 @@ public with sharing class BET_BETService {
     *************************************************************/
     public static Date getFinalReleaseDueDate(Date targetLaunchDate){
         system.debug('Entring method GetFinalReleaseDueDate with param @targetLaunchDate: '+targetLaunchDate);
-        if(targetLaunchDate == null) return null;
-        Date substractedDate = targetLaunchDate.addMonths(-6);
-        Date calculatedDate = Date.newInstance(substractedDate.year(), substractedDate.month(), 1);
-        system.debug('Exiting method GetFinalReleaseDueDate following date was returned: ' + calculatedDate);
-        return calculatedDate;
+        if(targetLaunchDate == null) {
+            return null;
+        } else {
+            Date substractedDate = targetLaunchDate.addMonths(-6);
+            Date calculatedDate = Date.newInstance(substractedDate.year(), substractedDate.month(), 1);
+            system.debug('Exiting method GetFinalReleaseDueDate following date was returned: ' + calculatedDate);
+            return calculatedDate;
+        }
     }
     
     /************************************************************

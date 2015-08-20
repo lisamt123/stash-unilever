@@ -346,7 +346,9 @@ public with sharing class BET_SuggestMembersController {
         }
         System.debug('Exiting method addMembers method processes with success');
         if(callbackCtrl != null){
-            return new PageReference(callbackCtrl);
+            PageReference pr = new PageReference(callbackCtrl);
+            pr.setRedirect(true);
+            return pr;
         }        
         
         return null;
@@ -361,7 +363,9 @@ public with sharing class BET_SuggestMembersController {
     public PageReference skipPage(){
         System.debug('Entering method skipPage user will be redirected to following page:'+callbackCtrl);
         if(callbackCtrl != null){
-            return new PageReference(callbackCtrl);
+            PageReference pr = new PageReference(callbackCtrl);
+            pr.setRedirect(true);
+            return pr;
         }        
         
         return null;

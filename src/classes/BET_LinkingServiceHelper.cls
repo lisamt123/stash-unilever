@@ -86,7 +86,7 @@ public class BET_LinkingServiceHelper {
 		Returns: -
 		Throws: -
 	*************************************************************/
-	public static void setNewLeadProjectAndOwner(uw_Bet__c bet, IPM_Project__c project,IPM_Project__c oldProject){
+	public static uw_Bet__c setNewLeadProjectAndOwner(uw_Bet__c bet, IPM_Project__c project,IPM_Project__c oldProject){
 		System.debug('Entering setNewLeadProjectAndOwner : ' + bet + ', ' + project + ', ' + oldProject);
 		if(oldProject.IPM_Project_Leader__c != null && oldProject.IPM_Project_Leader__c == bet.ownerId){
 			bet.ownerId = project.IPM_Project_Leader__c;
@@ -97,6 +97,7 @@ public class BET_LinkingServiceHelper {
 		bet.IPM_Project__c = project.id;
 		update bet;
 		System.debug('Exit setNewLeadProjectAndOwner : ' + bet);
+		return bet;
 	}
 
 	/************************************************************
@@ -105,14 +106,14 @@ public class BET_LinkingServiceHelper {
 		Returns: -
 		Throws: -
 	*************************************************************/
-	public static void removeIPMProjectMembersFromBet(Id ProjectId, Id BetId){
+	public static void removeIPMProjectMembersFromBet(Id ProjectId, Id BetId,Id betOwner){
 		System.debug('Entering setNewLeadProjectAndOwner : ' + ProjectId + ', ' + BetId);
 		List<BET_Member_Request__c> requests = [select id,Brand_Experience_Toolkit__c,UserId__c from BET_Member_Request__c where Project_Id__c =: ProjectId and Brand_Experience_Toolkit__c =: BetId];
 		Set<Id> userIds = new Set<Id>();
 		for(BET_Member_Request__c request : requests){
 			userIds.add(request.UserId__c);
 		}
-		List<uw_BET_Team_Member__c> teamMembers = [select id from uw_BET_Team_Member__c where BET__c =: betId and Team_Member__c =: userIds];
+		List<uw_BET_Team_Member__c> teamMembers = [select id from uw_BET_Team_Member__c where BET__c =: betId and Team_Member__c =: userIds and Team_Member__c !=: betOwner];
 		System.debug('Exit setNewLeadProjectAndOwner : ' + requests + ', '+teamMembers);
 		delete requests;
 		delete teamMembers;
@@ -128,5 +129,56 @@ public class BET_LinkingServiceHelper {
 		System.debug('Entering removeIPMProjectFollowRequestsFromBet : ' + ProjectId + ', ' + BetId);
 		delete [select id from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: BetId and Project_Id__c =: ProjectId];
 		System.debug('Exit removeIPMProjectFollowRequestsFromBet');
+	}
+
+	/************************************************************
+		Purpose: Method removes bet member related to owner. This record does not have corresponding member request so it should be removed separately
+		Parameters: Id oldBetOwner,uw_Bet__c bet
+		Returns: -
+		Throws: -
+	*************************************************************/
+	public static void removeOldBetOwnerFromMembers(Id oldBetOwner,uw_Bet__c bet){
+		System.debug('Entering removeOldBetOwnerFromMembers : ' + oldBetOwner + ', ' + bet);
+		List<uw_BET_Team_Member__c> owner = [select id from uw_BET_Team_Member__c where IsOwner__c = true and BET__c =: bet.id and Team_Member__c =: oldBetOwner];
+		delete owner;
+		System.debug('Entering removeIPMProjectFollowRequestsFromBet');
+	}
+
+	/************************************************************
+		Purpose: Method removes bet member related to project Lead. This record does not have corresponding member request so it should be removed separately
+		Parameters: Id oldBetOwner,uw_Bet__c bet
+		Returns: -
+		Throws: -
+	*************************************************************/
+	public static void removeOldPLFromMembers(Id oldPL,uw_Bet__c bet){
+		System.debug('Entering removeOldPLFromMembers : ' + oldPL + ', ' + bet);
+		List<uw_BET_Team_Member__c> pLead = [select id from uw_BET_Team_Member__c where BET__c =: bet.id and Team_Member__c =: oldPL];
+		delete pLead;
+		System.debug('Entering removeOldPLFromMembers');
+	}
+
+	/************************************************************
+		Purpose: Method creates member requests
+		Parameters: BET_Follow_Request__c followRequest,uw_Bet__c relatedBet,String Role, String user
+		Returns: BET_Member_Request__c object
+		Throws: -
+	*************************************************************/
+	public static BET_Member_Request__c createMemberRequest(BET_Follow_Request__c followRequest,uw_Bet__c relatedBet,String Role, String user){
+		return new BET_Member_Request__c(Brand_Experience_Toolkit__c = relatedBet.id, UserId__c = user, Role__c = role,
+										ProjectRequest__c = followRequest.id, Project_Id__c = followRequest.Project_Id__c, BET_owner__c = relatedBet.ownerid);
+	}
+
+	/************************************************************
+		Purpose: Method creates manager requests for new PL
+		Parameters: Id newPL,uw_Bet__c bet, IPM_Project__c newProject
+		Returns: -
+		Throws: -
+	*************************************************************/
+	public static void createMemberRequestForNewPL(Id newPL,uw_Bet__c bet, IPM_Project__c newProject){
+		BET_Member_Request__c request = new BET_Member_Request__c(Brand_Experience_Toolkit__c = bet.id, UserId__c = newPL, Role__c = 'Manager',
+							  Project_Id__c = newProject.id, BET_owner__c = bet.ownerid, Status__c = 'New');
+		insert request;
+		request.Status__c = 'Approved';
+		update request;
 	}
 }

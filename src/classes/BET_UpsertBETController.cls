@@ -61,11 +61,21 @@ public with sharing class BET_UpsertBETController {
 
 	public uw_Bet__c betobject{
 		get{
-				if(betobject == null) betobject = new uw_Bet__c();
-				if(betobject.ownerId == null) betobject.ownerId = owner;
-				if(betobject.Launch_Date__c == null) betobject.Launch_Date__c = targetLaunchDate;
-				if(betobject.name == null) betobject.name = projectName;
-				if(betobject.Description__c == null) betobject.Description__c = projectDescription;
+				if(betobject == null) {
+					betobject = new uw_Bet__c();
+				}
+				if(betobject.ownerId == null){
+					betobject.ownerId = owner;
+				}
+				if(betobject.Launch_Date__c == null){
+					betobject.Launch_Date__c = targetLaunchDate;
+				}
+				if(betobject.name == null){
+					betobject.name = projectName;
+				}
+				if(betobject.Description__c == null){
+					betobject.Description__c = projectDescription;
+				}
 				return betobject;
 			} set {
 				betobject = value;
@@ -120,9 +130,12 @@ public with sharing class BET_UpsertBETController {
 			pageRef = new PageReference(cback+newBET.id);
 		}catch(Exception e){
 			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception Saving BET record'+e));
+			return null;
 		}
 		System.debug('Exit upsertBet : ' + pageRef);
-		if(pageRef != null) pageRef.setRedirect(true);
+		if(pageRef != null) {
+			pageRef.setRedirect(true);
+		}
 		return pageRef;
 	}
 

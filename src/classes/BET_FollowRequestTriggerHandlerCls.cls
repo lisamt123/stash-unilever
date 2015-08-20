@@ -66,8 +66,12 @@ public without sharing class BET_FollowRequestTriggerHandlerCls {
 				leadReguestRelatedBets.add(request.Brand_Experience_Toolkit__c);
 			}
 		}
-		if(!leadRequests.isEmpty()) updateBetsWithLeadProjects(leadRequests);
-		if(!approvedRequests.isEmpty()) approveAllRelatedMemberRequests(getIds(approvedRequests));
+		if(!leadRequests.isEmpty()){
+			updateBetsWithLeadProjects(leadRequests);
+		}
+		if(!approvedRequests.isEmpty()){
+			approveAllRelatedMemberRequests(getIds(approvedRequests));
+		}
 		notifyIPMProjectLeads(approvedRequests,BET_LinkingService.FOLLOW_STATUS_APPROVED);
 		updateBetsWithLeadProjectsWhenThereIsNoLeadProjectOnBET(approvedRequests,leadReguestRelatedBets);
 	}
@@ -93,7 +97,7 @@ public without sharing class BET_FollowRequestTriggerHandlerCls {
 		}
 		Set<Id> processedBets = new Set<Id>();
 		for(BET_Follow_Request__c request : approvedRequests){
-			if(betMap.get(reques.tBrand_Experience_Toolkit__c) != null && !processedBets.contains(request.Brand_Experience_Toolkit__c)){
+			if(betMap.get(request.Brand_Experience_Toolkit__c) != null && !processedBets.contains(request.Brand_Experience_Toolkit__c)){
 				BET_LinkingService.updateBet(betMap.get(request.Brand_Experience_Toolkit__c),(Id)request.Project_Id__c);
 				processedBets.add(request.Brand_Experience_Toolkit__c);
 			}

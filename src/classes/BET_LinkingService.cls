@@ -77,7 +77,7 @@ public with sharing class BET_LinkingService {
 		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c from uw_Bet__c where id =: BetId];
 		List<IPM_Project__c> projects = [select id,name from IPM_Project__c where id=:ProjectId];
 		BET_LinkingServiceHelper.validateFollowRequest(betRecords,projects);
-		//try{
+		try{
 			Boolean shouldBeAutoApproved = checkIfFollowRequestShouldBeAutoapproved(betRecords.get(0),managersIds);
 			BET_Follow_Request__c followRequest = createFollowRequest(projects.get(0),betRecords.get(0),managersIds);
 			createRelatedMemberRequests(followRequest,betRecords.get(0),managersIds);
@@ -85,9 +85,9 @@ public with sharing class BET_LinkingService {
 				followRequest.Status__c = FOLLOW_STATUS_APPROVED;
 				update followRequest;
 			}
-		//}catch(Exception e){
-		//	throw new BET_CustomBETException(Label.BET_FollowExceptionMessage,e);
-		//}
+		}catch(Exception e){
+			throw new BET_CustomBETException(Label.BET_FollowExceptionMessage,e);
+		}
 		System.debug('Exit Follow');
 	}
 
@@ -123,13 +123,17 @@ public with sharing class BET_LinkingService {
 	private static Boolean shouldMarkRequestAsLeadRequest(uw_Bet__c bet){
 		System.debug('Entering shouldMarkRequestAsLeadRequest : ' + bet);
 		Boolean indicator = true;
-		if(bet.IPM_Project__c != null) indicator = false;
+		if(bet.IPM_Project__c != null) {
+			indicator = false;
+		}
 		if(indicator) {
 			List<BET_Follow_Request__c> requestsForGivenBet = [select id from BET_Follow_Request__c 
 														    where Brand_Experience_Toolkit__c =: bet.id 
 															and Status__c !=: FOLLOW_STATUS_REJECTED 
 															and Is_Lead_Request__c = true];
-			if(!requestsForGivenBet.isEmpty()) indicator = false;
+			if(!requestsForGivenBet.isEmpty()) {
+				indicator = false;
+			}
 		}
 		System.debug('Exit shouldMarkRequestAsLeadRequest : ' + indicator);
 		return indicator;
@@ -169,11 +173,11 @@ public with sharing class BET_LinkingService {
 			if(managerId == relatedBet.ownerId){ // if manager is bet owner there is already an member record
 				continue;
 			}
-			mRequestsToBeCreated.add(createMemberRequest(followRequest,relatedBet,'Manager',managerId));
+			mRequestsToBeCreated.add(BET_LinkingServiceHelper.createMemberRequest(followRequest,relatedBet,'Manager',managerId));
 		}
 
 		if(!projectLeadAlreadyIncluded && projectWrapper.pLId != null && projectWrapper.pLId != relatedBet.ownerId){
-			mRequestsToBeCreated.add(createMemberRequest(followRequest,relatedBet,'Manager',projectWrapper.pLId));
+			mRequestsToBeCreated.add(BET_LinkingServiceHelper.createMemberRequest(followRequest,relatedBet,'Manager',projectWrapper.pLId));
 		}
 
 		insert mRequestsToBeCreated;
@@ -183,17 +187,6 @@ public with sharing class BET_LinkingService {
 		}
 		System.debug('Exit crateRelatedMemberRequests : ' + requestIds);
 		return requestIds;
-	}
-
-	/************************************************************
-		Purpose: Method creates member requests
-		Parameters: BET_Follow_Request__c followRequest,uw_Bet__c relatedBet,String Role, String user
-		Returns: BET_Member_Request__c object
-		Throws: -
-	*************************************************************/
-	private static BET_Member_Request__c createMemberRequest(BET_Follow_Request__c followRequest,uw_Bet__c relatedBet,String Role, String user){
-		return new BET_Member_Request__c(Brand_Experience_Toolkit__c = relatedBet.id, UserId__c = user, Role__c = role,
-										ProjectRequest__c = followRequest.id, Project_Id__c = followRequest.Project_Id__c, BET_owner__c = relatedBet.ownerid);
 	}
 
     /************************************************************
@@ -206,9 +199,10 @@ public with sharing class BET_LinkingService {
 	*************************************************************/
 	public static void UnFollow(Id ProjectId, Id BetId){ //US 23
 		System.debug('Entering UnFollow : ' + ProjectId + ', ' + BetId);
-		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c from uw_Bet__c where id =: BetId];
+		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c,name from uw_Bet__c where id =: BetId];
 		List<IPM_Project__c> projects = [select id,name,IPM_Project_Leader__c from IPM_Project__c where id=:ProjectId];
 		BET_LinkingServiceHelper.validateParams(betRecords,projects);
+		Id betOwner = betRecords.get(0).ownerid;
 		try{
 			Boolean projectIsALead = BET_LinkingServiceHelper.isProjectALead(ProjectId,betRecords.get(0));
 			if(projectIsALead){
@@ -217,11 +211,25 @@ public with sharing class BET_LinkingService {
 					BET_LinkingServiceHelper.archiveAndUnLeadBet(betRecords.get(0)); //US26
 					BET_EmailNotificationService.notifyBetOwnerOfUnfollow(betRecords.get(0),projects.get(0)); //US22
 				} else {
-					BET_LinkingServiceHelper.setNewLeadProjectAndOwner(betRecords.get(0),otherFollowProjects.get(0),projects.get(0));
+					Id oldBetOwner = betRecords.get(0).id;
+					Id oldPL = projects.get(0).IPM_Project_Leader__c;
+					Id newPL = otherFollowProjects.get(0).IPM_Project_Leader__c;
+					uw_Bet__c bet = BET_LinkingServiceHelper.setNewLeadProjectAndOwner(betRecords.get(0),otherFollowProjects.get(0),projects.get(0));
+					betOwner = bet.ownerid;
+					if(betOwner != oldBetOwner){
+						BET_LinkingServiceHelper.removeOldBetOwnerFromMembers(oldBetOwner,betRecords.get(0));
+					}
+					if(betOwner != oldPL && oldPL != newPL){
+						BET_LinkingServiceHelper.removeOldPLFromMembers(oldPL,betRecords.get(0));
+					}
+					if(betOwner != newPL){
+						System.debug('need to create approved member (manager) request for new PL');
+						BET_LinkingServiceHelper.createMemberRequestForNewPL(newPL,betRecords.get(0),projects.get(0));
+					}
 				}
 			}
 			BET_LinkingServiceHelper.removeIPMProjectFollowRequestsFromBet(ProjectId,BetId);
-			BET_LinkingServiceHelper.removeIPMProjectMembersFromBet(ProjectId,BetId); //US25
+			BET_LinkingServiceHelper.removeIPMProjectMembersFromBet(ProjectId,BetId,betOwner); //US25
 		}catch(Exception e){
 			throw new BET_CustomBETException(Label.BET_UnFollowExceptionMessage,e);
 		}
