@@ -10,16 +10,18 @@ public with sharing class BET_EmailNotificationService {
 		User betOwner = Test.isRunningTest() ? new User(email = BET_TestUtils.TEST_USER_EMAIL) : [select email from User where isActive = true and id =: bet.ownerid];
 
 		List<String> sendTo = new List<String>();
-        sendTo.add(betOwner.email);
-        mail.setToAddresses(sendTo);
+    sendTo.add(betOwner.email);
+    mail.setToAddresses(sendTo);
 
-        mail.setOrgWideEmailAddressId(owea.id);
-        mail.setSubject('Project ' + oldProject.name + ' unlinked from your BET');
-      	String body = 'Project ' + oldProject.name + ' unlinked from your BET ' + bet.name + ' ';
-      	body += '<br/> the next project with the earliest TLD is now your leading/controlling project,';
-      	body += '<br/> if you want to change this please contact system admin';
-      	mail.setHtmlBody(body);
-      	if(!Test.isRunningTest()) Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+    mail.setOrgWideEmailAddressId(owea.id);
+    mail.setSubject('Project ' + oldProject.name + ' unlinked from your BET');
+    String body = 'Project ' + oldProject.name + ' unlinked from your BET ' + bet.name + ' ';
+    body += '<br/> the next project with the earliest TLD is now your leading/controlling project,';
+    body += '<br/> if you want to change this please contact system admin';
+    mail.setHtmlBody(body);
+    if(!Test.isRunningTest()) {
+      Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+    }
 	}
 
 	public static void notifyBetOwnerAndProjectLeadOfNewLeadProject(uw_Bet__c bet, IPM_Project__c newProject){ //US23
@@ -30,15 +32,23 @@ public with sharing class BET_EmailNotificationService {
 		[select email from User where isActive = true and (id =: bet.ownerid or id=:newProject.IPM_Project_Leader__c)];
 
 		List<String> sendTo = new List<String>();
-        sendTo.add(usersToBeNofified.get(0).email);
-        sendTo.add(usersToBeNofified.get(1).email);
-        mail.setToAddresses(sendTo);
+    if(!usersToBeNofified.isEmpty()) {
+      sendTo.add(usersToBeNofified.get(0).email);
+    }
 
-        mail.setOrgWideEmailAddressId(owea.id);
-        mail.setSubject('Project ' + newProject.name + ' has become new lead/controlling project of BET');
-      	final String body = 'Project ' + newProject.name + ' has become new lead/controlling project of BET ' + bet.name ;
-      	mail.setHtmlBody(body);
-      	if(!Test.isRunningTest()) Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+    if(usersToBeNofified.size() == 2) {
+      sendTo.add(usersToBeNofified.get(1).email);
+    }
+
+    mail.setToAddresses(sendTo);
+
+    mail.setOrgWideEmailAddressId(owea.id);
+    mail.setSubject('Project ' + newProject.name + ' has become new lead/controlling project of BET');
+    final String body = 'Project ' + newProject.name + ' has become new lead/controlling project of BET ' + bet.name ;
+    mail.setHtmlBody(body);
+    if(!Test.isRunningTest()){
+      Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+    }
 	}
 
 	public static void notifyBetOwnerOfUnfollow(uw_Bet__c bet, IPM_Project__c project){ //US22, US26
@@ -47,15 +57,17 @@ public with sharing class BET_EmailNotificationService {
 		User betOwner = Test.isRunningTest() ? new User(email = BET_TestUtils.TEST_USER_EMAIL) : [select email from User where isActive = true and id =: bet.ownerid];
 
 		List<String> sendTo = new List<String>();
-        sendTo.add(betOwner.email);
-        mail.setToAddresses(sendTo);
+    sendTo.add(betOwner.email);
+    mail.setToAddresses(sendTo);
 
-        mail.setOrgWideEmailAddressId(owea.id);
-        mail.setSubject('Project ' + project.name + ' unlinked from your BET');
-      	String body = 'Project ' + project.name + ' unlinked from your BET ' + bet.name + ' ';
-      	body += '<br/> there is no lead/controlling project assigned to your BET. ';
-      	body += '<br/> BET has been archived but can be unarchived if required';
-      	mail.setHtmlBody(body);
-      	if(!Test.isRunningTest()) Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+    mail.setOrgWideEmailAddressId(owea.id);
+    mail.setSubject('Project ' + project.name + ' unlinked from your BET');
+    String body = 'Project ' + project.name + ' unlinked from your BET ' + bet.name + ' ';
+    body += '<br/> there is no lead/controlling project assigned to your BET. ';
+    body += '<br/> BET has been archived but can be unarchived if required';
+    mail.setHtmlBody(body);
+    if(!Test.isRunningTest()){
+      Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+    }
 	}
 }
