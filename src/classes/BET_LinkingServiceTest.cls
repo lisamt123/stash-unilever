@@ -22,9 +22,33 @@ private class BET_LinkingServiceTest {
 		Id BetId = bet.id;
 		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
 		try{
+			Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator'];
+        	User testUser = new User(Alias = 'newBet', Email='nebetTestUSr@testorg.com',
+                          EmailEncodingKey='UTF-8', LastName='newBetTestUsr', LanguageLocaleKey='en_US',
+                          LocaleSidKey='en_US', ProfileId = p.Id,
+                          TimeZoneSidKey='America/Los_Angeles', UserName='nebetTestUSr@testorg.com',isActive = true);
+        	insert testUser;
+			BET_LinkingService.Follow(ProjectId, BetId, new List<Id>{testUser.id});
+			List<BET_Member_Request__c> relatedMemberRequests = [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c =: BetId];
+			List<BET_Follow_Request__c> followRequests = [select id from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: BetId];
+			System.assertEquals(relatedMemberRequests.size(),1);
+			System.assertEquals(followRequests.size(),1);
+		}catch(Exception e){
+			System.assert(false);
+		}
+	}
+
+	@isTest static void FollowTestWithoutMemberRequestIfSameAsBETOwner() {
+		uw_Bet__c bet = BET_TestUtils.getTestBet();
+		insert bet;
+		Id BetId = bet.id;
+		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
+		try{
 			BET_LinkingService.Follow(ProjectId, BetId, new List<Id>{UserInfo.getUserId()});
 			List<BET_Member_Request__c> relatedMemberRequests = [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c =: BetId];
-			System.assertEquals(relatedMemberRequests.size(),1);
+			List<BET_Follow_Request__c> followRequests = [select id from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: BetId];
+			System.assertEquals(relatedMemberRequests.size(),0);
+			System.assertEquals(followRequests.size(),1);
 		}catch(Exception e){
 			System.assert(false);
 		}

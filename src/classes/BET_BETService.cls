@@ -8,6 +8,7 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      k.szepietowski@polsource.com  30-07-2015  Initial
 1.1      piotr.czechusmki@gmail.com    04-08-2015  Add search service
+1.2      m.bluj@polsource.com          17-08-2015  Add bet update and releaseduedates service
 *************************************************************************************/
 
 public with sharing class BET_BETService {
