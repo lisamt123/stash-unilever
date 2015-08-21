@@ -13,7 +13,7 @@
         <name>Brand_Centre_Management</name>
     </customApplications>
     <customApplications>
-        <label>CEC Διαχειριστής</label>
+        <label><!-- CEC Admin --></label>
         <name>CEC_Admin</name>
     </customApplications>
     <customApplications>
@@ -425,11 +425,11 @@
         <name>Bonus_Annual</name>
     </customLabels>
     <customLabels>
-        <label>Η εκπλήρωση δεν μπορεί να δημιουργηθεί χωρίς λογαριασμό όψεως που συνδέεται με την υπόθεση</label>
+        <label><!-- CEC_CaseAccountMissing --></label>
         <name>CEC_CaseAccountMissing</name>
     </customLabels>
     <customLabels>
-        <label>μια  από τις  αξίες λογαριασμού MailingStreet / MailingCity / MailingState / MailingCountry / MailingPostalCode πρέπει να είναι διαθέσιμα για τη δημιουργία του Εκπλήρωση.</label>
+        <label><!-- CEC_CaseAccountPersonDetailsError --></label>
         <name>CEC_CaseAccountPersonDetailsError</name>
     </customLabels>
     <customLabels>
@@ -441,7 +441,7 @@
         <name>CEC_Case_Factory_Survey_Reference</name>
     </customLabels>
     <customLabels>
-        <label>Σφάλμα: Πρωτοβάθμια καρτέλα δεν μπορεί να ανοίξει.</label>
+        <label><!-- Primary tab cannot be opened --></label>
         <name>CEC_Case_TabNotOpened</name>
     </customLabels>
     <customLabels>
@@ -449,71 +449,71 @@
         <name>CEC_Category</name>
     </customLabels>
     <customLabels>
-        <label>Παρακαλούμε να αποθηκεύσετε τις αλλαγές στο αρχείο την υπόθεσή σας πριν επιχειρήσετε να προσθέσετε ένα νέο καταναλωτή.</label>
+        <label><!-- Primary tab not refresh --></label>
         <name>CEC_Console_Message1</name>
     </customLabels>
     <customLabels>
-        <label>Πρωτοβάθμια καρτέλα δεν μπορεί να ανοίξει</label>
+        <label><!-- Primary tab cannot be opened --></label>
         <name>CEC_Console_Message2</name>
     </customLabels>
     <customLabels>
-        <label>Σφάλμα: Παρουσιάστηκε σφάλμα έχει συμβεί.</label>
+        <label><!-- Error Occured --></label>
         <name>CEC_Console_Message3</name>
     </customLabels>
     <customLabels>
-        <label>Δημιουργία νέας επαφής</label>
+        <label><!-- CEC_ConsumerCreateContactButtonDisplay --></label>
         <name>CEC_ConsumerCreateContactButtonDisplay</name>
     </customLabels>
     <customLabels>
-        <label>Πληροφορίες: Καταναλωτών ήδη συνδεδεμένο με την υπόθεση</label>
+        <label><!-- CEC_ConsumerInfoDisplay --></label>
         <name>CEC_ConsumerInfoDisplay</name>
     </customLabels>
     <customLabels>
-        <label>Καταναλωτών δεν βρέθηκε;</label>
+        <label><!-- CEC_ConsumerNotFoundInfo --></label>
         <name>CEC_ConsumerNotFoundInfo</name>
     </customLabels>
     <customLabels>
-        <label>Τα Αποτελέσματα</label>
+        <label><!-- CEC_ConsumerResultsDisplay --></label>
         <name>CEC_ConsumerResultsDisplay</name>
     </customLabels>
     <customLabels>
-        <label>Σας αποτελέσματα αντιστοιχούν στην αναζήτησή:</label>
+        <label><!-- CEC_ConsumerResultsTitleDisplay --></label>
         <name>CEC_ConsumerResultsTitleDisplay</name>
     </customLabels>
     <customLabels>
-        <label>Έρευνα</label>
+        <label><!-- CEC_ConsumerSearchDisplay --></label>
         <name>CEC_ConsumerSearchDisplay</name>
     </customLabels>
     <customLabels>
-        <label>Δεν θα μπορούσε να δημιουργηθεί καταναλωτής , διότι υπάρχει εις διπλούν καταναλωτής.</label>
+        <label><!-- CEC Consumer Duplicate Error --></label>
         <name>CEC_Consumer_Duplicate_Error</name>
     </customLabels>
     <customLabels>
-        <label>Κάντε κλικ στο OK για να αντικατασταθεί το υπάρχον καταναλωτών ή Ακύρωση για να επιστρέψετε στην κονσόλα σελίδας.</label>
+        <label><!-- To Display Click Ok to replace the existing Consumer or Cancel to return to the --></label>
         <name>CEC_Consumer_Message1</name>
     </customLabels>
     <customLabels>
-        <label>Ενημέρωση δράση δεν μπορεί να εκτελεστεί. Ρεκόρ των καταναλωτών έχει ήδη συσχετιστεί με την υπόθεση ρεκόρ.</label>
+        <label><!-- Update action cannot be performed. --></label>
         <name>CEC_Consumer_Record_Update</name>
     </customLabels>
     <customLabels>
-        <label>Δημιουργία Επικοινωνία</label>
+        <label><!-- CEC_CreateContactDisplay --></label>
         <name>CEC_CreateContactDisplay</name>
     </customLabels>
     <customLabels>
-        <label>Δημιουργήστε</label>
+        <label><!-- Create_Button --></label>
         <name>CEC_Create_Button</name>
     </customLabels>
     <customLabels>
-        <label>Παρακαλείστε να ορίσετε τα στοιχεία που είναι γνωστά</label>
+        <label><!-- CEC_Detail_Request_Info --></label>
         <name>CEC_Detail_Request_Info</name>
     </customLabels>
     <customLabels>
-        <label>Οι εγγραφές που εμφανίζονται</label>
+        <label><!-- records are being displayed --></label>
         <name>CEC_Display_Records</name>
     </customLabels>
     <customLabels>
-        <label>E-mail: Πρέπει να εισάγετε μια τιμή</label>
+        <label><!-- To display Email required message --></label>
         <name>CEC_Email</name>
     </customLabels>
     <customLabels>
@@ -521,7 +521,7 @@
         <name>CEC_Email_Label</name>
     </customLabels>
     <customLabels>
-        <label>Όνομα</label>
+        <label><!-- CEC_FirstName --></label>
         <name>CEC_FirstName</name>
     </customLabels>
     <customLabels>
@@ -529,19 +529,19 @@
         <name>CEC_Fulfilment_PostOption_Complaints</name>
     </customLabels>
     <customLabels>
-        <label>σε διαφορετική περίπτωση</label>
+        <label><!-- CEC_Fulfilment_PostOption_otherwise --></label>
         <name>CEC_Fulfilment_PostOption_otherwise</name>
     </customLabels>
     <customLabels>
-        <label>Δράση</label>
+        <label><!-- CEC Label Action --></label>
         <name>CEC_Label_Action</name>
     </customLabels>
     <customLabels>
-        <label>Γνώση Άρθρα</label>
+        <label><!-- CEC Label Knowledge Articles --></label>
         <name>CEC_Label_Knowledge_Articles</name>
     </customLabels>
     <customLabels>
-        <label>Θέμα</label>
+        <label><!-- CEC Label Subject --></label>
         <name>CEC_Label_Subject</name>
     </customLabels>
     <customLabels>
@@ -549,59 +549,59 @@
         <name>CEC_Label_Type</name>
     </customLabels>
     <customLabels>
-        <label>Επίθετο</label>
+        <label><!-- CEC_Last_Name --></label>
         <name>CEC_Last_Name</name>
     </customLabels>
     <customLabels>
-        <label>Επώνυμο: Θα πρέπει να εισάγετε Επώνυμο να αναζητήσετε ένα Καταναλωτών</label>
+        <label><!-- To display Last Name required message --></label>
         <name>CEC_Lastname</name>
     </customLabels>
     <customLabels>
-        <label>Marketing Opt In</label>
+        <label><!-- CEC_Marketing_Opt_in --></label>
         <name>CEC_Marketing_Opt_in</name>
     </customLabels>
     <customLabels>
-        <label>[ERR002] δεν θα μπορούσε να δημιουργηθεί ρεκόρ των καταναλωτών.</label>
+        <label><!-- Consumer record could not be created --></label>
         <name>CEC_MatchingResponse_AccountNotCreated</name>
     </customLabels>
     <customLabels>
-        <label>[ERR001] υπάρχουν πολλές εγγραφές του καταναλωτή με την ίδια διεύθυνση ηλεκτρονικού ταχυδρομείου, μια μη αυτόματη ενημέρωση είναι απαραίτητη.</label>
+        <label><!-- If Duplicate accounts found display this error message --></label>
         <name>CEC_MatchingResponse_DuplicateAccount</name>
     </customLabels>
     <customLabels>
-        <label>Λείπει Πληροφορίες</label>
+        <label><!-- CEC_Missing_Information --></label>
         <name>CEC_Missing_Information</name>
     </customLabels>
     <customLabels>
-        <label>Σφάλμα: Αδύνατη η δημιουργία νέας περίπτωσης</label>
+        <label><!-- Case Error Message --></label>
         <name>CEC_NewCaseError</name>
     </customLabels>
     <customLabels>
-        <label>Παρακαλούμε να αποθηκεύσετε τις αλλαγές στο αρχείο την υπόθεσή σας πριν επιχειρήσετε να προσθέσετε ένα νέο άρθρο.</label>
+        <label><!-- CEC NewCaseError BeforeAddNewArticle --></label>
         <name>CEC_NewCaseError_BeforeAddNewArticle</name>
     </customLabels>
     <customLabels>
-        <label>Παρακαλούμε να αποθηκεύσετε τις αλλαγές που εκκρεμούν στον υπόθεση ρεκόρ πρώτα και στη συνέχεια να αναζητήσετε τον καταναλωτή να συνδεθεί με την υπόθεση. Αν μια νέα δημιουργία Καταναλωτών επιχειρείται σε αυτή τη συναλλαγή, τότε αυτός ο καταναλωτής μπορεί να βρεθεί και πάλι από την Αναζήτηση.</label>
+        <label><!-- Save case record before add a new consumer. --></label>
         <name>CEC_NewCaseError_BeforeAddNewConsumer</name>
     </customLabels>
     <customLabels>
-        <label>Δεν υποθέσεις είναι διαθέσιμη με βάση την τεχνογνωσία</label>
+        <label><!-- CEC No Cases are available based on the skill --></label>
         <name>CEC_No_Cases_are_available_based_on_the_skill</name>
     </customLabels>
     <customLabels>
-        <label>Δεν αντιστοίχισης καταναλωτές.</label>
+        <label><!-- No matching consumers --></label>
         <name>CEC_No_Matching_Consumer</name>
     </customLabels>
     <customLabels>
-        <label>Προέλευση: Σφάλμα Επικύρωση: Απαιτείται τιμή.</label>
+        <label><!-- To displayOrigin as required message --></label>
         <name>CEC_Origin</name>
     </customLabels>
     <customLabels>
-        <label>Άλλες λεπτομέρειες</label>
+        <label><!-- CEC_OtherDetailsSection --></label>
         <name>CEC_OtherDetailsSection</name>
     </customLabels>
     <customLabels>
-        <label>Μητρική Περίπτωση #</label>
+        <label><!-- CEC_ParentCaseNumber --></label>
         <name>CEC_ParentCaseNumber</name>
     </customLabels>
     <customLabels>
@@ -613,7 +613,7 @@
         <name>CEC_PhoneSearchValidationError</name>
     </customLabels>
     <customLabels>
-        <label>Ταχυδρομικος Κωδικος</label>
+        <label><!-- CEC_PostCode --></label>
         <name>CEC_PostCode</name>
     </customLabels>
     <customLabels>
@@ -625,7 +625,7 @@
         <name>CEC_Product_Hierarchy</name>
     </customLabels>
     <customLabels>
-        <label>Παρακαλώ εισάγετε τον κωδικό χώρας πριν από την αλλαγή Γρήγορη κώδικα!</label>
+        <label><!-- CEC Quick Code Change Error --></label>
         <name>CEC_Quick_Code_Change_Error</name>
     </customLabels>
     <customLabels>
@@ -641,27 +641,27 @@
         <name>CEC_Reason_Hierarchy</name>
     </customLabels>
     <customLabels>
-        <label>Σχετικές υποθέσεις</label>
+        <label><!-- CEC_RelatedCases --></label>
         <name>CEC_RelatedCases</name>
     </customLabels>
     <customLabels>
-        <label>Έρευνα</label>
+        <label><!-- CEC_Search_Button --></label>
         <name>CEC_Search_Button</name>
     </customLabels>
     <customLabels>
-        <label>Παρακαλείστε να ορίσετε τα στοιχεία που είναι γνωστά</label>
+        <label><!-- CEC_Specify Details in Missing Info --></label>
         <name>CEC_Specify_Details_in_Missing_Info</name>
     </customLabels>
     <customLabels>
-        <label>Κατάσταση: σφάλμα επικύρωσης: Απαιτείται τιμή.</label>
+        <label><!-- To display Case Status as required message --></label>
         <name>CEC_Status</name>
     </customLabels>
     <customLabels>
-        <label>δρόμος</label>
+        <label><!-- CEC_Street --></label>
         <name>CEC_Street</name>
     </customLabels>
     <customLabels>
-        <label>τίτλος</label>
+        <label><!-- CEC_Title --></label>
         <name>CEC_Title</name>
     </customLabels>
     <customLabels>
@@ -669,15 +669,15 @@
         <name>CEC_ValidEmailTemplate</name>
     </customLabels>
     <customLabels>
-        <label>Είναι γνωστή μορφή;</label>
+        <label><!-- CEC_isFormKnown --></label>
         <name>CEC_isFormKnown</name>
     </customLabels>
     <customLabels>
-        <label>Είναι το μέγεθος Pack Γνωστά;</label>
+        <label><!-- CEC_isPacksizeKnown --></label>
         <name>CEC_isPacksizeKnown</name>
     </customLabels>
     <customLabels>
-        <label>Είναι γνωστή παραλλαγή;</label>
+        <label><!-- CEC_isVariantKnown --></label>
         <name>CEC_isVariantKnown</name>
     </customLabels>
     <customLabels>
@@ -2449,7 +2449,7 @@
         <name>Masterbrand</name>
     </customTabs>
     <customTabs>
-        <label>Οι εγκρίσεις μου</label>
+        <label>Aprobările mele</label>
         <name>My_Approvals_Custom</name>
     </customTabs>
     <customTabs>
