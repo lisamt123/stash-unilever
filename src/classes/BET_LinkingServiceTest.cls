@@ -78,18 +78,6 @@ private class BET_LinkingServiceTest {
 		}
 	}
 
-	@isTest static void FollowProjectNotExistsTest() {
-		uw_Bet__c bet = BET_TestUtils.getTestBet();
-		insert bet;
-		Id BetId = bet.id;
-		try{
-			BET_LinkingService.Follow(null, BetId, new List<Id> {UserInfo.getUserId()});
-			System.assert(false);
-		}catch(BET_CustomBETException e){
-			System.assertEquals(e.getMessage(),Label.BET_FollowProjectNotExistsMessage);
-		}
-	}
-
 	@isTest static void UnFollowTest() {
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
@@ -113,7 +101,8 @@ private class BET_LinkingServiceTest {
 	@isTest static void createFollowRequestTest(){
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
-		BET_Follow_Request__c request = BET_LinkingService.createFollowRequest(BET_TestUtils.createIPMProject(IPM_PROJECT_NAME), 
+		IPM_BETWrapper project = new IPM_BETWrapper(BET_TestUtils.createIPMProject(IPM_PROJECT_NAME));
+		BET_Follow_Request__c request = BET_LinkingService.createFollowRequest(project, 
 										bet, new List<Id> {UserInfo.getUserId()});
 		System.assertEquals(request.Status__c,BET_LinkingService.FOLLOW_STATUS_NEW);
 	}
@@ -121,7 +110,8 @@ private class BET_LinkingServiceTest {
 	@isTest static void createRelatedMemberRequestsTest(){
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
-		BET_Follow_Request__c request = BET_LinkingService.createFollowRequest(BET_TestUtils.createIPMProject(IPM_PROJECT_NAME), 
+		IPM_BETWrapper project = new IPM_BETWrapper(BET_TestUtils.createIPMProject(IPM_PROJECT_NAME));
+		BET_Follow_Request__c request = BET_LinkingService.createFollowRequest(project, 
 										bet, new List<Id> {UserInfo.getUserId()});
 		List<Id> requests = BET_LinkingService.createRelatedMemberRequests(request,bet,new List<Id> {UserInfo.getUserId()});
 		System.assertEquals(requests.size(),1);

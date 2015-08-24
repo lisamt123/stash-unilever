@@ -4,16 +4,14 @@ public class BET_LinkingServiceHelper {
 
 	/************************************************************
 		Purpose: Method validates inital parameters
-		Parameters: List<uw_Bet__c> betRecords,List<IPM_Project__c> projects 
+		Parameters: List<uw_Bet__c> betRecords
 		Returns: -
 		Throws: BET_CustomBETException
 	*************************************************************/	
-	public static void validateFollowRequest(List<uw_Bet__c> betRecords,List<IPM_Project__c> projects ){
-		System.debug('Entering validateFollowRequest : ' + betRecords + ', ' + projects);
+	public static void validateFollowRequest(List<uw_Bet__c> betRecords){
+		System.debug('Entering validateFollowRequest : ' + betRecords);
 		if(betRecords.isEmpty()){
 			throw new BET_CustomBETException(Label.BET_FollowBetNotExistsMessage);
-		} else if(projects.isEmpty()){
-			throw new BET_CustomBETException(Label.BET_FollowProjectNotExistsMessage);
 		} else if(betRecords.get(0).Is_Archived__c) {
 			throw new BET_CustomBETException(Label.BET_FollowBetArchivedMessage);
 		}
@@ -22,16 +20,14 @@ public class BET_LinkingServiceHelper {
 
 	/************************************************************
 		Purpose: Method validates inital parameters
-		Parameters: List<uw_Bet__c> betRecords,List<IPM_Project__c> projects 
+		Parameters: List<uw_Bet__c> betRecords
 		Returns: -
 		Throws: BET_CustomBETException
 	*************************************************************/	
-	public static void validateParams(List<uw_Bet__c> betRecords,List<IPM_Project__c> projects){
-		System.debug('Entering validateParams : ' + betRecords + ', ' + projects);
+	public static void validateParams(List<uw_Bet__c> betRecords){
+		System.debug('Entering validateParams : ' + betRecords);
 		if(betRecords.isEmpty()){
 			throw new BET_CustomBETException(Label.BET_FollowBetNotExistsMessage);
-		} else if(projects.isEmpty()){
-			throw new BET_CustomBETException(Label.BET_FollowProjectNotExistsMessage);
 		}
 	}
 
@@ -86,9 +82,9 @@ public class BET_LinkingServiceHelper {
 		Returns: -
 		Throws: -
 	*************************************************************/
-	public static uw_Bet__c setNewLeadProjectAndOwner(uw_Bet__c bet, IPM_Project__c project,IPM_Project__c oldProject){
+	public static uw_Bet__c setNewLeadProjectAndOwner(uw_Bet__c bet, IPM_Project__c project,IPM_BETWrapper oldProject){
 		System.debug('Entering setNewLeadProjectAndOwner : ' + bet + ', ' + project + ', ' + oldProject);
-		if(oldProject.IPM_Project_Leader__c != null && oldProject.IPM_Project_Leader__c == bet.ownerId){
+		if(oldProject.pLId != null && oldProject.pLId == bet.ownerId){
 			bet.ownerId = project.IPM_Project_Leader__c;
 		} else {
 			BET_EmailNotificationService.notifyBetOwnerThatProjectIsUnlinked(bet,oldProject); //US23
@@ -174,9 +170,9 @@ public class BET_LinkingServiceHelper {
 		Returns: -
 		Throws: -
 	*************************************************************/
-	public static void createMemberRequestForNewPL(Id newPL,uw_Bet__c bet, IPM_Project__c newProject){
+	public static void createMemberRequestForNewPL(Id newPL,uw_Bet__c bet, IPM_BETWrapper newProject){
 		BET_Member_Request__c request = new BET_Member_Request__c(Brand_Experience_Toolkit__c = bet.id, UserId__c = newPL, Role__c = 'Manager',
-							  Project_Id__c = newProject.id, BET_owner__c = bet.ownerid, Status__c = 'New');
+							  Project_Id__c = newProject.projectId, BET_owner__c = bet.ownerid, Status__c = 'New');
 		insert request;
 		request.Status__c = 'Approved';
 		update request;

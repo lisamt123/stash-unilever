@@ -241,6 +241,8 @@ public with sharing class uw_BETWrapper {
         public String brand;
 
         public Boolean currentUserHasAccessToIPM;
+
+        public Boolean archived;
         
         public BetSearchItem(String betId, String betName, String betChatterGroupId, Datetime betFinalRelease, String betPresentationId, String betIconLocation, String betDescription, String betBrandName, String betRegion, String betProjectName,
             String betIPMProjectName,  
@@ -318,6 +320,7 @@ public with sharing class uw_BETWrapper {
             this.category               = bet.Product_Category__c;
             this.brandPosition          = bet.Brand_Position__c;
             this.brand                  = bet.Product_Brand__c;
+            this.archived               = bet.Is_Archived__c;            
             
         }
     }

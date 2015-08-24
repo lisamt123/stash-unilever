@@ -35,6 +35,71 @@ public with sharing class BET_BETHandlerCls {
   private BET_BETHandlerCls(){}
 
   /************************************************************
+    Purpose: Method verifies if bet ws archive/unarchived and runs related logic
+    Parameters: List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap
+    Returns: -
+    Throws: -
+  *************************************************************/
+  public static void archiveOrUnarchiveBet(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
+    List<uw_BET__c> archivedBets = new List<uw_BET__c>();
+    List<uw_BET__c> unArchivedBets = new List<uw_BET__c>();
+    for(uw_BET__c bet : newBetList){
+      if(bet.Is_Archived__c == true && bet.Is_Archived__c != oldBetMap.get(bet.id).Is_Archived__c){
+        archivedBets.add(bet);
+      }
+      if(bet.Is_Archived__c == false && bet.Is_Archived__c != oldBetMap.get(bet.id).Is_Archived__c){
+        unArchivedBets.add(bet);
+      }
+    }
+    if(!archivedBets.isEmpty()) {
+      archiveBETs(archivedBets);
+    }
+    if(!unArchivedBets.isEmpty()){
+      unArchiveBETs(unArchivedBets);
+    }
+  }
+
+  /************************************************************
+    Purpose: Method does bet archive related logic 
+    Parameters: List<uw_BET__c> archivedBets
+    Returns: -
+    Throws: -
+  *************************************************************/
+  private static void archiveBETs(List<uw_BET__c> archivedBets){
+    archiveUnarchiveChatterGroups(archivedBets,true);
+    BET_EmailNotificationService.notifyAllIPMProjectLeadersOfArchivedBet(archivedBets);
+  }
+
+  /************************************************************
+    Purpose: Method does bet unarchive related logic 
+    Parameters: List<uw_BET__c> unArchivedBets
+    Returns: -
+    Throws: -
+  *************************************************************/
+  private static void unArchiveBETs(List<uw_BET__c> unArchivedBets){
+    archiveUnarchiveChatterGroups(unArchivedBets,false);
+    BET_EmailNotificationService.notifyAllIPMProjectLeadersOfUnArchivedBet(unArchivedBets);
+  }
+
+  /************************************************************
+    Purpose: Method archives and unarchives BET related chatter groups
+    Parameters: List<uw_BET__c> bets,Boolean shouldBeArchived
+    Returns: -
+    Throws: -
+  *************************************************************/
+  private static void archiveUnarchiveChatterGroups(List<uw_BET__c> bets,Boolean shouldBeArchived){
+    Set<String> chatterGroups = new Set<String>();
+    for(uw_BET__c bet : bets){
+      chatterGroups.add(bet.Studio_Chatter_Group__c);
+    }
+    List<CollaborationGroup> groups = [select id, IsArchived from CollaborationGroup where id in: chatterGroups];
+    for(CollaborationGroup grp : groups){
+      grp.IsArchived = shouldBeArchived;
+    }
+    update groups;
+  }
+
+  /************************************************************
     Purpose: Method updates IPM when changes on Bet made.
     Parameters: List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap
     Returns: -

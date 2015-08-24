@@ -34,6 +34,7 @@ public with sharing class BET_BETHandler implements ITrigger {
     		handler.handleBetAfterUpdates(BET_BETHandlerCls.buildBetMap(Trigger.newMap),BET_BETHandlerCls.buildBetMap(Trigger.oldMap));
     		BET_BETHandlerCls.logChanges(); // Taken from BET_LogChanges trigger
     		BET_BETHandlerCls.informIPMOnBetChanges(Trigger.new,BET_BETHandlerCls.buildBetMap(Trigger.oldMap));
+    		BET_BETHandlerCls.archiveOrUnarchiveBet(Trigger.new,BET_BETHandlerCls.buildBetMap(Trigger.oldMap));
     	}
     	if(Trigger.isInsert){
     		handler.handleBetAfterInserts(Trigger.new); // Taken from uw_BET_after_insert trigger
