@@ -6,6 +6,14 @@
     <columns>
         <field>uw_BET__c.IPM_Project__c</field>
     </columns>
+    <filter>
+        <criteriaItems>
+            <column>uw_BET__c.IPM_Project__c</column>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Tabular</format>
     <name>BETs with IPMs</name>
     <params>
