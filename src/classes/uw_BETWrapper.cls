@@ -256,7 +256,7 @@ public with sharing class uw_BETWrapper {
         	this.betRegion = betRegion; 
         	this.betProjectName = betProjectName;
             this.betIPMProjectName = betIPMProjectName;
-            if(String.isBlank(this.betProjectName)){
+            if(!String.isBlank(this.betIPMProjectName)){
                 this.betProjectName = this.betIPMProjectName;
             }
         	this.betStatus = betStatus;
@@ -275,6 +275,7 @@ public with sharing class uw_BETWrapper {
             this.betPresentationId = betPresentationId;
             this.betIconLocation = betIconLocation;
             this.betIsPublic = false;
+            this.archived = !betActive;
         }
 
         public BetSearchItem(uw_BET__c bet, Boolean betPending, Boolean betActive, Boolean betHasAccess, Boolean betOwner){            

@@ -79,6 +79,7 @@ public with sharing class BET_BETHandlerCls {
   private static void unArchiveBETs(List<uw_BET__c> unArchivedBets){
     archiveUnarchiveChatterGroups(unArchivedBets,false);
     BET_EmailNotificationService.notifyAllIPMProjectLeadersOfUnArchivedBet(unArchivedBets);
+    //BET_LinkingService.unlinkIPMsfromBets(unArchivedBets);
   }
 
   /************************************************************
@@ -134,7 +135,10 @@ public with sharing class BET_BETHandlerCls {
         changesDone = true;
         updatedFields.add('FirstReleaseDueDate');
       }
-
+      if(bet.Is_Archived__c != oldBetMap.get(bet.id).Is_Archived__c) {
+        changesDone = true;
+        updatedFields.add('isArchived');
+      }
       if(changesDone) {
         BET_BETWrapper wrapper = new BET_BETWrapper(bet);
         IPM_BETUpdateService.updateIPM(bet.id,wrapper,updatedFields, UserInfo.getUserId());

@@ -1,7 +1,7 @@
 /*************************************************************************************
 Name : BET_DataFixReleaseDate
 
-Purpose : Class responsible for update due dates 
+Purpose : Class responsible for update first and final due dates 
 History
 
 VERSION  AUTHOR                DATE        DETAIL   Description
@@ -15,12 +15,12 @@ global class BET_DataFixReleaseDate implements Database.Batchable<sObject> {
 	global BET_DataFixReleaseDate() {}
 	
 	global Database.QueryLocator start(Database.BatchableContext BC) {
-		System.debug('Finish batch process');
+		System.debug('Entering start');
 		return Test.isRunningTest() ? Database.getQueryLocator(unitTestQuery) : Database.getQueryLocator(query);
 	}
 
    	global void execute(Database.BatchableContext BC, List<sObject> scope) {
-   		System.debug('Executing batch process');
+   		System.debug('Entering execute : ' + scope);
    		List<uw_BET__c> bets = new List<uw_BET__c>();
 		for(sObject obj : scope){
 			uw_BET__c bet = (uw_BET__c)obj;
@@ -29,6 +29,7 @@ global class BET_DataFixReleaseDate implements Database.Batchable<sObject> {
 			bets.add(bet);
 		}
 		update bets;
+		System.debug('Exit execute : ' + bets);
 	}
 	
 	global void finish(Database.BatchableContext BC) {

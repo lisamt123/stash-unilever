@@ -205,7 +205,7 @@ public with sharing class BET_LinkingService {
 		try{
 			Boolean projectIsALead = BET_LinkingServiceHelper.isProjectALead(ProjectId,betRecords.get(0));
 			if(projectIsALead){
-				List<IPM_Project__c> otherFollowProjects = BET_LinkingServiceHelper.getOtherFollowingProjects(ProjectId,BetId);
+				List<IPM_Project__c> otherFollowProjects = BET_LinkingServiceHelper.getOtherFollowingProjects(ProjectId,BetId);				
 				if(otherFollowProjects.isEmpty()){
 					BET_LinkingServiceHelper.archiveAndUnLeadBet(betRecords.get(0)); //US26
 					BET_EmailNotificationService.notifyBetOwnerOfUnfollow(betRecords.get(0),project); //US22
@@ -234,4 +234,15 @@ public with sharing class BET_LinkingService {
 		}
 		System.debug('Exit UnFollow');
 	}
+
+	/************************************************************
+		Purpose: Method unlinks any IPMs from given bets
+		Parameters: List<uw_Bet__c> bets
+		Returns: -
+		Throws: -
+	*************************************************************/
+	//public static void unlinkIPMsfromBets(List<uw_Bet__c> bets){
+
+	//}
+
 }
