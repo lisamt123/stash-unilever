@@ -6,6 +6,18 @@
     <columns>
         <field>uw_BET__c.IPM_Project__c</field>
     </columns>
+    <columns>
+        <field>uw_BET__c.Category_Group__c</field>
+    </columns>
+    <columns>
+        <field>uw_BET__c.Product_Category__c</field>
+    </columns>
+    <columns>
+        <field>uw_BET__c.Brand_Position__c</field>
+    </columns>
+    <columns>
+        <field>uw_BET__c.Product_Brand__c</field>
+    </columns>
     <filter>
         <criteriaItems>
             <column>uw_BET__c.IPM_Project__c</column>
