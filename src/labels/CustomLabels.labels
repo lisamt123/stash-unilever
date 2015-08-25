@@ -517,6 +517,30 @@ Are you sure you wish to proceed?</value>
         <value>Approve selected</value>
     </labels>
     <labels>
+        <fullName>BET_ArchiveBET</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_ArchiveBET</shortDescription>
+        <value>Archive BET</value>
+    </labels>
+    <labels>
+        <fullName>BET_ArchiveConfirmation</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_ArchiveConfirmation</shortDescription>
+        <value>Are you sure you want to archive this BET?</value>
+    </labels>
+    <labels>
+        <fullName>BET_Archiving</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Archiving</shortDescription>
+        <value>Archiving...</value>
+    </labels>
+    <labels>
         <fullName>BET_BetBrandPositionMandatory</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -578,6 +602,14 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_Cancel</shortDescription>
         <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>BET_Canceling</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Canceling</shortDescription>
+        <value>Canceling ...</value>
     </labels>
     <labels>
         <fullName>BET_CreateBetAddMembers</fullName>
@@ -804,6 +836,22 @@ Are you sure you wish to proceed?</value>
         <value>Project Name</value>
     </labels>
     <labels>
+        <fullName>BET_Save</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>BET_Saving</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Saving</shortDescription>
+        <value>Saving...</value>
+    </labels>
+    <labels>
         <fullName>BET_SetAsLeadExceptionMessage</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -917,6 +965,30 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_TargetLaunchDate</shortDescription>
         <value>Target Launch Date</value>
+    </labels>
+    <labels>
+        <fullName>BET_UnArchiveBET</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UnArchiveBET</shortDescription>
+        <value>Unarchive BET</value>
+    </labels>
+    <labels>
+        <fullName>BET_UnArchiveConfirmation</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UnArchiveConfirmation</shortDescription>
+        <value>Are you sure you want to unarchive this BET?</value>
+    </labels>
+    <labels>
+        <fullName>BET_UnArchiving</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UnArchiving</shortDescription>
+        <value>Unarchiving...</value>
     </labels>
     <labels>
         <fullName>BET_UnFollowExceptionMessage</fullName>
@@ -3023,62 +3095,6 @@ Which Communications team do you represent? You must be associated to one Planne
         <protected>false</protected>
         <shortDescription>isll_ContentMissingMsg</shortDescription>
         <value>Edit link is not visible: please add content</value>
-    </labels>
-	    <labels>
-        <fullName>IPM_BETApprovalLinkProcessing</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_BETApprovalLinkProcessing</shortDescription>
-        <value>Error in processing IPM BET link approval/rejection.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_BETIdNullMsg</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_BETIdNullMsg</shortDescription>
-        <value>BET Id cannot be null.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_CategoryNameNotNull</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_CategoryNameNotNull</shortDescription>
-        <value>Category name cannot be null.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_ErrorRetrievingCategories</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_ErrorRetrievingCategories</shortDescription>
-        <value>Error in retrieving Categories.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_IdsApprovalNotNullMSg</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_IdsApprovalNotNullMSg</shortDescription>
-        <value>IPM Project Id, BET Id or Approval Action cannot be null.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_IdsNotNullMsg</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_IdsNotNullMsg</shortDescription>
-        <value>BET id, IPM Project ID or User ID cannot be null.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_ProjectNotRetrieved</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_ProjectNotRetrieved</shortDescription>
-        <value>IPM Project could not be retrieved.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_UserAccessRetrivalMsg</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_UserAccessRetrivalMsg</shortDescription>
-        <value>Error in retriving User access.</value>
     </labels>
     <labels>
         <fullName>modal_info_heading</fullName>

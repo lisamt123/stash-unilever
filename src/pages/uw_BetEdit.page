@@ -27,16 +27,16 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
     });
 
     function areYouSureToArchive(element){
-        if(confirm('Are you sure you want to archive this BET?')){
-            element.value = 'Archiving...';
+        if(confirm('{!$Label.BET_ArchiveConfirmation}')){
+            element.value = '{!$Label.BET_Archiving}';
             return true;
         }
         return false;
     }
 
     function areYouSureToUnArchive(element){
-        if(confirm('Are you sure you want to unarchive this BET?')){
-            element.value = 'Unarchiving...';
+        if(confirm('{!$Label.BET_UnArchiveConfirmation}')){
+            element.value = '{!$Label.BET_UnArchiving}';
             return true;
         }
         return false;
@@ -192,8 +192,8 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                 </div>
 
             <div style="float:left;">
-                <apex:commandButton value="{!$Label.BET_Save}" styleClass="btn-save" action="{!saveBET}" onclick="this.value = 'Saving...'"/>
-                <apex:commandButton value="{!$Label.BET_Cancel}"  styleClass="btn-cancel" action="{!cancelBET}"  onclick="this.value = 'Canceling ...'"/>
+                <apex:commandButton value="{!$Label.BET_Save}" styleClass="btn-save" action="{!saveBET}" onclick="this.value = '{!$Label.BET_Saving}'"/>
+                <apex:commandButton value="{!$Label.BET_Cancel}"  styleClass="btn-cancel" action="{!cancelBET}"  onclick="this.value = '{!$Label.BET_Canceling}'"/>
             </div>
         </apex:outputPanel>
 
