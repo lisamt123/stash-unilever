@@ -45,7 +45,7 @@ global without sharing class BET_ManageMembersController {
 
         memberRequests = new List<MemberRequestWrapper>();
         for(BET_Member_Request__c request : [select id,  ProjectRequest__r.Project_Name__c, UserId__r.FirstName,UserId__r.LastName, UserId__r.SmallPhotoUrl 
-                                                from BET_Member_Request__c where Brand_Experience_Toolkit__c =: betId and Status__c = 'New']){
+                                                from BET_Member_Request__c where Brand_Experience_Toolkit__c =: betId and Status__c =: BET_LinkingService.FOLLOW_STATUS_NEW]){
             memberRequests.add(new MemberRequestWrapper(request));
         }
 
@@ -67,7 +67,7 @@ global without sharing class BET_ManageMembersController {
         PageReference pr = null;
         if(betMemberRequest.UserId__c != null){
             betMemberRequest.Bet_owner__c = bet.ownerid;
-            betMemberRequest.Status__c = 'Approved';
+            betMemberRequest.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED ;
             betMemberRequest.External_User_Request__c = false;
             insert betMemberRequest;
             pr = forward();
@@ -87,7 +87,7 @@ global without sharing class BET_ManageMembersController {
         PageReference pr = null;
         if(!String.isEmpty(betMemberRequest.External_User_Email__c)){
             betMemberRequest.Bet_owner__c = bet.ownerid;
-            betMemberRequest.Status__c = 'Approved';
+            betMemberRequest.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED ;
             betMemberRequest.External_User_Request__c = true;
             insert betMemberRequest;
             pr = forward();

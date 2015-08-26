@@ -25,6 +25,23 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             window.top.postMessage({action: 'saveBetPreferences',moveHome:{!if(moveHome,'true','false')}}, document.location.protocol + '//' + document.domain);
         }
     });
+
+    function areYouSureToArchive(element){
+        if(confirm('{!$Label.BET_ArchiveConfirmation}')){
+            element.value = '{!$Label.BET_Archiving}';
+            return true;
+        }
+        return false;
+    }
+
+    function areYouSureToUnArchive(element){
+        if(confirm('{!$Label.BET_UnArchiveConfirmation}')){
+            element.value = '{!$Label.BET_UnArchiving}';
+            return true;
+        }
+        return false;
+    }
+
     </script>
             
     <apex:form >
@@ -157,15 +174,26 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             <div class="clear">&nbsp;</div>
             <div style="float:right">
 
-            <apex:commandButton value="Archive BET" styleClass="btn-save" action="{!archiveBET}" rendered="{!bet.Is_Archived__c == false}" onclick="this.value = 'Archiving...'"/>
+                <apex:commandButton value="{!$Label.BET_ArchiveBET}" styleClass="btn-save" 
+                    action="{!archiveBET}" rendered="{!AND(currentUserIsOwner,bet.Is_Archived__c == false)}" 
+                    onclick="return areYouSureToArchive(this);"/>
 
-            <apex:outputPanel layout="inline" styleClass="question-icon-left question-icon-large"
-                html-data-tooltip="Archived BETs are moved to the Archive area on the Home Page and Search" />
-            </div>
+                <apex:outputPanel layout="inline" styleClass="question-icon-left question-icon-large"
+                    html-data-tooltip="Archived BETs are moved to the Archive area on the Home Page and Search" 
+                    rendered="{!AND(currentUserIsOwner,bet.Is_Archived__c == false)}"/>
+
+                <apex:commandButton value="{!$Label.BET_UnArchiveBET}" styleClass="btn-save" 
+                    action="{!unArchiveBET}" rendered="{!AND(currentUserIsOwner,bet.Is_Archived__c == true)}" 
+                    onclick="return areYouSureToUnArchive(this);"/>
+
+                <apex:outputPanel layout="inline" styleClass="question-icon-left question-icon-large"
+                    html-data-tooltip="Unarchived BETs are moved from the Archive area on the Home Page and Search" 
+                    rendered="{!AND(currentUserIsOwner,bet.Is_Archived__c == true)}"/>
+                </div>
 
             <div style="float:left;">
-                <apex:commandButton value="Save" styleClass="btn-save" action="{!saveBET}" onclick="this.value = 'Saving...'"/>
-                <apex:commandButton value="Cancel"  styleClass="btn-cancel" action="{!cancelBET}"  onclick="this.value = 'Canceling ...'"/>
+                <apex:commandButton value="{!$Label.BET_Save}" styleClass="btn-save" action="{!saveBET}" onclick="this.value = '{!$Label.BET_Saving}'"/>
+                <apex:commandButton value="{!$Label.BET_Cancel}"  styleClass="btn-cancel" action="{!cancelBET}"  onclick="this.value = '{!$Label.BET_Canceling}'"/>
             </div>
         </apex:outputPanel>
 

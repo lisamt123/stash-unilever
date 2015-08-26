@@ -241,6 +241,8 @@ public with sharing class uw_BETWrapper {
         public String brand;
 
         public Boolean currentUserHasAccessToIPM;
+
+        public Boolean archived;
         
         public BetSearchItem(String betId, String betName, String betChatterGroupId, Datetime betFinalRelease, String betPresentationId, String betIconLocation, String betDescription, String betBrandName, String betRegion, String betProjectName,
             String betIPMProjectName,  
@@ -254,7 +256,7 @@ public with sharing class uw_BETWrapper {
         	this.betRegion = betRegion; 
         	this.betProjectName = betProjectName;
             this.betIPMProjectName = betIPMProjectName;
-            if(String.isBlank(this.betProjectName)){
+            if(!String.isBlank(this.betIPMProjectName)){
                 this.betProjectName = this.betIPMProjectName;
             }
         	this.betStatus = betStatus;
@@ -273,6 +275,7 @@ public with sharing class uw_BETWrapper {
             this.betPresentationId = betPresentationId;
             this.betIconLocation = betIconLocation;
             this.betIsPublic = false;
+            this.archived = !betActive;
         }
 
         public BetSearchItem(uw_BET__c bet, Boolean betPending, Boolean betActive, Boolean betHasAccess, Boolean betOwner){            
@@ -318,6 +321,7 @@ public with sharing class uw_BETWrapper {
             this.category               = bet.Product_Category__c;
             this.brandPosition          = bet.Brand_Position__c;
             this.brand                  = bet.Product_Brand__c;
+            this.archived               = bet.Is_Archived__c;            
             
         }
     }

@@ -98,7 +98,8 @@ public without sharing class BET_FollowRequestTriggerHandlerCls {
 		Set<Id> processedBets = new Set<Id>();
 		for(BET_Follow_Request__c request : approvedRequests){
 			if(betMap.get(request.Brand_Experience_Toolkit__c) != null && !processedBets.contains(request.Brand_Experience_Toolkit__c)){
-				BET_LinkingService.updateBet(betMap.get(request.Brand_Experience_Toolkit__c),(Id)request.Project_Id__c);
+				IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper((Id)request.Project_Id__c);
+				BET_LinkingService.updateBet(betMap.get(request.Brand_Experience_Toolkit__c),project);
 				processedBets.add(request.Brand_Experience_Toolkit__c);
 			}
 		}
@@ -122,7 +123,8 @@ public without sharing class BET_FollowRequestTriggerHandlerCls {
 			betMap.put(bet.id,bet);
 		}
 		for(BET_Follow_Request__c request : leadRequests){
-			BET_LinkingService.updateBet(betMap.get(request.Brand_Experience_Toolkit__c),(Id)request.Project_Id__c);
+			IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper((Id)request.Project_Id__c);
+			BET_LinkingService.updateBet(betMap.get(request.Brand_Experience_Toolkit__c),project);
 		}
 	}
 

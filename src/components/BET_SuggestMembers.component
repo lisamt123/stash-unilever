@@ -5,45 +5,49 @@ Purpose : Compoment responsible for adding the members
 
 History
 
-VERSION  AUTHOR                DATE        DETAIL   Description
-1.0      k.szepietowski@polsource.com  20-07-2015  Initial
+VERSION  AUTHOR                         DATE        DETAIL   Description
+1.0      k.szepietowski@polsource.com   20-07-2015  Initial
+1.1      m.bluj@polsource.com           21-08-2015  Changes related to issues with IPM integration
 *************************************************************************************-->
 
 <apex:component controller="BET_SuggestMembersController" allowDML="true">
+
     <apex:includeScript value="{!URLFOR($Resource.jscolor_1_4_1, 'jscolor/jscolor.js')}" />
-	<!--<apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />-->    
-	<!--<apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />-->
-    
     <apex:includeScript value="{!$Resource.BETSuggestedMembers}/scripts/jquery.min.js" />
     <apex:includeScript value="{!$Resource.BETSuggestedMembers}/scripts/blockUI.js" />
     <apex:includeScript value="{!$Resource.BETSuggestedMembers}/scripts/bootstrap.min.js" />
     <apex:includeScript value="{!$Resource.BETSuggestedMembers}/scripts/SuggestedMembers.js" />
     
     <apex:stylesheet value="{!$Resource.BETSuggestedMembers}/css/bootstrap.min.css"/>
-	<apex:stylesheet value="{!$Resource.BETSuggestedMembers}/css/betSuggestedMembers.css"/>  
+    <apex:stylesheet value="{!$Resource.BETSuggestedMembers}/css/betSuggestedMembers.css"/>  
     
-    
-	
-    <!--<apex:image url="{!$Resource.BETSuggestedMembers}/images/trashIcon.png"/>-->
     <apex:attribute name="BetID" description="BET ID" type="Id" 
-                        required="false" assignTo="{!betIdCtrl}"/>						
+                        required="false" assignTo="{!betIdCtrl}"/>                      
 
-	<apex:attribute name="ProjectID" description="IPM project ID" type="Id" 
+    <apex:attribute name="ProjectID" description="IPM project ID" type="Id" 
                         required="false" assignTo="{!projectIdCtrl}"/>
 
-	<apex:attribute name="Callback" description="URL to which page will be redirected after record creation" type="String" 
+    <apex:attribute name="Callback" description="URL to which page will be redirected after record creation" type="String" 
                         required="false" assignTo="{!callbackCtrl}"/>
 
-	<apex:attribute name="Suggested_Members" description="List of suggested members Ids" type="Id[]" 
+    <apex:attribute name="Suggested_Members" description="List of suggested members Ids" type="Id[]" 
                         required="false" assignTo="{!suggested_MembersCtrl}"/>
 
-	<apex:attribute name="User_buckets" description="List of user buckets with user Ids belonging to it" type="BET_MemberBucketWrapper[]" 
+    <apex:attribute name="User_buckets" description="List of user buckets with user Ids belonging to it" type="BET_MemberBucketWrapper[]" 
                         required="false" assignTo="{!user_bucketsCtrl}"/>
 
-	<apex:attribute name="Suggested_Managers" description="List of suggested manager Ids" type="Id[]" 
+    <apex:attribute name="Suggested_Managers" description="List of suggested manager Ids" type="Id[]" 
                         required="false" assignTo="{!suggested_managersCtrl}"/>
+
+    <apex:attribute name="usedInPopup" description="Indicator if component will be displayed in popup" type="Boolean" 
+                        required="false" default="true"/>
     
-    <!--<apex:stylesheet value="{!$Resource.BETNewBetStyles}" />-->
+    1{!Suggested_Members}
+    2{!suggested_MembersCtrl}
+    3{!User_buckets}
+    4{!user_bucketsCtrl}
+    5{!Suggested_Managers}
+    6{!suggested_managersCtrl}
     
     <p class="suggestedMembersInfo">
         {!$Label.BET_SuggestedMemberComponentWarn}
@@ -62,7 +66,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
         
         <div class="editCircle">
             <a href="/{!betOwnerInfo.id}" target="blank">
-            	<img  src="{!$Resource.BETSuggestedMembers}/images/pencil.jpg" alt="{!$Resource.BETSuggestedMembers}/images/pencil.jpg" width="16px" height="16px" />
+                <img  src="{!$Resource.BETSuggestedMembers}/images/pencil.jpg" alt="{!$Resource.BETSuggestedMembers}/images/pencil.jpg" width="16px" height="16px" />
             </a>    
         </div>
     </div>
@@ -116,7 +120,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
                 </apex:outputPanel>
                 <div style="clear: both;"/>
                 <div class="horizontalLine"/>
-                	<apex:variable value="{!1}" var="UserRowNum"/>
+                    <apex:variable value="{!1}" var="UserRowNum"/>
                     <apex:repeat value="{!member.groupUsers}" var="memeberItem">
                     <div id="userId_{!memeberItem.userInfo.id}" class="memberContainer">
                         <img class="circular" alt="{!memeberItem.userInfo.Name}" src="{!memeberItem.userInfo.FullPhotoUrl}" 
@@ -148,7 +152,10 @@ VERSION  AUTHOR                DATE        DETAIL   Description
         <div  class="memberContainer">
             
             <a data-toggle="modal" data-target="#myModal">
-                <img alt="{!$Label.BET_SuggestedMemberAddOtherMember}"  class="addMemeberBtn" src="{!$Resource.BETSuggestedMembers}/images/add_2.png" width="80px" height="80px"/>
+                <img alt="{!$Label.BET_SuggestedMemberAddOtherMember}" 
+                     onclick="var $ = jQuery.noConflict(); $('#myModal').css('display','');" 
+                     class="addMemeberBtn" 
+                     src="{!$Resource.BETSuggestedMembers}/images/add_2.png" width="80px" height="80px"/>
             </a>    
            
             <div class="userTitle" onclick="addOtherMembers();">
@@ -165,29 +172,33 @@ VERSION  AUTHOR                DATE        DETAIL   Description
         </div>
     </apex:outputPanel>
     <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
+    <div class="{!IF(usedInPopup,'','modal')} fade" id="myModal" role="dialog" style="{!IF(usedInPopup,'position: fixed;top: 100px;left: 120px;','')}">
         <div class="modal-dialog">
             
             <!-- Modal content-->
             <div class="modal-content">
                 <div id="#ipmAddMemberModal" class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" style="{!IF(usedInPopup,'display:none;','')}">&times;</button>
                     <h4 class="modal-title">{!$Label.BET_SuggestedMemberModalHeader}</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="searchModal">
+                    <div class="searchModal" style="{!IF(usedInPopup,'padding-left: 20px;padding-top:20px;','')}">
                         <apex:inputText style="width:250px;" id="modalSearchByName" styleClass="form-control" value="{!searchUserName}"/>
                     </div>
                     
-                    <div class="searchModal" style="width: 50px;height: 33px;">
+                    <div class="searchModal" style="width: 50px;height: 33px;{!IF(usedInPopup,'padding-top:20px;','')}">
                         <button type="button" onclick="searchUsersBtn();" style="padding: 6px 4px;" class="bootstrap.min.btn bootstrap.min.btn-default">Search</button>
                     </div>
                     
                     <apex:outputPanel styleClass="scroll" id="modalSearchResult" layout="block">
-                        <apex:outputLabel id="noResultsFound" rendered="{!freeAddMembers.size == 0}" value="{!$Label.BET_SuggestedMemberModalNoResults}"/>
+                        <apex:outputLabel   id="noResultsFound" rendered="{!freeAddMembers.size == 0}" 
+                                            value="{!$Label.BET_SuggestedMemberModalNoResults}" 
+                                            style="{!IF(usedInPopup,'padding-left:20px;','')}"/>
                         <apex:repeat value="{!freeAddMembers}" var="memberItem">
                             <div class="searchMemberItem">
-                                <input type="checkbox" onclick="selectOrUnselect($(this));" id="userIdCheckbox_{!memberItem.id}"  value="{!memberItem}"/>
+                                <input  type="checkbox" onclick="var $ = jQuery.noConflict(); selectOrUnselectModal($(this));" 
+                                        id="userIdCheckbox_{!memberItem.id}" 
+                                        value="{!memberItem}"/>
                                 <img class="circularSmall" alt="{!memberItem.name}" src="{!memberItem.SmallPhotoUrl}" width="45px" height="45px"/>
                                 <span>{!memberItem.name}</span>
                             </div>
@@ -197,25 +208,39 @@ VERSION  AUTHOR                DATE        DETAIL   Description
                     
                 </div>
                 <div class="modal-footer">
-                    <button type="button" onclick="clearSearchByNameField();" class="bootstrap.min.btn bootstrap.min.btn-default" data-dismiss="modal">{!$Label.BET_SuggestedMemberModalCancel}</button>
-                    <button type="button" onclick="addAllNewMembers();" class="bootstrap.min.btn bootstrap.min.btn-default" data-dismiss="modal">{!$Label.BET_SuggestedMemberModalAddSelected}</button>  
+                    <button type="button" style="{!IF(usedInPopup,'','display:none')}" 
+                            onclick="var $ = jQuery.noConflict(); clearSearchByNameField(); $('#myModal').css('display','none');" 
+                            class="bootstrap.min.btn bootstrap.min.btn-default">
+                            {!$Label.BET_SuggestedMemberModalCancel}
+                    </button>
+                    <button type="button" style="{!IF(usedInPopup,'','display:none')}" 
+                            onclick="var $ = jQuery.noConflict(); addAllNewMembers(); $('#myModal').css('display','none');" 
+                            class="bootstrap.min.btn bootstrap.min.btn-default">
+                            {!$Label.BET_SuggestedMemberModalAddSelected}
+                    </button> 
+                    <button type="button" style="{!IF(NOT(usedInPopup),'','display:none')}" 
+                            onclick="clearSearchByNameField();" 
+                            class="bootstrap.min.btn bootstrap.min.btn-default" 
+                            data-dismiss="modal">
+                            {!$Label.BET_SuggestedMemberModalCancel}
+                    </button>
+                    <button type="button" style="{!IF(NOT(usedInPopup),'','display:none')}" 
+                            onclick="addAllNewMembers();" 
+                            class="bootstrap.min.btn bootstrap.min.btn-default" 
+                            data-dismiss="modal">
+                            {!$Label.BET_SuggestedMemberModalAddSelected}
+                    </button>  
+                     
                 </div>
             </div>
             
         </div>
     </div>   
-          
-      
-    <!--</div>-->
     <script>
-    	var $ = jQuery.noConflict();
-    
-    	$( document ).ready(function() {
+        var $ = jQuery.noConflict();
+        $( document ).ready(function() {
             clearExpandColapseAfterRender();
-    		
-		});
-        
+            
+        });
     </script>
-
-    
 </apex:component>

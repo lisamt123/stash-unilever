@@ -288,11 +288,27 @@ public with sharing class uw_BetEditController {
     Returns: PageReference
     ******************************************************************************************/  
     public PageReference archiveBET(){
+        return archiveUnarchiveBet(true);
+    }
+
+    /*****************************************************************************************
+    Purpose: Method for unarchiving BET
+    Returns: PageReference
+    ******************************************************************************************/ 
+    public PageReference unArchiveBET(){
+        return archiveUnarchiveBet(false);
+    }
+
+    /*****************************************************************************************
+    Purpose: Method contains archive and unarchive logic
+    Returns: PageReference
+    ******************************************************************************************/ 
+    private PageReference archiveUnarchiveBet(Boolean shouldBeArchived){
         runJsSuccess = false;
         moveHome = false;
         try{
             uw_BET__c b = [SELECT Id FROM uw_BET__c WHERE Id =: bet.Id LIMIT 1];
-            b.Is_Archived__c = true;            
+            b.Is_Archived__c = shouldBeArchived;            
             update b;            
         } catch (Exception e){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception Saving record '+e));
@@ -307,6 +323,7 @@ public with sharing class uw_BetEditController {
 
         return null;
     }
+
     /*****************************************************************************************
     Purpose: Remove icon image from fronted
     ******************************************************************************************/  

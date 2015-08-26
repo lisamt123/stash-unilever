@@ -21,6 +21,8 @@
     <apex:attribute name="CallbackSkip" type="String" required="false" 
                     description="URL to which page will be redirected after record creation is skipped" assignTo="{!cbackskipped}"/>
 
+    <apex:pageMessages />
+
         <div class="form-item">
             <div class="item-label">
                 <apex:outputLabel >{!$Label.BET_Name}</apex:outputLabel>
@@ -41,7 +43,7 @@
 
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.Category_Group__c.Label}</apex:outputLabel>
+                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Category_Group__c.Label}</apex:outputLabel>
             </div>
             <div class="item-input">
                 <apex:inputText value="{!categoryGroupName}" disabled="true"/>
@@ -50,7 +52,7 @@
 
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.Product_Category__c.Label}</apex:outputLabel>
+                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Product_Category__c.Label}</apex:outputLabel>
             </div>
             <div class="item-input">
                 <apex:inputText value="{!catName}" disabled="true"/> 
@@ -59,7 +61,7 @@
 
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.Brand_Position__c.Label}</apex:outputLabel>
+                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Brand_Position__c.Label}</apex:outputLabel>
             </div>
             <div class="item-input">
                 <apex:inputText value="{!brandPositionName}" disabled="true"/> 
@@ -68,7 +70,7 @@
 
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.Product_Brand__c.Label}</apex:outputLabel>
+                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Product_Brand__c.Label}</apex:outputLabel>
             </div>
             <div class="item-input">
                 <apex:selectList value="{!selectedBrand}" size="1" multiselect="false">
@@ -79,7 +81,7 @@
 
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.IPM_Project__c.Label}</apex:outputLabel>
+                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.IPM_Project__c.Label}</apex:outputLabel>
             </div>
             <div class="item-input">
                 <apex:inputText value="{!projectName}" disabled="true"/>
@@ -88,7 +90,7 @@
 
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.Description__c.Label}</apex:outputLabel>
+                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
             </div>
             <div class="item-input">
                 <apex:inputTextarea rows="5" value="{!betobject.Description__c}" />

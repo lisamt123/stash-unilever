@@ -26,13 +26,13 @@ private class BET_BETServiceTest {
         insert betObject;
         BET_BETWrapper betWrap = BET_BETService.GetBet(betObject.id);
         system.assertEquals(betObject.id, betWrap.BetId);
-        system.assertEquals(null, betWrap.FinalReleaseDate);
+        system.assertEquals(null, betWrap.finalReleaseDueDate);
         //populate Launch date
         betObject.Launch_Date__c = Date.today();
         update betObject;
         betWrap = BET_BETService.GetBet(betObject.id);
         //check id release date is populated
-        system.assert(betWrap.FinalReleaseDate != null);
+        system.assert(betWrap.finalReleaseDueDate!= null);
     }
 
     @isTest static void shouldSearchBets(){

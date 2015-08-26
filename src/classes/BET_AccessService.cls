@@ -90,6 +90,7 @@ public with sharing class BET_AccessService {
 	public static List<Id> RequestAccess(List<BET_BETWrapper.MemberRequest> memberRequests, Id betId){
 		System.debug('Entering RequestAccess : ' + memberRequests + ', ' + betId);
 		List<Id> requestIds = new List<Id>();
+		Boolean isOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
 		try{
 			List<BET_Member_Request__c> mRequestsToBeCreated = new List<BET_Member_Request__c>();
 			for(BET_BETWrapper.MemberRequest request : memberRequests){
@@ -98,7 +99,7 @@ public with sharing class BET_AccessService {
 						Brand_Experience_Toolkit__c=betId,
 						UserId__c=request.UserId,
 						Role__c = request.AccessLevel,
-						Status__c=BET_LinkingService.FOLLOW_STATUS_APPROVED)
+						Status__c= isOwnerOrManager ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW)
 				);
 			}
 			insert mRequestsToBeCreated;
@@ -121,11 +122,13 @@ public with sharing class BET_AccessService {
 	public static Id RequestExternalUserAccess(String userEmail, Id betId){
 		System.debug('Entering RequestExternalUserAccess : ' + userEmail + ', ' + betId);
 		Id requestId = null;
+		Boolean isOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
 		try{
 			BET_Member_Request__c mrequest = new BET_Member_Request__c(
 				Brand_Experience_Toolkit__c=betId,
 				External_User_Email__c=userEmail,
-				External_User_Request__c=true);
+				External_User_Request__c=true,
+				Status__c = isOwnerOrManager ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW);
 			insert mrequest;
 			requestId = mrequest.id;
 		}catch(Exception e){
