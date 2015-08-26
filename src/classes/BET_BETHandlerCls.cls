@@ -67,7 +67,7 @@ public with sharing class BET_BETHandlerCls {
   *************************************************************/
   private static void archiveBETs(List<uw_BET__c> archivedBets){
     archiveUnarchiveChatterGroups(archivedBets,true);
-    BET_EmailNotificationService.notifyAllIPMProjectLeadersOfArchivedBet(archivedBets);
+    //BET_EmailNotificationService.notifyAllIPMProjectLeadersOfArchivedBet(archivedBets);
   }
 
   /************************************************************
@@ -78,7 +78,7 @@ public with sharing class BET_BETHandlerCls {
   *************************************************************/
   private static void unArchiveBETs(List<uw_BET__c> unArchivedBets){
     archiveUnarchiveChatterGroups(unArchivedBets,false);
-    BET_EmailNotificationService.notifyAllIPMProjectLeadersOfUnArchivedBet(unArchivedBets);
+    //BET_EmailNotificationService.notifyAllIPMProjectLeadersOfUnArchivedBet(unArchivedBets);
     //BET_LinkingService.unlinkIPMsfromBets(unArchivedBets);
   }
 
