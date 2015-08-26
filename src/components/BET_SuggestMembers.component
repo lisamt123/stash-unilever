@@ -42,13 +42,6 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
     <apex:attribute name="usedInPopup" description="Indicator if component will be displayed in popup" type="Boolean" 
                         required="false" default="true"/>
     
-    1{!Suggested_Members}
-    2{!suggested_MembersCtrl}
-    3{!User_buckets}
-    4{!user_bucketsCtrl}
-    5{!Suggested_Managers}
-    6{!suggested_managersCtrl}
-    
     <p class="suggestedMembersInfo">
         {!$Label.BET_SuggestedMemberComponentWarn}
     </p>
@@ -86,6 +79,10 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
     <apex:actionFunction name="deleteMember" action="{!deleteMember}"  oncomplete="unlockUI();">
         <apex:param id="memberToDelete" name="memberToDelete" value="" assignTo="{!memberToDelete}"/>
     </apex:actionFunction>
+    <apex:actionFunction name="delExternalMemeber" action="{!delExternalMemeber}" oncomplete="unlockUI();">
+        <apex:param id="emailToDelete" name="emailToDelete" value="" assignTo="{!emailToDelete}"/>
+    </apex:actionFunction>
+
     <apex:actionFunction name="addMembers" action="{!addMembers}" >
     </apex:actionFunction>
     <apex:actionFunction action="{!skipPage}" name="skipPage" />
@@ -96,6 +93,8 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
     <apex:actionFunction action="{!addNewMembers}" name="addNewMembers" oncomplete="clearSearchForm();" reRender="suggestedMembersContainer">
         <apex:param name="newlyAddedUsers" value="" assignTo="{!newlyAddedUsers}"/>
     </apex:actionFunction>
+
+    <apex:actionFunction name="addExtMembers" action="{!addExternalMember}" reRender="suggestedMembersContainer"></apex:actionFunction>
     
     <apex:outputPanel layout="block" id="suggestedMembersContainer">
         <apex:variable value="{!1}" var="rowNum"/>
@@ -164,11 +163,64 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
              
         </div>
         <div style="clear: both;"/>
-        <div  class="addMembersBtn" onclick="addMembers();">
-            {!$Label.BET_SuggestedMemberComponentAddMember}
-        </div>
-        <div class="addMembersBtn" onclick="skipPage();">
-            {!$Label.BET_SuggestedMemberComponentSkipForNow}
+
+        <apex:outputPanel layout="block">
+            <div id="groupExternal" style="margin-top:10px;">
+            <div id="groupExternal_Colapse" style="float:left;" onclick="colapseExternalGroup()">
+                <img class="collapseExpandItem" alt="Collapse" src="{!$Resource.BETSuggestedMembers}/images/colapse.png" width="16px" height="16px"/>
+            </div>
+            <div id="groupExternal_Expand" style="float:left" onclick="expandExternalGroup()">
+                <img class="collapseExpandItem" alt="Expand" src="{!$Resource.BETSuggestedMembers}/images/expand.png" width="16px" height="16px"/>
+            </div>
+            <span style="font-weight:bold;">External Agency Members</span>
+            <span style="color:gray"> |  </span>
+            <span id="groupMembersCount" style="font-weight:bold;">{!externalMembers.size}</span>
+            <span>{!$Label.BET_SuggestedMemberMembers}</span>
+            <apex:outputPanel styleClass="collapseExpand">
+                  &nbsp;
+            </apex:outputPanel>
+            <apex:outputPanel styleClass="collapseExpand">
+               &nbsp;
+            </apex:outputPanel>
+            <div style="clear: both;"/>
+            <div class="horizontalLine"/>
+
+            <apex:repeat value="{!externalMembers}" var="eMember">
+
+                <div id="euserId_{!eMember.email}" class="memberContainer">
+                    <img class="circular" alt="{!eMember.email}" src="{!eMember.photo}" 
+                        width="80px" height="80px" />
+                            
+                    <div class="userTitle" >
+                        <span>{!eMember.email}</span>
+                    </div>        
+                    <div class="trashIcon" style="background: url({!$Resource.BETSuggestedMembers}/images/trashIcon.png) no-repeat;" 
+                        onclick="delExternalMemeber('{!eMember.email}');">
+                    </div>
+                </div>
+
+            </apex:repeat>
+
+
+            <div style="clear: both;"/>
+            <div class="memberContainer">
+            <apex:inputText value="{!externalMemberEmail}" styleClass="addExternalMembersField" />
+            <div class="addExternalMembersBtn" onclick="addExtMembers();">
+                Add External Member
+            </div>
+            </div>
+            </div>
+        </apex:outputPanel>
+
+        <div style="clear: both;"/>
+
+        <div>
+            <div  class="addMembersBtn" onclick="addMembers();">
+                {!$Label.BET_SuggestedMemberComponentAddMember}
+            </div>
+            <div class="addMembersBtn" onclick="skipPage();">
+                {!$Label.BET_SuggestedMemberComponentSkipForNow}
+            </div>
         </div>
     </apex:outputPanel>
     <!-- Modal -->
@@ -191,7 +243,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                     </div>
                     
                     <apex:outputPanel styleClass="scroll" id="modalSearchResult" layout="block">
-                        <apex:outputLabel   id="noResultsFound" rendered="{!freeAddMembers.size == 0}" 
+                        <apex:outputLabel id="noResultsFound" rendered="{!freeAddMembers.size == 0}" 
                                             value="{!$Label.BET_SuggestedMemberModalNoResults}" 
                                             style="{!IF(usedInPopup,'padding-left:20px;','')}"/>
                         <apex:repeat value="{!freeAddMembers}" var="memberItem">
