@@ -479,10 +479,6 @@
     </types>
     <types>
         <members>*</members>
-        <name>Letterhead</name>
-    </types>
-    <types>
-        <members>*</members>
         <name>ListView</name>
     </types>
     <types>
