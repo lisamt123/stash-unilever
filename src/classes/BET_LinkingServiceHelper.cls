@@ -1,4 +1,4 @@
-public class BET_LinkingServiceHelper {
+public without sharing class BET_LinkingServiceHelper {
 
 	private BET_LinkingServiceHelper() {}
 

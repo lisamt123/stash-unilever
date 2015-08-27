@@ -90,7 +90,7 @@ public with sharing class uw_BetEditController {
         }
 
         currentUserIsOwner = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(bet.id, UserInfo.getUserId());
-        currentUserIsBetAdmin = false;
+        currentUserIsBetAdmin = BET_CommonService.isHubAdmin();
     } 
 
     /*****************************************************************************************
