@@ -81,17 +81,36 @@ public with sharing class BET_MemberRequestHandlerCls {
     public static void createTeamMemberForApprovedRequest(List<BET_Member_Request__c> memberRequestLst,Map<Id,BET_Member_Request__c> oldMap){
         System.debug('Entring createTeamMemberForApprovedRequest  with param @memberRequestLst:'+memberRequestLst+
                     ' @memberRequestLst: '+oldMap);
+
+        Map<Id,Set<Id>> betTeamMembersMap = new Map<Id,Set<Id>>();
+        Set<Id> bets = new Set<Id>();
+        for(BET_Member_Request__c mRequest : memberRequestLst){
+            bets.add(mRequest.Brand_Experience_Toolkit__c);
+        }
+
+        for(uw_BET_Team_Member__c tMember : [select id , Team_Member__c, BET__c from uw_BET_Team_Member__c where BET__c in: bets]){
+            if(betTeamMembersMap.keySet().contains(tMember.BET__c)){
+                betTeamMembersMap.get(tMember.BET__c).add(tMember.Team_Member__c);
+            } else {
+                betTeamMembersMap.put(tMember.BET__c,new Set<Id> {tMember.Team_Member__c});
+            }
+        }
+
         List<uw_BET_Team_Member__c> teamMembersToInsert = new List<uw_BET_Team_Member__c>();
         for(BET_Member_Request__c memberRequest : memberRequestLst){
             //if old map null then it's a newly created record check if status if apporved
             if(oldMap == null && memberRequest.Status__c == Label.BETTeamMemberRequestApprovedStatus){
                 //create new Tem Member 
-                teamMembersToInsert.add(createTeamMemberFromRequest(memberRequest));
+                if(betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.UserId__c)){
+                    teamMembersToInsert.add(createTeamMemberFromRequest(memberRequest));
+                }
             }else if(oldMap != null){
                 //record already exist in db it's update operation
                 String OldMapStatus = oldMap.containsKey(memberRequest.id)  ? oldMap.get(memberRequest.id).Status__c : null;
                 if(memberRequest.Status__c == Label.BETTeamMemberRequestApprovedStatus &&  memberRequest.Status__c != OldMapStatus){
-                    teamMembersToInsert.add(createTeamMemberFromRequest(memberRequest));
+                    if(betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.UserId__c)){
+                        teamMembersToInsert.add(createTeamMemberFromRequest(memberRequest));
+                    }
                 }
             }
         }

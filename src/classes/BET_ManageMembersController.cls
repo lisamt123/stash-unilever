@@ -66,10 +66,15 @@ global without sharing class BET_ManageMembersController {
         System.debug('Entering addMember');
         PageReference pr = null;
         if(betMemberRequest.UserId__c != null){
-            betMemberRequest.Bet_owner__c = bet.ownerid;
-            betMemberRequest.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED ;
-            betMemberRequest.External_User_Request__c = false;
-            insert betMemberRequest;
+            try{
+                betMemberRequest.Bet_owner__c = bet.ownerid;
+                betMemberRequest.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED ;
+                betMemberRequest.External_User_Request__c = false;
+                insert betMemberRequest;
+            } catch (Exception ex){
+                return null;
+            }
+
             pr = forward();
         }
         System.debug('Exit addMember : ' + pr);
@@ -177,9 +182,14 @@ global without sharing class BET_ManageMembersController {
     *************************************************************/
     public PageReference doApprove(){
         System.debug('Entering doApprove : ' + selectedRequestId);
+        
         BET_Member_Request__c request = [select Status__c from BET_Member_Request__c where id=:selectedRequestId];
         request.Status__c = 'Approved';
-        update request;
+        try{
+            update request;
+        } catch (Exception e){
+            return null;
+        }
         PageReference pr = forward();
         System.debug('Exit doApprove');
         return pr;
@@ -195,7 +205,11 @@ global without sharing class BET_ManageMembersController {
         System.debug('Entering doDeny : ' + selectedRequestId);
         BET_Member_Request__c request = [select Status__c from BET_Member_Request__c where id=:selectedRequestId];
         request.Status__c = 'Rejected';
-        update request;
+        try{
+            update request;
+        }catch(Exception e){
+            return null;
+        }
         PageReference pr = forward();
         System.debug('Exit doDeny');
         return pr;
@@ -209,15 +223,7 @@ global without sharing class BET_ManageMembersController {
     *************************************************************/
     public PageReference massApprove(){
         System.debug('Entering massApprove');
-        List<BET_Member_Request__c> requests = new List<BET_Member_Request__c>();
-        for(MemberRequestWrapper memberRequest : memberRequests){
-            if(memberRequest.isSelected){
-                memberRequest.obj.Status__c = 'Approved';
-                requests.add(memberRequest.obj);
-            }
-        }
-        update requests;
-        PageReference pr = forward();
+        PageReference pr = doMassApproveDeny('Approved');
         System.debug('Exit massApprove : ' + pr);
         return pr;
     }
@@ -230,14 +236,25 @@ global without sharing class BET_ManageMembersController {
     *************************************************************/
     public PageReference massDeny(){
         System.debug('Entering massDeny');
+        PageReference pr = doMassApproveDeny('Rejected');
+        System.debug('Exit massDeny : ' + pr);
+        return pr;
+    }
+
+    private PageReference doMassApproveDeny(String status){
+        System.debug('Entering massDeny');
         List<BET_Member_Request__c> requests = new List<BET_Member_Request__c>();
         for(MemberRequestWrapper memberRequest : memberRequests){
             if(memberRequest.isSelected){
-                memberRequest.obj.Status__c = 'Rejected';
+                memberRequest.obj.Status__c = status;
                 requests.add(memberRequest.obj);
             }
         }
-        update requests;
+        try{
+            update requests;
+        }catch (Exception e){
+            return null;
+        }
         PageReference pr = forward();
         System.debug('Exit massDeny : ' + pr);
         return pr;
