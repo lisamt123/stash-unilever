@@ -146,8 +146,14 @@ public with sharing class BET_UpsertBETController {
 		PageReference pageRef = null;
 		try{
 			uw_Bet__c newBET = buildBETObject();
-			upsert newBET;
-			pageRef = new PageReference(cback+newBET.id);
+			Boolean betNameExists = BET_COmmonService.checkIfBetExists(newBET);
+			if(betNameExists){
+				ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, Label.BET_NameExists));
+				return null;
+			} else {
+				upsert newBET;
+				pageRef = new PageReference(cback+newBET.id);
+			}
 		}catch(Exception e){
 			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception Saving BET record'+e));
 			return null;

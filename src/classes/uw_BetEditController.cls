@@ -173,9 +173,13 @@ public with sharing class uw_BetEditController {
         compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
         bet = moveComponentDataToBET(bet,compData);
         List<String> errorMessages = validateBET(bet);
-        if(errorMessages.isEmpty()){
+        Boolean betNameExists = BET_COmmonService.checkIfBetExists(bet);
+        if(errorMessages.isEmpty() && !betNameExists){
             update bet;   
         } else {
+            if(betNameExists) {
+                errorMessages.add(Label.BET_NameExists);
+            }
             displayErrors(errorMessages);
         }
     }
@@ -222,11 +226,16 @@ public with sharing class uw_BetEditController {
                     compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
                     bet = moveComponentDataToBET(bet,compData);
                     List<String> errorMessages = validateBET(bet);
-                    if(errorMessages.isEmpty()){
+                    Boolean betNameExists = BET_COmmonService.checkIfBetExists(bet);
+                    if(errorMessages.isEmpty() && !betNameExists){
                         initialOwnerDoesNotMatch();
                         return null;
                     } else {
+                        if(betNameExists) {
+                            errorMessages.add(Label.BET_NameExists);
+                        }
                         displayErrors(errorMessages);
+                        return null;
                     }
                 }catch (Exception e) {
                     System.Debug('Problem with BET Owner change' + e.getMessage()); 

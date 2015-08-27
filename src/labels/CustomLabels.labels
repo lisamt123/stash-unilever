@@ -780,6 +780,14 @@ Are you sure you wish to proceed?</value>
         <value>Name</value>
     </labels>
     <labels>
+        <fullName>BET_NameExists</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_NameExists</shortDescription>
+        <value>BET with given name already exists in the system.</value>
+    </labels>
+    <labels>
         <fullName>BET_NewIPMProjectIsLinking</fullName>
         <categories>BET</categories>
         <language>en_US</language>
