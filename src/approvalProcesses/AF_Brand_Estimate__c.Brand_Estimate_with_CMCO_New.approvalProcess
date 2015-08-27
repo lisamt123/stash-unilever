@@ -14,7 +14,15 @@
         <allowDelegate>true</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>paul.jones@westpoint.ltd.uk.cmco</name>
+                <name>helen.percy@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>romi.arya@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>tammy.hourigan@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

@@ -427,9 +427,9 @@
     </listViews>
     <listViews>
         <fullName>CEC_France_Queue_cec_Alert_Rule</fullName>
-        <filterScope>Queue</filterScope>
+        <filterScope>Mine</filterScope>
         <label>CEC France Queue</label>
-        <queue>CEC_France_Queue</queue>
+        <language>fr</language>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -525,6 +525,26 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>India_Alerts</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>Alert_Type_Image__c</columns>
+        <columns>All_Market__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Threshold__c</columns>
+        <columns>Type__c</columns>
+        <columns>Group_By_Day_Code__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>contains</operation>
+            <value>sujeet,pankaj</value>
+        </filters>
+        <label>India Alerts</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>TO_France_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>TO France Queue</label>
@@ -532,6 +552,17 @@
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>phindia</fullName>
+        <columns>NAME</columns>
+        <columns>Active__c</columns>
+        <columns>L0_Product_Category__c</columns>
+        <columns>Market__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>phindia</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Alert Rule Name</label>

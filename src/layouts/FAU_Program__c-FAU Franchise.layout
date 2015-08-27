@@ -34,10 +34,6 @@
                 <behavior>Edit</behavior>
                 <field>FAU_Training_Centre__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>test_Bhavneesh__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -89,10 +85,6 @@
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>FAU_Start_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Test_Bio_Deadline__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -236,7 +228,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hc0000000HD9j</masterLabel>
+        <masterLabel>00hc0000000Gyaf</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>2</sizeY>
         <summaryLayoutItems>

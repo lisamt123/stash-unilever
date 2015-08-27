@@ -8,7 +8,6 @@ global class af_SendCurrencyReminder implements Schedulable
         if(!Test.isRunningtest())
         {
             DayofMonth=string.valueOf(system.now().day());
-            
         }
         else
         {
@@ -16,12 +15,12 @@ global class af_SendCurrencyReminder implements Schedulable
         }
           
 
-        if(DayofMonth=='01')
-        {
-            Send_Email__c mynewmail = new Send_Email__c();
-            mynewmail.AF_CurrencyUpdateRequired__c = true;
-            insert mynewmail;
-        }
+		if(DayofMonth=='01')
+		{
+    		Send_Email__c mynewmail = new Send_Email__c();
+    		mynewmail.AF_CurrencyUpdateRequired__c = true;
+    		insert mynewmail;
+		}
         
     }
     //finish Mehtod

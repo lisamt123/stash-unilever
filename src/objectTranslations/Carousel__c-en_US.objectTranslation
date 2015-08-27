@@ -9,10 +9,6 @@
         <value>Carousel</value>
     </caseValues>
     <fields>
-        <label><!-- ExtID --></label>
-        <name>ExtID__c</name>
-    </fields>
-    <fields>
         <label><!-- Rotate Speed --></label>
         <name>RotateSpeed__c</name>
         <picklistValues>

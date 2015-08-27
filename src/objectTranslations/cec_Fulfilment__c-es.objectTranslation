@@ -51,10 +51,6 @@
         <relationshipLabel><!-- Fulfilment --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Country &amp; BrandLogo --></label>
-        <name>Country_BrandLogo__c</name>
-    </fields>
-    <fields>
         <label>País</label>
         <name>Country__c</name>
         <picklistValues>
@@ -328,10 +324,6 @@
         <errorMessage>Falta la a información de &quot;&quot;tipo&quot;&quot; para crear un fulfilment</errorMessage>
         <name>FulfilmentType_MandatoryCheck</name>
     </validationRules>
-    <webLinks>
-        <label><!-- Fulfilment_Lookup --></label>
-        <name>Fulfilment_Lookup</name>
-    </webLinks>
     <webLinks>
         <label>Nuevo Fulfilment</label>
         <name>New_Fulfilment</name>

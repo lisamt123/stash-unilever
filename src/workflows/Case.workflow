@@ -67,18 +67,6 @@
         <template>CEC_Unilever/cec_Default_Auto_Response</template>
     </alerts>
     <alerts>
-        <fullName>US027_subjectMerged</fullName>
-        <ccEmails>kalpesh.thakur@capgemini.com</ccEmails>
-        <description>US027_subjectMerged</description>
-        <protected>false</protected>
-        <recipients>
-            <recipient>kalpesh.thakur@capgemini.com</recipient>
-            <type>user</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>CEC_Unilever/CEC_SubjectMerged</template>
-    </alerts>
-    <alerts>
         <fullName>close_Case_Survey</fullName>
         <description>close Case Survey</description>
         <protected>false</protected>
@@ -88,17 +76,6 @@
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/Close_Case_Survey</template>
-    </alerts>
-    <alerts>
-        <fullName>test</fullName>
-        <description>test</description>
-        <protected>false</protected>
-        <recipients>
-            <field>ContactEmail</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>CEC_Unilever/CEC_AutoResponse_Unilever_IN</template>
     </alerts>
     <fieldUpdates>
         <fullName>CEC_Benelux_Market_Field_Update</fullName>
@@ -183,52 +160,6 @@
         <field>Market__c</field>
         <literalValue>United Kingdom</literalValue>
         <name>CEC UK Market Field Update</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>CEC_Update_Market_on_Case</fullName>
-        <description>CEC Update Market on Case</description>
-        <field>Market__c</field>
-        <literalValue>UK &amp; Ireland</literalValue>
-        <name>CEC Update Market on Case</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>India_Market_Update</fullName>
-        <field>Market__c</field>
-        <literalValue>India</literalValue>
-        <name>India_Market_Update</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Market_Update_India</fullName>
-        <field>Market__c</field>
-        <literalValue>India</literalValue>
-        <name>Market Update India</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Market_Update_UK</fullName>
-        <field>Market__c</field>
-        <literalValue>UK &amp; Ireland</literalValue>
-        <name>Market Update_UK</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Market_update</fullName>
-        <field>Market__c</field>
-        <literalValue>India</literalValue>
-        <name>Market_update</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -328,25 +259,6 @@
         <protected>false</protected>
     </fieldUpdates>
     <rules>
-        <fullName>CEC %3A CaseOrigin Update</fullName>
-        <actions>
-            <name>CEC_Case_Origin_to_email</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Case.Origin</field>
-            <operation>contains</operation>
-            <value>Email UK,Email India,Email Nordic,Email France,Email Benelux,Email DACH,Email Cyprus,Email Czech Republic,Email Greece,Email Hungary,Email Italy,Email Poland,Email Portugal,Email Spain,Email Baltics,Email TO France,Email Sri Lanka</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Case.Country_Name__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <description>CEC : To update the Case Origin field.</description>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
         <fullName>CEC Benelux Market Field Update</fullName>
         <actions>
             <name>CEC_Benelux_Market_Field_Update</name>
@@ -356,7 +268,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -371,7 +283,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -386,7 +298,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -401,7 +313,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -416,7 +328,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -431,7 +343,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -446,7 +358,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -461,7 +373,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -476,7 +388,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -491,7 +403,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -506,7 +418,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -535,7 +447,7 @@
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -554,7 +466,7 @@
             <name>CEC_India_Market_Field_Update</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -574,7 +486,7 @@ ex: Case Origin : Email India then Update Market : India</description>
             <name>CEC_Nordic_Market_Field_Update</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -593,7 +505,7 @@ ex: Case Origin : Email India then Update Market : India</description>
             <name>CEC_UK_Market_Field_Update</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -631,34 +543,6 @@ ex: Case Origin : Email India then Update Market : India</description>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
-        <fullName>CEC_India_AutoResponse</fullName>
-        <actions>
-            <name>test</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>India_Market_Update</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Case.Origin</field>
-            <operation>equals</operation>
-            <value>Email</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Account.IsPersonAccount</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Account.BillingCountry</field>
-            <operation>equals</operation>
-            <value>India</value>
-        </criteriaItems>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
         <fullName>CEC_India_Email_AutoResponse</fullName>
         <actions>
             <name>AutoResponse_Email_on_Case_Creation</name>
@@ -677,27 +561,6 @@ ex: Case Origin : Email India then Update Market : India</description>
         </criteriaItems>
         <criteriaItems>
             <field>Case.Market__c</field>
-            <operation>equals</operation>
-            <value>India</value>
-        </criteriaItems>
-        <description>Auto Response Email on Case Creation for India for Case Origin Email</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>CEC_India_Email_AutoResponse2</fullName>
-        <active>false</active>
-        <criteriaItems>
-            <field>Case.Origin</field>
-            <operation>equals</operation>
-            <value>Email</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Account.IsPersonAccount</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Account.BillingCountry</field>
             <operation>equals</operation>
             <value>India</value>
         </criteriaItems>
@@ -785,7 +648,7 @@ ex: Case Origin : Email India then Update Market : India</description>
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>
@@ -800,7 +663,7 @@ ex: Case Origin : Email India then Update Market : India</description>
             <name>close_Case_Survey</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Case.Status</field>
             <operation>equals</operation>
@@ -859,7 +722,7 @@ ex: Case Origin : Email India then Update Market : India</description>
             <name>CEC_Case_Origin_to_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>equals</operation>

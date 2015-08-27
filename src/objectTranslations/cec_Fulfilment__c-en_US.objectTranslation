@@ -51,10 +51,6 @@
         <relationshipLabel><!-- Fulfilment --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Country &amp; BrandLogo --></label>
-        <name>Country_BrandLogo__c</name>
-    </fields>
-    <fields>
         <label><!-- Country --></label>
         <name>Country__c</name>
         <picklistValues>
@@ -328,17 +324,13 @@
         <name>FulfilmentType_MandatoryCheck</name>
     </validationRules>
     <webLinks>
-        <label><!-- Fulfilment_Lookup --></label>
-        <name>Fulfilment_Lookup</name>
-    </webLinks>
-    <webLinks>
         <label><!-- New_Fulfilment --></label>
         <name>New_Fulfilment</name>
     </webLinks>
     <workflowTasks>
         <description><!-- Your consumer correspondence has been rejected by the Quality Check team and needs further amendments before being sent.
 
-Please follow the link to the record and amend as requested.
+Please follow the link to the record and amend as requested. 
 
 Thank you. --></description>
         <name>CEC_Rejected_correspondence</name>

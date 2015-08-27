@@ -13,10 +13,6 @@
         <name>Account_Owner_Active_Flag__c</name>
     </fields>
     <fields>
-        <label><!-- CaseOrigin --></label>
-        <name>CaseOrigin__c</name>
-    </fields>
-    <fields>
         <label><!-- Country --></label>
         <name>Country__c</name>
         <relationshipLabel><!-- Case Market Mappings --></relationshipLabel>
@@ -145,10 +141,6 @@
             <masterLabel>George</masterLabel>
             <translation><!-- George --></translation>
         </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Test --></label>
-        <name>Test__c</name>
     </fields>
     <layouts>
         <layout>Case Market Mapping Layout</layout>

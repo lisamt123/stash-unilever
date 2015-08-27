@@ -530,42 +530,7 @@
         <trackTrending>false</trackTrending>
         <type>Url</type>
     </fields>
-    <fields>
-        <fullName>Test_Bio_Deadline__c</fullName>
-        <externalId>false</externalId>
-        <formula>FAU_Start_Date__c +7</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Test Bio Deadline</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>test_Bhavneesh__c</fullName>
-        <externalId>false</externalId>
-        <label>test Bhavneesh</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
     <label>Program</label>
-    <listViews>
-        <fullName>All</fullName>
-        <columns>FAU_Program_Type__c</columns>
-        <columns>NAME</columns>
-        <columns>FAU_Primary_Location__c</columns>
-        <columns>FAU_Start_Date__c</columns>
-        <columns>FAU_Status__c</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>FAU_Icon__c</columns>
-        <columns>OWNER.LAST_NAME</columns>
-        <columns>CREATED_DATE</columns>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
     <listViews>
         <fullName>FAU_Core</fullName>
         <columns>FAU_Program_Type__c</columns>
@@ -603,6 +568,20 @@
             <value>FAU_Program__c.Franchise</value>
         </filters>
         <label>Franchise</label>
+    </listViews>
+    <listViews>
+        <fullName>FAU_Program_Wave_View_All</fullName>
+        <columns>FAU_Program_Type__c</columns>
+        <columns>NAME</columns>
+        <columns>FAU_Primary_Location__c</columns>
+        <columns>FAU_Start_Date__c</columns>
+        <columns>FAU_Status__c</columns>
+        <columns>FAU_Participant_Chatter_Group__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>FAU_Template</fullName>
@@ -1051,12 +1030,6 @@
         <errorDisplayField>FAU_Primary_Location__c</errorDisplayField>
         <errorMessage>The Primary Location is not chosen. Please select the Primary Location of the Wave.</errorMessage>
     </validationRules>
-    <validationRules>
-        <fullName>Test_Deadline_Webnar</fullName>
-        <active>false</active>
-        <errorConditionFormula>IF(FAU_Biography_Deadline__c &lt;= FAU_Start_Date__c +6, True, False)</errorConditionFormula>
-        <errorMessage>Please Provide correct Dates</errorMessage>
-    </validationRules>
     <webLinks>
         <fullName>FAU_Create_Program_from_Template</fullName>
         <availability>online</availability>
@@ -1097,7 +1070,7 @@
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
-        <url>/00Oc0000000PmA3?pv0={!FAU_Program__c.Id}</url>
+        <url>/00OE0000002dB9w?pv0={!FAU_Program__c.Id}</url>
     </webLinks>
     <webLinks>
         <fullName>FAU_Generate_Biography_PDF</fullName>
@@ -1134,7 +1107,7 @@
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
-        <url>/00Oc0000000PmA0?pv0={!FAU_Program__c.Id}</url>
+        <url>/00OE0000002dB9t?pv0={!FAU_Program__c.Id}</url>
     </webLinks>
     <webLinks>
         <fullName>FAU_Participants_Module_Workbook_List</fullName>
@@ -1153,7 +1126,7 @@
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
-        <url>/00Oc0000000PmA1?pv0={!FAU_Program__c.Id}</url>
+        <url>/00OE0000002dB9u?pv0={!FAU_Program__c.Id}</url>
     </webLinks>
     <webLinks>
         <fullName>FAU_Participants_Workbook_List</fullName>
@@ -1172,6 +1145,6 @@
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
-        <url>/00Oc0000000PmA2?pv0={!FAU_Program__c.Id}</url>
+        <url>/00OE0000002dB9v?pv0={!FAU_Program__c.Id}</url>
     </webLinks>
 </CustomObject>

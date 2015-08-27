@@ -2,9 +2,9 @@
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <outboundMessages>
         <fullName>Core_CA_IP_Ariba_OutboundMessage</fullName>
-        <apiVersion>32.0</apiVersion>
-        <description>Outbound Call for Ariba Approve/Reject Notifications.</description>
-        <endpointUrl>https://sbi.ariba-uat.cloudhub.unileverservices.com:8082/PurchaseResponse</endpointUrl>
+        <apiVersion>33.0</apiVersion>
+        <description>Outbound Call for Ariba Approve/Reject Notifications</description>
+        <endpointUrl>https://sbi.ariba.cloudhub.unileverservices.com:8082/PurchaseResponse</endpointUrl>
         <fields>Comments__c</fields>
         <fields>CurrentDateTime__c</fields>
         <fields>Header_ExternalId__c</fields>
@@ -13,38 +13,38 @@
         <fields>Status__c</fields>
         <fields>Visible_to_Supplier__c</fields>
         <includeSessionId>false</includeSessionId>
-        <integrationUser>ariba_admin@unilever.com</integrationUser>
+        <integrationUser>ariba.system@unilever.com</integrationUser>
         <name>Core CA IP Ariba OutboundMessage</name>
         <protected>false</protected>
         <useDeadLetterQueue>false</useDeadLetterQueue>
     </outboundMessages>
     <outboundMessages>
         <fullName>Core_CA_IP_GTES_Approve_OutboundMessage</fullName>
-        <apiVersion>32.0</apiVersion>
+        <apiVersion>33.0</apiVersion>
         <description>Outbound Call for GTES Approve Notifications.</description>
-        <endpointUrl>https://cloudhub.unileverservices.com:8081/SendGTESFormApprove</endpointUrl>
+        <endpointUrl>https://sbi.gtes.cloudhub.unileverservices.com:8081/SendGTESFormApprove</endpointUrl>
         <fields>Header_ExternalId__c</fields>
         <fields>Id</fields>
         <fields>Interested_Party_Email__c</fields>
         <fields>Status__c</fields>
         <includeSessionId>false</includeSessionId>
-        <integrationUser>gtes_admin@unilever.com</integrationUser>
+        <integrationUser>gtes.system@unilever.com</integrationUser>
         <name>Core CA IP GTES Approve OutboundMessage</name>
         <protected>false</protected>
         <useDeadLetterQueue>false</useDeadLetterQueue>
     </outboundMessages>
     <outboundMessages>
         <fullName>Core_CA_IP_GTES_Reject_OutboundMessage</fullName>
-        <apiVersion>32.0</apiVersion>
+        <apiVersion>33.0</apiVersion>
         <description>Outbound Call for GTES Reject Notifications.</description>
-        <endpointUrl>https://cloudhub.unileverservices.com:8081/SendGTESFormReturn</endpointUrl>
+        <endpointUrl>https://sbi.gtes.cloudhub.unileverservices.com:8081/SendGTESFormReturn</endpointUrl>
         <fields>Comments__c</fields>
         <fields>Header_ExternalId__c</fields>
         <fields>Id</fields>
         <fields>Interested_Party_Email__c</fields>
         <fields>Status__c</fields>
         <includeSessionId>false</includeSessionId>
-        <integrationUser>gtes_admin@unilever.com</integrationUser>
+        <integrationUser>gtes.system@unilever.com</integrationUser>
         <name>Core CA IP GTES Reject OutboundMessage</name>
         <protected>false</protected>
         <useDeadLetterQueue>false</useDeadLetterQueue>

@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldUpdates>
-        <fullName>Deadline_Date</fullName>
-        <field>test_Bhavneesh__c</field>
-        <formula>FAU_Start_Date__c +7</formula>
-        <name>Deadline Date</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>FAU_Update_Program_Recordtype_Status</fullName>
         <description>Update Program Recordtype Status to Inactive</description>
         <field>RecordTypeId</field>
@@ -34,15 +25,5 @@
         </criteriaItems>
         <description>FIELD UPDATE: Program make template inactive.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Test Deadline Date</fullName>
-        <actions>
-            <name>Deadline_Date</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <formula>!ISBLANK(FAU_Start_Date__c )</formula>
-        <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

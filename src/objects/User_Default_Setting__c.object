@@ -106,6 +106,16 @@
         <type>Lookup</type>
     </fields>
     <label>User Default Setting</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>UserName__c</columns>
+        <columns>Country__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <displayFormat>User default-{0000}</displayFormat>
         <label>User Default Setting Name</label>

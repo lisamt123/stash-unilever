@@ -292,6 +292,10 @@
                 <behavior>Edit</behavior>
                 <field>AF_Category_Name_Wk__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_Dont_Show_on_Report__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -368,11 +372,11 @@
                 <field>AF_AgencyUsers5__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>AF_Category_Finance_Approved__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>AF_CMCO_Rejected__c</field>
             </layoutItems>
             <layoutItems>
@@ -576,7 +580,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hc0000000Gvd7</masterLabel>
+        <masterLabel>00hE00000097KoM</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

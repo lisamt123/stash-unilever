@@ -829,24 +829,17 @@
     <label>PO Report</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>OBJECT_ID</columns>
-        <columns>NAME</columns>
         <columns>AF_Brand_Estimate_Name__c</columns>
+        <columns>AF_Compound_Key__c</columns>
+        <columns>AF_Total__c</columns>
+        <columns>AF_Calculated_PO_Value_Formula__c</columns>
+        <columns>AF_Previous_Quarter_Value__c</columns>
         <columns>AF_QuatersAlreadyDone__c</columns>
         <columns>AF_CountNoQuarters__c</columns>
         <columns>AF_Max_Quarter__c</columns>
-        <columns>AF_Traditional__c</columns>
-        <columns>AF_Traditional_Local__c</columns>
-        <columns>AF_Previous_Quarter_Value_TL__c</columns>
-        <columns>AF_Calculate_Tradition_Local__c</columns>
+        <columns>AF_Fiscal_Year__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>AF_PO_Report_Type__c</field>
-            <operation>equals</operation>
-            <value>OOPS</value>
-        </filters>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>PO-{000000}</displayFormat>

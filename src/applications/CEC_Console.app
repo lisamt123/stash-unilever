@@ -189,7 +189,6 @@
     <tab>mdm_Product_Category__c</tab>
     <tab>cec_Store__c</tab>
     <tab>User_Default_Setting__c</tab>
-    <tab>mdm_Global_Listening_Tree__c</tab>
     <workspaceMappings>
         <mapping>
             <tab>Article__c</tab>
@@ -211,9 +210,6 @@
         </mapping>
         <mapping>
             <tab>mdm_Case_Product__c</tab>
-        </mapping>
-        <mapping>
-            <tab>mdm_Global_Listening_Tree__c</tab>
         </mapping>
         <mapping>
             <tab>mdm_Product_Category__c</tab>

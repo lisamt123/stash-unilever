@@ -285,19 +285,17 @@
     </fields>
     <label>Case Brand Mapping</label>
     <listViews>
-        <fullName>All</fullName>
+        <fullName>All1</fullName>
         <columns>NAME</columns>
         <columns>Inbound_Email__c</columns>
+        <columns>Country__c</columns>
+        <columns>Language__c</columns>
         <columns>Brand__c</columns>
-        <columns>Outbound_Email_Address__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Brand_Market__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>All1</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
     </listViews>
     <listViews>
         <fullName>CEC_Baltics_Queue_cec_Case_Brand_Mapping</fullName>
@@ -310,11 +308,21 @@
     </listViews>
     <listViews>
         <fullName>CEC_Benelux_Queue_cec_Case_Brand_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>Inbound_Email__c</columns>
+        <columns>Country__c</columns>
+        <columns>Language__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Skill__c</columns>
+        <columns>Default_Template_Name__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Benelux Queue</label>
+        <language>en_US</language>
         <queue>CEC_Benelux_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Benelux</role>
+            <role>CEC_User_Benelux</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -337,26 +345,53 @@
     </listViews>
     <listViews>
         <fullName>CEC_DACH_Queue_cec_Case_Brand_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>Inbound_Email__c</columns>
+        <columns>Country__c</columns>
+        <columns>Language__c</columns>
+        <columns>Brand__c</columns>
+        <columns>OWNER.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <label>CEC DACH Queue</label>
+        <language>en_US</language>
         <queue>CEC_DACH_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_DACH</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_User_DACH</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_France_Queue_cec_Case_Brand_Mapping</fullName>
+        <columns>Inbound_Email__c</columns>
+        <columns>Country__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Default_Template_Name__c</columns>
+        <columns>Language__c</columns>
+        <columns>Skill__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC France Queue</label>
+        <language>en_US</language>
         <queue>CEC_France_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_General_Queue_cec_Case_Brand_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>Inbound_Email__c</columns>
+        <columns>Country__c</columns>
+        <columns>Language__c</columns>
+        <columns>Brand__c</columns>
+        <columns>OWNER.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <label>General Queue</label>
+        <language>en_US</language>
         <queue>CEC_General_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -364,8 +399,16 @@
     </listViews>
     <listViews>
         <fullName>CEC_Greece_Queue_cec_Case_Brand_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>Inbound_Email__c</columns>
+        <columns>Country__c</columns>
+        <columns>Language__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Skill__c</columns>
+        <columns>OWNER.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Greece Queue</label>
+        <language>en_US</language>
         <queue>CEC_Greece_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -391,17 +434,35 @@
     </listViews>
     <listViews>
         <fullName>CEC_Italy_Queue_cec_Case_Brand_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>Inbound_Email__c</columns>
+        <columns>Country__c</columns>
+        <columns>Default_Template_Name__c</columns>
+        <columns>Language__c</columns>
+        <columns>Skill__c</columns>
+        <columns>OWNER.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Italy Queue</label>
+        <language>en_US</language>
         <queue>CEC_Italy_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_Italy</role>
+            <role>CEC_User_Italy</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Nordic_Queue_cec_Case_Brand_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>Inbound_Email__c</columns>
+        <columns>Language__c</columns>
+        <columns>Country__c</columns>
+        <columns>Brand__c</columns>
+        <columns>OWNER.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Nordic Queue</label>
+        <language>en_US</language>
         <queue>CEC_Nordic_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -418,8 +479,16 @@
     </listViews>
     <listViews>
         <fullName>CEC_Portugal_Queue_cec_Case_Brand_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>Inbound_Email__c</columns>
+        <columns>Country__c</columns>
+        <columns>Language__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Skill__c</columns>
+        <columns>OWNER.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Portugal Queue</label>
+        <language>en_US</language>
         <queue>CEC_Portugal_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

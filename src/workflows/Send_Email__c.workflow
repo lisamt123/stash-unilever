@@ -13,7 +13,6 @@
     </alerts>
     <alerts>
         <fullName>Email_to_send_out_when_Currency_Update_is_Required</fullName>
-        <ccEmails>reetha.joseph@cognizant.com</ccEmails>
         <description>Email to send out when Currency Update is Required</description>
         <protected>false</protected>
         <recipients>
