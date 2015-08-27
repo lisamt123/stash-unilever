@@ -188,4 +188,27 @@ public without sharing class BET_MasterDataService{
 		return uniqueBrands;
 	}
 
+	/************************************************************
+		Purpose: Method checks if there is valid relation between category and categroy group created
+		Parameters: Id categoryId, Id categoryGroupId
+		Returns: true if relation is valid;
+	*************************************************************/
+	public static Boolean isValidRelationWithCategoryAndCategoryGroup(Id categoryId, Id categoryGroupId){
+		if(categoryId == null || categoryGroupId == null) return false;
+		List<MDO_Category__c> category = [select id from MDO_Category__c where id =: categoryId and parent_id__r.parent_id__c =: categoryGroupId and category_type__c = 'Category' and status__c = 'Active'];
+		return !category.isEmpty();
+	}
+
+	/************************************************************
+		Purpose: Method checks if there is valid relation between category and brandposition created
+		Parameters: Id brandpositionId, Id category
+		Returns: true if relation is valid;
+	*************************************************************/
+	public static Boolean isValidRelationWithBrandPositionAndCategory(Id brandpositionId, Id category){
+		if(brandpositionId == null || category == null) return false;
+		Set<String> categoryAndSubs = getSubCategoriesForGivenCategory(String.valueOf(category));
+		List<MDO_BrandPosition__c> positions = [Select id, name from MDO_BrandPosition__c where id in (select brand_position_id__c from MDO_BrandPositions__c where product_category_id__c in: categoryAndSubs and status__c = 'Active') and id =:brandpositionId and status__c = 'Active'];
+		return !positions.isEmpty();
+	}
+
 }
