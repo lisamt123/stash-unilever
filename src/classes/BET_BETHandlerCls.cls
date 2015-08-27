@@ -222,7 +222,9 @@ public without sharing class BET_BETHandlerCls {
     }
 
     if(oldRecord.Launch_Date__c != newRecord.Launch_Date__c){
-      diffs.add(BET_LAUNCH_DATE_CHANGED+oldRecord.Launch_Date__c+BET_TO+newRecord.Launch_Date__c);
+      String oldDate = oldRecord.Launch_Date__c != null ? String.valueOf(oldRecord.Launch_Date__c).substring(0,10) : '';
+      String newDate = newRecord.Launch_Date__c != null ? String.valueOf(newRecord.Launch_Date__c).substring(0,10) : '';
+      diffs.add(BET_LAUNCH_DATE_CHANGED+oldDate+BET_TO+newDate);
     }
 
     if(oldRecord.IPM_Project__c != newRecord.IPM_Project__c){
