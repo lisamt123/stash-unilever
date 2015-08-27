@@ -195,42 +195,6 @@
         </filters>
         <label>Last 7 Days</label>
     </listViews>
-<<<<<<< HEAD
-    <listViews>
-        <fullName>In_Scope_Ideas</fullName>
-        <columns>IDEA.TITLE</columns>
-        <columns>IDEA.CREATED_BY_NICKNAME</columns>
-        <columns>VOTE_STATS.WEIGHTED_SUM</columns>
-        <columns>IDEA.NUM_COMMENTS</columns>
-        <columns>IDEA.STATUS</columns>
-        <columns>IDEA.CATEGORIES</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>IDEA.STATUS</field>
-            <operation>equals</operation>
-            <value>In-scope</value>
-        </filters>
-        <label>In-Scope Ideas</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>Pending_Review</fullName>
-        <columns>IDEA.TITLE</columns>
-        <columns>IDEA.BODY</columns>
-        <columns>IDEA.CATEGORIES</columns>
-        <columns>IDEA.CREATED_BY_NICKNAME</columns>
-        <columns>VOTE_STATS.WEIGHTED_SUM</columns>
-        <columns>IDEA.NUM_COMMENTS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>IDEA.STATUS</field>
-            <operation>equals</operation>
-            <value>Pending Review</value>
-        </filters>
-        <label>Pending Review</label>
-        <language>en_US</language>
-    </listViews>
-=======
     <recordTypes>
         <fullName>InternalIdeasIdeaRecordType</fullName>
         <active>true</active>

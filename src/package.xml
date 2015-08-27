@@ -83,11 +83,6 @@
 		<name>ApprovalProcess</name>
 	</types>
 	<types>
-		<members>ULOneDriveQA</members>
-		<members>ULQATeantSPOnline</members>
-		<name>AuthProvider</name>
-	</types>
-	<types>
 		<members>AFBrandEstimateStCtrlExtSummary</members>
 		<members>AFCallingSchedulable_BrandEstimates</members>
 		<members>AF_AdjustQuater_Homepage_lightbox</members>
@@ -1683,12 +1678,6 @@
 		<name>ApexTrigger</name>
 	</types>
 	<types>
-		<members>Ice Cream Day</members>
-		<members>Internal Ideas</members>
-		<members>Sunset Portal</members>
-		<name>Community</name>
-	</types>
-	<types>
 		<members>AF_AfterBatch_Trigger__c</members>
 		<members>AF_AgencyEmailAlerts__c</members>
 		<members>AF_Agency_Bonus_Access__c</members>
@@ -2410,12 +2399,6 @@
 		<name>CustomPageWebLink</name>
 	</types>
 	<types>
-		<members>Agency_Fees_Online</members>
-		<members>test</members>
-		<members>test2</members>
-		<name>CustomSite</name>
-	</types>
-	<types>
 		<members>Chatter_File_Uploader_QA</members>
 		<members>FourAcres_QA</members>
 		<members>Inside_NewsCentre_QA</members>
@@ -2989,43 +2972,6 @@
 		<name>Layout</name>
 	</types>
 	<types>
-		<members>Agency_Fees_Letterhead</members>
-		<members>Agency_Roster</members>
-		<members>Blue_Comms_Planner</members>
-		<members>CEC_Ben_Jerry_Austria</members>
-		<members>CEC_Ben_Jerry_German_LetterHead</members>
-		<members>CEC_Ben_Jerry_s_Belgium</members>
-		<members>CEC_Ben_Jerry_s_GB</members>
-		<members>CEC_Flora_GB</members>
-		<members>CEC_Knorr_GB</members>
-		<members>CEC_Lipton_GB</members>
-		<members>CEC_Magnum_GB</members>
-		<members>CEC_Marmite_GB</members>
-		<members>CEC_PGTips_GB</members>
-		<members>CEC_SlimFast_GB</members>
-		<members>CEC_Unilever_Belgium</members>
-		<members>CEC_Unilever_France</members>
-		<members>CEC_Unilever_GB</members>
-		<members>CEC_Unilever_Greece</members>
-		<members>CEC_Unilever_Netherlands</members>
-		<members>CEC_Unilever_Spain</members>
-		<members>FAU</members>
-		<members>FAU_Letterhead</members>
-		<members>FAU_eXcel_rator</members>
-		<members>New_Issue_Alert</members>
-		<members>TO_Letter_Head</members>
-		<members>UL2020</members>
-		<members>cec_Blank_Letter</members>
-		<name>Letterhead</name>
-	</types>
-	<types>
-		<members>Agencies</members>
-		<members>Agency Fees Online</members>
-		<members>test</members>
-		<members>test2</members>
-		<name>Network</name>
-	</types>
-	<types>
 		<members>cp_Event__c.Approval_Request_Global</members>
 		<members>cp_Event__c.Approval_Request_Local</members>
 		<name>PostTemplate</name>
@@ -3361,13 +3307,6 @@
 		<members>test2 Profile</members>
 		<members>uwssosite1 Profile</members>
 		<name>Profile</name>
-	</types>
-	<types>
-		<members>Webtuna</members>
-		<members>contagious_ii</members>
-		<members>insideunilever</members>
-		<members>reCAPTCHA</members>
-		<name>RemoteSiteSetting</name>
 	</types>
 	<types>
 		<members>BBHPartnerUser</members>
@@ -3733,69 +3672,9 @@
 		<name>Workflow</name>
 	</types>
 	<types>
-		<members>AF_Images</members>
-		<members>AF_Images/Agency_Fees_Masthead.png</members>
-		<members>Agency_Collateral</members>
-		<members>Agency_Collateral/App_Logo.png</members>
-		<members>Agency_Roster</members>
-		<members>Agency_Roster/Unilever_Agency_List_Footer.jpg</members>
-		<members>Agency_Roster/Unilever_Agency_List_Header.jpg</members>
-		<members>CEC_Branding</members>
-		<members>CEC_Branding/Marmite_header01_jpg.jpg</members>
-		<members>CEC_Branding/PGTipsHeader01_jpg.jpg</members>
-		<members>CEC_Branding/PGTips_footer01_jpg.jpg</members>
-		<members>CEC_Branding/SlimFast_footer01_jpg.jpg</members>
-		<members>CEC_Branding/SlimFast_header01_jpg.jpg</members>
-		<members>CEC_Branding/Unilever_header01_gif.gif</members>
-		<members>CEC_Branding/b_j_email_logo_jpg.jpg</members>
-		<members>CEC_Branding/b_j_mail_footer_jpg.jpg</members>
-		<members>CEC_Branding/flora_email_logo_jpg.jpg</members>
-		<members>CEC_Branding/knorr_email_logo_jpg.jpg</members>
-		<members>CEC_Branding/lipton_email_logo_jpg.jpg</members>
-		<members>CEC_Branding/lipton_mail_footer_jpg.jpg</members>
-		<members>CEC_Branding/magnum_email_logo_jpg.jpg</members>
-		<members>CEC_Branding/magnum_mail_footer_jpg.jpg</members>
-		<members>CEC_Images</members>
-		<members>CEC_Images/CEC_CareLines_Logo.png</members>
-		<members>CEC_Logos</members>
-		<members>CEC_Logos/CEC_Ben_Jerry_Footer.png</members>
-		<members>CEC_Logos/CEC_Ben_Jerry_Footer_Logo_in_German_Language.png</members>
-		<members>CEC_Logos/CEC_Ben_Jerry_Header_Logo_with_Cloud_background.png</members>
-		<members>CEC_Logos/CEC_Ben_Jerry_logo.png</members>
-		<members>CEC_Logos/CEC_DACH_Email_Disclosure_Message.png</members>
-		<members>CEC_Logos/CEC_Greece_Footer.png</members>
-		<members>CEC_Logos/CEC_Greece_Header.png</members>
-		<members>CEC_Logos/CEC_Spain_Footer.png</members>
-		<members>CEC_Logos/CEC_Spain_Header.png</members>
-		<members>CEC_Logos/CEC_Unilever_Belgium.png</members>
-		<members>CEC_Logos/CEC_Unilever_Belgium_Footer.png</members>
-		<members>CEC_Logos/CEC_Unilever_France_Footer.png</members>
-		<members>CEC_Logos/CEC_Unilever_Netherlands_Footer.png</members>
-		<members>Communications_Planner</members>
-		<members>Communications_Planner/Unilever_Footer.jpeg</members>
-		<members>Communications_Planner/Unilever_Header.jpeg</members>
-		<members>Communications_Planner/Unilever_Logo_for_App.gif</members>
-		<members>Communities_Shared_Document_Folder</members>
-		<members>Communities_Shared_Document_Folder/CommunitiesLogo_jpg.jpg</members>
-		<members>Communities_Shared_Document_Folder/servlet_jpg.jpg</members>
-		<members>FAU_Documents</members>
-		<members>FAU_Documents/FAU_Footer_Logo.jpg</members>
-		<members>FAU_Documents/FAU_Logo.png</members>
-		<members>IPMNG</members>
-		<members>IPMNG/IPMNG_Logo.png</members>
-		<members>TO_Branding</members>
-		<members>TO_Branding/TO_Footer.jpg</members>
-		<members>TO_Branding/TO_Header.jpg</members>
-		<members>Unilever_Images</members>
-		<members>Unilever_Images/New_Unilever_Way_Logo.png</members>
 		<name>Document</name>
 	</types>
 	<types>
-		<members>FAU_Program_Protected</members>
-		<members>FAU_Program_Protected/FAU_PA_Introduction</members>
-		<members>FAU_Program_Protected/FAU_Request_New_Upgrade_Personal_Assistant_User</members>
-		<members>TO_Emails_France</members>
-		<members>TO_Emails_France/TO_Auto_Response_Template</members>
 		<name>EmailTemplate</name>
 	</types>
 
