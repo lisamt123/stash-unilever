@@ -8,7 +8,7 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  22-07-2015  Initial
 *************************************************************************************/
-public with sharing class BET_BETHandlerCls {
+public without sharing class BET_BETHandlerCls {
 
   private static final String BET_STATUS_CHANGED = 'BET Status has been changed. ';
   private static final String BET_LAUNCH_DATE_CHANGED = 'BET Target Launch Date has been changed. ';
