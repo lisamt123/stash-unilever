@@ -65,6 +65,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
     <apex:tab label="{!$Label.BET_Browse_members}" name="browseMembers" id="browseMembersid">
      
+        <div style="{!IF(isBetOwnerOrManager,'','display:none')}">
         <div>
           <apex:outputText value="{!$Label.BET_Add_Internal_User}" styleClass="addMembersUserLabel"/>
         </div>
@@ -105,7 +106,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
               </td>
             </tr>
           </table>
-
+          </div>
 
         <div class="headerButtonsBrowsMembers">
         
@@ -165,7 +166,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
     </apex:tab>
 
-    <apex:tab label="{!$Label.BET_Approve_members}" name="approveMembers" id="approveMembersid">
+    <apex:tab label="{!$Label.BET_Approve_members}" name="approveMembers" id="approveMembersid" rendered="{!isBetOwnerOrManager}">
 
       <div class="headerButtons">
         

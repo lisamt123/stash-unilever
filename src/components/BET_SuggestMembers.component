@@ -19,7 +19,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
     <apex:includeScript value="{!$Resource.BETSuggestedMembers}/scripts/SuggestedMembers.js" />
     
     <apex:stylesheet value="{!$Resource.BETSuggestedMembers}/css/bootstrap.min.css"/>
-    <apex:stylesheet value="{!$Resource.BETSuggestedMembers}/css/betSuggestedMembers.css"/>  
+    <!--<apex:stylesheet value="{!$Resource.BETSuggestedMembers}/css/betSuggestedMembers.css"/>   -->
     
     <apex:attribute name="BetID" description="BET ID" type="Id" 
                         required="false" assignTo="{!betIdCtrl}"/>                      

@@ -43,6 +43,7 @@ public with sharing class uw_BetEditController {
     public BET_CategoryComponentData compData {get;set;}
 
     public Boolean currentUserIsOwner {get;set;}
+    public Boolean currentUserIsBetADmin {get;set;}
 
     /*****************************************************************************************
     Purpose: Constructor 
@@ -89,6 +90,7 @@ public with sharing class uw_BetEditController {
         }
 
         currentUserIsOwner = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(bet.id, UserInfo.getUserId());
+        currentUserIsBetAdmin = false;
     } 
 
     /*****************************************************************************************

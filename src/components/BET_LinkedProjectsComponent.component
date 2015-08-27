@@ -2,8 +2,9 @@
 
 	<apex:attribute name="betId" assignTo="{!betIdentifier}" 
                     description="Id of an related BET" required="true" type="Id" />
-    <apex:attribute name="ownerOrManager" assignTo="{!betOwnerOrManager}" 
-                    description="Current user is bet owner or manager" required="true" type="Boolean" />
+
+    <apex:attribute name="betadmin" assignTo="{!admin}" 
+                    description="Current user is bet admin" required="true" type="Boolean" />
 
 	<div class="linkedInfo">
     	<apex:outputLabel >{!$Label.BET_LinkedProjectHeaderOne}</apex:outputLabel>
@@ -25,7 +26,7 @@
     		Lead project
     	</div>
         <div  class="linkedProjectNameLead" style="{!IF(NOT(project.isLeadProject),'','display:none;')}">
-            <apex:commandLink action="{!setAsLeadProject}" value="Set As Lead" rendered="{!betOwnerOrManager}">
+            <apex:commandLink action="{!setAsLeadProject}" value="Set As Lead" rendered="{!admin}">
                 <apex:param name="proid" assignTo="{!selectedProjectId}" value="{!project.projectId}"/>
             </apex:commandLink>
         </div>
