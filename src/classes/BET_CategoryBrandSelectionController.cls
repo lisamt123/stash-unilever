@@ -25,25 +25,12 @@ public with sharing class BET_CategoryBrandSelectionController {
 		}
 		set{
 			compData = value;
-			if(compData.categoryGroup != null && selectedCategoryGroup == null) {
-				selectedCategoryGroup =  compData.categoryGroup;
-			}
-			if(compData.category != null && selectedCategory == null) {
-				selectedCategory = compData.category;
-			}
-			if(compData.brandpositioning != null && selectedBrandPositioning == null) {
-				selectedBrandPositioning = compData.brandpositioning;
-			}
-			if(compData.brand != null && selectedBrand == null) {
-				selectedBrand = compData.brand;
-			}
-			if(categoryMigrated == null) {
-				categoryMigrated = compData.categoryMigrated;
-			}
-			if(categoryNotMigrated == null){ 
-				categoryNotMigrated = compData.categoryNotMigrated;
-			}
-
+			if(compData.categoryGroup != null && selectedCategoryGroup == null) selectedCategoryGroup =  compData.categoryGroup;
+			if(compData.category != null && selectedCategory == null) selectedCategory = compData.category;
+			if(compData.brandpositioning != null && selectedBrandPositioning == null) selectedBrandPositioning = compData.brandpositioning;
+			if(compData.brand != null && selectedBrand == null) selectedBrand = compData.brand;
+			if(categoryMigrated == null) categoryMigrated = compData.categoryMigrated;
+			if(categoryNotMigrated == null) categoryNotMigrated = compData.categoryNotMigrated;
 		}
 	}
 
@@ -116,6 +103,12 @@ public with sharing class BET_CategoryBrandSelectionController {
 		compData.brand = selectedBrand;
 	}
 
+	/************************************************************
+        Purpose: Action method fired after inoplan project is changed
+        Parameters: -
+        Returns: -
+        Throws: -
+    *************************************************************/
 	public void onProjectChange(){
 		compData.inoplanProject = bet.Inoplan_Project__c;
 	}

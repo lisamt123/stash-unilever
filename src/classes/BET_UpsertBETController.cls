@@ -26,6 +26,10 @@ public with sharing class BET_UpsertBETController {
 
 	public static final String MISSING_DATA_TEXT = 'Missing';
 
+	public static final String INVALID_CATEGORY_GROUP_REL = 'Invalid category and category group relation';
+
+	public static final String INVALID_POSITION_CATEGORY_REL = 'Invalid brand positioning and category relation';
+
 	public String categoryGroupName{
 		get{
 			String name = BET_MasterDataService.getCategoryGroupName(categoryName);
@@ -39,7 +43,15 @@ public with sharing class BET_UpsertBETController {
 	public String catName{
 		get{
 			String name = BET_MasterDataService.getCategoryName(cat);
-			return name == null ? MISSING_DATA_TEXT : name;
+			Boolean isRelationValid = true;
+			if(name != null){
+				isRelationValid = BET_MasterDataService.isValidRelationWithCategoryAndCategoryGroup(cat,categoryName);
+			}
+			if(isRelationValid){
+				return name == null ? MISSING_DATA_TEXT : name;
+			} else {
+				return name + ' : ' + INVALID_CATEGORY_GROUP_REL;
+			}
 		}
 		set{
 			catName = value;
@@ -49,7 +61,15 @@ public with sharing class BET_UpsertBETController {
 	public String brandPositionName{
 		get{
 			String name = BET_MasterDataService.getBrandPositionName(brandPosition);
-			return name == null ? MISSING_DATA_TEXT : name;
+			Boolean isRelationValid = true;
+			if(name != null){
+				isRelationValid = BET_MasterDataService.isValidRelationWithBrandPositionAndCategory(brandPosition,cat);
+			}
+			if(isRelationValid){
+				return name == null ? MISSING_DATA_TEXT : name;
+			} else {
+				return name + ' : ' + INVALID_POSITION_CATEGORY_REL;
+			}
 		}
 		set{
 			brandPositionName = value;
@@ -126,8 +146,14 @@ public with sharing class BET_UpsertBETController {
 		PageReference pageRef = null;
 		try{
 			uw_Bet__c newBET = buildBETObject();
-			upsert newBET;
-			pageRef = new PageReference(cback+newBET.id);
+			Boolean betNameExists = BET_COmmonService.checkIfBetExists(newBET);
+			if(betNameExists){
+				ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, Label.BET_NameExists));
+				return null;
+			} else {
+				upsert newBET;
+				pageRef = new PageReference(cback+newBET.id);
+			}
 		}catch(Exception e){
 			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception Saving BET record'+e));
 			return null;

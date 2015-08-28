@@ -12,7 +12,7 @@ public with sharing class BET_LinkedProjectsComponentController {
 
 	public Id betIdentifier {get;set;}
 	public String selectedProjectId {get;set;}
-	public Boolean betOwnerOrManager{get;set;}
+	public Boolean admin {get;set;}
 
 	public BET_LinkedProjectsComponentController() {}
 
@@ -42,7 +42,7 @@ public with sharing class BET_LinkedProjectsComponentController {
 	public PageReference setAsLeadProject(){
 		System.debug('Entering setAsLeadProject : ' + selectedProjectId + ', ' +  betIdentifier);
 		BET_LinkingService.setASLead((Id)selectedProjectId, betIdentifier);
-		PageReference pr =  new PageReference('/apex/uw_BETEdit?id='+betIdentifier+'&activeTab=tabThree');
+		PageReference pr =  new PageReference('/apex/uw_BETEdit?id='+betIdentifier+'&activeTab=tabThree&rljs=true');
 		pr.setRedirect(true);
 		return pr;
 	}

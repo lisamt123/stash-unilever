@@ -59,7 +59,7 @@ public with sharing class BET_BETService {
             relatedBet.Launch_Date__c = IPMProject.targetLaunchDate;
             relatedBet.Brand_Position__c = IPMProject.brandPosition;
             relatedBet.Product_Category__c = IPMProject.categoryName;
-            relatedBet.Category_Group__c = IPMProject.brandPosition;
+            relatedBet.Category_Group__c = IPMProject.categoryGroupName;
             relatedBet.First_Release_Due_Date__c = getFirstReleaseDueDate(IPMProject.targetLaunchDate);
             relatedBet.Final_Release_Due_Date__c = getFinalReleaseDueDate(IPMProject.targetLaunchDate);
             update relatedBet;

@@ -22,6 +22,7 @@ public with sharing class uw_BetEditController {
     public Document icon {get;set;}
     public Id currentId{get;set;}
     public Boolean runJsSuccess{get;set;}
+    public Boolean runlinkedJsSuccess {get;set;}
     public Boolean moveHome{get; protected set;}
 
     public String tabInFocus{get;set;}
@@ -43,6 +44,7 @@ public with sharing class uw_BetEditController {
     public BET_CategoryComponentData compData {get;set;}
 
     public Boolean currentUserIsOwner {get;set;}
+    public Boolean currentUserIsBetADmin {get;set;}
 
     /*****************************************************************************************
     Purpose: Constructor 
@@ -55,6 +57,7 @@ public with sharing class uw_BetEditController {
         moveHome = false;
         currentId = System.currentPageReference().getParameters().get('Id');
         tabInFocus = System.currentPageReference().getParameters().get('activeTab') == null ? 'name1' : (String)System.currentPageReference().getParameters().get('activeTab');
+        runlinkedJsSuccess = System.currentPageReference().getParameters().get('rljs') == null ? false : (String)System.currentPageReference().getParameters().get('rljs') == 'true';
         Boolean categoryMigrated = null;
         Boolean categoryNotMigrated = null;
 
@@ -89,6 +92,7 @@ public with sharing class uw_BetEditController {
         }
 
         currentUserIsOwner = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(bet.id, UserInfo.getUserId());
+        currentUserIsBetAdmin = BET_CommonService.isHubAdmin();
     } 
 
     /*****************************************************************************************
@@ -171,9 +175,13 @@ public with sharing class uw_BetEditController {
         compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
         bet = moveComponentDataToBET(bet,compData);
         List<String> errorMessages = validateBET(bet);
-        if(errorMessages.isEmpty()){
+        Boolean betNameExists = BET_COmmonService.checkIfBetExists(bet);
+        if(errorMessages.isEmpty() && !betNameExists){
             update bet;   
         } else {
+            if(betNameExists) {
+                errorMessages.add(Label.BET_NameExists);
+            }
             displayErrors(errorMessages);
         }
     }
@@ -220,11 +228,16 @@ public with sharing class uw_BetEditController {
                     compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
                     bet = moveComponentDataToBET(bet,compData);
                     List<String> errorMessages = validateBET(bet);
-                    if(errorMessages.isEmpty()){
+                    Boolean betNameExists = BET_COmmonService.checkIfBetExists(bet);
+                    if(errorMessages.isEmpty() && !betNameExists){
                         initialOwnerDoesNotMatch();
                         return null;
                     } else {
+                        if(betNameExists) {
+                            errorMessages.add(Label.BET_NameExists);
+                        }
                         displayErrors(errorMessages);
+                        return null;
                     }
                 }catch (Exception e) {
                     System.Debug('Problem with BET Owner change' + e.getMessage()); 

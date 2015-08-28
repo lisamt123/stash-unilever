@@ -100,10 +100,14 @@ public with sharing class BET_NewBetComponentController {
         compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
         bet = moveComponentDataToBET(bet,compData);
         List<String> errorMessages = validateBET(bet);
-        if(errorMessages.isEmpty()){
+        Boolean betNameExists = BET_COmmonService.checkIfBetExists(bet);
+        if(errorMessages.isEmpty() && !betNameExists){
             upsert bet;
             goToMemberSelection = redirectToMembersComponent;
         } else {
+            if(betNameExists) {
+                errorMessages.add(Label.BET_NameExists);
+            }
             displayErrors(errorMessages);
         }
         System.debug('Exit proceedWithSave');

@@ -1,5 +1,7 @@
 <apex:component controller="BET_NewBetComponentController" allowDML="true">
 
+    <apex:stylesheet value="{!$Resource.BETSuggestedMembers}/css/betSuggestedMembers.css"/> 
+
 	<apex:attribute name="betobj" description="Current BET object" 
                     type="uw_BET__c" required="true" assignTo="{!bet}"/>
 	<apex:attribute name="cdata" description="Component Data Transfer Object" 

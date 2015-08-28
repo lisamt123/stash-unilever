@@ -8,7 +8,7 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  22-07-2015  Initial
 *************************************************************************************/
-public with sharing class BET_BETHandlerCls {
+public without sharing class BET_BETHandlerCls {
 
   private static final String BET_STATUS_CHANGED = 'BET Status has been changed. ';
   private static final String BET_LAUNCH_DATE_CHANGED = 'BET Target Launch Date has been changed. ';
@@ -67,7 +67,7 @@ public with sharing class BET_BETHandlerCls {
   *************************************************************/
   private static void archiveBETs(List<uw_BET__c> archivedBets){
     archiveUnarchiveChatterGroups(archivedBets,true);
-    BET_EmailNotificationService.notifyAllIPMProjectLeadersOfArchivedBet(archivedBets);
+    //BET_EmailNotificationService.notifyAllIPMProjectLeadersOfArchivedBet(archivedBets);
   }
 
   /************************************************************
@@ -78,7 +78,7 @@ public with sharing class BET_BETHandlerCls {
   *************************************************************/
   private static void unArchiveBETs(List<uw_BET__c> unArchivedBets){
     archiveUnarchiveChatterGroups(unArchivedBets,false);
-    BET_EmailNotificationService.notifyAllIPMProjectLeadersOfUnArchivedBet(unArchivedBets);
+    //BET_EmailNotificationService.notifyAllIPMProjectLeadersOfUnArchivedBet(unArchivedBets);
     //BET_LinkingService.unlinkIPMsfromBets(unArchivedBets);
   }
 
@@ -222,7 +222,9 @@ public with sharing class BET_BETHandlerCls {
     }
 
     if(oldRecord.Launch_Date__c != newRecord.Launch_Date__c){
-      diffs.add(BET_LAUNCH_DATE_CHANGED+oldRecord.Launch_Date__c+BET_TO+newRecord.Launch_Date__c);
+      String oldDate = oldRecord.Launch_Date__c != null ? String.valueOf(oldRecord.Launch_Date__c).substring(0,10) : '';
+      String newDate = newRecord.Launch_Date__c != null ? String.valueOf(newRecord.Launch_Date__c).substring(0,10) : '';
+      diffs.add(BET_LAUNCH_DATE_CHANGED+oldDate+BET_TO+newDate);
     }
 
     if(oldRecord.IPM_Project__c != newRecord.IPM_Project__c){

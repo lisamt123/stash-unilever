@@ -59,7 +59,7 @@ public with sharing class BET_ApproveProjectsComponentController {
 		if(areThereOtherPendingRequests()){
 			pr =  new PageReference('/apex/uw_BETEdit?id='+betIdentifier+'&activeTab=tabFour');
 		} else {
-			pr =  new PageReference('/apex/uw_BETEdit?id='+betIdentifier+'&activeTab=tabOne');
+			pr =  new PageReference('/apex/uw_BETEdit?id='+betIdentifier+'&activeTab=tabOne&rljs=true');
 		}
 		pr.setRedirect(true);
 		System.debug('Exit forwardAction : ' + pr);

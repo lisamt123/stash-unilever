@@ -446,5 +446,21 @@ public static boolean isHubAdmin(){
             throw new BetException('Cannot access BET',e);
         }
     }
+
+    /************************************************************
+        Purpose: Method checks if bet with given name already exists
+        Parameters: uw_Bet__c bet
+        Returns: Boolean true is exists
+        Throws: -
+    *************************************************************/
+    public static Boolean checkIfBetExists(uw_Bet__c bet){
+        List<uw_Bet__c> bets;
+        if(bet.id == null){
+            bets = [select id from uw_Bet__c where name =: bet.name];
+        } else {
+            bets = [select id from uw_Bet__c where name =: bet.name and id !=: bet.id];
+        }
+        return !bets.isEmpty();
+    }
     
 }
