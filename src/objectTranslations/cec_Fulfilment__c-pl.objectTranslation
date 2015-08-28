@@ -113,6 +113,10 @@
         <relationshipLabel><!-- Fulfilment --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Country &amp; BrandLogo --></label>
+        <name>Country_BrandLogo__c</name>
+    </fields>
+    <fields>
         <label>Kraj</label>
         <name>Country__c</name>
         <picklistValues>
