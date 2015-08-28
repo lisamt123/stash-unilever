@@ -9,6 +9,11 @@
         <value>cec Org Settings</value>
     </caseValues>
     <fields>
+        <help><!-- Enter a number between 0-59 separated by &apos;;&apos; --></help>
+        <label><!-- AlertAction Time Scheduler --></label>
+        <name>AlertAction_Time_Scheduler__c</name>
+    </fields>
+    <fields>
         <label><!-- Austria Questionnaire Id --></label>
         <name>Austria_Questionnaire_Id__c</name>
     </fields>

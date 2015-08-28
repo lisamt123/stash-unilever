@@ -51,6 +51,10 @@
         <relationshipLabel>Adempimento</relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Country &amp; BrandLogo --></label>
+        <name>Country_BrandLogo__c</name>
+    </fields>
+    <fields>
         <label>Paese</label>
         <name>Country__c</name>
         <picklistValues>

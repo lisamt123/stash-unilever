@@ -189,11 +189,11 @@
         <label>Additional Issue Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>DayCode__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Date_of_Manufacture_str__c</field>
             </layoutItems>
             <layoutItems>
@@ -343,10 +343,10 @@
     </miniLayout>
     <quickActionList>
         <quickActionListItems>
-            <quickActionName>Case.Email</quickActionName>
+            <quickActionName>FeedItem.TextPost</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
-            <quickActionName>FeedItem.TextPost</quickActionName>
+            <quickActionName>Case.Email</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>FeedItem.ContentPost</quickActionName>
