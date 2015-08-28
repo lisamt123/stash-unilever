@@ -183,6 +183,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>AF_Show_In_Report__c</field>
+            <table>AF_PO_Report__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>AF_PO_Check__c</field>
             <table>AF_PO_Report__c</table>
         </columns>

@@ -3,14 +3,18 @@
  {!oopsEstimate.AF_OOPS_Actual__r.AF_Status__c}<br/>
  {!LoggedinUser.AF_Agency_Fees_User_Type__c} -->
  <style>
-
-.paddingTB5
+.marginL0{
+    margin-left:0px !important;
+    width:121px !important;
+    height: 25px !important;
+}
+ .paddingTB5
 {
    padding:5px 0px;
 }
 .marginTL
 {
-  margin:8px 0px 0px 30px;
+  margin:8px 0px 0px 36px;
 }
 .PaddingL24
 {
@@ -46,6 +50,37 @@ h5.titleHelpStyle
   clear: both;
   width: 100%;
   font-size: 16px;
+}
+.textAlignC
+{
+   text-align:center;
+}
+.marginL46P
+{
+   margin-left:46% !important;
+}
+
+#iframe_cont
+{
+    width:100%;
+}
+.modal-body
+{
+    height: 93%;
+} 
+.modal-body #iframe_cont
+{
+   height:100%;
+}
+.modal-dialog
+{
+  width:85% !important;
+  height:95% !important;
+  margin-top:8px !important;
+}
+.modal-content
+{
+  height:102%;
 }
  </style>
  <script>
@@ -313,33 +348,36 @@ h5.titleHelpStyle
     </td>
 </tr>-->
        <tr>
-         <td colspan="3" class="oopsMessage">
+         <td class="oopsMessage textAlignC">
          <span class="PaddingL24">Please enter your Purchase Order number and Save.</span>
          </td>
       </tr>
-      
       <tr>
-        <td width="17%">
-            <span class="poNumLable floatL" style="font-size:15.7px">
+        <td class="textAlignC">
+            <span class="poNumLable" style="font-size:15.7px">
             <apex:outputLabel >PO Number</apex:outputLabel>
             </span>
         </td>
-        <td width="17%">
-            <apex:inputField id="po_number" value="{!polist.AF_PO_Number__c}" styleClass="values1_oops" style="margin-left:0px" rendered="{!isPOEditable}"/>
+      </tr>
+      <tr>
+        
+        <td class="textAlignC">
+            <apex:inputField id="po_number" value="{!polist.AF_PO_Number__c}" styleClass="values1_oops" rendered="{!isPOEditable}"/>
             <apex:outputPanel rendered="{!IsReadonlyPO}">
             <span class="txtEditable">
             <apex:outputField value="{!polist.AF_PO_Number__c}" rendered="{!!isPOEditable}" />
             </span>
-            </apex:outputPanel>
-            
-            
+            </apex:outputPanel>    
         </td>
-        <td width="66%">
-           <apex:commandButton value="Save" action="{!SavePO}" StyleClass="btn submit_btn" rendered="{!isPOEditable}" reRender="pm2,po_number,po_estimateLocal" style="margin:-1px 0px 0px 10px !important"/>
+        
+    </tr>
+    <tr>
+       <td class="textAlignC">
+           <apex:commandButton value="Save" action="{!SavePO}" StyleClass="btn submit_btn marginL46P" rendered="{!isPOEditable}" reRender="pm2,po_number,po_estimateLocal" style="margin-left:46% !important"/>
         </td>
     </tr>
     </table>
-    <apex:outputpanel rendered="{!POOverrideDisplay1}">
+    <apex:outputpanel rendered="{!IF(AND(POOverrideDisplay1,isCMCOSuperUser),true,false)}">
     <table class="poNumberGrid marginTL">
      <tr>
          <td colspan="3" class="oopsMessage">
@@ -365,10 +403,10 @@ h5.titleHelpStyle
         </apex:outputPanel>
     </td>
     <td width="17%" class="paddingTB5">
-      <apex:inputField id="po_estimateLocal" value="{!polist.AF_Override_Estimate_Local__c}" styleClass="values1_oops" style="margin-left:0px" rendered="{!isPOEditable}"/>
-       <apex:outputPanel rendered="{!IsReadonlyPO}">
-       <span class="txtEditable">
-       <apex:outputField value="{!polist.AF_Override_Estimate_Local__c}" rendered="{!!isPOEditable}"/>
+      <apex:inputField id="po_estimateLocal" value="{!polist.AF_Override_Estimate_Local__c}" styleClass="values1_oops" style="margin-left:0px" rendered="{!isCMCOSuperUser}"/>
+       <apex:outputPanel rendered="{!!isCMCOSuperUser}">
+       <span class="unileverEntityoutputTxt marginL0" >
+       <apex:outputField value="{!polist.AF_Override_Estimate_Local__c}" rendered="{!!isCMCOSuperUser}" />
        </span>
        </apex:outputPanel>
        

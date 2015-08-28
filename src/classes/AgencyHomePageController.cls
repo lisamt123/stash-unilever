@@ -37,7 +37,7 @@ public with sharing class AgencyHomePageController {
     public List<SelectOption> selectedbrandList{get;set;}
     public String selectedBrandOption{get;set;}
     public String selectedBrandValue{get;set;}
-    public List<AF_AgencyEmailAlerts__c> bonusQuarterlyDateList{get;set;}
+    public List<AF_BonusQuarterly_Quarterdates__c> bonusQuarterlyDateList{get;set;}
     public Boolean IsCMCOFinance{get;set;}
     /** construtor **/
     public AgencyHomePageController()
@@ -76,7 +76,7 @@ public with sharing class AgencyHomePageController {
             else if(permissionSetName.contains('Controllers')){
                 isController=true;
             }
-            else if(permissionSetName.contains('Procurement')){
+            else if(permissionSetName.contains('AF_Procurement')){
                 isProcurement=true;
             }
             else if(permissionSetName=='AF_Category_Finance_Regional'){
@@ -255,7 +255,7 @@ public with sharing class AgencyHomePageController {
     /** get and display brand estimates data related to selected category **/
     public list<AF_Brand_Estimate__c> getbrandEstimateDetailList() {
         list<AF_Brand_Estimate__c> brandEstimateObjList = new list<AF_Brand_Estimate__c>();
-        bonusQuarterlyDateList = new List<AF_AgencyEmailAlerts__c>();
+        bonusQuarterlyDateList = new List<AF_BonusQuarterly_Quarterdates__c>();
         system.debug('brandList..2..'+brandList);
         system.debug('financialYear...'+financialYear);
         system.debug('selectedBrandValue...2..'+selectedBrandValue);
@@ -336,19 +336,19 @@ public with sharing class AgencyHomePageController {
         Boolean bonusDateQ3 = false;
         
         //Added by Satya: to get Bonus status and action icon on AgencyHomePage
-        bonusQuarterlyDateList = [select Q1__c,Q2__c,Q3__c,Q4__c from AF_AgencyEmailAlerts__c];
+        bonusQuarterlyDateList = [select AF_Q1__c,AF_Q2__c,AF_Q3__c from AF_BonusQuarterly_Quarterdates__c];
         if(bonusQuarterlyDateList.size()>0){
-            if(bonusQuarterlyDateList[0].Q1__c <= system.today()){
+            if(bonusQuarterlyDateList[0].AF_Q1__c <= system.today()){
                 bonusDate = true;
                 bonusDateQ2 = false;
                 bonusDateQ3 = false;
             }
-            if(bonusQuarterlyDateList[0].Q2__c <= system.today()){
+            if(bonusQuarterlyDateList[0].AF_Q2__c <= system.today()){
                 bonusDateQ2 = true;
                 bonusDate = false;
                 bonusDateQ3 = false;
             }
-            if(bonusQuarterlyDateList[0].Q3__c <= system.today()){
+            if(bonusQuarterlyDateList[0].AF_Q3__c <= system.today()){
                 bonusDateQ3 = true;
                 bonusDateQ2 = false;
                 bonusDate = false;

@@ -231,23 +231,46 @@ global with sharing class AF_BrandEstimateController2
             AF_Bonus_Threshold__c delBonusThreshold = new AF_Bonus_Threshold__c();
             Id countryToDelete; 
             List<AF_Sub_Result__c> listSameCountry = new List<AF_Sub_Result__c>();
+            List<AF_Sub_Result__c> delSubResult = new List<AF_Sub_Result__c>();
             Id bonusId ;
-            delBonus = [select Id,AF_country__c,AF_Bonus_Threshold__c from AF_Sub_Result__c where Id=:delCountryId];
+            String delKey = '';
+            try{
+            delBonus = [select Id,AF_country__c,AF_Bonus_Threshold__c,AF_Bonus_Threshold__r.Year__c,AF_deletion_key__c from AF_Sub_Result__c where Id=:delCountryId and AF_Bonus_Threshold__r.Year__c=:string.valueof(System.Today().year())];
+            }
+            catch(Exception e){
+                system.debug(e);
+            }
             countryToDelete = delBonus.AF_country__c;
             system.debug('countryToDelete...'+countryToDelete);
             bonusId = delBonus.AF_Bonus_Threshold__c;
             system.debug('bonusId...'+bonusId);
-            listSameCountry = [select id,AF_Bonus_Threshold__c from AF_Sub_Result__c where AF_country__c =:countryToDelete and AF_Period__c=null and AF_Bonus_Threshold__c=:bonusId ];
+            delKey = delBonus.AF_deletion_key__c;
+            system.debug('delKey...'+delKey);
+            listSameCountry = [select id,AF_Bonus_Threshold__c,AF_Bonus_Threshold__r.Year__c from AF_Sub_Result__c where AF_country__c =:countryToDelete and AF_Period__c=null and AF_Bonus_Threshold__c=:bonusId and AF_Bonus_Threshold__r.Year__c=:string.valueof(System.Today().year())];
+            List<AF_Sub_Result__c> subresult=new List<AF_Sub_Result__c>();
+            List<AF_Sub_Result__c> delsubresultDraft=new List<AF_Sub_Result__c>();
+            subresult = [select id from AF_Sub_Result__c where AF_country__c =:countryToDelete and AF_Period__c!=null and AF_Status__c='Submitted' and AF_Bonus_Threshold__c=:bonusId and AF_Bonus_Threshold__r.Year__c=:string.valueof(System.Today().year())];
             system.debug('listSameCountry:'+listSameCountry);
-            if(listSameCountry.size()==1){
-                delBonusThreshold = [select id from AF_Bonus_Threshold__c where id = :listSameCountry[0].AF_Bonus_Threshold__c];
+            if(listSameCountry.size()==1 && subresult.size()==0){
+                delBonusThreshold = [select id,Year__c from AF_Bonus_Threshold__c where id = :listSameCountry[0].AF_Bonus_Threshold__c and Year__c=:string.valueof(System.Today().year())];
                 system.debug('delBonusThreshold....'+delBonusThreshold);
                 delete delBonusThreshold;
+            }
+            else if(listSameCountry.size()==1 && subresult.size()>0){
+                delsubresultDraft = [select id from AF_Sub_Result__c where AF_country__c =:countryToDelete and AF_Status__c!='Submitted' and AF_Bonus_Threshold__c=:bonusId and AF_Bonus_Threshold__r.Year__c=:string.valueof(System.Today().year())];
+                system.debug('inside the new loop...');
+                if(delsubresultDraft.size()>0){
+                    delete delsubresultDraft; 
+                }
             }
             else{
                 try{
                     system.debug('delBonus....'+delBonus);
-                    delete delBonus;
+                    delSubResult = [select Id from AF_Sub_Result__c where AF_deletion_key__c = :delKey and AF_Bonus_Threshold__c=:bonusId and AF_Bonus_Threshold__r.Year__c=:string.valueof(System.Today().year()) and AF_Status__c!='Submitted'];
+                    if(delSubResult.size()>0){
+                     system.debug('delSubResult....'+delSubResult);
+                     delete delSubResult;
+                    }
                     
                     
                     
@@ -406,7 +429,6 @@ global with sharing class AF_BrandEstimateController2
                    isDig_Trad=false;
                 }
                 if(counter==0 && isDig_Trad==false){
-                    
                     for(AF_Bonus_Threshold__c bt:bonusInsertList){
                         if(bt.Id == null){
                             delBonusThresholdCountry.add(bt.AF_Country__c);
@@ -456,16 +478,10 @@ global with sharing class AF_BrandEstimateController2
                 Apexpages.addmessage(new apexpages.message(apexpages.severity.ERROR,  system.label.AF_Bonus_threshold_error_message));
                 
             }
-        } 
+        }  
         catch(DMLException ex){
             
             Database.Rollback(previousSnapShot);
-            /*List<AF_Bonus_Threshold__c> listToDelete = new List<AF_Bonus_Threshold__c>();
-            
-            listToDelete = [select Id from AF_Bonus_Threshold__c where AF_Country__c IN :delBonusThresholdCountry];
-            if(listToDelete.size()>0){
-                delete listToDelete;
-            }*/
             
             if(!(ex.getMessage().contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'))){
                 Apexpages.addmessage(new apexpages.message(apexpages.severity.ERROR,  'Unique threshold failing'));

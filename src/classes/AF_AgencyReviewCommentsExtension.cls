@@ -18,7 +18,7 @@ public with sharing class AF_AgencyReviewCommentsExtension{
                 }
     }
     
-    public PageReference save(){
+    public PageReference saveControllerReview(){
         if(checkReview){
             apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.info,' You cannot edit as its in Approval process');
             apexpages.addmessage(msg);

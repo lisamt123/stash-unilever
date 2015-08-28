@@ -161,6 +161,10 @@
                 <behavior>Readonly</behavior>
                 <field>AF_JustQuarters__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AF_Mean_Quarter__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>

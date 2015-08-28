@@ -699,6 +699,14 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_Show_In_Report__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( AND(AF_OverridePO_Adaptation_LC__c =0, AF_OverridePO_Digital_LC__c =0, AF_OverridePO_Traditional_LC__c =0),true,false)</formula>
+        <label>Show In Report</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>AF_Total_Local__c</fullName>
         <description>Hold total for Traditional local,digital local and adaptation local</description>
         <externalId>false</externalId>

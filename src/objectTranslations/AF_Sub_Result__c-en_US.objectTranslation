@@ -18,6 +18,10 @@
         <name>AF_Bonusable_Fees__c</name>
     </fields>
     <fields>
+        <label><!-- Class code --></label>
+        <name>AF_Class_code__c</name>
+    </fields>
+    <fields>
         <label><!-- Comment --></label>
         <name>AF_Comment__c</name>
     </fields>
@@ -122,6 +126,10 @@
         <name>AF_Traditional__c</name>
     </fields>
     <fields>
+        <label><!-- Unique Key --></label>
+        <name>AF_Unique_Key__c</name>
+    </fields>
+    <fields>
         <label><!-- Unique Thresholds --></label>
         <name>AF_Unique_Thresholds__c</name>
     </fields>
@@ -129,6 +137,10 @@
         <label><!-- Country --></label>
         <name>AF_country__c</name>
         <relationshipLabel><!-- Sub Result --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- deletion_key --></label>
+        <name>AF_deletion_key__c</name>
     </fields>
     <fields>
         <label><!-- Bonus Measure --></label>
@@ -169,6 +181,10 @@
     <fields>
         <label><!-- Quant Result --></label>
         <name>Quant_Result__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Result AnnualID --></label>
+        <name>Sub_Result_AnnualID__c</name>
     </fields>
     <fields>
         <label><!-- key --></label>

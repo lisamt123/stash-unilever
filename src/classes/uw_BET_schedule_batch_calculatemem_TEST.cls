@@ -33,11 +33,11 @@ static testMethod void schedulebatch()
 
 //Create 50 bet records for so that owner is running user                
           list <uw_bet__c> betlists = new list <uw_bet__c>();
-          for(integer i = 0;i<50;i++)
+          for(integer i = 0;i<20;i++)
           {
                uw_Inoplan_Project__c projObj = uw_UnitTestDataFactory.createInoplan();
                insert projObj ;
-               uw_BET__c bet = new  uw_BET__c ( Name = 'Testtoolkit'+i,uw_Brand__c = brandcentre.id, Inoplan_Project__c = projObj.id, Product_Category_Sub_Division__c ='Cross Category',Status__c = 'First release',Market_Clusters__c = 'Global');
+               uw_BET__c bet = new  uw_BET__c ( Name = 'BTestToolkit'+i,uw_Brand__c = brandcentre.id, Inoplan_Project__c = projObj.id, Product_Category_Sub_Division__c ='Cross Category',Status__c = 'First release',Market_Clusters__c = 'Global');
             
             betlists.add(bet);
           }                 

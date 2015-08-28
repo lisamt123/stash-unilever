@@ -556,7 +556,7 @@ public with sharing class AF_BonusQuarterly {
                         w_bonus.bonusResObj.AF_Bonus_Threshold__c=w_bonus.bonus_threshold_id;
                         w_bonus.bonusResObj.Af_status__c='Draft';
                         w_bonus.bonusResObj.AF_Period__c=Quarterinfo;
-                        
+                        //w_bonus.bonusResObj.AF_Class_code__c = true;
                         bonus_latestlist.add(w_bonus.bonusResObj);
                     
                 }  
@@ -584,6 +584,8 @@ public with sharing class AF_BonusQuarterly {
                         bonus_latestlocalList.AF_Quant_Bonus_Value__c = w_bonus.bonusResObj.AF_Quant_Bonus_Value__c;
                         bonus_latestlocalList.AF_country__c = w_bonus.bonusResObj.AF_country__c;
                         bonus_latestlocalList.AF_Comment__c = w_bonus.bonusResObj.AF_Comment__c;
+                        bonus_latestlocalList.Sub_Result_AnnualID__c = w_bonus.bonusResObj.Id;
+                       bonus_latestlocalList.AF_Class_code__c = true;
                         bonus_latestlist.add(bonus_latestlocalList);
                     
                 }

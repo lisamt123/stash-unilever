@@ -34,6 +34,34 @@
         text-decoration:underline;
         text-align: left!important;
         }
+        
+        .modal {
+    overflow-y: auto;
+}
+
+
+#iframe_cont
+{
+    width:100%;
+}
+.modal-body
+{
+    height: 93%;
+} 
+.modal-body #iframe_cont
+{
+   height:100%;
+}
+.modal-dialog
+{
+  width:90% !important;
+  height:95% !important;
+  margin-top:8px;
+}
+.modal-content
+{
+  height:102%;
+}
       </style>
       <script type="text/javascript">
       
@@ -116,6 +144,7 @@
         var dataSet, cols, oTable, singleRow, singleCol;
     </script>
     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/functions.js')}"></script>
+    
     <script type="text/javascript">
     
         function runScript(e) {

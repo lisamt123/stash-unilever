@@ -20,8 +20,31 @@
 <!-- Bootstrap_Js File start-->
      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script>
 <!--Bootstrap Js File End -->
-
-   
+<style>
+   #iframe_cont
+{
+    width:100%;
+}
+.modal-body
+{
+    height: 93%;
+} 
+.modal-body #iframe_cont
+{
+   height:100%;
+}
+.modal-dialog
+{
+  width:85% !important;
+  height:95% !important;
+  margin-top:8px;
+}
+.modal-content
+{
+  height:102%;
+}
+</style>
+  
    <script>
         var $ = jQuery.noConflict();
         function btnClick() {           
@@ -80,13 +103,15 @@
                 <apex:inputCheckbox value="{!review.Review_Completed__c}" disabled="{!checkReview}" styleClass="reviewCheckbox">
                     <apex:actionSupport event="onchange" rerender="Test" />
                 </apex:inputCheckbox>
-               <!-- <apex:outputField value="{!review.Review_Completed__c}">
+                <!--<apex:outputField value="{!review.Review_Completed__c}">
                     <apex:inlineEditSupport event="ondblclick" showOnEdit="update"/>
                 </apex:outputField> -->
             </apex:column>
             
             </apex:pageBlockTable>
-        <apex:commandButton id="update" action="{!save}" value="Save" styleClass="save_btn_review" reRender="blockrefersh,pm1"/>
+            
+        <apex:commandButton id="update" action="{!saveControllerReview}" value="Save" styleClass="save_btn_review" reRender="blockrefersh,pm1"/>
+        
     </apex:pageBlock> 
     <c:AF_FieldHistoryComp ParentRecordValue="{!controllerReviewId}" IsViewAllValue="false"  ParentObjectName="AF_Controller_Review__c"/> 
     <apex:pageMessages />

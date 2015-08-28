@@ -19,9 +19,9 @@
     
     <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6')}" type="text/css" media="screen" />
     <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6')}"></script>
-      
-      <style>
-       div.AF_UL_oopsMatrix a.modalButton3 div {
+     
+     <style>
+      div.AF_UL_oopsMatrix a.modalButton3 div {
           font-size: 13px !important;
           text-decoration:underline;
         }
@@ -40,7 +40,32 @@
         div.AF_UL_oopsMatrix a.modalButton3 div {
   width: 111px !important;
 }
-     </style>
+        
+        
+        
+#iframe
+{
+    width:100%;
+}
+.modal-body
+{
+    height: 93%;
+} 
+.modal-body #iframe
+{
+   height:100%;
+}
+.modal-dialog
+{
+  width:90% !important;
+  height:95% !important;
+  margin-top:8px;
+}
+.modal-content
+{
+  height:102%;
+}
+     </style> 
       <script type="text/javascript">
             $('a.addfancy').fancybox({
               autoSize: false,
@@ -140,17 +165,6 @@
         var dataSet, cols, oTable, singleRow, singleCol;
     </script>
     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/functions.js')}"></script>
-    <script type="text/javascript">
-    
-        function runScript(e) {
-            if (e.keyCode == 13) {
-                
-                alert('test'); 
-                return false;
-            }
-        }
-        
-    </script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.js')}"></script>
@@ -220,6 +234,7 @@
             var entName = $(this).parent().text();
             if(confirm('Are you sure? You want to remove the row ' + entName + ' from the matrix.')) {
                 $.when( archiveAgencyEntityToEstimates(entName) ).then( function(status){
+                    alert('Warning: This entity combination will not be deleted if it already exists in previous quarters.');
                     location.reload();
                 },
                 function(status){
@@ -235,6 +250,7 @@
             var entName = $(this).parent().text();
             if(confirm('Are you sure? You want to remove the column ' + entName + ' from  the matrix.')) {
                 $.when( archiveUnileverEntityToEstimates(entName) ).then( function(status){
+                    alert('Warning: This entity combination will not be deleted if it already exists in previous quarters.');
                     location.reload();
                 },
                 function(status){

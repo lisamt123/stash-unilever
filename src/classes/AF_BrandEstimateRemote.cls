@@ -575,7 +575,12 @@ global with sharing class AF_BrandEstimateRemote {
             for(AF_Agency_Estimate__c eachAgencyEstimate : archiveAgencyEstimatesPerUnileverEntity(rowName, sObjectId)) {
                 agencyEstimatesToDelete.add(eachAgencyEstimate);
             }
+            try{
             delete agencyEstimatesToDelete;
+            }
+            catch(Exception e){
+                system.debug(e);
+            }
         }else if(sobjectName == 'AF_OOPS_Actual__c') {
             for(AF_OOPS_Estimate__c eachOopsEstimate : archiveOopsEstimatesPerUnileverEntity(rowName, sObjectId)) {
                 system.debug(' ** eachOopsEstimate : ' + eachOopsEstimate);
@@ -604,12 +609,22 @@ global with sharing class AF_BrandEstimateRemote {
             for(AF_Agency_Estimate__c eachAgencyEstimate : archiveAgencyEstimatesPerAgencyEntity(colsArr, sObjectId)) {
                 agencyEstimatesToDelete.add(eachAgencyEstimate);
             }
+            try{
             delete agencyEstimatesToDelete;
+            }
+            catch(Exception e){
+                system.debug(e);
+            }
         }else if(sobjectName == 'AF_OOPS_Actual__c') {
             for(AF_OOPS_Estimate__c eachOopsEstimate : archiveOopsEstimatesPerAgencyEntity(colsArr, sObjectId)) {
                 oopsEstimatesToDelete.add(eachOopsEstimate);
             }
+            try{
             delete oopsEstimatesToDelete;
+            }
+            catch(Exception e){
+                system.debug(e);
+            }
         }else if(sobjectName == 'AF_Bonus_Summary__c') {
             for(AF_Bonus_Matrix__c eachBonusMatrix : archiveBonusMatrixPerAgencyEntity(colsArr, sObjectId)) {
                 bonusMatrixToDelete.add(eachBonusMatrix);

@@ -496,6 +496,21 @@ SUBSTITUTE(AF_OOPS_Actual__r.Name,AF_OOPS_Actual__r.AF_Brand__r.Name, &quot;&quo
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_Mean_Quarter__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q1&quot;), &quot;Q0&quot;, 
+IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q2&quot;), &quot;Q1&quot;, 
+IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q3&quot;), &quot;Q2&quot;, 
+IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q4&quot;), &quot;Q3&quot;, null))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Mean Quarter</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_No_of_Quaters__c</fullName>
         <description>Calculates no of quarters</description>
         <externalId>false</externalId>

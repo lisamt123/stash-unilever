@@ -219,6 +219,10 @@
         <name>AF_Max_Quarter__c</name>
     </fields>
     <fields>
+        <label><!-- Mean Quarter --></label>
+        <name>AF_Mean_Quarter__c</name>
+    </fields>
+    <fields>
         <label><!-- No Previous POs --></label>
         <name>AF_No_Previous_POs__c</name>
     </fields>
