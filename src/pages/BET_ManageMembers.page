@@ -15,15 +15,15 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
   <script type="text/javascript">
 
     function updateRoleOnMember(memId, role, idx){
-      var idid = 'memberpage:form:repeater:'+idx+':role';
-      document.getElementById(idid).innerHTML = 'Processing ...';
+      //var idid = 'memberpage:form:repeater:'+idx+':role';
+      //document.getElementById(idid).innerHTML = 'Processing ...';
       Visualforce.remoting.Manager.invokeAction(
         '{!$RemoteAction.BET_ManageMembersController.updateMemberRole}',
         memId,
         role,
         function(result, event){
           if (event.status) {
-            document.getElementById(idid).innerHTML = role;
+            //document.getElementById(idid).innerHTML = role;
           }
         },
         {escape: true}
@@ -129,9 +129,6 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             {!$ObjectType.BET_Member_Request__c.Fields.Role__c.Label}
           </th>
           <th class="browseMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'','display:none')}">
-            {!$ObjectType.BET_Member_Request__c.Fields.Role__c.Label}
-          </th>
-          <th class="browseMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'','display:none')}">
             {!$Label.BET_Delete}
           </th>
           <apex:variable var="cnt" value="{!0}" /> 
@@ -146,7 +143,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
               <td>
                 <apex:outputText value="{!member.firstName} {!member.lastName}"/>
               </td>
-              <td>
+              <td style="{!IF(NOT(isBetOwnerOrManager),'','display:none')}">
                 <apex:outputText id="role" value="{!member.role}"/>
               </td>
               <td style="{!IF(isBetOwnerOrManager,'','display:none')}">

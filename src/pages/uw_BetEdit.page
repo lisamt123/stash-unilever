@@ -48,11 +48,8 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
         <apex:pageMessages escape="false"/>
         <apex:inputHidden value="{!runJsSuccess}" id="runJsSuccess"/>
 
-        <apex:tabPanel switchType="client" selectedTab="{!tabInFocus}" id="AccountTabPanel" tabClass="activeTab" value="{!tabInFocus}" 
-                       inactiveTabClass="inactiveTab">
-            <apex:tab label="Toolkit Info" 
-                      ontabenter="document.getElementById('{!$Component.bottomButtonsPanel}').style.display='';"
-                      name="name1" id="tabOne">
+        <apex:tabPanel switchType="server" id="AccountTabPanel" tabClass="activeTab" value="{!tabInFocus}" inactiveTabClass="inactiveTab">
+            <apex:tab label="Toolkit Info" name="name1" id="tabOne">
 
                 <div class="form-item-wrapper">
                   <div class="form-item">
@@ -113,8 +110,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                 </div>
             </apex:tab>
 
-            <apex:tab label="Branding options" name="name2" id="tabTwo" 
-                      ontabenter="document.getElementById('{!$Component.bottomButtonsPanel}').style.display='';">
+            <apex:tab label="Branding options" name="name2" id="tabTwo">
                 <apex:actionFunction action="{!clearBanner}" name="clearBannerAction"></apex:actionFunction>
                 <div id="banner-container">
                     <apex:outputPanel rendered="{!showClearBanner}"> 
@@ -157,13 +153,11 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             </apex:tab>
 
             <apex:tab label="{!$Label.BET_LinkedProjectsTabName}" 
-                      ontabenter="document.getElementById('{!$Component.bottomButtonsPanel}').style.display='none';" 
                       name="tabThree" id="tabThree">
                 <c:BET_LinkedProjectsComponent betId="{!bet.id}" betadmin="{!currentUserIsBetAdmin}"/>
             </apex:tab>
 
             <apex:tab label="{!$Label.BET_ApproveProjectsTabName}"
-                      ontabenter="document.getElementById('{!$Component.bottomButtonsPanel}').style.display='none';" 
                       name="tabFour" id="tabFour" rendered="{!hasProjectsToApprove}">
                 <c:BET_ApproveProjectsComponent betId="{!bet.id}" id="apcComponent" owner="{!currentUserIsOwner}"/>
             </apex:tab>
