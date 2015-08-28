@@ -152,7 +152,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
             
             <a data-toggle="modal" data-target="#myModal">
                 <img alt="{!$Label.BET_SuggestedMemberAddOtherMember}" 
-                     onclick="var $ = jQuery.noConflict(); $('#myModal').css('display','');" 
+                     onclick="var $ = jQuery.noConflict(); $('#myModal').show();" 
                      class="addMemeberBtn" 
                      src="{!$Resource.BETSuggestedMembers}/images/add_2.png" width="80px" height="80px"/>
             </a>    
@@ -261,12 +261,12 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                 </div>
                 <div class="modal-footer">
                     <button type="button" style="{!IF(usedInPopup,'','display:none')}" 
-                            onclick="var $ = jQuery.noConflict(); clearSearchByNameField(); $('#myModal').css('display','none');" 
+                            onclick="var $ = jQuery.noConflict(); clearSearchByNameField(); $('#myModal').hide();" 
                             class="bootstrap.min.btn bootstrap.min.btn-default">
                             {!$Label.BET_SuggestedMemberModalCancel}
                     </button>
                     <button type="button" style="{!IF(usedInPopup,'','display:none')}" 
-                            onclick="var $ = jQuery.noConflict(); addAllNewMembers(); $('#myModal').css('display','none');" 
+                            onclick="var $ = jQuery.noConflict(); addAllNewMembers(); $('#myModal').hide();" 
                             class="bootstrap.min.btn bootstrap.min.btn-default">
                             {!$Label.BET_SuggestedMemberModalAddSelected}
                     </button> 

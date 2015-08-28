@@ -126,4 +126,93 @@ public without sharing class BET_Team_MemberHandlerCls {
     	System.debug('Exit addEntitySubscriptions : ' + eSubscriptions);
 	}
 
+	/************************************************************
+        Purpose: Method runs role change relaed logic
+        Parameters: List<uw_BET_Team_Member__c> newTeamMembers,Map<Id,uw_BET_Team_Member__c>oldMap
+        Returns: -
+        Throws: -
+    *************************************************************/
+	public static void runRoleModifications(List<uw_BET_Team_Member__c> newTeamMembers,Map<Id,uw_BET_Team_Member__c>oldMap){
+		List<uw_BET_Team_Member__c> roleModifiedMembers = new List<uw_BET_Team_Member__c>();
+		for(uw_BET_Team_Member__c member : newTeamMembers){
+			if(member.Role__c == 'Manager' && oldMap.get(member.id).Role__c != member.Role__c){
+				roleModifiedMembers.add(member);
+			}
+			if(member.Role__c == 'Member' && oldMap.get(member.id).Role__c != member.Role__c){
+				roleModifiedMembers.add(member);
+			}
+		}
+
+		memberCollaborationGroupsUpdate(roleModifiedMembers);
+		memberSharesUpdate(roleModifiedMembers);
+	}
+
+	/************************************************************
+        Purpose: Method updates bet shares 
+        Parameters: List<uw_BET_Team_Member__c> newTeamMembers
+        Returns: -
+        Throws: -
+    *************************************************************/
+	private static void memberSharesUpdate(List<uw_BET_Team_Member__c> newTeamMembers){
+		BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues('BETManageMembersConfig');
+        String managerRole = Test.isRunningTest() ? 'Manager' : BETManageMembersConfig.ManagerRole__c;
+
+		List<uw_BET_Team_Member__c> teamMembers = [SELECT Id, Team_Member__c,BET__c,Role__c FROM uw_BET_Team_Member__c WHERE Id in:newTeamMembers];
+
+		Set<Id> betsIds = new Set<Id>();
+    	for(uw_BET_Team_Member__c tmember : teamMembers) {
+    		betsIds.add(tmember.BET__c);
+    	}
+
+        List<uw_BET__Share> betShareList = [SELECT Id,userOrGroupId,parentId FROM uw_BET__Share WHERE parentId in :betsIds and  AccessLevel in ('Edit','Read')];
+        
+        for(uw_BET__Share share : betShareList){
+        	for(uw_BET_Team_Member__c tmember : teamMembers) {
+		        if(share.userOrGroupId == tmember.Team_Member__c && share.parentId == tmember.BET__c) {
+		           if (tmember.Role__c.equalsIgnoreCase(managerRole)){
+		               share.AccessLevel = 'Edit';
+		           }else {                
+		               share.AccessLevel = 'Read';
+		           }
+		        }
+	    	}
+    	}
+    	update betShareList;
+	}
+
+	/************************************************************
+        Purpose: Method updates bet collaboration groups
+        Parameters: List<uw_BET_Team_Member__c> newTeamMembers
+        Returns: -
+        Throws: -
+    *************************************************************/
+	private static void memberCollaborationGroupsUpdate(List<uw_BET_Team_Member__c> newTeamMembers){
+		BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues('BETManageMembersConfig');
+        String managerRole = Test.isRunningTest() ? 'Manager' : BETManageMembersConfig.ManagerRole__c;
+
+		List<uw_BET_Team_Member__c> teamMembers = [SELECT Id, Team_Member__c, Role__c, 
+														  BET__c, BET__r.Studio_Chatter_Group__c FROM 
+                                            			  uw_BET_Team_Member__c WHERE Id = :newTeamMembers];
+
+        Set<Id> chatterGroupsIds = new Set<Id>();
+    	for(uw_BET_Team_Member__c tmember : teamMembers) {
+    		chatterGroupsIds.add(tmember.BET__r.Studio_Chatter_Group__c);
+    	}
+         
+        List<CollaborationGroupMember> cgmList = [SELECT Id,MemberId,CollaborationGroupId FROM CollaborationGroupMember WHERE CollaborationGroupId =: chatterGroupsIds];
+
+        for(CollaborationGroupMember cgm : cgmList){
+        	for(uw_BET_Team_Member__c tmember : teamMembers) {
+        		if(cgm.MemberId == tmember.Team_Member__c && cgm.CollaborationGroupId == tmember.BET__r.Studio_Chatter_Group__c){
+	           		if (tmember.Role__c.equalsIgnoreCase(managerRole)){
+	               		cgm.CollaborationRole = 'Admin';
+	           		}else {                
+	               		cgm.CollaborationRole = 'Standard';
+	           		}
+           		}
+       		}
+        }
+        update cgmList;
+	}
+
 }

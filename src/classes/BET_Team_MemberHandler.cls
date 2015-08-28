@@ -20,7 +20,10 @@ public with sharing class BET_Team_MemberHandler  implements ITrigger {
 	public void bulkAfter() {
 		System.debug('bulk after');
 		if(Trigger.isInsert){
-			BET_Team_MemberHandlerCls.runPostApprovalInsertTeamMemberOperations((List< uw_BET_Team_Member__c>)Trigger.new);
+			BET_Team_MemberHandlerCls.runPostApprovalInsertTeamMemberOperations((List<uw_BET_Team_Member__c>)Trigger.new);
+		}
+		if(Trigger.isUpdate){
+			BET_Team_MemberHandlerCls.runRoleModifications((List<uw_BET_Team_Member__c>)Trigger.new,(Map<Id,uw_BET_Team_Member__c>)Trigger.oldMap);
 		}
 	}
 

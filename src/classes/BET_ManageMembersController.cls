@@ -285,69 +285,8 @@ global without sharing class BET_ManageMembersController {
         System.debug('Entering updateMemberRole : ' + memberid + ', ' + role);
         uw_BET_Team_Member__c member = [select Role__c,BET__c from uw_BET_Team_Member__c where id=:memberid];
         member.Role__c = role;
-
-        BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues('BETManageMembersConfig');
-        String managerRole = Test.isRunningTest() ? 'Manager' : BETManageMembersConfig.ManagerRole__c;
-
-        CollaborationGroupMember cgm = getCollaborationGroupMemberForUpdate(member.BET__c, member.id);
-        uw_BET__Share betShare = getBETShareForUpdate(member.BET__c, member.id);  
-        if(cgm != null) {
-           if (role.equalsIgnoreCase(managerRole)){
-               cgm.CollaborationRole = 'Admin';
-           }else {                
-               cgm.CollaborationRole = 'Standard';
-           }
-         } 
-         
-        if(betShare!= null) {
-           if (role.equalsIgnoreCase(managerRole)){
-               betShare.AccessLevel = 'Edit';
-           }else {                
-               betShare.AccessLevel = 'Read';
-           }
-        }
-
-        if(cgm != null) update cgm;
-        if(betShare != null) update betShare;
         update member;
         System.debug('Exit updateMemberRole : ' + member);
-    }
-
-    /************************************************************
-        Purpose: Method gets bet and member related sharing object
-        Parameters: Id betId , Id memberId
-        Returns: uw_Bet__Share
-        Throws: -
-    *************************************************************/
-    private static uw_Bet__Share getBETShareForUpdate (String betId, String memberId) {
-        System.debug('Entering getBETShareForUpdate : ' + betId + ', ' + memberId);
-        uw_BET_Team_Member__c teamMember = [SELECT Id, Team_Member__c FROM uw_BET_Team_Member__c WHERE Id = :memberId AND BET__c = :betId];
-        List<uw_BET__Share> betShareList = [SELECT Id FROM uw_BET__Share WHERE parentId = :betId AND userOrGroupId = :teamMember.Team_Member__c  and  AccessLevel in ('Edit','Read')];
-        if(betShareList.isEmpty()) {
-            return null;
-        }
-        return betShareList[0];
-    }
-
-    /************************************************************
-        Purpose: Method gets bet and member related collaboration group member object
-        Parameters: Id betId , Id memberId
-        Returns: CollaborationGroupMember
-        Throws: -
-    *************************************************************/
-    private static CollaborationGroupMember getCollaborationGroupMemberForUpdate(Id betId , Id memberId) {
-         uw_BET_Team_Member__c teamMember = [SELECT Id, Team_Member__c, Role__c, BET__c, BET__r.Studio_Chatter_Group__c FROM 
-                                            uw_BET_Team_Member__c WHERE Id = :memberId AND BET__c = :betId];
-         
-         Id chatterGroupId = teamMember.BET__r.Studio_Chatter_Group__c;
-         
-         List<CollaborationGroupMember> cgmList = [SELECT Id FROM CollaborationGroupMember 
-                                         WHERE CollaborationGroupId = :chatterGroupId
-                                         AND MemberId = :teamMember.Team_Member__c];
-         if (cgmList.isEmpty()) {
-             return null;
-         }
-         return cgmList[0];
     }
 
     /************************************************************
