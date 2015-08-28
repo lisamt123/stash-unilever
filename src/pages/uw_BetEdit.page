@@ -24,6 +24,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
         if (jQuery('[id$="runJsSuccess"]').val() == "true" ){
             window.top.postMessage({action: 'saveBetPreferences',moveHome:{!if(moveHome,'true','false')}}, document.location.protocol + '//' + document.domain);
         }
+        if (jQuery('[id$="runlinkedJsSuccess"]').val() == "true" ){
+            window.top.postMessage({action: 'saveBetPreferences',moveHome:{!if(moveHome,'true','false')}}, document.location.protocol + '//' + document.domain);
+        }
     });
 
     function areYouSureToArchive(element){
@@ -46,7 +49,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             
     <apex:form >
         <apex:pageMessages escape="false"/>
+        
         <apex:inputHidden value="{!runJsSuccess}" id="runJsSuccess"/>
+        <apex:inputHidden value="{!runlinkedJsSuccess}" id="runlinkedJsSuccess"/>
 
         <apex:tabPanel switchType="server" id="AccountTabPanel" tabClass="activeTab" value="{!tabInFocus}" inactiveTabClass="inactiveTab">
             <apex:tab label="Toolkit Info" name="name1" id="tabOne">

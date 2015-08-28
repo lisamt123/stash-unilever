@@ -22,6 +22,7 @@ public with sharing class uw_BetEditController {
     public Document icon {get;set;}
     public Id currentId{get;set;}
     public Boolean runJsSuccess{get;set;}
+    public Boolean runlinkedJsSuccess {get;set;}
     public Boolean moveHome{get; protected set;}
 
     public String tabInFocus{get;set;}
@@ -56,6 +57,7 @@ public with sharing class uw_BetEditController {
         moveHome = false;
         currentId = System.currentPageReference().getParameters().get('Id');
         tabInFocus = System.currentPageReference().getParameters().get('activeTab') == null ? 'name1' : (String)System.currentPageReference().getParameters().get('activeTab');
+        runlinkedJsSuccess = System.currentPageReference().getParameters().get('rljs') == null ? false : (String)System.currentPageReference().getParameters().get('rljs') == 'true';
         Boolean categoryMigrated = null;
         Boolean categoryNotMigrated = null;
 
