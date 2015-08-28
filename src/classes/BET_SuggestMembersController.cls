@@ -106,6 +106,22 @@ public with sharing class BET_SuggestMembersController {
             return '/profilephoto/005/F';
         }
     }
+
+    public class ManagerWrapper {
+        public String FullPhotoUrl {get;set;}
+        public String Name {get;set;}
+    }
+
+    public List<ManagerWrapper> getManagers(){
+        List<ManagerWrapper> mans = new List<ManagerWrapper>();
+        for(BET_Member_Request__c managerMember : [SELECT Id,UserId__r.FirstName,UserId__r.LastName,UserId__r.FullPhotoUrl FROM BET_Member_Request__c WHERE  Role__c =: Label.BETManagerRole and Status__c = 'Approved' and Project_Id__c =: projectIdCtrl and Brand_Experience_Toolkit__c =: betIdCtrl]){
+            ManagerWrapper wrapper = new ManagerWrapper();
+            wrapper.Name = managerMember.UserId__r.FirstName + ' ' + managerMember.UserId__r.LastName;
+            wrapper.FullPhotoUrl = managerMember.UserId__r.FullPhotoUrl;
+            mans.add(wrapper);
+        }
+        return mans;
+    }
 	
     /************************************************************
         Purpose: Method responsible for displaying suggested member list

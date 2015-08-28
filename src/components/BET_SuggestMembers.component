@@ -63,18 +63,20 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
             </a>    
         </div>
     </div>
-    <apex:outputPanel id="betManager" layout="block" styleClass="memberContainer" rendered="{!ManagerPhoto != ''}">
-        <img class="circular"  src="{!managerInfo.FullPhotoUrl}" alt="{!managerInfo.FullPhotoUrl}" width="80px" height="80px" />
-        
-        <div class="userTitle" >
-            <span>{!managerInfo.Name}</span>
-        </div>
-        
-        <div style="margin-top: 10px;">
-            <span>{!$Label.BETManagerRole}</span>
-        </div>
-    </apex:outputPanel>
     
+    <apex:outputPanel id="betManager" layout="block" styleClass="memberContainer">
+        <apex:repeat value="{!managers}" var="manager">
+            <img class="circular"  src="{!manager.FullPhotoUrl}" alt="{!manager.FullPhotoUrl}" width="80px" height="80px" />
+        
+            <div class="userTitle" >
+                <span>{!manager.Name}</span>
+            </div>
+        
+            <div style="margin-top: 10px;">
+                <span>{!$Label.BETManagerRole}</span>
+            </div>
+        </apex:repeat>
+    </apex:outputPanel>
     
     <apex:actionFunction name="deleteMember" action="{!deleteMember}"  oncomplete="unlockUI();">
         <apex:param id="memberToDelete" name="memberToDelete" value="" assignTo="{!memberToDelete}"/>
