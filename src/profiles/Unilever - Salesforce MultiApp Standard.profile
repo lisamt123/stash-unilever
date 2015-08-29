@@ -1018,6 +1018,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CEC_AlertActionBatchScheduler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CEC_AlertActionHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1078,6 +1082,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CEC_TestAlertActionBatchScheduler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CEC_TestAlertActionTriggerHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1107,6 +1115,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CEC_UserTriggerHelperTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CEC_Util</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -8311,6 +8323,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CEC_Case_Market_Mapping__c.Account_Owner_Active_Flag__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_Case_Market_Mapping__c.CaseOrigin__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -19325,6 +19342,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>cec_Alert_Tracker__c.Trigger_Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cec_Alert_Tracker__c.Unique_Id__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -19537,6 +19559,11 @@
         <editable>true</editable>
         <field>cec_Fulfilment__c.Case__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Fulfilment__c.Country_BrandLogo__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
