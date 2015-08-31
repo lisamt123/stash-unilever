@@ -47,15 +47,26 @@ public without sharing class BET_Team_MemberHandlerCls {
 		for(uw_BET_Team_Member__c member : newList){
 			uw_bet__c bet = betMap.get(member.BET__c);
 			if(bet != null && member.Team_Member__c != null && member.Team_Member__c != bet.ownerId) {
-				uw_BET__Share betShare = new uw_BET__Share();
-         		betShare.UserOrGroupId = member.Team_Member__c;
-         		betShare.AccessLevel = (member.Role__c.equalsIgnoreCase(managerRole)) ? 'Edit' : 'Read';
-         		betShare.ParentId = member.BET__c;
-         		shares.add(betShare);
+         		shares.add(addShareByMember(member,managerRole));
         	}
 		}
 		insert shares;
 		System.debug('Exit addSharings : ' + shares);
+	}
+
+	/************************************************************
+        Purpose: Method create sharing record based on tem member
+        Parameters: uw_BET_Team_Member__c member,String managerRole
+        Returns: -
+        Throws: -
+    *************************************************************/
+    @TestVisible
+	private static uw_BET__Share addShareByMember(uw_BET_Team_Member__c member,String managerRole){
+		uw_BET__Share betShare = new uw_BET__Share();
+        betShare.UserOrGroupId = member.Team_Member__c;
+        betShare.AccessLevel = (member.Role__c.equalsIgnoreCase(managerRole)) ? 'Edit' : 'Read';
+        betShare.ParentId = member.BET__c;
+        return betShare;
 	}
 
 	/************************************************************
@@ -71,20 +82,27 @@ public without sharing class BET_Team_MemberHandlerCls {
 		List<CollaborationGroupMember> groups = new List<CollaborationGroupMember>();
 		for(uw_BET_Team_Member__c member : newList){
 			if(member.Bet__r.Studio_Chatter_Group__c != null && member.Team_Member__c != null){
-				CollaborationGroupMember cgm = new CollaborationGroupMember();
-	        	cgm.CollaborationGroupId = member.Bet__r.Studio_Chatter_Group__c;
-	        	cgm.MemberId = member.Team_Member__c;
-	        	cgm.NotificationFrequency = 'N';
-	        	if (member.Role__c.equalsIgnoreCase(managerRole)){
-	            	cgm.CollaborationRole = 'Admin';
-	        	}else {                
-	            	cgm.CollaborationRole = 'Standard';
-	        	}
-	        	groups.add(cgm);             
+	        	groups.add(createCollaborationGroupMemberByTeamMember(member,managerRole));             
         	}
         }
         insert groups;
         System.debug('Exit addCollaborationGroups : ' + groups);
+	}
+
+	/************************************************************
+        Purpose: Method create group member based on tem member
+        Parameters: uw_BET_Team_Member__c member,String managerRole
+        Returns: -
+        Throws: -
+    *************************************************************/
+	@TestVisible
+	private static CollaborationGroupMember createCollaborationGroupMemberByTeamMember(uw_BET_Team_Member__c member,String managerRole){
+		CollaborationGroupMember cgm = new CollaborationGroupMember();
+	    cgm.CollaborationGroupId = member.Bet__r.Studio_Chatter_Group__c;
+	    cgm.MemberId = member.Team_Member__c;
+	    cgm.NotificationFrequency = 'N';
+	    cgm.CollaborationRole = member.Role__c.equalsIgnoreCase(managerRole) ? 'Admin' : 'Standard';
+	    return cgm;
 	}
 
 	/************************************************************
@@ -113,17 +131,26 @@ public without sharing class BET_Team_MemberHandlerCls {
 
 		for(uw_BET_Team_Member__c teamMember : newList){
 			if(teamMember.Team_Member__c != null && betMembersSubscrMap.get(teamMember.Bet__c) != null && !betMembersSubscrMap.get(teamMember.Bet__c).contains(teamMember.Team_Member__c)){
-				EntitySubscription entitySubscription = new EntitySubscription();
-        		entitySubscription.SubscriberId = teamMember.Team_Member__c;
-        		entitySubscription.ParentId = teamMember.Bet__c;
-        		eSubscriptions.add(EntitySubscription);
+        		eSubscriptions.add(addEntitiySubscriptionByTeamMember(teamMember));
         	}
         	
     	}
-    	if(!Test.isRunningTest()) {
-    		insert eSubscriptions;
-    	}
+    	if(!Test.isRunningTest()) insert eSubscriptions;
     	System.debug('Exit addEntitySubscriptions : ' + eSubscriptions);
+	}
+
+	/************************************************************
+        Purpose: Method builds entity subscription for given team member
+        Parameters: uw_BET_Team_Member__c teamMember
+        Returns: -
+        Throws: -
+    *************************************************************/
+	@TestVisible
+	private static EntitySubscription addEntitiySubscriptionByTeamMember(uw_BET_Team_Member__c teamMember){
+		EntitySubscription entitySubscription = new EntitySubscription();
+        entitySubscription.SubscriberId = teamMember.Team_Member__c;
+        entitySubscription.ParentId = teamMember.Bet__c;
+        return entitySubscription;
 	}
 
 	/************************************************************
@@ -135,14 +162,10 @@ public without sharing class BET_Team_MemberHandlerCls {
 	public static void runRoleModifications(List<uw_BET_Team_Member__c> newTeamMembers,Map<Id,uw_BET_Team_Member__c>oldMap){
 		List<uw_BET_Team_Member__c> roleModifiedMembers = new List<uw_BET_Team_Member__c>();
 		for(uw_BET_Team_Member__c member : newTeamMembers){
-			if(member.Role__c == 'Manager' && oldMap.get(member.id).Role__c != member.Role__c){
-				roleModifiedMembers.add(member);
-			}
-			if(member.Role__c == 'Member' && oldMap.get(member.id).Role__c != member.Role__c){
+			if((member.Role__c == 'Manager' || member.Role__c == 'Member') && oldMap.get(member.id).Role__c != member.Role__c) {
 				roleModifiedMembers.add(member);
 			}
 		}
-
 		memberCollaborationGroupsUpdate(roleModifiedMembers);
 		memberSharesUpdate(roleModifiedMembers);
 	}
@@ -169,11 +192,7 @@ public without sharing class BET_Team_MemberHandlerCls {
         for(uw_BET__Share share : betShareList){
         	for(uw_BET_Team_Member__c tmember : teamMembers) {
 		        if(share.userOrGroupId == tmember.Team_Member__c && share.parentId == tmember.BET__c) {
-		           if (tmember.Role__c.equalsIgnoreCase(managerRole)){
-		               share.AccessLevel = 'Edit';
-		           }else {                
-		               share.AccessLevel = 'Read';
-		           }
+		           share.AccessLevel = tmember.Role__c.equalsIgnoreCase(managerRole) ? 'Edit' : 'Read';
 		        }
 	    	}
     	}
@@ -204,11 +223,7 @@ public without sharing class BET_Team_MemberHandlerCls {
         for(CollaborationGroupMember cgm : cgmList){
         	for(uw_BET_Team_Member__c tmember : teamMembers) {
         		if(cgm.MemberId == tmember.Team_Member__c && cgm.CollaborationGroupId == tmember.BET__r.Studio_Chatter_Group__c){
-	           		if (tmember.Role__c.equalsIgnoreCase(managerRole)){
-	               		cgm.CollaborationRole = 'Admin';
-	           		}else {                
-	               		cgm.CollaborationRole = 'Standard';
-	           		}
+	           		cgm.CollaborationRole = tmember.Role__c.equalsIgnoreCase(managerRole) ? 'Admin' : 'Standard';
            		}
        		}
         }

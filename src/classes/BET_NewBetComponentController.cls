@@ -37,12 +37,7 @@ public with sharing class BET_NewBetComponentController {
 
     public PageReference cancelBET(){     
         System.debug('Entering cancelBET : ' + retUrl);
-        PageReference pageRef;
-        if(retURL == null){
-            pageRef = Page.BET;
-        } else {
-            pageRef = new PageReference(retUrl);
-        }
+        PageReference pageRef= retURL == null ? Page.BET : new PageReference(retUrl);
         System.debug('Exit cancelBET : ' + pageRef);
         return pageRef;
     }
@@ -59,11 +54,7 @@ public with sharing class BET_NewBetComponentController {
         PageReference pageRef = null;
         try{
             proceedWithSave(false);
-            if(forwardUrl == null){
-                pageRef = null;
-            } else {
-                pageRef = new PageReference(forwardUrl+bet.id);
-            }
+            pageRef = forwardUrl == null ? null : new PageReference(forwardUrl+bet.id);
         }catch(Exception e){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception Saving BET record'+e));
         }
@@ -100,15 +91,14 @@ public with sharing class BET_NewBetComponentController {
         compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
         bet = moveComponentDataToBET(bet,compData);
         List<String> errorMessages = validateBET(bet);
-        Boolean betNameExists = BET_COmmonService.checkIfBetExists(bet);
+        Boolean betNameExists = BET_CommonService.checkIfBetExists(bet);
+        goToMemberSelection = redirectToMembersComponent;
         if(errorMessages.isEmpty() && !betNameExists){
             upsert bet;
-            goToMemberSelection = redirectToMembersComponent;
         } else {
-            if(betNameExists) {
-                errorMessages.add(Label.BET_NameExists);
-            }
+            if(betNameExists) errorMessages.add(Label.BET_NameExists);
             displayErrors(errorMessages);
+            goToMemberSelection = false;
         }
         System.debug('Exit proceedWithSave');
     }

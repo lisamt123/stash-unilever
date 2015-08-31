@@ -78,9 +78,6 @@ public with sharing class BET_SuggestMembersController {
     
     /************************************************************
         Purpose: Wrapper class is a placeholder for displayed suggested members
-        Parameters: -
-        Returns: 
-        Throws: -
     *************************************************************/
     public class SuggestedMembersWrapper{
         public String groupName{get;set;}
@@ -90,15 +87,15 @@ public with sharing class BET_SuggestMembersController {
     
     /************************************************************
         Purpose: Wrapper class is a placeholder for displayed suggested members
-        Parameters: -
-        Returns: 
-        Throws: -
     *************************************************************/
     public class SuggestedMemberItemWrapper{
         public User userInfo{get;set;}
         public Boolean isManager{get;set;}
     }
 
+    /************************************************************
+        Purpose: Wrapper class for external agency members
+    *************************************************************/
     public class ExternalAgencyMemberWrapper{
         public String email {get;set;}
         public String photo;
@@ -107,11 +104,20 @@ public with sharing class BET_SuggestMembersController {
         }
     }
 
+    /************************************************************
+        Purpose: Wrapper class for managers
+    *************************************************************/
     public class ManagerWrapper {
         public String FullPhotoUrl {get;set;}
         public String Name {get;set;}
     }
 
+    /************************************************************
+        Purpose: Wrapper class for managers
+        Parameters: -
+        Returns: List<ManagerWrapper> 
+        Throws: -
+    *************************************************************/
     public List<ManagerWrapper> getManagers(){
         List<ManagerWrapper> mans = new List<ManagerWrapper>();
         for(BET_Member_Request__c managerMember : [SELECT Id,UserId__r.FirstName,UserId__r.LastName,UserId__r.FullPhotoUrl FROM BET_Member_Request__c WHERE  Role__c =: Label.BETManagerRole and Status__c = 'Approved' and Project_Id__c =: projectIdCtrl and Brand_Experience_Toolkit__c =: betIdCtrl]){
