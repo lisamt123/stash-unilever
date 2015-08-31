@@ -180,12 +180,13 @@ private class BET_CommonServiceTest {
 
         User usr = BET_TestingHelper.getDefaultNotMember();
 
-        //try{
-            BET_CommonService.requestBETAccess(usr.Id, wrap.BET.Id, 'email@test.com');
-        //}catch(Exception e){
-            //System.debug('Exception ' + e);
-        //}
-        System.assert(true);
+        try{
+            BET_CommonService.requestBETAccess(wrap.BET.Id, wrap.BET.Id, 'email@test.com');
+        }catch(Exception e){
+            System.debug('Exception ' + e);
+            System.assert(true);
+        }
+        System.assert(false);
     }
 
     //cover catch
@@ -201,6 +202,7 @@ private class BET_CommonServiceTest {
             BET_CommonService.requestBETAccess(usr.Id, wrap.BET.Id, 'email@test.com');
         }catch(Exception e){
             System.debug('Exception ' + e);
+            System.assert(false);
         }
         System.assert(true);
     }
@@ -217,6 +219,7 @@ private class BET_CommonServiceTest {
             BET_CommonService.deleteBetTeamMember(wrap.member.Id, wrap.BET.Id);
         }catch(Exception e){
             System.debug('Exception ' + e);
+            System.assert(false);
         }
         System.assert(true);
     }
