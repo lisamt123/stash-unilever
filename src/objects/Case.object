@@ -2684,6 +2684,32 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>Denmark_V2</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate,On Hold</value>
+        </filters>
+        <filters>
+            <field>Case_Market_Mapping_Country__c</field>
+            <operation>equals</operation>
+            <value>Denmark</value>
+        </filters>
+        <label>CEC Nordic Queue - Denmark V2</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CEC_Nordic_Visibility</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Dot_com</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -2906,6 +2932,32 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>My Open Cases</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Nordic_Queue_Finland_V2</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>On Hold,Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>Case_Market_Mapping_Country__c</field>
+            <operation>equals</operation>
+            <value>Finland</value>
+        </filters>
+        <label>Nordic Queue - Finland V2</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CEC_Nordic_Visibility</group>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Out_of_Hours_case_Case</fullName>
