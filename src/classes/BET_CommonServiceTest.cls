@@ -180,11 +180,11 @@ private class BET_CommonServiceTest {
 
         User usr = BET_TestingHelper.getDefaultNotMember();
 
-        try{
-            BET_CommonService.requestBETAccess(wrap.BET.Id, wrap.BET.Id, 'email@test.com');
-        }catch(Exception e){
-            System.debug('Exception ' + e);
-        }
+        //try{
+            BET_CommonService.requestBETAccess(usr.Id, wrap.BET.Id, 'email@test.com');
+        //}catch(Exception e){
+            //System.debug('Exception ' + e);
+        //}
         System.assert(true);
     }
 
