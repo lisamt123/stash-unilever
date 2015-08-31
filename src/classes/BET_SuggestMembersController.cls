@@ -506,7 +506,9 @@ public with sharing class BET_SuggestMembersController {
                     canBeAdded = false;
                 }
             }
-            if(canBeAdded) externalMembers.add(member);
+            if(canBeAdded) {
+                externalMembers.add(member);
+            }
         }
     }
 

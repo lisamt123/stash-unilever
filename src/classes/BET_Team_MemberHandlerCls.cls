@@ -12,6 +12,14 @@ VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 
 public without sharing class BET_Team_MemberHandlerCls {
 
+    private static final String BETMANAGERCONFIG = 'BETManageMembersConfig';
+    private static final String MANAGERROLE = 'Manager';
+    private static final String MEMBERROLE = 'Member';
+    private static final String ADMIN = 'Admin';
+    private static final String STANDARD = 'Standard';
+    private static final String EDIT = 'Edit';
+    private static final String READ = 'Read';
+
 	private BET_Team_MemberHandlerCls() {}
 
 	/************************************************************
@@ -36,8 +44,8 @@ public without sharing class BET_Team_MemberHandlerCls {
     *************************************************************/
 	public static void addSharings(List<uw_BET_Team_Member__c> newList){
 		System.debug('Entering addSharings : ' + newList);
-		BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues('BETManageMembersConfig');
-        String managerRole = Test.isRunningTest() ? 'Manager' : BETManageMembersConfig.ManagerRole__c;
+		BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues(BETMANAGERCONFIG);
+        String managerRoleStr = Test.isRunningTest() ? MANAGERROLE : BETManageMembersConfig.ManagerRole__c;
         List<uw_BET__Share> shares = new List<uw_BET__Share>();
         Set<Id> bets = new Set<Id>();
         for(uw_BET_Team_Member__c member : newList){
@@ -47,7 +55,7 @@ public without sharing class BET_Team_MemberHandlerCls {
 		for(uw_BET_Team_Member__c member : newList){
 			uw_bet__c bet = betMap.get(member.BET__c);
 			if(bet != null && member.Team_Member__c != null && member.Team_Member__c != bet.ownerId) {
-         		shares.add(addShareByMember(member,managerRole));
+         		shares.add(addShareByMember(member,managerRoleStr));
         	}
 		}
 		insert shares;
@@ -61,10 +69,10 @@ public without sharing class BET_Team_MemberHandlerCls {
         Throws: -
     *************************************************************/
     @TestVisible
-	private static uw_BET__Share addShareByMember(uw_BET_Team_Member__c member,String managerRole){
+	private static uw_BET__Share addShareByMember(uw_BET_Team_Member__c member,String managerRoleStr){
 		uw_BET__Share betShare = new uw_BET__Share();
         betShare.UserOrGroupId = member.Team_Member__c;
-        betShare.AccessLevel = (member.Role__c.equalsIgnoreCase(managerRole)) ? 'Edit' : 'Read';
+        betShare.AccessLevel = (member.Role__c.equalsIgnoreCase(managerRoleStr)) ? EDIT : READ;
         betShare.ParentId = member.BET__c;
         return betShare;
 	}
@@ -77,12 +85,12 @@ public without sharing class BET_Team_MemberHandlerCls {
     *************************************************************/
 	public static void addCollaborationGroups(List<uw_BET_Team_Member__c> newList){
 		System.debug('Entering addCollaborationGroups : ' + newList);
-		BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues('BETManageMembersConfig');
-        String managerRole = Test.isRunningTest() ? 'Manager' : BETManageMembersConfig.ManagerRole__c;
+		BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues(BETMANAGERCONFIG);
+        String managerRoleStr = Test.isRunningTest() ? MANAGERROLE : BETManageMembersConfig.ManagerRole__c;
 		List<CollaborationGroupMember> groups = new List<CollaborationGroupMember>();
 		for(uw_BET_Team_Member__c member : newList){
 			if(member.Bet__r.Studio_Chatter_Group__c != null && member.Team_Member__c != null){
-	        	groups.add(createCollaborationGroupMemberByTeamMember(member,managerRole));             
+	        	groups.add(createCollaborationGroupMemberByTeamMember(member,managerRoleStr));             
         	}
         }
         insert groups;
@@ -96,12 +104,12 @@ public without sharing class BET_Team_MemberHandlerCls {
         Throws: -
     *************************************************************/
 	@TestVisible
-	private static CollaborationGroupMember createCollaborationGroupMemberByTeamMember(uw_BET_Team_Member__c member,String managerRole){
+	private static CollaborationGroupMember createCollaborationGroupMemberByTeamMember(uw_BET_Team_Member__c member,String managerRoleStr){
 		CollaborationGroupMember cgm = new CollaborationGroupMember();
 	    cgm.CollaborationGroupId = member.Bet__r.Studio_Chatter_Group__c;
 	    cgm.MemberId = member.Team_Member__c;
 	    cgm.NotificationFrequency = 'N';
-	    cgm.CollaborationRole = member.Role__c.equalsIgnoreCase(managerRole) ? 'Admin' : 'Standard';
+	    cgm.CollaborationRole = member.Role__c.equalsIgnoreCase(managerRoleStr) ? ADMIN : STANDARD;
 	    return cgm;
 	}
 
@@ -162,7 +170,7 @@ public without sharing class BET_Team_MemberHandlerCls {
 	public static void runRoleModifications(List<uw_BET_Team_Member__c> newTeamMembers,Map<Id,uw_BET_Team_Member__c>oldMap){
 		List<uw_BET_Team_Member__c> roleModifiedMembers = new List<uw_BET_Team_Member__c>();
 		for(uw_BET_Team_Member__c member : newTeamMembers){
-			if((member.Role__c == 'Manager' || member.Role__c == 'Member') && oldMap.get(member.id).Role__c != member.Role__c) {
+			if((member.Role__c == MANAGERROLE || member.Role__c == MEMBERROLE) && oldMap.get(member.id).Role__c != member.Role__c) {
 				roleModifiedMembers.add(member);
 			}
 		}
@@ -177,8 +185,8 @@ public without sharing class BET_Team_MemberHandlerCls {
         Throws: -
     *************************************************************/
 	private static void memberSharesUpdate(List<uw_BET_Team_Member__c> newTeamMembers){
-		BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues('BETManageMembersConfig');
-        String managerRole = Test.isRunningTest() ? 'Manager' : BETManageMembersConfig.ManagerRole__c;
+		BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues(BETMANAGERCONFIG);
+        String managerRoleStr = Test.isRunningTest() ? 'Manager' : BETManageMembersConfig.ManagerRole__c;
 
 		List<uw_BET_Team_Member__c> teamMembers = [SELECT Id, Team_Member__c,BET__c,Role__c FROM uw_BET_Team_Member__c WHERE Id in:newTeamMembers];
 
@@ -192,7 +200,7 @@ public without sharing class BET_Team_MemberHandlerCls {
         for(uw_BET__Share share : betShareList){
         	for(uw_BET_Team_Member__c tmember : teamMembers) {
 		        if(share.userOrGroupId == tmember.Team_Member__c && share.parentId == tmember.BET__c) {
-		           share.AccessLevel = tmember.Role__c.equalsIgnoreCase(managerRole) ? 'Edit' : 'Read';
+		           share.AccessLevel = tmember.Role__c.equalsIgnoreCase(managerRoleStr) ? EDIT : READ;
 		        }
 	    	}
     	}
@@ -206,8 +214,8 @@ public without sharing class BET_Team_MemberHandlerCls {
         Throws: -
     *************************************************************/
 	private static void memberCollaborationGroupsUpdate(List<uw_BET_Team_Member__c> newTeamMembers){
-		BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues('BETManageMembersConfig');
-        String managerRole = Test.isRunningTest() ? 'Manager' : BETManageMembersConfig.ManagerRole__c;
+		BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues(BETMANAGERCONFIG);
+        String managerRoleStr = Test.isRunningTest() ? MANAGERROLE : BETManageMembersConfig.ManagerRole__c;
 
 		List<uw_BET_Team_Member__c> teamMembers = [SELECT Id, Team_Member__c, Role__c, 
 														  BET__c, BET__r.Studio_Chatter_Group__c FROM 
@@ -223,7 +231,7 @@ public without sharing class BET_Team_MemberHandlerCls {
         for(CollaborationGroupMember cgm : cgmList){
         	for(uw_BET_Team_Member__c tmember : teamMembers) {
         		if(cgm.MemberId == tmember.Team_Member__c && cgm.CollaborationGroupId == tmember.BET__r.Studio_Chatter_Group__c){
-	           		cgm.CollaborationRole = tmember.Role__c.equalsIgnoreCase(managerRole) ? 'Admin' : 'Standard';
+	           		cgm.CollaborationRole = tmember.Role__c.equalsIgnoreCase(managerRoleStr) ? ADMIN : STANDARD;
            		}
        		}
         }

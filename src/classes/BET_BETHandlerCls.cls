@@ -44,10 +44,10 @@ public without sharing class BET_BETHandlerCls {
     List<uw_BET__c> archivedBets = new List<uw_BET__c>();
     List<uw_BET__c> unArchivedBets = new List<uw_BET__c>();
     for(uw_BET__c bet : newBetList){
-      if(bet.Is_Archived__c == true && bet.Is_Archived__c != oldBetMap.get(bet.id).Is_Archived__c){
+      if(bet.Is_Archived__c && bet.Is_Archived__c != oldBetMap.get(bet.id).Is_Archived__c){
         archivedBets.add(bet);
       }
-      if(bet.Is_Archived__c == false && bet.Is_Archived__c != oldBetMap.get(bet.id).Is_Archived__c){
+      if(!bet.Is_Archived__c && bet.Is_Archived__c != oldBetMap.get(bet.id).Is_Archived__c){
         unArchivedBets.add(bet);
       }
     }
