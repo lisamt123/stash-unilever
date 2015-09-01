@@ -175,6 +175,8 @@
         <members>BC_updateEmbedURL_Test</members>
 		<members>BET_AccessService</members>
 		<members>BET_AccessServiceTest</members>
+		<members>BET_ApproveProjectsComponentController</members>
+		<members>BET_ApproveProjectsComponentContrTest</members>
         <members>BET_BatchAssetStatusMapping</members>
         <members>BET_BatchAssetStatusMapping_Test</members>
         <members>BET_BatchBETStatusMapping</members>
@@ -207,8 +209,24 @@
         <members>BET_CommonService</members>
         <members>BET_CommonServiceTest</members>
 		<members>BET_CustomBETException</members>
+		<members>BET_DataFixReleaseDate</members>
+		<members>BET_DataFixReleaseDateTest</members>
         <members>BET_EditAssetController</members>
         <members>BET_EditAssetController_Test</members>
+		<members>BET_EmailNotificationService</members>
+		<members>BET_EmailNotificationServiceTest</members>
+		<members>BET_FollowRequestTriggerHandler</members>
+		<members>BET_FollowRequestTriggerHandlerCls</members>
+		<members>BET_FollowRequestTriggerHandlerClsTest</members>
+		<members>BET_LinkedProjectsComponentController</members>
+		<members>BET_LinkedProjectsComponentContrTest</members>
+		<members>BET_LinkingService</members>
+		<members>BET_LinkingServiceHelper</members>
+		<members>BET_LinkingServiceHelperTest</members>
+		<members>BET_LinkingServiceTest</members>
+		<members>BET_Team_MemberHandler</members>
+		<members>BET_Team_MemberHandlerCls</members>
+		<members>BET_Team_MemberHandlerClsTest</members>
         <members>BET_ManageMembersController</members>
         <members>BET_ManageMembersController_Test</members>
         <members>BET_ManageMembersController_Test2</members>
@@ -970,6 +988,8 @@
 		<members>BET_CategoryBrandSelectionComponent</members>
 		<members>BET_NewBetComponent</members>
 		<members>BET_UpsertBET</members>
+		<members>BET_ApproveProjectsComponent</members>
+		<members>BET_LinkedProjectsComponent</members>
         <members>Core_AutoComplete</members>
         <members>IPMBackButton</members>
         <members>IPMOTIFSectionStatus</members>
@@ -1599,6 +1619,7 @@
         <members>uw_UpdateInfoprojectKeywordSearch</members>
         <members>validationOnAmounts</members>
         <members>BET_Member_Request_Trigger</members>
+		<members>BET_Follow_Request</members>
         <name>ApexTrigger</name>
     </types>
     <types>
@@ -2944,6 +2965,11 @@
         <members>FAU_Program_Protected/FAU_Request_New_Upgrade_Personal_Assistant_User</members>
         <members>TO_Emails_France</members>
         <members>TO_Emails_France/TO_Auto_Response_Template</members>
+		<members>Approval_Emails/BET_FollowRequestApproved</members>
+		<members>Approval_Emails/BET_FollowRequestCreated</members>
+		<members>Approval_Emails/BET_FollowRequestRejected</members>
+		<members>Approval_Emails/BET_Member_Request_Created</members>
+		<members>Approval_Emails/BET_TLD_Changed</members>
         <name>EmailTemplate</name>
     </types>
     <types>
@@ -3670,6 +3696,8 @@
         <members>resource_sunsilk</members>
         <members>walls_brand_centre_resources</members>
         <members>BETSuggestedMembers</members>
+		<members>BETManageMembersJS</members>
+		<members>BETManageMembersStyles</members>
         <name>StaticResource</name>
     </types>
     <types>
@@ -3951,6 +3979,8 @@
         <members>uw_Links__c</members>
         <members>uw_SSO_Settings__c</members>
         <members>uw_Terms_Conditions__c</members>
+		<members>BET_Follow_Request__c</members>
+		<members>BET_Member_Request__c</members>
         <name>Workflow</name>
     </types>
     <types>
