@@ -3995,6 +3995,8 @@
         <members>BET_Follow_Request__c.Project_Lead__c</members>
         <members>BET_Follow_Request__c.Project_Name__c</members>
         <members>BET_Follow_Request__c.Status__c</members>
+		<members>BET_Follow_Request__c.Bet_Link__c</members>
+		<members>BET_Follow_Request__c.Bet_owner__c</members>
         <members>BET_Member_Request__c.Brand_Experience_Toolkit__c</members>
         <members>BET_Member_Request__c.ConcatenatedField__c</members>
         <members>BET_Member_Request__c.Do_Not_Notify_Creator__c</members>
@@ -4007,6 +4009,7 @@
         <members>BET_Member_Request__c.Role__c</members>
         <members>BET_Member_Request__c.Status__c</members>
         <members>BET_Member_Request__c.UserId__c</members>
+		<members>BET_Member_Request__c.Bet_owner__c</members>
         <members>uw_BET__c.Background_Colour__c</members>
         <members>uw_BET__c.Banner_1_Location__c</members>
         <members>uw_BET__c.Banner_2_Location__c</members>
