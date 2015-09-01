@@ -4030,6 +4030,10 @@
         <members>uw_BET__c.Description__c</members>
         <members>uw_BET__c.Final_release_date__c</members>
         <members>uw_BET__c.First_release_date__c</members>
+		<members>uw_BET__c.FinalReleaseDate__c</members>
+		<members>uw_BET__c.Final_Release_Due_Date__c</members>
+		<members>uw_BET__c.FirstReleaseDate__c</members>
+		<members>uw_BET__c.First_Release_Due_Date__c</members>
         <members>uw_BET__c.Font_Colour__c</members>
         <members>uw_BET__c.Group__c</members>
         <members>uw_BET__c.IPM_Project__c</members>
