@@ -127,10 +127,16 @@ public with sharing class BET_SuggestMembersController {
     public List<ManagerWrapper> getManagers(){
         List<ManagerWrapper> managersList = new List<ManagerWrapper>();
         Set<Id> uniqueUsers = new Set<Id>();
-
-        if(projectIdCtrl != null) {
-            IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(projectIdCtrl);
-            if(project.pLId != null && project.pLId == UserInfo.getUserId()){
+        
+        if(!String.isBlank(projectIdCtrl)) {
+            IPM_BETWrapper project;
+            Boolean isIPMProject = true;
+            try{
+                project = IPM_BETUpdateService.ipm_Wrapper(projectIdCtrl);
+            }catch(Exception e){
+                isIPMProject = false;
+            }
+            if(isIPMProject && project.pLId != null && project.pLId == UserInfo.getUserId()){
                 for(BET_Member_Request__c managerMember : [SELECT Id,UserId__c,UserId__r.FirstName,UserId__r.LastName,UserId__r.FullPhotoUrl FROM BET_Member_Request__c WHERE ProjectRequest__c in (select id FROM BET_Follow_Request__c WHERE Status__c =: 'New' and Brand_Experience_Toolkit__c =: betIdCtrl and Project_Id__c =: projectIdCtrl)]){
                     if(!uniqueUsers.contains(managerMember.UserId__c)){
                         managersList.add(new ManagerWrapper(managerMember));

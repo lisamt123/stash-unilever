@@ -4129,5 +4129,11 @@
         <members>uw_BET__c.uw_Brand__c</members>
         <name>CustomField</name>
     </types>
+	<types>
+        <members>BET_reports</members>
+        <members>BET_reports/BETs_with_IPMs</members>
+        <members>BET_reports/Brand_Experience_History</members>
+        <name>Report</name>
+    </types>
     <version>34.0</version>
 </Package>
