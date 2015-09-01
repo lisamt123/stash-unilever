@@ -219,6 +219,8 @@ private class BET_SuggestMembersControllerTest {
         uw_BET__c bet = BET_TestUtils.getTestBet();
         insert bet;
         IPM_Project__c project = BET_TestUtils.createIPMProject('Unit Test IPM Project');
+        project.IPM_Project_Leader__c = UserInfo.getUserId();
+        update project;
 
         BET_Member_Request__c request  = new BET_Member_Request__c();
         request.Status__c = 'Approved';
