@@ -10,16 +10,13 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 public with sharing class BET_AccessService {
 	
-
 	private static final String NO_BET_ACCESS = 'No';
 	private static final String BET_MEMBER = 'Member';
 	private static final String BET_MANAGER = 'Manager';
 	private static final String BET_OWNER = 'Owner';
 	private static final String BET_ACCESS_PENDING = 'Pending';
-
 	private static final String MANAGER_ROLE = 'Manager';
 	private static final String MEMBER_ROLE = 'Member';
-
 
 	private BET_AccessService(){}
 
@@ -73,6 +70,12 @@ public with sharing class BET_AccessService {
 		return status;
 	}
 
+	/************************************************************
+		Purpose: Method checks if there is a request access pengind for given user and bet
+		Parameters: Id userId,Id betId
+		Returns: Boolean
+		Throws: -
+	*************************************************************/
 	@TestVisible
 	private static Boolean checkIfRequestAccessIsPending(Id userId,Id betId){
 		System.debug('Entering checkIfRequestAccessIsPending : ' + userId + ', ' + betId);
@@ -136,6 +139,30 @@ public with sharing class BET_AccessService {
 		}
 		System.debug('Exit RequestExternalUserAccess : ' + requestId);
 		return requestId;
+	}
+
+	/************************************************************
+		Purpose: Method retrieves all bet relates members
+		Parameters: Id of related bet
+		Returns: List of related member records
+		Throws: -
+	*************************************************************/
+	public static List<BET_BETWrapper.MemberRequest> GetBetUsers(Id betId){
+		System.debug('Entering GetBetUsers : ' + betId);
+		List<BET_BETWrapper.MemberRequest> members = new List<BET_BETWrapper.MemberRequest>();
+		try{
+			uw_bet__c betRecord = [select id from uw_bet__c where id=:betId];
+		}catch(Exception ex){
+			throw new BET_CustomBETException('BET record not found for given id ' + betId,ex);
+		}
+		for(uw_BET_Team_Member__c member : [select id, Team_Member__c, Role__c from uw_BET_Team_Member__c  where BET__c =: betId]){
+			BET_BETWrapper.MemberRequest mrequest = new BET_BETWrapper.MemberRequest();
+			mrequest.UserId = member.Team_Member__c;
+			mrequest.AccessLevel = member.Role__c;
+			members.add(mrequest);
+		}
+		System.debug('Exit GetBetUsers : ' + members);
+		return members;
 	}
 
 }

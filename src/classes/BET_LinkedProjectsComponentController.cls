@@ -39,6 +39,12 @@ public with sharing class BET_LinkedProjectsComponentController {
 		return requests;
 	}
 
+	/************************************************************
+		Purpose: Method sets given project as bets lead project
+		Parameters: -
+		Returns: PageReference
+		Throws: -
+	*************************************************************/
 	public PageReference setAsLeadProject(){
 		System.debug('Entering setAsLeadProject : ' + selectedProjectId + ', ' +  betIdentifier);
 		BET_LinkingService.setASLead((Id)selectedProjectId, betIdentifier);

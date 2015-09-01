@@ -13,5 +13,18 @@ private class BET_LinkedProjectsComponentContrTest {
 		List<BET_LinkedProjectsComponentController.FollowRequestWrapper> linkedprojects = controller.getLinkedProjects();
 		System.assertEquals(linkedprojects.size(),2);
 	}
+
+	@isTest static void setAsLeadProjectTest(){
+		uw_Bet__c bet = BET_TestUtils.getTestBet();
+		insert bet;
+		Id BetId = bet.id;
+		Id ProjectId = BET_TestUtils.createIPMProject('Unit Test Lead IPM Project').id;
+		BET_LinkedProjectsComponentController controller = new BET_LinkedProjectsComponentController();
+		controller.selectedProjectId = ProjectId;
+		controller.betIdentifier = BetId;
+		controller.setAsLeadProject();
+		bet = [select IPM_Project__c from uw_Bet__c where id=:BetId];
+		System.assertEquals(bet.IPM_Project__c,ProjectId);
+	}
 	
 }

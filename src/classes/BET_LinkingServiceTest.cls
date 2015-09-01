@@ -91,6 +91,43 @@ private class BET_LinkingServiceTest {
 		}
 	}
 
+	@isTest static void UnFollowLeadNoOtherProjectsTest(){
+		uw_Bet__c bet = BET_TestUtils.getTestBet();
+		insert bet;
+		Id BetId = bet.id;
+		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
+		bet.IPM_Project__c = ProjectId;
+		update bet;
+		try{
+			BET_LinkingService.UnFollow(ProjectId, BetId);
+			System.assert(true);
+		}catch(Exception e){
+			System.assert(false);
+		}
+	}
+
+	@isTest static void UnFollowLeadWithOtherProjectsTest(){
+		uw_Bet__c bet = BET_TestUtils.getTestBet();
+		insert bet;
+		Id BetId = bet.id;
+		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
+		bet.IPM_Project__c = ProjectId;
+		update bet;
+
+		BET_Follow_Request__c freq = new BET_Follow_Request__c();
+		freq.Brand_Experience_Toolkit__c = bet.id;
+		freq.Status__c = 'Approved';
+		freq.Project_Id__c = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME+'_1').id;
+		insert freq;
+
+		try{
+			BET_LinkingService.UnFollow(ProjectId, BetId);
+			System.assert(true);
+		}catch(Exception e){
+			System.assert(false);
+		}
+	}
+
 	@isTest static void checkIfFollowRequestShouldBeAutoapprovedTest(){
 		uw_Bet__c relatedBet = BET_TestUtils.getTestBet();
 		relatedBet.ownerid = UserInfo.getUserId();

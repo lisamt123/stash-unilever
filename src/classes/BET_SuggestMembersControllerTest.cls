@@ -97,8 +97,12 @@ private class BET_SuggestMembersControllerTest {
         //check if other users and suggested members were added into database
         system.assertEquals(numberOfNewlyAddedUsers+12, [Select id FROM BET_Member_Request__c].size());
         //try to add the same members ito database - check if duplicated records are not created
+
+        componentController.externalMemberEmail = 'm.bluj@polsource.com';
+        componentController.addExternalMember();
+
         componentController.addMembers();
-        system.assertEquals(numberOfNewlyAddedUsers+12, [Select id FROM BET_Member_Request__c].size());
+        system.assertEquals(numberOfNewlyAddedUsers+13, [Select id FROM BET_Member_Request__c].size());
         //check deleting from UI
         componentController.memberToDelete = userForDeletion;
         componentController.deleteMember();
@@ -192,5 +196,45 @@ private class BET_SuggestMembersControllerTest {
         }
     }
     
-    
+    @isTest static void addExternalMemberTest(){
+        BET_SuggestMembersController componentController = new BET_SuggestMembersController();
+        componentController.externalMemberEmail = 'm.bluj@polsource.com';
+        componentController.addExternalMember();
+        System.assertEquals(componentController.externalMembers.size(),1);
+        System.assertEquals(componentController.externalMembers.get(0).getPhoto(),'/profilephoto/005/F');
+    }
+
+    @isTest static void delExternalMemeberTest(){
+        BET_SuggestMembersController componentController = new BET_SuggestMembersController();
+        componentController.externalMemberEmail = 'm.bluj@polsource.com';
+        componentController.addExternalMember();
+        System.assertEquals(componentController.externalMembers.size(),1);
+        componentController.delExternalMemeber();
+        System.assertEquals(componentController.externalMembers.size(),0);
+    }
+
+    @isTest static void getManagersTest(){
+        BET_SuggestMembersController componentController = new BET_SuggestMembersController();
+
+        uw_BET__c bet = BET_TestUtils.getTestBet();
+        insert bet;
+        IPM_Project__c project = BET_TestUtils.createIPMProject('Unit Test IPM Project');
+        project.IPM_Project_Leader__c = UserInfo.getUserId();
+        update project;
+
+        BET_Member_Request__c request  = new BET_Member_Request__c();
+        request.Status__c = 'Approved';
+        request.Brand_Experience_Toolkit__c = bet.id;
+        request.Project_Id__c = project.id;
+        request.Role__c = 'Manager';
+        request.UserId__c = UserInfo.getUserId();
+
+        insert request;
+
+        componentController.betIdCtrl = bet.id;
+        componentController.projectIdCtrl = project.id;
+        System.assertEquals(componentController.getManagers().size(),1);
+
+    }
+
 }

@@ -27,7 +27,9 @@ public with sharing class BET_EmailNotificationService {
             List<String> userMails = userEmails(ipms);
             mails.add(buildArchiveMessage(userMails,bet));
         }
-        if(!Test.isRunningTest()) Messaging.sendEmail(mails,false);
+        if(!Test.isRunningTest()){
+            Messaging.sendEmail(mails,false);
+        }
     }
 
     /************************************************************
@@ -43,7 +45,9 @@ public with sharing class BET_EmailNotificationService {
             List<String> userMails = userEmails(ipms);
             mails.add(buildUnArchiveMessage(userMails,bet));
         }
-        if(!Test.isRunningTest()) Messaging.sendEmail(mails,false);
+        if(!Test.isRunningTest()){
+            Messaging.sendEmail(mails,false);
+        }
     }
 
     /************************************************************
@@ -117,7 +121,9 @@ public with sharing class BET_EmailNotificationService {
         body += '<br/> the next project with the earliest TLD is now your leading/controlling project,';
         body += '<br/> if you want to change this please contact system admin';
         mail.setHtmlBody(body);
-        if(!Test.isRunningTest()) Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+        if(!Test.isRunningTest()) {
+            Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+        }
 	}
 
     /************************************************************
@@ -148,7 +154,9 @@ public with sharing class BET_EmailNotificationService {
         mail.setSubject('Project ' + newProject.name + ' has become new lead/controlling project of BET');
         final String body = 'Project ' + newProject.name + ' has become new lead/controlling project of BET ' + bet.name ;
         mail.setHtmlBody(body);
-        if(!Test.isRunningTest()) Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+        if(!Test.isRunningTest()) {
+            Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+        }
 	}
 
     /************************************************************
@@ -172,6 +180,8 @@ public with sharing class BET_EmailNotificationService {
         body += '<br/> there is no lead/controlling project assigned to your BET. ';
         body += '<br/> BET has been archived but can be unarchived if required';
         mail.setHtmlBody(body);
-        if(!Test.isRunningTest()) Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+        if(!Test.isRunningTest()){
+            Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+        }
 	}
 }

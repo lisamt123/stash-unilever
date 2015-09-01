@@ -55,13 +55,9 @@ public with sharing class BET_LinkingService {
 		System.debug('projectWrapper ' + projectWrapper + ' , ' +bet);
 		bet.Launch_Date__c = projectWrapper.targetLaunchDate;
 		bet.IPM_Project__c = projectWrapper.projectId;
-		try{
-			bet.Category_Group__c = projectWrapper.categoryGroupName;
-			bet.Product_Category__c = projectWrapper.categoryName;
-			bet.Brand_Position__c = projectWrapper.brandPosition;
-		} catch(Exception e){
-			System.debug(e);
-		}
+		bet.Category_Group__c = projectWrapper.categoryGroupName;
+		bet.Product_Category__c = projectWrapper.categoryName;
+		bet.Brand_Position__c = projectWrapper.brandPosition;
 		update bet;
 	}
 
@@ -234,15 +230,5 @@ public with sharing class BET_LinkingService {
 		}
 		System.debug('Exit UnFollow');
 	}
-
-	/************************************************************
-		Purpose: Method unlinks any IPMs from given bets
-		Parameters: List<uw_Bet__c> bets
-		Returns: -
-		Throws: -
-	*************************************************************/
-	//public static void unlinkIPMsfromBets(List<uw_Bet__c> bets){
-
-	//}
 
 }

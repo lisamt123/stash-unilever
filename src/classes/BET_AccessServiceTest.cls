@@ -47,5 +47,20 @@ private class BET_AccessServiceTest {
 		Id requestId = BET_AccessService.RequestExternalUserAccess('m.bluj@polsource.com',bet.id);
 		System.assert(requestId != null);
 	}
+
+	@isTest static void GetBetUsersTest(){
+		uw_Bet__c bet = BET_TestUtils.getTestBet();
+		insert bet;
+		System.assertEquals(BET_AccessService.GetBetUsers(bet.id).size(),1);
+	}
+
+	@isTest static void GetBetUsersBetNotExistsTest(){
+		try{
+			BET_AccessService.GetBetUsers(null);
+			system.assert(false);
+		}catch(Exception e){
+			system.assert(true);
+		}
+	}
 	
 }

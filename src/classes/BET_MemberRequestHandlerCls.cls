@@ -11,6 +11,10 @@ VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 *******************************************************************************************************************************/
 public with sharing class BET_MemberRequestHandlerCls {
     
+
+    private static final String MANAGERROLE = 'Manager';
+    private static final String MEMBERROLE = 'Member';
+
     private BET_MemberRequestHandlerCls(){}
     /************************************************************
         Purpose: Method responsible for preventing adding duplacted records for object BET_Member_Request__c
@@ -103,8 +107,8 @@ public with sharing class BET_MemberRequestHandlerCls {
                     System.debug('teamMemberExistingMap ' + teamMemberExistingMap);
                     System.debug('Getting key : ' + String.valueOf(memberRequest.Brand_Experience_Toolkit__c)+String.valueOf(memberRequest.UserId__c));
                     uw_BET_Team_Member__c member = teamMemberExistingMap.get(String.valueOf(memberRequest.Brand_Experience_Toolkit__c)+String.valueOf(memberRequest.UserId__c));
-                    if(member!=null && member.Role__c == 'Member' && memberRequest.Role__c == 'Manager'){
-                        member.Role__c = 'Manager';
+                    if(member!=null && member.Role__c == MEMBERROLE && memberRequest.Role__c == MANAGERROLE){
+                        member.Role__c = MANAGERROLE;
                         teamMembersToUpsert.add(member);
                     }
                 }
@@ -115,8 +119,8 @@ public with sharing class BET_MemberRequestHandlerCls {
                         teamMembersToUpsert.add(createTeamMemberFromRequest(memberRequest));
                     } else {
                         uw_BET_Team_Member__c member = teamMemberExistingMap.get(String.valueOf(memberRequest.Brand_Experience_Toolkit__c)+String.valueOf(memberRequest.UserId__c));
-                        if(member!=null && member.Role__c == 'Member' && memberRequest.Role__c == 'Manager'){
-                            member.Role__c = 'Manager';
+                        if(member!=null && member.Role__c == MEMBERROLE && memberRequest.Role__c == MANAGERROLE){
+                            member.Role__c = MANAGERROLE;
                             teamMembersToUpsert.add(member);
                         }
                     }

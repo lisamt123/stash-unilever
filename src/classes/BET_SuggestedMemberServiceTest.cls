@@ -11,6 +11,22 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 @isTest
 private class BET_SuggestedMemberServiceTest {
 
+    @isTest static void testCheckIfUsersAreManagerOrOwnerOfBet(){
+        uw_BET__c betObject = BET_TestUtils.getTestBet();
+        insert betObject;
+        system.assertEquals(true, BET_SuggestedMemberService.checkIfUsersAreManagerOrOwnerOfBet(betObject.id,new List<Id>{UserInfo.getUserId()}).get(UserInfo.getUserId()));
+        uw_BET_Team_Member__c memberRequestToInsert = new uw_BET_Team_Member__c();
+        memberRequestToInsert.BETEnabled__c = true;
+        memberRequestToInsert.BET__c = betObject.id;
+        memberRequestToInsert.Editing__c = false;
+        memberRequestToInsert.Invite_Pending__c = false;
+        memberRequestToInsert.Role__c = Label.BetTeamMemberRoleManager;
+        memberRequestToInsert.StudioEnabled__c = true;
+        memberRequestToInsert.Team_Member__c = UserInfo.getUserId();
+        insert memberRequestToInsert;
+        system.assertEquals(true, BET_SuggestedMemberService.checkIfUsersAreManagerOrOwnerOfBet(betObject.id,new List<Id>{UserInfo.getUserId()}).get(UserInfo.getUserId()));
+    }
+
     @isTest static void testCheckIfUserIsManagerOrOwnerOfBet(){
         //check for owner
         uw_BET__c betObject = BET_TestUtils.getTestBet();
@@ -20,10 +36,10 @@ private class BET_SuggestedMemberServiceTest {
         system.assertEquals(true, BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betObject.id,UserInfo.getUserId()));
         //create team member with manager role
         Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator'];
-      	User testUser = new User(Alias = 'newBet', Email='nebetTestUSr@testorg.com',
+        User testUser = new User(Alias = 'newBet', Email='nebetTestUSr@testorg.com',
                           EmailEncodingKey='UTF-8', LastName='newBetTestUsr', LanguageLocaleKey='en_US',
                           LocaleSidKey='en_US', ProfileId = p.Id,
-                          TimeZoneSidKey='America/Los_Angeles', UserName='nebetTestUSr@testorg.com');
+                          TimeZoneSidKey='America/Los_Angeles', UserName='nebetTestUSr@testorg.com',isActive = true);
         
         
         System.runAs(testUser){
@@ -56,19 +72,19 @@ private class BET_SuggestedMemberServiceTest {
         insert followRequest;
         //create test member request data
         List<BET_Member_Request__c> betMembersToInsert = new List<BET_Member_Request__c>();
-        for(User u : [Select id FROM User Limit 10]){
+        for(User u : [Select id FROM User where isActive = true Limit 10]){
             BET_Member_Request__c betMemeberItem = new BET_Member_Request__c();
             betMemeberItem.Brand_Experience_Toolkit__c = betObject.id;
             betMemeberItem.ProjectRequest__c = followRequest.id;
             betMemeberItem.UserId__c = u.id;
             betMemeberItem.Project_Id__c = invalidProjectID;
-			betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
+            betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
             betMemeberItem.Role__c = Label.BetTeamMemberRoleMember;
             betMembersToInsert.add(betMemeberItem);
         }
         //BET_CustomBETException should occure for invailid ProjectID wrong format
         try{
-        	betMembersToInsert = BET_SuggestedMemberService.removeMemberRequestDuplicatesWhileInsert(betMembersToInsert);
+            betMembersToInsert = BET_SuggestedMemberService.removeMemberRequestDuplicatesWhileInsert(betMembersToInsert);
             system.assertEquals(0, 1, 'Exception should be thrown so this code instruction should not be executed in test');
         }catch(BET_CustomBETException ex){
             system.assertEquals(Label.BetMemberRequestInvailidProjectIDError, ex.getMessage());
@@ -85,13 +101,13 @@ private class BET_SuggestedMemberServiceTest {
         //create test member request data
         List<BET_Member_Request__c> betMembersToInsert = new List<BET_Member_Request__c>();
         List<User> usedUsers = new List<User>();
-        for(User u : [Select id FROM User Limit 10]){
+        for(User u : [Select id FROM User where isActive = true  Limit 10]){
             BET_Member_Request__c betMemeberItem = new BET_Member_Request__c();
             betMemeberItem.Brand_Experience_Toolkit__c = betObject.id;
             betMemeberItem.ProjectRequest__c = followRequest.id;
             betMemeberItem.UserId__c = u.id;
             betMemeberItem.Project_Id__c = invalidProjectID;
-			betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
+            betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
             betMemeberItem.Role__c = Label.BetTeamMemberRoleMember;
             betMembersToInsert.add(betMemeberItem);
             usedUsers.add(u);
@@ -108,7 +124,7 @@ private class BET_SuggestedMemberServiceTest {
             betMemeberItem.ProjectRequest__c = followRequest.id;
             betMemeberItem.UserId__c = u.id;
             betMemeberItem.Project_Id__c = invalidProjectID;
-			betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
+            betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
             betMemeberItem.Role__c = Label.BetTeamMemberRoleMember;
             tmpMemberRequests.add(betMemeberItem);
            
