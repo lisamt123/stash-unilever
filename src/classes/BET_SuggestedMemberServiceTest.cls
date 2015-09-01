@@ -134,10 +134,10 @@ private class BET_SuggestedMemberServiceTest {
         for(BET_Member_Request__c member : betMembersToInsert){
             member.Status__c = Label.BETTeamMemberRequestApprovedStatus;
         }
-        Integer numberOfTeamMembersBeforeUpdate = [Select id FROM uw_BET_Team_Member__c].size();
+        Integer numberOfTeamMembersBeforeUpdate = [Select id FROM uw_BET_Team_Member__c where BET__c =:betObject.id].size();
         update betMembersToInsert;
         //check if tem members were added to db
-        system.assertEquals(betMembersToInsert.size(), [Select id FROM uw_BET_Team_Member__c].size() - numberOfTeamMembersBeforeUpdate);
+        system.assertEquals(betMembersToInsert.size(), [Select id FROM uw_BET_Team_Member__c where BET__c =:betObject.id].size() - numberOfTeamMembersBeforeUpdate);
         tmpMemberRequests = BET_SuggestedMemberService.removeMemberRequestDuplicatesWhileInsert(tmpMemberRequests);
         //such records are already approved so no recors should be added
         system.assertEquals(0, tmpMemberRequests.size());

@@ -95,14 +95,14 @@ private class BET_SuggestMembersControllerTest {
             }
         }
         //check if other users and suggested members were added into database
-        system.assertEquals(numberOfNewlyAddedUsers+12, [Select id FROM BET_Member_Request__c].size());
+        system.assertEquals(numberOfNewlyAddedUsers+12, [Select id FROM BET_Member_Request__c where Brand_Experience_Toolkit__c = : betObject.id].size());
         //try to add the same members ito database - check if duplicated records are not created
 
         componentController.externalMemberEmail = 'm.bluj@polsource.com';
         componentController.addExternalMember();
 
         componentController.addMembers();
-        system.assertEquals(numberOfNewlyAddedUsers+13, [Select id FROM BET_Member_Request__c].size());
+        system.assertEquals(numberOfNewlyAddedUsers+13, [Select id FROM BET_Member_Request__c where Brand_Experience_Toolkit__c = : betObject.id].size());
         //check deleting from UI
         componentController.memberToDelete = userForDeletion;
         componentController.deleteMember();
@@ -192,7 +192,7 @@ private class BET_SuggestMembersControllerTest {
         	//Tema member requests created in status New but there already exist such records in Approved 
         	//status no records should be added
         	componentController.addMembers();
-            system.assertEquals(numberOfNewlyAddedUsers+12, [Select id FROM BET_Member_Request__c].size());
+            system.assertEquals(numberOfNewlyAddedUsers+12, [Select id FROM BET_Member_Request__c where Brand_Experience_Toolkit__c = : betObject.id].size());
         }
     }
     

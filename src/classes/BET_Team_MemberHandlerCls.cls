@@ -12,13 +12,13 @@ VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 
 public without sharing class BET_Team_MemberHandlerCls {
 
-    private static final String BETMANAGERCONFIG = 'BETManageMembersConfig';
-    private static final String MANAGERROLE = 'Manager';
-    private static final String MEMBERROLE = 'Member';
-    private static final String ADMIN = 'Admin';
-    private static final String STANDARD = 'Standard';
-    private static final String EDIT = 'Edit';
-    private static final String READ = 'Read';
+    @TestVisible private static final String BETMANAGERCONFIG = 'BETManageMembersConfig';
+    @TestVisible private static final String MANAGERROLE = 'Manager';
+    @TestVisible private static final String MEMBERROLE = 'Member';
+    @TestVisible private static final String ADMIN = 'Admin';
+    @TestVisible private static final String STANDARD = 'Standard';
+    @TestVisible private static final String EDIT = 'Edit';
+    @TestVisible private static final String READ = 'Read';
 
 	private BET_Team_MemberHandlerCls() {}
 
@@ -143,7 +143,9 @@ public without sharing class BET_Team_MemberHandlerCls {
         	}
         	
     	}
-    	if(!Test.isRunningTest()) insert eSubscriptions;
+    	if(!Test.isRunningTest()) {
+            insert eSubscriptions;
+        }
     	System.debug('Exit addEntitySubscriptions : ' + eSubscriptions);
 	}
 
