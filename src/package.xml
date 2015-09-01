@@ -2050,6 +2050,67 @@
         <members>BET_SuggestedMemberModalHeader</members>
         <members>BET_SuggestedMemberModalNoResults</members>
         <members>BetTeamMemberRoleMember</members>
+		<members>BetMemberRequestInvailidProjectIDError</members>
+		<members>BetServiceGetBetError</members>
+		<members>BetTeamMemberRoleManager</members>
+		<members>BET_Add_Internal_User</members>
+		<members>BET_Add_Member</members>
+		<members>BET_Approve</members>
+		<members>BET_ApproveProjectsTabName</members>
+		<members>BET_Approve_members</members>
+		<members>BET_Approve_selected</members>
+		<members>BET_ArchiveBET</members>
+		<members>BET_ArchiveConfirmation</members>
+		<members>BET_Archiving</members>
+		<members>BET_BetBrandPositionMandatory</members>
+		<members>BET_BetCategoryGroupMandatory</members>
+		<members>BET_BetCategoryMandatory</members>
+		<members>BET_BetNameMandatory</members>
+		<members>BET_BrandTip</members>
+		<members>BET_Browse_members</members>
+		<members>BET_Cancel</members>
+		<members>BET_Canceling</members>
+		<members>BET_CreateBetAddMembers</members>
+		<members>BET_CreateNewBet</members>
+		<members>BET_Delete</members>
+		<members>BET_Delete_selected</members>
+		<members>BET_Deny</members>
+		<members>BET_Deny_selected</members>
+		<members>BET_External_Agency_User</members>
+		<members>BET_FollowBetArchivedMessage</members>
+		<members>BET_FollowBetNotExistsMessage</members>
+		<members>BET_FollowExceptionMessage</members>
+		<members>BET_FollowProjectNotExistsMessage</members>
+		<members>BET_Header</members>
+		<members>BET_InoplanProjectMandatory</members>
+		<members>BET_IPMProject</members>
+		<members>BET_LaunchDateMandatory</members>
+		<members>BET_LinkedProjectHeaderOne</members>
+		<members>BET_LinkedProjectHeaderTwo</members>
+		<members>BET_LinkedProjectsTabName</members>
+		<members>BET_MandatoryStar</members>
+		<members>BET_MarkedFieldsMandatory</members>
+		<members>BET_Name</members>
+		<members>BET_NameExists</members>
+		<members>BET_NewIPMProjectIsLinking</members>
+		<members>BET_Owner</members>
+		<members>BET_Photo</members>
+		<members>BET_Project</members>
+		<members>BET_ProjectApproveRemainder</members>
+		<members>BET_ProjectLead</members>
+		<members>BET_ProjectName</members>
+		<members>BET_Save</members>
+		<members>BET_Saving</members>
+		<members>BET_SetAsLeadExceptionMessage</members>
+		<members>BET_SkipForNow</members>
+		<members>BET SuggestedMemberOtherMembers</members>
+		<members>BET SuggestedMemberMembers</members>
+		<members>BET_TargetLaunchDate</members>
+		<members>BET_UnArchiveBET</members>
+		<members>BET_UnArchiveConfirmation</members>
+		<members>BET_UnArchiving</members>
+		<members>BET_UnFollowExceptionMessage</members>
+		<members>BET_UpdateBetAddMembers</members>	
         <name>CustomLabel</name>
     </types>
     <types>
