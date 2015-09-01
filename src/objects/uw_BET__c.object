@@ -46,7 +46,7 @@
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
-	<allowInChatterGroups>false</allowInChatterGroups>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <customHelpPage>be_help_pop_up</customHelpPage>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -636,6 +636,26 @@
         <visibleLines>10</visibleLines>
     </fields>
     <fields>
+        <fullName>FinalReleaseDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Final Release Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Final_Release_Due_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Final Release Due Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Final_release_date__c</fullName>
         <externalId>false</externalId>
         <formula>IF( 
@@ -646,6 +666,26 @@ DATE(YEAR(Launch_Date__c), MONTH(Launch_Date__c)-6, 1)
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Final release date</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FirstReleaseDate__c</fullName>
+        <externalId>false</externalId>
+        <label>First Release Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>First_Release_Due_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>First Release Due Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
