@@ -963,6 +963,7 @@
 		<members>BET_BETService</members>
         <members>BET_BETServiceTest</members>
         <members>IPM_BETWrapper</members>
+		<members>BET_MDODataMigrationAndTransformBatch</members>
         <name>ApexClass</name>
     </types>
     <types>
