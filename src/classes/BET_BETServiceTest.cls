@@ -100,6 +100,6 @@ private class BET_BETServiceTest {
 
         System.assertEquals(tld.year(),2015);
         System.assertEquals(tld.month(),3);
-        System.assertEquals(tld.day(),1);
+        System.assertEquals(tld.day(),10);
     }
 }
