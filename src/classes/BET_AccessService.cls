@@ -8,7 +8,7 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  23-07-2015  Initial
 *************************************************************************************/
-public with sharing class BET_AccessService {
+public without sharing class BET_AccessService {
 	
 	private static final String NO_BET_ACCESS = 'No';
 	private static final String BET_MEMBER = 'Member';
