@@ -733,6 +733,14 @@ Are you sure you wish to proceed?</value>
         <value>Target Launch Date is mandatory</value>
     </labels>
     <labels>
+        <fullName>BET_LinkBetToIPMProject</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_LinkBetToIPMProject</shortDescription>
+        <value>Please link your BET to a project from IPM Navigator.</value>
+    </labels>
+    <labels>
         <fullName>BET_LinkedProjectHeaderOne</fullName>
         <categories>BET</categories>
         <language>en_US</language>

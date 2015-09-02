@@ -20,6 +20,16 @@
 
     </script>
 
+    <style>
+        .ipmTooltip {
+            font-size: 14px;
+            font-family: "Calibri-Italic","Calibri Italic","Calibri";
+            font-weight: 400;
+            font-style: italic;
+            color: #515151;
+        }
+    </style>
+
     <div class="form-item">
         <div class="item-label">
             <apex:outputLabel >
@@ -144,8 +154,9 @@
                         rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.IPM_Project__c.inlineHelpText)}"
                         html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.IPM_Project__c.inlineHelpText}" />
                 </div>
-                <div class="item-input">
-                    <apex:inputText value="{!bet.IPM_Project__r.name}" disabled="true"/>
+                <div class="item-input" style="top: -22px;">
+                    <apex:inputText value="{!bet.IPM_Project__r.name}" disabled="true" rendered="{!bet.IPM_Project__c != null}"/>
+                    <apex:outputText value="{!ipmTooltip}" styleClass="ipmTooltip" rendered="{!bet.IPM_Project__c == null}"/>
                 </div>
             </div>
         </apex:outputPanel>
