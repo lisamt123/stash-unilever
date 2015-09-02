@@ -300,8 +300,12 @@
     </listViews>
     <listViews>
         <fullName>CEC_Sri_Lanka_Queue_cec_Case_QC_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>Product__c</columns>
+        <columns>Reason_Code__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Sri Lanka Queue</label>
+        <language>en_US</language>
         <queue>CEC_Sri_Lanka_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
