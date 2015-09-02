@@ -2684,6 +2684,32 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>Denmark_V2</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate,On Hold</value>
+        </filters>
+        <filters>
+            <field>Case_Market_Mapping_Country__c</field>
+            <operation>equals</operation>
+            <value>Denmark</value>
+        </filters>
+        <label>CEC Nordic Queue - Denmark V2</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CEC_Nordic_Visibility</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Dot_com</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -2908,6 +2934,32 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
     </listViews>
     <listViews>
+        <fullName>Nordic_Queue_Finland_V2</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>On Hold,Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>Case_Market_Mapping_Country__c</field>
+            <operation>equals</operation>
+            <value>Finland</value>
+        </filters>
+        <label>Nordic Queue - Finland V2</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CEC_Nordic_Visibility</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Out_of_Hours_case_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>Out of Hours case</label>
@@ -2954,7 +3006,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>Vacation_Queue_DACH</fullName>
-        <booleanFilter>(2 OR 3 OR 4 OR 5) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -2982,11 +3034,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
             <value>JuStedin</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
-            <value>TaHyseni</value>
         </filters>
         <label>DACH Vacation Queue</label>
         <language>de</language>
