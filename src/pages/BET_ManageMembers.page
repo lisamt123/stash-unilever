@@ -126,6 +126,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             {!$Label.BET_Name}
           </th>
           <th class="browseMembersheaderStyle">
+            {!$Label.BET_Title}
+          </th>
+          <th class="browseMembersheaderStyle">
             {!$ObjectType.BET_Member_Request__c.Fields.Role__c.Label}
           </th>
           <th class="browseMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'','display:none')}">
@@ -142,6 +145,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
               </td>
               <td>
                 <apex:outputText value="{!member.firstName} {!member.lastName}"/>
+              </td>
+              <td>
+                <apex:outputText value="{!member.title}"/>
               </td>
               <td style="{!IF(NOT(isBetOwnerOrManager),'','display:none')}">
                 <apex:outputText id="role" value="{!member.role}"/>
@@ -186,6 +192,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             {!$Label.BET_Name}
         </th>
         <th class="approveMembersheaderStyle">
+            {!$Label.BET_Title}
+          </th>
+        <th class="approveMembersheaderStyle">
             {!$Label.BET_Project}
         </th>
         <th class="approveMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'','display:none')}">
@@ -202,6 +211,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             </td>
             <td>
               <apex:outputText value="{!memberRequest.firstName} {!memberRequest.lastName}"/>
+            </td>
+            <td>
+              <apex:outputText value="{!memberRequest.title}"/>
             </td>
             <td>
               <apex:outputText value="{!memberRequest.projectName }"/>

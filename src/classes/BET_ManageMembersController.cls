@@ -44,13 +44,13 @@ global without sharing class BET_ManageMembersController {
         isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
 
         memberRequests = new List<MemberRequestWrapper>();
-        for(BET_Member_Request__c request : [select id,  ProjectRequest__r.Project_Name__c, UserId__r.FirstName,UserId__r.LastName, UserId__r.SmallPhotoUrl 
+        for(BET_Member_Request__c request : [select id,  ProjectRequest__r.Project_Name__c, UserId__r.FirstName,UserId__r.LastName, UserId__r.SmallPhotoUrl, UserId__r.Title 
                                                 from BET_Member_Request__c where Brand_Experience_Toolkit__c =: betId and Status__c =: BET_LinkingService.FOLLOW_STATUS_NEW]){
             memberRequests.add(new MemberRequestWrapper(request));
         }
 
         members = new List<MemberWrapper>();
-        for(uw_BET_Team_Member__c member : [select id,email__c, Role__c, Team_Member__r.FirstName,Team_Member__r.LastName,Team_Member__r.SmallPhotoUrl,BET__c,Team_Member__c
+        for(uw_BET_Team_Member__c member : [select id,email__c, Role__c, Team_Member__r.FirstName,Team_Member__r.LastName,Team_Member__r.SmallPhotoUrl,BET__c,Team_Member__c,Team_Member__r.Title
                                                 from uw_BET_Team_Member__c where BET__c =:betId ]){
             members.add(new MemberWrapper(member,bet.ownerId));
         }
@@ -337,6 +337,7 @@ global without sharing class BET_ManageMembersController {
         public String lastName {get;set;}
         public String photo {get;set;}
         public Id objectId {get;set;}
+        public String title {get;set;}
 
         public MemberRequestWrapper(){}
 
@@ -348,6 +349,7 @@ global without sharing class BET_ManageMembersController {
             photo = request.UserId__r.SmallPhotoUrl;
             this.isSelected = false;
             objectId = request.id;
+            title = request.UserId__r.Title;
         }
 
     }
@@ -364,6 +366,7 @@ global without sharing class BET_ManageMembersController {
         public String role {get;set;}
         public uw_BET_Team_Member__c obj {get;set;}
         public Boolean isbetOwner {get;set;}
+        public String title {get;set;}
 
         public MemberWrapper(){}
 
@@ -376,6 +379,7 @@ global without sharing class BET_ManageMembersController {
             this.isSelected = false;
             objectId = member.id;
             isbetOwner = member.Team_Member__c == betOwnerId;
+            title = member.Team_Member__r.Title;
         }
 
     }

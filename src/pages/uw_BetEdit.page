@@ -115,7 +115,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                 </div>
             </apex:tab>
 
-            <apex:tab label="Branding options" name="name2" id="tabTwo">
+            <apex:tab label="Branding Options" name="name2" id="tabTwo">
                 <apex:actionFunction action="{!clearBanner}" name="clearBannerAction"></apex:actionFunction>
                 <div id="banner-container">
                     <apex:outputPanel rendered="{!showClearBanner}"> 
