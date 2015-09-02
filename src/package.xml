@@ -2110,7 +2110,8 @@
 		<members>BET_UnArchiveConfirmation</members>
 		<members>BET_UnArchiving</members>
 		<members>BET_UnFollowExceptionMessage</members>
-		<members>BET_UpdateBetAddMembers</members>	
+		<members>BET_UpdateBetAddMembers</members>
+		<members>BET_NoLinkedProjectsAvailable</members>
         <name>CustomLabel</name>
     </types>
     <types>
