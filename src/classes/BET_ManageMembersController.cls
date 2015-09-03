@@ -346,7 +346,7 @@ global without sharing class BET_ManageMembersController {
             projectName = request.ProjectRequest__r.Project_Name__c;
             firstName = request.UserId__r.FirstName;
             lastName = request.UserId__r.LastName;
-            photo = request.UserId__r.SmallPhotoUrl;
+            photo = String.isBlank(request.UserId__r.SmallPhotoUrl) ? '/profilephoto/005/F' : request.UserId__r.SmallPhotoUrl;
             this.isSelected = false;
             objectId = request.id;
             title = request.UserId__r.Title;
@@ -375,7 +375,7 @@ global without sharing class BET_ManageMembersController {
             role = member.Role__c;
             firstName = member.Team_Member__c == null ? member.email__c : member.Team_Member__r.FirstName;
             lastName = member.Team_Member__r.LastName;
-            photo = member.Team_Member__r.SmallPhotoUrl;
+            photo = String.isBlank(member.Team_Member__r.SmallPhotoUrl) ? '/profilephoto/005/F' : member.Team_Member__r.SmallPhotoUrl;
             this.isSelected = false;
             objectId = member.id;
             isbetOwner = member.Team_Member__c == betOwnerId;
