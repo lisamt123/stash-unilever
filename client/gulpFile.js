@@ -49,6 +49,6 @@ gulp.task("forceDeploy", function() {
     }));
   });
 
-gulp.task('watch', ['webserver'])
-gulp.task('build', ['zip'])
-gulp.task('deploy', ['build','forceDeploy'])
+gulp.task('watch', ['webserver']);
+gulp.task('build', ['zip']);
+gulp.task('deploy', ['build','forceDeploy']);
