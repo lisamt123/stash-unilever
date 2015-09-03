@@ -15,6 +15,7 @@
             jQuery('.question-icon[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' } });
             jQuery('.question-icon-left[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' },position: { my: 'bottom right', at: 'top left' } });
         }
+        )
 
         function showProcessing(idofspinner){
             document.getElementById(idofspinner).style.display = '';
