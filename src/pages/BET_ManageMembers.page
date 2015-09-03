@@ -108,10 +108,12 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
           </table>
           </div>
 
-        <div class="headerButtonsBrowsMembers">
+        <div class="headerButtonsBrowsMembers" style=" padding-left: 754px;" > 
         
-          <apex:commandButton value="{!$Label.BET_Delete_selected}" action="{!massDelete}"  rendered="{!isBetOwnerOrManager}"
-            styleClass="buttong2y" style="background: #e6007e; color:white;height: 30px;"/> 
+          <apex:commandButton value="{!$Label.BET_Delete_selected}" action="{!massDelete}" 
+                              rendered="{!isBetOwnerOrManager}"
+                              styleClass="buttong2y" 
+                              style="background: #e6007e; color:white;height: 30px;"/> 
        
         </div>
 
@@ -158,9 +160,6 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                 </apex:selectList>
               </td>
               <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
-                <!--<apex:commandLink action="{!doDelete}" value="{!$Label.BET_Delete}" rendered="{!NOT(member.isbetOwner)}">
-                  <apex:param name="obid" assignTo="{!selectedMemberId}" value="{!member.objectId}"/>
-                </apex:commandLink>-->
                 <apex:commandButton action="{!doDelete}" value="{!$Label.BET_Delete}" styleClass="buttong2y" style="background: #e6007e; color:white;" rendered="{!NOT(member.isbetOwner)}" rerender="browseMembersid" status="saveStatus4">
                   <apex:actionStatus id="saveStatus4">
                     <apex:facet name="start">

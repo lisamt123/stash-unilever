@@ -185,7 +185,4 @@ public with sharing class BET_CategoryBrandSelectionController {
 		return values;
 	}
 
-	public String getIpmTooltip(){
-		return Label.BET_LinkBetToIPMProject;
-	}
 }

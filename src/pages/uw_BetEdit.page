@@ -87,9 +87,6 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                     <div class="form-item">
                         <div class="item-label">
                             <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_TargetLaunchDate}</apex:outputLabel>
-                            <apex:outputPanel layout="inline" styleClass="question-icon"
-                                    rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText)}"
-                                    html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText}" />
                         </div>
                         <div class="item-input-date">
                             <apex:inputField id="tldid" value="{!bet.Launch_Date__c}"/>
@@ -103,9 +100,6 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                     <div class="form-item">
                         <div class="item-label">
                             <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
-                            <apex:outputPanel layout="inline" styleClass="question-icon"
-                                        rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText)}"
-                                        html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText}" />
                         </div>
                         <div class="item-input">
                             <apex:inputTextarea id="descid" rows="5" value="{!bet.Description__c}"/>

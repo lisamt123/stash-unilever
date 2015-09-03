@@ -10,6 +10,12 @@
 
     <script type="text/javascript">
 
+        jQuery.noConflict();
+        jQuery( document ).ready(function( $ ) {
+            jQuery('.question-icon[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' } });
+            jQuery('.question-icon-left[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' },position: { my: 'bottom right', at: 'top left' } });
+        }
+
         function showProcessing(idofspinner){
             document.getElementById(idofspinner).style.display = '';
         }
@@ -21,12 +27,13 @@
     </script>
 
     <style>
-        .ipmTooltip {
-            font-size: 14px;
-            font-family: "Calibri-Italic","Calibri Italic","Calibri";
-            font-weight: 400;
-            font-style: italic;
-            color: #515151;
+        .question-icon, .question-icon-left {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-left: 5px;
+            background: url({!$Resource.BETApp}/images/question-mark.png) center center/100% no-repeat;
+            cursor: pointer;
         }
     </style>
 
@@ -35,9 +42,6 @@
             <apex:outputLabel >
                 {!$Label.BET_MandatoryStar}{!$ObjectType.uw_BET__c.Fields.Category_Group__c.Label}
             </apex:outputLabel>
-            <apex:outputPanel layout="inline" styleClass="question-icon"
-                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Category_Group__c.inlineHelpText)}"
-                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Category_Group__c.inlineHelpText}" />
         </div>
         <div class="item-input">
             <apex:actionRegion >
@@ -60,9 +64,6 @@
                 <apex:outputLabel >
                     {!$Label.BET_MandatoryStar}{!$ObjectType.uw_BET__c.Fields.Product_Category__c.Label}
                 </apex:outputLabel>
-                <apex:outputPanel layout="inline" styleClass="question-icon"
-                    rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Product_Category__c.inlineHelpText)}"
-                    html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Product_Category__c.inlineHelpText}" />
             </div>
             <div class="item-input">
                 <apex:actionRegion >
@@ -89,9 +90,6 @@
                 <apex:outputLabel >
                     {!$Label.BET_MandatoryStar}{!$ObjectType.uw_BET__c.Fields.Brand_Position__c.Label}
                 </apex:outputLabel>
-                <apex:outputPanel layout="inline" styleClass="question-icon"
-                    rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Brand_Position__c.inlineHelpText)}"
-                    html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Brand_Position__c.inlineHelpText}" />
             </div>
             <div class="item-input">
                 <apex:actionRegion >
@@ -120,9 +118,6 @@
                 <apex:outputLabel >
                     {!$ObjectType.uw_BET__c.Fields.Product_Brand__c.Label}
                 </apex:outputLabel>
-                <apex:outputPanel layout="inline" styleClass="question-icon"
-                    rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.uw_Brand__c.inlineHelpText)}"
-                    html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.uw_Brand__c.inlineHelpText}" />
             </div>
             <div class="item-input">
                 <apex:actionRegion >
@@ -150,13 +145,12 @@
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
                     <apex:outputLabel >{!$Label.BET_ProjectName}</apex:outputLabel>
-                    <apex:outputPanel layout="inline" styleClass="question-icon"
-                        rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.IPM_Project__c.inlineHelpText)}"
-                        html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.IPM_Project__c.inlineHelpText}" />
+                    <apex:outputPanel layout="inline" styleClass="question-icon" 
+                                      html-data-tooltip="{!$Label.BET_LinkBetToIPMProject}" 
+                                      rendered="{!bet.IPM_Project__c == null}"/>
                 </div>
-                <div class="item-input" style="top: -22px;">
+                <div class="item-input">
                     <apex:inputText value="{!bet.IPM_Project__r.name}" disabled="true" rendered="{!bet.IPM_Project__c != null}"/>
-                    <apex:outputText value="{!ipmTooltip}" styleClass="ipmTooltip" rendered="{!bet.IPM_Project__c == null}"/>
                 </div>
             </div>
         </apex:outputPanel>
@@ -165,9 +159,6 @@
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
                     <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_ProjectName}</apex:outputLabel>
-                    <apex:outputPanel layout="inline" styleClass="question-icon"
-                        rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Inoplan_Project__c.inlineHelpText)}"
-                        html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Inoplan_Project__c.inlineHelpText}"/>
                 </div>
                 <div class="item-input">
                     <apex:actionRegion >
