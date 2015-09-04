@@ -239,6 +239,9 @@
         <members>CEC_Test_IssueCreationPageController</members>
         <members>CEC_Test_NewAccountCaseController</members>
         <members>CEC_TypeaheadTest</members>
+        <members>CEC_Util</members>
+        <members>CEC_AlertActionBatchScheduler</members>
+        <members>CEC_TestAlertActionBatchScheduler</members>
         <members>CEC_UserDefaultSettingTriggerHelperTest</members>
         <members>CEC_UserTriggerHelper</members>
         <members>CEC_UserTriggerHelperTest</members>
