@@ -108,24 +108,29 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
           </table>
           </div>
 
-        <div class="headerButtonsBrowsMembers">
+        <div class="headerButtonsBrowsMembers" style=" padding-left: 754px;" > 
         
-          <apex:commandButton value="{!$Label.BET_Delete_selected}" action="{!massDelete}"  rendered="{!isBetOwnerOrManager}"
-            styleClass="buttong2y" style="background: #e6007e; color:white;height: 30px;"/> 
+          <apex:commandButton value="{!$Label.BET_Delete_selected}" action="{!massDelete}" 
+                              rendered="{!isBetOwnerOrManager}"
+                              styleClass="buttong2y" 
+                              style="background: #e6007e; color:white;height: 30px;"/> 
        
         </div>
 
         <table width="100%">
-          <th class="browseMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'','display:none')}">
+          <th class="browseMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'width: 45px;','display:none')}">
             <apex:inputCheckbox value="{!selectAll}" id="globcheckboxbrowse" onchange="selectOrDeselectkAllBrowse();"/>
           </th>
-          <th class="browseMembersheaderStyle">
+          <th class="browseMembersheaderStyle" style="width: 90px;">
             {!$Label.BET_Photo}
           </th>
-          <th class="browseMembersheaderStyle">
+          <th class="browseMembersheaderStyle" style="width: 150px;">
             {!$Label.BET_Name}
           </th>
-          <th class="browseMembersheaderStyle">
+          <th class="browseMembersheaderStyle" style="width: 240px;">
+            {!$Label.BET_Title}
+          </th>
+          <th class="browseMembersheaderStyle" style="width: 200px;">
             {!$ObjectType.BET_Member_Request__c.Fields.Role__c.Label}
           </th>
           <th class="browseMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'','display:none')}">
@@ -143,6 +148,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
               <td>
                 <apex:outputText value="{!member.firstName} {!member.lastName}"/>
               </td>
+              <td>
+                <apex:outputText value="{!member.title}"/>
+              </td>
               <td style="{!IF(NOT(isBetOwnerOrManager),'','display:none')}">
                 <apex:outputText id="role" value="{!member.role}"/>
               </td>
@@ -152,9 +160,14 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                 </apex:selectList>
               </td>
               <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
-                <apex:commandLink action="{!doDelete}" value="{!$Label.BET_Delete}" rendered="{!NOT(member.isbetOwner)}">
+                <apex:commandButton action="{!doDelete}" value="{!$Label.BET_Delete}" styleClass="buttong2y" style="background: #e6007e; color:white;" rendered="{!NOT(member.isbetOwner)}" rerender="browseMembersid" status="saveStatus4">
+                  <apex:actionStatus id="saveStatus4">
+                    <apex:facet name="start">
+                      <apex:image value="/img/loading.gif" style="width: 16px;height: 16px;" />
+                    </apex:facet> 
+                  </apex:actionStatus>  
                   <apex:param name="obid" assignTo="{!selectedMemberId}" value="{!member.objectId}"/>
-                </apex:commandLink>
+                </apex:commandButton>
               </td>
             </tr>
             <apex:variable var="cnt" value="{!cnt+1}"/>
@@ -176,16 +189,19 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
       </div>
 
       <table width="100%">
-        <th class="approveMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'','display:none')}">
+        <th class="approveMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'width: 45px;','display:none')}">
             <apex:inputCheckbox value="{!selectAll}" id="globcheckbox" onchange="selectOrDeselectkAll();"/>
         </th>
-        <th class="approveMembersheaderStyle">
+        <th class="approveMembersheaderStyle" style="width: 90px;">
             {!$Label.BET_Photo}
         </th>
-        <th class="approveMembersheaderStyle">
+        <th class="approveMembersheaderStyle" style="width: 150px;">
             {!$Label.BET_Name}
         </th>
-        <th class="approveMembersheaderStyle">
+        <th class="approveMembersheaderStyle" style="width: 240px;">
+            {!$Label.BET_Title}
+          </th>
+        <th class="approveMembersheaderStyle" style="width: 200px;">
             {!$Label.BET_Project}
         </th>
         <th class="approveMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'','display:none')}">
@@ -202,6 +218,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             </td>
             <td>
               <apex:outputText value="{!memberRequest.firstName} {!memberRequest.lastName}"/>
+            </td>
+            <td>
+              <apex:outputText value="{!memberRequest.title}"/>
             </td>
             <td>
               <apex:outputText value="{!memberRequest.projectName }"/>

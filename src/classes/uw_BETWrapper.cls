@@ -243,6 +243,9 @@ public with sharing class uw_BETWrapper {
         public Boolean currentUserHasAccessToIPM;
 
         public Boolean archived;
+
+        public Boolean completedFirstAfterDueDate = false;
+        public Boolean completedFinalAfterDueDate = false;
         
         public BetSearchItem(String betId, String betName, String betChatterGroupId, Datetime betFinalRelease, String betPresentationId, String betIconLocation, String betDescription, String betBrandName, String betRegion, String betProjectName,
             String betIPMProjectName,  
@@ -321,8 +324,14 @@ public with sharing class uw_BETWrapper {
             this.category               = bet.Product_Category__c;
             this.brandPosition          = bet.Brand_Position__c;
             this.brand                  = bet.Product_Brand__c;
-            this.archived               = bet.Is_Archived__c;            
-            
+            this.archived               = bet.Is_Archived__c;     
+
+            if(this.betFirstRelease != null && this.betFirstReleaseDueDate != null ){
+                this.completedFirstAfterDueDate = this.betFirstRelease >  this.betFirstReleaseDueDate;
+            }
+            if(this.betFinalRelease != null && this.betFinalReleaseDueDate != null ){
+                this.completedFinalAfterDueDate = this.betFinalRelease >  this.betFinalReleaseDueDate;
+            }
         }
     }
 }

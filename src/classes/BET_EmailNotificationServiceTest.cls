@@ -12,10 +12,10 @@ private class BET_EmailNotificationServiceTest {
 		System.assert(true);
 	}
 	
-	@isTest static void notifyBetOwnerAndProjectLeadOfNewLeadProjectTest() {
+	@isTest static void notifyBetOwnerOfNewLeadProjectTest() {
 		uw_BET__c bet = BET_TestUtils.getTestBet();
 		insert bet;
-		BET_EmailNotificationService.notifyBetOwnerAndProjectLeadOfNewLeadProject(bet,BET_TestUtils.createIPMProject(TEST_PROJECT_NAME));
+		BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(bet,new IPM_BETWrapper(BET_TestUtils.createIPMProject(TEST_PROJECT_NAME)));
 		System.assert(true);
 	}
 

@@ -160,7 +160,7 @@ public without sharing class BET_MasterDataService{
 	*************************************************************/
 	public static List<MDO_Category__c> getAllAvailableCategories(){
 		System.debug('Entering getAllAvailableCategories');
-		List<MDO_Category__c> categories = [select id,name from MDO_Category__c where parent_id__r.parent_id__r.category_type__c = 'Category Group' and parent_id__r.parent_id__r.status__c = 'Active' and category_type__c = 'Category' and status__c = 'Active' order by name asc];
+		List<MDO_Category__c> categories = [select id,name,parent_id__r.parent_id__c from MDO_Category__c where parent_id__r.parent_id__r.category_type__c = 'Category Group' and parent_id__r.parent_id__r.status__c = 'Active' and category_type__c = 'Category' and status__c = 'Active' order by name asc];
 		System.debug('Exit getAllAvailableCategories : ' + categories);
 		return categories;
 	}

@@ -6,30 +6,38 @@
     <apex:attribute name="betadmin" assignTo="{!admin}" 
                     description="Current user is bet admin" required="true" type="Boolean" />
 
-	<div class="linkedInfo">
-    	<apex:outputLabel >{!$Label.BET_LinkedProjectHeaderOne}</apex:outputLabel>
-    </div>
-
-    <div class="linkedInfo">
-    	<apex:outputLabel escape="false">{!$Label.BET_LinkedProjectHeaderTwo}</apex:outputLabel>
-    </div>
-
-    <div class="clear">&nbsp;</div> 
-
-    <apex:repeat value="{!linkedProjects}" var="project">
-    	<div class="linkedProjectName">
-    		<apex:outputLink value="/{!project.projectId}" target="_blank">
-                <apex:outputText >{!project.projectName}</apex:outputText>
-            </apex:outputLink>
-    	</div>
-    	<div class="linkedProjectNameLead" style="{!IF(project.isLeadProject,'','display:none;')}">
-    		Lead project
-    	</div>
-        <div  class="linkedProjectNameLead" style="{!IF(NOT(project.isLeadProject),'','display:none;')}">
-            <apex:commandLink action="{!setAsLeadProject}" value="Set As Lead" rendered="{!admin}">
-                <apex:param name="proid" assignTo="{!selectedProjectId}" value="{!project.projectId}"/>
-            </apex:commandLink>
+    <apex:outputPanel rendered="{!linkedProjects.size == 0}">
+        <div class="linkedInfo">
+            <apex:outputLabel >{!$Label.BET_NoLinkedProjectsAvailable}</apex:outputLabel>
         </div>
-    </apex:repeat>
+    </apex:outputPanel>
+
+    <apex:outputPanel rendered="{!NOT(linkedProjects.size == 0)}">
+    	<div class="linkedInfo">
+        	<apex:outputLabel >{!$Label.BET_LinkedProjectHeaderOne}</apex:outputLabel>
+        </div>
+
+        <div class="linkedInfo">
+        	<apex:outputLabel escape="false">{!$Label.BET_LinkedProjectHeaderTwo}</apex:outputLabel>
+        </div>
+
+        <div class="clear">&nbsp;</div> 
+
+        <apex:repeat value="{!linkedProjects}" var="project">
+        	<div class="linkedProjectName">
+        		<apex:outputLink value="/{!project.projectId}" target="_blank">
+                    <apex:outputText >{!project.projectName}</apex:outputText>
+                </apex:outputLink>
+        	</div>
+        	<div class="linkedProjectNameLead" style="{!IF(project.isLeadProject,'','display:none;')}">
+        		Lead project
+        	</div>
+            <div  class="linkedProjectNameLead" style="{!IF(NOT(project.isLeadProject),'','display:none;')}">
+                <apex:commandLink action="{!setAsLeadProject}" value="Set As Lead" rendered="{!admin}">
+                    <apex:param name="proid" assignTo="{!selectedProjectId}" value="{!project.projectId}"/>
+                </apex:commandLink>
+            </div>
+        </apex:repeat>
+    </apex:outputPanel>
 
 </apex:component>

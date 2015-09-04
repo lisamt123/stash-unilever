@@ -96,7 +96,9 @@ public with sharing class BET_NewBetComponentController {
         if(errorMessages.isEmpty() && !betNameExists){
             upsert bet;
         } else {
-            if(betNameExists) errorMessages.add(Label.BET_NameExists);
+            if(betNameExists) {
+                errorMessages.add(Label.BET_NameExists);
+            }
             displayErrors(errorMessages);
             goToMemberSelection = false;
         }

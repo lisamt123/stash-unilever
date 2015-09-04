@@ -963,6 +963,7 @@
 		<members>BET_BETService</members>
         <members>BET_BETServiceTest</members>
         <members>IPM_BETWrapper</members>
+		<members>BET_MDODataMigrationAndTransformBatch</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -2110,7 +2111,9 @@
 		<members>BET_UnArchiveConfirmation</members>
 		<members>BET_UnArchiving</members>
 		<members>BET_UnFollowExceptionMessage</members>
-		<members>BET_UpdateBetAddMembers</members>	
+		<members>BET_UpdateBetAddMembers</members>
+		<members>BET_NoLinkedProjectsAvailable</members>
+		<members>BET_LinkBetToIPMProject</members>
         <name>CustomLabel</name>
     </types>
     <types>
