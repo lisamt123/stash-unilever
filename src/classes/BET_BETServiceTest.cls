@@ -26,13 +26,13 @@ private class BET_BETServiceTest {
         insert betObject;
         BET_BETWrapper betWrap = BET_BETService.GetBet(betObject.id);
         system.assertEquals(betObject.id, betWrap.BetId);
-        system.assertEquals(null, betWrap.FinalReleaseDate);
+        system.assertEquals(null, betWrap.finalReleaseDueDate);
         //populate Launch date
         betObject.Launch_Date__c = Date.today();
         update betObject;
         betWrap = BET_BETService.GetBet(betObject.id);
         //check id release date is populated
-        system.assert(betWrap.FinalReleaseDate != null);
+        system.assert(betWrap.finalReleaseDueDate!= null);
     }
 
     @isTest static void shouldSearchBets(){
@@ -62,5 +62,44 @@ private class BET_BETServiceTest {
         Test.setFixedSearchResults(fixedSearchResults);
         searchResults = BET_BETService.searchBet('BetWithThisNameCannotExist1.1', null, null);
         system.assertEquals(0, searchResults.size(), 'Should not find any Bet');
+    }
+
+    @isTest static void updateBetTest(){
+        uw_BET__c betObject = BET_TestUtils.getTestBet();
+        insert betObject;
+
+        IPM_Project__c project = BET_TestUtils.createIPMProject('Unit Test IPM Project');
+
+        IPM_BETWrapper IPMProject = new IPM_BETWrapper(project);
+        IPMProject.targetLaunchDate = date.today();
+
+        System.assert(betObject.Launch_Date__c == null);
+
+        BET_BETService.updateBet(betObject.id,IPMProject);
+        betObject = [select Launch_Date__c from uw_BET__c where id=: betObject.id];
+
+        System.assertEquals(betObject.Launch_Date__c,date.today());
+    }
+
+    @isTest static void getFirstReleaseDueDateTest(){
+        Date dateInJulyOrAfter = BET_BETService.getFirstReleaseDueDate(Date.newInstance(2015,7,10));
+        Date dateBeforeJuly = BET_BETService.getFirstReleaseDueDate(Date.newInstance(2015,6,10));
+
+        System.assertEquals(dateInJulyOrAfter.year(),2014);
+        System.assertEquals(dateInJulyOrAfter.month(),6);
+        System.assertEquals(dateInJulyOrAfter.day(),30);
+
+        System.assertEquals(dateBeforeJuly.year(),2014);
+        System.assertEquals(dateBeforeJuly.month(),4);
+        System.assertEquals(dateBeforeJuly.day(),15);
+
+    }
+
+    @isTest static void getFinalReleaseDueDateTest(){
+        Date tld = BET_BETService.getFinalReleaseDueDate(Date.newInstance(2015,9,10));
+
+        System.assertEquals(tld.year(),2015);
+        System.assertEquals(tld.month(),3);
+        System.assertEquals(tld.day(),10);
     }
 }

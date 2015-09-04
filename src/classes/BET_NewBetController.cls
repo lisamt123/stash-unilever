@@ -21,10 +21,15 @@ public with sharing class BET_NewBetController {
         Throws: -
     *************************************************************/
     public BET_NewBetController(ApexPages.StandardController stdController){
+        System.debug('Entering BET_NewBetController constructor : ' + stdController);
         Id currentId = System.currentPageReference().getParameters().get('Id');   
         Boolean categoryMigrated = null;
         Boolean categoryNotMigrated = null;
-        if(currentId != null){
+        
+        if(currentId == null){
+            bet = new uw_BET__c();
+            bet.ownerId = UserInfo.getUserId();
+        } else {
             bet = [ SELECT  Id, Name, Inoplan_Project__c,Launch_Date__c,
                             Description__c, OwnerId,Inherit_Branding__c,Category_Group__c,
                             IPM_Project__c,IPM_Project__r.name,Brand_Position__c,
@@ -33,9 +38,6 @@ public with sharing class BET_NewBetController {
 
             categoryMigrated = IPM_BETUpdateService.CategoryCheck(bet.Product_Category__c);
             categoryNotMigrated = !categoryMigrated;
-        } else {
-            bet = new uw_BET__c();
-            bet.ownerId = UserInfo.getUserId();
         }
 
         componentData = new BET_CategoryComponentData(bet);

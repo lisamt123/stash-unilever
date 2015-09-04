@@ -23,6 +23,22 @@ public with sharing class BET_SuggestMembersController {
     public String searchUserName{get;set;}
     public List<User> freeAddMembers{get;set;}
     public String newlyAddedUsers{get;set;}
+    public String externalMemberEmail{get;set;}
+    public String emailToDelete {get;set;}
+
+    public List<ExternalAgencyMemberWrapper> externalMembers {
+        get{
+            if(externalMembers == null){
+                externalMembers = new List<ExternalAgencyMemberWrapper>();
+            }
+                return externalMembers;
+            }
+        set {
+            if(value != null){
+                externalMembers = value;
+            } 
+        }
+    }
     
     public List<Id> suggested_MembersCtrl{
         get{
@@ -62,9 +78,6 @@ public with sharing class BET_SuggestMembersController {
     
     /************************************************************
         Purpose: Wrapper class is a placeholder for displayed suggested members
-        Parameters: -
-        Returns: 
-        Throws: -
     *************************************************************/
     public class SuggestedMembersWrapper{
         public String groupName{get;set;}
@@ -74,13 +87,72 @@ public with sharing class BET_SuggestMembersController {
     
     /************************************************************
         Purpose: Wrapper class is a placeholder for displayed suggested members
-        Parameters: -
-        Returns: 
-        Throws: -
     *************************************************************/
     public class SuggestedMemberItemWrapper{
         public User userInfo{get;set;}
         public Boolean isManager{get;set;}
+    }
+
+    /************************************************************
+        Purpose: Wrapper class for external agency members
+    *************************************************************/
+    public class ExternalAgencyMemberWrapper{
+        public String email {get;set;}
+        public String photo;
+        public String getPhoto(){
+            return '/profilephoto/005/F';
+        }
+    }
+
+    /************************************************************
+        Purpose: Wrapper class for managers
+    *************************************************************/
+    public class ManagerWrapper {
+        public String FullPhotoUrl {get;set;}
+        public String Name {get;set;}
+
+        public ManagerWrapper(){}
+        public ManagerWrapper(BET_Member_Request__c managerMember){
+            this.Name = managerMember.UserId__r.FirstName + ' ' + managerMember.UserId__r.LastName;
+            this.FullPhotoUrl = managerMember.UserId__r.FullPhotoUrl;
+        }
+    }
+
+    /************************************************************
+        Purpose: Wrapper class for managers
+        Parameters: -
+        Returns: List<ManagerWrapper> 
+        Throws: -
+    *************************************************************/
+    public List<ManagerWrapper> getManagers(){
+        List<ManagerWrapper> managersList = new List<ManagerWrapper>();
+        Set<Id> uniqueUsers = new Set<Id>();
+        
+        if(!String.isBlank(projectIdCtrl)) {
+            IPM_BETWrapper project;
+            Boolean isIPMProject = true;
+            try{
+                project = IPM_BETUpdateService.ipm_Wrapper(projectIdCtrl);
+            }catch(Exception e){
+                isIPMProject = false;
+            }
+            if(isIPMProject && project.pLId != null && project.pLId == UserInfo.getUserId()){
+                for(BET_Member_Request__c managerMember : [SELECT Id,UserId__c,UserId__r.FirstName,UserId__r.LastName,UserId__r.FullPhotoUrl FROM BET_Member_Request__c WHERE ProjectRequest__c in (select id FROM BET_Follow_Request__c WHERE Status__c =: 'New' and Brand_Experience_Toolkit__c =: betIdCtrl and Project_Id__c =: projectIdCtrl)]){
+                    if(!uniqueUsers.contains(managerMember.UserId__c)){
+                        managersList.add(new ManagerWrapper(managerMember));
+                        uniqueUsers.add(managerMember.UserId__c);
+                    }
+                }
+            }
+        }
+
+        for(BET_Member_Request__c managerMember : [SELECT Id,UserId__c,UserId__r.FirstName,UserId__r.LastName,UserId__r.FullPhotoUrl FROM BET_Member_Request__c WHERE  Role__c =: Label.BETManagerRole and Status__c = 'Approved' and Project_Id__c =: projectIdCtrl and Brand_Experience_Toolkit__c =: betIdCtrl]){
+            if(!uniqueUsers.contains(managerMember.UserId__c)){
+                managersList.add(new ManagerWrapper(managerMember));
+                uniqueUsers.add(managerMember.UserId__c);
+            }
+        }
+        return managersList;
     }
 	
     /************************************************************
@@ -204,10 +276,10 @@ public with sharing class BET_SuggestMembersController {
         System.debug('Preparing searchUsers query : ' + searchUserName  +', ' + betOwnerId);
         String query = 'SELECT Id,Name,SmallPhotoUrl from User where   name like \'%'+searchUserName+'%\' and isActive = true {0} and Id !=: betOwnerId Limit 50';
         
-        if(suggested_MembersCtrl != null){
-            query = query.replace('{0}','and id not in : suggested_MembersCtrl');
-        }else{
+        if(suggested_MembersCtrl == null){
             query = query.replace('{0}','');
+        } else {
+            query = query.replace('{0}','and id not in : suggested_MembersCtrl');
         }
         
         freeAddMembers = Database.query(query);
@@ -265,8 +337,9 @@ public with sharing class BET_SuggestMembersController {
         System.debug('Entering method convertUserBucketToMap with following param @bucket:'+bucket);
         Map<String,Map<Id,Id>> userBucketMap = new Map<String,Map<Id,Id>>();
         for(BET_MemberBucketWrapper member : bucket){
-            if(member.GroupUserIds != null && !member.GroupUserIds.isEmpty()){
-                
+            if(member.GroupUserIds == null || member.GroupUserIds.isEmpty()){
+                userBucketMap.put(member.GroupName,new Map<Id,Id>());
+            } else {
                 for(Id memberItem : member.GroupUserIds){
                     if(userBucketMap.containsKey(member.GroupName)){
                         userBucketMap.get(member.GroupName).put(memberItem,memberItem);
@@ -274,9 +347,6 @@ public with sharing class BET_SuggestMembersController {
                         userBucketMap.put(member.GroupName, new Map<Id,Id>{memberItem => memberItem});
                     }
                 }
-                
-            }else{
-                userBucketMap.put(member.GroupName,new Map<Id,Id>());
             }
         }
         System.debug('Exiting method convertUserBucketToMap following map was returned: '+userBucketMap);
@@ -303,6 +373,24 @@ public with sharing class BET_SuggestMembersController {
             index++;
         }
     }
+
+    /************************************************************
+        Purpose: Method responsible removing user from external members called from UI
+        Parameters: -
+        Returns: -
+        Throws: -
+    *************************************************************/
+    public void delExternalMemeber(){
+        Integer index = 0;
+        Integer indexToBeRemoved = 0;
+        for(ExternalAgencyMemberWrapper wrap : externalMembers){
+            if(wrap.email == emailToDelete){
+                indexToBeRemoved = index;
+            }
+            index++;
+        }
+        externalMembers.remove(indexToBeRemoved);
+    }
     
     /************************************************************
         Purpose: Method responsible for createing new Bet Member Requests records in db
@@ -312,41 +400,58 @@ public with sharing class BET_SuggestMembersController {
     *************************************************************/
     public PageReference addMembers(){
         System.debug('Entering method addMembers for following user: '+suggested_MembersCtrl);
+        List<BET_Member_Request__c> betMembersToInsert = new List<BET_Member_Request__c>();
+        List<BET_Follow_Request__c> betFollowRequest = new List<BET_Follow_Request__c>();
+        if(betIdCtrl != null && projectIdCtrl != null){
+            betFollowRequest = [SELECT id from BET_Follow_Request__c WHERE Brand_Experience_Toolkit__c =: betIdCtrl and Project_Id__c =:projectIdCtrl]; 
+        }
+        Id betFollowRequestId = betFollowRequest.isEmpty() ? null : betFollowRequest.get(0).id;
+        Boolean isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betIdCtrl, UserInfo.getUserId());
+        Id betOwnerId = [select ownerid from uw_BET__c where id=:betIdCtrl].ownerid;
+
         if(suggested_MembersCtrl != null && !suggested_MembersCtrl.isEmpty()){
-            //Map<Id,Id> managersMap = convertSuggestedManagersToMap();
-            //check if betID and project Id was passed if yes then try to get Bet Follow Request record
-            List<BET_Follow_Request__c> betFollowRequest = new List<BET_Follow_Request__c>();
-            if(betIdCtrl != null && projectIdCtrl != null){
-                betFollowRequest = [SELECT id from BET_Follow_Request__c WHERE Brand_Experience_Toolkit__c =: betIdCtrl and Project_Id__c =:projectIdCtrl]; 
-            }
-            Id betFollowRequestId = betFollowRequest.isEmpty() ? null : betFollowRequest.get(0).id;
-            List<BET_Member_Request__c> betMembersToInsert = new List<BET_Member_Request__c>();
-            Boolean isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betIdCtrl, UserInfo.getUserId());
-            system.debug('check if requestOnwer'+betIdCtrl+'is owner '+isBetOwnerOrManager);
             for(ID userId : suggested_MembersCtrl){
             	BET_Member_Request__c betMemeberItem = new BET_Member_Request__c();
                 betMemeberItem.Brand_Experience_Toolkit__c = betIdCtrl;
                 betMemeberItem.ProjectRequest__c = betFollowRequestId;
                 betMemeberItem.UserId__c = userId;
                 betMemeberItem.Project_Id__c = projectIdCtrl;
+                betMemeberItem.Bet_owner__c = betOwnerId;
                 if(isBetOwnerOrManager){
                     betMemeberItem.Status__c = Label.BETTeamMemberRequestApprovedStatus;
                 }else{
                     betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
                 }
-                //if(managersMap.containsKey(userId))
                 betMemeberItem.Role__c = Label.BetTeamMemberRoleMember;
                 betMembersToInsert.add(betMemeberItem);
             }
             betMembersToInsert = BET_SuggestedMemberService.removeMemberRequestDuplicatesWhileInsert(betMembersToInsert);
-            insert betMembersToInsert;
-            //delete members if memberToDelete is not empty and such records exists
-           
-             	
         }
+
+        if(!externalMembers.isEmpty()){
+            for(ExternalAgencyMemberWrapper eam : externalMembers){
+                BET_Member_Request__c betMemeberItem = new BET_Member_Request__c();
+                betMemeberItem.Brand_Experience_Toolkit__c = betIdCtrl;
+                betMemeberItem.External_User_Request__c = true;
+                betMemeberItem.External_User_Email__c = eam.email;
+                betMemeberItem.Bet_owner__c = betOwnerId;
+                if(isBetOwnerOrManager){
+                    betMemeberItem.Status__c = Label.BETTeamMemberRequestApprovedStatus;
+                }else{
+                    betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
+                }
+                betMemeberItem.Role__c = Label.BetTeamMemberRoleMember;
+                betMembersToInsert.add(betMemeberItem);
+            }
+        }
+
+        insert betMembersToInsert;
+
         System.debug('Exiting method addMembers method processes with success');
         if(callbackCtrl != null){
-            return new PageReference(callbackCtrl);
+            PageReference pr = new PageReference(callbackCtrl);
+            pr.setRedirect(true);
+            return pr;
         }        
         
         return null;
@@ -361,7 +466,9 @@ public with sharing class BET_SuggestMembersController {
     public PageReference skipPage(){
         System.debug('Entering method skipPage user will be redirected to following page:'+callbackCtrl);
         if(callbackCtrl != null){
-            return new PageReference(callbackCtrl);
+            PageReference pr = new PageReference(callbackCtrl);
+            pr.setRedirect(true);
+            return pr;
         }        
         
         return null;
@@ -377,15 +484,15 @@ public with sharing class BET_SuggestMembersController {
     public String getOnwerPhoto(){
         System.debug('Entering method getOnwerPhoto get BetOwner for following BET: '+betIdCtrl);
         List<uw_BET__c> betRecord = [SELECT OwnerId from uw_BET__c where id =: betIdCtrl LIMIT 1];
-        if(!betRecord.isEmpty()){
-            betOwnerInfo = [SELECT FullPhotoUrl,id,Name from user where id =: betRecord.get(0).OwnerId Limit 1];
-            System.debug('Exiting method getOnwerPhoto with following photoUrl: '+betOwnerInfo.FullPhotoUrl);
-        	return betOwnerInfo.FullPhotoUrl;
-        }else{
+        if(betRecord.isEmpty()){
             //set new instance for user to not trigger an error
             betOwnerInfo = new User();
             System.debug('Exiting method getOnwerPhoto no bet record found with such returned empty string');
             return '';
+        }else{
+            betOwnerInfo = [SELECT FullPhotoUrl,id,Name from user where id =: betRecord.get(0).OwnerId Limit 1];
+            System.debug('Exiting method getOnwerPhoto with following photoUrl: '+betOwnerInfo.FullPhotoUrl);
+            return betOwnerInfo.FullPhotoUrl;
         }
         
     }
@@ -407,6 +514,29 @@ public with sharing class BET_SuggestMembersController {
         }
         System.debug('Exiting method getManagerPhoto retunred followin photo url: ');
         return '';
+    }
+
+    /************************************************************
+        Purpose: Method adds new external member record
+        Parameters: -
+        Returns:-
+        Throws: -
+    *************************************************************/
+    public void addExternalMember(){
+        if(!String.isBlank(externalMemberEmail)){
+            ExternalAgencyMemberWrapper member = new ExternalAgencyMemberWrapper();
+            member.email = externalMemberEmail;
+            Boolean canBeAdded = true;
+            for(ExternalAgencyMemberWrapper wrap : externalMembers){
+                if(wrap.email == externalMemberEmail){
+                    canBeAdded = false;
+                }
+            }
+            if(canBeAdded) {
+                externalMembers.add(member);
+                externalMemberEmail = '';
+            }
+        }
     }
 
 }

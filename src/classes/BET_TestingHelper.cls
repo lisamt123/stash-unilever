@@ -692,8 +692,8 @@ global with sharing class BET_TestingHelper {
         return [SELECT Status__c, Sharing__c, Inoplan_Project__c, Studio_Chatter_Group__c, Id, Name, Category__c,
                         Sub_Category__c, Brand_Keyword_Search__c, Inoplan_Project_Keyword_Search__c, 
                         Category_Keyword_Search__c, Owner_Keyword_Search__c, uw_Brand__c, OwnerId, Owner.Email,
-                        Owner.Name, Presentation_Id__c, Is_Archived__c, Banner_1_Location__c, Icon_Location__c, First_release_date__c,
-                        Final_release_date__c, Launch_Date__c
+                        Owner.Name, Presentation_Id__c, Is_Archived__c, Banner_1_Location__c, Icon_Location__c, 
+                        FirstReleaseDate__c, FinalReleaseDate__c,Final_Release_Due_Date__c,First_Release_Due_Date__c, Launch_Date__c
                     FROM uw_BET__c WHERE Id =: BETId LIMIT 1];
     }
 

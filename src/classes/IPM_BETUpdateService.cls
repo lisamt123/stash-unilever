@@ -3,7 +3,7 @@
     @Author: Cognizant Technology
     @Date: 7/7/2015
 **/
-public class IPM_BETUpdateService{
+public class IPM_BETUpdateService{ 
     
     //Return List of IPM following BET
     public static List<IPM_BETWrapper> returnIPM(Id betId){
@@ -63,13 +63,13 @@ public class IPM_BETUpdateService{
     
     //Return project wrapper class for given ID
     public static IPM_BETWrapper ipm_Wrapper(Id projectId){
-    	if(projectId==null){
-    		throw new IPM_CustomException(Label.IPM_ProjectNotRetrieved);   	
-    	}
-    	
+        if(projectId==null){
+            throw new IPM_CustomException(Label.IPM_ProjectNotRetrieved);       
+        }
+        
         String query =  getProjectQuery() + ' where id =: projectId';
         IPM_Project__c proj = Database.Query(query);
-        return new IPM_BETWrapper(proj);	
+        return new IPM_BETWrapper(proj);    
      }
      
     //Service to notify about BET linking request being approved or rejected
@@ -78,10 +78,10 @@ public class IPM_BETUpdateService{
         throw new   IPM_CustomException(Label.IPM_IdsApprovalNotNullMSg);  
       }
       IPM_Project__c proj = [select id,BET__c,BET_Link_Requested__c,Update_BET__c  from IPM_Project__c where id =: projectId];
-      if(ApprovalAction == IPM_ConstantUtils.BET_APPROVAL_APPROVED){
+      if(ApprovalAction == 'Approved'){
            proj.BET__c=proj.BET_Link_Requested__c;
-     	}
-     	proj.BET_Link_Requested__c='';
+        }
+        proj.BET_Link_Requested__c='';
         proj.BET_Link_Requested_on_Date__c = null;
         proj.Update_BET__c = false; 
         update proj ;
@@ -89,13 +89,17 @@ public class IPM_BETUpdateService{
     
     //Get project fields from the fieldset
     public static String getProjectQuery(){
-    	List<Schema.FieldSetMember> projectFields = SObjectType.IPM_Project__c.FieldSets.IPM_BETProjectFields.getFields();
+        List<Schema.FieldSetMember> projectFields = SObjectType.IPM_Project__c.FieldSets.IPM_BETProjectFields.getFields();
         String query = 'SELECT ';   
         for(Schema.FieldSetMember f :projectFields) {
             query += f.getFieldPath() + ', ';
         }
         query += 'IPM_Phase__c FROM IPM_Project__c';
         return query;
+    }
+    //Get BET Updates from BET
+    public static void updateIPM(Id BETId, BET_BETWrapper BET, list<string> updatedFields, id userId){
+    
     }
     public class IPM_CustomException extends Exception{
           

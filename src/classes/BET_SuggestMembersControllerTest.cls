@@ -10,7 +10,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 @isTest
 private class BET_SuggestMembersControllerTest {
-    
+	
     @isTest static void testGetSuggestedMembers(){
         uw_BET__c betObject = BET_TestUtils.getTestBet();
         insert betObject;
@@ -32,7 +32,10 @@ private class BET_SuggestMembersControllerTest {
          //check if user's were aggregated properly
         for(BET_SuggestMembersController.SuggestedMembersWrapper item : result){
             Boolean isManagerInGroup = false;
-            if(item.groupName != Label.BET_SuggestedMemberOtherMembers){
+            if(item.groupName == Label.BET_SuggestedMemberOtherMembers){
+                //other group shouldn't have any members
+                system.assertEquals(0, item.groupUsers.size());
+            }else{
                 for(BET_SuggestMembersController.SuggestedMemberItemWrapper userItem : item.groupUsers){
                     if(userItem.isManager){
                         isManagerInGroup = true;
@@ -43,9 +46,6 @@ private class BET_SuggestMembersControllerTest {
                 //each group should have 4 memebers
                 system.assertEquals(4, item.groupUsers.size());
                 
-            }else{
-                //other group shouldn't have any members
-                system.assertEquals(0, item.groupUsers.size());
             }
         }
         
@@ -95,10 +95,14 @@ private class BET_SuggestMembersControllerTest {
             }
         }
         //check if other users and suggested members were added into database
-        system.assertEquals(numberOfNewlyAddedUsers+12, [Select id FROM BET_Member_Request__c].size());
+        system.assertEquals(numberOfNewlyAddedUsers+12, [Select id FROM BET_Member_Request__c where Brand_Experience_Toolkit__c = : betObject.id].size());
         //try to add the same members ito database - check if duplicated records are not created
+
+        componentController.externalMemberEmail = 'm.bluj@polsource.com';
+        componentController.addExternalMember();
+
         componentController.addMembers();
-        system.assertEquals(numberOfNewlyAddedUsers+12, [Select id FROM BET_Member_Request__c].size());
+        system.assertEquals(numberOfNewlyAddedUsers+13, [Select id FROM BET_Member_Request__c where Brand_Experience_Toolkit__c = : betObject.id].size());
         //check deleting from UI
         componentController.memberToDelete = userForDeletion;
         componentController.deleteMember();
@@ -145,12 +149,12 @@ private class BET_SuggestMembersControllerTest {
     
     @isTest static void testDuplicatedRecordsWhileInsertTeamMemberRequest(){
         Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator'];
-        User testUser = new User(Alias = 'newBet', Email='nebetTestUSr@testorg.com',
+      	User testUser = new User(Alias = 'newBet', Email='nebetTestUSr@testorg.com',
                           EmailEncodingKey='UTF-8', LastName='newBetTestUsr', LanguageLocaleKey='en_US',
                           LocaleSidKey='en_US', ProfileId = p.Id,
-                          TimeZoneSidKey='America/Los_Angeles', UserName='nebetTestUSr@testorg.com');
+                          TimeZoneSidKey='America/Los_Angeles', UserName='nebetTestUSr@testorg.com',isActive = true);
         
-        uw_BET__c betObject = BET_TestUtils.getTestBet();
+		uw_BET__c betObject = BET_TestUtils.getTestBet();
         insert betObject;
         List<Id> suggested_MembersCtrl = new List<Id>();
         List<Id> suggested_ManagersCtrl = new List<Id>();
@@ -184,13 +188,53 @@ private class BET_SuggestMembersControllerTest {
          
         
         System.runAs(testUser){
-            //try to add the same members ito database - check if duplicated records are not created
-            //Tema member requests created in status New but there already exist such records in Approved 
-            //status no records should be added
-            componentController.addMembers();
-            system.assertEquals(numberOfNewlyAddedUsers+12, [Select id FROM BET_Member_Request__c].size());
+        	//try to add the same members ito database - check if duplicated records are not created
+        	//Tema member requests created in status New but there already exist such records in Approved 
+        	//status no records should be added
+        	componentController.addMembers();
+            system.assertEquals(numberOfNewlyAddedUsers+12, [Select id FROM BET_Member_Request__c where Brand_Experience_Toolkit__c = : betObject.id].size());
         }
     }
     
-    
+    @isTest static void addExternalMemberTest(){
+        BET_SuggestMembersController componentController = new BET_SuggestMembersController();
+        componentController.externalMemberEmail = 'm.bluj@polsource.com';
+        componentController.addExternalMember();
+        System.assertEquals(componentController.externalMembers.size(),1);
+        System.assertEquals(componentController.externalMembers.get(0).getPhoto(),'/profilephoto/005/F');
+    }
+
+    @isTest static void delExternalMemeberTest(){
+        BET_SuggestMembersController componentController = new BET_SuggestMembersController();
+        componentController.externalMemberEmail = 'm.bluj@polsource.com';
+        componentController.addExternalMember();
+        System.assertEquals(componentController.externalMembers.size(),1);
+        componentController.delExternalMemeber();
+        System.assertEquals(componentController.externalMembers.size(),0);
+    }
+
+    @isTest static void getManagersTest(){
+        BET_SuggestMembersController componentController = new BET_SuggestMembersController();
+
+        uw_BET__c bet = BET_TestUtils.getTestBet();
+        insert bet;
+        IPM_Project__c project = BET_TestUtils.createIPMProject('Unit Test IPM Project');
+        project.IPM_Project_Leader__c = UserInfo.getUserId();
+        update project;
+
+        BET_Member_Request__c request  = new BET_Member_Request__c();
+        request.Status__c = 'Approved';
+        request.Brand_Experience_Toolkit__c = bet.id;
+        request.Project_Id__c = project.id;
+        request.Role__c = 'Manager';
+        request.UserId__c = UserInfo.getUserId();
+
+        insert request;
+
+        componentController.betIdCtrl = bet.id;
+        componentController.projectIdCtrl = project.id;
+        System.assertEquals(componentController.getManagers().size(),1);
+
+    }
+
 }

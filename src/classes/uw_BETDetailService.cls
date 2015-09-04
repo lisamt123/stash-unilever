@@ -37,13 +37,13 @@ public with sharing class uw_BETDetailService {
     private static uw_BET__c getBet(String betId){
         try { 
             uw_BET__c bet = [ SELECT Id, Name, Background_Colour__c, Banner_1_Location__c, Banner_2_Location__c, Banner_Colour__c, 
-                                Border_Colour__c, CollaborationGroupId__c, Date_Published__c,Description__c, First_release_date__c,
-                                Final_release_date__c, Font_Colour__c, Icon_Location__c, Inoplan_Project__c, Inoplan_Project__r.Name,
+                                Border_Colour__c, CollaborationGroupId__c, Date_Published__c,Description__c, FirstReleaseDate__c, 
+                                FinalReleaseDate__c,Final_Release_Due_Date__c,First_Release_Due_Date__c, Font_Colour__c, Icon_Location__c, Inoplan_Project__c, Inoplan_Project__r.Name,
                                 Launch_Date__c, Presentation_Id__c, Region__c, Status__c, Sharing__c, LastModifiedDate, CreatedDate, 
                                 Studio_Chatter_Group__c, OwnerId, Owner.Name, Brand_Keyword_Search__c, Category_Keyword_Search__c, 
                                 Owner_Keyword_Search__c, Region_Keyword_Search__c, 
                                 Inoplan_Project_Keyword_Search__c,Product_Brand__c, Product_Brand__r.name, IPM_Project__c, IPM_Project__r.name, 
-                                Category_Group__c, Product_Category__c, Brand_Position__c 
+                                Category_Group__c, Product_Category__c, Brand_Position__c ,is_Archived__c
                                 FROM uw_BET__c WHERE Id = :betId ];
             return bet;
         }catch(QueryException qe) {

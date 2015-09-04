@@ -1,5 +1,7 @@
 <apex:component controller="BET_NewBetComponentController" allowDML="true">
 
+    <apex:stylesheet value="{!$Resource.BETSuggestedMembers}/css/betSuggestedMembers.css"/> 
+
 	<apex:attribute name="betobj" description="Current BET object" 
                     type="uw_BET__c" required="true" assignTo="{!bet}"/>
 	<apex:attribute name="cdata" description="Component Data Transfer Object" 
@@ -56,21 +58,6 @@
 
             <div class="clear">&nbsp;</div>
 
-            <!--<div class="form-item">
-                <div class="item-label">
-                  	<apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.Inherit_Branding__c.Label}</apex:outputLabel>
-                    <apex:outputPanel layout="inline" styleClass="question-icon"
-                        rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Inherit_Branding__c.inlineHelpText)}"
-                        html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Inherit_Branding__c.inlineHelpText}" />
-                </div>
-                <div class="item-input-checkbox">
-                  	<apex:inputfield id="inheritbrandngid" value="{!bet.Inherit_Branding__c}"/>
-                    <script>
-                        document.getElementById('{!$Component.inheritbrandngid}').disabled = {!compData.leadIPM}
-                    </script>
-                </div>
-            </div> -->
-
             <div class="form-item">
                 <div class="item-label">
                   	<apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_TargetLaunchDate}</apex:outputLabel>
@@ -90,14 +77,13 @@
         <div>
             <div class="form-item">
                 <div class="item-label">
-                    <apex:outputLabel >{!$ObjectType.uw_Bet__c.Fields.Description__c.Label}</apex:outputLabel>
+                    <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon"
                                 rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText)}"
                                 html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText}" />
                 </div>
                 <div class="item-input">
                     <apex:inputTextarea id="descid" rows="5" value="{!bet.Description__c}"/>
-                    <!--<script>document.getElementById('{!$Component.descid}').disabled = {!compData.leadIPM}</script>-->
                 </div>
             </div>
         </div>
@@ -116,8 +102,9 @@
     <apex:outputPanel id="betMembers">
         <c:BET_SuggestMembers BetID="{!bet.id}" 
                             ProjectId="{!IF(bet.IPM_Project__c == null,bet.Inoplan_Project__c,bet.IPM_Project__c)}" 
-                            Callback="/apex/bet" 
-                            rendered="{!goToMemberSelection}"/>
+                            Callback="/{!bet.id}" 
+                            rendered="{!goToMemberSelection}"
+                            usedInPopup="false"/>
     </apex:outputPanel>
 
 </apex:component>

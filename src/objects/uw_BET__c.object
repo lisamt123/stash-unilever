@@ -46,7 +46,7 @@
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
-	<allowInChatterGroups>false</allowInChatterGroups>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <customHelpPage>be_help_pop_up</customHelpPage>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -134,6 +134,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Brand_Position_Keyword_Search__c</fullName>
+        <externalId>false</externalId>
+        <label>Brand Position Keyword Search</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Brand_Position__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -154,6 +166,18 @@
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Brand</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Category_Group_Keyword_Search__c</fullName>
+        <externalId>false</externalId>
+        <label>Category Group Keyword Search</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -636,6 +660,26 @@
         <visibleLines>10</visibleLines>
     </fields>
     <fields>
+        <fullName>FinalReleaseDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Final Release Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Final_Release_Due_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Final Release Due Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Final_release_date__c</fullName>
         <externalId>false</externalId>
         <formula>IF( 
@@ -646,6 +690,26 @@ DATE(YEAR(Launch_Date__c), MONTH(Launch_Date__c)-6, 1)
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Final release date</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FirstReleaseDate__c</fullName>
+        <externalId>false</externalId>
+        <label>First Release Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>First_Release_Due_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>First Release Due Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -698,7 +762,7 @@ DATE(YEAR(Launch_Date__c)-1, 6, 30)
         <relationshipName>Brand_Experience_List</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -729,8 +793,9 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
     </fields>
     <fields>
         <fullName>Inoplan_Project_Keyword_Search__c</fullName>
+        <description>Field holds related project name. If toolkit is related to Inoplan project it holds Inoplan project&apos;s name if it is related to IPM Project it holds IPM project&apos;s name</description>
         <externalId>false</externalId>
-        <label>Inoplan Project Keyword Search</label>
+        <label>Project Keyword Search</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>

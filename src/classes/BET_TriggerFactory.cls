@@ -1,6 +1,6 @@
 public with sharing class BET_TriggerFactory {
 
-	private BET_TriggerFactory(){}
+	private BET_TriggerFactory(){} 
 
 	/****************************************************************************************
 	 * Public static method to create and execute a trigger handler
@@ -61,6 +61,9 @@ public with sharing class BET_TriggerFactory {
 	 * Returns:		ITrigger - A trigger handler if one exists or null.
 	 ************************************************************************************/
 	private static ITrigger getHandler(Schema.sObjectType soType){
+
+		System.debug('get handler soType ' + soType);
+
 		if (soType == uw_BET__c.sObjectType){
 			return new BET_BETHandler();
 		}
@@ -68,6 +71,15 @@ public with sharing class BET_TriggerFactory {
         if (soType == BET_Member_Request__c.sObjectType){
 			return new BET_Member_RequestHandler();
 		}
+
+		if (soType == BET_Follow_Request__c.sObjectType){
+			return new BET_FollowRequestTriggerHandler();
+		}
+
+		if (soType == uw_BET_Team_Member__c.sObjectType){
+			return new BET_Team_MemberHandler();
+		}
+
 		return null;
 	}
 }

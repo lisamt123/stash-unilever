@@ -16,6 +16,9 @@ public class BET_TestUtils {
 	public static final String CATEGORY_TYPE_CAT_GROUP = 'Category Group';
 	public static final String CATEGORY_TYPE_SUBDEVISION2 = 'Sub Division 2';
 	public static final String CATEGORY_TYPE_CATEGORY = 'Category';
+
+	public static final String MDO_STATUS_ACTIVE = 'Active';
+	public static final String TEST_USER_EMAIL = 'm.bluj@polsource.com';
 	
 
 	/************************************************************
@@ -27,23 +30,27 @@ public class BET_TestUtils {
 	public static uw_BET__c getTestBet(){
 		MDO_Brand__c brand = new MDO_Brand__c();
 		brand.name = 'battle Axe';
+		brand.status__c = MDO_STATUS_ACTIVE;
 		insert brand;
           
 		MDO_Category__c cgroup = new MDO_Category__c();
 		cgroup.name='TestCategoryGroup';
 		cgroup.category_type__c = CATEGORY_TYPE_CAT_GROUP;
+		cgroup.status__c = MDO_STATUS_ACTIVE;
 		insert cgroup;
 
 		MDO_Category__c sdivcategory = new MDO_Category__c();
 		sdivcategory.name = DIVISION_CAT_TYPE_NAME;
 		sdivcategory.category_type__c = CATEGORY_TYPE_SUBDEVISION2;
 		sdivcategory.parent_id__c = cgroup.id;
+		sdivcategory.status__c = MDO_STATUS_ACTIVE;
 		insert sdivcategory;
 
 		MDO_Category__c category = new MDO_Category__c();
 		category.name = CATEGORY_TYPE_NAME;
 		category.category_type__c = CATEGORY_TYPE_SUBDEVISION2;
 		category.parent_id__c = sdivcategory.id;
+		category.status__c = MDO_STATUS_ACTIVE;
 		insert category;
 
         uw_Inoplan_Project__c inoProject = new uw_Inoplan_Project__c();
@@ -92,6 +99,7 @@ public class BET_TestUtils {
 		MDO_Category__c cgroup = new MDO_Category__c();
 		cgroup.name='TestCategoryGroup';
 		cgroup.category_type__c = CATEGORY_TYPE_CAT_GROUP;
+		cgroup.status__c = MDO_STATUS_ACTIVE;
 		insert cgroup;
 		System.debug('Exit createCategoryGroup : ' + cgroup);
 		return cgroup;
@@ -111,12 +119,14 @@ public class BET_TestUtils {
 		sdivcategory.name = DIVISION_CAT_TYPE_NAME;
 		sdivcategory.category_type__c = CATEGORY_TYPE_SUBDEVISION2;
 		sdivcategory.parent_id__c = categoryGroup.id;
+		sdivcategory.status__c = MDO_STATUS_ACTIVE;
 		insert sdivcategory;
 
 		MDO_Category__c category = new MDO_Category__c();
 		category.name = CATEGORY_TYPE_NAME;
 		category.category_type__c = CATEGORY_TYPE_CATEGORY;
 		category.parent_id__c = sdivcategory.id;
+		category.status__c = MDO_STATUS_ACTIVE;
 		insert category;
 
 		MDO_ProductCategorysubscriptions__c pcs = new MDO_ProductCategorysubscriptions__c();
@@ -139,12 +149,14 @@ public class BET_TestUtils {
 		sdivcategory.name = CATEGORY_TYPE_NAME;
 		sdivcategory.category_type__c = CATEGORY_TYPE_SUBDEVISION2;
 		sdivcategory.parent_id__c = categoryGroup.id;
+		sdivcategory.status__c = MDO_STATUS_ACTIVE;
 		insert sdivcategory;
 
 		MDO_Category__c category = new MDO_Category__c();
 		category.name=categoryName;
 		category.category_type__c = CATEGORY_TYPE_CATEGORY;
 		category.parent_id__c = sdivcategory.id;
+		category.status__c = MDO_STATUS_ACTIVE;
 		insert category;
 
 		System.debug('Exit createCategory : ' + category);
@@ -161,10 +173,12 @@ public class BET_TestUtils {
 		System.debug('Entering createBrandPositioning : ' + category);
 		MDO_Brand__c brand = new MDO_Brand__c();
 		brand.name = 'battle Axe';
+		brand.status__c = MDO_STATUS_ACTIVE;
 		insert brand;
 		MDO_BrandPositions__c positioning = new MDO_BrandPositions__c();
 		positioning.product_category_id__c = category.id;
 		positioning.brand_id__c = brand.Id;
+		positioning.status__c = MDO_STATUS_ACTIVE;
 		insert positioning;
 		System.debug('Exit createBrandPositioning : ' + positioning);
 		return positioning;
@@ -180,16 +194,19 @@ public class BET_TestUtils {
 		System.debug('Entering createBrandPosition : ' + category);
 		MDO_Brand__c brand = new MDO_Brand__c();
 		brand.name = 'battle Axe';
+		brand.status__c = MDO_STATUS_ACTIVE;
 		insert brand;
 
 		MDO_BrandPosition__c position = new MDO_BrandPosition__c();
 		position.name = 'position';
+		position.status__c = MDO_STATUS_ACTIVE;
 		insert position;
 
 		MDO_BrandPositions__c positioning = new MDO_BrandPositions__c();
 		positioning.product_category_id__c = category.id;
 		positioning.brand_id__c = brand.Id;
 		positioning.brand_position_id__c = position.id;
+		positioning.status__c = MDO_STATUS_ACTIVE;
 		insert positioning;
 		System.debug('Exit createBrandPosition : ' + positioning);
 		return position;
@@ -205,6 +222,7 @@ public class BET_TestUtils {
 		System.debug('Entering createBrand : ' + brandName);
 		MDO_Brand__c brand = new MDO_Brand__c();
 		brand.name = brandName;
+		brand.status__c = MDO_STATUS_ACTIVE;
 		insert brand;
 		System.debug('Exit createBrand : ' + brand);
 		return brand;
@@ -223,7 +241,7 @@ public class BET_TestUtils {
         BET_MemberBucketWrapper itemWrap = new BET_MemberBucketWrapper();
         
         
-        for(User u : [Select id From User Limit 12]){
+        for(User u : [Select id From User where isActive = true Limit 12]){
             
             if(Math.mod(i, 4) == 0){
                 itemWrap = new BET_MemberBucketWrapper();
@@ -320,12 +338,14 @@ public class BET_TestUtils {
  		System.debug('Entring method initBET');
  		MDO_Brand__c brand = new MDO_Brand__c();
 		brand.name = 'Omo';
+		brand.status__c = MDO_STATUS_ACTIVE;
 		insert brand;
 		liBrands.add(brand);
           
 		MDO_Category__c cgroup = new MDO_Category__c();
 		cgroup.name='Home Care';
 		cgroup.category_type__c = CATEGORY_TYPE_CAT_GROUP;
+		cgroup.status__c = MDO_STATUS_ACTIVE;
 		insert cgroup;
 		liGroupCategories.add(cgroup);
 
@@ -333,6 +353,7 @@ public class BET_TestUtils {
 		sdivcategory.name = DIVISION_CAT_TYPE_NAME;
 		sdivcategory.category_type__c = CATEGORY_TYPE_SUBDEVISION2;
 		sdivcategory.parent_id__c = cgroup.id;
+		sdivcategory.status__c = MDO_STATUS_ACTIVE;
 		insert sdivcategory;
 		liSubDevisions2.add(sdivcategory);
 
@@ -341,6 +362,7 @@ public class BET_TestUtils {
 		category.category_type__c = CATEGORY_TYPE_SUBDEVISION2;
 		category.parent_id__c = sdivcategory.id;
 		category.mdm_id__c = ''+ Integer.valueOf(Math.random()*10000);
+		category.status__c = MDO_STATUS_ACTIVE;
 		insert category;
 		liCategories.add(category);
 

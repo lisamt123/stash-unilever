@@ -89,5 +89,29 @@ private class BET_CategoryBrandSelectionControllerTest {
 		controller.selectedBrandPositioning = positioning.id;
 		System.assert(!controller.getBrands().isEmpty());
 	}
+
+	@isTest static void onBrandChangeTest(){
+		MDO_Brand__c brand = BET_TestUtils.createBrand('Unit Test Brand');
+		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
+		BET_CategoryComponentData compData = new BET_CategoryComponentData();
+		compData.categoryMigrated = true;
+		compData.categoryNotMigrated = false;
+		controller.compData = compData;
+		controller.selectedBrand = brand.id;
+		controller.onBrandChange();
+		System.assertEquals(controller.compData.brand,controller.selectedBrand);
+	}
+
+	@isTest static void onProjectChangeTest(){
+		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
+		uw_Bet__c b = BET_TestUtils.getTestBet();
+		BET_CategoryComponentData compData = new BET_CategoryComponentData();
+		compData.categoryMigrated = true;
+		compData.categoryNotMigrated = false;
+		controller.compData = compData;
+		controller.bet = b;
+		controller.onProjectChange();
+		System.assertEquals(controller.compData.inoplanProject,b.Inoplan_Project__c);
+	}
 	
 }

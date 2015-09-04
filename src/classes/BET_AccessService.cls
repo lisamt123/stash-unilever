@@ -8,18 +8,15 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  23-07-2015  Initial
 *************************************************************************************/
-public with sharing class BET_AccessService {
+public without sharing class BET_AccessService {
 	
-
 	private static final String NO_BET_ACCESS = 'No';
 	private static final String BET_MEMBER = 'Member';
 	private static final String BET_MANAGER = 'Manager';
 	private static final String BET_OWNER = 'Owner';
 	private static final String BET_ACCESS_PENDING = 'Pending';
-
 	private static final String MANAGER_ROLE = 'Manager';
 	private static final String MEMBER_ROLE = 'Member';
-
 
 	private BET_AccessService(){}
 
@@ -41,9 +38,9 @@ public with sharing class BET_AccessService {
 			if(!teamMembersRecords.isEmpty()){
 				uw_BET_Team_Member__c tMember = teamMembersRecords.get(0);
 				status = getStatus(tMember);
-				if(status == NO_BET_ACCESS && checkIfRequestAccessIsPending(userId,betId)){
-					status = BET_ACCESS_PENDING;
-				}
+			}
+			if(status == NO_BET_ACCESS && checkIfRequestAccessIsPending(userId,betId)){
+				status = BET_ACCESS_PENDING;
 			}
 		}catch(Exception e){
 			throw new BET_CustomBETException('Unable to check user access',e);
@@ -73,6 +70,12 @@ public with sharing class BET_AccessService {
 		return status;
 	}
 
+	/************************************************************
+		Purpose: Method checks if there is a request access pengind for given user and bet
+		Parameters: Id userId,Id betId
+		Returns: Boolean
+		Throws: -
+	*************************************************************/
 	@TestVisible
 	private static Boolean checkIfRequestAccessIsPending(Id userId,Id betId){
 		System.debug('Entering checkIfRequestAccessIsPending : ' + userId + ', ' + betId);
@@ -87,16 +90,20 @@ public with sharing class BET_AccessService {
 		Returns: List od Id of a created requests
 		Throws: BET_CustomBETException
 	*************************************************************/
-	public static List<Id> RequestAccess(List<BET_BETWrapper.MemberRequest> memberRequests, Id betId){
+	public static List<Id> RequestAccess(List<BET_BETWrapper.MemberRequest> memberRequests, Id betId,Id projectId){
 		System.debug('Entering RequestAccess : ' + memberRequests + ', ' + betId);
 		List<Id> requestIds = new List<Id>();
+		Boolean isOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
 		try{
 			List<BET_Member_Request__c> mRequestsToBeCreated = new List<BET_Member_Request__c>();
 			for(BET_BETWrapper.MemberRequest request : memberRequests){
 				mRequestsToBeCreated.add(
 					new BET_Member_Request__c(
 						Brand_Experience_Toolkit__c=betId,
-						UserId__c=request.UserId)
+						UserId__c=request.UserId,
+						Role__c = request.AccessLevel,
+						Project_Id__c = projectId,
+						Status__c= isOwnerOrManager ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW)
 				);
 			}
 			insert mRequestsToBeCreated;
@@ -119,11 +126,13 @@ public with sharing class BET_AccessService {
 	public static Id RequestExternalUserAccess(String userEmail, Id betId){
 		System.debug('Entering RequestExternalUserAccess : ' + userEmail + ', ' + betId);
 		Id requestId = null;
+		Boolean isOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
 		try{
 			BET_Member_Request__c mrequest = new BET_Member_Request__c(
 				Brand_Experience_Toolkit__c=betId,
 				External_User_Email__c=userEmail,
-				External_User_Request__c=true);
+				External_User_Request__c=true,
+				Status__c = isOwnerOrManager ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW);
 			insert mrequest;
 			requestId = mrequest.id;
 		}catch(Exception e){
@@ -131,6 +140,30 @@ public with sharing class BET_AccessService {
 		}
 		System.debug('Exit RequestExternalUserAccess : ' + requestId);
 		return requestId;
+	}
+
+	/************************************************************
+		Purpose: Method retrieves all bet relates members
+		Parameters: Id of related bet
+		Returns: List of related member records
+		Throws: -
+	*************************************************************/
+	public static List<BET_BETWrapper.MemberRequest> GetBetUsers(Id betId){
+		System.debug('Entering GetBetUsers : ' + betId);
+		List<BET_BETWrapper.MemberRequest> members = new List<BET_BETWrapper.MemberRequest>();
+		try{
+			uw_bet__c betRecord = [select id from uw_bet__c where id=:betId];
+		}catch(Exception ex){
+			throw new BET_CustomBETException('BET record not found for given id ' + betId,ex);
+		}
+		for(uw_BET_Team_Member__c member : [select id, Team_Member__c, Role__c from uw_BET_Team_Member__c  where BET__c =: betId]){
+			BET_BETWrapper.MemberRequest mrequest = new BET_BETWrapper.MemberRequest();
+			mrequest.UserId = member.Team_Member__c;
+			mrequest.AccessLevel = member.Role__c;
+			members.add(mrequest);
+		}
+		System.debug('Exit GetBetUsers : ' + members);
+		return members;
 	}
 
 }

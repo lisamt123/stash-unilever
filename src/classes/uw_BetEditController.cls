@@ -22,7 +22,10 @@ public with sharing class uw_BetEditController {
     public Document icon {get;set;}
     public Id currentId{get;set;}
     public Boolean runJsSuccess{get;set;}
+    public Boolean runlinkedJsSuccess {get;set;}
     public Boolean moveHome{get; protected set;}
+
+    public String tabInFocus{get;set;}
 
     private String initialOwnerId {get; set;}
     private uw_BET__Share initialBETShare {get {
@@ -40,15 +43,21 @@ public with sharing class uw_BetEditController {
 
     public BET_CategoryComponentData compData {get;set;}
 
+    public Boolean currentUserIsOwner {get;set;}
+    public Boolean currentUserIsBetADmin {get;set;}
+
     /*****************************************************************************************
     Purpose: Constructor 
     ******************************************************************************************/  
     public uw_BetEditController(ApexPages.StandardController stdController){
+        System.debug(stdController);
         throwUTException = 0;
 
         runJsSuccess = false;
         moveHome = false;
         currentId = System.currentPageReference().getParameters().get('Id');
+        tabInFocus = System.currentPageReference().getParameters().get('activeTab') == null ? 'name1' : (String)System.currentPageReference().getParameters().get('activeTab');
+        runlinkedJsSuccess = System.currentPageReference().getParameters().get('rljs') == null ? false : (String)System.currentPageReference().getParameters().get('rljs') == 'true';
         Boolean categoryMigrated = null;
         Boolean categoryNotMigrated = null;
 
@@ -70,18 +79,21 @@ public with sharing class uw_BetEditController {
         compData.categoryMigrated = categoryMigrated;
         compData.categoryNotMigrated = categoryNotMigrated;
 
-        if(bet.Banner_1_Location__c != null){
-            showClearBanner = true;
-        }else{
+        if(bet.Banner_1_Location__c == null){
             showClearBanner = false;
+        }else{
+            showClearBanner = true;
         }
 
-        if(bet.Icon_Location__c != null){
-            showClearIcon = true;               
-        }else{
+        if(bet.Icon_Location__c == null){
             showClearIcon = false;               
+        }else{
+            showClearIcon = true;               
         }
-    }
+
+        currentUserIsOwner = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(bet.id, UserInfo.getUserId());
+        currentUserIsBetAdmin = BET_CommonService.isHubAdmin();
+    } 
 
     /*****************************************************************************************
     Purpose: Saves documents in db
@@ -89,7 +101,9 @@ public with sharing class uw_BetEditController {
     Returns: Id
     ******************************************************************************************/  
     public Id saveDocument(Document documentToSave){
-        if (documentToSave != null && documentToSave.name != null && documentToSave.body != null){
+        if (documentToSave == null || documentToSave.name == null || documentToSave.body == null){
+             return null;
+        }else{
             try{
                 Database.Saveresult result;
                 if (Test.isRunningTest() && throwUTException == 2) {
@@ -99,28 +113,25 @@ public with sharing class uw_BetEditController {
 
                 result = Database.insert(documentToSave, false);
 
-                if (!result.isSuccess()){
+                if (result.isSuccess()){
+                    return documentToSave.Id;
+                }else{
                     ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Error attaching image '+result.getErrors()[0].getMessage()));
                     return null;
-                }else{
-                    return documentToSave.Id;
                 }
             
             } catch (Exception e){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception attaching image '+e));
                 return null;
             }
-        }else{
-            return null;
         }
     }
-
 
     private void doClearBanner(){
         if(!showClearBanner){
             if(bet.Banner_1_Location__c != null){
                 List<Document> bannerList = [SELECT Id FROM Document WHERE Id =:bet.Banner_1_Location__c];
-                if(bannerList.size() > 0){
+                if(!bannerList.isEmpty()){
                     delete bannerList[0];
                 }
             }
@@ -142,7 +153,7 @@ public with sharing class uw_BetEditController {
         if(!showClearIcon){
             if(bet.Icon_Location__c != null){
                 List<Document> iconList = [SELECT Id FROM Document WHERE Id =:bet.Icon_Location__c];
-                if(iconList.size() > 0){
+                if(!iconList.isEmpty()){
                     delete iconList[0];
                 }
             }
@@ -164,9 +175,13 @@ public with sharing class uw_BetEditController {
         compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
         bet = moveComponentDataToBET(bet,compData);
         List<String> errorMessages = validateBET(bet);
-        if(errorMessages.isEmpty()){
+        Boolean betNameExists = BET_COmmonService.checkIfBetExists(bet);
+        if(errorMessages.isEmpty() && !betNameExists){
             update bet;   
         } else {
+            if(betNameExists) {
+                errorMessages.add(Label.BET_NameExists);
+            }
             displayErrors(errorMessages);
         }
     }
@@ -205,17 +220,24 @@ public with sharing class uw_BetEditController {
             doSaveIcon(userId,currentfolder);
             doSaveBanner(userId,currentfolder);
 
-            if (bet.ownerId != initialOwnerId) {
+            if (bet.ownerId == initialOwnerId) {
+                initialOwnerMatches();
+            } else {
                 Savepoint sp = Database.setSavepoint();
                 try {                   
                     compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
                     bet = moveComponentDataToBET(bet,compData);
                     List<String> errorMessages = validateBET(bet);
-                    if(errorMessages.isEmpty()){
+                    Boolean betNameExists = BET_COmmonService.checkIfBetExists(bet);
+                    if(errorMessages.isEmpty() && !betNameExists){
                         initialOwnerDoesNotMatch();
                         return null;
                     } else {
+                        if(betNameExists) {
+                            errorMessages.add(Label.BET_NameExists);
+                        }
                         displayErrors(errorMessages);
+                        return null;
                     }
                 }catch (Exception e) {
                     System.Debug('Problem with BET Owner change' + e.getMessage()); 
@@ -223,8 +245,6 @@ public with sharing class uw_BetEditController {
                     Database.rollback(sp);
                     return null;
                 }
-            } else {
-                initialOwnerMatches();
             }
 
             
@@ -281,11 +301,27 @@ public with sharing class uw_BetEditController {
     Returns: PageReference
     ******************************************************************************************/  
     public PageReference archiveBET(){
+        return archiveUnarchiveBet(true);
+    }
+
+    /*****************************************************************************************
+    Purpose: Method for unarchiving BET
+    Returns: PageReference
+    ******************************************************************************************/ 
+    public PageReference unArchiveBET(){
+        return archiveUnarchiveBet(false);
+    }
+
+    /*****************************************************************************************
+    Purpose: Method contains archive and unarchive logic
+    Returns: PageReference
+    ******************************************************************************************/ 
+    private PageReference archiveUnarchiveBet(Boolean shouldBeArchived){
         runJsSuccess = false;
         moveHome = false;
         try{
             uw_BET__c b = [SELECT Id FROM uw_BET__c WHERE Id =: bet.Id LIMIT 1];
-            b.Is_Archived__c = true;            
+            b.Is_Archived__c = shouldBeArchived;            
             update b;            
         } catch (Exception e){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception Saving record '+e));
@@ -300,6 +336,7 @@ public with sharing class uw_BetEditController {
 
         return null;
     }
+
     /*****************************************************************************************
     Purpose: Remove icon image from fronted
     ******************************************************************************************/  
@@ -317,5 +354,10 @@ public with sharing class uw_BetEditController {
     ******************************************************************************************/  
     public void clearBanner(){
         showClearBanner = false;
+    }
+
+    public Boolean getHasProjectsToApprove(){
+        List<BET_Follow_Request__c> followRequests = [select Project_Name__c,Project_Id__c,Project_Lead__r.name,CreatedDate from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: bet.id and Status__c =: BET_LinkingService.FOLLOW_STATUS_NEW limit 1];
+        return !followRequests.isEmpty();
     }
 }

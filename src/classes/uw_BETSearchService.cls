@@ -51,12 +51,12 @@ public without sharing class uw_BETSearchService {
         List<uw_BETWrapper.BetSearchItem> betsIamOwnerOf = new List<uw_BETWrapper.BetSearchItem>(); 
         List<uw_BETWrapper.BetSearchItem> betsIamMemberOf = new List<uw_BETWrapper.BetSearchItem>();         
 
-        for(uw_BET__c bet: [SELECT Id, Name, Is_Archived__c, Studio_Chatter_Group__c, Final_release_date__c, Presentation_Id__c, Icon_Location__c, Description__c, Product_Brand__r.Name, Region__c, Inoplan_Project__r.Name,IPM_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name, Category_Group__c, Product_Category__c, Brand_Position__c, Product_Brand__c FROM uw_BET__c WHERE Id IN :betsIds ORDER BY Name]){
+        for(uw_BET__c bet: [SELECT Id, Name, Is_Archived__c, Studio_Chatter_Group__c, FinalReleaseDate__c, Presentation_Id__c, Icon_Location__c, Description__c, Product_Brand__r.Name, Region__c, Inoplan_Project__r.Name,IPM_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name, Category_Group__c, Product_Category__c, Brand_Position__c, Product_Brand__c FROM uw_BET__c WHERE Id IN :betsIds ORDER BY Name]){
             Boolean betActive = ! bet.Is_Archived__c;
             if(currentUserId == bet.Owner.Id){
-                betsIamOwnerOf.add(new uw_BETWrapper.BetSearchItem(bet.Id, bet.Name, bet.Studio_Chatter_Group__c, bet.Final_release_date__c, bet.Presentation_Id__c, bet.Icon_Location__c, bet.Description__c, bet.Product_Brand__r.Name,bet.Region__c, bet.Inoplan_Project__r.Name,bet.IPM_Project__r.Name, bet.Status__c, bet.LastModifiedDate, bet.Owner.Name, betActive, true, true, '','','','',''));
+                betsIamOwnerOf.add(new uw_BETWrapper.BetSearchItem(bet.Id, bet.Name, bet.Studio_Chatter_Group__c, bet.FinalReleaseDate__c, bet.Presentation_Id__c, bet.Icon_Location__c, bet.Description__c, bet.Product_Brand__r.Name,bet.Region__c, bet.Inoplan_Project__r.Name,bet.IPM_Project__r.Name, bet.Status__c, bet.LastModifiedDate, bet.Owner.Name, betActive, true, true, '','','','',''));
             }else{
-                betsIamMemberOf.add(new uw_BETWrapper.BetSearchItem(bet.Id, bet.Name, bet.Studio_Chatter_Group__c, bet.Final_release_date__c, bet.Presentation_Id__c, bet.Icon_Location__c, bet.Description__c, bet.Product_Brand__r.Name,bet.Region__c, bet.Inoplan_Project__r.Name,bet.IPM_Project__r.Name, bet.Status__c, bet.LastModifiedDate, bet.Owner.Name, betActive, true, false, '','','','',''));
+                betsIamMemberOf.add(new uw_BETWrapper.BetSearchItem(bet.Id, bet.Name, bet.Studio_Chatter_Group__c, bet.FinalReleaseDate__c, bet.Presentation_Id__c, bet.Icon_Location__c, bet.Description__c, bet.Product_Brand__r.Name,bet.Region__c, bet.Inoplan_Project__r.Name,bet.IPM_Project__r.Name, bet.Status__c, bet.LastModifiedDate, bet.Owner.Name, betActive, true, false, '','','','',''));
             }
         }
         
@@ -122,8 +122,13 @@ public without sharing class uw_BETSearchService {
         Boolean isSoslQuery = false;
         String finalSoslQuery = '';
         String keyWord;
-        //String finalSoqlQuery = 'SELECT Id, Name, Studio_Chatter_Group__c, Final_release_date__c, Presentation_Id__c, Icon_Location__c, Description__c, uw_Brand__r.Name, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name FROM uw_BET__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir;
-        String finalSoqlQuery = 'SELECT Id, Name, Studio_Chatter_Group__c, First_release_date__c, Final_release_date__c, Presentation_Id__c, Icon_Location__c, Description__c, Product_Brand__r.Name, Product_Brand__c, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name, Brand_Keyword_Search__c, Category_Keyword_Search__c, Inoplan_Project_Keyword_Search__c, Owner_Keyword_Search__c, Region_Keyword_Search__c, Banner_1_Location__c, Background_Colour__c, Banner_Colour__c, Border_Colour__c, Font_Colour__c, Sharing__c, Launch_Date__c,IPM_Project__c,IPM_Project__r.Name, Category_Group__c, Product_Category__c, Brand_Position__c FROM uw_BET__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir +' LIMIT '+pageSize+' OFFSET '+startIndex ;
+        //String finalSoqlQuery = 'SELECT Id, Name, Studio_Chatter_Group__c, 
+        //Final_release_date__c, Presentation_Id__c, 
+        //Icon_Location__c, Description__c, uw_Brand__r.Name, Region__c, 
+        //Inoplan_Project__r.Name, Status__c, LastModifiedDate, 
+        //Owner.Id, Owner.Name FROM uw_BET__c ' + whereClauseForBet + 
+        //' ORDER BY '+ sortField + ' ' + orderDir;
+        String finalSoqlQuery = 'SELECT Id, Name, Studio_Chatter_Group__c, FirstReleaseDate__c, FinalReleaseDate__c,Final_Release_Due_Date__c,First_Release_Due_Date__c, Presentation_Id__c, Icon_Location__c, Description__c, Product_Brand__r.Name, Product_Brand__c, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name, Brand_Keyword_Search__c, Category_Keyword_Search__c, Inoplan_Project_Keyword_Search__c, Owner_Keyword_Search__c, Region_Keyword_Search__c, Banner_1_Location__c, Background_Colour__c, Banner_Colour__c, Border_Colour__c, Font_Colour__c, Sharing__c, Launch_Date__c,IPM_Project__c,IPM_Project__r.Name, Category_Group__c, Product_Category__c, Brand_Position__c,Is_Archived__c,Category_Group_Keyword_Search__c,Brand_Position_Keyword_Search__c FROM uw_BET__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir +' LIMIT '+pageSize+' OFFSET '+startIndex ;
         if(keyWordStr != null && keyWordStr !='' && keyWordStr.trim() !=''){    
             keyWord = String.escapeSingleQuotes(keyWordStr);       
             finalSoslQuery += 'FIND \''+keyWord+'*\' ';
@@ -132,8 +137,14 @@ public without sharing class uw_BETSearchService {
 
         List<uw_BET__c> betSearchList = new List<uw_BET__c>();
         if(isSoslQuery){            
-            //finalSoslQuery += 'IN ALL FIELDS RETURNING uw_BET__c (Id, Name, Studio_Chatter_Group__c, Final_release_date__c, Presentation_Id__c, Icon_Location__c, Description__c, uw_Brand__r.Name, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name ' + whereClauseForBet + ' ORDER BY LastModifiedDate '+ orderDir +')';
-            finalSoslQuery += 'IN ALL FIELDS RETURNING uw_BET__c (Id, Name, Studio_Chatter_Group__c, First_release_date__c, Final_release_date__c, Presentation_Id__c, Icon_Location__c, Description__c, Product_Brand__r.Name, Product_Brand__c, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name, Brand_Keyword_Search__c, Category_Keyword_Search__c, Inoplan_Project_Keyword_Search__c, Owner_Keyword_Search__c, Region_Keyword_Search__c, Banner_1_Location__c, Background_Colour__c, Banner_Colour__c, Border_Colour__c, Font_Colour__c, Sharing__c, Launch_Date__c,IPM_Project__c,IPM_Project__r.name, Category_Group__c, Product_Category__c, Brand_Position__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir +' LIMIT '+pageSize+' OFFSET '+startIndex+ ')';
+            //finalSoslQuery += 'IN ALL FIELDS RETURNING uw_BET__c 
+            //(Id, Name, Studio_Chatter_Group__c, Final_release_date__c, 
+            //Presentation_Id__c, Icon_Location__c, 
+            //Description__c, uw_Brand__r.Name, Region__c, 
+            //Inoplan_Project__r.Name, Status__c, LastModifiedDate, 
+            //Owner.Id, Owner.Name ' + whereClauseForBet + 
+            //' ORDER BY LastModifiedDate '+ orderDir +')';
+            finalSoslQuery += 'IN ALL FIELDS RETURNING uw_BET__c (Id, Name, Studio_Chatter_Group__c, FirstReleaseDate__c, FinalReleaseDate__c,Final_Release_Due_Date__c,First_Release_Due_Date__c, Presentation_Id__c, Icon_Location__c, Description__c, Product_Brand__r.Name, Product_Brand__c, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name, Brand_Keyword_Search__c, Category_Keyword_Search__c, Inoplan_Project_Keyword_Search__c, Owner_Keyword_Search__c, Region_Keyword_Search__c, Banner_1_Location__c, Background_Colour__c, Banner_Colour__c, Border_Colour__c, Font_Colour__c, Sharing__c, Launch_Date__c,IPM_Project__c,IPM_Project__r.name, Category_Group__c, Product_Category__c, Brand_Position__c, Is_Archived__c,Category_Group_Keyword_Search__c,Brand_Position_Keyword_Search__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir +' LIMIT '+pageSize+' OFFSET '+startIndex+ ')';
 
                        
             List<List<SObject>> searchList = Search.Query(finalSoslQuery);            
@@ -150,7 +161,8 @@ public without sharing class uw_BETSearchService {
     /*******************************************************************
     Purpose: Method is unified method for searching appropriate bets in system.
     Parameterd Description:   
-    Parameters: [String searchType, String brandId, String categoryId, String keyWord, Integer pageSize,Integer pageNumber,Boolean withFilters, Boolean sortAsc, String sortField]
+    Parameters: [String searchType, String brandId, String categoryId, String keyWord, 
+    Integer pageSize,Integer pageNumber,Boolean withFilters, Boolean sortAsc, String sortField]
     Returns: [Map<String, Object>]
     Throws [Exceptions]: [optional] 
     ********************************************************************/

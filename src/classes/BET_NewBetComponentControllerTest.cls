@@ -1,6 +1,27 @@
 @isTest
 private class BET_NewBetComponentControllerTest {
 	
+	@isTest static void cancelBETTest(){
+		BET_NewBetComponentController controller = new BET_NewBetComponentController();
+		System.assert(controller.cancelBET() != null);
+	}
+
+	@isTest static void saveBETTest(){
+		BET_NewBetComponentController controller = new BET_NewBetComponentController();
+		uw_BET__c betObject = BET_TestUtils.getTestBet();
+		controller.bet = betObject;
+		controller.compData = new BET_CategoryComponentData(betObject);
+		System.assert(controller.saveBET() == null);
+	}
+
+	@isTest static void saveBETandAddMembersTest(){
+		BET_NewBetComponentController controller = new BET_NewBetComponentController();
+		uw_BET__c betObject = BET_TestUtils.getTestBet();
+		controller.bet = betObject;
+		controller.compData = new BET_CategoryComponentData(betObject);
+		System.assert(controller.saveBETandAddMembers() == null);
+	}
+
 	@isTest static void proceedWithSaveTest(){
 		BET_NewBetComponentController controller = new BET_NewBetComponentController();
 		uw_BET__c betObject = BET_TestUtils.getTestBet();
