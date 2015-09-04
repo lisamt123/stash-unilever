@@ -37,7 +37,7 @@ private class BET_AccessServiceTest {
 		insert bet;
 		BET_BETWrapper.MemberRequest mRequest = new BET_BETWrapper.MemberRequest();
 		mRequest.UserId = UserInfo.getUserId();
-		List<Id> ids = BET_AccessService.RequestAccess(new List<BET_BETWrapper.MemberRequest>{mRequest},bet.id);
+		List<Id> ids = BET_AccessService.RequestAccess(new List<BET_BETWrapper.MemberRequest>{mRequest},bet.id,null);
 		System.assertEquals(ids.size(),1);
 	}
 

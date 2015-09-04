@@ -38,9 +38,9 @@ public without sharing class BET_AccessService {
 			if(!teamMembersRecords.isEmpty()){
 				uw_BET_Team_Member__c tMember = teamMembersRecords.get(0);
 				status = getStatus(tMember);
-				if(status == NO_BET_ACCESS && checkIfRequestAccessIsPending(userId,betId)){
-					status = BET_ACCESS_PENDING;
-				}
+			}
+			if(status == NO_BET_ACCESS && checkIfRequestAccessIsPending(userId,betId)){
+				status = BET_ACCESS_PENDING;
 			}
 		}catch(Exception e){
 			throw new BET_CustomBETException('Unable to check user access',e);
@@ -90,7 +90,7 @@ public without sharing class BET_AccessService {
 		Returns: List od Id of a created requests
 		Throws: BET_CustomBETException
 	*************************************************************/
-	public static List<Id> RequestAccess(List<BET_BETWrapper.MemberRequest> memberRequests, Id betId){
+	public static List<Id> RequestAccess(List<BET_BETWrapper.MemberRequest> memberRequests, Id betId,Id projectId){
 		System.debug('Entering RequestAccess : ' + memberRequests + ', ' + betId);
 		List<Id> requestIds = new List<Id>();
 		Boolean isOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
@@ -102,6 +102,7 @@ public without sharing class BET_AccessService {
 						Brand_Experience_Toolkit__c=betId,
 						UserId__c=request.UserId,
 						Role__c = request.AccessLevel,
+						Project_Id__c = projectId,
 						Status__c= isOwnerOrManager ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW)
 				);
 			}
