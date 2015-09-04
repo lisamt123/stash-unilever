@@ -1706,6 +1706,10 @@
         <members>Agency_Fee_Title</members>
         <members>BET_BrandCategoryNotRelated</members>
         <members>Bonus_Annual</members>
+        <members>CEC_AlertActionSchedulerName</members>
+        <members>CEC_CBM_NotificationBodyFooter</members>
+        <members>CEC_CBM_NotificationBodyHeader</members>
+        <members>CEC_CBM_NotificationSubject</members>
         <members>CEC_CaseAccountMissing</members>
         <members>CEC_CaseAccountPersonDetailsError</members>
         <members>CEC_CaseNumber</members>
