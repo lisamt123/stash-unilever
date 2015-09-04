@@ -96,9 +96,11 @@ public without sharing class BET_AccessService {
 		Boolean isOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
 		try{
 			List<BET_Member_Request__c> mRequestsToBeCreated = new List<BET_Member_Request__c>();
+			uw_Bet__c bet = [select ownerId from uw_Bet__c where id=:betId];
 			for(BET_BETWrapper.MemberRequest request : memberRequests){
 				mRequestsToBeCreated.add(
 					new BET_Member_Request__c(
+						Bet_owner__c = bet.ownerId,
 						Brand_Experience_Toolkit__c=betId,
 						UserId__c=request.UserId,
 						Role__c = request.AccessLevel,
