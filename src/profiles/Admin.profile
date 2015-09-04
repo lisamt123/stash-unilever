@@ -873,6 +873,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CEC_AlertActionBatchScheduler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CEC_AlertActionHelper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -933,6 +937,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CEC_TestAlertActionBatchScheduler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CEC_TestAlertActionTriggerHelper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -962,6 +970,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CEC_UserTriggerHelperTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CEC_Util</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
