@@ -219,6 +219,7 @@
         <members>BasicMenuItem</members>
         <members>BrandCentreExtension</members>
         <members>Brand_Controller_Review</members>
+        <members>CEC_AlertActionBatchScheduler</members>
         <members>CEC_AlertActionHelper</members>
         <members>CEC_AlertActionHelperTest</members>
         <members>CEC_AlertActionTriggerHelper</members>
@@ -234,6 +235,7 @@
         <members>CEC_NewAccountControllerTest</members>
         <members>CEC_OCWidgetRedirectController</members>
         <members>CEC_OCWidgetRedirectControllerTest</members>
+        <members>CEC_TestAlertActionBatchScheduler</members>
         <members>CEC_TestAlertActionTriggerHelper</members>
         <members>CEC_Test_FulfilmentQualityCheckHelper</members>
         <members>CEC_Test_IssueCreationPageController</members>
@@ -242,6 +244,7 @@
         <members>CEC_UserDefaultSettingTriggerHelperTest</members>
         <members>CEC_UserTriggerHelper</members>
         <members>CEC_UserTriggerHelperTest</members>
+        <members>CEC_Util</members>
         <members>CORE_Batch_Deactivate_Ext_User_Scheduler</members>
         <members>CORE_Batch_Deactivate_External_User</members>
         <members>CORE_CA_ReminderAlert_Batch</members>
