@@ -18,7 +18,7 @@
             <name>BET_New_Bet_Member_Request_Notification</name>
             <type>Alert</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>BET_Member_Request__c.Status__c</field>
             <operation>equals</operation>
