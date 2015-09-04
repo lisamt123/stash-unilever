@@ -68,7 +68,8 @@ global without sharing class BET_ManageMembersController {
         if(betMemberRequest.UserId__c != null){
             try{
                 betMemberRequest.Bet_owner__c = bet.ownerid;
-                betMemberRequest.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED ;
+                betMemberRequest.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED;
+                betMemberRequest.Do_Not_Notify_Bet__c = true;
                 betMemberRequest.External_User_Request__c = false;
                 insert betMemberRequest;
             } catch (Exception ex){
@@ -93,6 +94,7 @@ global without sharing class BET_ManageMembersController {
         if(!String.isEmpty(betMemberRequest.External_User_Email__c)){
             betMemberRequest.Bet_owner__c = bet.ownerid;
             betMemberRequest.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED ;
+            betMemberRequest.Do_Not_Notify_Bet__c = true;
             betMemberRequest.External_User_Request__c = true;
             insert betMemberRequest;
             pr = forward();

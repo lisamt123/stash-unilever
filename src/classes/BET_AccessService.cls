@@ -105,7 +105,8 @@ public without sharing class BET_AccessService {
 						UserId__c=request.UserId,
 						Role__c = request.AccessLevel,
 						Project_Id__c = projectId,
-						Status__c= isOwnerOrManager ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW)
+						Status__c = isOwnerOrManager ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW,
+						Do_Not_Notify_Bet__c = isOwnerOrManager ? true : false)
 				);
 			}
 			insert mRequestsToBeCreated;
@@ -134,7 +135,8 @@ public without sharing class BET_AccessService {
 				Brand_Experience_Toolkit__c=betId,
 				External_User_Email__c=userEmail,
 				External_User_Request__c=true,
-				Status__c = isOwnerOrManager ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW);
+				Status__c = isOwnerOrManager ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW,
+				Do_Not_Notify_Bet__c = isOwnerOrManager ? true : false);
 			insert mrequest;
 			requestId = mrequest.id;
 		}catch(Exception e){

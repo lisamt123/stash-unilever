@@ -419,6 +419,7 @@ public with sharing class BET_SuggestMembersController {
                 betMemeberItem.Bet_owner__c = betOwnerId;
                 if(isBetOwnerOrManager){
                     betMemeberItem.Status__c = Label.BETTeamMemberRequestApprovedStatus;
+                    betMemeberItem.Do_Not_Notify_Bet__c = true;
                 }else{
                     betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
                 }
@@ -437,6 +438,7 @@ public with sharing class BET_SuggestMembersController {
                 betMemeberItem.Bet_owner__c = betOwnerId;
                 if(isBetOwnerOrManager){
                     betMemeberItem.Status__c = Label.BETTeamMemberRequestApprovedStatus;
+                    betMemeberItem.Do_Not_Notify_Bet__c = true;
                 }else{
                     betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
                 }

@@ -176,7 +176,7 @@ public without sharing class BET_LinkingServiceHelper {
 	*************************************************************/
 	public static void createMemberRequestForNewPL(Id newPL,uw_Bet__c bet, IPM_BETWrapper newProject){
 		BET_Member_Request__c request = new BET_Member_Request__c(Brand_Experience_Toolkit__c = bet.id, UserId__c = newPL, Role__c = 'Manager',
-							  Project_Id__c = newProject.projectId, BET_owner__c = bet.ownerid, Status__c = 'New');
+							  Project_Id__c = newProject.projectId, BET_owner__c = bet.ownerid, Status__c = 'New',Do_Not_Notify_Bet__c = true);
 		insert request;
 		request.Status__c = 'Approved';
 		update request;
