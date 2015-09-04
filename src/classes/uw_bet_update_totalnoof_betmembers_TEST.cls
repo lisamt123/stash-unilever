@@ -20,9 +20,9 @@ static testMethod void recalculatemembers()
         uw_Brand__c brandcentre = new uw_Brand__c(name = 'testbrandcentre');
          insert brandcentre;
 
-//Create 50 bet records for so that owner is running user                
+//Create 5 bet records for so that owner is running user                
           list <uw_bet__c> betlists = new list <uw_bet__c>();
-          for(integer i = 0;i<20;i++)
+          for(integer i = 0;i<5;i++)
           {
           
             uw_Inoplan_Project__c projObj =  uw_UnitTestDataFactory.createInoplan();
