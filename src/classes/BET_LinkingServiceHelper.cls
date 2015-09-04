@@ -45,21 +45,25 @@ public without sharing class BET_LinkingServiceHelper {
 	}
 
 	/************************************************************
-		Purpose: Method retreives other following projects than current lead project
+		Purpose: Method retreives other lead project the one with greatest tlsd
 		Parameters: Id ProjectId, Id BetId
-		Returns: List<IPM_Project__c> list with one element
+		Returns: IPM_BETWrapper
 		Throws: -
 	*************************************************************/	
-	public static List<IPM_Project__c> getOtherFollowingProjects(Id ProjectId, Id BetId){
-		System.debug('Entering getOtherFollowingProjects : ' + ProjectId + ', ' + BetId);
-		List<String> projectsList = new List<String>();
-		List<BET_Follow_Request__c> approvedRequests = [select Project_Id__c from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: BetId and Status__c =: BET_LinkingService.FOLLOW_STATUS_APPROVED];
-		for(BET_Follow_Request__c aRequest : approvedRequests){
-			projectsList.add(aRequest.Project_Id__c);
+	public static IPM_BETWrapper getOtherFollowingProject(Id ProjectId, Id BetId){
+		System.debug('Entering getOtherFollowingProject : ' + ProjectId + ', ' + BetId);
+		IPM_BETWrapper wrapper = null;
+		Date maxTLD = Date.newInstance(1970,1,1);
+		for(IPM_BETWrapper wrap : IPM_BETUpdateService.returnIPM(BetId)){
+			if(wrap.projectId != ProjectId){
+				if(wrap.targetLaunchDate != null && wrap.targetLaunchDate > maxTLD){
+					maxTLD = wrap.targetLaunchDate;
+					wrapper = wrap;
+				}
+			}
 		}
-		List<IPM_Project__c> followingProjects = [select id,IPM_Project_Leader__c,name from IPM_Project__c where id in : projectsList and id !=: ProjectId order by IPM_Target_Launch_Dates__c asc limit 1];
-		System.debug('Exit getOtherFollowingProjects : ' + followingProjects);
-		return followingProjects;
+		System.debug('Exit getOtherFollowingProject : ' + wrapper);
+		return wrapper;
 	}
 
 	/************************************************************

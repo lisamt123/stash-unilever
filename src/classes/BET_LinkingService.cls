@@ -201,15 +201,14 @@ public with sharing class BET_LinkingService {
 		try{
 			Boolean projectIsALead = BET_LinkingServiceHelper.isProjectALead(ProjectId,betRecords.get(0));
 			if(projectIsALead){
-				List<IPM_Project__c> otherFollowProjects = BET_LinkingServiceHelper.getOtherFollowingProjects(ProjectId,BetId);				
-				if(otherFollowProjects.isEmpty()){
+				IPM_BETWrapper newProject = BET_LinkingServiceHelper.getOtherFollowingProject(ProjectId,BetId);			
+				if(newProject == null){
 					BET_LinkingServiceHelper.archiveAndUnLeadBet(betRecords.get(0)); //US26
 					BET_EmailNotificationService.notifyBetOwnerOfUnfollow(betRecords.get(0),project); //US22
 				} else {
 					Id oldBetOwner = betRecords.get(0).id;
 					Id oldPL = project.pLId;
-					Id newPL = otherFollowProjects.get(0).IPM_Project_Leader__c;
-					IPM_BETWrapper newProject = IPM_BETUpdateService.ipm_Wrapper(otherFollowProjects.get(0).id);
+					Id newPL = newProject.pLId;
 					uw_Bet__c bet = BET_LinkingServiceHelper.setNewLeadProjectAndOwner(betRecords.get(0),newProject,project);
 					betOwner = bet.ownerid;
 					if(betOwner != oldBetOwner){

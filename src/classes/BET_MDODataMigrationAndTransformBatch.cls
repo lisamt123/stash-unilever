@@ -89,11 +89,14 @@ global class BET_MDODataMigrationAndTransformBatch implements Database.Batchable
 	}
 
 	global Boolean validateBet(uw_Bet__c bet){
+		System.debug('Entering validateBet : ' + bet);
 		return bet.Product_Brand__c != null && bet.Category__c != null && bet.Product_Category__c != null && bet.Brand_Position__c != null;
 	}
 
 	global void logErrors(List<uw_Bet__c> betsForErrors){
-
+		for(uw_Bet__c betRecord : betsForErrors){
+			system.debug('Invalid MDO matching for BET : ' + betRecord);
+		}
 	}
 	
 }

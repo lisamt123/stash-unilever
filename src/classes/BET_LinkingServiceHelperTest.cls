@@ -34,10 +34,10 @@ private class BET_LinkingServiceHelperTest {
 	@isTest static void setNewLeadProjectAndOwnerTest(){
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
-		IPM_Project__c project = BET_TestUtils.createIPMProject('Unit Test IPM Project');
+		IPM_BETWrapper project = new IPM_BETWrapper(BET_TestUtils.createIPMProject('Unit Test IPM Project'));
 		IPM_BETWrapper oldProject = new IPM_BETWrapper(BET_TestUtils.createIPMProject('Old Unit Test IPM Project'));
 		uw_Bet__c modifiedBet = BET_LinkingServiceHelper.setNewLeadProjectAndOwner(bet,project,oldProject);
-		System.assertEquals(modifiedBet.IPM_Project__c,project.id);
+		System.assertEquals(modifiedBet.IPM_Project__c,project.ProjectId);
 	}
 
 	@isTest static void archiveAndUnLeadBetTest(){
@@ -49,17 +49,20 @@ private class BET_LinkingServiceHelperTest {
 		System.assert(modifiedBet.IPM_Project__c == null);
 	}
 
-	@isTest static void getOtherFollowingProjectsTest(){
+	@isTest static void getOtherFollowingProjectTest(){
 		IPM_Project__c project = BET_TestUtils.createIPMProject('Unit Test IPM Project');
 		IPM_Project__c projectfollowing = BET_TestUtils.createIPMProject('Unit Test IPM Project One');
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
-		BET_Follow_Request__c request = new BET_Follow_Request__c(Brand_Experience_Toolkit__c = bet.id,Project_Id__c=projectfollowing.id,Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED);
-		insert request;
+		project.BET__c = bet.id;
+		projectfollowing.BET__c = bet.id;
+		projectfollowing.IPM_Target_Launch_Dates__c = Date.newInstance(2015, 9, 4);
+		update projectfollowing;
+		update project;
 		Id ProjectId = project.id;
 		Id BetId = bet.id;
-		List<IPM_Project__c> projects = BET_LinkingServiceHelper.getOtherFollowingProjects(ProjectId,BetId);
-		System.assert(!projects.isEmpty());
+		IPM_BETWrapper projectwrap= BET_LinkingServiceHelper.getOtherFollowingProject(ProjectId,BetId);
+		System.assertEquals(projectwrap.ProjectId,projectfollowing.id);
 	}
 	
 }
