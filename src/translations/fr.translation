@@ -349,6 +349,22 @@
         <name>Bonus_Annual</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_AlertActionSchedulerName --></label>
+        <name>CEC_AlertActionSchedulerName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CBM_NotificationBodyFooter --></label>
+        <name>CEC_CBM_NotificationBodyFooter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CBM_NotificationBodyHeader --></label>
+        <name>CEC_CBM_NotificationBodyHeader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CBM_NotificationSubject --></label>
+        <name>CEC_CBM_NotificationSubject</name>
+    </customLabels>
+    <customLabels>
         <label>La résolution ne peut pas être créée sans compte attaché au dossier.</label>
         <name>CEC_CaseAccountMissing</name>
     </customLabels>
