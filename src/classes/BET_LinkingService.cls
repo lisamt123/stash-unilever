@@ -209,7 +209,8 @@ public with sharing class BET_LinkingService {
 					Id oldBetOwner = betRecords.get(0).id;
 					Id oldPL = project.pLId;
 					Id newPL = otherFollowProjects.get(0).IPM_Project_Leader__c;
-					uw_Bet__c bet = BET_LinkingServiceHelper.setNewLeadProjectAndOwner(betRecords.get(0),otherFollowProjects.get(0),project);
+					IPM_BETWrapper newProject = IPM_BETUpdateService.ipm_Wrapper(otherFollowProjects.get(0).id);
+					uw_Bet__c bet = BET_LinkingServiceHelper.setNewLeadProjectAndOwner(betRecords.get(0),newProject,project);
 					betOwner = bet.ownerid;
 					if(betOwner != oldBetOwner){
 						BET_LinkingServiceHelper.removeOldBetOwnerFromMembers(oldBetOwner,betRecords.get(0));

@@ -82,15 +82,15 @@ public without sharing class BET_LinkingServiceHelper {
 		Returns: -
 		Throws: -
 	*************************************************************/
-	public static uw_Bet__c setNewLeadProjectAndOwner(uw_Bet__c bet, IPM_Project__c project,IPM_BETWrapper oldProject){
+	public static uw_Bet__c setNewLeadProjectAndOwner(uw_Bet__c bet, IPM_BETWrapper project,IPM_BETWrapper oldProject){
 		System.debug('Entering setNewLeadProjectAndOwner : ' + bet + ', ' + project + ', ' + oldProject);
 		if(oldProject.pLId != null && oldProject.pLId == bet.ownerId){
-			bet.ownerId = project.IPM_Project_Leader__c;
+			bet.ownerId = project.pLId;
 		} else {
 			BET_EmailNotificationService.notifyBetOwnerThatProjectIsUnlinked(bet,oldProject); //US23
 		}
-		BET_EmailNotificationService.notifyBetOwnerAndProjectLeadOfNewLeadProject(bet,project); //US23
-		bet.IPM_Project__c = project.id;
+		BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(bet,project); //US23
+		bet.IPM_Project__c = project.projectId;
 		update bet;
 		System.debug('Exit setNewLeadProjectAndOwner : ' + bet);
 		return bet;
@@ -103,14 +103,14 @@ public without sharing class BET_LinkingServiceHelper {
 		Throws: -
 	*************************************************************/
 	public static void removeIPMProjectMembersFromBet(Id ProjectId, Id BetId,Id betOwner){
-		System.debug('Entering setNewLeadProjectAndOwner : ' + ProjectId + ', ' + BetId);
+		System.debug('Entering removeIPMProjectMembersFromBet : ' + ProjectId + ', ' + BetId);
 		List<BET_Member_Request__c> requests = [select id,Brand_Experience_Toolkit__c,UserId__c from BET_Member_Request__c where Project_Id__c =: ProjectId and Brand_Experience_Toolkit__c =: BetId];
 		Set<Id> userIds = new Set<Id>();
 		for(BET_Member_Request__c request : requests){
 			userIds.add(request.UserId__c);
 		}
 		List<uw_BET_Team_Member__c> teamMembers = [select id from uw_BET_Team_Member__c where BET__c =: betId and Team_Member__c =: userIds and Team_Member__c !=: betOwner];
-		System.debug('Exit setNewLeadProjectAndOwner : ' + requests + ', '+teamMembers);
+		System.debug('Exit removeIPMProjectMembersFromBet : ' + requests + ', '+teamMembers);
 		delete requests;
 		delete teamMembers;
 	}

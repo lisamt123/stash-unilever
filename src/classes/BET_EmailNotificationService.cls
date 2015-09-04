@@ -23,7 +23,7 @@ public with sharing class BET_EmailNotificationService {
     public static void notifyAllIPMProjectLeadersOfArchivedBet(List<uw_Bet__c> bets){
         List<Messaging.SingleEmailMessage> mails = new List<Messaging.SingleEmailMessage>();
         for(uw_Bet__c bet : bets){
-            List<IPM_BETWrapper> ipms =  IPM_BETUpdateService.returnIPM(bet.id);
+            List<IPM_BETWrapper> ipms = IPM_BETUpdateService.returnIPM(bet.id);
             List<String> userMails = userEmails(ipms);
             mails.add(buildArchiveMessage(userMails,bet));
         }
@@ -132,27 +132,23 @@ public with sharing class BET_EmailNotificationService {
     Returns: -
     Throws: -
     *************************************************************/
-	public static void notifyBetOwnerAndProjectLeadOfNewLeadProject(uw_Bet__c bet, IPM_Project__c newProject){ //US23
+	public static void notifyBetOwnerOfNewLeadProject(uw_Bet__c bet, IPM_BETWrapper newProject){ //US23
 		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 
 		List<User> usersToBeNofified = Test.isRunningTest() ? 
 		new List<User> {new User(email = BET_TestUtils.TEST_USER_EMAIL),new User(email = BET_TestUtils.TEST_USER_EMAIL)} : 
-		[select email from User where isActive = true and (id =: bet.ownerid or id=:newProject.IPM_Project_Leader__c)];
+		[select email from User where isActive = true and id =: bet.ownerid];
 
 		List<String> sendTo = new List<String>();
         if(!usersToBeNofified.isEmpty()) {
           sendTo.add(usersToBeNofified.get(0).email);
         }
 
-        if(usersToBeNofified.size() == 2) {
-          sendTo.add(usersToBeNofified.get(1).email);
-        }
-
         mail.setToAddresses(sendTo);
 
         mail.setOrgWideEmailAddressId(owea.id);
-        mail.setSubject('Project ' + newProject.name + ' has become new lead/controlling project of BET');
-        final String body = 'Project ' + newProject.name + ' has become new lead/controlling project of BET ' + bet.name ;
+        mail.setSubject('Project ' + newProject.projectName + ' has become new lead/controlling project of BET');
+        final String body = 'Project ' + newProject.projectName + ' has become new lead/controlling project of BET ' + bet.name ;
         mail.setHtmlBody(body);
         if(!Test.isRunningTest()) {
             Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
