@@ -209,8 +209,8 @@
         <members>BET_CommonService</members>
         <members>BET_CommonServiceTest</members>
 		<members>BET_CustomBETException</members>
-		<members>BET_DataFixReleaseDate</members>
-		<members>BET_DataFixReleaseDateTest</members>
+		<members>BET_DataFixReleaseDate_Batch</members>
+		<members>BET_DataFixReleaseDate_BatchTest</members>
         <members>BET_EditAssetController</members>
         <members>BET_EditAssetController_Test</members>
 		<members>BET_EmailNotificationService</members>
@@ -963,7 +963,7 @@
 		<members>BET_BETService</members>
         <members>BET_BETServiceTest</members>
         <members>IPM_BETWrapper</members>
-		<members>BET_MDODataMigrationAndTransformBatch</members>
+		<members>BET_MDODataMigrationAndTransform_Batch</members>
         <name>ApexClass</name>
     </types>
     <types>

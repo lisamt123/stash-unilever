@@ -7,7 +7,7 @@ private class BET_DataFixReleaseDateTest {
 		insert bet;
 
 		Test.startTest();
-	    BET_DataFixReleaseDate batch = new BET_DataFixReleaseDate();
+	    BET_DataFixReleaseDate_Batch batch = new BET_DataFixReleaseDate_Batch();
 	    Database.executeBatch(batch);
 	    Test.stopTest();
 

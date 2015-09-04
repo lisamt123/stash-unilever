@@ -10,7 +10,7 @@ History
 VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   m.bluj@polsource.com            02/09/2015      INITIAL DEVELOPMENT
 *******************************************************************************************************************************/
-global class BET_MDODataMigrationAndTransformBatch implements Database.Batchable<sObject> {
+global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchable<sObject> {
 	
 	String query = 'SELECT id,uw_Brand__c,uw_Brand__r.name,Product_Brand__c,Category__c,Category__r.name,Category_Group__c,Sub_Category__c,Sub_Category__r.name,Product_Category__c,Brand_Position__c '+
 				   'FROM uw_Bet__c '+
@@ -20,7 +20,7 @@ global class BET_MDODataMigrationAndTransformBatch implements Database.Batchable
 	global Map<Id,List<MDO_Category__c>> categoryGroupRelatedCategories = new Map<Id,List<MDO_Category__c>>();
 	global Map<String,MDO_Brand__c> brands = new Map<String,MDO_Brand__c>();
 
-	global BET_MDODataMigrationAndTransformBatch() {
+	global BET_MDODataMigrationAndTransform_Batch() {
 		for(MDO_Category__c categoryGroup : (List<MDO_Category__c>)BET_MasterDataService.getBETCategoryGroups()){
 			categoryGroups.put(categoryGroup.name, categoryGroup);
 		}

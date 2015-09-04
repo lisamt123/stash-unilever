@@ -1,5 +1,5 @@
 /*************************************************************************************
-Name : BET_DataFixReleaseDate
+Name : BET_DataFixReleaseDate_Batch
 
 Purpose : Class responsible for update first and final due dates 
 History
@@ -7,12 +7,12 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  20-08-2015  Initial
 *************************************************************************************/
-global class BET_DataFixReleaseDate implements Database.Batchable<sObject> {
+global class BET_DataFixReleaseDate_Batch implements Database.Batchable<sObject> {
 	
 	String query = 'Select First_Release_Due_Date__c, Final_Release_Due_Date__c, Launch_Date__c from uw_BET__c where (First_Release_Due_Date__c = null or Final_Release_Due_Date__c = null) and Launch_Date__c <> null';
 	String unitTestQuery = 'Select First_Release_Due_Date__c, Final_Release_Due_Date__c, Launch_Date__c from uw_BET__c where  Launch_Date__c != null';
 
-	global BET_DataFixReleaseDate() {}
+	global BET_DataFixReleaseDate_Batch() {}
 	
 	global Database.QueryLocator start(Database.BatchableContext BC) {
 		System.debug('Entering start');
