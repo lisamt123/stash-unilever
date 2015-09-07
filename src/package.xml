@@ -4138,5 +4138,9 @@
         <members>BET_reports/Brand_Experience_History</members>
         <name>Report</name>
     </types>
+	<types>
+		<members>BETs_with_Lead_IPM</members>
+        <name>ReportType</name>
+    </types>
     <version>34.0</version>
 </Package>
