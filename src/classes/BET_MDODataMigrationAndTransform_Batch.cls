@@ -14,11 +14,11 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
 	
 	String query = 'SELECT id,uw_Brand__c,uw_Brand__r.name,Product_Brand__c,Category__c,Category__r.name,Category_Group__c,Sub_Category__c,Sub_Category__r.name,Product_Category__c,Brand_Position__c '+
 				   'FROM uw_Bet__c '+
-				   'WHERE Brand_Position__c == null';
+				   'WHERE Brand_Position__c = null';
 
 	global Map<String,MDO_Category__c> categoryGroups = new Map<String,MDO_Category__c>();
 	global Map<Id,List<MDO_Category__c>> categoryGroupRelatedCategories = new Map<Id,List<MDO_Category__c>>();
-	global Map<String,MDO_Brand__c> brands = new Map<String,MDO_Brand__c>();
+	global Map<String,List<MDO_Brand__c>> brands = new Map<String,List<MDO_Brand__c>>();
 
 	global BET_MDODataMigrationAndTransform_Batch() {
 		for(MDO_Category__c categoryGroup : (List<MDO_Category__c>)BET_MasterDataService.getBETCategoryGroups()){
@@ -34,7 +34,11 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
 		}
 
 		for(MDO_Brand__c brand : [select id,name from MDO_Brand__c where status__c = 'Active']){
-			brands.put(brand.name, brand);
+			if(brands.keySet().contains(brand.name)){
+				brands.get(brand.name).add(brand);
+			} else {
+				brands.put(brand.name, new List<MDO_Brand__c> {brand});
+			}
 		}
 	}
 	
@@ -55,19 +59,32 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
 		List<uw_Bet__c> betsForUpdate = new List<uw_Bet__c>();
 		List<uw_Bet__c> betsForErrors = new List<uw_Bet__c>();
 		for(uw_Bet__c bet : scope) {
+			System.debug('Step 1 : Retriving category group by name : ' +  bet.Category__r.name);
 			MDO_Category__c categoryGroup = categoryGroups.get(bet.Category__r.name);
-			MDO_Brand__c brand = brands.get(bet.uw_Brand__r.name);
+			System.debug('Step 2 : Retrieved category group : ' + categoryGroup);
+			System.debug('Step 3 : Retriving category brand by name : ' +  bet.uw_Brand__r.name);
+			List<MDO_Brand__c> brandsobj = brands.get(bet.uw_Brand__r.name);
+			System.debug('Step 4 : Retrieved brand : ' + brandsobj);
 			bet.Category_Group__c = categoryGroup == null ? null : categoryGroup.id;
-			bet.Product_Brand__c = brand == null ? null : brand.id;
 			if(categoryGroup != null) {
+				System.debug('Step 5 : Retriving category by category group : ' +  categoryGroup.id);
 				for(MDO_Category__c category : categoryGroupRelatedCategories.get(categoryGroup.id)){
+					System.debug('Step 6 : Comapring  : ' + category.name + ' with ' + bet.Sub_Category__r.name);
 					if(category.name == bet.Sub_Category__r.name){
+						System.debug('Step 7 : Setting category to  : ' + category.id);
 						bet.Product_Category__c = category.id;
+						break;
 					}
 				}
 			}
-			if(bet.Product_Category__c != null && bet.Product_Brand__c != null){
-				bet.Brand_Position__c = getBrandPosition(bet.Product_Brand__c,bet.Product_Category__c);
+			for(MDO_Brand__c brand : brandsobj){
+				bet.Product_Brand__c = brand.id;
+				if(bet.Product_Category__c != null && bet.Product_Brand__c != null){
+					System.debug('Step 8 : Retriving getBrandPosition : ' +  bet.Product_Brand__c + ' ' + bet.Product_Category__c);
+					bet.Brand_Position__c = getBrandPosition(bet.Product_Brand__c,bet.Product_Category__c);
+					System.debug('Step 9 : Retrived brand position : ' +  bet.Brand_Position__c);
+				}
+				if(bet.Brand_Position__c != null) break;
 			}
 			if(validateBet(bet)){
 				betsForUpdate.add(bet);
