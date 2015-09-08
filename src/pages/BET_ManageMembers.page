@@ -108,7 +108,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
           </table>
           </div>
 
-        <div class="headerButtonsBrowsMembers" style=" padding-left: 735px;" > 
+        <div class="headerButtonsBrowsMembers"> 
         
           <apex:commandButton value="{!$Label.BET_Delete_selected}" action="{!massDelete}" 
                               rendered="{!isBetOwnerOrManager}"
@@ -117,7 +117,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
        
         </div>
 
-        <table width="100%" style="word-wrap:break-word; table-layout: fixed;">
+        <table width="100%" class="browseMembersTable">
           <th class="browseMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'width: 45px;','display:none')}">
             <apex:inputCheckbox value="{!selectAll}" id="globcheckboxbrowse" onchange="selectOrDeselectkAllBrowse();"/>
           </th>
@@ -196,7 +196,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
        
       </div>
 
-      <table width="100%" style="word-wrap:break-word; table-layout: fixed;">
+      <table width="100%" class="approveMembersTable">
         <th class="approveMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'width: 45px;','display:none')}">
             <apex:inputCheckbox value="{!selectAll}" id="globcheckbox" onchange="selectOrDeselectkAll();"/>
         </th>
