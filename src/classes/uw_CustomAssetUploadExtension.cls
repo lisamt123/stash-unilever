@@ -113,15 +113,13 @@ public with sharing class uw_CustomAssetUploadExtension {
     Returns: Boolean
     Author: Blessy Voola
     ********************************************************************/
-    public boolean isVisualApproved()
-    {
-    List<uw_Asset__c> fl=  [SELECT Name, Is_bucket_field__c, Id, uw_BET__c, Related_Feed_Item__c FROM uw_Asset__c WHERE uw_bet__c =: file.uw_BET__c];
-              for(uw_Asset__c flist:fl)
-              {
-              if(flist.Media_Type__c == 'Key Visual'&&flist.Status__c == 'Approved')
-              return true;
-              }
-              return false;
+    public boolean isVisualApproved(){
+        for(uw_Asset__c flist : [SELECT Name, Is_bucket_field__c, Id, uw_BET__c, Related_Feed_Item__c,Media_Type__c,Status__c FROM uw_Asset__c WHERE uw_bet__c =: file.uw_BET__c]){
+            if(flist.Media_Type__c == BET_ASSET_MEDIA_TYPE_KW && flist.Status__c == 'Approved'){
+                return true;
+            }
+        }
+        return false;
     }
         /*T0-End*/
         

@@ -51,7 +51,7 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
 	}
 	
 	global void finish(Database.BatchableContext BC) {
-		
+		System.debug('Finish BET_MDODataMigrationAndTransform_Batch');
 	}
 
 	global List<uw_Bet__c> proceedWithDataTransormation(List<uw_Bet__c> scope){
@@ -67,15 +67,7 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
 			System.debug('Step 4 : Retrieved brand : ' + brandsobj);
 			bet.Category_Group__c = categoryGroup == null ? null : categoryGroup.id;
 			if(categoryGroup != null) {
-				System.debug('Step 5 : Retriving category by category group : ' +  categoryGroup.id);
-				for(MDO_Category__c category : categoryGroupRelatedCategories.get(categoryGroup.id)){
-					System.debug('Step 6 : Comapring  : ' + category.name + ' with ' + bet.Sub_Category__r.name);
-					if(category.name == bet.Sub_Category__r.name){
-						System.debug('Step 7 : Setting category to  : ' + category.id);
-						bet.Product_Category__c = category.id;
-						break;
-					}
-				}
+				bet.Product_Category__c = retrieveCategoryId(categoryGroup,bet);
 			}
 			if(brandsobj != null) {
 				for(MDO_Brand__c brand : brandsobj){
@@ -97,6 +89,20 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
 		System.debug('Exit proceedWithDataTransormation : ' + betsForUpdate + ', ' + betsForErrors);
 		logErrors(betsForErrors);
 		return betsForUpdate;
+	}
+
+	global Id retrieveCategoryId(MDO_Category__c categoryGroup,uw_Bet__c bet){
+		Id categoryId = null;
+		System.debug('Step 5 : Retriving category by category group : ' +  categoryGroup.id);
+		for(MDO_Category__c category : categoryGroupRelatedCategories.get(categoryGroup.id)){
+			System.debug('Step 6 : Comapring  : ' + category.name + ' with ' + bet.Sub_Category__r.name);
+			if(category.name == bet.Sub_Category__r.name){
+				System.debug('Step 7 : Setting category to  : ' + category.id);
+				categoryId = category.id;
+				break;
+			}
+		}
+		return categoryId;
 	}
 
 	global Id getBrandPosition(Id brandId,Id categoryId){
