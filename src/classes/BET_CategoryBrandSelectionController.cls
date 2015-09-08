@@ -85,8 +85,8 @@ public with sharing class BET_CategoryBrandSelectionController {
 		categoryNotMigrated = !categoryMigrated;
 		compData.category = selectedCategory;
 		//FabricConditioner begin
-		fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(selectedCategory) : false;
 		if(fbEnabled) {
+			fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(selectedCategory) : false;
 			compData.fabricConditionerCategory = fabricConditionerCategory;
 			bet.Is_Fabric_Conditioners__c = fabricConditionerCategory;
 		}

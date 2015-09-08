@@ -112,8 +112,7 @@ public with sharing class uw_BETUtil {
         return bet;
     }
 
-    public static List<String> validateBET(uw_BET__c betObject,Boolean isCategoryMigrated){
-        System.debug('Entering validateBET : ' + betObject + ', ' + isCategoryMigrated);
+    private static List<String> validateIPMBetFields(uw_BET__c betObject){
         List<String> errors = new List<String>();
         if(String.isBlank(betObject.name)){
             errors.add(Label.BET_BetNameMandatory);
@@ -127,13 +126,31 @@ public with sharing class uw_BETUtil {
         if(String.isBlank(betObject.Brand_Position__c)){
             errors.add(Label.BET_BetBrandPositionMandatory);
         }
-        if(String.isBlank(betObject.Inoplan_Project__c) && !isCategoryMigrated && !betObject.Is_Fabric_Conditioners__c){
-            errors.add(Label.BET_InoplanProjectMandatory);
-        }
         if(betObject.Launch_Date__c == null){
             errors.add(Label.BET_LaunchDateMandatory);
+        }
+        return errors;
+    }
+
+    public static List<String> validateBET(uw_BET__c betObject,Boolean isCategoryMigrated){
+        System.debug('Entering validateBET : ' + betObject + ', ' + isCategoryMigrated);
+        List<String> errors = validateIPMBetFields(betObject);
+        if(String.isBlank(betObject.Inoplan_Project__c) && !isCategoryMigrated){
+            errors.add(Label.BET_InoplanProjectMandatory);
         }
         System.debug('Exit validateBET : ' + errors);
         return errors;
     }
+
+    //FabricConditioner begin
+    public static List<String> validateBET(uw_BET__c betObject,Boolean isCategoryMigrated,Boolean fabricConditionerCategory){
+        System.debug('Entering validateBET : ' + betObject + ', ' + isCategoryMigrated);
+        List<String> errors = validateIPMBetFields(betObject);
+        if(String.isBlank(betObject.Inoplan_Project__c) && !isCategoryMigrated && !fabricConditionerCategory){
+            errors.add(Label.BET_InoplanProjectMandatory);
+        }
+        System.debug('Exit validateBET : ' + errors);
+        return errors;
+    }
+    //FabricConditioner end
 }

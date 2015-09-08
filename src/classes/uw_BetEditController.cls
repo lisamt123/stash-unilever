@@ -234,6 +234,9 @@ public with sharing class uw_BetEditController {
                 Savepoint sp = Database.setSavepoint();
                 try {                   
                     compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
+                    //FabricConditioner begin
+                    compData.fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(compData.category) : false;
+                    //FabricConditioner end
                     bet = moveComponentDataToBET(bet,compData);
                     List<String> errorMessages = validateBET(bet);
                     Boolean betNameExists = BET_COmmonService.checkIfBetExists(bet);
@@ -288,7 +291,7 @@ public with sharing class uw_BetEditController {
     *************************************************************/
     @TestVisible
     private List<String> validateBET(uw_BET__c betObject){
-        return uw_BETUtil.validateBET(betObject,compData.categoryMigrated);
+        return uw_BETUtil.validateBET(betObject,compData.categoryMigrated,compData.fabricConditionerCategory);
     }
 
     /************************************************************

@@ -19,6 +19,11 @@ private class BET_MDODataMigrationAndTrans_BatchTest {
 		bet.Launch_Date__c = Date.today();
 		insert bet;
 
+		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
+		BET_TestUtils.createCategory(categoryGroup, 'Category One');
+		BET_TestUtils.createCategory(categoryGroup, 'Category Two');
+		BET_TestUtils.createBrand('Test Brand One');
+
 		Test.startTest();
 	    BET_MDODataMigrationAndTransform_Batch batch = new BET_MDODataMigrationAndTransform_Batch();
 	    Database.executeBatch(batch);
