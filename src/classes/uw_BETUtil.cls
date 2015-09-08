@@ -132,25 +132,15 @@ public with sharing class uw_BETUtil {
         return errors;
     }
 
-    public static List<String> validateBET(uw_BET__c betObject,Boolean isCategoryMigrated){
-        System.debug('Entering validateBET : ' + betObject + ', ' + isCategoryMigrated);
+    public static List<String> validateBET(uw_BET__c betObject, BET_CategoryComponentData compData){
+        System.debug('Entering validateBET : ' + betObject + ', ' + compData);
         List<String> errors = validateIPMBetFields(betObject);
-        if(String.isBlank(betObject.Inoplan_Project__c) && !isCategoryMigrated){
+        //FabricConditioner begin
+        if(String.isBlank(betObject.Inoplan_Project__c) && !compData.categoryMigrated && !compData.fabricConditionerCategory){
             errors.add(Label.BET_InoplanProjectMandatory);
         }
+        //FabricConditioner end
         System.debug('Exit validateBET : ' + errors);
         return errors;
     }
-
-    //FabricConditioner begin
-    public static List<String> validateBET(uw_BET__c betObject,Boolean isCategoryMigrated,Boolean fabricConditionerCategory){
-        System.debug('Entering validateBET : ' + betObject + ', ' + isCategoryMigrated);
-        List<String> errors = validateIPMBetFields(betObject);
-        if(String.isBlank(betObject.Inoplan_Project__c) && !isCategoryMigrated && !fabricConditionerCategory){
-            errors.add(Label.BET_InoplanProjectMandatory);
-        }
-        System.debug('Exit validateBET : ' + errors);
-        return errors;
-    }
-    //FabricConditioner end
 }

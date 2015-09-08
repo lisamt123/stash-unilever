@@ -135,7 +135,7 @@ public with sharing class BET_NewBetComponentController {
     @TestVisible
     private List<String> validateBET(uw_BET__c betObject){
         System.debug('Entering validateBET : ' + betObject);
-        List<String> errors = uw_BETUtil.validateBET(betObject,compData.categoryMigrated,compData.fabricConditionerCategory);
+        List<String> errors = uw_BETUtil.validateBET(betObject,compData);
         System.debug('Exit validateBET : ' + errors);
         return errors;
     }

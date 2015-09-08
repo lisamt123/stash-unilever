@@ -282,10 +282,24 @@ public class BET_TestUtils {
 		Throws: -
 	*************************************************************/
     public static IPM_Project__c createIPMProject(String projectName){
+    	return createIPMProject (projectName, null, null, null);
+    }
+
+    /************************************************************
+		Purpose: Method creates creates test IPM_Project__c record
+		Parameters: String project's name
+		Returns: IPM_Project__c record
+		Throws: -
+	*************************************************************/
+    public static IPM_Project__c createIPMProject(String projectName, String extId, Id projectLead, Id deputyProjectLead){
     	IPM_Project__c project = new IPM_Project__c(name=projectName);
+    	project.Project_External_ID__c 		= extId;
+    	project.IPM_Project_Leader__c 		= projectLead;
+    	project.Deputy_Project_Leader__c	= deputyProjectLead;
     	insert project;
     	return project;
     }
+
 
 
     /************************************************************
@@ -299,13 +313,35 @@ public class BET_TestUtils {
     }
 
      /************************************************************
-		Purpose: Method creates creates test BET_Follow_Request__c record
+		Purpose: Method creates test system admin user
 		Parameters: uw_Bet__c bet, IPM_Project__c project
 		Returns: BET_Follow_Request__c record
 		Throws: -
 	*************************************************************/
     public static BET_Follow_Request__c createNewFollowRequest(uw_Bet__c bet, IPM_Project__c project){
 		return createBetFollowRequest(bet,project,BET_LinkingService.FOLLOW_STATUS_NEW);
+    }
+
+    /************************************************************
+		Purpose: Method creates creates test BET_Follow_Request__c record
+		Parameters: uw_Bet__c bet, IPM_Project__c project
+		Returns: BET_Follow_Request__c record
+		Throws: -
+	*************************************************************/
+    public static User createUserSystemAdmin(){
+    	Integer randNo = Integer.valueOf(Math.random() * 100000);
+		User newUser = new User(alias = '' + randNo, 
+								email = 'TestUsert@unittest.com',
+								emailencodingkey = 'UTF-8',
+								firstname = 'Test',
+								lastname = 'ChatterAnswersCreateAccountTest',
+								languagelocalekey = 'en_US',
+								localesidkey = 'en_US', 
+								profileid = [SELECT Name FROM Profile WHERE Name = 'System Administrator'].id,
+								timezonesidkey = 'Europe/London',
+								username = 'TestAdmin@unittest.com' + randNo);
+		insert newUser;
+		return newUser;
     }
 
     /************************************************************
@@ -367,7 +403,9 @@ public class BET_TestUtils {
 		liCategories.add(category);
 
         uw_Inoplan_Project__c inoProject = new uw_Inoplan_Project__c();
-        inoProject.name = 'No Inoplan Project' + Math.random();
+        String strRand = '' + Integer.valueOf(Math.random()*10000);
+        inoProject.name = 'No Inoplan Project' + strRand;
+        inoProject.Project_Id__c = '' + strRand;
         insert inoProject;
         liInoplanProjects.add(inoProject);
 
