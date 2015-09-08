@@ -11,6 +11,8 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 
 public without sharing class BET_MasterDataService{
 
+	public static final String LAUNDRY = 'Laundry';
+
 	private BET_MasterDataService(){}
 
 	/************************************************************
@@ -213,6 +215,10 @@ public without sharing class BET_MasterDataService{
 		Set<String> categoryAndSubs = getSubCategoriesForGivenCategory(String.valueOf(category));
 		List<MDO_BrandPosition__c> positions = [Select id, name from MDO_BrandPosition__c where id in (select brand_position_id__c from MDO_BrandPositions__c where product_category_id__c in: categoryAndSubs and status__c = 'Active') and id =:brandpositionId and status__c = 'Active'];
 		return !positions.isEmpty();
+	}
+
+	public static Boolean isFabricConditionersCategory(Id categoryId){
+		return LAUNDRY == getCategoryName(categoryId);
 	}
 
 }

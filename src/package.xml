@@ -2389,6 +2389,7 @@
         <members>uw_Terms_Conditions__c</members>
         <members>BET_Follow_Request__c</members>
         <members>BET_Member_Request__c</members>
+		<members>BET_FabricCoditioners__c</members>
         <name>CustomObject</name>
     </types>
     <types>

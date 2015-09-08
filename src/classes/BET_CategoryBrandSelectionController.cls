@@ -18,6 +18,11 @@ public with sharing class BET_CategoryBrandSelectionController {
 
 	public Boolean categoryMigrated {get;set;}
 	public Boolean categoryNotMigrated {get;set;}
+	public Boolean fabricConditionerCategory {get;set;}
+
+	//FabricConditioner begin
+	private static Boolean fbEnabled = BET_FabricCoditioners__c.getOrgDefaults().Enabled__c;
+	//FabricConditioner end
 
 	public BET_CategoryComponentData compData {
 		get{ 
@@ -43,6 +48,11 @@ public with sharing class BET_CategoryBrandSelectionController {
 			if(categoryNotMigrated == null) {
 				categoryNotMigrated = compData.categoryNotMigrated;
 			}
+			//FabricConditioner begin
+			if(fabricConditionerCategory == null){
+				fabricConditionerCategory = fbEnabled ? compData.fabricConditionerCategory : false;
+			}
+			//FabricConditioner end
 		}
 	}
 
@@ -74,6 +84,13 @@ public with sharing class BET_CategoryBrandSelectionController {
 		categoryMigrated = IPM_BETUpdateService.CategoryCheck(selectedCategory);
 		categoryNotMigrated = !categoryMigrated;
 		compData.category = selectedCategory;
+		//FabricConditioner begin
+		fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(selectedCategory) : false;
+		if(fbEnabled) {
+			compData.fabricConditionerCategory = fabricConditionerCategory;
+			bet.Is_Fabric_Conditioners__c = fabricConditionerCategory;
+		}
+		//FabricConditioner end
 	}
 
 	/************************************************************
@@ -101,6 +118,13 @@ public with sharing class BET_CategoryBrandSelectionController {
 		selectedCategory = null;
 		selectedBrandPositioning = null;
 		selectedBrand = null;
+		//FabricConditioner begin
+		if(fbEnabled){
+			fabricConditionerCategory = false;
+			bet.Is_Fabric_Conditioners__c = fabricConditionerCategory;
+			compData.fabricConditionerCategory = fabricConditionerCategory;
+		}
+		//FabricConditioner end
 		compData.category = selectedCategory;
 	}
 
@@ -113,6 +137,10 @@ public with sharing class BET_CategoryBrandSelectionController {
 	public void onBrandChange(){
 		System.debug('Entering onBrandChange : ' + selectedBrand + ', '+compData);
 		compData.brand = selectedBrand;
+	}
+
+	public void onFabricConditionersChange(){
+		System.debug('Entering onFabricConditionersChange');
 	}
 
 	/************************************************************

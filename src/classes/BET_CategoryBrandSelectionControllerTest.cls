@@ -9,6 +9,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 		controller.compData = compData;
 		MDO_Category__c cgroup = BET_TestUtils.createCategoryGroup();
 		controller.selectedCategoryGroup = cgroup.Id;
+		controller.bet = BET_TestUtils.getTestBet();
 		controller.onCategoryGroupChange();
 		System.assertEquals(controller.compData.categoryGroup,cgroup.Id);
 	}
@@ -36,6 +37,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 		MDO_Category__c cgroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c cat = BET_TestUtils.createCategory(cgroup);
 		controller.selectedCategory = cat.id;
+		controller.bet = BET_TestUtils.getTestBet();
 		controller.onCategoryChange();
 		System.assertEquals(controller.compData.category,cat.id);
 

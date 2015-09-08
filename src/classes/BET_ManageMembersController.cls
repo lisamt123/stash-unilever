@@ -19,6 +19,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 ***********************************************************************/
 
 global without sharing class BET_ManageMembersController {
+
+    private static final String DEFAULT_USER_PHOTO = '/profilephoto/005/F';
+
     public BET_Member_Request__c betMemberRequest {get;set;}
     public uw_Bet__c bet {get;set;}
     public Id betId {get;set;}
@@ -29,7 +32,12 @@ global without sharing class BET_ManageMembersController {
     public Id selectedRequestId {get;set;}
     public Id selectedMemberId {get;set;}
     public Boolean isBetOwnerOrManager {get;set;}
-    
+
+    public String setErrorMessage{get;set;}
+    public String setEmailAdd{get;set;}
+    public String inviteSent{get;set;}
+    public Profile chatterExternalProfile{get;set;}
+
     /************************************************************
         Purpose: Controller constructor
         Parameters: ApexPages.StandardController controller
@@ -38,10 +46,12 @@ global without sharing class BET_ManageMembersController {
     *************************************************************/
     public BET_ManageMembersController(ApexPages.StandardController controller) {
         betId = (Id)ApexPages.currentPage().getParameters().get('bet');
-        bet = [select id , ownerid, Studio_Chatter_Group__c from uw_Bet__c where id=:betId];
+        bet = [select id ,Name, ownerid, Studio_Chatter_Group__c from uw_Bet__c where id=:betId];
         betMemberRequest = new BET_Member_Request__c(Brand_Experience_Toolkit__c = betId);
         selectAll = false;
         isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
+
+        chatterExternalProfile = [SELECT Id FROM Profile WHERE Name='Chatter External User' LIMIT 1];
 
         memberRequests = new List<MemberRequestWrapper>();
         for(BET_Member_Request__c request : [select id,  ProjectRequest__r.Project_Name__c, UserId__r.FirstName,UserId__r.LastName, UserId__r.SmallPhotoUrl, UserId__r.Title 
@@ -72,6 +82,7 @@ global without sharing class BET_ManageMembersController {
                 betMemberRequest.Do_Not_Notify_Bet__c = true;
                 betMemberRequest.External_User_Request__c = false;
                 insert betMemberRequest;
+                betMemberRequest = new BET_Member_Request__c(Brand_Experience_Toolkit__c = betId);
             } catch (Exception ex){
                 return null;
             }
@@ -91,16 +102,77 @@ global without sharing class BET_ManageMembersController {
     public PageReference addExternalMember(){
         System.debug('Entering addExternalMember');
         PageReference pr = null;
+        Id externalUserSalesforceId = null;
+        Boolean skipCreation = false;
         if(!String.isEmpty(betMemberRequest.External_User_Email__c)){
-            betMemberRequest.Bet_owner__c = bet.ownerid;
-            betMemberRequest.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED ;
-            betMemberRequest.Do_Not_Notify_Bet__c = true;
-            betMemberRequest.External_User_Request__c = true;
-            insert betMemberRequest;
-            pr = forward();
+            if (!checkEmail(betMemberRequest.External_User_Email__c)) {
+                Apexpages.Message m = new apexpages.Message(ApexPages.Severity.ERROR, setErrorMessage);
+                Apexpages.addMessage(m);
+                return pr;
+            } else {
+                List<User> userList = BET_AccessService.isExistingExternalUser(setEmailAdd);
+                if(!userList.isEmpty()) {
+                    if(!userList[0].isActive){
+                        Apexpages.Message m = new apexpages.Message(ApexPages.Severity.ERROR, setEmailAdd +' is an existing user (External Agent) but inactive at the moment. Please send an email to marketing@unilever.com for further clarification.');
+                        Apexpages.addMessage(m);  
+                        return null;  
+                    }else{
+                        externalUserSalesforceId = userList[0].Id;
+                    }
+                } else if (BET_AccessService.checkIfRequestExternalAccessIsPending(betId,setEmailAdd)){
+                    //inviteSent = 'Note: '+ betMemberRequest.External_User_Email__c + ' has already been invited';
+                    skipCreation = true;
+                } else {
+                    BET_AccessService.createExternalUserRelatedObjects(setEmailAdd,bet);
+                    //inviteSent = 'Invite has been sent to '+setEmailAdd;
+                    skipCreation = true;    
+                }
+
+                if(!skipCreation || Test.isRunningTest()){
+                    betMemberRequest.Bet_owner__c = bet.ownerid;
+                    betMemberRequest.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED;
+                    betMemberRequest.Do_Not_Notify_Bet__c = true;
+                    betMemberRequest.External_User_Request__c = true;
+                    betMemberRequest.UserId__c = externalUserSalesforceId; 
+                    insert betMemberRequest;
+                    betMemberRequest = new BET_Member_Request__c(Brand_Experience_Toolkit__c = betId);
+                    pr = forward();
+                }
+            }
+        } else {
+            setErrorMessage = 'The external user email address is blank. Please enter a value.';
+            Apexpages.Message m = new apexpages.Message(ApexPages.Severity.ERROR, setErrorMessage);
+            Apexpages.addMessage(m);
+            return pr;
         }
         System.debug('Exit addExternalMember : ' + pr);
         return pr;
+    }
+
+    /************************************************************
+        Purpose: Method validates email
+        Parameters: String emailAddEntered
+        Returns:  Boolean if email is valid
+        Throws: -
+    *************************************************************/
+    private Boolean checkEmail(String emailAddEntered){  
+        if (emailAddEntered.trim().contains('@unilever.com')) {
+            setEmailAdd = emailAddEntered.trim();
+            List<User> nonAgent = [SELECT id, email,IsActive, Name FROM user where email =:setEmailAdd AND profileID != :chatterExternalProfile.Id limit 1];
+            if (nonAgent.isEmpty()) {
+                setErrorMessage = setEmailAdd+' does not have a Chatter account. Please contact marketing@unilever.com to request an account for them. Once the user has an account, please add them as an internal member to your BET from the Manage Members page.';
+            }else{
+                if(nonAgent[0].IsActive){
+                    setErrorMessage='This email id belongs to an existing internal Unilever user: '+nonAgent[0].Name +' who already has a Chatter account. Please add them as an internal member to your BET from the Manage Members page';
+                }else {
+                    setErrorMessage = 'This email id belongs to an existing Unilever internal user: '+nonAgent[0].Name+', who\'s Chatter account is currently locked. Please contact marketing@unilever.com to request this account be re-activated.';
+                }  
+            }
+            return false;
+        }else{
+            setEmailAdd = emailAddEntered.trim();
+            return true;
+        }
     }
 
     /************************************************************
@@ -348,7 +420,7 @@ global without sharing class BET_ManageMembersController {
             projectName = request.ProjectRequest__r.Project_Name__c;
             firstName = request.UserId__r.FirstName;
             lastName = request.UserId__r.LastName;
-            photo = String.isBlank(request.UserId__r.SmallPhotoUrl) ? '/profilephoto/005/F' : request.UserId__r.SmallPhotoUrl;
+            photo = String.isBlank(request.UserId__r.SmallPhotoUrl) ? DEFAULT_USER_PHOTO : request.UserId__r.SmallPhotoUrl;
             this.isSelected = false;
             objectId = request.id;
             title = request.UserId__r.Title;
@@ -377,7 +449,7 @@ global without sharing class BET_ManageMembersController {
             role = member.Role__c;
             firstName = member.Team_Member__c == null ? member.email__c : member.Team_Member__r.FirstName;
             lastName = member.Team_Member__r.LastName;
-            photo = String.isBlank(member.Team_Member__r.SmallPhotoUrl) ? '/profilephoto/005/F' : member.Team_Member__r.SmallPhotoUrl;
+            photo = String.isBlank(member.Team_Member__r.SmallPhotoUrl) ? DEFAULT_USER_PHOTO : member.Team_Member__r.SmallPhotoUrl;
             this.isSelected = false;
             objectId = member.id;
             isbetOwner = member.Team_Member__c == betOwnerId;

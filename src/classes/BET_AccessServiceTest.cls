@@ -31,6 +31,14 @@ private class BET_AccessServiceTest {
 		insert memberR;
 		System.assert(BET_AccessService.checkIfRequestAccessIsPending(UserInfo.getUserId(),bet.id));
 	}
+
+	@isTest static void checkIfRequestExternalAccessIsPendingTest(){
+		uw_Bet__c bet = BET_TestUtils.getTestBet();
+		insert bet;
+		BET_Member_Request__c memberR = new BET_Member_Request__c(Status__c = 'New', External_User_Email__c = 'm.bluj@polsource.com',Brand_Experience_Toolkit__c = bet.id);
+		insert memberR;
+		System.assert(BET_AccessService.checkIfRequestExternalAccessIsPending(bet.id,'m.bluj@polsource.com'));
+	}
 	
 	@isTest static void RequestAccessTest() {
 		uw_Bet__c bet = BET_TestUtils.getTestBet();

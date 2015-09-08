@@ -107,6 +107,7 @@ public with sharing class uw_BETUtil {
         bet.Product_Category__c = compData.category;
         bet.Brand_Position__c = compData.brandpositioning;
         bet.Product_Brand__c = compData.brand;
+        bet.Is_Fabric_Conditioners__c = compData.fabricConditionerCategory;
         System.debug('Exit moveComponentDataToBET : ' + bet);
         return bet;
     }
@@ -126,7 +127,7 @@ public with sharing class uw_BETUtil {
         if(String.isBlank(betObject.Brand_Position__c)){
             errors.add(Label.BET_BetBrandPositionMandatory);
         }
-        if(String.isBlank(betObject.Inoplan_Project__c) && !isCategoryMigrated){
+        if(String.isBlank(betObject.Inoplan_Project__c) && !isCategoryMigrated && !betObject.Is_Fabric_Conditioners__c){
             errors.add(Label.BET_InoplanProjectMandatory);
         }
         if(betObject.Launch_Date__c == null){

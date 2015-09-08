@@ -182,11 +182,11 @@ private class BET_CommonServiceTest {
 
         try{
             BET_CommonService.requestBETAccess(wrap.BET.Id, wrap.BET.Id, 'email@test.com');
+            System.assert(false);
         }catch(Exception e){
             System.debug('Exception ' + e);
             System.assert(true);
         }
-        System.assert(false);
     }
 
     //cover catch
@@ -200,11 +200,11 @@ private class BET_CommonServiceTest {
         User usr = BET_TestingHelper.getDefaultNotMember();
         try{
             BET_CommonService.requestBETAccess(usr.Id, wrap.BET.Id, 'email@test.com');
+            System.assert(false);
         }catch(Exception e){
             System.debug('Exception ' + e);
-            System.assert(false);
+            System.assert(true);
         }
-        System.assert(true);
     }
     //cover catch
     static testMethod void testMethodTwelve(){
@@ -217,10 +217,10 @@ private class BET_CommonServiceTest {
 
         try{
             BET_CommonService.deleteBetTeamMember(wrap.member.Id, wrap.BET.Id);
+            System.assert(false);
         }catch(Exception e){
             System.debug('Exception ' + e);
-            System.assert(false);
+            System.assert(true);
         }
-        System.assert(true);
     }
 }
