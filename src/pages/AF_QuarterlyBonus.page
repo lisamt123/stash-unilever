@@ -1,9 +1,42 @@
 <apex:page controller="AF_BonusQuarterly" showHeader="false" sidebar="false" docType="HTML-5.0">
  
 <!-- Common_Style File Start -->
-<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+  <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
 <!-- Common_Style File End -->
- 
+<!-- jquery library Start-->
+  <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/>
+<!-- jquery library End-->
+ <script>  
+function twoDecimalCheck(){
+    $('.two-digits').keyup(function(){
+        //alert('Hi2');
+        if($(this).val().indexOf('.')!=-1){         
+            if($(this).val().split(".")[1].length > 2){                
+                if( isNaN( parseFloat( this.value ) ) ) return;
+                this.value = parseFloat(this.value).toFixed(2);
+            }  
+         }            
+         return this; //for chaining
+    });
+    
+    
+     
+  $(".two-digits").keypress(function (e) {
+      
+     if (e.which != 46 && e.which > 31 && (e.which < 48 || e.which > 57) && (e.which < 43 || e.which > 45)){
+        
+        //$("#errmsg").html("Digits Only").show().fadeOut("slow");
+        alert("Please enter numbers only.");
+               return false;
+    }
+   });
+   }
+   
+$( function () {
+    //alert('Hi1');
+    $('.two-digits').keyup(twoDecimalCheck);
+});
+ </script>
  <script>
  
   function isNumberKey(evt)
@@ -69,7 +102,7 @@ Please select Quarter below:
             <apex:selectOption itemValue="Q2" itemLabel="Q2"/>
             <apex:selectOption itemValue="Q3" itemLabel="Q3"/>
             <!--<apex:selectOption itemValue="Q4" itemLabel="Q4"/>-->
-            <apex:actionsupport event="onchange" rerender="pbt,Trad_Digi,buttons,pmsg" action="{!CallBonusQuarterly}"/>
+            <apex:actionsupport event="onchange" rerender="pbt,Trad_Digi,buttons,pmsg" action="{!CallBonusQuarterly}" oncomplete="twoDecimalCheck();"/>
           </apex:selectList> 
  </apex:outputpanel>
 <div class="clearB"></div>
@@ -148,7 +181,7 @@ Please select Quarter below:
   </apex:facet>-->
  <apex:outputPanel >
   <apex:outputField value="{!QB.bonusResObj.AF_Quant__c}"  id="txtquant1" rendered="{!AND(IsEditable,QB.bonusResObj.AF_Locked__c)}"/>
-  <apex:inputfield value="{!QB.bonusResObj.AF_Quant__c}" onFocus="javascript:this.maxLength=4;"  id="txtquant" onkeypress="return isNumberKey(event)"  rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c),NOT(ISNULL(QB.total_bonus_fees)))}" styleClass="totalBonusInputBox">
+  <apex:inputfield value="{!QB.bonusResObj.AF_Quant__c}" id="txtquant"  rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c),NOT(ISNULL(QB.total_bonus_fees)))}" styleClass="totalBonusInputBox two-digits">
   <div class="regTitlediv" id="regTitle"></div>
  <apex:actionSupport event="onchange" action="{!Calculate_Bonus}" reRender="bonusval1,bonusper1,bonus1,bonus2,totals,totalbonus,bonusper,bonusval,sumofbonusbase" >
  
@@ -188,7 +221,7 @@ Please select Quarter below:
  
   
  </apex:pageblockTable>
- 
+
  </div>
   <!--   <apex:outputPanel id="totals" >
         <div style="float: left;

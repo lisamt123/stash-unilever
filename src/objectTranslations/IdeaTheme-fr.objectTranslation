@@ -10,9 +10,27 @@
         <name>Active__c</name>
     </fields>
     <fields>
+        <label><!-- BatchInvoked --></label>
+        <name>BatchInvoked__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please enter Categories for Idea Campaign separated by comma. --></help>
+        <label><!-- Categories --></label>
+        <name>Categories__c</name>
+    </fields>
+    <fields>
+        <help><!-- Click to get chatter post to groups --></help>
+        <label><!-- Chatter Post --></label>
+        <name>Chatter_Post__c</name>
+    </fields>
+    <fields>
         <help><!-- Enter the Salesforce Id of Dashboard. --></help>
         <label><!-- Dashboard --></label>
         <name>Dashboard__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
     </fields>
     <fields>
         <help><!-- Enter the Salesforce Id&apos;s of the Groups separated by comma. This will be used to create Chatter post for launch of Idea Theme --></help>
@@ -38,6 +56,10 @@
         <help><!-- Enter the Salesforce Id of the Leaderboard to be displayed on Idea Theme page. --></help>
         <label><!-- LeaderboardId --></label>
         <name>LeaderboardId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promoted --></label>
+        <name>Promoted__c</name>
     </fields>
     <fields>
         <name>Status</name>

@@ -3,7 +3,37 @@
 <!-- Common_Style File Start -->
 <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
 <!-- Common_Style File End -->
+<!-- jquery library Start-->
+    <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/>
+    <!-- jquery library End-->
+    
 
+<script>  
+ $( function() {
+    $('.two-digits').keyup(function(){
+        //alert('Hi');
+        if($(this).val().indexOf('.')!=-1){         
+            if($(this).val().split(".")[1].length > 2){                
+                if( isNaN( parseFloat( this.value ) ) ) return;
+                this.value = parseFloat(this.value).toFixed(2);
+            }  
+         }            
+         return this; //for chaining
+    });
+    
+    
+     
+  $(".two-digits").keypress(function (e) {
+      
+     if (e.which != 46 && e.which > 31 && (e.which < 48 || e.which > 57) && (e.which < 43 || e.which > 45)){
+        
+        //$("#errmsg").html("Digits Only").show().fadeOut("slow");
+        alert("Please enter numbers only.");
+               return false;
+    }
+   });
+});
+</script>
 
  <script>
  
@@ -58,6 +88,7 @@
   
      
  </script>
+
  <div class="AF_AnnualBonus">
   <apex:message />
   <div class="row">           
@@ -157,7 +188,7 @@
 
   <apex:outputField value="{!QB.bonusResObj.AF_Quant__c}"  id="txtquant1" rendered="{!AND(OR(IsEditable,isAgency),QB.bonusResObj.AF_Locked__c)}" />
  <apex:outputPanel layout="block" styleClass="requiredBlock">
- <apex:inputfield value="{!QB.bonusResObj.AF_Quant__c}" id="txtquant" styleClass="bonusResInput" onFocus="javascript:this.maxLength=5;"  onkeypress="return isNumberKey(event)" rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c),NOT(ISNULL(QB.total_bonus_fees)))}">
+ <apex:inputfield value="{!QB.bonusResObj.AF_Quant__c}" id="txtquant" styleClass="bonusResInput two-digits" rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c),NOT(ISNULL(QB.total_bonus_fees)))}">
   <div class="regTitlecont" id="regTitle"></div>
  <apex:actionSupport event="onchange"  action="{!Calculate_Bonus}" reRender="bonus1,totalbonusper,bonus2,totals,totalbonus,bonus6,bonus7,totalQualValue1,totalQualPer1,totalQualValue,totalQualPer,totalQuant_Qual_Val,totalQuant_Qual_Per,totalBonusableFees" >
  </apex:actionSupport>
