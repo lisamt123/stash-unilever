@@ -4141,6 +4141,7 @@
     </types>
 	<types>
 		<members>BETs_with_Lead_IPM</members>
+		<members>IPM_with_BET</members>
         <name>ReportType</name>
     </types>
     <version>34.0</version>
