@@ -8,6 +8,10 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
+                <field>Categories__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
                 <field>Title</field>
             </layoutItems>
         </layoutColumns>
@@ -123,6 +127,9 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
+    <miniLayout>
+        <fields>Categories__c</fields>
+    </miniLayout>
     <relatedLists>
         <fields>IDEA.TITLE</fields>
         <fields>IDEA.CREATED_BY_NICKNAME</fields>

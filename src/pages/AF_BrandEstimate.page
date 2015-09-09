@@ -4,6 +4,9 @@
     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.jquery_ui_1_10_4,'js/jquery-ui-1.10.4.custom.min.js')}"></script>
    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.css')}"/>
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.min.css')}"/>--> 
+    <!-- jquery library Start-->
+    <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/>
+    <!-- jquery library End-->
     <!-- Bootstrap_css File By Kumar start-->
 <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.css')}" type="text/css"/>
 <!-- Bootstrap_css File By Kumar End-->
@@ -93,7 +96,33 @@
 <!-- Common_Style File Start -->
 <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
 <!-- Common_Style File End -->
+ <script>  
+ jQuery( function() {
+    jQuery('.two-digits').keyup(function(){
+        //alert('Hi');
+        if(jQuery(this).val().indexOf('.')!=-1){         
+            if(jQuery(this).val().split(".")[1].length > 2){                
+                if( isNaN( parseFloat( this.value ) ) ) return;
+                this.value = parseFloat(this.value).toFixed(2);
+            }  
+         }            
+         return this; //for chaining
+    });
     
+    
+     
+  jQuery(".two-digits").keypress(function (e) {
+      
+     if (e.which != 46 && e.which > 31 && (e.which < 48 || e.which > 57) && (e.which < 43 || e.which > 45)){
+        
+        //$("#errmsg").html("Digits Only").show().fadeOut("slow");
+        alert("Please enter numbers only.");
+               return false;
+    }
+   });
+});
+
+ </script> 
 <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/>
 <script type="text/javascript">
 $.noConflict();
@@ -280,13 +309,13 @@ jQuery(document).ready(function(){
    </apex:selectList>   
   </apex:column> 
   <apex:column headerValue="Minimum">
-  <apex:inputText id="minimum" value="{!BT.bonusthresholds.AF_Minimum__c}"/>
+  <apex:inputText id="minimum" value="{!BT.bonusthresholds.AF_Minimum__c}"  styleClass="two-digits"/>
   </apex:column>
   <apex:column headerValue="Stretching">
-  <apex:inputText id="Stretch" value="{!BT.bonusthresholds.AF_Stretching__c}"/>
+  <apex:inputText id="Stretch" value="{!BT.bonusthresholds.AF_Stretching__c}"  styleClass="two-digits"/>
   </apex:column>
   <apex:column headerValue="Outstanding">
-  <apex:inputText id="Outstanding" value="{!BT.bonusthresholds.AF_Outstanding__c}"/>
+  <apex:inputText id="Outstanding" value="{!BT.bonusthresholds.AF_Outstanding__c}"  styleClass="two-digits"/>
   </apex:column>
    <apex:column headerValue="Digital">
   <apex:inputcheckbox id="Digital" value="{!BT.bonusthresholds.AF_Digital__c}"/>
