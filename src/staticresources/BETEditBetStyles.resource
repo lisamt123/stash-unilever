@@ -20,6 +20,15 @@ body .btn {
 body .btn.btn-cancel {
   background: #666a6b;
 }
+
+body .btn.btn-deny {
+  background: #666a6b;
+}
+
+body .btn.btn-approve {
+  background: #666a6b;
+}
+
 body .btn.btn-save {
   background: #be236d;
 }
@@ -250,4 +259,94 @@ body .bPageBlock .requiredInput {
   font-family: "Rockwell";
   font-weight: 400;
   font-style: normal;
+}
+
+.linkingInfo{
+  font-family: "Arial-BoldMT","Arial Bold","Arial";
+  font-weight: 700;
+  font-style: normal;
+  font-size: 16px;
+  color: #333;
+  text-align: left;
+  line-height: normal;
+}
+
+.linkedInfo{
+  font-family: "ArialMT","Arial";
+  font-weight: 400;
+  color: #949494;
+  font-size: 16px;
+  line-height: 28px;
+  font-style: normal;
+  text-align: left;
+}
+
+.autoApprroveInfo{
+  font-size: 14px;
+  color: #5E5E5E;
+  font-family: "ArialMT","Arial";
+  font-weight: 400;
+  font-style: normal;
+  text-align: left;
+  line-height: normal;
+}
+
+.form-item .item-label-approve label {
+  font-family: "Arial-BoldMT","Arial Bold","Arial";
+  font-weight: 700;
+  font-style: normal;
+  color: #5E5E5E;
+  font-size: 13px;
+  text-align: left;
+  line-height: normal;
+}
+
+.form-item .item-input-approve {
+  font-size: 14px;
+  color: #5E5E5E;
+  font-family: "ArialMT","Arial";
+  font-weight: 400;
+  font-style: normal;
+  text-align: left;
+  line-height: normal;
+}
+
+.form-item .item-input-approve {
+  position: relative;
+  left: 175px;
+  top: -17px;
+}
+
+.linkedProjectName{
+  font-family: "ArialMT","Arial";
+  font-weight: 400;
+  font-style: normal;
+  color: #333;
+  text-align: left;
+  line-height: normal;
+  font-size: 16px;
+}
+
+.linkedProjectNameLead{
+  position: relative;
+  left: 735px;
+  font-size: 16px;
+  top: -20px;
+  font-family: "ArialMT","Arial";
+  font-weight: 400;
+  color: #4D5051;
+}
+
+select:disabled {
+    background-color: #F0F0F0;
+}
+
+.item-output-link {
+	font-size: 17px;
+	padding-top: 5px;
+}
+
+.item-output-link a {
+	text-decoration : none;
+	color: #E6007E;
 }
