@@ -239,6 +239,7 @@ public with sharing class uw_BETWrapper {
         public String category;
         public String brandPosition;
         public String brand;
+        public String betBrandPositionName;
 
         public Boolean currentUserHasAccessToIPM;
 
@@ -324,7 +325,8 @@ public with sharing class uw_BETWrapper {
             this.category               = bet.Product_Category__c;
             this.brandPosition          = bet.Brand_Position__c;
             this.brand                  = bet.Product_Brand__c;
-            this.archived               = bet.Is_Archived__c;     
+            this.archived               = bet.Is_Archived__c;
+            this.betBrandPositionName   = bet.Brand_Position__r.name;
 
             if(this.betFirstRelease != null && this.betFirstReleaseDueDate != null ){
                 this.completedFirstAfterDueDate = this.betFirstRelease >  this.betFirstReleaseDueDate;

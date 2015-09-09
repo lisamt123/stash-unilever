@@ -169,12 +169,14 @@
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
                     <apex:outputLabel >{!$Label.BET_ProjectName}</apex:outputLabel>
-                    <apex:outputPanel layout="inline" styleClass="question-icon" 
-                                      html-data-tooltip="{!$Label.BET_LinkBetToIPMProject}" 
-                                      rendered="{!bet.IPM_Project__c == null}"/>
                 </div>
                 <div class="item-input">
-                    <apex:inputText value="{!bet.IPM_Project__r.name}" disabled="true" rendered="{!bet.IPM_Project__c != null}"/>
+                    <apex:inputText value="{!bet.IPM_Project__r.name}" disabled="true"/>
+                </div>
+            </div>
+            <div class="form-item-brandtip">
+                <div class="item-label">
+                    <apex:outputLabel >{!$Label.BET_LinkBetToIPMProject}</apex:outputLabel>
                 </div>
             </div>
         </apex:outputPanel>
