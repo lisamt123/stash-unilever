@@ -292,15 +292,22 @@ public class BET_TestUtils {
 		Throws: -
 	*************************************************************/
     public static IPM_Project__c createIPMProject(String projectName, String extId, Id projectLead, Id deputyProjectLead){
-    	IPM_Project__c project = new IPM_Project__c(name=projectName);
+    	IPM_Project__c project = new IPM_Project__c(name=projectName,IPM_Project_Name__c=projectName);
     	project.Project_External_ID__c 		= extId;
     	project.IPM_Project_Leader__c 		= projectLead;
     	project.Deputy_Project_Leader__c	= deputyProjectLead;
+    	project.IPM_Fast_Track_Project__c   = false;
+    	project.IPMProject_Span__c          = 'Global';
+    	project.IPM_Phase__c                = 'Ideas';
+		project.IPM_Complexity__c           = 'Full';
+		project.IPM_GateKeeping_Model__c    = 'GCLT & RCLT';
+		project.IPM_Market_Type__c          = 'Full';
+		project.IPM_Target_Launch_Dates__c  = System.today()+10;
+		project.IPM_IsCompleted__c          = true;
+		project.IPM_PM_Approach__c          = 'External';
     	insert project;
     	return project;
     }
-
-
 
     /************************************************************
 		Purpose: Method creates creates test BET_Follow_Request__c record
