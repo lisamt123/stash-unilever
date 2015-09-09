@@ -92,9 +92,17 @@ public with sharing class BET_NewBetComponentController {
     @TestVisible
     private void proceedWithSave(Boolean redirectToMembersComponent){
         System.debug('Entering proceedWithSave : ' + redirectToMembersComponent);
-        compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
+        try{
+            compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
+        }catch(Exception e){
+            compData.categoryMigrated = false;
+        }
         //FabricConditioner begin
-        compData.fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(compData.category) : false;
+        try{
+            compData.fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(compData.category) : false;
+        }catch(Exception e){
+            compData.fabricConditionerCategory = false;
+        }
         //FabricConditioner end
         bet = moveComponentDataToBET(bet,compData);
         List<String> errorMessages = validateBET(bet);

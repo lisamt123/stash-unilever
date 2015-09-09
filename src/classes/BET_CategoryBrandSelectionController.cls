@@ -81,9 +81,18 @@ public with sharing class BET_CategoryBrandSelectionController {
     *************************************************************/
 	public void onCategoryChange(){
 		System.debug('Entering onCategoryChange : ' + selectedCategory + ', '+compData);
-		categoryMigrated = IPM_BETUpdateService.CategoryCheck(selectedCategory);
+
+		try{
+			categoryMigrated = IPM_BETUpdateService.CategoryCheck(selectedCategory);
+		}catch(Exception e){
+			categoryMigrated = false;
+		}
+
 		categoryNotMigrated = !categoryMigrated;
 		compData.category = selectedCategory;
+		selectedBrandPositioning = null;
+		selectedBrand = null;
+
 		//FabricConditioner begin
 		if(fbEnabled) {
 			fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(selectedCategory) : false;
@@ -91,6 +100,9 @@ public with sharing class BET_CategoryBrandSelectionController {
 			bet.Is_Fabric_Conditioners__c = fabricConditionerCategory;
 		}
 		//FabricConditioner end
+
+		compData.brandpositioning = selectedBrandPositioning;
+		compData.brand = selectedBrand;
 	}
 
 	/************************************************************
@@ -113,11 +125,13 @@ public with sharing class BET_CategoryBrandSelectionController {
 	public void onCategoryGroupChange(){
 		System.debug('Entering onCategoryGroupChange : ' + selectedCategoryGroup + ', '+compData);
 		compData.categoryGroup = selectedCategoryGroup;
+
 		categoryMigrated = false;
 		categoryNotMigrated = false;
 		selectedCategory = null;
 		selectedBrandPositioning = null;
 		selectedBrand = null;
+
 		//FabricConditioner begin
 		if(fbEnabled){
 			fabricConditionerCategory = false;
@@ -125,7 +139,10 @@ public with sharing class BET_CategoryBrandSelectionController {
 			compData.fabricConditionerCategory = fabricConditionerCategory;
 		}
 		//FabricConditioner end
+
 		compData.category = selectedCategory;
+		compData.brandpositioning = selectedBrandPositioning;
+		compData.brand = selectedBrand;
 	}
 
 	/************************************************************

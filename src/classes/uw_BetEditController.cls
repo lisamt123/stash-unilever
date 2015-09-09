@@ -179,18 +179,22 @@ public with sharing class uw_BetEditController {
         }    
     }
 
-    private void initialOwnerMatches(){
-        compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
+    private Boolean initialOwnerMatches(){
+        categoryCheck();
         bet = moveComponentDataToBET(bet,compData);
         List<String> errorMessages = validateBET(bet);
         Boolean betNameExists = BET_COmmonService.checkIfBetExists(bet);
         if(errorMessages.isEmpty() && !betNameExists){
             update bet;   
+            runJsSuccess = true;
+            return true;
         } else {
             if(betNameExists) {
                 errorMessages.add(Label.BET_NameExists);
             }
             displayErrors(errorMessages);
+            runJsSuccess = false;
+            return false;
         }
     }
 
@@ -229,14 +233,13 @@ public with sharing class uw_BetEditController {
             doSaveBanner(userId,currentfolder);
 
             if (bet.ownerId == initialOwnerId) {
-                initialOwnerMatches();
+                if(!initialOwnerMatches()){
+                    return null;
+                }
             } else {
                 Savepoint sp = Database.setSavepoint();
                 try {                   
-                    compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
-                    //FabricConditioner begin
-                    compData.fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(compData.category) : false;
-                    //FabricConditioner end
+                    categoryCheck();
                     bet = moveComponentDataToBET(bet,compData);
                     List<String> errorMessages = validateBET(bet);
                     Boolean betNameExists = BET_COmmonService.checkIfBetExists(bet);
@@ -270,6 +273,21 @@ public with sharing class uw_BetEditController {
         runJsSuccess = true;
 
         return null;
+    }
+
+    private void categoryCheck(){
+        try{
+            compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
+        }catch(Exception e){
+            compData.categoryMigrated = false;
+        }
+        //FabricConditioner begin
+        try{
+            compData.fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(compData.category) : false;
+        }catch(Exception e){
+            compData.fabricConditionerCategory = false;
+        }
+        //FabricConditioner end
     }
 
     /************************************************************

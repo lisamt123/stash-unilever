@@ -136,7 +136,7 @@ public with sharing class uw_BETUtil {
         System.debug('Entering validateBET : ' + betObject + ', ' + compData);
         List<String> errors = validateIPMBetFields(betObject);
         //FabricConditioner begin
-        if(String.isBlank(betObject.Inoplan_Project__c) && !compData.categoryMigrated && !compData.fabricConditionerCategory){
+        if(String.isBlank(betObject.Inoplan_Project__c) && !compData.categoryMigrated && !compData.fabricConditionerCategory && !String.isBlank(betObject.Product_Category__c)){
             errors.add(Label.BET_InoplanProjectMandatory);
         }
         //FabricConditioner end
