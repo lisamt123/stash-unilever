@@ -170,11 +170,14 @@
                 <div class="item-label">
                     <apex:outputLabel >{!$Label.BET_ProjectName}</apex:outputLabel>
                 </div>
-                <div class="item-input">
+                <div class="item-input" style="{!IF(NOT(userHasAccessToProject),'','display:none')}">
                     <apex:inputText value="{!bet.IPM_Project__r.name}" disabled="true"/>
                 </div>
+                <div class="item-input item-output-link" style="{!IF(userHasAccessToProject,'','display:none')}">
+                    <a href="/{!bet.IPM_Project__c}" target="_blank">{!bet.IPM_Project__r.name}</a>
+                </div>
             </div>
-            <div class="form-item-brandtip">
+            <div class="form-item-brandtip" style="{!IF(bet.IPM_Project__c != null,'display:none','')}">
                 <div class="item-label">
                     <apex:outputLabel >{!$Label.BET_LinkBetToIPMProject}</apex:outputLabel>
                 </div>

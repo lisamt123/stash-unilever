@@ -20,6 +20,14 @@ public with sharing class BET_CategoryBrandSelectionController {
 	public Boolean categoryNotMigrated {get;set;}
 	public Boolean fabricConditionerCategory {get;set;}
 
+	public Boolean getUserHasAccessToProject() {
+		if(bet == null || bet.id == null || bet.IPM_Project__c == null) {
+			return false;
+		} else {
+			return IPM_BETUpdateService.UserAccess(bet.id,bet.IPM_Project__c,UserInfo.getUserId());
+		}
+	}
+
 	//FabricConditioner begin
 	private static Boolean fbEnabled = BET_FabricCoditioners__c.getOrgDefaults().Enabled__c;
 	//FabricConditioner end

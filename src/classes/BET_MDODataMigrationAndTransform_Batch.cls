@@ -106,9 +106,10 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
 	}
 
 	global Id getBrandPosition(Id brandId,Id categoryId){
-		List<MDO_BrandPositions__c> bpositions = [select id,brand_position_id__c from MDO_BrandPositions__c where 
-														brand_id__c =: brandId 
-														and product_category_id__c in (select id from MDO_Category__c where parent_id__c =: categoryId or id =: categoryId)];	
+		List<MDO_BrandPositions__c> bpositions = [select id,brand_position_id__c from MDO_BrandPositions__c 
+														where brand_id__c =: brandId 
+														and product_category_id__c in 
+														(select id from MDO_Category__c where parent_id__c =: categoryId or id =: categoryId)];	
 
 		return bpositions.isEmpty() ? null : bpositions.get(0).brand_position_id__c;
 	}
@@ -120,7 +121,15 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
 
 	global void logErrors(List<uw_Bet__c> betsForErrors){
 		for(uw_Bet__c betRecord : betsForErrors){
-			system.debug('Invalid MDO matching for BET : ' + betRecord);
+			ExceptionLoggingHelper.createErrorLog(
+				UserInfo.getUserId(),
+				'BET_MDODataMigrationAndTransform_Batch',
+				'proceedWithDataTransormation',
+				'Invalid MDO matching for BET : ' + betRecord,
+				new BET_CustomBETException('Invalid MDO matching for BET : ' + betRecord),null,null,null,
+				(Integer)DateTime.now().getTime(),
+				'BET'
+			);
 		}
 	}
 	
