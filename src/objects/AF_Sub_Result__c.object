@@ -290,9 +290,9 @@
         <fullName>AF_Total_Bonus__c</fullName>
         <externalId>false</externalId>
         <label>Total Bonus %</label>
-        <precision>10</precision>
+        <precision>12</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>

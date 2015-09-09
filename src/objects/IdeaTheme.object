@@ -59,6 +59,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>BatchInvoked__c</fullName>
+        <description>Field updated from CORE_IC_ICampaignStatusUpdate batch job. Hidden field</description>
+        <externalId>false</externalId>
+        <label>BatchInvoked</label>
+        <length>1</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Categories</fullName>
         <picklist>
             <picklistValues>
@@ -242,6 +252,26 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Categories__c</fullName>
+        <description>Please enter Categories for Idea Campaign separated by comma</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please enter Categories for Idea Campaign separated by comma.</inlineHelpText>
+        <label>Categories</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Chatter_Post__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If checked chatter feed will be posted to chatter groups</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Click to get chatter post to groups</inlineHelpText>
+        <label>Chatter Post</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>CommunityId</fullName>
         <type>Lookup</type>
     </fields>
@@ -258,6 +288,14 @@
     </fields>
     <fields>
         <fullName>Description</fullName>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>EndDate</fullName>
@@ -316,6 +354,13 @@
         <required>false</required>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Promoted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Promoted</label>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>StartDate</fullName>

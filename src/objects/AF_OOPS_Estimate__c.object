@@ -254,21 +254,7 @@
         <fullName>AF_Compound_key__c</fullName>
         <description>Composite Key used for quickly fiding all OOPS estimate records for the purpose of calculating total (yearly) PO value.</description>
         <externalId>false</externalId>
-        <formula>IF(
-	OR(
-		ISBLANK(AF_OOPS_Actual__r.AF_Fiscal_year__c), 
-		ISBLANK(AF_Agency_Entity__r.AF_Agency__c),
-		ISBLANK(AF_OOPS_Actual__r.AF_Brand__c), 
-		ISBLANK(Agency_Entity_Name__c), 
-		ISBLANK(Unilever_Entity_Name__c)
-	),
-	&apos;!!! ERROR !!!&apos;,
-	AF_OOPS_Actual__r.AF_Fiscal_year__c + &apos;|&apos; +
-	AF_Agency_Entity__r.AF_Agency__c + &apos;|&apos; +
-	AF_OOPS_Actual__r.AF_Brand__c + &apos;|&apos; +
-	Agency_Entity_Name__c + &apos;|&apos; +
-	Unilever_Entity_Name__c
-)</formula>
+        <formula>AF_OOPS_Actual__r.AF_Fiscal_year__c +&apos;|&apos;+CASESAFEID (AF_Agency_Entity__r.AF_Agency__c)+&apos;|&apos;+CASESAFEID (AF_OOPS_Actual__r.AF_Brand__c)+&apos;|&apos;+Agency_Entity_Name__c+&apos;|&apos;+Unilever_Entity_Name__c</formula>
         <inlineHelpText>Composite Key used for quickly fiding all OOPS estimate records for the purpose of calculating total (yearly) PO value.</inlineHelpText>
         <label>Compound key</label>
         <required>false</required>
