@@ -92,20 +92,12 @@
     <layouts>
         <layout>Idea Theme Layout</layout>
         <sections>
-            <label><!-- Dates --></label>
-            <section>Dates</section>
+            <label><!-- Banner --></label>
+            <section>Banner</section>
         </sections>
         <sections>
-            <label><!-- Idea Theme Details --></label>
-            <section>Idea Theme Details</section>
-        </sections>
-        <sections>
-            <label><!-- Idea Theme Landing page details --></label>
-            <section>Idea Theme Landing page details</section>
-        </sections>
-        <sections>
-            <label><!-- Idea Theme Status --></label>
-            <section>Idea Theme Status</section>
+            <label><!-- Description --></label>
+            <section>Description</section>
         </sections>
         <sections>
             <label>Titel</label>
