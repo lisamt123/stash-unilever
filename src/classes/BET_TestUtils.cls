@@ -308,7 +308,7 @@ public class BET_TestUtils {
     	insert project;
     	return project;
     }
-
+	
     /************************************************************
 		Purpose: Method creates creates test BET_Follow_Request__c record
 		Parameters: uw_Bet__c bet, IPM_Project__c project

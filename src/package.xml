@@ -218,6 +218,8 @@
 		<members>BET_FollowRequestTriggerHandler</members>
 		<members>BET_FollowRequestTriggerHandlerCls</members>
 		<members>BET_FollowRequestTriggerHandlerClsTest</members>
+		<members>BET_InoplanToIPMMigration_Batch</members>
+		<members>BET_InoplanToIPMMigration_Batch_Test</members>
 		<members>BET_LinkedProjectsComponentController</members>
 		<members>BET_LinkedProjectsComponentContrTest</members>
 		<members>BET_LinkingService</members>
