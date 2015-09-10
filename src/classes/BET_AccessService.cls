@@ -146,8 +146,8 @@ public without sharing class BET_AccessService {
 	public static Id RequestExternalUserAccess(String userEmail, Id betId){
 		System.debug('Entering RequestExternalUserAccess : ' + userEmail + ', ' + betId);
 		Id requestId = null;
-		Id externalUserSalesforceId = validateAndGetUserId(userEmail,betId);
 		Boolean isOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
+		Id externalUserSalesforceId = validateAndGetUserId(userEmail,betId);
 		try{
 			BET_Member_Request__c mrequest = new BET_Member_Request__c(
 				Brand_Experience_Toolkit__c = betId,

@@ -103,7 +103,6 @@ global without sharing class BET_ManageMembersController {
         System.debug('Entering addExternalMember');
         PageReference pr = null;
         Id externalUserSalesforceId = null;
-        Boolean skipCreation = false;
         if(!String.isEmpty(betMemberRequest.External_User_Email__c)){
             if (!checkEmail(betMemberRequest.External_User_Email__c)) {
                 Apexpages.Message m = new apexpages.Message(ApexPages.Severity.ERROR, setErrorMessage);
@@ -120,15 +119,14 @@ global without sharing class BET_ManageMembersController {
                         externalUserSalesforceId = userList[0].Id;
                     }
                 } else if (BET_AccessService.checkIfRequestExternalAccessIsPending(betId,setEmailAdd)){
-                    //inviteSent = 'Note: '+ betMemberRequest.External_User_Email__c + ' has already been invited';
-                    skipCreation = true;
+                    Apexpages.Message m = new apexpages.Message(ApexPages.Severity.INFO, 'Note: '+ betMemberRequest.External_User_Email__c + ' has already been invited');
+                    Apexpages.addMessage(m); 
+                    return null;  
                 } else {
-                    BET_AccessService.createExternalUserRelatedObjects(setEmailAdd,bet);
-                    //inviteSent = 'Invite has been sent to '+setEmailAdd;
-                    skipCreation = true;    
+                    BET_AccessService.createExternalUserRelatedObjects(setEmailAdd,bet);  
                 }
 
-                if(!skipCreation || Test.isRunningTest()){
+                if(Test.isRunningTest()){
                     betMemberRequest.Bet_owner__c = bet.ownerid;
                     betMemberRequest.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED;
                     betMemberRequest.Do_Not_Notify_Bet__c = true;
@@ -140,8 +138,7 @@ global without sharing class BET_ManageMembersController {
                 }
             }
         } else {
-            setErrorMessage = 'The external user email address is blank. Please enter a value.';
-            Apexpages.Message m = new apexpages.Message(ApexPages.Severity.ERROR, setErrorMessage);
+            Apexpages.Message m = new apexpages.Message(ApexPages.Severity.ERROR, 'The external user email address is blank. Please enter a value.');
             Apexpages.addMessage(m);
             return pr;
         }
