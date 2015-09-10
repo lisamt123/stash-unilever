@@ -71,6 +71,18 @@ public with sharing class BET_MemberRequestHandlerCls {
         */
         
     }
+
+    public static void informIPMOfProjectMemberRequest(List<BET_Member_Request__c> memberRequestLst){
+        System.debug('Entering informIPMOfProjectMemberRequest : ' + memberRequestLst);
+        Set<Id> projects = new Set<Id>();
+        for(BET_Member_Request__c mreq : memberRequestLst) {
+            if(!String.isBlank(mreq.Project_Id__c)){
+                projects.add(Id.valueOf(mreq.Project_Id__c));
+            }
+        }
+        IPM_BETUpdateService.updateBETMemberRequest(projects);
+        System.debug('Exit informIPMOfProjectMemberRequest');
+    }
     
     /************************************************************
         Purpose: Method responsible for creating Team Members record for Approved Team Member Request record
