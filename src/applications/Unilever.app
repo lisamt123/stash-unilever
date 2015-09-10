@@ -12,4 +12,5 @@
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
     <tab>My_Approvals_Custom</tab>
+    <tab>standard-Idea</tab>
 </CustomApplication>

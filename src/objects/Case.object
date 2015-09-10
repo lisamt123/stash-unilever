@@ -2059,7 +2059,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
-            <value>Email,Web,White Mail</value>
+            <value>Email,Web,White Mail,Email UK</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -3068,7 +3068,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
-            <value>Web,Email,White Mail</value>
+            <value>Web,Email,White Mail,Email UK</value>
         </filters>
         <filters>
             <field>CASES.LAST_UPDATE_DATE_ONLY</field>

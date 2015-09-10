@@ -2449,6 +2449,10 @@
         <name>IPM_Home</name>
     </customTabs>
     <customTabs>
+        <label><!-- Ideas --></label>
+        <name>Ideas</name>
+    </customTabs>
+    <customTabs>
         <label><!-- In Store Executions --></label>
         <name>In_Store_Executions</name>
     </customTabs>
