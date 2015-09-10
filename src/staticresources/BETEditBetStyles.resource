@@ -78,7 +78,7 @@ body button.clearButton {
 
 .form-item .item-input-checkbox {
   position: relative;
-  left: 175px;
+  left: 265px;
   top: -20px;
 }
 
