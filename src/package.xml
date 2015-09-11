@@ -4139,6 +4139,7 @@
         <members>BET_reports</members>
         <members>BET_reports/BETs_with_IPMs</members>
         <members>BET_reports/Brand_Experience_History</members>
+		<members>BET_reports/Bets_with_following_projects</members>
         <name>Report</name>
     </types>
 	<types>
