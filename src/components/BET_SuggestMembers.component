@@ -57,11 +57,11 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
             <span>BET Owner</span>
         </div>
         
-        <div class="editCircle">
+        <!--<div class="editCircle">
             <a href="/{!betOwnerInfo.id}" target="blank">
                 <img  src="{!$Resource.BETSuggestedMembers}/images/pencil.jpg" alt="{!$Resource.BETSuggestedMembers}/images/pencil.jpg" width="16px" height="16px" />
             </a>    
-        </div>
+        </div> -->
     </div>
     
     <apex:outputPanel id="betManager" layout="block" styleClass="memberContainer">

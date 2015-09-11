@@ -11,7 +11,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 1.2      m.bluj@polsource.com          17-08-2015  Add bet update and releaseduedates service
 *************************************************************************************/
 
-public with sharing class BET_BETService {
+public without sharing class BET_BETService {
     
     private static final Integer APRIL = 4;
     private static final Integer JUNE = 6;

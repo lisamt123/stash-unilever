@@ -98,9 +98,9 @@ public with sharing class uw_BETUtil {
         System.debug('Entering moveComponentDataToBET : ' + bet + ', ' + compData);
         if(compData.categoryMigrated){
             bet.Inoplan_Project__c = null;
-            bet.IPM_Project__c = compData.impProject;
+            //bet.IPM_Project__c = compData.impProject;
         } else {
-            bet.Inoplan_Project__c = compData.inoplanProject;
+            //bet.Inoplan_Project__c = compData.inoplanProject;
             bet.IPM_Project__c = null;
         }
         bet.Category_Group__c = compData.categoryGroup;

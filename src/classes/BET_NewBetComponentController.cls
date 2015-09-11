@@ -104,6 +104,7 @@ public with sharing class BET_NewBetComponentController {
             compData.fabricConditionerCategory = false;
         }
         //FabricConditioner end
+        System.debug(compData);
         bet = moveComponentDataToBET(bet,compData);
         List<String> errorMessages = validateBET(bet);
         Boolean betNameExists = BET_CommonService.checkIfBetExists(bet);
