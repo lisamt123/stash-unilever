@@ -75,7 +75,8 @@ public without sharing class uw_BETSearchService {
     Throws [Exceptions]: [optional] 
     ********************************************************************/
     private static String buildWhereClausesForSearch(String brandId, String categoryId){
-        String whereClauseForBet = 'where Is_Archived__c = false AND Id != \'\'';
+        //String whereClauseForBet = 'where Is_Archived__c = false AND Id != \'\'';
+        String whereClauseForBet = 'where Id != \'\'';
         try{
             if(brandId != null && brandId != '' ){
                 Id.valueOf(brandId);             
@@ -201,15 +202,15 @@ public without sharing class uw_BETSearchService {
             for(uw_BET__c bet : betsSearchList){
                 if(myPendingBetsIds.contains(bet.Id)){
                     betResultWrapper.add(
-                        new uw_BETWrapper.BetSearchItem(bet, true, true, false, false)
+                        new uw_BETWrapper.BetSearchItem(bet, true, !bet.Is_Archived__c, false, false)
                     );
                 } else if(myBetsIds.contains(bet.Id)){
                     betResultWrapper.add(
-                        new uw_BETWrapper.BetSearchItem(bet, false, true, true, false)
+                        new uw_BETWrapper.BetSearchItem(bet, false, !bet.Is_Archived__c, true, false)
                     );
                 }else{
                     betResultWrapper.add(
-                        new uw_BETWrapper.BetSearchItem(bet, false, true, false, false)
+                        new uw_BETWrapper.BetSearchItem(bet, false, !bet.Is_Archived__c, false, false)
                     );
                 }
             }
