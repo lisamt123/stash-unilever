@@ -105,8 +105,6 @@ public without sharing class BET_BETService {
             return null;
         } else {
             Date calculatedDate = targetLaunchDate.addMonths(-6);
-            //Date substractedDate = targetLaunchDate.addMonths(-6);
-            //Date calculatedDate = Date.newInstance(substractedDate.year(), substractedDate.month(), 1);
             system.debug('Exiting method GetFinalReleaseDueDate following date was returned: ' + calculatedDate);
             return calculatedDate;
         }
