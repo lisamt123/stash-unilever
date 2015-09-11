@@ -2079,7 +2079,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>notContain</operation>
-            <value>Nordic,France,DACH,BENELUX,ITALY,PORTUGAL,SPAIN,GREECE,HUNGARY,POLAND</value>
+            <value>Nordic,France,DACH,BENELUX,ITALY,PORTUGAL,SPAIN,GREECE,HUNGARY,POLAND,PMurr</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
@@ -3093,7 +3093,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Market__c</field>
             <operation>notContain</operation>
-            <value>Hungary,India,Nordic,France,DACH,BENELUX,ITALY,SPAIN,POLAND,PORTUGAL,GREECE</value>
+            <value>Hungary,India,Nordic,France,DACH,BENELUX,ITALY,SPAIN,POLAND,PORTUGAL,GREECE,CZEC</value>
         </filters>
         <label>Within SLA</label>
         <language>en_US</language>
