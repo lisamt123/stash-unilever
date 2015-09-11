@@ -24,11 +24,17 @@ public with sharing class BET_UpsertBETController {
 
 	public String selectedBrand {get;set;}
 
+	public Boolean fabricConditionerCategory {get;set;}
+
 	public static final String MISSING_DATA_TEXT = 'Missing';
 
 	public static final String INVALID_CATEGORY_GROUP_REL = 'Invalid category and category group relation';
 
 	public static final String INVALID_POSITION_CATEGORY_REL = 'Invalid brand positioning and category relation';
+
+	//FabricConditioner begin
+    private static Boolean fbEnabled = BET_FabricCoditioners__c.getOrgDefaults().Enabled__c;
+    //FabricConditioner end
 
 	public String categoryGroupName{
 		get{
@@ -43,6 +49,10 @@ public with sharing class BET_UpsertBETController {
 	public String catName{
 		get{
 			String name = BET_MasterDataService.getCategoryName(cat);
+			//FabricConditioner begin
+			fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(cat) : false;
+			betobject.Is_Fabric_Conditioners__c = fabricConditionerCategory;
+			//FabricConditioner end
 			Boolean isRelationValid = true;
 			if(name != null){
 				isRelationValid = BET_MasterDataService.isValidRelationWithCategoryAndCategoryGroup(cat,categoryName);

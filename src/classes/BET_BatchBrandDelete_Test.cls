@@ -44,7 +44,7 @@ public class BET_BatchBrandDelete_Test {
          Test.stopTest();
          
          // Assert test result
-         List<uw_Brand__c> remainingBrandList = [SELECT Id, Name FROM uw_Brand__c];
+         List<uw_Brand__c> remainingBrandList = [SELECT Id, Name FROM uw_Brand__c limit 3];
          System.assertEquals(1, remainingBrandList.size());
     }
     
@@ -62,7 +62,7 @@ public class BET_BatchBrandDelete_Test {
          Test.stopTest();
          
          // Assert test result
-         List<uw_Brand__c> remainingBrandList = [SELECT Id, Name FROM uw_Brand__c];
+         List<uw_Brand__c> remainingBrandList = [SELECT Id, Name FROM uw_Brand__c limit 1];
          System.assertEquals(0, remainingBrandList.size());
     }
 }

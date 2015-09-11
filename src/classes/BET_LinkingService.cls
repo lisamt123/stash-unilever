@@ -69,13 +69,15 @@ public with sharing class BET_LinkingService {
 	*************************************************************/
 	public static void Follow(Id ProjectId, Id BetId, List<Id> managersIds){
 		System.debug('Entering Follow : ' + ProjectId + ', ' + BetId + ', ' + managersIds);
+		Set<Id> uniqueManagerIds = new Set<Id>(managersIds);
+		List<Id> managers = new List<Id>(uniqueManagerIds);
 		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c from uw_Bet__c where id =: BetId];
 		IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(ProjectId);
 		BET_LinkingServiceHelper.validateFollowRequest(betRecords);
 		try{
-			Boolean shouldBeAutoApproved = checkIfFollowRequestShouldBeAutoapproved(betRecords.get(0),managersIds);
-			BET_Follow_Request__c followRequest = createFollowRequest(project,betRecords.get(0),managersIds);
-			createRelatedMemberRequests(followRequest,betRecords.get(0),managersIds);
+			Boolean shouldBeAutoApproved = checkIfFollowRequestShouldBeAutoapproved(betRecords.get(0),managers);
+			BET_Follow_Request__c followRequest = createFollowRequest(project,betRecords.get(0),managers);
+			createRelatedMemberRequests(followRequest,betRecords.get(0),managers);
 			if(shouldBeAutoApproved) {
 				followRequest.Status__c = FOLLOW_STATUS_APPROVED;
 				update followRequest;

@@ -209,8 +209,8 @@
         <members>BET_CommonService</members>
         <members>BET_CommonServiceTest</members>
 		<members>BET_CustomBETException</members>
-		<members>BET_DataFixReleaseDate</members>
-		<members>BET_DataFixReleaseDateTest</members>
+		<members>BET_DataFixReleaseDate_Batch</members>
+		<members>BET_DataFixReleaseDate_BatchTest</members>
         <members>BET_EditAssetController</members>
         <members>BET_EditAssetController_Test</members>
 		<members>BET_EmailNotificationService</members>
@@ -965,7 +965,7 @@
 		<members>BET_BETService</members>
         <members>BET_BETServiceTest</members>
         <members>IPM_BETWrapper</members>
-		<members>BET_MDODataMigrationAndTransformBatch</members>
+		<members>BET_MDODataMigrationAndTransform_Batch</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -2391,6 +2391,7 @@
         <members>uw_Terms_Conditions__c</members>
         <members>BET_Follow_Request__c</members>
         <members>BET_Member_Request__c</members>
+		<members>BET_FabricCoditioners__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -4138,7 +4139,13 @@
         <members>BET_reports</members>
         <members>BET_reports/BETs_with_IPMs</members>
         <members>BET_reports/Brand_Experience_History</members>
+		<members>BET_reports/Bets_with_following_projects</members>
         <name>Report</name>
+    </types>
+	<types>
+		<members>BETs_with_Lead_IPM</members>
+		<members>IPM_with_BET</members>
+        <name>ReportType</name>
     </types>
     <version>34.0</version>
 </Package>

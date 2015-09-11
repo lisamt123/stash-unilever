@@ -830,6 +830,16 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Is_Fabric_Conditioners__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is this a Fabric Conditioner BET ?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Launch_Date__c</fullName>
         <description>This should be your IPM Target Launch Date (ie: Ship to Trade date)</description>
         <externalId>false</externalId>

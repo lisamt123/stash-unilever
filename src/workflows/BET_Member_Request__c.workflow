@@ -18,11 +18,16 @@
             <name>BET_New_Bet_Member_Request_Notification</name>
             <type>Alert</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>BET_Member_Request__c.Status__c</field>
             <operation>equals</operation>
             <value>New</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>BET_Member_Request__c.Do_Not_Notify_Bet__c</field>
+            <operation>equals</operation>
+            <value>False</value>
         </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
     </rules>

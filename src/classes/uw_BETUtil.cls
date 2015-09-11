@@ -98,21 +98,19 @@ public with sharing class uw_BETUtil {
         System.debug('Entering moveComponentDataToBET : ' + bet + ', ' + compData);
         if(compData.categoryMigrated){
             bet.Inoplan_Project__c = null;
-            bet.IPM_Project__c = compData.impProject;
         } else {
-            bet.Inoplan_Project__c = compData.inoplanProject;
             bet.IPM_Project__c = null;
         }
         bet.Category_Group__c = compData.categoryGroup;
         bet.Product_Category__c = compData.category;
         bet.Brand_Position__c = compData.brandpositioning;
         bet.Product_Brand__c = compData.brand;
+        bet.Is_Fabric_Conditioners__c = compData.fabricConditionerCategory;
         System.debug('Exit moveComponentDataToBET : ' + bet);
         return bet;
     }
 
-    public static List<String> validateBET(uw_BET__c betObject,Boolean isCategoryMigrated){
-        System.debug('Entering validateBET : ' + betObject + ', ' + isCategoryMigrated);
+    private static List<String> validateIPMBetFields(uw_BET__c betObject){
         List<String> errors = new List<String>();
         if(String.isBlank(betObject.name)){
             errors.add(Label.BET_BetNameMandatory);
@@ -126,12 +124,20 @@ public with sharing class uw_BETUtil {
         if(String.isBlank(betObject.Brand_Position__c)){
             errors.add(Label.BET_BetBrandPositionMandatory);
         }
-        if(String.isBlank(betObject.Inoplan_Project__c) && !isCategoryMigrated){
-            errors.add(Label.BET_InoplanProjectMandatory);
-        }
         if(betObject.Launch_Date__c == null){
             errors.add(Label.BET_LaunchDateMandatory);
         }
+        return errors;
+    }
+
+    public static List<String> validateBET(uw_BET__c betObject, BET_CategoryComponentData compData){
+        System.debug('Entering validateBET : ' + betObject + ', ' + compData);
+        List<String> errors = validateIPMBetFields(betObject);
+        //FabricConditioner begin
+        if(String.isBlank(betObject.Inoplan_Project__c) && !compData.categoryMigrated && !compData.fabricConditionerCategory && !String.isBlank(betObject.Product_Category__c)){
+            errors.add(Label.BET_InoplanProjectMandatory);
+        }
+        //FabricConditioner end
         System.debug('Exit validateBET : ' + errors);
         return errors;
     }

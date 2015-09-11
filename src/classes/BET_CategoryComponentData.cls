@@ -19,6 +19,7 @@ public with sharing class BET_CategoryComponentData {
 	public Boolean categoryMigrated {get;set;}
 	public Boolean categoryNotMigrated {get;set;}
 	public Boolean leadIPM {get;set;}
+	public Boolean fabricConditionerCategory {get;set;}
 
 	public BET_CategoryComponentData() {}
 

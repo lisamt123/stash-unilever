@@ -183,12 +183,14 @@ body .lookupIconOn {
 }
 
 .headerButtons {
-  padding-left: 657px;
+  position: absolute;
+  right: 12px;
   height: 40px;
 }
 
 .headerButtonsBrowsMembers{
-  padding-left: 737px;
+  position: absolute;
+  right: 12px;
   height: 40px;
 }
 
@@ -196,4 +198,16 @@ select {
 	font-family: "Rockwell";
 	color: #797979;
 	font-size: 14px;
+}
+
+.approveMembersTable{
+ 	word-wrap:break-word; 
+ 	table-layout: fixed; 
+ 	padding-top: 40px;
+}
+
+.browseMembersTable{
+ 	word-wrap:break-word; 
+ 	table-layout: fixed;
+ 	padding-top: 40px;
 }

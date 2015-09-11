@@ -57,11 +57,11 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
             <span>BET Owner</span>
         </div>
         
-        <div class="editCircle">
+        <!--<div class="editCircle">
             <a href="/{!betOwnerInfo.id}" target="blank">
                 <img  src="{!$Resource.BETSuggestedMembers}/images/pencil.jpg" alt="{!$Resource.BETSuggestedMembers}/images/pencil.jpg" width="16px" height="16px" />
             </a>    
-        </div>
+        </div> -->
     </div>
     
     <apex:outputPanel id="betManager" layout="block" styleClass="memberContainer">
@@ -154,7 +154,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
             
             <a data-toggle="modal" data-target="#myModal">
                 <img alt="{!$Label.BET_SuggestedMemberAddOtherMember}" 
-                     onclick="var $ = jQuery.noConflict(); $('#myModal').show();" 
+                     onclick="var $ = jQuery.noConflict();" 
                      class="addMemeberBtn" 
                      src="{!$Resource.BETSuggestedMembers}/images/add_2.png" width="80px" height="80px"/>
             </a>    
@@ -226,7 +226,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
         </div>
     </apex:outputPanel>
     <!-- Modal -->
-    <div class="{!IF(usedInPopup,'','modal')} fade" id="myModal" role="dialog" style="{!IF(usedInPopup,'position: fixed;top: 100px;left: 120px;','')}">
+    <div class="{!IF(usedInPopup,'','modal')} fade" id="myModal" role="dialog" style="{!IF(usedInPopup,'position: fixed;top: 100px;left: 120px;','')}" data-backdrop="false">
         <div class="modal-dialog">
             
             <!-- Modal content-->
@@ -263,13 +263,15 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                 </div>
                 <div class="modal-footer">
                     <button type="button" style="{!IF(usedInPopup,'','display:none')}" 
-                            onclick="var $ = jQuery.noConflict(); clearSearchByNameField(); $('#myModal').hide();" 
-                            class="bootstrap.min.btn bootstrap.min.btn-default">
+                            onclick="var $ = jQuery.noConflict(); $('#myModal').modal('hide'); clearSearchByNameField();"
+                            class="bootstrap.min.btn bootstrap.min.btn-default"
+                            >
                             {!$Label.BET_SuggestedMemberModalCancel}
                     </button>
                     <button type="button" style="{!IF(usedInPopup,'','display:none')}" 
-                            onclick="var $ = jQuery.noConflict(); addAllNewMembers(); $('#myModal').hide();" 
-                            class="bootstrap.min.btn bootstrap.min.btn-default">
+                            onclick="var $ = jQuery.noConflict(); $('#myModal').modal('hide'); addAllNewMembers();" 
+                            class="bootstrap.min.btn bootstrap.min.btn-default"
+                            >
                             {!$Label.BET_SuggestedMemberModalAddSelected}
                     </button> 
                     <button type="button" style="{!IF(NOT(usedInPopup),'','display:none')}" 
@@ -294,6 +296,19 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
         var $ = jQuery.noConflict();
         $( document ).ready(function() {
             clearExpandColapseAfterRender();
+            jQuery('#myModal').modal({
+                show: false
+            });
+            jQuery('#myModal').on('show.bs.modal', function(){
+                jQuery(this).show();
+            });
+            jQuery('#myModal').on('shown.bs.modal', function(){
+                jQuery(this).show();
+            });
+            jQuery('#myModal').on('hidden.bs.modal', function(){
+                jQuery(this).hide();
+                jQuery('.modal:visible').length && jQuery(document.body).addClass('modal-open');
+            });
             
         });
     </script>

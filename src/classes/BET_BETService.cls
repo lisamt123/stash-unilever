@@ -11,7 +11,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 1.2      m.bluj@polsource.com          17-08-2015  Add bet update and releaseduedates service
 *************************************************************************************/
 
-public with sharing class BET_BETService {
+public without sharing class BET_BETService {
     
     private static final Integer APRIL = 4;
     private static final Integer JUNE = 6;
@@ -105,8 +105,6 @@ public with sharing class BET_BETService {
             return null;
         } else {
             Date calculatedDate = targetLaunchDate.addMonths(-6);
-            //Date substractedDate = targetLaunchDate.addMonths(-6);
-            //Date calculatedDate = Date.newInstance(substractedDate.year(), substractedDate.month(), 1);
             system.debug('Exiting method GetFinalReleaseDueDate following date was returned: ' + calculatedDate);
             return calculatedDate;
         }

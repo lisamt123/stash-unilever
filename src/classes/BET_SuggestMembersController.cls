@@ -5,8 +5,8 @@ Purpose : Controller for BET_SuggestMembers component
 
 History
 
-VERSION  AUTHOR                DATE        DETAIL   Description
-1.0      k.szepietowski@polsource.com  20-07-2015  Initial
+VERSION  AUTHOR                         DATE        DETAIL   Description
+1.0      k.szepietowski@polsource.com   20-07-2015  Initial
 *************************************************************************************/
 
 public with sharing class BET_SuggestMembersController {
@@ -99,6 +99,7 @@ public with sharing class BET_SuggestMembersController {
     public class ExternalAgencyMemberWrapper{
         public String email {get;set;}
         public String photo;
+        public Id userId {get;set;}
         public String getPhoto(){
             return '/profilephoto/005/F';
         }
@@ -419,6 +420,7 @@ public with sharing class BET_SuggestMembersController {
                 betMemeberItem.Bet_owner__c = betOwnerId;
                 if(isBetOwnerOrManager){
                     betMemeberItem.Status__c = Label.BETTeamMemberRequestApprovedStatus;
+                    betMemeberItem.Do_Not_Notify_Bet__c = true;
                 }else{
                     betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
                 }
@@ -432,11 +434,14 @@ public with sharing class BET_SuggestMembersController {
             for(ExternalAgencyMemberWrapper eam : externalMembers){
                 BET_Member_Request__c betMemeberItem = new BET_Member_Request__c();
                 betMemeberItem.Brand_Experience_Toolkit__c = betIdCtrl;
+                betMemeberItem.ProjectRequest__c = betFollowRequestId;
                 betMemeberItem.External_User_Request__c = true;
                 betMemeberItem.External_User_Email__c = eam.email;
                 betMemeberItem.Bet_owner__c = betOwnerId;
+                betMemeberItem.UserId__c = eam.userId;
                 if(isBetOwnerOrManager){
                     betMemeberItem.Status__c = Label.BETTeamMemberRequestApprovedStatus;
+                    betMemeberItem.Do_Not_Notify_Bet__c = true;
                 }else{
                     betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
                 }
@@ -533,8 +538,22 @@ public with sharing class BET_SuggestMembersController {
                 }
             }
             if(canBeAdded) {
-                externalMembers.add(member);
-                externalMemberEmail = '';
+                Id externalUserSalesforceId = null;
+                List<User> userList = BET_AccessService.isExistingExternalUser(externalMemberEmail);
+                if(!userList.isEmpty()) {
+                    if(userList[0].isActive){
+                        externalUserSalesforceId = userList[0].Id;
+                    }else{
+                        canBeAdded = false;
+                        Apexpages.Message m = new apexpages.Message(ApexPages.Severity.ERROR, externalMemberEmail + ' is an existing user (External Agent) but inactive at the moment. Please send an email to marketing@unilever.com for further clarification.');
+                        Apexpages.addMessage(m); 
+                    }
+                }
+                if(canBeAdded) {
+                    member.userId = externalUserSalesforceId;
+                    externalMembers.add(member);
+                    externalMemberEmail = '';
+                }
             }
         }
     }

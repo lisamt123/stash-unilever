@@ -71,7 +71,7 @@
                     <apex:selectList id="scid" value="{!selectedCategory}" size="1" multiselect="false">
                         <apex:actionSupport event="onchange" onsubmit="showProcessing('posspinner')" 
                                             oncomplete="hideProcessing('posspinner')" action="{!onCategoryChange}" 
-                                            reRender="projectsPanels,brandPositioningPanel"/>
+                                            reRender="projectsPanels,fabricConditioners,brandPositioningPanel"/>
                         <apex:selectOptions value="{!categories}" />
                     </apex:selectList>
                     <script>
@@ -84,6 +84,28 @@
             </div>
         </div>
     </apex:outputPanel>
+
+    <!-- FabricConditioner begin -->
+    <apex:outputPanel id="fabricConditioners">
+        <apex:outputPanel rendered="{!fabricConditionerCategory}">
+            <div class="form-item" style="padding-bottom: 20px;">
+                <div class="item-label">
+                    <apex:outputLabel >
+                        {!$ObjectType.uw_BET__c.Fields.Is_Fabric_Conditioners__c.Label}
+                    </apex:outputLabel>
+                </div>
+                <div class="item-input-checkbox">
+                    <apex:actionRegion >
+                        <apex:inputCheckbox value="{!bet.Is_Fabric_Conditioners__c}">
+                            <apex:actionSupport event="onchange" action="{!onFabricConditionersChange}" 
+                                                reRender="projectsPanels,brandPositioningPanel"/>
+                        </apex:inputCheckbox>
+                    </apex:actionRegion>
+                </div>
+            </div>
+        </apex:outputPanel>
+    </apex:outputPanel>
+    <!-- FabricConditioner end -->
 
     <apex:outputPanel id="brandPositioningPanel">
         <div class="form-item">
@@ -141,22 +163,29 @@
     </div>
 
     <apex:outputPanel id="projectsPanels" style="padding-top:30px;">
-
-        <apex:outputPanel rendered="{!AND(categoryMigrated,bet.id != null)}">
+        <!-- FabricConditioner begin -->
+        <apex:outputPanel rendered="{!AND(categoryMigrated,bet.id != null,NOT(bet.Is_Fabric_Conditioners__c))}">
+        <!-- FabricConditioner end -->
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
                     <apex:outputLabel >{!$Label.BET_ProjectName}</apex:outputLabel>
-                    <apex:outputPanel layout="inline" styleClass="question-icon" 
-                                      html-data-tooltip="{!$Label.BET_LinkBetToIPMProject}" 
-                                      rendered="{!bet.IPM_Project__c == null}"/>
                 </div>
-                <div class="item-input">
-                    <apex:inputText value="{!bet.IPM_Project__r.name}" disabled="true" rendered="{!bet.IPM_Project__c != null}"/>
+                <div class="item-input" style="{!IF(NOT(userHasAccessToProject),'','display:none')}">
+                    <apex:inputText value="{!bet.IPM_Project__r.name}" disabled="true"/>
+                </div>
+                <div class="item-input item-output-link" style="{!IF(userHasAccessToProject,'','display:none')}">
+                    <a href="/{!bet.IPM_Project__c}" target="_blank">{!bet.IPM_Project__r.name}</a>
+                </div>
+            </div>
+            <div class="form-item-brandtip" style="{!IF(bet.IPM_Project__c != null,'display:none','')}">
+                <div class="item-label">
+                    <apex:outputLabel >{!$Label.BET_LinkBetToIPMProject}</apex:outputLabel>
                 </div>
             </div>
         </apex:outputPanel>
-      
-        <apex:outputPanel rendered="{!categoryNotMigrated}">
+        <!-- FabricConditioner begin -->
+        <apex:outputPanel rendered="{!AND(categoryNotMigrated,NOT(bet.Is_Fabric_Conditioners__c))}">
+        <!-- FabricConditioner end -->
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
                     <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_ProjectName}</apex:outputLabel>

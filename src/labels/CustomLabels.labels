@@ -452,7 +452,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BETManagerRole</shortDescription>
-        <value>Manager</value>
+        <value>BET Manager</value>
     </labels>
     <labels>
         <fullName>BETTeamMemberRequestApprovedStatus</fullName>
@@ -586,7 +586,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_BrandTip</shortDescription>
-        <value>If different to brand positioning ...</value>
+        <value>Please select a brand only if different to the brand positioning</value>
     </labels>
     <labels>
         <fullName>BET_Browse_members</fullName>
@@ -990,6 +990,14 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_TargetLaunchDate</shortDescription>
         <value>Target Launch Date</value>
+    </labels>
+    <labels>
+        <fullName>BET_Title</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Title</shortDescription>
+        <value>Title</value>
     </labels>
     <labels>
         <fullName>BET_UnArchiveBET</fullName>

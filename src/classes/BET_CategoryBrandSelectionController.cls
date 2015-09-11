@@ -18,6 +18,19 @@ public with sharing class BET_CategoryBrandSelectionController {
 
 	public Boolean categoryMigrated {get;set;}
 	public Boolean categoryNotMigrated {get;set;}
+	public Boolean fabricConditionerCategory {get;set;}
+
+	public Boolean getUserHasAccessToProject() {
+		if(bet == null || bet.id == null || bet.IPM_Project__c == null) {
+			return false;
+		} else {
+			return IPM_BETUpdateService.UserAccess(bet.id,bet.IPM_Project__c,UserInfo.getUserId());
+		}
+	}
+
+	//FabricConditioner begin
+	private static Boolean fbEnabled = BET_FabricCoditioners__c.getOrgDefaults().Enabled__c;
+	//FabricConditioner end
 
 	public BET_CategoryComponentData compData {
 		get{ 
@@ -43,6 +56,11 @@ public with sharing class BET_CategoryBrandSelectionController {
 			if(categoryNotMigrated == null) {
 				categoryNotMigrated = compData.categoryNotMigrated;
 			}
+			//FabricConditioner begin
+			if(fabricConditionerCategory == null){
+				fabricConditionerCategory = fbEnabled ? compData.fabricConditionerCategory : false;
+			}
+			//FabricConditioner end
 		}
 	}
 
@@ -71,9 +89,28 @@ public with sharing class BET_CategoryBrandSelectionController {
     *************************************************************/
 	public void onCategoryChange(){
 		System.debug('Entering onCategoryChange : ' + selectedCategory + ', '+compData);
-		categoryMigrated = IPM_BETUpdateService.CategoryCheck(selectedCategory);
+
+		try{
+			categoryMigrated = IPM_BETUpdateService.CategoryCheck(selectedCategory);
+		}catch(Exception e){
+			categoryMigrated = false;
+		}
+
 		categoryNotMigrated = !categoryMigrated;
 		compData.category = selectedCategory;
+		selectedBrandPositioning = null;
+		selectedBrand = null;
+
+		//FabricConditioner begin
+		if(fbEnabled) {
+			fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(selectedCategory) : false;
+			compData.fabricConditionerCategory = fabricConditionerCategory;
+			bet.Is_Fabric_Conditioners__c = fabricConditionerCategory;
+		}
+		//FabricConditioner end
+
+		compData.brandpositioning = selectedBrandPositioning;
+		compData.brand = selectedBrand;
 	}
 
 	/************************************************************
@@ -96,12 +133,24 @@ public with sharing class BET_CategoryBrandSelectionController {
 	public void onCategoryGroupChange(){
 		System.debug('Entering onCategoryGroupChange : ' + selectedCategoryGroup + ', '+compData);
 		compData.categoryGroup = selectedCategoryGroup;
+
 		categoryMigrated = false;
 		categoryNotMigrated = false;
 		selectedCategory = null;
 		selectedBrandPositioning = null;
 		selectedBrand = null;
+
+		//FabricConditioner begin
+		if(fbEnabled){
+			fabricConditionerCategory = false;
+			bet.Is_Fabric_Conditioners__c = fabricConditionerCategory;
+			compData.fabricConditionerCategory = fabricConditionerCategory;
+		}
+		//FabricConditioner end
+
 		compData.category = selectedCategory;
+		compData.brandpositioning = selectedBrandPositioning;
+		compData.brand = selectedBrand;
 	}
 
 	/************************************************************
@@ -113,6 +162,10 @@ public with sharing class BET_CategoryBrandSelectionController {
 	public void onBrandChange(){
 		System.debug('Entering onBrandChange : ' + selectedBrand + ', '+compData);
 		compData.brand = selectedBrand;
+	}
+
+	public void onFabricConditionersChange(){
+		System.debug('Entering onFabricConditionersChange');
 	}
 
 	/************************************************************

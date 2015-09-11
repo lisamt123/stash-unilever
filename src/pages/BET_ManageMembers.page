@@ -108,7 +108,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
           </table>
           </div>
 
-        <div class="headerButtonsBrowsMembers" style=" padding-left: 754px;" > 
+        <div class="headerButtonsBrowsMembers"> 
         
           <apex:commandButton value="{!$Label.BET_Delete_selected}" action="{!massDelete}" 
                               rendered="{!isBetOwnerOrManager}"
@@ -117,7 +117,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
        
         </div>
 
-        <table width="100%">
+        <table width="100%" class="browseMembersTable">
           <th class="browseMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'width: 45px;','display:none')}">
             <apex:inputCheckbox value="{!selectAll}" id="globcheckboxbrowse" onchange="selectOrDeselectkAllBrowse();"/>
           </th>
@@ -155,9 +155,17 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                 <apex:outputText id="role" value="{!member.role}"/>
               </td>
               <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
-                <apex:selectList value="{!member.obj.Role__c}" required="false" size="1" disabled="{!member.isbetOwner}" multiselect="false" onchange="updateRoleOnMember('{!member.objectId}',this.value,{!cnt})">
-                  <apex:selectOptions value="{!memberRoles}" />
+
+                <apex:selectList value="{!member.obj.Role__c}" required="false" size="1" multiselect="false" 
+                                 style="width: 180px;" 
+                                 onchange="updateRoleOnMember('{!member.objectId}',this.value,{!cnt})" 
+                                 rendered="{!AND(NOT(member.isbetOwner),member.obj.Role__c != 'External Agency User')}">
+                  <apex:selectOptions value="{!memberRequestRoles}" />
                 </apex:selectList>
+
+                <apex:outputField id="memberRoleExternal" value="{!member.obj.Role__c}" 
+                                  rendered="{!OR(member.isbetOwner,member.obj.Role__c == 'External Agency User')}"/> 
+
               </td>
               <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
                 <apex:commandButton action="{!doDelete}" value="{!$Label.BET_Delete}" styleClass="buttong2y" style="background: #e6007e; color:white;" rendered="{!NOT(member.isbetOwner)}" rerender="browseMembersid" status="saveStatus4">
@@ -188,7 +196,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
        
       </div>
 
-      <table width="100%">
+      <table width="100%" class="approveMembersTable">
         <th class="approveMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'width: 45px;','display:none')}">
             <apex:inputCheckbox value="{!selectAll}" id="globcheckbox" onchange="selectOrDeselectkAll();"/>
         </th>
