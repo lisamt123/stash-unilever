@@ -125,7 +125,7 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
 				UserInfo.getUserId(),
 				'BET_MDODataMigrationAndTransform_Batch',
 				'proceedWithDataTransormation',
-				'Invalid MDO matching for BET : ' + betRecord,
+				'Invalid MDO matching for BET category : ' + betRecord.Sub_Category__c + ', ' + betRecord.Product_Category__c,
 				new BET_CustomBETException('Invalid MDO matching for BET : ' + betRecord),null,null,null,
 				(Integer)DateTime.now().getTime(),
 				'BET'
