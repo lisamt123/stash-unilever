@@ -452,7 +452,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BETManagerRole</shortDescription>
-        <value>Manager</value>
+        <value>BET Manager</value>
     </labels>
     <labels>
         <fullName>BETTeamMemberRequestApprovedStatus</fullName>
