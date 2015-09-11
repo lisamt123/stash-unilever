@@ -16,7 +16,7 @@ private class BET_MemberRequestHandlerClsTest {
         //check for owner
         uw_BET__c betObject = BET_TestUtils.getTestBet();
         insert betObject;
-        String invalidProjectID = '123456789';
+        String invalidProjectID = BET_TestUtils.createIPMProject('Unit Test IPM Project Name').id;
         BET_Follow_Request__c followRequest = BET_TestUtils.createBetFollowRequest(betObject.id,invalidProjectID);
         insert followRequest;
         //create test member request data
@@ -34,9 +34,9 @@ private class BET_MemberRequestHandlerClsTest {
         //BET_CustomBETException should occure for invailid ProjectID wrong format
         try{
         	insert betMembersToInsert;
-            //system.assertEquals(0, 1, 'Exception should be thrown so this code instruction should not be executed in test');
+            system.assert(true);
         }catch(Exception ex){
-            system.assertEquals(true, ex.getMessage().containsIgnoreCase(Label.BetMemberRequestInvailidProjectIDError));
+            system.assert(false);
         }
     }
     

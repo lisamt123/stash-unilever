@@ -33,7 +33,7 @@ private class BET_NewBetComponentControllerTest {
 
 	@isTest static void moveComponentDataToBETTest() {
 		BET_NewBetComponentController controller = new BET_NewBetComponentController();
-		controller.bet = new uw_BET__c();
+		controller.bet = BET_TestUtils.getTestBet();
 		controller.compData = new BET_CategoryComponentData(BET_TestUtils.getTestBet());
 		controller.compData.categoryMigrated = false;
 		controller.bet = controller.moveComponentDataToBET(controller.bet,controller.compData);

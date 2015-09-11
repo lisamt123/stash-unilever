@@ -305,10 +305,11 @@ public class BET_TestUtils {
 		project.IPM_Target_Launch_Dates__c  = System.today()+10;
 		project.IPM_IsCompleted__c          = true;
 		project.IPM_PM_Approach__c          = 'External';
+		project.IPM_Category_Group__c       =  createCategoryGroup().id;
     	insert project;
     	return project;
     }
-	
+
     /************************************************************
 		Purpose: Method creates creates test BET_Follow_Request__c record
 		Parameters: uw_Bet__c bet, IPM_Project__c project
