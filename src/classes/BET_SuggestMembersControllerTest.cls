@@ -226,7 +226,7 @@ private class BET_SuggestMembersControllerTest {
         request.Status__c = 'Approved';
         request.Brand_Experience_Toolkit__c = bet.id;
         request.Project_Id__c = project.id;
-        request.Role__c = 'Manager';
+        request.Role__c = Label.BETManagerRole;
         request.UserId__c = UserInfo.getUserId();
 
         insert request;

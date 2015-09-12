@@ -50,7 +50,7 @@ private class BET_SuggestedMemberServiceTest {
             memberRequestToInsert.BET__c = betObject.id;
             memberRequestToInsert.Editing__c = false;
             memberRequestToInsert.Invite_Pending__c = false;
-            memberRequestToInsert.Role__c = Label.BetTeamMemberRoleManager;
+            memberRequestToInsert.Role__c = Label.BETManagerRole;
             memberRequestToInsert.StudioEnabled__c = true;
             memberRequestToInsert.Team_Member__c = UserInfo.getUserId();
             insert memberRequestToInsert;
