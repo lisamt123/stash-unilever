@@ -23,18 +23,45 @@ public without sharing class BET_Team_MemberHandlerCls {
 	private BET_Team_MemberHandlerCls() {}
 
 	/************************************************************
-        Purpose: Method retrieves picklist value for given fieldresult
-        Parameters: Schema.DescribeFieldResult fieldResult
-        Returns: List<selectOption>
+        Purpose: Method runs new member related operations
+        Parameters: List<uw_BET_Team_Member__c> newList
+        Returns: -
         Throws: -
     *************************************************************/
 	public static void runPostApprovalInsertTeamMemberOperations(List<uw_BET_Team_Member__c> newList){
 		System.debug('Entering runPostApprovalInsertTeamMemberOperations : ' + newList);
+        addExternalRelatedData(newList);
 		addSharings(newList);
 		addCollaborationGroups(newList);
 		addEntitySubscriptions(newList);
 		System.debug('Exit runPostApprovalInsertTeamMemberOperations');
 	}
+
+    /************************************************************
+        Purpose: Method creates external member related objects
+        Parameters: List<uw_BET_Team_Member__c> newList
+        Returns: -
+        Throws: -
+    *************************************************************/
+    private static void addExternalRelatedData(List<uw_BET_Team_Member__c> newList){
+        BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues(BETMANAGERCONFIG);
+        Set<Id> betIds = new Set<Id>();
+        List<uw_BET_Team_Member__c> externalMembers = new List<uw_BET_Team_Member__c>();
+        String externalRole = Test.isRunningTest() ? 'External Agency User' : BETManageMembersConfig.ExternalRole__c;
+        for(uw_BET_Team_Member__c member : newList){
+            if(member.Role__c == externalRole && member.Team_Member__c == null){
+                externalMembers.add(member);
+                betIds.add(member.BET__c);
+            }
+        }
+        Map<Id,uw_bet__c> mapIdBet = new Map<Id,uw_bet__c>();
+        for(uw_bet__c bet : [select id, name,Studio_Chatter_Group__c from uw_bet__c where id in : betIds]){
+            mapIdBet.put(bet.id,bet);
+        }
+        for(uw_BET_Team_Member__c member : externalMembers){
+            BET_AccessService.createExternalUserRelatedObjects(member.email__c,mapIdBet.get(member.BET__c)); 
+        }
+    }
 
 	/************************************************************
         Purpose: Method adds sharings for given member list

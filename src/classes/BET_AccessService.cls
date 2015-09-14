@@ -193,9 +193,9 @@ public without sharing class BET_AccessService {
                 }
             }else if (checkIfRequestExternalAccessIsPending(betId,userEmail)){
                 throw new BET_CustomBETException(EXT_ACCESS_REQ_ERROR + ' ' + + userEmail +' has already been invited'); 
-            }else{
+            }/*else{
                 createExternalUserRelatedObjects(userEmail,bet);
-            }
+            }*/
 		}
 		return externalUserSalesforceId;
 	}

@@ -85,7 +85,7 @@ global without sharing class BET_ManageMembersController {
             try{
                 betMemberRequest.Bet_owner__c = bet.ownerid;
                 betMemberRequest.Status__c = requestsShouldBeAutoapproved ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW;
-                betMemberRequest.Do_Not_Notify_Bet__c = true;
+                betMemberRequest.Do_Not_Notify_Bet__c = requestsShouldBeAutoapproved ? true : false;
                 betMemberRequest.External_User_Request__c = false;
                 insert betMemberRequest;
                 betMemberRequest = new BET_Member_Request__c(Brand_Experience_Toolkit__c = betId);
@@ -128,14 +128,14 @@ global without sharing class BET_ManageMembersController {
                     Apexpages.Message m = new apexpages.Message(ApexPages.Severity.INFO, 'Note: '+ betMemberRequest.External_User_Email__c + ' has already been invited');
                     Apexpages.addMessage(m); 
                     return null;  
-                } else {
+                } /*else {
                     BET_AccessService.createExternalUserRelatedObjects(setEmailAdd,bet);  
-                }
+                }*/
 
                 if(!Test.isRunningTest()){
                     betMemberRequest.Bet_owner__c = bet.ownerid;
                     betMemberRequest.Status__c = requestsShouldBeAutoapproved ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW;
-                    betMemberRequest.Do_Not_Notify_Bet__c = true;
+                    betMemberRequest.Do_Not_Notify_Bet__c = requestsShouldBeAutoapproved ? true : false;
                     betMemberRequest.External_User_Request__c = true;
                     betMemberRequest.UserId__c = externalUserSalesforceId; 
                     insert betMemberRequest;
