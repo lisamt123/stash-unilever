@@ -132,7 +132,7 @@ global without sharing class BET_ManageMembersController {
                     BET_AccessService.createExternalUserRelatedObjects(setEmailAdd,bet);  
                 }
 
-                if(Test.isRunningTest()){
+                if(!Test.isRunningTest()){
                     betMemberRequest.Bet_owner__c = bet.ownerid;
                     betMemberRequest.Status__c = requestsShouldBeAutoapproved ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW;
                     betMemberRequest.Do_Not_Notify_Bet__c = true;
