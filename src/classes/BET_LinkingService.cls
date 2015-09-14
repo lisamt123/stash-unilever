@@ -196,7 +196,7 @@ public with sharing class BET_LinkingService {
 	*************************************************************/
 	public static void UnFollow(Id ProjectId, Id BetId){ //US 23
 		System.debug('Entering UnFollow : ' + ProjectId + ', ' + BetId);
-		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c,name from uw_Bet__c where id =: BetId];
+		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c,name,Launch_Date__c,Brand_Position__c,Product_Category__c,Category_Group__c,Final_Release_Due_Date__c,First_Release_Due_Date__c from uw_Bet__c where id =: BetId];
 		IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(ProjectId);
 		BET_LinkingServiceHelper.validateParams(betRecords);
 		Id betOwner = betRecords.get(0).ownerid;

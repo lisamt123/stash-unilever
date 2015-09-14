@@ -68,6 +68,28 @@ public without sharing class BET_BETService {
         }
         system.debug('Exit method Update with param @BetId: '+BetId+' @IPMProject: '+IPMProject);
     }
+
+     /************************************************************
+        Purpose: Update BET with IPM information
+        Parameters: uw_Bet__c relatedBet, IPM_BETWrapper IPMProject
+        Returns: uw_Bet__c
+        Throws: -[BET_CustomBETException]
+    *************************************************************/
+    public static uw_Bet__c updateBetFields(uw_Bet__c relatedBet, IPM_BETWrapper IPMProject){
+        system.debug('Entring method updateBetFields with param @relatedBet: '+relatedBet+' @IPMProject: '+IPMProject);
+        try{
+            relatedBet.Launch_Date__c = IPMProject.targetLaunchDate;
+            relatedBet.Brand_Position__c = IPMProject.brandPosition;
+            relatedBet.Product_Category__c = IPMProject.categoryName;
+            relatedBet.Category_Group__c = IPMProject.categoryGroupName;
+            relatedBet.First_Release_Due_Date__c = getFirstReleaseDueDate(IPMProject.targetLaunchDate);
+            relatedBet.Final_Release_Due_Date__c = getFinalReleaseDueDate(IPMProject.targetLaunchDate);
+            system.debug('Exit method updateBetFields with param @relatedBet: '+relatedBet);
+            return relatedBet;
+        }catch(Exception e){
+            throw new BET_CustomBETException(e.getMessage() + 'Stack: ' + e.getStackTraceString(),e);
+        }
+    }
     
     /************************************************************
         Purpose: Returns first release due date based on provided TLD (Target Launch Date)

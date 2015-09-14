@@ -53,11 +53,11 @@ public without sharing class BET_LinkingServiceHelper {
 	public static IPM_BETWrapper getOtherFollowingProject(Id ProjectId, Id BetId){
 		System.debug('Entering getOtherFollowingProject : ' + ProjectId + ', ' + BetId);
 		IPM_BETWrapper wrapper = null;
-		Date maxTLD = Date.newInstance(1970,1,1);
+		Date minTLD = Date.newInstance(2070,1,1);
 		for(IPM_BETWrapper wrap : IPM_BETUpdateService.returnIPM(BetId)){
 			if(wrap.projectId != ProjectId){
-				if(wrap.targetLaunchDate != null && wrap.targetLaunchDate > maxTLD){
-					maxTLD = wrap.targetLaunchDate;
+				if(wrap.targetLaunchDate != null && wrap.targetLaunchDate < minTLD){
+					minTLD = wrap.targetLaunchDate;
 					wrapper = wrap;
 				}
 			}
@@ -95,6 +95,7 @@ public without sharing class BET_LinkingServiceHelper {
 		}
 		BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(bet,project); //US23
 		bet.IPM_Project__c = project.projectId;
+		bet = BET_BETService.updateBetFields(bet,project);
 		update bet;
 		System.debug('Exit setNewLeadProjectAndOwner : ' + bet);
 		return bet;
