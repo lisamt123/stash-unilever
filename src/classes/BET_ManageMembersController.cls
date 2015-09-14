@@ -37,6 +37,7 @@ global without sharing class BET_ManageMembersController {
     public String setEmailAdd{get;set;}
     public String inviteSent{get;set;}
     public Profile chatterExternalProfile{get;set;}
+    public Boolean requestsShouldBeAutoapproved {get;set;}
 
     /************************************************************
         Purpose: Controller constructor
@@ -49,7 +50,12 @@ global without sharing class BET_ManageMembersController {
         bet = [select id ,Name, ownerid, Studio_Chatter_Group__c from uw_Bet__c where id=:betId];
         betMemberRequest = new BET_Member_Request__c(Brand_Experience_Toolkit__c = betId);
         selectAll = false;
+        requestsShouldBeAutoapproved = false;
         isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
+
+        if(isBetOwnerOrManager){
+            requestsShouldBeAutoapproved = true;
+        }
 
         chatterExternalProfile = [SELECT Id FROM Profile WHERE Name='Chatter External User' LIMIT 1];
 
@@ -78,7 +84,7 @@ global without sharing class BET_ManageMembersController {
         if(betMemberRequest.UserId__c != null){
             try{
                 betMemberRequest.Bet_owner__c = bet.ownerid;
-                betMemberRequest.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED;
+                betMemberRequest.Status__c = requestsShouldBeAutoapproved ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW;
                 betMemberRequest.Do_Not_Notify_Bet__c = true;
                 betMemberRequest.External_User_Request__c = false;
                 insert betMemberRequest;
@@ -128,7 +134,7 @@ global without sharing class BET_ManageMembersController {
 
                 if(Test.isRunningTest()){
                     betMemberRequest.Bet_owner__c = bet.ownerid;
-                    betMemberRequest.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED;
+                    betMemberRequest.Status__c = requestsShouldBeAutoapproved ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW;
                     betMemberRequest.Do_Not_Notify_Bet__c = true;
                     betMemberRequest.External_User_Request__c = true;
                     betMemberRequest.UserId__c = externalUserSalesforceId; 

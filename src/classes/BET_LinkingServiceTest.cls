@@ -8,12 +8,10 @@ private class BET_LinkingServiceTest {
 		insert bet;
 		Id BetId = bet.id;
 		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
-		try{
-			BET_LinkingService.setASLead(ProjectId, BetId);
-			System.assert(true);
-		}catch(Exception e){
-			System.assert(false);
-		}
+		Boolean testOK;
+		BET_LinkingService.setASLead(ProjectId, BetId);
+		bet = [select IPM_Project__c from uw_Bet__c where id=:BetId];
+		System.assertEquals(bet.IPM_Project__c,ProjectId);
 	}
 	
 	@isTest static void FollowTest() {
@@ -21,21 +19,18 @@ private class BET_LinkingServiceTest {
 		insert bet;
 		Id BetId = bet.id;
 		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
-		try{
-			Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator'];
-        	User testUser = new User(Alias = 'newBet', Email='nebetTestUSr@testorg.com',
+		
+		Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator'];
+       	User testUser = new User(Alias = 'newBet', Email='nebetTestUSr@testorg.com',
                           EmailEncodingKey='UTF-8', LastName='newBetTestUsr', LanguageLocaleKey='en_US',
                           LocaleSidKey='en_US', ProfileId = p.Id,
                           TimeZoneSidKey='America/Los_Angeles', UserName='nebetTestUSr@testorg.com',isActive = true);
-        	insert testUser;
-			BET_LinkingService.Follow(ProjectId, BetId, new List<Id>{testUser.id});
-			List<BET_Member_Request__c> relatedMemberRequests = [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c =: BetId];
-			List<BET_Follow_Request__c> followRequests = [select id from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: BetId];
-			System.assertEquals(relatedMemberRequests.size(),1);
-			System.assertEquals(followRequests.size(),1);
-		}catch(Exception e){
-			System.assert(false);
-		}
+       	insert testUser;
+		BET_LinkingService.Follow(ProjectId, BetId, new List<Id>{testUser.id});
+		List<BET_Member_Request__c> relatedMemberRequests = [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c =: BetId];
+		List<BET_Follow_Request__c> followRequests = [select id from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: BetId];
+		System.assertEquals(relatedMemberRequests.size(),1);
+		System.assertEquals(followRequests.size(),1);	
 	}
 
 	@isTest static void FollowTestWithoutMemberRequestIfSameAsBETOwner() {
@@ -43,15 +38,12 @@ private class BET_LinkingServiceTest {
 		insert bet;
 		Id BetId = bet.id;
 		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
-		try{
-			BET_LinkingService.Follow(ProjectId, BetId, new List<Id>{UserInfo.getUserId()});
-			List<BET_Member_Request__c> relatedMemberRequests = [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c =: BetId];
-			List<BET_Follow_Request__c> followRequests = [select id from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: BetId];
-			System.assertEquals(relatedMemberRequests.size(),0);
-			System.assertEquals(followRequests.size(),1);
-		}catch(Exception e){
-			System.assert(false);
-		}
+		
+		BET_LinkingService.Follow(ProjectId, BetId, new List<Id>{UserInfo.getUserId()});
+		List<BET_Member_Request__c> relatedMemberRequests = [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c =: BetId];
+		List<BET_Follow_Request__c> followRequests = [select id from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: BetId];
+		System.assertEquals(relatedMemberRequests.size(),0);
+		System.assertEquals(followRequests.size(),1);
 	}
 
 	@isTest static void FollowBetNotExistsTest() {
@@ -79,16 +71,14 @@ private class BET_LinkingServiceTest {
 	}
 
 	@isTest static void UnFollowTest() {
+		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
+		bet.IPM_Project__c = ProjectId;
 		insert bet;
 		Id BetId = bet.id;
-		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
-		try{
-			BET_LinkingService.UnFollow(ProjectId, BetId);
-			System.assert(true);
-		}catch(Exception e){
-			System.assert(false);
-		}
+		BET_LinkingService.UnFollow(ProjectId, BetId);
+		bet = [select IPM_Project__c from uw_Bet__c where id=:BetId];
+		System.assert(bet.IPM_Project__c == null);
 	}
 
 	@isTest static void UnFollowLeadNoOtherProjectsTest(){
@@ -98,12 +88,9 @@ private class BET_LinkingServiceTest {
 		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
 		bet.IPM_Project__c = ProjectId;
 		update bet;
-		try{
-			BET_LinkingService.UnFollow(ProjectId, BetId);
-			System.assert(true);
-		}catch(Exception e){
-			System.assert(false);
-		}
+		BET_LinkingService.UnFollow(ProjectId, BetId);
+		bet = [select IPM_Project__c from uw_Bet__c where id=:BetId];
+		System.assert(bet.IPM_Project__c == null);
 	}
 
 	@isTest static void UnFollowLeadWithOtherProjectsTest(){
@@ -114,18 +101,14 @@ private class BET_LinkingServiceTest {
 		bet.IPM_Project__c = ProjectId;
 		update bet;
 
-		BET_Follow_Request__c freq = new BET_Follow_Request__c();
-		freq.Brand_Experience_Toolkit__c = bet.id;
-		freq.Status__c = 'Approved';
-		freq.Project_Id__c = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME+'_1').id;
-		insert freq;
+		IPM_Project__c fproject = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME+'_1');
+		fproject.BET__c = bet.id;
+		fproject.IPM_Target_Launch_Dates__c = date.today();
+		update fproject;
 
-		try{
-			BET_LinkingService.UnFollow(ProjectId, BetId);
-			System.assert(true);
-		}catch(Exception e){
-			System.assert(false);
-		}
+		BET_LinkingService.UnFollow(ProjectId, BetId);
+		bet = [select IPM_Project__c from uw_Bet__c where id=:BetId];
+		System.assertEquals(bet.IPM_Project__c,fproject.id);
 	}
 
 	@isTest static void checkIfFollowRequestShouldBeAutoapprovedTest(){

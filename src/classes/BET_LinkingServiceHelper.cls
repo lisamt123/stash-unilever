@@ -55,11 +55,9 @@ public without sharing class BET_LinkingServiceHelper {
 		IPM_BETWrapper wrapper = null;
 		Date minTLD = Date.newInstance(2070,1,1);
 		for(IPM_BETWrapper wrap : IPM_BETUpdateService.returnIPM(BetId)){
-			if(wrap.projectId != ProjectId){
-				if(wrap.targetLaunchDate != null && wrap.targetLaunchDate < minTLD){
-					minTLD = wrap.targetLaunchDate;
-					wrapper = wrap;
-				}
+			if(wrap.projectId != ProjectId && wrap.targetLaunchDate != null && wrap.targetLaunchDate < minTLD){
+				minTLD = wrap.targetLaunchDate;
+				wrapper = wrap;
 			}
 		}
 		System.debug('Exit getOtherFollowingProject : ' + wrapper);
