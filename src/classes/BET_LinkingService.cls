@@ -217,7 +217,7 @@ public with sharing class BET_LinkingService {
 						BET_LinkingServiceHelper.removeOldBetOwnerFromMembers(oldBetOwner,betRecords.get(0));
 					}
 					if(betOwner != oldPL && oldPL != newPL){
-						BET_LinkingServiceHelper.removeOldPLFromMembers(oldPL,betRecords.get(0));
+						BET_LinkingServiceHelper.removeOldPLFromMembers(oldPL,betRecords.get(0),project.projectId);
 					}
 					if(betOwner != newPL){
 						System.debug('need to create approved member (manager) request for new PL');

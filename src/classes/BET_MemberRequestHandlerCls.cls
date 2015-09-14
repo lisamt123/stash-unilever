@@ -141,7 +141,7 @@ public with sharing class BET_MemberRequestHandlerCls {
                 }
             } else if (!memberRequest.External_User_Request__c) {
                 if(oldMap == null && memberRequest.Status__c == Label.BETTeamMemberRequestApprovedStatus){
-                    if(betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.UserId__c)){
+                    if(betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) == null ||(betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.UserId__c))){
                         teamMembersToUpsert.add(createTeamMemberFromRequest(memberRequest));
                     } else {
                         uw_BET_Team_Member__c member = teamMemberExistingMap.get(String.valueOf(memberRequest.Brand_Experience_Toolkit__c)+String.valueOf(memberRequest.UserId__c));
@@ -153,7 +153,7 @@ public with sharing class BET_MemberRequestHandlerCls {
                 }else if(oldMap != null){
                     String OldMapStatus = oldMap.containsKey(memberRequest.id)  ? oldMap.get(memberRequest.id).Status__c : null;
                     if(memberRequest.Status__c == Label.BETTeamMemberRequestApprovedStatus &&  memberRequest.Status__c != OldMapStatus){
-                        if(betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.UserId__c)){
+                        if(betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) == null || (betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.UserId__c))){
                             teamMembersToUpsert.add(createTeamMemberFromRequest(memberRequest));
                         } else {
                             uw_BET_Team_Member__c member = teamMemberExistingMap.get(String.valueOf(memberRequest.Brand_Experience_Toolkit__c)+String.valueOf(memberRequest.UserId__c));
