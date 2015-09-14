@@ -55,8 +55,10 @@ public without sharing class BET_BETService {
     public static void updateBet(Id BetId,IPM_BETWrapper IPMProject){
         system.debug('Entring method Update with param @BetId: '+BetId+' @IPMProject: '+IPMProject);
         try{
-            uw_BET__c relatedBet = [select id,Launch_Date__c,Brand_Position__c,Product_Category__c,Category_Group__c,Final_Release_Due_Date__c,First_Release_Due_Date__c from uw_Bet__c where id = : BetId];
-            update updateBetFields(relatedBet,IPMProject);
+            uw_BET__c relatedBet = [select id,IPM_Project__c,Launch_Date__c,Brand_Position__c,Product_Category__c,Category_Group__c,Final_Release_Due_Date__c,First_Release_Due_Date__c from uw_Bet__c where id = : BetId];
+            if(relatedBet.IPM_Project__c == IPMProject.projectId){
+                update updateBetFields(relatedBet,IPMProject);
+            }
         }catch(Exception e){
             throw new BET_CustomBETException(e.getMessage() + 'Stack: ' + e.getStackTraceString(),e);
         }

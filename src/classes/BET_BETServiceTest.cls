@@ -66,9 +66,10 @@ private class BET_BETServiceTest {
 
     @isTest static void updateBetTest(){
         uw_BET__c betObject = BET_TestUtils.getTestBet();
-        insert betObject;
 
         IPM_Project__c project = BET_TestUtils.createIPMProject('Unit Test IPM Project');
+        betObject.IPM_Project__c = project.id;
+        insert betObject;
 
         IPM_BETWrapper IPMProject = new IPM_BETWrapper(project);
         IPMProject.targetLaunchDate = date.today();
