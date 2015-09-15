@@ -15,8 +15,8 @@
                 <field>Attachment</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>StatusFormula__c</field>
+                <behavior>Required</behavior>
+                <field>Description__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -35,9 +35,6 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <miniLayout>
-        <fields>Categories__c</fields>
-    </miniLayout>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
