@@ -21,7 +21,9 @@ public without sharing class BET_BETHandlerCls {
   private static final String BET_ARCHIVED = ' has been archived. ';
   private static final String BET_UNARCHIVED = ' has been unarchived ';
   private static final String BET_TXT = 'BET ';
+  private static final String PROJECT_TXT = 'Project ';
   private static final String BET_TO = ' to ';
+  private static final String LEAD_PROJECT = ' is the lead project for BET ';
 
   private static Map<Id,String> projectsMap = new Map<Id,String>();
   private static Map<Id,String> categoryGroupsMap = new Map<Id,String>();
@@ -228,7 +230,11 @@ public without sharing class BET_BETHandlerCls {
     }
 
     if(oldRecord.IPM_Project__c != newRecord.IPM_Project__c){
-      diffs.add(BET_PROJECT_CHANGED+projectsMap.get(oldRecord.IPM_Project__c)+BET_TO+projectsMap.get(newRecord.IPM_Project__c));
+      if(newRecord.IPM_Project__c != null) {
+        diffs.add(PROJECT_TXT+projectsMap.get(newRecord.IPM_Project__c)+LEAD_PROJECT+newRecord.name);
+      } else {
+        diffs.add(BET_PROJECT_CHANGED+projectsMap.get(oldRecord.IPM_Project__c)+BET_TO+projectsMap.get(newRecord.IPM_Project__c));
+      }
     }
 
     if(oldRecord.Category_Group__c != newRecord.Category_Group__c){
