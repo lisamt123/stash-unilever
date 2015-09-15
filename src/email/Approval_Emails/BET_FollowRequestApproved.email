@@ -1,7 +1,0 @@
-<html>
-Follow request for Project {!BET_Follow_Request__c.Project_Name__c}
-<br/>
-to be linked to BET {!BET_Follow_Request__c.Brand_Experience_Toolkit__c} 
-<br/>
-has been approved
-</html>
