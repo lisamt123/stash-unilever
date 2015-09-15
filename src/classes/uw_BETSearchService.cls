@@ -202,18 +202,18 @@ public without sharing class uw_BETSearchService {
             for(uw_BET__c bet : betsSearchList){
                 if(myPendingBetsIds.contains(bet.Id)){
                     betResultWrapper.add(
-                        //new uw_BETWrapper.BetSearchItem(bet, true, !bet.Is_Archived__c, false, false)
-                        new uw_BETWrapper.BetSearchItem(bet, true, true, false, false)
+                        new uw_BETWrapper.BetSearchItem(bet, true, !bet.Is_Archived__c, false, false)
+                        //new uw_BETWrapper.BetSearchItem(bet, true, true, false, false)
                     );
                 } else if(myBetsIds.contains(bet.Id)){
                     betResultWrapper.add(
-                        //new uw_BETWrapper.BetSearchItem(bet, false, !bet.Is_Archived__c, true, false)
-                        new uw_BETWrapper.BetSearchItem(bet, false, true, true, false)
+                        new uw_BETWrapper.BetSearchItem(bet, false, !bet.Is_Archived__c, true, false)
+                        //new uw_BETWrapper.BetSearchItem(bet, false, true, true, false)
                     );
                 }else{
                     betResultWrapper.add(
-                        //new uw_BETWrapper.BetSearchItem(bet, false, !bet.Is_Archived__c, false, false)
-                        new uw_BETWrapper.BetSearchItem(bet, false, true, false, false)
+                        new uw_BETWrapper.BetSearchItem(bet, false, !bet.Is_Archived__c, false, false)
+                        //new uw_BETWrapper.BetSearchItem(bet, false, true, false, false)
                     );
                 }
             }

@@ -132,7 +132,7 @@ global without sharing class BET_ManageMembersController {
                     BET_AccessService.createExternalUserRelatedObjects(setEmailAdd,bet);  
                 }*/
 
-                if(!Test.isRunningTest()){
+                //if(!Test.isRunningTest()){
                     betMemberRequest.Bet_owner__c = bet.ownerid;
                     betMemberRequest.Status__c = requestsShouldBeAutoapproved ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW;
                     betMemberRequest.Do_Not_Notify_Bet__c = requestsShouldBeAutoapproved ? true : false;
@@ -141,7 +141,7 @@ global without sharing class BET_ManageMembersController {
                     insert betMemberRequest;
                     betMemberRequest = new BET_Member_Request__c(Brand_Experience_Toolkit__c = betId);
                     pr = forward();
-                }
+                //}
             }
         } else {
             Apexpages.Message m = new apexpages.Message(ApexPages.Severity.ERROR, 'The external user email address is blank. Please enter a value.');
