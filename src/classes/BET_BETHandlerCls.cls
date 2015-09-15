@@ -11,7 +11,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 public without sharing class BET_BETHandlerCls {
 
   private static final String BET_STATUS_CHANGED = 'BET Status has been changed. ';
-  private static final String BET_LAUNCH_DATE_CHANGED = 'BET Target Launch Date has been changed. ';
+  private static final String BET_LAUNCH_DATE_CHANGED = 'Target Launch Date for this BET has been changed to ';
   private static final String BET_PROJECT_CHANGED = 'BET Lead IPM Project has been changed. ';
   private static final String BET_CATEGORY_GROUP_CHANGED = 'BET Category group has been changed. ';
   private static final String BET_CATEGORY_CHANGED = 'BET Category has been changed. ';
@@ -224,7 +224,7 @@ public without sharing class BET_BETHandlerCls {
     if(oldRecord.Launch_Date__c != newRecord.Launch_Date__c){
       String oldDate = oldRecord.Launch_Date__c != null ? String.valueOf(oldRecord.Launch_Date__c).substring(0,10) : '';
       String newDate = newRecord.Launch_Date__c != null ? String.valueOf(newRecord.Launch_Date__c).substring(0,10) : '';
-      diffs.add(BET_LAUNCH_DATE_CHANGED+oldDate+BET_TO+newDate);
+      diffs.add(BET_LAUNCH_DATE_CHANGED+newDate);
     }
 
     if(oldRecord.IPM_Project__c != newRecord.IPM_Project__c){
