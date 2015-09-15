@@ -27,27 +27,11 @@ private class BET_EmailNotificationServiceTest {
 		System.assert(true);
 	}
 
-	@isTest static void notifyAllIPMProjectLeadersOfArchivedBetTest() {
+	@isTest static void notifyBetOwnerOfMultipleMemberRequestsFromIPMTest(){
 		uw_BET__c bet = BET_TestUtils.getTestBet();
-		IPM_Project__c project = BET_TestUtils.createIPMProject(TEST_PROJECT_NAME);
-		bet.IPM_Project__c = project.id;
 		insert bet;
-		project.IPM_Project_Leader__c = UserInfo.getUserId();
-		project.BET__c = bet.id;
-		update project;
-		BET_EmailNotificationService.notifyAllIPMProjectLeadersOfArchivedBet(new List<uw_Bet__c>{bet});
-		System.assert(true);
-	}
-
-	@isTest static void notifyAllIPMProjectLeadersOfUnArchivedBetTest() {
-		uw_BET__c bet = BET_TestUtils.getTestBet();
-		IPM_Project__c project = BET_TestUtils.createIPMProject(TEST_PROJECT_NAME);
-		bet.IPM_Project__c = project.id;
-		insert bet;
-		project.IPM_Project_Leader__c = UserInfo.getUserId();
-		project.BET__c = bet.id;
-		update project;
-		BET_EmailNotificationService.notifyAllIPMProjectLeadersOfUnArchivedBet(new List<uw_Bet__c>{bet});
+		IPM_BETWrapper project = new IPM_BETWrapper(BET_TestUtils.createIPMProject(TEST_PROJECT_NAME));
+		BET_EmailNotificationService.notifyBetOwnerOfMultipleMemberRequestsFromIPM(bet.id, project.projectId);
 		System.assert(true);
 	}
 	

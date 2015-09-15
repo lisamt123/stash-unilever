@@ -123,12 +123,15 @@ public without sharing class BET_AccessService {
 						Role__c = request.AccessLevel,
 						Project_Id__c = projectId,
 						Status__c = isOwnerOrManager ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW,
-						Do_Not_Notify_Bet__c = isOwnerOrManager ? true : false)
+						Do_Not_Notify_Bet__c = true)
 				);
 			}
 			insert mRequestsToBeCreated;
 			for(BET_Member_Request__c mrequest : mRequestsToBeCreated){
 				requestIds.add(mrequest.id);
+			}
+			if(!requestIds.isEmpty()){
+				BET_EmailNotificationService.notifyBetOwnerOfMultipleMemberRequestsFromIPM(betId,projectId);
 			}
 		}catch(Exception e){
 			throw new BET_CustomBETException('Unable to create access request',e);

@@ -18,6 +18,9 @@ public without sharing class BET_BETHandlerCls {
   private static final String BET_BRAND_POSITIONING_CHANGED = 'BET Brand Position has been changed. ';
   private static final String BET_BRAND_CHANGED = 'BET Brand has been changed. ';
   private static final String BET_DESCRIPTION_CHANGED = 'BET Description has been changed. ';
+  private static final String BET_ARCHIVED = ' has been archived. ';
+  private static final String BET_UNARCHIVED = ' has been unarchived ';
+  private static final String BET_TXT = 'BET ';
   private static final String BET_TO = ' to ';
 
   private static Map<Id,String> projectsMap = new Map<Id,String>();
@@ -67,7 +70,6 @@ public without sharing class BET_BETHandlerCls {
   *************************************************************/
   private static void archiveBETs(List<uw_BET__c> archivedBets){
     archiveUnarchiveChatterGroups(archivedBets,true);
-    //BET_EmailNotificationService.notifyAllIPMProjectLeadersOfArchivedBet(archivedBets);
   }
 
   /************************************************************
@@ -78,8 +80,6 @@ public without sharing class BET_BETHandlerCls {
   *************************************************************/
   private static void unArchiveBETs(List<uw_BET__c> unArchivedBets){
     archiveUnarchiveChatterGroups(unArchivedBets,false);
-    //BET_EmailNotificationService.notifyAllIPMProjectLeadersOfUnArchivedBet(unArchivedBets);
-    //BET_LinkingService.unlinkIPMsfromBets(unArchivedBets);
   }
 
   /************************************************************
@@ -250,6 +250,15 @@ public without sharing class BET_BETHandlerCls {
     if(oldRecord.Description__c != newRecord.Description__c){
       diffs.add(BET_DESCRIPTION_CHANGED+oldRecord.Description__c+BET_TO+newRecord.Description__c);
     }
+
+    if(oldRecord.Is_Archived__c != newRecord.Is_Archived__c){
+      if(newRecord.Is_Archived__c){
+        diffs.add(BET_TXT+newRecord.name+BET_ARCHIVED);
+      } else {
+        diffs.add(BET_TXT+newRecord.name+BET_UNARCHIVED);
+      }
+    }
+
     return diffs;
   }
 

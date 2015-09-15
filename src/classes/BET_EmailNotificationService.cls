@@ -14,90 +14,38 @@ public with sharing class BET_EmailNotificationService {
 
 	private BET_EmailNotificationService() {}
 
-    /************************************************************
-    Purpose: Method notifies all related projects PMs when Bet has been archived
-    Parameters: List<uw_Bet__c> bets
-    Returns: -
-    Throws: -
-    *************************************************************/
-    public static void notifyAllIPMProjectLeadersOfArchivedBet(List<uw_Bet__c> bets){
-        List<Messaging.SingleEmailMessage> mails = new List<Messaging.SingleEmailMessage>();
-        for(uw_Bet__c bet : bets){
-            List<IPM_BETWrapper> ipms = IPM_BETUpdateService.returnIPM(bet.id);
-            List<String> userMails = userEmails(ipms);
-            mails.add(buildArchiveMessage(userMails,bet));
-        }
-        if(!Test.isRunningTest()){
-            Messaging.sendEmail(mails,false);
-        }
-    }
 
     /************************************************************
-    Purpose: Method notifies all related projects PMs when Bet has been unarchived
-    Parameters: List<uw_Bet__c> bets
+    Purpose: Method  notifies Bet owner that there are member requests from IPM
+    Parameters: Id betId,Id projectId
     Returns: -
     Throws: -
     *************************************************************/
-    public static void notifyAllIPMProjectLeadersOfUnArchivedBet(List<uw_Bet__c> bets){
-        List<Messaging.SingleEmailMessage> mails = new List<Messaging.SingleEmailMessage>();
-        for(uw_Bet__c bet : bets){
-            List<IPM_BETWrapper> ipms = IPM_BETUpdateService.returnIPM(bet.id);
-            List<String> userMails = userEmails(ipms);
-            mails.add(buildUnArchiveMessage(userMails,bet));
-        }
-        if(!Test.isRunningTest()){
-            Messaging.sendEmail(mails,false);
-        }
-    }
-
-    /************************************************************
-    Purpose: Method archive notification message
-    Parameters: List<String> userMails,uw_Bet__c bet
-    Returns: -
-    Throws: -
-    *************************************************************/
-    private static Messaging.SingleEmailMessage buildArchiveMessage(List<String> userMails,uw_Bet__c bet){
+    public static void notifyBetOwnerOfMultipleMemberRequestsFromIPM(Id betId,Id projectId){
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-        mail.setToAddresses(userMails);
-        mail.setOrgWideEmailAddressId(owea.id);
-        mail.setSubject('BET '+bet.name+' has been archived.');
-        String body = 'BET '+bet.name+' has been archived.';
-        mail.setHtmlBody(body);
-        return mail;
-    }
 
-    /************************************************************
-    Purpose: Method unarchive notification message
-    Parameters: List<String> userMails,uw_Bet__c bet
-    Returns: -
-    Throws: -
-    *************************************************************/
-    private static Messaging.SingleEmailMessage buildUnArchiveMessage(List<String> userMails,uw_Bet__c bet){
-        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-        mail.setToAddresses(userMails);
-        mail.setOrgWideEmailAddressId(owea.id);
-        mail.setSubject('BET '+bet.name+' has been unarchived.');
-        String body = 'BET '+bet.name+' has been unarchived.';
-        mail.setHtmlBody(body);
-        return mail;
-    }
+        uw_Bet__c bet = [select id,name,ownerId from uw_Bet__c where id=:betId];
+        IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(projectId);
 
-    /************************************************************
-    Purpose: Method retrieves email addreses of Project Leads related to projects
-    Parameters: List<IPM_BETWrapper> ipms
-    Returns: -
-    Throws: -
-    *************************************************************/
-    private static List<String> userEmails(List<IPM_BETWrapper> ipms) {
-        Set<Id> userIds = new Set<Id>();
-        for(IPM_BETWrapper bwrapper : ipms){
-            userIds.add(bwrapper.pLId);
+        User betOwner = Test.isRunningTest() ? new User(email = BET_TestUtils.TEST_USER_EMAIL) : [select email from User where isActive = true and id =: bet.ownerid];
+
+        List<String> sendTo = new List<String>();
+        sendTo.add(betOwner.email);
+        mail.setToAddresses(sendTo);
+
+        mail.setOrgWideEmailAddressId(owea.id);
+        mail.setSubject('A member access request has been made to BET ' + bet.name);
+     
+        String beturl = URL.getSalesforceBaseUrl().toExternalForm() + '/' + bet.id;
+
+        String body = 'A member access request has been made to BET ' + bet.name + ' from project ' +project.projectName +'.<br/> Please open the BET and click on Members to Approve or Deny,'+
+        '<a href="'+beturl+'">'+bet.name+'</a>';
+
+        mail.setHtmlBody(body);
+
+        if(!Test.isRunningTest()) {
+            Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
         }
-        List<String> emails = new List<String>();
-        for(User u : [select email from User where id in: userIds]){
-            emails.add(u.email);
-        }
-        return emails; 
     }
 
     /************************************************************
