@@ -8,7 +8,7 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  03-08-2015  Initial
 *************************************************************************************/
-public with sharing class BET_LinkingService {
+public without sharing class BET_LinkingService {
 
 	public static final String FOLLOW_STATUS_NEW = 'New';
 	public static final String FOLLOW_STATUS_APPROVED = 'Approved';
