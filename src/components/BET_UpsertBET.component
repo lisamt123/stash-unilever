@@ -21,7 +21,7 @@
     <apex:attribute name="CallbackSkip" type="String" required="false" 
                     description="URL to which page will be redirected after record creation is skipped" assignTo="{!cbackskipped}"/>
 
-    <apex:pageMessages />
+    <apex:pageMessages id="theMSgs" />
 
         <div class="form-item">
             <div class="item-label">
@@ -123,7 +123,7 @@
 
     <div class="betActionButtons">
         <apex:commandButton value="{!$Label.BET_SkipForNow}" styleClass="btn-cancel" action="{!skipForNow}" />
-        <apex:commandButton value="{!$Label.BET_CreateNewBet}" styleClass="btn-create-bet" action="{!upsertBet}"/>
+        <apex:commandButton value="{!$Label.BET_CreateNewBet}" styleClass="btn-create-bet" action="{!upsertBet}" rerender="theMSgs"/>
     </div>
 
 </apex:component>
