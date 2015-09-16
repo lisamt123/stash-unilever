@@ -77,7 +77,9 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
 						bet.Brand_Position__c = getBrandPosition(bet.Product_Brand__c,bet.Product_Category__c);
 						System.debug('Step 9 : Retrived brand position : ' +  bet.Brand_Position__c);
 					}
-					if(bet.Brand_Position__c != null) break;
+					if(bet.Brand_Position__c != null){
+						break;
+					}
 				}
 			}
 			if(validateBet(bet)){

@@ -12,6 +12,10 @@ VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 *******************************************************************************************************************************/
 @isTest
 private class BET_MDODataMigrationAndTrans_BatchTest {
+
+	private static final String CATEGORY_ONE = 'Category One';
+	private static final String BRAND_ONE = 'Test Brand One';
+	private static final String BRAND_TWO = 'Test Brand Two';
 	
 	@isTest static void executeTest() {
 
@@ -19,13 +23,13 @@ private class BET_MDODataMigrationAndTrans_BatchTest {
 		bet.Launch_Date__c = Date.today();
 		
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
-		MDO_Category__c cat = BET_TestUtils.createCategory(categoryGroup, 'Category One');
+		MDO_Category__c cat = BET_TestUtils.createCategory(categoryGroup, CATEGORY_ONE);
 		BET_TestUtils.createCategory(categoryGroup, 'Category Two');
-		MDO_Brand__c br = BET_TestUtils.createBrand('Test Brand One');
-		BET_TestUtils.createBrand('Test Brand Two');
+		MDO_Brand__c br = BET_TestUtils.createBrand(BRAND_ONE);
+		BET_TestUtils.createBrand(BRAND_TWO);
 
 		uw_Brand__c brandOld = new uw_Brand__c();
-		brandOld.name = 'Test Brand One';
+		brandOld.name = BRAND_ONE;
 		insert brandOld;
 
 		BET_Category__c categoryOld = new BET_Category__c();
@@ -33,7 +37,7 @@ private class BET_MDODataMigrationAndTrans_BatchTest {
 		insert categoryOld;
 
 		BET_Category__c subcategoryOld = new BET_Category__c();
-		subcategoryOld.name = 'Category One';
+		subcategoryOld.name = CATEGORY_ONE;
 		subcategoryOld.BET_Parent_Category__c = categoryOld.id;
 		insert subcategoryOld;
 
@@ -67,7 +71,7 @@ private class BET_MDODataMigrationAndTrans_BatchTest {
 		insert bet;
 
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
-		BET_TestUtils.createCategory(categoryGroup, 'Category One');
+		BET_TestUtils.createCategory(categoryGroup, CATEGORY_ONE);
 
 		BET_MDODataMigrationAndTransform_Batch batch = new BET_MDODataMigrationAndTransform_Batch();
 		System.assert(batch.retrieveCategoryId(categoryGroup,bet) == null);
@@ -76,8 +80,8 @@ private class BET_MDODataMigrationAndTrans_BatchTest {
 	@isTest static void getBrandPositionTest(){
 
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
-		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup, 'Category One');
-		MDO_Brand__c brand = BET_TestUtils.createBrand('Test Brand One');
+		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup, CATEGORY_ONE);
+		MDO_Brand__c brand = BET_TestUtils.createBrand(BRAND_ONE);
 
 		MDO_BrandPosition__c bp = new MDO_BrandPosition__c();
 		insert bp;
