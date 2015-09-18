@@ -8,7 +8,7 @@ private class BET_EmailNotificationServiceTest {
 		insert bet;
 		IPM_Project__c oldProject = BET_TestUtils.createIPMProject(TEST_PROJECT_NAME);
 		IPM_BETWrapper project = new IPM_BETWrapper(oldProject);
-		BET_EmailNotificationService.notifyBetOwnerThatProjectIsUnlinked(bet,project);
+		BET_EmailNotificationService.notifyBetOwnerThatProjectIsUnlinked(bet,project,project);
 		System.assert(true);
 	}
 	
@@ -32,6 +32,14 @@ private class BET_EmailNotificationServiceTest {
 		insert bet;
 		IPM_BETWrapper project = new IPM_BETWrapper(BET_TestUtils.createIPMProject(TEST_PROJECT_NAME));
 		BET_EmailNotificationService.notifyBetOwnerOfMultipleMemberRequestsFromIPM(bet.id, project.projectId);
+		System.assert(true);
+	}
+
+	@isTest static void notifyBetOwnerOfLeadProjectFollowRequestTest(){
+		uw_BET__c bet = BET_TestUtils.getTestBet();
+		insert bet;
+		IPM_BETWrapper project = new IPM_BETWrapper(BET_TestUtils.createIPMProject(TEST_PROJECT_NAME));
+		BET_EmailNotificationService.notifyBetOwnerOfLeadProjectFollowRequest(bet,project);
 		System.assert(true);
 	}
 	

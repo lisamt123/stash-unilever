@@ -29,6 +29,7 @@ public without sharing class BET_LinkingService {
 		BET_LinkingServiceHelper.validateParams(betRecords);
 		try{
 			updateBetRecord(betRecords.get(0),project);
+			BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(betRecords.get(0),project);
 		}catch(Exception e){
 			throw new BET_CustomBETException(Label.BET_SetAsLeadExceptionMessage,e);
 		}
@@ -81,6 +82,10 @@ public without sharing class BET_LinkingService {
 			if(shouldBeAutoApproved) {
 				followRequest.Status__c = FOLLOW_STATUS_APPROVED;
 				update followRequest;
+			} else {
+				if(followRequest.Is_Lead_Request__c){
+					BET_EmailNotificationService.notifyBetOwnerOfLeadProjectFollowRequest(betRecords.get(0),project);
+				}
 			}
 		}catch(Exception e){
 			throw new BET_CustomBETException(Label.BET_FollowExceptionMessage,e);

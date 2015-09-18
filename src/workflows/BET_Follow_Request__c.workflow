@@ -35,6 +35,11 @@
             <operation>equals</operation>
             <value>New</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>BET_Follow_Request__c.Is_Lead_Request__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
         <description>Runs when follow request is created</description>
         <triggerType>onCreateOnly</triggerType>
     </rules>

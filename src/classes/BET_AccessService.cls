@@ -10,13 +10,13 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 public without sharing class BET_AccessService {
 	
-	private static final String NO_BET_ACCESS = 'No';
-	private static final String BET_MEMBER = 'Member';
-	private static final String BET_MANAGER = 'Manager';
-	private static final String BET_OWNER = 'Owner';
-	private static final String BET_ACCESS_PENDING = 'Pending';
-	private static final String MANAGER_ROLE = 'Manager';
-	private static final String MEMBER_ROLE = 'Member';
+	public static final String NO_BET_ACCESS = 'No';
+	public static final String BET_MEMBER = 'Member';
+	public static final String BET_MANAGER = 'Manager';
+	public static final String BET_OWNER = 'Owner';
+	public static final String BET_ACCESS_PENDING = 'Pending';
+	public static final String MANAGER_ROLE = 'Manager';
+	public static final String MEMBER_ROLE = 'Member';
 
 	private static final Profile chatterExternalProfile = [SELECT Id FROM Profile WHERE Name = 'Chatter External User' LIMIT 1];
 

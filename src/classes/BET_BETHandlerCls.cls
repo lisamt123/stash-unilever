@@ -45,22 +45,33 @@ public without sharing class BET_BETHandlerCls {
     Returns: -
     Throws: -
   *************************************************************/
-  public static void archiveOrUnarchiveBet(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
-    List<uw_BET__c> archivedBets = new List<uw_BET__c>();
+  public static void unarchiveBet(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
     List<uw_BET__c> unArchivedBets = new List<uw_BET__c>();
     for(uw_BET__c bet : newBetList){
-      if(bet.Is_Archived__c && bet.Is_Archived__c != oldBetMap.get(bet.id).Is_Archived__c){
-        archivedBets.add(bet);
-      }
       if(!bet.Is_Archived__c && bet.Is_Archived__c != oldBetMap.get(bet.id).Is_Archived__c){
         unArchivedBets.add(bet);
       }
     }
-    if(!archivedBets.isEmpty()) {
-      archiveBETs(archivedBets);
-    }
     if(!unArchivedBets.isEmpty()){
       unArchiveBETs(unArchivedBets);
+    }
+  }
+
+    /************************************************************
+    Purpose: Method verifies if bet ws archive/unarchived and runs related logic
+    Parameters: List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap
+    Returns: -
+    Throws: -
+  *************************************************************/
+  public static void archiveBet(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
+    List<uw_BET__c> archivedBets = new List<uw_BET__c>();
+    for(uw_BET__c bet : newBetList){
+      if(bet.Is_Archived__c && bet.Is_Archived__c != oldBetMap.get(bet.id).Is_Archived__c){
+        archivedBets.add(bet);
+      }
+    }
+    if(!archivedBets.isEmpty()) {
+      archiveBETs(archivedBets);
     }
   }
 

@@ -89,7 +89,7 @@ public without sharing class BET_LinkingServiceHelper {
 		if(oldProject.pLId != null && oldProject.pLId == bet.ownerId){
 			bet.ownerId = project.pLId;
 		} else {
-			BET_EmailNotificationService.notifyBetOwnerThatProjectIsUnlinked(bet,oldProject); //US23
+			BET_EmailNotificationService.notifyBetOwnerThatProjectIsUnlinked(bet,oldProject,project); //US23
 		}
 		BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(bet,project); //US23
 		bet.IPM_Project__c = project.projectId;

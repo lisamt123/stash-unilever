@@ -81,13 +81,19 @@ global without sharing class BET_ManageMembersController {
     public PageReference addMember(){
         System.debug('Entering addMember');
         PageReference pr = null;
+        BET_Request_Access__c settings  = BET_Request_Access__c.getInstance();
         if(betMemberRequest.UserId__c != null){
             try{
+
                 betMemberRequest.Bet_owner__c = bet.ownerid;
                 betMemberRequest.Status__c = requestsShouldBeAutoapproved ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW;
                 betMemberRequest.Do_Not_Notify_Bet__c = requestsShouldBeAutoapproved ? true : false;
                 betMemberRequest.External_User_Request__c = false;
+                betMemberRequest.Do_Not_Notify_Bet__c = true;
                 insert betMemberRequest;
+
+                BET_CommonService.sendApprovalMailToOwner(bet, betMemberRequest.UserId__c , settings);
+
                 betMemberRequest = new BET_Member_Request__c(Brand_Experience_Toolkit__c = betId);
             } catch (Exception ex){
                 return null;
@@ -128,20 +134,22 @@ global without sharing class BET_ManageMembersController {
                     Apexpages.Message m = new apexpages.Message(ApexPages.Severity.INFO, 'Note: '+ betMemberRequest.External_User_Email__c + ' has already been invited');
                     Apexpages.addMessage(m); 
                     return null;  
-                } /*else {
-                    BET_AccessService.createExternalUserRelatedObjects(setEmailAdd,bet);  
-                }*/
+                }
 
-                //if(!Test.isRunningTest()){
-                    betMemberRequest.Bet_owner__c = bet.ownerid;
-                    betMemberRequest.Status__c = requestsShouldBeAutoapproved ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW;
-                    betMemberRequest.Do_Not_Notify_Bet__c = requestsShouldBeAutoapproved ? true : false;
-                    betMemberRequest.External_User_Request__c = true;
-                    betMemberRequest.UserId__c = externalUserSalesforceId; 
-                    insert betMemberRequest;
-                    betMemberRequest = new BET_Member_Request__c(Brand_Experience_Toolkit__c = betId);
-                    pr = forward();
-                //}
+                betMemberRequest.Bet_owner__c = bet.ownerid;
+                betMemberRequest.Status__c = requestsShouldBeAutoapproved ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW;
+                betMemberRequest.Do_Not_Notify_Bet__c = true;
+                betMemberRequest.External_User_Request__c = true;
+                betMemberRequest.UserId__c = externalUserSalesforceId; 
+                insert betMemberRequest;
+
+                if(betMemberRequest.UserId__c != null){
+                    BET_Request_Access__c settings  = BET_Request_Access__c.getInstance();
+                    BET_CommonService.sendApprovalMailToOwner(bet, betMemberRequest.UserId__c , settings);
+                }
+
+                betMemberRequest = new BET_Member_Request__c(Brand_Experience_Toolkit__c = betId);
+                pr = forward();
             }
         } else {
             Apexpages.Message m = new apexpages.Message(ApexPages.Severity.ERROR, 'The external user email address is blank. Please enter a value.');

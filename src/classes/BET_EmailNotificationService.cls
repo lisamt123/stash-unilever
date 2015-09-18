@@ -14,6 +14,41 @@ public with sharing class BET_EmailNotificationService {
 
 	private BET_EmailNotificationService() {}
 
+    /************************************************************
+    Purpose: Method  notifies Bet owner that there is a lead project follow request
+    Parameters: Id betId,Id projectId
+    Returns: -
+    Throws: -
+    *************************************************************/
+    public static void notifyBetOwnerOfLeadProjectFollowRequest(uw_Bet__c bet,IPM_BETWrapper project){
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+
+        User betOwner = Test.isRunningTest() ? new User(email = BET_TestUtils.TEST_USER_EMAIL) : [select email from User where isActive = true and id =: bet.ownerid];
+
+        String beturl = URL.getSalesforceBaseUrl().toExternalForm() + '/' + bet.id;
+
+        List<String> sendTo = new List<String>();
+        sendTo.add(betOwner.email);
+        mail.setToAddresses(sendTo);
+        mail.setOrgWideEmailAddressId(owea.id);
+
+        mail.setSubject('Project ' + project.projectName + ' has linked to your BET ' + bet.name + ' and will become your leading project');
+
+        String body = 'Project ' + project.projectName + ' has linked to your BET ' + bet.name + ' and will become your leading project.';
+        body += '<br/> As a reminder, the leading project controls these aspects of a BET:';
+        body += '<br/><br/>-  The target launch date (TLD)';
+        body += '<br/><br/>-  The BET 1st and Final Release due dates';
+        body += '<br/><br/>-  The category and brand position of a BET';
+        body += '<br/><br/> If this project has requested access to the BET for it’s members, membership will also be automatically granted with this link.';
+        body += '<br/><br/> To DENY this request for membership access and to lead your BET, click here <a href="'+beturl+'">'+bet.name+'</a> within 72 hours of this email.';
+        body += '<br/><br/> To manage membership to your BET please open the BET and click on Members <a href="'+beturl+'">'+bet.name+'</a>';
+        body += '<br/><br/> To change the lead project, please contact system admin by clicking <a href="mailto:cb4l@unilever.com?subject=BET SYSTEM REQUEST for'+bet.name+'">here</a>';
+
+        mail.setHtmlBody(body);
+        if(!Test.isRunningTest()) {
+            Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+        }
+    }
 
     /************************************************************
     Purpose: Method  notifies Bet owner that there are member requests from IPM
@@ -54,7 +89,7 @@ public with sharing class BET_EmailNotificationService {
     Returns: -
     Throws: -
     *************************************************************/
-	public static void notifyBetOwnerThatProjectIsUnlinked(uw_Bet__c bet,IPM_BETWrapper oldProject){ // US23
+	public static void notifyBetOwnerThatProjectIsUnlinked(uw_Bet__c bet,IPM_BETWrapper oldProject,IPM_BETWrapper newProject){ // US23
 		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 
 		User betOwner = Test.isRunningTest() ? new User(email = BET_TestUtils.TEST_USER_EMAIL) : [select email from User where isActive = true and id =: bet.ownerid];
@@ -64,10 +99,15 @@ public with sharing class BET_EmailNotificationService {
         mail.setToAddresses(sendTo);
 
         mail.setOrgWideEmailAddressId(owea.id);
-        mail.setSubject('Project ' + oldProject.projectName + ' unlinked from your BET');
+        mail.setSubject('Project ' + oldProject.projectName + ' has unlinked from your BET ' + bet.name + '.');
+
         String body = 'Project ' + oldProject.projectName + ' unlinked from your BET ' + bet.name + ' ';
-        body += '<br/> the next project with the earliest TLD is now your leading/controlling project,';
-        body += '<br/> if you want to change this please contact system admin';
+        body += '<br/> As a result, ' + newProject.projectName + ' is now your leading project, as it is the linked project with the earliest target launch date (TLD).';
+        body += '<br/> As a reminder, the leading project controls these aspects of a BET:';
+        body += '<br/><br/>-  The target launch date (TLD)';
+        body += '<br/><br/>-  The BET 1st and Final Release due dates';
+        body += '<br/><br/>-  The category and brand position of a BET';
+        body += '<br/><br/> To change the lead project, please contact system admin by clicking <a href="mailto:cb4l@unilever.com?subject=BET SYSTEM REQUEST for'+bet.name+'">here</a>';
         mail.setHtmlBody(body);
         if(!Test.isRunningTest()) {
             Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
@@ -95,8 +135,15 @@ public with sharing class BET_EmailNotificationService {
         mail.setToAddresses(sendTo);
 
         mail.setOrgWideEmailAddressId(owea.id);
-        mail.setSubject('Project ' + newProject.projectName + ' has become new lead/controlling project of BET');
-        final String body = 'Project ' + newProject.projectName + ' has become new lead/controlling project of BET ' + bet.name ;
+        mail.setSubject('Project ' + newProject.projectName + ' has become the new lead project of BET '+ bet.name + '.');
+
+        String body = 'Project ' + newProject.projectName + ' has become the new lead project of BET '+ bet.name + '.';
+        body += '<br/> As a reminder, the leading project controls these aspects of a BET:';
+        body += '<br/><br/>-  The target launch date (TLD)';
+        body += '<br/><br/>-  The BET 1st and Final Release due dates';
+        body += '<br/><br/>-  The category and brand position of a BET';
+        body += '<br/><br/> To change the lead project, please contact system admin by clicking <a href="mailto:cb4l@unilever.com?subject=BET SYSTEM REQUEST for'+bet.name+'">here</a>';
+
         mail.setHtmlBody(body);
         if(!Test.isRunningTest()) {
             Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
@@ -119,10 +166,15 @@ public with sharing class BET_EmailNotificationService {
         mail.setToAddresses(sendTo);
 
         mail.setOrgWideEmailAddressId(owea.id);
-        mail.setSubject('Project ' + project.projectName + ' unlinked from your BET');
-        String body = 'Project ' + project.projectName + ' unlinked from your BET ' + bet.name + ' ';
-        body += '<br/> there is no lead/controlling project assigned to your BET. ';
-        body += '<br/> BET has been archived but can be unarchived if required';
+        mail.setSubject('Project ' + project.projectName + ' has unlinked from your BET ' + bet.name + '.');
+
+        String beturl = URL.getSalesforceBaseUrl().toExternalForm() + '/' + bet.id;
+
+        String body = 'Project ' + project.projectName + ' has unlinked from your BET ' + bet.name + '.'; 
+        body += '<br/> As there are now no projects linked to your BET, it has been automatically archived.'; 
+        body += '<br/> As a result, the associated Chatter Group will be deactivated and no further changes can be made to this BET.';
+        body += '<br/> To unarchive the BET and reactivate the group please open the BET and click on Settings <a href="'+beturl+'">'+bet.name+'</a>';
+
         mail.setHtmlBody(body);
         if(!Test.isRunningTest()){
             Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
