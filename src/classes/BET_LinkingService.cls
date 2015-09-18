@@ -56,9 +56,9 @@ public without sharing class BET_LinkingService {
 		System.debug('projectWrapper ' + projectWrapper + ' , ' +bet);
 		bet.Launch_Date__c = projectWrapper.targetLaunchDate;
 		bet.IPM_Project__c = projectWrapper.projectId;
-		bet.Category_Group__c = projectWrapper.categoryGroupName;
-		bet.Product_Category__c = projectWrapper.categoryName;
-		bet.Brand_Position__c = projectWrapper.brandPosition;
+		//bet.Category_Group__c = projectWrapper.categoryGroupName;
+		//bet.Product_Category__c = projectWrapper.categoryName;
+		//bet.Brand_Position__c = projectWrapper.brandPosition;
 		update bet;
 	}
 
@@ -82,6 +82,9 @@ public without sharing class BET_LinkingService {
 			if(shouldBeAutoApproved) {
 				followRequest.Status__c = FOLLOW_STATUS_APPROVED;
 				update followRequest;
+				if(followRequest.Is_Lead_Request__c){
+					BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(betRecords.get(0),project);
+				}
 			} else {
 				if(followRequest.Is_Lead_Request__c){
 					BET_EmailNotificationService.notifyBetOwnerOfLeadProjectFollowRequest(betRecords.get(0),project);
