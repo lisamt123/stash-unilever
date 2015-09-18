@@ -72,7 +72,7 @@ public without sharing class BET_LinkingService {
 		System.debug('Entering Follow : ' + ProjectId + ', ' + BetId + ', ' + managersIds);
 		Set<Id> uniqueManagerIds = new Set<Id>(managersIds);
 		List<Id> managers = new List<Id>(uniqueManagerIds);
-		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c from uw_Bet__c where id =: BetId];
+		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c,Name from uw_Bet__c where id =: BetId];
 		IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(ProjectId);
 		BET_LinkingServiceHelper.validateFollowRequest(betRecords);
 		try{
