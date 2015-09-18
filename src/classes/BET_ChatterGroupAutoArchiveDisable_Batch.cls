@@ -14,13 +14,11 @@ global class BET_ChatterGroupAutoArchiveDisable_Batch implements Database.Batcha
 
    	global void execute(Database.BatchableContext BC, List<sObject> scope) {
    		System.debug('Starting execute : ' + scope);
-   		List<CollaborationGroup> cgroups = new List<CollaborationGroup>();
 		for(CollaborationGroup chatterGroup : (List<CollaborationGroup>)scope){
 			chatterGroup.IsAutoArchiveDisabled = true;
-			cgroups.add(chatterGroup);
 		}
-		System.debug('Exit execute : ' + cgroups);
-		update cgroups;
+		System.debug('Exit execute : ' + scope);
+		update scope;
 	}
 	
 	global void finish(Database.BatchableContext BC) {
