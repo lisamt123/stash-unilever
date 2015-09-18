@@ -59,21 +59,52 @@ public without sharing class BET_FollowRequestTriggerHandlerCls {
 	*************************************************************/
 	private static void handleApprovedRequests(List<BET_Follow_Request__c> approvedRequests){
 		List<BET_Follow_Request__c> leadRequests = new List<BET_Follow_Request__c>();
+		List<BET_Follow_Request__c> notLeadRequests = new List<BET_Follow_Request__c>();
 		Set<Id> leadReguestRelatedBets = new Set<Id>();
+		Set<Id> notLeadReguestRelatedBets = new Set<Id>();
 		for(BET_Follow_Request__c request : approvedRequests){
 			if(request.Is_Lead_Request__c){
 				leadRequests.add(request);
 				leadReguestRelatedBets.add(request.Brand_Experience_Toolkit__c);
+			} else {
+				notLeadRequests.add(request);
+				notLeadReguestRelatedBets.add(request.Brand_Experience_Toolkit__c);
 			}
 		}
 		if(!leadRequests.isEmpty()){
 			updateBetsWithLeadProjects(leadRequests);
+		}
+		if(!notLeadRequests.isEmpty()){
+			createFollowProjectChatterFeeds(notLeadRequests,notLeadReguestRelatedBets);
 		}
 		if(!approvedRequests.isEmpty()){
 			approveAllRelatedMemberRequests(getIds(approvedRequests));
 		}
 		notifyIPMProjectLeads(approvedRequests,BET_LinkingService.FOLLOW_STATUS_APPROVED);
 		updateBetsWithLeadProjectsWhenThereIsNoLeadProjectOnBET(approvedRequests,leadReguestRelatedBets);
+	}
+
+	/************************************************************
+		Purpose: Method created chatter feeds when project is following bet
+		Parameters: List<BET_Follow_Request__c> notLeadRequests,Set<Id> notLeadReguestRelatedBets
+		Returns: -
+		Throws: -
+	*************************************************************/
+	private static void createFollowProjectChatterFeeds(List<BET_Follow_Request__c> notLeadRequests,Set<Id> notLeadReguestRelatedBets){
+		Map<Id,uw_Bet__c> betsMap = new Map<Id,uw_Bet__c>();
+		for(uw_Bet__c bet : [select id,name,Studio_Chatter_Group__c from uw_Bet__c where id in : notLeadReguestRelatedBets]){
+			betsMap.put(bet.id,bet);
+		}
+		List<FeedItem> feedToInsert = new List<FeedItem>();
+		for(BET_Follow_Request__c req : notLeadRequests) {
+			FeedItem f = new FeedItem();
+        	f.Body = 'Project ' + req.Project_Name__c + ' has linked to BET ' + betsMap.get(req.Brand_Experience_Toolkit__c).name;
+        	f.Type = 'TextPost';
+        	f.ParentId = betsMap.get(req.Brand_Experience_Toolkit__c).Studio_Chatter_Group__c;
+        	feedToInsert.add(f);
+    	}
+
+        insert feedToInsert;
 	}
 
 	/************************************************************

@@ -53,13 +53,11 @@ public without sharing class BET_LinkingServiceHelper {
 	public static IPM_BETWrapper getOtherFollowingProject(Id ProjectId, Id BetId){
 		System.debug('Entering getOtherFollowingProject : ' + ProjectId + ', ' + BetId);
 		IPM_BETWrapper wrapper = null;
-		Date maxTLD = Date.newInstance(1970,1,1);
+		Date minTLD = Date.newInstance(2070,1,1);
 		for(IPM_BETWrapper wrap : IPM_BETUpdateService.returnIPM(BetId)){
-			if(wrap.projectId != ProjectId){
-				if(wrap.targetLaunchDate != null && wrap.targetLaunchDate > maxTLD){
-					maxTLD = wrap.targetLaunchDate;
-					wrapper = wrap;
-				}
+			if(wrap.projectId != ProjectId && wrap.targetLaunchDate != null && wrap.targetLaunchDate < minTLD){
+				minTLD = wrap.targetLaunchDate;
+				wrapper = wrap;
 			}
 		}
 		System.debug('Exit getOtherFollowingProject : ' + wrapper);
@@ -91,10 +89,11 @@ public without sharing class BET_LinkingServiceHelper {
 		if(oldProject.pLId != null && oldProject.pLId == bet.ownerId){
 			bet.ownerId = project.pLId;
 		} else {
-			BET_EmailNotificationService.notifyBetOwnerThatProjectIsUnlinked(bet,oldProject); //US23
+			BET_EmailNotificationService.notifyBetOwnerThatProjectIsUnlinked(bet,oldProject,project); //US23
 		}
 		BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(bet,project); //US23
 		bet.IPM_Project__c = project.projectId;
+		bet = BET_BETService.updateBetFields(bet,project);
 		update bet;
 		System.debug('Exit setNewLeadProjectAndOwner : ' + bet);
 		return bet;
@@ -108,13 +107,22 @@ public without sharing class BET_LinkingServiceHelper {
 	*************************************************************/
 	public static void removeIPMProjectMembersFromBet(Id ProjectId, Id BetId,Id betOwner){
 		System.debug('Entering removeIPMProjectMembersFromBet : ' + ProjectId + ', ' + BetId);
-		List<BET_Member_Request__c> requests = [select id,Brand_Experience_Toolkit__c,UserId__c from BET_Member_Request__c where Project_Id__c =: ProjectId and Brand_Experience_Toolkit__c =: BetId];
+
+		Set<Id> otherProjectsUserIds = new Set<Id>();
+		for(BET_Member_Request__c orequest : [select id,Brand_Experience_Toolkit__c,UserId__c from BET_Member_Request__c where Status__c = 'Approved' and Project_Id__c !=: ProjectId and Brand_Experience_Toolkit__c =: BetId]){
+			otherProjectsUserIds.add(orequest.UserId__c);
+		}
+
+		List<BET_Member_Request__c> requests = [select id,Brand_Experience_Toolkit__c,UserId__c from BET_Member_Request__c where Status__c = 'Approved' and Project_Id__c =: ProjectId and Brand_Experience_Toolkit__c =: BetId];
 		Set<Id> userIds = new Set<Id>();
 		for(BET_Member_Request__c request : requests){
-			userIds.add(request.UserId__c);
+			if(!otherProjectsUserIds.contains(request.UserId__c)){
+				userIds.add(request.UserId__c);
+			}
 		}
+
 		List<uw_BET_Team_Member__c> teamMembers = [select id from uw_BET_Team_Member__c where BET__c =: betId and Team_Member__c =: userIds and Team_Member__c !=: betOwner];
-		System.debug('Exit removeIPMProjectMembersFromBet : ' + requests + ', '+teamMembers);
+		System.debug('Exit removeIPMProjectMembersFromBet : ' + teamMembers);
 		delete requests;
 		delete teamMembers;
 	}
@@ -144,8 +152,9 @@ public without sharing class BET_LinkingServiceHelper {
 		System.debug('Entering removeIPMProjectFollowRequestsFromBet');
 	}
 
+
 	/************************************************************
-		Purpose: Method removes bet member related to project Lead. This record does not have corresponding member request so it should be removed separately
+		Purpose: Method removes bet member related to project Lead. 
 		Parameters: Id oldBetOwner,uw_Bet__c bet
 		Returns: -
 		Throws: -
@@ -153,6 +162,25 @@ public without sharing class BET_LinkingServiceHelper {
 	public static void removeOldPLFromMembers(Id oldPL,uw_Bet__c bet){
 		System.debug('Entering removeOldPLFromMembers : ' + oldPL + ', ' + bet);
 		List<uw_BET_Team_Member__c> pLead = [select id from uw_BET_Team_Member__c where BET__c =: bet.id and Team_Member__c =: oldPL];
+		delete pLead;
+		System.debug('Entering removeOldPLFromMembers');
+	}
+
+	/************************************************************
+		Purpose: Method removes bet member related to project Lead.
+		Parameters: Id oldBetOwner,uw_Bet__c bet
+		Returns: -
+		Throws: -
+	*************************************************************/
+	public static void removeOldPLFromMembers(Id oldPL,uw_Bet__c bet,Id ProjectId){
+		System.debug('Entering removeOldPLFromMembers : ' + oldPL + ', ' + bet);
+
+		Set<Id> otherProjectsUserIds = new Set<Id>();
+		for(BET_Member_Request__c orequest : [select id,Brand_Experience_Toolkit__c,UserId__c from BET_Member_Request__c where Status__c = 'Approved' and Project_Id__c !=: ProjectId and Brand_Experience_Toolkit__c =: bet.id]){
+			otherProjectsUserIds.add(orequest.UserId__c);
+		}
+
+		List<uw_BET_Team_Member__c> pLead = [select id from uw_BET_Team_Member__c where BET__c =: bet.id and Team_Member__c =: oldPL and Team_Member__c not in : otherProjectsUserIds];
 		delete pLead;
 		System.debug('Entering removeOldPLFromMembers');
 	}

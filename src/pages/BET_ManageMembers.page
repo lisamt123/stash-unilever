@@ -65,7 +65,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
     <apex:tab label="{!$Label.BET_Browse_members}" name="browseMembers" id="browseMembersid">
      
-        <div style="{!IF(isBetOwnerOrManager,'','display:none')}">
+        <div>
         <div>
           <apex:outputText value="{!$Label.BET_Add_Internal_User}" styleClass="addMembersUserLabel"/>
         </div>
@@ -83,7 +83,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             </td>
             <td>
               <div style="padding-left:40px;">
-                <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addMember}" rendered="{!isBetOwnerOrManager}"
+                <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addMember}"
                                     styleClass="buttong2y" style="background: #e6007e; color:white;" />
               </div>
             </td>
@@ -100,7 +100,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
               </td>
               <td>
                 <div style="padding-left:5px;">
-                <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addExternalMember}" rendered="{!isBetOwnerOrManager}"
+                <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addExternalMember}"
                                     styleClass="buttong2y" style="background: #e6007e; color:white;"/> 
                 </div>
               </td>

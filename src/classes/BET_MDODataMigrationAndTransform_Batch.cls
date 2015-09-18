@@ -77,7 +77,9 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
 						bet.Brand_Position__c = getBrandPosition(bet.Product_Brand__c,bet.Product_Category__c);
 						System.debug('Step 9 : Retrived brand position : ' +  bet.Brand_Position__c);
 					}
-					if(bet.Brand_Position__c != null) break;
+					if(bet.Brand_Position__c != null){
+						break;
+					}
 				}
 			}
 			if(validateBet(bet)){
@@ -121,15 +123,9 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
 
 	global void logErrors(List<uw_Bet__c> betsForErrors){
 		for(uw_Bet__c betRecord : betsForErrors){
-			ExceptionLoggingHelper.createErrorLog(
-				UserInfo.getUserId(),
-				'BET_MDODataMigrationAndTransform_Batch',
-				'proceedWithDataTransormation',
+			ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_MDODataMigrationAndTransform_Batch','proceedWithDataTransormation',
 				'Invalid MDO matching for BET category : ' + betRecord.Sub_Category__c + ', ' + betRecord.Product_Category__c,
-				new BET_CustomBETException('Invalid MDO matching for BET : ' + betRecord),null,null,null,
-				(Integer)DateTime.now().getTime(),
-				'BET'
-			);
+				new BET_CustomBETException('Invalid MDO matching for BET : ' + betRecord),null,null,null,(Integer)DateTime.now().getTime(),'BET');
 		}
 	}
 	

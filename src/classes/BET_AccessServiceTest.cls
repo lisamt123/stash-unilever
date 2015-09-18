@@ -45,7 +45,8 @@ private class BET_AccessServiceTest {
 		insert bet;
 		BET_BETWrapper.MemberRequest mRequest = new BET_BETWrapper.MemberRequest();
 		mRequest.UserId = UserInfo.getUserId();
-		List<Id> ids = BET_AccessService.RequestAccess(new List<BET_BETWrapper.MemberRequest>{mRequest},bet.id,null);
+		IPM_BETWrapper project = new IPM_BETWrapper(BET_TestUtils.createIPMProject('TEST_PROJECT_NAME'));
+		List<Id> ids = BET_AccessService.RequestAccess(new List<BET_BETWrapper.MemberRequest>{mRequest},bet.id,project.projectId);
 		System.assertEquals(ids.size(),1);
 	}
 

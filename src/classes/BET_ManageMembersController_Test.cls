@@ -65,7 +65,7 @@ private class BET_ManageMembersController_Test {
     controller.betMemberRequest.External_User_Email__c = 'm.bluj@polsource.com';
     controller.addExternalMember();
 
-    rmembers = [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c=:testBET.id and Status__C = 'Approved'];
+    rmembers = [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c=:testBET.id];
     System.assertEquals(rmembers.size(),1);
   }
 

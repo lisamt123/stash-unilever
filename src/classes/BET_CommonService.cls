@@ -64,17 +64,14 @@ public without sharing class BET_CommonService {
     Returns: Boolean
     ******************************************************************************************/ 
 public static boolean isHubAdmin(){
- Id currentuser= UserInfo.getUserId();
- List<PermissionSet> ps=[select id,name from permissionset where id in (SELECT PermissionSetId FROM PermissionSetAssignment WHERE AssigneeId =: currentuser)];
-  if (ps!= null && ps.size() > 0)
-   {
-    for (PermissionSet permset: ps)
-     {
-      if(permset.name=='CB4L_HUB_Admin')
-      {
-       return true;
-      }
-     }
+    Id currentuser= UserInfo.getUserId();
+    List<PermissionSet> ps=[select id,name from permissionset where id in (SELECT PermissionSetId FROM PermissionSetAssignment WHERE AssigneeId =: currentuser)];
+    if (!ps.isEmpty()){
+        for (PermissionSet permset: ps){
+            if(permset.name == 'CB4L_HUB_Admin'){
+                return true;
+            }
+        }
    }
    return false;
 }
@@ -112,7 +109,7 @@ public static boolean isHubAdmin(){
     Parameters: String String
     Returns: Boolean
     ******************************************************************************************/  
-    private static Boolean isExistingPendingUser(String email, String betId){
+    /*private static Boolean isExistingPendingUser(String email, String betId){
         List<uw_BET_Team_Member__c> teamMemberList = [SELECT Id, Pending_Request__c, Email__c, Team_Member__c, Team_Member__r.Name, Name, Role__c, StudioEnabled__c, 
                                                 BETEnabled__c, IsOwner__c, Editing__c 
                                                 FROM uw_Bet_Team_Member__c 
@@ -124,7 +121,7 @@ public static boolean isHubAdmin(){
         }else{
             return false;
         }
-    }
+    }*/
 
     /*****************************************************************************************
     Purpose: Function to send email to owner of bet
@@ -192,7 +189,7 @@ public static boolean isHubAdmin(){
     Returns: uw_Bet_Team_Member__c
     Throws [Exceptions]: [optional]
     ******************************************************************************************/  
-    private static uw_Bet_Team_Member__c createBetTeamMember(Id userId, Id betId, String roleName, String accessName, Boolean isPending, String email) {        
+    /*private static uw_Bet_Team_Member__c createBetTeamMember(Id userId, Id betId, String roleName, String accessName, Boolean isPending, String email) {        
         uw_Bet_Team_Member__c teamMember = new uw_Bet_Team_Member__c();
         teamMember.Team_Member__c = userId;
         teamMember.BET__c = betId;
@@ -209,7 +206,7 @@ public static boolean isHubAdmin(){
         }       
         
         return teamMember;
-    }
+    }*/
 
     /*****************************************************************************************
     Purpose: Function to save request of access to the bet
@@ -226,7 +223,7 @@ public static boolean isHubAdmin(){
                                 OwnerId, Owner.Name, Owner.Email, Brand_Keyword_Search__c, Category_Keyword_Search__c, Owner_Keyword_Search__c,
                                 Region_Keyword_Search__c, Inoplan_Project_Keyword_Search__c FROM uw_BET__c WHERE Id = :betId ];
 
-        if(betList.size() > 0){
+        if(!betList.isEmpty()){
             uw_BET__c bet = betList[0];
             BET_Request_Access__c settings  = BET_Request_Access__c.getInstance();
             User owner;
@@ -234,15 +231,17 @@ public static boolean isHubAdmin(){
                 owner = [SELECT Id, Email, Name FROM User WHERE Id = :bet.OwnerId];
             }        
 
-            if(BET_CommonService.isExistingPendingUser(email, betId)){
-                 //commented out because of issue #88
-                //BET_CommonService.sendAlreadyPendingMail(betId, email, userId);
+            String status = BET_AccessService.HasUserAccess(userId,betId);
+
+            if(status == BET_AccessService.BET_ACCESS_PENDING){
                 return false;
-            }else{
-                try{                
-                    uw_Bet_Team_Member__c teamMember = BET_CommonService.createBetTeamMember(userId, betId, 'Member', 'Toolkit Experience (Toolkit only)', true, email);
-                    //commented out because of issue #88
-                    //BET_CommonService.sendApprovalMail(betId, email, userId);
+            } else {
+                try{
+                    BET_Member_Request__c request = new BET_Member_Request__c(Bet_owner__c = bet.ownerId,
+                            Brand_Experience_Toolkit__c = betId, UserId__c = userId,
+                            Role__c = BET_AccessService.MEMBER_ROLE,Project_Id__c = null,
+                            Status__c = BET_LinkingService.FOLLOW_STATUS_NEW,Do_Not_Notify_Bet__c = true);
+                    insert request;
                     if(settings.Send_Mail_To_Owner__c){
                         BET_CommonService.sendApprovalMailToOwner(bet, userId, settings);
                     }
@@ -251,6 +250,24 @@ public static boolean isHubAdmin(){
                     throw new BetException ('Problem occured while creating new member or sending mail',e);
                 }
             }
+
+            //if(BET_CommonService.isExistingPendingUser(email, betId)){
+                 //commented out because of issue #88
+                //BET_CommonService.sendAlreadyPendingMail(betId, email, userId);
+            //    return false;
+            //}else{
+            //    try{                
+            //        uw_Bet_Team_Member__c teamMember = BET_CommonService.createBetTeamMember(userId, betId, 'Member', 'Toolkit Experience (Toolkit only)', true, email);
+                    //commented out because of issue #88
+                    //BET_CommonService.sendApprovalMail(betId, email, userId);
+            //        if(settings.Send_Mail_To_Owner__c){
+             //           BET_CommonService.sendApprovalMailToOwner(bet, userId, settings);
+             //       }
+            //        return true;
+            //    }catch(Exception e){
+            //        throw new BetException ('Problem occured while creating new member or sending mail',e);
+            //    }
+            //}
         }else{
             throw new BetException ('No BET found1');
         }        

@@ -8,7 +8,7 @@ private class BET_EmailNotificationServiceTest {
 		insert bet;
 		IPM_Project__c oldProject = BET_TestUtils.createIPMProject(TEST_PROJECT_NAME);
 		IPM_BETWrapper project = new IPM_BETWrapper(oldProject);
-		BET_EmailNotificationService.notifyBetOwnerThatProjectIsUnlinked(bet,project);
+		BET_EmailNotificationService.notifyBetOwnerThatProjectIsUnlinked(bet,project,project);
 		System.assert(true);
 	}
 	
@@ -27,27 +27,19 @@ private class BET_EmailNotificationServiceTest {
 		System.assert(true);
 	}
 
-	@isTest static void notifyAllIPMProjectLeadersOfArchivedBetTest() {
+	@isTest static void notifyBetOwnerOfMultipleMemberRequestsFromIPMTest(){
 		uw_BET__c bet = BET_TestUtils.getTestBet();
-		IPM_Project__c project = BET_TestUtils.createIPMProject(TEST_PROJECT_NAME);
-		bet.IPM_Project__c = project.id;
 		insert bet;
-		project.IPM_Project_Leader__c = UserInfo.getUserId();
-		project.BET__c = bet.id;
-		update project;
-		BET_EmailNotificationService.notifyAllIPMProjectLeadersOfArchivedBet(new List<uw_Bet__c>{bet});
+		IPM_BETWrapper project = new IPM_BETWrapper(BET_TestUtils.createIPMProject(TEST_PROJECT_NAME));
+		BET_EmailNotificationService.notifyBetOwnerOfMultipleMemberRequestsFromIPM(bet.id, project.projectId);
 		System.assert(true);
 	}
 
-	@isTest static void notifyAllIPMProjectLeadersOfUnArchivedBetTest() {
+	@isTest static void notifyBetOwnerOfLeadProjectFollowRequestTest(){
 		uw_BET__c bet = BET_TestUtils.getTestBet();
-		IPM_Project__c project = BET_TestUtils.createIPMProject(TEST_PROJECT_NAME);
-		bet.IPM_Project__c = project.id;
 		insert bet;
-		project.IPM_Project_Leader__c = UserInfo.getUserId();
-		project.BET__c = bet.id;
-		update project;
-		BET_EmailNotificationService.notifyAllIPMProjectLeadersOfUnArchivedBet(new List<uw_Bet__c>{bet});
+		IPM_BETWrapper project = new IPM_BETWrapper(BET_TestUtils.createIPMProject(TEST_PROJECT_NAME));
+		BET_EmailNotificationService.notifyBetOwnerOfLeadProjectFollowRequest(bet,project);
 		System.assert(true);
 	}
 	

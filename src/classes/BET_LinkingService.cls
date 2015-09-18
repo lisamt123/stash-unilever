@@ -8,7 +8,7 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  03-08-2015  Initial
 *************************************************************************************/
-public with sharing class BET_LinkingService {
+public without sharing class BET_LinkingService {
 
 	public static final String FOLLOW_STATUS_NEW = 'New';
 	public static final String FOLLOW_STATUS_APPROVED = 'Approved';
@@ -29,6 +29,7 @@ public with sharing class BET_LinkingService {
 		BET_LinkingServiceHelper.validateParams(betRecords);
 		try{
 			updateBetRecord(betRecords.get(0),project);
+			BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(betRecords.get(0),project);
 		}catch(Exception e){
 			throw new BET_CustomBETException(Label.BET_SetAsLeadExceptionMessage,e);
 		}
@@ -71,7 +72,7 @@ public with sharing class BET_LinkingService {
 		System.debug('Entering Follow : ' + ProjectId + ', ' + BetId + ', ' + managersIds);
 		Set<Id> uniqueManagerIds = new Set<Id>(managersIds);
 		List<Id> managers = new List<Id>(uniqueManagerIds);
-		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c from uw_Bet__c where id =: BetId];
+		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c,Name from uw_Bet__c where id =: BetId];
 		IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(ProjectId);
 		BET_LinkingServiceHelper.validateFollowRequest(betRecords);
 		try{
@@ -81,6 +82,13 @@ public with sharing class BET_LinkingService {
 			if(shouldBeAutoApproved) {
 				followRequest.Status__c = FOLLOW_STATUS_APPROVED;
 				update followRequest;
+				if(followRequest.Is_Lead_Request__c){
+					BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(betRecords.get(0),project);
+				}
+			} else {
+				if(followRequest.Is_Lead_Request__c){
+					BET_EmailNotificationService.notifyBetOwnerOfLeadProjectFollowRequest(betRecords.get(0),project);
+				}
 			}
 		}catch(Exception e){
 			throw new BET_CustomBETException(Label.BET_FollowExceptionMessage,e);
@@ -196,7 +204,7 @@ public with sharing class BET_LinkingService {
 	*************************************************************/
 	public static void UnFollow(Id ProjectId, Id BetId){ //US 23
 		System.debug('Entering UnFollow : ' + ProjectId + ', ' + BetId);
-		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c,name from uw_Bet__c where id =: BetId];
+		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c,name,Launch_Date__c,Brand_Position__c,Product_Category__c,Category_Group__c,Final_Release_Due_Date__c,First_Release_Due_Date__c from uw_Bet__c where id =: BetId];
 		IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(ProjectId);
 		BET_LinkingServiceHelper.validateParams(betRecords);
 		Id betOwner = betRecords.get(0).ownerid;
@@ -217,7 +225,7 @@ public with sharing class BET_LinkingService {
 						BET_LinkingServiceHelper.removeOldBetOwnerFromMembers(oldBetOwner,betRecords.get(0));
 					}
 					if(betOwner != oldPL && oldPL != newPL){
-						BET_LinkingServiceHelper.removeOldPLFromMembers(oldPL,betRecords.get(0));
+						BET_LinkingServiceHelper.removeOldPLFromMembers(oldPL,betRecords.get(0),project.projectId);
 					}
 					if(betOwner != newPL){
 						System.debug('need to create approved member (manager) request for new PL');

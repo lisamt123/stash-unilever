@@ -11,14 +11,19 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 public without sharing class BET_BETHandlerCls {
 
   private static final String BET_STATUS_CHANGED = 'BET Status has been changed. ';
-  private static final String BET_LAUNCH_DATE_CHANGED = 'BET Target Launch Date has been changed. ';
+  private static final String BET_LAUNCH_DATE_CHANGED = 'Target Launch Date for this BET has been changed to ';
   private static final String BET_PROJECT_CHANGED = 'BET Lead IPM Project has been changed. ';
   private static final String BET_CATEGORY_GROUP_CHANGED = 'BET Category group has been changed. ';
   private static final String BET_CATEGORY_CHANGED = 'BET Category has been changed. ';
   private static final String BET_BRAND_POSITIONING_CHANGED = 'BET Brand Position has been changed. ';
   private static final String BET_BRAND_CHANGED = 'BET Brand has been changed. ';
   private static final String BET_DESCRIPTION_CHANGED = 'BET Description has been changed. ';
+  private static final String BET_ARCHIVED = ' has been archived. ';
+  private static final String BET_UNARCHIVED = ' has been unarchived ';
+  private static final String BET_TXT = 'BET ';
+  private static final String PROJECT_TXT = 'Project ';
   private static final String BET_TO = ' to ';
+  private static final String LEAD_PROJECT = ' is the lead project for BET ';
 
   private static Map<Id,String> projectsMap = new Map<Id,String>();
   private static Map<Id,String> categoryGroupsMap = new Map<Id,String>();
@@ -40,22 +45,33 @@ public without sharing class BET_BETHandlerCls {
     Returns: -
     Throws: -
   *************************************************************/
-  public static void archiveOrUnarchiveBet(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
-    List<uw_BET__c> archivedBets = new List<uw_BET__c>();
+  public static void unarchiveBet(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
     List<uw_BET__c> unArchivedBets = new List<uw_BET__c>();
     for(uw_BET__c bet : newBetList){
-      if(bet.Is_Archived__c && bet.Is_Archived__c != oldBetMap.get(bet.id).Is_Archived__c){
-        archivedBets.add(bet);
-      }
       if(!bet.Is_Archived__c && bet.Is_Archived__c != oldBetMap.get(bet.id).Is_Archived__c){
         unArchivedBets.add(bet);
       }
     }
-    if(!archivedBets.isEmpty()) {
-      archiveBETs(archivedBets);
-    }
     if(!unArchivedBets.isEmpty()){
       unArchiveBETs(unArchivedBets);
+    }
+  }
+
+    /************************************************************
+    Purpose: Method verifies if bet ws archive/unarchived and runs related logic
+    Parameters: List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap
+    Returns: -
+    Throws: -
+  *************************************************************/
+  public static void archiveBet(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
+    List<uw_BET__c> archivedBets = new List<uw_BET__c>();
+    for(uw_BET__c bet : newBetList){
+      if(bet.Is_Archived__c && bet.Is_Archived__c != oldBetMap.get(bet.id).Is_Archived__c){
+        archivedBets.add(bet);
+      }
+    }
+    if(!archivedBets.isEmpty()) {
+      archiveBETs(archivedBets);
     }
   }
 
@@ -67,7 +83,6 @@ public without sharing class BET_BETHandlerCls {
   *************************************************************/
   private static void archiveBETs(List<uw_BET__c> archivedBets){
     archiveUnarchiveChatterGroups(archivedBets,true);
-    //BET_EmailNotificationService.notifyAllIPMProjectLeadersOfArchivedBet(archivedBets);
   }
 
   /************************************************************
@@ -78,8 +93,6 @@ public without sharing class BET_BETHandlerCls {
   *************************************************************/
   private static void unArchiveBETs(List<uw_BET__c> unArchivedBets){
     archiveUnarchiveChatterGroups(unArchivedBets,false);
-    //BET_EmailNotificationService.notifyAllIPMProjectLeadersOfUnArchivedBet(unArchivedBets);
-    //BET_LinkingService.unlinkIPMsfromBets(unArchivedBets);
   }
 
   /************************************************************
@@ -224,11 +237,15 @@ public without sharing class BET_BETHandlerCls {
     if(oldRecord.Launch_Date__c != newRecord.Launch_Date__c){
       String oldDate = oldRecord.Launch_Date__c != null ? String.valueOf(oldRecord.Launch_Date__c).substring(0,10) : '';
       String newDate = newRecord.Launch_Date__c != null ? String.valueOf(newRecord.Launch_Date__c).substring(0,10) : '';
-      diffs.add(BET_LAUNCH_DATE_CHANGED+oldDate+BET_TO+newDate);
+      diffs.add(BET_LAUNCH_DATE_CHANGED+newDate);
     }
 
     if(oldRecord.IPM_Project__c != newRecord.IPM_Project__c){
-      diffs.add(BET_PROJECT_CHANGED+projectsMap.get(oldRecord.IPM_Project__c)+BET_TO+projectsMap.get(newRecord.IPM_Project__c));
+      if(newRecord.IPM_Project__c != null) {
+        diffs.add(PROJECT_TXT+projectsMap.get(newRecord.IPM_Project__c)+LEAD_PROJECT+newRecord.name);
+      } else {
+        diffs.add(BET_PROJECT_CHANGED+projectsMap.get(oldRecord.IPM_Project__c)+BET_TO+projectsMap.get(newRecord.IPM_Project__c));
+      }
     }
 
     if(oldRecord.Category_Group__c != newRecord.Category_Group__c){
@@ -250,6 +267,15 @@ public without sharing class BET_BETHandlerCls {
     if(oldRecord.Description__c != newRecord.Description__c){
       diffs.add(BET_DESCRIPTION_CHANGED+oldRecord.Description__c+BET_TO+newRecord.Description__c);
     }
+
+    if(oldRecord.Is_Archived__c != newRecord.Is_Archived__c){
+      if(newRecord.Is_Archived__c){
+        diffs.add(BET_TXT+newRecord.name+BET_ARCHIVED);
+      } else {
+        diffs.add(BET_TXT+newRecord.name+BET_UNARCHIVED);
+      }
+    }
+
     return diffs;
   }
 
