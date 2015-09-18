@@ -97,8 +97,9 @@ public with sharing class BET_ApproveProjectsComponentController {
 		for(BET_Follow_Request__c request : requests){
 			projectIds.add(request.Project_Id__c);
 		}
-		for(IPM_Project__c project : [select IPM_Target_Launch_Dates__c from IPM_Project__c where id in : projectIds]){
-			projectIdTLDMap.put(String.valueOf(project.id),project.IPM_Target_Launch_Dates__c);
+		for(String prId : projectIds){
+			IPM_BETWrapper project  = IPM_BETUpdateService.ipm_Wrapper((Id)prId);
+			projectIdTLDMap.put(prId,project.targetLaunchDate);
 		}
 		for(BET_Follow_Request__c request : requests){
 			result.add(new FollowRequestWrapper(request,projectIdTLDMap));
