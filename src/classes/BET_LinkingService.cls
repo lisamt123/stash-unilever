@@ -56,9 +56,9 @@ public without sharing class BET_LinkingService {
 		System.debug('projectWrapper ' + projectWrapper + ' , ' +bet);
 		bet.Launch_Date__c = projectWrapper.targetLaunchDate;
 		bet.IPM_Project__c = projectWrapper.projectId;
-		//bet.Category_Group__c = projectWrapper.categoryGroupName;
-		//bet.Product_Category__c = projectWrapper.categoryName;
-		//bet.Brand_Position__c = projectWrapper.brandPosition;
+		bet.Category_Group__c = projectWrapper.categoryGroupName;
+		bet.Product_Category__c = projectWrapper.categoryName;
+		bet.Brand_Position__c = projectWrapper.brandPosition;
 		update bet;
 	}
 
