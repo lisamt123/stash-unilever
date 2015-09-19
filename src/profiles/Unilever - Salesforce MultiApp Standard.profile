@@ -7012,6 +7012,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Override_Adapt_Report__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Override_Digital_Report__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Override_Trad_Report__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_PO_Report__c.AF_PO_Report_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7033,6 +7048,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_PO_Value_LC_2014__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Value_LC_Report__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

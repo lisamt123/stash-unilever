@@ -6980,6 +6980,21 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Override_Adapt_Report__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Override_Digital_Report__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Override_Trad_Report__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>AF_PO_Report__c.AF_PO_Report_Type__c</field>
         <readable>true</readable>
@@ -7002,6 +7017,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_PO_Value_LC_2014__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Value_LC_Report__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -23190,9 +23210,9 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>AF_PO_Report__c</object>
-        <viewAllRecords>false</viewAllRecords>
+        <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>

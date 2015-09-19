@@ -96,6 +96,7 @@
 <!-- Common_Style File Start -->
 <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
 <!-- Common_Style File End -->
+<!-- Only Allow Numbers and (,.+-) -->
  <script>  
  jQuery( function() {
     jQuery('.two-digits').keyup(function(){
@@ -121,8 +122,8 @@
     }
    });
 });
-
  </script> 
+<!-- Only Allow Numbers and (,.+-) End -->
 <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/>
 <script type="text/javascript">
 $.noConflict();
@@ -181,7 +182,7 @@ jQuery(document).ready(function(){
             </td>         
         </tr>
     </table>
-    <table>      
+    <table class="marginT20">      
         <tr class="tablerow">                               
            <td class="fisrtcell paddingR10">
            <span>€ </span>

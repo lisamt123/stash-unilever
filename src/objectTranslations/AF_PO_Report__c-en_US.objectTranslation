@@ -161,6 +161,18 @@
         <name>AF_PO_Number__c</name>
     </fields>
     <fields>
+        <label><!-- PO Override Adapt Report --></label>
+        <name>AF_PO_Override_Adapt_Report__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO Override Digital Report --></label>
+        <name>AF_PO_Override_Digital_Report__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO Override Trad Report --></label>
+        <name>AF_PO_Override_Trad_Report__c</name>
+    </fields>
+    <fields>
         <label><!-- PO Report Type --></label>
         <name>AF_PO_Report_Type__c</name>
     </fields>
@@ -179,6 +191,10 @@
     <fields>
         <label><!-- PO Value - LC --></label>
         <name>AF_PO_Value_LC_2014__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO Value LC Report --></label>
+        <name>AF_PO_Value_LC_Report__c</name>
     </fields>
     <fields>
         <label><!-- PO Value Total -LC --></label>

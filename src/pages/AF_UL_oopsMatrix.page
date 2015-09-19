@@ -1,7 +1,7 @@
 <apex:page standardController="AF_OOPS_Actual__c" extensions="AF_OopsActualStdCtrlExt,AF_BrandEstimateRemote,AF_OopEstimateRemote,AF_MatrixAgencySummary" showHeader="false">
-<apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
+<!--<apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>-->
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <!--Bootstrap_css File  start-->
       <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.css')}" type="text/css"/>
      <!--Bootstrap_css File End -->
@@ -11,7 +11,7 @@
     <apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>
     <!--<apex:includeScript value="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/js/jquery.colorbox-min.js')}"/>-->
     <!--<script type="text/javascript" src="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"></script>-->
-    <apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
+    <!--<apex:includeScript value="{!$Resource.ChartNewJs}"/>-->
       <!-- Add fancyBox -->
     <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.css?v=2.1.0')}" type="text/css" media="screen" />
     <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.pack.js?v=2.1.0')}"></script>
@@ -65,7 +65,22 @@
 {
   height:102%;
 }
-     </style> 
+     </style>
+<style>
+ @media print {
+*
+{
+   font-size:10px;
+}
+.chartLableCBPOlable
+{
+   font-size:10px !important;
+} 
+ 
+ 
+ }
+ 
+</style> 
       <script type="text/javascript">
             $('a.addfancy').fancybox({
               autoSize: false,
@@ -505,7 +520,7 @@
                                       </td> -->
                                       
                                       <td class="printIconCell">
-                                              <apex:image url="{!$Resource.print_icon}" width="40px" height="40px"  title="Please click to Print " onclick="PrintCurrentPage();" /> 
+                                              <apex:image url="{!$Resource.print_icon}" width="40px" height="40px"  title="Please click to Print " onclick="window.print();" /> 
                                       </td>
                                   </tr>
         </table>
@@ -590,7 +605,7 @@
       </td>
   
       <td style="margin-left: 20px;float: left;">
-              <apex:image url="{!$Resource.print_icon}" width="40px" height="40px"  onclick="PrintCurrentPage();" /> 
+              <apex:image url="{!$Resource.print_icon}" width="40px" height="40px"  onclick="window.print();" /> 
       </td>
   </tr>
   </table>
@@ -685,13 +700,37 @@ $('#iframe').load(function(){
    </script>
 <!-- Bootstrap modal window methods End--> 
 
+<!-- Bootstrap modal window loading_img methods Start-->
+<script> 
+    $(document).ready(function () {
+        $('#iframe').on('load', function () {
+         $('#loader_cont, .loading_img').show();
+            $('#loader_cont, .loading_img').delay(1000).hide(0);
+            //setTimeout("jQuery('#loader_cont, .loading_img').hide();",6000 );
+        });
+    }); 
+</script>
+<!-- Bootstrap modal window loading_img methods End-->
+
+
    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/matrixControls.js')}"></script>
    
    
     <!--Chart script -->
     <script>
-        window.onload = function() {
-            var myCrossBar = new Chart(document.getElementById("mycrosscanvas").getContext("2d")).Doughnut(DoughnutCrossData,crossopts);
+        window.onload = function() {console.log('onlod fn');
+            var urlChartCircles;
+            //alert('{!isAgencyFlag}');
+            if({!isAgencyFlag}){
+            urlChartCircles='/AgencyFees/resource/1435031136000/ChartNewJs';
+            }
+            else{
+            urlChartCircles='/resource/1435031136000/ChartNewJs';
+            }
+            $.getScript(urlChartCircles,function(){
+                var myCrossBar = new Chart(document.getElementById("mycrosscanvas").getContext("2d")).Doughnut(DoughnutCrossData,crossopts);
+            
+           });
         }
         var DoughnutCrossData = 
        [{
@@ -735,18 +774,6 @@ $('#iframe').load(function(){
 
 
     </script>
-    
-<!-- Bootstrap modal window loading_img methods Start-->
-<script> 
-    $(document).ready(function () {
-        $('#iframe').on('load', function () {
-         $('#loader_cont, .loading_img').show();
-            $('#loader_cont, .loading_img').delay(1000).hide(0);
-            //setTimeout("jQuery('#loader_cont, .loading_img').hide();",6000 );
-        });
-    }); 
-</script>
-<!-- Bootstrap modal window loading_img methods End-->
 </body>
 </div>
 </apex:page>
