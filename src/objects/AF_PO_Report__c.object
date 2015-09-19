@@ -510,6 +510,40 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_PO_Override_Adapt_Report__c</fullName>
+        <externalId>false</externalId>
+        <label>PO Override Adapt Report</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_PO_Override_Digital_Report__c</fullName>
+        <description>Used in reports</description>
+        <externalId>false</externalId>
+        <label>PO Override Digital Report</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_PO_Override_Trad_Report__c</fullName>
+        <externalId>false</externalId>
+        <label>PO Override Trad Report</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_PO_Report_Type__c</fullName>
         <externalId>true</externalId>
         <label>PO Report Type</label>
@@ -564,6 +598,19 @@
         <formula>AF_Estimate_Local__c *0.25</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>PO Value - LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_PO_Value_LC_Report__c</fullName>
+        <externalId>false</externalId>
+        <formula>AF_PO_Override_Adapt_Report__c +  AF_PO_Override_Digital_Report__c +  AF_PO_Override_Trad_Report__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PO Value LC Report</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>

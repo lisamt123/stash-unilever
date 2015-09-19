@@ -164,7 +164,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>OR( ISCHANGED( AF_Status_Q1__c) &amp;&amp; ISCHANGED( AF_Q1_Backup__c ) &amp;&amp; AF_Q1_Backup__c=false, ISCHANGED( AF_Status_Q2__c) &amp;&amp; ISCHANGED( AF_Q2_Backup__c ) &amp;&amp; AF_Q2_Backup__c=false, ISCHANGED( AF_Status_Q3__c) &amp;&amp; ISCHANGED( AF_Q3_Backup__c ) &amp;&amp; AF_Q3_Backup__c=false, ISCHANGED( AF_Status_Q4__c) &amp;&amp; ISCHANGED( AF_Q4_Backup__c ) &amp;&amp; AF_Q4_Backup__c=false )</formula>
+        <formula>OR( ISCHANGED(AF_Status_Q1__c) &amp;&amp; ISPICKVAL(AF_Status_Q1__c, &apos;Rejected - Enter Actuals&apos;), ISCHANGED(AF_Status_Q2__c) &amp;&amp; ISPICKVAL(AF_Status_Q2__c, &apos;Rejected - Enter Actuals&apos;), ISCHANGED(AF_Status_Q3__c) &amp;&amp; ISPICKVAL(AF_Status_Q3__c, &apos;Rejected - Enter Actuals&apos;), ISCHANGED(AF_Status_Q4__c) &amp;&amp; ISPICKVAL(AF_Status_Q4__c, &apos;Rejected - Enter Actuals&apos;) )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

@@ -136,18 +136,18 @@ Please select Quarter below:
 
  <!--<div style="font-size: 16px;font-weight: bold;margin-bottom:10px;margin-top:15px;"> {!Bonus_Measure}</div>-->
   <div class="fontSize16P">
- 
- <apex:pageblockTable value="{!QuartelyBonus}" var="QB" id="pbt" styleClass="wid100P">
- <apex:column headerValue="Bonus Measure" styleClass="wid115PX">
+  
+ <apex:pageblockTable value="{!QuartelyBonus}" var="QB" id="pbt" styleClass="wid100P tableSection">
+ <apex:column headerValue="Bonus Measure">
   <apex:outputText value="{!QB.Bonus_Threshold_Measure}"/>
  </apex:column>
- <apex:column headerValue="Country" styleClass="wid115PX">
+ <apex:column headerValue="Country">
   <apex:outputText value="{!QB.Countryname}"/>
   <apex:facet name="footer">
     <apex:outputText value="Total"/>
   </apex:facet>
  </apex:column>
- <apex:column headerValue="Bonusable Fee (€)" styleClass="wid50PX">
+ <apex:column headerValue="Bonusable Fee (€)">
     <apex:outputText value="{0,number,###,###,###}" rendered="{!If(AND(NOT(QB.bonusResObj.AF_Locked__c),QB.countryCount==1),'true',false)}">
           <apex:param value="{!QB.total_bonus_fees}"/>
        </apex:outputText>
@@ -165,17 +165,17 @@ Please select Quarter below:
      
    </apex:facet>
  </apex:column>
- <apex:column headerValue="Minimum (5%)" styleClass="wid50PX">
+ <apex:column headerValue="Minimum (5%)">
   <apex:outputText value="{!QB.Minimum_bonus}"/>
  </apex:column>
- <apex:column headerValue="Stretching (10%)" styleClass="wid50PX">
+ <apex:column headerValue="Stretching (10%)">
   <apex:outputText value="{!QB.Streching_bonus}"/>
  </apex:column>
- <apex:column headerValue="Outstanding (15%)" styleClass="wid50PX">
+ <apex:column headerValue="Outstanding (15%)">
   <apex:outputText value="{!QB.Outstanding_bonus}"/>
  </apex:column>
  
- <apex:column headerValue="Quant Result" rendered="{!IsEditable}" id="c1" styleClass="wid50PX">
+ <apex:column headerValue="Quant Result" rendered="{!IsEditable}" id="c1">
  <!--<apex:facet name="footer">
     <apex:outputText value="Total Bonus Value"/>
   </apex:facet>-->
@@ -191,7 +191,7 @@ Please select Quarter below:
   </apex:outputPanel>
  </apex:column>
  
- <apex:column headerValue="Bonus (%)" styleClass="wid50PX">
+ <apex:column headerValue="Bonus (%)">
  <apex:facet name="footer">
    <apex:outputText value="{0,number,###,###,###}" id="bonusper1">
     <apex:param value="{!sum_of_bonus_per}" id="bonusper"/>
@@ -202,7 +202,7 @@ Please select Quarter below:
   </apex:outputPanel>
  </apex:column>
  
- <apex:column headerValue="Bonus Value (€)" styleClass="wid50PX">
+ <apex:column headerValue="Bonus Value (€)">
  <apex:facet name="footer">
  <apex:outputText value="{0,number,###,###,###}" id="bonusval1">
           <apex:param value="{!sum_of_bonus_val}" id="bonusval"/>
@@ -214,7 +214,7 @@ Please select Quarter below:
   </apex:outputText>
   </apex:outputpanel>
  </apex:column>
- <apex:column headerValue="Comment" styleClass="wid50PX">
+ <apex:column headerValue="Comment">
     <apex:outputtext value="{!QB.bonusResObj.AF_Comment__c}" title="{!QB.bonusResObj.AF_Comment__c}"  rendered="{!AND(IsEditable,QB.bonusResObj.AF_Locked__c)}" styleClass="bonusOutputBox"/>
     <apex:inputfield value="{!QB.bonusResObj.AF_Comment__c}"  rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c))}" styleClass="bonusinputBox"/>
  </apex:column>
@@ -255,9 +255,10 @@ Please select Quarter below:
  <apex:outputPanel rendered="{!IsEditable}" id="buttons">
  <apex:outputPanel rendered="{!isNoRecord}" styleClass="floatR wid218PX">
  <div id="Savebutton">
- <apex:commandButton id="UpdateBonus"  action="{!UpdateBonus}" Value="Save" reRender="pbt,pmsg" styleClass="submit_btn1 savebutton" onClick="custFunc()" rendered="{!!IsLocked}"  status="status"/>
+ <apex:commandButton id="UpdateBonus"  action="{!UpdateBonus}" Value="Save" reRender="pbt,pmsg,buttons,Confirm" styleClass="submit_btn1 savebutton" onClick="custFunc()" rendered="{!!IsLocked}"  status="status"/>
  </div>
- <apex:commandButton id="Confirm" action="{!ConfirmBonus}" value="Submit" reRender="pbt,pmsg" styleClass="submit_btn2 confirmbutton" onClick="custFunc()" rendered="{!!IsLocked}" status="status" />
+ 
+ <apex:commandButton id="Confirm" action="{!ConfirmBonus}" value="Submit" reRender="pbt,pmsg" styleClass="submit_btn2 confirmbutton" onClick="custFunc()"  rendered="{!AND(NOT(IsLocked),NOT(displaySubmitButton),displaySubmitSave)}" status="status" />
 </apex:outputPanel>
 </apex:outputPanel>
 

@@ -4,7 +4,7 @@ public with sharing class AF_BonusMatrixSummary {
     public AF_Bonus_Results__c bonusResultObj{get;set;}
     public AF_Bonus_Summary__c bonusSummaryObj{get;set;}
     public Integer bonus {get;set;}//To get bonus 
-    public Integer bonusableFee{get;set;}//To get bonusableFee
+    public Decimal bonusableFee{get;set;}//To get bonusableFee
     public Integer totalfee{get;set;}//To get totalfee
     public Integer overallbonusPer{get;set;}//To display overallbonusPer
     public Integer qualPer{get;set;}//To display Qualitative bonus
@@ -18,6 +18,7 @@ public with sharing class AF_BonusMatrixSummary {
     public Integer totalquant_qual{get;set;}
     public Boolean IsReadyForPO{get;set;}
     public Boolean isCatFinance{get;set;}
+    public Boolean isAgencyFlag{get;set;}
    /** construtor **/
    
     public AF_BonusMatrixSummary(ApexPages.StandardController stdController){
@@ -27,7 +28,7 @@ public with sharing class AF_BonusMatrixSummary {
         BonusTarget=0;
         totalquant_qual=0;
         bonusSummaryObj= new AF_Bonus_Summary__c();
-        Integer overallBonus=0;
+        Decimal overallBonus=0;
         qualValue=0;
         quant=0;
         Set<Id> threSholdsSet = new Set<Id>();
@@ -38,6 +39,7 @@ public with sharing class AF_BonusMatrixSummary {
         quantPer=0;
         remainingAllowances=0;
         isCatFinance=false;
+        isAgencyFlag=false;
         User userObj = new User();
         userObj = [select Id,Contact.Account.Name, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];
         if(userObj.AF_Agency_Fees_User_Type__c=='Category Finance'){
@@ -45,6 +47,12 @@ public with sharing class AF_BonusMatrixSummary {
                 isCatFinance=true;
             
             }
+        if(userObj.AF_Agency_Fees_User_Type__c=='Agency'){
+          
+                isAgencyFlag=true;
+            
+            }
+        
          bonusSummaryObj=[SELECT AF_Status__c,AF_Agency__c,AF_Agency__r.Name,AF_Brand__c,AF_Brand__r.Name,AF_Fiscal_Year__c,AF_Bonus_Matrix_Value__c,AF_Is_Pilot_Model__c,
                             (SELECT AF_Bonus_Results__r.AF_Total_Remuneration__c,AF_Bonus_Results__r.AF_Status__c,AF_Bonus_Results__r.AF_Bonus_Value_Bm__c, AF_Bonus_Results__r.AF_Total_Bonus_Value__c 
                                 From Bonus_Matrix__r)
@@ -72,7 +80,8 @@ public with sharing class AF_BonusMatrixSummary {
                                                     WHERE AF_Bonus_Thresholds__c IN:ids AND recordType.Name='Bonus Annual']){
             if(bonusResultObj.AF_Total_Bonus_Value__c==null)
             bonusResultObj.AF_Total_Bonus_Value__c=0;
-            overallBonus+=Integer.valueOf(bonusResultObj.AF_Total_Bonus_Value__c);
+            overallBonus+=bonusResultObj.AF_Total_Bonus_Value__c;
+            system.debug('overallBonus..'+overallBonus);
             BonusTarget1=BonusTarget1+(bonusResultObj.AF_Total_Bonus_Value__c);
             
             if(bonusResultObj.AF_Qual_Bonus_Value__c==null)
@@ -86,7 +95,7 @@ public with sharing class AF_BonusMatrixSummary {
             
             if(bonusResultObj.AF_Bonusable_Fees__c==null)
             bonusResultObj.AF_Bonusable_Fees__c=0;
-            bonusableFee+=Integer.valueOf(bonusResultObj.AF_Bonusable_Fees__c);
+            bonusableFee+=bonusResultObj.AF_Bonusable_Fees__c;
             
             if(bonusResultObj.AF_Total_bonus_fees__c==null)
             bonusResultObj.AF_Total_bonus_fees__c=0;
@@ -126,6 +135,8 @@ public with sharing class AF_BonusMatrixSummary {
             if(bonusSummaryObj.AF_Is_Pilot_Model__c) 
                 {
                     overallbonusPer=Math.round((overallBonus*100)/bonusableFee);
+                    system.debug('before round....'+(overallBonus*100)/bonusableFee);
+                    system.debug('overallbonusPer....'+overallbonusPer);
                 }
             else
                 {
