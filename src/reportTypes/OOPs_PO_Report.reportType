@@ -347,7 +347,22 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>AF_PO_Override_Digital_Report__c</field>
+            <table>AF_PO_Report__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>AF_Previous_Quarter_Value_TL_OOPSEuro__c</field>
+            <table>AF_PO_Report__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AF_PO_Override_Adapt_Report__c</field>
+            <table>AF_PO_Report__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AF_PO_Override_Trad_Report__c</field>
             <table>AF_PO_Report__c</table>
         </columns>
         <masterLabel>PO Report</masterLabel>
