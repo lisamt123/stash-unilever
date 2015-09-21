@@ -133,7 +133,7 @@
 
   <div class="fontSize16P overflowA">
  
- <apex:pageblockTable value="{!QuartelyBonus}" styleClass="quartelyBonusGrid" var="QB" id="pbt" rowClasses="even,odd">
+ <apex:pageblockTable value="{!QuartelyBonus}" styleClass="quartelyBonusGrid tableSection" var="QB" id="pbt" rowClasses="even,odd">
  
   <apex:column headerValue="Bonus Measure" rendered="{!!AF_Pilot_Model}">
    <apex:outputText value="{!QB.bonusMeasureMatrix}"/>
@@ -227,7 +227,7 @@
  <apex:column headervalue="Qual Result" rendered="{!!AF_Pilot_Model}" styleClass="wid50P">
   <apex:outputpanel id="bonus3" >
  <apex:outputText value="{!QB.bonusResObj.AF_Qual__c}" rendered="{!AND(OR(IsEditable,isAgency),QB.bonusResObj.AF_Locked__c)}"/>
-  <apex:inputfield value="{!QB.bonusResObj.AF_Qual__c}"   id="txtqual1" onkeypress="return isNumberKey(event)" rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c))}" style="text-align: center;width:50px;">
+  <apex:inputfield value="{!QB.bonusResObj.AF_Qual__c}"   id="txtqual1" onkeypress="return isNumberKey(event)" rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c))}" >
   <div class="regTitlecont2" id="regTitle"></div>
  <apex:actionSupport event="onchange" action="{!Calculate_Qual}" reRender="bonus1,bonus3,totalbonusper,bonus2,bonus4,totals,totalbonus,bonus5,bonus6,bonus7,totalQualValue1,totalQualPer1,totalQualValue,totalQualPer,totalQuant_Qual_Val,totalQuant_Qual_Per" >
  

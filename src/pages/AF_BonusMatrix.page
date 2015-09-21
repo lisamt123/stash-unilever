@@ -679,11 +679,25 @@ $('#iframe_cont').load(function(){
     <!-- Matrix page code ends -->
     <!--Chart script -->
     <script>
-        window.onload = function() {
+    
+    window.onload = function() {console.log('onlod fn');
+            var urlChartCircles;
+            //alert('{!isAgencyFlag}');
+            if({!isAgencyFlag}){
+            urlChartCircles='/AgencyFees/resource/1435031136000/ChartNewJs';
+            }
+            else{
+            urlChartCircles='/resource/1435031136000/ChartNewJs';
+            }
+            $.getScript(urlChartCircles,function(){
             var myCrossBar = new Chart(document.getElementById("mycrosscanvas").getContext("2d")).Doughnut(DoughnutCrossData,crossopts);
-              var myCrossBar = new Chart(document.getElementById("mycrosscanvasQuant").getContext("2d")).Doughnut(DoughnutCrossData,crossoptsQuant);
-                var myCrossBar = new Chart(document.getElementById("mycrosscanvasQual").getContext("2d")).Doughnut(DoughnutCrossData,crossoptsQual);
+            var myCrossBar = new Chart(document.getElementById("mycrosscanvasQuant").getContext("2d")).Doughnut(DoughnutCrossData,crossoptsQuant);
+            var myCrossBar = new Chart(document.getElementById("mycrosscanvasQual").getContext("2d")).Doughnut(DoughnutCrossData,crossoptsQual);          
+           });
         }
+        
+        
+      
         var DoughnutCrossData = 
        [{
             value : 100,
