@@ -957,11 +957,11 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BET_DataFixReleaseDate</apexClass>
+        <apexClass>BET_DataFixReleaseDate_Batch</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>BET_DataFixReleaseDateTest</apexClass>
+        <apexClass>BET_DataFixReleaseDate_BatchTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
