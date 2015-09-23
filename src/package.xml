@@ -3470,11 +3470,6 @@
         <name>Letterhead</name>
     </types>
     <types>
-        <members>Agencies</members>
-        <members>Agency Fees Online</members>
-        <name>Network</name>
-    </types>
-    <types>
         <members>cp_Event__c.Approval_Request_Global</members>
         <members>cp_Event__c.Approval_Request_Local</members>
         <name>PostTemplate</name>
