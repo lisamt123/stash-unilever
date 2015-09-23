@@ -1,5 +1,5 @@
 @isTest
-private class BET_DataFixReleaseDateTest {
+private class BET_DataFixReleaseDate_BatchTest {
 	
 	@isTest static void processTest() {
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
