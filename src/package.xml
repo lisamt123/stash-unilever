@@ -3763,14 +3763,6 @@
         <name>Role</name>
     </types>
     <types>
-        <members>*</members>
-        <name>SharingCriteriaRule</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>SharingOwnerRule</name>
-    </types>
-    <types>
 		<members>BETApp</members>
 		<members>BETEditBetStyles</members>
 		<members>BETNewBetStyles</members>
