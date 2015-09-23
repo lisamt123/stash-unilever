@@ -1136,38 +1136,38 @@
         <name>CustomApplication</name>
     </types>
 	<types>
-		<members>IPM_Bosscard__c__c</members>
-		<members>IPM_Company_Card__c__c</members>
-		<members>IPM_CoreParameter__c__c</members>
-		<members>IPM_CoreParameter_Strategic_help_content__c__c</members>
-		<members>IPM_CorePara_helps_example__c__c</members>
-		<members>IPM_Country__c__c</members>
-		<members>IPM_Customer_Channel_Priority_Order__c__c</members>
-		<members>IPM_Document_Template__c__c</members>
-		<members>IPM_Financial__c__c</members>
-		<members>IPM_Financial_File__c__c</members>
-		<members>IPM_Financial_Year__c__c</members>
-		<members>IPM_Gate_CMI__c__c</members>
-		<members>IPM_Gate_CMI_KPI_Inputs__c__c</members>
+		<members>IPM_Bosscard__c</members>
+		<members>IPM_Company_Card__c</members>
+		<members>IPM_CoreParameter__c</members>
+		<members>IPM_CoreParameter_Strategic_help_content__c</members>
+		<members>IPM_CorePara_helps_example__c</members>
+		<members>IPM_Country__c</members>
+		<members>IPM_Customer_Channel_Priority_Order__c</members>
+		<members>IPM_Document_Template__c</members>
+		<members>IPM_Financial__c</members>
+		<members>IPM_Financial_File__c</members>
+		<members>IPM_Financial_Year__c</members>
+		<members>IPM_Gate_CMI__c</members>
+		<members>IPM_Gate_CMI_KPI_Inputs__c</members>
 		<members>IPM_Feedback__c</members>
-		<members>IPM_MCO_Short_Names__c__c</members>
-		<members>IPM_Market_Cluster_Short_Names__c__c</members>
-		<members>IPM_Milestone__c__c</members>
-		<members>IPM_OTIF_Status__c__c</members>
-		<members>IPM_POS_RQS_Mapping__c__c</members>
-		<members>IPM_Project__c__c</members>
-		<members>IPM_Project_Document__c__c</members>
-		<members>IPM_Project_Document_Section__c__c</members>
-		<members>IPM_Project_Document_Section_Content__c__c</members>
-		<members>IPM_Project_Resource__c__c</members>
-		<members>IPM_Project_Rollout__c__c</members>
-		<members>IPM_Project_Task__c__c</members>
-		<members>IPM_Project_Template__c__c</members>
-		<members>IPM_Questionnaire__c__c</members>
-		<members>IPM_Section__c__c</members>
-		<members>IPM_Task__c__c</members>
-		<members>IPM_User_Profile__c__c</members>
-		<members>IPM_CompanyUserAssociation__c__c</members>
+		<members>IPM_MCO_Short_Names__c</members>
+		<members>IPM_Market_Cluster_Short_Names__c</members>
+		<members>IPM_Milestone__c</members>
+		<members>IPM_OTIF_Status__c</members>
+		<members>IPM_POS_RQS_Mapping__c</members>
+		<members>IPM_Project__c</members>
+		<members>IPM_Project_Document__c</members>
+		<members>IPM_Project_Document_Section__c</members>
+		<members>IPM_Project_Document_Section_Content__c</members>
+		<members>IPM_Project_Resource__c</members>
+		<members>IPM_Project_Rollout__c</members>
+		<members>IPM_Project_Task__c</members>
+		<members>IPM_Project_Template__c</members>
+		<members>IPM_Questionnaire__c</members>
+		<members>IPM_Section__c</members>
+		<members>IPM_Task__c</members>
+		<members>IPM_User_Profile__c</members>
+		<members>IPM_CompanyUserAssociation__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
