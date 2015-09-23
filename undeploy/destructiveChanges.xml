@@ -1136,6 +1136,11 @@
         <name>CustomApplication</name>
     </types>
 	<types>
+        <members>IPM_Financial_Year__c.IPM_Financial_Year_FS</members>
+        <members>IPM_Financial__c.IPM_Financial_FS</members>
+        <name>FieldSet</name>
+    </types>	
+	<types>
 		<members>IPM_Bosscard__c</members>
 		<members>IPM_Company_Card__c</members>
 		<members>IPM_CoreParameter__c</members>
