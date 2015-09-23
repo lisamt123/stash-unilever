@@ -9,6 +9,7 @@ VERSION  AUTHOR                			DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  			17-07-2015  Initial
 1.1      piotr.czechusmki@gmail.com    	05-08-2015  Add instance methods
 *************************************************************************************/
+@isTest
 public class BET_TestUtils {
 
 	public static final String DIVISION_CAT_TYPE_NAME = 'TestCategory Sub Division 2';
@@ -292,21 +293,19 @@ public class BET_TestUtils {
 		Throws: -
 	*************************************************************/
     public static IPM_Project__c createIPMProject(String projectName, String extId, Id projectLead, Id deputyProjectLead){
-    	IPM_Project__c project = new IPM_Project__c(name=projectName,IPM_Project_Name__c=projectName);
+
+    	List<IPM_Project__c> projects = IPM_TestFactory_Helper.createOriginalProjectList(false,1);
+    	IPM_Project__c project = projects.get(0);
+    	project.name=projectName;
+    	project.IPM_Project_Name__c=projectName;
     	project.Project_External_ID__c 		= extId;
     	project.IPM_Project_Leader__c 		= projectLead;
     	project.Deputy_Project_Leader__c	= deputyProjectLead;
-    	project.IPM_Fast_Track_Project__c   = false;
-    	project.IPMProject_Span__c          = 'Global';
-    	project.IPM_Phase__c                = 'Ideas';
-		project.IPM_Complexity__c           = 'Full';
-		project.IPM_GateKeeping_Model__c    = 'GCLT & RCLT';
-		project.IPM_Market_Type__c          = 'Full';
-		project.IPM_Target_Launch_Dates__c  = System.today()+10;
-		project.IPM_IsCompleted__c          = true;
-		project.IPM_PM_Approach__c          = 'External';
-		project.IPM_Category_Group__c       =  createCategoryGroup().id;
+		project.IPM_Category_Group__c       = createCategoryGroup().id;
+		project.IPM_Category_Text__c        = project.IPM_Category_Group__c;
+		project.IPM_Brand_Positioning__c    = null;
     	insert project;
+
     	return project;
     }
 
