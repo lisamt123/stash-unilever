@@ -354,6 +354,7 @@
         <members>Core_SendToChatter_Test</members>
         <members>CustomChatterConfig</members>
         <members>EmailHandler</members>
+        <members>ExceptionLoggingHelper</members>
         <members>Exceptions</members>
         <members>ExceptionsTest</members>
         <members>FAUMilestoneCls</members>
@@ -2213,6 +2214,7 @@
         <members>DummyUser__c</members>
         <members>DuplicateRecordItem</members>
         <members>DuplicateRecordSet</members>
+		<members>Exception_Log__c</members>
         <members>Event</members>
         <members>Event_Member__c</members>
         <members>Event__c</members>
