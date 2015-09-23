@@ -3708,56 +3708,6 @@
         <name>ReportType</name>
     </types>
     <types>
-        <members>BBHPartnerUser</members>
-        <members>CEC_Global_Head</members>
-        <members>CEC_Manager_Baltics</members>
-        <members>CEC_Manager_Benelux</members>
-        <members>CEC_Manager_CEE</members>
-        <members>CEC_Manager_Cyprus</members>
-        <members>CEC_Manager_Czech_Republic</members>
-        <members>CEC_Manager_DACH</members>
-        <members>CEC_Manager_Europe</members>
-        <members>CEC_Manager_France</members>
-        <members>CEC_Manager_Greece</members>
-        <members>CEC_Manager_Hungary</members>
-        <members>CEC_Manager_India</members>
-        <members>CEC_Manager_Italy</members>
-        <members>CEC_Manager_Nordic</members>
-        <members>CEC_Manager_Poland</members>
-        <members>CEC_Manager_Portugal</members>
-        <members>CEC_Manager_South_Asia</members>
-        <members>CEC_Manager_Spain</members>
-        <members>CEC_Manager_UK</members>
-        <members>CEC_User_Baltics</members>
-        <members>CEC_User_Benelux</members>
-        <members>CEC_User_Cyprus</members>
-        <members>CEC_User_Czech_Republic</members>
-        <members>CEC_User_DACH</members>
-        <members>CEC_User_France</members>
-        <members>CEC_User_Greece</members>
-        <members>CEC_User_Hungary</members>
-        <members>CEC_User_India</members>
-        <members>CEC_User_Italy</members>
-        <members>CEC_User_Nordic</members>
-        <members>CEC_User_Poland</members>
-        <members>CEC_User_Portugal</members>
-        <members>CEC_User_Spain</members>
-        <members>CEC_User_UK</members>
-        <members>CognizantAgencyPartnerUser</members>
-        <members>DDBPartnerUser</members>
-        <members>JWTPartnerUser</members>
-        <members>LowePartnerUser</members>
-        <members>OgilvyPartnerUser</members>
-        <members>TMWUKPartnerUser</members>
-        <members>TO_Global_Head</members>
-        <members>TO_Manager_Europe</members>
-        <members>TO_Manager_France</members>
-        <members>TO_User_France</members>
-        <members>Unilever_Way</members>
-        <members>x72SunnyPartnerUser</members>
-        <name>Role</name>
-    </types>
-    <types>
 		<members>BETApp</members>
 		<members>BETEditBetStyles</members>
 		<members>BETNewBetStyles</members>
