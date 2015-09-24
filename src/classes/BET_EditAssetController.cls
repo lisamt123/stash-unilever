@@ -98,9 +98,30 @@ public with sharing class BET_EditAssetController {
         }  
 
         Boolean updateBet = false;  
+
         if(file.Sub_Function__c == 'Brand Development' && file.Status__c == 'Approved'){
             if( file.Studio_Asset_Type__c == 'Brand Experience Presentation'){
+
+
                 if(bet.Status__c != 'Final release' && bet.Status__c != 'First release'){
+
+                // IPM-BET US43
+                if(file.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){ // IPM-BET US43
+                    bet.FirstReleaseDate__c = date.today();
+
+                    Boolean keyVisualIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 
+                                                          where Studio_Asset_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_TYPE_CW
+                                                          and Media_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW
+                                                          and Status__c =: uw_CustomAssetUploadExtension.BET_ASSET_APPROVED
+                                                          and uw_bet__c =: file.uw_BET__c].isEmpty();
+                    if(keyVisualIsThere){
+                        bet.FinalReleaseDate__c = date.today();
+                        updateBet=true;
+                    }
+                }
+                // IPM-BET US43
+
+
                 /*T0-Begin*/
                 if(isVisualApproved()){
                              bet.Status__c = 'Final release';
@@ -118,11 +139,26 @@ public with sharing class BET_EditAssetController {
                /*T0-End*/                        
             }else if(file.Studio_Asset_Type__c == 'Creative Work'){
                 if(file.Media_Type__c == 'Key Visual' && bet.Status__c == 'First release'){
+
+
+                    // IPM-BET US43
+                    if(file.Media_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW && file.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){ // IPM-BET US43
+                        Boolean brandExperiencePresnetationIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 
+                                                              where Studio_Asset_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_TYPE_BEP
+                                                              and Status__c =: uw_CustomAssetUploadExtension.BET_ASSET_APPROVED
+                                                              and uw_bet__c =: file.uw_BET__c].isEmpty();
+                        if(brandExperiencePresnetationIsThere) {
+                            bet.FinalReleaseDate__c = date.today();
+                            updateBet = true;
+                        }
+                    }
+                    // IPM-BET US43
+
                     bet.Status__c = 'Final release';
                     updateBet = true;
                     message = 'Your BET is now in Final Release';
                 }
-             
+
             }
         }  
 
