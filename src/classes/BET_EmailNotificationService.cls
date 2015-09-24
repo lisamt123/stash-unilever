@@ -8,7 +8,7 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  28-08-2015  Initial
 *************************************************************************************/
-public with sharing class BET_EmailNotificationService {
+public without sharing class BET_EmailNotificationService {
 
 	private static final OrgWideEmailAddress owea = [select Id from OrgWideEmailAddress where displayname = 'CB4L'];
 
