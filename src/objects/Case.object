@@ -2109,32 +2109,24 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Benelux_Queue_Case</fullName>
+        <fullName>CEC_Benelux_queue</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
-        <columns>CONTACT.ACCOUNT</columns>
         <columns>CASES.SUBJECT</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>Brand__c</columns>
         <columns>CASES.STATUS</columns>
-        <columns>Language__c</columns>
         <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
+        <columns>Language__c</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
             <operation>notEqual</operation>
             <value>Closed,Closed as Duplicate</value>
         </filters>
-        <label>CEC Benelux Queue</label>
-        <language>en_US</language>
+        <label>CEC Benelux queue</label>
+        <language>nl_NL</language>
         <queue>CEC_Benelux_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_Benelux</role>
-            <role>CEC_Manager_Europe</role>
-            <role>CEC_User_Benelux</role>
-        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Czech_Republic_Queue_Case</fullName>
