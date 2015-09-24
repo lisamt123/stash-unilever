@@ -466,6 +466,7 @@
         <members>ipmRolloutPlansTableControllerTests</members>
         <members>ipm_myTaskList11_Test</members>
         <members>ipm_myTaskList2_Test</members>
+        <members>IPM_ProjectShare_Trigger_Test1</members>
         <name>ApexClass</name>
     </types>
     <types>
