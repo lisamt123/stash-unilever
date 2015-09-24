@@ -468,6 +468,8 @@
         <members>ipm_myTaskList2_Test</members>
         <members>IPM_ProjectShare_Trigger_Test1</members>
         <members>IPM_MyList_Test11</members>
+        <members>IPM_CreateTasks11</members>
+        <members>IPM_CreateTasks_Test1</members>
         <name>ApexClass</name>
     </types>
     <types>
