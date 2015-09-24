@@ -51,7 +51,8 @@
         <members>IPM_TaskList</members>
         <members>IPM_TaskStandardPage</members>
         <members>IpmProjectDocumentSectionHistory</members>
-		<members>ipmAddManageSections</members>
+		<members>createprojectsv</members>
+        <members>ipmAddManageSections</members>
         <members>ipmAddMilestoneWizard</members>
         <members>ipmAddTaskRevamp2</members>
         <members>ipmAddTasknew</members>
@@ -794,6 +795,11 @@
 		<members>IPM_Technical_Char_Limit</members>
 		<members>IPM_backto_intermediate</members>
 		<members>IPM_image</members>
+		<members>TASK_OBJ_NAME</members>
+		<members>MLST_OBJ_NAME</members>
+		<members>PD_OBJ_NAME</members>
+		<members>Project_Name_Contains_Brand_Name_Target_Launch_Date</members>
+		<members>PS_OBJ_NAME</members>
 		<name>CustomLabel</name>
 	</types>
 	<types>
