@@ -354,6 +354,7 @@
         <members>Core_SendToChatter_Test</members>
         <members>CustomChatterConfig</members>
         <members>EmailHandler</members>
+        <members>ExceptionLoggingHelper</members>
         <members>Exceptions</members>
         <members>ExceptionsTest</members>
         <members>FAUMilestoneCls</members>
@@ -2213,6 +2214,7 @@
         <members>DummyUser__c</members>
         <members>DuplicateRecordItem</members>
         <members>DuplicateRecordSet</members>
+		<members>Exception_Log__c</members>
         <members>Event</members>
         <members>Event_Member__c</members>
         <members>Event__c</members>
@@ -3468,11 +3470,6 @@
         <name>Letterhead</name>
     </types>
     <types>
-        <members>Agencies</members>
-        <members>Agency Fees Online</members>
-        <name>Network</name>
-    </types>
-    <types>
         <members>cp_Event__c.Approval_Request_Global</members>
         <members>cp_Event__c.Approval_Request_Local</members>
         <name>PostTemplate</name>
@@ -3709,64 +3706,6 @@
         <members>Win_POS_Upload_Stats</members>
         <members>win_POS_Download_Statistics</members>
         <name>ReportType</name>
-    </types>
-    <types>
-        <members>BBHPartnerUser</members>
-        <members>CEC_Global_Head</members>
-        <members>CEC_Manager_Baltics</members>
-        <members>CEC_Manager_Benelux</members>
-        <members>CEC_Manager_CEE</members>
-        <members>CEC_Manager_Cyprus</members>
-        <members>CEC_Manager_Czech_Republic</members>
-        <members>CEC_Manager_DACH</members>
-        <members>CEC_Manager_Europe</members>
-        <members>CEC_Manager_France</members>
-        <members>CEC_Manager_Greece</members>
-        <members>CEC_Manager_Hungary</members>
-        <members>CEC_Manager_India</members>
-        <members>CEC_Manager_Italy</members>
-        <members>CEC_Manager_Nordic</members>
-        <members>CEC_Manager_Poland</members>
-        <members>CEC_Manager_Portugal</members>
-        <members>CEC_Manager_South_Asia</members>
-        <members>CEC_Manager_Spain</members>
-        <members>CEC_Manager_UK</members>
-        <members>CEC_User_Baltics</members>
-        <members>CEC_User_Benelux</members>
-        <members>CEC_User_Cyprus</members>
-        <members>CEC_User_Czech_Republic</members>
-        <members>CEC_User_DACH</members>
-        <members>CEC_User_France</members>
-        <members>CEC_User_Greece</members>
-        <members>CEC_User_Hungary</members>
-        <members>CEC_User_India</members>
-        <members>CEC_User_Italy</members>
-        <members>CEC_User_Nordic</members>
-        <members>CEC_User_Poland</members>
-        <members>CEC_User_Portugal</members>
-        <members>CEC_User_Spain</members>
-        <members>CEC_User_UK</members>
-        <members>CognizantAgencyPartnerUser</members>
-        <members>DDBPartnerUser</members>
-        <members>JWTPartnerUser</members>
-        <members>LowePartnerUser</members>
-        <members>OgilvyPartnerUser</members>
-        <members>TMWUKPartnerUser</members>
-        <members>TO_Global_Head</members>
-        <members>TO_Manager_Europe</members>
-        <members>TO_Manager_France</members>
-        <members>TO_User_France</members>
-        <members>Unilever_Way</members>
-        <members>x72SunnyPartnerUser</members>
-        <name>Role</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>SharingCriteriaRule</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>SharingOwnerRule</name>
     </types>
     <types>
 		<members>BETApp</members>
