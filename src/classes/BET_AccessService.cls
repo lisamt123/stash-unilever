@@ -112,7 +112,7 @@ public without sharing class BET_AccessService {
 		List<Id> requestIds = new List<Id>();
 		Boolean isOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
 		try{
-			List<BET_Member_Request__c> mRequestsToBeCreated = new List<BET_Member_Request__c>();
+			List<BET_Member_Request__c> mRequestsToBeCreated = ssnew List<BET_Member_Request__c>();
 			uw_Bet__c bet = [select ownerId from uw_Bet__c where id=:betId];
 			for(BET_BETWrapper.MemberRequest request : memberRequests){
 				mRequestsToBeCreated.add(

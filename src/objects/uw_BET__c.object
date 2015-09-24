@@ -1279,6 +1279,30 @@ Expired - when the BET and its associated assets have expired.</inlineHelpText>
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Total_Actual_Assets__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Actual Assets</label>
+        <summarizedField>BET_ExpectedAssets__c.Actual__c</summarizedField>
+        <summaryForeignKey>BET_ExpectedAssets__c.Brand_Experience_Toolkit__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Expected_Assets__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Expected Assets</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Total_Number_of_Members__c</fullName>
         <description>Total Number of BET members.Updated by trigger,when a new member is added/deleted</description>
         <externalId>false</externalId>

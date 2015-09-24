@@ -32,6 +32,7 @@ global without sharing class BET_ManageMembersController {
     public Id selectedRequestId {get;set;}
     public Id selectedMemberId {get;set;}
     public Boolean isBetOwnerOrManager {get;set;}
+    public Boolean isBETOperationAdmin {get;set;}
 
     public String setErrorMessage{get;set;}
     public String setEmailAdd{get;set;}
@@ -52,6 +53,7 @@ global without sharing class BET_ManageMembersController {
         selectAll = false;
         requestsShouldBeAutoapproved = false;
         isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
+        isBETOperationAdmin = BET_CommonService.isBETOperationAdmin();
 
         if(isBetOwnerOrManager){
             requestsShouldBeAutoapproved = true;

@@ -510,6 +510,7 @@
             },
             successHandler: function(result) {
                 methodOneInJavascript(result.id);
+                
             },
             uploadHanlder: {
                 progress: function(loaded, total) {
@@ -610,6 +611,16 @@
             );
           }
         });
+
+
+        function toogleExpectedAssetsComponent(typeValue){
+          if(typeValue == 'Brand Experience Presentation'){
+            jQuery('#expectedAssetComp').show();
+          } else {
+            jQuery('#expectedAssetComp').hide();
+          }
+        }
+
       </script>
       <apex:form >
         <input id="parentId" type="hidden" name="parentId" value="{!parentId}" />
@@ -636,7 +647,7 @@
         <div id="fileAssetTypeArea" class="elementHidden">
           <apex:outputPanel >
             <div class="elem-label"><apex:outputLabel >Type</apex:outputLabel></div> 
-            <div class="elem"><apex:inputField value="{!file.Studio_Asset_Type__c}" id="fileAssetType"/></div>
+            <div class="elem"><apex:inputField value="{!file.Studio_Asset_Type__c}" id="fileAssetType" onchange="toogleExpectedAssetsComponent(this.value);"/></div>
           </apex:outputPanel>
           <div class="clear">&nbsp;</div>
         </div>       
@@ -661,6 +672,11 @@
             <div class="clear">&nbsp;</div>
           </apex:outputPanel>
         </div>
+
+        <div id="expectedAssetComp" style="position: absolute; top: 10px; left: 500px;display:none;">
+          <c:BET_ExpectedAssetsComponent betId="{!bet.id}" />
+        </div>
+
         <input id="resultFileId" type="hidden" name="resultFileId" value="{!file.Id}" />
         <br />        
         <p class="form-errors"></p> 
@@ -686,8 +702,10 @@
           </div>
         </div>
 
-        <apex:actionFunction action="{!saveFileAndConnect}" name="methodOneInJavascript" rerender="maincontainer">
-          <apex:param name="firstParam" assignTo="{!feedid}" value="" />
+        <apex:actionFunction id = "saveAndSaveExpected" action = "{!saveFileAndConnect}" 
+                             name = "methodOneInJavascript"
+                             oncomplete="saveExpAssetsOne();" reRender="maincontainer">
+          <apex:param name="firstParam" assignTo="{!feedid}" value = "" />
         </apex:actionFunction> 
 
         <apex:pageMessages />

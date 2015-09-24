@@ -541,6 +541,14 @@ Are you sure you wish to proceed?</value>
         <value>Archiving...</value>
     </labels>
     <labels>
+        <fullName>BET_AssetType</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_AssetType</shortDescription>
+        <value>Asset Type</value>
+    </labels>
+    <labels>
         <fullName>BET_BetBrandPositionMandatory</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -659,6 +667,14 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_Deny_selected</shortDescription>
         <value>Deny selected</value>
+    </labels>
+    <labels>
+        <fullName>BET_ExpectedAssets</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_ExpectedAssets</shortDescription>
+        <value>Expected Assets</value>
     </labels>
     <labels>
         <fullName>BET_External_Agency_User</fullName>

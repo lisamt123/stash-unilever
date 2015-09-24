@@ -57,6 +57,26 @@ public without sharing class BET_CommonService {
         }
         return false;
     }
+
+
+/*****************************************************************************************
+    Purpose: Returns true or false. Gives info that user has BET Operation Admin permission set.
+    Parameters: None
+    Returns: Boolean
+    ******************************************************************************************/ 
+public static boolean isBETOperationAdmin(){
+    Id currentuser= UserInfo.getUserId();
+    List<PermissionSet> permsets = [select id,name from permissionset where id in (SELECT PermissionSetId FROM PermissionSetAssignment WHERE AssigneeId =: currentuser)];
+    if (!permsets.isEmpty()){
+        for (PermissionSet permset: permsets){
+            if(permset.name == 'BET_Operation_Admin'){
+                return true;
+            }
+        }
+   }
+   return false;
+}
+
 /* T1-Begin*/
  /*****************************************************************************************
     Purpose: Returns true or false. Gives info that user has CB4L Hub admin permission set.
