@@ -10,6 +10,8 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 public without sharing class BET_AssetService {
 
+	private static final Set<String> excludedMediaType = new Set<String>{'BET Presentation'};
+
 	private BET_AssetService() {}
 
 	/************************************************************
@@ -60,7 +62,9 @@ public without sharing class BET_AssetService {
 		List<String> mediaTypes = new List<String>();
 		Schema.DescribeFieldResult fieldResult = uw_Asset__c.Media_Type__c.getDescribe();
    		for(Schema.PicklistEntry f : fieldResult.getPicklistValues()){
-      		mediaTypes.add(f.getValue());
+   			if(!excludedMediaType.contains(f.getValue())){
+      			mediaTypes.add(f.getValue());
+      		}
    		}    
    		System.debug('Exit getAvailableMediaTypes : ' + mediaTypes);
    		return mediaTypes;   
