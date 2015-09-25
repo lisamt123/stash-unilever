@@ -423,7 +423,11 @@ public with sharing class BET_SuggestMembersController {
             }
         }
 
-        insert betMembersToInsert;
+
+        if(!betMembersToInsert.isEmpty()){
+            insert betMembersToInsert;
+            IPM_BETUpdateService.updateBETMemberRequest(new Set<Id> {projectIdCtrl});
+        }
 
         System.debug('Exiting method addMembers method processes with success');
         if(callbackCtrl != null){
