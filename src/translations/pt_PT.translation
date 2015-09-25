@@ -493,6 +493,10 @@
         <name>CEC_ConsumerResultsDisplay</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_ConsumerResultsNoMatchTitle --></label>
+        <name>CEC_ConsumerResultsNoMatchTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Os resultados da sua pesquisa</label>
         <name>CEC_ConsumerResultsTitleDisplay</name>
     </customLabels>
@@ -659,6 +663,10 @@
     <customLabels>
         <label>Casos relacionados</label>
         <name>CEC_RelatedCases</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_SearchValidationError --></label>
+        <name>CEC_SearchValidationError</name>
     </customLabels>
     <customLabels>
         <label>Pesquisa</label>
@@ -3006,6 +3014,23 @@
         <sections>
             <label><!-- Process Instance Node --></label>
             <name>Process Instance Node</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- CEC Case Cluster Report --></description>
+        <label><!-- CEC Case Cluster Report --></label>
+        <name>CEC_Case_Cluster_Report</name>
+        <sections>
+            <label><!-- Case Market Mappings --></label>
+            <name>Case Market Mappings</name>
+        </sections>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
+        </sections>
+        <sections>
+            <label><!-- Unilever Geographies --></label>
+            <name>Unilever Geographies</name>
         </sections>
     </reportTypes>
     <reportTypes>

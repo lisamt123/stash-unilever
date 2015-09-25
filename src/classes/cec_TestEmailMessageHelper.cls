@@ -49,12 +49,13 @@ public class cec_TestEmailMessageHelper{
         c.Origin = 'Email';
         c.Status = 'New';
         c.Subject ='My PC is not working2';
-        c.Brand__c = 'Dove';
+        //c.Brand__c = 'Dove';
         c.Set_Assignment_Fields__c = true;
         c.Country__c = cmm.id;
         insert c;
         
-        case caseTest = [Select Brand__c, Case_Market__c from case Where Brand__c = 'Dove'];
+        /*case caseTest = [Select Brand__c, Case_Market__c from case Where Brand__c = 'Dove'];*/
+        case caseTest = [Select Case_Brand__c, Case_Market__c from case Where Case_Brand__c = :c.Case_Brand__c];
         System.assertEquals(cmm.Market__c, caseTest.Case_Market__c); 
         
         
@@ -107,12 +108,13 @@ public class cec_TestEmailMessageHelper{
         c.Origin = 'Email';
         c.Status = 'New';
         c.Subject ='My PC is not working2';
-        c.Brand__c = 'Dove';
+        //c.Brand__c = 'Dove';
         c.Set_Assignment_Fields__c = true;
         c.Country__c = cmm.id;
         insert c;
 
-        case caseTest = [Select Brand__c, Case_Market__c from case Where Brand__c = 'Dove'];
+        /*case caseTest = [Select Brand__c, Case_Market__c from case Where Brand__c = 'Dove'];*/
+        case caseTest = [Select Case_Brand__c, Case_Market__c from case Where Case_Brand__c = :c.Case_Brand__c];
         System.assertEquals(cmm.Market__c, caseTest.Case_Market__c);
 
         EmailMessage e =  new EmailMessage();
@@ -155,7 +157,7 @@ public class cec_TestEmailMessageHelper{
         c.Origin                   = 'Email India';
         c.Status                   = 'New';
         c.Subject                  = 'My PC is not working2';
-        c.Brand__c                 = 'Dove';
+        //c.Brand__c                 = 'Dove';
         c.Set_Assignment_Fields__c = true;
         c.Country__c               = cmmRec.id;
         insert c;

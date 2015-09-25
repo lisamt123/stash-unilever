@@ -47,6 +47,10 @@
         <relationshipLabel><!-- Cases --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Case Brand --></label>
+        <name>Case_Brand__c</name>
+    </fields>
+    <fields>
         <label><!-- Case Market Mapping Country Id --></label>
         <name>Case_Market_Mapping_Country_Id__c</name>
     </fields>
@@ -844,6 +848,10 @@
         <sections>
             <label><!-- Additional Issue Information --></label>
             <section>Additional Issue Information</section>
+        </sections>
+        <sections>
+            <label><!-- Attachments --></label>
+            <section>Attachments</section>
         </sections>
         <sections>
             <label><!-- Issue Information --></label>

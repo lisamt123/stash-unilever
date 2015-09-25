@@ -1249,6 +1249,17 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Latest_Case_Number__c</fullName>
+        <description>CEC : To store the latest case Number of the Account</description>
+        <externalId>false</externalId>
+        <label>Latest Case Number</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Latest_Case_Product_Code__c</fullName>
         <description>cec_Latest Primary Case&apos;s product code</description>
         <externalId>false</externalId>
@@ -1543,6 +1554,17 @@
     <fields>
         <fullName>Phone</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+    </fields>
+    <fields>
+        <fullName>Phone_No_Special_Char__c</fullName>
+        <description>CEC : Field which removes all the special characters(including whitespace) for the &apos;Phone&apos; field.</description>
+        <externalId>false</externalId>
+        <label>Phone No Special Char</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Preferred_Channel__c</fullName>

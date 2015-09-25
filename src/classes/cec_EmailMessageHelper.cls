@@ -74,7 +74,7 @@ Map<String, cec_Case_Brand_Mapping__c> incomingEmailAddresses = new Map<String, 
 		if (em.Incoming) {
 
 			Boolean caseAssociated=false;		
-			Case caseObj = [SELECT Brand__c, Origin, CaseNumber FROM Case WHERE ID =: em.parentId];
+			Case caseObj = [SELECT Case_Brand__c, Origin, CaseNumber FROM Case WHERE ID =: em.parentId];
 			String caseNumber = caseObj.CaseNumber;
 			// Get all the email address in TO, CC and BCC section and consolidate it in a String
 			String allEmailStr = '';
@@ -102,9 +102,9 @@ Map<String, cec_Case_Brand_Mapping__c> incomingEmailAddresses = new Map<String, 
 						c.Set_Assignment_Fields__c = true;
 						c.Country__c=cbm.Country__c;
 						c.Case_Brand_Mapping__c = cbm.Id;
-						if(caseObj.Brand__c == null){
+						/*if(caseObj.Brand__c == null){
 							c.Brand__c = cbm.Brand__c;
-						}
+						}*/
 						c.Product_Skill__c=cbm.skill__c;
 						c.CMMFlag__C = TRUE;
 						System.debug('here is the case: ' + c);

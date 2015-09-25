@@ -29,5 +29,17 @@ public class CEC_Util {
                 Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail});
             }
         }
-    }    
+    } 
+
+    //Method to remove special characters in the String.
+    public static String removeSpecialChar(String inputStr) {
+        String finalStr;
+        if(String.isNotBlank(inputStr)) {
+            finalStr = inputStr.replace(' ', '');
+            finalStr = finalStr.replace('.', '');
+            finalStr = finalStr.replace('-', '');
+            finalStr = finalStr.replace('+', '');
+        }
+        return finalStr;
+    }   
 }

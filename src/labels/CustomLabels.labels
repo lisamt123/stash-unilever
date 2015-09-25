@@ -769,6 +769,14 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Results</value>
     </labels>
     <labels>
+        <fullName>CEC_ConsumerResultsNoMatchTitle</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ConsumerResultsNoMatchTitle</shortDescription>
+        <value>No Match Found</value>
+    </labels>
+    <labels>
         <fullName>CEC_ConsumerResultsTitleDisplay</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
@@ -1098,6 +1106,14 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <protected>false</protected>
         <shortDescription>CEC_RelatedCases</shortDescription>
         <value>Related Cases</value>
+    </labels>
+    <labels>
+        <fullName>CEC_SearchValidationError</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SearchValidationError</shortDescription>
+        <value>Validation Error : Please fill at least one field in the search form</value>
     </labels>
     <labels>
         <fullName>CEC_Search_Button</fullName>
