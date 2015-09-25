@@ -24,7 +24,7 @@ public with sharing class CEC_AlertActionHelperTest {
         mdm_Product_Category__c pCategory = new mdm_Product_Category__c(name='ProductCategory', L0_Product_Category__c='Foods Category');
         insert pCategory;
 
-        mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product1', brand__c= 'Dove1', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo1', Consumer_Product_Descriptor_no_size__c ='Dove',Global_CPG_Code__c = pCategory.id);
+        mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product1', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo1', brand__c= 'Dove1', Consumer_Product_Descriptor_no_size__c ='Dove',Global_CPG_Code__c = pCategory.id);
         insert productObj;          
 
         mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L5_Desc__c = 'L4 Desc');
@@ -86,7 +86,7 @@ public with sharing class CEC_AlertActionHelperTest {
         mdm_Product_Category__c pCategory = new mdm_Product_Category__c(name='ProductCategory', L0_Product_Category__c='Foods Category');
         insert pCategory;
 
-        mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product1', brand__c= 'Dove1', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo1', Consumer_Product_Descriptor_no_size__c ='Dove',Global_CPG_Code__c = pCategory.id);
+        mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product1', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo1', brand__c= 'Dove1', Consumer_Product_Descriptor_no_size__c ='Dove',Global_CPG_Code__c = pCategory.id);
         insert productObj;          
 
         mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L5_Desc__c = 'L4 Desc');

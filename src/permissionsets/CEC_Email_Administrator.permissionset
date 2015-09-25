@@ -7235,6 +7235,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Latest_Case_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Latest_Case_Product_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7301,6 +7306,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Phone</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Phone_No_Special_Char__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8846,6 +8856,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Case_Brand_Mapping__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Case_Brand__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

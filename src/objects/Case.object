@@ -267,6 +267,17 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Case_Brand__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(CEC_Product__c != null,  CEC_Product__r.Brand__c,  Case_Brand_Mapping__r.Brand__c)</formula>
+        <label>Case Brand</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Case_Market_Mapping_Country_Id__c</fullName>
         <description>Case Market Mapping Country (Unilever Geography Record Id)</description>
         <externalId>false</externalId>
@@ -3659,6 +3670,7 @@ clonedCaseRecord.ContactId=caseRecord.ContactId;
 clonedCaseRecord.Description=caseRecord.Description;
 clonedCaseRecord.Priority=caseRecord.Priority;
 clonedCaseRecord.Subject=caseRecord.Subject;
+clonedCaseRecord.Status=&apos;In Progress&apos;;
 clonedCaseRecord.SuppliedCompany=caseRecord.SuppliedCompany;
 clonedCaseRecord.SuppliedEmail=caseRecord.SuppliedEmail;
 clonedCaseRecord.SuppliedName=caseRecord.SuppliedName;
@@ -3790,7 +3802,8 @@ IF(Case.Case_Market_Mapping_Country__c=&apos;Sri Lanka&apos;,$Setup.cec_Org_Sett
 
 try{ 
 var caseObj = new sforce.SObject(&apos;Case&apos;); 
-caseObj.Origin= &apos;Phone&apos;; 
+caseObj.Origin= &apos;Phone&apos;;
+caseObj.Status = &apos;In Progress&apos;; 
 
 var userResult=sforce.connection.query(&quot;SELECT id FROM User WHERE Id = &apos;&quot; + window.UserContext.userId + &quot;&apos;&quot;); 
 var userRecord=userResult.getArray(&quot;records&quot;); 

@@ -256,17 +256,15 @@ public class CEC_CaseTriggerHelper{
     public void updateProductAndReasonCode(Map<Id, Case> newCaseMap){
         if((newCaseMap.values()).size()>0){
         Map<String,Case> accMaps=new map<String,Case>();
-        for(Case cases:newCaseMap.values()){
-            if (cases.ParentId == null) {
-                
-                accMaps.put(cases.AccountId,cases);
-            }
+        for(Case cases:newCaseMap.values()){            
+            accMaps.put(cases.AccountId,cases);
         }
         if (accMaps.keySet().size() > 0) {
             List<Account> accList=[select id from Account where id in: accMaps.keyset()];
             for(Account acc:accList){
                 acc.Latest_Case_Product_Code__c=(accMaps.get(acc.Id)).Product_Code__c;
                 acc.Latest_Case_Reason_Code__c=accMaps.get(acc.Id).CEC_Reason_Code__c;
+                acc.Latest_Case_Number__c=accMaps.get(acc.Id).CaseNumber;
             }
             update accList;
         }

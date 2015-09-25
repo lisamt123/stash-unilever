@@ -269,9 +269,9 @@ public without sharing class CEC_AlertActionHelper {
                 for(EmailTemplate et:emailTemplateList){
                     emailTemplateMap.put(et.DeveloperName, et);
                 }
-                /*********** change start -> 03-Sept-15 Support Team changes **********/ 
+               /*********** change start -> 03-Sept-15 Support Team changes **********/ 
                 
-                // Get alert tracker case and subject list map        
+                // Get alert tracker case string map        
                 Map<Id,List<String>> alertTrackerCaseMap = getAlertTrackerCaseMap(alertTrackerIds);
                 
                 /*********** change end -> 03-Sept-15 Support Team changes **********/ 
@@ -308,6 +308,7 @@ public without sharing class CEC_AlertActionHelper {
                     additionalSubjectInfo += '-' + latestCaseCountry;
                 }
                 */
+                
                 cec_Alert_Tracker__c aTracker;
                 
                 // Iterate through all alert actions
@@ -347,14 +348,15 @@ public without sharing class CEC_AlertActionHelper {
                         plainBody = plainBody.replace('{!cec_Alert_Tracker__c.Alert_Threshold__c}',String.valueOf(aTracker.Alert_Threshold__c));
                         plainBody = plainBody.replace('{!cec_Alert_Tracker__c.Current_Threshold__c}',String.valueOf(aTracker.Current_Threshold__c));
                         
-                        /*********** change start -> 03-Sept-15 Support Team changes **********/ 
+                    /*********** change start -> 03-Sept-15 Support Team changes **********/ 
                         plainBody = plainBody.replace('{!cec_Alert_Tracker__c.caseList}',alertTrackerCaseMap.get(atId).get(1));
                         
                         // Set email text body
                         //mail.setSubject(eTemplate.Subject + additionalSubjectInfo);
                         mail.setSubject(eTemplate.Subject + alertTrackerCaseMap.get(atId).get(0));
                         
-                       /*********** change end -> 03-Sept-15 Support Team changes **********/ 
+                        
+                    /*********** change end -> 03-Sept-15 Support Team changes **********/ 
                         mail.setPlainTextBody(plainBody);
                         
                         mails.add(mail);
@@ -383,6 +385,7 @@ public without sharing class CEC_AlertActionHelper {
         /**
         This method returns map for Alert tracker and it's Case numbers
     */
+    @TestVisible
     private Map<Id,List<String>> getAlertTrackerCaseMap(Set<Id> alertTrackerIds){
     
         // Get all alert tracker items associated with the alert trackers
@@ -394,7 +397,7 @@ public without sharing class CEC_AlertActionHelper {
             caseIdList.add(atItem.Case_Id__c);          
         }
 
-        Map<Id,Case> caseMap = new Map<Id,Case>([SELECT Product_Code__c,CEC_Reason_Code__c,CaseNumber,CreatedDate,Description, Store__r.Name, Store_Location__c, Date_of_Manufacture__c, Date_of_Manufacture_str__c, Purchase_Date__c, Brand__c, Country_Name__c, L2_Product_Category__c, Production_Code__c FROM Case WHERE ID IN :caseIdList]);
+        Map<Id,Case> caseMap = new Map<Id,Case>([SELECT Product_Code__c,CEC_Reason_Code__c,CaseNumber,CreatedDate,Description, Store__r.Name, Store_Location__c, Date_of_Manufacture__c, Date_of_Manufacture_str__c, Purchase_Date__c, Case_Brand__c, Country_Name__c, L2_Product_Category__c, Production_Code__c FROM Case WHERE ID IN :caseIdList]);
         
         // Construct a map of alert tracker id and case numbers string (all cases belong to the alert tracker)
         //Map<Id,String> alertTrackerCaseMap = new Map<Id,String>();
@@ -418,17 +421,14 @@ public without sharing class CEC_AlertActionHelper {
         
         for(Id alertTrackerId:alertTrackerMap.keyset()){
         caseStr = '';
-        
         /*********** change start -> 03-Sept-15 Support Team changes **********/ 
         subjectStr = '';
         /*********** change end -> 03-Sept-15 Support Team changes **********/ 
         
         caseIndex = 0;
-        
         /*********** change start -> 03-Sept-15 Support Team changes **********/ 
         isSubjectInfoSet = false;
         /*********** change end -> 03-Sept-15 Support Team changes **********/ 
-        
         
         for(cec_Alert_Tracker_Item__c AlertTrackerItem:alertTrackerMap.get(alertTrackerId))
         {
@@ -440,37 +440,35 @@ public without sharing class CEC_AlertActionHelper {
 
             // Collect the required details to set the subject of the email alert to be sent. This has to be from the latest case and since the alertTrackerItemList is sorted by the last modified date so the case linked to the first alertTrackerItem would be the latest case.
             
-            
             /*********** change start -> 03-Sept-15 Support Team changes **********/ 
             if(!isSubjectInfoSet) {
                 //latestCaseBrand = caseObj.Brand__c;
+               // latestCaseBrand = caseObj.Case_Brand__c;
                 //latestCaseCountry = caseObj.Country_Name__c;
                 //latestL2ProdCategory = caseObj.L2_Product_Category__c;
                 
                 // constructing the subject for email based on case associated with alertracker item.
-                subjectStr = ' ' + caseObj.L2_Product_Category__c + '-' + caseObj.Brand__c + '-' + caseObj.Country_Name__c;
+                subjectStr = ' ' + caseObj.L2_Product_Category__c + '-' + caseObj.Case_Brand__c + '-' + caseObj.Country_Name__c;
                 
                 isSubjectInfoSet = true;
             }
             
-             /*********** change end -> 03-Sept-15 Support Team changes **********/ 
+            /*********** change end -> 03-Sept-15 Support Team changes **********/ 
             
         }
         
-        
         /*********** change start -> 03-Sept-15 Support Team changes **********/ 
-        
-         //alertTrackerCaseMap.put(alertTrackerId, caseStr);
+            //alertTrackerCaseMap.put(alertTrackerId, caseStr);
             /*  Map for alert tracker ids and its corresponding list of subject and case description
             list[0] will contain email subject
             list[1] will contain email body contents
             */
             alertTrackerCaseMap.put(alertTrackerId, new List<String>{subjectStr,caseStr});
-            
-         /*********** change end -> 03-Sept-15 Support Team changes **********/ 
+                
+        /*********** change end -> 03-Sept-15 Support Team changes **********/ 
                 
         }
-         System.debug('~~~alertTrackerCaseMap' + alertTrackerCaseMap);
+        System.debug('~~~alertTrackerCaseMap' + alertTrackerCaseMap);
         return alertTrackerCaseMap;
     }
 }
