@@ -101,6 +101,11 @@ public class IPM_BETUpdateService{
     public static void updateIPM(Id BETId, BET_BETWrapper BET, list<string> updatedFields, id userId){
     
     }
+
+    public static void updateBETMemberRequest(Set<Id> projects){
+
+    }
+    
     public class IPM_CustomException extends Exception{
           
     }
