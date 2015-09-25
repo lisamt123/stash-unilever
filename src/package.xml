@@ -976,6 +976,9 @@
 		<members>BET_AssetHandlerClsTest</members>
 		<members>BET_AssetService</members>
 		<members>BET_AssetServiceTest</members>
+		<members>BET_Team_MemberHandlerClsHelper</members>
+		<members>BET_Team_MemberHandlerClsHelperTest</members>
+		<members>BET_FollowRequestTriggerHandlerClsHelper</members>
         <name>ApexClass</name>
     </types>
     <types>
