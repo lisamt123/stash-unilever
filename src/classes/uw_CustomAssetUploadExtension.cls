@@ -44,6 +44,7 @@ public with sharing class uw_CustomAssetUploadExtension {
     public String message{get;set;}
     public String errorMessage{get; protected set;}    
     public Boolean hasModifyAccess {get; protected set;}
+    public Boolean isBetOwnerOrManager {get;set;}
 
     private final SObject parent;
     private String feedid = '';    
@@ -83,6 +84,7 @@ public with sharing class uw_CustomAssetUploadExtension {
                     System.debug('bet[0] ' + bet);
                     file.uw_BET__c = bet.Id;
                     displayForm = true;
+                    isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(file.uw_BET__c, UserInfo.getUserId());
                     pepareForm();
                 }
             }else{

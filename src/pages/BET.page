@@ -53,7 +53,8 @@
             },
             helpLink: '{!helpLink}',
             BETTemplateLink: '{!BETTemplateLink}',
-            environment: 'SF'
+            environment: 'SF',
+            betOperationAdmin : {!betOperationAdmin}
         };
         var appConfig = angular.module('appConfig', []).constant('sfConfig', sfConfig);
     </script>

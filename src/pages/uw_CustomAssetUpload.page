@@ -614,7 +614,7 @@
 
 
         function toogleExpectedAssetsComponent(typeValue){
-          if(typeValue == 'Brand Experience Presentation'){
+          if(typeValue == 'Approved'){
             jQuery('#expectedAssetComp').show();
           } else {
             jQuery('#expectedAssetComp').hide();
@@ -647,7 +647,7 @@
         <div id="fileAssetTypeArea" class="elementHidden">
           <apex:outputPanel >
             <div class="elem-label"><apex:outputLabel >Type</apex:outputLabel></div> 
-            <div class="elem"><apex:inputField value="{!file.Studio_Asset_Type__c}" id="fileAssetType" onchange="toogleExpectedAssetsComponent(this.value);"/></div>
+            <div class="elem"><apex:inputField value="{!file.Studio_Asset_Type__c}" id="fileAssetType"/></div>
           </apex:outputPanel>
           <div class="clear">&nbsp;</div>
         </div>       
@@ -668,12 +668,14 @@
         <div id="fileStatusArea">
           <apex:outputPanel rendered="{!hasModifyAccess}">
             <div class="elem-label"><apex:outputLabel >Status</apex:outputLabel></div> 
-            <div class="elem"><apex:inputField value="{!file.Status__c}" id="fileStatus"/></div>
+            <div class="elem"><apex:inputField value="{!file.Status__c}" id="fileStatus" onchange="toogleExpectedAssetsComponent(this.value);"/></div>
             <div class="clear">&nbsp;</div>
           </apex:outputPanel>
         </div>
 
-        <div id="expectedAssetComp" style="position: absolute; top: 10px; left: 500px;display:none;">
+        <div id="expectedAssetComp"  style="{!If(AND(file.Status__c = 'Approved',isBetOwnerOrManager),
+                                    'position:absolute;top:10px;left:500px;',
+                                    'position:absolute;top:10px;left:500px;display:none;')}">
           <c:BET_ExpectedAssetsComponent betId="{!bet.id}" />
         </div>
 
