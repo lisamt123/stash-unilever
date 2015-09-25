@@ -77,12 +77,35 @@
         maxPoll="${sfdc.maxPoll}"/>
     </target>  
 
+    <target name="validate-undeploy">
+      <echo level="info">Performing validate undeploy - DESTRUCTIVE CHANGE</echo>  
+      <sf:deploy username="${sf.username}" 
+        password="${sf.password}" 
+        serverurl="${sf.serverurl}" 
+        checkOnly="true"
+        runAllTests="true"
+        logType="Debugonly"
+        testLevel="RunLocalTests"
+        allowMissingFiles="true"
+        autoUpdatePackage="true"
+        ignoreWarnings="true"       
+        deployRoot="${basedir}/undeploy"
+        pollWaitMillis="${sfdc.pollWaitMillis}"
+        maxPoll="${sfdc.maxPoll}"/>        
+    </target>
+
     <target name="undeploy">
       <echo level="info">Performing undeploy - DESTRUCTIVE CHANGE</echo>  
       <sf:deploy username="${sf.username}" 
         password="${sf.password}" 
         serverurl="${sf.serverurl}" 
-        ignoreWarnings="true"
+        checkOnly="false"
+        runAllTests="true"
+        logType="Debugonly"
+        testLevel="RunLocalTests"
+        allowMissingFiles="true"
+        autoUpdatePackage="true"
+        ignoreWarnings="true"       
         deployRoot="${basedir}/undeploy"
         pollWaitMillis="${sfdc.pollWaitMillis}"
         maxPoll="${sfdc.maxPoll}"/>        
