@@ -14,7 +14,7 @@
 
     <script src="{!$Resource.BET_PDF_JS}/web/compatibility.js"></script>
 
-    <apex:includeScript value="{!$Resource.BETSuggestedMembers}/scripts/jquery.min.js" />
+    <apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     
@@ -36,7 +36,7 @@
     <![endif]-->
     <script src="{!$Resource.BETApp}/js/vendor.js"></script>
 
-    <script src="{!$Resource.BET_UI_BOOTSTRAP}"></script>
+    <script src="{!$Resource.BET}/scripts/BET_UI_BOOTSTRAP.js"></script>
 
 
     <script type="text/javascript">

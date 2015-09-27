@@ -13,12 +13,12 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
 <apex:component controller="BET_SuggestMembersController" allowDML="true">
 
     <apex:includeScript value="{!URLFOR($Resource.jscolor_1_4_1, 'jscolor/jscolor.js')}" />
-    <apex:includeScript value="{!$Resource.BETSuggestedMembers}/scripts/jquery.min.js" />
-    <apex:includeScript value="{!$Resource.BETSuggestedMembers}/scripts/blockUI.js" />
-    <apex:includeScript value="{!$Resource.BETSuggestedMembers}/scripts/bootstrap.min.js" />
-    <apex:includeScript value="{!$Resource.BETSuggestedMembers}/scripts/SuggestedMembers.js" />
+    <apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />
+    <apex:includeScript value="{!$Resource.BET}/scripts/blockUI.js" />
+    <apex:includeScript value="{!$Resource.BET}/scripts/bootstrap.min.js" />
+    <apex:includeScript value="{!$Resource.BET}/scripts/SuggestedMembers.js" />
     
-    <apex:stylesheet value="{!$Resource.BETSuggestedMembers}/css/bootstrap.min.css"/>
+    <apex:stylesheet value="{!$Resource.BET}/css/bootstrap.min.css"/>
     <!--<apex:stylesheet value="{!$Resource.BETSuggestedMembers}/css/betSuggestedMembers.css"/>   -->
     
     <apex:attribute name="BetID" description="BET ID" type="Id" 
@@ -103,10 +103,10 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
         <apex:repeat value="{!SuggestedMembers}" var="member">
             <div id="groupName_{!rowNum}" style="margin-top:10px;">
                 <div id="groupName_Colapse_{!rowNum}" style="float:left;" onclick="colapseGroup('{!rowNum}')">
-                    <img class="collapseExpandItem" alt="Collapse" src="{!$Resource.BETSuggestedMembers}/images/colapse.png" width="16px" height="16px"/>
+                    <img class="collapseExpandItem" alt="Collapse" src="{!$Resource.BET}/images/colapse.png" width="16px" height="16px"/>
                 </div>
                 <div id="groupName_Expand_{!rowNum}" style="float:left" onclick="expandGroup('{!rowNum}')">
-                    <img class="collapseExpandItem" alt="Expand" src="{!$Resource.BETSuggestedMembers}/images/expand.png" width="16px" height="16px"/>
+                    <img class="collapseExpandItem" alt="Expand" src="{!$Resource.BET}/images/expand.png" width="16px" height="16px"/>
                 </div>
                 <span style="font-weight:bold;">{!member.groupName}</span>
                 <span style="color:gray"> |  </span>
@@ -133,7 +133,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                         <apex:outputPanel layout="block" styleClass="leadBlock"  rendered="{!memeberItem.isManager}">
                             <span>Leader</span>
                         </apex:outputPanel>
-                        <div class="trashIcon" style="background: url({!$Resource.BETSuggestedMembers}/images/trashIcon.png) no-repeat;" onclick="delMemeber('{!memeberItem.userInfo.id}');">
+                        <div class="trashIcon" style="background: url({!$Resource.BET}/images/trashIcon.png) no-repeat;" onclick="delMemeber('{!memeberItem.userInfo.id}');">
                             
                         </div>
                     </div>
@@ -156,7 +156,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                 <img alt="{!$Label.BET_SuggestedMemberAddOtherMember}" 
                      onclick="var $ = jQuery.noConflict();" 
                      class="addMemeberBtn" 
-                     src="{!$Resource.BETSuggestedMembers}/images/add_2.png" width="80px" height="80px"/>
+                     src="{!$Resource.BET}/images/add_2.png" width="80px" height="80px"/>
             </a>    
            
             <div class="userTitle" onclick="addOtherMembers();">
@@ -169,10 +169,10 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
         <apex:outputPanel layout="block">
             <div id="groupExternal" style="margin-top:10px;">
             <div id="groupExternal_Colapse" style="float:left;" onclick="colapseExternalGroup()">
-                <img class="collapseExpandItem" alt="Collapse" src="{!$Resource.BETSuggestedMembers}/images/colapse.png" width="16px" height="16px"/>
+                <img class="collapseExpandItem" alt="Collapse" src="{!$Resource.BET}/images/colapse.png" width="16px" height="16px"/>
             </div>
             <div id="groupExternal_Expand" style="float:left" onclick="expandExternalGroup()">
-                <img class="collapseExpandItem" alt="Expand" src="{!$Resource.BETSuggestedMembers}/images/expand.png" width="16px" height="16px"/>
+                <img class="collapseExpandItem" alt="Expand" src="{!$Resource.BET}/images/expand.png" width="16px" height="16px"/>
             </div>
             <span style="font-weight:bold;">External Agency Members</span>
             <span style="color:gray"> |  </span>
@@ -196,7 +196,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                     <div class="userTitle" >
                         <span>{!eMember.email}</span>
                     </div>        
-                    <div class="trashIcon" style="background: url({!$Resource.BETSuggestedMembers}/images/trashIcon.png) no-repeat;" 
+                    <div class="trashIcon" style="background: url({!$Resource.BET}/images/trashIcon.png) no-repeat;" 
                         onclick="delExternalMemeber('{!eMember.email}');">
                     </div>
                 </div>

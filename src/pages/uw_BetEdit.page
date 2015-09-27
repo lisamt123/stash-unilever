@@ -7,7 +7,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
   <apex:includeScript value="{!URLFOR($Resource.jscolor_1_4_1, 'jscolor/jscolor.js')}" />
     <apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />    
     <apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />    
-    <apex:stylesheet value="{!$Resource.BETEditBetStyles}" />
+    <apex:stylesheet value="{!$Resource.BET}/css/BETEditBetStyles.css" />
     <script>
     jQuery.noConflict();
     jQuery( document ).ready(function( $ ) {
@@ -55,8 +55,10 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
         <apex:tabPanel switchType="server" id="AccountTabPanel" tabClass="activeTab" value="{!tabInFocus}" inactiveTabClass="inactiveTab">
             <apex:tab label="Toolkit Info" name="name1" id="tabOne">
-
-                <div class="form-item-wrapper">
+                <!--- 27.09 changes -->
+                <c:BET_UpsertBET betObj="{!bet}" componentData="{!compData}"/>
+                <!--- 27.09 changes -->
+                <!--<div class="form-item-wrapper">
                   <div class="form-item">
                     <div class="item-label">
                         <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_Name}</apex:outputLabel>
@@ -106,7 +108,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                         </div>
                     </div>
 
-                </div>
+                </div> -->
             </apex:tab>
 
             <apex:tab label="Branding Options" name="name2" id="tabTwo">

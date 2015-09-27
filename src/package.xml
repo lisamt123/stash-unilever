@@ -3721,16 +3721,11 @@
     </types>
     <types>
 		<members>BETApp</members>
-		<members>BETEditBetStyles</members>
-		<members>BETNewBetStyles</members>
+		<members>BET</members>
         <members>MyApprovalsSR</members>
         <members>resource_robertson</members>
         <members>resource_sunsilk</members>
         <members>walls_brand_centre_resources</members>
-        <members>BETSuggestedMembers</members>
-		<members>BETManageMembersJS</members>
-		<members>BETManageMembersStyles</members>
-		<members>BET_UI_BOOTSTRAP</members>
         <name>StaticResource</name>
     </types>
     <types>
