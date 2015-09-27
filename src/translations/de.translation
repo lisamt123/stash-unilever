@@ -417,6 +417,10 @@
         <name>CEC_ConsumerResultsDisplay</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_ConsumerResultsNoMatchTitle --></label>
+        <name>CEC_ConsumerResultsNoMatchTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Passende Suchergebnisse:</label>
         <name>CEC_ConsumerResultsTitleDisplay</name>
     </customLabels>
@@ -583,6 +587,10 @@
     <customLabels>
         <label>verwandte Vorgänge</label>
         <name>CEC_RelatedCases</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_SearchValidationError --></label>
+        <name>CEC_SearchValidationError</name>
     </customLabels>
     <customLabels>
         <label>Suche</label>

@@ -1723,6 +1723,7 @@
         <members>CEC_ConsumerInfoDisplay</members>
         <members>CEC_ConsumerNotFoundInfo</members>
         <members>CEC_ConsumerResultsDisplay</members>
+        <members>CEC_ConsumerResultsNoMatchTitle</members>
         <members>CEC_ConsumerResultsTitleDisplay</members>
         <members>CEC_ConsumerSearchDisplay</members>
         <members>CEC_Consumer_Duplicate_Error</members>
@@ -1765,6 +1766,7 @@
         <members>CEC_ReasonCode</members>
         <members>CEC_Reason_Hierarchy</members>
         <members>CEC_RelatedCases</members>
+        <members>CEC_SearchValidationError</members>
         <members>CEC_Search_Button</members>
         <members>CEC_Specify_Details_in_Missing_Info</members>
         <members>CEC_Status</members>
@@ -3230,7 +3232,6 @@
         <members>AF_Category_Finance_Regional</members>
         <members>AF_Controllers</members>
         <members>AF_Procurement</members>
-        <members>API_Only</members>
         <members>Agency_Roster_Marketing</members>
         <members>Agency_Roster_Procurement</members>
         <members>Brand_Centre_Administrator</members>
@@ -3238,11 +3239,9 @@
         <members>Brand_Centre_Restricted_User</members>
         <members>CB4L_HUB_Admin</members>
         <members>CB4L_Standard_User</members>
-        <members>CEC_Automated_User</members>
         <members>CEC_Business_Admin</members>
         <members>CEC_CRUD</members>
         <members>CEC_DeDuplication</members>
-        <members>CEC_Delegated_Administrators</members>
         <members>CEC_Email_Administrator</members>
         <members>CEC_Knowledge_Manager</members>
         <members>CEC_Manager</members>
@@ -3321,7 +3320,6 @@
         <members>AF - Agency Portal User</members>
         <members>AR - Agency Portal User</members>
         <members>AR - Procurement User</members>
-        <members>Admin</members>
         <members>Agencies Profile</members>
         <members>Agency Fee Platform User</members>
         <members>Agency Fees Online Profile</members>
