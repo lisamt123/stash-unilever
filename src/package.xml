@@ -981,6 +981,7 @@
 		<members>BET_FollowRequestTriggerHandlerClsHelper</members>
 		<members>BET_BETChangesLogger</members>
 		<members>BET_BETHandlerClsHelper</members>
+		<members>IPM_TestFactory_Helper</members>
         <name>ApexClass</name>
     </types>
     <types>
