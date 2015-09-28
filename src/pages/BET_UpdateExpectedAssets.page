@@ -1,6 +1,6 @@
 <apex:page showHeader="false" sidebar="false" controller="BET_UpdateExpectedAssetsController">
 
-	<apex:stylesheet value="{!$Resource.BETManageMembersStyles}" />
+	<apex:stylesheet value="{!$Resource.BET}/css/BETManageMembersStyles.css" />
 	<apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />    
 
 	<apex:outputPanel layout="block" id="maincontainer">
