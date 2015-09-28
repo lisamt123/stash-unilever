@@ -178,9 +178,9 @@ public with sharing class BET_SuggestMembersController {
         List<id> otherMemebers = suggested_MembersCtrl.clone();
         
         
-        Map<String,Map<Id,Id>> convertedBacketToMap =  convertUserBucketToMap(user_bucketsCtrl);
+        Map<String,Map<Id,Id>> convertedBacketToMap = BET_SuggestedMemberService.convertUserBucketToMap(user_bucketsCtrl);
         
-        Map<Id,Id> managersMap = convertSuggestedManagersToMap();
+        Map<Id,Id> managersMap = BET_SuggestedMemberService.convertSuggestedManagersToMap(suggested_managersCtrl);
         
         system.debug(convertedBacketToMap);
         for(BET_MemberBucketWrapper memberItem :  user_bucketsCtrl){
@@ -203,7 +203,7 @@ public with sharing class BET_SuggestMembersController {
                         memberItemWrap.isManager = false;
                     }
                     memberWrapperItem.groupUsers.add(memberItemWrap);    
-                    otherMemebers = removeElementFromList(otherMemebers,suggestedId);  
+                    otherMemebers = BET_SuggestedMemberService.removeElementFromList(otherMemebers,suggestedId);  
                 }
             }
             
@@ -248,16 +248,12 @@ public with sharing class BET_SuggestMembersController {
     *************************************************************/
     public void addNewMembers(){
         System.debug('Entering method addNewMembers following users will be added:'+newlyAddedUsers);
-        
-        
         if(newlyAddedUsers != null){
             for(String userToAdd : newlyAddedUsers.split(',')){
                 if(userToAdd != null && userToAdd.trim() != ''){
                     suggested_MembersCtrl.add(Id.valueOf(userToAdd)); 
                 }
             }
-                
-           	
         }
         newlyAddedUsers = '';
         freeAddMembers = new List<User>();
@@ -286,72 +282,6 @@ public with sharing class BET_SuggestMembersController {
         freeAddMembers = Database.query(query);
         System.debug('Exiting method searchUsers controller property freeAddMembers was set to: '+JSON.serialize(freeAddMembers));
         
-    }
-    /************************************************************
-        Purpose: Method responsible for converting List<ID> collection to Map
-        Parameters: -
-        Returns: Map<Id,Id>
-        Throws: -
-    *************************************************************/
-    public Map<Id,Id> convertSuggestedManagersToMap(){
-        System.debug('Entering method convertSuggestedManagersToMap for list suggested_managersCtrl'+suggested_managersCtrl);
-        Map<Id,Id> suggestedManagersMap = new Map<Id,Id>();
-        if(suggested_managersCtrl != null && !suggested_managersCtrl.isEmpty()){
-            for(Id managerId : suggested_managersCtrl){
-                suggestedManagersMap.put(managerId,managerId);
-            }
-        }
-        System.debug('Exiting method convertSuggestedManagersToMap list was conveted to following map:'+suggestedManagersMap);
-        return suggestedManagersMap;
-    }
-    
-    /************************************************************
-        Purpose: Method responsible removing Id element from list
-        Parameters: -
-        Returns: List<Id>
-        Throws: -
-    *************************************************************/
-    public List<Id> removeElementFromList(List<id> currentLst, Id elementToRemove){
-        System.debug('Entering method removeElementFromList with params @currentLst:'+currentLst+' @elementToRemove'+elementToRemove);
-        Integer index=0;
-        List<Id> initilaList = currentLst.clone();
-        for(Id elem : currentLst){
-            if(elem == elementToRemove){
-                initilaList.remove(index);
-                
-                break;
-            }
-            index++;
-        }
-        System.debug('Exiting method removeElementFromList returned following list:'+initilaList);
-        return initilaList;
-    }
-    
-    /************************************************************
-        Purpose: Method responsible for converting BET_MemberBucketWrapper object to Map where key is 
-		grupName and value Map with all available user id's
-        Parameters: -
-        Returns: List<Id>
-        Throws: -
-    *************************************************************/
-    public Map<String,Map<Id,Id>> convertUserBucketToMap(List<BET_MemberBucketWrapper> bucket){
-        System.debug('Entering method convertUserBucketToMap with following param @bucket:'+bucket);
-        Map<String,Map<Id,Id>> userBucketMap = new Map<String,Map<Id,Id>>();
-        for(BET_MemberBucketWrapper member : bucket){
-            if(member.GroupUserIds == null || member.GroupUserIds.isEmpty()){
-                userBucketMap.put(member.GroupName,new Map<Id,Id>());
-            } else {
-                for(Id memberItem : member.GroupUserIds){
-                    if(userBucketMap.containsKey(member.GroupName)){
-                        userBucketMap.get(member.GroupName).put(memberItem,memberItem);
-                    }else{
-                        userBucketMap.put(member.GroupName, new Map<Id,Id>{memberItem => memberItem});
-                    }
-                }
-            }
-        }
-        System.debug('Exiting method convertUserBucketToMap following map was returned: '+userBucketMap);
-        return userBucketMap;
     }
     
     /************************************************************
@@ -412,14 +342,14 @@ public with sharing class BET_SuggestMembersController {
 
         if(suggested_MembersCtrl != null && !suggested_MembersCtrl.isEmpty()){
             for(ID userId : suggested_MembersCtrl){
-                betMembersToInsert.add(addInternalMemberRecord(userId,betFollowRequestId,isBetOwnerOrManager,betOwnerId));
+                betMembersToInsert.add(BET_SuggestedMemberService.addInternalMemberRecord(userId,betFollowRequestId,isBetOwnerOrManager,betOwnerId,betIdCtrl,projectIdCtrl));
             }
             betMembersToInsert = BET_SuggestedMemberService.removeMemberRequestDuplicatesWhileInsert(betMembersToInsert);
         }
 
         if(!externalMembers.isEmpty()){
             for(ExternalAgencyMemberWrapper eam : externalMembers){
-                betMembersToInsert.add(addExternalMemberRecord(eam,betFollowRequestId,isBetOwnerOrManager,betOwnerId));
+                betMembersToInsert.add(BET_SuggestedMemberService.addExternalMemberRecord(eam,betFollowRequestId,isBetOwnerOrManager,betOwnerId,betIdCtrl));
             }
         }
 
@@ -438,53 +368,6 @@ public with sharing class BET_SuggestMembersController {
         
         return null;
 	}
-
-    /************************************************************
-        Purpose: Method responsible for createing new internal Bet Member Requests record
-        Parameters: ID userId,Id betFollowRequestId,Boolean isBetOwnerOrManager,Id betOwnerId
-        Returns: BET_Member_Request__c
-        Throws: -
-    *************************************************************/
-    private BET_Member_Request__c addInternalMemberRecord(ID userId,Id betFollowRequestId,Boolean isBetOwnerOrManager,Id betOwnerId){
-        BET_Member_Request__c betMemeberItem = new BET_Member_Request__c();
-        betMemeberItem.Brand_Experience_Toolkit__c = betIdCtrl;
-        betMemeberItem.ProjectRequest__c = betFollowRequestId;
-        betMemeberItem.UserId__c = userId;
-        betMemeberItem.Project_Id__c = projectIdCtrl;
-        betMemeberItem.Bet_owner__c = betOwnerId;
-        if(isBetOwnerOrManager){
-            betMemeberItem.Status__c = Label.BETTeamMemberRequestApprovedStatus;
-            betMemeberItem.Do_Not_Notify_Bet__c = true;
-        }else{
-            betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
-        }
-        betMemeberItem.Role__c = Label.BetTeamMemberRoleMember;
-        return betMemeberItem;
-    }
-
-    /************************************************************
-        Purpose: Method responsible for createing new external Bet Member Requests record
-        Parameters: ExternalAgencyMemberWrapper eam,Id betFollowRequestId,Boolean isBetOwnerOrManager,Id betOwnerId
-        Returns: BET_Member_Request__c
-        Throws: -
-    *************************************************************/
-    private BET_Member_Request__c addExternalMemberRecord(ExternalAgencyMemberWrapper eam,Id betFollowRequestId,Boolean isBetOwnerOrManager,Id betOwnerId){
-        BET_Member_Request__c betMemeberItem = new BET_Member_Request__c();
-        betMemeberItem.Brand_Experience_Toolkit__c = betIdCtrl;
-        betMemeberItem.ProjectRequest__c = betFollowRequestId;
-        betMemeberItem.External_User_Request__c = true;
-        betMemeberItem.External_User_Email__c = eam.email;
-        betMemeberItem.Bet_owner__c = betOwnerId;
-        betMemeberItem.UserId__c = eam.userId;
-        if(isBetOwnerOrManager){
-            betMemeberItem.Status__c = Label.BETTeamMemberRequestApprovedStatus;
-            betMemeberItem.Do_Not_Notify_Bet__c = true;
-        }else{
-            betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
-        }
-        betMemeberItem.Role__c = Label.BetTeamMemberRoleMember;
-        return betMemeberItem;
-    }
     
     /************************************************************
         Purpose: Method redirecting to next page defined in component callback attribute
