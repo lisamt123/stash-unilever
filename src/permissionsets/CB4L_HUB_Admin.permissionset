@@ -8034,11 +8034,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>BET_Follow_Request__c.Deny_Link__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>BET_Follow_Request__c.Is_Lead_Request__c</field>
         <readable>true</readable>

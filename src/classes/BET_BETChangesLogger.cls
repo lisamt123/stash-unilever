@@ -25,17 +25,17 @@ public without sharing class BET_BETChangesLogger {
   private static final String BET_TO = ' to ';
   private static final String LEAD_PROJECT = ' is the lead project for BET ';
 
-  private Map<Id,String> projectsMap = new Map<Id,String>();
-  private Map<Id,String> categoryGroupsMap = new Map<Id,String>();
-  private Map<Id,String> categoriesMap = new Map<Id,String>();
-  private Map<Id,String> brandPositionsMap = new Map<Id,String>();
-  private Map<Id,String> brandsMap = new Map<Id,String>();
+  private final Map<Id,String> projectsMap = new Map<Id,String>();
+  private final Map<Id,String> categoryGroupsMap = new Map<Id,String>();
+  private final Map<Id,String> categoriesMap = new Map<Id,String>();
+  private final Map<Id,String> brandPositionsMap = new Map<Id,String>();
+  private final Map<Id,String> brandsMap = new Map<Id,String>();
 
-  private Set<Id> projects = new Set<Id>();
-  private Set<Id> categoryGroups = new Set<Id>();
-  private Set<Id> categories = new Set<Id>();
-  private Set<Id> positionings = new Set<Id>();
-  private Set<Id> brands = new Set<Id>();
+  private final Set<Id> projects = new Set<Id>();
+  private final Set<Id> categoryGroups = new Set<Id>();
+  private final Set<Id> categories = new Set<Id>();
+  private final Set<Id> positionings = new Set<Id>();
+  private final Set<Id> brands = new Set<Id>();
 
   public BET_BETChangesLogger() {}
 
@@ -96,8 +96,7 @@ public without sharing class BET_BETChangesLogger {
     }
 
     if(oldRecord.Launch_Date__c != newRecord.Launch_Date__c){
-      String oldDate = oldRecord.Launch_Date__c != null ? String.valueOf(oldRecord.Launch_Date__c).substring(0,10) : '';
-      String newDate = newRecord.Launch_Date__c != null ? String.valueOf(newRecord.Launch_Date__c).substring(0,10) : '';
+      String newDate = newRecord.Launch_Date__c == null ? '' : String.valueOf(newRecord.Launch_Date__c).substring(0,10);
       diffs.add(BET_LAUNCH_DATE_CHANGED+newDate);
     }
 
@@ -105,7 +104,7 @@ public without sharing class BET_BETChangesLogger {
       if(newRecord.IPM_Project__c != null) {
         diffs.add(PROJECT_TXT+projectsMap.get(newRecord.IPM_Project__c)+LEAD_PROJECT+newRecord.name);
       } else {
-        diffs.add(BET_PROJECT_CHANGED+projectsMap.get(oldRecord.IPM_Project__c)+BET_TO+projectsMap.get(newRecord.IPM_Project__c));
+        diffs.add(BET_PROJECT_CHANGED+projectsMap.get(oldRecord.IPM_Project__c)+BET_TO+newRecord.IPM_Project__c);
       }
     }
 
