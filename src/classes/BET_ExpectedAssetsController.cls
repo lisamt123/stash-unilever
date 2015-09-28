@@ -88,12 +88,17 @@ public without sharing class BET_ExpectedAssetsController {
 	public void upsertExceptedAssets(){
 		System.debug('Entering upsertExceptedAssets');
 		List<BET_ExpectedAssets__c> expectedAssetsData = new List<BET_ExpectedAssets__c>();
+
+		Map<String,Integer> assetNumberMap = BET_AssetService.approvedAssetTypesNumerMap(betIdentifier);
+
 		for(ExpectedAssetsWrapper wrapper : expectedAssetsForBET){
 			System.debug(wrapper.assetTypeName + ' : ' + wrapper.assetTypeNameExpectedNumber);
-			expectedAssetsData.add(new BET_ExpectedAssets__c(id=wrapper.relatedObjectId,
-											Expected__c=wrapper.assetTypeNameExpectedNumber,
-											Type__c=wrapper.assetTypeName,
-											Brand_Experience_Toolkit__c=betIdentifier));
+			Integer actual = assetNumberMap.get(wrapper.assetTypeName) == null ? 0 : assetNumberMap.get(wrapper.assetTypeName);
+			expectedAssetsData.add(new BET_ExpectedAssets__c(id = wrapper.relatedObjectId,
+											Expected__c = wrapper.assetTypeNameExpectedNumber,
+											Actual__c = actual,
+											Type__c = wrapper.assetTypeName,
+											Brand_Experience_Toolkit__c = betIdentifier));
 		}
 		upsert expectedAssetsData;
 	}

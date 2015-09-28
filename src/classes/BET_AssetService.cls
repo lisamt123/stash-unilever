@@ -86,4 +86,18 @@ public without sharing class BET_AssetService {
 		return bets;
 	}
 
+	/************************************************************
+        Purpose: Retrieves assets type map counter
+        Parameters: LId betId
+        Returns: Map<String,Integer> 
+        Throws: -
+    *************************************************************/
+	public static Map<String,Integer> approvedAssetTypesNumerMap(Id betId){
+		Map<String,Integer> assetsMap = new Map<String,Integer>();
+		for (AggregateResult aresult :  [select count(id), Media_Type__c from uw_Asset__c where uw_BET__c =: betId and status__c = 'Approved' and Media_Type__c not in : excludedMediaType group by Media_Type__c]){
+			assetsMap.put((String)aresult.get('Media_Type__c'),(Integer)aresult.get('expr0'));
+		}
+		return assetsMap;
+	}
+
 }

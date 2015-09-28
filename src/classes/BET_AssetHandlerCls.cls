@@ -105,7 +105,7 @@ public with sharing class BET_AssetHandlerCls {
 			List<BET_ExpectedAssets__c> eassets = brandExpectedAssetsMap.get(asset.uw_BET__c);
 			if(eassets!=null){
 				for(BET_ExpectedAssets__c easset : eassets){
-					if(asset.Media_Type__c != null && asset.Media_Type__c == easset.Type__c){
+					if(asset.Media_Type__c != null && asset.Media_Type__c == easset.Type__c && easset.Expected__c > 0){
 						easset.Actual__c++;
 						toBeUpdated.add(easset);
 					}
@@ -130,7 +130,7 @@ public with sharing class BET_AssetHandlerCls {
 			List<BET_ExpectedAssets__c> eassets = brandExpectedAssetsMap.get(asset.uw_BET__c);
 			if(eassets!=null){
 				for(BET_ExpectedAssets__c easset : eassets){
-					if(asset.Media_Type__c != null && asset.Media_Type__c == easset.Type__c){
+					if(asset.Media_Type__c != null && asset.Media_Type__c == easset.Type__c && easset.Expected__c > 0){
 						if(easset.Actual__c > 0) {
 							easset.Actual__c--;
 							toBeUpdated.add(easset);
@@ -158,7 +158,7 @@ public with sharing class BET_AssetHandlerCls {
 
 		Map<Id,List<BET_ExpectedAssets__c>> brandExpectedAssetsMap = new Map<Id,List<BET_ExpectedAssets__c>>();
 
-		for(BET_ExpectedAssets__c expectedAsset : [select Actual__c,Brand_Experience_Toolkit__c,Type__c from BET_ExpectedAssets__c where Brand_Experience_Toolkit__c in: betIds]){
+		for(BET_ExpectedAssets__c expectedAsset : [select Actual__c,Brand_Experience_Toolkit__c,Type__c,Expected__c from BET_ExpectedAssets__c where Brand_Experience_Toolkit__c in: betIds]){
 			if(brandExpectedAssetsMap.keySet().contains(expectedAsset.Brand_Experience_Toolkit__c)){
 				brandExpectedAssetsMap.get(expectedAsset.Brand_Experience_Toolkit__c).add(expectedAsset);
 			} else {
