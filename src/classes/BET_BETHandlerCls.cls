@@ -19,6 +19,7 @@ public without sharing class BET_BETHandlerCls {
     Throws: -
   *************************************************************/
   public static void unarchiveBet(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
+    System.debug('Entering unarchiveBet : ' + newBetList + ', ' + oldBetMap);
     List<uw_BET__c> unArchivedBets = new List<uw_BET__c>();
     for(uw_BET__c bet : newBetList){
       if(!bet.Is_Archived__c && bet.Is_Archived__c != oldBetMap.get(bet.id).Is_Archived__c){
@@ -28,6 +29,7 @@ public without sharing class BET_BETHandlerCls {
     if(!unArchivedBets.isEmpty()){
       BET_BETHandlerClsHelper.archiveUnarchiveChatterGroups(unArchivedBets,false);
     }
+    System.debug('Exit unarchiveBet');
   }
 
     /************************************************************
@@ -37,6 +39,7 @@ public without sharing class BET_BETHandlerCls {
     Throws: -
   *************************************************************/
   public static void archiveBet(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
+    System.debug('Entering archiveBet : ' + newBetList + ', ' + oldBetMap);
     List<uw_BET__c> archivedBets = new List<uw_BET__c>();
     for(uw_BET__c bet : newBetList){
       if(bet.Is_Archived__c && bet.Is_Archived__c != oldBetMap.get(bet.id).Is_Archived__c){
@@ -46,6 +49,7 @@ public without sharing class BET_BETHandlerCls {
     if(!archivedBets.isEmpty()) {
       BET_BETHandlerClsHelper.archiveUnarchiveChatterGroups(archivedBets,true);
     }
+    System.debug('Exit archiveBet');
   }
 
   /************************************************************
@@ -55,6 +59,7 @@ public without sharing class BET_BETHandlerCls {
     Throws: -
   *************************************************************/
   public static void informIPMOnBetChanges(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
+    System.debug('Entering informIPMOnBetChanges : ' + newBetList + ', ' + oldBetMap);
     List<String> updatedFields = new List<String>();
     for(uw_BET__c bet : newBetList){
       Boolean changesDone = false;
@@ -93,6 +98,7 @@ public without sharing class BET_BETHandlerCls {
       }
       
     }
+    System.debug('Exit informIPMOnBetChanges');
   }
 
   /************************************************************
@@ -102,10 +108,12 @@ public without sharing class BET_BETHandlerCls {
     Throws: -
   *************************************************************/
   public static void updateReleaseDueDates(List<uw_BET__c> bets){
+    System.debug('Entering updateReleaseDueDates : ' + bets);
     for(uw_BET__c bet : bets){
       bet.Final_Release_Due_Date__c = BET_BETService.getFinalReleaseDueDate(bet.Launch_Date__c);
       bet.First_Release_Due_Date__c = BET_BETService.getFirstReleaseDueDate(bet.Launch_Date__c);
     }
+    System.debug('Exit updateReleaseDueDates');
   }
 
   /************************************************************
@@ -115,10 +123,12 @@ public without sharing class BET_BETHandlerCls {
     Throws: -
   *************************************************************/
 	public static Map<Id,uw_BET__c> buildBetMap(Map<Id,SObject> sobjectMap){
+    System.debug('Entering buildBetMap : ' + sobjectMap);
 		Map<Id,uw_Bet__c> betmap = new Map<Id,uw_Bet__c>();
 		for(Id id : sobjectMap.keySet()){
 			betmap.put(id,(uw_Bet__c)Trigger.oldMap.get(id));
 		}
+    System.debug('Exit updateReleaseDueDates : ' + betmap);
 		return betmap;
 	}
 
@@ -129,11 +139,13 @@ public without sharing class BET_BETHandlerCls {
     Throws: -
   *************************************************************/
 	public static void logChanges(){
+    System.debug('Entering logChanges');
 		Boolean enableLogging = !uw_CustomSettingsManager.getCustomSettingBooleanVal(uw_CustomSettingsManager.BET_DISABLE_LOG_CHANGE_TRIGGER, false);
-    	if (enableLogging) {
-    		BET_BETChangesLogger logger = new BET_BETChangesLogger();
-        logger.logChanges();
-  		}    
+    if (enableLogging) {
+    	BET_BETChangesLogger logger = new BET_BETChangesLogger();
+      logger.logChanges();
+  	}
+    System.debug('Exit logChanges');    
 	}
 
   /************************************************************
@@ -143,6 +155,7 @@ public without sharing class BET_BETHandlerCls {
     Throws: -
   *************************************************************/
 	public static void deleteBETRelatedCollaborationGroup(){ // Taken from uw_BET_before_delete trigger
+    System.debug('Entering deleteBETRelatedCollaborationGroup');
 		List<Id> delete_BET_group_Ids = new List<Id>();
     	List<Id> BET_Ids = new List<Id>();
     	List<uw_BET_Team_Member__c> delete_BET_Team_Member = new List<uw_BET_Team_Member__c>();
@@ -174,6 +187,7 @@ public without sharing class BET_BETHandlerCls {
     	} catch(System.DmlException e) {
         	System.debug('Error in deleting the BET Member');
     	}
+      System.debug('Exit deleteBETRelatedCollaborationGroup');
 	}
 
 }

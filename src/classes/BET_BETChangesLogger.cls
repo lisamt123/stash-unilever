@@ -1,3 +1,13 @@
+/*************************************************************************************
+Name : BET_BETChangesLogger
+
+Purpose : Logger for Bet related changes
+
+History
+
+VERSION  AUTHOR                DATE        DETAIL   Description
+1.0      m.bluj@polsource.com  28-09-2015  Initial
+*************************************************************************************/
 public without sharing class BET_BETChangesLogger {
 
   private static final String BET_STATUS_CHANGED = 'BET Status has been changed. ';

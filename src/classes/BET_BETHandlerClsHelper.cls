@@ -1,3 +1,13 @@
+/*************************************************************************************
+Name : BET_BETHandlerClsHelper
+
+Purpose : Helper class for BET_BETHandlerCls
+
+History
+
+VERSION  AUTHOR                DATE        DETAIL   Description
+1.0      m.bluj@polsource.com  28-09-2015  Initial
+*************************************************************************************/
 public without sharing class BET_BETHandlerClsHelper {
 
 	private BET_BETHandlerClsHelper() {}
