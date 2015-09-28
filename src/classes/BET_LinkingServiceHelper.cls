@@ -1,3 +1,13 @@
+/*************************************************************************************
+Name : BET_LinkingServiceHelper
+
+Purpose : Helper class for BET_LinkingService
+
+History
+
+VERSION  AUTHOR                DATE        DETAIL   Description
+1.0      m.bluj@polsource.com  28-09-2015  Initial
+*************************************************************************************/
 public without sharing class BET_LinkingServiceHelper {
 
 	private BET_LinkingServiceHelper() {}

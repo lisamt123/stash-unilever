@@ -10,33 +10,6 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 public without sharing class BET_BETHandlerCls {
 
-  private static final String BET_STATUS_CHANGED = 'BET Status has been changed. ';
-  private static final String BET_LAUNCH_DATE_CHANGED = 'Target Launch Date for this BET has been changed to ';
-  private static final String BET_PROJECT_CHANGED = 'BET Lead IPM Project has been changed. ';
-  private static final String BET_CATEGORY_GROUP_CHANGED = 'BET Category group has been changed. ';
-  private static final String BET_CATEGORY_CHANGED = 'BET Category has been changed. ';
-  private static final String BET_BRAND_POSITIONING_CHANGED = 'BET Brand Position has been changed. ';
-  private static final String BET_BRAND_CHANGED = 'BET Brand has been changed. ';
-  private static final String BET_DESCRIPTION_CHANGED = 'BET Description has been changed. ';
-  private static final String BET_ARCHIVED = ' has been archived. ';
-  private static final String BET_UNARCHIVED = ' has been unarchived ';
-  private static final String BET_TXT = 'BET ';
-  private static final String PROJECT_TXT = 'Project ';
-  private static final String BET_TO = ' to ';
-  private static final String LEAD_PROJECT = ' is the lead project for BET ';
-
-  private static Map<Id,String> projectsMap = new Map<Id,String>();
-  private static Map<Id,String> categoryGroupsMap = new Map<Id,String>();
-  private static Map<Id,String> categoriesMap = new Map<Id,String>();
-  private static Map<Id,String> brandPositionsMap = new Map<Id,String>();
-  private static Map<Id,String> brandsMap = new Map<Id,String>();
-
-  private static Set<Id> projects = new Set<Id>();
-  private static Set<Id> categoryGroups = new Set<Id>();
-  private static Set<Id> categories = new Set<Id>();
-  private static Set<Id> positionings = new Set<Id>();
-  private static Set<Id> brands = new Set<Id>();
-
   private BET_BETHandlerCls(){}
 
   /************************************************************
@@ -46,6 +19,7 @@ public without sharing class BET_BETHandlerCls {
     Throws: -
   *************************************************************/
   public static void unarchiveBet(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
+    System.debug('Entering unarchiveBet : ' + newBetList + ', ' + oldBetMap);
     List<uw_BET__c> unArchivedBets = new List<uw_BET__c>();
     for(uw_BET__c bet : newBetList){
       if(!bet.Is_Archived__c && bet.Is_Archived__c != oldBetMap.get(bet.id).Is_Archived__c){
@@ -53,8 +27,9 @@ public without sharing class BET_BETHandlerCls {
       }
     }
     if(!unArchivedBets.isEmpty()){
-      unArchiveBETs(unArchivedBets);
+      BET_BETHandlerClsHelper.archiveUnarchiveChatterGroups(unArchivedBets,false);
     }
+    System.debug('Exit unarchiveBet');
   }
 
     /************************************************************
@@ -64,6 +39,7 @@ public without sharing class BET_BETHandlerCls {
     Throws: -
   *************************************************************/
   public static void archiveBet(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
+    System.debug('Entering archiveBet : ' + newBetList + ', ' + oldBetMap);
     List<uw_BET__c> archivedBets = new List<uw_BET__c>();
     for(uw_BET__c bet : newBetList){
       if(bet.Is_Archived__c && bet.Is_Archived__c != oldBetMap.get(bet.id).Is_Archived__c){
@@ -71,46 +47,9 @@ public without sharing class BET_BETHandlerCls {
       }
     }
     if(!archivedBets.isEmpty()) {
-      archiveBETs(archivedBets);
+      BET_BETHandlerClsHelper.archiveUnarchiveChatterGroups(archivedBets,true);
     }
-  }
-
-  /************************************************************
-    Purpose: Method does bet archive related logic 
-    Parameters: List<uw_BET__c> archivedBets
-    Returns: -
-    Throws: -
-  *************************************************************/
-  private static void archiveBETs(List<uw_BET__c> archivedBets){
-    archiveUnarchiveChatterGroups(archivedBets,true);
-  }
-
-  /************************************************************
-    Purpose: Method does bet unarchive related logic 
-    Parameters: List<uw_BET__c> unArchivedBets
-    Returns: -
-    Throws: -
-  *************************************************************/
-  private static void unArchiveBETs(List<uw_BET__c> unArchivedBets){
-    archiveUnarchiveChatterGroups(unArchivedBets,false);
-  }
-
-  /************************************************************
-    Purpose: Method archives and unarchives BET related chatter groups
-    Parameters: List<uw_BET__c> bets,Boolean shouldBeArchived
-    Returns: -
-    Throws: -
-  *************************************************************/
-  private static void archiveUnarchiveChatterGroups(List<uw_BET__c> bets,Boolean shouldBeArchived){
-    Set<String> chatterGroups = new Set<String>();
-    for(uw_BET__c bet : bets){
-      chatterGroups.add(bet.Studio_Chatter_Group__c);
-    }
-    List<CollaborationGroup> groups = [select id, IsArchived from CollaborationGroup where id in: chatterGroups];
-    for(CollaborationGroup grp : groups){
-      grp.IsArchived = shouldBeArchived;
-    }
-    update groups;
+    System.debug('Exit archiveBet');
   }
 
   /************************************************************
@@ -120,6 +59,7 @@ public without sharing class BET_BETHandlerCls {
     Throws: -
   *************************************************************/
   public static void informIPMOnBetChanges(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
+    System.debug('Entering informIPMOnBetChanges : ' + newBetList + ', ' + oldBetMap);
     List<String> updatedFields = new List<String>();
     for(uw_BET__c bet : newBetList){
       Boolean changesDone = false;
@@ -158,6 +98,7 @@ public without sharing class BET_BETHandlerCls {
       }
       
     }
+    System.debug('Exit informIPMOnBetChanges');
   }
 
   /************************************************************
@@ -167,10 +108,12 @@ public without sharing class BET_BETHandlerCls {
     Throws: -
   *************************************************************/
   public static void updateReleaseDueDates(List<uw_BET__c> bets){
+    System.debug('Entering updateReleaseDueDates : ' + bets);
     for(uw_BET__c bet : bets){
       bet.Final_Release_Due_Date__c = BET_BETService.getFinalReleaseDueDate(bet.Launch_Date__c);
       bet.First_Release_Due_Date__c = BET_BETService.getFirstReleaseDueDate(bet.Launch_Date__c);
     }
+    System.debug('Exit updateReleaseDueDates');
   }
 
   /************************************************************
@@ -180,10 +123,12 @@ public without sharing class BET_BETHandlerCls {
     Throws: -
   *************************************************************/
 	public static Map<Id,uw_BET__c> buildBetMap(Map<Id,SObject> sobjectMap){
+    System.debug('Entering buildBetMap : ' + sobjectMap);
 		Map<Id,uw_Bet__c> betmap = new Map<Id,uw_Bet__c>();
 		for(Id id : sobjectMap.keySet()){
 			betmap.put(id,(uw_Bet__c)Trigger.oldMap.get(id));
 		}
+    System.debug('Exit updateReleaseDueDates : ' + betmap);
 		return betmap;
 	}
 
@@ -194,172 +139,13 @@ public without sharing class BET_BETHandlerCls {
     Throws: -
   *************************************************************/
 	public static void logChanges(){
+    System.debug('Entering logChanges');
 		Boolean enableLogging = !uw_CustomSettingsManager.getCustomSettingBooleanVal(uw_CustomSettingsManager.BET_DISABLE_LOG_CHANGE_TRIGGER, false);
-    	if (enableLogging) {
-    		Map<Id, List<String>> feedsMap = fillFeeds();
-    		if(!feedsMap.isEmpty()){
-      			insertFeeds(feedsMap);
-    		}
-  		}    
-	}
-
-  /************************************************************
-    Purpose: Method builds Chatter Feeds records related to made changes
-    Parameters: -
-    Returns: Map<Id, List<String>> 
-    Throws: -
-  *************************************************************/
-	private static Map<Id, List<String>> fillFeeds(){
-    retrieveReletedReferencesIds();
-    fillMapObjects();
-    return buildFeedMap();
-	}
-
-  private static Map<Id, List<String>> buildFeedMap(){
-    Map<Id, List<String>> feedsMap = new Map<Id, List<String>>();
-    for(Integer i=0; i< Trigger.new.size(); i++){
-      uw_BET__c oldRecord = (uw_BET__c)Trigger.old[i];
-      uw_BET__c newRecord = (uw_BET__c)Trigger.new[i];
-      List<String> diffs = addDifferences(oldRecord,newRecord);
-      if(!diffs.isEmpty()){
-        feedsMap.put(oldRecord.Studio_Chatter_Group__c, diffs);
-      }
-    }
-    return feedsMap;
-  }
-
-  private static List<String> addDifferences(uw_BET__c oldRecord,uw_BET__c newRecord ){
-    List<String> diffs = new List<String>();
-    if(oldRecord.Status__c != newRecord.Status__c){
-      diffs.add(BET_STATUS_CHANGED+oldRecord.Status__c+BET_TO+newRecord.Status__c);
-    }
-
-    if(oldRecord.Launch_Date__c != newRecord.Launch_Date__c){
-      String oldDate = oldRecord.Launch_Date__c != null ? String.valueOf(oldRecord.Launch_Date__c).substring(0,10) : '';
-      String newDate = newRecord.Launch_Date__c != null ? String.valueOf(newRecord.Launch_Date__c).substring(0,10) : '';
-      diffs.add(BET_LAUNCH_DATE_CHANGED+newDate);
-    }
-
-    if(oldRecord.IPM_Project__c != newRecord.IPM_Project__c){
-      if(newRecord.IPM_Project__c != null) {
-        diffs.add(PROJECT_TXT+projectsMap.get(newRecord.IPM_Project__c)+LEAD_PROJECT+newRecord.name);
-      } else {
-        diffs.add(BET_PROJECT_CHANGED+projectsMap.get(oldRecord.IPM_Project__c)+BET_TO+projectsMap.get(newRecord.IPM_Project__c));
-      }
-    }
-
-    if(oldRecord.Category_Group__c != newRecord.Category_Group__c){
-      diffs.add(BET_CATEGORY_GROUP_CHANGED+categoryGroupsMap.get(oldRecord.Category_Group__c)+BET_TO+categoryGroupsMap.get(newRecord.Category_Group__c));
-    }
-
-    if(oldRecord.Product_Category__c != newRecord.Product_Category__c){
-      diffs.add(BET_CATEGORY_CHANGED+categoriesMap.get(oldRecord.Product_Category__c)+BET_TO+categoriesMap.get(newRecord.Product_Category__c));
-    }
-
-    if(oldRecord.Brand_Position__c != newRecord.Brand_Position__c){
-      diffs.add(BET_BRAND_POSITIONING_CHANGED+brandPositionsMap.get(oldRecord.Brand_Position__c)+BET_TO+brandPositionsMap.get(newRecord.Brand_Position__c));
-    }
-
-    if(oldRecord.Product_Brand__c != newRecord.Product_Brand__c){
-      diffs.add(BET_BRAND_CHANGED+brandsMap.get(oldRecord.Product_Brand__c)+BET_TO+brandsMap.get(newRecord.Product_Brand__c));
-    }
-
-    if(oldRecord.Description__c != newRecord.Description__c){
-      diffs.add(BET_DESCRIPTION_CHANGED+oldRecord.Description__c+BET_TO+newRecord.Description__c);
-    }
-
-    if(oldRecord.Is_Archived__c != newRecord.Is_Archived__c){
-      if(newRecord.Is_Archived__c){
-        diffs.add(BET_TXT+newRecord.name+BET_ARCHIVED);
-      } else {
-        diffs.add(BET_TXT+newRecord.name+BET_UNARCHIVED);
-      }
-    }
-
-    return diffs;
-  }
-
-  private static void retrieveReletedReferencesIds(){
-    for(Integer i=0; i< Trigger.new.size(); i++){
-
-      uw_BET__c oldRecord = (uw_BET__c)Trigger.old[i];
-      uw_BET__c newRecord = (uw_BET__c)Trigger.new[i];
-
-      if(oldRecord.IPM_Project__c != newRecord.IPM_Project__c){
-        projects.add(oldRecord.IPM_Project__c);
-        projects.add(newRecord.IPM_Project__c);
-      }
-
-      if(oldRecord.Category_Group__c != newRecord.Category_Group__c){
-        categoryGroups.add(oldRecord.Category_Group__c);
-        categoryGroups.add(newRecord.Category_Group__c);
-      }
-
-      if(oldRecord.Product_Category__c != newRecord.Product_Category__c){
-        categories.add(oldRecord.Product_Category__c);
-        categories.add(newRecord.Product_Category__c);
-      }
-
-      if(oldRecord.Brand_Position__c != newRecord.Brand_Position__c){
-        positionings.add(oldRecord.Brand_Position__c);
-        positionings.add(newRecord.Brand_Position__c);
-      }
-
-      if(oldRecord.Product_Brand__c != newRecord.Product_Brand__c){
-        brands.add(oldRecord.Product_Brand__c);
-        brands.add(newRecord.Product_Brand__c);
-      }
-    }
-  }
-
-  /************************************************************
-    Purpose: Method create set of maps with objects ids and related names
-    Parameters: Set<Id>projects,Set<Id>categoryGroups,Set<Id>categories,Set<Id>positionings,Set<Id>brands
-    Returns: -
-    Throws: -
-  *************************************************************/
-
-  private static void fillMapObjects(){
-    for(IPM_Project__c project : [select id, name from IPM_Project__c where id in : projects]){
-      projectsMap.put(project.id,project.name);
-    }
-
-    for(MDO_Category__c mdo : [select id, name from MDO_Category__c where id in : categoryGroups]){
-      categoryGroupsMap.put(mdo.id,mdo.name);
-    }
-
-    for(MDO_Category__c mdo : [select id, name from MDO_Category__c where id in : categories]){
-      categoriesMap.put(mdo.id,mdo.name);
-    }
-
-    for(MDO_BrandPosition__c mdo : [select id, name from MDO_BrandPosition__c where id in : positionings]){
-      brandPositionsMap.put(mdo.id,mdo.name);
-    }
-
-    for(MDO_Brand__c mdo : [select id, name from MDO_Brand__c where id in : brands]){
-      brandsMap.put(mdo.id,mdo.name);
-    }
-  }
-
-  /************************************************************
-    Purpose: Method inserts Chatter Feed records
-    Parameters: Map<Id, List<String>> feedsMap)
-    Returns: -
-    Throws: -
-  *************************************************************/
-	private static void insertFeeds(Map<Id, List<String>> feedsMap){
-		List<FeedItem> feedToInsert = new List<FeedItem>();
-      for(Id groupId : feedsMap.keySet()){
-      	List<String> diffMsgs = feedsMap.get(groupId);
-      	for(String d: diffMsgs){
-        	FeedItem f = new FeedItem();
-        	f.Body = d;
-        	f.Type = 'TextPost';
-        	f.ParentId = groupId;
-        	feedToInsert.add(f);
-        }
-      }
-    insert feedToInsert;
+    if (enableLogging) {
+    	BET_BETChangesLogger logger = new BET_BETChangesLogger();
+      logger.logChanges();
+  	}
+    System.debug('Exit logChanges');    
 	}
 
   /************************************************************
@@ -369,6 +155,7 @@ public without sharing class BET_BETHandlerCls {
     Throws: -
   *************************************************************/
 	public static void deleteBETRelatedCollaborationGroup(){ // Taken from uw_BET_before_delete trigger
+    System.debug('Entering deleteBETRelatedCollaborationGroup');
 		List<Id> delete_BET_group_Ids = new List<Id>();
     	List<Id> BET_Ids = new List<Id>();
     	List<uw_BET_Team_Member__c> delete_BET_Team_Member = new List<uw_BET_Team_Member__c>();
@@ -400,6 +187,7 @@ public without sharing class BET_BETHandlerCls {
     	} catch(System.DmlException e) {
         	System.debug('Error in deleting the BET Member');
     	}
+      System.debug('Exit deleteBETRelatedCollaborationGroup');
 	}
 
 }
