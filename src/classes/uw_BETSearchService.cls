@@ -75,8 +75,8 @@ public without sharing class uw_BETSearchService {
     Throws [Exceptions]: [optional] 
     ********************************************************************/
     private static String buildWhereClausesForSearch(String brandId, String categoryId){
-        String whereClauseForBet = 'where Is_Archived__c = false AND Id != \'\'';
-        //String whereClauseForBet = 'where Id != \'\'';
+        //String whereClauseForBet = 'where Is_Archived__c = false AND Id != \'\'';
+        String whereClauseForBet = 'where Id != \'\'';
         try{
             if(brandId != null && brandId != '' ){
                 Id.valueOf(brandId);             
@@ -129,7 +129,7 @@ public without sharing class uw_BETSearchService {
         //Inoplan_Project__r.Name, Status__c, LastModifiedDate, 
         //Owner.Id, Owner.Name FROM uw_BET__c ' + whereClauseForBet + 
         //' ORDER BY '+ sortField + ' ' + orderDir;
-        String finalSoqlQuery = 'SELECT Id, Name, Studio_Chatter_Group__c, FirstReleaseDate__c, FinalReleaseDate__c,Final_Release_Due_Date__c,First_Release_Due_Date__c, Presentation_Id__c, Icon_Location__c, Description__c, Product_Brand__r.Name, Product_Brand__c, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name, Brand_Keyword_Search__c, Category_Keyword_Search__c, Inoplan_Project_Keyword_Search__c, Owner_Keyword_Search__c, Region_Keyword_Search__c, Banner_1_Location__c, Background_Colour__c, Banner_Colour__c, Border_Colour__c, Font_Colour__c, Sharing__c, Launch_Date__c,IPM_Project__c,IPM_Project__r.Name, Category_Group__c, Product_Category__c, Brand_Position__c,Brand_Position__r.name,Is_Archived__c,Category_Group_Keyword_Search__c,Brand_Position_Keyword_Search__c FROM uw_BET__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir +' LIMIT '+pageSize+' OFFSET '+startIndex ;
+        String finalSoqlQuery = 'SELECT Id, Name, Studio_Chatter_Group__c, FirstReleaseDate__c, FinalReleaseDate__c,Final_Release_Due_Date__c,First_Release_Due_Date__c, Presentation_Id__c, Icon_Location__c, Description__c, Product_Brand__r.Name, Product_Brand__c, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name, Brand_Keyword_Search__c, Category_Keyword_Search__c, Inoplan_Project_Keyword_Search__c, Owner_Keyword_Search__c, Region_Keyword_Search__c, Banner_1_Location__c, Background_Colour__c, Banner_Colour__c, Border_Colour__c, Font_Colour__c, Sharing__c, Launch_Date__c,IPM_Project__c,IPM_Project__r.Name, Category_Group__c, Product_Category__c, Brand_Position__c,Brand_Position__r.name,Is_Archived__c,Category_Group_Keyword_Search__c,Brand_Position_Keyword_Search__c,Total_Actual_Assets__c,Total_Expected_Assets__c FROM uw_BET__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir +' LIMIT '+pageSize+' OFFSET '+startIndex ;
         if(keyWordStr != null && keyWordStr !='' && keyWordStr.trim() !=''){    
             keyWord = String.escapeSingleQuotes(keyWordStr);       
             finalSoslQuery += 'FIND \''+keyWord+'*\' ';
@@ -145,7 +145,7 @@ public without sharing class uw_BETSearchService {
             //Inoplan_Project__r.Name, Status__c, LastModifiedDate, 
             //Owner.Id, Owner.Name ' + whereClauseForBet + 
             //' ORDER BY LastModifiedDate '+ orderDir +')';
-            finalSoslQuery += 'IN ALL FIELDS RETURNING uw_BET__c (Id, Name, Studio_Chatter_Group__c, FirstReleaseDate__c, FinalReleaseDate__c,Final_Release_Due_Date__c,First_Release_Due_Date__c, Presentation_Id__c, Icon_Location__c, Description__c, Product_Brand__r.Name, Product_Brand__c, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name, Brand_Keyword_Search__c, Category_Keyword_Search__c, Inoplan_Project_Keyword_Search__c, Owner_Keyword_Search__c, Region_Keyword_Search__c, Banner_1_Location__c, Background_Colour__c, Banner_Colour__c, Border_Colour__c, Font_Colour__c, Sharing__c, Launch_Date__c,IPM_Project__c,IPM_Project__r.name, Category_Group__c, Product_Category__c, Brand_Position__c,Brand_Position__r.name, Is_Archived__c,Category_Group_Keyword_Search__c,Brand_Position_Keyword_Search__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir +' LIMIT '+pageSize+' OFFSET '+startIndex+ ')';
+            finalSoslQuery += 'IN ALL FIELDS RETURNING uw_BET__c (Id, Name, Studio_Chatter_Group__c, FirstReleaseDate__c, FinalReleaseDate__c,Final_Release_Due_Date__c,First_Release_Due_Date__c, Presentation_Id__c, Icon_Location__c, Description__c, Product_Brand__r.Name, Product_Brand__c, Region__c, Inoplan_Project__r.Name, Status__c, LastModifiedDate, Owner.Id, Owner.Name, Brand_Keyword_Search__c, Category_Keyword_Search__c, Inoplan_Project_Keyword_Search__c, Owner_Keyword_Search__c, Region_Keyword_Search__c, Banner_1_Location__c, Background_Colour__c, Banner_Colour__c, Border_Colour__c, Font_Colour__c, Sharing__c, Launch_Date__c,IPM_Project__c,IPM_Project__r.name, Category_Group__c, Product_Category__c, Brand_Position__c,Brand_Position__r.name, Is_Archived__c,Category_Group_Keyword_Search__c,Brand_Position_Keyword_Search__c,Total_Actual_Assets__c,Total_Expected_Assets__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir +' LIMIT '+pageSize+' OFFSET '+startIndex+ ')';
 
                        
             List<List<SObject>> searchList = Search.Query(finalSoslQuery);            
@@ -203,17 +203,14 @@ public without sharing class uw_BETSearchService {
                 if(myPendingBetsIds.contains(bet.Id)){
                     betResultWrapper.add(
                         new uw_BETWrapper.BetSearchItem(bet, true, !bet.Is_Archived__c, false, false)
-                        //new uw_BETWrapper.BetSearchItem(bet, true, true, false, false)
                     );
                 } else if(myBetsIds.contains(bet.Id)){
                     betResultWrapper.add(
                         new uw_BETWrapper.BetSearchItem(bet, false, !bet.Is_Archived__c, true, false)
-                        //new uw_BETWrapper.BetSearchItem(bet, false, true, true, false)
                     );
                 }else{
                     betResultWrapper.add(
                         new uw_BETWrapper.BetSearchItem(bet, false, !bet.Is_Archived__c, false, false)
-                        //new uw_BETWrapper.BetSearchItem(bet, false, true, false, false)
                     );
                 }
             }

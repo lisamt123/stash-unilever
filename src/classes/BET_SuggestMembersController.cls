@@ -412,45 +412,22 @@ public with sharing class BET_SuggestMembersController {
 
         if(suggested_MembersCtrl != null && !suggested_MembersCtrl.isEmpty()){
             for(ID userId : suggested_MembersCtrl){
-            	BET_Member_Request__c betMemeberItem = new BET_Member_Request__c();
-                betMemeberItem.Brand_Experience_Toolkit__c = betIdCtrl;
-                betMemeberItem.ProjectRequest__c = betFollowRequestId;
-                betMemeberItem.UserId__c = userId;
-                betMemeberItem.Project_Id__c = projectIdCtrl;
-                betMemeberItem.Bet_owner__c = betOwnerId;
-                if(isBetOwnerOrManager){
-                    betMemeberItem.Status__c = Label.BETTeamMemberRequestApprovedStatus;
-                    betMemeberItem.Do_Not_Notify_Bet__c = true;
-                }else{
-                    betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
-                }
-                betMemeberItem.Role__c = Label.BetTeamMemberRoleMember;
-                betMembersToInsert.add(betMemeberItem);
+                betMembersToInsert.add(addInternalMemberRecord(userId,betFollowRequestId,isBetOwnerOrManager,betOwnerId));
             }
             betMembersToInsert = BET_SuggestedMemberService.removeMemberRequestDuplicatesWhileInsert(betMembersToInsert);
         }
 
         if(!externalMembers.isEmpty()){
             for(ExternalAgencyMemberWrapper eam : externalMembers){
-                BET_Member_Request__c betMemeberItem = new BET_Member_Request__c();
-                betMemeberItem.Brand_Experience_Toolkit__c = betIdCtrl;
-                betMemeberItem.ProjectRequest__c = betFollowRequestId;
-                betMemeberItem.External_User_Request__c = true;
-                betMemeberItem.External_User_Email__c = eam.email;
-                betMemeberItem.Bet_owner__c = betOwnerId;
-                betMemeberItem.UserId__c = eam.userId;
-                if(isBetOwnerOrManager){
-                    betMemeberItem.Status__c = Label.BETTeamMemberRequestApprovedStatus;
-                    betMemeberItem.Do_Not_Notify_Bet__c = true;
-                }else{
-                    betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
-                }
-                betMemeberItem.Role__c = Label.BetTeamMemberRoleMember;
-                betMembersToInsert.add(betMemeberItem);
+                betMembersToInsert.add(addExternalMemberRecord(eam,betFollowRequestId,isBetOwnerOrManager,betOwnerId));
             }
         }
 
-        insert betMembersToInsert;
+
+        if(!betMembersToInsert.isEmpty()){
+            insert betMembersToInsert;
+            IPM_BETUpdateService.updateBETMemberRequest(new Set<Id> {projectIdCtrl});
+        }
 
         System.debug('Exiting method addMembers method processes with success');
         if(callbackCtrl != null){
@@ -461,6 +438,53 @@ public with sharing class BET_SuggestMembersController {
         
         return null;
 	}
+
+    /************************************************************
+        Purpose: Method responsible for createing new internal Bet Member Requests record
+        Parameters: ID userId,Id betFollowRequestId,Boolean isBetOwnerOrManager,Id betOwnerId
+        Returns: BET_Member_Request__c
+        Throws: -
+    *************************************************************/
+    private BET_Member_Request__c addInternalMemberRecord(ID userId,Id betFollowRequestId,Boolean isBetOwnerOrManager,Id betOwnerId){
+        BET_Member_Request__c betMemeberItem = new BET_Member_Request__c();
+        betMemeberItem.Brand_Experience_Toolkit__c = betIdCtrl;
+        betMemeberItem.ProjectRequest__c = betFollowRequestId;
+        betMemeberItem.UserId__c = userId;
+        betMemeberItem.Project_Id__c = projectIdCtrl;
+        betMemeberItem.Bet_owner__c = betOwnerId;
+        if(isBetOwnerOrManager){
+            betMemeberItem.Status__c = Label.BETTeamMemberRequestApprovedStatus;
+            betMemeberItem.Do_Not_Notify_Bet__c = true;
+        }else{
+            betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
+        }
+        betMemeberItem.Role__c = Label.BetTeamMemberRoleMember;
+        return betMemeberItem;
+    }
+
+    /************************************************************
+        Purpose: Method responsible for createing new external Bet Member Requests record
+        Parameters: ExternalAgencyMemberWrapper eam,Id betFollowRequestId,Boolean isBetOwnerOrManager,Id betOwnerId
+        Returns: BET_Member_Request__c
+        Throws: -
+    *************************************************************/
+    private BET_Member_Request__c addExternalMemberRecord(ExternalAgencyMemberWrapper eam,Id betFollowRequestId,Boolean isBetOwnerOrManager,Id betOwnerId){
+        BET_Member_Request__c betMemeberItem = new BET_Member_Request__c();
+        betMemeberItem.Brand_Experience_Toolkit__c = betIdCtrl;
+        betMemeberItem.ProjectRequest__c = betFollowRequestId;
+        betMemeberItem.External_User_Request__c = true;
+        betMemeberItem.External_User_Email__c = eam.email;
+        betMemeberItem.Bet_owner__c = betOwnerId;
+        betMemeberItem.UserId__c = eam.userId;
+        if(isBetOwnerOrManager){
+            betMemeberItem.Status__c = Label.BETTeamMemberRequestApprovedStatus;
+            betMemeberItem.Do_Not_Notify_Bet__c = true;
+        }else{
+            betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
+        }
+        betMemeberItem.Role__c = Label.BetTeamMemberRoleMember;
+        return betMemeberItem;
+    }
     
     /************************************************************
         Purpose: Method redirecting to next page defined in component callback attribute

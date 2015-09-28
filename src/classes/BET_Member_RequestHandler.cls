@@ -37,7 +37,7 @@ public with sharing class BET_Member_RequestHandler implements ITrigger {
             BET_MemberRequestHandlerCls.createTeamMemberForApprovedRequest((List<BET_Member_Request__c>)Trigger.new, (Map<Id,BET_Member_Request__c>)Trigger.oldMap);
     	}
     	if(Trigger.isInsert){
-    		BET_MemberRequestHandlerCls.informIPMOfProjectMemberRequest((List<BET_Member_Request__c>)Trigger.new);
+    		//BET_MemberRequestHandlerCls.informIPMOfProjectMemberRequest((List<BET_Member_Request__c>)Trigger.new);
     		BET_MemberRequestHandlerCls.createTeamMemberForApprovedRequest((List<BET_Member_Request__c>)Trigger.new, (Map<Id,BET_Member_Request__c>)Trigger.oldMap);
     	}
 	}

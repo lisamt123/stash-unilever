@@ -5,7 +5,7 @@ global class BET_ChatterGroupAutoArchiveDisable_Batch implements Database.Batcha
 	global Database.QueryLocator start(Database.BatchableContext BC) {
 		System.debug('Starting BET_ChatterGroupAutoArchiveDisable_Batch');
 		Set<String> collaborationGroupsIds = new Set<String>();
-		for(uw_Bet__c bet : [select Studio_Chatter_Group__c from uw_Bet__c]){
+		for(uw_Bet__c bet : [select Studio_Chatter_Group__c from uw_Bet__c where Studio_Chatter_Group__c != null ]){
 			collaborationGroupsIds.add(bet.Studio_Chatter_Group__c);
 		}
 		String query = 'Select id, IsAutoArchiveDisabled from CollaborationGroup where IsAutoArchiveDisabled = false and id in :collaborationGroupsIds';

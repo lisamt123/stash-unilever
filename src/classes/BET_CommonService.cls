@@ -16,9 +16,13 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 **********************************************************************/
 
 public without sharing class BET_CommonService {
+
     public static final String BET_REQUEST_ACCESS = 'BET_Request_Access';
     public static final String BET_REQUEST_ACCESS_ALREADY_PENDING = 'BET_Request_Access_Already_Pending';
     public static final String BET_REQUEST_ACCESS_OWNER = 'BET_Request_Access_Owner';
+
+    public static final String BET_HUB_ADMIN_PERM_SET = 'CB4L_HUB_Admin';
+    public static final String BET_OPERATION_ADMIN_PERM_SET = 'BET_Operation_Admin';
 
 
     public class BetException extends Exception {}
@@ -57,6 +61,17 @@ public without sharing class BET_CommonService {
         }
         return false;
     }
+
+
+/*****************************************************************************************
+    Purpose: Returns true or false. Gives info that user has BET Operation Admin permission set.
+    Parameters: None
+    Returns: Boolean
+    ******************************************************************************************/ 
+public static boolean isBETOperationAdmin(){
+   return hasPermissionSet(BET_OPERATION_ADMIN_PERM_SET);
+}
+
 /* T1-Begin*/
  /*****************************************************************************************
     Purpose: Returns true or false. Gives info that user has CB4L Hub admin permission set.
@@ -64,17 +79,27 @@ public without sharing class BET_CommonService {
     Returns: Boolean
     ******************************************************************************************/ 
 public static boolean isHubAdmin(){
+   return hasPermissionSet(BET_HUB_ADMIN_PERM_SET);
+}
+
+ /*****************************************************************************************
+    Purpose: Returns true or false. Gives info that user has given permission set.
+    Parameters: String permission set name
+    Returns: Boolean
+    ******************************************************************************************/ 
+public static boolean hasPermissionSet(String permSetName){
     Id currentuser= UserInfo.getUserId();
-    List<PermissionSet> ps=[select id,name from permissionset where id in (SELECT PermissionSetId FROM PermissionSetAssignment WHERE AssigneeId =: currentuser)];
-    if (!ps.isEmpty()){
-        for (PermissionSet permset: ps){
-            if(permset.name == 'CB4L_HUB_Admin'){
+    List<PermissionSet> permsets =[select id,name from permissionset where id in (SELECT PermissionSetId FROM PermissionSetAssignment WHERE AssigneeId =: currentuser)];
+    if (!permsets.isEmpty()){
+        for (PermissionSet permset: permsets){
+            if(permset.name == permSetName){
                 return true;
             }
         }
    }
    return false;
 }
+
 /*T1-End*/
     /*****************************************************************************************
     

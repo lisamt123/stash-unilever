@@ -969,6 +969,16 @@
 		<members>BET_MDODataMigrationAndTransform_Batch</members>
 		<members>BET_ChatterGroupAutoArchiveDisable_Batch</members>
 		<members>BET_ChatterGroupAutoArchDis_BatchTest</members>
+		<members>BET_ExpectedAssetsController</members>
+		<members>BET_ExpectedAssetsControllerTest</members>
+		<members>BET_AssetHandler</members>
+		<members>BET_AssetHandlerCls</members>
+		<members>BET_AssetHandlerClsTest</members>
+		<members>BET_AssetService</members>
+		<members>BET_AssetServiceTest</members>
+		<members>BET_Team_MemberHandlerClsHelper</members>
+		<members>BET_Team_MemberHandlerClsHelperTest</members>
+		<members>BET_FollowRequestTriggerHandlerClsHelper</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -1613,7 +1623,6 @@
         <members>kof_ContactTrigger</members>
         <members>user_after_insert</members>
         <members>user_after_update</members>
-        <members>uw_Asset_AfterInsertAfterUpdate</members>
 		<members>uw_BET_Trigger</members>
         <members>uw_BET_Trigger_Team_member</members>
         <members>uw_BET_after_insert</members>
@@ -1626,6 +1635,7 @@
         <members>validationOnAmounts</members>
         <members>BET_Member_Request_Trigger</members>
 		<members>BET_Follow_Request</members>
+		<members>uw_Asset_Trigger</members>
         <name>ApexTrigger</name>
     </types>
     <types>
@@ -2119,6 +2129,8 @@
 		<members>BET_UpdateBetAddMembers</members>
 		<members>BET_NoLinkedProjectsAvailable</members>
 		<members>BET_LinkBetToIPMProject</members>
+		<members>BET_AssetType</members>
+		<members>BET_ExpectedAssets</members>
         <name>CustomLabel</name>
     </types>
     <types>
@@ -2396,7 +2408,7 @@
         <members>BET_Follow_Request__c</members>
         <members>BET_Member_Request__c</members>
 		<members>BET_FabricCoditioners__c</members>
-        <members>MDO_Brand__c</members>
+		<members>MDO_Brand__c</members>
         <members>MDO_BrandManufacturers__c</members>
         <members>MDO_BrandPosition__c</members>
         <members>MDO_BrandPositions__c</members>
@@ -2408,6 +2420,7 @@
         <members>MDO_Manufacturer__c</members>
         <members>MDO_ProductCategorySubscriptions__c</members>
         <members>MDO_Subscriptions__c</members>
+		<members>BET_ExpectedAssets__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -3048,11 +3061,10 @@
         <members>FAU_Program_Protected/FAU_Request_New_Upgrade_Personal_Assistant_User</members>
         <members>TO_Emails_France</members>
         <members>TO_Emails_France/TO_Auto_Response_Template</members>
-		<members>Approval_Emails/BET_FollowRequestApproved</members>
 		<members>Approval_Emails/BET_FollowRequestCreated</members>
-		<members>Approval_Emails/BET_FollowRequestRejected</members>
 		<members>Approval_Emails/BET_Member_Request_Created</members>
-		<members>Approval_Emails/BET_TLD_Changed</members>
+		<members>Approval_Emails/BET_Unarchived</members>
+        <members>Approval_Emails/BET_Archived</members>
         <name>EmailTemplate</name>
     </types>
     <types>
@@ -3709,15 +3721,11 @@
     </types>
     <types>
 		<members>BETApp</members>
-		<members>BETEditBetStyles</members>
-		<members>BETNewBetStyles</members>
+		<members>BET</members>
         <members>MyApprovalsSR</members>
         <members>resource_robertson</members>
         <members>resource_sunsilk</members>
         <members>walls_brand_centre_resources</members>
-        <members>BETSuggestedMembers</members>
-		<members>BETManageMembersJS</members>
-		<members>BETManageMembersStyles</members>
         <name>StaticResource</name>
     </types>
     <types>
@@ -4006,9 +4014,14 @@
     <types>
         <members>CB4L_HUB_Admin</members>
         <members>CB4L_Standard_User</members>
+		<members>BET_Operation_Admin</members>
         <name>PermissionSet</name>
     </types>
     <types>
+		<members>BET_ExpectedAssets__c.Actual__c</members>
+		<members>BET_ExpectedAssets__c.Expected__c</members>
+		<members>BET_ExpectedAssets__c.Brand_Experience_Toolkit__c</members>
+		<members>BET_ExpectedAssets__c.Type__c</members>
         <members>BET_Follow_Request__c.Brand_Experience_Toolkit__c</members>
         <members>BET_Follow_Request__c.Is_Lead_Request__c</members>
         <members>BET_Follow_Request__c.Project_Id__c</members>
@@ -4065,6 +4078,7 @@
         <members>uw_BET__c.Inoplan_Project__c</members>
         <members>uw_BET__c.Is_Archived__c</members>
         <members>uw_BET__c.Launch_Date__c</members>
+		<members>uw_BET__c.Link__c</members>
         <members>uw_BET__c.Market_Cluster__c</members>
         <members>uw_BET__c.Market_Clusters__c</members>
         <members>uw_BET__c.Max_of_Order_Of_Display__c</members>
@@ -4087,6 +4101,8 @@
         <members>uw_BET__c.Sub_Category__c</members>
         <members>uw_BET__c.Total_Number_of_Members__c</members>
         <members>uw_BET__c.Total_assets__c</members>
+		<members>uw_BET__c.Total_Actual_Assets__c</members>
+		<members>uw_BET__c.Total_Expected_Assets__c</members>
         <members>uw_BET__c.uw_Brand__c</members>
         <name>CustomField</name>
     </types>

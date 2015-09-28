@@ -1,6 +1,6 @@
 <apex:component controller="BET_NewBetComponentController" allowDML="true">
 
-    <apex:stylesheet value="{!$Resource.BETSuggestedMembers}/css/betSuggestedMembers.css"/> 
+    <apex:stylesheet value="{!$Resource.BET}/css/betSuggestedMembers.css"/> 
 
 	<apex:attribute name="betobj" description="Current BET object" 
                     type="uw_BET__c" required="true" assignTo="{!bet}"/>
@@ -11,8 +11,8 @@
 	<apex:attribute name="saveURL" description="Save action redirect URL" 
                     type="String" required="false" assignTo="{!forwardUrl}" />
 
-    <apex:outputPanel id="mainBETPanel" rendered="{!NOT(goToMemberSelection)}">
-		<div class="form-header">
+    <apex:outputPanel id="mainBETPanels" rendered="{!NOT(goToMemberSelection)}">
+		<div class="form-header" style="{!If(bet.id == null,'','display:none')}">
     		<div class="form-item">
                 <div class="item-label">
     				<apex:outputLabel >{!$Label.BET_Header}</apex:outputLabel>
@@ -21,7 +21,7 @@
         </div>
 
         <div>
-        	<div class="form-mandatory">
+        	<div class="form-mandatory" style="{!If(bet.id == null,'','display:none')}">
                 <div class="item-label">
         			<apex:outputLabel >
                         {!$Label.BET_MandatoryStar} {!$Label.BET_MarkedFieldsMandatory}
@@ -34,7 +34,7 @@
             <div class="form-item">
                 <div class="item-label">
                     <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_Name}</apex:outputLabel>
-                    <apex:outputPanel layout="inline" styleClass="question-icon"
+                    <apex:outputPanel layout="inline" styleClass="question-icon" style="{!If(bet.id == null,'','display:none')}"
                                 rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Name.inlineHelpText)}"
                                 html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Name.inlineHelpText}" />
                 </div>
@@ -61,7 +61,7 @@
             <div class="form-item">
                 <div class="item-label">
                   	<apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_TargetLaunchDate}</apex:outputLabel>
-                    <apex:outputPanel layout="inline" styleClass="question-icon"
+                    <apex:outputPanel layout="inline" styleClass="question-icon" style="{!If(bet.id == null,'','display:none')}"
                         		rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText)}"
                         		html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText}" />
                 </div>
@@ -78,7 +78,7 @@
             <div class="form-item">
                 <div class="item-label">
                     <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
-                    <apex:outputPanel layout="inline" styleClass="question-icon"
+                    <apex:outputPanel layout="inline" styleClass="question-icon" style="{!If(bet.id == null,'','display:none')}"
                                 rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText)}"
                                 html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText}" />
                 </div>
@@ -88,7 +88,7 @@
             </div>
         </div>
 
-        <div class="betActionButtons">
+        <div class="betActionButtons" style="{!If(bet.id == null,'','display:none')}">
             <apex:commandButton value="{!$Label.BET_Cancel}" styleClass="btn-cancel" 
                                 action="{!cancelBET}" immediate="true"/>
             <apex:commandButton value="{!$Label.BET_CreateBetAddMembers}" styleClass="btn-create-bet" 

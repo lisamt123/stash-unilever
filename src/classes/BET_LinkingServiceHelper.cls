@@ -93,10 +93,10 @@ public without sharing class BET_LinkingServiceHelper {
 		}
 		BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(bet,project); //US23
 		bet.IPM_Project__c = project.projectId;
-		bet = BET_BETService.updateBetFields(bet,project);
-		update bet;
-		System.debug('Exit setNewLeadProjectAndOwner : ' + bet);
-		return bet;
+		uw_Bet__c updatedBet = BET_BETService.updateBetFields(bet,project);
+		update updatedBet;
+		System.debug('Exit setNewLeadProjectAndOwner : ' + updatedBet);
+		return updatedBet;
 	}
 
 	/************************************************************

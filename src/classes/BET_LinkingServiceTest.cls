@@ -8,7 +8,6 @@ private class BET_LinkingServiceTest {
 		insert bet;
 		Id BetId = bet.id;
 		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
-		Boolean testOK;
 		BET_LinkingService.setASLead(ProjectId, BetId);
 		bet = [select IPM_Project__c from uw_Bet__c where id=:BetId];
 		System.assertEquals(bet.IPM_Project__c,ProjectId);

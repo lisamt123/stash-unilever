@@ -247,6 +247,9 @@ public with sharing class uw_BETWrapper {
 
         public Boolean completedFirstAfterDueDate = false;
         public Boolean completedFinalAfterDueDate = false;
+
+        public Integer totalActualAssets;
+        public Integer totalExpectedAssets;
         
         public BetSearchItem(String betId, String betName, String betChatterGroupId, Datetime betFinalRelease, String betPresentationId, String betIconLocation, String betDescription, String betBrandName, String betRegion, String betProjectName,
             String betIPMProjectName,  
@@ -327,6 +330,10 @@ public with sharing class uw_BETWrapper {
             this.brand                  = bet.Product_Brand__c;
             this.archived               = bet.Is_Archived__c;
             this.betBrandPositionName   = bet.Brand_Position__r.name;
+
+            this.totalActualAssets      = bet.Total_Actual_Assets__c != null ? Integer.valueOf(bet.Total_Actual_Assets__c) : 0;
+            this.totalExpectedAssets    = bet.Total_Expected_Assets__c != null ? Integer.valueOf(bet.Total_Expected_Assets__c) : 0;
+
 
             if(this.betFirstRelease != null && this.betFirstReleaseDueDate != null ){
                 this.completedFirstAfterDueDate = this.betFirstRelease >  this.betFirstReleaseDueDate;

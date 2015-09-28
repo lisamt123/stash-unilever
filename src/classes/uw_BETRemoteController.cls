@@ -40,6 +40,11 @@ public with sharing class uw_BETRemoteController {
      */
     public String BETTemplateLink {get; protected set;}
 
+    /**
+    *Boolean flag indicates is user is bet operation admin
+    */
+    public String betOperationAdmin {get; protected set;}
+
     /*******************************************************************
     Purpose: class constructor
     ********************************************************************/
@@ -61,6 +66,7 @@ public with sharing class uw_BETRemoteController {
         betPrefix = uw_BET__c.SObjectType.getDescribe().getKeyPrefix();
         hasReadAll = BET_CommonService.hasAccess(true) ? 'true' : 'false';
         hasModifyAll = BET_CommonService.hasAccess(false) ? 'true' : 'false';
+        betOperationAdmin = BET_CommonService.isBETOperationAdmin() ? 'true' : 'false';
         if (newBetId == null) {
             newBetId = '';
         }

@@ -72,7 +72,7 @@ public with sharing class BET_MemberRequestHandlerCls {
         
     }
 
-    public static void informIPMOfProjectMemberRequest(List<BET_Member_Request__c> memberRequestLst){
+    /*public static void informIPMOfProjectMemberRequest(List<BET_Member_Request__c> memberRequestLst){
         System.debug('Entering informIPMOfProjectMemberRequest : ' + memberRequestLst);
         Set<Id> projects = new Set<Id>();
         for(BET_Member_Request__c mreq : memberRequestLst) {
@@ -82,7 +82,7 @@ public with sharing class BET_MemberRequestHandlerCls {
         }
         IPM_BETUpdateService.updateBETMemberRequest(projects);
         System.debug('Exit informIPMOfProjectMemberRequest');
-    }
+    }*/
     
     /************************************************************
         Purpose: Method responsible for creating Team Members record for Approved Team Member Request record
@@ -127,50 +127,58 @@ public with sharing class BET_MemberRequestHandlerCls {
         List<uw_BET_Team_Member__c> teamMembersToUpsert = new List<uw_BET_Team_Member__c>();
         for(BET_Member_Request__c memberRequest : memberRequestLst){
             if(memberRequest.External_User_Request__c){
-                if(oldMap == null && memberRequest.Status__c == Label.BETTeamMemberRequestApprovedStatus){
-                    if(betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) == null || (betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.External_User_Email__c))){
-                        teamMembersToUpsert.add(createTeamMemberFromRequest(memberRequest));
-                    } 
-                }else if(oldMap != null){
-                    String OldMapStatus = oldMap.containsKey(memberRequest.id)  ? oldMap.get(memberRequest.id).Status__c : null;
-                    if(memberRequest.Status__c == Label.BETTeamMemberRequestApprovedStatus &&  memberRequest.Status__c != OldMapStatus){
-                        if(betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) == null || (betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.External_User_Email__c))){
-                            teamMembersToUpsert.add(createTeamMemberFromRequest(memberRequest));
-                        }
-                    }
-                }
+                externalMembersForUpsert(memberRequest,teamMembersToUpsert,betexternalTeamMembersMap,oldMap);
             } else if (!memberRequest.External_User_Request__c) {
-                if(oldMap == null && memberRequest.Status__c == Label.BETTeamMemberRequestApprovedStatus){
-                    if(betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) == null ||(betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.UserId__c))){
-                        teamMembersToUpsert.add(createTeamMemberFromRequest(memberRequest));
-                    } else {
-                        uw_BET_Team_Member__c member = teamMemberExistingMap.get(String.valueOf(memberRequest.Brand_Experience_Toolkit__c)+String.valueOf(memberRequest.UserId__c));
-                        if(member!=null && member.Role__c == MEMBERROLE && memberRequest.Role__c == MANAGERROLE){
-                            member.Role__c = MANAGERROLE;
-                            teamMembersToUpsert.add(member);
-                        }
-                    }
-                }else if(oldMap != null){
-                    String OldMapStatus = oldMap.containsKey(memberRequest.id)  ? oldMap.get(memberRequest.id).Status__c : null;
-                    if(memberRequest.Status__c == Label.BETTeamMemberRequestApprovedStatus &&  memberRequest.Status__c != OldMapStatus){
-                        if(betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) == null || (betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.UserId__c))){
-                            teamMembersToUpsert.add(createTeamMemberFromRequest(memberRequest));
-                        } else {
-                            uw_BET_Team_Member__c member = teamMemberExistingMap.get(String.valueOf(memberRequest.Brand_Experience_Toolkit__c)+String.valueOf(memberRequest.UserId__c));
-                            if(member!=null && member.Role__c == MEMBERROLE && memberRequest.Role__c == MANAGERROLE){
-                                member.Role__c = MANAGERROLE;
-                                teamMembersToUpsert.add(member);
-                            }
-                        }
-                    }
-                }
+                internalMembersForUpsert(memberRequest,teamMembersToUpsert,betTeamMembersMap,teamMemberExistingMap,oldMap);
             }
         }
         System.debug('Exiting createTeamMemberForApprovedRequest  following Team Members will be created: '+teamMembersToUpsert);
         upsert teamMembersToUpsert;
     }
+
+    private static void externalMembersForUpsert(BET_Member_Request__c memberRequest,List<uw_BET_Team_Member__c> teamMembersToUpsert,Map<Id,Set<String>> betexternalTeamMembersMap,Map<Id,BET_Member_Request__c> oldMap){
+        if(oldMap == null && memberRequest.Status__c == Label.BETTeamMemberRequestApprovedStatus){
+            if(betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) == null || (betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.External_User_Email__c))){
+                teamMembersToUpsert.add(createTeamMemberFromRequest(memberRequest));
+            } 
+        }else if(oldMap != null){
+            String OldMapStatus = oldMap.containsKey(memberRequest.id)  ? oldMap.get(memberRequest.id).Status__c : null;
+            if(memberRequest.Status__c == Label.BETTeamMemberRequestApprovedStatus &&  memberRequest.Status__c != OldMapStatus){
+                if(betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) == null || (betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.External_User_Email__c))){
+                    teamMembersToUpsert.add(createTeamMemberFromRequest(memberRequest));
+                }
+            }
+        }
+    }
+
+    private static void internalMembersForUpsert(BET_Member_Request__c memberRequest,List<uw_BET_Team_Member__c> teamMembersToUpsert,Map<Id,Set<Id>> betTeamMembersMap,Map<String,uw_BET_Team_Member__c> teamMemberExistingMap,Map<Id,BET_Member_Request__c> oldMap){
+        if(oldMap == null && memberRequest.Status__c == Label.BETTeamMemberRequestApprovedStatus){
+            if(betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) == null ||(betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.UserId__c))){
+                teamMembersToUpsert.add(createTeamMemberFromRequest(memberRequest));
+            } else {
+                uw_BET_Team_Member__c member = teamMemberExistingMap.get(String.valueOf(memberRequest.Brand_Experience_Toolkit__c)+String.valueOf(memberRequest.UserId__c));
+                if(member!=null && member.Role__c == MEMBERROLE && memberRequest.Role__c == MANAGERROLE){
+                    member.Role__c = MANAGERROLE;
+                    teamMembersToUpsert.add(member);
+                }
+            }
+        }else if(oldMap != null){
+            String OldMapStatus = oldMap.containsKey(memberRequest.id)  ? oldMap.get(memberRequest.id).Status__c : null;
+            if(memberRequest.Status__c == Label.BETTeamMemberRequestApprovedStatus &&  memberRequest.Status__c != OldMapStatus){
+                if(betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) == null || (betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.UserId__c))){
+                    teamMembersToUpsert.add(createTeamMemberFromRequest(memberRequest));
+                } else {
+                    uw_BET_Team_Member__c member = teamMemberExistingMap.get(String.valueOf(memberRequest.Brand_Experience_Toolkit__c)+String.valueOf(memberRequest.UserId__c));
+                    if(member!=null && member.Role__c == MEMBERROLE && memberRequest.Role__c == MANAGERROLE){
+                        member.Role__c = MANAGERROLE;
+                        teamMembersToUpsert.add(member);
+                    }
+                }
+            }
+        }
+    }
     
-     /************************************************************
+    /************************************************************
         Purpose: Method responsible for creating Team Members record from Team Member Request record
         Parameters: -
         Returns: 

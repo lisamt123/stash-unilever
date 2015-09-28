@@ -1,6 +1,6 @@
 public with sharing class BET_TriggerFactory {
 
-	private BET_TriggerFactory(){} 
+	private BET_TriggerFactory(){}
 
 	/****************************************************************************************
 	 * Public static method to create and execute a trigger handler
@@ -78,6 +78,10 @@ public with sharing class BET_TriggerFactory {
 
 		if (soType == uw_BET_Team_Member__c.sObjectType){
 			return new BET_Team_MemberHandler();
+		}
+
+		if (soType == uw_Asset__c.sObjectType){
+			return new BET_AssetHandler();
 		}
 
 		return null;
