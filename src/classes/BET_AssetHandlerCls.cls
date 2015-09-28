@@ -130,11 +130,9 @@ public with sharing class BET_AssetHandlerCls {
 			List<BET_ExpectedAssets__c> eassets = brandExpectedAssetsMap.get(asset.uw_BET__c);
 			if(eassets!=null){
 				for(BET_ExpectedAssets__c easset : eassets){
-					if(asset.Media_Type__c != null && asset.Media_Type__c == easset.Type__c && easset.Expected__c > 0){
-						if(easset.Actual__c > 0) {
-							easset.Actual__c--;
-							toBeUpdated.add(easset);
-						}
+					if(asset.Media_Type__c != null && asset.Media_Type__c == easset.Type__c && easset.Expected__c > 0 && easset.Actual__c > 0){		
+						easset.Actual__c--;
+						toBeUpdated.add(easset);
 					}
 				}
 			}
