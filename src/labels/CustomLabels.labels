@@ -749,6 +749,30 @@ Are you sure you wish to proceed?</value>
         <value>Target Launch Date is mandatory</value>
     </labels>
     <labels>
+        <fullName>BET_LeadProjectRequestNotification</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_LeadProjectRequestNotification</shortDescription>
+        <value>Project {0} has linked to your BET {1} and will become your leading project.
+&lt;br/&gt; As a reminder, the leading project controls these aspects of a BET:
+&lt;br/&gt;&lt;br/&gt;-  The target launch date (TLD)
+&lt;br/&gt;&lt;br/&gt;-  The BET 1st and Final Release due dates
+&lt;br/&gt;&lt;br/&gt;-  The category and brand position of a BET
+&lt;br/&gt;&lt;br/&gt; If this project has requested access to the BET for it’s members, membership will also be automatically granted with this link.
+&lt;br/&gt;&lt;br/&gt; To DENY this request for membership access and to lead your BET, click here &lt;a href=&quot;{2}&quot;&gt;{3}&lt;/a&gt; within 72 hours of this email.
+&lt;br/&gt;&lt;br/&gt; To manage membership to your BET please open the BET and click on Members &lt;a href=&quot;{4}&quot;&gt;{5}&lt;/a&gt;
+&lt;br/&gt;&lt;br/&gt; To change the lead project, please contact system admin by clicking &lt;a href=&quot;mailto:cb4l@unilever.com?subject=BET SYSTEM REQUEST for {6}&quot;&gt;here&lt;/a&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BET_LeadProjectRequestNotificationSubject</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_LeadProjectRequestNotificationSubject</shortDescription>
+        <value>Project {0} has linked to your BET {1} and will become your leading project.</value>
+    </labels>
+    <labels>
         <fullName>BET_LinkBetToIPMProject</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -797,6 +821,24 @@ Are you sure you wish to proceed?</value>
         <value>Marked fields are mandatory</value>
     </labels>
     <labels>
+        <fullName>BET_MultipleRequestNotification</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_MultipleRequestNotification</shortDescription>
+        <value>A member access request has been made to BET {0} from project {1}.
+&lt;br/&gt; Please open the BET and click on Members to Approve or Deny,
+&lt;a href=&quot;{2}&quot;&gt;{3}&lt;/a&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BET_MultipleRequestNotificationSubject</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_MultipleRequestNotificationSubject</shortDescription>
+        <value>A member access request has been made to BET {0}</value>
+    </labels>
+    <labels>
         <fullName>BET_Name</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -819,6 +861,27 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_NewIPMProjectIsLinking</shortDescription>
         <value>A new IPM Project is linking to this BET</value>
+    </labels>
+    <labels>
+        <fullName>BET_NewLeadProjectNotification</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_NewLeadProjectNotification</shortDescription>
+        <value>Project {0} has become new lead project of BET {1}.
+&lt;br/&gt; As a reminder, the leading project controls these aspects of a BET:
+&lt;br/&gt;&lt;br/&gt;-  The target launch date (TLD)
+&lt;br/&gt;&lt;br/&gt;-  The BET 1st and Final Release due dates
+&lt;br/&gt;&lt;br/&gt;-  The category and brand position of a BET
+&lt;br/&gt;&lt;br/&gt; To change the lead project, please contact system admin by clicking &lt;a href=&quot;mailto:cb4l@unilever.com?subject=BET SYSTEM REQUEST for {2}&quot;&gt;here&lt;/a&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BET_NewLeadProjectNotificationSubject</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_NewLeadProjectNotificationSubject</shortDescription>
+        <value>Project {0} has become the new lead project of BET {1}.</value>
     </labels>
     <labels>
         <fullName>BET_NoLinkedProjectsAvailable</fullName>
@@ -958,13 +1021,6 @@ Are you sure you wish to proceed?</value>
         <value>Member {0} is already defined</value>
     </labels>
     <labels>
-        <fullName>BET_SuggestedMemberMembers</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>BET SuggestedMemberMembers</shortDescription>
-        <value>members</value>
-    </labels>
-    <labels>
         <fullName>BET_SuggestedMemberModalAddSelected</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -993,27 +1049,12 @@ Are you sure you wish to proceed?</value>
         <value>No Results</value>
     </labels>
     <labels>
-        <fullName>BET_SuggestedMemberOtherMembers</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>BET SuggestedMemberOtherMembers</shortDescription>
-        <value>Other Members</value>
-    </labels>
-    <labels>
         <fullName>BET_TargetLaunchDate</fullName>
         <categories>BET</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_TargetLaunchDate</shortDescription>
         <value>Target Launch Date</value>
-    </labels>
-    <labels>
-        <fullName>BET_Title</fullName>
-        <categories>BET</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>BET_Title</shortDescription>
-        <value>Title</value>
     </labels>
     <labels>
         <fullName>BET_UnArchiveBET</fullName>
@@ -1046,6 +1087,47 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_UnFollowExceptionMessage</shortDescription>
         <value>Unable to unfollow</value>
+    </labels>
+    <labels>
+        <fullName>BET_UnfollowNotification</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UnfollowNotification</shortDescription>
+        <value>Project {0} has unlinked from your BET {1}.
+&lt;br/&gt; As there are now no projects linked to your BET, it has been automatically archived.
+&lt;br/&gt;  As a result, the associated Chatter Group will be deactivated and no further changes can be made to this BET.
+&lt;br/&gt;  To unarchive the BET and reactivate the group please open the BET and click on Settings &lt;a href=&quot;{2}&quot;&gt;{3}&lt;/a&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BET_UnfollowNotificationSubject</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UnfollowNotificationSubject</shortDescription>
+        <value>Project {0} has unlinked from your BET {1}.</value>
+    </labels>
+    <labels>
+        <fullName>BET_UnlinkedProjectNotification</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UnlinkedProjectNotification</shortDescription>
+        <value>Project {0} unlinked form your BET {1}.
+&lt;br/&gt; As a result, {2} is now your leading project, as it is the linked project with the earliest target launch date (TLD).
+&lt;br/&gt; As a reminder, the leading project controls these aspects of a BET:
+&lt;br/&gt;&lt;br/&gt;-  The target launch date (TLD)
+&lt;br/&gt;&lt;br/&gt;-  The BET 1st and Final Release due dates
+&lt;br/&gt;&lt;br/&gt;-  The category and brand position of a BET
+&lt;br/&gt;&lt;br/&gt; To change the lead project, please contact system admin by clicking &lt;a href=&quot;mailto:cb4l@unilever.com?subject=BET SYSTEM REQUEST for {3}&quot;&gt;here&lt;/a&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BET_UnlinkedProjectNotificationSubject</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UnlinkedProjectNotificationSubject</shortDescription>
+        <value>Project {0} has unlinked from your BET {1}.</value>
     </labels>
     <labels>
         <fullName>BET_UpdateBetAddMembers</fullName>
@@ -2007,20 +2089,6 @@ Are you sure you wish to proceed?</value>
         <value>I Accept</value>
     </labels>
     <labels>
-        <fullName>IPM_BETApprovalLinkProcessing</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_BETApprovalLinkProcessing</shortDescription>
-        <value>Error in processing IPM BET link approval/rejection.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_BETIdNullMsg</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_BETIdNullMsg</shortDescription>
-        <value>BET Id cannot be null.</value>
-    </labels>
-    <labels>
         <fullName>IPM_Bosscard_Save_Before_Share</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -2033,13 +2101,6 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>IPM Bosscard Shared Chatter</shortDescription>
         <value>BOSSCARD Shared Via Chatter</value>
-    </labels>
-    <labels>
-        <fullName>IPM_CategoryNameNotNull</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_CategoryNameNotNull</shortDescription>
-        <value>Category name cannot be null.</value>
     </labels>
     <labels>
         <fullName>IPM_Category_list</fullName>
@@ -2068,13 +2129,6 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>IPM Description Restricted</shortDescription>
         <value>Description Restricted to 255 Characters</value>
-    </labels>
-    <labels>
-        <fullName>IPM_ErrorRetrievingCategories</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_ErrorRetrievingCategories</shortDescription>
-        <value>Error in retrieving Categories.</value>
     </labels>
     <labels>
         <fullName>IPM_External_Char_Limit</fullName>
@@ -2117,20 +2171,6 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>GlobalProject</shortDescription>
         <value>Original</value>
-    </labels>
-    <labels>
-        <fullName>IPM_IdsApprovalNotNullMSg</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_IdsApprovalNotNullMSg</shortDescription>
-        <value>IPM Project Id, BET Id or Approval Action cannot be null.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_IdsNotNullMsg</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_IdsNotNullMsg</shortDescription>
-        <value>BET id, IPM Project ID or User ID cannot be null.</value>
     </labels>
     <labels>
         <fullName>IPM_ImageLogo_URL</fullName>
@@ -2180,13 +2220,6 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>IPM ProjectManagement Char Limit</shortDescription>
         <value>4860</value>
-    </labels>
-    <labels>
-        <fullName>IPM_ProjectNotRetrieved</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_ProjectNotRetrieved</shortDescription>
-        <value>IPM Project could not be retrieved.</value>
     </labels>
     <labels>
         <fullName>IPM_Project_Name_Exists</fullName>
@@ -2243,13 +2276,6 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>IPM Technical Char Limit</shortDescription>
         <value>4860</value>
-    </labels>
-    <labels>
-        <fullName>IPM_UserAccessRetrivalMsg</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_UserAccessRetrivalMsg</shortDescription>
-        <value>Error in retriving User access.</value>
     </labels>
     <labels>
         <fullName>IPM_backto_intermediate</fullName>

@@ -2133,6 +2133,16 @@
 		<members>BET_LinkBetToIPMProject</members>
 		<members>BET_AssetType</members>
 		<members>BET_ExpectedAssets</members>
+		<members>BET_UnfollowNotification</members>
+		<members>BET_UnfollowNotificationSubject</members>
+		<members>BET_NewLeadProjectNotification</members>
+		<members>BET_NewLeadProjectNotificationSubject</members>
+		<members>BET_UnlinkedProjectNotification</members>
+		<members>BET_UnlinkedProjectNotificationSubject</members>
+		<members>BET_MultipleRequestNotification</members>
+		<members>BET_MultipleRequestNotificationSubject</members>
+		<members>BET_LeadProjectRequestNotification</members>
+		<members>BET_LeadProjectRequestNotificationSubject</members>
         <name>CustomLabel</name>
     </types>
     <types>
