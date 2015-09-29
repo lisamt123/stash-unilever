@@ -1049,6 +1049,13 @@ Are you sure you wish to proceed?</value>
         <value>No Results</value>
     </labels>
     <labels>
+        <fullName>BET_SuggestedMemberOtherMembers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberOtherMembers</shortDescription>
+        <value>Other Members</value>
+    </labels>
+    <labels>
         <fullName>BET_TargetLaunchDate</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -2087,6 +2094,13 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>HideTermsOfUseLabel</shortDescription>
         <value>I Accept</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BETIdNullMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BETIdNullMsg</shortDescription>
+        <value>BET Id cannot be null.</value>
     </labels>
     <labels>
         <fullName>IPM_Bosscard_Save_Before_Share</fullName>

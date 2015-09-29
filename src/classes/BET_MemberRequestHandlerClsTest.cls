@@ -35,7 +35,7 @@ private class BET_MemberRequestHandlerClsTest {
         //BET_CustomBETException should occure for invailid ProjectID wrong format
         insert betMembersToInsert;
         Test.stopTest();
-        System.assertEquals(betMembersToInsert.size(),10);
+        System.assertEquals(betMembersToInsert.size(),10,'There should be 10 elements in list');
     }
     
     
@@ -74,7 +74,7 @@ private class BET_MemberRequestHandlerClsTest {
             insert betMembersToInsert1;
             //system.assertEquals(0, 1, 'Exception should be thrown so this code instruction should not be executed in test');
         }catch(System.DmlException ex){
-            system.assertEquals(true,ex.getMessage().containsIgnoreCase('is already defined'));
+            system.assertEquals(true,ex.getMessage().containsIgnoreCase('is already defined'),'Exception message should contain given text');
             
         }
         Test.stopTest();

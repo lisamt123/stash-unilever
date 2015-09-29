@@ -10,7 +10,9 @@ private class BET_ApproveProjectsComponentContrTest {
 		BET_TestUtils.createNewFollowRequest(bet,project);
 		BET_ApproveProjectsComponentController controller = new BET_ApproveProjectsComponentController();
 		controller.betIdentifier = bet.id;
+		Test.startTest();
 		System.assertEquals(controller.getPendingRequests().size(),1);
+		Test.stopTest();
 	}
 
 	@isTest static void doApproveTest(){
@@ -23,7 +25,9 @@ private class BET_ApproveProjectsComponentContrTest {
 		BET_ApproveProjectsComponentController controller = new BET_ApproveProjectsComponentController();
 		controller.betIdentifier = bet.id;
 		controller.elementId = freq.id;
+		Test.startTest();
 		controller.doApprove();
+		Test.stopTest();
 		BET_Follow_Request__c freqApproved = [select Status__c from BET_Follow_Request__c where id =: freq.id];
 		System.assertEquals(freqApproved.Status__c,'Approved');
 	}
@@ -38,7 +42,9 @@ private class BET_ApproveProjectsComponentContrTest {
 		BET_ApproveProjectsComponentController controller = new BET_ApproveProjectsComponentController();
 		controller.betIdentifier = bet.id;
 		controller.elementId = freq.id;
+		Test.startTest();
 		controller.doDeny();
+		Test.stopTest();
 		BET_Follow_Request__c freqApproved = [select Status__c from BET_Follow_Request__c where id =: freq.id];
 		System.assertEquals(freqApproved.Status__c,'Rejected');
 	}

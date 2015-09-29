@@ -18,7 +18,7 @@ private class BET_MDODataMigrationAndTrans_BatchTest {
 	private static final String BRAND_TWO = 'Test Brand Two';
 	
 	@isTest static void executeTest() {
-
+		Test.startTest();
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		bet.Launch_Date__c = Date.today();
 		
@@ -61,11 +61,11 @@ private class BET_MDODataMigrationAndTrans_BatchTest {
 	    bet = [select Brand_Position__c from uw_Bet__c where id =: bet.id];
 
 	    System.assertEquals(bet.Brand_Position__c,bp.id);
-
+	    Test.stopTest();
 	}
 
 	@isTest static void retrieveCategoryIdTest(){
-
+		Test.startTest();
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		bet.Launch_Date__c = Date.today();
 		insert bet;
@@ -75,10 +75,11 @@ private class BET_MDODataMigrationAndTrans_BatchTest {
 
 		BET_MDODataMigrationAndTransform_Batch batch = new BET_MDODataMigrationAndTransform_Batch();
 		System.assert(batch.retrieveCategoryId(categoryGroup,bet) == null);
+		Test.stopTest();
 	}
 
 	@isTest static void getBrandPositionTest(){
-
+		Test.startTest();
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup, CATEGORY_ONE);
 		MDO_Brand__c brand = BET_TestUtils.createBrand(BRAND_ONE);
@@ -91,6 +92,7 @@ private class BET_MDODataMigrationAndTrans_BatchTest {
 
 		BET_MDODataMigrationAndTransform_Batch batch = new BET_MDODataMigrationAndTransform_Batch();
 		System.assertEquals(batch.getBrandPosition(brand.id,category.id),bp.id);
+		Test.stopTest();
 	}
 	
 }

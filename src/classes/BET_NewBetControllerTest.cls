@@ -4,7 +4,7 @@ private class BET_NewBetControllerTest {
 	@isTest static void newBetTest() {
 		Test.startTest();
 		BET_NewBetController controller = new BET_NewBetController(new ApexPages.StandardController(new uw_BET__c()));
-		System.assert(controller.bet.id == null);
+		System.assert(controller.bet.id == null,'Bet id should be null');
 		Test.stopTest();
 	}
 	
@@ -14,7 +14,7 @@ private class BET_NewBetControllerTest {
 		ApexPages.currentPage().getParameters().put('id',bet.id);
 		Test.startTest();
 		BET_NewBetController controller = new BET_NewBetController(new ApexPages.StandardController(new uw_BET__c()));
-		System.assertEquals(controller.bet.id,bet.id);
+		System.assertEquals(controller.bet.id,bet.id,'Bet ids should match');
 		Test.stopTest();
 	}
 	

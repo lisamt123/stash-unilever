@@ -17,7 +17,7 @@ private class BET_ChatterGroupAutoArchDis_BatchTest {
 		Test.stopTest();
 		
 		cgroup = [select id, IsAutoArchiveDisabled from CollaborationGroup where id = : bet.Studio_Chatter_Group__c];
-		System.assert(cgroup.IsAutoArchiveDisabled);
+		System.assert(cgroup.IsAutoArchiveDisabled,'Group auto archive should be disabled');
 
 	}
 	
