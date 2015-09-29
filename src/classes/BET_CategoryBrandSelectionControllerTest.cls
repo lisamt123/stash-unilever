@@ -2,6 +2,7 @@
 private class BET_CategoryBrandSelectionControllerTest {
 
 	@isTest static void onCategoryGroupChangeTest(){
+		Test.startTest();
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
 		BET_CategoryComponentData compData = new BET_CategoryComponentData();
 		compData.categoryMigrated = true;
@@ -12,9 +13,11 @@ private class BET_CategoryBrandSelectionControllerTest {
 		controller.bet = BET_TestUtils.getTestBet();
 		controller.onCategoryGroupChange();
 		System.assertEquals(controller.compData.categoryGroup,cgroup.Id);
+		Test.stopTest();
 	}
 
 	@isTest static void onBrandPositioningChangeTest(){
+		Test.startTest();
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
 		BET_CategoryComponentData compData = new BET_CategoryComponentData();
 		compData.categoryMigrated = true;
@@ -26,9 +29,11 @@ private class BET_CategoryBrandSelectionControllerTest {
 		controller.selectedBrandPositioning = positionId;
 		controller.onBrandPositioningChange();
 		System.assertEquals(controller.compData.brandpositioning,positionId);
+		Test.stopTest();
 	}
 
 	@isTest static void onCategoryChangeTest(){
+		Test.startTest();
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
 		BET_CategoryComponentData compData = new BET_CategoryComponentData();
 		compData.categoryMigrated = true;
@@ -40,38 +45,46 @@ private class BET_CategoryBrandSelectionControllerTest {
 		controller.bet = BET_TestUtils.getTestBet();
 		controller.onCategoryChange();
 		System.assertEquals(controller.compData.category,cat.id);
-
+		Test.stopTest();
 	}
 
 	@isTest static void setGetBetTest(){
+		Test.startTest();
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
 		uw_Bet__c b = BET_TestUtils.getTestBet();
 		controller.bet = b;
 		System.assertEquals(controller.bet.id,b.id);
+		Test.stopTest();
 	}
 
 	@isTest static void setCompDataTest(){
+		Test.startTest();
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
 		BET_CategoryComponentData compData = new BET_CategoryComponentData();
 		compData.categoryMigrated = true;
 		compData.categoryNotMigrated = false;
 		controller.compData = compData;
 		System.assert(controller.categoryMigrated);
+		Test.stopTest();
 	}
 
 
 	@isTest static void getCategoryGroupsTest(){
+		Test.startTest();
 		BET_TestUtils.createCategoryGroup();
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
 		System.assert(!controller.getCategoryGroups().isEmpty());
+		Test.stopTest();
 	}
 
 	@isTest static void getCategoriesTest(){
+		Test.startTest();
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		BET_TestUtils.createCategory(categoryGroup);
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
 		controller.selectedCategoryGroup = categoryGroup.id;
 		System.assert(!controller.getCategories().isEmpty());
+		Test.stopTest();
 	}
 
 	@isTest static void getBrandPositioningsTest(){
@@ -81,18 +94,22 @@ private class BET_CategoryBrandSelectionControllerTest {
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
 		controller.selectedCategory = category.id;
 		System.assert(!controller.getBrandPositionings().isEmpty());
+		Test.stopTest();
 	}
 
 	@isTest static void getBrandsTest(){
+		Test.startTest();
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
 		MDO_BrandPositions__c positioning = BET_TestUtils.createBrandPositioning(category);
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
 		controller.selectedBrandPositioning = positioning.id;
 		System.assert(!controller.getBrands().isEmpty());
+		Test.stopTest();
 	}
 
 	@isTest static void onBrandChangeTest(){
+		Test.startTest();
 		MDO_Brand__c brand = BET_TestUtils.createBrand('Unit Test Brand');
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
 		BET_CategoryComponentData compData = new BET_CategoryComponentData();
@@ -102,9 +119,11 @@ private class BET_CategoryBrandSelectionControllerTest {
 		controller.selectedBrand = brand.id;
 		controller.onBrandChange();
 		System.assertEquals(controller.compData.brand,controller.selectedBrand);
+		Test.stopTest();
 	}
 
 	@isTest static void onProjectChangeTest(){
+		Test.startTest();
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
 		uw_Bet__c b = BET_TestUtils.getTestBet();
 		BET_CategoryComponentData compData = new BET_CategoryComponentData();
@@ -114,6 +133,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 		controller.bet = b;
 		controller.onProjectChange();
 		System.assertEquals(controller.compData.inoplanProject,b.Inoplan_Project__c);
+		Test.stopTest();
 	}
 	
 }

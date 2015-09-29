@@ -10,7 +10,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 public with sharing class BET_BETHandler implements ITrigger {
 
-	private uw_TriggerHandler handler = new uw_TriggerHandler();
+	private final uw_TriggerHandler handler = new uw_TriggerHandler();
 
 	public BET_BETHandler() {}
 
