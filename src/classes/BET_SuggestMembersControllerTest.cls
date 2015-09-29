@@ -198,6 +198,7 @@ private class BET_SuggestMembersControllerTest {
         	componentController.addMembers();
             system.assertEquals(numberOfNewlyAddedUsers+12, [Select id FROM BET_Member_Request__c where Brand_Experience_Toolkit__c = : betObject.id].size());
         }
+        Test.stopTest(); 
     }
     
     @isTest static void addExternalMemberTest(){

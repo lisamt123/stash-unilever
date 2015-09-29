@@ -13,6 +13,7 @@ VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 private class BET_MemberRequestHandlerClsTest {
 	
     @isTest static void testPreventMemberRequestDuplicatesWhileInsertWithInvalidProjectId(){
+        Test.startTest();
         //check for owner
         uw_BET__c betObject = BET_TestUtils.getTestBet();
         insert betObject;
@@ -33,10 +34,13 @@ private class BET_MemberRequestHandlerClsTest {
         }
         //BET_CustomBETException should occure for invailid ProjectID wrong format
         insert betMembersToInsert;
+        Test.stopTest();
+        System.assertEquals(betMembersToInsert.size(),10);
     }
     
     
     @isTest static void testPreventMemberRequestDuplicatesWhileInsertWithVailidProjectId(){
+        Test.startTest();
         //check for owner
         uw_BET__c betObject = BET_TestUtils.getTestBet();
         insert betObject;
@@ -73,9 +77,7 @@ private class BET_MemberRequestHandlerClsTest {
             system.assertEquals(true,ex.getMessage().containsIgnoreCase('is already defined'));
             
         }
-        
-        
-        
+        Test.stopTest();
     }
 	
 }

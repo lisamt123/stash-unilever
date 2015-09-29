@@ -156,11 +156,14 @@ public with sharing class BET_NewBetComponentController {
         Throws: -
     *************************************************************/
     @TestVisible
-    private void displayErrors(List<String> errorsForDisplay){
+    private List<ApexPages.Message> displayErrors(List<String> errorsForDisplay){
         System.debug('Entering displayErrors : ' + errorsForDisplay);
+        List<ApexPages.Message> displayed = new List<ApexPages.Message>();
         for(String error : errorsForDisplay){
+            displayed.add(new ApexPages.Message(ApexPages.Severity.ERROR,error));
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,error));
         }
-        System.debug('Exit displayErrors');
+        System.debug('Exit displayErrors : ' + displayed);
+        return displayed;
     }
 }

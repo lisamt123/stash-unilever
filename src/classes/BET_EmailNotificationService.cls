@@ -22,7 +22,7 @@ public without sharing class BET_EmailNotificationService {
     Returns: -
     Throws: -
     *************************************************************/
-    public static void notifyBetOwnerOfLeadProjectFollowRequest(uw_Bet__c bet,IPM_BETWrapper project){
+    public static List<Messaging.SingleEmailMessage> notifyBetOwnerOfLeadProjectFollowRequest(uw_Bet__c bet,IPM_BETWrapper project){
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 
         User betOwner = Test.isRunningTest() ? new User(email = BET_TestUtils.TEST_USER_EMAIL) : [select email from User where isActive = true and id =: bet.ownerid];
@@ -33,23 +33,14 @@ public without sharing class BET_EmailNotificationService {
         sendTo.add(betOwner.email);
         mail.setToAddresses(sendTo);
         mail.setOrgWideEmailAddressId(owea.id);
-
-        mail.setSubject(PROJECT_TXT + project.projectName + ' has linked to your BET ' + bet.name + ' and will become your leading project');
-
-        String body = PROJECT_TXT + project.projectName + ' has linked to your BET ' + bet.name + ' and will become your leading project.';
-        body += '<br/> As a reminder, the leading project controls these aspects of a BET:';
-        body += '<br/><br/>-  The target launch date (TLD)';
-        body += '<br/><br/>-  The BET 1st and Final Release due dates';
-        body += '<br/><br/>-  The category and brand position of a BET';
-        body += '<br/><br/> If this project has requested access to the BET for it’s members, membership will also be automatically granted with this link.';
-        body += '<br/><br/> To DENY this request for membership access and to lead your BET, click here <a href="'+beturl+'">'+bet.name+'</a> within 72 hours of this email.';
-        body += '<br/><br/> To manage membership to your BET please open the BET and click on Members <a href="'+beturl+'">'+bet.name+'</a>';
-        body += '<br/><br/> To change the lead project, please contact system admin by clicking <a href="mailto:cb4l@unilever.com?subject=BET SYSTEM REQUEST for'+bet.name+'">here</a>';
-
-        mail.setHtmlBody(body);
+        mail.setSubject(String.format(Label.BET_LeadProjectRequestNotificationSubject,new List<String>{project.projectName,bet.name}));
+        mail.setHtmlBody(String.format(Label.BET_LeadProjectRequestNotification,new List<String>{project.projectName,bet.name,beturl,bet.name,beturl,bet.name,bet.name}));
+        
+        List<Messaging.SingleEmailMessage> messagesToBeSent = new List<Messaging.SingleEmailMessage> {mail};
         if(!Test.isRunningTest()) {
             Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
         }
+        return messagesToBeSent;
     }
 
     /************************************************************
@@ -58,31 +49,26 @@ public without sharing class BET_EmailNotificationService {
     Returns: -
     Throws: -
     *************************************************************/
-    public static void notifyBetOwnerOfMultipleMemberRequestsFromIPM(Id betId,Id projectId){
+    public static List<Messaging.SingleEmailMessage> notifyBetOwnerOfMultipleMemberRequestsFromIPM(Id betId,Id projectId){
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 
         uw_Bet__c bet = [select id,name,ownerId from uw_Bet__c where id=:betId];
         IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(projectId);
 
         User betOwner = Test.isRunningTest() ? new User(email = BET_TestUtils.TEST_USER_EMAIL) : [select email from User where isActive = true and id =: bet.ownerid];
+        String beturl = URL.getSalesforceBaseUrl().toExternalForm() + '/' + bet.id;
 
         List<String> sendTo = new List<String>();
         sendTo.add(betOwner.email);
         mail.setToAddresses(sendTo);
-
         mail.setOrgWideEmailAddressId(owea.id);
-        mail.setSubject('A member access request has been made to BET ' + bet.name);
-     
-        String beturl = URL.getSalesforceBaseUrl().toExternalForm() + '/' + bet.id;
-
-        String body = 'A member access request has been made to BET ' + bet.name + ' from project ' +project.projectName +'.<br/> Please open the BET and click on Members to Approve or Deny,'+
-        '<a href="'+beturl+'">'+bet.name+'</a>';
-
-        mail.setHtmlBody(body);
-
+        mail.setSubject(String.format(Label.BET_MultipleRequestNotificationSubject,new List<String>{bet.name}));
+        mail.setHtmlBody(String.format(Label.BET_MultipleRequestNotification,new List<String>{bet.name,project.projectName,beturl,bet.name}));
+        List<Messaging.SingleEmailMessage> messagesToBeSent = new List<Messaging.SingleEmailMessage> {mail};
         if(!Test.isRunningTest()) {
-            Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+            Messaging.sendEmail(messagesToBeSent);
         }
+        return messagesToBeSent;
     }
 
     /************************************************************
@@ -91,7 +77,7 @@ public without sharing class BET_EmailNotificationService {
     Returns: -
     Throws: -
     *************************************************************/
-	public static void notifyBetOwnerThatProjectIsUnlinked(uw_Bet__c bet,IPM_BETWrapper oldProject,IPM_BETWrapper newProject){ // US23
+	public static List<Messaging.SingleEmailMessage> notifyBetOwnerThatProjectIsUnlinked(uw_Bet__c bet,IPM_BETWrapper oldProject,IPM_BETWrapper newProject){ // US23
 		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 
 		User betOwner = Test.isRunningTest() ? new User(email = BET_TestUtils.TEST_USER_EMAIL) : [select email from User where isActive = true and id =: bet.ownerid];
@@ -99,21 +85,14 @@ public without sharing class BET_EmailNotificationService {
 		List<String> sendTo = new List<String>();
         sendTo.add(betOwner.email);
         mail.setToAddresses(sendTo);
-
         mail.setOrgWideEmailAddressId(owea.id);
-        mail.setSubject(PROJECT_TXT + oldProject.projectName + ' has unlinked from your BET ' + bet.name + '.');
-
-        String body = PROJECT_TXT + oldProject.projectName + ' unlinked from your BET ' + bet.name + ' ';
-        body += '<br/> As a result, ' + newProject.projectName + ' is now your leading project, as it is the linked project with the earliest target launch date (TLD).';
-        body += '<br/> As a reminder, the leading project controls these aspects of a BET:';
-        body += '<br/><br/>-  The target launch date (TLD)';
-        body += '<br/><br/>-  The BET 1st and Final Release due dates';
-        body += '<br/><br/>-  The category and brand position of a BET';
-        body += '<br/><br/> To change the lead project, please contact system admin by clicking <a href="mailto:cb4l@unilever.com?subject=BET SYSTEM REQUEST for'+bet.name+'">here</a>';
-        mail.setHtmlBody(body);
+        mail.setSubject(String.format(Label.BET_UnlinkedProjectNotificationSubject,new List<String>{oldProject.projectName,bet.name}));
+        mail.setHtmlBody(String.format(Label.BET_UnlinkedProjectNotification,new List<String>{oldProject.projectName,bet.name,newProject.projectName,bet.name}));
+        List<Messaging.SingleEmailMessage> messagesToBeSent = new List<Messaging.SingleEmailMessage> {mail};
         if(!Test.isRunningTest()) {
-            Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+            Messaging.sendEmail(messagesToBeSent);
         }
+        return messagesToBeSent;
 	}
 
     /************************************************************
@@ -122,7 +101,7 @@ public without sharing class BET_EmailNotificationService {
     Returns: -
     Throws: -
     *************************************************************/
-	public static void notifyBetOwnerOfNewLeadProject(uw_Bet__c bet, IPM_BETWrapper newProject){ //US23
+	public static List<Messaging.SingleEmailMessage> notifyBetOwnerOfNewLeadProject(uw_Bet__c bet, IPM_BETWrapper newProject){ //US23
 		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 
 		List<User> usersToBeNofified = Test.isRunningTest() ? 
@@ -135,21 +114,14 @@ public without sharing class BET_EmailNotificationService {
         }
 
         mail.setToAddresses(sendTo);
-
         mail.setOrgWideEmailAddressId(owea.id);
-        mail.setSubject(PROJECT_TXT + newProject.projectName + ' has become the new lead project of BET '+ bet.name + '.');
-
-        String body = PROJECT_TXT + newProject.projectName + ' has become the new lead project of BET '+ bet.name + '.';
-        body += '<br/> As a reminder, the leading project controls these aspects of a BET:';
-        body += '<br/><br/>-  The target launch date (TLD)';
-        body += '<br/><br/>-  The BET 1st and Final Release due dates';
-        body += '<br/><br/>-  The category and brand position of a BET';
-        body += '<br/><br/> To change the lead project, please contact system admin by clicking <a href="mailto:cb4l@unilever.com?subject=BET SYSTEM REQUEST for'+bet.name+'">here</a>';
-
-        mail.setHtmlBody(body);
+        mail.setSubject(String.format(Label.BET_NewLeadProjectNotificationSubject,new List<String>{newProject.projectName,bet.name}));
+        mail.setHtmlBody(String.format(Label.BET_NewLeadProjectNotification, new List<String>{newProject.projectName,bet.name,bet.name}));
+        List<Messaging.SingleEmailMessage> messagesToBeSent = new List<Messaging.SingleEmailMessage> {mail};
         if(!Test.isRunningTest()) {
-            Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+            Messaging.sendEmail(messagesToBeSent);
         }
+        return messagesToBeSent;
 	}
 
     /************************************************************
@@ -158,28 +130,23 @@ public without sharing class BET_EmailNotificationService {
     Returns: -
     Throws: -
     *************************************************************/
-	public static void notifyBetOwnerOfUnfollow(uw_Bet__c bet, IPM_BETWrapper project){ //US22, US26
+	public static List<Messaging.SingleEmailMessage> notifyBetOwnerOfUnfollow(uw_Bet__c bet, IPM_BETWrapper project){ //US22, US26
 		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 
 		User betOwner = Test.isRunningTest() ? new User(email = BET_TestUtils.TEST_USER_EMAIL) : [select email from User where isActive = true and id =: bet.ownerid];
+        String beturl = URL.getSalesforceBaseUrl().toExternalForm() + '/' + bet.id;
 
 		List<String> sendTo = new List<String>();
         sendTo.add(betOwner.email);
         mail.setToAddresses(sendTo);
-
         mail.setOrgWideEmailAddressId(owea.id);
-        mail.setSubject(PROJECT_TXT + project.projectName + ' has unlinked from your BET ' + bet.name + '.');
+        mail.setSubject(String.format(Label.BET_UnfollowNotificationSubject, new List<String>{project.projectName,bet.name}));
+        mail.setHtmlBody(String.format(Label.BET_UnfollowNotification, new List<String>{project.projectName,bet.name,beturl,bet.name}));
 
-        String beturl = URL.getSalesforceBaseUrl().toExternalForm() + '/' + bet.id;
-
-        String body = PROJECT_TXT + project.projectName + ' has unlinked from your BET ' + bet.name + '.'; 
-        body += '<br/> As there are now no projects linked to your BET, it has been automatically archived.'; 
-        body += '<br/> As a result, the associated Chatter Group will be deactivated and no further changes can be made to this BET.';
-        body += '<br/> To unarchive the BET and reactivate the group please open the BET and click on Settings <a href="'+beturl+'">'+bet.name+'</a>';
-
-        mail.setHtmlBody(body);
+        List<Messaging.SingleEmailMessage> messagesToBeSent = new List<Messaging.SingleEmailMessage> {mail};
         if(!Test.isRunningTest()){
-            Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+            Messaging.sendEmail(messagesToBeSent);
         }
+        return messagesToBeSent;
 	}
 }
