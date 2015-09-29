@@ -184,21 +184,19 @@ public without sharing class BET_AccessService {
 		uw_Bet__c bet = [select id ,Name, ownerid, Studio_Chatter_Group__c from uw_Bet__c where id =: betId];
 		Id externalUserSalesforceId = null;
 		String error = checkEmail(userEmail);
-		if(error != null){
-			throw new BET_CustomBETException(EXT_ACCESS_REQ_ERROR + ' ' + error);
-		} else {
+		if(error == null){
 			List<User> userList = isExistingExternalUser(userEmail);
             if (!userList.isEmpty()) {
-                if(!userList[0].isActive){
+                if(userList[0].isActive) {
+                	externalUserSalesforceId = userList[0].Id;
+                } else {
                     throw new BET_CustomBETException(EXT_ACCESS_REQ_ERROR + ' ' + userEmail +' is an existing user (External Agent) but inactive at the moment. Please send an email to marketing@unilever.com for further clarification.'); 
-                }else{
-                    externalUserSalesforceId = userList[0].Id;
                 }
             }else if (checkIfRequestExternalAccessIsPending(betId,userEmail)){
                 throw new BET_CustomBETException(EXT_ACCESS_REQ_ERROR + ' ' + + userEmail +' has already been invited'); 
-            }/*else{
-                createExternalUserRelatedObjects(userEmail,bet);
-            }*/
+            }
+		} else {
+			throw new BET_CustomBETException(EXT_ACCESS_REQ_ERROR + ' ' + error);
 		}
 		return externalUserSalesforceId;
 	}
@@ -233,8 +231,7 @@ public without sharing class BET_AccessService {
 		Throws: -
 	*************************************************************/
     public static List<User> isExistingExternalUser(String setEmailAdd) {
-        List<User> userList = [SELECT Id, IsActive FROM User WHERE email= :setEmailAdd AND ProfileId=:chatterExternalProfile.Id];
-        return userList ; 
+        return [SELECT Id, IsActive FROM User WHERE email= :setEmailAdd AND ProfileId=:chatterExternalProfile.Id];
     }
 
 	/************************************************************

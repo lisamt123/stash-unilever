@@ -4,6 +4,7 @@ private class BET_LinkingServiceTest {
 	private static final String IPM_PROJECT_NAME = 'Unit Test IPM Project';
 
 	@isTest static void setASLeadTest() {
+		Test.startTest();
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
 		Id BetId = bet.id;
@@ -11,9 +12,11 @@ private class BET_LinkingServiceTest {
 		BET_LinkingService.setASLead(ProjectId, BetId);
 		bet = [select IPM_Project__c from uw_Bet__c where id=:BetId];
 		System.assertEquals(bet.IPM_Project__c,ProjectId);
+		Test.stopTest();
 	}
 	
 	@isTest static void FollowTest() {
+		Test.startTest();
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
 		Id BetId = bet.id;
@@ -30,9 +33,11 @@ private class BET_LinkingServiceTest {
 		List<BET_Follow_Request__c> followRequests = [select id from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: BetId];
 		System.assertEquals(relatedMemberRequests.size(),1);
 		System.assertEquals(followRequests.size(),1);	
+		Test.stopTest();
 	}
 
 	@isTest static void FollowTestWithoutMemberRequestIfSameAsBETOwner() {
+		Test.startTest();
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
 		Id BetId = bet.id;
@@ -43,19 +48,23 @@ private class BET_LinkingServiceTest {
 		List<BET_Follow_Request__c> followRequests = [select id from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: BetId];
 		System.assertEquals(relatedMemberRequests.size(),0);
 		System.assertEquals(followRequests.size(),1);
+		Test.stopTest();
 	}
 
 	@isTest static void FollowBetNotExistsTest() {
+		Test.startTest();
 		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
 		try{
 			BET_LinkingService.Follow(ProjectId, null, new List<Id> {UserInfo.getUserId()});
-			System.assert(false);
+			throw new BET_CustomBETException('unit test');
 		}catch(BET_CustomBETException e){
 			System.assertEquals(e.getMessage(),Label.BET_FollowBetNotExistsMessage);
 		}
+		Test.stopTest();
 	}
 
 	@isTest static void FollowBetArchivedTest() {
+		Test.startTest();
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		bet.Is_Archived__c = true;
 		insert bet;
@@ -63,13 +72,15 @@ private class BET_LinkingServiceTest {
 		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
 		try{
 			BET_LinkingService.Follow(ProjectId, BetId, new List<Id> {UserInfo.getUserId()});
-			System.assert(false);
+			throw new BET_CustomBETException('unit test');
 		}catch(BET_CustomBETException e){
 			System.assertEquals(e.getMessage(),Label.BET_FollowBetArchivedMessage);
 		}
+		Test.stopTest();
 	}
 
 	@isTest static void UnFollowTest() {
+		Test.startTest();
 		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		bet.IPM_Project__c = ProjectId;
@@ -78,9 +89,11 @@ private class BET_LinkingServiceTest {
 		BET_LinkingService.UnFollow(ProjectId, BetId);
 		bet = [select IPM_Project__c from uw_Bet__c where id=:BetId];
 		System.assert(bet.IPM_Project__c == null);
+		Test.stopTest();
 	}
 
 	@isTest static void UnFollowLeadNoOtherProjectsTest(){
+		Test.startTest();
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
 		Id BetId = bet.id;
@@ -90,9 +103,11 @@ private class BET_LinkingServiceTest {
 		BET_LinkingService.UnFollow(ProjectId, BetId);
 		bet = [select IPM_Project__c from uw_Bet__c where id=:BetId];
 		System.assert(bet.IPM_Project__c == null);
+		Test.stopTest();
 	}
 
 	@isTest static void UnFollowLeadWithOtherProjectsTest(){
+		Test.startTest();
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
 		Id BetId = bet.id;
@@ -108,25 +123,31 @@ private class BET_LinkingServiceTest {
 		BET_LinkingService.UnFollow(ProjectId, BetId);
 		bet = [select IPM_Project__c from uw_Bet__c where id=:BetId];
 		System.assertEquals(bet.IPM_Project__c,fproject.id);
+		Test.stopTest();
 	}
 
 	@isTest static void checkIfFollowRequestShouldBeAutoapprovedTest(){
+		Test.startTest();
 		uw_Bet__c relatedBet = BET_TestUtils.getTestBet();
 		relatedBet.ownerid = UserInfo.getUserId();
 		insert relatedBet;
 		System.assert(BET_LinkingService.checkIfFollowRequestShouldBeAutoapproved(relatedBet , new List<Id> {UserInfo.getUserId()}));
+		Test.stopTest();
 	}
 
 	@isTest static void createFollowRequestTest(){
+		Test.startTest();
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
 		IPM_BETWrapper project = new IPM_BETWrapper(BET_TestUtils.createIPMProject(IPM_PROJECT_NAME));
 		BET_Follow_Request__c request = BET_LinkingService.createFollowRequest(project, 
 										bet, new List<Id> {UserInfo.getUserId()});
 		System.assertEquals(request.Status__c,BET_LinkingService.FOLLOW_STATUS_NEW);
+		Test.stopTest();
 	}
 
 	@isTest static void createRelatedMemberRequestsTest(){
+		Test.startTest();
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
 		IPM_BETWrapper project = new IPM_BETWrapper(BET_TestUtils.createIPMProject(IPM_PROJECT_NAME));
@@ -134,12 +155,15 @@ private class BET_LinkingServiceTest {
 										bet, new List<Id> {UserInfo.getUserId()});
 		List<Id> requests = BET_LinkingService.createRelatedMemberRequests(request,bet,new List<Id> {UserInfo.getUserId()});
 		System.assertEquals(requests.size(),1);
+		Test.stopTest();
 	}
 
 	@isTest static void shouldMarkRequestAsLeadRequestTest(){
+		Test.startTest();
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
 		System.assert(BET_LinkingService.shouldMarkRequestAsLeadRequest(bet));
+		Test.stopTest();
 	}
 	
 }

@@ -112,6 +112,7 @@ private class BET_SuggestMembersControllerTest {
     }
     
     @isTest static void testSkipPage(){
+        Test.startTest();
         BET_SuggestMembersController componentController = new BET_SuggestMembersController();
         componentController.callbackCtrl = null;
         system.assertEquals(null, componentController.skipPage());
@@ -119,17 +120,21 @@ private class BET_SuggestMembersControllerTest {
         //set callbackCtrl
         componentController.callbackCtrl = Page.BET_NewBet.getUrl();
         system.assertEquals(Page.BET_NewBet.getUrl(), componentController.skipPage().getUrl());
+        Test.stopTest();
     }
     
     @isTest static void testGetOwnerPhoto(){
+        Test.startTest();
         uw_BET__c betObject = BET_TestUtils.getTestBet();
         BET_SuggestMembersController componentController = new BET_SuggestMembersController();
         insert betObject;
         componentController.betIdCtrl = betObject.id;
         system.assertEquals([SELECT FullPhotoUrl FROM User WHERE id =: UserInfo.getUserId()].get(0).FullPhotoUrl, componentController.getOnwerPhoto());
+        Test.stopTest();
     }
     
     @isTest static void testGetManagerPhoto(){
+        Test.startTest();
         //test without manager
         uw_BET__c betObject = BET_TestUtils.getTestBet();
         BET_SuggestMembersController componentController = new BET_SuggestMembersController();
@@ -143,8 +148,7 @@ private class BET_SuggestMembersControllerTest {
         beteamManager.Role__c = Label.BETManagerRole;
         insert beteamManager;
         system.assertEquals([SELECT FullPhotoUrl FROM User WHERE id =: UserInfo.getUserId()].get(0).FullPhotoUrl, componentController.getManagerPhoto());
-        
-        
+        Test.stopTest();
     }
     
     @isTest static void testDuplicatedRecordsWhileInsertTeamMemberRequest(){
@@ -197,23 +201,28 @@ private class BET_SuggestMembersControllerTest {
     }
     
     @isTest static void addExternalMemberTest(){
+        Test.startTest();
         BET_SuggestMembersController componentController = new BET_SuggestMembersController();
         componentController.externalMemberEmail = 'm.bluj@polsource.com';
         componentController.addExternalMember();
         System.assertEquals(componentController.externalMembers.size(),1);
         System.assertEquals(componentController.externalMembers.get(0).getPhoto(),'/profilephoto/005/F');
+        Test.stopTest();
     }
 
     @isTest static void delExternalMemeberTest(){
+        Test.startTest();
         BET_SuggestMembersController componentController = new BET_SuggestMembersController();
         componentController.externalMemberEmail = 'm.bluj@polsource.com';
         componentController.addExternalMember();
         System.assertEquals(componentController.externalMembers.size(),1);
         componentController.delExternalMemeber();
         System.assertEquals(componentController.externalMembers.size(),0);
+        Test.stopTest();
     }
 
     @isTest static void getManagersTest(){
+        Test.startTest();
         BET_SuggestMembersController componentController = new BET_SuggestMembersController();
 
         uw_BET__c bet = BET_TestUtils.getTestBet();
@@ -234,7 +243,7 @@ private class BET_SuggestMembersControllerTest {
         componentController.betIdCtrl = bet.id;
         componentController.projectIdCtrl = project.id;
         System.assertEquals(componentController.getManagers().size(),1);
-
+        Test.stopTest();
     }
 
 }

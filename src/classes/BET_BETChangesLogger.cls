@@ -8,7 +8,7 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  28-09-2015  Initial
 *************************************************************************************/
-public without sharing class BET_BETChangesLogger {
+public class BET_BETChangesLogger {
 
   private static final String BET_STATUS_CHANGED = 'BET Status has been changed. ';
   private static final String BET_LAUNCH_DATE_CHANGED = 'Target Launch Date for this BET has been changed to ';

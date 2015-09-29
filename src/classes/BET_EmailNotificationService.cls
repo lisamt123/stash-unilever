@@ -10,6 +10,8 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 public without sharing class BET_EmailNotificationService {
 
+    private static final String PROJECT_TXT = 'Project '; // sonnar related fix
+
 	private static final OrgWideEmailAddress owea = [select Id from OrgWideEmailAddress where displayname = 'CB4L'];
 
 	private BET_EmailNotificationService() {}
@@ -32,9 +34,9 @@ public without sharing class BET_EmailNotificationService {
         mail.setToAddresses(sendTo);
         mail.setOrgWideEmailAddressId(owea.id);
 
-        mail.setSubject('Project ' + project.projectName + ' has linked to your BET ' + bet.name + ' and will become your leading project');
+        mail.setSubject(PROJECT_TXT + project.projectName + ' has linked to your BET ' + bet.name + ' and will become your leading project');
 
-        String body = 'Project ' + project.projectName + ' has linked to your BET ' + bet.name + ' and will become your leading project.';
+        String body = PROJECT_TXT + project.projectName + ' has linked to your BET ' + bet.name + ' and will become your leading project.';
         body += '<br/> As a reminder, the leading project controls these aspects of a BET:';
         body += '<br/><br/>-  The target launch date (TLD)';
         body += '<br/><br/>-  The BET 1st and Final Release due dates';
@@ -99,9 +101,9 @@ public without sharing class BET_EmailNotificationService {
         mail.setToAddresses(sendTo);
 
         mail.setOrgWideEmailAddressId(owea.id);
-        mail.setSubject('Project ' + oldProject.projectName + ' has unlinked from your BET ' + bet.name + '.');
+        mail.setSubject(PROJECT_TXT + oldProject.projectName + ' has unlinked from your BET ' + bet.name + '.');
 
-        String body = 'Project ' + oldProject.projectName + ' unlinked from your BET ' + bet.name + ' ';
+        String body = PROJECT_TXT + oldProject.projectName + ' unlinked from your BET ' + bet.name + ' ';
         body += '<br/> As a result, ' + newProject.projectName + ' is now your leading project, as it is the linked project with the earliest target launch date (TLD).';
         body += '<br/> As a reminder, the leading project controls these aspects of a BET:';
         body += '<br/><br/>-  The target launch date (TLD)';
@@ -135,9 +137,9 @@ public without sharing class BET_EmailNotificationService {
         mail.setToAddresses(sendTo);
 
         mail.setOrgWideEmailAddressId(owea.id);
-        mail.setSubject('Project ' + newProject.projectName + ' has become the new lead project of BET '+ bet.name + '.');
+        mail.setSubject(PROJECT_TXT + newProject.projectName + ' has become the new lead project of BET '+ bet.name + '.');
 
-        String body = 'Project ' + newProject.projectName + ' has become the new lead project of BET '+ bet.name + '.';
+        String body = PROJECT_TXT + newProject.projectName + ' has become the new lead project of BET '+ bet.name + '.';
         body += '<br/> As a reminder, the leading project controls these aspects of a BET:';
         body += '<br/><br/>-  The target launch date (TLD)';
         body += '<br/><br/>-  The BET 1st and Final Release due dates';
@@ -166,11 +168,11 @@ public without sharing class BET_EmailNotificationService {
         mail.setToAddresses(sendTo);
 
         mail.setOrgWideEmailAddressId(owea.id);
-        mail.setSubject('Project ' + project.projectName + ' has unlinked from your BET ' + bet.name + '.');
+        mail.setSubject(PROJECT_TXT + project.projectName + ' has unlinked from your BET ' + bet.name + '.');
 
         String beturl = URL.getSalesforceBaseUrl().toExternalForm() + '/' + bet.id;
 
-        String body = 'Project ' + project.projectName + ' has unlinked from your BET ' + bet.name + '.'; 
+        String body = PROJECT_TXT + project.projectName + ' has unlinked from your BET ' + bet.name + '.'; 
         body += '<br/> As there are now no projects linked to your BET, it has been automatically archived.'; 
         body += '<br/> As a result, the associated Chatter Group will be deactivated and no further changes can be made to this BET.';
         body += '<br/> To unarchive the BET and reactivate the group please open the BET and click on Settings <a href="'+beturl+'">'+bet.name+'</a>';

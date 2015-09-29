@@ -1,4 +1,4 @@
-public without sharing class BET_FollowRequestTriggerHandlerClsHelper {
+public class BET_FollowRequestTriggerHandlerClsHelper {
 
 	private BET_FollowRequestTriggerHandlerClsHelper() {}
 

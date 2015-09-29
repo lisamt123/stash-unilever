@@ -2,68 +2,86 @@
 public class BET_MasterDataServiceTest {
 
 	@isTest static void getBETCategoryGroupsTest() {
+		Test.startTest();
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		List<sObject> groups = BET_MasterDataService.getBETCategoryGroups();
 		System.assertEquals(groups.get(0).id,categoryGroup.id);
+		Test.stopTest();
 	}
 	
 	@isTest static void getBETCategoriesForGivenGroupTest() {
+		Test.startTest();
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
 		List<sObject> categories = BET_MasterDataService.getBETCategoriesForGivenGroup(categoryGroup.id);
 		System.assertEquals(categories.get(0).id,category.id);
+		Test.stopTest();
 	}
 
 	@isTest static void getBETBrandPositioningsForGivenCategoryAndGroupTest() {
+		Test.startTest();
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
 		BET_TestUtils.createBrandPosition(category);
 		List<MDO_BrandPosition__c> positions = BET_MasterDataService.getBETBrandPositioningsForGivenCategoryAndGroup(category.id);
 		System.assertEquals(positions.size(),1);
+		Test.stopTest();
 	}
 
 	@isTest static void getBETBrandsForGivenPositioningTest() {
+		Test.startTest();
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
 		MDO_BrandPosition__c position = BET_TestUtils.createBrandPosition(category);
 		List<sObject> brands = BET_MasterDataService.getBETBrandsForGivenPositioning(position.id);
 		System.assertEquals(((MDO_Brand__c)brands.get(0)).name,'battle Axe');
+		Test.stopTest();
 	}
 
 	@isTest static void getCategoryGroupNameTest(){
+		Test.startTest();
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		String name = BET_MasterDataService.getCategoryGroupName(categoryGroup.id);
 		System.assertEquals(name,categoryGroup.name);
+		Test.stopTest();
 	}
 
 	@isTest static void getCategoryNameTest(){
+		Test.startTest();
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
 		String name = BET_MasterDataService.getCategoryName(category.id);
 		System.assertEquals(name,category.name);
+		Test.stopTest();
 	}
 
 	@isTest static void getBrandPositionNameTest(){
+		Test.startTest();
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
 		MDO_BrandPositions__c positioning = BET_TestUtils.createBrandPositioning(category);
 		String name = BET_MasterDataService.getBrandPositionName(positioning.id);
 		System.assertEquals(name,positioning.brand_position_id__r.name);
+		Test.stopTest();
 	}
 
 	@isTest static void getAllAvailableCategoriesTest(){
+		Test.startTest();
 		System.assertEquals(BET_MasterDataService.getAllAvailableCategories().size(),0);
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		BET_TestUtils.createCategory(categoryGroup);
 		System.assertEquals(BET_MasterDataService.getAllAvailableCategories().size(),1);
+		Test.stopTest();
 	}
 
 	@isTest static void getAllAvailableUniqueBrandsForCategoryTest(){
+		Test.startTest();
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
 		System.assertEquals(BET_MasterDataService.getAllAvailableUniqueBrandsForCategory(category.id).size(),0);
 		BET_TestUtils.createBrandPosition(category);
 		System.assertEquals(BET_MasterDataService.getAllAvailableUniqueBrandsForCategory(category.id).size(),1);
+		Test.stopTest();
 	}
 	
 }

@@ -8,7 +8,7 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  28-09-2015  Initial
 *************************************************************************************/
-public without sharing class BET_LinkingServiceHelper {
+public class BET_LinkingServiceHelper {
 
 	private BET_LinkingServiceHelper() {}
 
