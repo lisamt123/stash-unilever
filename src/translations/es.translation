@@ -417,10 +417,6 @@
         <name>CEC_ConsumerResultsDisplay</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ConsumerResultsNoMatchTitle --></label>
-        <name>CEC_ConsumerResultsNoMatchTitle</name>
-    </customLabels>
-    <customLabels>
         <label>Sus resultados coincidentes:</label>
         <name>CEC_ConsumerResultsTitleDisplay</name>
     </customLabels>
@@ -587,10 +583,6 @@
     <customLabels>
         <label>Casos relacionados</label>
         <name>CEC_RelatedCases</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- CEC_SearchValidationError --></label>
-        <name>CEC_SearchValidationError</name>
     </customLabels>
     <customLabels>
         <label>Búsqueda</label>
@@ -857,152 +849,16 @@
         <name>HideTermsOfUseLabel</name>
     </customLabels>
     <customLabels>
-        <label><!-- IPM Bosscard Save Before Share --></label>
-        <name>IPM_Bosscard_Save_Before_Share</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Bosscard Shared Chatter --></label>
-        <name>IPM_Bosscard_Shared_Chatter</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Category list --></label>
-        <name>IPM_Category_list</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM CoreParameters validation --></label>
-        <name>IPM_CoreParameters_validation</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Deployment Char Limit --></label>
-        <name>IPM_Deployment_Char_Limit</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Description Restricted --></label>
-        <name>IPM_Description_Restricted</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM External Char Limit --></label>
-        <name>IPM_External_Char_Limit</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Finance Char Limit --></label>
-        <name>IPM_Finance_Char_Limit</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM GateStatus msg --></label>
-        <name>IPM_GateStatus_msg</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM_GenerateRollout --></label>
-        <name>IPM_GenerateRollout</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- GlobalOperationalProject --></label>
-        <name>IPM_GlobalOperationalProject</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- GlobalProject --></label>
-        <name>IPM_GlobalProject</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM_ImageLogo_URL --></label>
-        <name>IPM_ImageLogo_URL</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Image format --></label>
-        <name>IPM_Image_format</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Introduction Char Limit --></label>
-        <name>IPM_Introduction_Char_Limit</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Milestone Due Date Error --></label>
-        <name>IPM_Milestone_Due_Date_Error</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Mix Char Limit --></label>
-        <name>IPM_Mix_Char_Limit</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Not applicable --></label>
-        <name>IPM_Not_applicable</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM ProjectManagement Char Limit --></label>
-        <name>IPM_ProjectManagement_Char_Limit</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Project Name Exists --></label>
-        <name>IPM_Project_Name_Exists</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Project Name Mandatory --></label>
-        <name>IPM_Project_Name_Mandatory</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Record Insert Success --></label>
-        <name>IPM_Record_Insert_Success</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Record Saved Archives --></label>
-        <name>IPM_Record_Saved_Archives</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM_Skip_Bosscard --></label>
-        <name>IPM_Skip_Bosscard</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Stopmsg --></label>
-        <name>IPM_Stopmsg</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Strategic Intent message --></label>
-        <name>IPM_Strategic_Intent_message</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Technical Char Limit --></label>
-        <name>IPM_Technical_Char_Limit</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM backto intermediate --></label>
-        <name>IPM_backto_intermediate</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM image --></label>
-        <name>IPM_image</name>
-    </customLabels>
-    <customLabels>
         <label><!-- UW_LAUNCH_PINNOVATE_CMD --></label>
         <name>LAUNCH_PINNOVATE_CMD</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- MLST_OBJ_NAME --></label>
-        <name>MLST_OBJ_NAME</name>
     </customLabels>
     <customLabels>
         <label><!-- Matrix Currency Desc --></label>
         <name>Matrix_Currency_Desc</name>
     </customLabels>
     <customLabels>
-        <label><!-- PD_OBJ_NAME --></label>
-        <name>PD_OBJ_NAME</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- PS_OBJ_NAME --></label>
-        <name>PS_OBJ_NAME</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Project Name Contains Brand Name Target Launch Date --></label>
-        <name>Project_Name_Contains_Brand_Name_Target_Launch_Date</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Rollout No Records Msg --></label>
         <name>Rollout_No_Records_Msg</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- TASK_OBJ_NAME --></label>
-        <name>TASK_OBJ_NAME</name>
     </customLabels>
     <customLabels>
         <label><!-- TO_CaseIdentifier --></label>
