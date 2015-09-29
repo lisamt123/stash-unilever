@@ -168,7 +168,7 @@ public with sharing class BET_MemberRequestHandlerCls {
                 if(betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) == null || (betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.UserId__c))){
                     teamMembersToUpsert.add(createTeamMemberFromRequest(memberRequest));
                 } else {
-                    uw_BET_Team_Member__c member = teamMemberExistingMap.get(String.valueOf(memberRequest.Brand_Experience_Toolkit__c)+memberRequest.UserId__c);
+                    uw_BET_Team_Member__c member = teamMemberExistingMap.get(memberRequest.Brand_Experience_Toolkit__c+memberRequest.UserId__c);
                     if(member!=null && member.Role__c == MEMBERROLE && memberRequest.Role__c == MANAGERROLE){
                         member.Role__c = MANAGERROLE;
                         teamMembersToUpsert.add(member);
