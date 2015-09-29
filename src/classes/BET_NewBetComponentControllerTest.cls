@@ -64,7 +64,8 @@ private class BET_NewBetComponentControllerTest {
 	@isTest static void displayErrorsTest(){
 		Test.startTest();
 		BET_NewBetComponentController controller = new BET_NewBetComponentController();
-		controller.displayErrors(new List<String>{'Something went wrong'});
+		List<ApexPages.Message> displayed = controller.displayErrors(new List<String>{'Something went wrong'});
+		System.assertEquals(displayed.size(),1);
 		Test.stopTest();
 	}
 	

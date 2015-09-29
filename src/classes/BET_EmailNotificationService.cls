@@ -22,7 +22,7 @@ public without sharing class BET_EmailNotificationService {
     Returns: -
     Throws: -
     *************************************************************/
-    public static void notifyBetOwnerOfLeadProjectFollowRequest(uw_Bet__c bet,IPM_BETWrapper project){
+    public static List<Messaging.SingleEmailMessage> notifyBetOwnerOfLeadProjectFollowRequest(uw_Bet__c bet,IPM_BETWrapper project){
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 
         User betOwner = Test.isRunningTest() ? new User(email = BET_TestUtils.TEST_USER_EMAIL) : [select email from User where isActive = true and id =: bet.ownerid];
@@ -47,9 +47,11 @@ public without sharing class BET_EmailNotificationService {
         body += '<br/><br/> To change the lead project, please contact system admin by clicking <a href="mailto:cb4l@unilever.com?subject=BET SYSTEM REQUEST for'+bet.name+'">here</a>';
 
         mail.setHtmlBody(body);
+        List<Messaging.SingleEmailMessage> messagesToBeSent = new List<Messaging.SingleEmailMessage> {mail};
         if(!Test.isRunningTest()) {
             Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
         }
+        return messagesToBeSent;
     }
 
     /************************************************************
@@ -58,7 +60,7 @@ public without sharing class BET_EmailNotificationService {
     Returns: -
     Throws: -
     *************************************************************/
-    public static void notifyBetOwnerOfMultipleMemberRequestsFromIPM(Id betId,Id projectId){
+    public static List<Messaging.SingleEmailMessage> notifyBetOwnerOfMultipleMemberRequestsFromIPM(Id betId,Id projectId){
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 
         uw_Bet__c bet = [select id,name,ownerId from uw_Bet__c where id=:betId];
@@ -80,9 +82,12 @@ public without sharing class BET_EmailNotificationService {
 
         mail.setHtmlBody(body);
 
+        List<Messaging.SingleEmailMessage> messagesToBeSent = new List<Messaging.SingleEmailMessage> {mail};
+
         if(!Test.isRunningTest()) {
-            Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+            Messaging.sendEmail(messagesToBeSent);
         }
+        return messagesToBeSent;
     }
 
     /************************************************************
@@ -91,7 +96,7 @@ public without sharing class BET_EmailNotificationService {
     Returns: -
     Throws: -
     *************************************************************/
-	public static void notifyBetOwnerThatProjectIsUnlinked(uw_Bet__c bet,IPM_BETWrapper oldProject,IPM_BETWrapper newProject){ // US23
+	public static List<Messaging.SingleEmailMessage> notifyBetOwnerThatProjectIsUnlinked(uw_Bet__c bet,IPM_BETWrapper oldProject,IPM_BETWrapper newProject){ // US23
 		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 
 		User betOwner = Test.isRunningTest() ? new User(email = BET_TestUtils.TEST_USER_EMAIL) : [select email from User where isActive = true and id =: bet.ownerid];
@@ -111,9 +116,11 @@ public without sharing class BET_EmailNotificationService {
         body += '<br/><br/>-  The category and brand position of a BET';
         body += '<br/><br/> To change the lead project, please contact system admin by clicking <a href="mailto:cb4l@unilever.com?subject=BET SYSTEM REQUEST for'+bet.name+'">here</a>';
         mail.setHtmlBody(body);
+        List<Messaging.SingleEmailMessage> messagesToBeSent = new List<Messaging.SingleEmailMessage> {mail};
         if(!Test.isRunningTest()) {
-            Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+            Messaging.sendEmail(messagesToBeSent);
         }
+        return messagesToBeSent;
 	}
 
     /************************************************************
@@ -122,7 +129,7 @@ public without sharing class BET_EmailNotificationService {
     Returns: -
     Throws: -
     *************************************************************/
-	public static void notifyBetOwnerOfNewLeadProject(uw_Bet__c bet, IPM_BETWrapper newProject){ //US23
+	public static List<Messaging.SingleEmailMessage> notifyBetOwnerOfNewLeadProject(uw_Bet__c bet, IPM_BETWrapper newProject){ //US23
 		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 
 		List<User> usersToBeNofified = Test.isRunningTest() ? 
@@ -147,9 +154,11 @@ public without sharing class BET_EmailNotificationService {
         body += '<br/><br/> To change the lead project, please contact system admin by clicking <a href="mailto:cb4l@unilever.com?subject=BET SYSTEM REQUEST for'+bet.name+'">here</a>';
 
         mail.setHtmlBody(body);
+        List<Messaging.SingleEmailMessage> messagesToBeSent = new List<Messaging.SingleEmailMessage> {mail};
         if(!Test.isRunningTest()) {
-            Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+            Messaging.sendEmail(messagesToBeSent);
         }
+        return messagesToBeSent;
 	}
 
     /************************************************************
@@ -158,7 +167,7 @@ public without sharing class BET_EmailNotificationService {
     Returns: -
     Throws: -
     *************************************************************/
-	public static void notifyBetOwnerOfUnfollow(uw_Bet__c bet, IPM_BETWrapper project){ //US22, US26
+	public static List<Messaging.SingleEmailMessage> notifyBetOwnerOfUnfollow(uw_Bet__c bet, IPM_BETWrapper project){ //US22, US26
 		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 
 		User betOwner = Test.isRunningTest() ? new User(email = BET_TestUtils.TEST_USER_EMAIL) : [select email from User where isActive = true and id =: bet.ownerid];
@@ -178,8 +187,10 @@ public without sharing class BET_EmailNotificationService {
         body += '<br/> To unarchive the BET and reactivate the group please open the BET and click on Settings <a href="'+beturl+'">'+bet.name+'</a>';
 
         mail.setHtmlBody(body);
+        List<Messaging.SingleEmailMessage> messagesToBeSent = new List<Messaging.SingleEmailMessage> {mail};
         if(!Test.isRunningTest()){
-            Messaging.sendEmail(new List<Messaging.SingleEmailMessage> {mail});
+            Messaging.sendEmail(messagesToBeSent);
         }
+        return messagesToBeSent;
 	}
 }

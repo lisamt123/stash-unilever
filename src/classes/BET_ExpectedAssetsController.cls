@@ -94,6 +94,9 @@ public without sharing class BET_ExpectedAssetsController {
 		for(ExpectedAssetsWrapper wrapper : expectedAssetsForBET){
 			System.debug(wrapper.assetTypeName + ' : ' + wrapper.assetTypeNameExpectedNumber);
 			Integer actual = assetNumberMap.get(wrapper.assetTypeName) == null ? 0 : assetNumberMap.get(wrapper.assetTypeName);
+			if(wrapper.assetTypeNameExpectedNumber == 0){
+				actual = 0;
+			}
 			expectedAssetsData.add(new BET_ExpectedAssets__c(id = wrapper.relatedObjectId,
 											Expected__c = wrapper.assetTypeNameExpectedNumber,
 											Actual__c = actual,
