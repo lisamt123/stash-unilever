@@ -1363,6 +1363,8 @@
         <members>CEC_Reason_Hierarchy</members>
         <members>CEC_RelatedCases</members>
         <members>CEC_Search_Button</members>
+        <members>CEC_SearchValidationError</members>
+        <members>CEC_ConsumerResultsNoMatchTitle</members>
         <members>CEC_Specify_Details_in_Missing_Info</members>
         <members>CEC_Status</members>
         <members>CEC_Street</members>
