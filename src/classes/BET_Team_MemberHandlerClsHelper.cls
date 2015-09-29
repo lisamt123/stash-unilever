@@ -1,4 +1,4 @@
-public without sharing class BET_Team_MemberHandlerClsHelper {
+public class BET_Team_MemberHandlerClsHelper {
 
 	private BET_Team_MemberHandlerClsHelper() {}
 

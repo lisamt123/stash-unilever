@@ -66,9 +66,9 @@ private class BET_AccessServiceTest {
 	@isTest static void GetBetUsersBetNotExistsTest(){
 		try{
 			BET_AccessService.GetBetUsers(null);
-			system.assert(false);
-		}catch(Exception e){
-			system.assert(true);
+			throw new BET_CustomBETException('Unit test');
+		}catch(BET_CustomBETException e){
+			System.assertEquals(e.getMessage(),'BET record not found for given id null');
 		}
 	}
 	

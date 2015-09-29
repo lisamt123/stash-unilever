@@ -32,12 +32,7 @@ private class BET_MemberRequestHandlerClsTest {
             betMembersToInsert.add(betMemeberItem);
         }
         //BET_CustomBETException should occure for invailid ProjectID wrong format
-        try{
-        	insert betMembersToInsert;
-            system.assert(true);
-        }catch(Exception ex){
-            system.assert(false);
-        }
+        insert betMembersToInsert;
     }
     
     

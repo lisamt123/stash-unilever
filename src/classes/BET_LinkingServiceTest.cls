@@ -49,7 +49,7 @@ private class BET_LinkingServiceTest {
 		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
 		try{
 			BET_LinkingService.Follow(ProjectId, null, new List<Id> {UserInfo.getUserId()});
-			System.assert(false);
+			throw new BET_CustomBETException('unit test');
 		}catch(BET_CustomBETException e){
 			System.assertEquals(e.getMessage(),Label.BET_FollowBetNotExistsMessage);
 		}
@@ -63,7 +63,7 @@ private class BET_LinkingServiceTest {
 		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
 		try{
 			BET_LinkingService.Follow(ProjectId, BetId, new List<Id> {UserInfo.getUserId()});
-			System.assert(false);
+			throw new BET_CustomBETException('unit test');
 		}catch(BET_CustomBETException e){
 			System.assertEquals(e.getMessage(),Label.BET_FollowBetArchivedMessage);
 		}
