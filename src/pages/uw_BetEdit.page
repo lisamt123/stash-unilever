@@ -8,17 +8,16 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
     <apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />    
     <apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />    
     <apex:stylesheet value="{!$Resource.BET}/css/BETEditBetStyles.css" />
+    <apex:includeScript value="{!$Resource.BET}/scripts/BetEdit.js" />  
     <script>
     jQuery.noConflict();
     jQuery( document ).ready(function( $ ) {
         jQuery('.question-icon[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' } });
         jQuery('.question-icon-left[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' },position: { my: 'bottom right', at: 'top left' } });
         jQuery('.launchDateArea a').attr('href', null);
-        jQuery('.launchDateArea a').on('click', function() {var name = jQuery('.launchDateArea input').attr('name');
-            jQuery('input[name="'+name+'"]').focus(); return false;});      
+        jQuery('.launchDateArea a').on('click', function() {var name = jQuery('.launchDateArea input').attr('name');jQuery('input[name="'+name+'"]').focus(); return false;});      
         jQuery('#clearCurrentBanner').on('click', function(){jQuery('#banner-container').hide('');clearBannerAction();});
-        jQuery('#clearFutureBanner').on('click', function(){
-            var input = jQuery('[id$="upload_banner"]');input.replaceWith(input.val('').clone(true));});
+        jQuery('#clearFutureBanner').on('click', function(){var input = jQuery('[id$="upload_banner"]');input.replaceWith(input.val('').clone(true));});
         jQuery('#clearCurrentIcon').on('click', function(){jQuery('#icon-container').hide('');clearIconAction();}); 
         jQuery('#clearFutureIcon').on('click', function(){ var input = jQuery('[id$="upload_icon"]');input.replaceWith(input.val('').clone(true));});
         if (jQuery('[id$="runJsSuccess"]').val() == "true" ){
@@ -28,23 +27,6 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             window.top.postMessage({action: 'saveBetPreferences',moveHome:{!if(moveHome,'true','false')}}, document.location.protocol + '//' + document.domain);
         }
     });
-
-    function areYouSureToArchive(element){
-        if(confirm('{!$Label.BET_ArchiveConfirmation}')){
-            element.value = '{!$Label.BET_Archiving}';
-            return true;
-        }
-        return false;
-    }
-
-    function areYouSureToUnArchive(element){
-        if(confirm('{!$Label.BET_UnArchiveConfirmation}')){
-            element.value = '{!$Label.BET_UnArchiving}';
-            return true;
-        }
-        return false;
-    }
-
     </script>
             
     <apex:form >
@@ -171,7 +153,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
                 <apex:commandButton value="{!$Label.BET_ArchiveBET}" styleClass="btn-save" 
                     action="{!archiveBET}" rendered="{!AND(currentUserIsOwner,bet.Is_Archived__c == false)}" 
-                    onclick="return areYouSureToArchive(this);"/>
+                    onclick="return areYouSureToArchive(this,'{!$Label.BET_ArchiveConfirmation}','{!$Label.BET_Archiving}');"/>
 
                 <apex:outputPanel layout="inline" styleClass="question-icon-left question-icon-large"
                     html-data-tooltip="Archived BETs are moved to the Archive area on the Home Page and Search" 
@@ -179,7 +161,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
                 <apex:commandButton value="{!$Label.BET_UnArchiveBET}" styleClass="btn-save" 
                     action="{!unArchiveBET}" rendered="{!AND(currentUserIsOwner,bet.Is_Archived__c == true)}" 
-                    onclick="return areYouSureToUnArchive(this);"/>
+                    onclick="return areYouSureToUnArchive(this,'{!$Label.BET_UnArchiveConfirmation}','{!$Label.BET_UnArchiving}');"/>
 
                 <apex:outputPanel layout="inline" styleClass="question-icon-left question-icon-large"
                     html-data-tooltip="Unarchived BETs are moved from the Archive area on the Home Page and Search" 
