@@ -1282,7 +1282,7 @@ Expired - when the BET and its associated assets have expired.</inlineHelpText>
         <fullName>Total_Actual_Assets__c</fullName>
         <externalId>false</externalId>
         <label>Total Actual Assets</label>
-        <summarizedField>BET_ExpectedAssets__c.Actual__c</summarizedField>
+        <summarizedField>BET_ExpectedAssets__c.Computed_Actual__c</summarizedField>
         <summaryForeignKey>BET_ExpectedAssets__c.Brand_Experience_Toolkit__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>

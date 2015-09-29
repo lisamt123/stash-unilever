@@ -2143,8 +2143,8 @@
 		<members>BET_MultipleRequestNotificationSubject</members>
 		<members>BET_LeadProjectRequestNotification</members>
 		<members>BET_LeadProjectRequestNotificationSubject</members>
-		<members>bet_suggestedmemberothermembers</members>
-		<members>ipm_betidnullmsg</members>
+		<members>BET_SuggestedMemberOtherMembers</members>
+		<members>IPM_BETIdNullMsg</members>
         <name>CustomLabel</name>
     </types>
     <types>
@@ -4033,6 +4033,7 @@
     </types>
     <types>
 		<members>BET_ExpectedAssets__c.Actual__c</members>
+		<members>BET_ExpectedAssets__c.Computed_Actual__c</members>
 		<members>BET_ExpectedAssets__c.Expected__c</members>
 		<members>BET_ExpectedAssets__c.Brand_Experience_Toolkit__c</members>
 		<members>BET_ExpectedAssets__c.Type__c</members>
