@@ -6,7 +6,7 @@ Purpose : Access service class
 History
 
 VERSION  AUTHOR                DATE        DETAIL   Description
-1.0      m.bluj@polsource.com  23-07-2015  Initial //pc
+1.0      m.bluj@polsource.com  23-07-2015  Initial
 *************************************************************************************/
 public without sharing class BET_AccessService {
 	
