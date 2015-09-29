@@ -1,8 +1,0 @@
-<apex:component layout="none">
-    <apex:attribute name="groupHeader" type="String" description="TODO"/>
-    
-    <div class="taskGroup teal">{!groupHeader}</div>
-    <ul class="taskList">
-        <apex:componentBody />
-    </ul>    
-</apex:component>

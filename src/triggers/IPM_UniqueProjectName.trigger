@@ -1,1 +1,0 @@
-trigger IPM_UniqueProjectName on IPM_Project__c (before insert,after insert,after update) {}
