@@ -88,6 +88,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 	}
 
 	@isTest static void getBrandPositioningsTest(){
+		Test.startTest();
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
 		BET_TestUtils.createBrandPositioning(category);

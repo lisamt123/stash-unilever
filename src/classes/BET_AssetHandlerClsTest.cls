@@ -9,9 +9,9 @@ private class BET_AssetHandlerClsTest {
 		uw_Asset__c asset = new uw_Asset__c(uw_Bet__c = bet.id,Media_Type__c = MEDIA_TYPE);
 		BET_ExpectedAssets__c eassest = new BET_ExpectedAssets__c(Brand_Experience_Toolkit__c = bet.id,Type__c = MEDIA_TYPE,Actual__c = 1,Expected__c = 2);
 		insert eassest;
-
+		Test.startTest();
 		Map<Id,List<BET_ExpectedAssets__c>> mapka = BET_AssetHandlerCls.getExpectedAssetsForRelatedBets(new List<uw_Asset__c>{asset});
-
+		Test.stOPTest();
 		System.assertEquals(eassest.id,mapka.get(bet.id).get(0).id);
 	}
 	
@@ -21,9 +21,9 @@ private class BET_AssetHandlerClsTest {
 		uw_Asset__c asset = new uw_Asset__c(uw_Bet__c = bet.id,Media_Type__c = MEDIA_TYPE);
 		BET_ExpectedAssets__c eassest = new BET_ExpectedAssets__c(Brand_Experience_Toolkit__c = bet.id,Type__c = MEDIA_TYPE,Actual__c = 1,Expected__c = 2);
 		insert eassest;
-
+		Test.startTest();
 		BET_AssetHandlerCls.increaseActualAssetNumber(new List<uw_Asset__c>{asset});
-
+		Test.stopTest();
 		BET_ExpectedAssets__c increased = [select Actual__c from BET_ExpectedAssets__c where id =: eassest.id];
 
 		System.assertEquals(increased.Actual__c,2);
@@ -36,9 +36,9 @@ private class BET_AssetHandlerClsTest {
 		uw_Asset__c asset = new uw_Asset__c(uw_Bet__c = bet.id,Media_Type__c = MEDIA_TYPE);
 		BET_ExpectedAssets__c eassest = new BET_ExpectedAssets__c(Brand_Experience_Toolkit__c = bet.id,Type__c = MEDIA_TYPE,Actual__c = 1,Expected__c = 2);
 		insert eassest;
-
+		Test.startTest();
 		BET_AssetHandlerCls.decreaseActualAssetNumber(new List<uw_Asset__c>{asset});
-
+		Test.stopTest();
 		BET_ExpectedAssets__c increased = [select Actual__c from BET_ExpectedAssets__c where id =: eassest.id];
 
 		System.assertEquals(increased.Actual__c,0);
@@ -50,9 +50,9 @@ private class BET_AssetHandlerClsTest {
 		uw_Asset__c asset = new uw_Asset__c(uw_Bet__c = bet.id,Media_Type__c = MEDIA_TYPE,Status__c = 'Approved');
 		BET_ExpectedAssets__c eassest = new BET_ExpectedAssets__c(Brand_Experience_Toolkit__c = bet.id,Type__c = MEDIA_TYPE,Actual__c = 1,Expected__c = 2);
 		insert eassest;
-
+		Test.startTest();
 		BET_AssetHandlerCls.updateActualAssetsNumber(new List<uw_Asset__c>{asset});
-
+		Test.stopTest();
 		BET_ExpectedAssets__c increased = [select Actual__c from BET_ExpectedAssets__c where id =: eassest.id];
 
 		System.assertEquals(increased.Actual__c,2);
@@ -64,9 +64,9 @@ private class BET_AssetHandlerClsTest {
 		uw_Asset__c asset = new uw_Asset__c(uw_Bet__c = bet.id,Media_Type__c = MEDIA_TYPE,Status__c = 'Approved');
 		BET_ExpectedAssets__c eassest = new BET_ExpectedAssets__c(Brand_Experience_Toolkit__c = bet.id,Type__c = MEDIA_TYPE,Actual__c = 1,Expected__c = 2);
 		insert eassest;
-
+		Test.startTest();
 		BET_AssetHandlerCls.updateActualAssetsNumberAfterDeletion(new List<uw_Asset__c>{asset});
-
+		Test.stopTest();
 		BET_ExpectedAssets__c increased = [select Actual__c from BET_ExpectedAssets__c where id =: eassest.id];
 
 		System.assertEquals(increased.Actual__c,0);

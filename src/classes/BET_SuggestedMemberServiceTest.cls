@@ -12,6 +12,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 private class BET_SuggestedMemberServiceTest {
 
     @isTest static void testCheckIfUsersAreManagerOrOwnerOfBet(){
+        Test.startTest();
         uw_BET__c betObject = BET_TestUtils.getTestBet();
         insert betObject;
         system.assertEquals(true, BET_SuggestedMemberService.checkIfUsersAreManagerOrOwnerOfBet(betObject.id,new List<Id>{UserInfo.getUserId()}).get(UserInfo.getUserId()));
@@ -25,9 +26,11 @@ private class BET_SuggestedMemberServiceTest {
         memberRequestToInsert.Team_Member__c = UserInfo.getUserId();
         insert memberRequestToInsert;
         system.assertEquals(true, BET_SuggestedMemberService.checkIfUsersAreManagerOrOwnerOfBet(betObject.id,new List<Id>{UserInfo.getUserId()}).get(UserInfo.getUserId()));
+        Test.stopTest();
     }
 
     @isTest static void testCheckIfUserIsManagerOrOwnerOfBet(){
+        Test.startTest();
         //check for owner
         uw_BET__c betObject = BET_TestUtils.getTestBet();
         //check empty bet
@@ -60,10 +63,11 @@ private class BET_SuggestedMemberServiceTest {
         Id betId = betObject.id;
         delete betObject;
         system.assertEquals(false, BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId,UserInfo.getUserId()));
-         
+        Test.stopTest();
     }
     
     @isTest static void testRemoveMemberRequestDuplicatesWhileInsertForInvailidProjectId(){
+        Test.startTest();
         //check for owner
         uw_BET__c betObject = BET_TestUtils.getTestBet();
         insert betObject;
@@ -89,9 +93,11 @@ private class BET_SuggestedMemberServiceTest {
         }catch(BET_CustomBETException ex){
             system.assertEquals(Label.BetMemberRequestInvailidProjectIDError, ex.getMessage());
         }
+        Test.stopTest();
     }
     
     @isTest static void testRemoveMemberRequestDuplicatesWhileInsertForvailidProjectId(){
+        Test.startTest();
         //check for owner
         uw_BET__c betObject = BET_TestUtils.getTestBet();
         insert betObject;
@@ -141,5 +147,6 @@ private class BET_SuggestedMemberServiceTest {
         tmpMemberRequests = BET_SuggestedMemberService.removeMemberRequestDuplicatesWhileInsert(tmpMemberRequests);
         //such records are already approved so no recors should be added
         system.assertEquals(0, tmpMemberRequests.size());
+        Test.stopTest();
     }
 }
