@@ -422,12 +422,19 @@ public class BET_TestUtils {
         bet.Category_Group__c = cgroup.id;
         bet.Status__c = 'First release';
         bet.Inoplan_Project__c = inoProject.id;
-        bet.Name = 'AxeBrandExperience';
+        bet.Name = 'AxeBrandExperience_'+system.now();
         insert bet;
         liBets.add(bet);
 
         System.debug('Exit initBET ');
 
+ 	}
+
+ 	@isTest static void getTestBetTest(){
+ 		Test.startTest();
+ 		uw_bet__c bet = BET_TestUtils.getTestBet();
+ 		Test.stopTest();
+ 		System.assert(bet != null,'Bet should be created');
  	}
 
 }
