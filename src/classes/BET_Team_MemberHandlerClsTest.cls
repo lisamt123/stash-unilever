@@ -13,7 +13,7 @@ private class BET_Team_MemberHandlerClsTest {
 		teamMember.Role__c = BET_Team_MemberHandlerCls.MEMBERROLE;
 		insert teamMember;
 		teamMember = [select Role__c from uw_BET_Team_Member__c where id =: teamMember.id];
-		System.assertEquals(teamMember.Role__c,BET_Team_MemberHandlerCls.MEMBERROLE);
+		System.assertEquals(teamMember.Role__c,BET_Team_MemberHandlerCls.MEMBERROLE,'Roles must match');
 	}
 	
  	@isTest static void runRoleModificationsTest() {
@@ -30,7 +30,7 @@ private class BET_Team_MemberHandlerClsTest {
 		teamMember.Role__c = BET_Team_MemberHandlerCls.MANAGERROLE;
 		update teamMember;
 		teamMember = [select Role__c from uw_BET_Team_Member__c where id =: teamMember.id];
-		System.assertEquals(teamMember.Role__c,BET_Team_MemberHandlerCls.MANAGERROLE);
+		System.assertEquals(teamMember.Role__c,BET_Team_MemberHandlerCls.MANAGERROLE,'Roles must match');
 	}
 
 	private static User getTestUser(){

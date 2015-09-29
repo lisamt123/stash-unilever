@@ -11,7 +11,7 @@ private class BET_LinkedProjectsComponentContrTest {
 		BET_LinkedProjectsComponentController controller = new BET_LinkedProjectsComponentController();
 		controller.betIdentifier = bet.id;
 		List<BET_LinkedProjectsComponentController.FollowRequestWrapper> linkedprojects = controller.getLinkedProjects();
-		System.assertEquals(linkedprojects.size(),2);
+		System.assertEquals(linkedprojects.size(),2,'List should contain 2 elements');
 	}
 
 	@isTest static void setAsLeadProjectTest(){
@@ -24,7 +24,7 @@ private class BET_LinkedProjectsComponentContrTest {
 		controller.betIdentifier = BetId;
 		controller.setAsLeadProject();
 		bet = [select IPM_Project__c from uw_Bet__c where id=:BetId];
-		System.assertEquals(bet.IPM_Project__c,ProjectId);
+		System.assertEquals(bet.IPM_Project__c,ProjectId,'Project identifiers must match');
 	}
 	
 }

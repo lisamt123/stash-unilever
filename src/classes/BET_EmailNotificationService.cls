@@ -10,8 +10,6 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 public without sharing class BET_EmailNotificationService {
 
-    private static final String PROJECT_TXT = 'Project '; // sonnar related fix
-
 	private static final OrgWideEmailAddress owea = [select Id from OrgWideEmailAddress where displayname = 'CB4L'];
 
 	private BET_EmailNotificationService() {}

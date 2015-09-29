@@ -84,7 +84,7 @@ public class BET_TestUtils {
         bet.Status__c = status;
         bet.Inoplan_Project__c = inoplanproject;
         bet.IPM_Project__c = ipmProject;
-        bet.Name = name;
+        bet.Name = name + system.now();
         System.debug('Exit getTestBet : ' + bet);
         return bet;
 	}
