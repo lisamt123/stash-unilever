@@ -143,10 +143,10 @@ public with sharing class BET_MemberRequestHandlerCls {
             } 
         }else if(oldMap != null){
             String OldMapStatus = oldMap.containsKey(memberRequest.id)  ? oldMap.get(memberRequest.id).Status__c : null;
-            if(memberRequest.Status__c == Label.BETTeamMemberRequestApprovedStatus &&  memberRequest.Status__c != OldMapStatus){
-                if(betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) == null || (betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.External_User_Email__c))){
-                    teamMembersToUpsert.add(createTeamMemberFromRequest(memberRequest));
-                }
+            if(memberRequest.Status__c == Label.BETTeamMemberRequestApprovedStatus 
+                && memberRequest.Status__c != OldMapStatus
+                && betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) == null || (betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betexternalTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.External_User_Email__c))){
+                teamMembersToUpsert.add(createTeamMemberFromRequest(memberRequest));
             }
         }
     }

@@ -8,7 +8,9 @@ private class BET_Team_MemberHandlerClsHelperTest {
 		member.BET__c = bet.id;
 		member.Team_Member__c = UserInfo.getUserId();
 		member.Role__c = BET_Team_MemberHandlerCls.MANAGERROLE;
+		Test.startTest();
 		EntitySubscription es = BET_Team_MemberHandlerClsHelper.addEntitiySubscriptionByTeamMember(member);
+		Test.stopTest();
 		System.assertEquals(es.parentId,bet.id);
 	}
 
@@ -19,7 +21,9 @@ private class BET_Team_MemberHandlerClsHelperTest {
 		member.BET__c = bet.id;
 		member.Team_Member__c = UserInfo.getUserId();
 		member.Role__c = BET_Team_MemberHandlerCls.MANAGERROLE;
+		Test.startTest();
 		uw_BET__Share share = BET_Team_MemberHandlerClsHelper.addShareByMember(member, BET_Team_MemberHandlerCls.MANAGERROLE);
+		Test.stopTest();
 		System.assertEquals(share.parentId,bet.id);
 	}
 
@@ -30,7 +34,9 @@ private class BET_Team_MemberHandlerClsHelperTest {
 		member.BET__c = bet.id;
 		member.Team_Member__c = UserInfo.getUserId();
 		member.Role__c = 'Manager';
+		Test.startTest();
 		CollaborationGroupMember gm = BET_Team_MemberHandlerClsHelper.createCollaborationGroupMemberByTeamMember(member, BET_Team_MemberHandlerCls.MANAGERROLE);
+		Test.stopTest();
 		System.assertEquals(gm.MemberId,UserInfo.getUserId());
 	}
 	

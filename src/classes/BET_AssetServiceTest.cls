@@ -9,8 +9,9 @@ private class BET_AssetServiceTest {
 		System.assert(expectedAssets.isEmpty());
 
 		BET_AssetService.createExpectedAssetsRecordsForBet(new List<Id>{bet.id});
-
+		Test.startTest();
 		Map<Id,Boolean> mapka = BET_AssetService.betContainsExpectedAssetsRecord(new List<Id>{bet.id});
+		Test.stopTest();
 		System.assert(mapka.get(bet.id));
 	}
 	
@@ -20,9 +21,9 @@ private class BET_AssetServiceTest {
 
 		List<BET_ExpectedAssets__c> expectedAssets = [select id from BET_ExpectedAssets__c where Brand_Experience_Toolkit__c =: bet.id];
 		System.assert(expectedAssets.isEmpty());
-
+		Test.startTest();
 		BET_AssetService.createExpectedAssetsRecordsForBet(new List<Id>{bet.id});
-
+		Test.stopTest();
 		expectedAssets = [select id from BET_ExpectedAssets__c where Brand_Experience_Toolkit__c =: bet.id];
 		System.assert(!expectedAssets.isEmpty());
 	}
@@ -31,8 +32,9 @@ private class BET_AssetServiceTest {
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
 		uw_Asset__c asset = new uw_Asset__c(uw_Bet__c = bet.id,Media_Type__c = 'Test Media Type');
-
+		Test.startTest();
 		List<Id> bets = BET_AssetService.getBetIdsFromAssets(new List<uw_Asset__c> {asset});
+		Test.stopTest();
 		System.assert(!bets.isEmpty());
 
 	}
