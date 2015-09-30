@@ -64,13 +64,15 @@ public with sharing class BET_AssetHandlerCls {
 				approvedAssets.add(asset);
 			} else if(asset.Status__c != uw_CustomAssetUploadExtension.BET_ASSET_APPROVED && oldMap.get(asset.id).Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){
 				unapprovedAssets.add(asset);
+			} else if(asset.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED && oldMap.get(asset.id).Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED 
+					  && asset.Media_Type__c != oldMap.get(asset.id).Media_Type__c){
+				approvedAssets.add(asset);
+				unapprovedAssets.add(new uw_Asset__c(uw_BET__c = asset.uw_BET__c,Media_Type__c = oldMap.get(asset.id).Media_Type__c));
 			}
 		}
 		increaseActualAssetNumber(approvedAssets);
 		decreaseActualAssetNumber(unapprovedAssets);
 	}
-
-
 
 	/************************************************************
         Purpose: Method initiates Expected Assets REcords for bets
