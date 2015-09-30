@@ -331,16 +331,29 @@ public with sharing class BET_SuggestMembersController {
     *************************************************************/
     public PageReference addMembers(){
         System.debug('Entering method addMembers for following user: '+suggested_MembersCtrl);
-        List<BET_Member_Request__c> betMembersToInsert = new List<BET_Member_Request__c>();
         List<BET_Follow_Request__c> betFollowRequest = new List<BET_Follow_Request__c>();
         if(betIdCtrl != null && projectIdCtrl != null){
             betFollowRequest = [SELECT id from BET_Follow_Request__c WHERE Brand_Experience_Toolkit__c =: betIdCtrl and Project_Id__c =:projectIdCtrl]; 
         }
         Id betFollowRequestId = betFollowRequest.isEmpty() ? null : betFollowRequest.get(0).id;
-        Boolean isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betIdCtrl, UserInfo.getUserId());
         Id betOwnerId = [select ownerid from uw_BET__c where id=:betIdCtrl].ownerid;
 
-        if(suggested_MembersCtrl != null && !suggested_MembersCtrl.isEmpty()){
+		insertMemberRequestsRecords(betFollowRequestId,betOwnerId);
+
+        System.debug('Exiting method addMembers method processes with success');
+        if(callbackCtrl != null){
+            PageReference pr = new PageReference(callbackCtrl);
+            pr.setRedirect(true);
+            return pr;
+        }        
+        
+        return null;
+	}
+	
+	public void insertMemberRequestsRecords(Id betFollowRequestId,Id betOwnerId){
+		List<BET_Member_Request__c> betMembersToInsert = new List<BET_Member_Request__c>();
+        Boolean isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betIdCtrl, UserInfo.getUserId());
+		if(suggested_MembersCtrl != null && !suggested_MembersCtrl.isEmpty()){
             for(ID userId : suggested_MembersCtrl){
                 betMembersToInsert.add(BET_SuggestedMemberService.addInternalMemberRecord(userId,betFollowRequestId,isBetOwnerOrManager,betOwnerId,betIdCtrl,projectIdCtrl));
             }
@@ -353,20 +366,10 @@ public with sharing class BET_SuggestMembersController {
             }
         }
 
-
         if(!betMembersToInsert.isEmpty()){
             insert betMembersToInsert;
             IPM_BETUpdateService.updateBETMemberRequest(new Set<Id> {projectIdCtrl});
         }
-
-        System.debug('Exiting method addMembers method processes with success');
-        if(callbackCtrl != null){
-            PageReference pr = new PageReference(callbackCtrl);
-            pr.setRedirect(true);
-            return pr;
-        }        
-        
-        return null;
 	}
     
     /************************************************************
