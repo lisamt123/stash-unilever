@@ -17,7 +17,7 @@ private class uw_BetEditController_Test {
     private static final String TEST_BLOB = 'aGVsbG8=';
 
     static testMethod void testMethodOne(){     
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1', true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
 
         System.CurrentPageReference().getParameters().put('Id', wrap.BET.Id);
 
@@ -55,8 +55,8 @@ private class uw_BetEditController_Test {
     }
 
     static testMethod void testMethodTwo(){     
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1', true);
-        BET_TestingHelper.BET_TestingData wrap2 = BET_TestingHelper.initBET('Test BET2', true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap2 = BET_TestingHelper.initBET('Test BET2_'+system.now(), true);
         BET_TestingHelper.initBET('Test BET3', true);
         BET_TestingHelper.initBET('Test BET4', true);
 
@@ -89,7 +89,7 @@ private class uw_BetEditController_Test {
     }
     
     static testMethod void testMethodThree(){     
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1', true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
         BET_TestingHelper.initBET('Test BET2', true);
         
         User usr = BET_TestingHelper.getDefaultNotMember();

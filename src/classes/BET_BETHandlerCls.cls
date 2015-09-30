@@ -123,12 +123,12 @@ public without sharing class BET_BETHandlerCls {
     Throws: -
   *************************************************************/
 	public static Map<Id,uw_BET__c> buildBetMap(Map<Id,SObject> sobjectMap){
-    System.debug('Entering buildBetMap : ' + sobjectMap);
+    	System.debug('Entering buildBetMap : ' + sobjectMap);
 		Map<Id,uw_Bet__c> betmap = new Map<Id,uw_Bet__c>();
 		for(Id id : sobjectMap.keySet()){
-			betmap.put(id,(uw_Bet__c)Trigger.oldMap.get(id));
+			betmap.put(id,(uw_Bet__c)sobjectMap.get(id));
 		}
-    System.debug('Exit updateReleaseDueDates : ' + betmap);
+    	System.debug('Exit updateReleaseDueDates : ' + betmap);
 		return betmap;
 	}
 
