@@ -8,14 +8,18 @@ private class BET_EmailNotificationServiceTest {
 		insert bet;
 		IPM_Project__c oldProject = BET_TestUtils.createIPMProject(TEST_PROJECT_NAME);
 		IPM_BETWrapper project = new IPM_BETWrapper(oldProject);
+		Test.startTest();
 		List<Messaging.SingleEmailMessage> mails = BET_EmailNotificationService.notifyBetOwnerThatProjectIsUnlinked(bet,project,project);
+		Test.stopTest();
 		System.assertEquals(mails.size(),1);
 	}
 	
 	@isTest static void notifyBetOwnerOfNewLeadProjectTest() {
 		uw_BET__c bet = BET_TestUtils.getTestBet();
 		insert bet;
+		Test.startTest();
 		List<Messaging.SingleEmailMessage> mails = BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(bet,new IPM_BETWrapper(BET_TestUtils.createIPMProject(TEST_PROJECT_NAME)));
+		Test.stopTest();
 		System.assertEquals(mails.size(),1);
 	}
 
@@ -23,7 +27,9 @@ private class BET_EmailNotificationServiceTest {
 		uw_BET__c bet = BET_TestUtils.getTestBet();
 		insert bet;
 		IPM_BETWrapper project = new IPM_BETWrapper(BET_TestUtils.createIPMProject(TEST_PROJECT_NAME));
+		Test.startTest();
 		List<Messaging.SingleEmailMessage> mails = BET_EmailNotificationService.notifyBetOwnerOfUnfollow(bet,project);
+		Test.stopTest();
 		System.assertEquals(mails.size(),1);
 	}
 
@@ -31,7 +37,9 @@ private class BET_EmailNotificationServiceTest {
 		uw_BET__c bet = BET_TestUtils.getTestBet();
 		insert bet;
 		IPM_BETWrapper project = new IPM_BETWrapper(BET_TestUtils.createIPMProject(TEST_PROJECT_NAME));
+		Test.startTest();
 		List<Messaging.SingleEmailMessage> mails = BET_EmailNotificationService.notifyBetOwnerOfMultipleMemberRequestsFromIPM(bet.id, project.projectId);
+		Test.stopTest();
 		System.assertEquals(mails.size(),1);
 	}
 
@@ -39,7 +47,9 @@ private class BET_EmailNotificationServiceTest {
 		uw_BET__c bet = BET_TestUtils.getTestBet();
 		insert bet;
 		IPM_BETWrapper project = new IPM_BETWrapper(BET_TestUtils.createIPMProject(TEST_PROJECT_NAME));
+		Test.startTest();
 		List<Messaging.SingleEmailMessage> mails = BET_EmailNotificationService.notifyBetOwnerOfLeadProjectFollowRequest(bet,project);
+		Test.stopTest();
 		System.assertEquals(mails.size(),1);
 	}
 	
