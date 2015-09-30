@@ -1021,6 +1021,13 @@ Are you sure you wish to proceed?</value>
         <value>Member {0} is already defined</value>
     </labels>
     <labels>
+        <fullName>BET_SuggestedMemberMembers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberMembers</shortDescription>
+        <value>members</value>
+    </labels>
+    <labels>
         <fullName>BET_SuggestedMemberModalAddSelected</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1062,6 +1069,14 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_TargetLaunchDate</shortDescription>
         <value>Target Launch Date</value>
+    </labels>
+    <labels>
+        <fullName>BET_Title</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Title</shortDescription>
+        <value>Title</value>
     </labels>
     <labels>
         <fullName>BET_UnArchiveBET</fullName>
@@ -2194,6 +2209,20 @@ Are you sure you wish to proceed?</value>
         <value>Original</value>
     </labels>
     <labels>
+        <fullName>IPM_IdsApprovalNotNullMSg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_IdsApprovalNotNullMSg</shortDescription>
+        <value>IPM Project Id, BET Id or Approval Action cannot be null.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_IdsNotNullMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_IdsNotNullMsg</shortDescription>
+        <value>BET id, IPM Project ID or User ID cannot be null.</value>
+    </labels>
+    <labels>
         <fullName>IPM_ImageLogo_URL</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -2241,6 +2270,13 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>IPM ProjectManagement Char Limit</shortDescription>
         <value>4860</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ProjectNotRetrieved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ProjectNotRetrieved</shortDescription>
+        <value>IPM Project could not be retrieved.</value>
     </labels>
     <labels>
         <fullName>IPM_Project_Name_Exists</fullName>
