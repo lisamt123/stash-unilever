@@ -1,4 +1,4 @@
-@isTest
+@isTest(seeAllData=false)
 private class BET_AccessServiceTest {
 	
 	@isTest static void HasUserAccessNoAccessTest() {

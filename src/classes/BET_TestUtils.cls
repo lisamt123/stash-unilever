@@ -64,7 +64,7 @@ public class BET_TestUtils {
         bet.Category_Group__c = cgroup.id;
         bet.Status__c = 'First release';
         bet.Inoplan_Project__c = inoProject.id;
-        bet.Name = 'AxeBrandExperience_' + Math.random();
+        bet.Name = 'UTAxeBrExp_' + Math.random();
         System.debug('Exit getTestBet : ' + bet);
         return bet;
 	}
