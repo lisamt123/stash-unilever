@@ -69,7 +69,6 @@
         password="${sf.password}" 
         serverurl="${sf.serverurl}" 
         checkOnly="true"
-        runAllTests="true"
         logType="Debugonly"
         testLevel="RunSpecifiedTests"
         allowMissingFiles="true"
