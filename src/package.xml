@@ -2145,6 +2145,7 @@
 		<members>BET_LeadProjectRequestNotificationSubject</members>
 		<members>BET_SuggestedMemberOtherMembers</members>
 		<members>IPM_BETIdNullMsg</members>
+		<members>IPM_CategoryNameNotNull</members>
         <name>CustomLabel</name>
     </types>
     <types>

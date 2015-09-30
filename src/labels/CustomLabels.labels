@@ -2117,6 +2117,13 @@ Are you sure you wish to proceed?</value>
         <value>BOSSCARD Shared Via Chatter</value>
     </labels>
     <labels>
+        <fullName>IPM_CategoryNameNotNull</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_CategoryNameNotNull</shortDescription>
+        <value>Category name cannot be null.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Category_list</fullName>
         <language>en_US</language>
         <protected>false</protected>
