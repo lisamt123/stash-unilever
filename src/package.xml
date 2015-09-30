@@ -2145,6 +2145,14 @@
 		<members>BET_MultipleRequestNotificationSubject</members>
 		<members>BET_LeadProjectRequestNotification</members>
 		<members>BET_LeadProjectRequestNotificationSubject</members>
+		<members>IPM_CategoryNameNotNull</members>
+		<members>BET_SuggestedMemberMembers</members>
+		<members>BET_SuggestedMemberOtherMembers</members>
+		<members>BET_Title</members>
+		<members>IPM_BETIdNullMsg</members>
+		<members>IPM_CategoryNameNotNull</members>
+		<members>IPM_IdsApprovalNotNullMSg</members>
+		<members>IPM_ProjectNotRetrieved</members>
         <name>CustomLabel</name>
     </types>
     <types>

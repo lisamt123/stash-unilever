@@ -1021,6 +1021,13 @@ Are you sure you wish to proceed?</value>
         <value>Member {0} is already defined</value>
     </labels>
     <labels>
+        <fullName>BET_SuggestedMemberMembers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberMembers</shortDescription>
+        <value>members</value>
+    </labels>
+    <labels>
         <fullName>BET_SuggestedMemberModalAddSelected</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1049,12 +1056,27 @@ Are you sure you wish to proceed?</value>
         <value>No Results</value>
     </labels>
     <labels>
+        <fullName>BET_SuggestedMemberOtherMembers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberOtherMembers</shortDescription>
+        <value>Other Members</value>
+    </labels>
+    <labels>
         <fullName>BET_TargetLaunchDate</fullName>
         <categories>BET</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_TargetLaunchDate</shortDescription>
         <value>Target Launch Date</value>
+    </labels>
+    <labels>
+        <fullName>BET_Title</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Title</shortDescription>
+        <value>Title</value>
     </labels>
     <labels>
         <fullName>BET_UnArchiveBET</fullName>
@@ -2089,6 +2111,13 @@ Are you sure you wish to proceed?</value>
         <value>I Accept</value>
     </labels>
     <labels>
+        <fullName>IPM_BETIdNullMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BETIdNullMsg</shortDescription>
+        <value>BET Id cannot be null.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Bosscard_Save_Before_Share</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -2101,6 +2130,13 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>IPM Bosscard Shared Chatter</shortDescription>
         <value>BOSSCARD Shared Via Chatter</value>
+    </labels>
+    <labels>
+        <fullName>IPM_CategoryNameNotNull</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_CategoryNameNotNull</shortDescription>
+        <value>Category name cannot be null.</value>
     </labels>
     <labels>
         <fullName>IPM_Category_list</fullName>
@@ -2173,6 +2209,13 @@ Are you sure you wish to proceed?</value>
         <value>Original</value>
     </labels>
     <labels>
+        <fullName>IPM_IdsApprovalNotNullMSg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_IdsApprovalNotNullMSg</shortDescription>
+        <value>IPM Project Id, BET Id or Approval Action cannot be null.</value>
+    </labels>
+    <labels>
         <fullName>IPM_ImageLogo_URL</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -2220,6 +2263,13 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>IPM ProjectManagement Char Limit</shortDescription>
         <value>4860</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ProjectNotRetrieved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ProjectNotRetrieved</shortDescription>
+        <value>IPM Project could not be retrieved.</value>
     </labels>
     <labels>
         <fullName>IPM_Project_Name_Exists</fullName>
