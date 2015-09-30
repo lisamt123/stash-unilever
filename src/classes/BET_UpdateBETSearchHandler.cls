@@ -86,7 +86,20 @@ public with sharing class BET_UpdateBETSearchHandler {
         idCategoryGroupToName = new Map<Id, String>();
         idBrandPositionToName = new Map<Id, String>();
 
-        if (!projectIPMIds.isEmpty()) {
+        prepareProjectData(projectIPMIds,projectIds);      
+
+        if (!ownersIds.isEmpty()) {
+            List<User> owners = [SELECT Id, Name FROM User WHERE Id IN :ownersIds];
+            for(User usr : owners){
+                idOwnerToName.put(usr.Id, usr.Name);
+            }
+        }
+        
+        prepareCategoryBrandData(brandsIds,categoriesIds,categoriesGroupsIds,brandPositionsIds);
+    }
+    
+    private static void prepareProjectData(Set<Id> projectIPMIds, Set<Id> projectIds){
+    	if (!projectIPMIds.isEmpty()) {
             List<IPM_Project__c> ipmProjects = [SELECT Id, Name FROM IPM_Project__c WHERE Id IN :projectIPMIds];
             for(IPM_Project__c proj : ipmProjects){
                 idIPMProjectToName.put(proj.Id, proj.Name);
@@ -98,15 +111,10 @@ public with sharing class BET_UpdateBETSearchHandler {
             for(uw_Inoplan_Project__c proj : infoplanProjects){
                 idProjectToName.put(proj.Id, proj.Name);
             }
-        }        
-
-        if (!ownersIds.isEmpty()) {
-            List<User> owners = [SELECT Id, Name FROM User WHERE Id IN :ownersIds];
-            for(User usr : owners){
-                idOwnerToName.put(usr.Id, usr.Name);
-            }
         }
-
+    }
+    
+    private static void prepareCategoryBrandData(Set<Id> brandsIds, Set<Id> categoriesIds,Set<Id> categoriesGroupsIds,Set<Id> brandPositionsIds){
         if (!brandsIds.isEmpty()) {
             List<MDO_Brand__c> brands = [SELECT Id, Name FROM MDO_Brand__c WHERE Id IN :brandsIds];
             for(MDO_Brand__c brand : brands){

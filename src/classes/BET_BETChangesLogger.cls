@@ -91,7 +91,13 @@ public class BET_BETChangesLogger {
   *************************************************************/
   private List<String> addDifferences(uw_BET__c oldRecord,uw_BET__c newRecord ){
     List<String> diffs = new List<String>();
-    if(oldRecord.Status__c != newRecord.Status__c){
+	addBETDifferences(oldRecord,newRecord,diffs);
+	addCategoryBrandDifferences(oldRecord,newRecord,diffs);
+    return diffs;
+  }
+  
+  private void addBETDifferences(uw_BET__c oldRecord,uw_BET__c newRecord,List<String> diffs){
+  	if(oldRecord.Status__c != newRecord.Status__c){
       diffs.add(BET_STATUS_CHANGED+oldRecord.Status__c+BET_TO+newRecord.Status__c);
     }
 
@@ -107,8 +113,22 @@ public class BET_BETChangesLogger {
         diffs.add(BET_PROJECT_CHANGED+projectsMap.get(oldRecord.IPM_Project__c)+BET_TO+newRecord.IPM_Project__c);
       }
     }
+    
+    if(oldRecord.Description__c != newRecord.Description__c){
+      diffs.add(BET_DESCRIPTION_CHANGED+oldRecord.Description__c+BET_TO+newRecord.Description__c);
+    }
 
-    if(oldRecord.Category_Group__c != newRecord.Category_Group__c){
+    if(oldRecord.Is_Archived__c != newRecord.Is_Archived__c){
+      if(newRecord.Is_Archived__c){
+        diffs.add(BET_TXT+newRecord.name+BET_ARCHIVED);
+      } else {
+        diffs.add(BET_TXT+newRecord.name+BET_UNARCHIVED);
+      }
+    }
+  }
+  
+  private void addCategoryBrandDifferences(uw_BET__c oldRecord,uw_BET__c newRecord,List<String> diffs){
+  	if(oldRecord.Category_Group__c != newRecord.Category_Group__c){
       diffs.add(BET_CATEGORY_GROUP_CHANGED+categoryGroupsMap.get(oldRecord.Category_Group__c)+BET_TO+categoryGroupsMap.get(newRecord.Category_Group__c));
     }
 
@@ -123,20 +143,6 @@ public class BET_BETChangesLogger {
     if(oldRecord.Product_Brand__c != newRecord.Product_Brand__c){
       diffs.add(BET_BRAND_CHANGED+brandsMap.get(oldRecord.Product_Brand__c)+BET_TO+brandsMap.get(newRecord.Product_Brand__c));
     }
-
-    if(oldRecord.Description__c != newRecord.Description__c){
-      diffs.add(BET_DESCRIPTION_CHANGED+oldRecord.Description__c+BET_TO+newRecord.Description__c);
-    }
-
-    if(oldRecord.Is_Archived__c != newRecord.Is_Archived__c){
-      if(newRecord.Is_Archived__c){
-        diffs.add(BET_TXT+newRecord.name+BET_ARCHIVED);
-      } else {
-        diffs.add(BET_TXT+newRecord.name+BET_UNARCHIVED);
-      }
-    }
-
-    return diffs;
   }
 
   /************************************************************

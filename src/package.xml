@@ -238,9 +238,12 @@
         <members>BET_LinkedProjectsComponentContrTest</members>
         <members>BET_LinkedProjectsComponentController</members>
         <members>BET_LinkingService</members>
+		<members>BET_LinkingServiceCleaner</members>
         <members>BET_LinkingServiceHelper</members>
         <members>BET_LinkingServiceHelperTest</members>
         <members>BET_LinkingServiceTest</members>
+		<members>BET_LinkingServiceTestOne</members>
+		<members>BET_LinkingServiceValidator</members>
         <members>BET_MDODataMigrationAndTransform_Batch</members>
         <members>BET_ManageMembersController</members>
         <members>BET_ManageMembersController_Test</members>
