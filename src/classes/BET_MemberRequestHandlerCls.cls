@@ -60,11 +60,12 @@ public with sharing class BET_MemberRequestHandlerCls {
             
         }
        
-        for(BET_Member_Request__c existingRequest : [SELECT ConcatenatedField__c,UserId__r.Name FROM BET_Member_Request__c WHERE ConcatenatedField__c in : uniqRecords]){
+        for(BET_Member_Request__c existingRequest : [SELECT ConcatenatedField__c,UserId__r.Name FROM 
+        											BET_Member_Request__c WHERE ConcatenatedField__c in : uniqRecords]){
             
             if(recordsToInsertMap.containsKey(existingRequest.ConcatenatedField__c)){
-                System.debug('Exiting BET_MemberRequestHandlerCls.preventMemberRequestDuplicatesWhileInsert method found duplicated record :'+recordsToInsertMap.get(existingRequest.ConcatenatedField__c));
-                recordsToInsertMap.get(existingRequest.ConcatenatedField__c).addError(String.format(Label.BET_SuggestedMemberDuplicateError,new List<String>{existingRequest.UserId__r.Name}));
+                recordsToInsertMap.get(existingRequest.ConcatenatedField__c).
+                addError(String.format(Label.BET_SuggestedMemberDuplicateError,new List<String>{existingRequest.UserId__r.Name}));
             }
         }
         System.debug('Exiting BET_MemberRequestHandlerCls.preventMemberRequestDuplicatesWhileInsert method did not found any duplicated records');
@@ -112,7 +113,7 @@ public with sharing class BET_MemberRequestHandlerCls {
             } else {
                 betTeamMembersMap.put(tMember.BET__c,new Set<Id> {tMember.Team_Member__c});
             }
-            teamMemberExistingMap.put(String.valueOf(tMember.BET__c)+tMember.Team_Member__c,tMember);
+            teamMemberExistingMap.put(''+tMember.BET__c+tMember.Team_Member__c,tMember);
         }
 
        for(uw_BET_Team_Member__c tMember : [select id , Team_Member__c, BET__c, Role__c,email__c from uw_BET_Team_Member__c where BET__c in: bets and Team_Member__c = null and email__c != null]){
@@ -121,7 +122,7 @@ public with sharing class BET_MemberRequestHandlerCls {
             } else {
                 betexternalTeamMembersMap.put(tMember.BET__c,new Set<String> {tMember.email__c});
             }
-            teamexternalMemberExistingMap.put(String.valueOf(tMember.BET__c)+tMember.email__c,tMember);
+            teamexternalMemberExistingMap.put(''+tMember.BET__c+tMember.email__c,tMember);
         }
 
         List<uw_BET_Team_Member__c> teamMembersToUpsert = new List<uw_BET_Team_Member__c>();
@@ -156,7 +157,7 @@ public with sharing class BET_MemberRequestHandlerCls {
             if(betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) == null ||(betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.UserId__c))){
                 teamMembersToUpsert.add(createTeamMemberFromRequest(memberRequest));
             } else {
-                uw_BET_Team_Member__c member = teamMemberExistingMap.get(String.valueOf(memberRequest.Brand_Experience_Toolkit__c)+memberRequest.UserId__c);
+                uw_BET_Team_Member__c member = teamMemberExistingMap.get(''+memberRequest.Brand_Experience_Toolkit__c+memberRequest.UserId__c);
                 if(member!=null && member.Role__c == MEMBERROLE && memberRequest.Role__c == MANAGERROLE){
                     member.Role__c = MANAGERROLE;
                     teamMembersToUpsert.add(member);
@@ -168,7 +169,7 @@ public with sharing class BET_MemberRequestHandlerCls {
                 if(betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) == null || (betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c) != null && !betTeamMembersMap.get(memberRequest.Brand_Experience_Toolkit__c).contains(memberRequest.UserId__c))){
                     teamMembersToUpsert.add(createTeamMemberFromRequest(memberRequest));
                 } else {
-                    uw_BET_Team_Member__c member = teamMemberExistingMap.get(String.valueOf(memberRequest.Brand_Experience_Toolkit__c)+memberRequest.UserId__c);
+                    uw_BET_Team_Member__c member = teamMemberExistingMap.get(''+memberRequest.Brand_Experience_Toolkit__c+memberRequest.UserId__c);
                     if(member!=null && member.Role__c == MEMBERROLE && memberRequest.Role__c == MANAGERROLE){
                         member.Role__c = MANAGERROLE;
                         teamMembersToUpsert.add(member);
