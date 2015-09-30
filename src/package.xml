@@ -1638,6 +1638,7 @@
         <members>BET_Member_Request_Trigger</members>
 		<members>BET_Follow_Request</members>
 		<members>uw_Asset_Trigger</members>
+		<members>uw_Asset_AfterInsertAfterUpdate</members>
         <name>ApexTrigger</name>
     </types>
     <types>
