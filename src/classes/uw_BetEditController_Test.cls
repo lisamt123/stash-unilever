@@ -70,6 +70,11 @@ private class uw_BetEditController_Test {
         BET_TestingHelper.initBET('Test BET3', true);
         BET_TestingHelper.initBET('Test BET4', true);
 
+		uw_Bet__c tbet = BET_TestUtils.getTestBet();
+        tbet.Launch_Date__c = date.today();
+        insert tbet;
+        wrap.BET = tbet;
+
         wrap.BET.Banner_1_Location__c = 'testurl';
         wrap.BET.Icon_Location__c = 'testurl2';
         update wrap.BET;
@@ -101,6 +106,11 @@ private class uw_BetEditController_Test {
     static testMethod void testMethodThree(){     
         BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
         BET_TestingHelper.initBET('Test BET2', true);
+        
+        uw_Bet__c tbet = BET_TestUtils.getTestBet();
+        tbet.Launch_Date__c = date.today();
+        insert tbet;
+        wrap.BET = tbet;
         
         User usr = BET_TestingHelper.getDefaultNotMember();
 

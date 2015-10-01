@@ -76,12 +76,8 @@ public with sharing class uw_BetEditController {
 
         initialOwnerId = initialBETShare.UserOrGroupId;
 
-		try{
-        	categoryMigrated = IPM_BETUpdateService.CategoryCheck(bet.Product_Category__c);
-		}catch(Exception e){
-			categoryMigrated = false;
-		}
 		
+        categoryMigrated = IPM_BETUpdateService.CategoryCheck(bet.Product_Category__c);
         categoryNotMigrated = !categoryMigrated;
 
         compData = new BET_CategoryComponentData(bet);

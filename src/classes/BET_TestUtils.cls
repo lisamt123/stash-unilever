@@ -65,7 +65,7 @@ public class BET_TestUtils {
         bet.Category_Group__c = cgroup.id;
         bet.Status__c = 'First release';
         bet.Inoplan_Project__c = inoProject.id;
-        bet.Name = 'AxeBrandExperience_' + system.now();
+        bet.Name = 'UTAxeBrExp_' + Math.random();
         System.debug('Exit getTestBet : ' + bet);
         return bet;
 	}
@@ -76,8 +76,8 @@ public class BET_TestUtils {
 		Returns: BET record
 		Throws: -
 	*************************************************************/
-	public static uw_BET__c getTestBet(String name, Id categoryGroup, Id category , Id brand, Id inoplanproject, Id ipmProject, String status){
-		System.debug('Exit getTestBet : ' + name + ', ' + categoryGroup + ', ' + category + ', '+brand + ', ' + inoplanproject + ', ' + ipmProject + ', '+ status);
+	public static uw_BET__c getTestBet(String namePrefix, Id categoryGroup, Id category , Id brand, Id inoplanproject, Id ipmProject, String status){
+		System.debug('Exit getTestBet : ' + namePrefix + ', ' + categoryGroup + ', ' + category + ', '+brand + ', ' + inoplanproject + ', ' + ipmProject + ', '+ status);
 		uw_BET__c bet = new uw_BET__c();
         bet.Product_Brand__c = brand;
         bet.Product_Category__c = category;
@@ -85,7 +85,7 @@ public class BET_TestUtils {
         bet.Status__c = status;
         bet.Inoplan_Project__c = inoplanproject;
         bet.IPM_Project__c = ipmProject;
-        bet.Name = name + system.now();
+        bet.Name = namePrefix + Math.random();
         System.debug('Exit getTestBet : ' + bet);
         return bet;
 	}
