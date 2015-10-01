@@ -19,6 +19,12 @@ private class uw_BetEditController_Test {
     static testMethod void testMethodOne(){     
         BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
 
+        uw_Bet__c tbet = BET_TestUtils.getTestBet();
+        tbet.Launch_Date__c = date.today();
+        insert tbet;
+
+        wrap.BET = tbet;
+
         System.CurrentPageReference().getParameters().put('Id', wrap.BET.Id);
 
         ApexPages.Standardcontroller sc = new ApexPages.Standardcontroller(wrap.BET);
@@ -27,25 +33,29 @@ private class uw_BetEditController_Test {
         Folder currentfolder = [select Id,name from Folder where Name = 'BET Branding'];
         controller.icon = new Document(FolderId = currentfolder.Id, Name = 'Icon', Body = Blob.valueOf(TEST_BLOB));
         controller.banner = new Document(FolderId = currentfolder.Id, Name = 'Banner', Body = Blob.valueOf(TEST_BLOB));
-
+        Test.startTest();
         controller.saveBET();
         uw_BET__c b = BET_TestingHelper.getBET(wrap.BET.Id);
+        
         System.assertEquals(controller.runJsSuccess, true);
         System.assertNotEquals(b.Banner_1_Location__c, null);
         System.assertNotEquals(b.Icon_Location__c, null);
-
+        /*Test.startTest();
         controller.saveBET();
-
+        Test.stopTest();
         controller.clearIcon();
         controller.clearBanner();
+        Test.startTest();
         controller.saveBET();
+        Test.stopTest();
 
         b = BET_TestingHelper.getBET(wrap.BET.Id);
         System.assertEquals(controller.runJsSuccess, true);
         System.assertEquals(b.Banner_1_Location__c, null);
         System.assertEquals(b.Icon_Location__c, null);
-
+        Test.startTest();*/
         controller.archiveBET();
+        Test.stopTest();
         b = BET_TestingHelper.getBET(wrap.BET.Id);
         System.assertEquals(b.Is_Archived__c, true);
 
