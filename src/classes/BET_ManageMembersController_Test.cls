@@ -19,7 +19,7 @@ private class BET_ManageMembersController_Test {
     BET_ManageMembersController controller = new BET_ManageMembersController(ctr);
 
     System.assertEquals(controller.memberRequests.size(),1);
-    System.assertEquals(controller.members.size(),2);
+    System.assertEquals(controller.getMembers().size(),2);
 
   }
 

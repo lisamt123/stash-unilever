@@ -65,43 +65,40 @@ private class uw_BetEditController_Test {
     }
 
     static testMethod void testMethodTwo(){     
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
-        BET_TestingHelper.BET_TestingData wrap2 = BET_TestingHelper.initBET('Test BET2_'+system.now(), true);
-        BET_TestingHelper.initBET('Test BET3', true);
-        BET_TestingHelper.initBET('Test BET4', true);
+        //BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
+        ///BET_TestingHelper.BET_TestingData wrap2 = BET_TestingHelper.initBET('Test BET2_'+system.now(), true);
+        //BET_TestingHelper.initBET('Test BET3', true);
+        //BET_TestingHelper.initBET('Test BET4', true);
 
         uw_Bet__c tbet = BET_TestUtils.getTestBet();
         tbet.Launch_Date__c = date.today();
+        tbet.Banner_1_Location__c = 'testurl';
+        tbet.Icon_Location__c = 'testurl2';
         insert tbet;
-        wrap.BET = tbet;
 
-        wrap.BET.Banner_1_Location__c = 'testurl';
-        wrap.BET.Icon_Location__c = 'testurl2';
-        update wrap.BET;
+        System.CurrentPageReference().getParameters().put('Id', tbet.Id);
 
-        System.CurrentPageReference().getParameters().put('Id', wrap.BET.Id);
-
-        ApexPages.Standardcontroller sc = new ApexPages.Standardcontroller(wrap.BET);
+        ApexPages.Standardcontroller sc = new ApexPages.Standardcontroller(tbet);
         uw_BetEditController controller = new uw_BetEditController(sc);
 
         Test.startTest();
         controller.saveDocument(controller.icon);
 
         //to cover catch
-        delete wrap2.BET;
-        wrap.BET.OwnerId = wrap2.BET.OwnerId;
-        controller.saveBET();
+        //delete wrap2.BET;
+        //wrap.BET.OwnerId = wrap2.BET.OwnerId;
+        //controller.saveBET();
 
-        delete wrap.BET;
-        controller.saveBET();
+        //delete wrap.BET;
+        //controller.saveBET();
 
-        controller.archiveBET();
-        Test.stopTest();
+        //controller.archiveBET();
         Folder currentfolder = [select Id,name from Folder where Name = 'BET Branding'];
         controller.throwUTException = 2;
         controller.icon = new Document(FolderId = currentfolder.Id, Name = 'Banner', Body = Blob.valueOf(TEST_BLOB));
         controller.saveDocument(controller.icon);
         System.assert(controller.saveBET() == null);
+        Test.stopTest();
     }
     
     static testMethod void testMethodThree(){     
