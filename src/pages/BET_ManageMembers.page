@@ -10,7 +10,48 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 <apex:page standardController="BET_Member_Request__c" showHeader="false" extensions="BET_ManageMembersController"  id="memberpage">
 
   <apex:stylesheet value="{!$Resource.BET}/css/BETManageMembersStyles.css" />
-  <apex:includeScript  value="{!$Resource.BET}/scripts/BETManageMembersJS.js" />
+
+  <script>
+
+    function updateRoleOnMember(memId, role, idx){
+      Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.BET_ManageMembersController.updateMemberRole}',
+        memId,
+        role,
+        function(result, event){
+          if (event.status) {
+          }
+        },
+        {escape: true}
+      );
+    }
+
+    function selectOrDeselectkAllBrowse(){
+      var ch;
+      var a = document.querySelectorAll(".browseMembersheaderStyle input[type=checkbox]");
+      for (var i = 0; i < a.length; i++){
+         ch = a[i].checked;
+      }
+      var aa = document.querySelectorAll(".memberRow input[type=checkbox]");
+      for (var i = 0; i < aa.length; i++){
+         aa[i].checked = ch;
+      }
+    }
+
+    function selectOrDeselectkAll(){
+      var ch;
+      var a = document.querySelectorAll(".approveMembersheaderStyle input[type=checkbox]");
+      for (var i = 0; i < a.length; i++){
+         ch = a[i].checked;
+      }
+      var aa = document.querySelectorAll(".memberRequestRow input[type=checkbox]");
+      for (var i = 0; i < aa.length; i++){
+         aa[i].checked = ch;
+      }
+    }
+
+  </script>
+
 
   <apex:form id="form">
   <apex:outputpanel id="showpage">
@@ -21,7 +62,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
     <apex:tab label="{!$Label.BET_Browse_members}" name="browseMembers" id="browseMembersid">
      
-        <div style="{!If(isBETOperationAdmin,'display:none;','')}">
+        <div style="{!If(OR(isBETOperationAdmin,NOT(isBetOwnerOrManager)),'display:none;','')}">
         <div>
           <apex:outputText value="{!$Label.BET_Add_Internal_User}" styleClass="addMembersUserLabel"/>
         </div>
@@ -142,14 +183,11 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
     <apex:tab label="{!$Label.BET_Approve_members}" name="approveMembers" id="approveMembersid" rendered="{!isBetOwnerOrManager}">
 
-      <div class="headerButtons">
-        
+      <div class="headerButtons">  
         <apex:commandButton value="{!$Label.BET_Approve_selected}" action="{!massApprove}" rendered="{!isBetOwnerOrManager}"
-          styleClass="buttong2y" style="background: #e6007e; color:white;height: 30px;"/> 
-       
+          styleClass="buttong2y" style="background: #e6007e; color:white;height: 30px;font-size: 11px"/> 
         <apex:commandButton value="{!$Label.BET_Deny_selected}" action="{!massDeny}" rendered="{!isBetOwnerOrManager}"
-          styleClass="buttong2y" style="background: #e6007e; color:white;height: 30px;"/> 
-       
+          styleClass="buttong2y" style="background: #64625D; color:white;height: 30px;font-size: 11px"/> 
       </div>
 
       <table width="100%" class="approveMembersTable">
