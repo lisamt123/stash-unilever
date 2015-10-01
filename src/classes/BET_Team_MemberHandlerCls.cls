@@ -80,8 +80,27 @@ public without sharing class BET_Team_MemberHandlerCls {
 														  BET__c, BET__r.Studio_Chatter_Group__c FROM 
                                             			  uw_BET_Team_Member__c WHERE Id in:newList];
 
+
+        Set<Id> chatterGroupsIds = new Set<Id>();
+    	for(uw_BET_Team_Member__c tmember : teamMembers) {
+    		chatterGroupsIds.add(tmember.BET__r.Studio_Chatter_Group__c);
+    	}
+         
+        List<CollaborationGroupMember> cgmList = [SELECT Id,MemberId,CollaborationGroupId FROM CollaborationGroupMember WHERE CollaborationGroupId =: chatterGroupsIds];
+
+        Map<String,Set<Id>> groupUsersMap = new Map<String,Set<Id>>();
+
+        for(CollaborationGroupMember cg  : cgmList){
+        	if(groupUsersMap.keySet().contains(cg.CollaborationGroupId)){
+        		groupUsersMap.get(cg.CollaborationGroupId).add(cg.MemberId);
+        	} else {
+        		groupUsersMap.put(cg.CollaborationGroupId,new Set<Id>{cg.MemberId});
+        	}
+        }
+
 		for(uw_BET_Team_Member__c member : teamMembers){
-			if(member.Bet__r.Studio_Chatter_Group__c != null && member.Team_Member__c != null){
+			Set<Id> users = groupUsersMap.get(member.Bet__r.Studio_Chatter_Group__c);
+			if((users == null || !users.contains(member.Team_Member__c)) && member.Bet__r.Studio_Chatter_Group__c != null && member.Team_Member__c != null) {
 	        	groups.add(BET_Team_MemberHandlerClsHelper.createCollaborationGroupMemberByTeamMember(member,managerRoleStr));             
         	}
         }
