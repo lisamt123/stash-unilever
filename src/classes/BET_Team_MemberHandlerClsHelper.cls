@@ -43,7 +43,7 @@ public class BET_Team_MemberHandlerClsHelper {
 
 		List<uw_BET_Team_Member__c> teamMembers = [SELECT Id, Team_Member__c, Role__c, 
 														  BET__c, BET__r.Studio_Chatter_Group__c FROM 
-                                            			  uw_BET_Team_Member__c WHERE Id = :newTeamMembers];
+                                            			  uw_BET_Team_Member__c WHERE Id in:newTeamMembers];
 
         Set<Id> chatterGroupsIds = new Set<Id>();
     	for(uw_BET_Team_Member__c tmember : teamMembers) {

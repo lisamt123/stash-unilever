@@ -75,7 +75,12 @@ public without sharing class BET_Team_MemberHandlerCls {
 		BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues(BETMANAGERCONFIG);
         String managerRoleStr = Test.isRunningTest() ? MANAGERROLE : BETManageMembersConfig.ManagerRole__c;
 		List<CollaborationGroupMember> groups = new List<CollaborationGroupMember>();
-		for(uw_BET_Team_Member__c member : newList){
+
+		List<uw_BET_Team_Member__c> teamMembers = [SELECT Id, Team_Member__c, Role__c, 
+														  BET__c, BET__r.Studio_Chatter_Group__c FROM 
+                                            			  uw_BET_Team_Member__c WHERE Id in:newList];
+
+		for(uw_BET_Team_Member__c member : teamMembers){
 			if(member.Bet__r.Studio_Chatter_Group__c != null && member.Team_Member__c != null){
 	        	groups.add(BET_Team_MemberHandlerClsHelper.createCollaborationGroupMemberByTeamMember(member,managerRoleStr));             
         	}

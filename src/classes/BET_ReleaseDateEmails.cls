@@ -18,13 +18,13 @@ global class BET_ReleaseDateEmails implements Database.Batchable<sObject>, Datab
     private Boolean isFirst;
     
     global BET_ReleaseDateEmails(String cQuery, Boolean cIsFirst) {
-    	Datetime d1 = system.today().addDays(30);
-    	Date due = Date.newInstance(d1.year(),d1.month(),d1.day());
         query = cQuery;
         isFirst = cIsFirst;
     }
     
     global Database.QueryLocator start(Database.BatchableContext BC) {
+        Datetime d1 = system.today().addDays(30);
+        Date due = Date.newInstance(d1.year(),d1.month(),d1.day());
         return Database.getQueryLocator(query);
     }
 
