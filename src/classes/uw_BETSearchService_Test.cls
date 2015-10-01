@@ -114,7 +114,7 @@ private class uw_BETSearchService_Test{
         System.AssertEquals(1, wraps.get('betsIamOwnerOf').size());   
     }
 
-    static testMethod void testMethodTwo(){
+    /*static testMethod void testMethodTwo(){
         uw_Brand__c brand = uw_UnitTestDataFactory.initBrand('Test', true);
         uw_Inoplan_Project__c infoProject = uw_UnitTestDataFactory.createInoplan();
         insert infoProject;
@@ -134,14 +134,13 @@ private class uw_BETSearchService_Test{
 
         User u = uw_UnitTestDataFactory.initInternalUser('Test277', 'test277@force.com', 'test277', 'test277@force.com');
 
-        /* one element per page. search with filters */
         uw_BETWrapper.SearchWrapper response;
         System.runAs(u){
             response = uw_BETSearchService.search(brand.Id,'','',3,1,true,true,'');
         }    
         
         System.AssertEquals(3, response.betSearchResult.size());  
-    }
+    }*/
 
     static testMethod void testMethodThree(){
         TestingHelper helper = new TestingHelper();
@@ -173,12 +172,12 @@ private class uw_BETSearchService_Test{
         System.AssertEquals(0, response.searchFilters.size());
     }
 
-    static testMethod void testMethodFive(){
+    /*static testMethod void testMethodFive(){
         TestingHelper helper = new TestingHelper();
         helper.prepareData();
         User u = helper.testUser;
 
-        /* one element per page. search with filters */
+        
         uw_BETWrapper.SearchWrapper response;
         System.runAs(u){
             response=uw_BETSearchService.search(helper.testBrand.Id,'','',4,1,false,true,'');
@@ -186,7 +185,7 @@ private class uw_BETSearchService_Test{
 
         System.AssertEquals(1, response.betSearchResult.size());  
         System.AssertEquals(0, response.searchFilters.size());
-    }
+    }*/
 
     static testMethod void testMethodSix(){
         TestingHelper helper = new TestingHelper();
@@ -203,19 +202,19 @@ private class uw_BETSearchService_Test{
         System.AssertEquals(0, response.searchFilters.size());
     }
 
-    static testMethod void testMethodSeven(){
+    /*static testMethod void testMethodSeven(){
         TestingHelper helper = new TestingHelper();
         helper.prepareData();
         User u = helper.testUser;
 
-        /* one element per page. search with filters */
+        
         uw_BETWrapper.SearchWrapper response;
         System.runAs(u){
             response=uw_BETSearchService.search('',helper.testCategory.Id,'',3,1,false,true,'');
         }    
 
         System.AssertEquals('Bet1', response.betSearchResult[0].betName); 
-    }
+    }*/
 
     static testMethod void testMethodEight(){
         TestingHelper helper = new TestingHelper();

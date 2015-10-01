@@ -61,6 +61,7 @@ public class BET_TestUtils {
         uw_BET__c bet = new uw_BET__c();
         bet.Product_Brand__c = brand.Id;
         bet.Product_Category__c = category.Id;
+        bet.Brand_Position__c = createBrandPosition(category).id;
         bet.Category_Group__c = cgroup.id;
         bet.Status__c = 'First release';
         bet.Inoplan_Project__c = inoProject.id;

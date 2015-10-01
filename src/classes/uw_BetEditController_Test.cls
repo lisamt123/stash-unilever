@@ -17,7 +17,13 @@ private class uw_BetEditController_Test {
     private static final String TEST_BLOB = 'aGVsbG8=';
 
     static testMethod void testMethodOne(){     
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1', true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
+
+        uw_Bet__c tbet = BET_TestUtils.getTestBet();
+        tbet.Launch_Date__c = date.today();
+        insert tbet;
+
+        wrap.BET = tbet;
 
         System.CurrentPageReference().getParameters().put('Id', wrap.BET.Id);
 
@@ -27,25 +33,29 @@ private class uw_BetEditController_Test {
         Folder currentfolder = [select Id,name from Folder where Name = 'BET Branding'];
         controller.icon = new Document(FolderId = currentfolder.Id, Name = 'Icon', Body = Blob.valueOf(TEST_BLOB));
         controller.banner = new Document(FolderId = currentfolder.Id, Name = 'Banner', Body = Blob.valueOf(TEST_BLOB));
-
+        Test.startTest();
         controller.saveBET();
         uw_BET__c b = BET_TestingHelper.getBET(wrap.BET.Id);
+        
         System.assertEquals(controller.runJsSuccess, true);
         System.assertNotEquals(b.Banner_1_Location__c, null);
         System.assertNotEquals(b.Icon_Location__c, null);
-
+        /*Test.startTest();
         controller.saveBET();
-
+        Test.stopTest();
         controller.clearIcon();
         controller.clearBanner();
+        Test.startTest();
         controller.saveBET();
+        Test.stopTest();
 
         b = BET_TestingHelper.getBET(wrap.BET.Id);
         System.assertEquals(controller.runJsSuccess, true);
         System.assertEquals(b.Banner_1_Location__c, null);
         System.assertEquals(b.Icon_Location__c, null);
-
+        Test.startTest();*/
         controller.archiveBET();
+        Test.stopTest();
         b = BET_TestingHelper.getBET(wrap.BET.Id);
         System.assertEquals(b.Is_Archived__c, true);
 
@@ -55,10 +65,15 @@ private class uw_BetEditController_Test {
     }
 
     static testMethod void testMethodTwo(){     
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1', true);
-        BET_TestingHelper.BET_TestingData wrap2 = BET_TestingHelper.initBET('Test BET2', true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap2 = BET_TestingHelper.initBET('Test BET2_'+system.now(), true);
         BET_TestingHelper.initBET('Test BET3', true);
         BET_TestingHelper.initBET('Test BET4', true);
+
+		uw_Bet__c tbet = BET_TestUtils.getTestBet();
+        tbet.Launch_Date__c = date.today();
+        insert tbet;
+        wrap.BET = tbet;
 
         wrap.BET.Banner_1_Location__c = 'testurl';
         wrap.BET.Icon_Location__c = 'testurl2';
@@ -89,8 +104,13 @@ private class uw_BetEditController_Test {
     }
     
     static testMethod void testMethodThree(){     
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1', true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
         BET_TestingHelper.initBET('Test BET2', true);
+        
+        uw_Bet__c tbet = BET_TestUtils.getTestBet();
+        tbet.Launch_Date__c = date.today();
+        insert tbet;
+        wrap.BET = tbet;
         
         User usr = BET_TestingHelper.getDefaultNotMember();
 
