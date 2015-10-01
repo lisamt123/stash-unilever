@@ -27,7 +27,7 @@ global without sharing class BET_ManageMembersController {
     public Id betId {get;set;}
     public Boolean selectAll {get;set;}
     public List<MemberRequestWrapper> memberRequests {get;set;}
-    public List<MemberWrapper> members {get;set;}
+    public List<MemberWrapper> members;
 
     public Id selectedRequestId {get;set;}
     public Id selectedMemberId {get;set;}
@@ -55,7 +55,7 @@ global without sharing class BET_ManageMembersController {
         isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
         isBETOperationAdmin = BET_CommonService.isBETOperationAdmin();
 
-        if(isBetOwnerOrManager){
+        if(bet.ownerid == UserInfo.getUserId()){
             requestsShouldBeAutoapproved = true;
         }
 
@@ -67,12 +67,22 @@ global without sharing class BET_ManageMembersController {
             memberRequests.add(new MemberRequestWrapper(request));
         }
 
+        /*members = new List<MemberWrapper>();
+        for(uw_BET_Team_Member__c member : [select id,email__c, Role__c, Team_Member__r.FirstName,Team_Member__r.LastName,Team_Member__r.SmallPhotoUrl,BET__c,Team_Member__c,Team_Member__r.Title
+                                                from uw_BET_Team_Member__c where BET__c =:betId ]){
+            members.add(new MemberWrapper(member,bet.ownerId));
+        }*/
+    }
+
+    public List<MemberWrapper> getMembers(){
         members = new List<MemberWrapper>();
         for(uw_BET_Team_Member__c member : [select id,email__c, Role__c, Team_Member__r.FirstName,Team_Member__r.LastName,Team_Member__r.SmallPhotoUrl,BET__c,Team_Member__c,Team_Member__r.Title
                                                 from uw_BET_Team_Member__c where BET__c =:betId ]){
             members.add(new MemberWrapper(member,bet.ownerId));
         }
+        return members;
     }
+
 
     /************************************************************
         Purpose: Method adds member ( by creating approved member request)
@@ -86,7 +96,7 @@ global without sharing class BET_ManageMembersController {
         BET_Request_Access__c settings  = BET_Request_Access__c.getInstance();
         if(betMemberRequest.UserId__c != null){
             try{
-
+                betMemberRequest.id = null;
                 betMemberRequest.Bet_owner__c = bet.ownerid;
                 betMemberRequest.Status__c = requestsShouldBeAutoapproved ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW;
                 betMemberRequest.Do_Not_Notify_Bet__c = requestsShouldBeAutoapproved ? true : false;
@@ -137,7 +147,7 @@ global without sharing class BET_ManageMembersController {
                     Apexpages.addMessage(m); 
                     return null;  
                 }
-
+                betMemberRequest.id = null;
                 betMemberRequest.Bet_owner__c = bet.ownerid;
                 betMemberRequest.Status__c = requestsShouldBeAutoapproved ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW;
                 betMemberRequest.Do_Not_Notify_Bet__c = true;
