@@ -70,7 +70,7 @@ private class uw_BetEditController_Test {
         BET_TestingHelper.initBET('Test BET3', true);
         BET_TestingHelper.initBET('Test BET4', true);
 
-		uw_Bet__c tbet = BET_TestUtils.getTestBet();
+        uw_Bet__c tbet = BET_TestUtils.getTestBet();
         tbet.Launch_Date__c = date.today();
         insert tbet;
         wrap.BET = tbet;
@@ -84,6 +84,7 @@ private class uw_BetEditController_Test {
         ApexPages.Standardcontroller sc = new ApexPages.Standardcontroller(wrap.BET);
         uw_BetEditController controller = new uw_BetEditController(sc);
 
+        Test.startTest();
         controller.saveDocument(controller.icon);
 
         //to cover catch
@@ -95,7 +96,7 @@ private class uw_BetEditController_Test {
         controller.saveBET();
 
         controller.archiveBET();
-        
+        Test.stopTest();
         Folder currentfolder = [select Id,name from Folder where Name = 'BET Branding'];
         controller.throwUTException = 2;
         controller.icon = new Document(FolderId = currentfolder.Id, Name = 'Banner', Body = Blob.valueOf(TEST_BLOB));
