@@ -103,6 +103,7 @@ global without sharing class BET_ManageMembersController {
                 betMemberRequest.External_User_Request__c = false;
                 betMemberRequest.Do_Not_Notify_Bet__c = true;
                 insert betMemberRequest;
+                betMemberRequest.UserId__c = null;
 
                 BET_CommonService.sendApprovalMailToOwner(bet, betMemberRequest.UserId__c , settings);
 
