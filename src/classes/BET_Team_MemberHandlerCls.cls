@@ -138,9 +138,7 @@ public without sharing class BET_Team_MemberHandlerCls {
         	}
         	
     	}
-    	if(!Test.isRunningTest()) {
-            insert eSubscriptions;
-        }
+        insert eSubscriptions;
     	System.debug('Exit addEntitySubscriptions : ' + eSubscriptions);
 	}
 
