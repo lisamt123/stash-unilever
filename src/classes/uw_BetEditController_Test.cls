@@ -66,7 +66,7 @@ private class uw_BetEditController_Test {
 
     static testMethod void testMethodTwo(){     
         //BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
-        ///BET_TestingHelper.BET_TestingData wrap2 = BET_TestingHelper.initBET('Test BET2_'+system.now(), true);
+        ///BET_TestingHelper.BET_TestingData wrap2 = BET_Testinbet_gHelper.initBET('Test BET2_'+system.now(), true);
         //BET_TestingHelper.initBET('Test BET3', true);
         //BET_TestingHelper.initBET('Test BET4', true);
 
@@ -126,6 +126,8 @@ private class uw_BetEditController_Test {
         controller.banner = null;
         
         controller.bet.OwnerId = usr.Id;
+        Test.startTest();
         System.assert(controller.saveBET() == null);
+        Test.stopTest();
     }
 }
