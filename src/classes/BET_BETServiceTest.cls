@@ -20,21 +20,21 @@ private class BET_BETServiceTest {
             BET_BETService.GetBet(betObject.id);
             system.assertEquals(0,1,'method should throw BET_CustomBETException');
         }catch(BET_CustomBETException ex){
-            system.assertEquals(String.format(Label.BetServiceGetBetError,new List<String>{betObject.id}),ex.getMessage());
+            system.assertEquals(String.format(Label.BetServiceGetBetError,new List<String>{betObject.id}),ex.getMessage(),'Exception should be equal to ' + String.format(Label.BetServiceGetBetError,new List<String>{betObject.id}));
         }
 
         insert betObject;
         Test.startTest();
         BET_BETWrapper betWrap = BET_BETService.GetBet(betObject.id);
-        system.assertEquals(betObject.id, betWrap.BetId);
-        system.assertEquals(null, betWrap.finalReleaseDueDate);
+        system.assertEquals(betObject.id, betWrap.BetId,'Bet identifiers must match');
+        system.assertEquals(null, betWrap.finalReleaseDueDate,'Final release due date should not be set');
         //populate Launch date
         betObject.Launch_Date__c = Date.today();
         update betObject;
         betWrap = BET_BETService.GetBet(betObject.id);
         //check id release date is populated
         Test.stopTest();
-        system.assert(betWrap.finalReleaseDueDate!= null);
+        system.assert(betWrap.finalReleaseDueDate!= null,'Final release due date should be set');
     }
 
     @isTest static void shouldSearchBets(){
@@ -84,7 +84,7 @@ private class BET_BETServiceTest {
         Test.stopTest();
         betObject = [select Launch_Date__c from uw_BET__c where id=: betObject.id];
 
-        System.assertEquals(betObject.Launch_Date__c,date.today());
+        System.assertEquals(betObject.Launch_Date__c,date.today(),'Launch date should be set to today');
     }
 
     @isTest static void getFirstReleaseDueDateTest(){
@@ -92,13 +92,13 @@ private class BET_BETServiceTest {
         Date dateInJulyOrAfter = BET_BETService.getFirstReleaseDueDate(Date.newInstance(2015,7,10));
         Date dateBeforeJuly = BET_BETService.getFirstReleaseDueDate(Date.newInstance(2015,6,10));
         Test.stopTest();
-        System.assertEquals(dateInJulyOrAfter.year(),2014);
-        System.assertEquals(dateInJulyOrAfter.month(),6);
-        System.assertEquals(dateInJulyOrAfter.day(),30);
+        System.assertEquals(dateInJulyOrAfter.year(),2014,'Year should be 2014');
+        System.assertEquals(dateInJulyOrAfter.month(),6,'Month should be set to June');
+        System.assertEquals(dateInJulyOrAfter.day(),30,'Day should be 30');
 
-        System.assertEquals(dateBeforeJuly.year(),2014);
-        System.assertEquals(dateBeforeJuly.month(),4);
-        System.assertEquals(dateBeforeJuly.day(),15);
+        System.assertEquals(dateBeforeJuly.year(),2014,'Year should be 2014');
+        System.assertEquals(dateBeforeJuly.month(),4,'Month should be set to April');
+        System.assertEquals(dateBeforeJuly.day(),15,'Day should be 15');
 
     }
 
@@ -106,8 +106,8 @@ private class BET_BETServiceTest {
         Test.startTest();
         Date tld = BET_BETService.getFinalReleaseDueDate(Date.newInstance(2015,9,10));
         Test.stopTest();
-        System.assertEquals(tld.year(),2015);
-        System.assertEquals(tld.month(),3);
-        System.assertEquals(tld.day(),10);
+        System.assertEquals(tld.year(),2015,'Year should be 2015');
+        System.assertEquals(tld.month(),3,'Month should be set to March');
+        System.assertEquals(tld.day(),10,'Day should be 10');
     }
 }
