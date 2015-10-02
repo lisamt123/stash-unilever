@@ -14,7 +14,7 @@ VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 *******************************************************************************************************************************/
 global class BET_InoplanToIPMMigration_Batch implements Database.Batchable<sObject> {
 	
-	private String catName;
+	private final String catName;
 
 	global BET_InoplanToIPMMigration_Batch(String categoryName) {
 		this.catName = categoryName;
