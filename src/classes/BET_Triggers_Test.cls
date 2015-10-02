@@ -16,7 +16,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 @isTest
 private class BET_Triggers_Test {
     static testMethod void testMethodOne(){
-
+        Test.startTest();
         uw_Inoplan_Project__c inoplan = BET_TestingHelper.initInoplan('Test Inoplan', true);
         MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
         MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup, 'Test Category');
@@ -69,10 +69,11 @@ private class BET_Triggers_Test {
 
         Integer countFeedItemsAfter = [SELECT count() FROM FeedItem WHERE ParentId =: bet.Studio_Chatter_Group__c];
         System.assertEquals(countFeedItems+1, countFeedItemsAfter);
+        Test.stopTest();
     }
 
     static testMethod void testMethodTwo(){
-        
+        Test.startTest();
         uw_Inoplan_Project__c inoplan = BET_TestingHelper.initInoplan('Test Inoplan', true);
         MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
         MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup, 'Test Category');
@@ -129,5 +130,6 @@ private class BET_Triggers_Test {
 
         Integer countFeedItemsAfter = [SELECT count() FROM FeedItem WHERE ParentId =: bet.Studio_Chatter_Group__c];
         System.assertEquals(countFeedItems, countFeedItemsAfter);
+        Test.stopTest();
     }
 }

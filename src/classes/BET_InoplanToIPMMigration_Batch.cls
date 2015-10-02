@@ -47,16 +47,14 @@ global class BET_InoplanToIPMMigration_Batch implements Database.Batchable<sObje
 		 for (uw_BET__c bet : scope){
 		 	IPM_Project__c ipmProject = mIPMs.get(bet.Inoplan_Project__r.Project_Id__c);
 
-		 	if (ipmProject != null){
+		 	if (ipmProject == null) {
+		 		logIPMProjectNotFound(bet);
+		 	} else {
 		 		List<Id> managersIds = new List<Id>{ipmProject.IPM_Project_Leader__c};
 		 		if (ipmProject.Deputy_Project_Leader__c != null){
 		 			managersIds.add(ipmProject.Deputy_Project_Leader__c);
 		 		}
 		 		BET_linkingService.Follow(ipmProject.Id, bet.Id, managersIds);
-
-		 	}
-		 	else{
-		 		logIPMProjectNotFound(bet);
 		 	}
    		}		
 
