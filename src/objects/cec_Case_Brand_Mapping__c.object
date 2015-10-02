@@ -486,10 +486,9 @@
         <columns>Brand__c</columns>
         <columns>Skill__c</columns>
         <columns>OWNER.ALIAS</columns>
-        <filterScope>Queue</filterScope>
+        <filterScope>Everything</filterScope>
         <label>CEC Portugal Queue</label>
         <language>en_US</language>
-        <queue>CEC_Portugal_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
