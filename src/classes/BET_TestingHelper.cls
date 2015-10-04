@@ -49,11 +49,6 @@ global with sharing class BET_TestingHelper {
     public static Profile UserProfile;
 
     //Default object used to create BET
-    private static uw_Brand__c DEFAULT_BRAND;
-    private static BET_Category__c DEFAULT_CATEGORY;
-    private static BET_Category__c DEFAULT_SUBCATEGORY;
-    private static uw_Inoplan_Project__c DEFAULT_INOPLANPROJECT;
-    private static BET_Category_Brands__c DEFAULT_CATEGORYBRAND;
     private static User DEFAULT_OWNER;
     private static User DEFAULT_MANAGER;
     private static User DEFAULT_MEMBER;
@@ -349,62 +344,6 @@ global with sharing class BET_TestingHelper {
     }
 
     /**
-     * Get default BET brand object. If it doesn't exists, it is created
-     * @return {uw_Brand__c} 
-     */
-    public static uw_Brand__c getDefaultBrand() {
-        if (DEFAULT_BRAND == null) {
-            DEFAULT_BRAND = initBrand('TEST-BRAND' + getRandomPart(), true);
-        }
-        return DEFAULT_BRAND;
-    }
-
-    /**
-     * Get default BET category object. If it doesn't exists, it is created
-     * @return {BET_Category__c} 
-     */
-    public static BET_Category__c getDefaultCategory() {
-        if (DEFAULT_CATEGORY == null) {
-            DEFAULT_CATEGORY = initCategory('TEST-CATEGORY' + getRandomPart(), true);
-        }
-        return DEFAULT_CATEGORY;
-    }
-
-    /**
-     * Get default BET sub category object. If it doesn't exists, it is created
-     * @return {BET_Category__c} 
-     */
-    public static BET_Category__c getDefaultSubCategory() {
-        if (DEFAULT_SUBCATEGORY == null) {
-            DEFAULT_SUBCATEGORY = initCategory('TEST-SUBCATEGORY' + getRandomPart(), getDefaultCategory(), true);
-        }
-        return DEFAULT_SUBCATEGORY;
-    }
-
-
-    /**
-     * Get default BET Inoplan Project object. If it doesn't exists, it is created
-     * @return {uw_Inoplan_Project__c} 
-     */
-    public static uw_Inoplan_Project__c getDefaultInoplanProject() {
-        if (DEFAULT_INOPLANPROJECT == null) {
-            DEFAULT_INOPLANPROJECT = initInoplan('TEST-INOPLAN' + getRandomPart(), true);
-        }
-        return DEFAULT_INOPLANPROJECT;
-    }
-    
-    /**
-     * Get link between default brand and default sub category. If it doesn't exists, it is created
-     * @return {BET_Category_Brands__c} 
-     */
-    public static BET_Category_Brands__c getDefaultCategoryBrand() {
-        if (DEFAULT_CATEGORYBRAND == null) {
-            DEFAULT_CATEGORYBRAND = initCategoryBrand(getDefaultSubCategory(), getDefaultBrand(), true);
-        }
-        return DEFAULT_CATEGORYBRAND;
-    }
-
-    /**
      * Returns system administrator Profile
      * @return {Profile} 
      */
@@ -438,125 +377,26 @@ global with sharing class BET_TestingHelper {
     }
 
     /**
-     * Creates brand object
-     * @param  {String}  brandName     brand name
-     * @param  {Boolean} insertFlag    if true, insert object into database
-     * @return {uw_Brand__c}
-     */
-    public static uw_Brand__c initBrand(String brandName, Boolean insertFlag) {
-        uw_Brand__c brand = new uw_Brand__c();
-        brand.Name = brandName;
-        
-        if (insertFlag) {
-            insert brand;
-            // requery to pick up anything that was added by triggers
-            brand = [SELECT Id, Name FROM uw_Brand__c WHERE Id =: brand.Id];
-        }       
-        
-        return brand;
-    }
-
-    /**
-     * Creates category object
-     * @param  {String}  categoryName  category name
-     * @param  {Boolean} insertFlag    if true, insert object into database
-     * @return {BET_Category__c}
-     */
-    public static BET_Category__c initCategory(String categoryName, Boolean insertFlag) {
-        return initCategory(categoryName, null, insertFlag);
-    }
-
-    /**
-     * Creates category object
-     * @param  {String}             categoryName    category name
-     * @param  {BET_Category__c}    parentCategory  parent category
-     * @param  {Boolean}            insertFlag      if true, insert object into database
-     * @return {BET_Category__c}
-     */
-    public static BET_Category__c initCategory(String categoryName, BET_Category__c parentCategory, Boolean insertFlag) {
-        BET_Category__c category = new BET_Category__c();
-        category.Name = categoryName;
-        if (parentCategory != null) {
-            category.BET_Parent_Category__c = parentCategory.Id;
-        }
-
-        if (insertFlag) {
-            insert category;
-            // requery to pick up anything that was added by triggers
-            category = [SELECT Id, Name, BET_Parent_Category__c FROM BET_Category__c WHERE Id =: category.Id];
-        }       
-        
-        return category;
-    }
-
-    /**
-     * Creates category and brand junction object
-     * @param  {BET_Category__c}    category        category
-     * @param  {uw_Brand__c}        brand           brand
-     * @param  {Boolean}            insertFlag      if true, insert object into database
-     * @return {BET_Category_Brands__c}
-     */
-    public static BET_Category_Brands__c initCategoryBrand(BET_Category__c category, uw_Brand__c brand, Boolean insertFlag) {
-        BET_Category_Brands__c categoryBrand = new BET_Category_Brands__c();
-        categoryBrand.BET_Brand__c = brand.Id;
-        categoryBrand.BET_Category__c = category.Id;
-
-        if (insertFlag) {
-            insert categoryBrand;
-        }
-
-        return categoryBrand;
-    }
-
-    /**
-     * Creates InoPlan project object
-     * @param  {String}  inoplanName    Inoplan project name
-     * @param  {Boolean} insertFlag     if true, insert object into database
-     * @return {uw_Inoplan_Project__c}
-     */
-    public static uw_Inoplan_Project__c initInoplan(String inoplanName, Boolean insertFlag)
-    {
-        uw_Inoplan_Project__c inoplan = new uw_Inoplan_Project__c();
-        inoplan.name = inoplanName;
-
-        if (insertFlag) {
-            insert inoplan;
-        }
-
-        return inoplan;
-    }
-
-    /**
      * Creates BET object. Sets all unspecified parameteres using default common data
      * @param  {String}  BETName       BET name
      * @param  {Boolean} insertFlag    if true, insert object into database
      * @return {BET_TestingData}
      */
     public static BET_TestingData initBET(String BETName, Boolean insertFlag) {
-        return initBET(getDefaultOwner(), BETName, insertFlag, true);
-    }
-
-    /**
-     * Creates BET object. Sets all unspecified parameteres using default common data
-     * @param  {User}    owner         User wh will be BET owner  
-     * @param  {String}  BETName       BET name
-     * @param  {Boolean} insertFlag    if true, insert object into database
-     * @return {BET_TestingData}       [description]
-     */
-    public static BET_TestingData initBET(User owner, String BETName, Boolean insertFlag) {
-        return initBET(owner, BETName, insertFlag, true);
-    }
-
-    /**
-     * Creates BET object.
-     * @param  {User}    owner         User wh will be BET owner  
-     * @param  {String}  BETName       BET name
-     * @param  {Boolean} insertFlag    if true, insert object into database
-     * @param  {Boolean} withDefault   if true, all unsfecified fields will be populated using common default data. Otherewise it will create new objects
-     * @return {BET_TestingData}
-     */
-    public static BET_TestingData initBET(User owner, String BETName, Boolean insertFlag, Boolean withDefault) {
-        return initBET(owner, BETName, BET_STATUS_UNRELEASED, insertFlag, withDefault);
+        uw_Bet__c BET = BET_TestUtils.getTestBet();
+        BET.ownerId = getDefaultOwner().id;
+        BET.name = BETName;
+        BET.Status__c = BET_TestingHelper.BET_STATUS_UNRELEASED;
+        if (insertFlag) {
+            insert BET;
+            BET = getBET(BET.Id);
+        }
+        User notMember = getDefaultNotMember();
+        BET_TestingData testData = new BET_TestingData();
+        testData.BET = BET;
+        testData.owner = new User(id = BET.ownerId);
+        testData.notMember = notMember;
+        return testData;
     }
 
     /**
@@ -569,117 +409,18 @@ global with sharing class BET_TestingHelper {
      * @return {BET_TestingData}
      */
     public static BET_TestingData initBET(User owner, String BETName, String BETStatus, Boolean insertFlag, Boolean withDefault) {
-        uw_Inoplan_Project__c project;
-        if (withDefault) {
-            project = getDefaultInoplanProject();
-        } else {
-            project = initInoplan('Inoplan Project' + getRandomPart(), true);
-        }
-        return initBET(owner, BETName, BETStatus, project, insertFlag, withDefault);
-    }
-
-    /**
-     * Creates BET object.
-     * @param  {User}                   owner         User wh will be BET owner  
-     * @param  {String}                 BETName       BET name
-     * @param  {String}                 BETStatus     BET status (Unreleased, First release, Final release)
-     * @param  {uw_Inoplan_Project__c}  project       inoplan project
-     * @param  {Boolean}                insertFlag    if true, insert object into database
-     * @param  {Boolean}                withDefault   if true, all unsfecified fields will be populated using common default data. Otherewise it will create new objects
-     * @return {BET_TestingData}
-     */
-    public static BET_TestingData initBET(User owner, String BETName, String BETStatus, uw_Inoplan_Project__c project, Boolean insertFlag, Boolean withDefault) {
-        BET_Category__c category;
-        if (withDefault) {
-            category = getDefaultCategory();
-        } else {
-            category = initCategory('category' + getRandomPart(), null, true);
-         }
-        return initBET(owner, BETName, BETStatus, project, category, insertFlag, withDefault);
-    }
-
-    /**
-     * Creates BET object.
-     * @param  {User}                   owner         User wh will be BET owner  
-     * @param  {String}                 BETName       BET name
-     * @param  {String}                 BETStatus     BET status (Unreleased, First release, Final release)
-     * @param  {uw_Inoplan_Project__c}  project       inoplan project
-     * @param  {BET_Category__c}        category      BET category
-     * @param  {Boolean}                insertFlag    if true, insert object into database
-     * @param  {Boolean}                withDefault   if true, all unsfecified fields will be populated using common default data. Otherewise it will create new objects
-     * @return {BET_TestingData}
-     */
-    public static BET_TestingData initBET(User owner, String BETName, String BETStatus, uw_Inoplan_Project__c project, BET_Category__c category, 
-            Boolean insertFlag, Boolean withDefault) {
-        BET_Category__c subCategory;
-        if (withDefault) {
-            subCategory = getDefaultSubCategory();
-        } else {
-            subCategory = initCategory('subCategory' + getRandomPart(), category, true);
-        }
-        return initBET(owner, BETName, BETStatus, project, category, subCategory, insertFlag, withDefault);
-    }
-
-    /**
-     * Creates BET object.
-     * @param  {User}                   owner         User wh will be BET owner  
-     * @param  {String}                 BETName       BET name
-     * @param  {String}                 BETStatus     BET status (Unreleased, First release, Final release)
-     * @param  {uw_Inoplan_Project__c}  project       inoplan project
-     * @param  {BET_Category__c}        category      BET category
-     * @param  {BET_Category__c}        subCategory   BET sub category
-     * @param  {Boolean}                insertFlag    if true, insert object into database
-     * @param  {Boolean}                withDefault   if true, all unsfecified fields will be populated using common default data. Otherewise it will create new objects
-     * @return {BET_TestingData}
-     */
-    public static BET_TestingData initBET(User owner, String BETName, String BETStatus, uw_Inoplan_Project__c project, BET_Category__c category, 
-            BET_Category__c subCategory, Boolean insertFlag, Boolean withDefault) {
-        uw_brand__c brand;
-        if (withDefault) {
-            brand = getDefaultBrand();
-            getDefaultCategoryBrand();
-        } else {
-            brand = initBrand('testBrand' + getRandomPart(), true);
-            initCategoryBrand(subCategory, brand, true);
-         }
-        return initBET(owner, BETName, BETStatus, project, category, subCategory, brand, insertFlag);
-    }
-
-    /**
-     * Creates BET object.
-     * @param  {User}                   owner         User wh will be BET owner  
-     * @param  {String}                 BETName       BET name
-     * @param  {String}                 BETStatus     BET status (Unreleased, First release, Final release)
-     * @param  {uw_Inoplan_Project__c}  project       inoplan project
-     * @param  {BET_Category__c}        category      BET category
-     * @param  {BET_Category__c}        subCategory   BET sub category
-     * @param  {uw_Brand__c}            brand         BET brand
-     * @param  {Boolean}                insertFlag    if true, insert object into database
-     * @param  {Boolean}                withDefault   if true, all unsfecified fields will be populated using common default data. Otherewise it will create new objects
-     * @return {BET_TestingData}
-     */
-    public static BET_TestingData initBET(User owner, String BETName, String BETStatus, uw_Inoplan_Project__c project, BET_Category__c category, 
-            BET_Category__c subCategory, uw_Brand__c brand, Boolean insertFlag) {
-        uw_BET__c BET = new uw_BET__c();
+        uw_Bet__c BET = BET_TestUtils.getTestBet();
+        BET.ownerId = getDefaultOwner().id;
+        BET.name = BETName;
         BET.Status__c = BETStatus;
-        BET.Sharing__c = 'Private';
-        BET.Inoplan_Project__c = project.id;
-        BET.Name = BETName;
-        BET.Category__c = category.Id;
-        BET.Sub_Category__c = subCategory.Id;
-        BET.uw_Brand__c = brand.Id;
-        BET.OwnerId = owner.Id;
-
         if (insertFlag) {
             insert BET;
-            // requery to pick up anything that was added by triggers
             BET = getBET(BET.Id);
         }
-
         User notMember = getDefaultNotMember();
         BET_TestingData testData = new BET_TestingData();
         testData.BET = BET;
-        testData.owner = owner;
+        testData.owner = new User(id = BET.ownerId);
         testData.notMember = notMember;
         return testData;
     }
@@ -690,11 +431,11 @@ global with sharing class BET_TestingHelper {
      * @return {uw_BET__c}
      */
     public static uw_BET__c getBET(Id BETId) {
-        return [SELECT Status__c, Sharing__c, Inoplan_Project__c, Studio_Chatter_Group__c, Id, Name, Category__c,
-                        Sub_Category__c, Brand_Keyword_Search__c, Inoplan_Project_Keyword_Search__c, 
-                        Category_Keyword_Search__c, Owner_Keyword_Search__c, uw_Brand__c, OwnerId, Owner.Email,
+        return [SELECT Status__c, Sharing__c, Inoplan_Project__c, Studio_Chatter_Group__c, Id, Name, Brand_Keyword_Search__c, Inoplan_Project_Keyword_Search__c, 
+                        Category_Keyword_Search__c, Owner_Keyword_Search__c, OwnerId, Owner.Email,
                         Owner.Name, Presentation_Id__c, Is_Archived__c, Banner_1_Location__c, Icon_Location__c, 
-                        FirstReleaseDate__c, FinalReleaseDate__c,Final_Release_Due_Date__c,First_Release_Due_Date__c, Launch_Date__c
+                        FirstReleaseDate__c, FinalReleaseDate__c,Final_Release_Due_Date__c,First_Release_Due_Date__c, Launch_Date__c,
+                        Product_Brand__c,Product_Category__c,Brand_Position__c,Category_Group__c
                     FROM uw_BET__c WHERE Id =: BETId LIMIT 1];
     }
 
@@ -709,25 +450,11 @@ global with sharing class BET_TestingHelper {
         //testData.notMember
         BET_TestingHelper.BET_TestingData testData = BET_TestingHelper.initBET('BETTEST', true);
         System.assert(testData != null, 'BET_TestingData object has not been initialized');
-        
-        System.assertNotEquals(null, BET_TestingHelper.getDefaultInoplanProject().Id);
-        System.assertNotEquals(null, BET_TestingHelper.getDefaultCategory().Id);
-        System.assertNotEquals(null, BET_TestingHelper.getDefaultSubCategory().Id);
-        System.assertNotEquals(null, BET_TestingHelper.getDefaultCategoryBrand().Id);
-        System.assertNotEquals(null, BET_TestingHelper.getDefaultOwner().Id);
-        System.assertNotEquals(null, BET_TestingHelper.getDefaultNotMember().Id);
-
-
         System.assertEquals('BETTEST', testData.BET.Name);
         System.assertEquals('Private', testData.BET.Sharing__c);
         System.assertEquals(BET_TestingHelper.BET_STATUS_UNRELEASED, testData.BET.Status__c);
-        System.assertEquals(BET_TestingHelper.getDefaultInoplanProject().Id, testData.BET.Inoplan_Project__c);
-        System.assertEquals(BET_TestingHelper.getDefaultCategory().Id, testData.BET.Category__c);
-        System.assertEquals(BET_TestingHelper.getDefaultSubCategory().Id, testData.BET.Sub_Category__c);
-        System.assertEquals(BET_TestingHelper.getDefaultBrand().Id, testData.BET.uw_Brand__c);
-        System.assertEquals(BET_TestingHelper.getDefaultOwner().Id, testData.BET.OwnerId);
-        System.assertEquals(BET_TestingHelper.getDefaultOwner(), testData.owner);
-        System.assertEquals(BET_TestingHelper.getDefaultNotMember(), testData.notMember);
+        System.assertEquals(BET_TestingHelper.getDefaultOwner().id, testData.owner.Id);
+        System.assertEquals(BET_TestingHelper.getDefaultNotMember().id, testData.notMember.Id);
 
 
         //add manager to BET

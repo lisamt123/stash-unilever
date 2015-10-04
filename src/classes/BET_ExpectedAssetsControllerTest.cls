@@ -7,7 +7,7 @@ private class BET_ExpectedAssetsControllerTest {
 		BET_ExpectedAssetsController controller = new BET_ExpectedAssetsController();
 		controller.betIdentifier = bet.id;
 
-		System.assert(!controller.expectedAssetsForBET.isEmpty());
+		System.assert(!controller.expectedAssetsForBET.isEmpty(),'Expected assets data should be initialized');
 
 		for(BET_ExpectedAssetsController.ExpectedAssetsWrapper wrap : controller.expectedAssetsForBET){
 			wrap.assetTypeNameExpectedNumber = 1;
@@ -16,7 +16,7 @@ private class BET_ExpectedAssetsControllerTest {
 		controller.upsertExceptedAssets();
 		Test.stopTest();
 		List<BET_ExpectedAssets__c> eAssets = [select Actual__c,Expected__c,Type__c from BET_ExpectedAssets__c where Brand_Experience_Toolkit__c =: bet.id and Expected__c = 1];
-		System.assert(!eAssets.isEmpty());
+		System.assert(!eAssets.isEmpty(),'There should be excpected assets set created for given BET with expected value of 1');
 	}
 
 	@isTest static void expectedAssetsDataTest() {
@@ -26,7 +26,7 @@ private class BET_ExpectedAssetsControllerTest {
 		BET_ExpectedAssetsController controller = new BET_ExpectedAssetsController();
 		controller.betIdentifier = bet.id;
 		
-		System.assert(!controller.expectedAssetsForBET.isEmpty());
+		System.assert(!controller.expectedAssetsForBET.isEmpty(),'Expected assets data should be initialized');
 
 		for(BET_ExpectedAssetsController.ExpectedAssetsWrapper wrap : controller.expectedAssetsForBET){
 			wrap.assetTypeNameExpectedNumber = 1;
@@ -42,7 +42,7 @@ private class BET_ExpectedAssetsControllerTest {
 		controller.upsertExceptedAssets();
 
 		List<BET_ExpectedAssets__c> eAssets = [select Actual__c,Expected__c,Type__c from BET_ExpectedAssets__c where Brand_Experience_Toolkit__c =: bet.id and Expected__c = 2];
-		System.assert(!eAssets.isEmpty());
+		System.assert(!eAssets.isEmpty(),'There should be excpected assets set created for given BET with expected value of 2');
 		Test.stopTest();
 	}
 	
