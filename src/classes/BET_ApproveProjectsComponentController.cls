@@ -116,15 +116,15 @@ public with sharing class BET_ApproveProjectsComponentController {
 		public Id id {get;set;}
 		public String ipmProject {get;set;}
 		public String ipmLead {get;set;}
-		public String tld {get;set;}
+		public Date tld {get;set;}
 		public String remainder {get;set;}
 
 		public FollowRequestWrapper(BET_Follow_Request__c request,Map<String,Date> projectIdTLDMap){
 			id = request.id;
 			ipmProject = request.Project_Name__c;
 			ipmLead = request.Project_Lead__r.name;
-			tld = String.valueOf(projectIdTLDMap.get(String.valueOf((ID)request.Project_Id__c)));
-			remainder = String.format(Label.BET_ProjectApproveRemainder, new List<String> {String.valueOf(request.createdDate.addDays(AUTOAPPROVE_TIME))});
+			tld = projectIdTLDMap.get(String.valueOf((ID)request.Project_Id__c));
+			remainder = String.format(Label.BET_ProjectApproveRemainder, new List<String> {request.createdDate.addDays(AUTOAPPROVE_TIME).format('d MMMM yyyy, hh:mm')});
 		}
 	} 
 

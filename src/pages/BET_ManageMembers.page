@@ -66,9 +66,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
         <div>
           <apex:outputText value="{!$Label.BET_Add_Internal_User}" styleClass="addMembersUserLabel"/>
         </div>
-        <table>
+        <table width="100%">
           <tr>
-            <td>
+            <td width="230px">
               <apex:selectList value="{!betMemberRequest.Role__c}" styleClass="addMembersDropdown" required="false" size="1" multiselect="false">
                 <apex:selectOptions value="{!memberRequestRoles}" />
               </apex:selectList>
@@ -79,16 +79,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
               </div>
             </td>
             <td>
-              <div style="padding-left:40px;">
+              <div style="padding-left:66px;">
                 <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addMember}"
-                                    styleClass="buttong2y" style="background: #e6007e; color:white;" status="sim" >
-
-                  <apex:actionStatus id="sim">
-                    <apex:facet name="start">
-                      <apex:image value="/img/loading.gif" style="width: 16px;height: 16px;" />
-                    </apex:facet> 
-                  </apex:actionStatus>  
-
+                                    styleClass="buttong2y" style="background: #e6007e; color:white;height: 35px;font-size:11px;" >
 
                 </apex:commandButton>
               </div>
@@ -105,21 +98,23 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                   <apex:inputField value="{!betMemberRequest.External_User_Email__c}" styleClass="addmemberEmailInput" />
               </td>
               <td>
-                <div style="padding-left:5px;">
+                <div style="padding-left:30px;">
                 <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addExternalMember}"
-                                    styleClass="buttong2y" style="background: #e6007e; color:white;"/> 
+                                    styleClass="buttong2y" style="background: #e6007e; color:white;height: 35px;font-size:11px;"/> 
                 </div>
               </td>
             </tr>
           </table>
           </div>
 
+        <hr width="100%" style="color: rgb(121, 121, 121);background-color: rgb(121, 121, 121);height: 2px;border: medium none;" /> 
+
         <div class="headerButtonsBrowsMembers"> 
         
           <apex:commandButton value="{!$Label.BET_Delete_selected}" action="{!massDelete}" 
                               rendered="{!isBetOwnerOrManager}"
                               styleClass="buttong2y" 
-                              style="background: #e6007e; color:white;height: 30px;"/> 
+                              style="background: #e6007e; color:white;height: 35px;font-size:11px;"/> 
        
         </div>
 

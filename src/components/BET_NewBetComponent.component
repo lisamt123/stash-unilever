@@ -13,12 +13,14 @@
 
     <apex:outputPanel id="mainBETPanels" rendered="{!NOT(goToMemberSelection)}">
 		<div class="form-header" style="{!If(bet.id == null,'','display:none')}">
-    		<div class="form-item">
+    		<div class="form-item-header">
                 <div class="item-label">
     				<apex:outputLabel >{!$Label.BET_Header}</apex:outputLabel>
         		</div>
         	</div>
         </div>
+        
+        <hr class="betLine" style="{!If(bet.id == null,'','display:none')}"/> 
 
         <div>
         	<div class="form-mandatory" style="{!If(bet.id == null,'','display:none')}">
@@ -29,6 +31,10 @@
         		</div>
         	</div>
     	</div>
+
+		<div class="{!If(bet.id == null,'frameTableWrapper','')}">
+		<table class="{!If(bet.id == null,'frameTable','editTable')}" style="{!If(bet.id == null,'','width:100%;')}">
+		<tr><td>
 
         <div class="form-item-wrapper">
             <div class="form-item">
@@ -87,7 +93,10 @@
                 </div>
             </div>
         </div>
-
+        
+        </td></tr>
+        </table>
+		</div>
         <div class="betActionButtons" style="{!If(bet.id == null,'','display:none')}">
             <apex:commandButton value="{!$Label.BET_Cancel}" styleClass="btn-cancel" 
                                 action="{!cancelBET}" immediate="true"/>

@@ -8,24 +8,27 @@
 
     <apex:outputPanel rendered="{!linkedProjects.size == 0}">
         <div class="linkedInfo">
-            <apex:outputLabel >{!$Label.BET_NoLinkedProjectsAvailable}</apex:outputLabel>
+            <apex:outputText escape="false" value="{!$Label.BET_NoLinkedProjectsAvailable}"/>
         </div>
     </apex:outputPanel>
 
     <apex:outputPanel rendered="{!NOT(linkedProjects.size == 0)}">
     	<div class="linkedInfo">
-        	<apex:outputLabel >{!$Label.BET_LinkedProjectHeaderOne}</apex:outputLabel>
+        	<apex:outputText escape="false" value="{!$Label.BET_LinkedProjectHeaderOne}"/>
         </div>
 
         <div class="linkedInfo">
-        	<apex:outputLabel escape="false">{!$Label.BET_LinkedProjectHeaderTwo}</apex:outputLabel>
+        	<apex:outputText escape="false" value="{!$Label.BET_LinkedProjectHeaderTwo}"/>
         </div>
 
         <div class="clear">&nbsp;</div> 
 
         <apex:repeat value="{!linkedProjects}" var="project">
+
+            <hr width="100%"/> 
+
         	<div class="linkedProjectName">
-        		<apex:outputLink value="/{!project.projectId}" target="_blank">
+        		<apex:outputLink style="text-decoration:none;" value="/{!project.projectId}" target="_blank">
                     <apex:outputText >{!project.projectName}</apex:outputText>
                 </apex:outputLink>
         	</div>
@@ -38,6 +41,7 @@
                 </apex:commandLink>
             </div>
         </apex:repeat>
+        <hr width="100%"/> 
     </apex:outputPanel>
 
 </apex:component>

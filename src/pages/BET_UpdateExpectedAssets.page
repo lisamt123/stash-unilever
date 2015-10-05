@@ -18,15 +18,15 @@
         	});
     	</script>
 
-		<apex:form>
+		<apex:form >
 			<apex:inputHidden value="{!runJsSuccess}" id="runJsSuccess"/>
 			<c:BET_ExpectedAssetsComponent betId="{!betId}" />
 			<div style="padding-top:10px;">
-				<apex:commandButton onclick = "this.value = '{!$Label.BET_Saving}';saveExpAssetsOne();"
-								value = "{!$Label.BET_Save}"  
-								oncomplete = "setJSFlag();this.value = '{!$Label.BET_Save}';" 
+				<apex:commandButton onclick="this.value = '{!$Label.BET_Saving}';saveExpAssetsOne();"
+								value="{!$Label.BET_Save}"  
+								oncomplete="setJSFlag();this.value = '{!$Label.BET_Save}';" 
 								styleClass="buttong2y" style="background: #e6007e;color:white;width:80px;height:30px;font-size:15px;"
-								rerender = "maincontainer"/>
+								rerender="maincontainer"/>
 			</div>
 			<apex:actionFunction action="{!onSave}" name="setJSFlag"></apex:actionFunction> 
 		</apex:form>
