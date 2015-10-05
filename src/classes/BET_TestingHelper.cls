@@ -394,6 +394,79 @@ global with sharing class BET_TestingHelper {
         return inoplan;
     }
 
+
+        /**
+     * Creates brand object
+     * @param  {String}  brandName     brand name
+     * @param  {Boolean} insertFlag    if true, insert object into database
+     * @return {uw_Brand__c}
+     */
+    public static uw_Brand__c initBrand(String brandName, Boolean insertFlag) {
+        uw_Brand__c brand = new uw_Brand__c();
+        brand.Name = brandName;
+        
+        if (insertFlag) {
+            insert brand;
+            // requery to pick up anything that was added by triggers
+            brand = [SELECT Id, Name FROM uw_Brand__c WHERE Id =: brand.Id];
+        }       
+        
+        return brand;
+    }
+
+    /**
+     * Creates category object
+     * @param  {String}  categoryName  category name
+     * @param  {Boolean} insertFlag    if true, insert object into database
+     * @return {BET_Category__c}
+     */
+    public static BET_Category__c initCategory(String categoryName, Boolean insertFlag) {
+        return initCategory(categoryName, null, insertFlag);
+    }
+
+    /**
+     * Creates category object
+     * @param  {String}             categoryName    category name
+     * @param  {BET_Category__c}    parentCategory  parent category
+     * @param  {Boolean}            insertFlag      if true, insert object into database
+     * @return {BET_Category__c}
+     */
+    public static BET_Category__c initCategory(String categoryName, BET_Category__c parentCategory, Boolean insertFlag) {
+        BET_Category__c category = new BET_Category__c();
+        category.Name = categoryName;
+        if (parentCategory != null) {
+            category.BET_Parent_Category__c = parentCategory.Id;
+        }
+
+        if (insertFlag) {
+            insert category;
+            // requery to pick up anything that was added by triggers
+            category = [SELECT Id, Name, BET_Parent_Category__c FROM BET_Category__c WHERE Id =: category.Id];
+        }       
+        
+        return category;
+    }
+
+    /**
+     * Creates category and brand junction object
+     * @param  {BET_Category__c}    category        category
+     * @param  {uw_Brand__c}        brand           brand
+     * @param  {Boolean}            insertFlag      if true, insert object into database
+     * @return {BET_Category_Brands__c}
+     */
+    public static BET_Category_Brands__c initCategoryBrand(BET_Category__c category, uw_Brand__c brand, Boolean insertFlag) {
+        BET_Category_Brands__c categoryBrand = new BET_Category_Brands__c();
+        categoryBrand.BET_Brand__c = brand.Id;
+        categoryBrand.BET_Category__c = category.Id;
+
+        if (insertFlag) {
+            insert categoryBrand;
+        }
+
+        return categoryBrand;
+    }
+    
+
     /**
      * Creates BET object. Sets all unspecified parameteres using default common data
      * @param  {String}  BETName       BET name
