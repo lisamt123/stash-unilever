@@ -49,7 +49,7 @@ public class BET_TestUtils {
 
 		MDO_Category__c category = new MDO_Category__c();
 		category.name = CATEGORY_TYPE_NAME;
-		category.category_type__c = CATEGORY_TYPE_SUBDEVISION2;
+		category.category_type__c = CATEGORY_TYPE_CATEGORY;
 		category.parent_id__c = sdivcategory.id;
 		category.status__c = MDO_STATUS_ACTIVE;
 		insert category;

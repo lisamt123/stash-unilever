@@ -24,6 +24,7 @@ public with sharing class BET_SuggestMembersController {
     public List<User> freeAddMembers{get;set;}
     public String newlyAddedUsers{get;set;}
     public String externalMemberEmail{get;set;}
+    public String externalMemberEmailBet{get;set;}
     public String emailToDelete {get;set;}
 
     public List<ExternalAgencyMemberWrapper> externalMembers {
@@ -271,7 +272,7 @@ public with sharing class BET_SuggestMembersController {
         System.debug('Entering method searchUsers : ' + betIdCtrl);
         Id betOwnerId = [SELECT OwnerId FROM uw_BET__c WHERE Id =: betIdCtrl Limit 1].get(0).OwnerId;
         System.debug('Preparing searchUsers query : ' + searchUserName  +', ' + betOwnerId);
-        String query = 'SELECT Id,Name,SmallPhotoUrl from User where   name like \'%'+searchUserName+'%\' and isActive = true {0} and Id !=: betOwnerId Limit 50';
+        String query = 'SELECT Id,Name,SmallPhotoUrl,Title from User where   name like \'%'+searchUserName+'%\' and isActive = true {0} and Id !=: betOwnerId Limit 50';
         
         if(suggested_MembersCtrl == null){
             query = query.replace('{0}','');
@@ -438,9 +439,9 @@ public with sharing class BET_SuggestMembersController {
         Throws: -
     *************************************************************/
     public void addExternalMember(){
-        if(!String.isBlank(externalMemberEmail)){
+        if(!String.isBlank(externalMemberEmail) || !String.isBlank(externalMemberEmailBet)){
             ExternalAgencyMemberWrapper member = new ExternalAgencyMemberWrapper();
-            member.email = externalMemberEmail;
+            member.email = String.isBlank(externalMemberEmail) ? externalMemberEmailBet : externalMemberEmail;
             Boolean canBeAdded = true;
             for(ExternalAgencyMemberWrapper wrap : externalMembers){
                 if(wrap.email == externalMemberEmail){
@@ -449,13 +450,13 @@ public with sharing class BET_SuggestMembersController {
             }
             if(canBeAdded) {
                 Id externalUserSalesforceId = null;
-                List<User> userList = BET_AccessService.isExistingExternalUser(externalMemberEmail);
+                List<User> userList = BET_AccessService.isExistingExternalUser(member.email);
                 if(!userList.isEmpty()) {
                     if(userList[0].isActive){
                         externalUserSalesforceId = userList[0].Id;
                     }else{
                         canBeAdded = false;
-                        Apexpages.Message m = new apexpages.Message(ApexPages.Severity.ERROR, externalMemberEmail + ' is an existing user (External Agent) but inactive at the moment. Please send an email to marketing@unilever.com for further clarification.');
+                        Apexpages.Message m = new apexpages.Message(ApexPages.Severity.ERROR, member.email + ' is an existing user (External Agent) but inactive at the moment. Please send an email to marketing@unilever.com for further clarification.');
                         Apexpages.addMessage(m); 
                     }
                 }
@@ -463,6 +464,7 @@ public with sharing class BET_SuggestMembersController {
                     member.userId = externalUserSalesforceId;
                     externalMembers.add(member);
                     externalMemberEmail = '';
+                    externalMemberEmailBet = '';
                 }
             }
         }

@@ -20,7 +20,7 @@ public with sharing class BET_AssetHandlerCls {
     *************************************************************/
 	public static void updateActualAssetsNumberAfterDeletion(List<uw_Asset__c> deletedAssets){
 		System.debug('Entering updateActualAssetsNumberAfterDeletion ' + deletedAssets);
-		createExpectedAssetsRecordsIfNeecssary(BET_AssetService.getBetIdsFromAssets(deletedAssets));
+		//createExpectedAssetsRecordsIfNeecssary(BET_AssetService.getBetIdsFromAssets(deletedAssets));
 		List<uw_Asset__c> deletedApprovedAssets = new List<uw_Asset__c>();
 		for(uw_Asset__c asset : deletedAssets){
 			if(asset.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){
@@ -38,7 +38,7 @@ public with sharing class BET_AssetHandlerCls {
     *************************************************************/
 	public static void updateActualAssetsNumber(List<uw_Asset__c> newAssets){
 		System.debug('Entering updateActualAssetsNumber ' + newAssets);
-		createExpectedAssetsRecordsIfNeecssary(BET_AssetService.getBetIdsFromAssets(newAssets));
+		//createExpectedAssetsRecordsIfNeecssary(BET_AssetService.getBetIdsFromAssets(newAssets));
 		List<uw_Asset__c> approvedAssets = new List<uw_Asset__c>();
 		for(uw_Asset__c asset : newAssets){
 			if(asset.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){
@@ -56,7 +56,7 @@ public with sharing class BET_AssetHandlerCls {
     *************************************************************/
 	public static void updateActualAssetsNumber(List<uw_Asset__c> newAssets, Map<Id,uw_Asset__c> oldMap){
 		System.debug('Entering updateActualAssetsNumber ' + newAssets + ', ' + oldMap);
-		createExpectedAssetsRecordsIfNeecssary(BET_AssetService.getBetIdsFromAssets(newAssets));
+		//createExpectedAssetsRecordsIfNeecssary(BET_AssetService.getBetIdsFromAssets(newAssets));
 		List<uw_Asset__c> approvedAssets = new List<uw_Asset__c>();
 		List<uw_Asset__c> unapprovedAssets = new List<uw_Asset__c>();
 		for(uw_Asset__c asset : newAssets){
