@@ -23816,6 +23816,9 @@
         <layout>UserAlt-User Profile Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>UserProvisioningRequest-User Provisioning Request Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>User_Default_Setting__c-User default setting Layout</layout>
     </layoutAssignments>
     <layoutAssignments>

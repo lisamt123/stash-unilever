@@ -2129,6 +2129,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>Language__c</columns>
+        <columns>Brand__c</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
@@ -2187,6 +2188,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>CEC_Escalation_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
         <label>Escalation Queue</label>
         <language>en_US</language>
         <queue>CEC_Escalation_Queue</queue>
@@ -3074,7 +3080,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>MavonBa</value>
+            <value>bfric</value>
         </filters>
         <label>DACH Vacation Queue</label>
         <language>de</language>

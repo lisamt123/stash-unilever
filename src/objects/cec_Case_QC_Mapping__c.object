@@ -281,15 +281,6 @@
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Portugal_Queue_cec_Case_QC_Mapping</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CEC Portugal Queue</label>
-        <queue>CEC_Portugal_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_Spain_Queue_cec_Case_QC_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Spain Queue</label>
