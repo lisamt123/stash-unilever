@@ -12,7 +12,7 @@ private class BET_AssetServiceTest {
 		Test.startTest();
 		Map<Id,Boolean> mapka = BET_AssetService.betContainsExpectedAssetsRecord(new List<Id>{bet.id});
 		Test.stopTest();
-		System.assert(mapka.get(bet.id));
+		System.assert(mapka.get(bet.id),'Bet should have coresponding expected assets records');
 	}
 	
 	@isTest static void createExpectedAssetsRecordsForBetTest() {
@@ -25,7 +25,7 @@ private class BET_AssetServiceTest {
 		BET_AssetService.createExpectedAssetsRecordsForBet(new List<Id>{bet.id});
 		Test.stopTest();
 		expectedAssets = [select id from BET_ExpectedAssets__c where Brand_Experience_Toolkit__c =: bet.id];
-		System.assert(!expectedAssets.isEmpty());
+		System.assert(!expectedAssets.isEmpty(),'Expected assets should exist for given bet record');
 	}
 
 	@isTest static void getBetIdsFromAssetsTest(){
@@ -35,7 +35,7 @@ private class BET_AssetServiceTest {
 		Test.startTest();
 		List<Id> bets = BET_AssetService.getBetIdsFromAssets(new List<uw_Asset__c> {asset});
 		Test.stopTest();
-		System.assert(!bets.isEmpty());
+		System.assert(!bets.isEmpty(),'BETs collection should not be empty');
 
 	}
 	

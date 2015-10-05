@@ -12,7 +12,7 @@ private class BET_AssetHandlerClsTest {
 		Test.startTest();
 		Map<Id,List<BET_ExpectedAssets__c>> mapka = BET_AssetHandlerCls.getExpectedAssetsForRelatedBets(new List<uw_Asset__c>{asset});
 		Test.stOPTest();
-		System.assertEquals(eassest.id,mapka.get(bet.id).get(0).id);
+		System.assertEquals(eassest.id,mapka.get(bet.id).get(0).id,'Identifiers must match');
 	}
 	
 	@isTest static void increaseActualAssetNumberTest() {
@@ -26,7 +26,7 @@ private class BET_AssetHandlerClsTest {
 		Test.stopTest();
 		BET_ExpectedAssets__c increased = [select Actual__c from BET_ExpectedAssets__c where id =: eassest.id];
 
-		System.assertEquals(increased.Actual__c,2);
+		System.assertEquals(increased.Actual__c,2,'Actual should equals 2');
 
 	}
 
@@ -41,7 +41,7 @@ private class BET_AssetHandlerClsTest {
 		Test.stopTest();
 		BET_ExpectedAssets__c increased = [select Actual__c from BET_ExpectedAssets__c where id =: eassest.id];
 
-		System.assertEquals(increased.Actual__c,0);
+		System.assertEquals(increased.Actual__c,0,'Actual should equals 0');
 	}
 
 	@isTest static void updateActualAssetsNumberOnInsertTest(){
@@ -55,7 +55,7 @@ private class BET_AssetHandlerClsTest {
 		Test.stopTest();
 		BET_ExpectedAssets__c increased = [select Actual__c from BET_ExpectedAssets__c where id =: eassest.id];
 
-		System.assertEquals(increased.Actual__c,2);
+		System.assertEquals(increased.Actual__c,2,'Actual should equals 2');
 	}
 
 	@isTest static void updateActualAssetsNumberOnDeleteTest(){
@@ -69,7 +69,7 @@ private class BET_AssetHandlerClsTest {
 		Test.stopTest();
 		BET_ExpectedAssets__c increased = [select Actual__c from BET_ExpectedAssets__c where id =: eassest.id];
 
-		System.assertEquals(increased.Actual__c,0);
+		System.assertEquals(increased.Actual__c,0,'Actual should equals 0');
 	}
 	
 }

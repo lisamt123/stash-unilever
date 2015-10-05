@@ -989,6 +989,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BET_LinkingServiceCleaner</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BET_LinkingServiceHelper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -998,6 +1002,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BET_LinkingServiceTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BET_LinkingServiceTestOne</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BET_LinkingServiceValidator</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -2574,6 +2586,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_TestDataUtils</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_TestFactory</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_TestFactory_Helper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -16250,27 +16270,27 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>MDO_BrandPositionSubscriptions__c.brand_position_id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>MDO_BrandPositionSubscriptions__c.mdo_id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>MDO_BrandPositionSubscriptions__c.subscription_id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>MDO_BrandPosition__c.mdm_id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>MDO_BrandPosition__c.status__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -16665,17 +16685,17 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>MDO_ProductCategorySubscriptions__c.mdo_id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>MDO_ProductCategorySubscriptions__c.product_category_id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>MDO_ProductCategorySubscriptions__c.subscription_id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

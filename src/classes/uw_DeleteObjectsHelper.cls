@@ -99,14 +99,13 @@ public with sharing class uw_DeleteObjectsHelper {
         User u2 = uw_UnitTestDataFactory.initInternalUser('alias2', 'email2@email.com', 'lastname2', 'user2@test.test.edu');
 
         System.runAs(u1) {
-          uw_Brand__c brand = uw_UnitTestDataFactory.initBrand('brandName', true);
              
             //IDC- 14 Jun - Creating test data for Inoplan object
             uw_Inoplan_Project__c inoPlanProject = uw_UnitTestDataFactory.createInoplan();
             insert inoPlanProject;
         
             //IDC- 14 Jun - new Inoplan parameter added     
-            uw_BET__c b1 = uw_UnitTestDataFactory.initBET('betName', brand, true,inoPlanProject);
+            uw_BET__c b1 = uw_UnitTestDataFactory.initBET('betName', true,inoPlanProject);
             ContentVersion cv1 = uw_UnitTestDataFactory.initContentVersion();
             system.debug('cv1: '+cv1);
           uw_Asset__c a1 = uw_UnitTestDataFactory.initAsset('n', cv1, b1);

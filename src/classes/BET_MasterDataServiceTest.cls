@@ -5,7 +5,7 @@ public class BET_MasterDataServiceTest {
 		Test.startTest();
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		List<sObject> groups = BET_MasterDataService.getBETCategoryGroups();
-		System.assertEquals(groups.get(0).id,categoryGroup.id);
+		System.assertEquals(groups.get(0).id,categoryGroup.id,'Category group id must match');
 		Test.stopTest();
 	}
 	
@@ -14,7 +14,7 @@ public class BET_MasterDataServiceTest {
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
 		List<sObject> categories = BET_MasterDataService.getBETCategoriesForGivenGroup(categoryGroup.id);
-		System.assertEquals(categories.get(0).id,category.id);
+		System.assertEquals(categories.get(0).id,category.id,'Category id must match');
 		Test.stopTest();
 	}
 
@@ -24,7 +24,7 @@ public class BET_MasterDataServiceTest {
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
 		BET_TestUtils.createBrandPosition(category);
 		List<MDO_BrandPosition__c> positions = BET_MasterDataService.getBETBrandPositioningsForGivenCategoryAndGroup(category.id);
-		System.assertEquals(positions.size(),1);
+		System.assertEquals(positions.size(),1,'There should be one brand position retrieved');
 		Test.stopTest();
 	}
 
@@ -34,7 +34,7 @@ public class BET_MasterDataServiceTest {
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
 		MDO_BrandPosition__c position = BET_TestUtils.createBrandPosition(category);
 		List<sObject> brands = BET_MasterDataService.getBETBrandsForGivenPositioning(position.id);
-		System.assertEquals(((MDO_Brand__c)brands.get(0)).name,'battle Axe');
+		System.assertEquals(((MDO_Brand__c)brands.get(0)).name,'battle Axe','Brand name must match');
 		Test.stopTest();
 	}
 
@@ -42,7 +42,7 @@ public class BET_MasterDataServiceTest {
 		Test.startTest();
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		String name = BET_MasterDataService.getCategoryGroupName(categoryGroup.id);
-		System.assertEquals(name,categoryGroup.name);
+		System.assertEquals(name,categoryGroup.name,'Category group name must match');
 		Test.stopTest();
 	}
 
@@ -51,7 +51,7 @@ public class BET_MasterDataServiceTest {
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
 		String name = BET_MasterDataService.getCategoryName(category.id);
-		System.assertEquals(name,category.name);
+		System.assertEquals(name,category.name,'Category name must match');
 		Test.stopTest();
 	}
 
@@ -61,7 +61,7 @@ public class BET_MasterDataServiceTest {
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
 		MDO_BrandPositions__c positioning = BET_TestUtils.createBrandPositioning(category);
 		String name = BET_MasterDataService.getBrandPositionName(positioning.id);
-		System.assertEquals(name,positioning.brand_position_id__r.name);
+		System.assertEquals(name,positioning.brand_position_id__r.name,'Brand position name must match');
 		Test.stopTest();
 	}
 
@@ -70,7 +70,7 @@ public class BET_MasterDataServiceTest {
 		System.assertEquals(BET_MasterDataService.getAllAvailableCategories().size(),0);
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		BET_TestUtils.createCategory(categoryGroup);
-		System.assertEquals(BET_MasterDataService.getAllAvailableCategories().size(),1);
+		System.assertEquals(BET_MasterDataService.getAllAvailableCategories().size(),1,'There should be one available category');
 		Test.stopTest();
 	}
 
@@ -78,9 +78,9 @@ public class BET_MasterDataServiceTest {
 		Test.startTest();
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
-		System.assertEquals(BET_MasterDataService.getAllAvailableUniqueBrandsForCategory(category.id).size(),0);
+		System.assertEquals(BET_MasterDataService.getAllAvailableUniqueBrandsForCategory(category.id).size(),0,'There should be no available brands for category');
 		BET_TestUtils.createBrandPosition(category);
-		System.assertEquals(BET_MasterDataService.getAllAvailableUniqueBrandsForCategory(category.id).size(),1);
+		System.assertEquals(BET_MasterDataService.getAllAvailableUniqueBrandsForCategory(category.id).size(),1,'There should be one available brand for category');
 		Test.stopTest();
 	}
 	

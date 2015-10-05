@@ -11,7 +11,7 @@ private class BET_Team_MemberHandlerClsHelperTest {
 		Test.startTest();
 		EntitySubscription es = BET_Team_MemberHandlerClsHelper.addEntitiySubscriptionByTeamMember(member);
 		Test.stopTest();
-		System.assertEquals(es.parentId,bet.id);
+		System.assertEquals(es.parentId,bet.id,'Entity subscritpion parent should match bet id');
 	}
 
 	@isTest static void addShareByMemberTest(){
@@ -24,7 +24,7 @@ private class BET_Team_MemberHandlerClsHelperTest {
 		Test.startTest();
 		uw_BET__Share share = BET_Team_MemberHandlerClsHelper.addShareByMember(member, BET_Team_MemberHandlerCls.MANAGERROLE);
 		Test.stopTest();
-		System.assertEquals(share.parentId,bet.id);
+		System.assertEquals(share.parentId,bet.id,'Bet share parent should match bet id');
 	}
 
 	@isTest static void createCollaborationGroupMemberByTeamMemberTest(){
@@ -37,7 +37,7 @@ private class BET_Team_MemberHandlerClsHelperTest {
 		Test.startTest();
 		CollaborationGroupMember gm = BET_Team_MemberHandlerClsHelper.createCollaborationGroupMemberByTeamMember(member, BET_Team_MemberHandlerCls.MANAGERROLE);
 		Test.stopTest();
-		System.assertEquals(gm.MemberId,UserInfo.getUserId());
+		System.assertEquals(gm.MemberId,UserInfo.getUserId(),'Group member field should match current user id');
 	}
 	
 }

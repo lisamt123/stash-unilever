@@ -414,7 +414,7 @@ public static boolean hasPermissionSet(String permSetName){
                 }
             } catch (Exception e){
                 throw new BetException('No BET found.',e);
-            }
+           }
         }
     }
 
@@ -442,12 +442,17 @@ public static boolean hasPermissionSet(String permSetName){
         BETTeamMember.BETEnabled__c = true;
         BETTeamMember.Access_Level__c = ToolkitAccessLevel;
 
-        List<CollaborationGroupMember> cgmList = [SELECT Id FROM CollaborationGroupMember 
-                                                    WHERE MemberId =: userId and CollaborationGroupId =: bet.Studio_Chatter_Group__c];
-  //  T0-Begin---------------------
+        //  T0-Begin---------------------
+        /*done by member trigger
         List<EntitySubscription> eslist= [SELECT Id FROM EntitySubscription
                                                     WHERE SubscriberId=: userId and ParentId=: bet.Id];
-        //T0-End---------------------                                        
+        EntitySubscription entitySubscription = new EntitySubscription();
+        */
+        //T0-End--------------------- 
+
+        /*done by member trigger
+        List<CollaborationGroupMember> cgmList = [SELECT Id FROM CollaborationGroupMember 
+                                                    WHERE MemberId =: userId and CollaborationGroupId =: bet.Studio_Chatter_Group__c];                                       
         CollaborationGroupMember cgm;
         if (cgmList.isEmpty()) {
             cgm = new CollaborationGroupMember();
@@ -462,17 +467,17 @@ public static boolean hasPermissionSet(String permSetName){
         betShare.AccessLevel = 'Read';
         betShare.ParentId = bet.Id;
         
-        EntitySubscription entitySubscription = new EntitySubscription();
-        
+        */
       
         Savepoint sp = Database.setSavepoint();
         try {
             insert BETTeamMember;
-            insert betShare; 
+            /*insert betShare; done by member trigger
             if (cgm!= null) {
                 insert cgm;
-            }
+            }*/
              //T0-Begin---------------------
+        /*/*done by member trigger
         if(eslist.isempty())
         {
         entitySubscription.SubscriberId = userId;
@@ -481,11 +486,11 @@ public static boolean hasPermissionSet(String permSetName){
            insert entitySubscription;
             }
               //T0-End---------------------
-        }          
+        }         */
           
         } catch (Exception e) {
-            Database.rollback(sp);
-            throw new BetException('Cannot access BET',e);
+           Database.rollback(sp);
+           throw new BetException('Cannot access BET',e);
         }
     }
 
