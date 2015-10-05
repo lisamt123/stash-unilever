@@ -377,6 +377,24 @@ global with sharing class BET_TestingHelper {
     }
 
     /**
+     * Creates InoPlan project object
+     * @param  {String}  inoplanName    Inoplan project name
+     * @param  {Boolean} insertFlag     if true, insert object into database
+     * @return {uw_Inoplan_Project__c}
+     */
+    public static uw_Inoplan_Project__c initInoplan(String inoplanName, Boolean insertFlag)
+    {
+        uw_Inoplan_Project__c inoplan = new uw_Inoplan_Project__c();
+        inoplan.name = inoplanName;
+
+        if (insertFlag) {
+            insert inoplan;
+        }
+
+        return inoplan;
+    }
+
+    /**
      * Creates BET object. Sets all unspecified parameteres using default common data
      * @param  {String}  BETName       BET name
      * @param  {Boolean} insertFlag    if true, insert object into database
