@@ -91,8 +91,8 @@ public class BET_BETChangesLogger {
   *************************************************************/
   private List<String> addDifferences(uw_BET__c oldRecord,uw_BET__c newRecord ){
     List<String> diffs = new List<String>();
-	addBETDifferences(oldRecord,newRecord,diffs);
-	addCategoryBrandDifferences(oldRecord,newRecord,diffs);
+	  addBETDifferences(oldRecord,newRecord,diffs);
+	  addCategoryBrandDifferences(oldRecord,newRecord,diffs);
     return diffs;
   }
   
@@ -107,10 +107,10 @@ public class BET_BETChangesLogger {
     }
 
     if(oldRecord.IPM_Project__c != newRecord.IPM_Project__c){
-      if(newRecord.IPM_Project__c != null) {
-        diffs.add(PROJECT_TXT+projectsMap.get(newRecord.IPM_Project__c)+LEAD_PROJECT+newRecord.name);
-      } else {
+      if(newRecord.IPM_Project__c == null) {
         diffs.add(BET_PROJECT_CHANGED+projectsMap.get(oldRecord.IPM_Project__c)+BET_TO+newRecord.IPM_Project__c);
+      } else {
+        diffs.add(PROJECT_TXT+projectsMap.get(newRecord.IPM_Project__c)+LEAD_PROJECT+newRecord.name);
       }
     }
     

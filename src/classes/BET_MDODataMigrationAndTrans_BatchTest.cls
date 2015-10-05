@@ -59,7 +59,7 @@ private class BET_MDODataMigrationAndTrans_BatchTest {
 
         bet = [select Brand_Position__c from uw_Bet__c where id =: bet.id];
 
-        System.assertEquals(bet.Brand_Position__c,bp.id);
+        System.assertEquals(bet.Brand_Position__c,bp.id,'Brand position field should match given brand position record');
     }
 
     @isTest static void retrieveCategoryIdTest(){
@@ -72,7 +72,7 @@ private class BET_MDODataMigrationAndTrans_BatchTest {
         BET_TestUtils.createCategory(categoryGroup, CATEGORY_ONE);
 
         BET_MDODataMigrationAndTransform_Batch batch = new BET_MDODataMigrationAndTransform_Batch();
-        System.assert(batch.retrieveCategoryId(categoryGroup,bet) == null);
+        System.assert(batch.retrieveCategoryId(categoryGroup,bet) == null,'Category should not equals null');
         Test.stopTest();
     }
 
@@ -89,7 +89,7 @@ private class BET_MDODataMigrationAndTrans_BatchTest {
         insert mbp;
 
         BET_MDODataMigrationAndTransform_Batch batch = new BET_MDODataMigrationAndTransform_Batch();
-        System.assertEquals(batch.getBrandPosition(brand.id,category.id),bp.id);
+        System.assertEquals(batch.getBrandPosition(brand.id,category.id),bp.id,'Brand position record should match given brand position record');
         Test.stopTest();
     }
     

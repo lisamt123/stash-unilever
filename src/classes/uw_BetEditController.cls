@@ -27,7 +27,7 @@ public with sharing class uw_BetEditController {
 
     public String tabInFocus{get;set;}
 
-    private String initialOwnerId {get; set;}
+    private final String initialOwnerId {get; set;}
     private uw_BET__Share initialBETShare {get {
         if (initialBETShare == null) {
             List<uw_BET__Share> betShares = [SELECT userOrGroupId FROM uw_BET__Share WHERE parentId=:bet.Id AND RowCause='Owner'];
