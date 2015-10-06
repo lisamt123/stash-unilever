@@ -69,7 +69,7 @@ public with sharing class uw_BetEditController {
         icon = new Document(); 
         
 
-        bet = [ SELECT Id, Name, Inoplan_Project__c, uw_Brand__c, Category__c, Sub_Category__c, Scope__c, Market_Clusters__c,
+        bet = [ SELECT Id, Name, Inoplan_Project__c, Scope__c, Market_Clusters__c,
                         Launch_Date__c, Sharing__c, Description__c, Banner_1_Location__c, Background_Colour__c, Icon_Location__c, OwnerId,
                         Font_Colour__c, Banner_Colour__c, Component_Colour__c, Is_Archived__c, Studio_Chatter_Group__c,
                         Category_Group__c, IPM_Project__c,IPM_Project__r.name,Brand_Position__c, Product_Category__c,Product_Brand__c,Inherit_Branding__c,Is_Fabric_Conditioners__c FROM uw_BET__c WHERE Id = :currentId ];
