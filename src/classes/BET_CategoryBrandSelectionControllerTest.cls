@@ -12,7 +12,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 		controller.selectedCategoryGroup = cgroup.Id;
 		controller.bet = BET_TestUtils.getTestBet();
 		controller.onCategoryGroupChange();
-		System.assertEquals(controller.compData.categoryGroup,cgroup.Id);
+		System.assertEquals(controller.compData.categoryGroup,cgroup.Id,'Category group ids should match');
 		Test.stopTest();
 	}
 
@@ -28,7 +28,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 		Id positionId = BET_TestUtils.createBrandPosition(cat).id;
 		controller.selectedBrandPositioning = positionId;
 		controller.onBrandPositioningChange();
-		System.assertEquals(controller.compData.brandpositioning,positionId);
+		System.assertEquals(controller.compData.brandpositioning,positionId,'Brand position ids should match');
 		Test.stopTest();
 	}
 
@@ -44,7 +44,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 		controller.selectedCategory = cat.id;
 		controller.bet = BET_TestUtils.getTestBet();
 		controller.onCategoryChange();
-		System.assertEquals(controller.compData.category,cat.id);
+		System.assertEquals(controller.compData.category,cat.id,'Category ids should match');
 		Test.stopTest();
 	}
 
@@ -53,7 +53,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
 		uw_Bet__c b = BET_TestUtils.getTestBet();
 		controller.bet = b;
-		System.assertEquals(controller.bet.id,b.id);
+		System.assertEquals(controller.bet.id,b.id,'Toolkit ids should match');
 		Test.stopTest();
 	}
 
@@ -64,7 +64,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 		compData.categoryMigrated = true;
 		compData.categoryNotMigrated = false;
 		controller.compData = compData;
-		System.assert(controller.categoryMigrated);
+		System.assert(controller.categoryMigrated,'Category should be marked as migrated');
 		Test.stopTest();
 	}
 
@@ -73,7 +73,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 		Test.startTest();
 		BET_TestUtils.createCategoryGroup();
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
-		System.assert(!controller.getCategoryGroups().isEmpty());
+		System.assert(!controller.getCategoryGroups().isEmpty(),'Category group list should not be empty');
 		Test.stopTest();
 	}
 
@@ -83,7 +83,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 		BET_TestUtils.createCategory(categoryGroup);
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
 		controller.selectedCategoryGroup = categoryGroup.id;
-		System.assert(!controller.getCategories().isEmpty());
+		System.assert(!controller.getCategories().isEmpty(),'Category list should not be empty');
 		Test.stopTest();
 	}
 
@@ -94,7 +94,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 		BET_TestUtils.createBrandPositioning(category);
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
 		controller.selectedCategory = category.id;
-		System.assert(!controller.getBrandPositionings().isEmpty());
+		System.assert(!controller.getBrandPositionings().isEmpty(),'Brand potitioning list should not be empty');
 		Test.stopTest();
 	}
 
@@ -105,7 +105,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 		MDO_BrandPositions__c positioning = BET_TestUtils.createBrandPositioning(category);
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
 		controller.selectedBrandPositioning = positioning.id;
-		System.assert(!controller.getBrands().isEmpty());
+		System.assert(!controller.getBrands().isEmpty(),'Brand list should not be empty');
 		Test.stopTest();
 	}
 
@@ -119,7 +119,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 		controller.compData = compData;
 		controller.selectedBrand = brand.id;
 		controller.onBrandChange();
-		System.assertEquals(controller.compData.brand,controller.selectedBrand);
+		System.assertEquals(controller.compData.brand,controller.selectedBrand,'Brand ids should match');
 		Test.stopTest();
 	}
 
@@ -133,7 +133,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 		controller.compData = compData;
 		controller.bet = b;
 		controller.onProjectChange();
-		System.assertEquals(controller.compData.inoplanProject,b.Inoplan_Project__c);
+		System.assertEquals(controller.compData.inoplanProject,b.Inoplan_Project__c,'Inoplan project ids should match');
 		Test.stopTest();
 	}
 	

@@ -42,9 +42,9 @@ private class BET_SuggestMembersControllerTest {
                     }
                 }
                 //group should have a manager
-                system.assertEquals(true, isManagerInGroup);
+                system.assertEquals(true, isManagerInGroup, 'There should be manager in group');
                 //each group should have 4 memebers
-                system.assertEquals(4, item.groupUsers.size());
+                system.assertEquals(4, item.groupUsers.size(), 'There should be 4 members in group');
                 
             }
         }
@@ -139,7 +139,7 @@ private class BET_SuggestMembersControllerTest {
         uw_BET__c betObject = BET_TestUtils.getTestBet();
         BET_SuggestMembersController componentController = new BET_SuggestMembersController();
         componentController.betIdCtrl = betObject.id;
-        system.assertEquals('', componentController.getOnwerPhoto());
+        system.assertEquals('', componentController.getOnwerPhoto(),'There should be no owner photo');
         
         //set managere for bet
         uw_BET_Team_Member__c beteamManager = new uw_BET_Team_Member__c();
@@ -206,8 +206,8 @@ private class BET_SuggestMembersControllerTest {
         BET_SuggestMembersController componentController = new BET_SuggestMembersController();
         componentController.externalMemberEmail = 'm.bluj@polsource.com';
         componentController.addExternalMember();
-        System.assertEquals(componentController.externalMembers.size(),1);
-        System.assertEquals(componentController.externalMembers.get(0).getPhoto(),'/profilephoto/005/F');
+        System.assertEquals(componentController.externalMembers.size(),1,'There should be one external member added');
+        System.assertEquals(componentController.externalMembers.get(0).getPhoto(),'/profilephoto/005/F','Photo url should match');
         Test.stopTest();
     }
 
@@ -216,9 +216,9 @@ private class BET_SuggestMembersControllerTest {
         BET_SuggestMembersController componentController = new BET_SuggestMembersController();
         componentController.externalMemberEmail = 'm.bluj@polsource.com';
         componentController.addExternalMember();
-        System.assertEquals(componentController.externalMembers.size(),1);
+        System.assertEquals(componentController.externalMembers.size(),1,'There should be one external member added');
         componentController.delExternalMemeber();
-        System.assertEquals(componentController.externalMembers.size(),0);
+        System.assertEquals(componentController.externalMembers.size(),0,'There should be no external members');
         Test.stopTest();
     }
 
@@ -243,7 +243,7 @@ private class BET_SuggestMembersControllerTest {
 
         componentController.betIdCtrl = bet.id;
         componentController.projectIdCtrl = project.id;
-        System.assertEquals(componentController.getManagers().size(),1);
+        System.assertEquals(componentController.getManagers().size(),1,'There should be only one manager');
         Test.stopTest();
     }
 
