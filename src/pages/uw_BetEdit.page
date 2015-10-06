@@ -60,61 +60,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
         <apex:inputHidden value="{!runlinkedJsSuccess}" id="runlinkedJsSuccess"/>
 
         <apex:tabPanel switchType="server" id="AccountTabPanel" tabClass="activeTab" value="{!tabInFocus}" inactiveTabClass="inactiveTab">
+        
             <apex:tab label="Toolkit Info" name="name1" id="tabOne">
-                <!--- 27.09 changes -->
                 <c:BET_UpsertBET betObj="{!bet}" componentData="{!compData}"/>
-                <!--- 27.09 changes -->
-                <!--<div class="form-item-wrapper">
-                  <div class="form-item">
-                    <div class="item-label">
-                        <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_Name}</apex:outputLabel>
-                        <apex:outputPanel layout="inline" styleClass="question-icon"
-                                    rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Name.inlineHelpText)}"
-                                    html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Name.inlineHelpText}" />
-                    </div>
-                    <div class="item-input">
-                        <apex:inputfield id="betnameid" value="{!bet.Name}"/>
-                    </div>
-                  </div>             
-                </div>
-
-                <div class="form-item">
-                  <div class="item-label">
-                    <apex:outputLabel >{!$Label.BET_Owner}</apex:outputLabel>
-                  </div>
-                  <div class="item-input">
-                    <apex:inputfield styleClass="hideOwner" value="{!bet.ownerId}"/>
-                  </div>
-                </div>
-
-                <div>
-                    <c:BET_CategoryBrandSelectionComponent betobj="{!bet}" cdata="{!compData}"/>
-
-                    <div class="clear">&nbsp;</div>
-
-                    <div class="form-item">
-                        <div class="item-label">
-                            <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_TargetLaunchDate}</apex:outputLabel>
-                        </div>
-                        <div class="item-input-date">
-                            <apex:inputField id="tldid" value="{!bet.Launch_Date__c}"/>
-                            <script>document.getElementById('{!$Component.tldid}').disabled = {!compData.leadIPM}</script>
-                        </div>
-                        </div>
-                    </div>
-
-                    <div>
-                
-                    <div class="form-item">
-                        <div class="item-label">
-                            <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
-                        </div>
-                        <div class="item-input">
-                            <apex:inputTextarea id="descid" rows="5" value="{!bet.Description__c}"/>
-                        </div>
-                    </div>
-
-                </div> -->
             </apex:tab>
 
             <apex:tab label="Branding Options" name="name2" id="tabTwo">
