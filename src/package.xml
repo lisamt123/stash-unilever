@@ -238,12 +238,12 @@
         <members>BET_LinkedProjectsComponentContrTest</members>
         <members>BET_LinkedProjectsComponentController</members>
         <members>BET_LinkingService</members>
-		<members>BET_LinkingServiceCleaner</members>
+        <members>BET_LinkingServiceCleaner</members>
         <members>BET_LinkingServiceHelper</members>
         <members>BET_LinkingServiceHelperTest</members>
         <members>BET_LinkingServiceTest</members>
-		<members>BET_LinkingServiceTestOne</members>
-		<members>BET_LinkingServiceValidator</members>
+        <members>BET_LinkingServiceTestOne</members>
+        <members>BET_LinkingServiceValidator</members>
         <members>BET_MDODataMigrationAndTransform_Batch</members>
         <members>BET_ManageMembersController</members>
         <members>BET_ManageMembersController_Test</members>
@@ -2380,6 +2380,7 @@
         <members>File__c</members>
         <members>FilesConnect_One_Drive__x</members>
         <members>Home_Page_Feed__c</members>
+        <members>IPM_BET_Valid_Categories__c</members>
         <members>IPM_Bosscard__c</members>
         <members>IPM_CompanyUserAssociation__c</members>
         <members>IPM_Company_Card__c</members>

@@ -22,15 +22,19 @@ public class IPM_BETUpdateService{
     }
     
     //Return true if given category is supported by IPM
-    public static Boolean categoryCheck(String categoryName){
+    public static Boolean categoryCheck(String categoryName){        
         if(categoryName==null){
             throw new IPM_CustomException(Label.IPM_CategoryNameNotNull);    
         }
-        List<IPM_Project__c> projList = [select id,name,IPM_Category_Text__c from IPM_Project__c where IPM_Category_Text__c =: categoryName limit 1];
+        
+        List<MDO_Category__c > CategoryList = [select Name from MDO_Category__c where id =: Id.valueOf(categoryName) limit 1];
         Boolean isSupported = false;
-            if(projList != null && !projList.isempty()){
-                isSupported = true; 
-            }
+        if(CategoryList != null && !CategoryList.isempty()){
+            IPM_BET_Valid_Categories__c catg = IPM_BET_Valid_Categories__c.getValues(CategoryList[0].Name);
+            if(catg!=null){
+                isSupported = true;    
+            }   
+        }
         return isSupported;
     }
     

@@ -19,14 +19,14 @@ private class BET_LinkingServiceHelperTest {
 		uw_BET_Team_Member__c member = new uw_BET_Team_Member__c(BET__c = bet.id, Team_Member__c = UserInfo.getUserId());
 		insert member;
 		Test.startTest();
-		BET_LinkingServiceHelper.removeOldPLFromMembers(UserInfo.getUserId(),bet);
+		BET_LinkingServiceCleaner.removeOldPLFromMembers(UserInfo.getUserId(),bet);
 		List<uw_BET_Team_Member__c> members = [select id from uw_BET_Team_Member__c where BET__c =: bet.id and Team_Member__c =: UserInfo.getUserId()];
 		System.assert(members.isEmpty());
 
 		member = new uw_BET_Team_Member__c(BET__c = bet.id, Team_Member__c = UserInfo.getUserId());
 		insert member;
 
-		BET_LinkingServiceHelper.removeOldPLFromMembers(UserInfo.getUserId(),bet,BET_TestUtils.createIPMProject('Unit Test Project').id);
+		BET_LinkingServiceCleaner.removeOldPLFromMembers(UserInfo.getUserId(),bet,BET_TestUtils.createIPMProject('Unit Test Project').id);
 		Test.stopTest();
 		members = [select id from uw_BET_Team_Member__c where BET__c =: bet.id and Team_Member__c =: UserInfo.getUserId()];
 		System.assert(members.isEmpty());
@@ -38,7 +38,7 @@ private class BET_LinkingServiceHelperTest {
 		uw_BET_Team_Member__c member = new uw_BET_Team_Member__c(BET__c = bet.id, Team_Member__c = UserInfo.getUserId(),IsOwner__c = true);
 		insert member;
 		Test.startTest();
-		BET_LinkingServiceHelper.removeOldBetOwnerFromMembers(UserInfo.getUserId(),bet);
+		BET_LinkingServiceCleaner.removeOldBetOwnerFromMembers(UserInfo.getUserId(),bet);
 		Test.stopTest();
 		List<uw_BET_Team_Member__c> members = [select id from uw_BET_Team_Member__c where BET__c =: bet.id and Team_Member__c =: UserInfo.getUserId()];
 		System.assert(members.isEmpty());
