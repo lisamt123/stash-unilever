@@ -81,6 +81,7 @@ public with sharing class BET_SuggestMembersController {
         Purpose: Wrapper class is a placeholder for displayed suggested members
     *************************************************************/
     public class SuggestedMembersWrapper{
+        public SuggestedMembersWrapper(){}
         public String groupName{get;set;}
         public List<SuggestedMemberItemWrapper> groupUsers{get;set;}
         
@@ -90,6 +91,7 @@ public with sharing class BET_SuggestMembersController {
         Purpose: Wrapper class is a placeholder for displayed suggested members
     *************************************************************/
     public class SuggestedMemberItemWrapper{
+        public SuggestedMemberItemWrapper(){}
         public User userInfo{get;set;}
         public Boolean isManager{get;set;}
     }
@@ -98,6 +100,7 @@ public with sharing class BET_SuggestMembersController {
         Purpose: Wrapper class for external agency members
     *************************************************************/
     public class ExternalAgencyMemberWrapper{
+        public ExternalAgencyMemberWrapper(){}
         public String email {get;set;}
         public String photo;
         public Id userId {get;set;}
