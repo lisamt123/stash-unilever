@@ -1,0 +1,507 @@
+<apex:page contentType="text/css" showHeader="true" sidebar="true">
+<style>
+        @font-face {
+            font-family: 'unileverFont1';
+            src:  url('{!URLFOR($Resource.HROResources,"/fonts/DEDINProFont")}');
+        }
+        @font-face {
+            font-family: 'unileverFont-bold';
+            src:  url('{!URLFOR($Resource.HROResources,"/fonts/DEDINProFontBold")}');
+        }
+    /*MEDIA QUERY AT 1022 PX to Show sidebar menu!!*/
+        html, body {
+            height: 100%;
+/*          overflow: scroll;*/
+        }
+        html, body {
+            overflow: initial;
+        }
+        .searchArea {
+            top: 11px;
+            position: relative;
+        }
+        .menuTabs {
+            max-width:1000px !important;
+        }
+        body {
+            overflow-y: scroll;
+            margin-bottom: -30em;
+            background: url('{!URLFOR($Resource.HROResources,"/SEUnileverResources/bg-theme-blue.png")}') no-repeat fixed 50% 0 #FFFFFF;
+        }
+        .row {
+            margin:0px;
+            width: 100%;
+        }
+        div#header {
+            position: absolute;
+            top: 0px;
+        }
+        #headerBackground {
+            width:100%;
+        }
+        .bodyDiv {
+            background: transparent url("{!URLFOR($Resource.HROResources, '/SEUnileverResources/content-bg.png')}") no-repeat top;
+            border-radius: 20px;
+            padding-top: 30px;
+            min-width: 1022px;
+        }
+        .headerDiv {
+            background:url("{!URLFOR($Resource.HROResources, '/SEUnileverResources/header-bg.png')}");
+            background-repeat: no-repeat;
+            margin-bottom: 15px;
+            height: 139px;
+            background-size: 100% 139px;
+            width: 1022px;
+        }
+        .searchInput {
+            background:url("{!URLFOR($Resource.HROResources, '/SEUnileverResources/searchbox.gif')}");
+            width: 131px;
+            height: 27px;
+            border: none;
+            font-family: Helvetica,sans-serif;
+            font-size: 0.9em;
+            padding: 0 6px;
+            outline:none;
+            margin-right: 7px;
+        }
+        .menuTabs li {
+            margin-right: 0px;
+            margin-left:0px !important;
+        }
+        .bodyRow {
+            max-width:1022px;
+            display:block;
+            margin: 0 auto;
+            padding: 0px 10px 0px 10px;
+        }
+        .bodyWrapper {
+            min-height:400px;
+        }
+/*        .menu-button {
+            position: absolute;
+            font-size: 1.0em;
+            top:30%;
+            margin-top: 7px;
+        }*/
+        .bodyContent {
+            width:90%;
+            height:auto;
+            margin-left:5%;
+        }
+        .informationArea, .recordArea {
+            border:6px solid #fcb53a;
+            border-radius:20px;
+            min-height:100px;
+            margin-top:40px;
+            padding:30px;
+            padding-bottom:0px;
+            font-family: unileverFont;
+            font-size: 18px;
+            display: table;
+            clear: both;
+        }
+        .recordArea {
+            margin-top:0px;
+            width: 100%;
+        }
+        .centerImage {
+            display:block;
+            margin:0 auto;
+        }
+        .width-80 {
+            width:80%;
+            margin-left:4%;
+        }
+        .margin-10 {
+            margin-left:10%;
+        }
+        .menuTabs ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        .menuTabs li {
+            display: inline;
+            color: #007DBB;
+            font-size: 15px;
+            border-right:1px solid #CCC;
+            padding: 0px 15px 0px 15px;
+            text-transform: uppercase;
+            margin-right:0px !important;
+        }
+        .menuTabs li:hover {
+            color:  #004976;
+            font-style: none;
+        }
+        a {
+            color:  #004976;
+        }
+        a:focus, a:hover {
+            color:  #007DBB;
+            text-decoration: none;
+        }
+        .menuTabs {
+            position: absolute;
+            bottom: 50px;
+            font-family: unileverFont-bold;
+            right: 25px;
+            margin-right:10px;
+        }
+        .searchImage {
+            padding-left: 3px;
+        }
+        #mainLogo {
+            top: 25px;
+            position: absolute;
+            float: left;
+            margin-left: 40px;
+        }
+        .stepBodyDiv {
+            float:left;
+            color:#000;
+        }
+        .inoIcon {
+            font-size:50px;
+            color:#CCC;
+        }
+        .iconWrapper {
+            text-align:center;
+            cursor: pointer;
+        }
+        .halfDiv {
+            width:50%;
+            float:left;
+        }
+        .group::after {
+            display:table;
+            content: '';
+            clear:both;
+        }
+        #legendImage {
+            max-width: 200px;
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+        /*.stepIcon {
+            width:15%;
+        }
+        .stepDescription {
+            width:70%;
+        }*/
+        .stepStatus {
+            /*width:15%;*/
+            text-align:center;
+        }
+        .stepAction {
+/*          background:red;*/
+        }
+        div#legendWrapper {
+            font-size: 15px;
+        }
+        .onboardingSteps {
+            padding-top: 20px;
+            border-top: 1px solid #CCC;
+            margin-top: 20px;
+            display: table;
+            clear: both;
+        }
+        .step {
+            margin-bottom:30px;
+        }
+        .blueArea {
+            background: #00B4EF;
+            color:#FFF;
+        }
+        .blueText {
+            color: #00B4EF;
+        }
+        .greenArea {
+            background: #6AB443;
+            color:#FFF;
+        }
+        .greenText {
+            color: #6AB443;
+        }
+        #infoDiv {
+            color: #FFF;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 20px;
+            padding-left: 15px;
+            margin-right: 30px;
+        }
+        .actionButton {
+            height: 40px;
+            margin-top: 15px;
+            background-image: none;
+            font-family: unileverFont;
+            font-size: 11px;
+            width: 70px;
+            border-radius: 7px;
+            color: #FFF;
+            background: #81C241;
+            border: 0px;
+        }
+        .buttonWrapper {
+            display:block;
+            margin: 0 auto;
+            width:70px;
+        }
+        #legendImageDiv {
+/*          width:30%;*/
+            float: left;
+        }
+        #legendText {
+/*          width:70%;*/
+            float: left;
+        }
+        img#foterImage {
+            height: 60px;
+            margin: 0 auto;
+            display: block;
+        }
+        .footer {
+            border-top: 1px solid #CCC;
+            margin-top: 50px;
+            height: 50px;
+            line-height: 50px;
+            font-family: unileverFont-bold;
+            /*background: #024B76;*/
+            color: #00B4EF;
+            bottom:0px;
+            height: 90px;
+            padding-top: 20px;
+            border-top:1px solid #CCC;
+            text-align:center;
+        }
+/*        .menu-button::before {
+            background: transparent;
+        }*/
+        .menu-button {
+            display: none;
+        }
+        #recordHeadeer {
+            margin: 0px;
+        }
+        .fieldValue {
+            font-family: HelveticaNeue;
+        }
+        .planHeader {
+            height:30px;
+            line-height:30px;
+            border-bottom:1px solid #ccc;
+            font-family: unileverFont-bold;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .detailTable {
+            margin-bottom: 30px;
+        }
+        #myStat {
+            margin:0 auto;
+            display:block;
+        }
+        #recordHeader-small {
+            display:none;
+        }
+        .bodyRow {
+            max-width: 1035px !important;
+        }
+        #userNameDiv {
+            width: 100%;
+            text-align: center;
+            padding-top: 10px;
+            font-size:15px;
+            margin-bottom: 30px;
+        	font-weight: bold;
+        }
+        .fieldName, .fieldValue {
+            //width:40%;
+            float:left;
+        }
+        .fieldName {
+/*          max-width: 100px;*/
+        }
+        .pointer {
+            cursor:pointer;
+        }
+        .relatedListTable {
+            width: 100%;
+    /*      table-layout: fixed*/
+        }
+        .largeTable td {
+            max-width:16.5%;
+        }
+        .smallTable {
+            max-width:150px;
+        }
+        .relatedListTable td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-right: 25px;
+            cursor:pointer;
+            padding-bottom: 3px;
+        }
+        td.six {
+            text-align: center;
+            padding-right: 0px !important;
+        }
+        .fieldName, .tdHeader {
+            font-family: unileverFont-bold !important;
+            color: rgb(2, 75, 118); 
+        }
+        .field {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-right: 3px;
+            padding-bottom: 3px;
+        }
+        .firstRow {
+            height:100%;
+        }
+        #wrapper {
+            min-height:100%;
+            position:relative;
+        }
+        .noPadding {
+            padding:0px;
+        }
+        .group::after {
+            display:table;
+            content:'';
+            clear:btoh;
+        }
+        .legendLink {
+            
+            width:50%;
+            height:50%;
+
+            background:transparent;
+            position: absolute;
+            cursor:pointer;
+        }
+        #networkLink {
+            margin-left:45%;
+        }
+        #cultureLink {
+            margin-top:40%;
+        }
+        .menu-button::before {
+            background: linear-gradient(#2061AB 20%, transparent 20%, transparent 40%, #2061AB 40%, #2061AB 60%, transparent 60%, transparent 80%, #2061AB 80%);
+        }
+
+        @media (max-width: 1200px) {
+            .headerDiv {
+                height: 139px;
+                background-size: 100% 139px;
+                width: 100%;
+            }
+            .bodyDiv {
+                width:100%;
+                min-width:100px;
+            }
+            .menuTabs {
+                display:inline;
+            }
+            
+    /*        
+            .menu-button {
+                display: block;
+                margin-top: 40px;
+                margin-left: 50px;
+                position: absolute;
+                top:0px;
+            }
+    
+            #mainLogo {
+                margin-left: 40px;
+                margin: 0 auto;
+                display: block;
+                margin-top: 25px;
+                float:none;
+                position: initial;
+                cursor:pointer;
+            }
+    */
+            .stepBodyDiv {
+                float: left;
+                margin-bottom: 10px;
+            }
+            .col-xs-12 .step {
+                margin-bottom: 30px;
+                border-top: 1px solid #CCC;
+                padding-top: 30px;
+            }
+            .onboardingSteps {
+                border-top: none;
+            }
+            .relatedListTable {
+                width: 100%;
+                table-layout: fixed
+            }
+            
+        }
+
+        @media (max-width: 767px) {
+            .step {
+                margin-bottom: 30px;
+                border-top: 1px solid #CCC;
+                padding-top: 30px;
+            }
+            #recordHeader {
+                display:none;
+            }
+            #recordHeader-small {
+                display:block;
+            }
+            .relatedListTable td {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-right: 25px;
+            }
+            .two, .three, .four, .five, .six {
+                display:none;
+            }
+            #activitiesTable {
+                max-width: 220px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .relatedListTable {
+                width: 100%;
+                table-layout: fixed
+            }
+        }
+
+        @media (max-width: 650px) {
+    		#mainLogo {
+                margin-left: 40px;
+                margin: 0 auto;
+                display: block;
+                margin-top: 25px;
+                float:none;
+                position: initial;
+                cursor:pointer;
+            }
+    		
+    		.menuTabs {
+                display:none;
+            }
+    
+    		.menu-button {
+                display: block;
+                margin-top: 40px;
+                margin-right: 50px;
+                float:right;
+                position: absolute;
+                top:0px;
+            }
+            /*CHANGE BACKGROUND-IMAGE STEPS*/
+        }
+    </style>
+</apex:page>

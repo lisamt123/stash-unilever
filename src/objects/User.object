@@ -2066,6 +2066,66 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
+	 <fields>
+        <fullName>HRO_All_tasks__c</fullName>
+        <description>Total of all tasks for the user</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total of all tasks for the user</inlineHelpText>
+        <label>HRO All tasks</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HRO_Completed_tasks__c</fullName>
+        <description>total of all completed tasks for the user</description>
+        <externalId>false</externalId>
+        <inlineHelpText>total of all completed tasks for the user</inlineHelpText>
+        <label>HRO Completed tasks</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HRO_Line_Manager__c</fullName>
+        <description>Specifies the individuals line manager</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specifies the individuals line manager</inlineHelpText>
+        <label>HRO Line Manager</label>
+        <relationshipName>HRO_Line_Manager</relationshipName>
+        <restrictedAdminField>false</restrictedAdminField>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Hierarchy</type>
+    </fields>
+    <fields>
+        <fullName>HRO_Overdue_tasks__c</fullName>
+        <description>Total of all overdue tasks for the user</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total of all overdue tasks for the user</inlineHelpText>
+        <label>HRO Overdue tasks</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HRO_Start_Date__c</fullName>
+        <description>Actual start date of the user (normally different from Created Date) – field is used to know which Onboarding Phase is the current one.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Actual start date of the user (normally different from Created Date) – field is used to know which Onboarding Phase is the current one.</inlineHelpText>
+        <label>HRO Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Date</type>
+    </fields>
     <listViews>
         <fullName>ActiveUsers</fullName>
         <columns>FULL_NAME</columns>

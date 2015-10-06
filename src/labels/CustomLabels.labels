@@ -2543,4 +2543,148 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos;</shortDescription>
         <value>Please enter your Inoplan project name. If you do not have an Inoplan project please select No Inoplan Project</value>
     </labels>
+	<labels>
+        <fullName>HROCapabilityLink</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROCapabilityLink</shortDescription>
+        <value>htttp://www.google.com</value>
+    </labels>
+    <labels>
+        <fullName>HROCultureLink</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROCultureLink</shortDescription>
+        <value>http://www.onet.pl</value>
+    </labels>
+    <labels>
+        <fullName>HRONetworkLink</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HRONetworkLink</shortDescription>
+        <value>http://www.wp.pl</value>
+    </labels>
+    <labels>
+        <fullName>HROOwnershipLink</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROOwnershipLink</shortDescription>
+        <value>http://www.salesforce.com</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroHeaderBeforeArrival</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroHeaderBeforeArrival</shortDescription>
+        <value>Before Arrival:</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroHeaderBeonBoard</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroHeaderBeonBoard</shortDescription>
+        <value>Welcome to the final stage of your journey</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroHeaderDay1</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroHeaderDay1</shortDescription>
+        <value>Day 1:</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroHeaderMonth1</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroHeaderMonth1</shortDescription>
+        <value>Month 1:</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroHeaderMonth2</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroHeaderMonth2</shortDescription>
+        <value>Month 2:</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroHeaderMonth3</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroHeaderMonth3</shortDescription>
+        <value>Month 3:</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroHeaderWeek1</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroHeaderWeek1</shortDescription>
+        <value>Week 1:</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoBeforeArrival</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoBeforeArrival</shortDescription>
+        <value>Before your new recruit begins please send them to our Before Arrival website where they can learn what Unilever is, what, how and why we work.....</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoBeonBoard</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoBeonBoard</shortDescription>
+        <value>Welcome to the final stage of your journey</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoDay1</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoDay1</shortDescription>
+        <value>It&apos;s meet and greet day. Complete the following steps to get acquainted with your new sorroundings and team.</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoMonth1</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoMonth1</shortDescription>
+        <value>Welcome to month 1</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoMonth2</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoMonth2</shortDescription>
+        <value>Welcome to month 2</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoMonth3</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoMonth3</shortDescription>
+        <value>Welcome to month 3</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoWeek1</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoWeek1</shortDescription>
+        <value>Welcome to week 1</value>
+    </labels>
 </CustomLabels>

@@ -1,0 +1,111 @@
+<apex:page docType="html-5.0" showHeader="false" sidebar="false" standardStylesheets="false" standardController="HRO_Onboarding_Plan__c" extensions="HRO_ProgressPage_CX">
+<html>
+    <head>
+           <c:HRO_HeaderScripts />
+           <link href="/apex/HRO_HeadstartCss" rel="stylesheet" />
+           <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.HROResources, '/DECircliful/jquery.circliful.css')}" />
+           <script src="{!URLFOR($Resource.HROResources, '/DECircliful/jquery.circliful.min.js')}"></script>    
+            <script>
+                $(function() {
+                scrollbackground();
+                $("[id$='myStat']").each(function( index ) {
+                    $( this ).circliful();
+                });    
+                //$("[id$='myStat']").eq(1).circliful();
+                //alert($("[id$='myStat']").size());
+                //$('#myStat1').circliful();
+            });
+
+            function scrollbackground() {
+                window.onscroll = function() {
+                    var speed = 2.0;
+                    document.body.style.backgroundPosition = (-100+ (-window.pageYOffset / speed)) + "px 0px";
+                }
+            }
+     
+            </script>
+    </head>
+     <style>
+            @font-face {
+                font-family: 'unileverFont';
+                src:  url('{!URLFOR($Resource.HROResources,'/fonts/DEDINProFont')}');
+            }
+            @font-face {
+                font-family: 'unileverFont-bold';
+                src:  url('{!URLFOR($Resource.HROResources,'/fonts/DEDINProFontBold')}');
+            }
+    </style>
+
+    <c:HRO_NavMenu id="navMenu" isAdmin="true" componentUserId="{!profileUserId}"/>
+    <div class="row bodyRow">
+        <div class="col-xs-12 bodyDiv">
+            <div class="bodyWrapper">
+                <div class="bodyContent">
+                    <img id="recordHeader-small" class="centerImage width-80 margin-10" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/onboarding-progress-small.png')}" />
+
+                    <img id="recordHeader" class="width-80" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/onboarding-progress-large.png')}" />
+                    <div class="recordArea">
+                        <apex:variable value="{!0}" var="rowNum"/>
+                        <apex:repeat value="{!progressLst}" var="ProgressItem">
+                            <apex:outputPanel layout="Block" styleClass="row  bodyRow" rendered="{!IF(rowNum < progressLstSize,true,false)}">
+                                
+                                    <div style="padding-left: 0px;padding-right: 0px;" class="col-xs-2 col-sm-6 col-md-2">
+                                        <div style="font-family: 'unileverFont-bold';">
+                                            {!progressLst[rowNum].phase}
+                                        </div>
+                                    </div>
+                                    <div  style="padding-left: 0px;padding-right: 0px;" class="col-xs-4 col-sm-6 col-md-4">
+                                       
+                                            <div id="myStat" data-dimension="120" data-text="{!progressLst[rowNum].perecntOfCompletion}%" data-info="" data-width="7" data-fontsize="15" data-percent="{!progressLst[rowNum].perecntOfCompletion}" data-fgcolor="#61a9dc" data-bgcolor="#eee" data-fill="#ddd" data-total="{!progressLst[rowNum].totalTasks}" data-part="{!progressLst[rowNum].totalCompletedTasks}" data-icon="long-arrow-up" data-icon-size="20" data-icon-color="#fff"></div>
+                                            <!--
+                                            <div id="userNameDiv" class="blueText">
+                                                Eric Jones
+                                            </div>
+                                            -->
+                                           
+                                    </div>
+                                    <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                                     <apex:outputPanel layout="Block"   style="padding-left: 0px;padding-right: 0px;" styleClass="col-xs-2 col-sm-6 col-md-2" rendered="{!IF(rowNum < progressLstSize,true,false)}">
+                                        <div style="font-family: 'unileverFont-bold';">
+                                            {!progressLst[rowNum].phase}
+                                        </div>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel layout="Block"  style="padding-left: 0px;padding-right: 0px;" styleClass="col-xs-4 col-sm-6 col-md-4" rendered="{!IF(rowNum < progressLstSize,true,false)}">
+                                       
+                                            <div id="myStat" data-dimension="120" data-text="{!progressLst[rowNum].perecntOfCompletion}%" data-info="" data-width="7" data-fontsize="15" data-percent="{!progressLst[rowNum].perecntOfCompletion}" data-fgcolor="#61a9dc" data-bgcolor="#eee" data-fill="#ddd" data-total="{!progressLst[rowNum].totalTasks}" data-part="{!progressLst[rowNum].totalCompletedTasks}" data-icon="long-arrow-up" data-icon-size="20" data-icon-color="#fff"></div>
+                                            <!--
+                                            <div id="userNameDiv" class="blueText">
+                                                Eric Jones
+                                            </div>
+                                            -->
+                                           
+                                    </apex:outputPanel>
+                            </apex:outputPanel>
+                            <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                        </apex:repeat>
+                        
+                        
+                        <!--
+                        <div id="myStat1" data-dimension="150" data-text="35%" data-info="First 30 Days" data-width="8" data-fontsize="15" data-percent="35" data-fgcolor="#61a9dc" data-bgcolor="#eee" data-fill="#ddd" data-total="200" data-part="35" data-icon="long-arrow-up" data-icon-size="20" data-icon-color="#fff"></div>
+
+                        <div id="userNameDiv" class="blueText">
+                            Eric Jones
+                        </div>
+                        -->
+                     </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row bodyRow">
+        <div class="col-xs-12 footer">
+            Unilever 2015
+        </div>
+    </div>
+    
+    <script src="{!URLFOR($Resource.HROResources, '/DEElasticMenu/js/classie.js')}"></script>
+    <script src="{!URLFOR($Resource.HROResources, '/DEElasticMenu/js/main3.js')}"></script>
+</html> 
+</apex:page>
