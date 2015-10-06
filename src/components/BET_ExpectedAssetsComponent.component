@@ -2,24 +2,7 @@
 
 	<apex:attribute name="betId" assignTo="{!betIdentifier}" description="Id of an related BET" required="true" type="Id" />
 
-	<style>
-
-		.expectedAssetsTable{
-			width: 300px;
-		}
-
-		.expectedAssetsTableHeader{
-			width: 100px;
-			background: #666A6B;
-			color: #FFF;
-		}
-
-		.expectedAssetsNumber{
-			width: 30px;
-			text-align: center;
-		}
-
-	</style>
+	<apex:stylesheet value="{!$Resource.BET}/css/BETExpectedAssetsStyles.css" />
 
 	<apex:outputPanel id="expectedAssetsPanel">
 

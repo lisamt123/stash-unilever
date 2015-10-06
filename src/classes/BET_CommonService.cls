@@ -241,10 +241,10 @@ public static boolean hasPermissionSet(String permSetName){
     ******************************************************************************************/  
     public static Boolean requestBETAccess(Id userId, Id betId, String email){
         List<uw_BET__c> betList = [ SELECT Id, Name, Background_Colour__c, Banner_1_Location__c, Banner_2_Location__c, Banner_Colour__c, Border_Colour__c,
-                                uw_Brand__r.Name, uw_Brand__c, Category__r.Name, Category__c, CollaborationGroupId__c, Date_Published__c,
+                                 CollaborationGroupId__c, Date_Published__c,
                                 Description__c, FinalReleaseDate__c, Font_Colour__c, Icon_Location__c, 
                                 Inoplan_Project__c, Inoplan_Project__r.Name, Launch_Date__c, Market_Cluster__c, Presentation_Id__c, 
-                                Region__c, Status__c, Sub_Category__c, Sub_Category__r.Name, Sharing__c, LastModifiedDate, CreatedDate, Studio_Chatter_Group__c,
+                                Region__c, Status__c, Sharing__c, LastModifiedDate, CreatedDate, Studio_Chatter_Group__c,
                                 OwnerId, Owner.Name, Owner.Email, Brand_Keyword_Search__c, Category_Keyword_Search__c, Owner_Keyword_Search__c,
                                 Region_Keyword_Search__c, Inoplan_Project_Keyword_Search__c FROM uw_BET__c WHERE Id = :betId ];
 
