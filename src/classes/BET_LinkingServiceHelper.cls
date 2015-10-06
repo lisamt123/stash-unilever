@@ -72,7 +72,7 @@ public class BET_LinkingServiceHelper {
 		} else {
 			BET_EmailNotificationService.notifyBetOwnerThatProjectIsUnlinked(bet,oldProject,project); //US23
 		}
-		BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(bet,project); //US23
+		//BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(bet,project); //US23
 		bet.IPM_Project__c = project.projectId;
 		uw_Bet__c updatedBet = BET_BETService.updateBetFields(bet,project);
 		update updatedBet;
