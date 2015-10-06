@@ -31,7 +31,7 @@
            width: 524px;
            height: 35px;
            overflow: hidden;
-           background: url({!$Resource.BET}/images/ddarrow.png) no-repeat right;
+           background: url({!$Resource.BET}/images/ddarrow_small.png) no-repeat right;
            border: 1px solid #ccc;
        }
 

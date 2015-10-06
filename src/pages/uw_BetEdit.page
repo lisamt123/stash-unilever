@@ -45,7 +45,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
        .styled-select {
            width: 404px;
-           height: 35px;
+           height: 39px;
            overflow: hidden;
            background: url({!$Resource.BET}/images/ddarrow.png) no-repeat right;
            border: 1px solid #ccc;

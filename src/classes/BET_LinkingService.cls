@@ -82,9 +82,6 @@ public without sharing class BET_LinkingService {
 			if(shouldBeAutoApproved) {
 				followRequest.Status__c = FOLLOW_STATUS_APPROVED;
 				update followRequest;
-				//if(followRequest.Is_Lead_Request__c){
-				//	BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(betRecords.get(0),project);
-				//}
 			} else {
 				if(followRequest.Is_Lead_Request__c){
 					BET_EmailNotificationService.notifyBetOwnerOfLeadProjectFollowRequest(betRecords.get(0),project);
