@@ -18,10 +18,21 @@
     left: 46% !important;
     z-index: 99999;
 } 
+
+.submit_btnAppoval, 
+.submit_btn2Appoval {
+    margin-right:35px !important;
+}
+.btnReject {
+    margin-right:40px;
+}
+
+
 </style>
 <!-- Common_Style File Start -->
 <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
 <!-- Common_Style File End -->
+
 <script>
 function redirection()
 {
@@ -103,8 +114,11 @@ if({!isAgency}){
        </tr>
        <tr>
             <td colspan='2' align='right'>
-                <apex:commandButton value="Submit"  action="{!Submit}" Rerender="pmg" rendered="{!AND(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance',BrandEstRecord.AF_Status_Base_Fees__c=='With Category Finance',BrandEstRecord.AF_CMCO_Rejected__c==true)}" styleClass="submit_btn2Appoval" oncomplete="alert('Record submitted successfully');"/>
             
+            <apex:commandButton value="submit"  Rerender="pmg" action="{!Submit}"  rendered="{!and(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance',BrandEstRecord.AF_Status_Base_Fees__c=='With Category Finance',BrandEstRecord.AF_CMCO_Rejected__c==true,BrandEstRecord.AF_Category_Finance_Flag__c==0) }" styleClass="submit_btn2Appoval" oncomplete="alert('Record submitted successfully');"/>
+            
+            <apex:commandButton value="Reject" Rerender="popuprejcomm" action="{!RejectBrandestiamteFinance}"   styleClass="submit_btn2Appoval" rendered="{!AND(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance',BrandEstRecord.AF_Status_Base_Fees__c=='With Category Finance',BrandEstRecord.AF_CMCO_Rejected__c==true)}" status="status"/>
+          
                 <apex:outputpanel rendered="{!If( Targetprocess.size==0 ,true,false)}">
                     <apex:commandButton value="Submit for Approval" rerender="pmg,Approvepopup" action="{!SubmitApprovalPopup}" rendered="{!AND(ApprovalButton,NOT(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance'),NOT(BrandEstRecord.AF_Status_Base_Fees__c=='With CMCO'))}" styleClass="submit_btnAppoval" status="status"/>
                    <!--<div style="display:{!if(Controllerflag1,'inline','none')};margin-right: 253px;"> <apex:outputlabel style="font-weight: bold;"> Control Flag:</apex:outputlabel>
@@ -117,7 +131,7 @@ if({!isAgency}){
                 <apex:outputpanel rendered="{!If( Targetprocess.size>0 ,true,false)}">
                     <apex:commandButton value="Approve"  action="{!ApproveBrandEst}" styleClass="btnApprove" rendered="{! AND(NOT(IsCatFinanceEdited),ButtonsDisplay)}" rerender="pmg,popup" status="status"/> &nbsp;&nbsp;
                   <!--  <apex:commandButton value="Reject"  action="{!RejectBrandEst}" styleClass="submit_btn3" rendered="{!ButtonsDisplay}"/> --> &nbsp;&nbsp;
-                    <apex:commandButton value="Reject"  reRender="popuprejcomm" action="{!RejectBrandEstComment}" styleClass="btnReject" rendered="{!ButtonsDisplay}" status="status"/>                        
+                    <apex:commandButton value="Reject"  reRender="popuprejcomm" action="{!RejectBrandEstComment}" styleClass="btnReject" rendered="{!ButtonsDisplay}"  status="status"/>                        
                 </apex:outputpanel>                
             </td>
        </tr>
