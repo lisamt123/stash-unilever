@@ -469,6 +469,14 @@ Are you sure you wish to proceed?</value>
         <value>New</value>
     </labels>
     <labels>
+        <fullName>BET_Add_External_Agency_User</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Add_External_Agency_User</shortDescription>
+        <value>Add External Agency User</value>
+    </labels>
+    <labels>
         <fullName>BET_Add_Internal_User</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -482,7 +490,15 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Add_Member</shortDescription>
-        <value>Add Member</value>
+        <value>Add member</value>
+    </labels>
+    <labels>
+        <fullName>BET_Add_Toolkit_Member</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Add_Toolkit_Member</shortDescription>
+        <value>Add toolkit member</value>
     </labels>
     <labels>
         <fullName>BET_Approve</fullName>
@@ -547,6 +563,14 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_AssetType</shortDescription>
         <value>Asset Type</value>
+    </labels>
+    <labels>
+        <fullName>BET_BET_Members</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BET_Members</shortDescription>
+        <value>BET members</value>
     </labels>
     <labels>
         <fullName>BET_BetBrandPositionMandatory</fullName>
@@ -685,6 +709,14 @@ Are you sure you wish to proceed?</value>
         <value>External Agency User</value>
     </labels>
     <labels>
+        <fullName>BET_External_Agency_Users</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_External_Agency_Users</shortDescription>
+        <value>External Agency Users</value>
+    </labels>
+    <labels>
         <fullName>BET_FollowBetArchivedMessage</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -794,7 +826,9 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_LinkedProjectHeaderTwo</shortDescription>
-        <value>To change the lead project please contact a system administrator. To unlink an IPM project, please do so from IPM.</value>
+        <value>&lt;div&gt;To change the lead project please 
+&lt;a style=&quot;color:#E6007E;&quot; href=&quot;mailto:cb4l@unilever.com?subject=BET system help&quot;&gt;contact a system administrator.&lt;/a&gt;&lt;/div&gt;
+&lt;div&gt;To unlink an IPM project, please do so from IPM.&lt;/div&gt;</value>
     </labels>
     <labels>
         <fullName>BET_LinkedProjectsTabName</fullName>
@@ -803,6 +837,14 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_LinkedProjectsTabName</shortDescription>
         <value>Linked Projects</value>
+    </labels>
+    <labels>
+        <fullName>BET_Manage_Members</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Manage_Members</shortDescription>
+        <value>You can manage, add or remove members at any time.</value>
     </labels>
     <labels>
         <fullName>BET_MandatoryStar</fullName>
@@ -889,7 +931,17 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_NoLinkedProjectsAvailable</shortDescription>
-        <value>There are no projects currently linked to this BET. Please link your BET to a project from IPM Navigator.</value>
+        <value>&lt;div&gt;There are no projects currently linked to this BET.&lt;/div&gt;
+&lt;div&gt;Please link your BET to a project from IPM Navigator.&lt;/div&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BET_Note</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Note</shortDescription>
+        <value>Please note : All added members will have &apos;member level&apos; access to the toolkit. &lt;br/&gt;
+This means that they will not have editing rights. You can manage member &lt;br/&gt; persmissions from the toolkit settings one it has been created.</value>
     </labels>
     <labels>
         <fullName>BET_Owner</fullName>
@@ -921,7 +973,8 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_ProjectApproveRemainder</shortDescription>
-        <value>Please action this request by {0}. After this time, the link will be automatically approved.</value>
+        <value>&lt;div&gt;Please action this request by {0}.&lt;/div&gt;
+&lt;div&gt;After this time, the link will be automatically approved.&lt;/div&gt;</value>
     </labels>
     <labels>
         <fullName>BET_ProjectLead</fullName>
@@ -946,6 +999,14 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_Save</shortDescription>
         <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>BET_Save_And_Finish</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Save_And_Finish</shortDescription>
+        <value>Save &amp; Finish</value>
     </labels>
     <labels>
         <fullName>BET_Saving</fullName>
@@ -1077,6 +1138,14 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_Title</shortDescription>
         <value>Title</value>
+    </labels>
+    <labels>
+        <fullName>BET_Toolkit_Owner</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Toolkit_Owner</shortDescription>
+        <value>Toolkit Owner</value>
     </labels>
     <labels>
         <fullName>BET_UnArchiveBET</fullName>
