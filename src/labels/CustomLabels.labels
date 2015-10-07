@@ -1046,7 +1046,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET SuggestedMemberModalHeader</shortDescription>
-        <value>Add Team member</value>
+        <value>Add Team Member</value>
     </labels>
     <labels>
         <fullName>BET_SuggestedMemberModalNoResults</fullName>
