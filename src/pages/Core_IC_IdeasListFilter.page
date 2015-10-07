@@ -6,7 +6,9 @@
    Description: Filter page for Ideas used for Ideation                 
  -->
 <apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false">
-    <div class="iPhoneScreenHeight">
+<div class="container">
+
+    <div class="row iPhoneScreenHeight">
         <table class="filterPageHeaderBarBackground" id="pageTop"> 
             <tr class="border_bottom">
                 <td class="headerBarRowAlign"> <button type="button" class="headerBarButton" ng-click='cancel()'>{{'LBL_CANCEL' | translate}}</button> </td>
@@ -20,5 +22,6 @@
             <tr class="border_bottom" > <td ng-class="{selected_li: isShowOnlyActiveChecked}" ng-click="setSelectedFilter('Active')"> {{'LBL_SHOW_ONLY_ACTIVE_IDEAS' | translate}} </td></tr>
             <tr class="border_bottom" > <td ng-class="{selected_li: isShowOnlyClosedChecked}" ng-click="setSelectedFilter('Closed')"> {{'LBL_SHOW_ONLY_CLOSED_IDEAS' | translate}} </td></tr>
         </table>
+    </div>
     </div>
 </apex:page>

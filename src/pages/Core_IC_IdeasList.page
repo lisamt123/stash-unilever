@@ -7,7 +7,9 @@
  -->
 <apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false">
     <meta http-equiv="content-type" content="text/html; charset=UTF8" />    
-    <div class="iPhoneScreenHeight">
+    <div class="container">
+
+    <div class="row iPhoneScreenHeight">
         <div class="pageBottomSpace">
             <div class="headerBarBackground borderRadius">
                 <table class="headerBarWidth" id="pageTop">
@@ -100,5 +102,6 @@
                 </table>
             </div>
         </nav>
+    </div>
     </div>
 </apex:page>

@@ -5137,12 +5137,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Brand_Estimate__c.AF_Agency_Sharing__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Brand_Estimate__c.AF_Agency__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -5202,7 +5202,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Brand_Estimate__c.AF_BrandName__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -5212,7 +5212,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Brand_Estimate__c.AF_Brand_Category_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -5437,7 +5437,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Brand_Estimate__c.AF_No_of_Reviews__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -5497,12 +5497,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Brand_Estimate__c.AF_Status_Base_Fees__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Brand_Estimate__c.AF_Status_Bonus__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -5632,7 +5632,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Brand_Estimate__c.No_of_Completed_Reviews__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -5767,12 +5767,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Controller_Review__c.AF_Comment__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Controller_Review__c.Controller_Group__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6842,7 +6842,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_Agency_Entity__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6857,7 +6857,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_Base_Fee_Status__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6872,7 +6872,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_Brand_Estimate_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6882,17 +6882,17 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_Calculate_Adaptation_Local__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_Calculate_Digital_Local__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_Calculate_Tradition_Local__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6927,7 +6927,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_Currency__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6957,12 +6957,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_Fiscal_Year__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_Legal_Entity_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -7007,7 +7007,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_PO_Number__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -7057,7 +7057,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_PO_Value_Total_LC__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -7117,7 +7117,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_Total__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -7137,12 +7137,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_Unilever_Entity__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.Fiscal_Year__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
