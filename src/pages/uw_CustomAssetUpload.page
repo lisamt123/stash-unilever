@@ -1,7 +1,9 @@
-<apex:page controller="uw_CustomAssetUploadExtension" action="{!checkfeed}" showHeader="false">
-    <apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />    
-    <apex:includeScript value="{!$Resource.BETApp}/js/jquery-ui.js" />
-  <style>
+<apex:page controller="uw_CustomAssetUploadExtension" showHeader="false" action="{!checkfeed}" >
+
+    <apex:stylesheet value="{!$Resource.BET}/css/BETUploadAssetsStyles.css" />
+    <apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />
+
+	<style>
     #ballsWaveG{
     position:relative;
     width:128px;
@@ -170,6 +172,7 @@
   </style>
 
   <script type="text/javascript">
+      jQuery.noConflict();
       var __sfdcSessionId = '{!GETSESSIONID()}';
       var uploadHelper = function() {
           //workaround for issue with Sarissa on IE (Sarrisa preventd sending blob)
@@ -587,6 +590,13 @@
   #ballsWaveG {
     display: none;
   }
+  
+  .rich-tabpanel-content-position {
+	height: 100%;
+	position: relative;
+	border: 1px solid #BE23;
+  }
+  
   </style>
   <apex:outputPanel layout="block" id="maincontainer" rendered="{!displayForm}">
       <script>
@@ -622,7 +632,14 @@
         }
 
       </script>
+
+
       <apex:form >
+      
+        <apex:tabPanel switchType="client" id="FileTabPanel" selectedTab="name1" tabClass="activeTab" inactiveTabClass="inactiveTab">
+
+        <apex:tab label="File Upload" name="name1" id="tabOne">
+        
         <input id="parentId" type="hidden" name="parentId" value="{!parentId}" />
         <apex:inputHidden value="{!runJsSuccess}" id="runJsSuccess"/>
         <apex:inputHidden value="{!isPresentationUploaded}" id="isPresentationUploaded"/>
@@ -689,8 +706,7 @@
           <div id="ballsWaveG_1" class="ballsWaveG">
           </div>
           <div id="ballsWaveG_2" class="ballsWaveG">
-          </div>
-          <div id="ballsWaveG_3" class="ballsWaveG">
+                  <div id="ballsWaveG_3" class="ballsWaveG">
           </div>
           <div id="ballsWaveG_4" class="ballsWaveG">
           </div>
@@ -704,18 +720,29 @@
           </div>
         </div>
 
-        <apex:actionFunction id = "saveAndSaveExpected" action = "{!saveFileAndConnect}" 
-                             name = "methodOneInJavascript"
+        <apex:actionFunction id="saveAndSaveExpected" action="{!saveFileAndConnect}" 
+                             name="methodOneInJavascript"
                              oncomplete="saveExpAssetsOne();" reRender="maincontainer">
-          <apex:param name="firstParam" assignTo="{!feedid}" value = "" />
+          <apex:param name="firstParam" assignTo="{!feedid}" value="" />
         </apex:actionFunction> 
 
         <apex:pageMessages />
+  </div>
+        
+        </apex:tab>
+        
+        <apex:tab label="Multi File Upload" name="name2" id="tabTwo">
+        	<apex:include pageName="BET_MultiUploadAssets" />
+        </apex:tab>
+        
+        </apex:tabPanel>
+        
       </apex:form>
-  </apex:outputPanel>
-  <apex:outputPanel rendered="{!displayForm == false}">
+      </apex:outputPanel>
+        <apex:outputPanel rendered="{!displayForm == false}">
     <br />
     <p>{!errorMessage}</p>
     <br />
   </apex:outputPanel>
+
 </apex:page>

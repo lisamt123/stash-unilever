@@ -477,6 +477,14 @@ Are you sure you wish to proceed?</value>
         <value>Add External Agency User</value>
     </labels>
     <labels>
+        <fullName>BET_Add_External_Agency_User_Tooltip</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Add_External_Agency_User_Tooltip</shortDescription>
+        <value>Tooltip</value>
+    </labels>
+    <labels>
         <fullName>BET_Add_Internal_User</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -491,6 +499,14 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_Add_Member</shortDescription>
         <value>Add member</value>
+    </labels>
+    <labels>
+        <fullName>BET_Add_Members</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Add_Members</shortDescription>
+        <value>Add Members</value>
     </labels>
     <labels>
         <fullName>BET_Add_Toolkit_Member</fullName>

@@ -2257,6 +2257,7 @@
 		<members>BET_External_Agency_Users</members>
 		<members>BET_Add_External_Agency_User</members>
 		<members>BET_Save_And_Finish</members>
+		<members>BET_Add_External_Agency_User_Tooltip</members>
         <name>CustomLabel</name>
     </types>
     <types>
