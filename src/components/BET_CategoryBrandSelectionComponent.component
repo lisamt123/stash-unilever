@@ -174,7 +174,7 @@
                     <apex:inputText value="{!bet.IPM_Project__r.name}" disabled="true"/>
                 </div>
                 <div class="item-input item-output-link" style="{!IF(userHasAccessToProject,'','display:none')}">
-                    <a href="/{!bet.IPM_Project__c}" target="_blank">{!bet.IPM_Project__r.name}</a>
+                    <a href="/apex/IPM_ProjectOverview?id={!bet.IPM_Project__c}" target="_blank">{!bet.IPM_Project__r.name}</a>
                 </div>
             </div>
             <div class="form-item-brandtip" style="{!IF(bet.IPM_Project__c != null,'display:none','')}">

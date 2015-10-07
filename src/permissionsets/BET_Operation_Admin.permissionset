@@ -1081,6 +1081,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BET_SoslFieldsBatch_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BET_SuggestMembersController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -1134,6 +1138,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BET_UpdateBETSearchHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BET_UpdateExpectedAssetsController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -24153,6 +24161,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>BET_NewBet</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>BET_UpdateExpectedAssets</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>

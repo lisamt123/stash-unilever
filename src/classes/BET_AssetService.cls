@@ -71,6 +71,40 @@ public without sharing class BET_AssetService {
 	}
 
 	/************************************************************
+        Purpose: Retrieves list of available countires for assets
+        Parameters: -
+        Returns: List<String>
+        Throws: -
+    *************************************************************/
+	public static List<String> getAvailableAssetsCountries(){
+		System.debug('Entering getAvailableAssetsCountries');
+		List<String> retVal = new List<String>();
+		Schema.DescribeFieldResult fieldResult = uw_Asset__c.Country__c.getDescribe();
+   		for(Schema.PicklistEntry f : fieldResult.getPicklistValues()){
+      		retVal.add(f.getValue());
+   		}    
+   		System.debug('Exit getAvailableAssetsCountries : ' + retVal);
+   		return retVal;   
+	}
+
+	/************************************************************
+        Purpose: Retrieves list of available status for assets
+        Parameters: -
+        Returns: List<String>
+        Throws: -
+    *************************************************************/
+	public static List<String> getAvailableAssetsStatus(){
+		System.debug('Entering getAvailableAssetsStatus');
+		List<String> retVal = new List<String>();
+		Schema.DescribeFieldResult fieldResult = uw_Asset__c.Status__c.getDescribe();
+   		for(Schema.PicklistEntry f : fieldResult.getPicklistValues()){
+      		retVal.add(f.getValue());
+   		}    
+   		System.debug('Exit getAvailableAssetsStatus : ' + retVal);
+   		return retVal;   
+	}
+
+	/************************************************************
         Purpose: Retrieves bet identifiers from given assets
         Parameters: List<uw_Asset__c> assets
         Returns: -

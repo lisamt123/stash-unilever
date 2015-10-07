@@ -43,6 +43,19 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                         required="false" default="true"/>
     
 
+    <style>
+
+        .question-icon, .question-icon-left {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-left: 5px;
+            background: url({!$Resource.BETApp}/images/question-mark.png) center center/100% no-repeat;
+            cursor: pointer;
+        }
+
+    </style>
+
 
 
     <apex:actionFunction name="addExtMembers" action="{!addExternalMember}" reRender="suggestedMembersContainer"></apex:actionFunction>
@@ -168,6 +181,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
 
                 <div class="smtooltip">
                     Add External Agency User
+                    <apex:outputPanel layout="inline" styleClass="question-icon" html-data-tooltip="something" />
                 </div>
 
                 <apex:inputText value="{!externalMemberEmailBet}" styleClass="addExternalMembersField" />

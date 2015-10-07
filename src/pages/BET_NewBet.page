@@ -6,6 +6,7 @@
 	<apex:stylesheet value="{!$Resource.BET}/css/BETNewBetStyles.css" />
     
 	<style>
+
 		.question-icon, .question-icon-left {
     		display: inline-block;
     		width: 13px;
@@ -15,34 +16,31 @@
     		cursor: pointer;
 		}
 
-        .styled-select select {
-           background: transparent;
-           width: 268px;
-           padding: 5px;
-           font-size: 16px;
-           line-height: 1;
-           border: 0;
-           border-radius: 0;
-           height: 34px;
-           -webkit-appearance: none;
-       }
+    .styled-select select {
+        background: transparent;
+        width: 268px;
+        padding: 5px;
+        font-size: 16px;
+        line-height: 1;
+        border: 0;
+        border-radius: 0;
+        height: 34px;
+        -webkit-appearance: none;
+    }
 
-       .styled-select {
-           width: 524px;
-           height: 35px;
-           overflow: hidden;
-           background: url({!$Resource.BET}/images/ddarrow.png) no-repeat right;
-           border: 1px solid #ccc;
-       }
+    .styled-select {
+       width: 524px;
+       height: 35px;
+       overflow: hidden;
+       background: url({!$Resource.BET}/images/ddarrow_small.png) no-repeat right;
+       border: 1px solid #ccc;
+    }
 
 	</style>
 
 	<apex:form >
     	<apex:pageMessages escape="false"/>
-    	<!--<c:BET_NewBetComponent betobj="{!bet}" cdata="{!componentData}"/>-->
-    	<!--- 27.09 changes -->
     	<c:BET_UpsertBET betObj="{!bet}" componentData="{!componentData}"/>
-    	<!--- 27.09 changes -->
 	</apex:form>
 
 </apex:page>

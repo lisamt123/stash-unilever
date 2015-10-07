@@ -111,6 +111,8 @@ public class BET_BETChangesLogger {
         diffs.add(BET_PROJECT_CHANGED+projectsMap.get(oldRecord.IPM_Project__c)+BET_TO+newRecord.IPM_Project__c);
       } else {
         diffs.add(PROJECT_TXT+projectsMap.get(newRecord.IPM_Project__c)+LEAD_PROJECT+newRecord.name);
+        IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(newRecord.IPM_Project__c);
+        BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(newRecord,project); 
       }
     }
     
