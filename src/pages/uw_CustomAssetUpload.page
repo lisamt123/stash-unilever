@@ -591,12 +591,6 @@
     display: none;
   }
   
-  .rich-tabpanel-content-position {
-	height: 100%;
-	position: relative;
-	border: 1px solid #BE23;
-  }
-  
   </style>
   <apex:outputPanel layout="block" id="maincontainer" rendered="{!displayForm}">
       <script>
