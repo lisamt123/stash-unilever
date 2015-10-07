@@ -498,7 +498,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_ApproveProjectsTabName</shortDescription>
-        <value>Approve projects</value>
+        <value>Approve Projects</value>
     </labels>
     <labels>
         <fullName>BET_Approve_members</fullName>
@@ -730,7 +730,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_IPMProject</shortDescription>
-        <value>IPM project</value>
+        <value>IPM Project</value>
     </labels>
     <labels>
         <fullName>BET_InoplanProjectMandatory</fullName>
