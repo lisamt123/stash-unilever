@@ -28,7 +28,7 @@
             <hr width="100%"/> 
 
         	<div class="linkedProjectName">
-        		<apex:outputLink style="text-decoration:none;" value="/{!project.projectId}" target="_blank">
+        		<apex:outputLink style="text-decoration:none;" value="/apex/IPM_ProjectOverview?id={!project.projectId}" target="_blank">
                     <apex:outputText >{!project.projectName}</apex:outputText>
                 </apex:outputLink>
         	</div>
