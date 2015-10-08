@@ -641,47 +641,47 @@
         <apex:inputHidden value="{!runJsSuccess}" id="runJsSuccess"/>
         <apex:inputHidden value="{!isPresentationUploaded}" id="isPresentationUploaded"/>
         <apex:inputHidden value="{!message}" id="message"/>
-        <p>Please provide metadata and select file to upload.</p>
+        <p>{!$Label.BET_Asset_MetaData}</p>
         <br />
         <div id="fileNameArea">
           <apex:outputPanel >
             <input id="file-input" type="file" name="file"/>
             <div class="clear">&nbsp;</div>
-            <div class="elem-label"><apex:outputLabel >Asset Name</apex:outputLabel></div>
+            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Asset_Name}</apex:outputLabel></div>
             <div class="elem"><apex:inputField value="{!file.Name}" id="fileName" /></div>
           </apex:outputPanel>
           <div class="clear">&nbsp;</div>
         </div>
         <div id="fileSubFunctionArea" class="elementHidden">
           <apex:outputPanel >
-            <div class="elem-label"><apex:outputLabel >Sub Function</apex:outputLabel></div> 
+            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Sub_Function}</apex:outputLabel></div> 
             <div class="elem"><apex:inputField value="{!file.Sub_Function__c}" id="fileSubFunction"/></div>
           </apex:outputPanel>
         </div>
         <div id="fileAssetTypeArea" class="elementHidden">
           <apex:outputPanel >
-            <div class="elem-label"><apex:outputLabel >Type</apex:outputLabel></div> 
+            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Asset_Type}</apex:outputLabel></div> 
             <div class="elem"><apex:inputField value="{!file.Studio_Asset_Type__c}" id="fileAssetType"/></div>
           </apex:outputPanel>
           <div class="clear">&nbsp;</div>
         </div>       
         <div id="fileMediaChannelArea" class="elementHidden">
           <apex:outputPanel >
-            <div class="elem-label"><apex:outputLabel >Media Type</apex:outputLabel></div> 
+            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Asset_Media_Type}</apex:outputLabel></div> 
             <div class="elem"><apex:inputField value="{!file.Media_Type__c}" id="fileMediaChannel"/></div>
           </apex:outputPanel>
           <div class="clear">&nbsp;</div>
         </div>
         <div id="fileCountryArea" class="elementHidden">
           <apex:outputPanel >
-            <div class="elem-label"><apex:outputLabel >Country</apex:outputLabel></div> 
+            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Asset_Country}</apex:outputLabel></div> 
             <div class="elem"><apex:inputField value="{!file.Country__c}" id="fileCountry"/></div>
           </apex:outputPanel>
           <div class="clear">&nbsp;</div>
         </div>
         <div id="fileStatusArea">
           <apex:outputPanel rendered="{!hasModifyAccess}">
-            <div class="elem-label"><apex:outputLabel >Status</apex:outputLabel></div> 
+            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Asset_Status}</apex:outputLabel></div> 
             <div class="elem"><apex:inputField value="{!file.Status__c}" id="fileStatus" onchange="toogleExpectedAssetsComponent(this.value);"/></div>
             <div class="clear">&nbsp;</div>
           </apex:outputPanel>
@@ -697,7 +697,7 @@
         <br />        
         <p class="form-errors"></p> 
         <br />
-        <input type="button" value="Upload & save" onclick="saveForm();"/> 
+        <input type="button" value="{!$Label.BET_Upload_And_Save}" onclick="saveForm();"/> 
         <p class="process-status"></p> 
         <div id="ballsWaveG">
           <div id="ballsWaveG_1" class="ballsWaveG">

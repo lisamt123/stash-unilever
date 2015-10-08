@@ -581,6 +581,54 @@ Are you sure you wish to proceed?</value>
         <value>Asset Type</value>
     </labels>
     <labels>
+        <fullName>BET_Asset_Country</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Media_Type</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Media_Type</shortDescription>
+        <value>Media Type</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_MetaData</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_MetaData</shortDescription>
+        <value>Please provide metadata and select file to upload.</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Name</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Name</shortDescription>
+        <value>Asset Name</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Status</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Status</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Type</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Type</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
         <fullName>BET_BET_Members</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -1065,6 +1113,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Skip for now</value>
     </labels>
     <labels>
+        <fullName>BET_Sub_Function</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Sub_Function</shortDescription>
+        <value>Sub Function</value>
+    </labels>
+    <labels>
         <fullName>BET_SuggestedMemberAddOtherMember</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1259,6 +1315,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>BET_UpdateBetAddMembers</shortDescription>
         <value>Update BET &amp; add members</value>
+    </labels>
+    <labels>
+        <fullName>BET_Upload_And_Save</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Upload_And_Save</shortDescription>
+        <value>Upload &amp; save</value>
     </labels>
     <labels>
         <fullName>BetMemberRequestInvailidProjectIDError</fullName>
