@@ -1,6 +1,7 @@
 <apex:component controller="BET_CategoryBrandSelectionController">
 
 	<apex:includeScript value="{!$Resource.BETApp}/js/jquery-ui.js" />
+    <apex:stylesheet value="{!$Resource.BET}/css/BETQtip.css" />
     
 	<apex:attribute name="betobj" assignTo="{!bet}" 
                     description="Identifier of an related BET"
@@ -27,19 +28,6 @@
         }
 
     </script>
-
-    <style>
-
-        .question-icon, .question-icon-left {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            margin-left: 5px;
-            background: url({!$Resource.BETApp}/images/question-mark.png) center center/100% no-repeat;
-            cursor: pointer;
-        }
-
-    </style>
 
     <div class="form-item">
         <div class="item-label">
