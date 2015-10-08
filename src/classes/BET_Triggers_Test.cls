@@ -15,6 +15,13 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 **********************************************************************/
 @isTest
 private class BET_Triggers_Test {
+
+
+    private static final String PROJECT_ASSERT_COMMENT = 'Category field search must match category name';
+    private static final String BRAND_ASSERT_COMMENT = 'Brand field search must match brand name';
+    private static final String CATEGORY_ASSERT_COMMENT = 'Category field search must match category name';
+    private static final String OWNER_ASSERT_COMMENT = 'Owner field search must match owner name';
+
     static testMethod void testMethodOne(){
         Test.startTest();
         uw_Inoplan_Project__c inoplan = BET_TestingHelper.initInoplan('Test Inoplan', true);
@@ -30,9 +37,9 @@ private class BET_Triggers_Test {
         bet = BET_TestingHelper.getBET(bet.Id);
 
         //check if text field values for SOSL are populated by trigger
-        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan.Name);
-        System.assertEquals(bet.Brand_Keyword_Search__c, brand.Name);
-        System.assertEquals(bet.Category_Keyword_Search__c, category.Name);
+        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan.Name,PROJECT_ASSERT_COMMENT);
+        System.assertEquals(bet.Brand_Keyword_Search__c, brand.Name,BRAND_ASSERT_COMMENT);
+        System.assertEquals(bet.Category_Keyword_Search__c, category.Name,CATEGORY_ASSERT_COMMENT);
         //System.assertEquals(bet.Owner_Keyword_Search__c, UserInfo.getFirstName() + ' ' + UserInfo.getLastName());
 
         uw_Inoplan_Project__c inoplan2 = BET_TestingHelper.initInoplan('Test Inoplan 2', true);
@@ -51,10 +58,10 @@ private class BET_Triggers_Test {
         bet = BET_TestingHelper.getBET(bet.Id);
 
         //check if text field values for SOSL are populated by trigger
-        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan2.Name,'Project field search must match project name');
-        System.assertEquals(bet.Brand_Keyword_Search__c, brand2.Name,'Brand field search must match brand name');
-        System.assertEquals(bet.Category_Keyword_Search__c, category2.Name,'Category field search must match category name');
-        System.assertEquals(bet.Owner_Keyword_Search__c, u2.Name,'Owner field search must match owner name');
+        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan2.Name,PROJECT_ASSERT_COMMENT);
+        System.assertEquals(bet.Brand_Keyword_Search__c, brand2.Name,BRAND_ASSERT_COMMENT);
+        System.assertEquals(bet.Category_Keyword_Search__c, category2.Name,CATEGORY_ASSERT_COMMENT);
+        System.assertEquals(bet.Owner_Keyword_Search__c, u2.Name,OWNER_ASSERT_COMMENT);
 
         inoplan2.Name = 'Test Inoplan 3';
         update inoplan2;
@@ -87,9 +94,9 @@ private class BET_Triggers_Test {
         bet = BET_TestingHelper.getBET(bet.Id);
 
         //check if text field values for SOSL are populated by trigger
-        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan.Name,'Project field search must match project name');
-        System.assertEquals(bet.Brand_Keyword_Search__c, brand.Name,'Brand field search must match brand name');
-        System.assertEquals(bet.Category_Keyword_Search__c, category.Name,'Category field search must match category name');
+        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan.Name,PROJECT_ASSERT_COMMENT);
+        System.assertEquals(bet.Brand_Keyword_Search__c, brand.Name,BRAND_ASSERT_COMMENT);
+        System.assertEquals(bet.Category_Keyword_Search__c, category.Name,CATEGORY_ASSERT_COMMENT);
 
         uw_Inoplan_Project__c inoplan2 = BET_TestingHelper.initInoplan('Test Inoplan 2', true);
         MDO_Category__c categoryGroup2 = BET_TestUtils.createCategoryGroup();
@@ -107,17 +114,17 @@ private class BET_Triggers_Test {
         bet = BET_TestingHelper.getBET(bet.Id);
 
         //check if text field values for SOSL are populated by trigger
-        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan2.Name,'Project field search must match project name');
-        System.assertEquals(bet.Brand_Keyword_Search__c, brand2.Name,'Brand field search must match brand name');
-        System.assertEquals(bet.Category_Keyword_Search__c, category2.Name,'Category field search must match category name');
-        System.assertEquals(bet.Owner_Keyword_Search__c, u2.Name,'Owner field search must match owner name');    
+        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan2.Name,PROJECT_ASSERT_COMMENT);
+        System.assertEquals(bet.Brand_Keyword_Search__c, brand2.Name,BRAND_ASSERT_COMMENT);
+        System.assertEquals(bet.Category_Keyword_Search__c, category2.Name,CATEGORY_ASSERT_COMMENT);
+        System.assertEquals(bet.Owner_Keyword_Search__c, u2.Name,OWNER_ASSERT_COMMENT);    
 
         inoplan2.Name = 'Test Inoplan 3';
         update inoplan2;
 
         bet = BET_TestingHelper.getBET(bet.Id);
 
-        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan2.Name);
+        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan2.Name,PROJECT_ASSERT_COMMENT);
 
         uw_Custom_Setting__c cs = new uw_Custom_Setting__c();
         cs.Checkbox_Value__c = true;
@@ -128,7 +135,7 @@ private class BET_Triggers_Test {
         update bet;
 
         Integer countFeedItemsAfter = [SELECT count() FROM FeedItem WHERE ParentId =: bet.Studio_Chatter_Group__c];
-        System.assertEquals(countFeedItems, countFeedItemsAfter);
+        System.assertEquals(countFeedItems, countFeedItemsAfter,'Feed count must match');
         Test.stopTest();
     }
 }

@@ -14,6 +14,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 @isTest
 private class uw_BetEditController_Test {
 
+
+    private static final String EMPTY_PAGE_REFERENCE = 'Page refrence should be set to null';
+
     private static final String TEST_BLOB = 'aGVsbG8=';
 
     static testMethod void testMethodOne(){     
@@ -37,38 +40,21 @@ private class uw_BetEditController_Test {
         controller.saveBET();
         uw_BET__c b = BET_TestingHelper.getBET(wrap.BET.Id);
         
-        System.assertEquals(controller.runJsSuccess, true);
-        System.assertNotEquals(b.Banner_1_Location__c, null);
-        System.assertNotEquals(b.Icon_Location__c, null);
-        /*Test.startTest();
-        controller.saveBET();
-        Test.stopTest();
-        controller.clearIcon();
-        controller.clearBanner();
-        Test.startTest();
-        controller.saveBET();
-        Test.stopTest();
+        System.assertEquals(controller.runJsSuccess, true, 'JS validation flag should be set to true');
+        System.assertNotEquals(b.Banner_1_Location__c, null, 'Banner Location should be set');
+        System.assertNotEquals(b.Icon_Location__c, null, 'Icon location should be set');
 
-        b = BET_TestingHelper.getBET(wrap.BET.Id);
-        System.assertEquals(controller.runJsSuccess, true);
-        System.assertEquals(b.Banner_1_Location__c, null);
-        System.assertEquals(b.Icon_Location__c, null);
-        Test.startTest();*/
         controller.archiveBET();
         Test.stopTest();
         b = BET_TestingHelper.getBET(wrap.BET.Id);
-        System.assertEquals(b.Is_Archived__c, true);
+        System.assertEquals(b.Is_Archived__c, true, 'Bet should be archived');
 
         User usr = BET_TestingHelper.getDefaultNotMember();
         controller.bet.ownerId = usr.Id;
-        System.assert(controller.saveBET() == null);
+        System.assert(controller.saveBET() == null,EMPTY_PAGE_REFERENCE);
     }
 
     static testMethod void testMethodTwo(){     
-        //BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
-        ///BET_TestingHelper.BET_TestingData wrap2 = BET_Testinbet_gHelper.initBET('Test BET2_'+system.now(), true);
-        //BET_TestingHelper.initBET('Test BET3', true);
-        //BET_TestingHelper.initBET('Test BET4', true);
 
         uw_Bet__c tbet = BET_TestUtils.getTestBet();
         tbet.Launch_Date__c = date.today();
@@ -84,20 +70,11 @@ private class uw_BetEditController_Test {
         Test.startTest();
         controller.saveDocument(controller.icon);
 
-        //to cover catch
-        //delete wrap2.BET;
-        //wrap.BET.OwnerId = wrap2.BET.OwnerId;
-        //controller.saveBET();
-
-        //delete wrap.BET;
-        //controller.saveBET();
-
-        //controller.archiveBET();
         Folder currentfolder = [select Id,name from Folder where Name = 'BET Branding'];
         controller.throwUTException = 2;
         controller.icon = new Document(FolderId = currentfolder.Id, Name = 'Banner', Body = Blob.valueOf(TEST_BLOB));
         controller.saveDocument(controller.icon);
-        System.assert(controller.saveBET() == null);
+        System.assert(controller.saveBET() == null,EMPTY_PAGE_REFERENCE);
         Test.stopTest();
     }
     
@@ -127,7 +104,7 @@ private class uw_BetEditController_Test {
         
         controller.bet.OwnerId = usr.Id;
         Test.startTest();
-        System.assert(controller.saveBET() == null);
+        System.assert(controller.saveBET() == null,EMPTY_PAGE_REFERENCE);
         Test.stopTest();
     }
 }
