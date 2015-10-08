@@ -1,7 +1,8 @@
 <apex:page controller="uw_CustomAssetUploadExtension" showHeader="false" action="{!checkfeed}" >
 
     <apex:stylesheet value="{!$Resource.BET}/css/BETUploadAssetsStyles.css" />
-    <apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />
+    <!--<apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />
+    <apex:includeScript value="{!$Resource.BETApp}/js/jquery-ui.js" />-->
 
 	<style>
     #ballsWaveG{
@@ -399,6 +400,7 @@
   </script>
   
   <script> 
+    jQuery.noConflict();
     var saveInProgress = false;
 
     function saveForm(){
@@ -594,6 +596,7 @@
   </style>
   <apex:outputPanel layout="block" id="maincontainer" rendered="{!displayForm}">
       <script>
+        jQuery.noConflict();
         jQuery( document ).ready(function() {
           saveInProgress = false;
           prepareForm();
