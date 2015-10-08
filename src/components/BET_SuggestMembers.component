@@ -13,11 +13,11 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
 <apex:component controller="BET_SuggestMembersController" allowDML="true">
 
     <apex:includeScript value="{!URLFOR($Resource.jscolor_1_4_1, 'jscolor/jscolor.js')}" />
-    <apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />
+    <apex:includeScript value="{!$Resource.BETApp}/scripts/jquery.min.js" />
     <apex:includeScript value="{!$Resource.BET}/scripts/blockUI.js" />
     <apex:includeScript value="{!$Resource.BET}/scripts/bootstrap.min.js" />
     <apex:includeScript value="{!$Resource.BET}/scripts/SuggestedMembers.js" />
-    <apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />
+    <apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />    
     
     <apex:stylesheet value="{!$Resource.BET}/css/bootstrap.min.css"/>
     <!--<apex:stylesheet value="{!$Resource.BETSuggestedMembers}/css/betSuggestedMembers.css"/>   -->
@@ -45,14 +45,12 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
     
 
 	<script>
-	
         jQuery.noConflict();
-         jQuery( document ).ready(function( $ ) {
+        jQuery( document ).ready(function( $ ) {
             jQuery('.question-icon[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' } });
             jQuery('.question-icon-left[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' },position: { my: 'bottom right', at: 'top left' } });
          }
-        )
-	
+        );
 	</script>
 
     <style>
