@@ -28,13 +28,13 @@ private class BET_SuggestMembersControllerTest {
         componentController.user_bucketsCtrl = user_bucketsCtrl;
         List<BET_SuggestMembersController.SuggestedMembersWrapper> result = componentController.getSuggestedMembers();
         //there should be returned 4 groups
-        system.assertEquals(4, result.size());
+        system.assertEquals(4, result.size(), 'There should be 4 members groups');
          //check if user's were aggregated properly
         for(BET_SuggestMembersController.SuggestedMembersWrapper item : result){
             Boolean isManagerInGroup = false;
             if(item.groupName == Label.BET_SuggestedMemberOtherMembers){
                 //other group shouldn't have any members
-                system.assertEquals(0, item.groupUsers.size());
+                system.assertEquals(0, item.groupUsers.size(), 'Other group shoult not have any mambers');
             }else{
                 for(BET_SuggestMembersController.SuggestedMemberItemWrapper userItem : item.groupUsers){
                     if(userItem.isManager){
@@ -91,22 +91,22 @@ private class BET_SuggestMembersControllerTest {
             //Boolean isManagerInGroup = false;
             if(item.groupName == Label.BET_SuggestedMemberOtherMembers){
                 //check if memebers where added under other users section
-                system.assertEquals(numberOfNewlyAddedUsers, item.groupUsers.size()); 
+                system.assertEquals(numberOfNewlyAddedUsers, item.groupUsers.size(), 'Number of added users should match number of users in group'); 
             }
         }
         //check if other users and suggested members were added into database
-        system.assertEquals(numberOfNewlyAddedUsers+suggested_MembersCtrl.size(), [Select id FROM BET_Member_Request__c where Brand_Experience_Toolkit__c = : betObject.id].size());
+        system.assertEquals(numberOfNewlyAddedUsers+suggested_MembersCtrl.size(), [Select id FROM BET_Member_Request__c where Brand_Experience_Toolkit__c = : betObject.id].size(),'Suggested and newly added users number should match member requests number');
         //try to add the same members ito database - check if duplicated records are not created
 
         componentController.externalMemberEmail = 'm.bluj@polsource.com';
         componentController.addExternalMember();
 
         componentController.addMembers();
-        system.assertEquals(numberOfNewlyAddedUsers+suggested_MembersCtrl.size()+1, [Select id FROM BET_Member_Request__c where Brand_Experience_Toolkit__c = : betObject.id].size());
+        system.assertEquals(numberOfNewlyAddedUsers+suggested_MembersCtrl.size()+1, [Select id FROM BET_Member_Request__c where Brand_Experience_Toolkit__c = : betObject.id].size(),'Suggested and newly added users number should be larger by 1 then member requests number');
         //check deleting from UI
         //componentController.memberToDelete = userForDeletion;
         //componentController.deleteMember();
-        system.assertEquals(numberOfNewlyAddedUsers+suggested_MembersCtrl.size(), componentController.suggested_MembersCtrl.size());
+        system.assertEquals(numberOfNewlyAddedUsers+suggested_MembersCtrl.size(), componentController.suggested_MembersCtrl.size(),'Numer of members must match');
        
         Test.stopTest();    
     }
@@ -115,11 +115,11 @@ private class BET_SuggestMembersControllerTest {
         Test.startTest();
         BET_SuggestMembersController componentController = new BET_SuggestMembersController();
         componentController.callbackCtrl = null;
-        system.assertEquals(null, componentController.skipPage());
+        system.assertEquals(null, componentController.skipPage(), 'Page reference should be null');
         
         //set callbackCtrl
         componentController.callbackCtrl = Page.BET_NewBet.getUrl();
-        system.assertEquals(Page.BET_NewBet.getUrl(), componentController.skipPage().getUrl());
+        system.assertEquals(Page.BET_NewBet.getUrl(), componentController.skipPage().getUrl(),'Page reference should match new Bet page');
         Test.stopTest();
     }
     
@@ -129,7 +129,7 @@ private class BET_SuggestMembersControllerTest {
         BET_SuggestMembersController componentController = new BET_SuggestMembersController();
         insert betObject;
         componentController.betIdCtrl = betObject.id;
-        system.assertEquals([SELECT FullPhotoUrl FROM User WHERE id =: UserInfo.getUserId()].get(0).FullPhotoUrl, componentController.getOnwerPhoto());
+        system.assertEquals([SELECT FullPhotoUrl FROM User WHERE id =: UserInfo.getUserId()].get(0).FullPhotoUrl, componentController.getOnwerPhoto(),'Photo URl must match');
         Test.stopTest();
     }
     
@@ -147,7 +147,7 @@ private class BET_SuggestMembersControllerTest {
         beteamManager.BET__c = componentController.betIdCtrl;
         beteamManager.Role__c = Label.BETManagerRole;
         insert beteamManager;
-        system.assertEquals([SELECT FullPhotoUrl FROM User WHERE id =: UserInfo.getUserId()].get(0).FullPhotoUrl, componentController.getManagerPhoto());
+        system.assertEquals([SELECT FullPhotoUrl FROM User WHERE id =: UserInfo.getUserId()].get(0).FullPhotoUrl, componentController.getManagerPhoto(),'Photo URl must match');
         Test.stopTest();
     }
     
@@ -196,7 +196,7 @@ private class BET_SuggestMembersControllerTest {
         	//Tema member requests created in status New but there already exist such records in Approved 
         	//status no records should be added
         	componentController.addMembers();
-            system.assertEquals(numberOfNewlyAddedUsers+suggested_MembersCtrl.size(), [Select id FROM BET_Member_Request__c where Brand_Experience_Toolkit__c = : betObject.id].size());
+            system.assertEquals(numberOfNewlyAddedUsers+suggested_MembersCtrl.size(), [Select id FROM BET_Member_Request__c where Brand_Experience_Toolkit__c = : betObject.id].size(),'Suggested and newly added users number should match member requests number');
         }
         Test.stopTest(); 
     }
@@ -207,7 +207,7 @@ private class BET_SuggestMembersControllerTest {
         componentController.externalMemberEmail = 'm.bluj@polsource.com';
         componentController.addExternalMember();
         System.assertEquals(componentController.externalMembers.size(),1,'There should be one external member added');
-        System.assertEquals(componentController.externalMembers.get(0).getPhoto(),'/profilephoto/005/F','Photo url should match');
+        System.assertEquals(componentController.externalMembers.get(0).getPhoto(),'/profilephoto/005/F','Photo url should match default value');
         Test.stopTest();
     }
 
