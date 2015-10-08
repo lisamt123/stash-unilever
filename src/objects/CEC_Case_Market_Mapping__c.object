@@ -348,7 +348,7 @@
     <listViews>
         <fullName>CEC_General_Queue_CEC_Case_Market_Mapping</fullName>
         <filterScope>Queue</filterScope>
-        <label>General Queue</label>
+        <label>CEC UKI Queue</label>
         <queue>CEC_General_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

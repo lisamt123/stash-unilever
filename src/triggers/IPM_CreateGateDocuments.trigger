@@ -1,1 +1,0 @@
-trigger IPM_CreateGateDocuments on IPM_Project_Document__c (after update) {}

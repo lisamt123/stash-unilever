@@ -67,6 +67,16 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Meta_Tags__c</fullName>
+        <description>CEC : To add the Meta Tags to the Article</description>
+        <externalId>false</externalId>
+        <label>Meta Tags</label>
+        <length>150</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Question__c</fullName>
         <description>CEC</description>
         <externalId>false</externalId>
@@ -74,6 +84,22 @@
         <length>1000</length>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Related_PDF_2__c</fullName>
+        <description>CEC : To load pdf file</description>
+        <externalId>false</externalId>
+        <label>Related PDF 2</label>
+        <required>false</required>
+        <type>File</type>
+    </fields>
+    <fields>
+        <fullName>Related_PDF_3__c</fullName>
+        <description>CEC : To load pdf file</description>
+        <externalId>false</externalId>
+        <label>Related PDF 3</label>
+        <required>false</required>
+        <type>File</type>
     </fields>
     <fields>
         <fullName>Related_PDF__c</fullName>
