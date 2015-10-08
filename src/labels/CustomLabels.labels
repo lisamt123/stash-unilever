@@ -733,6 +733,14 @@ Are you sure you wish to proceed?</value>
         <value>External Agency Users</value>
     </labels>
     <labels>
+        <fullName>BET_File_Upload</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_File_Upload</shortDescription>
+        <value>File Upload</value>
+    </labels>
+    <labels>
         <fullName>BET_FollowBetArchivedMessage</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -877,6 +885,14 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_MarkedFieldsMandatory</shortDescription>
         <value>Marked fields are mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_Multi_File_Upload</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Multi_File_Upload</shortDescription>
+        <value>Multi File Upload</value>
     </labels>
     <labels>
         <fullName>BET_MultipleRequestNotification</fullName>
@@ -2196,6 +2212,13 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>I Accept</value>
     </labels>
     <labels>
+        <fullName>IPM_BETApprovalLinkProcessing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BETApprovalLinkProcessing</shortDescription>
+        <value>Error in processing IPM BET link approval/rejection.</value>
+    </labels>
+    <labels>
         <fullName>IPM_BETIdNullMsg</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -2250,6 +2273,13 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>IPM Description Restricted</shortDescription>
         <value>Description Restricted to 255 Characters</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ErrorRetrievingCategories</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ErrorRetrievingCategories</shortDescription>
+        <value>Error in retrieving Categories.</value>
     </labels>
     <labels>
         <fullName>IPM_External_Char_Limit</fullName>
@@ -2418,6 +2448,13 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>IPM Technical Char Limit</shortDescription>
         <value>4860</value>
+    </labels>
+    <labels>
+        <fullName>IPM_UserAccessRetrivalMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_UserAccessRetrivalMsg</shortDescription>
+        <value>Error in retriving User access.</value>
     </labels>
     <labels>
         <fullName>IPM_backto_intermediate</fullName>

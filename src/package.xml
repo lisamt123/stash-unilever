@@ -2258,6 +2258,8 @@
 		<members>BET_Add_External_Agency_User</members>
 		<members>BET_Save_And_Finish</members>
 		<members>BET_Add_External_Agency_User_Tooltip</members>
+		<members>BET_Multi_File_Upload</members>
+		<members>BET_File_Upload</members>
         <name>CustomLabel</name>
     </types>
     <types>
