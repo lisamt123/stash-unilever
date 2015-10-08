@@ -6,7 +6,7 @@ private class BET_AssetServiceTest {
 		insert bet;
 
 		List<BET_ExpectedAssets__c> expectedAssets = [select id from BET_ExpectedAssets__c where Brand_Experience_Toolkit__c =: bet.id];
-		System.assert(expectedAssets.isEmpty());
+		System.assert(expectedAssets.isEmpty(),'There should be no expected assets');
 
 		BET_AssetService.createExpectedAssetsRecordsForBet(new List<Id>{bet.id});
 		Test.startTest();
@@ -20,7 +20,7 @@ private class BET_AssetServiceTest {
 		insert bet;
 
 		List<BET_ExpectedAssets__c> expectedAssets = [select id from BET_ExpectedAssets__c where Brand_Experience_Toolkit__c =: bet.id];
-		System.assert(expectedAssets.isEmpty());
+		System.assert(expectedAssets.isEmpty(),'There should be no expected assets');
 		Test.startTest();
 		BET_AssetService.createExpectedAssetsRecordsForBet(new List<Id>{bet.id});
 		Test.stopTest();

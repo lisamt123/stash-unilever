@@ -15,9 +15,9 @@ private class BET_UpsertBETControllerTest {
 		controller.brandPosition = position.id;
 		controller.projectName = 'TestProjectName';
 
-		System.assert(controller.catName!='Missing');
-		System.assert(controller.categoryGroupName!='Missing');
-		System.assert(controller.brandPositionName!='Missing');
+		System.assert(controller.catName!='Missing','Category name should be set');
+		System.assert(controller.categoryGroupName!='Missing','Category group name should be set');
+		System.assert(controller.brandPositionName!='Missing','Brand position name should be set');
 		Test.stopTest();
 	}
 
@@ -35,7 +35,7 @@ private class BET_UpsertBETControllerTest {
 		controller.projectName = 'TestProjectName';
 		controller.owner = UserInfo.getUserId();
 
-		System.assert(controller.upsertBet() != null);
+		System.assert(controller.upsertBet() != null,'Page reference should not be null');
 		Test.stopTest();
 	}
 	
@@ -43,7 +43,7 @@ private class BET_UpsertBETControllerTest {
 		Test.startTest();
 		BET_UpsertBETController controller = new BET_UpsertBETController();
 		controller.cbackskipped = '/apex/bet';
-		System.assert(controller.skipForNow() != null);
+		System.assert(controller.skipForNow() != null,'Page reference should not be null');
 		Test.stopTest();
 	}
 
@@ -58,7 +58,7 @@ private class BET_UpsertBETControllerTest {
 		controller.categoryName = categoryGroup.id;
 		controller.brandPosition = position.id;
 
-		System.assertEquals(controller.getBrands().size(),2);
+		System.assertEquals(controller.getBrands().size(),2,'There should be 2 brands available');
 		Test.stopTest();
 	}
 	

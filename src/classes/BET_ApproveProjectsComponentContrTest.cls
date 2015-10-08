@@ -11,7 +11,7 @@ private class BET_ApproveProjectsComponentContrTest {
 		BET_ApproveProjectsComponentController controller = new BET_ApproveProjectsComponentController();
 		controller.betIdentifier = bet.id;
 		Test.startTest();
-		System.assertEquals(controller.getPendingRequests().size(),1);
+		System.assertEquals(controller.getPendingRequests().size(),1,'There should be only one pending request');
 		Test.stopTest();
 	}
 
@@ -29,7 +29,7 @@ private class BET_ApproveProjectsComponentContrTest {
 		controller.doApprove();
 		Test.stopTest();
 		BET_Follow_Request__c freqApproved = [select Status__c from BET_Follow_Request__c where id =: freq.id];
-		System.assertEquals(freqApproved.Status__c,'Approved');
+		System.assertEquals(freqApproved.Status__c,'Approved','Follow Request should be approved');
 	}
 
 	@isTest static void doDenyTest(){
@@ -46,7 +46,7 @@ private class BET_ApproveProjectsComponentContrTest {
 		controller.doDeny();
 		Test.stopTest();
 		BET_Follow_Request__c freqApproved = [select Status__c from BET_Follow_Request__c where id =: freq.id];
-		System.assertEquals(freqApproved.Status__c,'Rejected');
+		System.assertEquals(freqApproved.Status__c,'Rejected','Follow Request should be rejected');
 	}
 	
 }
