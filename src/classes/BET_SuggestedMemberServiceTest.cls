@@ -93,7 +93,7 @@ private class BET_SuggestedMemberServiceTest {
             betMembersToInsert = BET_SuggestedMemberService.removeMemberRequestDuplicatesWhileInsert(betMembersToInsert);
             system.assertEquals(0, 1, 'Exception should be thrown so this code instruction should not be executed in test');
         }catch(BET_CustomBETException ex){
-            system.assertEquals(Label.BetMemberRequestInvailidProjectIDError, ex.getMessage());
+            system.assertEquals(Label.BetMemberRequestInvailidProjectIDError, ex.getMessage(),'Exception message should be ' + Label.BetMemberRequestInvailidProjectIDError);
         }
         Test.stopTest();
     }

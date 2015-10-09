@@ -1,6 +1,8 @@
 @isTest
 private class BET_LinkingServiceHelperTest {
 	
+	private static final String NO_BET_MEMBERS_MESSAGE = 'There should be no members for given BET';
+
 	@isTest static void createMemberRequestForNewPLTest() {
 		Id newPL = UserInfo.getUserId();
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
@@ -21,7 +23,7 @@ private class BET_LinkingServiceHelperTest {
 		Test.startTest();
 		BET_LinkingServiceCleaner.removeOldPLFromMembers(UserInfo.getUserId(),bet);
 		List<uw_BET_Team_Member__c> members = [select id from uw_BET_Team_Member__c where BET__c =: bet.id and Team_Member__c =: UserInfo.getUserId()];
-		System.assert(members.isEmpty());
+		System.assert(members.isEmpty(),NO_BET_MEMBERS_MESSAGE);
 
 		member = new uw_BET_Team_Member__c(BET__c = bet.id, Team_Member__c = UserInfo.getUserId());
 		insert member;
@@ -29,7 +31,7 @@ private class BET_LinkingServiceHelperTest {
 		BET_LinkingServiceCleaner.removeOldPLFromMembers(UserInfo.getUserId(),bet,BET_TestUtils.createIPMProject('Unit Test Project').id);
 		Test.stopTest();
 		members = [select id from uw_BET_Team_Member__c where BET__c =: bet.id and Team_Member__c =: UserInfo.getUserId()];
-		System.assert(members.isEmpty(),'There should be no members for given BET');
+		System.assert(members.isEmpty(),NO_BET_MEMBERS_MESSAGE);
 	}
 	
 	@isTest static void removeOldBetOwnerFromMembersTest(){
@@ -41,7 +43,7 @@ private class BET_LinkingServiceHelperTest {
 		BET_LinkingServiceCleaner.removeOldBetOwnerFromMembers(UserInfo.getUserId(),bet);
 		Test.stopTest();
 		List<uw_BET_Team_Member__c> members = [select id from uw_BET_Team_Member__c where BET__c =: bet.id and Team_Member__c =: UserInfo.getUserId()];
-		System.assert(members.isEmpty(),'There should be no members for given BET');
+		System.assert(members.isEmpty(),NO_BET_MEMBERS_MESSAGE);
 	}
 
 	@isTest static void setNewLeadProjectAndOwnerTest(){

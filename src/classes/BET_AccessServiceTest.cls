@@ -87,7 +87,7 @@ private class BET_AccessServiceTest {
 			BET_AccessService.GetBetUsers(null);
 			throw new BET_CustomBETException('Unit test');
 		}catch(BET_CustomBETException e){
-			System.assertEquals(e.getMessage(),'BET record not found for given id null');
+			System.assertEquals(e.getMessage(),'BET record not found for given id null','Bet record should not be found');
 		}
 		Test.stopTest();
 	}
