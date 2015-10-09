@@ -8,7 +8,7 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  17-09-2015  Initial
 *************************************************************************************/
-public without sharing class BET_ExpectedAssetsController {
+public with sharing class BET_ExpectedAssetsController {
 
 	public Id betIdentifier {
 		get{
