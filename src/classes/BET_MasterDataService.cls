@@ -8,7 +8,7 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  17-07-2015  Initial
 *************************************************************************************/
-
+/* Without sharing is used due to this is service class used by external system */
 public without sharing class BET_MasterDataService{
 
 	public static final String LAUNDRY = 'Laundry';

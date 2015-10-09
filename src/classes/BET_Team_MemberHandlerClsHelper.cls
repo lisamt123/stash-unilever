@@ -1,3 +1,16 @@
+
+/*************************************************************************************
+Name : BET_Team_MemberHandlerClsHelper
+
+Purpose : Helper class for BET_Team_MemberHandlerCls
+
+History
+
+VERSION  AUTHOR                DATE        DETAIL   Description
+1.0      m.bluj@polsource.com  28-09-2015  Initial
+*************************************************************************************/
+
+/* Helper class takes sharing settings from its 'parent' */
 public class BET_Team_MemberHandlerClsHelper {
 
 	private BET_Team_MemberHandlerClsHelper() {}

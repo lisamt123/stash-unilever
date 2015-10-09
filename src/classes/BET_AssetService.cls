@@ -8,6 +8,9 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  17-09-2015  Initial
 *************************************************************************************/
+
+/*Without sharing due to it is a service method */
+
 public without sharing class BET_AssetService {
 
 	private static final Set<String> excludedMediaType = new Set<String>{'BET Presentation'};

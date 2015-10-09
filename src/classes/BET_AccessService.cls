@@ -8,6 +8,7 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  23-07-2015  Initial
 *************************************************************************************/
+/* Without sharing due to this is a service class used by external system */
 public without sharing class BET_AccessService {
 	
 	public static final String NO_BET_ACCESS = 'No';

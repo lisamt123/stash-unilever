@@ -15,7 +15,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.1 -   Piotr Czechumski        05/08/2015      Add new master data, IPM project and remove archive bets from results
 
 **********************************************************************/
-
+/* Without sharing due to this is a service class*/
 public without sharing class uw_BETSearchService {
     public class BetException extends Exception {}
 

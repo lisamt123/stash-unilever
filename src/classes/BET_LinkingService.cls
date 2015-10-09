@@ -8,6 +8,8 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  03-08-2015  Initial
 *************************************************************************************/
+
+/* Service class uses without sharing due to it is used by external system*/
 public without sharing class BET_LinkingService {
 
 	public static final String FOLLOW_STATUS_NEW = 'New';

@@ -8,6 +8,9 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  22-07-2015  Initial
 *************************************************************************************/
+
+/* Withour sharing due to this is ITrigger implementation class  */
+
 public without sharing class BET_BETHandlerCls {
 
   private BET_BETHandlerCls(){}

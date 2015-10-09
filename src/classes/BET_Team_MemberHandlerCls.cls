@@ -9,7 +9,7 @@ History
 VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   m.bluj@polsource.com            13/08/2015      INITIAL DEVELOPMENT
 *******************************************************************************************************************************/
-
+/* Withour sharing due to this is ITrigger implementation class  */
 public without sharing class BET_Team_MemberHandlerCls {
 
     public static final String BETMANAGERCONFIG = 'BETManageMembersConfig';

@@ -12,6 +12,7 @@ History
 VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   piotr.czechumski@gmail.com      04/09/2015      INITIAL DEVELOPMENT
 *******************************************************************************************************************************/
+/*Batch class with sharing is not needed*/
 global class BET_InoplanToIPMMigration_Batch implements Database.Batchable<sObject> {
 	
 	private final String catName;
