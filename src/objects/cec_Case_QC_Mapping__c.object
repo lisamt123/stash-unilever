@@ -220,7 +220,7 @@
     <listViews>
         <fullName>CEC_General_Queue_cec_Case_QC_Mapping</fullName>
         <filterScope>Queue</filterScope>
-        <label>General Queue</label>
+        <label>CEC UKI Queue</label>
         <queue>CEC_General_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -276,15 +276,6 @@
         <filterScope>Queue</filterScope>
         <label>CEC Poland Queue</label>
         <queue>CEC_Poland_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Portugal_Queue_cec_Case_QC_Mapping</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CEC Portugal Queue</label>
-        <queue>CEC_Portugal_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

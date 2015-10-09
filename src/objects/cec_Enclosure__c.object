@@ -401,7 +401,7 @@
         <columns>Active__c</columns>
         <columns>UPDATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
-        <label>General Queue</label>
+        <label>CEC UKI Queue</label>
         <language>en_US</language>
         <queue>CEC_General_Queue</queue>
         <sharedTo>
@@ -573,6 +573,14 @@
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>alle_DACH_Enclosures1</fullName>
+        <columns>NAME</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <label>alle DACH-Enclosures</label>
+        <language>de</language>
     </listViews>
     <listViews>
         <fullName>test</fullName>

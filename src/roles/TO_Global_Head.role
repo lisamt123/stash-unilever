@@ -5,4 +5,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>TO Global Head</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>CEC_Global_Head</parentRole>
 </Role>
