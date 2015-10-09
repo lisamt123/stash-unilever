@@ -10,7 +10,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 1.1      piotr.czechusmki@gmail.com    04-08-2015  Add search service
 1.2      m.bluj@polsource.com          17-08-2015  Add bet update and releaseduedates service
 *************************************************************************************/
-
+/* Without sharing due to it is a service class used by external system*/
 public without sharing class BET_BETService {
     
     private static final Integer APRIL = 4;

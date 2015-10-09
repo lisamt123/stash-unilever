@@ -68,14 +68,14 @@ private class BET_Triggers_Test {
 
         bet = BET_TestingHelper.getBET(bet.Id);
 
-        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan2.Name);
+        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan2.Name,PROJECT_ASSERT_COMMENT);
 
         Integer countFeedItems = [SELECT count() FROM FeedItem WHERE ParentId =: bet.Studio_Chatter_Group__c];
         bet.Status__c = BET_TestingHelper.BET_STATUS_FINALRELEASE;
         update bet;
 
         Integer countFeedItemsAfter = [SELECT count() FROM FeedItem WHERE ParentId =: bet.Studio_Chatter_Group__c];
-        System.assertEquals(countFeedItems+1, countFeedItemsAfter);
+        System.assertEquals(countFeedItems+1, countFeedItemsAfter, 'Feed items counters must match');
         Test.stopTest();
     }
 

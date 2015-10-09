@@ -1,3 +1,4 @@
+/* Service helper class takes sharings settings from parent class */
 public class BET_LinkingServiceCleaner {
 
 	private BET_LinkingServiceCleaner(){}

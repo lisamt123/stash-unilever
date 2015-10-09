@@ -1,3 +1,13 @@
+/*************************************************************************************
+Name : BET_ChatterGroupAutoArchiveDisable_Batch
+
+Purpose : Class responsible for disable auto archive chatter groups
+History
+
+VERSION  AUTHOR                DATE        DETAIL   Description
+1.0      m.bluj@polsource.com  20-08-2015  Initial
+*************************************************************************************/
+/* Batch class, with sharing is not needed */
 global class BET_ChatterGroupAutoArchiveDisable_Batch implements Database.Batchable<sObject> {
 	
 	global BET_ChatterGroupAutoArchiveDisable_Batch() {}

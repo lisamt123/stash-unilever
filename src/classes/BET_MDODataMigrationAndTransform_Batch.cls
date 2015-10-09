@@ -10,6 +10,7 @@ History
 VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   m.bluj@polsource.com            02/09/2015      INITIAL DEVELOPMENT
 *******************************************************************************************************************************/
+/* Batch class so with sharing is not needed */
 global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchable<sObject> {
 	
 	String query = 'SELECT id,uw_Brand__c,uw_Brand__r.name,Product_Brand__c,Category__c,Category__r.name,Category_Group__c,Sub_Category__c,Sub_Category__r.name,Product_Category__c,Brand_Position__c '+

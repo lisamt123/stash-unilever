@@ -8,6 +8,8 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  28-09-2015  Initial
 *************************************************************************************/
+
+/* Service helper class takes sharings settings from parent class */
 public class BET_LinkingServiceHelper {
 
 	private BET_LinkingServiceHelper() {}

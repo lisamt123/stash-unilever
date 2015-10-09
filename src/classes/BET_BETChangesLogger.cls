@@ -8,6 +8,7 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  28-09-2015  Initial
 *************************************************************************************/
+/* Helper class takes sharing settings from its 'parent' class */
 public class BET_BETChangesLogger {
 
   private static final String BET_STATUS_CHANGED = 'BET Status has been changed. ';
