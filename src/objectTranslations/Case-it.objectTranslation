@@ -9,6 +9,10 @@
         <name>Alert_Action_Id__c</name>
     </fields>
     <fields>
+        <label><!-- Brand Reporting --></label>
+        <name>Brand_Reporting__c</name>
+    </fields>
+    <fields>
         <label><!-- Brand --></label>
         <name>Brand__c</name>
     </fields>
@@ -19,6 +23,14 @@
     <fields>
         <label><!-- Product Hierarchy --></label>
         <name>CEC_Product_Hierarchy__c</name>
+    </fields>
+    <fields>
+        <label><!-- CEC Product Reporting Name --></label>
+        <name>CEC_Product_Reporting_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CEC Product Reporting Name (no size) --></label>
+        <name>CEC_Product_Reporting_Name_no_size__c</name>
     </fields>
     <fields>
         <label><!-- CEC_Product --></label>
@@ -40,6 +52,10 @@
     <fields>
         <label><!-- CMM Account Owner Active Flag --></label>
         <name>CMM_Account_Owner_Active_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- CPG Code Reporting --></label>
+        <name>CPG_Code_Reporting__c</name>
     </fields>
     <fields>
         <label><!-- Case Brand Mapping --></label>
@@ -65,6 +81,10 @@
     <fields>
         <label><!-- Case Market --></label>
         <name>Case_Market__c</name>
+    </fields>
+    <fields>
+        <label><!-- Case Record Count --></label>
+        <name>Case_Record_Count__c</name>
     </fields>
     <fields>
         <label><!-- Case product category --></label>
@@ -200,6 +220,22 @@
         <name>DefaultCMMAccountOwner_Id__c</name>
     </fields>
     <fields>
+        <label><!-- Escalated Date --></label>
+        <name>Escalated_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Escalated to Closed(Days) --></label>
+        <name>Escalated_to_Closed_Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Escalated to Closed(Hours) --></label>
+        <name>Escalated_to_Closed_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Escalated to Closed(Minutes) --></label>
+        <name>Escalated_to_Closed_Minutes__c</name>
+    </fields>
+    <fields>
         <label><!-- Expiry Date --></label>
         <name>Expiry_Date__c</name>
     </fields>
@@ -210,6 +246,14 @@
     <fields>
         <label><!-- Factory Investigation Survey Link --></label>
         <name>Factory_Investigation_Survey_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Response Date --></label>
+        <name>First_Response_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Response Email Time --></label>
+        <name>First_Response_Email_Time__c</name>
     </fields>
     <fields>
         <label><!-- Global Reason L5 desc --></label>
@@ -249,8 +293,16 @@
         <name>L3_Product_Category__c</name>
     </fields>
     <fields>
+        <label><!-- L3 Product Reporting --></label>
+        <name>L3_Product_Reporting__c</name>
+    </fields>
+    <fields>
         <label><!-- L4 Product Category --></label>
         <name>L4_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L4 Product Reporting --></label>
+        <name>L4_Product_Reporting__c</name>
     </fields>
     <fields>
         <label><!-- L5 Code --></label>
@@ -261,12 +313,24 @@
         <name>L5_Product_Category__c</name>
     </fields>
     <fields>
+        <label><!-- L5 Product Reporting --></label>
+        <name>L5_Product_Reporting__c</name>
+    </fields>
+    <fields>
         <label><!-- L6 Product Category --></label>
         <name>L6_Product_Category__c</name>
     </fields>
     <fields>
+        <label><!-- L6 Product Reporting --></label>
+        <name>L6_Product_Reporting__c</name>
+    </fields>
+    <fields>
         <label><!-- L7 Product Category --></label>
         <name>L7_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L7 Product Reporting --></label>
+        <name>L7_Product_Reporting__c</name>
     </fields>
     <fields>
         <label>Lingua</label>
@@ -918,6 +982,14 @@
     <webLinks>
         <label>Cosmetovigilance</label>
         <name>Cosmetovigilence</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Homecare_Cosmetovigilence --></label>
+        <name>Homecare_Cosmetovigilence</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Ingestion_Cosmetovigilence --></label>
+        <name>Ingestion_Cosmetovigilence</name>
     </webLinks>
     <webLinks>
         <label>Nuovo caso</label>

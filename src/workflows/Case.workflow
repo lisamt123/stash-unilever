@@ -165,6 +165,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Escalated_Date_Update</fullName>
+        <description>CEC : To capture the date when a case gets Escalated for first time.</description>
+        <field>Escalated_Date__c</field>
+        <formula>IF(ISNULL(Escalated_Date__c),  LastModifiedDate,  Escalated_Date__c)</formula>
+        <name>Escalated Date Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Set_Assignment_Fields_False</fullName>
         <field>Set_Assignment_Fields__c</field>
         <literalValue>0</literalValue>

@@ -220,7 +220,7 @@
     <listViews>
         <fullName>CEC_General_Queue_cec_Case_QC_Mapping</fullName>
         <filterScope>Queue</filterScope>
-        <label>General Queue</label>
+        <label>CEC UKI Queue</label>
         <queue>CEC_General_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

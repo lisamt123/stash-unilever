@@ -401,7 +401,7 @@
         <columns>Active__c</columns>
         <columns>UPDATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
-        <label>General Queue</label>
+        <label>CEC UKI Queue</label>
         <language>en_US</language>
         <queue>CEC_General_Queue</queue>
         <sharedTo>
