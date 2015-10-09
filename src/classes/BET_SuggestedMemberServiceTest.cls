@@ -11,11 +11,13 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 @isTest
 private class BET_SuggestedMemberServiceTest {
 
+    private static final String BET_OWNER_OR_MANAGER = 'Current user must be owner or manager of a BET';
+
     @isTest static void testCheckIfUsersAreManagerOrOwnerOfBet(){
         Test.startTest();
         uw_BET__c betObject = BET_TestUtils.getTestBet();
         insert betObject;
-        system.assertEquals(true, BET_SuggestedMemberService.checkIfUsersAreManagerOrOwnerOfBet(betObject.id,new List<Id>{UserInfo.getUserId()}).get(UserInfo.getUserId()));
+        system.assertEquals(true, BET_SuggestedMemberService.checkIfUsersAreManagerOrOwnerOfBet(betObject.id,new List<Id>{UserInfo.getUserId()}).get(UserInfo.getUserId()),BET_OWNER_OR_MANAGER);
         uw_BET_Team_Member__c memberRequestToInsert = new uw_BET_Team_Member__c();
         memberRequestToInsert.BETEnabled__c = true;
         memberRequestToInsert.BET__c = betObject.id;
@@ -25,7 +27,7 @@ private class BET_SuggestedMemberServiceTest {
         memberRequestToInsert.StudioEnabled__c = true;
         memberRequestToInsert.Team_Member__c = UserInfo.getUserId();
         insert memberRequestToInsert;
-        system.assertEquals(true, BET_SuggestedMemberService.checkIfUsersAreManagerOrOwnerOfBet(betObject.id,new List<Id>{UserInfo.getUserId()}).get(UserInfo.getUserId()));
+        system.assertEquals(true, BET_SuggestedMemberService.checkIfUsersAreManagerOrOwnerOfBet(betObject.id,new List<Id>{UserInfo.getUserId()}).get(UserInfo.getUserId()),BET_OWNER_OR_MANAGER);
         Test.stopTest();
     }
 
@@ -34,9 +36,9 @@ private class BET_SuggestedMemberServiceTest {
         //check for owner
         uw_BET__c betObject = BET_TestUtils.getTestBet();
         //check empty bet
-        system.assertEquals(false, BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(null,UserInfo.getUserId()));
+        system.assertEquals(false, BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(null,UserInfo.getUserId()),'Null user should be marked as not manager or member');
         insert betObject;
-        system.assertEquals(true, BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betObject.id,UserInfo.getUserId()));
+        system.assertEquals(true, BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betObject.id,UserInfo.getUserId()),BET_OWNER_OR_MANAGER);
         //create team member with manager role
         Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator'];
         User testUser = new User(Alias = 'newBet', Email='nebetTestUSr@testorg.com',
@@ -47,7 +49,7 @@ private class BET_SuggestedMemberServiceTest {
         
         System.runAs(testUser){
             //check if before manager creation method return false
-            system.assertEquals(false, BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betObject.id,UserInfo.getUserId()));
+            system.assertEquals(false, BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betObject.id,UserInfo.getUserId()),'User should not be owner or manager of a BET');
             uw_BET_Team_Member__c memberRequestToInsert = new uw_BET_Team_Member__c();
             memberRequestToInsert.BETEnabled__c = true;
             memberRequestToInsert.BET__c = betObject.id;
@@ -57,12 +59,12 @@ private class BET_SuggestedMemberServiceTest {
             memberRequestToInsert.StudioEnabled__c = true;
             memberRequestToInsert.Team_Member__c = UserInfo.getUserId();
             insert memberRequestToInsert;
-            system.assertEquals(true, BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betObject.id,UserInfo.getUserId()));
+            system.assertEquals(true, BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betObject.id,UserInfo.getUserId()),BET_OWNER_OR_MANAGER);
         }
         //check if bet no longer exist
         Id betId = betObject.id;
         delete betObject;
-        system.assertEquals(false, BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId,UserInfo.getUserId()));
+        system.assertEquals(false, BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId,UserInfo.getUserId()),'User should not be owner or manager of a BET');
         Test.stopTest();
     }
     
@@ -143,10 +145,10 @@ private class BET_SuggestedMemberServiceTest {
         Integer numberOfTeamMembersBeforeUpdate = [Select id FROM uw_BET_Team_Member__c where BET__c =:betObject.id].size();
         update betMembersToInsert;
         //check if tem members were added to db
-        system.assertEquals(betMembersToInsert.size(), [Select id FROM uw_BET_Team_Member__c where BET__c =:betObject.id].size() - numberOfTeamMembersBeforeUpdate);
+        system.assertEquals(betMembersToInsert.size(), [Select id FROM uw_BET_Team_Member__c where BET__c =:betObject.id].size() - numberOfTeamMembersBeforeUpdate,'Number of members should match');
         tmpMemberRequests = BET_SuggestedMemberService.removeMemberRequestDuplicatesWhileInsert(tmpMemberRequests);
         //such records are already approved so no recors should be added
-        system.assertEquals(0, tmpMemberRequests.size());
+        system.assertEquals(0, tmpMemberRequests.size(),'There should be no member requests');
         Test.stopTest();
     }
 }

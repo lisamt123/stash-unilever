@@ -78,13 +78,13 @@ private class BET_BETServiceTest {
         IPM_BETWrapper IPMProject = new IPM_BETWrapper(project);
         IPMProject.targetLaunchDate = date.today();
 
-        System.assert(betObject.Launch_Date__c == null);
+        System.assert(betObject.Launch_Date__c == null,'Launch Date should not be set');
         Test.startTest();
         BET_BETService.updateBet(betObject.id,IPMProject);
         Test.stopTest();
         betObject = [select Launch_Date__c from uw_BET__c where id=: betObject.id];
 
-        System.assertEquals(betObject.Launch_Date__c,date.today(),'Launch date should be set to today');
+        System.assertEquals(betObject.Launch_Date__c,date.today(),'Launch date should be set to ' + date.today());
     }
 
     @isTest static void getFirstReleaseDueDateTest(){

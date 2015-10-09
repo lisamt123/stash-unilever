@@ -1,7 +1,10 @@
-<apex:page controller="uw_CustomAssetUploadExtension" action="{!checkfeed}" showHeader="false">
-    <apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />    
+<apex:page controller="uw_CustomAssetUploadExtension" showHeader="false" action="{!checkfeed}" >
+
+    <apex:stylesheet value="{!$Resource.BET}/css/BETUploadAssetsStyles.css" />
+    <apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />
     <apex:includeScript value="{!$Resource.BETApp}/js/jquery-ui.js" />
-  <style>
+
+	<style>
     #ballsWaveG{
     position:relative;
     width:128px;
@@ -170,6 +173,7 @@
   </style>
 
   <script type="text/javascript">
+      jQuery.noConflict();
       var __sfdcSessionId = '{!GETSESSIONID()}';
       var uploadHelper = function() {
           //workaround for issue with Sarissa on IE (Sarrisa preventd sending blob)
@@ -396,6 +400,7 @@
   </script>
   
   <script> 
+    jQuery.noConflict();
     var saveInProgress = false;
 
     function saveForm(){
@@ -587,9 +592,11 @@
   #ballsWaveG {
     display: none;
   }
+  
   </style>
   <apex:outputPanel layout="block" id="maincontainer" rendered="{!displayForm}">
       <script>
+        jQuery.noConflict();
         jQuery( document ).ready(function() {
           saveInProgress = false;
           prepareForm();
@@ -622,52 +629,59 @@
         }
 
       </script>
+
+
       <apex:form >
+      
+        <apex:tabPanel switchType="client" id="FileTabPanel" selectedTab="name1" tabClass="activeTab" inactiveTabClass="inactiveTab">
+
+        <apex:tab label="{!$Label.BET_File_Upload}" name="name1" id="tabOne">
+        
         <input id="parentId" type="hidden" name="parentId" value="{!parentId}" />
         <apex:inputHidden value="{!runJsSuccess}" id="runJsSuccess"/>
         <apex:inputHidden value="{!isPresentationUploaded}" id="isPresentationUploaded"/>
         <apex:inputHidden value="{!message}" id="message"/>
-        <p>Please provide metadata and select file to upload.</p>
+        <p>{!$Label.BET_Asset_MetaData}</p>
         <br />
         <div id="fileNameArea">
           <apex:outputPanel >
             <input id="file-input" type="file" name="file"/>
             <div class="clear">&nbsp;</div>
-            <div class="elem-label"><apex:outputLabel >Asset Name</apex:outputLabel></div>
+            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Asset_Name}</apex:outputLabel></div>
             <div class="elem"><apex:inputField value="{!file.Name}" id="fileName" /></div>
           </apex:outputPanel>
           <div class="clear">&nbsp;</div>
         </div>
         <div id="fileSubFunctionArea" class="elementHidden">
           <apex:outputPanel >
-            <div class="elem-label"><apex:outputLabel >Sub Function</apex:outputLabel></div> 
+            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Sub_Function}</apex:outputLabel></div> 
             <div class="elem"><apex:inputField value="{!file.Sub_Function__c}" id="fileSubFunction"/></div>
           </apex:outputPanel>
         </div>
         <div id="fileAssetTypeArea" class="elementHidden">
           <apex:outputPanel >
-            <div class="elem-label"><apex:outputLabel >Type</apex:outputLabel></div> 
+            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Asset_Type}</apex:outputLabel></div> 
             <div class="elem"><apex:inputField value="{!file.Studio_Asset_Type__c}" id="fileAssetType"/></div>
           </apex:outputPanel>
           <div class="clear">&nbsp;</div>
         </div>       
         <div id="fileMediaChannelArea" class="elementHidden">
           <apex:outputPanel >
-            <div class="elem-label"><apex:outputLabel >Media Type</apex:outputLabel></div> 
+            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Asset_Media_Type}</apex:outputLabel></div> 
             <div class="elem"><apex:inputField value="{!file.Media_Type__c}" id="fileMediaChannel"/></div>
           </apex:outputPanel>
           <div class="clear">&nbsp;</div>
         </div>
         <div id="fileCountryArea" class="elementHidden">
           <apex:outputPanel >
-            <div class="elem-label"><apex:outputLabel >Country</apex:outputLabel></div> 
+            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Asset_Country}</apex:outputLabel></div> 
             <div class="elem"><apex:inputField value="{!file.Country__c}" id="fileCountry"/></div>
           </apex:outputPanel>
           <div class="clear">&nbsp;</div>
         </div>
         <div id="fileStatusArea">
           <apex:outputPanel rendered="{!hasModifyAccess}">
-            <div class="elem-label"><apex:outputLabel >Status</apex:outputLabel></div> 
+            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Asset_Status}</apex:outputLabel></div> 
             <div class="elem"><apex:inputField value="{!file.Status__c}" id="fileStatus" onchange="toogleExpectedAssetsComponent(this.value);"/></div>
             <div class="clear">&nbsp;</div>
           </apex:outputPanel>
@@ -683,14 +697,13 @@
         <br />        
         <p class="form-errors"></p> 
         <br />
-        <input type="button" value="Upload & save" onclick="saveForm();"/> 
+        <input type="button" value="{!$Label.BET_Upload_And_Save}" onclick="saveForm();"/> 
         <p class="process-status"></p> 
         <div id="ballsWaveG">
           <div id="ballsWaveG_1" class="ballsWaveG">
           </div>
           <div id="ballsWaveG_2" class="ballsWaveG">
-          </div>
-          <div id="ballsWaveG_3" class="ballsWaveG">
+                  <div id="ballsWaveG_3" class="ballsWaveG">
           </div>
           <div id="ballsWaveG_4" class="ballsWaveG">
           </div>
@@ -704,18 +717,29 @@
           </div>
         </div>
 
-        <apex:actionFunction id = "saveAndSaveExpected" action = "{!saveFileAndConnect}" 
-                             name = "methodOneInJavascript"
+        <apex:actionFunction id="saveAndSaveExpected" action="{!saveFileAndConnect}" 
+                             name="methodOneInJavascript"
                              oncomplete="saveExpAssetsOne();" reRender="maincontainer">
-          <apex:param name="firstParam" assignTo="{!feedid}" value = "" />
+          <apex:param name="firstParam" assignTo="{!feedid}" value="" />
         </apex:actionFunction> 
 
         <apex:pageMessages />
+  </div>
+        
+        </apex:tab>
+        
+          <apex:tab label="{!$Label.BET_Multi_File_Upload}" name="name2" id="tabTwo">
+            <iframe src="/apex/BET_MultiUploadAssets" style="width:100%;height:100%;border:none;"></iframe>
+          </apex:tab>
+        
+        </apex:tabPanel>
+        
       </apex:form>
-  </apex:outputPanel>
-  <apex:outputPanel rendered="{!displayForm == false}">
+      </apex:outputPanel>
+        <apex:outputPanel rendered="{!displayForm == false}">
     <br />
     <p>{!errorMessage}</p>
     <br />
   </apex:outputPanel>
+
 </apex:page>

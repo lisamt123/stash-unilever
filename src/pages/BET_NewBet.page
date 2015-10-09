@@ -4,39 +4,7 @@
 	<apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />    
 	<apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />    
 	<apex:stylesheet value="{!$Resource.BET}/css/BETNewBetStyles.css" />
-    
-	<style>
-
-		.question-icon, .question-icon-left {
-    		display: inline-block;
-    		width: 13px;
-    		height: 13px;
-    		margin-left: 5px;
-    		background: url({!$Resource.BETApp}/images/question-mark.png) center center/100% no-repeat;
-    		cursor: pointer;
-		}
-
-    .styled-select select {
-        background: transparent;
-        width: 268px;
-        padding: 5px;
-        font-size: 16px;
-        line-height: 1;
-        border: 0;
-        border-radius: 0;
-        height: 34px;
-        -webkit-appearance: none;
-    }
-
-    .styled-select {
-       width: 524px;
-       height: 35px;
-       overflow: hidden;
-       background: url({!$Resource.BET}/images/ddarrow_small.png) no-repeat right;
-       border: 1px solid #ccc;
-    }
-
-	</style>
+    <apex:stylesheet value="{!$Resource.BET}/css/BETQtip.css" />
 
 	<apex:form >
     	<apex:pageMessages escape="false"/>

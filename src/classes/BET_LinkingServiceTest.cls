@@ -11,7 +11,7 @@ private class BET_LinkingServiceTest {
 		Id ProjectId = BET_TestUtils.createIPMProject(IPM_PROJECT_NAME).id;
 		BET_LinkingService.setASLead(ProjectId, BetId);
 		bet = [select IPM_Project__c from uw_Bet__c where id=:BetId];
-		System.assertEquals(bet.IPM_Project__c,ProjectId);
+		System.assertEquals(bet.IPM_Project__c,ProjectId,'Project should become BET lead project');
 		Test.stopTest();
 	}
 	
@@ -31,8 +31,8 @@ private class BET_LinkingServiceTest {
 		BET_LinkingService.Follow(ProjectId, BetId, new List<Id>{testUser.id});
 		List<BET_Member_Request__c> relatedMemberRequests = [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c =: BetId];
 		List<BET_Follow_Request__c> followRequests = [select id from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: BetId];
-		System.assertEquals(relatedMemberRequests.size(),1);
-		System.assertEquals(followRequests.size(),1);	
+		System.assertEquals(relatedMemberRequests.size(),1,'There should be one member request');
+		System.assertEquals(followRequests.size(),1,'There hsould be one follow request created');	
 		Test.stopTest();
 	}
 
@@ -46,8 +46,8 @@ private class BET_LinkingServiceTest {
 		BET_LinkingService.Follow(ProjectId, BetId, new List<Id>{UserInfo.getUserId()});
 		List<BET_Member_Request__c> relatedMemberRequests = [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c =: BetId];
 		List<BET_Follow_Request__c> followRequests = [select id from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: BetId];
-		System.assertEquals(relatedMemberRequests.size(),0);
-		System.assertEquals(followRequests.size(),1);
+		System.assertEquals(relatedMemberRequests.size(),0,'There should be no member requests');
+		System.assertEquals(followRequests.size(),1,'There should be one follow request created');
 		Test.stopTest();
 	}
 
@@ -58,7 +58,7 @@ private class BET_LinkingServiceTest {
 			BET_LinkingService.Follow(ProjectId, null, new List<Id> {UserInfo.getUserId()});
 			throw new BET_CustomBETException('unit test');
 		}catch(BET_CustomBETException e){
-			System.assertEquals(e.getMessage(),Label.BET_FollowBetNotExistsMessage);
+			System.assertEquals(e.getMessage(),Label.BET_FollowBetNotExistsMessage,'Exception message should be equal to ' + Label.BET_FollowBetNotExistsMessage);
 		}
 		Test.stopTest();
 	}
@@ -74,7 +74,7 @@ private class BET_LinkingServiceTest {
 			BET_LinkingService.Follow(ProjectId, BetId, new List<Id> {UserInfo.getUserId()});
 			throw new BET_CustomBETException('unit test');
 		}catch(BET_CustomBETException e){
-			System.assertEquals(e.getMessage(),Label.BET_FollowBetArchivedMessage);
+			System.assertEquals(e.getMessage(),Label.BET_FollowBetArchivedMessage,'Exception message should be equal to ' + Label.BET_FollowBetArchivedMessage);
 		}
 		Test.stopTest();
 	}

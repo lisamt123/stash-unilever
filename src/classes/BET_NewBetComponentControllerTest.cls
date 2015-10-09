@@ -4,7 +4,7 @@ private class BET_NewBetComponentControllerTest {
 	@isTest static void cancelBETTest(){
 		Test.startTest();
 		BET_NewBetComponentController controller = new BET_NewBetComponentController();
-		System.assert(controller.cancelBET() != null);
+		System.assert(controller.cancelBET() != null,'Page reference should not be null');
 		Test.stopTest();
 	}
 
@@ -14,7 +14,7 @@ private class BET_NewBetComponentControllerTest {
 		uw_BET__c betObject = BET_TestUtils.getTestBet();
 		controller.bet = betObject;
 		controller.compData = new BET_CategoryComponentData(betObject);
-		System.assert(controller.saveBET() == null);
+		System.assert(controller.saveBET() == null,'Page reference should be null');
 		Test.stopTest();
 	}
 
@@ -24,7 +24,7 @@ private class BET_NewBetComponentControllerTest {
 		uw_BET__c betObject = BET_TestUtils.getTestBet();
 		controller.bet = betObject;
 		controller.compData = new BET_CategoryComponentData(betObject);
-		System.assert(controller.saveBETandAddMembers() == null);
+		System.assert(controller.saveBETandAddMembers() == null,'Page reference should be null');
 		Test.stopTest();
 	}
 
@@ -35,7 +35,7 @@ private class BET_NewBetComponentControllerTest {
 		controller.bet = betObject;
 		controller.compData = new BET_CategoryComponentData(betObject);
 		controller.proceedWithSave(true);
-		System.assert(controller.bet.Inoplan_Project__c != null);
+		System.assert(controller.bet.Inoplan_Project__c != null,'Inoplan Project should be set');
 		Test.stopTest();
 	}
 
@@ -46,7 +46,7 @@ private class BET_NewBetComponentControllerTest {
 		controller.compData = new BET_CategoryComponentData(BET_TestUtils.getTestBet());
 		controller.compData.categoryMigrated = false;
 		controller.bet = controller.moveComponentDataToBET(controller.bet,controller.compData);
-		System.assert(controller.bet.Inoplan_Project__c != null);
+		System.assert(controller.bet.Inoplan_Project__c != null,'Inoplan Project should be set');
 		Test.stopTest();
 	}
 	
@@ -57,7 +57,7 @@ private class BET_NewBetComponentControllerTest {
 		controller.compData = new BET_CategoryComponentData(betObject);
 		controller.compData.categoryMigrated = false;
 		List<String> errors = controller.validateBET(betObject);
-		System.assert(!errors.isEmpty());
+		System.assert(!errors.isEmpty(),'There should be validation errors');
 		Test.stopTest();
 	}
 
@@ -65,7 +65,7 @@ private class BET_NewBetComponentControllerTest {
 		Test.startTest();
 		BET_NewBetComponentController controller = new BET_NewBetComponentController();
 		List<ApexPages.Message> displayed = controller.displayErrors(new List<String>{'Something went wrong'});
-		System.assertEquals(displayed.size(),1);
+		System.assertEquals(displayed.size(),1,'Displayed errors list size must be 1');
 		Test.stopTest();
 	}
 	

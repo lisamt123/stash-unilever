@@ -10,7 +10,7 @@ private class BET_LinkingServiceHelperTest {
 		BET_LinkingServiceHelper.createMemberRequestForNewPL(newPL,bet,newProject);
 		Test.stopTest();
 		BET_Member_Request__c request = [select id , status__c from BET_Member_Request__c where Brand_Experience_Toolkit__c = : bet.id];
-		System.assertEquals(request.Status__c,'Approved');
+		System.assertEquals(request.Status__c,'Approved','Request should be approved');
 	}
 
 	@isTest static void removeOldPLFromMembersTest() {
@@ -29,7 +29,7 @@ private class BET_LinkingServiceHelperTest {
 		BET_LinkingServiceCleaner.removeOldPLFromMembers(UserInfo.getUserId(),bet,BET_TestUtils.createIPMProject('Unit Test Project').id);
 		Test.stopTest();
 		members = [select id from uw_BET_Team_Member__c where BET__c =: bet.id and Team_Member__c =: UserInfo.getUserId()];
-		System.assert(members.isEmpty());
+		System.assert(members.isEmpty(),'There should be no members for given BET');
 	}
 	
 	@isTest static void removeOldBetOwnerFromMembersTest(){
@@ -41,7 +41,7 @@ private class BET_LinkingServiceHelperTest {
 		BET_LinkingServiceCleaner.removeOldBetOwnerFromMembers(UserInfo.getUserId(),bet);
 		Test.stopTest();
 		List<uw_BET_Team_Member__c> members = [select id from uw_BET_Team_Member__c where BET__c =: bet.id and Team_Member__c =: UserInfo.getUserId()];
-		System.assert(members.isEmpty());
+		System.assert(members.isEmpty(),'There should be no members for given BET');
 	}
 
 	@isTest static void setNewLeadProjectAndOwnerTest(){
@@ -52,7 +52,7 @@ private class BET_LinkingServiceHelperTest {
 		Test.startTest();
 		uw_Bet__c modifiedBet = BET_LinkingServiceHelper.setNewLeadProjectAndOwner(bet,project,oldProject);
 		Test.stopTest();
-		System.assertEquals(modifiedBet.IPM_Project__c,project.ProjectId);
+		System.assertEquals(modifiedBet.IPM_Project__c,project.ProjectId,'Bet should have new lead project set');
 	}
 
 	@isTest static void archiveAndUnLeadBetTest(){
@@ -62,8 +62,8 @@ private class BET_LinkingServiceHelperTest {
 		BET_LinkingServiceHelper.archiveAndUnLeadBet(bet);
 		Test.stopTest();
 		uw_Bet__c modifiedBet = [select Is_Archived__c,IPM_Project__c from uw_Bet__c where id=:bet.id];
-		System.assert(modifiedBet.Is_Archived__c);
-		System.assert(modifiedBet.IPM_Project__c == null);
+		System.assert(modifiedBet.Is_Archived__c,'Bet should be archived');
+		System.assert(modifiedBet.IPM_Project__c == null,'Bet should have no lead project set');
 	}
 
 	@isTest static void getOtherFollowingProjectTest(){
@@ -81,7 +81,7 @@ private class BET_LinkingServiceHelperTest {
 		Test.startTest();
 		IPM_BETWrapper projectwrap= BET_LinkingServiceHelper.getOtherFollowingProject(ProjectId,BetId);
 		Test.stopTest();
-		System.assertEquals(projectwrap.ProjectId,projectfollowing.id);
+		System.assertEquals(projectwrap.ProjectId,projectfollowing.id,'Following project id must match');
 	}
 	
 }

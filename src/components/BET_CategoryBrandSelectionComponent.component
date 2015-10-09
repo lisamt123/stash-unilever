@@ -1,6 +1,8 @@
 <apex:component controller="BET_CategoryBrandSelectionController">
 
-	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js" />
+	<apex:includeScript value="{!$Resource.BETApp}/js/jquery-ui.js" />
+    <apex:stylesheet value="{!$Resource.BET}/css/BETQtip.css" />
+    
 	<apex:attribute name="betobj" assignTo="{!bet}" 
                     description="Identifier of an related BET"
                     type="uw_BET__c" required="true"/>
@@ -27,17 +29,6 @@
 
     </script>
 
-    <style>
-        .question-icon, .question-icon-left {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            margin-left: 5px;
-            background: url({!$Resource.BETApp}/images/question-mark.png) center center/100% no-repeat;
-            cursor: pointer;
-        }
-    </style>
-
     <div class="form-item">
         <div class="item-label">
             <apex:outputLabel >
@@ -46,12 +37,14 @@
         </div>
         <div class="item-input">
             <apex:actionRegion >
+            <div class="styled-select">
                 <apex:selectList id="scgid" value="{!selectedCategoryGroup}" size="1" multiselect="false">
                     <apex:actionSupport event="onchange" onsubmit="showProcessing('catspinner')" 
                                         oncomplete="hideProcessing('catspinner')" action="{!onCategoryGroupChange}" 
                                         reRender="categoryPanel,projectsPanels,brandPositioningPanel,brandPanel"/>
                     <apex:selectOptions value="{!categoryGroups}" />
                 </apex:selectList>
+            </div>
                 <script>
                     document.getElementById('{!$Component.scgid}').disabled = {!compData.leadIPM}
                 </script>
@@ -68,12 +61,14 @@
             </div>
             <div class="item-input">
                 <apex:actionRegion >
+                <div class="styled-select">
                     <apex:selectList id="scid" value="{!selectedCategory}" size="1" multiselect="false">
                         <apex:actionSupport event="onchange" onsubmit="showProcessing('posspinner')" 
                                             oncomplete="hideProcessing('posspinner')" action="{!onCategoryChange}" 
                                             reRender="projectsPanels,fabricConditioners,brandPositioningPanel"/>
                         <apex:selectOptions value="{!categories}" />
                     </apex:selectList>
+                </div>
                     <script>
                         document.getElementById('{!$Component.scid}').disabled = {!compData.leadIPM}
                     </script>
@@ -116,6 +111,7 @@
             </div>
             <div class="item-input">
                 <apex:actionRegion >
+                <div class="styled-select">
                     <apex:selectList id="spbid" value="{!selectedBrandPositioning}" size="1" multiselect="false">
                         <apex:actionSupport event="onchange" onsubmit="showProcessing('brandspinner')" 
                                             oncomplete="hideProcessing('brandspinner')" 
@@ -123,6 +119,7 @@
                                             reRender="brandPanel"/>
                         <apex:selectOptions value="{!brandPositionings}" />
                     </apex:selectList>
+                </div>
                     <script>
                         document.getElementById('{!$Component.spbid}').disabled = {!compData.leadIPM}
                     </script>
@@ -144,10 +141,12 @@
             </div>
             <div class="item-input">
                 <apex:actionRegion >
+                <div class="styled-select">
                     <apex:selectList value="{!selectedBrand}" size="1" multiselect="false">
                         <apex:actionSupport event="onchange" action="{!onBrandChange}" reRender="projectsPanels"/>
                         <apex:selectOptions value="{!brands}" />
                     </apex:selectList>
+                </div>
                 </apex:actionRegion>
             </div>
             <div id="brandspinner" style="display:none;" class="spinnerclass">

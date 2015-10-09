@@ -93,7 +93,7 @@ public with sharing class BET_BETWrapper {
         Returns: 
         Throws: -
     *************************************************************/
-    public void betToWrapper(uw_BET__c tmpBet){
+    private void betToWrapper(uw_BET__c tmpBet){
         system.debug('Entring betToWrapper with params'+ tmpBet);
         
         this.BetId                  = tmpBet.id;
@@ -120,7 +120,7 @@ public with sharing class BET_BETWrapper {
         Returns: 
         Throws: -
     *************************************************************/
-    public void betSearchItemToBetWrapper(uw_BETWrapper.BetSearchItem bsi){
+    private void betSearchItemToBetWrapper(uw_BETWrapper.BetSearchItem bsi){
         system.debug('Entring betSearchItemToBetWrapper with params'+ bsi);
         
         this.BetId                  = bsi.betId;

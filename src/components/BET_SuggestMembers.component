@@ -17,6 +17,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
     <apex:includeScript value="{!$Resource.BET}/scripts/blockUI.js" />
     <apex:includeScript value="{!$Resource.BET}/scripts/bootstrap.min.js" />
     <apex:includeScript value="{!$Resource.BET}/scripts/SuggestedMembers.js" />
+    <apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />    
     
     <apex:stylesheet value="{!$Resource.BET}/css/bootstrap.min.css"/>
     <!--<apex:stylesheet value="{!$Resource.BETSuggestedMembers}/css/betSuggestedMembers.css"/>   -->
@@ -43,20 +44,17 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                         required="false" default="true"/>
     
 
-    <style>
-
-        .question-icon, .question-icon-left {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            margin-left: 5px;
-            background: url({!$Resource.BETApp}/images/question-mark.png) center center/100% no-repeat;
-            cursor: pointer;
-        }
-
-    </style>
+	<script>
+        jQuery.noConflict();
+        jQuery( document ).ready(function( $ ) {
+            jQuery('.question-icon[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' } });
+            jQuery('.question-icon-left[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' },position: { my: 'bottom right', at: 'top left' } });
+         }
+        );
+	</script>
 
 
+    <apex:stylesheet value="{!$Resource.BET}/css/BETQtip.css" />
 
     <apex:actionFunction name="addExtMembers" action="{!addExternalMember}" reRender="suggestedMembersContainer"></apex:actionFunction>
     <apex:actionFunction name="addExtMembersBet" action="{!addExternalMember}" reRender="suggestedMembersContainerbet"></apex:actionFunction>
@@ -87,8 +85,8 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
     </p>
 
     <div style="{!IF(NOT(usedInPopup),'','display:none;')}">
-        <div class="suggestMemberHeader">Add Members</div>
-        <div class="suggestMemberSubHeader">You can manage, add or remove members at any time.</div>
+        <div class="suggestMemberHeader">{!$Label.BET_Add_Members}</div>
+        <div class="suggestMemberSubHeader">{!$Label.BET_Manage_Members}</div>
         <hr class="suggestMemberHeaderLine" width="94%"/>
     </div>
 
@@ -98,7 +96,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
         <tr>
             <td>
 
-                <div class="toolkitOwner">Toolkit Owner</div>
+                <div class="toolkitOwner">{!$Label.BET_Toolkit_Owner}</div>
                 <hr class="innerLine" width="96%"/>
 
                 <div>
@@ -108,15 +106,13 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                     </div>
                 </div>
 
-                <div class="toolkitOwner">BET members</div>
+                <div class="toolkitOwner">{!$Label.BET_BET_Members}</div>
                 <hr class="innerLine" width="96%"/>
 
                 <apex:outputPanel id="suggestedMembersContainerbet" >
 
                 <div class="note">
-                    Please note : All added members will have 'member level' access to the toolkit. <br/>
-                    This means that they will not have editing rights. You can manage member <br/> 
-                    persmissions from the toolkit settings one it has been created. 
+                	<apex:outputText escape="false" value="{!$Label.BET_Note}"/> 
                 </div>
 
                 <div class="memberAdd">
@@ -147,12 +143,12 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
 
                 <div data-toggle="modal" data-target="#myModal" onclick="var $ = jQuery.noConflict();addOtherMembers();" 
                         class="addInternalMemberClass">
-                        Add toolkit member
+                        {!$Label.BET_Add_Toolkit_Member}
                 </div>
 
                 </div>
 
-                <div class="toolkitOwner">External Agency Users</div>
+                <div class="toolkitOwner">{!$Label.BET_External_Agency_Users}</div>
                 <hr class="innerLine" width="96%"/>
 
                 <div class="externalMemberAdd">
@@ -180,13 +176,13 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                 </apex:repeat>    
 
                 <div class="smtooltip">
-                    Add External Agency User
-                    <apex:outputPanel layout="inline" styleClass="question-icon" html-data-tooltip="something" />
+                    {!$Label.BET_Add_External_Agency_User}
+                    <apex:outputPanel layout="inline" styleClass="question-icon" html-data-tooltip="{!$Label.BET_Add_External_Agency_User_Tooltip}" />
                 </div>
 
                 <apex:inputText value="{!externalMemberEmailBet}" styleClass="addExternalMembersField" />
                 <div class="addExternalMembersBtn" onclick="addExtMembersBet();">
-                    Add Member
+                    {!$Label.BET_Add_Member}
                 </div>
 
                 </div>
@@ -195,7 +191,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
 
                 <div class="membersbtns">
                     <div  class="addMembersBtn" onclick="addMembers();">
-                        Save and Finish
+                        {!$Label.BET_Save_And_Finish}
                     </div>
                 </div>
 

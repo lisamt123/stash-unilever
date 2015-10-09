@@ -67,7 +67,7 @@ public class BET_MasterDataServiceTest {
 
 	@isTest static void getAllAvailableCategoriesTest(){
 		Test.startTest();
-		System.assertEquals(BET_MasterDataService.getAllAvailableCategories().size(),0);
+		System.assertEquals(BET_MasterDataService.getAllAvailableCategories().size(),0,'There should be no available category');
 		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
 		BET_TestUtils.createCategory(categoryGroup);
 		System.assertEquals(BET_MasterDataService.getAllAvailableCategories().size(),1,'There should be one available category');

@@ -469,6 +469,22 @@ Are you sure you wish to proceed?</value>
         <value>New</value>
     </labels>
     <labels>
+        <fullName>BET_Add_External_Agency_User</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Add_External_Agency_User</shortDescription>
+        <value>Add External Agency User</value>
+    </labels>
+    <labels>
+        <fullName>BET_Add_External_Agency_User_Tooltip</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Add_External_Agency_User_Tooltip</shortDescription>
+        <value>Tooltip</value>
+    </labels>
+    <labels>
         <fullName>BET_Add_Internal_User</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -482,7 +498,23 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Add_Member</shortDescription>
-        <value>Add Member</value>
+        <value>Add member</value>
+    </labels>
+    <labels>
+        <fullName>BET_Add_Members</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Add_Members</shortDescription>
+        <value>Add Members</value>
+    </labels>
+    <labels>
+        <fullName>BET_Add_Toolkit_Member</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Add_Toolkit_Member</shortDescription>
+        <value>Add toolkit member</value>
     </labels>
     <labels>
         <fullName>BET_Approve</fullName>
@@ -498,7 +530,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_ApproveProjectsTabName</shortDescription>
-        <value>Approve projects</value>
+        <value>Approve Projects</value>
     </labels>
     <labels>
         <fullName>BET_Approve_members</fullName>
@@ -547,6 +579,62 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_AssetType</shortDescription>
         <value>Asset Type</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Country</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Media_Type</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Media_Type</shortDescription>
+        <value>Media Type</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_MetaData</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_MetaData</shortDescription>
+        <value>Please provide metadata and select file to upload.</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Name</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Name</shortDescription>
+        <value>Asset Name</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Status</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Status</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Type</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Type</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>BET_BET_Members</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BET_Members</shortDescription>
+        <value>BET members</value>
     </labels>
     <labels>
         <fullName>BET_BetBrandPositionMandatory</fullName>
@@ -685,6 +773,22 @@ Are you sure you wish to proceed?</value>
         <value>External Agency User</value>
     </labels>
     <labels>
+        <fullName>BET_External_Agency_Users</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_External_Agency_Users</shortDescription>
+        <value>External Agency Users</value>
+    </labels>
+    <labels>
+        <fullName>BET_File_Upload</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_File_Upload</shortDescription>
+        <value>File Upload</value>
+    </labels>
+    <labels>
         <fullName>BET_FollowBetArchivedMessage</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -730,7 +834,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_IPMProject</shortDescription>
-        <value>IPM project</value>
+        <value>IPM Project</value>
     </labels>
     <labels>
         <fullName>BET_InoplanProjectMandatory</fullName>
@@ -794,7 +898,9 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_LinkedProjectHeaderTwo</shortDescription>
-        <value>To change the lead project please contact a system administrator. To unlink an IPM project, please do so from IPM.</value>
+        <value>&lt;div&gt;To change the lead project please 
+&lt;a style=&quot;color:#E6007E;&quot; href=&quot;mailto:cb4l@unilever.com?subject=BET system help&quot;&gt;contact a system administrator.&lt;/a&gt;&lt;/div&gt;
+&lt;div&gt;To unlink an IPM project, please do so from IPM.&lt;/div&gt;</value>
     </labels>
     <labels>
         <fullName>BET_LinkedProjectsTabName</fullName>
@@ -803,6 +909,14 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_LinkedProjectsTabName</shortDescription>
         <value>Linked Projects</value>
+    </labels>
+    <labels>
+        <fullName>BET_Manage_Members</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Manage_Members</shortDescription>
+        <value>You can manage, add or remove members at any time.</value>
     </labels>
     <labels>
         <fullName>BET_MandatoryStar</fullName>
@@ -819,6 +933,14 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_MarkedFieldsMandatory</shortDescription>
         <value>Marked fields are mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_Multi_File_Upload</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Multi_File_Upload</shortDescription>
+        <value>Multi File Upload</value>
     </labels>
     <labels>
         <fullName>BET_MultipleRequestNotification</fullName>
@@ -889,7 +1011,17 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_NoLinkedProjectsAvailable</shortDescription>
-        <value>There are no projects currently linked to this BET. Please link your BET to a project from IPM Navigator.</value>
+        <value>&lt;div&gt;There are no projects currently linked to this BET.&lt;/div&gt;
+&lt;div&gt;Please link your BET to a project from IPM Navigator.&lt;/div&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BET_Note</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Note</shortDescription>
+        <value>Please note : All added members will have &apos;member level&apos; access to the toolkit. &lt;br/&gt;
+This means that they will not have editing rights. You can manage member &lt;br/&gt; persmissions from the toolkit settings one it has been created.</value>
     </labels>
     <labels>
         <fullName>BET_Owner</fullName>
@@ -921,7 +1053,8 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_ProjectApproveRemainder</shortDescription>
-        <value>Please action this request by {0}. After this time, the link will be automatically approved.</value>
+        <value>&lt;div&gt;Please action this request by {0}.&lt;/div&gt;
+&lt;div&gt;After this time, the link will be automatically approved.&lt;/div&gt;</value>
     </labels>
     <labels>
         <fullName>BET_ProjectLead</fullName>
@@ -948,6 +1081,14 @@ Are you sure you wish to proceed?</value>
         <value>Save</value>
     </labels>
     <labels>
+        <fullName>BET_Save_And_Finish</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Save_And_Finish</shortDescription>
+        <value>Save &amp; Finish</value>
+    </labels>
+    <labels>
         <fullName>BET_Saving</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -970,6 +1111,14 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_SkipForNow</shortDescription>
         <value>Skip for now</value>
+    </labels>
+    <labels>
+        <fullName>BET_Sub_Function</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Sub_Function</shortDescription>
+        <value>Sub Function</value>
     </labels>
     <labels>
         <fullName>BET_SuggestedMemberAddOtherMember</fullName>
@@ -1079,6 +1228,14 @@ Are you sure you wish to proceed?</value>
         <value>Title</value>
     </labels>
     <labels>
+        <fullName>BET_Toolkit_Owner</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Toolkit_Owner</shortDescription>
+        <value>Toolkit Owner</value>
+    </labels>
+    <labels>
         <fullName>BET_UnArchiveBET</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -1158,6 +1315,14 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_UpdateBetAddMembers</shortDescription>
         <value>Update BET &amp; add members</value>
+    </labels>
+    <labels>
+        <fullName>BET_Upload_And_Save</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Upload_And_Save</shortDescription>
+        <value>Upload &amp; save</value>
     </labels>
     <labels>
         <fullName>BetMemberRequestInvailidProjectIDError</fullName>
@@ -2111,6 +2276,13 @@ Are you sure you wish to proceed?</value>
         <value>I Accept</value>
     </labels>
     <labels>
+        <fullName>IPM_BETApprovalLinkProcessing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BETApprovalLinkProcessing</shortDescription>
+        <value>Error in processing IPM BET link approval/rejection.</value>
+    </labels>
+    <labels>
         <fullName>IPM_BETIdNullMsg</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -2165,6 +2337,13 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>IPM Description Restricted</shortDescription>
         <value>Description Restricted to 255 Characters</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ErrorRetrievingCategories</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ErrorRetrievingCategories</shortDescription>
+        <value>Error in retrieving Categories.</value>
     </labels>
     <labels>
         <fullName>IPM_External_Char_Limit</fullName>
@@ -2333,6 +2512,13 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>IPM Technical Char Limit</shortDescription>
         <value>4860</value>
+    </labels>
+    <labels>
+        <fullName>IPM_UserAccessRetrivalMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_UserAccessRetrivalMsg</shortDescription>
+        <value>Error in retriving User access.</value>
     </labels>
     <labels>
         <fullName>IPM_backto_intermediate</fullName>

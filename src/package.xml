@@ -2248,6 +2248,26 @@
         <members>uw_BET_standardchatterlimitmessage</members>
         <members>uw_Inoplan_error_duplicateValue</members>
         <members>uw_Inoplan_error_nullvalue</members>
+		<members>BET_Add_Members</members>
+		<members>BET_Manage_Members</members>
+		<members>BET_Toolkit_Owner</members>
+		<members>BET_BET_Members</members>
+		<members>BET_Note</members>
+		<members>BET_Add_Toolkit_Member</members>
+		<members>BET_External_Agency_Users</members>
+		<members>BET_Add_External_Agency_User</members>
+		<members>BET_Save_And_Finish</members>
+		<members>BET_Add_External_Agency_User_Tooltip</members>
+		<members>BET_Multi_File_Upload</members>
+		<members>BET_File_Upload</members>
+		<members>BET_Upload_And_Save</members>
+		<members>BET_Asset_Name</members>
+		<members>BET_Sub_Function</members>
+		<members>BET_Asset_Type</members>
+		<members>BET_Asset_Media_Type</members>
+		<members>BET_Asset_Country</members>
+		<members>BET_Asset_Status</members>
+		<members>BET_Asset_MetaData</members>
         <name>CustomLabel</name>
     </types>
     <types>
