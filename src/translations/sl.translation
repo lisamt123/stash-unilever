@@ -9,6 +9,10 @@
         <name>Agency_Roster_Management</name>
     </customApplications>
     <customApplications>
+        <label><!-- Agent App --></label>
+        <name>Agent_App</name>
+    </customApplications>
+    <customApplications>
         <label><!-- Brand Centre Management --></label>
         <name>Brand_Centre_Management</name>
     </customApplications>
@@ -1749,6 +1753,10 @@
         <name>FA_SG_Wall_Room</name>
     </customLabels>
     <customLabels>
+        <label><!-- GoogleAPIKey --></label>
+        <name>GoogleAPIKey</name>
+    </customLabels>
+    <customLabels>
         <label><!-- HideTermsOfUseLabel --></label>
         <name>HideTermsOfUseLabel</name>
     </customLabels>
@@ -2277,6 +2285,10 @@
         <name>Agency_List</name>
     </customTabs>
     <customTabs>
+        <label><!-- Agent App --></label>
+        <name>Agent_App</name>
+    </customTabs>
+    <customTabs>
         <label><!-- Assign Category --></label>
         <name>Assign_Category</name>
     </customTabs>
@@ -2381,6 +2393,10 @@
         <name>kof_Stakeholders</name>
     </customTabs>
     <quickActions>
+        <label><!-- Approve --></label>
+        <name>Approve</name>
+    </quickActions>
+    <quickActions>
         <label><!-- LogACall --></label>
         <name>LogACall</name>
     </quickActions>
@@ -2423,6 +2439,14 @@
     <quickActions>
         <label><!-- BET File Upload --></label>
         <name>Publisher_Action</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reassign --></label>
+        <name>Reassign</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reject --></label>
+        <name>Reject</name>
     </quickActions>
     <reportTypes>
         <description><!-- Agency Estimates --></description>
