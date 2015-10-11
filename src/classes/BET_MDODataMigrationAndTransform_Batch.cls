@@ -23,7 +23,7 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
 
 	global BET_MDODataMigrationAndTransform_Batch() {
 		for(MDO_Category__c categoryGroup : (List<MDO_Category__c>)BET_MasterDataService.getBETCategoryGroups()){
-			categoryGroups.put(categoryGroup.name, categoryGroup);
+			categoryGroups.put(categoryGroup.name.toUpperCase(), categoryGroup);
 		}
 
 		for(MDO_Category__c category : BET_MasterDataService.getAllAvailableCategories()){
@@ -35,10 +35,10 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
 		}
 
 		for(MDO_Brand__c brand : [select id,name from MDO_Brand__c where status__c = 'Active']){
-			if(brands.keySet().contains(brand.name)){
-				brands.get(brand.name).add(brand);
+			if(brands.keySet().contains(brand.name.toUpperCase())){
+				brands.get(brand.name.toUpperCase()).add(brand);
 			} else {
-				brands.put(brand.name, new List<MDO_Brand__c> {brand});
+				brands.put(brand.name.toUpperCase(), new List<MDO_Brand__c> {brand});
 			}
 		}
 	}
@@ -60,11 +60,11 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
 		List<uw_Bet__c> betsForUpdate = new List<uw_Bet__c>();
 		List<uw_Bet__c> betsForErrors = new List<uw_Bet__c>();
 		for(uw_Bet__c bet : scope) {
-			System.debug('Step 1 : Retriving category group by name : ' +  bet.Category__r.name);
-			MDO_Category__c categoryGroup = categoryGroups.get(bet.Category__r.name);
+			System.debug('Step 1 : Retriving category group by name : ' +  bet.Category__r.name.toUpperCase());
+			MDO_Category__c categoryGroup = categoryGroups.get(bet.Category__r.name.toUpperCase());
 			System.debug('Step 2 : Retrieved category group : ' + categoryGroup);
-			System.debug('Step 3 : Retriving category brand by name : ' +  bet.uw_Brand__r.name);
-			List<MDO_Brand__c> brandsobj = brands.get(bet.uw_Brand__r.name);
+			System.debug('Step 3 : Retriving category brand by name : ' +  bet.uw_Brand__r.name.toUpperCase());
+			List<MDO_Brand__c> brandsobj = brands.get(bet.uw_Brand__r.name.toUpperCase());
 			System.debug('Step 4 : Retrieved brand : ' + brandsobj);
 			bet.Category_Group__c = categoryGroup == null ? null : categoryGroup.id;
 			if(categoryGroup != null) {
@@ -99,7 +99,7 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
 		System.debug('Step 5 : Retriving category by category group : ' +  categoryGroup.id);
 		for(MDO_Category__c category : categoryGroupRelatedCategories.get(categoryGroup.id)){
 			System.debug('Step 6 : Comapring  : ' + category.name + ' with ' + bet.Sub_Category__r.name);
-			if(category.name == bet.Sub_Category__r.name){
+			if(category.name.toUpperCase() == bet.Sub_Category__r.name.toUpperCase()){
 				System.debug('Step 7 : Setting category to  : ' + category.id);
 				categoryId = category.id;
 				break;
