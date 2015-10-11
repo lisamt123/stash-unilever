@@ -99,7 +99,7 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
 		System.debug('Step 5 : Retriving category by category group : ' +  categoryGroup.id);
 		for(MDO_Category__c category : categoryGroupRelatedCategories.get(categoryGroup.id)){
 			System.debug('Step 6 : Comapring  : ' + category.name + ' with ' + bet.Sub_Category__r.name);
-			if(category.name.toUpperCase() == bet.Sub_Category__r.name.toUpperCase()){
+			if(category.name != null && bet.Sub_Category__r.name != null && category.name.toUpperCase() == bet.Sub_Category__r.name.toUpperCase()){
 				System.debug('Step 7 : Setting category to  : ' + category.id);
 				categoryId = category.id;
 				break;
