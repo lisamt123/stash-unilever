@@ -12,8 +12,6 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   Istvan Szegedi           17/09/2014     INITIAL DEVELOPMENT
 **********************************************************************/
 
-
-/* with sharing not needed : this is scheduler class */
 global class BET_SCH_BatchDeniedMemberRequestDelete implements Schedulable {
     //public static String cron_expression = '0 0 0 * * ?';  // Every day, midnight 
 
