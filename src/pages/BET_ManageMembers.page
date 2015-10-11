@@ -10,9 +10,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 <apex:page standardController="BET_Member_Request__c" showHeader="false" extensions="BET_ManageMembersController"  id="memberpage">
 
   <apex:stylesheet value="{!$Resource.BET}/css/BETManageMembersStyles.css" />
+  <apex:includeScript value="{!$Resource.BET}/scripts/BETManageMembersJS.js" />
 
   <script>
-
     function updateRoleOnMember(memId, role, idx){
       Visualforce.remoting.Manager.invokeAction(
         '{!$RemoteAction.BET_ManageMembersController.updateMemberRole}',
@@ -25,56 +25,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
         {escape: true}
       );
     }
-
-    function selectOrDeselectkAllBrowse(){
-      var ch;
-      var a = document.querySelectorAll(".browseMembersheaderStyle input[type=checkbox]");
-      for (var i = 0; i < a.length; i++){
-         ch = a[i].checked;
-      }
-      var aa = document.querySelectorAll(".memberRow input[type=checkbox]");
-      for (var i = 0; i < aa.length; i++){
-         aa[i].checked = ch;
-      }
-    }
-
-    function selectOrDeselectkAll(){
-      var ch;
-      var a = document.querySelectorAll(".approveMembersheaderStyle input[type=checkbox]");
-      for (var i = 0; i < a.length; i++){
-         ch = a[i].checked;
-      }
-      var aa = document.querySelectorAll(".memberRequestRow input[type=checkbox]");
-      for (var i = 0; i < aa.length; i++){
-         aa[i].checked = ch;
-      }
-    }
-
   </script>
-
-  <style>
-       .styled-select select {
-           background: transparent;
-           width: 241px;
-           padding: 5px;
-           font-size: 16px;
-           line-height: 1;
-           border: 0;
-           border-radius: 0;
-           height: 34px;
-           -webkit-appearance: none;
-       }
-
-       .styled-select {
-           width: 224px;
-           height: 35px;
-           overflow: hidden;
-           background: url({!$Resource.BET}/images/ddarrow.png) no-repeat right;
-           border: 1px solid #ccc;
-       }
-
-  </style>
-
 
   <apex:form id="form">
   <apex:outputpanel id="showpage">
