@@ -22086,4 +22086,8 @@
         <enabled>true</enabled>
         <name>PasswordNeverExpires</name>
     </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>SelectFilesFromSalesforce</name>
+    </userPermissions>
 </Profile>
