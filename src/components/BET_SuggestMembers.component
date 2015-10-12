@@ -146,7 +146,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
 
                 </div>
 
-                <div class="toolkitOwner">{!$Label.BET_External_Agency_Users}</div>
+                <div class="toolkitEAU">{!$Label.BET_External_Agency_Users}</div>
                 <hr class="innerLine" width="96%"/>
 
                 <div class="externalMemberAdd">

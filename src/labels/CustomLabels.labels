@@ -498,7 +498,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Add_Member</shortDescription>
-        <value>Add member</value>
+        <value>Add Member</value>
     </labels>
     <labels>
         <fullName>BET_Add_Members</fullName>
@@ -514,7 +514,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Add_Toolkit_Member</shortDescription>
-        <value>Add toolkit member</value>
+        <value>Add Toolkit Member</value>
     </labels>
     <labels>
         <fullName>BET_Approve</fullName>
@@ -530,7 +530,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_ApproveProjectsTabName</shortDescription>
-        <value>Approve Projects</value>
+        <value>Approve IPM Links</value>
     </labels>
     <labels>
         <fullName>BET_Approve_members</fullName>
@@ -538,7 +538,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Approve_members</shortDescription>
-        <value>Approve Members</value>
+        <value>Members to Approve</value>
     </labels>
     <labels>
         <fullName>BET_Approve_selected</fullName>
@@ -634,7 +634,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_BET_Members</shortDescription>
-        <value>BET members</value>
+        <value>BET Members</value>
     </labels>
     <labels>
         <fullName>BET_BetBrandPositionMandatory</fullName>
@@ -667,6 +667,14 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_BetNameMandatory</shortDescription>
         <value>Bet Name is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_BetOwnerMandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BetOwnerMandatory</shortDescription>
+        <value>Owner field is mandatory</value>
     </labels>
     <labels>
         <fullName>BET_BrandCategoryNotRelated</fullName>
@@ -916,7 +924,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Manage_Members</shortDescription>
-        <value>You can manage, add or remove members at any time.</value>
+        <value>You can manage, add or remove members at any time once the BET has been created</value>
     </labels>
     <labels>
         <fullName>BET_MandatoryStar</fullName>
@@ -1021,7 +1029,7 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_Note</shortDescription>
         <value>Please note : All added members will have &apos;member level&apos; access to the toolkit. &lt;br/&gt;
-This means that they will not have editing rights. You can manage member &lt;br/&gt; persmissions from the toolkit settings one it has been created.</value>
+This means that they will not have editing rights. You can manage member &lt;br/&gt; permissions from the toolkit settings once it has been created.</value>
     </labels>
     <labels>
         <fullName>BET_Owner</fullName>
