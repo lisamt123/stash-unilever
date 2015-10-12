@@ -10,11 +10,12 @@ History
 -------
 VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   Istvan Szegedi          17/09/2014      INITIAL DEVELOPMENT
+1.1 -   Michal Bluj             30/09/2015      SONAR ISSUES
 ***********************************************************************/
 
 @isTest
 public class BET_SCH_BatchDeniedMemberRequestDel_Test {     
-    public static string CRON_EXP = '0 0 0 15 3 ? 2022';
+   //public static string CRON_EXP = '0 0 0 15 3 ? 2022'; commented due to sonar issue
 
   /*******************************************************************
     Purpose: Method to test scheduling Apex class for batch asset delete
@@ -47,7 +48,7 @@ public class BET_SCH_BatchDeniedMemberRequestDel_Test {
     
         // schedule the test job
         String jobId = System.schedule('Scheduled Job to Delete BET Denied Member Requests', 
-                                        CRON_EXP, new BET_SCH_BatchDeniedMemberRequestDelete());  
+                                        '0 0 0 15 3 ? 2022', new BET_SCH_BatchDeniedMemberRequestDelete());  
         // get the information from the CronTrigger API object
         CronTrigger ct = [SELECT Id, CronExpression, TimesTriggered, NextFireTime
                           FROM CronTrigger WHERE id =: jobId];
@@ -55,7 +56,7 @@ public class BET_SCH_BatchDeniedMemberRequestDel_Test {
         Test.stopTest();
         
            // Verify the expressions are the same
-        System.assertEquals(CRON_EXP,ct.CronExpression);
+        System.assertEquals('0 0 0 15 3 ? 2022',ct.CronExpression);
     
         // Verify the job has not run 
         System.assertEquals(0,ct.TimesTriggered);

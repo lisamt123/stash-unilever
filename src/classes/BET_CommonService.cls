@@ -16,9 +16,13 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 **********************************************************************/
 
 public without sharing class BET_CommonService {
+
     public static final String BET_REQUEST_ACCESS = 'BET_Request_Access';
     public static final String BET_REQUEST_ACCESS_ALREADY_PENDING = 'BET_Request_Access_Already_Pending';
     public static final String BET_REQUEST_ACCESS_OWNER = 'BET_Request_Access_Owner';
+
+    public static final String BET_HUB_ADMIN_PERM_SET = 'CB4L_HUB_Admin';
+    public static final String BET_OPERATION_ADMIN_PERM_SET = 'BET_Operation_Admin';
 
 
     public class BetException extends Exception {}
@@ -57,6 +61,17 @@ public without sharing class BET_CommonService {
         }
         return false;
     }
+
+
+/*****************************************************************************************
+    Purpose: Returns true or false. Gives info that user has BET Operation Admin permission set.
+    Parameters: None
+    Returns: Boolean
+    ******************************************************************************************/ 
+public static boolean isBETOperationAdmin(){
+   return hasPermissionSet(BET_OPERATION_ADMIN_PERM_SET);
+}
+
 /* T1-Begin*/
  /*****************************************************************************************
     Purpose: Returns true or false. Gives info that user has CB4L Hub admin permission set.
@@ -64,20 +79,27 @@ public without sharing class BET_CommonService {
     Returns: Boolean
     ******************************************************************************************/ 
 public static boolean isHubAdmin(){
- Id currentuser= UserInfo.getUserId();
- List<PermissionSet> ps=[select id,name from permissionset where id in (SELECT PermissionSetId FROM PermissionSetAssignment WHERE AssigneeId =: currentuser)];
-  if (ps!= null && ps.size() > 0)
-   {
-    for (PermissionSet permset: ps)
-     {
-      if(permset.name=='CB4L_HUB_Admin')
-      {
-       return true;
-      }
-     }
+   return hasPermissionSet(BET_HUB_ADMIN_PERM_SET);
+}
+
+ /*****************************************************************************************
+    Purpose: Returns true or false. Gives info that user has given permission set.
+    Parameters: String permission set name
+    Returns: Boolean
+    ******************************************************************************************/ 
+public static boolean hasPermissionSet(String permSetName){
+    Id currentuser= UserInfo.getUserId();
+    List<PermissionSet> permsets =[select id,name from permissionset where id in (SELECT PermissionSetId FROM PermissionSetAssignment WHERE AssigneeId =: currentuser)];
+    if (!permsets.isEmpty()){
+        for (PermissionSet permset: permsets){
+            if(permset.name == permSetName){
+                return true;
+            }
+        }
    }
    return false;
 }
+
 /*T1-End*/
     /*****************************************************************************************
     
@@ -112,7 +134,7 @@ public static boolean isHubAdmin(){
     Parameters: String String
     Returns: Boolean
     ******************************************************************************************/  
-    private static Boolean isExistingPendingUser(String email, String betId){
+    /*private static Boolean isExistingPendingUser(String email, String betId){
         List<uw_BET_Team_Member__c> teamMemberList = [SELECT Id, Pending_Request__c, Email__c, Team_Member__c, Team_Member__r.Name, Name, Role__c, StudioEnabled__c, 
                                                 BETEnabled__c, IsOwner__c, Editing__c 
                                                 FROM uw_Bet_Team_Member__c 
@@ -124,7 +146,7 @@ public static boolean isHubAdmin(){
         }else{
             return false;
         }
-    }
+    }*/
 
     /*****************************************************************************************
     Purpose: Function to send email to owner of bet
@@ -192,7 +214,7 @@ public static boolean isHubAdmin(){
     Returns: uw_Bet_Team_Member__c
     Throws [Exceptions]: [optional]
     ******************************************************************************************/  
-    private static uw_Bet_Team_Member__c createBetTeamMember(Id userId, Id betId, String roleName, String accessName, Boolean isPending, String email) {        
+    /*private static uw_Bet_Team_Member__c createBetTeamMember(Id userId, Id betId, String roleName, String accessName, Boolean isPending, String email) {        
         uw_Bet_Team_Member__c teamMember = new uw_Bet_Team_Member__c();
         teamMember.Team_Member__c = userId;
         teamMember.BET__c = betId;
@@ -205,11 +227,11 @@ public static boolean isHubAdmin(){
         try {
             insert teamMember;   
         }catch(Exception qe) {
-            throw new BetException('Problem with inserting BET member.');
+            throw new BetException('Problem with inserting BET member.',qe);
         }       
         
         return teamMember;
-    }
+    }*/
 
     /*****************************************************************************************
     Purpose: Function to save request of access to the bet
@@ -219,14 +241,14 @@ public static boolean isHubAdmin(){
     ******************************************************************************************/  
     public static Boolean requestBETAccess(Id userId, Id betId, String email){
         List<uw_BET__c> betList = [ SELECT Id, Name, Background_Colour__c, Banner_1_Location__c, Banner_2_Location__c, Banner_Colour__c, Border_Colour__c,
-                                uw_Brand__r.Name, uw_Brand__c, Category__r.Name, Category__c, CollaborationGroupId__c, Date_Published__c,
-                                Description__c, Final_release_date__c, Font_Colour__c, Icon_Location__c, 
+                                 CollaborationGroupId__c, Date_Published__c,
+                                Description__c, FinalReleaseDate__c, Font_Colour__c, Icon_Location__c, 
                                 Inoplan_Project__c, Inoplan_Project__r.Name, Launch_Date__c, Market_Cluster__c, Presentation_Id__c, 
-                                Region__c, Status__c, Sub_Category__c, Sub_Category__r.Name, Sharing__c, LastModifiedDate, CreatedDate, Studio_Chatter_Group__c,
+                                Region__c, Status__c, Sharing__c, LastModifiedDate, CreatedDate, Studio_Chatter_Group__c,
                                 OwnerId, Owner.Name, Owner.Email, Brand_Keyword_Search__c, Category_Keyword_Search__c, Owner_Keyword_Search__c,
                                 Region_Keyword_Search__c, Inoplan_Project_Keyword_Search__c FROM uw_BET__c WHERE Id = :betId ];
 
-        if(betList.size() > 0){
+        if(!betList.isEmpty()){
             uw_BET__c bet = betList[0];
             BET_Request_Access__c settings  = BET_Request_Access__c.getInstance();
             User owner;
@@ -234,23 +256,43 @@ public static boolean isHubAdmin(){
                 owner = [SELECT Id, Email, Name FROM User WHERE Id = :bet.OwnerId];
             }        
 
-            if(BET_CommonService.isExistingPendingUser(email, betId)){
-                 //commented out because of issue #88
-                //BET_CommonService.sendAlreadyPendingMail(betId, email, userId);
+            String status = BET_AccessService.HasUserAccess(userId,betId);
+
+            if(status == BET_AccessService.BET_ACCESS_PENDING){
                 return false;
-            }else{
-                try{                
-                    uw_Bet_Team_Member__c teamMember = BET_CommonService.createBetTeamMember(userId, betId, 'Member', 'Toolkit Experience (Toolkit only)', true, email);
-                    //commented out because of issue #88
-                    //BET_CommonService.sendApprovalMail(betId, email, userId);
+            } else {
+                try{
+                    BET_Member_Request__c request = new BET_Member_Request__c(Bet_owner__c = bet.ownerId,
+                            Brand_Experience_Toolkit__c = betId, UserId__c = userId,
+                            Role__c = BET_AccessService.MEMBER_ROLE,Project_Id__c = null,
+                            Status__c = BET_LinkingService.FOLLOW_STATUS_NEW,Do_Not_Notify_Bet__c = true);
+                    insert request;
                     if(settings.Send_Mail_To_Owner__c){
                         BET_CommonService.sendApprovalMailToOwner(bet, userId, settings);
                     }
                     return true;
                 }catch(Exception e){
-                    throw new BetException ('Problem occured while creating new member or sending mail');
+                    throw new BetException ('Problem occured while creating new member or sending mail',e);
                 }
             }
+
+            //if(BET_CommonService.isExistingPendingUser(email, betId)){
+                 //commented out because of issue #88
+                //BET_CommonService.sendAlreadyPendingMail(betId, email, userId);
+            //    return false;
+            //}else{
+            //    try{                
+            //        uw_Bet_Team_Member__c teamMember = BET_CommonService.createBetTeamMember(userId, betId, 'Member', 'Toolkit Experience (Toolkit only)', true, email);
+                    //commented out because of issue #88
+                    //BET_CommonService.sendApprovalMail(betId, email, userId);
+            //        if(settings.Send_Mail_To_Owner__c){
+             //           BET_CommonService.sendApprovalMailToOwner(bet, userId, settings);
+             //       }
+            //        return true;
+            //    }catch(Exception e){
+            //        throw new BetException ('Problem occured while creating new member or sending mail',e);
+            //    }
+            //}
         }else{
             throw new BetException ('No BET found1');
         }        
@@ -264,7 +306,7 @@ public static boolean isHubAdmin(){
     ******************************************************************************************/  
     public Static Boolean deleteBetTeamMember(Id userId, Id betId) {
         List<uw_BET_Team_Member__c> teamMemberList = [SELECT Id, Name, Role__c, BET__c, BET__r.Studio_Chatter_Group__c, Team_Member__c FROM uw_BET_Team_Member__c WHERE Team_Member__c = :userId AND BET__c = :betId];
-        if ( teamMemberList.size() == 0 ) {
+        if (teamMemberList.isEmpty()) {
             throw new BetException ('No Team Member Found');
         }
         uw_BET_Team_Member__c teamMember = teamMemberList[0];
@@ -286,7 +328,7 @@ public static boolean isHubAdmin(){
            if ( entitySubscription != null ) delete entitySubscription;
         } catch (Exception e) {
             Database.rollback(sp);
-            throw new BetException ('Update Exception for BET Share record: '+ e.getMessage()+ 'BET Member Id: ' + teamMember.Id);
+            throw new BetException ('Update Exception for BET Share record: '+ e.getMessage()+ 'BET Member Id: ' + teamMember.Id,e);
         }
          
         return true;
@@ -371,8 +413,8 @@ public static boolean isHubAdmin(){
                     
                 }
             } catch (Exception e){
-                throw new BetException('No BET found.');
-            }
+                throw new BetException('No BET found.',e);
+           }
         }
     }
 
@@ -400,12 +442,17 @@ public static boolean isHubAdmin(){
         BETTeamMember.BETEnabled__c = true;
         BETTeamMember.Access_Level__c = ToolkitAccessLevel;
 
-        List<CollaborationGroupMember> cgmList = [SELECT Id FROM CollaborationGroupMember 
-                                                    WHERE MemberId =: userId and CollaborationGroupId =: bet.Studio_Chatter_Group__c];
-  //  T0-Begin---------------------
+        //  T0-Begin---------------------
+        /*done by member trigger
         List<EntitySubscription> eslist= [SELECT Id FROM EntitySubscription
                                                     WHERE SubscriberId=: userId and ParentId=: bet.Id];
-        //T0-End---------------------                                        
+        EntitySubscription entitySubscription = new EntitySubscription();
+        */
+        //T0-End--------------------- 
+
+        /*done by member trigger
+        List<CollaborationGroupMember> cgmList = [SELECT Id FROM CollaborationGroupMember 
+                                                    WHERE MemberId =: userId and CollaborationGroupId =: bet.Studio_Chatter_Group__c];                                       
         CollaborationGroupMember cgm;
         if (cgmList.isEmpty()) {
             cgm = new CollaborationGroupMember();
@@ -420,17 +467,17 @@ public static boolean isHubAdmin(){
         betShare.AccessLevel = 'Read';
         betShare.ParentId = bet.Id;
         
-        EntitySubscription entitySubscription = new EntitySubscription();
-        
+        */
       
         Savepoint sp = Database.setSavepoint();
         try {
             insert BETTeamMember;
-            insert betShare; 
+            /*insert betShare; done by member trigger
             if (cgm!= null) {
                 insert cgm;
-            }
+            }*/
              //T0-Begin---------------------
+        /*/*done by member trigger
         if(eslist.isempty())
         {
         entitySubscription.SubscriberId = userId;
@@ -439,12 +486,28 @@ public static boolean isHubAdmin(){
            insert entitySubscription;
             }
               //T0-End---------------------
-        }          
+        }         */
           
         } catch (Exception e) {
-            Database.rollback(sp);
-            throw new BetException('Cannot access BET');
+           Database.rollback(sp);
+           throw new BetException('Cannot access BET',e);
         }
+    }
+
+    /************************************************************
+        Purpose: Method checks if bet with given name already exists
+        Parameters: uw_Bet__c bet
+        Returns: Boolean true is exists
+        Throws: -
+    *************************************************************/
+    public static Boolean checkIfBetExists(uw_Bet__c bet){
+        List<uw_Bet__c> bets;
+        if(bet.id == null){
+            bets = [select id from uw_Bet__c where name =: bet.name];
+        } else {
+            bets = [select id from uw_Bet__c where name =: bet.name and id !=: bet.id];
+        }
+        return !bets.isEmpty();
     }
     
 }

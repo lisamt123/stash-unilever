@@ -1,0 +1,34 @@
+<apex:page showHeader="false" sidebar="false" controller="BET_UpdateExpectedAssetsController">
+
+	<apex:stylesheet value="{!$Resource.BET}/css/BETManageMembersStyles.css" />
+	<apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />    
+
+	<apex:outputPanel layout="block" id="maincontainer">
+
+      	<script>
+        	jQuery(document).ready(function() {
+          		if (jQuery('[id$="runJsSuccess"]').val() == "true"){
+            		window.top.postMessage(
+            			{
+              				action: 'saveExpectedAssets'
+            			}, 
+            			document.location.protocol + '//' + document.domain
+            		);
+          		}
+        	});
+    	</script>
+
+		<apex:form >
+			<apex:inputHidden value="{!runJsSuccess}" id="runJsSuccess"/>
+			<c:BET_ExpectedAssetsComponent betId="{!betId}" />
+			<div style="padding-top:10px;">
+				<apex:commandButton onclick="this.value = '{!$Label.BET_Saving}';saveExpAssetsOne();"
+								value="{!$Label.BET_Save}"  
+								oncomplete="setJSFlag();this.value = '{!$Label.BET_Save}';" 
+								styleClass="buttong2y" style="background: #e6007e;color:white;width:80px;height:30px;font-size:15px;"
+								rerender="maincontainer"/>
+			</div>
+			<apex:actionFunction action="{!onSave}" name="setJSFlag"></apex:actionFunction> 
+		</apex:form>
+	</apex:outputPanel>
+</apex:page>

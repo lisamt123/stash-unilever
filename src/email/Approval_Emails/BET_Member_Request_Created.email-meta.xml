@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>BET_Member_Request_Created</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>BET_Member_Request_Created</name>
+    <style>none</style>
+    <subject>BET member request has been created</subject>
+    <type>custom</type>
+</EmailTemplate>

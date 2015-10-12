@@ -40,6 +40,11 @@ public with sharing class uw_BETRemoteController {
      */
     public String BETTemplateLink {get; protected set;}
 
+    /**
+    *Boolean flag indicates is user is bet operation admin
+    */
+    public String betOperationAdmin {get; protected set;}
+
     /*******************************************************************
     Purpose: class constructor
     ********************************************************************/
@@ -61,6 +66,7 @@ public with sharing class uw_BETRemoteController {
         betPrefix = uw_BET__c.SObjectType.getDescribe().getKeyPrefix();
         hasReadAll = BET_CommonService.hasAccess(true) ? 'true' : 'false';
         hasModifyAll = BET_CommonService.hasAccess(false) ? 'true' : 'false';
+        betOperationAdmin = BET_CommonService.isBETOperationAdmin() ? 'true' : 'false';
         if (newBetId == null) {
             newBetId = '';
         }
@@ -149,7 +155,9 @@ public with sharing class uw_BETRemoteController {
         Map<String, Object> resultMap = new Map<String, Object>();
         try{
             uw_BETWrapper.DetailWrapper results = uw_BETDetailService.getBETDetails(betId, currentUserId);
-
+            if(results.bet.betIPMProjectId != null) {
+                results.bet.currentUserHasAccessToIPM = IPM_BETUpdateService.UserAccess((Id)betId, results.bet.betIPMProjectId,currentUserId);
+            }
             resultMap.put('bet', results.bet);
             resultMap.put('members', results.memberSetting);
             return new uw_BETWrapper('Result', '0', resultMap,'');        

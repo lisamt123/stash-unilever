@@ -1,0 +1,37 @@
+<apex:component controller="BET_ExpectedAssetsController" allowDML="true" >
+
+	<apex:attribute name="betId" assignTo="{!betIdentifier}" description="Id of an related BET" required="true" type="Id" />
+
+	<apex:stylesheet value="{!$Resource.BET}/css/BETExpectedAssetsStyles.css" />
+
+	<apex:outputPanel id="expectedAssetsPanel">
+
+	<apex:actionFunction name="saveExpAssets" action="{!upsertExceptedAssets}" rerender="maincontainer"/>
+
+	<apex:actionFunction name="saveExpAssetsOne" action="{!upsertExceptedAssets}"/>
+
+	<table class="expectedAssetsTable">
+		<tr>
+			<td class="expectedAssetsTableHeader">
+				{!$Label.BET_AssetType}
+			</td>
+			<td class="expectedAssetsTableHeader">
+				{!$Label.BET_ExpectedAssets}
+			</td>
+		</tr>
+		<apex:repeat value="{!expectedAssetsForBET}" var="eab">
+			<tr>
+				<td>
+					{!eab.assetTypeName}
+				</td>
+				<td>
+					<apex:inputText styleClass="expectedAssetsNumber" value="{!eab.assetTypeNameExpectedNumber}" />
+				</td>
+			</tr>
+		</apex:repeat>
+	</table>
+
+	</apex:outputPanel>
+
+
+</apex:component>

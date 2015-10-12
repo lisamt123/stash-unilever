@@ -173,6 +173,22 @@
         <members>BC_picker_color</members>
         <members>BC_picker_color_Test</members>
         <members>BC_updateEmbedURL_Test</members>
+         <members>BET_AccessService</members>
+        <members>BET_AccessServiceTest</members>
+        <members>BET_ApproveProjectsComponentContrTest</members>
+        <members>BET_ApproveProjectsComponentController</members>
+        <members>BET_AssetHandler</members>
+        <members>BET_AssetHandlerCls</members>
+        <members>BET_AssetHandlerClsTest</members>
+        <members>BET_AssetService</members>
+        <members>BET_AssetServiceTest</members>
+        <members>BET_BETChangesLogger</members>
+        <members>BET_BETHandler</members>
+        <members>BET_BETHandlerCls</members>
+        <members>BET_BETHandlerClsHelper</members>
+        <members>BET_BETService</members>
+        <members>BET_BETServiceTest</members>
+        <members>BET_BETWrapper</members>
         <members>BET_BatchAssetStatusMapping</members>
         <members>BET_BatchAssetStatusMapping_Test</members>
         <members>BET_BatchBETStatusMapping</members>
@@ -195,16 +211,54 @@
         <members>BET_BatchScheduler_Test</members>
         <members>BET_BatchUpdateChatterGroupInfo</members>
         <members>BET_BatchUpdateChatterGroupInfo_Test</members>
+        <members>BET_CategoryBrandSelectionController</members>
+        <members>BET_CategoryBrandSelectionControllerTest</members>
+        <members>BET_CategoryComponentData</members>
         <members>BET_ChatterController</members>
         <members>BET_ChatterController_Test</members>
+        <members>BET_ChatterGroupAutoArchDis_BatchTest</members>
+        <members>BET_ChatterGroupAutoArchiveDisable_Batch</members>
         <members>BET_CommonService</members>
         <members>BET_CommonServiceTest</members>
+        <members>BET_CustomBETException</members>
+        <members>BET_DataFixReleaseDate_Batch</members>
+        <members>BET_DataFixReleaseDate_BatchTest</members>
         <members>BET_EditAssetController</members>
         <members>BET_EditAssetController_Test</members>
+        <members>BET_EmailNotificationService</members>
+        <members>BET_EmailNotificationServiceTest</members>
+        <members>BET_ExpectedAssetsController</members>
+        <members>BET_ExpectedAssetsControllerTest</members>
+        <members>BET_FollowRequestTriggerHandler</members>
+        <members>BET_FollowRequestTriggerHandlerCls</members>
+        <members>BET_FollowRequestTriggerHandlerClsHelper</members>
+        <members>BET_FollowRequestTriggerHandlerClsTest</members>
+        <members>BET_InoplanToIPMMigration_Batch</members>
+        <members>BET_InoplanToIPMMigration_Batch_Test</members>
+        <members>BET_LinkedProjectsComponentContrTest</members>
+        <members>BET_LinkedProjectsComponentController</members>
+        <members>BET_LinkingService</members>
+        <members>BET_LinkingServiceCleaner</members>
+        <members>BET_LinkingServiceHelper</members>
+        <members>BET_LinkingServiceHelperTest</members>
+        <members>BET_LinkingServiceTest</members>
+        <members>BET_LinkingServiceTestOne</members>
+        <members>BET_LinkingServiceValidator</members>
+        <members>BET_MDODataMigrationAndTransform_Batch</members>
         <members>BET_ManageMembersController</members>
         <members>BET_ManageMembersController_Test</members>
         <members>BET_ManageMembersController_Test2</members>
         <members>BET_ManageMembersController_Test3</members>
+        <members>BET_MasterDataService</members>
+        <members>BET_MasterDataServiceTest</members>
+        <members>BET_MemberBucketWrapper</members>
+        <members>BET_MemberRequestHandlerCls</members>
+        <members>BET_MemberRequestHandlerClsTest</members>
+        <members>BET_Member_RequestHandler</members>
+        <members>BET_NewBetComponentController</members>
+        <members>BET_NewBetComponentControllerTest</members>
+        <members>BET_NewBetController</members>
+        <members>BET_NewBetControllerTest</members>
         <members>BET_PresentationBatch</members>
         <members>BET_PresentationBatch_Test</members>
         <members>BET_ReleaseDateEmails</members>
@@ -213,9 +267,23 @@
         <members>BET_SCH_BatchDeniedMemberRequestDelete</members>
         <members>BET_SoslFieldsBatch</members>
         <members>BET_SoslFieldsBatch_Test</members>
+        <members>BET_SuggestMembersController</members>
+        <members>BET_SuggestMembersControllerTest</members>
+        <members>BET_SuggestedMemberService</members>
+        <members>BET_SuggestedMemberServiceTest</members>
+        <members>BET_Team_MemberHandler</members>
+        <members>BET_Team_MemberHandlerCls</members>
+        <members>BET_Team_MemberHandlerClsHelper</members>
+        <members>BET_Team_MemberHandlerClsHelperTest</members>
+        <members>BET_Team_MemberHandlerClsTest</members>
+        <members>BET_TestUtils</members>
         <members>BET_TestingHelper</members>
+        <members>BET_TriggerFactory</members>
+        <members>BET_TriggerFactory</members>
         <members>BET_Triggers_Test</members>
         <members>BET_UpdateBETSearchHandler</members>
+        <members>BET_UpsertBETController</members>
+        <members>BET_UpsertBETControllerTest</members>
         <members>BasicMenuItem</members>
         <members>BrandCentreExtension</members>
         <members>Brand_Controller_Review</members>
@@ -861,6 +929,8 @@
         <members>BET_Chatter</members>
         <members>BET_EditAsset</members>
         <members>BET_ManageMembers</members>
+        <members>BET_NewBet</members>
+        <members>BET_UpdateExpectedAssets</members>
         <members>BandwidthExceeded</members>
         <members>BatchJobManager</members>
         <members>BrandLayoutEdit</members>
@@ -1108,10 +1178,12 @@
         <members>AttachmentTrigger</members>
         <members>BC_ChatterGroupExistCheck</members>
         <members>BC_updateEmbedURL</members>
+        <members>BET_Follow_Request</members>
         <members>BET_LogChanges</members>
+        <members>BET_Member_Request_Trigger</members>
         <members>BET_UpdateBETSearch</members>
         <members>BET_UpdateBrandKeywordSearch</members>
-        <members>BET_UpdateCategoryKeywordSearch</members>
+        <members>BET_UpdateCategoryKeywordSearch</members>        
         <members>CEC_Alert_Action</members>
         <members>CEC_CaseTrigger</members>
         <members>CEC_FulfilmentTrigger</members>
@@ -1163,6 +1235,8 @@
         <members>user_after_insert</members>
         <members>user_after_update</members>
         <members>uw_Asset_AfterInsertAfterUpdate</members>
+        <members>uw_Asset_Trigger</members>
+        <members>uw_BET_Trigger</members>
         <members>uw_BET_Trigger_Team_member</members>
         <members>uw_BET_after_insert</members>
         <members>uw_BET_after_update</members>
@@ -1214,6 +1288,95 @@
         <members>ONE_Correspond</members>
         <members>WorkIt_Console_App_Hidden</members>
         <name>CustomApplicationComponent</name>
+    </types>
+    <types>
+        <members>BET_ExpectedAssets__c.Actual__c</members>
+        <members>BET_ExpectedAssets__c.Brand_Experience_Toolkit__c</members>
+        <members>BET_ExpectedAssets__c.Expected__c</members>
+        <members>BET_ExpectedAssets__c.Type__c</members>
+        <members>BET_Follow_Request__c.Bet_Link__c</members>
+        <members>BET_Follow_Request__c.Bet_owner__c</members>
+        <members>BET_Follow_Request__c.Brand_Experience_Toolkit__c</members>
+        <members>BET_Follow_Request__c.Is_Lead_Request__c</members>
+        <members>BET_Follow_Request__c.Project_Id__c</members>
+        <members>BET_Follow_Request__c.Project_Lead__c</members>
+        <members>BET_Follow_Request__c.Project_Name__c</members>
+        <members>BET_Follow_Request__c.Status__c</members>
+        <members>BET_Member_Request__c.Bet_owner__c</members>
+        <members>BET_Member_Request__c.Brand_Experience_Toolkit__c</members>
+        <members>BET_Member_Request__c.ConcatenatedField__c</members>
+        <members>BET_Member_Request__c.Do_Not_Notify_Creator__c</members>
+        <members>BET_Member_Request__c.Do_Not_Notify_User__c</members>
+        <members>BET_Member_Request__c.External_User_Email__c</members>
+        <members>BET_Member_Request__c.External_User_Request__c</members>
+        <members>BET_Member_Request__c.ProjectRequest__c</members>
+        <members>BET_Member_Request__c.Project_Id__c</members>
+        <members>BET_Member_Request__c.Reason__c</members>
+        <members>BET_Member_Request__c.Role__c</members>
+        <members>BET_Member_Request__c.Status__c</members>
+        <members>BET_Member_Request__c.UserId__c</members>
+        <members>uw_BET__c.Background_Colour__c</members>
+        <members>uw_BET__c.Banner_1_Location__c</members>
+        <members>uw_BET__c.Banner_2_Location__c</members>
+        <members>uw_BET__c.Banner_Colour__c</members>
+        <members>uw_BET__c.Border_Colour__c</members>
+        <members>uw_BET__c.Brand_Keyword_Search__c</members>
+        <members>uw_BET__c.Brand_Position_Keyword_Search__c</members>
+        <members>uw_BET__c.Brand_Position__c</members>
+        <members>uw_BET__c.Brand__c</members>
+        <members>uw_BET__c.Category_Group_Keyword_Search__c</members>
+        <members>uw_BET__c.Category_Group__c</members>
+        <members>uw_BET__c.Category_Keyword_Search__c</members>
+        <members>uw_BET__c.Category_Level_2__c</members>
+        <members>uw_BET__c.Category_Level_3__c</members>
+        <members>uw_BET__c.Category__c</members>
+        <members>uw_BET__c.CollaborationGroupId__c</members>
+        <members>uw_BET__c.Collaboration_Group__c</members>
+        <members>uw_BET__c.Component_Colour__c</members>
+        <members>uw_BET__c.Date_Published__c</members>
+        <members>uw_BET__c.Description__c</members>
+        <members>uw_BET__c.FinalReleaseDate__c</members>
+        <members>uw_BET__c.Final_Release_Due_Date__c</members>
+        <members>uw_BET__c.Final_release_date__c</members>
+        <members>uw_BET__c.FirstReleaseDate__c</members>
+        <members>uw_BET__c.First_Release_Due_Date__c</members>
+        <members>uw_BET__c.First_release_date__c</members>
+        <members>uw_BET__c.Font_Colour__c</members>
+        <members>uw_BET__c.Group__c</members>
+        <members>uw_BET__c.IPM_Project__c</members>
+        <members>uw_BET__c.Icon_Location__c</members>
+        <members>uw_BET__c.Inherit_Branding__c</members>
+        <members>uw_BET__c.Inoplan_Project_Keyword_Search__c</members>
+        <members>uw_BET__c.Inoplan_Project__c</members>
+        <members>uw_BET__c.Is_Archived__c</members>
+        <members>uw_BET__c.Launch_Date__c</members>
+        <members>uw_BET__c.Link__c</members>
+        <members>uw_BET__c.Market_Cluster__c</members>
+        <members>uw_BET__c.Market_Clusters__c</members>
+        <members>uw_BET__c.Max_of_Order_Of_Display__c</members>
+        <members>uw_BET__c.No_Of_Asset_Items__c</members>
+        <members>uw_BET__c.Owner_Keyword_Search__c</members>
+        <members>uw_BET__c.Presentation_Id__c</members>
+        <members>uw_BET__c.Product_Brand__c</members>
+        <members>uw_BET__c.Product_Category_Sub_Division__c</members>
+        <members>uw_BET__c.Product_Category__c</members>
+        <members>uw_BET__c.Project_ID__c</members>
+        <members>uw_BET__c.Project__c</members>
+        <members>uw_BET__c.Region_Keyword_Search__c</members>
+        <members>uw_BET__c.Region__c</members>
+        <members>uw_BET__c.Scope__c</members>
+        <members>uw_BET__c.Sharing__c</members>
+        <members>uw_BET__c.Status__c</members>
+        <members>uw_BET__c.Studio_Chatter_Group__c</members>
+        <members>uw_BET__c.Studio__c</members>
+        <members>uw_BET__c.StylePalette__c</members>
+        <members>uw_BET__c.Sub_Category__c</members>
+        <members>uw_BET__c.Total_Actual_Assets__c</members>
+        <members>uw_BET__c.Total_Expected_Assets__c</members>
+        <members>uw_BET__c.Total_Number_of_Members__c</members>
+        <members>uw_BET__c.Total_assets__c</members>
+        <members>uw_BET__c.uw_Brand__c</members>
+        <name>CustomField</name>
     </types>
     <types>
         <members>AF_Adjust_Quarters</members>
@@ -1301,7 +1464,100 @@
         <members>AR_StepTwo</members>
         <members>Agency_Email_Alerts</members>
         <members>Agency_Fee_Title</members>
+        <members>BET SuggestedMemberMembers</members>
+        <members>BET SuggestedMemberOtherMembers</members>
+        <members>BETManagerRole</members>
+        <members>BETTeamMemberRequestApprovedStatus</members>
+        <members>BETTeamMemberRequestNewStatus</members>
+        <members>BET_Add_Internal_User</members>
+        <members>BET_Add_Member</members>
+        <members>BET_Approve</members>
+        <members>BET_ApproveProjectsTabName</members>
+        <members>BET_Approve_members</members>
+        <members>BET_Approve_selected</members>
+        <members>BET_ArchiveBET</members>
+        <members>BET_ArchiveConfirmation</members>
+        <members>BET_Archiving</members>
+        <members>BET_AssetType</members>
+        <members>BET_BetBrandPositionMandatory</members>
+        <members>BET_BetCategoryGroupMandatory</members>
+        <members>BET_BetCategoryMandatory</members>
+        <members>BET_BetNameMandatory</members>
         <members>BET_BrandCategoryNotRelated</members>
+        <members>BET_BrandTip</members>
+        <members>BET_Browse_members</members>
+        <members>BET_Cancel</members>
+        <members>BET_Canceling</members>
+        <members>BET_CreateBetAddMembers</members>
+        <members>BET_CreateNewBet</members>
+        <members>BET_Delete</members>
+        <members>BET_Delete_selected</members>
+        <members>BET_Deny</members>
+        <members>BET_Deny_selected</members>
+        <members>BET_ExpectedAssets</members>
+        <members>BET_External_Agency_User</members>
+        <members>BET_FollowBetArchivedMessage</members>
+        <members>BET_FollowBetNotExistsMessage</members>
+        <members>BET_FollowExceptionMessage</members>
+        <members>BET_FollowProjectNotExistsMessage</members>
+        <members>BET_Header</members>
+        <members>BET_IPMProject</members>
+        <members>BET_InoplanProjectMandatory</members>
+        <members>BET_LaunchDateMandatory</members>
+        <members>BET_LeadProjectRequestNotification</members>
+        <members>BET_LeadProjectRequestNotificationSubject</members>
+        <members>BET_LinkBetToIPMProject</members>
+        <members>BET_LinkedProjectHeaderOne</members>
+        <members>BET_LinkedProjectHeaderTwo</members>
+        <members>BET_LinkedProjectsTabName</members>
+        <members>BET_MandatoryStar</members>
+        <members>BET_MarkedFieldsMandatory</members>
+        <members>BET_MultipleRequestNotification</members>
+        <members>BET_MultipleRequestNotificationSubject</members>
+        <members>BET_Name</members>
+        <members>BET_NameExists</members>
+        <members>BET_NewIPMProjectIsLinking</members>
+        <members>BET_NewLeadProjectNotification</members>
+        <members>BET_NewLeadProjectNotificationSubject</members>
+        <members>BET_NoLinkedProjectsAvailable</members>
+        <members>BET_Owner</members>
+        <members>BET_Photo</members>
+        <members>BET_Project</members>
+        <members>BET_ProjectApproveRemainder</members>
+        <members>BET_ProjectLead</members>
+        <members>BET_ProjectName</members>
+        <members>BET_Save</members>
+        <members>BET_Saving</members>
+        <members>BET_SetAsLeadExceptionMessage</members>
+        <members>BET_SkipForNow</members>
+        <members>BET_SuggestedMemberAddOtherMember</members>
+        <members>BET_SuggestedMemberComponentAddMember</members>
+        <members>BET_SuggestedMemberComponentCollapse</members>
+        <members>BET_SuggestedMemberComponentExpand</members>
+        <members>BET_SuggestedMemberComponentSkipForNow</members>
+        <members>BET_SuggestedMemberComponentWarn</members>
+        <members>BET_SuggestedMemberDuplicateError</members>
+        <members>BET_SuggestedMemberMembers</members>
+        <members>BET_SuggestedMemberModalAddSelected</members>
+        <members>BET_SuggestedMemberModalCancel</members>
+        <members>BET_SuggestedMemberModalHeader</members>
+        <members>BET_SuggestedMemberModalNoResults</members>
+        <members>BET_SuggestedMemberOtherMembers</members>
+        <members>BET_TargetLaunchDate</members>
+        <members>BET_Title</members>
+        <members>BET_UnArchiveBET</members>
+        <members>BET_UnArchiveConfirmation</members>
+        <members>BET_UnArchiving</members>
+        <members>BET_UnFollowExceptionMessage</members>
+        <members>BET_UnfollowNotification</members>
+        <members>BET_UnfollowNotificationSubject</members>
+        <members>BET_UnlinkedProjectNotification</members>
+        <members>BET_UnlinkedProjectNotificationSubject</members>
+        <members>BET_UpdateBetAddMembers</members>
+        <members>BetMemberRequestInvailidProjectIDError</members>
+        <members>BetServiceGetBetError</members>
+        <members>BetTeamMemberRoleManager</members>
+        <members>BetTeamMemberRoleMember</members>
         <members>Bonus_Annual</members>
         <members>CEC_AlertActionSchedulerName</members>
         <members>CEC_CBM_NotificationBodyFooter</members>
@@ -1557,6 +1813,27 @@
         <members>uw_BET_standardchatterlimitmessage</members>
         <members>uw_Inoplan_error_duplicateValue</members>
         <members>uw_Inoplan_error_nullvalue</members>
+		<members>BET_Add_Members</members>
+		<members>BET_Manage_Members</members>
+		<members>BET_Toolkit_Owner</members>
+		<members>BET_BET_Members</members>
+		<members>BET_Note</members>
+		<members>BET_Add_Toolkit_Member</members>
+		<members>BET_External_Agency_Users</members>
+		<members>BET_Add_External_Agency_User</members>
+		<members>BET_Save_And_Finish</members>
+		<members>BET_Add_External_Agency_User_Tooltip</members>
+		<members>BET_Multi_File_Upload</members>
+		<members>BET_File_Upload</members>
+		<members>BET_Upload_And_Save</members>
+		<members>BET_Asset_Name</members>
+		<members>BET_Sub_Function</members>
+		<members>BET_Asset_Type</members>
+		<members>BET_Asset_Media_Type</members>
+		<members>BET_Asset_Country</members>
+		<members>BET_Asset_Status</members>
+		<members>BET_Asset_MetaData</members>
+		<members>BET_BetOwnerMandatory</members>
         <name>CustomLabel</name>
     </types>
     <types>
@@ -1606,7 +1883,11 @@
         <members>BC_Profile__c</members>
         <members>BET_Category_Brands__c</members>
         <members>BET_Category__c</members>
+        <members>BET_ExpectedAssets__c</members>
+        <members>BET_FabricCoditioners__c</members>
+        <members>BET_Follow_Request__c</members>
         <members>BET_ManageMembersSettings__c</members>
+        <members>BET_Member_Request__c</members>
         <members>BET_Request_Access__c</members>
         <members>BonusReportVisibletoAgency__c</members>
         <members>Brand_Centre_Content__c</members>
@@ -1656,6 +1937,7 @@
         <members>Event</members>
         <members>Event_Member__c</members>
         <members>Event__c</members>
+        <members>Exception_Log__c</members>
         <members>Expertise__c</members>
         <members>FAU_Milestone_Participant__c</members>
         <members>FAU_Milestone__c</members>
@@ -1690,6 +1972,18 @@
         <members>IdeaComment</members>
         <members>IdeaTheme</members>
         <members>Lead</members>
+        <members>MDO_BrandManufacturers__c</members>
+        <members>MDO_BrandPositionSubscriptions__c</members>
+        <members>MDO_BrandPosition__c</members>
+        <members>MDO_BrandPositions__c</members>
+        <members>MDO_Brand__c</members>
+        <members>MDO_CategoryBrands__c</members>
+        <members>MDO_Category__c</members>
+        <members>MDO_GeographySubscriptions__c</members>
+        <members>MDO_Geography__c</members>
+        <members>MDO_Manufacturer__c</members>
+        <members>MDO_ProductCategorySubscriptions__c</members>
+        <members>MDO_Subscriptions__c</members>
         <members>Macro</members>
         <members>My_Library__c</members>
         <members>NavigationElement__c</members>
@@ -2331,6 +2625,13 @@
         <name>CustomPageWebLink</name>
     </types>
     <types>
+        <members>Approval_Emails/BET_Archived</members>
+        <members>Approval_Emails/BET_FollowRequestCreated</members>
+        <members>Approval_Emails/BET_Member_Request_Created</members>
+        <members>Approval_Emails/BET_Unarchived</members>
+        <name>EmailTemplate</name>
+    </types>
+    <types>
         <members>AF_AXE_RO</members>
         <members>AF_AXE_RW</members>
         <members>AF_Agency_Fee_Internal_Users</members>
@@ -2700,6 +3001,7 @@
         <members>Brand_Centre_Administrator</members>
         <members>Brand_Centre_Read_Only</members>
         <members>Brand_Centre_Restricted_User</members>
+        <members>BET_Operation_Admin</members>
         <members>CB4L_HUB_Admin</members>
         <members>CB4L_Standard_User</members>
         <members>CEC_Business_Admin</members>
@@ -2931,6 +3233,13 @@
         <name>QuickAction</name>
     </types>
     <types>
+    	<members>BET_reports</members>
+        <members>BET_reports/BETs_with_IPMs</members>
+        <members>BET_reports/Bets_with_following_projects</members>
+        <members>BET_reports/Brand_Experience_History</members>
+        <name>Report</name>
+    </types>
+    <types>
         <members>AF_Agency_Estimates</members>
         <members>AF_Base_Fee_Estimates</members>
         <members>AF_Bonus_Matriix</members>
@@ -3150,7 +3459,9 @@
         <members>BC_Profile__c</members>
         <members>BET_Category_Brands__c</members>
         <members>BET_Category__c</members>
+        <members>BET_Follow_Request__c</members>
         <members>BET_ManageMembersSettings__c</members>
+        <members>BET_Member_Request__c</members>
         <members>BET_Request_Access__c</members>
         <members>BonusReportVisibletoAgency__c</members>
         <members>Brand_Centre_Content__c</members>
