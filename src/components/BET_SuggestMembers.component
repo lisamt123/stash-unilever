@@ -20,7 +20,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
     <apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />    
     
     <apex:stylesheet value="{!$Resource.BET}/css/bootstrap.min.css"/>
-    <!--<apex:stylesheet value="{!$Resource.BETSuggestedMembers}/css/betSuggestedMembers.css"/>   -->
+    <apex:stylesheet value="{!$Resource.BET}/css/BETQtip.css" />
     
     <apex:attribute name="BetID" description="BET ID" type="Id" 
                         required="false" assignTo="{!betIdCtrl}"/>                      
@@ -53,8 +53,6 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
         );
 	</script>
 
-
-    <apex:stylesheet value="{!$Resource.BET}/css/BETQtip.css" />
 
     <apex:actionFunction name="addExtMembers" action="{!addExternalMember}" reRender="suggestedMembersContainer"></apex:actionFunction>
     <apex:actionFunction name="addExtMembersBet" action="{!addExternalMember}" reRender="suggestedMembersContainerbet"></apex:actionFunction>
@@ -148,7 +146,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
 
                 </div>
 
-                <div class="toolkitOwner">{!$Label.BET_External_Agency_Users}</div>
+                <div class="toolkitEAU">{!$Label.BET_External_Agency_Users}</div>
                 <hr class="innerLine" width="96%"/>
 
                 <div class="externalMemberAdd">

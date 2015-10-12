@@ -66,12 +66,6 @@ global without sharing class BET_ManageMembersController {
                                                 from BET_Member_Request__c where Brand_Experience_Toolkit__c =: betId and Status__c =: BET_LinkingService.FOLLOW_STATUS_NEW]){
             memberRequests.add(new MemberRequestWrapper(request));
         }
-
-        /*members = new List<MemberWrapper>();
-        for(uw_BET_Team_Member__c member : [select id,email__c, Role__c, Team_Member__r.FirstName,Team_Member__r.LastName,Team_Member__r.SmallPhotoUrl,BET__c,Team_Member__c,Team_Member__r.Title
-                                                from uw_BET_Team_Member__c where BET__c =:betId ]){
-            members.add(new MemberWrapper(member,bet.ownerId));
-        }*/
     }
 
     public List<MemberWrapper> getMembers(){
@@ -286,6 +280,7 @@ global without sharing class BET_ManageMembersController {
         try{
             update request;
         } catch (Exception e){
+            System.debug('Exception in doApprove : ' + e.getMessage());
             return null;
         }
         PageReference pr = forward();
@@ -306,6 +301,7 @@ global without sharing class BET_ManageMembersController {
         try{
             update request;
         }catch(Exception e){
+            System.debug('Exception in doApprove : ' + e.getMessage());
             return null;
         }
         PageReference pr = forward();
@@ -351,6 +347,7 @@ global without sharing class BET_ManageMembersController {
         try{
             update requests;
         }catch (Exception e){
+            System.debug('Exception in doApprove : ' + e.getMessage());
             return null;
         }
         PageReference pr = forward();

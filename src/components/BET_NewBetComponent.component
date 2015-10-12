@@ -11,6 +11,7 @@
 	<apex:attribute name="saveURL" description="Save action redirect URL" 
                     type="String" required="false" assignTo="{!forwardUrl}" />
 
+
     <apex:outputPanel id="mainBETPanels" rendered="{!NOT(goToMemberSelection)}">
 		<div class="form-header" style="{!If(bet.id == null,'','display:none')}">
     		<div class="form-item-header">
@@ -52,7 +53,7 @@
 
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >{!$Label.BET_Owner}</apex:outputLabel>
+                <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_Owner}</apex:outputLabel>
             </div>
             <div class="item-input">
                 <apex:inputfield styleClass="hideOwner" value="{!bet.ownerId}"/>

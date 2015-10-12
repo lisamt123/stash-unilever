@@ -115,6 +115,9 @@ public with sharing class uw_BETUtil {
         if(String.isBlank(betObject.name)){
             errors.add(Label.BET_BetNameMandatory);
         }
+        if(String.isBlank(betObject.ownerId)){
+            errors.add(Label.BET_BetOwnerMandatory);
+        }
         if(String.isBlank(betObject.Category_Group__c)){
             errors.add(Label.BET_BetCategoryGroupMandatory);
         }

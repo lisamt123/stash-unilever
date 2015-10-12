@@ -2268,6 +2268,7 @@
 		<members>BET_Asset_Country</members>
 		<members>BET_Asset_Status</members>
 		<members>BET_Asset_MetaData</members>
+		<members>BET_BetOwnerMandatory</members>
         <name>CustomLabel</name>
     </types>
     <types>
