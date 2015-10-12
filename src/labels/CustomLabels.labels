@@ -482,7 +482,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Add_External_Agency_User_Tooltip</shortDescription>
-        <value>Tooltip</value>
+        <value>Please enter the full email address of your agency member here. They will receive an email with further information on joining the BET.</value>
     </labels>
     <labels>
         <fullName>BET_Add_Internal_User</fullName>
