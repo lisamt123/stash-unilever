@@ -2581,7 +2581,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>HROPhaseIntroHeaderBeforeArrival</shortDescription>
-        <value>Before Arrival:</value>
+        <value>Pre-Boarding:</value>
     </labels>
     <labels>
         <fullName>HROPhaseIntroHeaderBeonBoard</fullName>
