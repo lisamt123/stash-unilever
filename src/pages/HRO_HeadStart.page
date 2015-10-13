@@ -1,158 +1,24 @@
-<apex:page docType="html-5.0" tabStyle="HRO_Onboarding_Task__c" showHeader="false" sidebar="false" standardStylesheets="false" standardController="HRO_Onboarding_Plan__c" extensions="HRO_HeadStart_CX">
+<apex:page docType="html-5.0"  showHeader="false"  standardStylesheets="false" controller="HRO_HeadStart_CX">
 <html>
     <head>
         <c:HRO_HeaderScripts />
-        
-       <link href="/apex/HRO_HeadstartCss" rel="stylesheet" />
-        
-        <!--<c:headercomponent/>-->
+        <script src="{!URLFOR($Resource.HROResources, '/scripts/HeadStart.js')}"></script>
         <script>
             $(function() {
-
                 bindControls();
+                resizePageContent();
+				
+                //unselectAllPhases();
+                markButtonPhaseSelected();
+                bindClickOnPhasesBtns();
                 
-
-                $( "#mainLogo" ).click(function() {
-                    myUrl = '/apex/ULHome'
-                    if( (typeof sforce != 'undefined') && (sforce != null) ) {
-                      // Salesforce1 navigation
-                      sforce.one.navigateToURL(myUrl);
-                    } else {
-                      // Set the window's URL
-                     window.location.href = myUrl;
-                    }
-                });
+                
             });
-
-            function scrollbackground() {
-                window.onscroll = function() {
-                    var speed = 2.0;
-                    document.body.style.backgroundPosition = (-100+ (-window.pageYOffset / speed)) + "px 0px";
-                }
-            }
-            /**
-             * { function_description }
-             *
-             * @method     markCompleted
-             * @param      {string}  thisId  { description }
-             * @param      {<type>}  obj     { description }
-             */
-
-            function markCompleted(thisId,obj){
-                thisId = thisId.replace('UncompletedTask','');
-                
-                HRO_HeadStart_CX.markComplete(thisId, function(result, event){
-                        if(event.status) {
-                            console.log('LOOK',thisId);
-                            $('#'+'UncompletedTask'+thisId).parent().parent().addClass('animated rotateIn');
-                            $('#'+'UncompletedTask'+thisId).css( "color", "#81C241" );
-                        }else {}
-                });
-               
-            }
-
-            function bindControls(){
-
-                $( ".inoIcon" ).click(function() {
-                    var thisId = $( this ).attr('id');
-                    HRO_HeadStart_CX.markComplete(thisId, function(result, event){
-                        if(event.status) {
-                            console.log('LOOK',thisId);
-                            $('#'+thisId).parent().parent().addClass('animated rotateIn');
-                            $('#'+thisId).css( "color", "#81C241" );
-                        }else {}
-                    });
-                });
-               
-                $( "#networkLink" ).click(function() {
-                    myUrl = '{!$Label.HRONetworkLink}';
-                    if( (typeof sforce != 'undefined') && (sforce != null) ) {
-                      // Salesforce1 navigation
-                      sforce.one.navigateToURL(myUrl);
-                    } else {
-                      // Set the window's URL
-                        window.open(myUrl,'_blank');
-                    }
-                    
-                });
-
-                $( "#cultureLink" ).click(function() {
-                    myUrl = '{!$Label.HROCultureLink}';
-                    if( (typeof sforce != 'undefined') && (sforce != null) ) {
-                      // Salesforce1 navigation
-                      sforce.one.navigateToURL(myUrl);
-                    } else {
-                      // Set the window's URL
-                        window.open(myUrl,'_blank');
-                    }
-                    
-                });
-
-                $( "#ownershipLink" ).click(function() {
-                    myUrl = '{!$Label.HROOwnershipLink}';
-                    if( (typeof sforce != 'undefined') && (sforce != null) ) {
-                      // Salesforce1 navigation
-                      sforce.one.navigateToURL(myUrl);
-                    } else {
-                         // Set the window's URL
-                        window.open(myUrl,'_blank');
-                    }
-                    
-                });
-
-                $( "#capabilityLink" ).click(function() {
-                    myUrl = '{!$Label.HROCapabilityLink}';
-                    if( (typeof sforce != 'undefined') && (sforce != null) ) {
-                      // Salesforce1 navigation
-                      sforce.one.navigateToURL(myUrl);
-                    } else {
-                          // Set the window's URL
-                         window.open(myUrl,'_blank');   
-                    }
-                    
-                });
-
-            }
-
-            /**
-             * { function_description }
-             *
-             * @method     redirectToRecord
-             * @param      {string}  recordId  { Onboarding Task Id }
-             * @param      {string}  pageURL   { Task Attachment page }
-             */
-
-            function redirectToRecord(recordId,pageURL){
-                if(pageURL != null && pageURL != 'undefined'){
-                        if( (typeof sforce != 'undefined') && (sforce != null) ) {
-                        // Salesforce1 navigation
-                        sforce.one.navigateToURL('/apex/HRO_TaskLinkForwarder?id='+recordId+'&pageUrl='+encodedUrl);
-                    } else {
-                        // Set the window's URL
-                        var encodedUrl = encodeURI(pageURL);
-                        window.open(
-                          '/apex/HRO_TaskLinkForwarder?id='+recordId+'&pageUrl='+encodedUrl,
-                          '_blank'
-                        );
-                        //window.location.href = '/apex/DERecordPage?id='+recordId;
-                    }
-                }
-                
-            }
- 
         </script>
     </head>
 
-    <style>
-        @font-face {
-            font-family: 'unileverFont';
-            src:  url('{!URLFOR($Resource.HROResources,'/fonts/DEDINProFont')}');
-        }
-        @font-face {
-            font-family: 'unileverFont-bold';
-            src:  url('{!URLFOR($Resource.HROResources,'/fonts/DEDINProFontBold')}');
-        }
-    </style>
+    <div id="pageContent">
+            
     
         <c:HRO_NavMenu id="navMenu" isAdmin="{!isAdmin}" componentUserId="{!profileUserId}"/>
         
@@ -160,66 +26,40 @@
             <div class="bodyDiv">
                 <div class="bodyWrapper">
                     <div class="bodyContent">
-                        <img class="centerImage width-80 margin-10" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/menu_items_desktop.png')}" />
-                       
-                            <!--
-                            <img style="width: 80px;"  src="{!URLFOR($Resource.HROResources, '/images/Pre-Boarding.png')}" />
+                        <apex:form >
+                            <apex:actionFunction status="status" action="{!phaseButtonClicked}" name="switchToPhase" oncomplete="bindControls();resizePageContent();" reRender="introductionSection,onboardingSteps">
+                                <apex:param id="btnClikced" value="" name="btnClikced" assignTo="{!selectedPhaseButton}"/>
+                            </apex:actionFunction>    
+                        <c:HRO_JourneyMenu id="jurneyMenu"/>
                         
-                        
-                            <img style="width: 80px;"  src="{!URLFOR($Resource.HROResources, '/images/Day-1.png')}" />
-                            <img style="width: 80px;"  src="{!URLFOR($Resource.HROResources, '/images/Month-1.png')}" />
-                            <img style="width: 80px;"  src="{!URLFOR($Resource.HROResources, '/images/Month-2.png')}" />
-                            <img style="width: 80px;"  src="{!URLFOR($Resource.HROResources, '/images/Month-3.png')}" />
-                            <img style="width: 80px;"  src="{!URLFOR($Resource.HROResources, '/images/Beyond-Onboarding.png')}" />
-                            -->
                             
                         <div class="row bodyRow" style="padding-top: 20px;">
-                            <!--
-                            <div class="col-xs-3" />
-                                
-                            <div class="col-xs-6">
-                                <div class="progress">
-                                      <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                      aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                        70%
-                                      </div>
-                                 </div>
-                            </div>
-                            <div class="col-xs-3"/>
-							-->
+                            
                         </div>
-                        <apex:form >
+                        
+                            
                             <apex:actionStatus id="status">
                                 <apex:facet name="start">
-                                <!--
-                                <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.75; z-index: 1000; background-color: black;">
+                                
+                                <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.10; z-index: 1000; background-color: black;">
                                     &nbsp;
                                 </div>
-                                -->
-                                <div style="position: fixed; left: 0; top: 20; bottom: 0; right: 0; z-index: 1001; margin: 30% 50%">
-                                    <img src="{!URLFOR($Resource.HROResources, '/images/spinner.png')}" />
-                                </div>
+                                
                                 </apex:facet>
                             </apex:actionStatus>
-                            <apex:outputPanel rendered="{!isManager}">
-                                <div class="row">
+                            <apex:outputPanel rendered="true">
+                                <div class="row" id="managerPanel">
                                     
                                     
-                                    <div style="margin-top: 20px;font-family: unileverFont;" class ="col-xs-6 col-sm-6 col-md-6">
-                                        
-                                            <apex:selectRadio layout="pageDirection" value="{!selectTaskList}">
-                                                <apex:selectOptions value="{!items}"/>
-                                                <apex:actionSupport event="onchange" oncomplete="bindControls();" reRender="onboardingSteps"/>
-                                            </apex:selectRadio>
-                                        
-                                        
+                                    <div class ="col-xs-6 col-sm-6 col-md-6">
+                                            
                                     </div>
-                                    <div style="margin-top: 20px;font-family: unileverFont;" class="col-xs-6 col-sm-6 col-md-6">
-                                        <div style="float:right">
-                                            <apex:outputLabel for="selectLeader">Leader </apex:outputLabel>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <div class="pull-right">
+                                            <apex:outputLabel for="selectLeader">New Joiner </apex:outputLabel>
                                             <apex:selectList style="background-color: #e6e6e6;" size="1" id="selectLeader" value="{!selectedLeader}">
                                                 <apex:selectOptions value="{!availableLeaders}"/>
-                                                <apex:actionSupport event="onchange" oncomplete="bindControls();" action="{!resetleaderPhase}" reRender="introductionSection,onboardingSteps"/>
+                                                <apex:actionSupport status="status" event="onchange" oncomplete="bindControls();resizePageContent();markButtonPhaseSelected();" action="{!resetleaderPhase}" reRender="introductionSection,onboardingSteps"/>
                                                
                                             </apex:selectList>
         
@@ -231,8 +71,9 @@
                         
                         <div class="informationArea blueText">
                             <div id="legendWrapper" class="group col-md-12 col-sm-12 col-xs-12">
-                                <apex:outputPanel layout="block" id="introductionSection"> 
-                                    <div id="legendText" class="col-md-8 col-sm-8 col-xs-8">
+                                <apex:outputPanel layout="block" id="introductionSection">
+                                    <apex:inputHidden id="selectedPhaseButton" value="{!selectedPhaseButton}"/>
+                                    <div id="legendText" class="col-md-8 col-sm-8 col-xs-12">
                                         {!introductionHeaderMap[leaderPhase]}<br />
                                         - Things you should do!
         
@@ -240,18 +81,17 @@
                                              {!introductionInfoMap[leaderPhase]}
                                         </div>
                                     </div>
-
-                                    <div id="legendImageDiv" class="col-md-4 col-sm-4 col-xs-4">
-                                        <div id="capabilityLink" class="legendLink col-md-6 col-sm-6 col-xs-6" />
-                                        <div id="ownershipLink" class="legendLink col-md-6 col-sm-6 col-xs-6" />
-                                        <div id="networkLink" class="legendLink col-md-6 col-sm-6 col-xs-6" />
-                                        <div id="cultureLink" class="legendLink col-md-6 col-sm-6 col-xs-6" />
-
-                                       
-
-                                        <img id="legendImage" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/things_to_do_main.png')}" />
-                                    </div>
-
+                                    <div class="col-md-4 col-sm-4 col-xs-12" id="legendImageWrapper">
+                                      <div id="legendImageDiv">
+                                         <div class="legendLinkWrapper">
+                                            <div class="legendLink col-md-6 col-sm-6 col-xs-6" id="ownershipLink" title="Ownership"></div>
+                                            <div class="legendLink col-md-6 col-sm-6 col-xs-6" id="networkLink" title="Network"></div>
+                                            <div class="legendLink col-md-6 col-sm-6 col-xs-6" id="cultureLink" title="Culture"></div>
+                                            <div class="legendLink col-md-6 col-sm-6 col-xs-6" id="capabilityLink" title="Capability"></div>
+                                         </div>
+                                         <img id="legendImage" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/things_to_do_main.png')}" />
+                                      </div>
+                                   </div>
                                 </apex:outputPanel>
                             </div>
                             
@@ -263,7 +103,7 @@
                                                 <img class="centerImage" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/'+LOWER(onboardTask.Action_Type__c)+'.png')}" />
                                             </div>
             
-                                            <div class="stepDescription stepBodyDiv col-md-6 col-sm-6 col-xs-12">
+                                            <div class="stepDescription stepBodyDiv col-md-7 col-sm-7 col-xs-12">
                                                 {!onboardTask.Task_Detail__c}
                                                 <apex:outputPanel rendered="{!Today()> onboardTask.Due_Date__c}">
                                                     <span style="color:red">
@@ -274,7 +114,7 @@
                                                     </span>
                                                 </apex:outputPanel>
                                                 
-                                                <apex:outputPanel >
+                                                <apex:outputPanel rendered="{!Today()<= onboardTask.Due_Date__c}">
                                                     <span style="color:green">
                                                         &nbsp;DUE&nbsp;
                                                         <apex:outputText value="{0,date,long}">
@@ -283,33 +123,26 @@
                                                     </span>
                                                 </apex:outputPanel>  
                                             </div>
-            
-                                            <div class="stepAction stepBodyDiv col-md-2 col-sm-2 col-xs-6" id="takeActionBtn{!onboardTask.id}">
-                                                <div class="buttonWrapper">
-													<button class="actionButton" onclick="redirectToRecord('{!onboardTask.id}','{!onboardTask.ExternalPortalLink__c}');markCompleted('UncompletedTask'+'{!onboardTask.id}',this)" type="button" return="false">TAKE ACTION</button>     
-                                                </div>
-                                            </div>
-                                            <!--
-                                            <apex:outputPanel rendered="{!AND(NOT(onboardTask.Completed__c),onboardTask.Action_Taken__c)}">
-                                                <div class="stepAction stepBodyDiv col-md-2 col-sm-2 col-xs-3" id="markCompleteBtn{!onboardTask.id}">
+                                            
+                                            <div class="stepActions col-md-3 col-sm-3 col-xs-12">
+                                                <div class="stepAction stepBodyDiv col-md-12 col-sm-12 col-xs-6" id="takeActionBtn{!onboardTask.id}">
                                                     <div class="buttonWrapper">
-                                                        <button class="actionButton" onclick="" type="button" return="false">MARK COMPLETED</button>     
+    													<button class="actionButton" onclick="redirectToRecord('{!onboardTask.id}','{!onboardTask.ExternalPortalLink__c}');markCompleted('UncompletedTask'+'{!onboardTask.id}',this)" type="button" return="false">TAKE ACTION</button>     
                                                     </div>
                                                 </div>
-                                            </apex:outputPanel>
-                                            -->
-                                            <div class="stepStatus stepBodyDiv col-md-2 col-sm-2 col-xs-6">
-                                                <div  class="iconWrapper">
-                                                    <apex:outputPanel rendered="{!NOT(onboardTask.Completed__c)}">
-                                                    	<i class="ion-android-checkmark-circle inoIcon" id="UncompletedTask{!onboardTask.id}" />
-                                                    </apex:outputPanel>
-                                                    <apex:outputPanel rendered="{!onboardTask.Completed__c}">
-                                                        <i style="color : rgb(129, 194, 65);" class="ion-android-checkmark-circle inoIcon" id="CompletedTask{!onboardTask.id}" />
-                                                    </apex:outputPanel>    
+
+                                                <div class="stepStatus stepBodyDiv col-md-12 col-sm-12 col-xs-6">
+                                                    <div  class="iconWrapper">
+                                                        <apex:outputPanel rendered="{!NOT(onboardTask.Completed__c)}">
+                                                            <i class="ion-android-checkmark-circle inoIcon" id="UncompletedTask{!onboardTask.id}" />
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel rendered="{!onboardTask.Completed__c}">
+                                                            <i style="color : rgb(129, 194, 65);" class="ion-android-checkmark-circle inoIcon" id="CompletedTask{!onboardTask.id}" />
+                                                        </apex:outputPanel>    
+                                                    </div>
                                                 </div>
                                             </div>
-
-                                            
+ 
                                 		</div>
                                     </apex:repeat>
                                 </div>    
@@ -321,15 +154,13 @@
                 </div>
             </div>
         </div>
-    
+    </div>	
+    	<!--
         <div class="row bodyRow">
             <div class="col-xs-12 footer">
                 Unilever 2015
             </div>
         </div>
-     
-    <script src="{!URLFOR($Resource.HROResources, '/DEElasticMenu/js/classie.js')}"></script>
-    <script src="{!URLFOR($Resource.HROResources, '/DEElasticMenu/js/main3.js')}"></script>      
-    
+     	-->
 </html>
 </apex:page>
