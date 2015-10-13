@@ -81,9 +81,10 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
               </td>
             </tr>
           </table>
-          </div>
 
-        <hr width="100%" style="color: rgb(121, 121, 121);background-color: rgb(121, 121, 121);height: 2px;border: medium none;" /> 
+          <hr width="100%" style="color: rgb(121, 121, 121);background-color: rgb(121, 121, 121);height: 2px;border: medium none;" /> 
+          
+          </div>
 
         <div class="headerButtonsBrowsMembers"> 
         
