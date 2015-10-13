@@ -315,6 +315,7 @@
         <members>Core_CA_Test</members>
         <members>Core_CA_Test_MobileAPP</members>
         <members>Core_CA_WrapperUtility</members>
+        <members>Core_IC_WrapperUtility</members>
         <members>Core_SendToChatterController</members>
         <members>Core_SendToChatter_Test</members>
         <members>CustomChatterConfig</members>
