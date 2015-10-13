@@ -2269,6 +2269,16 @@
 		<members>BET_Asset_Status</members>
 		<members>BET_Asset_MetaData</members>
 		<members>BET_BetOwnerMandatory</members>
+		<members>BET_Asset_Status_Mandatory</members>
+		<members>BET_Asset_Media_Type_Mandatory</members>
+		<members>BET_Asset_Country_Mandatory</members>
+		<members>BET_Asset_Name_Mandatory</members>
+		<members>BET_Asset_No_Files_Selected</members>
+		<members>BET_Asset_Uploaded</members>
+		<members>BET_Asset_Not_Uploaded</members>
+		<members>BET_Select_Files</members>
+		<members>BET_Upload_Status</members>
+		<members>BET_File_Name</members>
         <name>CustomLabel</name>
     </types>
     <types>
