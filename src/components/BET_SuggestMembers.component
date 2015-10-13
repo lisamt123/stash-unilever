@@ -45,12 +45,23 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
     
 
 	<script>
+        //store current jquery version
+        var quickFix = $;
+        //restore previous one only for $
         jQuery.noConflict();
-        jQuery( document ).ready(function( $ ) {
-            jQuery('.question-icon[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' } });
-            jQuery('.question-icon-left[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' },position: { my: 'bottom right', at: 'top left' } });
+        //store the previous jquery version
+        var qtipJQuery = $;
+        // restore the newest version to $
+        $ = quickFix;
+        qtipJQuery( document ).ready(function( jq ) {
+            qtipJQuery('.question-icon[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' } });
+            qtipJQuery('.question-icon-left[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' },position: { my: 'bottom right', at: 'top left' } });
          }
         );
+        //fix overlay issue "dialog is on top overlay layer"
+        var $ = jQuery.noConflict();
+        $.blockUI.defaults.css['z-index']        = 1601;
+        $.blockUI.defaults.overlayCSS['z-index'] = 1600;
 	</script>
 
 
@@ -62,7 +73,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
     <apex:actionFunction name="deleteMember" action="{!deleteMember}"  oncomplete="unlockUI();">
         <apex:param id="memberToDelete" name="memberToDelete" value="" assignTo="{!memberToDelete}"/>
     </apex:actionFunction>
-    <apex:actionFunction name="delExternalMemeber" action="{!delExternalMemeber}" oncomplete="unlockUI();">
+    <apex:actionFunction name="delExternalMemeber" action="{!delExternalMemeber}" oncomplete="unlockUI();" reRender="suggestedMembersContainer,suggestedMembersContainerbet">
         <apex:param id="emailToDelete" name="emailToDelete" value="" assignTo="{!emailToDelete}"/>
     </apex:actionFunction>
 
@@ -164,7 +175,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                                     </td>
                                     <td>
                                         <div class="trashIcon" style="background: url({!$Resource.BET}/images/trashIcon.png) no-repeat;" 
-                                            onclick="delExternalMemeber('{!eMember.email}');">
+                                            onclick="lockUI(); delExternalMemeber('{!eMember.email}');">
                                         </div>
                                     </td>
                                 </tr>
