@@ -1257,6 +1257,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Core_IC_WrapperUtility</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Core_SendToChatterController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
