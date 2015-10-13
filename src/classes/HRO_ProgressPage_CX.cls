@@ -1,9 +1,27 @@
-public with sharing class HRO_ProgressPage_CX {
+/**********************************************************************
+ Name:  HRO_ProgressPage_CX()
+ Copyright © 2015  Salesforce
+ ======================================================
+======================================================
+Purpose:                                                            
+Class responsible for calcualting manger progress                                                      
+======================================================
+======================================================
+History                                                            
+-------                                                            
+VERSION  AUTHOR            DATE              DETAIL            Description
+   1.0    Karol Szepietowski        13/10/2015      INITIAL DEVELOPMENT          CSR: 
+***********************************************************************/
 
+public with sharing class HRO_ProgressPage_CX {
+	public static  String HRADMIN='HRO_HRAdmin';
+    public static  String HRMANAGER='HRO_HeadstartManager';
+    public static  String HRNEWLEADER='HRO_Headstart';
+    
     public static final List<String> PHASEORDER = new List<String>{HRO_HeadStart_CX.PREBOARDINGPHASE,
                                                                    HRO_HeadStart_CX.DAY1PHASE,
+        														   HRO_HeadStart_CX.WEEK1PHASE,
                                                                    HRO_HeadStart_CX.MONTH1PHASE,
-                                                                   HRO_HeadStart_CX.WEEK1PHASE,
                                                                    HRO_HeadStart_CX.MONTH2PHASE,
                                                                    HRO_HeadStart_CX.MONTH3PHASE,
                                                                    HRO_HeadStart_CX.BEONBOARDPHASE
@@ -14,40 +32,85 @@ public with sharing class HRO_ProgressPage_CX {
 
     public List<ProgressWrapper> progressLst{get;set;}
     public Integer progressLstSize{get;set;}
-    public HRO_ProgressPage_CX(ApexPages.StandardController std) {
+    
+   /*******************************************************************
+   Purpose:  Class contstuctor                                                    
+   Parameters: []
+   Returns: []
+   Throws [Exceptions]: []                                                          
+  ********************************************************************/
+    public HRO_ProgressPage_CX() {
+        system.debug('***HRO Entring HRO_ProgressPage_CX constructor');
         currentUserId = '';
         if(ApexPages.currentPage().getParameters().containsKey('sfdc.userId')){
             currentUserId = ApexPages.currentPage().getParameters().get('sfdc.userId');    
+        }else{
+            currentUserId = UserInfo.getUserId();
         }
 
         progressLst = getProgressList();
-
+		system.debug('***HRO Exiting HRO_ProgressPage_CX constructor progressLst was set to: '+JSON.serialize(progressLst));
     }
     
+    /*******************************************************************
+   Purpose:  Return userid from url parameter                                                   
+   Parameters: []
+   Returns: [String]
+   Throws [Exceptions]: []                                                          
+  ********************************************************************/
     public String getProfileUserId(){
-        
+        system.debug('***HRO Entirng getProfileUserId');
         String userId = '';
         if(ApexPages.currentPage().getParameters().containsKey('sfdc.userId')){
         	userId = ApexPages.currentPage().getParameters().get('sfdc.userId');    
         }else{
             userId = UserInfo.getUserId();
         }
+        system.debug('***HRO Exiting getProfileUserId:'+userId);
         return userId;
         
     }
-
+	
+    /*******************************************************************
+   Purpose:  Return userid from url parameter                                                   
+   Parameters: Checking if current user have an HRO Manager permission set
+   assigned
+   Returns: [Boolean]
+   Throws [Exceptions]: []                                                          
+  ********************************************************************/
     public  Boolean getIsManager(){
-        Id hroManager = [Select id From PermissionSet Where name =: HRO_NavMenu_CC.HRMANAGER Limit 1].get(0).Id;
+        system.debug('***HRO Entring getIsManager');
+        Id hroManager = [Select id From PermissionSet Where name =: HRMANAGER Limit 1].get(0).Id;
         if([SELECT id from PermissionSetAssignment where AssigneeId =:ApexPages.currentPage().getParameters().get('sfdc.userId') AND PermissionSetId =: hroManager].size()>0){
+            system.debug('***HRO Exiting getIsManager:'+true);
             return true;
         }
+        system.debug('***HRO Exiting getIsManager:'+false);
         return false;
     }
-
+	
+    /*******************************************************************
+    Purpose:  Return 1 if task is completed and 0 if not
+    Returns: [Integer]
+    Throws [Exceptions]: []                                                          
+    ********************************************************************/
+    private Integer increaseNumOfCompletedTask(HRO_Onboarding_Task__c hroTask){
+        if(hroTask.Completed__c){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    
+   /*******************************************************************
+   Purpose:  Return manager progress on headstart program
+   Returns: [List<ProgressWrapper>]
+   Throws [Exceptions]: []                                                          
+  ********************************************************************/
     private List<ProgressWrapper> getProgressList(){
-
+		system.debug('***HRO Entring getProgressList');
         List<ProgressWrapper> reportList = new List<ProgressWrapper>();
-        HRO_ManagerOverview_CX.LeaderSummarry summaryRecord = new HRO_ManagerOverview_CX.LeaderSummarry();
+        LeaderSummarry summaryRecord = new LeaderSummarry();
         for(HRO_Onboarding_Task__c leaderTask : [SELECT Id, New_Leader_Name__c,Completed__c, Due_Date__c,Phase__c
                                                  FROM HRO_Onboarding_Task__c
                                                  WHERE OwnerId =: currentUserId Limit 50000]){
@@ -55,10 +118,10 @@ public with sharing class HRO_ProgressPage_CX {
             
             if(summaryRecord.totalTasksInPhase.containsKey(leaderTask.Phase__c)){
                 summaryRecord.totalTasksInPhase.put(leaderTask.Phase__c,summaryRecord.totalTasksInPhase.get(leaderTask.Phase__c)+1);
-                summaryRecord.totalTasksCompletedInPhase.put(leaderTask.Phase__c,summaryRecord.totalTasksCompletedInPhase.get(leaderTask.Phase__c)+HRO_ManagerOverview_CX.increaseNumOfCompletedTask(leaderTask));
+                summaryRecord.totalTasksCompletedInPhase.put(leaderTask.Phase__c,summaryRecord.totalTasksCompletedInPhase.get(leaderTask.Phase__c)+increaseNumOfCompletedTask(leaderTask));
             }else{
                 summaryRecord.totalTasksInPhase.put(leaderTask.Phase__c,1);
-                summaryRecord.totalTasksCompletedInPhase.put(leaderTask.Phase__c,HRO_ManagerOverview_CX.increaseNumOfCompletedTask(leaderTask));
+                summaryRecord.totalTasksCompletedInPhase.put(leaderTask.Phase__c,increaseNumOfCompletedTask(leaderTask));
             }
             
         }
@@ -69,10 +132,6 @@ public with sharing class HRO_ProgressPage_CX {
             Decimal totalCompletedTasks = 0;
 
             for(String userPhase : PHASEORDER){
-
-                if(userPhase == HRO_HeadStart_CX.PREBOARDINGPHASE && !isManager){
-                    continue;
-                }
 
                 ProgressWrapper wrapper = new ProgressWrapper();
                 wrapper.phase = userPhase;
@@ -103,20 +162,60 @@ public with sharing class HRO_ProgressPage_CX {
             reportList.add(wrapper);
 
         }
-        system.debug(JSON.serialize(reportList));
+        
         progressLstSize = reportList.size();
+        system.debug('***HRO Exiting getProgressList:'+JSON.serialize(reportList));
         return reportList;
 
 
     }
 
 
-
+	/*******************************************************************
+   Purpose: Helper class used as placeholder for returned data
+   Returns: []
+   Throws [Exceptions]: []                                                          
+  ********************************************************************/
     public class ProgressWrapper{
         public String phase{get;set;}
         public Integer perecntOfCompletion{get;set;}
         public Integer totalTasks{get;set;}
         public Integer totalCompletedTasks{get;set;}
+    }
+    
+    /*******************************************************************
+    Purpose: Helper class used as placeholder for returned data
+    Returns: []
+    Throws [Exceptions]: []                                                          
+  	********************************************************************/
+    public class LeaderSummarry{
+
+        public Map<String,Integer> totalTasksInPhase = new Map<String,Integer>();
+        public Map<String,Integer> totalTasksCompletedInPhase = new Map<String,Integer>();
+        public Map<String,Decimal> percentOfCompletionInPhase = new Map<String,Decimal>();
+        public Decimal pecentOfCompletion{get;set;}
+        public Boolean hasOverduedTasks{get;set;}
+        public String uncompletedPhase{get;set;}
+
+
+        /*******************************************************************
+       Purpose: Helper class used as placeholder for returned data
+	   Parameters:[String]	
+       Returns: [Decimal]
+       Throws [Exceptions]: []                                                          
+      ********************************************************************/
+        public Decimal calculatePercentOfCompletionForPhase(String phase){
+
+             if(!totalTasksInPhase.containsKey(phase)){
+                return 100;
+             }
+
+             Decimal totalNumberOfTasks = Decimal.valueOf(totalTasksInPhase.get(phase).format());
+             Decimal totalCompletedTasks = Decimal.valueOf(totalTasksCompletedInPhase.get(phase).format());
+
+             return totalCompletedTasks.divide(totalNumberOfTasks, 2)*100;
+        }
+        
     }
 
 }

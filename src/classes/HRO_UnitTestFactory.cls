@@ -1,5 +1,5 @@
 /**********************************************************************
- Name:  HRO_BoardingAction_CX()
+ Name:  HRO_UnitTestFactory()
  Copyright © 2015  Salesforce
 ======================================================
 ======================================================
@@ -22,22 +22,20 @@ public with sharing class HRO_UnitTestFactory {
     public static String MONTH2PHASE = 'Month 2';
     public static String MONTH3PHASE = 'Month 3';
     public static String BEONBOARDPHASE = 'Beyond Onboarding';
-    public static String MANAGERTASKTYPE = 'Manger';
+    public static String MANAGERTASKTYPE = 'Manager';
     public static String NEWLEADERTASKTYPE = 'New Leader';
 	
 
 	public HRO_UnitTestFactory(){}
-	/**
-	 * createOnboardingTaskTemplate
-	 *
-	 * @param      taskFor   { Manger/Leader }
-	 * @param      dueDate   { Number of days }
-	 * @param      phase     { taks phase }
-	 * @param      link      { task attached link }
-	 * @param      taskType  { one of following :  }
-	 */
+    
+	/*******************************************************************
+   Purpose:  Helper method for creating Onboarding Task Template                                                 
+   Parameters: [String taskFor, Integer dueDate, String phase,String link, String taskType]
+   Returns: [HRO_Onboarding_Plan__c]
+   Throws [Exceptions]: []                                                          
+  ********************************************************************/
 	public static HRO_Onboarding_Plan__c createOnboardingTaskTemplate(String taskFor, Integer dueDate, String phase,String link, String taskType){
-
+		system.debug('***HRO Entring createOnboardingTaskTemplate');
 		HRO_Onboarding_Plan__c taskTemplate = new HRO_Onboarding_Plan__c();
 		taskTemplate.Task_for__c = taskFor;
 		taskTemplate.Due__c = dueDate;
@@ -45,17 +43,18 @@ public with sharing class HRO_UnitTestFactory {
 		taskTemplate.Link__c = link;
 		taskTemplate.Task_type__c = taskType;
 		taskTemplate.Task_Description__c ='sample test descritption';
-
+		system.debug('***HRO Exiting createOnboardingTaskTemplate'+taskTemplate);
 		return taskTemplate;
 	}
 
-	/**
-	 * createDefaultSetOfOnboardingTasks {helper method to create task templates}
-	 *
-	 * @param      isManager  { template task assigned to manager or leader }
-	 */
-
+	/*******************************************************************
+   Purpose:  Helper method for creating Onboarding Task Templates                                                 
+   Parameters: [String taskFor, Integer dueDate, String phase,String link, String taskType]
+   Returns: [List<HRO_Onboarding_Plan__c>]
+   Throws [Exceptions]: []                                                          
+  ********************************************************************/
 	public static List<HRO_Onboarding_Plan__c> createDefaultSetOfOnboardingTasks(Boolean isManager){
+        system.debug('Enerig method createDefaultSetOfOnboardingTasks @isManager:'+isManager);
 		List<HRO_Onboarding_Plan__c> taskTemplates = new List<HRO_Onboarding_Plan__c>();
 		Schema.DescribeFieldResult phaseDescribe = HRO_Onboarding_Plan__c.Phase__c.getDescribe();
 		Schema.DescribeFieldResult taskTypeeDescribe = HRO_Onboarding_Plan__c.Task_type__c.getDescribe();
@@ -80,18 +79,58 @@ public with sharing class HRO_UnitTestFactory {
 				
 			}
 		}
-
+		system.debug('***HRO Exiting method createDefaultSetOfOnboardingTasks:'+JSON.serialize(taskTemplates));
 		return taskTemplates;
 	}
+    
+    /*******************************************************************
+   Purpose:  Helper method for creating Onboarding Task for unit test perpouse                                 
+   Parameters: [String taskFor, Integer dueDate, String phase,String link, String taskType]
+   Returns: [List<HRO_Onboarding_Plan__c>]
+   Throws [Exceptions]: []                                                          
+  ********************************************************************/
+    public static List<HRO_Onboarding_Task__c> createPreboardingTask(User manager,User leader,List<HRO_Onboarding_Plan__c> templates){
+        
+        system.debug('Enerig method createPreboardingTask @manager:'+manager+'@leader'+leader+' @templates:'+templates);
+        List<HRO_Onboarding_Task__c> tasksToCreate = new List<HRO_Onboarding_Task__c>();
+        HRO_Onboarding_Task_Set__c taskSet = new HRO_Onboarding_Task_Set__c();
+        taskSet.New_Leader_Name__c = leader.LastName;
+        taskSet.Start_Date__c = Date.today().addDays(-1);
+        insert taskSet;
+        for(HRO_Onboarding_Plan__c p : templates){
+            //if(p.Phase__c == PREBOARDINGPHASE){
+                HRO_Onboarding_Task__c managerTask = new HRO_Onboarding_Task__c();
+                managerTask.Action_Type__c = p.Task_type__c;
+                managerTask.Completed__c = false;
+                managerTask.Due_Date__c = Date.today().addDays(Integer.valueOf(p.Due__c));
+                managerTask.OwnerId = UserInfo.getUserId();
+                managerTask.New_Leader_Name__c = leader.LastName;
+                managerTask.Onboarding_Task_Set__c=taskSet.id;
+                //managerTask.Onboarding_Plan__c =  p.id;
+                managerTask.Phase__c = p.Phase__c;
+                managerTask.Task_Detail__c = p.Task_Description__c;
+                managerTask.ExternalPortalLink__c = p.Link__c;
+                
+                tasksToCreate.add(managerTask);
+            //}
+        }
+        
+        insert tasksToCreate;
+        system.debug('Exiting method createPreboardingTask :'+tasksToCreate);
+        return tasksToCreate;
+       // return tasksToCreate;
+    }
+    
+    
 
-	/**
-	 * { Setting default Due Date for each phase }
-	 *
-	 * @param      phase  { parameter_description }
-	 *
-	 * @return     { description_of_the_return_value }
-	 */
+	/*******************************************************************
+   Purpose:  Helper method for calculating Due Dates for test tasks                           
+   Parameters: [String]
+   Returns: [Integer]
+   Throws [Exceptions]: []                                                          
+  ********************************************************************/
 	public static Integer calculateDueDateForTemplateTask(String phase){
+        system.debug('***HRO Entring calculateDueDateForTemplateTask @phase:'+phase);
 		if(phase == PREBOARDINGPHASE){
 			return 0;
 		}else if(phase == DAY1PHASE){
@@ -110,19 +149,33 @@ public with sharing class HRO_UnitTestFactory {
 			return 0;
 		}
 	}
-
+	
+    /*******************************************************************
+   Purpose:  Helper method for creating user for manager                          
+   Parameters: [String]
+   Returns: [User]
+   Throws [Exceptions]: []                                                          
+  ********************************************************************/
 	public static User createUserManager(String Name){
+        system.debug('***HRO Entring createUserManager @Name:'+Name);
 		Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
         User u = new User(Alias = 'standt', Email='standarduser@testorg.com', 
             EmailEncodingKey='UTF-8', LastName=Name, LanguageLocaleKey='en_US', 
             LocaleSidKey='en_US', ProfileId = p.Id, 
             TimeZoneSidKey='America/Los_Angeles', UserName='test'+Name+'@testorg.com');
         insert u;
-        HRO_UtilWithoutSharing.addMangerAccessToHROApplication(u.id);
+        system.debug('***HRO createUserManager createUser'+u);
         return u;	
 	}
-
+	
+     /*******************************************************************
+   Purpose:  Helper method for standard user                         
+   Parameters: [String]
+   Returns: [User]
+   Throws [Exceptions]: []                                                          
+  ********************************************************************/
 	public static User createUser(String Name){
+        system.debug('***HRO Entring createUser @Name:'+Name);
 		Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
         User u = new User(Alias = 'stand1', Email='standarduser@testorg.com', 
             EmailEncodingKey='UTF-8', LastName=Name, LanguageLocaleKey='en_US', 
@@ -130,7 +183,7 @@ public with sharing class HRO_UnitTestFactory {
             TimeZoneSidKey='America/Los_Angeles', UserName='test'+Name+'@testorg.com');
 
         insert u;
-   
+   		system.debug('***HRO Exiting createUser'+u);
         return u;	
 	}
 }
