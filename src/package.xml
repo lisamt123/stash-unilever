@@ -987,6 +987,8 @@
         <members>uw_testTrigger</members>
         <members>uw_uploadBCImage</members>
         <members>BET_UpdateExpectedAssetsController</members>
+		<members>BET_MultiUploadAssetsController</members>
+		<members>BET_MultiUploadAssetsControllerTest</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -1517,6 +1519,7 @@
         <members>uw_BetEdit</members>
         <members>uw_CustomAssetUpload</members>
         <members>BET_UpdateExpectedAssets</members>
+		<members>BET_MultiUploadAssets</members>
         <name>ApexPage</name>
     </types>
     <types>
