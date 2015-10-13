@@ -4,6 +4,10 @@
 *.sublime-settings
 *.sublime-workspace
 config/*
+.project
+.settings
+salesforce.schema
+Referenced Packages
 
 # Logs and databases #
 ######################
