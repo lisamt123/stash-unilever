@@ -54,6 +54,12 @@ global class BET_MultiUploadAssetsController {
 		return JSON.serialize(BET_AssetService.getAvailableAssetsStatus()); 
 	}
 
+	/************************************************************
+        Purpose: Checks id bet is visual approved already
+        Parameters: Id betid
+        Returns: boolean
+        Throws: -
+    *************************************************************/
 	public static boolean isVisualApproved(Id betid){
         for(uw_Asset__c flist : [SELECT Name, Is_bucket_field__c, Id, uw_BET__c, Related_Feed_Item__c,Media_Type__c,Status__c FROM uw_Asset__c WHERE uw_bet__c =: betid]){
             if(flist.Media_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW && flist.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){
@@ -62,7 +68,6 @@ global class BET_MultiUploadAssetsController {
         }
         return false;
     }
-
 
     /************************************************************
         Purpose: Creates feed attachemnt related asset
