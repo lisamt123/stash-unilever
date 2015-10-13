@@ -1,6 +1,6 @@
-<apex:component controller="HRO_NavMenu_CC">
+<apex:component >
     <apex:attribute name="isAdmin" description="This is the value for the component." type="Boolean" required="false"/>
-    <apex:attribute name="componentUserId" description="Current profile user id" type="String" required="false" assignTo="{!userId}"/>
+    <apex:attribute name="componentUserId" description="Current profile user id" type="String" required="false" />
     <script>
     	function navigateToUrl(pageUrl){
              if( (typeof sforce != 'undefined') && (sforce != null) ) {
@@ -20,17 +20,9 @@
         <div class="menu-wrap">
             <nav class="menu">
                 <div class="icon-list">
-                    <apex:outputPanel rendered="{!OR(isManager,isNewLeader)}">
-                    <a href="" onclick="navigateToUrl('/apex/HRO_Headstart?sfdc.userId={!componentUserId}')"><i class="fa fa-fw fa-star-o"></i><span>Headstart</span></a>
-                    <a href="" onclick="navigateToUrl('/apex/HRO_ProgressPage?sfdc.userId={!componentUserId}')"><i class="fa fa-fw fa-play"></i><span>Progress</span></a>
-                    </apex:outputPanel>    
-                    <apex:outputPanel rendered="{!isManager}">
-                        <a href="" onclick="navigateToUrl('/apex/HRO_ManagerOverview?sfdc.userId={!componentUserId}')"><i class="fa fa-fw fa-play"></i><span>Manager Overview</span></a>
-                        <a href="" onclick="navigateToUrl('/apex/HRO_PreBoardingActionPage?sfdc.userId={!componentUserId}')"><i class="fa fa-fw fa-play"></i><span>Register</span></a>
-                    </apex:outputPanel>
-                    <apex:outputPanel rendered="{!isHRAdmin}">
-                   		<!--<a target="_top" href="{!onboardingList}"><i class="fa fa-fw fa-play"></i><span>HR Admin</span></a>-->
-                    </apex:outputPanel>    
+                    <a href="" onclick="navigateToUrl('/apex/HRO_Headstart?sfdc.userId={!componentUserId}')"><i class="fa fa-fw fa-star-o"></i><span>My Tasks</span></a>
+                    <a href="" onclick="navigateToUrl('/apex/HRO_ProgressPage?sfdc.userId={!componentUserId}')"><i class="fa fa-fw fa-play"></i><span>My Progress</span></a>
+					<a href="" onclick="navigateToUrl('/apex/HRO_PreBoardingActionPage?sfdc.userId={!componentUserId}')"><i class="fa fa-fw fa-play"></i><span>Register</span></a>   
                 </div>
             </nav>
             <button class="close-button" id="close-button">Close Menu</button>
@@ -48,32 +40,16 @@
     
         <div class="row bodyRow">
             <div class="col-md-12 col-sm-12 col-xs-12 headerDiv">
-                <img id="mainLogo" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/so_logo.gif')}" />
+                <div id="mainLogo" class="row"></div>
                 <div class="menuTabs">
                     <ul>
-                       <apex:outputPanel rendered="{!OR(isManager,isNewLeader)}">  
-                          <li><a href="/apex/HRO_Headstart?sfdc.userId={!componentUserId}">Headstart</a></li>
-                          <li><a href="/apex/HRO_ProgressPage?sfdc.userId={!componentUserId}">Progress</a></li>
-                      </apex:outputPanel>     
-                      <apex:outputPanel rendered="{!isManager}">
-                          <li><a href="/apex/HRO_ManagerOverview?sfdc.userId={!componentUserId}">Manager Overview</a></li>
-                          <li><a target="_top" href="/apex/HRO_PreBoardingActionPage?sfdc.userId={!componentUserId}">Register</a></li>
-                      </apex:outputPanel>
-                      <apex:outputPanel rendered="{!isHRAdmin}">  
-                          <!--<li><a target="_top" href="/a6Q/o">HR Admin</a></li>-->
-                      </apex:outputPanel>    
-                      <!--<li><input placeholder="Search" id="searchInput" type="text" /><img id="searchImage" src="{!URLFOR($Resource.SEUnileverResources, '/so_search-button.gif')}" />
-                      </li>-->
+						<li><a href="/apex/HRO_Headstart?sfdc.userId={!componentUserId}">My Tasks</a></li>
+                        <li><a href="/apex/HRO_ProgressPage?sfdc.userId={!componentUserId}">My Progress</a></li>
+						<li><a target="_top" href="/apex/HRO_PreBoardingActionPage?sfdc.userId={!componentUserId}">Register</a></li>
                     </ul>
                 </div>
                 <img src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/header-bg.png')}" style="visibility:hidden; width:100%;height:139px"/>
             </div>
         </div>
-    <script>
-    	//hide hamburger menu if opend under mobile
-    	if( (typeof sforce != 'undefined') && (sforce != null) ) {
-            // Salesforce1 navigation
-            
-        }
-    </script>
+    
 </apex:component>
