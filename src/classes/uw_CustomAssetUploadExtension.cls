@@ -26,6 +26,8 @@ public with sharing class uw_CustomAssetUploadExtension {
     public static final String TAB_APPROVED = 'approved';
     public static final String TAB_SHARING = 'sharing';
     public static final String TAB_DRAFT = 'draft';
+    
+    public String tabInFocus {get;set;}
 
     public static final Map<String,String> tabRelatedStatusMap = new Map<String,String>{
         TAB_APPROVED => BET_ASSET_APPROVED,
@@ -126,6 +128,8 @@ public with sharing class uw_CustomAssetUploadExtension {
         if(!String.isBlank(assetTab)){
             file.Status__c = tabRelatedStatusMap.get(assetTab);
         }
+        file.Studio_Asset_Type__c = BET_ASSET_TYPE_BEP;
+        tabInFocus = 'name2';
     }   
     
      /*T0-Begin*/  

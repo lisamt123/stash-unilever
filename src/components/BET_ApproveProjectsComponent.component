@@ -57,13 +57,15 @@
                     <apex:commandButton value="{!$Label.BET_Deny}" styleClass="btn-deny" 
                                         action="{!doDeny}" 
                                         rendered="{!betOwner}"
-                                        rerender="approvpanel">
+                                        rerender="approvpanel"
+                                        style="font-family:Rockwell;">
                         <apex:param name="elementNo" value="{!preq.id}" assignTo="{!elementId}"/>
                     </apex:commandButton>
                     <apex:commandButton value="{!$Label.BET_Approve}" styleClass="btn-approve" 
                                         action="{!doApprove}" 
                                         rendered="{!betOwner}"
-                                        rerender="approvpanel">
+                                        rerender="approvpanel"
+                                        style="margin-left:20px;font-family:Rockwell;">
                         <apex:param name="elementNo" value="{!preq.id}" assignTo="{!elementId}"/>
                     </apex:commandButton>
                 </apex:actionRegion>
