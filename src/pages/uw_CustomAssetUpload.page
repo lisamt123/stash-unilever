@@ -729,7 +729,7 @@
         </apex:tab>
         
           <apex:tab label="{!$Label.BET_Multi_File_Upload}" name="name2" id="tabTwo">
-            <iframe src="/apex/BET_MultiUploadAssets" style="width:100%;height:100%;border:none;"></iframe>
+            <iframe src="/apex/BET_MultiUploadAssets?betid={!bet.id}&parent={!parentId}" style="width:100%;height:100%;border:none;"></iframe>
           </apex:tab>
         
         </apex:tabPanel>

@@ -452,7 +452,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BETManagerRole</shortDescription>
-        <value>BET Manager</value>
+        <value>Manager</value>
     </labels>
     <labels>
         <fullName>BETTeamMemberRequestApprovedStatus</fullName>
@@ -482,7 +482,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Add_External_Agency_User_Tooltip</shortDescription>
-        <value>Tooltip</value>
+        <value>Please enter the full email address of your agency member here. They will receive an email with further information on joining the BET.</value>
     </labels>
     <labels>
         <fullName>BET_Add_Internal_User</fullName>
@@ -589,12 +589,28 @@ Are you sure you wish to proceed?</value>
         <value>Country</value>
     </labels>
     <labels>
+        <fullName>BET_Asset_Country_Mandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Country_Mandatory</shortDescription>
+        <value>Asset Country cannot be empty.</value>
+    </labels>
+    <labels>
         <fullName>BET_Asset_Media_Type</fullName>
         <categories>BET</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Asset_Media_Type</shortDescription>
         <value>Media Type</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Media_Type_Mandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Media_Type_Mandatory</shortDescription>
+        <value>Asset Media Type cannot be empty.</value>
     </labels>
     <labels>
         <fullName>BET_Asset_MetaData</fullName>
@@ -613,6 +629,30 @@ Are you sure you wish to proceed?</value>
         <value>Asset Name</value>
     </labels>
     <labels>
+        <fullName>BET_Asset_Name_Mandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Name_Mandatory</shortDescription>
+        <value>Asset name is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_No_Files_Selected</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_No_Files_Selected</shortDescription>
+        <value>No files selected</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Not_Uploaded</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Not_Uploaded</shortDescription>
+        <value>Asset not uploaded</value>
+    </labels>
+    <labels>
         <fullName>BET_Asset_Status</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -621,12 +661,28 @@ Are you sure you wish to proceed?</value>
         <value>Status</value>
     </labels>
     <labels>
+        <fullName>BET_Asset_Status_Mandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Status_Mandatory</shortDescription>
+        <value>Asset Status cannot be empty.</value>
+    </labels>
+    <labels>
         <fullName>BET_Asset_Type</fullName>
         <categories>BET</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Asset_Type</shortDescription>
         <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Uploaded</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Uploaded</shortDescription>
+        <value>Asset uploaded succesfully</value>
     </labels>
     <labels>
         <fullName>BET_BET_Members</fullName>
@@ -787,6 +843,14 @@ Are you sure you wish to proceed?</value>
         <protected>false</protected>
         <shortDescription>BET_External_Agency_Users</shortDescription>
         <value>External Agency Users</value>
+    </labels>
+    <labels>
+        <fullName>BET_File_Name</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_File_Name</shortDescription>
+        <value>File Name</value>
     </labels>
     <labels>
         <fullName>BET_File_Upload</fullName>
@@ -1105,6 +1169,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Saving...</value>
     </labels>
     <labels>
+        <fullName>BET_Select_Files</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Select_Files</shortDescription>
+        <value>Select files to upload as a new Chatter File.</value>
+    </labels>
+    <labels>
         <fullName>BET_SetAsLeadExceptionMessage</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -1331,6 +1403,22 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>BET_Upload_And_Save</shortDescription>
         <value>Upload &amp; save</value>
+    </labels>
+    <labels>
+        <fullName>BET_Upload_Files</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Upload_Files</shortDescription>
+        <value>Upload Files</value>
+    </labels>
+    <labels>
+        <fullName>BET_Upload_Status</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Upload_Status</shortDescription>
+        <value>Upload status</value>
     </labels>
     <labels>
         <fullName>BetMemberRequestInvailidProjectIDError</fullName>

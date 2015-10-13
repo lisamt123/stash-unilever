@@ -137,7 +137,7 @@ public with sharing class BET_BETWrapper {
             this.FinalReleaseDueDate    = bsi.betFinalReleaseDueDate.date();
         }
         // it's temporart implemenations need to be change with new atchive functions
-        this.isArchived             = false;
+        this.isArchived             = bsi.archived;
         this.BetOwner               = bsi.betOwnerId;
 
 
