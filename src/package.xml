@@ -383,6 +383,7 @@
         <members>Core_CA_Test</members>
         <members>Core_CA_Test_MobileAPP</members>
         <members>Core_CA_WrapperUtility</members>
+        <members>Core_IC_WrapperUtility</members>
         <members>Core_SendToChatterController</members>
         <members>Core_SendToChatter_Test</members>
         <members>CustomChatterConfig</members>
@@ -1288,95 +1289,6 @@
         <members>ONE_Correspond</members>
         <members>WorkIt_Console_App_Hidden</members>
         <name>CustomApplicationComponent</name>
-    </types>
-    <types>
-        <members>BET_ExpectedAssets__c.Actual__c</members>
-        <members>BET_ExpectedAssets__c.Brand_Experience_Toolkit__c</members>
-        <members>BET_ExpectedAssets__c.Expected__c</members>
-        <members>BET_ExpectedAssets__c.Type__c</members>
-        <members>BET_Follow_Request__c.Bet_Link__c</members>
-        <members>BET_Follow_Request__c.Bet_owner__c</members>
-        <members>BET_Follow_Request__c.Brand_Experience_Toolkit__c</members>
-        <members>BET_Follow_Request__c.Is_Lead_Request__c</members>
-        <members>BET_Follow_Request__c.Project_Id__c</members>
-        <members>BET_Follow_Request__c.Project_Lead__c</members>
-        <members>BET_Follow_Request__c.Project_Name__c</members>
-        <members>BET_Follow_Request__c.Status__c</members>
-        <members>BET_Member_Request__c.Bet_owner__c</members>
-        <members>BET_Member_Request__c.Brand_Experience_Toolkit__c</members>
-        <members>BET_Member_Request__c.ConcatenatedField__c</members>
-        <members>BET_Member_Request__c.Do_Not_Notify_Creator__c</members>
-        <members>BET_Member_Request__c.Do_Not_Notify_User__c</members>
-        <members>BET_Member_Request__c.External_User_Email__c</members>
-        <members>BET_Member_Request__c.External_User_Request__c</members>
-        <members>BET_Member_Request__c.ProjectRequest__c</members>
-        <members>BET_Member_Request__c.Project_Id__c</members>
-        <members>BET_Member_Request__c.Reason__c</members>
-        <members>BET_Member_Request__c.Role__c</members>
-        <members>BET_Member_Request__c.Status__c</members>
-        <members>BET_Member_Request__c.UserId__c</members>
-        <members>uw_BET__c.Background_Colour__c</members>
-        <members>uw_BET__c.Banner_1_Location__c</members>
-        <members>uw_BET__c.Banner_2_Location__c</members>
-        <members>uw_BET__c.Banner_Colour__c</members>
-        <members>uw_BET__c.Border_Colour__c</members>
-        <members>uw_BET__c.Brand_Keyword_Search__c</members>
-        <members>uw_BET__c.Brand_Position_Keyword_Search__c</members>
-        <members>uw_BET__c.Brand_Position__c</members>
-        <members>uw_BET__c.Brand__c</members>
-        <members>uw_BET__c.Category_Group_Keyword_Search__c</members>
-        <members>uw_BET__c.Category_Group__c</members>
-        <members>uw_BET__c.Category_Keyword_Search__c</members>
-        <members>uw_BET__c.Category_Level_2__c</members>
-        <members>uw_BET__c.Category_Level_3__c</members>
-        <members>uw_BET__c.Category__c</members>
-        <members>uw_BET__c.CollaborationGroupId__c</members>
-        <members>uw_BET__c.Collaboration_Group__c</members>
-        <members>uw_BET__c.Component_Colour__c</members>
-        <members>uw_BET__c.Date_Published__c</members>
-        <members>uw_BET__c.Description__c</members>
-        <members>uw_BET__c.FinalReleaseDate__c</members>
-        <members>uw_BET__c.Final_Release_Due_Date__c</members>
-        <members>uw_BET__c.Final_release_date__c</members>
-        <members>uw_BET__c.FirstReleaseDate__c</members>
-        <members>uw_BET__c.First_Release_Due_Date__c</members>
-        <members>uw_BET__c.First_release_date__c</members>
-        <members>uw_BET__c.Font_Colour__c</members>
-        <members>uw_BET__c.Group__c</members>
-        <members>uw_BET__c.IPM_Project__c</members>
-        <members>uw_BET__c.Icon_Location__c</members>
-        <members>uw_BET__c.Inherit_Branding__c</members>
-        <members>uw_BET__c.Inoplan_Project_Keyword_Search__c</members>
-        <members>uw_BET__c.Inoplan_Project__c</members>
-        <members>uw_BET__c.Is_Archived__c</members>
-        <members>uw_BET__c.Launch_Date__c</members>
-        <members>uw_BET__c.Link__c</members>
-        <members>uw_BET__c.Market_Cluster__c</members>
-        <members>uw_BET__c.Market_Clusters__c</members>
-        <members>uw_BET__c.Max_of_Order_Of_Display__c</members>
-        <members>uw_BET__c.No_Of_Asset_Items__c</members>
-        <members>uw_BET__c.Owner_Keyword_Search__c</members>
-        <members>uw_BET__c.Presentation_Id__c</members>
-        <members>uw_BET__c.Product_Brand__c</members>
-        <members>uw_BET__c.Product_Category_Sub_Division__c</members>
-        <members>uw_BET__c.Product_Category__c</members>
-        <members>uw_BET__c.Project_ID__c</members>
-        <members>uw_BET__c.Project__c</members>
-        <members>uw_BET__c.Region_Keyword_Search__c</members>
-        <members>uw_BET__c.Region__c</members>
-        <members>uw_BET__c.Scope__c</members>
-        <members>uw_BET__c.Sharing__c</members>
-        <members>uw_BET__c.Status__c</members>
-        <members>uw_BET__c.Studio_Chatter_Group__c</members>
-        <members>uw_BET__c.Studio__c</members>
-        <members>uw_BET__c.StylePalette__c</members>
-        <members>uw_BET__c.Sub_Category__c</members>
-        <members>uw_BET__c.Total_Actual_Assets__c</members>
-        <members>uw_BET__c.Total_Expected_Assets__c</members>
-        <members>uw_BET__c.Total_Number_of_Members__c</members>
-        <members>uw_BET__c.Total_assets__c</members>
-        <members>uw_BET__c.uw_Brand__c</members>
-        <name>CustomField</name>
     </types>
     <types>
         <members>AF_Adjust_Quarters</members>
