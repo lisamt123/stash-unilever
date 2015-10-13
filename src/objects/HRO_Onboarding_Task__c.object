@@ -47,11 +47,11 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <enableActivities>true</enableActivities>
+    <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>true</enableFeeds>
     <enableHistory>false</enableHistory>
-    <enableReports>false</enableReports>
+    <enableReports>true</enableReports>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -68,7 +68,7 @@
     <fields>
         <fullName>Action_Type__c</fullName>
         <externalId>false</externalId>
-        <label>Action Type</label>
+        <label>Task type</label>
         <picklist>
             <picklistValues>
                 <fullName>Ownership</fullName>
@@ -102,20 +102,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Due_Date_Number__c</fullName>
-        <description>Due date in days from start date</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Due date in days from start date</inlineHelpText>
-        <label>Due date in days from start date</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Due_Date__c</fullName>
         <externalId>false</externalId>
         <label>Due Date</label>
@@ -127,31 +113,13 @@
     <fields>
         <fullName>ExternalPortalLink__c</fullName>
         <externalId>false</externalId>
-        <label>Link to an external portal</label>
+        <label>Link</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>GenerateChatterPost__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Whether the task should also generate a</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>GneratateEmail__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Whether the task should generate an emai</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>New_Leader_Name__c</fullName>
@@ -166,11 +134,11 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Onboarding_Plan__c</fullName>
+        <fullName>Onboarding_Task_Set__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Onboarding Plan</label>
-        <referenceTo>HRO_Onboarding_Plan__c</referenceTo>
+        <label>Onboarding Task Set</label>
+        <referenceTo>HRO_Onboarding_Task_Set__c</referenceTo>
         <relationshipLabel>Onboarding Tasks</relationshipLabel>
         <relationshipName>Onboarding_Tasks</relationshipName>
         <required>false</required>
@@ -241,8 +209,4 @@
     <pluralLabel>Onboarding Tasks</pluralLabel>
     <searchLayouts/>
     <sharingModel>Private</sharingModel>
-    <sharingReasons>
-        <fullName>Leader_Manager__c</fullName>
-        <label>Leader Manager</label>
-    </sharingReasons>
 </CustomObject>

@@ -47,7 +47,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <enableActivities>true</enableActivities>
+    <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
@@ -73,34 +73,10 @@
         <externalId>false</externalId>
         <label>Link</label>
         <length>255</length>
-        <required>true</required>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Manager__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Manager</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>Onboarding_PlansManger</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>New_LeaderLookup__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Lookup to new Leader used in post boarding tasks</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Lookup to new Leader used in post boarding tasks</inlineHelpText>
-        <label>New Leader</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>Onboarding_Task_Templates</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>New_Leader__c</fullName>
@@ -150,14 +126,6 @@
         </picklist>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Send_Welcome_Email__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Send Welcome Email</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Start_Date__c</fullName>
@@ -251,20 +219,11 @@
     <label>Onboarding Task Template</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>Task_Description__c</columns>
-        <columns>Task_type__c</columns>
-        <columns>Task_for__c</columns>
-        <columns>Phase__c</columns>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>All1</fullName>
         <columns>NAME</columns>
-        <columns>Link__c</columns>
-        <columns>Task_for__c</columns>
+        <columns>Task_type__c</columns>
+        <columns>Task_Description__c</columns>
         <columns>Phase__c</columns>
+        <columns>Due__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
@@ -276,41 +235,14 @@
     </nameField>
     <pluralLabel>Onboarding Task Templates</pluralLabel>
     <searchLayouts>
-        <customTabListAdditionalFields>Task_for__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Task_type__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Phase__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Link__c</customTabListAdditionalFields>
-        <listViewButtons>Pre_Boarding_Process</listViewButtons>
-        <listViewButtons>Assign_Post_Boarding_Tasks</listViewButtons>
-        <searchResultsAdditionalFields>New_Leader__c</searchResultsAdditionalFields>
+        <customTabListAdditionalFields>Due__c</customTabListAdditionalFields>
         <searchResultsAdditionalFields>Phase__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Link__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Task_for__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Task_type__c</searchResultsAdditionalFields>
-        <searchResultsCustomButtons>Pre_Boarding_Process</searchResultsCustomButtons>
-        <searchResultsCustomButtons>Assign_Post_Boarding_Tasks</searchResultsCustomButtons>
+        <searchResultsAdditionalFields>Due__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
-    <webLinks>
-        <fullName>Assign_Post_Boarding_Tasks</fullName>
-        <availability>online</availability>
-        <displayType>massActionButton</displayType>
-        <height>600</height>
-        <linkType>page</linkType>
-        <masterLabel>Assign Post-Boarding Tasks</masterLabel>
-        <openType>sidebar</openType>
-        <page>HRO_PostBoardingActionPage</page>
-        <protected>false</protected>
-        <requireRowSelection>true</requireRowSelection>
-    </webLinks>
-    <webLinks>
-        <fullName>Pre_Boarding_Process</fullName>
-        <availability>online</availability>
-        <displayType>massActionButton</displayType>
-        <linkType>page</linkType>
-        <masterLabel>Assign Pre-Boarding Tasks</masterLabel>
-        <openType>replace</openType>
-        <page>HRO_PreBoardingActionPage</page>
-        <protected>false</protected>
-        <requireRowSelection>true</requireRowSelection>
-    </webLinks>
 </CustomObject>
