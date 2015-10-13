@@ -9,10 +9,10 @@
   <br />
 
   <table width="100%" class="multiFileUploadTable" id="inputFiles">
-    <th class="multiFileUploadTableHeaderStyle" style="">{!$Label.BET_Upload_Status}</th>
+    <th class="multiFileUploadTableHeaderStyle" style="width:120px;">{!$Label.BET_Upload_Status}</th>
     <th class="multiFileUploadTableHeaderStyle" style="">{!$Label.BET_File_Name}</th>
     <th class="multiFileUploadTableHeaderStyle" style="">{!$Label.BET_Asset_Name}</th>
-    <th class="multiFileUploadTableHeaderStyle" style="">{!$Label.BET_Asset_Type}</th>
+    <th class="multiFileUploadTableHeaderStyle" style="width:100px;">{!$Label.BET_Asset_Type}</th>
     <th class="multiFileUploadTableHeaderStyle" style="">{!$Label.BET_Asset_Media_Type}</th>
     <th class="multiFileUploadTableHeaderStyle" style="">{!$Label.BET_Asset_Country}</th>
     <th class="multiFileUploadTableHeaderStyle" style="">{!$Label.BET_Asset_Status}</th>
