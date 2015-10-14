@@ -146,24 +146,6 @@
         <visibleLines>5</visibleLines>
     </fields>
     <fields>
-        <fullName>Task_for__c</fullName>
-        <externalId>false</externalId>
-        <label>Task for</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Manager</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>New Leader</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>Task_type__c</fullName>
         <externalId>false</externalId>
         <label>Task type</label>
