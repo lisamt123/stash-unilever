@@ -22,20 +22,19 @@ global with sharing class HRO_HeadStart_CX {
     public Boolean isAdmin{get;set;}
     public String userPhase{get;set;}
     public Id leaderId{get;set;}
-    private String currentUserProfileId;
     public Id taskForUser{get;set;}
     public String currentLeaderPhase{get;set;}
     public Boolean managerMode{get;set;}
     public String switchToPhase{get;set;}
     public String selectedPhaseButton{get;set;}
-    public static String PREBOARDINGPHASE = 'Pre-Boarding';
-    public static String DAY1PHASE = 'Day 1';
-    public static String WEEK1PHASE = 'Week 1';
-    public static String MONTH1PHASE = 'Month 1';
-    public static String MONTH2PHASE = 'Month 2';
-    public static String MONTH3PHASE = 'Month 3';
-    public static String BEONBOARDPHASE = 'Beyond Onboarding';
-    
+    public static final String PREBOARDINGPHASE = 'Pre-Boarding';
+    public static final String DAY1PHASE = 'Day 1';
+    public static final String WEEK1PHASE = 'Week 1';
+    public static final String MONTH1PHASE = 'Month 1';
+    public static final String MONTH2PHASE = 'Month 2';
+    public static final  String MONTH3PHASE = 'Month 3';
+    public static final String BEONBOARDPHASE = 'Beyond Onboarding';
+    private static final String NEWLEADERAPINAME = 'New_Leader_Name__c';
 	// map for introduction header for each phase
     private Map<String,String> introductionHeaderMap = new Map<String,String>{
         PREBOARDINGPHASE => Label.HROPhaseIntroHeaderBeforeArrival,
@@ -90,7 +89,6 @@ global with sharing class HRO_HeadStart_CX {
         //GET THE TASKS THAT ARE DONE HERE AND MARK OFF
         
         system.debug('Entring HRO_HeadStart_CX page constructor');
-        currentUserProfileId = ApexPages.currentPage().getParameters().get('sfdc.userId');
         switchToPhase = null;
         
         selectTaskList ='My Task';
@@ -221,21 +219,21 @@ global with sharing class HRO_HeadStart_CX {
         }
 
         if(userLst.isEmpty()){
-            leaderPhase = 'Pre-Boarding';
+            leaderPhase = PREBOARDINGPHASE;
         }else{
             HRO_Onboarding_Task_Set__c currentLeader = userLst.get(0);
             if(currentLeader.Start_Date__c == null || currentLeader.Start_Date__c > Date.today()){
-                leaderPhase = 'Pre-Boarding';
+                leaderPhase = PREBOARDINGPHASE;
             }else if(currentLeader.Start_Date__c == Date.today()){
-                leaderPhase = 'Day 1';
+                leaderPhase = DAY1PHASE;
             }else if(currentLeader.Start_Date__c < Date.today() && currentLeader.Start_Date__c.addDays(7) >= Date.today()){
-                leaderPhase = 'Week 1';
+                leaderPhase = WEEK1PHASE;
             }else if(currentLeader.Start_Date__c < Date.today() && currentLeader.Start_Date__c.addDays(28) >= Date.today()){
-                leaderPhase = 'Month 1';
+                leaderPhase = MONTH1PHASE;
             }else if(currentLeader.Start_Date__c < Date.today() && currentLeader.Start_Date__c.addDays(56) >= Date.today()){
-                leaderPhase = 'Month 2';
+                leaderPhase = MONTH2PHASE;
             }else if(currentLeader.Start_Date__c < Date.today() && currentLeader.Start_Date__c.addDays(84) >= Date.today()){
-                leaderPhase = 'Month 3';
+                leaderPhase = MONTH3PHASE;
             }else{
                 leaderPhase = BEONBOARDPHASE;
             }
@@ -259,9 +257,10 @@ global with sharing class HRO_HeadStart_CX {
         
         system.debug('check selected leader:'+selectedLeader);
         system.debug('check leaderPhase:'+getLeaderPhase());
+        //add Task_Detail__c
         String query =  'select Action_Taken__c, Action_Type__c, Completed__c, Due_Date__c, '+
             'ExternalPortalLink__c, Id, New_Leader_Name__c, '+ 
-            'OwnerId, Phase__c, Task_Detail__c from HRO_Onboarding_Task__c '+
+            'OwnerId, Phase__c,Task_Detail__c from HRO_Onboarding_Task__c '+
             'WHERE Phase__c =\''+getLeaderPhase()+'\' and New_Leader_Name__c =:selectedLeader ';
         
         if(selectTaskList == 'My Task'){
@@ -297,9 +296,9 @@ global with sharing class HRO_HeadStart_CX {
                                    				 AND OwnerId =: UserInfo.getUserId() 	
                                                  GROUP BY New_Leader_Name__c,OwnerId]){
 
-            if(!leadersNames.contains(String.valueOf(agr.get('New_Leader_Name__c')))){
-                options.add(new SelectOption(String.valueOf(agr.get('New_Leader_Name__c')),String.valueOf(agr.get('New_Leader_Name__c'))));
-                leadersNames.add(String.valueOf(agr.get('New_Leader_Name__c'))); 
+            if(!leadersNames.contains(String.valueOf(agr.get(NEWLEADERAPINAME)))){
+                options.add(new SelectOption(String.valueOf(agr.get(NEWLEADERAPINAME)),String.valueOf(agr.get(NEWLEADERAPINAME))));
+                leadersNames.add(String.valueOf(agr.get(NEWLEADERAPINAME))); 
             }
               
             

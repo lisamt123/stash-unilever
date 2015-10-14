@@ -24,7 +24,10 @@ global with sharing class HRO_OnboardingTaskList_CC {
     public String cPhase{get;set;}
     public String cTaskId{get;set;}
     public String cTaskLink{get;set;}
-    
+    private static final String UTF8 = 'UTF-8';
+    private static final String TASKFORWARDERURL = '/apex/HRO_TaskLinkForwarder?id=';
+    private static final String USERPROFILEURL = '/_ui/core/userprofile/UserProfilePage?tab=HRO_HeadStart&sfdc.userId=';
+    private static final String SELECTEDLEADERPARAM = '&tab.HRO_HeadStart.leaderToSelect=';
     public HRO_OnboardingTaskList_CC(){
         
     }
@@ -49,10 +52,10 @@ global with sharing class HRO_OnboardingTaskList_CC {
             String encodedURl = null;
                                                            
             if(hroTask.ExternalPortalLink__c != null && hroTask.ExternalPortalLink__c != ''){
-                encodedURl = EncodingUtil.urlEncode(hroTask.ExternalPortalLink__c, 'UTF-8');
+                encodedURl = EncodingUtil.urlEncode(hroTask.ExternalPortalLink__c, UTF8);
             }
                                                   
-            taskWrapp.taskLink = instanceUrl+'/apex/HRO_TaskLinkForwarder?id='+hroTask.id+'&pageUrl='+encodedURl;
+            taskWrapp.taskLink = instanceUrl+TASKFORWARDERURL+hroTask.id+'&pageUrl='+encodedURl;
             taskWrapperLst.add(taskWrapp);                                      
         }
         system.debug('*****HRO exiting getTaskAssignedToPhase():'+JSON.serialize(taskWrapperLst));
@@ -71,7 +74,7 @@ global with sharing class HRO_OnboardingTaskList_CC {
         String instanceUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
         List<OnboardingTasksWrapper> taskWrapperLst = new List<OnboardingTasksWrapper>();
         String searchByPhase = cPhase != null ? cPhase : getLeaderPhase();
-        for(HRO_Onboarding_Task__c hroTask : [Select Name, Due_Date__c,ExternalPortalLink__c,Id,Task_Detail__c,OwnerId,New_Leader_Name__c FROM HRO_Onboarding_Task__c 
+        for(HRO_Onboarding_Task__c hroTask : [Select Name, Due_Date__c,ExternalPortalLink__c,Id,OwnerId,New_Leader_Name__c,Task_Detail__c FROM HRO_Onboarding_Task__c 
                                               WHERE Onboarding_Task_Set__c =: cRecordId AND Completed__c=false  AND Due_Date__c < TODAY]){
         
             OnboardingTasksWrapper taskWrapp = new OnboardingTasksWrapper();
@@ -80,11 +83,10 @@ global with sharing class HRO_OnboardingTaskList_CC {
             String encodedURl = null;
                                                            
             if(hroTask.ExternalPortalLink__c != null && hroTask.ExternalPortalLink__c != ''){
-                encodedURl = EncodingUtil.urlEncode(hroTask.ExternalPortalLink__c, 'UTF-8');
-                taskWrapp.taskLink = instanceUrl+'/apex/HRO_TaskLinkForwarder?id='+hroTask.id+'&pageUrl='+encodedURl;
+                encodedURl = EncodingUtil.urlEncode(hroTask.ExternalPortalLink__c, UTF8);
+                taskWrapp.taskLink = instanceUrl+TASKFORWARDERURL+hroTask.id+'&pageUrl='+encodedURl;
             }else{
-                taskWrapp.taskLink =instanceUrl+'/apex/HRO_TaskLinkForwarder?id='+hroTask.id+'&selectedLeader='+EncodingUtil.urlEncode(hroTask.New_Leader_Name__c,'UTF-8');
-                //return instanceUrl+'/_ui/core/userprofile/UserProfilePage?tab=HRO_HeadStart&sfdc.userId='+cOwnerId+'&tab.HRO_HeadStart.leaderToSelect='+EncodingUtil.urlEncode(hroTask.New_Leader_Name__c, 'UTF-8');        
+                taskWrapp.taskLink =instanceUrl+TASKFORWARDERURL+hroTask.id+'&selectedLeader='+EncodingUtil.urlEncode(hroTask.New_Leader_Name__c,UTF8); 
             }
             taskWrapperLst.add(taskWrapp);                                      
         }
@@ -133,11 +135,11 @@ global with sharing class HRO_OnboardingTaskList_CC {
         String instanceUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
         String output = '';
         if(cLeaderName != null){
-          output = instanceUrl+'/_ui/core/userprofile/UserProfilePage?tab=HRO_HeadStart&sfdc.userId='+cOwnerId+'&tab.HRO_HeadStart.leaderToSelect='+EncodingUtil.urlEncode(cLeaderName, 'UTF-8');         
+          output = instanceUrl+USERPROFILEURL+cOwnerId+SELECTEDLEADERPARAM+EncodingUtil.urlEncode(cLeaderName, UTF8);         
           system.debug('*****HRO exiting getHeadStartLink():'+output);        
           return output;
         }else{
-            output = instanceUrl+'/_ui/core/userprofile/UserProfilePage?tab=HRO_HeadStart&sfdc.userId='+cOwnerId;
+            output = instanceUrl+USERPROFILEURL+cOwnerId;
             system.debug('*****HRO exiting getHeadStartLink():'+output);
             return output;       
         }
@@ -153,11 +155,11 @@ global with sharing class HRO_OnboardingTaskList_CC {
     public String getTaskLink(){
         String instanceUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
         if(cTaskLink != null){
-            return instanceUrl+'/apex/HRO_TaskLinkForwarder?id='+cTaskId+'&pageUrl='+EncodingUtil.urlEncode(cTaskLink, 'UTF-8');    
+            return instanceUrl+TASKFORWARDERURL+cTaskId+'&pageUrl='+EncodingUtil.urlEncode(cTaskLink, UTF8);    
         }else if(cLeaderName != null){
-          return instanceUrl+'/_ui/core/userprofile/UserProfilePage?tab=HRO_HeadStart&sfdc.userId='+cOwnerId+'&tab.HRO_HeadStart.leaderToSelect='+EncodingUtil.urlEncode(cLeaderName, 'UTF-8');       
+          return instanceUrl+USERPROFILEURL+cOwnerId+SELECTEDLEADERPARAM+EncodingUtil.urlEncode(cLeaderName, UTF8);       
         }else{
-            return instanceUrl+'/_ui/core/userprofile/UserProfilePage?tab=HRO_HeadStart&sfdc.userId='+cOwnerId;       
+            return instanceUrl+USERPROFILEURL+cOwnerId;       
         }
         
     }

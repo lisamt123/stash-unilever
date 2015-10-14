@@ -41,7 +41,7 @@ private class HRO_HeadStart_CXTest {
         pageController.getIntroductionHeaderMap();
         pageController.getIntroductionInfoMap();
         List<HRO_Onboarding_Task__c> leaderPhaseOnbordingTasks = pageController.getOnboardingTasks();
-        system.assert(leaderPhaseOnbordingTasks.size()>0);
+        system.assert(!leaderPhaseOnbordingTasks.isEmpty());
         HRO_HeadStart_CX.markComplete(leaderPhaseOnbordingTasks.get(0).id);
         //check if task was marked as completed under db
         system.assertEquals(true,[Select Completed__c FROM HRO_Onboarding_Task__c WHERE ID =:leaderPhaseOnbordingTasks.get(0).id].get(0).Completed__c);

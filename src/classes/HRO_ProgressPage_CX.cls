@@ -14,9 +14,10 @@ VERSION  AUTHOR            DATE              DETAIL            Description
 ***********************************************************************/
 
 public with sharing class HRO_ProgressPage_CX {
-	public static  String HRADMIN='HRO_HRAdmin';
-    public static  String HRMANAGER='HRO_HeadstartManager';
-    public static  String HRNEWLEADER='HRO_Headstart';
+	public static final String HRADMIN = 'HRO_HRAdmin';
+    public static final String HRMANAGER = 'HRO_HeadstartManager';
+    public static final String HRNEWLEADER = 'HRO_Headstart';
+    public static final String USERPARAM = 'sfdc.userId';
     
     public static final List<String> PHASEORDER = new List<String>{HRO_HeadStart_CX.PREBOARDINGPHASE,
                                                                    HRO_HeadStart_CX.DAY1PHASE,
@@ -42,8 +43,8 @@ public with sharing class HRO_ProgressPage_CX {
     public HRO_ProgressPage_CX() {
         system.debug('***HRO Entring HRO_ProgressPage_CX constructor');
         currentUserId = '';
-        if(ApexPages.currentPage().getParameters().containsKey('sfdc.userId')){
-            currentUserId = ApexPages.currentPage().getParameters().get('sfdc.userId');    
+        if(ApexPages.currentPage().getParameters().containsKey(USERPARAM)){
+            currentUserId = ApexPages.currentPage().getParameters().get(USERPARAM);    
         }else{
             currentUserId = UserInfo.getUserId();
         }
@@ -61,8 +62,8 @@ public with sharing class HRO_ProgressPage_CX {
     public String getProfileUserId(){
         system.debug('***HRO Entirng getProfileUserId');
         String userId = '';
-        if(ApexPages.currentPage().getParameters().containsKey('sfdc.userId')){
-        	userId = ApexPages.currentPage().getParameters().get('sfdc.userId');    
+        if(ApexPages.currentPage().getParameters().containsKey(USERPARAM)){
+        	userId = ApexPages.currentPage().getParameters().get(USERPARAM);    
         }else{
             userId = UserInfo.getUserId();
         }
@@ -81,7 +82,8 @@ public with sharing class HRO_ProgressPage_CX {
     public  Boolean getIsManager(){
         system.debug('***HRO Entring getIsManager');
         Id hroManager = [Select id From PermissionSet Where name =: HRMANAGER Limit 1].get(0).Id;
-        if([SELECT id from PermissionSetAssignment where AssigneeId =:ApexPages.currentPage().getParameters().get('sfdc.userId') AND PermissionSetId =: hroManager].size()>0){
+        List<PermissionSetAssignment> managerPermission = [SELECT id from PermissionSetAssignment where AssigneeId =:ApexPages.currentPage().getParameters().get(USERPARAM) AND PermissionSetId =: hroManager];
+        if(!managerPermission.isEmpty()){
             system.debug('***HRO Exiting getIsManager:'+true);
             return true;
         }

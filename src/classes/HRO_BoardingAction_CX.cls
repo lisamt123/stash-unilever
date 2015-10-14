@@ -74,8 +74,8 @@ public with sharing class HRO_BoardingAction_CX {
     public List<HRO_Onboarding_Plan__c> getPreBoardingTasks(){
         system.debug('***HRO getPreBoardingTasks entring');
         listOfTemplateTasks = new List<HRO_Onboarding_Plan__c>();
-        
-        for(HRO_Onboarding_Plan__c template : [Select Id,Due__c, Link__c,Name, New_Leader__c, Phase__c, Start_Date__c, Task_Description__c, Task_for__c, Task_type__c from HRO_Onboarding_Plan__c Order by Due__c asc]){
+        //add Task_Description__c
+        for(HRO_Onboarding_Plan__c template : [Select Id,Due__c, Link__c,Name, New_Leader__c, Phase__c, Start_Date__c, Task_type__c from HRO_Onboarding_Plan__c Order by Due__c asc LIMIT 2000]){
             listOfTemplateTasks.add(template);
         }
         system.debug('***HRO getPreBoardingTasks exit return following list:'+listOfTemplateTasks);

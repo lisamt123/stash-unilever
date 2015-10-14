@@ -25,7 +25,7 @@ public class HRO_ProgressPage_CXTest {
         //mark 25% tasks for each phase as completed and check if logic working properly
 		Map<String,List<HRO_Onboarding_Task__c>> tasksPerPhase = new Map<String,List<HRO_Onboarding_Task__c>>();
         List<HRO_Onboarding_Task__c> tasksToUpdate = new List<HRO_Onboarding_Task__c>();
-        List<HRO_Onboarding_Task__c> totalTasks = [Select Phase__c,Id,Completed__c FROM HRO_Onboarding_Task__c];
+        List<HRO_Onboarding_Task__c> totalTasks = [Select Phase__c,Id,Completed__c FROM HRO_Onboarding_Task__c Limit 1000];
         for(HRO_Onboarding_Task__c taskItem : totalTasks){
             if(!tasksPerPhase.containsKey(taskItem.Phase__c)){
                 taskItem.Completed__c = true;
