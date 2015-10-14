@@ -89,7 +89,7 @@
                                             <div class="legendLink col-md-6 col-sm-6 col-xs-6" id="cultureLink" title="Culture"></div>
                                             <div class="legendLink col-md-6 col-sm-6 col-xs-6" id="capabilityLink" title="Capability"></div>
                                          </div>
-                                         <img id="legendImage" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/things_to_do_main.png')}" />
+                                         <img alt="legendImage" id="legendImage" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/things_to_do_main.png')}" />
                                       </div>
                                    </div>
                                 </apex:outputPanel>
@@ -100,7 +100,7 @@
                                     <apex:repeat value="{!OnboardingTasks}" var="onboardTask">
                                         <div class="step group col-md-12 col-sm-12 col-xs-12">
                                             <div class="stepIcon stepBodyDiv col-md-2 col-sm-2 col-xs-12">
-                                                <img class="centerImage" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/'+LOWER(onboardTask.Action_Type__c)+'.png')}" />
+                                                <img alt="{!LOWER(onboardTask.Action_Type__c)}" class="centerImage" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/'+LOWER(onboardTask.Action_Type__c)+'.png')}" />
                                             </div>
             
                                             <div class="stepDescription stepBodyDiv col-md-7 col-sm-7 col-xs-12">
@@ -134,7 +134,7 @@
                                                 <div class="stepStatus stepBodyDiv col-md-12 col-sm-12 col-xs-6">
                                                     <div  class="iconWrapper">
                                                         <apex:outputPanel rendered="{!NOT(onboardTask.Completed__c)}">
-                                                            <i class="ion-android-checkmark-circle inoIcon" id="UncompletedTask{!onboardTask.id}" />
+                                                            <i style="color : #007dff" class="ion-ios-circle-outline inoIcon" id="UncompletedTask{!onboardTask.id}" />
                                                         </apex:outputPanel>
                                                         <apex:outputPanel rendered="{!onboardTask.Completed__c}">
                                                             <i style="color : rgb(129, 194, 65);" class="ion-android-checkmark-circle inoIcon" id="CompletedTask{!onboardTask.id}" />

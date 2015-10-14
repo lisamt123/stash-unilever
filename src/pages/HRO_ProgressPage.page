@@ -23,9 +23,9 @@
         <div class="col-xs-12 bodyDiv">
             <div class="bodyWrapper">
                 <div class="bodyContent">
-                    <img id="recordHeader-small" class="centerImage width-80 margin-10" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/onboarding-progress-small.png')}" />
+                    <img alt="onboarding-progress" id="recordHeader-small" class="centerImage width-80 margin-10" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/onboarding-progress-small.png')}" />
 
-                    <img id="recordHeader" class="width-80" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/onboarding-progress-large.png')}" />
+                    <img alrt="onboarding-progress" id="recordHeader" class="width-80" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/onboarding-progress-large.png')}" />
                     <div class="recordArea">
                         <apex:variable value="{!0}" var="rowNum"/>
                         <apex:repeat value="{!progressLst}" var="ProgressItem">
