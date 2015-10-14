@@ -1,7 +1,7 @@
 <apex:page docType="html-5.0" title="File Uploader" controller="BET_MultiUploadAssetsController" showHeader="false">
   <apex:stylesheet value="{!$Resource.BET}/css/BETMultiUploadAssets.css" />
 
-  <h3>{!$Label.BET_Select_Files}</h3>
+  <p>{!$Label.BET_Select_Files}</p>
   <form >
     <input id="multiplefiles" type="file" multiple="multiple" onchange="filesSelected()"/>
   </form>
@@ -20,7 +20,11 @@
 
   <br />  
   <input id="resultFileId" type="hidden" name="resultFileId" />
-  <button onclick="loadFiles(); return false;" style="background: #e6007e;color:white;width:120px;height:30px;font-size:15px;">{!$Label.BET_Upload_Files}</button> 
+  <button onclick="loadFiles(); return false;" 
+          style="background: #BE236D;color:white;width:120px;height:30px;font-size:15px;font-family: Rockwell;border: none;
+          border-radius: 0px;">
+          {!$Label.BET_Upload_Files}
+  </button> 
   
   <apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />   
   

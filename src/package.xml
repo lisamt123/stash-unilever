@@ -2283,6 +2283,10 @@
 		<members>BET_Upload_Status</members>
 		<members>BET_File_Name</members>
 		<members>BET_Member_Requests_Not_Marked</members>
+		<members>BET_Delete_BET</members>
+        <members>BET_DeleteConfirmation</members>
+        <members>BET_Deleting</members>
+        <members>BET_Delete_BET_Linked</members>
         <name>CustomLabel</name>
     </types>
     <types>

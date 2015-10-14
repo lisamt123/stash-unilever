@@ -57,7 +57,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             <td>
               <div style="float:right">
                 <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addMember}"
-                                    styleClass="buttong2y" style="background: #e6007e; color:white;height: 35px;font-size:11px;font-family: Rockwell;width: 100px;" >
+                                    styleClass="buttong2y" style="background: #BE236D; color:white;height: 35px;font-size:11px;font-family: Rockwell;width: 100px;" >
 
                 </apex:commandButton>
               </div>
@@ -76,7 +76,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
               <td>
                 <div style="float:right">
                   <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addExternalMember}"
-                                    styleClass="buttong2y" style="background: #e6007e; color:white;height: 35px;font-size:11px;font-family: Rockwell;width: 100px;"/> 
+                                    styleClass="buttong2y" style="background: #BE236D; color:white;height: 35px;font-size:11px;font-family: Rockwell;width: 100px;"/> 
                 </div>
               </td>
             </tr>
@@ -91,7 +91,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
           <apex:commandButton value="{!$Label.BET_Delete_selected}" action="{!massDelete}" 
                               rendered="{!isBetOwnerOrManager}"
                               styleClass="buttong2y" 
-                              style="background: #e6007e; color:white;height: 35px;font-size:11px;font-family: Rockwell;width: 100px;"/> 
+                              style="background: #BE236D; color:white;height: 35px;font-size:11px;font-family: Rockwell;width: 100px;"/> 
        
         </div>
 
@@ -166,7 +166,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
       <div class="headerButtons">  
         <apex:commandButton value="{!$Label.BET_Approve_selected}" action="{!massApprove}" rendered="{!isBetOwnerOrManager}"
-          styleClass="buttong2y" style="background: #e6007e; color:white;height: 35px;font-size: 11px;font-family: Rockwell;width: 120px;"/> 
+          styleClass="buttong2y" style="background: #BE236D; color:white;height: 35px;font-size: 11px;font-family: Rockwell;width: 120px;"/> 
         <apex:commandButton value="{!$Label.BET_Deny_selected}" action="{!massDeny}" rendered="{!isBetOwnerOrManager}"
           styleClass="buttong2y" style="background: #64625D; color:white;height: 35px;font-size: 11px;font-family: Rockwell;width: 120px;"/> 
       </div>

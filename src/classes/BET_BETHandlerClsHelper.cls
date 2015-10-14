@@ -53,4 +53,14 @@ public class BET_BETHandlerClsHelper {
 	    update groups;
   	}
 
+  /************************************************************
+    Purpose: Method deletes given bets
+    Parameters: List<uw_BET__c> bets
+    Returns: -
+    Throws: -
+    *************************************************************/
+    public static void softDelete(List<uw_BET__c> bets){
+
+    }
+
 }

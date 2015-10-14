@@ -57,7 +57,7 @@
             helpLink: '{!helpLink}',
             BETTemplateLink: '{!BETTemplateLink}',
             environment: 'SF',
-            betOperationAdmin : {!betOperationAdmin}
+            betOperationAdmin: {!betOperationAdmin}
         };
         var appConfig = angular.module('appConfig', []).constant('sfConfig', sfConfig);
     </script>

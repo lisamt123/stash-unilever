@@ -797,12 +797,44 @@ Are you sure you wish to proceed?</value>
         <value>Delete</value>
     </labels>
     <labels>
+        <fullName>BET_DeleteConfirmation</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_DeleteConfirmation</shortDescription>
+        <value>Deleting a Brand Experience Toolkit (BET) is permanent and cannot be reversed. This will remove the BET, it’s associated Chatter Group and all uploaded files from the system completely.Are you sure you wish to proceed with deleting this BET?</value>
+    </labels>
+    <labels>
+        <fullName>BET_Delete_BET</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Delete_BET</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>BET_Delete_BET_Linked</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Delete_BET_Linked</shortDescription>
+        <value>BETs linked to an IPM project cannot be deleted. Please go to IPM Navigator and unlink first.</value>
+    </labels>
+    <labels>
         <fullName>BET_Delete_selected</fullName>
         <categories>BET</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Delete_selected</shortDescription>
-        <value>Delete selected</value>
+        <value>Delete Selected</value>
+    </labels>
+    <labels>
+        <fullName>BET_Deleting</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Deleting</shortDescription>
+        <value>Deleting ...</value>
     </labels>
     <labels>
         <fullName>BET_Deny</fullName>
