@@ -37,7 +37,6 @@ public with sharing class HRO_UnitTestFactory {
 	public static HRO_Onboarding_Plan__c createOnboardingTaskTemplate(String taskFor, Integer dueDate, String phase,String link, String taskType){
 		system.debug('***HRO Entring createOnboardingTaskTemplate');
 		HRO_Onboarding_Plan__c taskTemplate = new HRO_Onboarding_Plan__c();
-		taskTemplate.Task_for__c = taskFor;
 		taskTemplate.Due__c = dueDate;
 		taskTemplate.Phase__c = phase;
 		taskTemplate.Link__c = link;
