@@ -1,5 +1,5 @@
 <apex:page standardController="HRO_Onboarding_Plan__c" recordSetVar="onboardingTemplates" standardStylesheets="true" showHeader="true" extensions="HRO_BoardingAction_CX">
-    <apex:sectionHeader title="Assign Pre-Boarding Tasks"/>
+    <apex:sectionHeader title="Register Tasks for New Leader"/>
     
     <apex:form >
         <apex:pageMessages />

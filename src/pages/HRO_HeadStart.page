@@ -2,8 +2,13 @@
 <html>
     <head>
         <c:HRO_HeaderScripts />
-        <script src="{!URLFOR($Resource.HROResources, '/scripts/HeadStart.js')}"></script>
+        
+        <script src="{!URLFOR($Resource.HROResources, '/scripts/jquery.mobile-events.min.js')}"></script>
         <script>
+        var HRONetworkLink = '{!$Label.HRONetworkLink}';
+        var HROCultureLink = '{!$Label.HROCultureLink}';
+        var HROOwnershipLink = '{!$Label.HROOwnershipLink}';
+        var HROCapabilityLink = '{!$Label.HROCapabilityLink}';
             $(function() {
                 bindControls();
                 resizePageContent();
@@ -11,10 +16,14 @@
                 //unselectAllPhases();
                 markButtonPhaseSelected();
                 bindClickOnPhasesBtns();
-                
-                
             });
+        
+        	function resizePageContent(){
+				Sfdc.canvas.publisher.resize( {width : "750px", height :
+				$('#pageContent').height()+'px'});
+			}
         </script>
+        <script src="{!URLFOR($Resource.HROResources, '/scripts/HeadStart.js')}"></script>
     </head>
 
     <div id="pageContent">
@@ -134,10 +143,10 @@
                                                 <div class="stepStatus stepBodyDiv col-md-12 col-sm-12 col-xs-6">
                                                     <div  class="iconWrapper">
                                                         <apex:outputPanel rendered="{!NOT(onboardTask.Completed__c)}">
-                                                            <i style="color : #007dff" class="ion-ios-circle-outline inoIcon" id="UncompletedTask{!onboardTask.id}" />
+                                                            <i style="color : rgb(129, 194, 65);" class="ion-android-checkbox-outline-blank inoIcon" id="UncompletedTask{!onboardTask.id}" />
                                                         </apex:outputPanel>
                                                         <apex:outputPanel rendered="{!onboardTask.Completed__c}">
-                                                            <i style="color : rgb(129, 194, 65);" class="ion-android-checkmark-circle inoIcon" id="CompletedTask{!onboardTask.id}" />
+                                                            <i style="color : rgb(129, 194, 65);" class="ion-android-checkbox-outline inoIcon" id="CompletedTask{!onboardTask.id}" />
                                                         </apex:outputPanel>    
                                                     </div>
                                                 </div>
