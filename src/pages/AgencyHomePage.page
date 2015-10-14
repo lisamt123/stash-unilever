@@ -94,8 +94,6 @@ $('document').ready(function(){
     
   </script>
 <script>
-    
-
     function openHelpLink(){
         if({!isAgencyFlag}) {
          var urlStr = '{!$Label.AF_AgencyUrlLink}/servlet/servlet.FileDownload?file={!$Label.AF_DocumentId}';
@@ -390,10 +388,6 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
             });
         });
     }
-
-
-
-
 </script>
     
     
@@ -713,7 +707,8 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
                                     
                                    <!-- <apex:image url="{!$Resource.NoAction}" rendered="{!IF(OR(OR(isAgencyFlag,best.AF_Status_Base_Fees__c!='With Agency'),OR(isAgencyFlag,best.AF_Status_Base_Fees__c!='With Agency (Draft)')),'true','false')}" />-->
                                     <apex:image url="{!$Resource.Review}" rendered="{!IF(AND(isAgencyFlag,best.AF_Status_Base_Fees__c=='With Agency (Draft)'),'true','false')}" />
-                                    <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(isAgencyFlag,best.AF_Status_Base_Fees__c=='With Agency'),'true','false')}"/>
+                                    <apex:image url="{!$Resource.Start}" rendered="{!IF(AND(isAgencyFlag,best.AF_Category_Finance_Flag__c==0,best.AF_Status_Base_Fees__c=='With Agency'),'true','false')}"/>
+                                    <apex:image url="{!$Resource.Review}" rendered="{!IF(AND(isAgencyFlag,best.AF_Category_Finance_Flag__c>0,best.AF_Status_Base_Fees__c=='With Agency'),'true','false')}" />
                                    <apex:image url="{!$Resource.NoAction}" rendered="{!IF(AND(isController,best.AF_Status_Base_Fees__c!='With CMCO'),'true','false')}"/> 
                                     <apex:image url="{!$Resource.Review}" rendered="{!IF(AND(isController,best.AF_Status_Base_Fees__c=='With CMCO'),'true','false')}" />
                                     <apex:image url="{!$Resource.NoAction}" rendered="{!isProcurement}"/> 
@@ -1090,5 +1085,4 @@ var adapopts= {legend : true,
 };
     
   </script>
-  
 </apex:page>

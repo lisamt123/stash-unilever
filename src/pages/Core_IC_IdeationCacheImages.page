@@ -1,0 +1,11 @@
+<!-- 
+   Page Name :  Core_IC_IdeationCacheImages
+   Author : Mindtree
+   Date : 5/7/15
+   Requirement/Project Name: Ideation App
+   Description: page used for Image Caching used for Ideation                 
+ -->
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false"  docType="html-5.0" cache="false" applyBodyTag="false" applyHtmlTag="false">
+ <html manifest="/apex/Core_IC_IdeationCacheImagesManifest" type="text/cache-manifest">
+ </html>
+</apex:page>

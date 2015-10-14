@@ -30,7 +30,6 @@ public Class AF_ApprovalProcessForBrandEstController
     public boolean ApprovalButton{set;get;}
     Public boolean IsCatFinanceEdited{get;set;}
     Public boolean isAgency{get;set;}
-    
     public void RejectBrandEstComment()
     {
         displayPopupRejComment=true;
@@ -464,6 +463,30 @@ public Class AF_ApprovalProcessForBrandEstController
            }
     
     }
+    
+    public pagereference RejectBrandestiamteFinance()
+    {
+      
+         BrandEstRecord.AF_Status_Base_Fees__c='With Agency';
+         system.debug(BrandEstRecord.AF_Status_Base_Fees__c+'BrandEstRecord.AF_Status_Base_Fees__c');
+         update BrandEstRecord;
+         list<AF_Controller_Review__c> ACR=new list<AF_Controller_Review__c>();
+         for(AF_Controller_Review__c afc:[select id,Review_Completed__c from AF_Controller_Review__c where Brand_Estimate__c=:BrandEstRecord.id limit 50000])
+         {
+         afc.Review_Completed__c=false;
+         ACR.add(afc);
+         }
+         if(ACR.size()>0)
+         update ACR;
+                   
+          displayPopupRejComment=true;      
+        pagereference ref= new pagereference('/apex/AgencyHomePage?brandvalue='+brandvalue1+'category='+catageory1+'year='+year1);
+        ref.setredirect(true);
+        return null;
+    }
+    
+   
+  
     
     public void changeBrandStatus()
     {
