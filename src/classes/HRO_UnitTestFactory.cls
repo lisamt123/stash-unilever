@@ -15,18 +15,18 @@ VERSION  AUTHOR            DATE              DETAIL            Description
 
 public with sharing class HRO_UnitTestFactory {
 
-	public static String PREBOARDINGPHASE = 'Pre-Boarding';
-    public static String DAY1PHASE = 'Day 1';
-    public static String WEEK1PHASE = 'Week 1';
-    public static String MONTH1PHASE = 'Month 1';
-    public static String MONTH2PHASE = 'Month 2';
-    public static String MONTH3PHASE = 'Month 3';
-    public static String BEONBOARDPHASE = 'Beyond Onboarding';
-    public static String MANAGERTASKTYPE = 'Manager';
-    public static String NEWLEADERTASKTYPE = 'New Leader';
-	
+	public static final String PREBOARDINGPHASE = 'Pre-Boarding';
+    public static final String DAY1PHASE = 'Day 1';
+    public static final String WEEK1PHASE = 'Week 1';
+    public static final String MONTH1PHASE = 'Month 1';
+    public static final String MONTH2PHASE = 'Month 2';
+    public static final String MONTH3PHASE = 'Month 3';
+    public static final String BEONBOARDPHASE = 'Beyond Onboarding';
+    public static final String MANAGERTASKTYPE = 'Manager';
+    public static final String NEWLEADERTASKTYPE = 'New Leader';
+	public static final String ENUS='en_US';
 
-	public HRO_UnitTestFactory(){}
+	private HRO_UnitTestFactory(){}
     
 	/*******************************************************************
    Purpose:  Helper method for creating Onboarding Task Template                                                 
@@ -42,6 +42,7 @@ public with sharing class HRO_UnitTestFactory {
 		taskTemplate.Phase__c = phase;
 		taskTemplate.Link__c = link;
 		taskTemplate.Task_type__c = taskType;
+		//add Task_Description__c
 		taskTemplate.Task_Description__c ='sample test descritption';
 		system.debug('***HRO Exiting createOnboardingTaskTemplate'+taskTemplate);
 		return taskTemplate;
@@ -160,8 +161,8 @@ public with sharing class HRO_UnitTestFactory {
         system.debug('***HRO Entring createUserManager @Name:'+Name);
 		Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
         User u = new User(Alias = 'standt', Email='standarduser@testorg.com', 
-            EmailEncodingKey='UTF-8', LastName=Name, LanguageLocaleKey='en_US', 
-            LocaleSidKey='en_US', ProfileId = p.Id, 
+            EmailEncodingKey='UTF-8', LastName=Name, LanguageLocaleKey=ENUS, 
+            LocaleSidKey=ENUS, ProfileId = p.Id, 
             TimeZoneSidKey='America/Los_Angeles', UserName='test'+Name+'@testorg.com');
         insert u;
         system.debug('***HRO createUserManager createUser'+u);
@@ -178,8 +179,8 @@ public with sharing class HRO_UnitTestFactory {
         system.debug('***HRO Entring createUser @Name:'+Name);
 		Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
         User u = new User(Alias = 'stand1', Email='standarduser@testorg.com', 
-            EmailEncodingKey='UTF-8', LastName=Name, LanguageLocaleKey='en_US', 
-            LocaleSidKey='en_US', ProfileId = p.Id, 
+            EmailEncodingKey='UTF-8', LastName=Name, LanguageLocaleKey=ENUS, 
+            LocaleSidKey=ENUS, ProfileId = p.Id, 
             TimeZoneSidKey='America/Los_Angeles', UserName='test'+Name+'@testorg.com');
 
         insert u;

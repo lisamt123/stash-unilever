@@ -48,7 +48,6 @@ private class HRO_BoardingAction_CXTest {
         pageController.getPreBoardingTasks();
         system.assert(pageController.listOfTemplateTasks.size()>0); 
         pageController.savePreBoarding();
-        system.debug(JSON.serialize('check visible tasks: preboarding '+[Select id FROM HRO_Onboarding_Task__c]));
         //check if task were created for manager and he is the owner
         system.assert([Select id FROM HRO_Onboarding_Task__c where ownerId = :UserInfo.getUserId()].size()>0);
 				

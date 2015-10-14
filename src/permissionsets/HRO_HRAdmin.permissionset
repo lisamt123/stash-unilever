@@ -65,6 +65,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Plan__c.Task_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>HRO_Onboarding_Plan__c.Task_for__c</field>
         <readable>true</readable>

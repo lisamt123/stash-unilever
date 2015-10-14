@@ -48,7 +48,7 @@
 						<li><a target="_top" href="/apex/HRO_PreBoardingActionPage?sfdc.userId={!componentUserId}">Register</a></li>
                     </ul>
                 </div>
-                <img src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/header-bg.png')}" style="visibility:hidden; width:100%;height:139px"/>
+                <img src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/header-bg.png')}" alt="header" style="visibility:hidden; width:100%;height:139px"/>
             </div>
         </div>
     

@@ -188,11 +188,12 @@
     <fields>
         <fullName>Task_Detail__c</fullName>
         <externalId>false</externalId>
-        <label>Task Detail</label>
-        <required>false</required>
+        <label>Task Description</label>
+        <length>500</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
     </fields>
     <label>Onboarding Task</label>
     <listViews>
