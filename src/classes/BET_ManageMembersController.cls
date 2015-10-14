@@ -55,9 +55,8 @@ global without sharing class BET_ManageMembersController {
         isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
         isBETOperationAdmin = BET_CommonService.isBETOperationAdmin();
 
-        if(bet.ownerid == UserInfo.getUserId()){
-            requestsShouldBeAutoapproved = true;
-        }
+        requestsShouldBeAutoapproved = isBetOwnerOrManager;
+    
 
         chatterExternalProfile = [SELECT Id FROM Profile WHERE Name='Chatter External User' LIMIT 1];
 
@@ -224,6 +223,10 @@ global without sharing class BET_ManageMembersController {
                 membersToDelete.add(member.obj);
             }
         }
+        if(membersToDelete.isEmpty()){
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, Label.BET_Member_Requests_Not_Marked));  
+            return null;
+        }
         delete membersToDelete;
         deleteRelatedMemberRequests(membersToDelete);
         cleanUpSharesGroupsSubscriptions(membersToDelete);
@@ -345,7 +348,12 @@ global without sharing class BET_ManageMembersController {
             }
         }
         try{
-            update requests;
+            if(requests.isEmpty()){
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, Label.BET_Member_Requests_Not_Marked));  
+                return null;
+            } else {
+                update requests;
+            }
         }catch (Exception e){
             System.debug('Exception in doApprove : ' + e.getMessage());
             return null;

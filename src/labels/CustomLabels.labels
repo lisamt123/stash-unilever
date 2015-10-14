@@ -1007,6 +1007,14 @@ Are you sure you wish to proceed?</value>
         <value>Marked fields are mandatory</value>
     </labels>
     <labels>
+        <fullName>BET_Member_Requests_Not_Marked</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Member_Requests_Not_Marked</shortDescription>
+        <value>Please select records to perform this action</value>
+    </labels>
+    <labels>
         <fullName>BET_Multi_File_Upload</fullName>
         <categories>BET</categories>
         <language>en_US</language>

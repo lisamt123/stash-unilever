@@ -2282,6 +2282,7 @@
 		<members>BET_Select_Files</members>
 		<members>BET_Upload_Status</members>
 		<members>BET_File_Name</members>
+		<members>BET_Member_Requests_Not_Marked</members>
         <name>CustomLabel</name>
     </types>
     <types>
