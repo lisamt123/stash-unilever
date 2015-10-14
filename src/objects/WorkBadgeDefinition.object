@@ -83,12 +83,16 @@
         <type>Lookup</type>
     </fields>
     <searchLayouts>
+        <customTabListAdditionalFields>NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>DESCRIPTION</customTabListAdditionalFields>
         <customTabListAdditionalFields>CREATEDBY_USER.ALIAS</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>NAME</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>DESCRIPTION</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>CREATEDBY_USER.ALIAS</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>DESCRIPTION</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>CREATEDBY_USER.ALIAS</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>DESCRIPTION</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CREATEDBY_USER.ALIAS</searchResultsAdditionalFields>
     </searchLayouts>

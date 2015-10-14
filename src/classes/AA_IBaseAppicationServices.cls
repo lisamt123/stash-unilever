@@ -1,0 +1,3 @@
+public interface AA_IBaseAppicationServices {
+	AA_BaseApplicationWrapperObj invokeService(AA_ApplicationWrapperObj appWrapperObj);
+}
