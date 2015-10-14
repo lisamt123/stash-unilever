@@ -17,7 +17,7 @@ public with sharing class HRO_BoardingAction_CX {
     @testVisible
     private List<HRO_Onboarding_Plan__c> listOfTemplateTasks{get;set;}
     public HRO_Onboarding_Plan__c planInfo{get;set;}
-
+	private static final String SELECTEDLEADERPARAM = '&tab.HRO_HeadStart.leaderToSelect=';
     /*******************************************************************
    Purpose:  Class constructor                                                   
    Parameters: []
@@ -96,7 +96,7 @@ public with sharing class HRO_BoardingAction_CX {
         Schema.DescribeSObjectResult r = HRO_Onboarding_Plan__c.sObjectType.getDescribe();
         String keyPrefix = r.getKeyPrefix();
         system.debug('*****HRO Exiting savePreBoarding');
-        return new PageReference('/_ui/core/userprofile/UserProfilePage?tab=HRO_HeadStart&sfdc.userId='+UserInfo.getUserId());
+        return new PageReference('/_ui/core/userprofile/UserProfilePage?tab=HRO_HeadStart&sfdc.userId='+UserInfo.getUserId()+SELECTEDLEADERPARAM+EncodingUtil.urlEncode(planInfo.New_Leader__c, 'UTF-8'));
     }
 
 
