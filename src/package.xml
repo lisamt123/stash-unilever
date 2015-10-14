@@ -3291,10 +3291,11 @@
         <members>*</members>
         <name>SharingOwnerRule</name>
     </types>
-	<types>
+    <types>
         <members>HROResources</members>
         <members>AA_forcetk</members>
         <members>AgentAppStaticResource</members>
+        <members>Core_IC_IdeationApp</members>
         <members>LoadImage</members>
         <name>StaticResource</name>
     </types>
