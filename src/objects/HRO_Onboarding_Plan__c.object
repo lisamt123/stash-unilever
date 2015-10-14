@@ -140,11 +140,10 @@
         <description>Explains what the task is.</description>
         <externalId>false</externalId>
         <label>Task Description</label>
-        <length>255</length>
-        <required>true</required>
+        <length>500</length>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
     </fields>
     <fields>
         <fullName>Task_for__c</fullName>
