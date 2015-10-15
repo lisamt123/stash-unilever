@@ -28,6 +28,16 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
         }
     });
 
+    function areYouSureToDelete(element,confirmationText,elementText){
+        if(confirm(confirmationText)){
+            if(confirm('{!$Label.BET_BET_Delete_Question}')){
+                element.value = elementText;
+                return true;
+            }
+        }
+        return false;
+    }
+
     </script>
             
     <apex:form >
@@ -102,10 +112,10 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
                 <apex:commandButton value="{!$Label.BET_Delete_BET}" styleClass="btn-save" 
                     action="{!softDeleteBET}" rendered="{!AND(currentUserIsOwner,bet.Is_Deleted__c == false,bet.IPM_Project__c == null)}" 
-                    onclick="return areYouSure(this,'{!$Label.BET_DeleteConfirmation}','{!$Label.BET_Deleting}');"/>
+                    onclick="return areYouSureToDelete(this,'{!$Label.BET_DeleteConfirmation}','{!$Label.BET_Deleting}');"/>
 
                 <apex:commandButton value="{!$Label.BET_Delete_BET}" styleClass="btn-cancel" 
-                    onclick = "alert('{!$Label.BET_Delete_BET_Linked}'); return false;"
+                    onclick="alert('{!$Label.BET_Delete_BET_Linked}'); return false;"
                     rendered="{!AND(currentUserIsOwner,bet.Is_Deleted__c == false,bet.IPM_Project__c != null)}"/>
 
                 <apex:outputPanel layout="inline" styleClass="question-icon-left question-icon-large" style="margin-right:5px;"

@@ -685,6 +685,14 @@ Are you sure you wish to proceed?</value>
         <value>Asset uploaded succesfully</value>
     </labels>
     <labels>
+        <fullName>BET_BET_Delete_Question</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BET_Delete_Question</shortDescription>
+        <value>Are you sure you wish to proceed with deleting this BET?</value>
+    </labels>
+    <labels>
         <fullName>BET_BET_Members</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -802,7 +810,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_DeleteConfirmation</shortDescription>
-        <value>Deleting a Brand Experience Toolkit (BET) is permanent and cannot be reversed. This will remove the BET, it’s associated Chatter Group and all uploaded files from the system completely.Are you sure you wish to proceed with deleting this BET?</value>
+        <value>Deleting a Brand Experience Toolkit (BET) is permanent and cannot be reversed. This will remove the BET, it’s associated Chatter Group and all uploaded files from the system completely.</value>
     </labels>
     <labels>
         <fullName>BET_Delete_BET</fullName>

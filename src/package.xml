@@ -2289,6 +2289,7 @@
         <members>BET_DeleteConfirmation</members>
         <members>BET_Deleting</members>
         <members>BET_Delete_BET_Linked</members>
+		<members>BET_BET_Delete_Question</members>
         <name>CustomLabel</name>
     </types>
     <types>
