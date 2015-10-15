@@ -1,77 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
-    <customApplications>
-        <label><!-- Agency Fees --></label>
-        <name>Agency_Fees</name>
-    </customApplications>
-    <customApplications>
-        <label><!-- Agency Roster Management --></label>
-        <name>Agency_Roster_Management</name>
-    </customApplications>
-    <customApplications>
-        <label><!-- Brand Centre Management --></label>
-        <name>Brand_Centre_Management</name>
-    </customApplications>
-    <customApplications>
-        <label><!-- CEC Admin --></label>
-        <name>CEC_Admin</name>
-    </customApplications>
-    <customApplications>
-        <label><!-- Communications Planner --></label>
-        <name>Comms_Planer</name>
-    </customApplications>
-    <customApplications>
-        <label><!-- Four Acres --></label>
-        <name>FAU_FourAcres</name>
-    </customApplications>
-    <customApplications>
-        <label><!-- Four Acres Collaboration --></label>
-        <name>Four_Acres_Collaboration</name>
-    </customApplications>
-    <customApplications>
-        <label><!-- IPM-NG --></label>
-        <name>IPM_NG</name>
-    </customApplications>
-    <customApplications>
-        <label><!-- Issue Management --></label>
-        <name>Issue_Briefing_Centre</name>
-    </customApplications>
-    <customApplications>
-        <label><!-- Network Accelerator --></label>
-        <name>Network_Tracking</name>
-    </customApplications>
-    <customApplications>
-        <label><!-- New Win@POS --></label>
-        <name>New_Win_POS</name>
-    </customApplications>
-    <customApplications>
-        <label><!-- Pitch --></label>
-        <name>Pitch</name>
-    </customApplications>
-    <customApplications>
-        <label><!-- Stakeholder Database --></label>
-        <name>Stakeholder_Database</name>
-    </customApplications>
-    <customApplications>
-        <label><!-- Sustainable Living Lab --></label>
-        <name>Sustainable_Living_Lab</name>
-    </customApplications>
-    <customApplications>
-        <label><!-- Unilever --></label>
-        <name>Unilever</name>
-    </customApplications>
-    <customApplications>
-        <label><!-- Unilever Four Acres --></label>
-        <name>Unilever_Fouracres</name>
-    </customApplications>
-    <customApplications>
-        <label><!-- WIN@POS --></label>
-        <name>WIN_POS</name>
-    </customApplications>
-    <customApplications>
-        <label><!-- cB4L --></label>
-        <name>cB4L</name>
-    </customApplications>
     <customLabels>
         <label><!-- AF Adjust Quarters --></label>
         <name>AF_Adjust_Quarters</name>
@@ -95,6 +23,22 @@
     <customLabels>
         <label><!-- AF_AnnualBonus_Qual --></label>
         <name>AF_AnnualBonus_Qual</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_BFML-Label_4k7g --></label>
+        <name>AF_BFML_Label_4k7g</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_BFMX-General_feedback --></label>
+        <name>AF_BFMX_General_feedback</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_BNMXLB-Override --></label>
+        <name>AF_BNMXLB_Override</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_BonusMatrixHelp --></label>
+        <name>AF_BonusMatrixHelp</name>
     </customLabels>
     <customLabels>
         <label><!-- AF_BonusQuarterly --></label>
@@ -169,8 +113,48 @@
         <name>AF_EntityException</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_LP-2nyf --></label>
+        <name>AF_LP_2nyf</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-Action_Pending --></label>
+        <name>AF_LP_Action_Pending</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP_Annual_Base_Fee_Target --></label>
+        <name>AF_LP_Annual_Base_Fee_Target</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF_LP_Base_Fee_Targets --></label>
         <name>AF_LP_Base_Fee_Targets</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP_Can_Rename --></label>
+        <name>AF_LP_Can_Rename</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-Enter_BF_estimates --></label>
+        <name>AF_LP_Enter_BF_estimates</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-Naming_Convention --></label>
+        <name>AF_LP_Naming_Convention</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-New_PO_Hover --></label>
+        <name>AF_LP_New_PO_Hover</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP_Running_Total --></label>
+        <name>AF_LP_Running_Total</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-ey31 --></label>
+        <name>AF_LP_ey31</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-y81a --></label>
+        <name>AF_LP_y81a</name>
     </customLabels>
     <customLabels>
         <label><!-- Lock Records --></label>
@@ -185,8 +169,24 @@
         <name>AF_No_Bonus</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_OOPSMX-General_feedback --></label>
+        <name>AF_OOPSMX_General_feedback</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_OOPSMX-Override --></label>
+        <name>AF_OOPSMX_Override</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_OOPSMX-Percentage --></label>
+        <name>AF_OOPSMX_Percentage</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF_OOPS_Approval --></label>
         <name>AF_OOPS_Approval</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_OOPS_Help --></label>
+        <name>AF_OOPS_Help</name>
     </customLabels>
     <customLabels>
         <label><!-- AF_OOPS_Reject --></label>
@@ -203,6 +203,18 @@
     <customLabels>
         <label><!-- AF_OopsPercentage --></label>
         <name>AF_OopsPercentage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_PONumberTab_Header --></label>
+        <name>AF_PONumberTab_Header</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_POOveride_Warning --></label>
+        <name>AF_POOveride_Warning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_PO_OverrideHelp --></label>
+        <name>AF_PO_OverrideHelp</name>
     </customLabels>
     <customLabels>
         <label><!-- PiliotError message --></label>
@@ -231,6 +243,10 @@
     <customLabels>
         <label><!-- AF_TriggerDate --></label>
         <name>AF_TriggerDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_UBFLB-Thresholds --></label>
+        <name>AF_UBFLB_Thresholds</name>
     </customLabels>
     <customLabels>
         <label><!-- AF_UBFLB-Type_of_Fees --></label>
@@ -333,6 +349,22 @@
         <name>Bonus_Annual</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_AlertActionSchedulerName --></label>
+        <name>CEC_AlertActionSchedulerName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CBM_NotificationBodyFooter --></label>
+        <name>CEC_CBM_NotificationBodyFooter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CBM_NotificationBodyHeader --></label>
+        <name>CEC_CBM_NotificationBodyHeader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CBM_NotificationSubject --></label>
+        <name>CEC_CBM_NotificationSubject</name>
+    </customLabels>
+    <customLabels>
         <label>Fulfilment kann nicht ausgeführt werden, wenn nicht ein Account zugeordnet ist</label>
         <name>CEC_CaseAccountMissing</name>
     </customLabels>
@@ -383,6 +415,10 @@
     <customLabels>
         <label>Treffer</label>
         <name>CEC_ConsumerResultsDisplay</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ConsumerResultsNoMatchTitle --></label>
+        <name>CEC_ConsumerResultsNoMatchTitle</name>
     </customLabels>
     <customLabels>
         <label>Passende Suchergebnisse:</label>
@@ -551,6 +587,10 @@
     <customLabels>
         <label>verwandte Vorgänge</label>
         <name>CEC_RelatedCases</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_SearchValidationError --></label>
+        <name>CEC_SearchValidationError</name>
     </customLabels>
     <customLabels>
         <label>Suche</label>
@@ -813,156 +853,24 @@
         <name>FA_SG_Wall_Room</name>
     </customLabels>
     <customLabels>
+        <label><!-- GoogleAPIKey --></label>
+        <name>GoogleAPIKey</name>
+    </customLabels>
+    <customLabels>
         <label><!-- HideTermsOfUseLabel --></label>
         <name>HideTermsOfUseLabel</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Bosscard Save Before Share --></label>
-        <name>IPM_Bosscard_Save_Before_Share</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Bosscard Shared Chatter --></label>
-        <name>IPM_Bosscard_Shared_Chatter</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Category list --></label>
-        <name>IPM_Category_list</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM CoreParameters validation --></label>
-        <name>IPM_CoreParameters_validation</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Deployment Char Limit --></label>
-        <name>IPM_Deployment_Char_Limit</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Description Restricted --></label>
-        <name>IPM_Description_Restricted</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM External Char Limit --></label>
-        <name>IPM_External_Char_Limit</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Finance Char Limit --></label>
-        <name>IPM_Finance_Char_Limit</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM GateStatus msg --></label>
-        <name>IPM_GateStatus_msg</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM_GenerateRollout --></label>
-        <name>IPM_GenerateRollout</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- GlobalOperationalProject --></label>
-        <name>IPM_GlobalOperationalProject</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- GlobalProject --></label>
-        <name>IPM_GlobalProject</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM_ImageLogo_URL --></label>
-        <name>IPM_ImageLogo_URL</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Image format --></label>
-        <name>IPM_Image_format</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Introduction Char Limit --></label>
-        <name>IPM_Introduction_Char_Limit</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Milestone Due Date Error --></label>
-        <name>IPM_Milestone_Due_Date_Error</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Mix Char Limit --></label>
-        <name>IPM_Mix_Char_Limit</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Not applicable --></label>
-        <name>IPM_Not_applicable</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM ProjectManagement Char Limit --></label>
-        <name>IPM_ProjectManagement_Char_Limit</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Project Name Exists --></label>
-        <name>IPM_Project_Name_Exists</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Project Name Mandatory --></label>
-        <name>IPM_Project_Name_Mandatory</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Record Insert Success --></label>
-        <name>IPM_Record_Insert_Success</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Record Saved Archives --></label>
-        <name>IPM_Record_Saved_Archives</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM_Skip_Bosscard --></label>
-        <name>IPM_Skip_Bosscard</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Stopmsg --></label>
-        <name>IPM_Stopmsg</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Strategic Intent message --></label>
-        <name>IPM_Strategic_Intent_message</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM Technical Char Limit --></label>
-        <name>IPM_Technical_Char_Limit</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM backto intermediate --></label>
-        <name>IPM_backto_intermediate</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- IPM image --></label>
-        <name>IPM_image</name>
     </customLabels>
     <customLabels>
         <label><!-- UW_LAUNCH_PINNOVATE_CMD --></label>
         <name>LAUNCH_PINNOVATE_CMD</name>
     </customLabels>
     <customLabels>
-        <label><!-- MLST_OBJ_NAME --></label>
-        <name>MLST_OBJ_NAME</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Matrix Currency Desc --></label>
         <name>Matrix_Currency_Desc</name>
     </customLabels>
     <customLabels>
-        <label><!-- PD_OBJ_NAME --></label>
-        <name>PD_OBJ_NAME</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- PS_OBJ_NAME --></label>
-        <name>PS_OBJ_NAME</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Project Name Contains Brand Name Target Launch Date --></label>
-        <name>Project_Name_Contains_Brand_Name_Target_Launch_Date</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Rollout No Records Msg --></label>
         <name>Rollout_No_Records_Msg</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- TASK_OBJ_NAME --></label>
-        <name>TASK_OBJ_NAME</name>
     </customLabels>
     <customLabels>
         <label><!-- TO_CaseIdentifier --></label>
@@ -1253,6 +1161,14 @@
         <name>WinatPOS_Upload_Error_No_Chatter_File</name>
     </customLabels>
     <customLabels>
+        <label><!-- af_lp_AgencyFeeTarget --></label>
+        <name>af_lp_AgencyFeeTarget</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- af_lp_UnileverBaseFee --></label>
+        <name>af_lp_UnileverBaseFee</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Button cancel --></label>
         <name>button_cancel</name>
     </customLabels>
@@ -1460,118 +1376,10 @@
         <label><!-- Communications Planner Help! --></label>
         <name>gc_HELP</name>
     </customPageWebLinks>
-    <customTabs>
-        <label><!-- Agency Fees --></label>
-        <name>Agency_Fees</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Agency List --></label>
-        <name>Agency_List</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- All Projects --></label>
-        <name>All_Projects</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Assign Category --></label>
-        <name>Assign_Category</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Brand Centres --></label>
-        <name>Brand_Centres</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Brand Experience (BET) --></label>
-        <name>Brand_Experience2</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Content Uploader --></label>
-        <name>Content_Uploader</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Custom Settings --></label>
-        <name>Custom_Settings</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Delete Chatter History --></label>
-        <name>Delete_Chatter_History</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Four Acres App --></label>
-        <name>FourAcres_App</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- GroupMaster --></label>
-        <name>GroupMaster</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- IPM Home --></label>
-        <name>IPM_Home</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- In Store Executions --></label>
-        <name>In_Store_Executions</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Innovations --></label>
-        <name>Innovations</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Inside Unilever --></label>
-        <name>Inside_Unilever</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Masterbrand --></label>
-        <name>Masterbrand</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- My Approvals --></label>
-        <name>My_Approvals_Custom</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- My Requests --></label>
-        <name>My_Requests</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- My To-Do List --></label>
-        <name>My_To_Do_List</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Network Accelerator --></label>
-        <name>Network_Tracking</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Repeatable Models --></label>
-        <name>Repeatable_Models</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- SME Selection --></label>
-        <name>SME_Selection</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Sustainable Living Lab --></label>
-        <name>Sustainable_Living_Lab</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- User Admin --></label>
-        <name>User_Admin</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Welcome --></label>
-        <name>Welcome</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- WinatPOS --></label>
-        <name>WinatPOS</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Issues --></label>
-        <name>im_Issues</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Stakeholders --></label>
-        <name>kof_Stakeholders</name>
-    </customTabs>
+    <quickActions>
+        <label><!-- Approve --></label>
+        <name>Approve</name>
+    </quickActions>
     <quickActions>
         <label><!-- LogACall --></label>
         <name>LogACall</name>
@@ -1615,6 +1423,14 @@
     <quickActions>
         <label><!-- BET File Upload --></label>
         <name>Publisher_Action</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reassign --></label>
+        <name>Reassign</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reject --></label>
+        <name>Reject</name>
     </quickActions>
     <reportTypes>
         <description><!-- Agency Estimates --></description>
@@ -1663,6 +1479,22 @@
         <label><!-- Bonus Matriix --></label>
         <name>AF_Bonus_Matriix</name>
         <sections>
+            <columns>
+                <label><!-- Agency --></label>
+                <name>Agency</name>
+            </columns>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
             <label><!-- Bonus Matrix --></label>
             <name>Bonus Matrix</name>
         </sections>
@@ -1842,6 +1674,26 @@
                 <name>Currency</name>
             </columns>
             <columns>
+                <label><!-- Currency @ Ready for PO --></label>
+                <name>Currency @ Ready for PO</name>
+            </columns>
+            <columns>
+                <label><!-- Currency @ReadyforPO --></label>
+                <name>Currency @ReadyforPO</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate --></label>
+                <name>Exchange Rate</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate@PO --></label>
+                <name>Exchange Rate@PO</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate@ReadyforPO --></label>
+                <name>Exchange Rate@ReadyforPO</name>
+            </columns>
+            <columns>
                 <label><!-- Legal Entity Name --></label>
                 <name>Legal Entity Name</name>
             </columns>
@@ -1874,6 +1726,14 @@
         <label><!-- Bonus Thresholds with Sub Results --></label>
         <name>Bonus_Thresholds_with_Sub_Results</name>
         <sections>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
             <columns>
                 <label><!-- Category Name --></label>
                 <name>Category Name</name>
@@ -1962,6 +1822,10 @@
         </sections>
         <sections>
             <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
                 <label><!-- Status --></label>
                 <name>Status</name>
             </columns>
@@ -2006,6 +1870,23 @@
         <sections>
             <label><!-- Process Instance Node --></label>
             <name>Process Instance Node</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- CEC Case Cluster Report --></description>
+        <label><!-- CEC Case Cluster Report --></label>
+        <name>CEC_Case_Cluster_Report</name>
+        <sections>
+            <label><!-- Case Market Mappings --></label>
+            <name>Case Market Mappings</name>
+        </sections>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
+        </sections>
+        <sections>
+            <label><!-- Unilever Geographies --></label>
+            <name>Unilever Geographies</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -2105,6 +1986,23 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- Chatter activity + user + post body --></description>
+        <label><!-- Chatter activity + user + post body --></label>
+        <name>Chatter_activity_user_post_body</name>
+        <sections>
+            <label><!-- Group Feed --></label>
+            <name>Group Feed</name>
+        </sections>
+        <sections>
+            <label><!-- Groups (Last Modified By) --></label>
+            <name>Groups (Last Modified By)</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- Core Tasks Report Type --></description>
         <label><!-- Core Tasks Report Type --></label>
         <name>Core_Tasks_Report_Type</name>
@@ -2149,6 +2047,19 @@
         <sections>
             <label><!-- Feedback Questionnaire --></label>
             <name>Feedback Questionnaire</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Custom Objects Usage --></description>
+        <label><!-- Custom Objects Usage --></label>
+        <name>Custom_Objects_Usage</name>
+        <sections>
+            <label><!-- Custom Object Usage By User License Metrics --></label>
+            <name>Custom Object Usage By User License Metrics</name>
+        </sections>
+        <sections>
+            <label><!-- User Licenses --></label>
+            <name>User Licenses</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -2322,8 +2233,53 @@
         <label><!-- OOPS Estimate --></label>
         <name>OOPS_Estimate</name>
         <sections>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Category --></label>
+                <name>Category</name>
+            </columns>
             <label><!-- OOPS Estimates --></label>
             <name>OOPS Estimates</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- OOPs PO Report --></description>
+        <label><!-- OOPs PO Report --></label>
+        <name>OOPs_PO_Report</name>
+        <sections>
+            <columns>
+                <label><!-- FY OOPS - Euro --></label>
+                <name>FY OOPS - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- FY Year OOPs - LC --></label>
+                <name>FY Year OOPs - LC</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value - Euro --></label>
+                <name>PO Value - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value – LC --></label>
+                <name>PO Value – LC</name>
+            </columns>
+            <label><!-- PO Report --></label>
+            <name>PO Report</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -2331,6 +2287,14 @@
         <label><!-- Opps Actuals with Estimates --></label>
         <name>Opps_Actuals_with_Estimates</name>
         <sections>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
             <columns>
                 <label><!-- Status --></label>
                 <name>Status</name>
@@ -2342,6 +2306,22 @@
             <columns>
                 <label><!-- Currency --></label>
                 <name>Currency</name>
+            </columns>
+            <columns>
+                <label><!-- Currency --></label>
+                <name>Currency</name>
+            </columns>
+            <columns>
+                <label><!-- Currency @Ready for PO --></label>
+                <name>Currency @Ready for PO</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate --></label>
+                <name>Exchange Rate</name>
+            </columns>
+            <columns>
+                <label><!-- ExchangeRate@ReadyforPO --></label>
+                <name>ExchangeRate@ReadyforPO</name>
             </columns>
             <columns>
                 <label><!-- FY OOPS - Euro --></label>
@@ -2362,6 +2342,14 @@
             <columns>
                 <label><!-- Legal Entity Name --></label>
                 <name>Legal Entity Name</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value - Euro --></label>
+                <name>PO Value - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value - LC --></label>
+                <name>PO Value - LC</name>
             </columns>
             <columns>
                 <label><!-- Unilever Entity --></label>
@@ -2533,6 +2521,15 @@
         <sections>
             <label><!-- Thanks --></label>
             <name>Thanks</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Topic Assignment --></description>
+        <label><!-- Topic Assignment --></label>
+        <name>Topic_Assignment</name>
+        <sections>
+            <label><!-- Topic Assignments --></label>
+            <name>Topic Assignments</name>
         </sections>
     </reportTypes>
     <reportTypes>

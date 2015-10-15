@@ -75,6 +75,10 @@
         <name>Brand_Name__c</name>
     </fields>
     <fields>
+        <label><!-- No of Matrix Cells --></label>
+        <name>No_of_Matrix_Cells__c</name>
+    </fields>
+    <fields>
         <label><!-- VisbleToAgency --></label>
         <name>VisbleToAgency__c</name>
     </fields>

@@ -47,7 +47,7 @@ public class CEC_CaseTriggerHelper{
                     else{
                         msgString = '<Html><Body> This is an automated email<BR/><BR/>CEC Carelines Account owner could not be updated. Please check the case market mapping record and take the necessary action.<BR/><BR/>Case Number: '+ c.CaseNumber+'<BR/><BR/>Thank You</Body></Html>';  
                         emailSubject = '[ERR004] Default Account Owner is either not populated or Inactive at CMM';
-                        sendEmail(msgString,emailSubject);
+                        CEC_Util.sendNotificationEmail(msgString,emailSubject);
                     }    
                 }
 
@@ -157,26 +157,10 @@ public class CEC_CaseTriggerHelper{
             if(failedCases !=''){
                 msgString = '<Html><Body> This is an automated email<BR/><BR/>CEC Carelines case could not be updated. Please check the error message and take the necessary action.<BR/><BR/>'+ failedCases+'<BR/><BR/>Thank You</Body></Html>';  
                 emailSubject = '[ERR003] Case could not be updated';
-                sendEmail(msgString,emailSubject);
+                CEC_Util.sendNotificationEmail(msgString,emailSubject);
             }            
         }
         
-    }
-    
-    //Method to send email
-    public void sendEmail(string msgString, string emailSubject){
-        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-            List<CEC_NotificationEmailId__C> listNotifEmail = CEC_NotificationEmailId__C.getall().values();
-            if(listNotifEmail.size()>0){
-                if(listNotifEmail[0].EmailId__C !=''){
-                    System.debug('Nagesh' + listNotifEmail[0].EmailId__C);
-                    String[] toAddresses = new String[]{listNotifEmail[0].EmailId__C};
-                    mail.setToAddresses(toAddresses);
-                    mail.setSubject(emailSubject);
-                    mail.setHTMLBody(msgString);
-                    Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail});
-                }
-            }
     }
     
     //To Quick Fill details of case if Record type is changed "Spam"
@@ -272,17 +256,15 @@ public class CEC_CaseTriggerHelper{
     public void updateProductAndReasonCode(Map<Id, Case> newCaseMap){
         if((newCaseMap.values()).size()>0){
         Map<String,Case> accMaps=new map<String,Case>();
-        for(Case cases:newCaseMap.values()){
-            if (cases.ParentId == null) {
-                
-                accMaps.put(cases.AccountId,cases);
-            }
+        for(Case cases:newCaseMap.values()){            
+            accMaps.put(cases.AccountId,cases);
         }
         if (accMaps.keySet().size() > 0) {
             List<Account> accList=[select id from Account where id in: accMaps.keyset()];
             for(Account acc:accList){
                 acc.Latest_Case_Product_Code__c=(accMaps.get(acc.Id)).Product_Code__c;
                 acc.Latest_Case_Reason_Code__c=accMaps.get(acc.Id).CEC_Reason_Code__c;
+                acc.Latest_Case_Number__c=accMaps.get(acc.Id).CaseNumber;
             }
             update accList;
         }

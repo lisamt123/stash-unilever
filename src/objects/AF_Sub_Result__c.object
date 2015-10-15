@@ -80,6 +80,14 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_Class_code__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Class code</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>AF_Comment__c</fullName>
         <externalId>false</externalId>
         <label>Comment</label>
@@ -282,9 +290,9 @@
         <fullName>AF_Total_Bonus__c</fullName>
         <externalId>false</externalId>
         <label>Total Bonus %</label>
-        <precision>10</precision>
+        <precision>12</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -307,6 +315,18 @@
         <label>Traditional</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AF_Unique_Key__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(AF_country__c) &amp;&quot;|&quot;&amp; CASESAFEID(AF_Bonus_Threshold__r.Agency_Name__c) &amp;&quot;|&quot;&amp; 
+AF_Bonus_Threshold__r.Year__c &amp;&quot;|&quot;&amp;  TEXT(AF_Period__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Unique Key</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>AF_Unique_Thresholds__c</fullName>
@@ -339,6 +359,17 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_deletion_key__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(AF_Bonus_Threshold__c) &amp;&quot;|&quot; &amp; text(Bonus_Measure__c) &amp;&quot;|&quot; &amp; text(AF_Minimum__c) &amp;&quot;|&quot; &amp; text(AF_Stretching__c) &amp;&quot;|&quot;&amp; text(AF_Outstanding__c)&amp;&quot;|&quot; &amp; CASESAFEID(AF_country__c)&amp;&quot;|&quot; &amp; AF_Bonus_Threshold__r.Year__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>deletion_key</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Bonus_Measure__c</fullName>
@@ -398,6 +429,16 @@
         <scale>2</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sub_Result_AnnualID__c</fullName>
+        <externalId>false</externalId>
+        <label>Sub Result AnnualID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>

@@ -48,6 +48,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Account Record Count --></label>
+        <name>Account_Record_Count__c</name>
+    </fields>
+    <fields>
         <label><!-- Additional Information --></label>
         <name>Additional_Information__c</name>
     </fields>
@@ -970,6 +974,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Latest Case Number --></label>
+        <name>Latest_Case_Number__c</name>
+    </fields>
+    <fields>
         <label>Lotto di produzione l&apos;ultimo caso</label>
         <name>Latest_Case_Product_Code__c</name>
     </fields>
@@ -1053,6 +1061,10 @@
         <help><!-- Please clarify the ownership status of the company, identifying any network or holding company, where appropriate. --></help>
         <label><!-- Ownership Status --></label>
         <name>Ownership_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone No Special Char --></label>
+        <name>Phone_No_Special_Char__c</name>
     </fields>
     <fields>
         <label>Canale preferito</label>

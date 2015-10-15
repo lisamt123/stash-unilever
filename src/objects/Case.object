@@ -146,6 +146,18 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Brand_Reporting__c</fullName>
+        <description>CEC : This field is used to create Reports for the Brands.</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(NOT(ISBLANK(Case_product_category__c)), isFormKnown__c = False, isVariantKnown__c = False, isPacksizeKnown__c = False),&apos;Unilever&apos;, Case_Brand__c)</formula>
+        <label>Brand Reporting</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Brand__c</fullName>
         <externalId>false</externalId>
         <label>Brand</label>
@@ -185,6 +197,30 @@
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CEC_Product_Reporting_Name__c</fullName>
+        <description>CEC : This field is used to create Reports for the Products with size.</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(NOT(ISBLANK(Case_product_category__c)), isFormKnown__c = True, isVariantKnown__c = False,  isPacksizeKnown__c = False), CEC_Product__r.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c, IF(AND(NOT(ISBLANK(Case_product_category__c)), isFormKnown__c = False, isVariantKnown__c = False, isPacksizeKnown__c = False), L2_Product_Category__c, IF(AND(NOT(ISBLANK(Case_product_category__c)), isFormKnown__c = True, isVariantKnown__c = True, isPacksizeKnown__c = False), Consumer_Product_Descriptor_no_size__c, CEC_Product__r.Consumer_Product_Descriptor_Local_Lang__c )))</formula>
+        <label>CEC Product Reporting Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CEC_Product_Reporting_Name_no_size__c</fullName>
+        <description>CEC : This field is used to create Reports with Products without size</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(NOT(ISBLANK(Case_product_category__c)), isFormKnown__c = True, isVariantKnown__c = False,  isPacksizeKnown__c = False), CEC_Product__r.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c, IF(AND(NOT(ISBLANK(Case_product_category__c)), isFormKnown__c = False, isVariantKnown__c = False, isPacksizeKnown__c = False), L2_Product_Category__c, Consumer_Product_Descriptor_no_size__c))</formula>
+        <label>CEC Product Reporting Name (no size)</label>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -252,6 +288,18 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>CPG_Code_Reporting__c</fullName>
+        <description>CEC : This field is used to create reports with Corp Product Grouping Name</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(NOT(ISBLANK(Case_product_category__c)), isFormKnown__c = False, isVariantKnown__c = False, isPacksizeKnown__c = False), &apos;&apos;, CEC_Product__r.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c)</formula>
+        <label>CPG Code Reporting</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Case_Brand_Mapping__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>CEC: Lookup to the brand mapping table to identify template and case parameters</description>
@@ -265,6 +313,17 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Case_Brand__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(CEC_Product__c != null,  CEC_Product__r.Brand__c,  Case_Brand_Mapping__r.Brand__c)</formula>
+        <label>Case Brand</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Case_Market_Mapping_Country_Id__c</fullName>
@@ -317,6 +376,21 @@ ISO Country Dependency Medium Name</description>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Case_Record_Count__c</fullName>
+        <description>CEC this formula field puts the number 1 on the record for counting advantages on reports</description>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Case Record Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -567,6 +641,60 @@ ISO Country Dependency Medium Name</description>
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
+        <fullName>Escalated_Date__c</fullName>
+        <description>CEC : To capture the date / time when a case gets escalated for the first time.</description>
+        <externalId>false</externalId>
+        <label>Escalated Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Escalated_to_Closed_Days__c</fullName>
+        <description>CEC : To capture the duration in days between the last Closed Date / time and the first Escalation Date / Time of a case.</description>
+        <externalId>false</externalId>
+        <formula>ClosedDate - Escalated_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Escalated to Closed(Days)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Escalated_to_Closed_Hours__c</fullName>
+        <description>CEC : To capture the duration in hours between the last Closed Date / time and the first Escalation Date / Time of a case.</description>
+        <externalId>false</externalId>
+        <formula>(ClosedDate - Escalated_Date__c) * 24</formula>
+        <label>Escalated to Closed(Hours)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Escalated_to_Closed_Minutes__c</fullName>
+        <description>CEC : To capture the duration in minutes between the last Closed Date / time and the first Escalation Date / Time of a case.</description>
+        <externalId>false</externalId>
+        <formula>( ClosedDate - Escalated_Date__c )* 24 * 60</formula>
+        <label>Escalated to Closed(Minutes)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Expiry_Date__c</fullName>
         <description>CEC: Used for Sapient integration</description>
         <externalId>false</externalId>
@@ -600,6 +728,34 @@ ISO Country Dependency Medium Name</description>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>First_Response_Date__c</fullName>
+        <description>CEC this field is the first date we responded to an email</description>
+        <externalId>false</externalId>
+        <label>First Response Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>First_Response_Email_Time__c</fullName>
+        <description>CEC This formula works out the time between case opening and first response email</description>
+        <externalId>false</externalId>
+        <formula>(floor((First_Response_Date__c -  CreatedDate)*24))
++
+(((((First_Response_Date__c -  CreatedDate)*24)-floor((First_Response_Date__c -  CreatedDate)*24))*60)/100)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>First Response Email Time</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -733,12 +889,36 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>L3_Product_Reporting__c</fullName>
+        <description>CEC : This field is used to create Reports with L3 Products.</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(NOT(ISBLANK(Case_product_category__c)), isFormKnown__c = True, isVariantKnown__c = False,  isPacksizeKnown__c = False), CEC_Product__r.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c, IF(AND(NOT(ISBLANK(Case_product_category__c)), isFormKnown__c = False, isVariantKnown__c = False, isPacksizeKnown__c = False), L2_Product_Category__c, L3_Product_Category__c))</formula>
+        <label>L3 Product Reporting</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>L4_Product_Category__c</fullName>
         <description>Retrieves the L1 Product description from product category table</description>
         <externalId>false</externalId>
         <formula>CEC_Product__r.Global_CPG_Code__r.L4_Product_Category__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>L4 Product Category</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>L4_Product_Reporting__c</fullName>
+        <description>CEC : This field is used to create Reports with L4 Products</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(NOT(ISBLANK(Case_product_category__c)), isFormKnown__c = True, isVariantKnown__c = False,  isPacksizeKnown__c = False), CEC_Product__r.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c, IF(AND(NOT(ISBLANK(Case_product_category__c)), isFormKnown__c = False, isVariantKnown__c = False, isPacksizeKnown__c = False), L2_Product_Category__c, L4_Product_Category__c))</formula>
+        <label>L4 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -771,6 +951,18 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>L5_Product_Reporting__c</fullName>
+        <description>CEC : This field is used to create Reports with L5 Products.</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(NOT(ISBLANK(Case_product_category__c)), isFormKnown__c = True, isVariantKnown__c = False,  isPacksizeKnown__c = False), CEC_Product__r.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c, IF(AND(NOT(ISBLANK(Case_product_category__c)), isFormKnown__c = False, isVariantKnown__c = False, isPacksizeKnown__c = False), L2_Product_Category__c, L5_Product_Category__c))</formula>
+        <label>L5 Product Reporting</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>L6_Product_Category__c</fullName>
         <description>Retrieves the L6 Product description from product category table</description>
         <externalId>false</externalId>
@@ -784,12 +976,36 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>L6_Product_Reporting__c</fullName>
+        <description>CEC : This field is used to create Reports with L6 products</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(NOT(ISBLANK(Case_product_category__c)), isFormKnown__c = True, isVariantKnown__c = False,  isPacksizeKnown__c = False), CEC_Product__r.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c, IF(AND(NOT(ISBLANK(Case_product_category__c)), isFormKnown__c = False, isVariantKnown__c = False, isPacksizeKnown__c = False), L2_Product_Category__c, L6_Product_Category__c))</formula>
+        <label>L6 Product Reporting</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>L7_Product_Category__c</fullName>
         <description>Retrieves the L7 Product description from product category table</description>
         <externalId>false</externalId>
         <formula>CEC_Product__r.Global_CPG_Code__r.L7_Product_Category__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>L7 Product Category</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>L7_Product_Reporting__c</fullName>
+        <description>CEC : This field is used to create Reports with L7 products</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(NOT(ISBLANK(Case_product_category__c)), isFormKnown__c = True, isVariantKnown__c = False,  isPacksizeKnown__c = False), CEC_Product__r.Global_CPG_Code__r.Corp_Prod_Grouping_Name__c, IF(AND(NOT(ISBLANK(Case_product_category__c)), isFormKnown__c = False, isVariantKnown__c = False, isPacksizeKnown__c = False), L2_Product_Category__c, L7_Product_Category__c))</formula>
+        <label>L7 Product Reporting</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -984,12 +1200,27 @@ ISO Country Dependency Medium Name</description>
                 <fullName>Email TO France</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Email Sri Lanka</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Original_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Original Description</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Out_of_Hours__c</fullName>
@@ -2040,21 +2271,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.LAST_UPDATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
+        <columns>Case_Market__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
-            <value>Email,Web,White Mail</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <filters>
-            <field>Market__c</field>
-            <operation>notContain</operation>
-            <value>India,Nordic,Benelux,France,DACH</value>
+            <value>Email,Web,White Mail,Email UK</value>
         </filters>
         <filters>
             <field>CASES.LAST_UPDATE_DATE_ONLY</field>
@@ -2062,14 +2284,23 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>LAST_N_DAYS:2</value>
         </filters>
         <filters>
-            <field>CORE.USERS.ALIAS</field>
+            <field>Case_Market__c</field>
             <operation>notContain</operation>
-            <value>Nordic,France,DACH,BENELUX,ITALY,PORTUGAL,SPAIN,GREECE,HUNGARY,POLAND</value>
+            <value>India,DACH,Benelux,France,Spain,Nordic,Portugal,Czech,Italy,Greece,Poland</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
             <operation>notContain</operation>
-            <value>Nordic,France,DACH,BENELUX,ITALY,PORTUGAL,SPAIN,GREECE,HUNGARY,SWEDEN,INDIA,POLA</value>
+            <value>Bosnia,Hungary,Slovakia,Baltics,Romania,Bulgaria,Serbia,Slovenia,Lanka,Croatia</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
         </filters>
         <label>Out of SLA</label>
         <language>en_US</language>
@@ -2081,39 +2312,38 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>CEC_Baltics_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
         <label>CEC Baltics Queue</label>
+        <language>en_US</language>
         <queue>CEC_Baltics_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Benelux_Queue_Case</fullName>
+        <fullName>CEC_Benelux_queue</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
-        <columns>CONTACT.ACCOUNT</columns>
         <columns>CASES.SUBJECT</columns>
-        <columns>Brand__c</columns>
         <columns>CASES.STATUS</columns>
-        <columns>Language__c</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
+        <columns>Language__c</columns>
+        <columns>Brand__c</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
             <operation>notEqual</operation>
             <value>Closed,Closed as Duplicate</value>
         </filters>
-        <label>CEC Benelux Queue</label>
-        <language>en_US</language>
+        <label>CEC Benelux queue</label>
+        <language>nl_NL</language>
         <queue>CEC_Benelux_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_Benelux</role>
-            <role>CEC_Manager_Europe</role>
-            <role>CEC_User_Benelux</role>
-        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_Czech_Republic_Queue_Case</fullName>
@@ -2163,7 +2393,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>CEC_Escalation_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
-        <label>Escalation Queue</label>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC UKI Escalation Queue</label>
         <language>en_US</language>
         <queue>CEC_Escalation_Queue</queue>
         <sharedTo>
@@ -2206,7 +2441,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notEqual</operation>
             <value>Closed,Closed as Duplicate</value>
         </filters>
-        <label>General Queue</label>
+        <label>CEC UKI Queue</label>
         <language>en_US</language>
         <queue>CEC_General_Queue</queue>
         <sharedTo>
@@ -2246,7 +2481,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_Hungary_Queue_Case</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
-        <columns>CONTACT.ACCOUNT</columns>
+        <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
@@ -2287,6 +2522,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_India_Tier_2_Case</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
@@ -2450,6 +2692,32 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Nordic_Queue_Norway_V2</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>Case_Market_Mapping_Country__c</field>
+            <operation>equals</operation>
+            <value>Norway</value>
+        </filters>
+        <label>CEC Nordic Queue - Norway V2</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_User_Nordic</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Nordic_Queue_Sweden</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -2496,7 +2764,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New</value>
+            <value>New,In Progress,Review Needed</value>
         </filters>
         <filters>
             <field>Case_Market_Mapping_Country__c</field>
@@ -2540,6 +2808,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Poland_Queue_Case</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Brand__c</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
@@ -2625,6 +2900,63 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Sri_Lanka_Escalation_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Sri Lanka Escalation Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Sri_Lanka_Escalation_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_South_Asia</role>
+            <role>CEC_Manager_Sri_Lanka</role>
+            <role>CEC_User_Sri_Lanka</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Sri_Lanka_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>CEC Sri Lanka Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Sri_Lanka_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_South_Asia</role>
+            <role>CEC_Manager_Sri_Lanka</role>
+            <role>CEC_User_Sri_Lanka</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Denmark_V2</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate,On Hold</value>
+        </filters>
+        <filters>
+            <field>Case_Market_Mapping_Country__c</field>
+            <operation>equals</operation>
+            <value>Denmark</value>
+        </filters>
+        <label>CEC Nordic Queue - Denmark V2</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CEC_Nordic_Visibility</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Dot_com</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -2652,6 +2984,83 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>India_tier_1_out_of_SLA</fullName>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.LAST_UPDATE</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>Email,Web,White Mail,Email India</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New,In Progress,On Hold</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>India</value>
+        </filters>
+        <filters>
+            <field>CASES.LAST_UPDATE_DATE_ONLY</field>
+            <operation>lessThan</operation>
+            <value>LAST_N_DAYS:2</value>
+        </filters>
+        <label>India tier 1 out of SLA</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_India</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>India_tier_1_within_SLA</fullName>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.LAST_UPDATE</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>Email,Web,White Mail,Email India</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New,In Progress,On Hold</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>India</value>
+        </filters>
+        <filters>
+            <field>CASES.LAST_UPDATE_DATE_ONLY</field>
+            <operation>greaterOrEqual</operation>
+            <value>LAST_N_DAYS:2</value>
+        </filters>
+        <label>India tier 1 within SLA</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_India</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Kittys_Queue</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -2676,6 +3085,68 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <sharedTo>
             <roleAndSubordinatesInternal>CEC_Manager_Nordic</roleAndSubordinatesInternal>
         </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Leavers_cases</fullName>
+        <booleanFilter>1 AND (2 or 3)</booleanFilter>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>contains</operation>
+            <value>soshea,gchar,rrana,sakba,jconnoll,llopez,jroberts,bgree,ecooper,adaleri,clindero</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>contains</operation>
+            <value>hkarim,GColquho,aanju,habdi</value>
+        </filters>
+        <label>Leavers cases</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_UK</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>MAILS_EN_COLA</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>notContain</operation>
+            <value>PepsiCola</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>CEC Spain Queue</value>
+        </filters>
+        <label>mails en cola Spain agosto</label>
+        <language>es</language>
+        <queue>CEC_Spain_Queue</queue>
     </listViews>
     <listViews>
         <fullName>Mulesoft_Owned_Cases</fullName>
@@ -2743,6 +3214,102 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
     </listViews>
     <listViews>
+        <fullName>My_teams_open_cases</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>United Kingdom</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>notEqual</operation>
+            <value>CEC UKI Escalation Queue,mlatter,RThornhi,SDouglas</value>
+        </filters>
+        <filters>
+            <field>CASES.LAST_UPDATE_DATE_ONLY</field>
+            <operation>lessThan</operation>
+            <value>LAST_N_DAYS:7</value>
+        </filters>
+        <label>My teams open cases</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_UK</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Nordic_Queue_Finland_V2</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>On Hold,Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>Case_Market_Mapping_Country__c</field>
+            <operation>equals</operation>
+            <value>Finland</value>
+        </filters>
+        <label>Nordic Queue - Finland V2</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CEC_Nordic_Visibility</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Open_cases_older_than_2_weeks</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>Email,Phone,Web,Social,White Mail,Store,Email UK</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>United Kingdom</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CASES.LAST_UPDATE_DATE_ONLY</field>
+            <operation>lessOrEqual</operation>
+            <value>9/29/2015 12:00 AM</value>
+        </filters>
+        <label>Open cases older than 2 weeks</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_UK</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Out_of_Hours_case_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>Out of Hours case</label>
@@ -2788,6 +3355,54 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>Vacation_Queue_DACH</fullName>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6) AND 1</booleanFilter>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>HoRosent</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>EvKniesb</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>Lareuman</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>Anlasser</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>anclasen</value>
+        </filters>
+        <label>DACH Vacation Queue</label>
+        <language>de</language>
+        <sharedTo>
+            <role>CEC_Manager_DACH</role>
+            <role>CEC_User_DACH</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Within_SLA</fullName>
         <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
@@ -2797,13 +3412,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
+        <columns>Case_Market__c</columns>
         <columns>CASES.LAST_UPDATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
-            <value>Web,Email,White Mail</value>
+            <value>Email,Web,White Mail,Email UK</value>
         </filters>
         <filters>
             <field>CASES.LAST_UPDATE_DATE_ONLY</field>
@@ -2811,24 +3427,23 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>LAST_N_DAYS:2</value>
         </filters>
         <filters>
-            <field>Market__c</field>
+            <field>Case_Market__c</field>
             <operation>notContain</operation>
-            <value>India,Nordic,Benelux,France,DACH</value>
+            <value>India,DACH,Benelux,France,Spain,Nordic,Portugal,Czech,Italy,Greece,Poland</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>notContain</operation>
+            <value>Hungary,Slovakia,Baltics,Romania,Bulgaria,Serbia,Slovenia,Lanka,Croatia</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>notEqual</operation>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
             <value>New</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>notContain</operation>
-            <value>CEC Nordic,CEC France,CEC DACH,CEC BENELUX,CEC ITALY,SPAIN,POLAND,PORTUGAL</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>notContain</operation>
-            <value>Nordic,France,DACH,BENELUX,ITALY,SPAIN,POLAND,PORTUGAL</value>
         </filters>
         <label>Within SLA</label>
         <language>en_US</language>
@@ -2836,6 +3451,25 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Manager_UK</role>
             <role>CEC_User_UK</role>
         </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>spam_pp</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>contains</operation>
+            <value>PepsiCola</value>
+        </filters>
+        <label>spam pp Spain</label>
+        <language>es</language>
+        <queue>CEC_Spain_Queue</queue>
     </listViews>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
@@ -3305,10 +3939,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <listViewButtons>Next_Case</listViewButtons>
         <lookupDialogsAdditionalFields>CASES.CASE_NUMBER</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>CASES.SUBJECT</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>NAME</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>CASES.STATUS</lookupDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>CASES.CASE_NUMBER</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>CASES.SUBJECT</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>CASES.STATUS</lookupPhoneDialogsAdditionalFields>
         <searchResultsAdditionalFields>CASES.CASE_NUMBER</searchResultsAdditionalFields>
@@ -3381,6 +4017,7 @@ clonedCaseRecord.ContactId=caseRecord.ContactId;
 clonedCaseRecord.Description=caseRecord.Description;
 clonedCaseRecord.Priority=caseRecord.Priority;
 clonedCaseRecord.Subject=caseRecord.Subject;
+clonedCaseRecord.Status=&apos;In Progress&apos;;
 clonedCaseRecord.SuppliedCompany=caseRecord.SuppliedCompany;
 clonedCaseRecord.SuppliedEmail=caseRecord.SuppliedEmail;
 clonedCaseRecord.SuppliedName=caseRecord.SuppliedName;
@@ -3470,31 +4107,53 @@ sforce.console.openPrimaryTab(null, &apos;/&apos;+caseId, true);
         <height>600</height>
         <isResizable>true</isResizable>
         <linkType>url</linkType>
-        <masterLabel>Cosmetovigilence</masterLabel>
+        <masterLabel>Personal Care Cosmetovigilence</masterLabel>
         <openType>newWindow</openType>
         <position>none</position>
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
-        <url>http://survey.clicktools.com/go?iv={!IF(Case.Case_Market_Mapping_Country__c=&apos;United Kingdom&apos;,$Setup.cec_Org_Settings__c.Cosmetovigilence_Questionnaire_Id__c, 
-IF(Case.Case_Market_Mapping_Country__c=&apos;Austria&apos;,$Setup.cec_Org_Settings__c.Austria_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Belgium&apos;,$Setup.cec_Org_Settings__c.Belgium_Questionnaire_Id__c, 
-IF(Case.Case_Market_Mapping_Country__c=&apos;Cyprus&apos;,$Setup.cec_Org_Settings__c.Cyprus_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Czech Republic&apos;,$Setup.cec_Org_Settings__c.Czech_Republic_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Denmark&apos;,$Setup.cec_Org_Settings__c.Denmark_Questionnaire_Id__c, 
-IF(Case.Case_Market_Mapping_Country__c=&apos;Finland&apos;,$Setup.cec_Org_Settings__c.Finland_Questionnaire_Id__c, 
-IF(Case.Case_Market_Mapping_Country__c=&apos;France&apos;,$Setup.cec_Org_Settings__c.France_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Germany&apos;,$Setup.cec_Org_Settings__c.Germany_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Greece&apos;,$Setup.cec_Org_Settings__c.Greece_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Hungary&apos;,$Setup.cec_Org_Settings__c.Hungary_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;India&apos;,$Setup.cec_Org_Settings__c.India_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Italy&apos;,$Setup.cec_Org_Settings__c.Italy_Questionnaire_Id__c, 
-IF(Case.Case_Market_Mapping_Country__c=&apos;Netherlands&apos;,$Setup.cec_Org_Settings__c.Netherland_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Norway&apos;,$Setup.cec_Org_Settings__c.Norway_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Poland&apos;,$Setup.cec_Org_Settings__c.Poland_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Portugal&apos;,$Setup.cec_Org_Settings__c.Portugal_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Spain&apos;,$Setup.cec_Org_Settings__c.Spain_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Sweden&apos;,$Setup.cec_Org_Settings__c.Sweden_Questionnaire_Id__c,    IF(Case.Case_Market_Mapping_Country__c=&apos;Switzerland&apos;,$Setup.cec_Org_Settings__c.Switzerland_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Estonia&apos;,$Setup.cec_Org_Settings__c.Estonia_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Lithuania&apos;,$Setup.cec_Org_Settings__c.Lithuania_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Latvia&apos;,$Setup.cec_Org_Settings__c.Latvia_Questionnaire_Id__c, null)))))))))))))))))))))))}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}</url>
+        <url>http://survey.clicktools.com/go?iv= {!$Setup.cec_Org_Settings__c.Cosmetovigilence_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Homecare_Cosmetovigilence</fullName>
+        <availability>online</availability>
+        <description>CEC: link to the Homecare cosmetovigilence questionnaire</description>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Homecare Cosmetovigilence</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://survey.clicktools.com/go?iv={!$Setup.cec_Org_Settings__c.Homecare_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Ingestion_Cosmetovigilence</fullName>
+        <availability>online</availability>
+        <description>CEC: link to the Ingestion cosmetovigilence questionnaire</description>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Ingestion Cosmetovigilence</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://survey.clicktools.com/go?iv={!$Setup.cec_Org_Settings__c.Ingestion_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}</url>
     </webLinks>
     <webLinks>
         <fullName>New_Case</fullName>
@@ -3511,7 +4170,8 @@ IF(Case.Case_Market_Mapping_Country__c=&apos;Sweden&apos;,$Setup.cec_Org_Setting
 
 try{ 
 var caseObj = new sforce.SObject(&apos;Case&apos;); 
-caseObj.Origin= &apos;Phone&apos;; 
+caseObj.Origin= &apos;Phone&apos;;
+caseObj.Status = &apos;In Progress&apos;; 
 
 var userResult=sforce.connection.query(&quot;SELECT id FROM User WHERE Id = &apos;&quot; + window.UserContext.userId + &quot;&apos;&quot;); 
 var userRecord=userResult.getArray(&quot;records&quot;); 

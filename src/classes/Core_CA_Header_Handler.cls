@@ -39,6 +39,7 @@ public class Core_CA_Header_Handler{
         List<Core_Approval_Header__Share> lstShareHeader=new List<Core_Approval_Header__Share>();
         List<EntitySubscription> lstEntitySubHeader=new List<EntitySubscription>();
         List<FeedItem> lstFeedItem = new List<FeedItem>();
+        List<Core_Approver_Details__c> lstactiveApprover = new List<Core_Approver_Details__c>();
         Set<Id> headerids = new Set<Id>();
         String baseUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
         Map<Id,List<Core_Approver_Details__c>> mapApprover = new Map<Id,List<Core_Approver_Details__c>>();
@@ -50,6 +51,7 @@ public class Core_CA_Header_Handler{
             headerids.add(id.ID);
             userIds.add(id.Requested_By__c);
             userIds.add(id.Requested_For__c);
+            userIds.add(id.Invalid_PR_Approver__c);
         }
         
         List<Core_Approver_Details__c> lstApprover = [SELECT id,Approval_Header__c , Role__c,Interested_Party__c FROM Core_Approver_Details__c where Approval_Header__c IN: headerids and Source_System__c='GTES'];      
@@ -149,10 +151,34 @@ public class Core_CA_Header_Handler{
                 else setHeaderStatus.add(new Core_Approval_Header__c(id=headerRec.Id,Status__c='Submitted'));
             }
            
-         /*  if(headerRec.Source_System__c=='Ariba' && CORE_Chatter_Approval__c.getinstance('Ariba_Notification').Text_Value__c == 'Yes'){
+           if(headerRec.Source_System__c=='Ariba' && CORE_Chatter_Approval__c.getinstance('Ariba_Notification').Text_Value__c == 'Yes'){
                 String strBody;
                 
-                if(headerRec.Status__c=='Submitted'){
+                /*trigger notification regarding invalid PR
+                if(headerRec.Invalid_PR__c == true){                   
+                    strBody = CORE_Chatter_Approval__c.getinstance('Ariba-InvalidPR').Text_Value__c; 
+                    strBody = strBody.replace('XXX',headerRec.Name);
+                   
+                    if(headerRec.Invalid_PR_Approver__c != null) strBody = strBody.replace('YYY',mapUser.get(headerRec.Invalid_PR_Approver__c).Name);
+                    else strBody = strBody.replace('YYY','');
+                    
+                    if(headerRec.Invalid_PR_Reason__c != null)strBody = strBody.replace('ZZZ',headerRec.Invalid_PR_Reason__c); 
+                    else strBody = strBody.replace('ZZZ','');  
+                    
+                    lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = headerRec.Id, LinkURL = baseUrl+'/'+headerRec.Id, Title = headerRec.Name, CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));                 
+                    
+                    //Clear the values of all active approver who have blank field value in action.
+                    if( mapApprover.get(headerRec.Id) != null){                                                                          
+                        for(Core_Approver_Details__c approverRec : mapApprover.get(headerRec.Id)){
+                            if(approverRec.role__c=='APP'&& approverRec.Is_Active__c == true && (approverRec.Action__c == '' || approverRec.Action__c == null) ){
+                                lstactiveApprover.add(new Core_Approver_Details__c(Id=approverRec.Id,Send_to_Source_System__c='',Status__c=''));        
+                            }
+                        }
+                    } 
+                }*/ 
+                
+                
+               /* if(headerRec.Status__c=='Submitted'){
                    
                   //Notification when Requested For == Requested by
                   if(headerRec.Requested_For__c != null && (headerRec.Requested_For__c== headerRec.Requested_By__c || headerRec.Requested_By__c==null)){
@@ -181,9 +207,9 @@ public class Core_CA_Header_Handler{
                     strBody = strBody.replace('XXX',headerRec.Name);  
                     //if(headerRec.Requested_For__c!=null ) 
                         lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = headerRec.Id, LinkURL =baseUrl+'/'+headerRec.Id, Title = headerRec.Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));     
-                }
+                } */
                 
-             } */
+             } 
           }
           //insert the feed item record.
           if(!lstFeedItem.isEmpty()) Database.insert(lstFeedItem);
@@ -193,6 +219,11 @@ public class Core_CA_Header_Handler{
           if(!setHeaderStatus.isempty()){ 
               List<Core_Approval_Header__c> lstHeaderStatus= new List<Core_Approval_Header__c>(setHeaderStatus);
               Database.update(lstHeaderStatus);
+          }
+          //insert the active aprover during invalid PR case.
+          if(!lstactiveApprover.isempty()) {
+          //system.debug('####'+lstactiveApprover);
+              Database.update(lstactiveApprover);
           }
           //insert the entity subscription record.
           //if(!lstEntitySubHeader.isempty()) Database.insert(lstEntitySubHeader);
@@ -205,6 +236,7 @@ public class Core_CA_Header_Handler{
     public void handleAfterUpdate(map<Id,Core_Approval_Header__c> headerNew, map<Id,Core_Approval_Header__c> headerOld){
         try{
         List<feeditem> lstFeedItem=new List<feeditem>();
+        List<Core_Approver_Details__c> lstactiveApprover = new List<Core_Approver_Details__c>();
         Set<Core_Approval_Header__c> setHeaderStatus=new Set<Core_Approval_Header__c>();
         String baseUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
         Set<Id> userIds= new Set<Id>();
@@ -212,7 +244,7 @@ public class Core_CA_Header_Handler{
         
         //Create map with Header record along with all the IP's.
         Map<Id,List<Core_Approver_Details__c>> mapApprover = new Map<Id,List<Core_Approver_Details__c>>();
-        List<Core_Approver_Details__c> lstApprover = [SELECT id,Approval_Header__c , Role__c,Interested_Party__c FROM Core_Approver_Details__c where Approval_Header__c IN: headerNew.keyset() and Source_System__c='GTES'];
+        List<Core_Approver_Details__c> lstApprover = [SELECT id,Approval_Header__c , Role__c,Interested_Party__c,Is_Active__c,Action__c FROM Core_Approver_Details__c where Approval_Header__c IN: headerNew.keyset() ];
                
         for(Core_Approver_Details__c approver: lstApprover){
             if(!mapApprover.containsKey(approver.Approval_Header__c))
@@ -224,6 +256,7 @@ public class Core_CA_Header_Handler{
         for(Core_Approval_Header__c id : headerNew.values()){
             userIds.add(id.Requested_By__c);
             userIds.add(id.Requested_For__c);
+            userIds.add(id.Invalid_PR_Approver__c);
         }
         Map<Id,User> mapUser = new Map<Id,User>([Select Name,Id FROM User WHERE IsActive= true and Id IN : userIds]);
         
@@ -267,11 +300,36 @@ public class Core_CA_Header_Handler{
                 }
             }
            
-          /* if(headerRec.Source_System__c=='Ariba' && CORE_Chatter_Approval__c.getinstance('Ariba_Notification').Text_Value__c == 'Yes'){
+           if(headerRec.Source_System__c=='Ariba' && CORE_Chatter_Approval__c.getinstance('Ariba_Notification').Text_Value__c == 'Yes'){
                 String strBody;
                 
+                if(oldHeader.Invalid_PR__c == false && newHeader.Invalid_PR__c == true){
+                    //trigger notification regarding invalid PR
+                    if(headerRec.Invalid_PR_Reason__c != null) 
+                        strBody = CORE_Chatter_Approval__c.getinstance('Ariba-InvalidPR').Text_Value__c; 
+                    else if(headerRec.Invalid_PR_Reason__c == null)
+                        strBody = CORE_Chatter_Approval__c.getinstance('Ariba-InvalidPR-Reason').Text_Value__c; 
+                    
+                    strBody = strBody.replace('XXX',headerRec.Name);
+                   
+                    if(headerRec.Invalid_PR_Approver__c != null) strBody = strBody.replace('YYY',mapUser.get(headerRec.Invalid_PR_Approver__c).Name);
+                    else strBody = strBody.replace('YYY','');
+                    
+                    if(headerRec.Invalid_PR_Reason__c != null)strBody = strBody.replace('ZZZ',headerRec.Invalid_PR_Reason__c); 
+                     
+                    lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = headerRec.Id, LinkURL = baseUrl+'/'+headerRec.Id, Title = headerRec.Name, CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));                 
+                    
+                    //Clear the values of all active approver who have blank field value in action.
+                    if( mapApprover.get(headerRec.Id) != null){                                                                          
+                        for(Core_Approver_Details__c approverRec : mapApprover.get(headerRec.Id)){
+                            if(approverRec.role__c=='APP'&& approverRec.Is_Active__c == true && (approverRec.Action__c == '' || approverRec.Action__c == null) ){
+                                lstactiveApprover.add(new Core_Approver_Details__c(Id=approverRec.Id,Send_to_Source_System__c='',Status__c=''));        
+                            }
+                        }
+                    } 
+                } 
                 
-                if(newHeader.Status__c != oldHeader.Status__c && oldHeader.Status__c=='Withdrawn' && headerRec.Status__c=='Submitted') {
+                /*if(newHeader.Status__c != oldHeader.Status__c && oldHeader.Status__c=='Withdrawn' && headerRec.Status__c=='Submitted') {
                    
                    //Notification when Requested For == Requested by
                    if(headerRec.Requested_For__c!= null && (headerRec.Requested_For__c==headerRec.Requested_By__c||headerRec.Requested_By__c==null)){
@@ -300,12 +358,18 @@ public class Core_CA_Header_Handler{
                     strBody = strBody.replace('XXX',headerRec.Name);  
                     //if(headerRec.Requested_For__c!=null ) 
                         lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = headerRec.Id, LinkURL =baseUrl+'/'+headerRec.Id, Title = headerRec.Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));     
-                }
-           } */
+                }*/
+           } 
         }
         //insert the list of feed item record.
         if(!lstFeedItem.isempty()) Database.insert(lstFeedItem);
         //update the list of header records whose status need to be changed for GTES.
+        
+        //insert the active aprover during invalid PR case.
+        if(!lstactiveApprover.isempty()) {
+        //system.debug('####'+lstactiveApprover);
+        Database.update(lstactiveApprover);
+        }
         
         //delete entity subscription record
             //if(!lstEntitySubDelete.isempty()) Database.delete(lstEntitySubDelete);

@@ -359,21 +359,7 @@ IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q
         <fullName>AF_Compound_Key__c</fullName>
         <description>Key to uniquely identify this estimate - used in dataloading</description>
         <externalId>false</externalId>
-        <formula>IF( 
-OR( 
-ISBLANK( AF_Brand_Estimate__r.AF_Fiscal_Year__c), 
-ISBLANK(AF_Agency_Entity__r.AF_Agency__c), 
-ISBLANK( AF_Brand_Estimate__r.Brand__c ), 
-ISBLANK( AF_Agency_Entity_Name__c ), 
-ISBLANK( AF_Unilever_Entity_Name__c ) 
-), 
-&apos;!!! ERROR !!!&apos;, 
-AF_Brand_Estimate__r.AF_Fiscal_Year__c + &apos;|&apos; + 
-AF_Agency_Entity__r.AF_Agency__c + &apos;|&apos; + 
-AF_Brand_Estimate__r.Brand__c + &apos;|&apos; + 
-AF_Agency_Entity_Name__c+ &apos;|&apos; + 
-AF_Unilever_Entity_Name__c 
-)</formula>
+        <formula>AF_Brand_Estimate__r.AF_Fiscal_Year__c +&apos;|&apos;+CASESAFEID (AF_Agency_Entity__r.AF_Agency__c)+&apos;|&apos;+CASESAFEID (AF_Brand_Estimate__r.Brand__c)+&apos;|&apos;+AF_Agency_Entity_Name__c+&apos;|&apos;+AF_Unilever_Entity_Name__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Compound Key</label>
         <required>false</required>
@@ -759,6 +745,21 @@ IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_Mean_Quarter__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(INCLUDES( AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c , &quot;Q1&quot;), &quot;Q0&quot;, 
+IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q2&quot;), &quot;Q1&quot;, 
+IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q3&quot;), &quot;Q2&quot;, 
+IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q4&quot;), &quot;Q3&quot;, null))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Mean Quarter</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_No_Previous_POs__c</fullName>
         <defaultValue>0</defaultValue>
         <description>No of Previous PO&apos;s Raised</description>
@@ -824,6 +825,43 @@ IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OverridePO_Adaptation_LC__c</fullName>
+        <description>This field is used to override the PO Adaptation value for the PO report</description>
+        <externalId>false</externalId>
+        <label>Override PO Adaptation – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OverridePO_Digital_LC__c</fullName>
+        <externalId>false</externalId>
+        <label>Override PO Digital – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OverridePO_Traditional_LC__c</fullName>
+        <externalId>false</externalId>
+        <label>Override PO Traditional – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>

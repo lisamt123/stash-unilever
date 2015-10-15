@@ -27,6 +27,63 @@
             <layoutItems>
                 <field>Sensitive_Text__c</field>
             </layoutItems>
+            <layoutItems>
+                <field>Product_De_listed__c</field>
+            </layoutItems>
+            <layoutItems>
+                <field>Additional_Product_Information__c</field>
+            </layoutItems>
+            <layoutItems>
+                <field>Meta_Tags__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>OneColumn</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>false</detailHeading>
+        <editHeading>false</editHeading>
+        <label>Telephone Numbers</label>
+        <layoutColumns>
+            <layoutItems>
+                <field>Telephone_Numbers__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>OneColumn</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>false</detailHeading>
+        <editHeading>false</editHeading>
+        <label>Recipe Information</label>
+        <layoutColumns>
+            <layoutItems>
+                <field>Recipe_Suggestions__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>OneColumn</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>false</detailHeading>
+        <editHeading>false</editHeading>
+        <label>External Links</label>
+        <layoutColumns>
+            <layoutItems>
+                <field>Additional_Information__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>OneColumn</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>false</detailHeading>
+        <editHeading>false</editHeading>
+        <label>Nutrition Information</label>
+        <layoutColumns>
+            <layoutItems>
+                <field>Nutrition_Information__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
@@ -88,10 +145,13 @@
                 <field>Suitability__c</field>
             </layoutItems>
             <layoutItems>
-                <field>Additional_Information__c</field>
+                <field>PDF_Version__c</field>
             </layoutItems>
             <layoutItems>
-                <field>PDF_Version__c</field>
+                <field>PDF_Version_2__c</field>
+            </layoutItems>
+            <layoutItems>
+                <field>PDF_Version_3__c</field>
             </layoutItems>
             <layoutItems>
                 <field>Recycling_Info__c</field>

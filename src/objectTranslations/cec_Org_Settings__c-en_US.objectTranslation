@@ -9,108 +9,37 @@
         <value>cec Org Settings</value>
     </caseValues>
     <fields>
-        <label><!-- Austria Questionnaire Id --></label>
-        <name>Austria_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Belgium Questionnaire Id --></label>
-        <name>Belgium_Questionnaire_Id__c</name>
+        <help><!-- Enter a number between 0-59 separated by &apos;;&apos; --></help>
+        <label><!-- AlertAction Time Scheduler --></label>
+        <name>AlertAction_Time_Scheduler__c</name>
     </fields>
     <fields>
         <label><!-- Cosmetovigilence CaseId Reference --></label>
         <name>Cosmetovigilence_CaseId_Reference__c</name>
     </fields>
     <fields>
-        <label><!-- UK Questionnaire Id --></label>
+        <label><!-- Personalcare Questionnaire Id --></label>
         <name>Cosmetovigilence_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Cyprus Questionnaire Id --></label>
-        <name>Cyprus_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Czech Republic Questionnaire Id --></label>
-        <name>Czech_Republic_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Denmark Questionnaire Id --></label>
-        <name>Denmark_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Estonia Questionnaire Id --></label>
-        <name>Estonia_Questionnaire_Id__c</name>
     </fields>
     <fields>
         <label><!-- Factory Investigation Survey ID --></label>
         <name>Factory_Investigation_Survey_ID__c</name>
     </fields>
     <fields>
-        <label><!-- Finland Questionnaire Id --></label>
-        <name>Finland_Questionnaire_Id__c</name>
+        <label><!-- Homecare Questionnaire Id --></label>
+        <name>Homecare_Questionnaire_Id__c</name>
     </fields>
     <fields>
-        <label><!-- France Questionnaire Id --></label>
-        <name>France_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Germany Questionnaire Id --></label>
-        <name>Germany_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Greece Questionnaire Id --></label>
-        <name>Greece_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Hungary Questionnaire Id --></label>
-        <name>Hungary_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- India Questionnaire Id --></label>
-        <name>India_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Italy Questionnaire Id --></label>
-        <name>Italy_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Latvia Questionnaire Id --></label>
-        <name>Latvia_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Lithuania Questionnaire Id --></label>
-        <name>Lithuania_Questionnaire_Id__c</name>
+        <label><!-- Ingestion Questionnaire Id --></label>
+        <name>Ingestion_Questionnaire_Id__c</name>
     </fields>
     <fields>
         <label><!-- Mulesoft User Id --></label>
         <name>Mulesoft_User_Id__c</name>
     </fields>
     <fields>
-        <label><!-- Netherland Questionnaire Id --></label>
-        <name>Netherland_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Norway Questionnaire Id --></label>
-        <name>Norway_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Poland Questionnaire Id --></label>
-        <name>Poland_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Portugal Questionnaire Id --></label>
-        <name>Portugal_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Spain Questionnaire Id --></label>
-        <name>Spain_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Sweden Questionnaire Id --></label>
-        <name>Sweden_Questionnaire_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Switzerland Questionnaire Id --></label>
-        <name>Switzerland_Questionnaire_Id__c</name>
+        <label><!-- Safety Alert Email Id --></label>
+        <name>Safety_Alert_Email_Id__c</name>
     </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

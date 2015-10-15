@@ -25,7 +25,8 @@ public class cec_TestEmailMessageHelper{
         Test.startTest(); 
 
         CEC_Case_Market_Mapping__c cmm = new CEC_Case_Market_Mapping__c();
-        cmm.Market__c = 'India';
+        cmm.Market__c     = 'India';
+        cmm.CaseOrigin__c = 'Email India';
         insert cmm;
 
         List<EmailMessage> em = new List<EmailMessage>();
@@ -40,7 +41,7 @@ public class cec_TestEmailMessageHelper{
         cbm.Default_Template_Name__c = 'DoveIndia';
 
         insert cbm;
-        cec_Case_Brand_Mapping__c cbmtest = [Select Default_Template_Name__c, Brand_Market__c from cec_Case_Brand_Mapping__c Where Default_Template_Name__c = 'DoveIndia' limit 1];
+        cec_Case_Brand_Mapping__c cbmtest = [Select Default_Template_Name__c, Brand_Market__c, Brand__c from cec_Case_Brand_Mapping__c Where Default_Template_Name__c = 'DoveIndia' limit 1];
 
         System.assertEquals(cmm.Market__c, cbmtest.Brand_Market__c);
         System.assertEquals(cbm.Inbound_Email__c,'akg@akg.com');          
@@ -48,14 +49,16 @@ public class cec_TestEmailMessageHelper{
         c.Origin = 'Email';
         c.Status = 'New';
         c.Subject ='My PC is not working2';
-        c.Brand__c = 'Dove';
+        //c.Brand__c = 'Dove';
         c.Set_Assignment_Fields__c = true;
         c.Country__c = cmm.id;
         insert c;
-
-        case caseTest = [Select Brand__c, Case_Market__c from case Where Brand__c = 'Dove'];
-        System.assertEquals(cmm.Market__c, caseTest.Case_Market__c);
-
+        
+        /*case caseTest = [Select Brand__c, Case_Market__c from case Where Brand__c = 'Dove'];*/
+        case caseTest = [Select Case_Brand__c, Case_Market__c from case Where Case_Brand__c = :c.Case_Brand__c];
+        System.assertEquals(cmm.Market__c, caseTest.Case_Market__c); 
+        
+        
         EmailMessage e =  new EmailMessage();
         e.Status = '0';
         e.ParentId = c.id;
@@ -71,7 +74,7 @@ public class cec_TestEmailMessageHelper{
 
         cec_EmailMessageHelper ocec_EmailMessageHelper = new cec_EmailMessageHelper();
         ocec_EmailMessageHelper.emailMessage(em);
-
+        
         Test.stopTest(); 
  
     }
@@ -82,7 +85,8 @@ public class cec_TestEmailMessageHelper{
         
         //insert case market mapping
         CEC_Case_Market_Mapping__c cmm = new CEC_Case_Market_Mapping__c();
-        cmm.Market__c = 'India';
+        cmm.Market__c     = 'India';
+        cmm.CaseOrigin__c = 'Email India';
         insert cmm;
 
         List<EmailMessage> em = new List<EmailMessage>();
@@ -104,18 +108,21 @@ public class cec_TestEmailMessageHelper{
         c.Origin = 'Email';
         c.Status = 'New';
         c.Subject ='My PC is not working2';
-        c.Brand__c = 'Dove';
+        //c.Brand__c = 'Dove';
         c.Set_Assignment_Fields__c = true;
         c.Country__c = cmm.id;
         insert c;
 
-        case caseTest = [Select Brand__c, Case_Market__c from case Where Brand__c = 'Dove'];
+        /*case caseTest = [Select Brand__c, Case_Market__c from case Where Brand__c = 'Dove'];*/
+        case caseTest = [Select Case_Brand__c, Case_Market__c from case Where Case_Brand__c = :c.Case_Brand__c];
         System.assertEquals(cmm.Market__c, caseTest.Case_Market__c);
 
         EmailMessage e =  new EmailMessage();
         e.Status = '0';
         e.ParentId = c.id;
         e.ToAddress = 'unknown@unilever.com';
+        e.CcAddress = 'unknown@unilever.com';
+        e.BccAddress = 'unknown@unilever.com';
         e.Incoming = true;
         em.add(e);
 
@@ -127,6 +134,70 @@ public class cec_TestEmailMessageHelper{
     
         cec_EmailMessageHelper ocec_EmailMessageHelper = new cec_EmailMessageHelper();
         ocec_EmailMessageHelper.emailMessage(em);
+
+        Test.stopTest(); 
+
+    }
+    
+    //Test method to test for the Case updating from CMM 
+    public static testMethod void test_beforeInsert2(){
+
+        Test.startTest(); 
+        
+        //insert case market mapping
+        CEC_Case_Market_Mapping__c cmm = new CEC_Case_Market_Mapping__c();
+        cmm.Market__c     = 'India';
+        cmm.CaseOrigin__c = 'Email India';
+        insert cmm;
+
+        List<EmailMessage> em = new List<EmailMessage>();
+        case c   =   new case();  
+        CEC_Case_Market_Mapping__c cmmRec = [SELECT Id, CaseOrigin__c FROM CEC_Case_Market_Mapping__c WHERE CaseOrigin__c = 'Email India'];
+        
+        c.Origin                   = 'Email India';
+        c.Status                   = 'New';
+        c.Subject                  = 'My PC is not working2';
+        //c.Brand__c                 = 'Dove';
+        c.Set_Assignment_Fields__c = true;
+        c.Country__c               = cmmRec.id;
+        insert c;
+
+        System.assertEquals(cmmRec.CaseOrigin__c, c.Origin);
+        
+        EmailMessage e =  new EmailMessage();
+        e.Status = '0';
+        e.ParentId = c.id;
+        e.ToAddress = 'unknown@unilever.com';
+        e.CcAddress = 'unknown@unilever.com';
+        e.BccAddress = 'unknown@unilever.com';
+        e.Incoming = true;
+        em.add(e);
+
+        //System.assertEquals(em.size(),1);  
+        insert em;
+
+        cec_EmailMessageHandler ocec_cec_EmailMessageHandler = new cec_EmailMessageHandler();
+        ocec_cec_EmailMessageHandler.forbeforeInsert(em);
+    
+        cec_EmailMessageHelper ocec_EmailMessageHelper = new cec_EmailMessageHelper();
+        ocec_EmailMessageHelper.emailMessage(em);
+        
+        
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        
+        CEC_NotificationEmailId__c Notifymail = new CEC_NotificationEmailId__c();
+        Notifymail.Name = 'Cust Name';
+        Notifymail.EmailId__c = 'email@somewhere.com';
+        insert Notifymail;
+        
+        String emailSubject = 'Dove package damaged';
+        String msgString    = 'Please pack properly';
+        mail.setToAddresses(new String[] {Notifymail.EmailId__c});
+        mail.setSubject(emailSubject);
+        mail.setHTMLBody(msgString);
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail});
+        
+        CEC_Util.sendNotificationEmail(msgString, emailSubject);
 
         Test.stopTest(); 
 

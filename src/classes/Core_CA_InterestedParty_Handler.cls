@@ -383,6 +383,7 @@ public class Core_CA_InterestedParty_Handler{
         //Set<Core_Approval_Header__c> setHeaderStatus=new Set<Core_Approval_Header__c>();
         Map<Id,Core_Approval_Header__c> mapHeader =new Map<Id,Core_Approval_Header__c> ([SELECT id,Requested_By__c,Name,Requested_For__c,Status__c,Fully_Approved__c,Manager__c,Requested_For_Details__c,Requested_by_details__c  FROM Core_Approval_Header__c WHERE Id IN (select Approval_Header__c from Core_Approver_Details__c WHERE Id IN : approverNew.keyset())]);
         List<Core_Approver_Details__c> setIpStatus = new List<Core_Approver_Details__c>();
+        Set<Core_Approval_Header__Share> setShareHeader = new Set<Core_Approval_Header__Share>();
         
         Set<Id> approverIPids = new Set<Id>();
         Set<Id> approverHeaderids = new Set<Id>();
@@ -397,6 +398,7 @@ public class Core_CA_InterestedParty_Handler{
         } 
         
         List<EntitySubscription> headerEntitySubObj= [SELECT ParentId,SubscriberId FROM EntitySubscription WHERE ParentId IN : approverHeaderids];
+        List<Core_Approval_Header__Share> headerShareObj= [SELECT UserOrGroupId, ParentId  FROM Core_Approval_Header__Share WHERE ParentId IN :approverHeaderids];
         
         //****EntitySubscription Follow Start
         for(Core_Approver_Details__c approverRec : approverNew.values()){
@@ -502,7 +504,31 @@ public class Core_CA_InterestedParty_Handler{
              //}
             
             //****EntitySubscription Unfollow End
-              
+             
+           /* Start of Apex Header record sharing code */
+            Set<Id> userId = new Set<Id>();
+            Set<ID> userorGroupIds = new Set<ID>();
+            
+           //create Set of userIds which are having sharing permission for the current record.   
+            for(Core_Approval_Header__Share shareid : headerShareObj){
+                if(shareid.ParentId == approverRec.Approval_Header__c) 
+                    userId.add(shareid.UserOrGroupId);
+             }
+            
+            
+            //Check whether Interested Party is not null and dont have sharing permission for current record.
+            if((newApprover.Interested_Party__c != oldApprover.Interested_Party__c || newApprover.Role__c != oldApprover.Role__c) && approverRec.Interested_Party__c != null && approverRec.Role__c == 'APP'  && !(userId.contains(approverRec.Interested_Party__c)) ) 
+                userorGroupIds.add(approverRec.Interested_Party__c);
+            
+            for(Id id : userorGroupIds ){
+                //Create Header Share object and assign the userId to whom the current record permission should be given. 
+                Core_Approval_Header__Share shareObj=new Core_Approval_Header__Share();
+                shareObj.ParentId = approverRec.Approval_Header__c;
+                shareObj.UserOrGroupId = id ;
+                shareObj.AccessLevel = 'Edit';
+                setShareHeader.add(shareObj);
+            }
+           /* end of Apex header sharing */  
                   
             /* Start of GTES notification  after update code */
             if(CORE_Chatter_Approval__c.getinstance('GTES_Notification').Text_Value__c=='Yes'){
@@ -718,6 +744,12 @@ public class Core_CA_InterestedParty_Handler{
             List<Core_Approval_Header__c> lstHeaderStatus= new List<Core_Approval_Header__c>(setHeaderStatus);
             Database.update(lstHeaderStatus);
         }*/
+        
+        //insert the header share record.
+        if(!setShareHeader.isEmpty()){
+            List<Core_Approval_Header__Share> lstShareHeader= new List<Core_Approval_Header__Share>(setShareHeader);
+            Database.insert(lstShareHeader);
+        }
         
         //delete entity subscription record
         if(!lstEntitySubDelete.isempty()) Database.delete(lstEntitySubDelete);

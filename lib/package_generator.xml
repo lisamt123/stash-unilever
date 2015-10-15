@@ -330,7 +330,7 @@
 		</antcall>
 
 		<antcall target="generatePackageMembers2">
-			<param name="objtyp"  value="PermissionSets" />
+			<param name="objtyp"  value="PermissionSet" />
 			<param name="objext"  value="permissionset" />
 			<param name="objdir"  value="permissionsets" />
 			<param name="objflt"  value="*" />

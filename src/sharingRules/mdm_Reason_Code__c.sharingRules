@@ -188,6 +188,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Market_Equals_Sri_Lanka_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Sri Lanka – Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Sri_Lanka</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>LK</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Market_Equals_UK_Manager</fullName>
         <accessLevel>Read</accessLevel>
         <label>Market Equals UK – Manager</label>
