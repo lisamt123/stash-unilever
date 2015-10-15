@@ -25,7 +25,11 @@ public class Test_AF_Sendemail_categoryfinance
      System.runAs(u)
      { 
        AF_Sendemail_categoryfinance sendMailCatFin=new AF_Sendemail_categoryfinance();
+<<<<<<< HEAD
        sendMailCatFin.send();
+=======
+       //sendMailCatFin.send();
+>>>>>>> FETCH_HEAD
        sendMailCatFin.closePopup();
      }
     Test.stopTest();

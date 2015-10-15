@@ -153,7 +153,11 @@
             <name>AF_OOPS_Actual_Approved</name>
             <type>Alert</type>
         </actions>
+<<<<<<< HEAD
         <active>false</active>
+=======
+        <active>true</active>
+>>>>>>> FETCH_HEAD
         <formula>OR( ISCHANGED(AF_Status_Q1__c) &amp;&amp;  ISPICKVAL(AF_Status_Q1__c, &apos;Approved&apos;),  ISCHANGED(AF_Status_Q2__c) &amp;&amp;  ISPICKVAL(AF_Status_Q2__c, &apos;Approved&apos;),  ISCHANGED(AF_Status_Q3__c) &amp;&amp;  ISPICKVAL(AF_Status_Q3__c, &apos;Approved&apos;),  ISCHANGED(AF_Status_Q4__c) &amp;&amp;  ISPICKVAL(AF_Status_Q4__c, &apos;Approved&apos;) )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
@@ -163,8 +167,13 @@
             <name>AF_OOPS_Actual_Rejected</name>
             <type>Alert</type>
         </actions>
+<<<<<<< HEAD
         <active>false</active>
         <formula>OR( ISCHANGED( AF_Status_Q1__c) &amp;&amp; ISCHANGED( AF_Q1_Backup__c ) &amp;&amp; AF_Q1_Backup__c=false, ISCHANGED( AF_Status_Q2__c) &amp;&amp; ISCHANGED( AF_Q2_Backup__c ) &amp;&amp; AF_Q2_Backup__c=false, ISCHANGED( AF_Status_Q3__c) &amp;&amp; ISCHANGED( AF_Q3_Backup__c ) &amp;&amp; AF_Q3_Backup__c=false, ISCHANGED( AF_Status_Q4__c) &amp;&amp; ISCHANGED( AF_Q4_Backup__c ) &amp;&amp; AF_Q4_Backup__c=false )</formula>
+=======
+        <active>true</active>
+        <formula>OR( ISCHANGED(AF_Status_Q1__c) &amp;&amp; ISPICKVAL(AF_Status_Q1__c, &apos;Rejected - Enter Actuals&apos;), ISCHANGED(AF_Status_Q2__c) &amp;&amp; ISPICKVAL(AF_Status_Q2__c, &apos;Rejected - Enter Actuals&apos;), ISCHANGED(AF_Status_Q3__c) &amp;&amp; ISPICKVAL(AF_Status_Q3__c, &apos;Rejected - Enter Actuals&apos;), ISCHANGED(AF_Status_Q4__c) &amp;&amp; ISPICKVAL(AF_Status_Q4__c, &apos;Rejected - Enter Actuals&apos;) )</formula>
+>>>>>>> FETCH_HEAD
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -173,7 +182,11 @@
             <name>AF_OOPS_Actual_Submitted</name>
             <type>Alert</type>
         </actions>
+<<<<<<< HEAD
         <active>false</active>
+=======
+        <active>true</active>
+>>>>>>> FETCH_HEAD
         <booleanFilter>1 or 2 or 3 or 4</booleanFilter>
         <criteriaItems>
             <field>AF_OOPS_Actual__c.AF_Status_Q1__c</field>

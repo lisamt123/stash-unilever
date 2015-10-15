@@ -66,6 +66,19 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <fullName>CaseOrigin__c</fullName>
+        <externalId>false</externalId>
+        <label>CaseOrigin</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <fullName>Country__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>CEC: contains the country value which will be used in webtocase scenario by integration team</description>
@@ -258,6 +271,10 @@
         <columns>DefaultAccountOwnerId__c</columns>
         <columns>DefaultCaseOwnerId__c</columns>
         <columns>Tag__c</columns>
+<<<<<<< HEAD
+=======
+        <columns>CaseOrigin__c</columns>
+>>>>>>> FETCH_HEAD
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
@@ -337,7 +354,11 @@
     <listViews>
         <fullName>CEC_General_Queue_CEC_Case_Market_Mapping</fullName>
         <filterScope>Queue</filterScope>
+<<<<<<< HEAD
         <label>General Queue</label>
+=======
+        <label>CEC UKI Queue</label>
+>>>>>>> FETCH_HEAD
         <queue>CEC_General_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -425,6 +446,18 @@
         </sharedTo>
     </listViews>
     <listViews>
+<<<<<<< HEAD
+=======
+        <fullName>CEC_Sri_Lanka_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Sri Lanka Queue</label>
+        <queue>CEC_Sri_Lanka_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+>>>>>>> FETCH_HEAD
         <fullName>TO_France_Queue_CEC_Case_Market_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>TO France Queue</label>

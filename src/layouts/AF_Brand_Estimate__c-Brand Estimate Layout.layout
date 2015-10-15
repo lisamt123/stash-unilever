@@ -292,6 +292,13 @@
                 <behavior>Edit</behavior>
                 <field>AF_Category_Name_Wk__c</field>
             </layoutItems>
+<<<<<<< HEAD
+=======
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_Dont_Show_on_Report__c</field>
+            </layoutItems>
+>>>>>>> FETCH_HEAD
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>

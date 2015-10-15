@@ -221,6 +221,21 @@
             <field>AF_Category_Name__c</field>
             <table>AF_Bonus_Threshold__c</table>
         </columns>
+<<<<<<< HEAD
+=======
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Brand</displayNameOverride>
+            <field>Brand_Name__c.Name</field>
+            <table>AF_Bonus_Threshold__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Big Category</displayNameOverride>
+            <field>Brand_Name__c.AF_Super_category__c</field>
+            <table>AF_Bonus_Threshold__c</table>
+        </columns>
+>>>>>>> FETCH_HEAD
         <masterLabel>Bonus Thresholds</masterLabel>
     </sections>
     <sections>

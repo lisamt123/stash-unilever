@@ -48,25 +48,37 @@
         <type>MasterDetail</type>
     </fields>
     <searchLayouts>
+<<<<<<< HEAD
         <customTabListAdditionalFields>Name</customTabListAdditionalFields>
+=======
+>>>>>>> FETCH_HEAD
         <customTabListAdditionalFields>ImageUrl</customTabListAdditionalFields>
         <customTabListAdditionalFields>Definition</customTabListAdditionalFields>
         <customTabListAdditionalFields>Message</customTabListAdditionalFields>
         <customTabListAdditionalFields>Giver</customTabListAdditionalFields>
         <customTabListAdditionalFields>Recipient</customTabListAdditionalFields>
+<<<<<<< HEAD
         <lookupDialogsAdditionalFields>Name</lookupDialogsAdditionalFields>
+=======
+>>>>>>> FETCH_HEAD
         <lookupDialogsAdditionalFields>ImageUrl</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Definition</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Message</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Giver</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Recipient</lookupDialogsAdditionalFields>
+<<<<<<< HEAD
         <lookupPhoneDialogsAdditionalFields>Name</lookupPhoneDialogsAdditionalFields>
+=======
+>>>>>>> FETCH_HEAD
         <lookupPhoneDialogsAdditionalFields>ImageUrl</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>Definition</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>Message</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>Giver</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>Recipient</lookupPhoneDialogsAdditionalFields>
+<<<<<<< HEAD
         <searchResultsAdditionalFields>Name</searchResultsAdditionalFields>
+=======
+>>>>>>> FETCH_HEAD
         <searchResultsAdditionalFields>ImageUrl</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Definition</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Message</searchResultsAdditionalFields>

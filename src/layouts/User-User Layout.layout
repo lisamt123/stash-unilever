@@ -66,6 +66,7 @@
                 <behavior>Readonly</behavior>
                 <field>AF_Agency_Name__c</field>
             </layoutItems>
+<<<<<<< HEAD
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IPM_Brand_Positioning__c</field>
@@ -78,6 +79,8 @@
                 <behavior>Edit</behavior>
                 <field>IPM_Role__c</field>
             </layoutItems>
+=======
+>>>>>>> FETCH_HEAD
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>

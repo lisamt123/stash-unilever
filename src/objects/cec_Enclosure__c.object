@@ -401,7 +401,11 @@
         <columns>Active__c</columns>
         <columns>UPDATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
+<<<<<<< HEAD
         <label>General Queue</label>
+=======
+        <label>CEC UKI Queue</label>
+>>>>>>> FETCH_HEAD
         <language>en_US</language>
         <queue>CEC_General_Queue</queue>
         <sharedTo>
@@ -566,6 +570,26 @@
         </sharedTo>
     </listViews>
     <listViews>
+<<<<<<< HEAD
+=======
+        <fullName>CEC_Sri_Lanka_Queue_cec_Enclosure</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Sri Lanka Queue</label>
+        <queue>CEC_Sri_Lanka_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>alle_DACH_Enclosures1</fullName>
+        <columns>NAME</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <label>alle DACH-Enclosures</label>
+        <language>de</language>
+    </listViews>
+    <listViews>
+>>>>>>> FETCH_HEAD
         <fullName>test</fullName>
         <columns>NAME</columns>
         <filterScope>Mine</filterScope>

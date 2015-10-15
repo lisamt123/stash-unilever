@@ -41,6 +41,13 @@
         <name>AF_Base_Fee_Status__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- Big Category --></label>
+        <name>AF_Big_Category_New__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- Brand Estimate ID --></label>
         <name>AF_Brand_Estimate_ID__c</name>
     </fields>
@@ -85,6 +92,13 @@
         <name>AF_CountNoQuarters__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- CrossBorder --></label>
+        <name>AF_CrossBorder__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- Currency --></label>
         <name>AF_Currency__c</name>
     </fields>
@@ -133,6 +147,21 @@
         <name>AF_Oops_Estimate_ID__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- Override PO Adaptation – LC --></label>
+        <name>AF_OverridePO_Adaptation_LC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Override PO Digital – LC --></label>
+        <name>AF_OverridePO_Digital_LC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Override PO Traditional – LC --></label>
+        <name>AF_OverridePO_Traditional_LC__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- PO Check --></label>
         <name>AF_PO_Check__c</name>
     </fields>
@@ -141,6 +170,21 @@
         <name>AF_PO_Number__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- PO Override Adapt Report --></label>
+        <name>AF_PO_Override_Adapt_Report__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO Override Digital Report --></label>
+        <name>AF_PO_Override_Digital_Report__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO Override Trad Report --></label>
+        <name>AF_PO_Override_Trad_Report__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- PO Report Type --></label>
         <name>AF_PO_Report_Type__c</name>
     </fields>
@@ -161,6 +205,13 @@
         <name>AF_PO_Value_LC_2014__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- PO Value LC Report --></label>
+        <name>AF_PO_Value_LC_Report__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- PO Value Total -LC --></label>
         <name>AF_PO_Value_Total_LC__c</name>
     </fields>
@@ -201,6 +252,13 @@
         <name>AF_Ready_for_PO_Code__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- Show In Report --></label>
+        <name>AF_Show_In_Report__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- Total FY Fee – LC --></label>
         <name>AF_Total_Local__c</name>
     </fields>

@@ -9,18 +9,25 @@
         <value>cec Org Settings</value>
     </caseValues>
     <fields>
+<<<<<<< HEAD
         <label><!-- Austria Questionnaire Id --></label>
         <name>Austria_Questionnaire_Id__c</name>
     </fields>
     <fields>
         <label><!-- Belgium Questionnaire Id --></label>
         <name>Belgium_Questionnaire_Id__c</name>
+=======
+        <help><!-- Enter a number between 0-59 separated by &apos;;&apos; --></help>
+        <label><!-- AlertAction Time Scheduler --></label>
+        <name>AlertAction_Time_Scheduler__c</name>
+>>>>>>> FETCH_HEAD
     </fields>
     <fields>
         <label><!-- Cosmetovigilence CaseId Reference --></label>
         <name>Cosmetovigilence_CaseId_Reference__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
         <label><!-- UK Questionnaire Id --></label>
         <name>Cosmetovigilence_Questionnaire_Id__c</name>
     </fields>
@@ -41,10 +48,17 @@
         <name>Estonia_Questionnaire_Id__c</name>
     </fields>
     <fields>
+=======
+        <label><!-- Personalcare Questionnaire Id --></label>
+        <name>Cosmetovigilence_Questionnaire_Id__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- Factory Investigation Survey ID --></label>
         <name>Factory_Investigation_Survey_ID__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
         <label><!-- Finland Questionnaire Id --></label>
         <name>Finland_Questionnaire_Id__c</name>
     </fields>
@@ -79,12 +93,21 @@
     <fields>
         <label><!-- Lithuania Questionnaire Id --></label>
         <name>Lithuania_Questionnaire_Id__c</name>
+=======
+        <label><!-- Homecare Questionnaire Id --></label>
+        <name>Homecare_Questionnaire_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ingestion Questionnaire Id --></label>
+        <name>Ingestion_Questionnaire_Id__c</name>
+>>>>>>> FETCH_HEAD
     </fields>
     <fields>
         <label><!-- Mulesoft User Id --></label>
         <name>Mulesoft_User_Id__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
         <label><!-- Netherland Questionnaire Id --></label>
         <name>Netherland_Questionnaire_Id__c</name>
     </fields>
@@ -111,6 +134,10 @@
     <fields>
         <label><!-- Switzerland Questionnaire Id --></label>
         <name>Switzerland_Questionnaire_Id__c</name>
+=======
+        <label><!-- Safety Alert Email Id --></label>
+        <name>Safety_Alert_Email_Id__c</name>
+>>>>>>> FETCH_HEAD
     </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -94,7 +94,13 @@ global with sharing class Core_CA_WrapperUtility {
         public String Comments;
         public List<ApprovalHistory> ApprovalHistory;//= new List<ApprovalHistory>()
         public Boolean isRecalled; 
+<<<<<<< HEAD
         public Boolean isinvalid; 
+=======
+        public Boolean hasPermSet;
+        //public Boolean isinvalid; 
+        
+>>>>>>> FETCH_HEAD
     } 
     
     global class ExpenseDetailsDataRequest{
@@ -152,6 +158,10 @@ global with sharing class Core_CA_WrapperUtility {
         public String PolicyExceptions;
         public String Comments;
         public String Attendees;
+<<<<<<< HEAD
+=======
+        public Boolean IsPerDiem;
+>>>>>>> FETCH_HEAD
     }
     
     public class PricingSuplierDetails{

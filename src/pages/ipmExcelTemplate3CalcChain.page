@@ -1,9 +1,0 @@
-<apex:page controller="IPMExcelTemplate3Controller" contentType="text/xml" showHeader="false" sidebar="false" cache="false">
-    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-    <calcChain xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
-        <c r="B28" i="1" l="1"/>
-        <apex:repeat value="{!lstCalcChainValues}" var="rValue">
-            <c r="{!rValue}" i="1" l="1"/>
-        </apex:repeat>
-    </calcChain>
-</apex:page>

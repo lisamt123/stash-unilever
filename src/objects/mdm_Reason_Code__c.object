@@ -267,6 +267,7 @@
         <unique>true</unique>
     </fields>
     <label>Reason Code</label>
+<<<<<<< HEAD
     <listViews>
         <fullName>All_Reason_Codes</fullName>
         <columns>NAME</columns>
@@ -281,6 +282,8 @@
         <label>All Reason Codes</label>
         <language>en_US</language>
     </listViews>
+=======
+>>>>>>> FETCH_HEAD
     <nameField>
         <label>Reason Code Name</label>
         <type>Text</type>

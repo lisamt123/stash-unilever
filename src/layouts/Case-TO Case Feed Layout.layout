@@ -63,7 +63,11 @@
         </feedFilters>
         <fullWidthFeed>true</fullWidthFeed>
         <hideSidebar>false</hideSidebar>
+<<<<<<< HEAD
         <highlightExternalFeedItems>true</highlightExternalFeedItems>
+=======
+        <highlightExternalFeedItems>false</highlightExternalFeedItems>
+>>>>>>> FETCH_HEAD
         <rightComponents>
             <componentType>HelpAndToolLinks</componentType>
         </rightComponents>
@@ -120,8 +124,13 @@
                 <field>ParentId</field>
             </layoutItems>
             <layoutItems>
+<<<<<<< HEAD
                 <behavior>Edit</behavior>
                 <field>Brand__c</field>
+=======
+                <behavior>Readonly</behavior>
+                <field>Case_Brand__c</field>
+>>>>>>> FETCH_HEAD
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -414,7 +423,11 @@
     <showRunAssignmentRulesCheckbox>true</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>true</showSubmitAndAttachButton>
     <summaryLayout>
+<<<<<<< HEAD
         <masterLabel>00hc0000000ZBmV</masterLabel>
+=======
+        <masterLabel>00he0000000HJjy</masterLabel>
+>>>>>>> FETCH_HEAD
         <sizeX>3</sizeX>
         <sizeY>4</sizeY>
         <summaryLayoutItems>

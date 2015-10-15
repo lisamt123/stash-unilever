@@ -15,8 +15,17 @@
                 <field>Attachment</field>
             </layoutItems>
             <layoutItems>
+<<<<<<< HEAD
                 <behavior>Readonly</behavior>
                 <field>StatusFormula__c</field>
+=======
+                <behavior>Required</behavior>
+                <field>Description__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Categories__c</field>
+>>>>>>> FETCH_HEAD
             </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>

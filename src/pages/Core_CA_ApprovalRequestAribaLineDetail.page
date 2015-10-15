@@ -22,7 +22,11 @@
                     </span>                
                 </div>
                 <div ng-hide="productDescriptionPanel" class="responsiveDetailSectionTable">
+<<<<<<< HEAD
                     <span class="fieldValue">{{approvalLineDetailRequestData.ProductDesc}}</span>
+=======
+                    <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.ProductDesc}}</span>
+>>>>>>> FETCH_HEAD
                 </div>
             </div><br/>
             <div class="template" ng-init="pricingAndSupplierDetailsPanel=false">

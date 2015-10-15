@@ -10,7 +10,11 @@ public class AF_AnnualBonus {
     public Decimal sum_of_quant_qual_value { get; set; }// To get sum of total Quantative and total Qualatative values
     public Decimal sum_of_qual_percent { get; set; }//To get sum of Qualatative percent
     public Decimal sum_of_qual_value { get; set; }//To get sum of Qualatative value
+<<<<<<< HEAD
 
+=======
+    public Boolean isAgency{get;set;} //To check the logged in user is Agency
+>>>>>>> FETCH_HEAD
     public Integer Totals_Traditional { get; set; }// To get total traditional values for all display list
     public Boolean isQuantEmpty;// To ensure that quant inputbox can not be empty;
     public Boolean isTraditional { get; set; }//Check for traditional value
@@ -63,6 +67,10 @@ public class AF_AnnualBonus {
         qual_per=0;
         Qual_value=0;
         IsEditable=false;
+<<<<<<< HEAD
+=======
+        isAgency = false;
+>>>>>>> FETCH_HEAD
         agency_name='';
         Brand_name='';
         Integer Quant=null;
@@ -93,6 +101,12 @@ public class AF_AnnualBonus {
         {
             IsEditable=true;
         }
+<<<<<<< HEAD
+=======
+        if(userObj.AF_Agency_Fees_User_Type__c=='Agency'){
+        isAgency = true;
+        }
+>>>>>>> FETCH_HEAD
         list<AF_Brand_Estimate__c>Pilot_model=[select ID,AF_Pilot_Model__c,AF_No_Bonus__c from AF_Brand_Estimate__c where  Brand__c=:Brand_id and AF_Agency__c=:agency_id and AF_Fiscal_Year__c=:current_year and AF_Active__c=True];
         if(Pilot_model.size()>0){
             AF_Pilot_Model= Pilot_model.get(0).AF_Pilot_Model__c; 

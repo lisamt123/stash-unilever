@@ -55,7 +55,11 @@ public class AF_RaisenewPO_Homepage_lightbox{
         else{
             sortDir = sortDir.equals('asc') ? 'desc' : 'asc';
         }
+<<<<<<< HEAD
         String soql = 'select name,AF_Basefee_Estimate_Initial_Quarter__c,AF_RaiseNewPOQuarters__c,AF_BackupQuarter__c,AF_Pilot_Model__c,Archived_BrandEstimate_Quarter__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,Brand__r.Name,AF_Agency__r.Name,Brand__c,AF_Fiscal_Year__c,AF_Status_Base_Fees__c,AF_Active__c,AF_Controller_Flag__c  from AF_Brand_Estimate__c where AF_Status_Base_Fees__c = \'Ready for PO\' and AF_Fiscal_Year__c =\''+year+'\'  and AF_Active__c=True and AF_Controller_Flag__c=False order by name';
+=======
+        String soql = 'select name,AF_Basefee_Estimate_Initial_Quarter__c,AF_RaiseNewPOQuarters__c,AF_BackupQuarter__c,AF_Pilot_Model__c,Archived_BrandEstimate_Quarter__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,Brand__r.Name,AF_Agency__r.Name,Brand__c,AF_Fiscal_Year__c from AF_Brand_Estimate__c where AF_Status_Base_Fees__c = \'Ready for PO\' and AF_Fiscal_Year__c =\''+year+'\'  and AF_Active__c=True and AF_Controller_Flag__c=False order by name';
+>>>>>>> FETCH_HEAD
         soql = soql +' '+sortDir+' '+ 'limit 49999';
        system.debug('soql '+soql);
        queryBrandEstimateRecords = Database.query(soql);
@@ -267,6 +271,10 @@ public class AF_RaisenewPO_Homepage_lightbox{
             if(B.BrandRecord.AF_Adaptive__c!=null)
             createBrand.AF_Adaptive__c = B.BrandRecord.AF_Adaptive__c;
             createBrand.Archived_BrandEstimate_Quarter__c = newQuarter;
+<<<<<<< HEAD
+=======
+            createBrand.AF_Status_Base_Fees__c = 'With Agency';
+>>>>>>> FETCH_HEAD
             //if(brandQuarter.contains('Q1')){
             createBrand.AF_BackupQuarter__c = newQuarter;
             //}
@@ -388,6 +396,10 @@ public class AF_RaisenewPO_Homepage_lightbox{
             newRecord.AF_Digital__c =  newAgencyRecord.AF_Digital__c;
             newRecord.AF_Traditional__c =  newAgencyRecord.AF_Traditional__c;
             newRecord.AF_Previous_PO_Value__c = newAgencyRecord.AF_Quarter_PO_Raised__c;
+<<<<<<< HEAD
+=======
+            newRecord.AF_Status__c = 'With Agency';
+>>>>>>> FETCH_HEAD
             if(noOfOldQuarters.size()>0)
             newRecord.AF_Previous_Quarters_Done__c = noOfOldQuarters.size();
             createAgencyEstimate.add(newRecord);

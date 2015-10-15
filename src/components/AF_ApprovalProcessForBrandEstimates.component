@@ -1,14 +1,67 @@
 <apex:component Controller="AF_ApprovalProcessForBrandEstController" allowDML="true">
+<<<<<<< HEAD
+=======
+<style type="text/css">
+#salesforceSource_blurybackground {
+    position: absolute !important;
+    left: 0px !important;
+    top: -281px !important;
+    width: 100%;
+    height: 1300% !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    opacity: 0.8 !important;
+    background-color: rgb(220, 220, 220) !important;
+    z-index: 9999 !important;
+}
+
+#salesFroceSource_StatusBox {
+    top: -78px !important;
+    left: 46% !important;
+    z-index: 99999;
+} 
+
+.submit_btnAppoval, 
+.submit_btn2Appoval {
+    margin-right:35px !important;
+}
+.btnReject {
+    margin-right:40px;
+}
+
+
+</style>
+<!-- Common_Style File Start -->
+<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<!-- Common_Style File End -->
+
+>>>>>>> FETCH_HEAD
 <script>
 function redirection()
 {
 
 var brandid='{!brandvalue1}';
+<<<<<<< HEAD
 var catageoryname='{!catageory1}';
 var fyear='{!year1}';
 parent.location.assign('apex/AgencyHomePage?brandvalue='+brandid+'&category='+catageoryname+'&Year='+fyear);
 
     }
+=======
+var catageoryname="{!catageory1}";
+catageoryname = catageoryname.replace(/ /g,'');
+catageoryname = catageoryname.replace(/'/g,'');
+var fyear='{!year1}';
+ if({!isAgency}){
+     var url = '{!$Label.AF_AgencyUrlLink}/apex/AgencyHomePage?brandvalue='+brandid+'&category='+catageoryname+'&Year='+fyear;
+     
+     parent.location.assign(url);   
+    }
+ else{
+     parent.location.assign('/apex/AgencyHomePage?brandvalue='+brandid+'&category='+catageoryname+'&Year='+fyear);
+ }
+}
+>>>>>>> FETCH_HEAD
 
 function redirectionOnReject(comment)
 {
@@ -16,10 +69,24 @@ function redirectionOnReject(comment)
 
 if(comment!=''){
 var brandid='{!brandvalue1}';
+<<<<<<< HEAD
 var catageoryname='{!catageory1}';
 var fyear='{!year1}';
 parent.location.assign('apex/AgencyHomePage?brandvalue='+brandid+'&category='+catageoryname+'&Year='+fyear);
 
+=======
+var catageoryname="{!catageory1}";
+catageoryname = catageoryname.replace(/ /g,'');
+catageoryname = catageoryname.replace(/'/g,'');
+var fyear='{!year1}';
+if({!isAgency}){
+    var url = '{!$Label.AF_AgencyUrlLink}/apex/AgencyHomePage?brandvalue='+brandid+'&category='+catageoryname+'&Year='+fyear;
+     parent.location.assign(url);   
+    }
+ else{
+        parent.location.assign('/apex/AgencyHomePage?brandvalue='+brandid+'&category='+catageoryname+'&Year='+fyear);
+ }
+>>>>>>> FETCH_HEAD
 }
     }
 </script>
@@ -28,13 +95,26 @@ parent.location.assign('apex/AgencyHomePage?brandvalue='+brandid+'&category='+ca
      <apex:attribute name="brandvalue" type="String" AssignTo="{!brandvalue1}" Description="for return to home page with exact values" />
      <apex:attribute name="catageory" type="String" AssignTo="{!catageory1}" Description="for return to home page with exact values" />
      <apex:attribute name="year" type="String" AssignTo="{!year1}" Description="for return to home page with exact values" />
+<<<<<<< HEAD
             <apex:attribute name="ParentObjectTypeDesc" type="String" AssignTo="{!ParentRecordType}" Description="Allows us to store meta data as to what object type the comment is for." />
    
+=======
+     <apex:attribute name="ParentObjectTypeDesc" type="String" AssignTo="{!ParentRecordType}" Description="Allows us to store meta data as to what object type the comment is for." />
+   <apex:ActionStatus id="status" >
+        <apex:facet name="start">
+            <c:AF_Spinner BackColor="#efefef" borderColor="#efefef" borderSize="3" height="50px" width="180px" Message="Please wait" messageStyle="color:Darkred;font-size:10pt;font-family:arial;font-weight:bold;" ImageUrl="/img/loading.gif"/>
+        </apex:facet>
+        </apex:ActionStatus>
+>>>>>>> FETCH_HEAD
    
   <table  align="right">
        <tr>
            <td colspan='2' align='right'>
+<<<<<<< HEAD
            <apex:outputLabel value=" Status: "  style="font-weight: bold;/*margin-left: 95px;*/" rendered="{!(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User')}"/> 
+=======
+           <apex:outputLabel value=" Status: "  styleClass="approval_Status" rendered="{!(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User')}"/> 
+>>>>>>> FETCH_HEAD
                <apex:inputField value="{!BrandEstRecord.AF_Status_Base_Fees__c}" styleClass="statusBrand" rendered="{!(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User')}">
                    <apex:actionSupport action="{!changeBrandStatus}" event="onchange"/>
                </apex:inputfield>
@@ -55,16 +135,30 @@ parent.location.assign('apex/AgencyHomePage?brandvalue='+brandid+'&category='+ca
         </tr>
     </table>    
  
+<<<<<<< HEAD
    <table align="right" border="0" style="margin-right:-30px;">
+=======
+   <table align="right" border="0" class="approval_marginR30PX">
+>>>>>>> FETCH_HEAD
        <tr>
            
        </tr>
        <tr>
             <td colspan='2' align='right'>
+<<<<<<< HEAD
                 <apex:commandButton value="Submit"  action="{!Submit}" Rerender="pmg" rendered="{!AND(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance',BrandEstRecord.AF_Status_Base_Fees__c=='With Category Finance',BrandEstRecord.AF_CMCO_Rejected__c==true)}" styleClass="submit_btn4" oncomplete="alert('Record submitted successfully');"/>
             
                 <apex:outputpanel rendered="{!If( Targetprocess.size==0 ,true,false)}">
                     <apex:commandButton value="Submit for Approval" rerender="pmg,Approvepopup" action="{!SubmitApprovalPopup}" rendered="{!AND(ApprovalButton,NOT(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance'),NOT(BrandEstRecord.AF_Status_Base_Fees__c=='With CMCO'))}" styleClass="submit_btn4"/>
+=======
+            
+            <apex:commandButton value="submit"  Rerender="pmg" action="{!Submit}"  rendered="{!and(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance',BrandEstRecord.AF_Status_Base_Fees__c=='With Category Finance',BrandEstRecord.AF_CMCO_Rejected__c==true,BrandEstRecord.AF_Category_Finance_Flag__c==0) }" styleClass="submit_btn2Appoval" oncomplete="alert('Record submitted successfully');"/>
+            
+            <apex:commandButton value="Reject" Rerender="popuprejcomm" action="{!RejectBrandestiamteFinance}"   styleClass="submit_btn2Appoval" rendered="{!AND(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance',BrandEstRecord.AF_Status_Base_Fees__c=='With Category Finance',BrandEstRecord.AF_CMCO_Rejected__c==true)}" status="status"/>
+          
+                <apex:outputpanel rendered="{!If( Targetprocess.size==0 ,true,false)}">
+                    <apex:commandButton value="Submit for Approval" rerender="pmg,Approvepopup" action="{!SubmitApprovalPopup}" rendered="{!AND(ApprovalButton,NOT(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance'),NOT(BrandEstRecord.AF_Status_Base_Fees__c=='With CMCO'))}" styleClass="submit_btnAppoval" status="status"/>
+>>>>>>> FETCH_HEAD
                    <!--<div style="display:{!if(Controllerflag1,'inline','none')};margin-right: 253px;"> <apex:outputlabel style="font-weight: bold;"> Control Flag:</apex:outputlabel>
                         <apex:inputCheckbox value="{!Controllerflag}" label="Controller Flag" accesskey="" id="check"  > 
                             <apex:actionSupport action="{!TrueControllerFlag}"   event="onchange"/>
@@ -73,15 +167,22 @@ parent.location.assign('apex/AgencyHomePage?brandvalue='+brandid+'&category='+ca
                 </apex:outputpanel>  
                
                 <apex:outputpanel rendered="{!If( Targetprocess.size>0 ,true,false)}">
+<<<<<<< HEAD
                     <apex:commandButton value="Approve"  action="{!ApproveBrandEst}" styleClass="submit_btn2" rendered="{! AND(NOT(IsCatFinanceEdited),ButtonsDisplay)}" rerender="pmg,popup"/> &nbsp;&nbsp;
                   <!--  <apex:commandButton value="Reject"  action="{!RejectBrandEst}" styleClass="submit_btn3" rendered="{!ButtonsDisplay}"/> --> &nbsp;&nbsp;
                     <apex:commandButton value="Reject"  action="{!RejectBrandEstComment}" styleClass="submit_btn5" rendered="{!ButtonsDisplay}"/>                        
+=======
+                    <apex:commandButton value="Approve"  action="{!ApproveBrandEst}" styleClass="btnApprove" rendered="{! AND(NOT(IsCatFinanceEdited),ButtonsDisplay)}" rerender="pmg,popup" status="status"/> &nbsp;&nbsp;
+                  <!--  <apex:commandButton value="Reject"  action="{!RejectBrandEst}" styleClass="submit_btn3" rendered="{!ButtonsDisplay}"/> --> &nbsp;&nbsp;
+                    <apex:commandButton value="Reject"  reRender="popuprejcomm" action="{!RejectBrandEstComment}" styleClass="btnReject" rendered="{!ButtonsDisplay}"  status="status"/>                        
+>>>>>>> FETCH_HEAD
                 </apex:outputpanel>                
             </td>
        </tr>
     </table>
     
     <apex:outputPanel id="Approvepopup">
+<<<<<<< HEAD
          <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!Approvalpopup}"/>
             <apex:outputPanel styleClass="customPopup_SubitforApproval" layout="block" rendered="{!Approvalpopup}">
                 <Div style="float:right;"><apex:commandButton value="X" action="{!closeApprovalPopup}" rerender="Approvepopup" style="font-size:12px;border-radius:200px;border:2px solid white;padding-left:10px;padding-right:10px;font-weight:bold;color:white;background:#74AE00;margin-top: -18px;margin-right: -18px;"/></Div>
@@ -90,6 +191,16 @@ parent.location.assign('apex/AgencyHomePage?brandvalue='+brandid+'&category='+ca
                 <td><apex:inputTextarea value="{!ApproveComment}"  rows="5" style="width:250px;"/></td></tr></table>
                 <br/><br/>-->
                 <apex:commandButton value="Confirm" style="width:70px;" action="{!SubitforApproval}" styleClass="continue_btn_SubitforApproval"  rerender="Approvepopup"  oncomplete="redirection();"/>
+=======
+         <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!Approvalpopup}"/>
+            <apex:outputPanel styleClass="customPopup_SubitforApproval" layout="block" rendered="{!Approvalpopup}">
+                <div class="approval_floatR"><apex:commandButton value="X" action="{!closeApprovalPopup}" rerender="Approvepopup" styleClass="approval_closeButton1"/></div>
+                <center class="approval_margin20PX"><h2><apex:outputLabel value="{!$Label.AF_OOPS_Submit}" styleClass="approval_fontS16PX"/></h2><br/><br/>
+                <!--<Table><tr><td valign="top" style="font-weight:bold;">Comment:</td>
+                <td><apex:inputTextarea value="{!ApproveComment}"  rows="5" style="width:250px;"/></td></tr></table>
+                <br/><br/>-->
+                <apex:commandButton value="Confirm" action="{!SubitforApproval}" styleClass="continue_btn_SubitforApproval approval_wid70P"  rerender="Approvepopup"  oncomplete="redirection();"/>
+>>>>>>> FETCH_HEAD
                 <!--<apex:commandButton value="No" style="width:70px;" action="{!closeApprovalPopup}" rerender="Approvepopup"/>-->
                 </center>
                 <!--<apex:commandButton value="Hide Pop up" action="{!closePopup}" rerender="popup"/>-->
@@ -98,6 +209,7 @@ parent.location.assign('apex/AgencyHomePage?brandvalue='+brandid+'&category='+ca
      
      
      <apex:outputPanel id="popup">
+<<<<<<< HEAD
          <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp}"/>
             <apex:outputPanel styleClass="customPopup_ApproveRecord" layout="block" rendered="{!displayPopUp}">
                 <Div style="float:right;"><apex:commandButton value="X" action="{!closePopup}" rerender="popup" style="font-size:12px;border-radius:200px;border:2px solid white;padding-left:10px;padding-right:10px;font-weight:bold;color:white;background:#74AE00;margin-top:-18px;margin-right:-18px;"/></Div>
@@ -107,6 +219,19 @@ parent.location.assign('apex/AgencyHomePage?brandvalue='+brandid+'&category='+ca
                 <td><apex:inputTextarea value="{!ApproveComment}"  rows="5" style="width:250px;"/></td></tr></table>
                 <br/><br/>-->
                 <apex:commandButton value="Confirm" style="width:70px;" action="{!ApproveRecord}" styleClass="continue_btn_ApproveRecord" rerender="popup" oncomplete="redirection();"/>
+=======
+         <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!displayPopUp}"/>
+            <apex:outputPanel styleClass="customPopup_ApproveRecord" layout="block" rendered="{!displayPopUp}">
+                <div class="approval_floatR">
+                <apex:commandButton value="X" action="{!closePopup}" rerender="popup" styleClass="approval_closeButton2"/>
+                </div>
+                <center class="approval_margin20PX"><h2><apex:outputlabel rendered="{!!(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance')}"><apex:outputLabel value="{!$Label.AF_OOPS_Approval}" styleClass="approval_fontS16PX"/> </apex:outputLabel>
+                <apex:outputLabel rendered="{!(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance')}" styleClass="approval_fontS16PX approval_fontColorP">Please check the figures before you approve the record </apex:outputLabel></h2><br/><br/>
+                <!--<Table><tr><td valign="top" style="font-weight:bold;">Comment:</td>
+                <td><apex:inputTextarea value="{!ApproveComment}"  rows="5" style="width:250px;"/></td></tr></table>
+                <br/><br/>-->
+                <apex:commandButton value="Confirm" action="{!ApproveRecord}" styleClass="continue_btn_ApproveRecord approval_wid70P" rerender="popup" oncomplete="redirection();"/>
+>>>>>>> FETCH_HEAD
                 <!--<apex:commandButton value="No" style="width:70px;" action="{!closePopup}" rerender="popup"/>-->
                 </center>
                 <!--<apex:commandButton value="Hide Pop up" action="{!closePopup}" rerender="popup"/>-->
@@ -114,11 +239,16 @@ parent.location.assign('apex/AgencyHomePage?brandvalue='+brandid+'&category='+ca
      </apex:outputPanel>
      
      <apex:outputPanel id="popuprejcomm">
+<<<<<<< HEAD
          <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopupRejComment}"/>
+=======
+         <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!displayPopupRejComment}"/>
+>>>>>>> FETCH_HEAD
          
             <apex:outputPanel styleClass="customPopup_RejectComment" layout="block" rendered="{!displayPopupRejComment}">
             <apex:Pagemessages id="pmg1"/>
             
+<<<<<<< HEAD
                 <Div style="float:right;"><apex:commandButton value="X" action="{!closePopupRejComment}" rerender="popuprejcomm" style="font-size:12px;border-radius:200px;border:2px solid white;padding-left:10px;padding-right:10px;font-weight:bold;color:white;background:#74AE00;margin-top:-12px;margin-right:-18px;"/></Div>
                 <center style="margin:20px;">
                 <Table border="0" align="left" cellspacing="1">
@@ -134,6 +264,23 @@ parent.location.assign('apex/AgencyHomePage?brandvalue='+brandid+'&category='+ca
                     </td>
                 </tr>
                 <tr><td align="right" colspan="2"><apex:commandButton value="Confirm" style="width:70px;" action="{!RejectBrandWithComments}" rerender="popuprejcomm,pmg1" styleClass="continue_btn" oncomplete="redirectionOnReject('{!RejectComment}');"/></td></tr>
+=======
+                <div class="approval_floatR"><apex:commandButton value="X" action="{!closePopupRejComment}" rerender="popuprejcomm"  styleClass="approval_closeButton3"/></div>
+                <center class="approval_margin20PX">
+                <Table border="0" align="left" cellspacing="1">
+                
+                <tr><td colspan="2"><apex:outputLabel value="{!$Label.AF_OOPS_RejectWithComments}" styleClass="approval_fontColorP approval_fontS17PX"/><br/></td></tr>
+                <tr>
+                     <td class="approval_ReqImg">
+                       <apex:image id="isRequired" value="{!$Resource.AF_isRequired}" width="4" height="130"/>
+                     </td>
+
+                    <td colspan="2" valign="top" class="approval_TxtAreaCell">
+                        <apex:inputTextarea value="{!RejectComment}"  rows="5" styleClass="approval_TxtArea"/>
+                    </td>
+                </tr>
+                <tr><td align="right" colspan="2"><apex:commandButton value="Confirm" action="{!RejectBrandWithComments}" rerender="popuprejcomm,pmg1" styleClass="continue_btn approval_wid70P" oncomplete="redirectionOnReject('{!RejectComment}');"/></td></tr>
+>>>>>>> FETCH_HEAD
                 </table>
                 <br/><br/>
                 <!--<apex:commandButton value="Confirm" style="width:70px;" action="{!RejectBrandWithComments}" styleClass="continue_btn"/>-->
@@ -143,6 +290,7 @@ parent.location.assign('apex/AgencyHomePage?brandvalue='+brandid+'&category='+ca
      </apex:outputPanel>
      
      <apex:outputPanel id="popuprej">
+<<<<<<< HEAD
          <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUpRej}"/>
             <apex:outputPanel styleClass="customPopup" layout="block" rendered="{!displayPopUpRej}">
                 <Div style="float:right;"><apex:commandButton value="X" action="{!closePopupReject}" rerender="popuprej" style="font-size:12px;border-radius:200px;border:2px solid white;padding-left:10px;padding-right:10px;font-weight:bold;color:white;background:#74AE00;margin-top:-12px;margin-right:-10px;"/></Div>
@@ -151,10 +299,21 @@ parent.location.assign('apex/AgencyHomePage?brandvalue='+brandid+'&category='+ca
                 <td><apex:inputTextarea value="{!RejectComment}"  rows="5" style="width:250px;"/></td></tr></table>
                 <br/><br/>-->
                 <apex:commandButton value="Confirm" style="width:70px;" action="{!RejectRecord}" styleClass="continue_btn" rerender="popuprej" oncomplete="redirection();"/>
+=======
+         <apex:outputPanel styleClass="popupBackground_Approval" layout="block" rendered="{!displayPopUpRej}"/>
+            <apex:outputPanel styleClass="customPopup_Approval" layout="block" rendered="{!displayPopUpRej}">
+                <div class="approval_floatR"><apex:commandButton value="X" action="{!closePopupReject}" rerender="popuprej" styleClass="approval_closeButton4"/></div>
+                <center class="approval_margin20PX"><h2><apex:outputLabel value="{!$Label.AF_OOPS_Reject}" styleClass="approval_fontS16PX"/> </h2><br/><br/>
+                <!--<Table><tr><td valign="top" style="font-weight:bold;">Comment:</td>
+                <td><apex:inputTextarea value="{!RejectComment}"  rows="5" style="width:250px;"/></td></tr></table>
+                <br/><br/>-->
+                <apex:commandButton value="Confirm" action="{!RejectRecord}" styleClass="continue_btn approval_wid70P" rerender="popuprej" oncomplete="redirection();"/>
+>>>>>>> FETCH_HEAD
                 <!--<apex:commandButton value="No" style="width:70px;" action="{!closePopupReject}" rerender="popuprej"/>-->
                 </center>                
             </apex:outputPanel>
      </apex:outputPanel>
+<<<<<<< HEAD
      
      <style type="text/css">
        .customPopup{
@@ -265,4 +424,6 @@ parent.location.assign('apex/AgencyHomePage?brandvalue='+brandid+'&category='+ca
 padding: 1px;
 }
     </style>
+=======
+>>>>>>> FETCH_HEAD
 </apex:component>

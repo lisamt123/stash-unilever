@@ -147,7 +147,11 @@
     <listViews>
         <fullName>CEC_General_Queue_cec_Store</fullName>
         <filterScope>Queue</filterScope>
+<<<<<<< HEAD
         <label>General Queue</label>
+=======
+        <label>CEC UKI Queue</label>
+>>>>>>> FETCH_HEAD
         <queue>CEC_General_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -227,6 +231,18 @@
         </sharedTo>
     </listViews>
     <listViews>
+<<<<<<< HEAD
+=======
+        <fullName>CEC_Sri_Lanka_Queue_cec_Store</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Sri Lanka Queue</label>
+        <queue>CEC_Sri_Lanka_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+>>>>>>> FETCH_HEAD
         <fullName>TO_France_Queue_cec_Store</fullName>
         <filterScope>Queue</filterScope>
         <label>TO France Queue</label>

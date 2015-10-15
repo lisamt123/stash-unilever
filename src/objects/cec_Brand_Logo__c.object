@@ -89,6 +89,18 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+<<<<<<< HEAD
+=======
+    <listViews>
+        <fullName>CEC_Sri_Lanka_Queue_cec_Brand_Logo</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Sri Lanka Queue</label>
+        <queue>CEC_Sri_Lanka_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+>>>>>>> FETCH_HEAD
     <nameField>
         <label>Brand Logo Name</label>
         <type>Text</type>

@@ -31,9 +31,19 @@ public without sharing class CEC_NewAccountControllerTest{
         Id rtId = [select Id, name from RecordType where name = 'Person Account' and SObjectType = 'Account' limit 1].Id;
         
         // Create Account
+<<<<<<< HEAD
         Account accObj = new Account(lastname='Test Account', Phone = '0991236785', PersonMailingPostalCode = 'TA10 0AB');
         accObj.RecordTypeId = rtId;
         insert accObj;
+=======
+        Account accObj = new Account(lastname='Test Account', Phone = '0991236785', PersonMailingPostalCode = 'TA10 0AB', PersonEmail='test@test.com');
+        accObj.RecordTypeId = rtId;
+        insert accObj;
+
+        Account accObj2 = new Account(lastname='Test Account 2', PersonMailingStreet = 'Greenland Street', PersonMailingPostalCode =  'TA10 0AB');
+        accObj2.RecordTypeId = rtId;
+        insert accObj2;
+>>>>>>> FETCH_HEAD
         
         // Create Case
         Case caseObj = new Case();
@@ -52,7 +62,11 @@ public without sharing class CEC_NewAccountControllerTest{
         Id rtId = [select Id, name from RecordType where name = 'Person Account' and SObjectType = 'Account' limit 1].Id;
         
         // Create Account
+<<<<<<< HEAD
         Account accObj = new Account(lastname='Test Account', Phone = '0991236785', PersonMailingPostalCode = 'TA10 0AB');
+=======
+        Account accObj = new Account(lastname='Test Account', Phone = '0991236785', PersonMailingPostalCode = 'TA10 0AB', PersonMailingStreet = 'George Street');
+>>>>>>> FETCH_HEAD
         accObj.RecordTypeId = rtId;
         insert accObj;
         
@@ -81,6 +95,11 @@ public without sharing class CEC_NewAccountControllerTest{
         testController.newConsumer.lastname = 'Test Account';
         testController.newConsumer.Phone = '0991236785';
         testController.newConsumer.PersonMailingPostalCode = 'TA10 0AB';
+<<<<<<< HEAD
+=======
+        testController.newConsumer.PersonMailingStreet = 'George Street';
+        testController.newConsumer.PersonEmail = 'test@test.com';
+>>>>>>> FETCH_HEAD
         
         pageReference pr = testController.searchConsumer();
     
@@ -92,6 +111,22 @@ public without sharing class CEC_NewAccountControllerTest{
 
         pr = testController.searchConsumer();
 
+<<<<<<< HEAD
+=======
+         // Scenario 3 - LastName + Street
+        
+        testController.newConsumer.Lastname = 'Test Account 2';
+        testController.newConsumer.PersonMailingStreet = 'Greenland Street';
+
+        pr = testController.searchConsumer();
+
+        // Scenario 4 - Valid Postcode Search
+        
+        testController.newConsumer.PersonMailingPostalCode = 'TA10 0AB';
+
+        pr = testController.searchConsumer();
+
+>>>>>>> FETCH_HEAD
         System.assertEquals(null,pr);
         
     }
