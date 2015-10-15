@@ -853,6 +853,10 @@
         <name>FA_SG_Wall_Room</name>
     </customLabels>
     <customLabels>
+        <label><!-- GoogleAPIKey --></label>
+        <name>GoogleAPIKey</name>
+    </customLabels>
+    <customLabels>
         <label><!-- HideTermsOfUseLabel --></label>
         <name>HideTermsOfUseLabel</name>
     </customLabels>
@@ -1373,6 +1377,10 @@
         <name>gc_HELP</name>
     </customPageWebLinks>
     <quickActions>
+        <label><!-- Approve --></label>
+        <name>Approve</name>
+    </quickActions>
+    <quickActions>
         <label><!-- LogACall --></label>
         <name>LogACall</name>
     </quickActions>
@@ -1415,6 +1423,14 @@
     <quickActions>
         <label><!-- BET File Upload --></label>
         <name>Publisher_Action</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reassign --></label>
+        <name>Reassign</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reject --></label>
+        <name>Reject</name>
     </quickActions>
     <reportTypes>
         <description><!-- Agency Estimates --></description>
@@ -1854,6 +1870,23 @@
         <sections>
             <label><!-- Process Instance Node --></label>
             <name>Process Instance Node</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- CEC Case Cluster Report --></description>
+        <label><!-- CEC Case Cluster Report --></label>
+        <name>CEC_Case_Cluster_Report</name>
+        <sections>
+            <label><!-- Case Market Mappings --></label>
+            <name>Case Market Mappings</name>
+        </sections>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
+        </sections>
+        <sections>
+            <label><!-- Unilever Geographies --></label>
+            <name>Unilever Geographies</name>
         </sections>
     </reportTypes>
     <reportTypes>

@@ -30,8 +30,20 @@
         <name>Legacy_Text__c</name>
     </fields>
     <fields>
+        <label><!-- Meta Tags --></label>
+        <name>Meta_Tags__c</name>
+    </fields>
+    <fields>
         <label><!-- Question --></label>
         <name>Question__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related PDF 2 --></label>
+        <name>Related_PDF_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related PDF 3 --></label>
+        <name>Related_PDF_3__c</name>
     </fields>
     <fields>
         <label><!-- Related PDF --></label>

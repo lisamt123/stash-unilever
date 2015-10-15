@@ -239,8 +239,16 @@
                 <customLink>Cosmetovigilence</customLink>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns>
+            <layoutItems>
+                <customLink>Homecare_Cosmetovigilence</customLink>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <customLink>Ingestion_Cosmetovigilence</customLink>
+            </layoutItems>
+        </layoutColumns>
         <style>CustomLinks</style>
     </layoutSections>
     <layoutSections>

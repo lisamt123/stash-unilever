@@ -165,6 +165,19 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Account_Record_Count__c</fullName>
+        <description>CEC this formula field puts the number 1 on the record for counting advantages on reports</description>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Record Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Additional_Information__c</fullName>
         <description>Additional information for &quot;Insurance, Trade Regs &amp; Policy&quot;.</description>
         <externalId>false</externalId>

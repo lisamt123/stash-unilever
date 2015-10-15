@@ -1,0 +1,69 @@
+<!-- 
+   Page Name :  Core_IC_FeaturedCampaignSort
+   Author : Mindtree
+   Date : 30/6/15
+   Requirement/Project Name: Ideation App
+   Description: Sort page for Campaigns used for Ideation                 
+ -->
+<apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false">
+<div class="container">
+
+    <div class="row iPhoneScreenHeight">
+        <table class="filterPageHeaderBarBackground" id="pageTop"> 
+            <tr class="border_bottom">
+                <td class="headerBarRowAlign"> <button type="button" class="headerBarButton" ng-click='cancel()'>{{'LBL_CANCEL' | translate}}</button> </td>
+                <td class="headerBarRowAlign" id="alignCenter"> <label class="headerBarTitle">{{'LBL_SORT' | translate}}</label> </td>
+                <td class="headerBarRowAlign"> <button type="button" class="headerBarButton" id="alignRight" ng-click='apply()'>{{'LBL_APPLY' | translate}}</button> </td>
+            </tr>
+        </table>
+        
+        <table class="filter-striped-menu">
+            <!--<tr class="border_bottom"> <td ng-class="{selected_li: isSortByEndateEarlChecked}" ng-click="setSelectedSort('EnddateEarliest')"> {{'LBL_SORT_BY_CAMPAIGN_ENDDATE_EARLIEST' | translate}} </td></tr>
+            <tr class="border_bottom"> <td ng-class="{selected_li: isSortByEndateOldChecked}" ng-click="setSelectedSort('EnddateOldest')"> {{'LBL_SORT_BY_CAMPAIGN_ENDDATE_OLDEST' | translate}} </td></tr>
+            <tr class="border_bottom"> <td ng-class="{selected_li: isSortByMostIdeasChecked}" ng-click="setSelectedSort('MostIdeas')"> {{'LBL_SORT_BY_MOST_IDEAS' | translate}} </td></tr>
+            <tr class="border_bottom"> <td ng-class="{selected_li: isSortByLeastIdeasChecked}" ng-click="setSelectedSort('LeastIdeas')"> {{'LBL_SORT_BY_LEAST_IDEAS' | translate}} </td></tr>   -->
+            
+            <!--<tr class="border_bottom" ng-init="dateSortPanel=(isSortByEndateEarlChecked==true?true:false)">
+                <td ng-class="{selectedAscending_li: isSortByEndateEarlChecked}" ng-show="dateSortPanel" ng-click="setSelectedSort('EnddateOldest');dateSortPanel=!dateSortPanel;"> {{'LBL_CAMPAIGN_ENDDATE' | translate}} </td>
+                <td ng-class="{selectedDescending_li: isSortByEndateOldChecked}" ng-hide="dateSortPanel" ng-click="setSelectedSort('EnddateEarliest');dateSortPanel=!dateSortPanel;"> {{'LBL_CAMPAIGN_ENDDATE' | translate}} </td>
+            </tr>
+            <tr class="border_bottom" ng-init="ideaSortPanel=(isSortByMostIdeasChecked==true?true:false)"> 
+                <td ng-class="{selectedAscending_li: isSortByMostIdeasChecked}" ng-show="ideaSortPanel" ng-click="setSelectedSort('LeastIdeas');ideaSortPanel=!ideaSortPanel;"> {{'LBL_NUMBER_OF_IDEAS' | translate}} </td>
+                <td ng-class="{selectedDescending_li: isSortByLeastIdeasChecked}" ng-hide="ideaSortPanel" ng-click="setSelectedSort('MostIdeas');ideaSortPanel=!ideaSortPanel;"> {{'LBL_NUMBER_OF_IDEAS' | translate}} </td>
+            </tr>-->
+            
+          
+      
+            <!--<tr class="border_bottom" ng-init="dateSortPanel=(isSortByEndateEarlChecked==true?true:false)">
+                <td ng-click="setSelectedSort('EnddateOldest');dateSortPanel=!dateSortPanel;">
+                    <span> {{'LBL_CAMPAIGN_ENDDATE' | translate}} </span>
+                    <span ng-show="dateSortPanel" class="selectedSortAlign"> <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/arrow-up.png')}" class="imageIconStyle" /> {{'LBL_ASCENDING' | translate}} </span>
+                    <span ng-hide="dateSortPanel" class="selectedSortAlign"> <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/arrow-down.png')}" class="imageIconStyle" /> {{'LBL_DESCENDING' | translate}} </span>
+                </td>
+            </tr>
+            <tr class="border_bottom" ng-init="ideaSortPanel=(isSortByMostIdeasChecked==true?true:false)"> 
+                <td ng-click="setSelectedSort('LeastIdeas');ideaSortPanel=!ideaSortPanel;">
+                    <span> {{'LBL_NUMBER_OF_IDEAS' | translate}} </span>
+                    <span ng-show="ideaSortPanel" class="selectedSortAlign"> <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/arrow-up.png')}" class="imageIconStyle" /> {{'LBL_ASCENDING' | translate}} </span>
+                    <span ng-hide="ideaSortPanel" class="selectedSortAlign"> <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/arrow-down.png')}" class="imageIconStyle" /> {{'LBL_DESCENDING' | translate}} </span>
+                </td>
+            </tr>-->
+            
+            <tr class="border_bottom">
+                <td ng-click="(isSortByEndateEarlChecked==true?setSelectedSort('EnddateOldest'):setSelectedSort('EnddateEarliest'))">
+                    <span> {{'LBL_CAMPAIGN_ENDDATE' | translate}} </span>
+                    <span ng-show="isSortByEndateEarlChecked" class="selectedSortAlign"> <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/Sort_ascending.svg')}" class="smallImageIconStyle" /> {{'LBL_SORT_CAMPAIGN_END_DATE' | translate}} </span>
+                    <span ng-show="isSortByEndateOldChecked" class="selectedSortAlign"> <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/Sort_descending.svg')}" class="smallImageIconStyle" /> {{'LBL_SORT_CAMPAIGN_END_DATE' | translate}} </span>
+                </td>
+            </tr>
+            <tr class="border_bottom"> 
+                <td ng-click="(isSortByMostIdeasChecked==true?setSelectedSort('LeastIdeas'):setSelectedSort('MostIdeas'))">
+                    <span> {{'LBL_NUMBER_OF_IDEAS' | translate}} </span>
+                    <span ng-show="isSortByMostIdeasChecked" class="selectedSortAlign"> <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/Sort_ascending.svg')}" class="smallImageIconStyle" /> {{'LBL_SORT_NO_OF_IDEAS' | translate}} </span>
+                    <span ng-show="isSortByLeastIdeasChecked" class="selectedSortAlign"> <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/Sort_descending.svg')}" class="smallImageIconStyle" /> {{'LBL_SORT_NO_OF_IDEAS' | translate}} </span>
+                </td>
+            </tr> 
+        </table>
+    </div>
+    </div>
+</apex:page>
