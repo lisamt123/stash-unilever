@@ -27,7 +27,7 @@
             </actions>
             <offsetFromField>HRO_Onboarding_Task__c.Due_Date__c</offsetFromField>
             <timeLength>1</timeLength>
-            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
     </rules>
     <rules>
