@@ -35,7 +35,7 @@
         password="${sf.password}" 
         serverurl="${sf.serverurl}" 
         runAllTests="false"
-        testLevel="RunLocalTests"
+        testLevel="NoTestRun"
         logType="Detail"
         allowMissingFiles="true"
         autoUpdatePackage="true"
