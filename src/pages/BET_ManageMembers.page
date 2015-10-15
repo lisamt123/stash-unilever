@@ -36,7 +36,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
     <apex:tab label="{!$Label.BET_Browse_members}" name="browseMembers" id="browseMembersid">
      
-        <div style="{!If(OR(isBETOperationAdmin,NOT(isBetOwnerOrManager)),'display:none;','')}">
+        <div style="{!If(isBETOperationAdmin,'display:none;','')}">
         <div>
           <apex:outputText value="{!$Label.BET_Add_Internal_User}" styleClass="addMembersUserLabel"/>
         </div>
@@ -64,7 +64,10 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             </td>
           </tr>
         </table>
+        </div>
     
+        <div style="{!If(OR(isBETOperationAdmin,NOT(isBetOwnerOrManager)),'display:none;','')}">
+
         <div style="padding-top: 20px;">
           <apex:outputText value="{!$Label.BET_External_Agency_User}" styleClass="addMembersUserLabel"/>
         </div>
