@@ -215,11 +215,23 @@ global with sharing class AF_BrandEstimateRemote {
             rowDetailToReturn += '\" df=\"' + dispDigitalK + dispDigitalLocalK;
             rowDetailToReturn += '\" af=\"' + dispAdaptationK + dispAdaptationLocalK;
             rowDetailToReturn += '\" a=\"' + dispAdaptation + dispAdaptationLocal + '\">';
+<<<<<<< HEAD
             rowDetailToReturn += '<a href=\"' + href +  '\"';
             rowDetailToReturn += ' e=\"' + dispTotal + '\" l=\"' + dispLocalTotal + '\"';
             rowDetailToReturn += ' class=\"addfancy\">';
             if(total != 0) {
                 rowDetailToReturn += '<div style=\"float:left;height:100%\">' + crsBrdrImg + '<br/>' + cmntImg;
+=======
+            rowDetailToReturn += '<a data-src=\"' + href +  '\"';
+            rowDetailToReturn += 'data-toggle=\"modal\"';
+            rowDetailToReturn += 'data-backdrop=\"static\"';
+            rowDetailToReturn += 'data-keyboard=\"false\"';
+            rowDetailToReturn += 'data-target=\"#myModal3\"';
+            rowDetailToReturn += ' e=\"' + dispTotal + '\" l=\"' + dispLocalTotal + '\"';
+            rowDetailToReturn += ' class=\"modalButton3\">';
+            if(total != 0) {
+                rowDetailToReturn += '<div class="imageHolder" style=\"float:left;height:100%\">' + crsBrdrImg + '<br/>' + cmntImg;
+>>>>>>> FETCH_HEAD
                 rowDetailToReturn += '</div><div>' + 'EUR ' + currencyFormatted(total);
                 rowDetailToReturn = agSObj.AF_Total__c != agSObj.AF_Total_Local__c ? rowDetailToReturn + lBreak + currCode + ' ' + currencyFormatted(totalLocal) : rowDetailToReturn;
             } else if(totalWithoutRounding > 0 && totalWithoutRounding <= 499){
@@ -571,7 +583,16 @@ global with sharing class AF_BrandEstimateRemote {
             for(AF_Agency_Estimate__c eachAgencyEstimate : archiveAgencyEstimatesPerUnileverEntity(rowName, sObjectId)) {
                 agencyEstimatesToDelete.add(eachAgencyEstimate);
             }
+<<<<<<< HEAD
             delete agencyEstimatesToDelete;
+=======
+            try{
+            delete agencyEstimatesToDelete;
+            }
+            catch(Exception e){
+                system.debug(e);
+            }
+>>>>>>> FETCH_HEAD
         }else if(sobjectName == 'AF_OOPS_Actual__c') {
             for(AF_OOPS_Estimate__c eachOopsEstimate : archiveOopsEstimatesPerUnileverEntity(rowName, sObjectId)) {
                 system.debug(' ** eachOopsEstimate : ' + eachOopsEstimate);
@@ -600,12 +621,30 @@ global with sharing class AF_BrandEstimateRemote {
             for(AF_Agency_Estimate__c eachAgencyEstimate : archiveAgencyEstimatesPerAgencyEntity(colsArr, sObjectId)) {
                 agencyEstimatesToDelete.add(eachAgencyEstimate);
             }
+<<<<<<< HEAD
             delete agencyEstimatesToDelete;
+=======
+            try{
+            delete agencyEstimatesToDelete;
+            }
+            catch(Exception e){
+                system.debug(e);
+            }
+>>>>>>> FETCH_HEAD
         }else if(sobjectName == 'AF_OOPS_Actual__c') {
             for(AF_OOPS_Estimate__c eachOopsEstimate : archiveOopsEstimatesPerAgencyEntity(colsArr, sObjectId)) {
                 oopsEstimatesToDelete.add(eachOopsEstimate);
             }
+<<<<<<< HEAD
             delete oopsEstimatesToDelete;
+=======
+            try{
+            delete oopsEstimatesToDelete;
+            }
+            catch(Exception e){
+                system.debug(e);
+            }
+>>>>>>> FETCH_HEAD
         }else if(sobjectName == 'AF_Bonus_Summary__c') {
             for(AF_Bonus_Matrix__c eachBonusMatrix : archiveBonusMatrixPerAgencyEntity(colsArr, sObjectId)) {
                 bonusMatrixToDelete.add(eachBonusMatrix);

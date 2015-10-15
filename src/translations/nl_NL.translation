@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+<<<<<<< HEAD
     <customApplications>
         <label><!-- Agency Fees --></label>
         <name>Agency_Fees</name>
@@ -72,6 +73,8 @@
         <label><!-- cB4L --></label>
         <name>cB4L</name>
     </customApplications>
+=======
+>>>>>>> FETCH_HEAD
     <customLabels>
         <label><!-- AF Adjust Quarters --></label>
         <name>AF_Adjust_Quarters</name>
@@ -97,6 +100,25 @@
         <name>AF_AnnualBonus_Qual</name>
     </customLabels>
     <customLabels>
+<<<<<<< HEAD
+=======
+        <label><!-- AF_BFML-Label_4k7g --></label>
+        <name>AF_BFML_Label_4k7g</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_BFMX-General_feedback --></label>
+        <name>AF_BFMX_General_feedback</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_BNMXLB-Override --></label>
+        <name>AF_BNMXLB_Override</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_BonusMatrixHelp --></label>
+        <name>AF_BonusMatrixHelp</name>
+    </customLabels>
+    <customLabels>
+>>>>>>> FETCH_HEAD
         <label><!-- AF_BonusQuarterly --></label>
         <name>AF_BonusQuarterly</name>
     </customLabels>
@@ -169,10 +191,56 @@
         <name>AF_EntityException</name>
     </customLabels>
     <customLabels>
+<<<<<<< HEAD
+=======
+        <label><!-- AF_LP-2nyf --></label>
+        <name>AF_LP_2nyf</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-Action_Pending --></label>
+        <name>AF_LP_Action_Pending</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP_Annual_Base_Fee_Target --></label>
+        <name>AF_LP_Annual_Base_Fee_Target</name>
+    </customLabels>
+    <customLabels>
+>>>>>>> FETCH_HEAD
         <label><!-- AF_LP_Base_Fee_Targets --></label>
         <name>AF_LP_Base_Fee_Targets</name>
     </customLabels>
     <customLabels>
+<<<<<<< HEAD
+=======
+        <label><!-- AF_LP_Can_Rename --></label>
+        <name>AF_LP_Can_Rename</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-Enter_BF_estimates --></label>
+        <name>AF_LP_Enter_BF_estimates</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-Naming_Convention --></label>
+        <name>AF_LP_Naming_Convention</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-New_PO_Hover --></label>
+        <name>AF_LP_New_PO_Hover</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP_Running_Total --></label>
+        <name>AF_LP_Running_Total</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-ey31 --></label>
+        <name>AF_LP_ey31</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_LP-y81a --></label>
+        <name>AF_LP_y81a</name>
+    </customLabels>
+    <customLabels>
+>>>>>>> FETCH_HEAD
         <label><!-- Lock Records --></label>
         <name>AF_Lock</name>
     </customLabels>
@@ -185,10 +253,32 @@
         <name>AF_No_Bonus</name>
     </customLabels>
     <customLabels>
+<<<<<<< HEAD
+=======
+        <label><!-- AF_OOPSMX-General_feedback --></label>
+        <name>AF_OOPSMX_General_feedback</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_OOPSMX-Override --></label>
+        <name>AF_OOPSMX_Override</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_OOPSMX-Percentage --></label>
+        <name>AF_OOPSMX_Percentage</name>
+    </customLabels>
+    <customLabels>
+>>>>>>> FETCH_HEAD
         <label><!-- AF_OOPS_Approval --></label>
         <name>AF_OOPS_Approval</name>
     </customLabels>
     <customLabels>
+<<<<<<< HEAD
+=======
+        <label><!-- AF_OOPS_Help --></label>
+        <name>AF_OOPS_Help</name>
+    </customLabels>
+    <customLabels>
+>>>>>>> FETCH_HEAD
         <label><!-- AF_OOPS_Reject --></label>
         <name>AF_OOPS_Reject</name>
     </customLabels>
@@ -205,6 +295,21 @@
         <name>AF_OopsPercentage</name>
     </customLabels>
     <customLabels>
+<<<<<<< HEAD
+=======
+        <label><!-- AF_PONumberTab_Header --></label>
+        <name>AF_PONumberTab_Header</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_POOveride_Warning --></label>
+        <name>AF_POOveride_Warning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AF_PO_OverrideHelp --></label>
+        <name>AF_PO_OverrideHelp</name>
+    </customLabels>
+    <customLabels>
+>>>>>>> FETCH_HEAD
         <label><!-- PiliotError message --></label>
         <name>AF_PiliotError_message</name>
     </customLabels>
@@ -233,6 +338,13 @@
         <name>AF_TriggerDate</name>
     </customLabels>
     <customLabels>
+<<<<<<< HEAD
+=======
+        <label><!-- AF_UBFLB-Thresholds --></label>
+        <name>AF_UBFLB_Thresholds</name>
+    </customLabels>
+    <customLabels>
+>>>>>>> FETCH_HEAD
         <label><!-- AF_UBFLB-Type_of_Fees --></label>
         <name>AF_UBFLB_Type_of_Fees</name>
     </customLabels>
@@ -333,6 +445,25 @@
         <name>Bonus_Annual</name>
     </customLabels>
     <customLabels>
+<<<<<<< HEAD
+=======
+        <label><!-- CEC_AlertActionSchedulerName --></label>
+        <name>CEC_AlertActionSchedulerName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CBM_NotificationBodyFooter --></label>
+        <name>CEC_CBM_NotificationBodyFooter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CBM_NotificationBodyHeader --></label>
+        <name>CEC_CBM_NotificationBodyHeader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_CBM_NotificationSubject --></label>
+        <name>CEC_CBM_NotificationSubject</name>
+    </customLabels>
+    <customLabels>
+>>>>>>> FETCH_HEAD
         <label>De fulfilment kan niet aangemaakt worden zonder een bestand (account)  toe te voegen aan de case.</label>
         <name>CEC_CaseAccountMissing</name>
     </customLabels>
@@ -385,6 +516,13 @@
         <name>CEC_ConsumerResultsDisplay</name>
     </customLabels>
     <customLabels>
+<<<<<<< HEAD
+=======
+        <label><!-- CEC_ConsumerResultsNoMatchTitle --></label>
+        <name>CEC_ConsumerResultsNoMatchTitle</name>
+    </customLabels>
+    <customLabels>
+>>>>>>> FETCH_HEAD
         <label>Gevonden zoekresultaten</label>
         <name>CEC_ConsumerResultsTitleDisplay</name>
     </customLabels>
@@ -553,6 +691,13 @@
         <name>CEC_RelatedCases</name>
     </customLabels>
     <customLabels>
+<<<<<<< HEAD
+=======
+        <label><!-- CEC_SearchValidationError --></label>
+        <name>CEC_SearchValidationError</name>
+    </customLabels>
+    <customLabels>
+>>>>>>> FETCH_HEAD
         <label>Zoekfunctie</label>
         <name>CEC_Search_Button</name>
     </customLabels>
@@ -813,6 +958,7 @@
         <name>FA_SG_Wall_Room</name>
     </customLabels>
     <customLabels>
+<<<<<<< HEAD
         <label><!-- HideTermsOfUseLabel --></label>
         <name>HideTermsOfUseLabel</name>
     </customLabels>
@@ -931,20 +1077,32 @@
     <customLabels>
         <label><!-- IPM image --></label>
         <name>IPM_image</name>
+=======
+        <label><!-- GoogleAPIKey --></label>
+        <name>GoogleAPIKey</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- HideTermsOfUseLabel --></label>
+        <name>HideTermsOfUseLabel</name>
+>>>>>>> FETCH_HEAD
     </customLabels>
     <customLabels>
         <label><!-- UW_LAUNCH_PINNOVATE_CMD --></label>
         <name>LAUNCH_PINNOVATE_CMD</name>
     </customLabels>
     <customLabels>
+<<<<<<< HEAD
         <label><!-- MLST_OBJ_NAME --></label>
         <name>MLST_OBJ_NAME</name>
     </customLabels>
     <customLabels>
+=======
+>>>>>>> FETCH_HEAD
         <label><!-- Matrix Currency Desc --></label>
         <name>Matrix_Currency_Desc</name>
     </customLabels>
     <customLabels>
+<<<<<<< HEAD
         <label><!-- PD_OBJ_NAME --></label>
         <name>PD_OBJ_NAME</name>
     </customLabels>
@@ -957,14 +1115,19 @@
         <name>Project_Name_Contains_Brand_Name_Target_Launch_Date</name>
     </customLabels>
     <customLabels>
+=======
+>>>>>>> FETCH_HEAD
         <label><!-- Rollout No Records Msg --></label>
         <name>Rollout_No_Records_Msg</name>
     </customLabels>
     <customLabels>
+<<<<<<< HEAD
         <label><!-- TASK_OBJ_NAME --></label>
         <name>TASK_OBJ_NAME</name>
     </customLabels>
     <customLabels>
+=======
+>>>>>>> FETCH_HEAD
         <label><!-- TO_CaseIdentifier --></label>
         <name>TO_CaseIdentifier</name>
     </customLabels>
@@ -1253,6 +1416,17 @@
         <name>WinatPOS_Upload_Error_No_Chatter_File</name>
     </customLabels>
     <customLabels>
+<<<<<<< HEAD
+=======
+        <label><!-- af_lp_AgencyFeeTarget --></label>
+        <name>af_lp_AgencyFeeTarget</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- af_lp_UnileverBaseFee --></label>
+        <name>af_lp_UnileverBaseFee</name>
+    </customLabels>
+    <customLabels>
+>>>>>>> FETCH_HEAD
         <label><!-- Button cancel --></label>
         <name>button_cancel</name>
     </customLabels>
@@ -1460,6 +1634,7 @@
         <label><!-- Communications Planner Help! --></label>
         <name>gc_HELP</name>
     </customPageWebLinks>
+<<<<<<< HEAD
     <customTabs>
         <label><!-- Agency Fees --></label>
         <name>Agency_Fees</name>
@@ -1572,6 +1747,12 @@
         <label><!-- Stakeholders --></label>
         <name>kof_Stakeholders</name>
     </customTabs>
+=======
+    <quickActions>
+        <label><!-- Approve --></label>
+        <name>Approve</name>
+    </quickActions>
+>>>>>>> FETCH_HEAD
     <quickActions>
         <label><!-- LogACall --></label>
         <name>LogACall</name>
@@ -1616,6 +1797,17 @@
         <label><!-- BET File Upload --></label>
         <name>Publisher_Action</name>
     </quickActions>
+<<<<<<< HEAD
+=======
+    <quickActions>
+        <label><!-- Reassign --></label>
+        <name>Reassign</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reject --></label>
+        <name>Reject</name>
+    </quickActions>
+>>>>>>> FETCH_HEAD
     <reportTypes>
         <description><!-- Agency Estimates --></description>
         <label><!-- Agency Estimates --></label>
@@ -1663,6 +1855,25 @@
         <label><!-- Bonus Matriix --></label>
         <name>AF_Bonus_Matriix</name>
         <sections>
+<<<<<<< HEAD
+=======
+            <columns>
+                <label><!-- Agency --></label>
+                <name>Agency</name>
+            </columns>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+>>>>>>> FETCH_HEAD
             <label><!-- Bonus Matrix --></label>
             <name>Bonus Matrix</name>
         </sections>
@@ -1842,6 +2053,29 @@
                 <name>Currency</name>
             </columns>
             <columns>
+<<<<<<< HEAD
+=======
+                <label><!-- Currency @ Ready for PO --></label>
+                <name>Currency @ Ready for PO</name>
+            </columns>
+            <columns>
+                <label><!-- Currency @ReadyforPO --></label>
+                <name>Currency @ReadyforPO</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate --></label>
+                <name>Exchange Rate</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate@PO --></label>
+                <name>Exchange Rate@PO</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate@ReadyforPO --></label>
+                <name>Exchange Rate@ReadyforPO</name>
+            </columns>
+            <columns>
+>>>>>>> FETCH_HEAD
                 <label><!-- Legal Entity Name --></label>
                 <name>Legal Entity Name</name>
             </columns>
@@ -1875,6 +2109,17 @@
         <name>Bonus_Thresholds_with_Sub_Results</name>
         <sections>
             <columns>
+<<<<<<< HEAD
+=======
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <columns>
+>>>>>>> FETCH_HEAD
                 <label><!-- Category Name --></label>
                 <name>Category Name</name>
             </columns>
@@ -1962,6 +2207,13 @@
         </sections>
         <sections>
             <columns>
+<<<<<<< HEAD
+=======
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+>>>>>>> FETCH_HEAD
                 <label><!-- Status --></label>
                 <name>Status</name>
             </columns>
@@ -2009,6 +2261,26 @@
         </sections>
     </reportTypes>
     <reportTypes>
+<<<<<<< HEAD
+=======
+        <description><!-- CEC Case Cluster Report --></description>
+        <label><!-- CEC Case Cluster Report --></label>
+        <name>CEC_Case_Cluster_Report</name>
+        <sections>
+            <label><!-- Case Market Mappings --></label>
+            <name>Case Market Mappings</name>
+        </sections>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
+        </sections>
+        <sections>
+            <label><!-- Unilever Geographies --></label>
+            <name>Unilever Geographies</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+>>>>>>> FETCH_HEAD
         <description><!-- CEC Fulfillment &amp; Enclosure --></description>
         <label><!-- CEC Fulfillment &amp; Enclosure --></label>
         <name>CEC_Fulfillment_Enclosure</name>
@@ -2105,6 +2377,26 @@
         </sections>
     </reportTypes>
     <reportTypes>
+<<<<<<< HEAD
+=======
+        <description><!-- Chatter activity + user + post body --></description>
+        <label><!-- Chatter activity + user + post body --></label>
+        <name>Chatter_activity_user_post_body</name>
+        <sections>
+            <label><!-- Group Feed --></label>
+            <name>Group Feed</name>
+        </sections>
+        <sections>
+            <label><!-- Groups (Last Modified By) --></label>
+            <name>Groups (Last Modified By)</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+>>>>>>> FETCH_HEAD
         <description><!-- Core Tasks Report Type --></description>
         <label><!-- Core Tasks Report Type --></label>
         <name>Core_Tasks_Report_Type</name>
@@ -2152,6 +2444,22 @@
         </sections>
     </reportTypes>
     <reportTypes>
+<<<<<<< HEAD
+=======
+        <description><!-- Custom Objects Usage --></description>
+        <label><!-- Custom Objects Usage --></label>
+        <name>Custom_Objects_Usage</name>
+        <sections>
+            <label><!-- Custom Object Usage By User License Metrics --></label>
+            <name>Custom Object Usage By User License Metrics</name>
+        </sections>
+        <sections>
+            <label><!-- User Licenses --></label>
+            <name>User Licenses</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+>>>>>>> FETCH_HEAD
         <description><!-- Dashboards --></description>
         <label><!-- Dashboards --></label>
         <name>Dashboards</name>
@@ -2322,16 +2630,78 @@
         <label><!-- OOPS Estimate --></label>
         <name>OOPS_Estimate</name>
         <sections>
+<<<<<<< HEAD
+=======
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Category --></label>
+                <name>Category</name>
+            </columns>
+>>>>>>> FETCH_HEAD
             <label><!-- OOPS Estimates --></label>
             <name>OOPS Estimates</name>
         </sections>
     </reportTypes>
     <reportTypes>
+<<<<<<< HEAD
+=======
+        <description><!-- OOPs PO Report --></description>
+        <label><!-- OOPs PO Report --></label>
+        <name>OOPs_PO_Report</name>
+        <sections>
+            <columns>
+                <label><!-- FY OOPS - Euro --></label>
+                <name>FY OOPS - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- FY Year OOPs - LC --></label>
+                <name>FY Year OOPs - LC</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value - Euro --></label>
+                <name>PO Value - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value – LC --></label>
+                <name>PO Value – LC</name>
+            </columns>
+            <label><!-- PO Report --></label>
+            <name>PO Report</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+>>>>>>> FETCH_HEAD
         <description><!-- Opps Actuals with Estimates --></description>
         <label><!-- Opps Actuals with Estimates --></label>
         <name>Opps_Actuals_with_Estimates</name>
         <sections>
             <columns>
+<<<<<<< HEAD
+=======
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+                <label><!-- Big Category --></label>
+                <name>Big Category</name>
+            </columns>
+            <columns>
+>>>>>>> FETCH_HEAD
                 <label><!-- Status --></label>
                 <name>Status</name>
             </columns>
@@ -2344,6 +2714,25 @@
                 <name>Currency</name>
             </columns>
             <columns>
+<<<<<<< HEAD
+=======
+                <label><!-- Currency --></label>
+                <name>Currency</name>
+            </columns>
+            <columns>
+                <label><!-- Currency @Ready for PO --></label>
+                <name>Currency @Ready for PO</name>
+            </columns>
+            <columns>
+                <label><!-- Exchange Rate --></label>
+                <name>Exchange Rate</name>
+            </columns>
+            <columns>
+                <label><!-- ExchangeRate@ReadyforPO --></label>
+                <name>ExchangeRate@ReadyforPO</name>
+            </columns>
+            <columns>
+>>>>>>> FETCH_HEAD
                 <label><!-- FY OOPS - Euro --></label>
                 <name>FY OOPS - Euro</name>
             </columns>
@@ -2364,6 +2753,17 @@
                 <name>Legal Entity Name</name>
             </columns>
             <columns>
+<<<<<<< HEAD
+=======
+                <label><!-- PO Value - Euro --></label>
+                <name>PO Value - Euro</name>
+            </columns>
+            <columns>
+                <label><!-- PO Value - LC --></label>
+                <name>PO Value - LC</name>
+            </columns>
+            <columns>
+>>>>>>> FETCH_HEAD
                 <label><!-- Unilever Entity --></label>
                 <name>Unilever Entity</name>
             </columns>
@@ -2536,6 +2936,18 @@
         </sections>
     </reportTypes>
     <reportTypes>
+<<<<<<< HEAD
+=======
+        <description><!-- Topic Assignment --></description>
+        <label><!-- Topic Assignment --></label>
+        <name>Topic_Assignment</name>
+        <sections>
+            <label><!-- Topic Assignments --></label>
+            <name>Topic Assignments</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+>>>>>>> FETCH_HEAD
         <description><!-- Topics Report --></description>
         <label><!-- Topics Report --></label>
         <name>Topics_Report</name>

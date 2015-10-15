@@ -127,6 +127,25 @@
                 <behavior>Readonly</behavior>
                 <field>AF_PO_Value_LC_2014__c</field>
             </layoutItems>
+<<<<<<< HEAD
+=======
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_Agency_ExchangeRateTemp__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_MatrixCodeTemp__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_ReadyforPoCodeTemp__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_ReadyforPOExchangeRateTemp__c</field>
+            </layoutItems>
+>>>>>>> FETCH_HEAD
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -145,6 +164,17 @@
                 <behavior>Readonly</behavior>
                 <field>AF_JustQuarters__c</field>
             </layoutItems>
+<<<<<<< HEAD
+=======
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AF_Mean_Quarter__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AF_Compound_key__c</field>
+            </layoutItems>
+>>>>>>> FETCH_HEAD
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -257,7 +287,11 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
+<<<<<<< HEAD
         <masterLabel>00hL0000000G09T</masterLabel>
+=======
+        <masterLabel>00hE00000097KoV</masterLabel>
+>>>>>>> FETCH_HEAD
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

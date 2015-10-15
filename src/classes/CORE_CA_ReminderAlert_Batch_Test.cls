@@ -62,7 +62,11 @@ public class CORE_CA_ReminderAlert_Batch_Test {
        scope.add(objApprover2);
        Database.BatchableContext BC;
        CORE_CA_ReminderAlert_Batch objReminderAlertBatch = new CORE_CA_ReminderAlert_Batch();
+<<<<<<< HEAD
        objReminderAlertBatch.start(bc);
+=======
+       //objReminderAlertBatch.start(bc);
+>>>>>>> FETCH_HEAD
        objReminderAlertBatch.execute(BC, scope); 
        objReminderAlertBatch.finish(BC);        
        

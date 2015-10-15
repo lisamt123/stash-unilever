@@ -14,8 +14,27 @@
         <allowDelegate>true</allowDelegate>
         <assignedApprover>
             <approver>
+<<<<<<< HEAD
                 <type>adhoc</type>
             </approver>
+=======
+                <name>helen.percy@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>liliya.ivanova@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>romi.arya@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>tammy.hourigan@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+>>>>>>> FETCH_HEAD
         </assignedApprover>
         <label>Step 1</label>
         <name>Step_1</name>

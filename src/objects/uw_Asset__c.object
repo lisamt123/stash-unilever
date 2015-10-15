@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+=======
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+>>>>>>> FETCH_HEAD
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -1026,6 +1030,7 @@
     <searchLayouts>
         <customTabListAdditionalFields>Media_Channel_1__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+<<<<<<< HEAD
         <customTabListAdditionalFields xsi:nil="true"/>
         <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
         <lookupDialogsAdditionalFields>Agency__c</lookupDialogsAdditionalFields>
@@ -1034,6 +1039,12 @@
         <searchResultsAdditionalFields xsi:nil="true"/>
         <searchResultsAdditionalFields>Agency__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields xsi:nil="true"/>
+=======
+        <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Agency__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Agency__c</searchResultsAdditionalFields>
+>>>>>>> FETCH_HEAD
         <searchResultsAdditionalFields>Media_Channel_1__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>

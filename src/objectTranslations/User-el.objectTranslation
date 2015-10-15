@@ -221,6 +221,7 @@
         </picklistValues>
     </fields>
     <fields>
+<<<<<<< HEAD
         <label><!-- Brand Name --></label>
         <name>IPM_Brand_Name__c</name>
     </fields>
@@ -285,6 +286,8 @@
         <name>IPM_Sub_Category__c</name>
     </fields>
     <fields>
+=======
+>>>>>>> FETCH_HEAD
         <label><!-- Language Skills List --></label>
         <name>Language_Skills_List__c</name>
     </fields>
@@ -627,6 +630,13 @@
             <translation><!-- Spain --></translation>
         </picklistValues>
         <picklistValues>
+<<<<<<< HEAD
+=======
+            <masterLabel>Sri Lanka</masterLabel>
+            <translation><!-- Sri Lanka --></translation>
+        </picklistValues>
+        <picklistValues>
+>>>>>>> FETCH_HEAD
             <masterLabel>United Kingdom</masterLabel>
             <translation><!-- United Kingdom --></translation>
         </picklistValues>

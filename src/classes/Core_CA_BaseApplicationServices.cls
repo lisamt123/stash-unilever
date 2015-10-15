@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+=======
+/*
+  Class Name: Core_CA_BaseApplicationServices
+  Author : Mindtree
+  Date: 1 June 2015
+  Requirement/Project Name: Unilever Salesforce Engagement
+  Requirement/Description: This class is used to call respective service classes based on Key from request data
+*/
+>>>>>>> FETCH_HEAD
 @RestResource (urlMapping='/AppService/*')
 global class Core_CA_BaseApplicationServices implements Core_CA_IBaseAppicationServices{
 
@@ -21,6 +31,10 @@ global class Core_CA_BaseApplicationServices implements Core_CA_IBaseAppicationS
             
             if(!Utility.isEmpty(svcName)){
                
+<<<<<<< HEAD
+=======
+                //Chatter Approval Services
+>>>>>>> FETCH_HEAD
                 /**** Get myapproval data****/
                 if(svcName.equals(Core_CA_AppConstants.SVC_GET_MY_APPROVALS_DATA)){                  
                     requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
@@ -47,7 +61,75 @@ global class Core_CA_BaseApplicationServices implements Core_CA_IBaseAppicationS
                     if(appWrapperObj.lineItemDetailRequest.RequestType.equals(Core_CA_AppConstants.DATA_REQUEST_TYPE_ARIBA))
                       responseObj = (Core_CA_BaseApplicationWrapper)Core_CA_LineItemDetail.getLineItemDetailAriba(appWrapperObj);        
                 }
+<<<<<<< HEAD
                  
+=======
+                
+                //Ideation Services
+                /**** Get Ideation Landing Page data****/
+                if(svcName.equals(Core_IC_AppConstants.SVC_GET_Landing_Page_Data)){              
+                    requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
+                    appWrapperObj.ideaLandingPageRequest = (Core_IC_WrapperUtility.IdeaLandingPageRequest) JSON.deserialize(requestBodySerializedMap, Core_IC_WrapperUtility.IdeaLandingPageRequest.class);                    
+                    responseObj = (Core_CA_BaseApplicationWrapper)Core_IC_LandingPage.getLandingPageDetail(appWrapperObj);
+                }  
+                
+                /**** Post Vote for Idea****/
+                if(svcName.equals(Core_IC_AppConstants.SVC_POST_Vote_Ideas)){                  
+                    requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
+                    appWrapperObj.voteForIdeasOfTheWeekRequest = (Core_IC_WrapperUtility.VoteForIdeasOfTheWeekRequest) JSON.deserialize(requestBodySerializedMap, Core_IC_WrapperUtility.VoteForIdeasOfTheWeekRequest.class);
+                    responseObj = (Core_CA_BaseApplicationWrapper)Core_IC_PostVoteForIdeas.postVoteForIdeas(appWrapperObj);
+                } 
+                
+                /**** Get Idea Campaign detail data****/
+                if(svcName.equals(Core_IC_AppConstants.SVC_GET_Campaign_Detail_Data)){                  
+                    requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
+                    appWrapperObj.ideaCampaignDetailRequest = (Core_IC_WrapperUtility.IdeaCampaignDetailRequest) JSON.deserialize(requestBodySerializedMap, Core_IC_WrapperUtility.IdeaCampaignDetailRequest.class);
+                    responseObj = (Core_CA_BaseApplicationWrapper)Core_IC_CampaignDetail.getCampaignDetail(appWrapperObj);
+                }
+                
+                /**** Get Idea detail data****/
+                if(svcName.equals(Core_IC_AppConstants.SVC_GET_Idea_Detail_Data)){                  
+                    requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
+                    appWrapperObj.ideaDetailRequest = (Core_IC_WrapperUtility.IdeaDetailRequest) JSON.deserialize(requestBodySerializedMap, Core_IC_WrapperUtility.IdeaDetailRequest.class);
+                    responseObj = (Core_CA_BaseApplicationWrapper)Core_IC_IdeaDetail.getIdeaDetail(appWrapperObj);
+                }
+                
+                /**** Post Comment for Idea****/
+                if(svcName.equals(Core_IC_AppConstants.SVC_POST_Comment_Ideas)){                  
+                    requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
+                    appWrapperObj.ideaCommentRequest = (Core_IC_WrapperUtility.IdeaCommentRequest) JSON.deserialize(requestBodySerializedMap, Core_IC_WrapperUtility.IdeaCommentRequest.class);
+                    responseObj = (Core_CA_BaseApplicationWrapper)Core_IC_PostCommentForAnIdea.postCommentForIdeas(appWrapperObj);
+                }
+                
+                /**** Post Submit an Idea****/
+                if(svcName.equals(Core_IC_AppConstants.SVC_POST_Submit_Ideas)){                
+                    requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
+                    appWrapperObj.submitIdeaRequest = (Core_IC_WrapperUtility.SubmitIdeaRequest) JSON.deserialize(requestBodySerializedMap, Core_IC_WrapperUtility.SubmitIdeaRequest.class);
+                    responseObj = (Core_CA_BaseApplicationWrapper)Core_IC_PostSubmitIdea.postSubmitAnIdea(appWrapperObj);
+                }
+                
+                /**** Get Category Values****/
+                /*if(svcName.equals(Core_IC_AppConstants.SVC_GET_Category_Values)){                  
+                    //requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
+                    //appWrapperObj.submitIdeaRequest = (Core_IC_WrapperUtility.SubmitIdeaRequest) JSON.deserialize(requestBodySerializedMap, Core_IC_WrapperUtility.SubmitIdeaRequest.class);
+                    responseObj = (Core_CA_BaseApplicationWrapper)Core_IC_GetCategoryValues.GetCategoryValues();
+                }*/
+                
+                /**** Get Attachment Id****/
+                /*if(svcName.equals(Core_IC_AppConstants.SVC_GET_Attachment_Id)){                
+                    //requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
+                    //appWrapperObj.submitIdeaRequest = (Core_IC_WrapperUtility.SubmitIdeaRequest) JSON.deserialize(requestBodySerializedMap, Core_IC_WrapperUtility.SubmitIdeaRequest.class);
+                    responseObj = (Core_CA_BaseApplicationWrapper)Core_IC_GetAttachmentId.GetAttachmentId();
+                }*/
+                
+                /**** Get FAQ Values****/
+                if(svcName.equals(Core_IC_AppConstants.SVC_GET_FAQ_Values)){                
+                    //requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
+                    //appWrapperObj.submitIdeaRequest = (Core_IC_WrapperUtility.SubmitIdeaRequest) JSON.deserialize(requestBodySerializedMap, Core_IC_WrapperUtility.SubmitIdeaRequest.class);
+                    responseObj = (Core_CA_BaseApplicationWrapper)Core_IC_FAQData.GetFAQValues();
+                }
+                
+>>>>>>> FETCH_HEAD
                 /*if(svcName.equals(Core_CA_AppConstants.SVC_VALIDATE_APPROVEREJECTACTION)){
                     //system.debug('Enter');
                     responseObj = (Core_CA_BaseApplicationWrapper)Core_CA_ApproveRejectAction.validateApproveRejectAction(appWrapperObj.urlParameters);

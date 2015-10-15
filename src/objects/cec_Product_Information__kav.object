@@ -25,13 +25,31 @@
     <enableHistory>false</enableHistory>
     <fields>
         <fullName>Additional_Information__c</fullName>
+<<<<<<< HEAD
         <description>CEC</description>
         <externalId>false</externalId>
         <label>Additional Information</label>
+=======
+        <description>CEC :</description>
+        <externalId>false</externalId>
+        <label>External Links</label>
+>>>>>>> FETCH_HEAD
         <required>false</required>
         <type>Url</type>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <fullName>Additional_Product_Information__c</fullName>
+        <description>CEC :</description>
+        <externalId>false</externalId>
+        <label>Additional Product Information</label>
+        <length>5000</length>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <fullName>Additional_Sensitive_Information__c</fullName>
         <defaultValue>false</defaultValue>
         <description>CEC</description>
@@ -114,6 +132,44 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <fullName>Meta_Tags__c</fullName>
+        <description>CEC :</description>
+        <externalId>false</externalId>
+        <label>Meta Tags</label>
+        <length>150</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Nutrition_Information__c</fullName>
+        <description>CEC :</description>
+        <externalId>false</externalId>
+        <label>Nutrition Information</label>
+        <length>4000</length>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>PDF_Version_2__c</fullName>
+        <description>CEC : To load pdf file</description>
+        <externalId>false</externalId>
+        <label>PDF Version 2</label>
+        <required>false</required>
+        <type>File</type>
+    </fields>
+    <fields>
+        <fullName>PDF_Version_3__c</fullName>
+        <description>CEC : To load a pdf file</description>
+        <externalId>false</externalId>
+        <label>PDF Version 3</label>
+        <required>false</required>
+        <type>File</type>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <fullName>PDF_Version__c</fullName>
         <description>CEC</description>
         <externalId>false</externalId>
@@ -149,6 +205,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <fullName>Product_De_listed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC :</description>
+        <externalId>false</externalId>
+        <label>Product De-listed</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <fullName>Product_Description__c</fullName>
         <description>CEC</description>
         <externalId>false</externalId>
@@ -158,6 +225,18 @@
         <visibleLines>10</visibleLines>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <fullName>Recipe_Suggestions__c</fullName>
+        <description>CEC :</description>
+        <externalId>false</externalId>
+        <label>Recipe Suggestions</label>
+        <length>5000</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <fullName>Recycling_Info__c</fullName>
         <description>CEC</description>
         <externalId>false</externalId>
@@ -210,6 +289,18 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <fullName>Telephone_Numbers__c</fullName>
+        <description>CEC :</description>
+        <externalId>false</externalId>
+        <label>Telephone Numbers</label>
+        <length>500</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <fullName>Usage__c</fullName>
         <description>CEC</description>
         <externalId>false</externalId>

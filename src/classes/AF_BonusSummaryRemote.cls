@@ -57,10 +57,21 @@ global with sharing class AF_BonusSummaryRemote {
                 String keyMatch = eachCol+'-'+eachRow; //column Vs row
                 if(bonusULRelationMap .containsKey(keyMatch)) {
                     colTotal += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Value__c/1000);
+<<<<<<< HEAD
                     colTotalA += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Value__c);
                 }
             }
             String dispColTotal = colTotal > 0 ? 'EUR ' + AF_BrandEstimateRemote.currencyFormatted(colTotal) : '';
+=======
+                    system.debug('bonusULRelationMap .get(keyMatch).AF_Value__c/1000...'+bonusULRelationMap .get(keyMatch).AF_Value__c/1000);
+                    system.debug('colTotal...'+colTotal);
+                    colTotalA += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Value__c);
+                }
+            }
+            
+            String dispColTotal = colTotal > 0 ? 'EUR ' + AF_BrandEstimateRemote.currencyFormatted(colTotal) : '';
+            system.debug('dispColTotal...'+dispColTotal);
+>>>>>>> FETCH_HEAD
             String dispColTotalA = (colTotal > 0) ? 'EUR ' + AF_BrandEstimateRemote.currencyFormatted(colTotalA) : '';
             rowDetail += '<td align=\"center\" title=\"\" class=\"totalCell details-control';
             rowDetail += '\" t=\"' + dispColTotalA + '\" d=\"tot\" a=\"ob\">';
@@ -142,10 +153,21 @@ global with sharing class AF_BonusSummaryRemote {
             String dispLocalTotalA = agSObj.AF_Bonus_Local_Value__c > 0 ? currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocalA) : '';
             rowDetailToReturn += '<td title=\"\" class=\"details-control\"';
             rowDetailToReturn += ' t=\"' + disptotalA + '\" d=\"' + dispLocalTotalA + '\" a=\"ob\">';
+<<<<<<< HEAD
             rowDetailToReturn += '<a href=\"' + href +  '\"';
             rowDetailToReturn += ' e=\"' + disptotal + '\"';
             rowDetailToReturn += ' l=\"' + dispLocalTotal + '\"';
             rowDetailToReturn += ' class=\"addfancy\">';
+=======
+            rowDetailToReturn += '<a data-src=\"' + href +  '\"';
+            rowDetailToReturn += 'data-toggle=\"modal\"';
+            rowDetailToReturn += 'data-backdrop=\"static\"';
+            rowDetailToReturn += 'data-keyboard=\"false\"';
+            rowDetailToReturn += 'data-target=\"#myModal3\"';
+            rowDetailToReturn += ' e=\"' + disptotal + '\"';
+            rowDetailToReturn += ' l=\"' + dispLocalTotal + '\"';
+             rowDetailToReturn += ' class=\"modalButton3\">';
+>>>>>>> FETCH_HEAD
             if(total != 0) {
                 rowDetailToReturn += '<div style=float:left;>' + crsBrdrImg + '<br/>' + cmntImg;
                 rowDetailToReturn += '</div><div align=\"center\">' + 'EUR ' + AF_BrandEstimateRemote.currencyFormatted(total);

@@ -170,6 +170,21 @@
         <type>Lookup</type>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <fullName>Country_BrandLogo__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Country__c) +&quot;_&quot;+ Brand_Logo__r.Logo__c  +&quot;_&quot;+ &quot;Logo&quot;</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Country &amp; BrandLogo</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <fullName>Country__c</fullName>
         <externalId>false</externalId>
         <label>Country</label>
@@ -892,7 +907,11 @@
     <listViews>
         <fullName>CEC_General_Queue_cec_Fulfilment</fullName>
         <filterScope>Queue</filterScope>
+<<<<<<< HEAD
         <label>General Queue</label>
+=======
+        <label>CEC UKI Queue</label>
+>>>>>>> FETCH_HEAD
         <language>en_US</language>
         <queue>CEC_General_Queue</queue>
         <sharedTo>
@@ -1207,6 +1226,18 @@
         </sharedTo>
     </listViews>
     <listViews>
+<<<<<<< HEAD
+=======
+        <fullName>CEC_Sri_Lanka_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Sri Lanka Queue</label>
+        <queue>CEC_Sri_Lanka_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+>>>>>>> FETCH_HEAD
         <fullName>QC_view_fulfilment</fullName>
         <columns>NAME</columns>
         <columns>Brand_Logo__c</columns>

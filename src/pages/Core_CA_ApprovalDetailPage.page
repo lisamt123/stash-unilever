@@ -1,7 +1,25 @@
 <apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false">
 <meta http-equiv="content-type" content="text/html; charset=UTF8" />
+<<<<<<< HEAD
     <!--<div class="iPhoneHomeScreenHeight">-->
     
+=======
+        
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');         
+          var userId = '{!$User.Id}';
+          var userCountry = '{!$User.Country}';                  
+          ga('create', '{!$Setup.Core_CA_Approval_GA__c.GoogleAnalyticsId__c}', 'auto');
+          ga('set', 'dimension1', userId); 
+          ga('set', 'dimension2', userCountry); 
+          ga('set', 'dimension3', 'DetailPage'); 
+          ga('send', 'pageview');   
+        </script>
+        
+>>>>>>> FETCH_HEAD
         <div class="headerBarBackground" name="top" id="pageTop">
             <table class="headerBarWidth"> 
                 <tr>
@@ -126,11 +144,19 @@
                                     <table class="responsiveDetailSectionTable">
                                         <tr>
                                             <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_NON_REIMBURSABLE' | translate}}</td>
+<<<<<<< HEAD
                                             <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_DAYS' | translate}}</td>
                                         </tr>
                                         <tr>
                                             <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.NonReimbursable}}</td>
                                             <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.Days}}</td>
+=======
+                                            <!--<td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_DETAIL_DAYS' | translate}}</td>-->
+                                        </tr>
+                                        <tr>
+                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.NonReimbursable}}</td>
+                                            <!--<td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.Days}}</td>-->
+>>>>>>> FETCH_HEAD
                                         </tr>
                                     </table>                            
                                 </div>
@@ -183,7 +209,11 @@
                         <div ng-hide="lineItemsPanel" class="homePageMenuWidth">
                             <table class="homePageMenuWidth" >
                                 <tr ng-repeat="approvalRequestLineItems in approvalRequestData.LineItems" class="lineItemsHeight" ng-click='gotoApprovalLineDetailPage(approvalRequestLineItems)'>
+<<<<<<< HEAD
                                     <td><span class="textLink">{{approvalRequestLineItems.ItemName}}</span></td>
+=======
+                                    <td><span class="textLinkExpenceNameTruncate">{{approvalRequestLineItems.ItemName}}</span></td>
+>>>>>>> FETCH_HEAD
                                     <td id="defaultTopSpace" class="alignRight"><span class="fieldValue">{{approvalRequestLineItems.Currencies}}&nbsp;{{approvalRequestLineItems.Amount}}</span></td>
                                 </tr>                                                   
                             </table>
@@ -218,19 +248,31 @@
                                 <div class="responsiveDetailSectionData">
                                     <div class="responsiveDetailSectionTable">
                                         <span class="fieldLabel">{{'LBL_EXP_DETAIL_PRE_TRIP_ID' | translate}}</span><br/>
+<<<<<<< HEAD
                                         <span class="fieldValue">{{approvalRequestData.PreTripDetails.Id}}</span>
+=======
+                                        <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalRequestData.PreTripDetails.Id}}</span>
+>>>>>>> FETCH_HEAD
                                     </div>
                                 </div>
                                 <div class="responsiveDetailSectionData">
                                     <div class="responsiveDetailSectionTable">
                                         <span class="fieldLabel">{{'LBL_EXP_DETAIL_PRE_TRIP_PASSENGER_INFO' | translate}}</span><br/>
+<<<<<<< HEAD
                                         <span class="textLink">{{approvalRequestData.PreTripDetails.PassengerInfo}}</span>
+=======
+                                        <span class="textLink" id="fieldValueRichTextFormate">{{approvalRequestData.PreTripDetails.PassengerInfo}}</span>
+>>>>>>> FETCH_HEAD
                                     </div>
                                 </div>
                                 <div class="responsiveDetailSectionData">                                
                                     <div class="responsiveDetailSectionTable">
                                         <span class="fieldLabel">{{'LBL_EXP_DETAIL_PRE_TRIP_LOCATION_DETAILS' | translate}}</span><br/>
+<<<<<<< HEAD
                                         <span class="fieldValue">{{approvalRequestData.PreTripDetails.LocationDetails}}</span>
+=======
+                                        <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalRequestData.PreTripDetails.LocationDetails}}</span>
+>>>>>>> FETCH_HEAD
                                     </div>
                                 </div>
                             </div>
@@ -343,7 +385,13 @@
                         <div ng-hide="lineItemsPanel" class="responsiveDetailSectionTable">
                             <table class="homePageMenuWidth" >
                                 <tr ng-repeat="approvalRequestLineItems in approvalRequestData.LineItems" ng-click='gotoApprovalLineDetailPage(approvalRequestLineItems)' class="lineItemsHeight">
+<<<<<<< HEAD
                                     <td><span class="textLinkExpenceNameTruncate">{{approvalRequestLineItems.ItemName}}</span></td>
+=======
+                                    <td>
+                                        <span class="textLinkExpenceNameTruncate">{{approvalRequestLineItems.ItemName}}</span>
+                                    </td>
+>>>>>>> FETCH_HEAD
                                     <td id="defaultTopSpace" class="alignRight"><span class="fieldValue">{{approvalRequestLineItems.Currencies}}&nbsp;{{approvalRequestLineItems.Amount}}</span></td>
                                 </tr>                                                   
                             </table>
@@ -353,7 +401,11 @@
                 <div class="template" ng-init="commentsPanel=true">
                     <div class="defaultBottomBorder" ng-click="commentsPanel = (commentsPanel=='false' ? 'true' : 'false')">
                         <span>
+<<<<<<< HEAD
                             <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_COMMENTS' | translate}}</label>                      
+=======
+                            <label class="detailSectionHeader">{{'LBL_EXP_LINEITEM_DETAIL_COMMENTS' | translate}}</label>                     
+>>>>>>> FETCH_HEAD
                         </span> 
                         <span class="alignRight">              
                             <img class="arrowButtonStyle" ng-hide="commentsPanel" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}"/>
@@ -391,26 +443,51 @@
                     <div ng-hide="approvalHistoryPanel" class="responsiveDetailSectionTable">
                         <table class="homePageMenuWidth" >
                             <tr ng-repeat="approvalRequestHistory in approvalRequestData.ApprovalHistory">
+<<<<<<< HEAD
                                 <td><span class="fieldValue">{{approvalRequestHistory.ApproverName}}</span></td>
                              <!--   <td><span class="fieldValue">{{approvalRequestHistory.AribaRole}}</span></td> -->
                                 <td><span class="alignRight">{{approvalRequestHistory.ApproverAction}}</span></td>
+=======
+                                <td class="ipRowAllignLeft"><span class="fieldValue">{{approvalRequestHistory.ApproverName}}</span></td>
+                                <td class="ipRowAllignCenter"><span class="fieldValue">{{approvalRequestHistory.AribaRole}}</span></td>
+                                <td class="ipRowAllignRight"><span class="fieldValue">{{approvalRequestHistory.ApproverAction}}</span></td>
+>>>>>>> FETCH_HEAD
                             </tr>                                                   
                         </table>
                     </div>
                 </div>  
             </tab>
+<<<<<<< HEAD
             <tab heading="{{'LBL_FEED'| translate}}" class="homePageMenuBody" active="active.feed">
                  <iframe ng-src="{{approvalRequestData.url}}"  style="position: absolute; height: 100%; width:100%;border: none;"></iframe>
+=======
+            <tab heading="{{'LBL_FEED'| translate}}" class="homePageMenuBody" active="active.feed" ng-show="showFeed">
+                <div class="feedIFrameSectionDiv">
+                    <iframe ng-src="{{approvalRequestData.url}}" class="feedIFrameSectionDetail"></iframe>
+                </div>
+>>>>>>> FETCH_HEAD
             </tab>
         </tabset>
         
         <!-- Fixed APPROVE / REJECT / COMMENT Bar -->
+<<<<<<< HEAD
         <nav class="fixed-nav-bar">        
             <div id="alignCenter" style="padding-top:5px;padding-bottom:5px;">
                 <table  class="homePageMenuWidth">
                     <tr id="alignCenter">                    
                         <td id="alignCenter">
                             <img  class="headerBarIconStyle"  ng-click="activateTab('feed')" src="{!URLFOR($Resource.MyApprovalsSR, 'img/Comment.svg')}"/>
+=======
+        <!--<nav class="navbar navbar-default navbar-fixed-bottom">        
+            <div id="alignCenter" class="fixed-nav-bar-padding container">-->
+         <nav class="fixed-nav-bar">        
+            <div id="alignCenter" class="fixed-nav-bar-padding">
+
+                <table  class="homePageMenuWidth">
+                    <tr id="alignCenter">                    
+                        <td id="alignCenter">
+                            <img  class="headerBarIconStyle"  ng-show="showFeed" ng-click="activateTab('feed')" src="{!URLFOR($Resource.MyApprovalsSR, 'img/Comment.svg')}"/>
+>>>>>>> FETCH_HEAD
                         </td>
                         <td id="alignCenter" ng-show="showReject">
                             <img  class="headerBarIconStyle"  ng-show="showReject"  ng-click='gotoApproveRejectPage("Reject")' src="{!URLFOR($Resource.MyApprovalsSR, 'img/Return.svg')}"/>

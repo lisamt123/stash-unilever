@@ -143,6 +143,21 @@
         <type>Lookup</type>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <fullName>AF_Agency_ExchangeRateTemp__c</fullName>
+        <externalId>false</externalId>
+        <label>Agency ExchangeRateTemp</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <fullName>AF_Agency_Exchange_Rate__c</fullName>
         <description>AgencyFee#GLOBAL#To store Agency exchange rate values</description>
         <externalId>false</externalId>
@@ -242,6 +257,7 @@
         <fullName>AF_Compound_key__c</fullName>
         <description>Composite Key used for quickly fiding all OOPS estimate records for the purpose of calculating total (yearly) PO value.</description>
         <externalId>false</externalId>
+<<<<<<< HEAD
         <formula>IF(
 	OR(
 		ISBLANK(AF_OOPS_Actual__r.AF_Fiscal_year__c), 
@@ -257,6 +273,9 @@
 	Agency_Entity_Name__c + &apos;|&apos; +
 	Unilever_Entity_Name__c
 )</formula>
+=======
+        <formula>AF_OOPS_Actual__r.AF_Fiscal_year__c +&apos;|&apos;+CASESAFEID (AF_Agency_Entity__r.AF_Agency__c)+&apos;|&apos;+CASESAFEID (AF_OOPS_Actual__r.AF_Brand__c)+&apos;|&apos;+Agency_Entity_Name__c+&apos;|&apos;+Unilever_Entity_Name__c</formula>
+>>>>>>> FETCH_HEAD
         <inlineHelpText>Composite Key used for quickly fiding all OOPS estimate records for the purpose of calculating total (yearly) PO value.</inlineHelpText>
         <label>Compound key</label>
         <required>false</required>
@@ -458,6 +477,20 @@ SUBSTITUTE(AF_OOPS_Actual__r.Name,AF_OOPS_Actual__r.AF_Brand__r.Name, &quot;&quo
         <type>Checkbox</type>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <fullName>AF_MatrixCodeTemp__c</fullName>
+        <externalId>false</externalId>
+        <label>MatrixCodeTemp</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <fullName>AF_Max_Quarter__c</fullName>
         <description>Calculates the max qtr</description>
         <externalId>false</externalId>
@@ -473,6 +506,24 @@ SUBSTITUTE(AF_OOPS_Actual__r.Name,AF_OOPS_Actual__r.AF_Brand__r.Name, &quot;&quo
         <unique>false</unique>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <fullName>AF_Mean_Quarter__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q1&quot;), &quot;Q0&quot;, 
+IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q2&quot;), &quot;Q1&quot;, 
+IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q3&quot;), &quot;Q2&quot;, 
+IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q4&quot;), &quot;Q3&quot;, null))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Mean Quarter</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <fullName>AF_No_of_Quaters__c</fullName>
         <description>Calculates no of quarters</description>
         <externalId>false</externalId>
@@ -553,6 +604,46 @@ SUBSTITUTE(AF_OOPS_Actual__r.Name,AF_OOPS_Actual__r.AF_Brand__r.Name, &quot;&quo
         <unique>false</unique>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <fullName>AF_OverridePO_Adaptation_LC__c</fullName>
+        <description>This field is used to override the PO Adaptation value for the PO report of OOPSEstimate</description>
+        <externalId>false</externalId>
+        <label>Override PO Adaptation – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OverridePO_Digital_LC__c</fullName>
+        <externalId>false</externalId>
+        <label>Override PO Digital – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_Override_Estimate_Local__c</fullName>
+        <externalId>false</externalId>
+        <label>Override Estimate Local</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <fullName>AF_PO_Number__c</fullName>
         <description>Stores PO number from ariba</description>
         <externalId>false</externalId>
@@ -762,6 +853,32 @@ SUBSTITUTE(AF_OOPS_Actual__r.Name,AF_OOPS_Actual__r.AF_Brand__r.Name, &quot;&quo
         <unique>false</unique>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <fullName>AF_ReadyforPOExchangeRateTemp__c</fullName>
+        <externalId>false</externalId>
+        <label>ReadyforPOExchangeRateTemp</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_ReadyforPoCodeTemp__c</fullName>
+        <externalId>false</externalId>
+        <label>ReadyforPoCodeTemp</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <fullName>AF_Status__c</fullName>
         <description>AgencyFee#GLOBAL#To store the Status for OOPS Estimate</description>
         <externalId>false</externalId>

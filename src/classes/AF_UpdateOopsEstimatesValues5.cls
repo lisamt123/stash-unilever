@@ -200,10 +200,21 @@ Public Class AF_UpdateOopsEstimatesValues5
                                    system.debug('Here:' +readypcode);
                                    system.debug('Here:' +CurrencyMapforGBP.get(readypcode));
                                    system.debug('Here:' +CurrencyMapforUSD.get(readypcode));
+<<<<<<< HEAD
                                    if(MatrixReadyforConversion.get(mt.id)!='--None--' && MatrixReadyforConversion.get(mt.id)=='GBP')
                                    agencyEst.AF_Ready_For_PO_Exchange_Rate__c= CurrencyMapforUSD.get(readypcode);
                                    else if(MatrixReadyforConversion.get(mt.id)!='--None--' && MatrixReadyforConversion.get(mt.id)=='USD')
                                    agencyEst.AF_Ready_For_PO_Exchange_Rate__c= CurrencyMapforGBP.get(readypcode);
+=======
+                                   if(MatrixReadyforConversion.get(mt.id)!='--None--' && MatrixReadyforConversion.get(mt.id)=='GBP'){
+                                   agencyEst.AF_Ready_For_PO_Exchange_Rate__c= CurrencyMapforUSD.get(readypcode);
+                                   agencyEst.AF_ReadyforPOExchangeRateTemp__c= CurrencyMapforUSD.get(readypcode);
+                                   }
+                                   else if(MatrixReadyforConversion.get(mt.id)!='--None--' && MatrixReadyforConversion.get(mt.id)=='USD'){
+                                   agencyEst.AF_Ready_For_PO_Exchange_Rate__c= CurrencyMapforGBP.get(readypcode);
+                                   agencyEst.AF_ReadyforPOExchangeRateTemp__c= CurrencyMapforGBP.get(readypcode);
+                                   }
+>>>>>>> FETCH_HEAD
                                    system.debug('Here:' +agencyEst.AF_Ready_For_PO_Exchange_Rate__c);
                                    
                                    
@@ -211,6 +222,12 @@ Public Class AF_UpdateOopsEstimatesValues5
                                    {
                                        agencyEst.AF_Agency_Exchange_Rate__c= CurrencyMap.get(Matccode);
                                    }
+<<<<<<< HEAD
+=======
+                                   if(agencyEst.AF_ReadyforPOExchangeRateTemp__c==null){
+                                    agencyEst.AF_ReadyforPOExchangeRateTemp__c = CurrencyMap.get(Matccode);
+                                   }
+>>>>>>> FETCH_HEAD
                                    
                                    if(agencyEst.AF_Ready_For_PO_Exchange_Rate__c!= null && agencyEst.AF_Ready_For_PO_Exchange_Rate__c!= 0 && agencyEst.AF_OOPS_Estimate_Local__c!= null  && agencyEst.AF_Agency_Exchange_Rate__c!=null)
                                    {
@@ -235,6 +252,10 @@ Public Class AF_UpdateOopsEstimatesValues5
                                    }*/
                                    
                                    agencyEst.AF_Agency_Exchange_Rate__c= CurrencyMap.get(Matccode);
+<<<<<<< HEAD
+=======
+                                   agencyEst.AF_Agency_ExchangeRateTemp__c= CurrencyMap.get(Matccode);
+>>>>>>> FETCH_HEAD
                                    if(agencyEst.AF_Agency_Exchange_Rate__c != null && agencyEst.AF_Agency_Exchange_Rate__c!= 0 && agencyEst.AF_Estimate__c!= null)
                                    agencyEst.AF_OOPS_Estimate_Local__c= agencyEst.AF_Estimate__c*agencyEst.AF_Agency_Exchange_Rate__c;
                                         
@@ -252,7 +273,16 @@ Public Class AF_UpdateOopsEstimatesValues5
                            else
                            {
                                 agencyEst.AF_OOPS_Matrix_Currency_Code__c=matrixDataEntryCurrency.get(mt.id);
+<<<<<<< HEAD
                                 agencyEst.AF_Ready_For_PO_Entry_Currency__c=matrixReadyforconversion.get(mt.id);
+=======
+                                agencyEst.AF_MatrixCodeTemp__c = matrixDataEntryCurrency.get(mt.id);
+                                agencyEst.AF_Ready_For_PO_Entry_Currency__c=matrixReadyforconversion.get(mt.id);
+                                agencyEst.AF_ReadyforPoCodeTemp__c=matrixReadyforconversion.get(mt.id);
+                                if(agencyEst.AF_ReadyforPoCodeTemp__c==null){
+                                    agencyEst.AF_ReadyforPoCodeTemp__c = matrixDataEntryCurrency.get(mt.id);
+                                }
+>>>>>>> FETCH_HEAD
                            }
 
                            Testexit=true;

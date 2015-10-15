@@ -105,6 +105,11 @@ public class Test_AF_OOPSEstimateController
      oopsActual1.AF_Brand__c=bran.Id;
      oopsActual1.AF_Agency__c=acc.Id;
      oopsActual1.AF_Status__c='Ready For PO ';
+<<<<<<< HEAD
+=======
+     oopsActual1.Name = 'Axe-Q1-2015';
+     oopsActual1.Quarter__c='Q1';
+>>>>>>> FETCH_HEAD
      insert oopsActual1;
      
      //Insert OOPS Estimate
@@ -113,6 +118,10 @@ public class Test_AF_OOPSEstimateController
      oopsEst1.AF_OOPS_Actual__c=oopsActual1.Id;
      oopsEst1.AF_Estimate__c=75;
      oopsEst1.AF_Status__c='Ready For PO';
+<<<<<<< HEAD
+=======
+     
+>>>>>>> FETCH_HEAD
      insert oopsEst1; 
      
      ApexPages.currentPage().getParameters().put('id',oopsEst1.id);         

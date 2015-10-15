@@ -48,6 +48,13 @@
         </picklistValues>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- Account Record Count --></label>
+        <name>Account_Record_Count__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- Additional Information --></label>
         <name>Additional_Information__c</name>
     </fields>
@@ -970,6 +977,13 @@
         </picklistValues>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- Latest Case Number --></label>
+        <name>Latest_Case_Number__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label>Lotto di produzione l&apos;ultimo caso</label>
         <name>Latest_Case_Product_Code__c</name>
     </fields>
@@ -1055,6 +1069,13 @@
         <name>Ownership_Status__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- Phone No Special Char --></label>
+        <name>Phone_No_Special_Char__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label>Canale preferito</label>
         <name>Preferred_Channel__c</name>
         <picklistValues>

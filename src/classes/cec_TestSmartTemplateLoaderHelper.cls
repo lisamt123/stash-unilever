@@ -62,7 +62,11 @@ public static testMethod void SmartTemplateLoaderHelper(){
         c.Origin = 'Email';
         c.Status = 'New';
         c.Subject ='My PC is not working2';
+<<<<<<< HEAD
         c.Brand__c = 'Dove';
+=======
+        //c.Brand__c = 'Dove';
+>>>>>>> FETCH_HEAD
         c.Set_Assignment_Fields__c = true;
         c.Case_Brand_Mapping__c  =cbm.id;
         c.Country__c = cmm.Id;
@@ -73,18 +77,33 @@ public static testMethod void SmartTemplateLoaderHelper(){
         c1.Origin = 'Email';
         c1.Status = 'New';
         c1.Subject ='My PC is not working2';
+<<<<<<< HEAD
         c1.Brand__c = 'Dove';
+=======
+        //c1.Brand__c = 'Dove';
+>>>>>>> FETCH_HEAD
         c1.Country__c = cmm.id;
         c1.Set_Assignment_Fields__c = true;
         caseList.add(c1);  
         insert caseList;
+<<<<<<< HEAD
         case caseTest = [Select Brand__c, Case_Market__c from case Where Brand__c = 'Dove' limit 1];
+=======
+        
+    	/*case caseTest = [Select Brand__c, Case_Market__c from case Where Brand__c = 'Dove' limit 1];*/
+    	case caseTest = [Select Case_Brand__c, Case_Market__c from case Where Case_Brand__c = :c.Case_Brand__c limit 1];
+>>>>>>> FETCH_HEAD
 
         system.debug('------------------cbm.Brand_Market__c>>>>>>> '+caseTest.Case_Market__c);
         
         System.assertEquals(cmm.Market__c, caseTest.Case_Market__c);
         
+<<<<<<< HEAD
         case caseTest1 = [Select Brand__c, Case_Market__c from case Where Brand__c = 'Dove' limit 1];
+=======
+        /*case caseTest1 = [Select Brand__c, Case_Market__c from case Where Brand__c = 'Dove' limit 1];*/
+    	case caseTest1 = [Select Case_Brand__c, Case_Market__c from case Where Case_Brand__c = :c1.Case_Brand__c  limit 1];
+>>>>>>> FETCH_HEAD
 
         system.debug('------------------cbm.Brand_Market__c>>>>>>> '+caseTest1.Case_Market__c);
         

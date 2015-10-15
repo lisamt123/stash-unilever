@@ -1,112 +1,42 @@
 <apex:page controller="AF_BonusQuarterly" showHeader="false" sidebar="false" docType="HTML-5.0">
- <style>
- th.headerRow {
-text-align: center;
-}
-th.totalRow {
-text-align: center;
-}
-
- body .pbBody table.list tr th {
- background:#61A631;
- color: #FFFFFF;font-size: 16px;
-font-weight: bold;
-}
-body .pbBody table.list tr td {
-    background: none repeat scroll 0 0 #D3e6b8 !important;
-    color: black !important;
-    text-align: center;
-}
-
- .submit_btn1{
-background: none repeat scroll 0 0 #E400A7 !important;
-border: 1px solid red!important;
-border-radius: 5px !important;
-color: #FFFFFF!important;
-font-size: 14px!important;
-height: 30px;
-margin-top: 13px;
-padding-bottom: 0;
-padding-top: 0;
-width: 100px;
-/* margin-left: 966px !important; */
-float: left;
-margin-right: 5px!important;
- }
-  .submit_btn2{
-background: none repeat scroll 0 0 #E400A7 !important;
-border: 1px solid red!important;
-border-radius: 5px !important;
-color: #FFFFFF!important;
-font-size: 14px!important;
-height: 30px;
-margin-top: 13px;
-padding-bottom: 0px;
-padding-top: 0px;
-width: 100px;
-/* margin-left: 10px !important; */
-float: left;
-margin-right: 10px !important;
- }
  
- body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th{
-background: #f2f3f3;
-border-width: 0 0 1px 1px;
-border-color: #e0e3e5;
-color: #000;
-font-size: 16px!important;
-font-weight: bold;
-padding: 5px 2px 4px 5px;
-}
-.list .headerRow th {
-    white-space:normal!important;
-}
-.values1 {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 2px solid #74AE00;
-    border-radius: 5px;
-    color: #000000;
-    font-size: 16px;
-    height: 30px;
-    margin-top: 10px;
-    padding: 2px 0 0 5px;
-    text-align: center;
-    width: 120px !important;
-}
-
-.heading_main{
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    padding-bottom:5px;
-    padding-left: 0;
-    padding-right: 0;
-    width: 100%;
+<!-- Common_Style File Start -->
+  <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<!-- Common_Style File End -->
+<!-- jquery library Start-->
+  <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/>
+<!-- jquery library End-->
+ <script>  
+function twoDecimalCheck(){
+    $('.two-digits').keyup(function(){
+        //alert('Hi2');
+        if($(this).val().indexOf('.')!=-1){         
+            if($(this).val().split(".")[1].length > 2){                
+                if( isNaN( parseFloat( this.value ) ) ) return;
+                this.value = parseFloat(this.value).toFixed(2);
+            }  
+         }            
+         return this; //for chaining
+    });
+    
+    
+     
+  $(".two-digits").keypress(function (e) {
+      
+     if (e.which != 46 && e.which > 31 && (e.which < 48 || e.which > 57) && (e.which < 43 || e.which > 45)){
+        
+        //$("#errmsg").html("Digits Only").show().fadeOut("slow");
+        alert("Please enter numbers only.");
+               return false;
     }
-.heading_text{
-    color: black;
-    font-size: 20px;
-    margin-right: 20px;
-    padding: 7px 1px 8px 8px;
-}
-
-body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th {
- background:#61A631;
- color: #FFFFFF;font-size: 16px;
-font-weight: bold;
- }
- 
-body .bPageBlock {
-    background: #F8F8F8 !important;
-    border:none!important;
-
-</style>
- <style>
-    #salesFroceSource_StatusBox
-    {
-      top:230px !important;
-    }
-    </style>
+   });
+   }
+   
+$( function () {
+    //alert('Hi1');
+    $('.two-digits').keyup(twoDecimalCheck);
+});
+ </script>
  <script>
  
   function isNumberKey(evt)
@@ -140,12 +70,16 @@ body .bPageBlock {
          return true;
        }
      }
+     
+  function custFunc(){
+      parent.document.body.setAttribute("data-shouldRefreshPage", "1");
+  }
  </script>
  <apex:message />
- 
+<div class="AF_QuarterlyBonus">
   <div class="row">           
         <div class="col-lg-12 charttable1">         
-            <apex:image url="{!$Resource.header_new}" style="width:100%;height:37px;" />            
+            <apex:image url="{!$Resource.header_new}" styleClass="helpimg"/>            
         </div>          
     </div>
  <div class="heading_main">
@@ -159,36 +93,36 @@ body .bPageBlock {
  
  <apex:form id="frm">
  <apex:outputPanel >
- <div style="display:block; margin-bottom:10px;margin-bottom:5px; font-weight:bold;">
+ <div class="alertMessage">
 Please select Quarter below:
 </div>
- <apex:outputLabel value="Quarter" for="Quarter" style="font-size:16px; font-weight:bold; display:inline-block; margin-bottom:20px;margin-right:7px; "  />
+ <apex:outputLabel value="Quarter" for="Quarter" styleClass="lableQuarter"/>
           <apex:selectList id="chooseColor"  size="1"  value="{!Quarterinfo}">
             <apex:selectOption itemValue="Q1" itemLabel="Q1" />
             <apex:selectOption itemValue="Q2" itemLabel="Q2"/>
             <apex:selectOption itemValue="Q3" itemLabel="Q3"/>
             <!--<apex:selectOption itemValue="Q4" itemLabel="Q4"/>-->
-            <apex:actionsupport event="onchange" rerender="pbt,Trad_Digi,buttons,pmsg" action="{!CallBonusQuarterly}"/>
+            <apex:actionsupport event="onchange" rerender="pbt,Trad_Digi,buttons,pmsg" action="{!CallBonusQuarterly}" oncomplete="twoDecimalCheck();"/>
           </apex:selectList> 
  </apex:outputpanel>
-<div style="clear:both;"></div>
-<div style="font-size: 16px;font-weight: bold;float:left;">Bonusable Fees </div>
+<div class="clearB"></div>
+<div class="BonusableFeeLable">Bonusable Fees</div>
 
  <apex:outputPanel id="Trad_Digi">
-  <div style="font-size: 16px;margin-left: 248px;font-weight:bold;">
+  <div class="digitalLable">
      <!--   <apex:inputCheckbox value="{!isDigital}" Title="Digital" disabled="true"/> -->
-      <span style="margin-left: 4px;">Digital 
-        <span style="margin-left: 61px;">&euro;</span>
+      <span class="marginL4P">Digital 
+        <span class="marginL61P">&euro;</span>
         <apex:outputText value="{0,number,###,###,###}"  >
         <apex:param value="{!Totals_BonusMeasureDigital}"/>
        </apex:outputText>
        
         </span> <br/>
   </div>
-  <div style="font-size: 16px; margin-left: 248px;font-weight:bold;">
+  <div class="traditionalLable">
          <!-- <apex:inputCheckbox value="{!isTraditional}" title="Traditional" disabled="true"/>  -->
-          <span style="margin-left: 2px;">Traditional
-           <span style="margin-left: 30px;">&euro;</span>
+          <span class="marginL2P">Traditional
+           <span class="marginL30P">&euro;</span>
          <apex:outputText value="{0,number,###,###,###}">
           <apex:param value="{!Totals_BonusMeasureTrad}"/>
        </apex:outputText>
@@ -201,19 +135,19 @@ Please select Quarter below:
 
 
  <!--<div style="font-size: 16px;font-weight: bold;margin-bottom:10px;margin-top:15px;"> {!Bonus_Measure}</div>-->
-  <div style="font-size: 16px;">
- 
- <apex:pageblockTable value="{!QuartelyBonus}" var="QB" id="pbt" style="width:100%">
- <apex:column headerValue="Bonus Measure" style="width:115px!important;">
+  <div class="fontSize16P">
+  
+ <apex:pageblockTable value="{!QuartelyBonus}" var="QB" id="pbt" styleClass="wid100P tableSection">
+ <apex:column headerValue="Bonus Measure">
   <apex:outputText value="{!QB.Bonus_Threshold_Measure}"/>
  </apex:column>
- <apex:column headerValue="Country" style="width:115px!important;">
+ <apex:column headerValue="Country">
   <apex:outputText value="{!QB.Countryname}"/>
   <apex:facet name="footer">
     <apex:outputText value="Total"/>
   </apex:facet>
  </apex:column>
- <apex:column headerValue="Bonusable Fee (€)" style="width:50px!important;">
+ <apex:column headerValue="Bonusable Fee (€)">
     <apex:outputText value="{0,number,###,###,###}" rendered="{!If(AND(NOT(QB.bonusResObj.AF_Locked__c),QB.countryCount==1),'true',false)}">
           <apex:param value="{!QB.total_bonus_fees}"/>
        </apex:outputText>
@@ -231,24 +165,24 @@ Please select Quarter below:
      
    </apex:facet>
  </apex:column>
- <apex:column headerValue="Minimum (5%)" style="width:50px!important;">
+ <apex:column headerValue="Minimum (5%)">
   <apex:outputText value="{!QB.Minimum_bonus}"/>
  </apex:column>
- <apex:column headerValue="Stretching (10%)" style="width:50px!important;">
+ <apex:column headerValue="Stretching (10%)">
   <apex:outputText value="{!QB.Streching_bonus}"/>
  </apex:column>
- <apex:column headerValue="Outstanding (15%)" style="width:50px!important;">
+ <apex:column headerValue="Outstanding (15%)">
   <apex:outputText value="{!QB.Outstanding_bonus}"/>
  </apex:column>
  
- <apex:column headerValue="Quant Result" rendered="{!IsEditable}" id="c1" style="width:50px!important;" >
+ <apex:column headerValue="Quant Result" rendered="{!IsEditable}" id="c1">
  <!--<apex:facet name="footer">
     <apex:outputText value="Total Bonus Value"/>
   </apex:facet>-->
  <apex:outputPanel >
   <apex:outputField value="{!QB.bonusResObj.AF_Quant__c}"  id="txtquant1" rendered="{!AND(IsEditable,QB.bonusResObj.AF_Locked__c)}"/>
-  <apex:inputfield value="{!QB.bonusResObj.AF_Quant__c}" onFocus="javascript:this.maxLength=4;"  id="txtquant" onkeypress="return isNumberKey(event)"  rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c),NOT(ISNULL(QB.total_bonus_fees)))}" style="text-align: center;width:60px;">
-  <div style="font-family:arial;color:red;font-size:14px;text-align:center" id="regTitle"></div>
+  <apex:inputfield value="{!QB.bonusResObj.AF_Quant__c}" id="txtquant"  rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c),NOT(ISNULL(QB.total_bonus_fees)))}" styleClass="totalBonusInputBox two-digits">
+  <div class="regTitlediv" id="regTitle"></div>
  <apex:actionSupport event="onchange" action="{!Calculate_Bonus}" reRender="bonusval1,bonusper1,bonus1,bonus2,totals,totalbonus,bonusper,bonusval,sumofbonusbase" >
  
  </apex:actionSupport>
@@ -257,7 +191,7 @@ Please select Quarter below:
   </apex:outputPanel>
  </apex:column>
  
- <apex:column headerValue="Bonus (%)" style="width:50px!important;">
+ <apex:column headerValue="Bonus (%)">
  <apex:facet name="footer">
    <apex:outputText value="{0,number,###,###,###}" id="bonusper1">
     <apex:param value="{!sum_of_bonus_per}" id="bonusper"/>
@@ -268,7 +202,7 @@ Please select Quarter below:
   </apex:outputPanel>
  </apex:column>
  
- <apex:column headerValue="Bonus Value (€)" style="width:50px!important;">
+ <apex:column headerValue="Bonus Value (€)">
  <apex:facet name="footer">
  <apex:outputText value="{0,number,###,###,###}" id="bonusval1">
           <apex:param value="{!sum_of_bonus_val}" id="bonusval"/>
@@ -280,15 +214,14 @@ Please select Quarter below:
   </apex:outputText>
   </apex:outputpanel>
  </apex:column>
- <apex:column headerValue="Comment" style="width:50px!important;">
-    <apex:outputtext value="{!QB.bonusResObj.AF_Comment__c}" title="{!QB.bonusResObj.AF_Comment__c}"  rendered="{!AND(IsEditable,QB.bonusResObj.AF_Locked__c)}" style="
-   white-space: nowrap; width:100px; overflow: hidden; text-overflow: ellipsis; float:left; display:block"/>
-    <apex:inputfield value="{!QB.bonusResObj.AF_Comment__c}"  rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c))}" style="text-align: center;width:150px;"/>
+ <apex:column headerValue="Comment">
+    <apex:outputtext value="{!QB.bonusResObj.AF_Comment__c}" title="{!QB.bonusResObj.AF_Comment__c}"  rendered="{!AND(IsEditable,QB.bonusResObj.AF_Locked__c)}" styleClass="bonusOutputBox"/>
+    <apex:inputfield value="{!QB.bonusResObj.AF_Comment__c}"  rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c))}" styleClass="bonusinputBox"/>
  </apex:column>
  
   
  </apex:pageblockTable>
- 
+
  </div>
   <!--   <apex:outputPanel id="totals" >
         <div style="float: left;
@@ -317,14 +250,15 @@ Please select Quarter below:
     width: 107px;"><apex:outputText id="totalbonusper" value="{!sum_of_bonus_per}" /></span>
      </apex:outputPanel><br/>-->
  <br/>
- <div style="font-size:16px; float: left;"> Note: On Submit, these records will be locked. Please contact to CMCO Super User to unlock. </div>
+ <div class="noteStyle"> Note: On Submit, these records will be locked. Please contact to CMCO Super User to unlock. </div>
  <br/> <br/>
  <apex:outputPanel rendered="{!IsEditable}" id="buttons">
- <apex:outputPanel rendered="{!isNoRecord}">
+ <apex:outputPanel rendered="{!isNoRecord}" styleClass="floatR wid218PX">
  <div id="Savebutton">
- <apex:commandButton id="UpdateBonus"  action="{!UpdateBonus}" Value="Save" reRender="pbt,pmsg" styleClass="submit_btn1" rendered="{!!IsLocked}"  status="status"/>
+ <apex:commandButton id="UpdateBonus"  action="{!UpdateBonus}" Value="Save" reRender="pbt,pmsg,buttons,Confirm" styleClass="submit_btn1 savebutton" onClick="custFunc()" rendered="{!!IsLocked}"  status="status"/>
  </div>
- <apex:commandButton id="Confirm" action="{!ConfirmBonus}" value="Submit" reRender="pbt,pmsg" styleClass="submit_btn2" rendered="{!!IsLocked}" />
+ 
+ <apex:commandButton id="Confirm" action="{!ConfirmBonus}" value="Submit" reRender="pbt,pmsg" styleClass="submit_btn2 confirmbutton" onClick="custFunc()"  rendered="{!AND(NOT(IsLocked),NOT(displaySubmitButton),displaySubmitSave)}" status="status" />
 </apex:outputPanel>
 </apex:outputPanel>
 
@@ -337,6 +271,7 @@ Please select Quarter below:
  </apex:form>
  
  </apex:pageBlock>
+ </div>
   <script>
   function calldisable(){
           

@@ -1,0 +1,153 @@
+<!-- 
+   Page Name :  Core_IC_IdeaDetail
+   Author : Mindtree
+   Date : 16/7/15
+   Requirement/Project Name: Ideation App
+   Description: Idea Detail page used for Ideation                 
+ -->
+<apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false">
+    <meta http-equiv="content-type" content="text/html; charset=UTF8" />
+    <div class="container">
+
+    <div class="row iPhoneScreenHeight">
+        <div class="pageBottomSpace">
+            <div class="headerBarBackground borderRadius">
+                <table class="headerBarWidth" id="pageTop">
+                    <tr>
+                        <td class="headerBarSmallRowAlign"><img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/back.svg')}" ng-click='gotoHomePage()' class="backImageStyle"/></td>
+                    </tr>
+                </table>
+            </div>
+            <table class="homePageSection borderRadius">
+                <tr id="bottomSpace">
+                    <td colspan="2" id="paddingBottom">
+                        <div class="ideationCampaignDetailBlock" id="paddingTop">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <img src="{{ideaDetail.IdeaDetails.BackgroundImage}}" class="userImageHeight" id="imageBorderRadius" />
+                                    </td>
+                                    <td id="paddingLeft">
+                                        <span class="subText" id="linkTextColor">{{ideaDetail.IdeaDetails.CreatorName}}</span>
+                                        <br />
+                                        <span class="subText">{{ideaDetail.IdeaDetails.CreatedDateTime}}</span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <hr class="bottomBorder" />
+                            <div class="subText">
+                                <span class="subText">{{ideaDetail.IdeaDetails.CampaignTitle}}</span>
+                                <div id="paddingTop">
+                                    <span class="title">{{ideaDetail.IdeaDetails.IdeaTitle}}</span>
+                                    <br/>
+                                    <div id="fieldValueRichTextFormate" class="bodyText">{{ideaDetail.IdeaDetails.IdeaBody}}</div>
+                                </div>
+                                <div class="Categories defaultTopSpace">
+                                    <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/Category_steel.svg')}" class="imageIconStyle"/>
+                                    {{ideaDetail.IdeaDetails.Categories}}
+                                </div>
+                                <!--Attachment-->
+                                <div ng-hide="(ideaDetail.IdeaDetails.AttachmentURL==null? true : false)">
+                                    <br/>
+                                        <a target="_blank" href="{{ideaDetail.IdeaDetails.AttachmentURL}}" >Click here to view Attachment </a> <!---->
+                                    <br/>
+                                </div>
+                                <hr class="bottomBorder" />
+                                <span class="subText" ng-show="(ideaDetail.CampaignStatus=='Active'?true:false)">
+                                    <span ng-show="ideaDetail.IdeaDetails.Voted">
+                                        <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/like_blue.svg')}" class="imageIconStyle"/> &nbsp;{{'LBL_VOTED' | translate}}
+                                    </span>
+                                    <span ng-hide="ideaDetail.IdeaDetails.Voted" ng-click='voteForIdeaDetail()'>
+                                        <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/like_grey.svg')}" class="imageIconStyle"/> &nbsp;{{'LBL_VOTE' | translate}}
+                                    </span>
+                                </span>
+                                <span class="subText" id="alignRight">
+                                    {{ideaDetail.IdeaDetails.VoteCount}}&nbsp;
+                                    <span ng-show="(ideaDetail.IdeaDetails.VoteCount==1? true : false)">{{'LBL_VOTE' | translate}}</span>
+                                    <span ng-show="(ideaDetail.IdeaDetails.VoteCount!=1? true : false)">{{'LBL_VOTES' | translate}}</span> &nbsp;&nbsp;&nbsp;{{ideaDetail.IdeaDetails.CommentCount}}&nbsp;
+                                    <span ng-show="(ideaDetail.IdeaDetails.CommentCount==1? true : false)">{{'LBL_COMMENT' | translate}}</span>
+                                    <span ng-show="(ideaDetail.IdeaDetails.CommentCount!=1? true : false)">{{'LBL_COMMENTS' | translate}}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="ideationCampaignDetailBlock" id="paddingTop"> 
+                <span class="homePageSectionTitle">{{'LBL_COMMENTS' | translate}} </span> 
+            </div>   
+            <!--<form name="commentForm" ng-init="displayError = false">    
+                <div id="paddingTop">
+                    <table class="commentBar headerBarBackground borderRadius paddingAll">
+                        <tr>
+                            <td class="defaultLeftSpace" id="paddingRight"> <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/adduser.svg')}" class="backImageStyle"/> </td>
+                            <td class="homePageMenuWidth"> <input placeholder="{{'LBL_TYPE_YOUR_COMMENT_HERE' | translate}}" ng-model="commentBox" type="text" name="commentname" class="homePageMenuWidth borderRadius action-text-area" ng-class="{true:'action-text-area-error'}[displayError && (commentForm.commentname.$error.required)]" ng-required="true" ng-focus='displayError=false'  /> </td>
+                            <td> <span class="borderRadius paddingAll linkBgColor subText" id="whiteColor" ng-click='commentBox==null? displayError=true : commentOnIdea(commentBox)'>{{'LBL_POST' | translate}}</span> </td>
+                        </tr>
+                        <tr ng-show="commentForm.commentname.$error.required && displayError">
+                            <td colspan="3" class="errorMessage">
+                                Please enter the comment...
+                            </td>
+                        </tr>
+                    </table>
+                </div>    
+            </form>-->
+            <form name="commentForm">    
+                <div id="paddingTop">
+                    <table class="commentBar headerBarBackground borderRadius paddingAll" ng-show="(ideaDetail.CampaignStatus=='Closed'?false:true)">
+                        <tr>
+                            <!--<td class="defaultLeftSpace" id="paddingRight"> <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/adduser.svg')}" class="backImageStyle"/> </td>-->
+                            <td class="homePageMenuWidth defaultLeftSpace smallPadding"> 
+                                <!--<input placeholder="{{'LBL_WRITE_A_COMMENT' | translate}}" ng-model="commentBox" type="text" name="commentname" class="homePageMenuWidth borderRadius"/>--> 
+                                <textarea placeholder="{{'LBL_WRITE_A_COMMENT' | translate}}" ng-model="commentBox" rows="3" name="commentname" class="homePageMenuWidth borderRadius"/>
+                            </td>
+                            <td> <span ng-click="!commentBox || commentOnIdea(commentBox)" class="borderRadius paddingAll linkBgColor subText" id="whiteColor">{{'LBL_POST' | translate}}</span></td>
+                        </tr>
+                    </table>
+                </div>    
+            </form>                
+            <!--Notification Error Message starts-->
+            <div ng-show="(ideaDetail.IdeaComments.length==0 ? true : false)" id="paddingBottom">
+                <label class="notificationMessageForMyUpdates">{{'LBL_THERE_ARE_NO_COMMENTS' | translate}}</label><br />
+            </div>
+            <!--Notification Error Message ends-->
+            <div id="bottomSpace" ng-hide="(ideaDetail.IdeaComments.length==0 ? true : false)" class="homePageMenuWidth">
+                 <div class="ideationCampaignDetailBlock" ng-repeat="commentDetail in ideaDetail.IdeaComments" >
+                    <hr class="bottomBorder"/>
+                    <table class="homePageMenuWidth">
+                        <tr>
+                            <td class="userImageHeight">
+                                <img src="{{commentDetail.BackgroundImage}}" class="userImageHeight" id="imageBorderRadius"/>
+                            </td>
+                            <td class="homePageMyUpdatesBodyText" id="paddingLeft">
+                                <div class="subText" id="linkTextColor"> {{commentDetail.CreatorName}} </div>
+                                <div class="subText" >{{commentDetail.CreatedDateTime}}</div>
+                            </td>
+                        </tr>
+                        <tr >
+                            <td colspan="2" id="paddingTop">
+                                <div class="bodyText" id="fieldValueRichTextFormate" ng-bind-html="commentDetail.CommentBody"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <hr class="bottomBorder"/>
+            </div>
+        </div>
+
+        <!-- Fixed APPROVE / REJECT / COMMENT Bar -->
+        <nav class="fixed-nav-bar" ng-show="(ideaDetail.CampaignStatus=='Closed'?false:true)">
+            <div id="alignCenter" class="fixed-nav-bar-padding">
+                <table class="homePageMenuWidth">
+                    <tr id="alignCenter">
+                        <td id="alignCenter">
+                            <img class="fixedbar-icon-style" ng-click="gotoSubmitIdea()" src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/ActionBar_Idea.svg')}" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </nav>
+    </div>
+    </div>
+    <site:googleAnalyticsTracking id="UA-66235450-1" rendered="true"/>
+</apex:page>

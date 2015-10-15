@@ -47,6 +47,11 @@ public with sharing class AF_BonusQuarterly {
     //01-09-2014
     public decimal sum_of_bonus_basefee {get;set;}
     public decimal sum_of_bonus_basefee_onload {get;set;}
+<<<<<<< HEAD
+=======
+    public Boolean displaySubmitButton{get;set;}
+    public Boolean displaySubmitSave{get;set;}
+>>>>>>> FETCH_HEAD
     //upto here
     //contructor
     public  AF_BonusQuarterly() {
@@ -106,6 +111,10 @@ public with sharing class AF_BonusQuarterly {
         String Brand_id = ApexPages.currentPage().getParameters().get('Brandid');
         String agency_id=ApexPages.currentPage().getParameters().get('Agencyid');
         String current_year=ApexPages.currentPage().getParameters().get('Year');
+<<<<<<< HEAD
+=======
+        displaySubmitButton = false;
+>>>>>>> FETCH_HEAD
         
         User userObj = new User();
         userObj = [select Id, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];
@@ -286,6 +295,10 @@ public with sharing class AF_BonusQuarterly {
                         }
                         showmainblock=True;
                         if(setofnonthreshold_country.size()>0 && Pilot_model.get(0).AF_No_Bonus__c==false){
+<<<<<<< HEAD
+=======
+                            displaySubmitButton = true; 
+>>>>>>> FETCH_HEAD
                             Apexpages.addmessage(new apexpages.message(apexpages.severity.WARNING,  'The Thresholds entered do not match the Unilever entity/entities in the Base Fees matrix. Please resolve the following mismatches by setting Bonus Threshold for Unilever entities: '+ ' '+ setofnonthreshold_country ));
                         }
                     }
@@ -544,6 +557,10 @@ public with sharing class AF_BonusQuarterly {
         //CallBonusQuarterly();
         Calculate_Bonus();
         Boolean isQuantEmpty;
+<<<<<<< HEAD
+=======
+        displaySubmitSave = false;
+>>>>>>> FETCH_HEAD
         integer success=0;
         list<AF_Sub_Result__c> bonus_latestlist=new list<AF_Sub_Result__c>();
         system.debug('Bonus_SubResult_BackupList...'+Bonus_SubResult_BackupList.size());
@@ -556,7 +573,11 @@ public with sharing class AF_BonusQuarterly {
                         w_bonus.bonusResObj.AF_Bonus_Threshold__c=w_bonus.bonus_threshold_id;
                         w_bonus.bonusResObj.Af_status__c='Draft';
                         w_bonus.bonusResObj.AF_Period__c=Quarterinfo;
+<<<<<<< HEAD
                         
+=======
+                        //w_bonus.bonusResObj.AF_Class_code__c = true;
+>>>>>>> FETCH_HEAD
                         bonus_latestlist.add(w_bonus.bonusResObj);
                     
                 }  
@@ -584,6 +605,11 @@ public with sharing class AF_BonusQuarterly {
                         bonus_latestlocalList.AF_Quant_Bonus_Value__c = w_bonus.bonusResObj.AF_Quant_Bonus_Value__c;
                         bonus_latestlocalList.AF_country__c = w_bonus.bonusResObj.AF_country__c;
                         bonus_latestlocalList.AF_Comment__c = w_bonus.bonusResObj.AF_Comment__c;
+<<<<<<< HEAD
+=======
+                        bonus_latestlocalList.Sub_Result_AnnualID__c = w_bonus.bonusResObj.Id;
+                       bonus_latestlocalList.AF_Class_code__c = true;
+>>>>>>> FETCH_HEAD
                         bonus_latestlist.add(bonus_latestlocalList);
                     
                 }
@@ -615,6 +641,12 @@ public with sharing class AF_BonusQuarterly {
         else{
             if(!bonus_latestlist.isEmpty()){
                 upsert bonus_latestlist;
+<<<<<<< HEAD
+=======
+                system.debug('displaySubmitSave...1..'+displaySubmitSave);
+                displaySubmitSave = true;
+                system.debug('displaySubmitSave...2..'+displaySubmitSave);
+>>>>>>> FETCH_HEAD
                 apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,'Record has been successfully saved'));
                 success=1;
             }

@@ -9,10 +9,21 @@
         <value>Product Information</value>
     </caseValues>
     <fields>
+<<<<<<< HEAD
         <label><!-- Additional Information --></label>
         <name>Additional_Information__c</name>
     </fields>
     <fields>
+=======
+        <label><!-- External Links --></label>
+        <name>Additional_Information__c</name>
+    </fields>
+    <fields>
+        <label><!-- Additional Product Information --></label>
+        <name>Additional_Product_Information__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- Additional Sensitive Information --></label>
         <name>Additional_Sensitive_Information__c</name>
     </fields>
@@ -49,6 +60,25 @@
         <name>Legacy_Text__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- Meta Tags --></label>
+        <name>Meta_Tags__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nutrition Information --></label>
+        <name>Nutrition_Information__c</name>
+    </fields>
+    <fields>
+        <label><!-- PDF Version 2 --></label>
+        <name>PDF_Version_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- PDF Version 3 --></label>
+        <name>PDF_Version_3__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- PDF Version --></label>
         <name>PDF_Version__c</name>
     </fields>
@@ -65,10 +95,24 @@
         <name>Product_Code__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- Product De-listed --></label>
+        <name>Product_De_listed__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- Product Description --></label>
         <name>Product_Description__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- Recipe Suggestions --></label>
+        <name>Recipe_Suggestions__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- Recycling Info --></label>
         <name>Recycling_Info__c</name>
     </fields>
@@ -93,6 +137,13 @@
         <name>Suitability__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- Telephone Numbers --></label>
+        <name>Telephone_Numbers__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- Usage --></label>
         <name>Usage__c</name>
     </fields>
@@ -107,13 +158,38 @@
             <section>Extended Data</section>
         </sections>
         <sections>
+<<<<<<< HEAD
+=======
+            <label><!-- External Links --></label>
+            <section>External Links</section>
+        </sections>
+        <sections>
+            <label><!-- Nutrition Information --></label>
+            <section>Nutrition Information</section>
+        </sections>
+        <sections>
+>>>>>>> FETCH_HEAD
             <label><!-- Product &amp; Packaging --></label>
             <section>Product &amp; Packaging</section>
+        </sections>
+        <sections>
+<<<<<<< HEAD
+            <label><!-- Storage &amp; Usage --></label>
+            <section>Storage &amp; Usage</section>
+        </sections>
+=======
+            <label><!-- Recipe Information --></label>
+            <section>Recipe Information</section>
         </sections>
         <sections>
             <label><!-- Storage &amp; Usage --></label>
             <section>Storage &amp; Usage</section>
         </sections>
+        <sections>
+            <label><!-- Telephone Numbers --></label>
+            <section>Telephone Numbers</section>
+        </sections>
+>>>>>>> FETCH_HEAD
     </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

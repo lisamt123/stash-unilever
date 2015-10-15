@@ -581,6 +581,15 @@
             <field>AF_Difference_between_Unilever_and_Agenc__c</field>
             <table>AF_Brand_Estimate__c</table>
         </columns>
+<<<<<<< HEAD
+=======
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Big Category</displayNameOverride>
+            <field>Brand__c.AF_Category_Brands__c.AF_Super_category__c</field>
+            <table>AF_Brand_Estimate__c</table>
+        </columns>
+>>>>>>> FETCH_HEAD
         <masterLabel>Brand Estimates</masterLabel>
     </sections>
     <sections>

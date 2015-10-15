@@ -54,15 +54,24 @@
                                 <tr>
                                     
                                     <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_PAYMENT_TYPE' | translate}}</td>
+<<<<<<< HEAD
                                     <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_CITY' | translate}}</td>
                                 </tr>
                                 <tr>
                                      <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.PaymentType}}</td>
                                      <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.City}}</td>
+=======
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_REIMBURSABLE' | translate}}</td>
+                                </tr>
+                                <tr>
+                                     <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.PaymentType}}</td>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Reimbursable}}</td> 
+>>>>>>> FETCH_HEAD
                                 </tr>
                               </table> 
                          </div>
                          <div class="responsiveDetailSectionData">   
+<<<<<<< HEAD
                             <table class="responsiveDetailSectionTable">
                                 <tr>
                                     <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_COUNTRY' | translate}}</td>
@@ -71,10 +80,21 @@
                                 <tr>
                                      <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Country}}</td>
                                      <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.ExpenseDate}}</td>
+=======
+                            <table class="responsiveDetailSectionTable" ng-hide="approvalLineDetailRequestData.IsPerDiem">
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_CITY' | translate}}</td>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_COUNTRY' | translate}}</td>
+                                </tr>
+                                <tr>
+                                     <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.City}}</td>
+                                     <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Country}}</td>
+>>>>>>> FETCH_HEAD
                                 </tr>
                               </table> 
                          </div>
                     </div>
+<<<<<<< HEAD
                     <div class="row">
                          <div class="responsiveDetailSectionData">   
                             <table class="responsiveDetailSectionTable">
@@ -85,16 +105,37 @@
                                 <tr>
                                      <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.EndDate}}</td>
                                      <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Reimbursable}}</td>
+=======
+                    <div class="row" ng-hide="approvalLineDetailRequestData.IsPerDiem">
+                         <div class="responsiveDetailSectionData">   
+                            <table class="responsiveDetailSectionTable">
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_EXPENSE_DATE' | translate}}</td>
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_END_DATE' | translate}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.ExpenseDate}}</td>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.EndDate}}</td>                                   
+>>>>>>> FETCH_HEAD
                                 </tr>
                               </table> 
                          </div>
                          <div class="responsiveDetailSectionData">   
                             <table class="responsiveDetailSectionTable">
                                 <tr>
+<<<<<<< HEAD
                                     <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_RECEIPT' | translate}}</td>
                                 </tr>
                                 <tr>
                                     <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Receipt}}</td>
+=======
+                                    <td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_RECEIPT' | translate}}</td>                                
+                                    <!--<td class="responsiveDetailSectionTableRowLabel">{{'LBL_EXP_LINEITEM_DETAIL_RECEIPT' | translate}}</td>-->
+                                </tr>
+                                <tr>
+                                    <td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Receipt}}</td>
+                                    <!--<td class="responsiveDetailSectionTableRowValue">{{approvalLineDetailRequestData.ExpenseDetails.Receipt}}</td>-->
+>>>>>>> FETCH_HEAD
                                 </tr>
                               </table> 
                          </div>    
@@ -102,7 +143,11 @@
                 </div>
             </div><br/>
             <div class="template" ng-init="purposeAndReasonPanel=false">
+<<<<<<< HEAD
                 <div class="defaultBottomBorder" ng-click="purposeAndReasonPanel= (purposeAndReasonPanel=='true' ? 'false' : 'true')">
+=======
+                <div class="defaultBottomBorder" ng-click="purposeAndReasonPanel=!purposeAndReasonPanel">
+>>>>>>> FETCH_HEAD
                     <span>
                         <label class="detailSectionHeader">{{'LBL_EXP_DETAIL_PURPOSE_REASON' | translate}}</label>
                     </span>
@@ -114,11 +159,19 @@
                 <div ng-hide="purposeAndReasonPanel">
                     <div class="responsiveDetailSectionTable">
                         <span class="fieldLabel">{{'LBL_EXP_DETAIL_PURPOSE' | translate}}</span><br/>
+<<<<<<< HEAD
                         <span class="fieldValue">{{approvalLineDetailRequestData.Purpose}}</span>
                     </div>     
                     <div class="responsiveDetailSectionTable">
                         <span class="fieldLabel">{{'LBL_EXP_DETAIL_REASON' | translate}}</span><br/>
                         <span class="fieldValue">{{approvalLineDetailRequestData.Reason}}</span>
+=======
+                        <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.Purpose}}</span>
+                    </div>     
+                    <div class="responsiveDetailSectionTable">
+                        <span class="fieldLabel">{{'LBL_EXP_DETAIL_REASON' | translate}}</span><br/>
+                        <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.Reason}}</span>
+>>>>>>> FETCH_HEAD
                     </div>
                 </div>
             </div><br/>
@@ -133,7 +186,11 @@
                     </span>                
                 </div>
                 <div ng-hide="expenseDescriptionPanel" class="responsiveDetailSectionTable">
+<<<<<<< HEAD
                     <span class="fieldValue">{{approvalLineDetailRequestData.ExpenseDescription}}</span>
+=======
+                    <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.ExpenseDescription}}</span>
+>>>>>>> FETCH_HEAD
                 </div>
             </div><br/>
             <div class="template" ng-init="attendeesPanel=true">
@@ -203,6 +260,7 @@
                     </span>                
                 </div>
                 <div ng-hide="prediemPanel" class="responsiveDetailSectionTable">
+<<<<<<< HEAD
                     <div class="responsiveDetailSectionTable">
                         <span class="fieldLabel">{{'LBL_EXP_LINEITEM_DETAIL_PER_DIEM_AMOUNT' | translate}}</span><br/>
                         <span class="fieldValue">{{approvalLineDetailRequestData.PerDiemAmount}}</span>
@@ -210,6 +268,15 @@
                     <div class="responsiveDetailSectionTable">
                         <span class="fieldLabel">{{'LBL_EXP_LINEITEM_DETAIL_PER_DIEM_DETAILS' | translate}}</span><br/>
                         <span class="fieldValue">{{approvalLineDetailRequestData.PerDiemDetails}}</span>
+=======
+                    <div class="responsiveDetailSectionTable" ng-hide="approvalLineDetailRequestData.IsPerDiem">
+                        <span class="fieldLabel">{{'LBL_EXP_LINEITEM_DETAIL_PER_DIEM_AMOUNT' | translate}}</span><br/>
+                        <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.PerDiemAmount}}</span>
+                    </div>     
+                    <div class="responsiveDetailSectionTable">
+                        <span class="fieldLabel">{{'LBL_EXP_LINEITEM_DETAIL_PER_DIEM_DETAILS' | translate}}</span><br/>
+                        <span class="fieldValue" id="fieldValueRichTextFormate">{{approvalLineDetailRequestData.PerDiemDetails}}</span>
+>>>>>>> FETCH_HEAD
                     </div>
                 </div>
             </div><br/>

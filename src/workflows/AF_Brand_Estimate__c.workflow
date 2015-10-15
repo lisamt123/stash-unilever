@@ -439,7 +439,11 @@
     </fieldUpdates>
     <rules>
         <fullName>AF_Email Notification to Agency users re target base fees</fullName>
+<<<<<<< HEAD
         <active>false</active>
+=======
+        <active>true</active>
+>>>>>>> FETCH_HEAD
         <criteriaItems>
             <field>AF_Brand_Estimate__c.AF_Notified_to_Agency__c</field>
             <operation>equals</operation>
@@ -511,7 +515,11 @@
             <name>IsUpdate_False</name>
             <type>FieldUpdate</type>
         </actions>
+<<<<<<< HEAD
         <active>false</active>
+=======
+        <active>true</active>
+>>>>>>> FETCH_HEAD
         <formula>ISCHANGED(AF_Basefee_Estimate_Initial_Quarter__c)  &amp;&amp;  IsUpdate__c = True</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>

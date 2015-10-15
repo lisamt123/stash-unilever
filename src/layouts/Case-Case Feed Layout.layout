@@ -99,6 +99,7 @@
                 <field>AccountId</field>
             </layoutItems>
             <layoutItems>
+<<<<<<< HEAD
                 <behavior>Readonly</behavior>
                 <field>ContactPhone</field>
             </layoutItems>
@@ -111,6 +112,8 @@
                 <field>ContactEmail</field>
             </layoutItems>
             <layoutItems>
+=======
+>>>>>>> FETCH_HEAD
                 <behavior>Edit</behavior>
                 <field>Priority</field>
             </layoutItems>
@@ -151,8 +154,13 @@
                 <field>Case_Market__c</field>
             </layoutItems>
             <layoutItems>
+<<<<<<< HEAD
                 <behavior>Edit</behavior>
                 <field>Brand__c</field>
+=======
+                <behavior>Readonly</behavior>
+                <field>Case_Brand__c</field>
+>>>>>>> FETCH_HEAD
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -201,11 +209,19 @@
         <label>Additional Issue Information</label>
         <layoutColumns>
             <layoutItems>
+<<<<<<< HEAD
                 <behavior>Edit</behavior>
                 <field>DayCode__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+=======
+                <behavior>Readonly</behavior>
+                <field>DayCode__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+>>>>>>> FETCH_HEAD
                 <field>Date_of_Manufacture_str__c</field>
             </layoutItems>
             <layoutItems>
@@ -234,6 +250,17 @@
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
+<<<<<<< HEAD
+=======
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Attachments</label>
+        <layoutColumns/>
+        <style>OneColumn</style>
+    </layoutSections>
+    <layoutSections>
+>>>>>>> FETCH_HEAD
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
@@ -243,8 +270,21 @@
                 <customLink>Cosmetovigilence</customLink>
             </layoutItems>
         </layoutColumns>
+<<<<<<< HEAD
         <layoutColumns/>
         <layoutColumns/>
+=======
+        <layoutColumns>
+            <layoutItems>
+                <customLink>Homecare_Cosmetovigilence</customLink>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <customLink>Ingestion_Cosmetovigilence</customLink>
+            </layoutItems>
+        </layoutColumns>
+>>>>>>> FETCH_HEAD
         <style>CustomLinks</style>
     </layoutSections>
     <layoutSections>
@@ -290,8 +330,13 @@
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
+<<<<<<< HEAD
                 <behavior>Edit</behavior>
                 <field>Matching_Response__c</field>
+=======
+                <behavior>Readonly</behavior>
+                <field>Original_Description__c</field>
+>>>>>>> FETCH_HEAD
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -303,6 +348,16 @@
                 <behavior>Edit</behavior>
                 <field>SuppliedEmail</field>
             </layoutItems>
+<<<<<<< HEAD
+=======
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Matching_Response__c</field>
+            </layoutItems>
+>>>>>>> FETCH_HEAD
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -414,6 +469,12 @@
         <relatedList>RelatedActivityList</relatedList>
     </relatedLists>
     <relatedLists>
+<<<<<<< HEAD
+=======
+        <relatedList>RelatedEmailMessageList</relatedList>
+    </relatedLists>
+    <relatedLists>
+>>>>>>> FETCH_HEAD
         <excludeButtons>MailMerge</excludeButtons>
         <excludeButtons>RequestUpdate</excludeButtons>
         <excludeButtons>SendEmail</excludeButtons>
@@ -449,7 +510,11 @@
     <runAssignmentRulesDefault>true</runAssignmentRulesDefault>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
+<<<<<<< HEAD
     <showInteractionLogPanel>false</showInteractionLogPanel>
+=======
+    <showInteractionLogPanel>true</showInteractionLogPanel>
+>>>>>>> FETCH_HEAD
     <showKnowledgeComponent>false</showKnowledgeComponent>
     <showRunAssignmentRulesCheckbox>true</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>true</showSubmitAndAttachButton>

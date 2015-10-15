@@ -34,8 +34,13 @@
       <sf:deploy username="${sf.username}" 
         password="${sf.password}" 
         serverurl="${sf.serverurl}" 
+<<<<<<< HEAD
         runAllTests="true"
         testLevel="RunLocalTests"
+=======
+        runAllTests="false"
+        testLevel="NoTestRun"
+>>>>>>> FETCH_HEAD
         logType="Detail"
         allowMissingFiles="true"
         autoUpdatePackage="true"
@@ -66,8 +71,10 @@
       <echo level="info">Performing the tests and deploy</echo>     
       <sf:deploy username="${sf.username}" 
         password="${sf.password}" 
-        serverurl="${sf.serverurl}" 
-        runAllTests="false"
+        serverurl="${sf.serverurl}"
+        checkOnly="false"
+        runAllTests="true"
+        testLevel="RunLocalTests"
         logType="Detail"
         allowMissingFiles="true"
         autoUpdatePackage="true"
@@ -87,5 +94,28 @@
         pollWaitMillis="${sfdc.pollWaitMillis}"
         maxPoll="${sfdc.maxPoll}"/>        
     </target>
+<<<<<<< HEAD
+=======
+
+    <target name="sandbox-setup" depends="enable-deploy-user">
+      <echo level="info">CI Sandbox setup scripts to allow data dependent tests to pass</echo>   
+      <antcall target="ExecAnonScript">
+        <param name="what" value="${basedir}/scripts/sandbox-setup.apex" />
+        <param name="username" value="${sf.username}" />
+        <param name="password" value="${sf.password}" />
+        <param name="serverurl" value="${sf.serverurl}"/>
+      </antcall>
+    </target>    
+    
+    <target name="enable-deploy-user">
+      <echo level="info">Enable CI deploy user which is used to run unit tests</echo>   
+      <antcall target="ExecAnonScript">
+        <param name="what" value="${basedir}/scripts/enable-deploy-user.apex" />
+        <param name="username" value="${sf.username}" />
+        <param name="password" value="${sf.password}" />
+        <param name="host" value="${sf.serverurl}"/>
+      </antcall>
+    </target> 
+>>>>>>> FETCH_HEAD
 
 </project>

@@ -315,9 +315,15 @@
         <description>AgencyFee#GLOBAL#To Store the Total Bonus related values</description>
         <externalId>false</externalId>
         <label>Total Bonus %</label>
+<<<<<<< HEAD
         <precision>10</precision>
         <required>false</required>
         <scale>0</scale>
+=======
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+>>>>>>> FETCH_HEAD
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>

@@ -18,6 +18,13 @@
         <relationshipLabel><!-- Bonus Matrix --></relationshipLabel>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- Agency ExchangeRateTemp --></label>
+        <name>AF_Agency_ExchangeRateTemp__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- Agency Exchange Rate --></label>
         <name>AF_Agency_Exchange_Rate__c</name>
     </fields>
@@ -84,10 +91,24 @@
         <name>AF_IsCrossBorderNew__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- IsCrossBorderReport --></label>
+        <name>AF_IsCrossBorderReport__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- Is Crossborder --></label>
         <name>AF_IsCrossBorder__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- MatrixCodeTemp --></label>
+        <name>AF_MatrixCodeTemp__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- Overidden --></label>
         <name>AF_Overidden__c</name>
     </fields>
@@ -124,6 +145,13 @@
         <name>AF_Ready_For_PO_Exchange_Rate__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- ReadyforPoCodeTemp --></label>
+        <name>AF_ReadyforPoCodeTemp__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- Status --></label>
         <name>AF_Status__c</name>
         <picklistValues>
@@ -201,6 +229,13 @@
         <name>PO_Number__c</name>
     </fields>
     <fields>
+<<<<<<< HEAD
+=======
+        <label><!-- ReadyforPOExchangeRateTemp --></label>
+        <name>ReadyforPOExchangeRateTemp__c</name>
+    </fields>
+    <fields>
+>>>>>>> FETCH_HEAD
         <label><!-- Unilever Entity Name --></label>
         <name>Unilever_Entity_Name__c</name>
     </fields>

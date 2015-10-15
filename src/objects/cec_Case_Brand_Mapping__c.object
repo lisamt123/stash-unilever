@@ -390,7 +390,11 @@
         <columns>Brand__c</columns>
         <columns>OWNER.ALIAS</columns>
         <filterScope>Queue</filterScope>
+<<<<<<< HEAD
         <label>General Queue</label>
+=======
+        <label>CEC UKI Queue</label>
+>>>>>>> FETCH_HEAD
         <language>en_US</language>
         <queue>CEC_General_Queue</queue>
         <sharedTo>
@@ -486,10 +490,16 @@
         <columns>Brand__c</columns>
         <columns>Skill__c</columns>
         <columns>OWNER.ALIAS</columns>
+<<<<<<< HEAD
         <filterScope>Queue</filterScope>
         <label>CEC Portugal Queue</label>
         <language>en_US</language>
         <queue>CEC_Portugal_Queue</queue>
+=======
+        <filterScope>Everything</filterScope>
+        <label>CEC Portugal Queue</label>
+        <language>en_US</language>
+>>>>>>> FETCH_HEAD
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -504,6 +514,18 @@
         </sharedTo>
     </listViews>
     <listViews>
+<<<<<<< HEAD
+=======
+        <fullName>CEC_Sri_Lanka_Queue_cec_Case_Brand_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Sri Lanka Queue</label>
+        <queue>CEC_Sri_Lanka_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+>>>>>>> FETCH_HEAD
         <fullName>TO_France_Queue_cec_Case_Brand_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>TO France Queue</label>

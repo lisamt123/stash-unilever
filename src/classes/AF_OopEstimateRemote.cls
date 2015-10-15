@@ -150,6 +150,7 @@ global with sharing class AF_OopEstimateRemote {
             href = 'apex/af_oopsEstimate?id='+agSObj.Id;
             rowDetailToReturn += '<td title=\"\" class=\"details-control\"';
             rowDetailToReturn += ' t=\"' + disptotalA + '\" d=\"' + dispLocalTotalA + '\" a=\"ob\">';
+<<<<<<< HEAD
             rowDetailToReturn += '<a href=\"' + href +  '\"';
             rowDetailToReturn += ' e=\"' + disptotal + '\"';
             rowDetailToReturn += ' l=\"' + dispLocalTotal + '\"';
@@ -161,6 +162,23 @@ global with sharing class AF_OopEstimateRemote {
             } else if(totalWithoutRounding > 0 && totalWithoutRounding <= 499){
                 rowDetailToReturn += '<div style=float:left;>' + crsBrdrImg + '<br/>' + cmntImg;
                 rowDetailToReturn += '</div><div align=\"center\">' + 'EUR 0';
+=======
+            rowDetailToReturn += '<a data-src=\"' + href +  '\"';
+            rowDetailToReturn += 'data-toggle=\"modal\"';
+            rowDetailToReturn += 'data-backdrop=\"static\"';
+            rowDetailToReturn += 'data-keyboard=\"false\"';
+            rowDetailToReturn += 'data-target=\"#myModal3\"';
+            rowDetailToReturn += 'class=\"modalButton3\"';
+            rowDetailToReturn += ' e=\"' + disptotal + '\"';
+            rowDetailToReturn += ' l=\"' + dispLocalTotal + '\">';
+            if(total != 0) {
+                rowDetailToReturn += crsBrdrImg + '<br/>' + cmntImg;
+                rowDetailToReturn += '</div><div align=\"center\" class=\"agencyCOlcanter\">' + 'EUR ' + AF_BrandEstimateRemote.currencyFormatted(total);
+                rowDetailToReturn = totalA != totalLocalA ? rowDetailToReturn + lBreak + currCode + ' ' + AF_BrandEstimateRemote.currencyFormatted(totalLocal) : rowDetailToReturn;
+            } else if(totalWithoutRounding > 0 && totalWithoutRounding <= 499){
+                rowDetailToReturn += crsBrdrImg + '<br/>' + cmntImg;
+                rowDetailToReturn += '</div><div align=\"center\" class=\"agencyCOlcanter\">' + 'EUR 0';
+>>>>>>> FETCH_HEAD
                 rowDetailToReturn = totalA != totalLocalA ? rowDetailToReturn + lBreak + currCode + ' ' + AF_BrandEstimateRemote.currencyFormatted(totalLocal) : rowDetailToReturn;
             }else {
                 rowDetailToReturn += cmntImg;

@@ -4,6 +4,7 @@
     <description>CEC: Stores settings related to the CEC org and application</description>
     <enableFeeds>false</enableFeeds>
     <fields>
+<<<<<<< HEAD
         <fullName>Austria_Questionnaire_Id__c</fullName>
         <description>CEC: Id of the Austria cosmetovigilence questionnaire</description>
         <externalId>false</externalId>
@@ -19,6 +20,13 @@
         <description>CEC: Id of the Belgium cosmetovigilence questionnaire</description>
         <externalId>false</externalId>
         <label>Belgium Questionnaire Id</label>
+=======
+        <fullName>AlertAction_Time_Scheduler__c</fullName>
+        <description>CEC - Time past hour separated by semicolon for AlertAction Email Scheduler</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a number between 0-59 separated by &apos;;&apos;</inlineHelpText>
+        <label>AlertAction Time Scheduler</label>
+>>>>>>> FETCH_HEAD
         <length>30</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -38,6 +46,7 @@
     </fields>
     <fields>
         <fullName>Cosmetovigilence_Questionnaire_Id__c</fullName>
+<<<<<<< HEAD
         <description>CEC: Id of the cosmetovigilence questionnaire, used is custom links, for example on the Case record for quick access, e.g 26bnjdwb56aj0</description>
         <externalId>false</externalId>
         <label>UK Questionnaire Id</label>
@@ -85,6 +94,11 @@
         <description>CEC: Id of the Estonia cosmetovigilence questionnaire</description>
         <externalId>false</externalId>
         <label>Estonia Questionnaire Id</label>
+=======
+        <description>CEC: Id of the personalcare cosmetovigilence questionnaire, used is custom links, for example on the Case record for quick access, e.g 26bnjdwb56aj0</description>
+        <externalId>false</externalId>
+        <label>Personalcare Questionnaire Id</label>
+>>>>>>> FETCH_HEAD
         <length>30</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -103,6 +117,7 @@
         <unique>false</unique>
     </fields>
     <fields>
+<<<<<<< HEAD
         <fullName>Finland_Questionnaire_Id__c</fullName>
         <description>CEC: Id of the Finland cosmetovigilence questionnaire</description>
         <externalId>false</externalId>
@@ -140,6 +155,12 @@
         <description>CEC: Id of the Greece cosmetovigilence questionnaire</description>
         <externalId>false</externalId>
         <label>Greece Questionnaire Id</label>
+=======
+        <fullName>Homecare_Questionnaire_Id__c</fullName>
+        <description>CEC: Id of the Homecare cosmetovigilence questionnaire, used is custom links, for example on the Case record for quick access, e.g 26bnjdwb56aj0</description>
+        <externalId>false</externalId>
+        <label>Homecare Questionnaire Id</label>
+>>>>>>> FETCH_HEAD
         <length>30</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -147,6 +168,7 @@
         <unique>false</unique>
     </fields>
     <fields>
+<<<<<<< HEAD
         <fullName>Hungary_Questionnaire_Id__c</fullName>
         <description>CEC: Id of the Hungary cosmetovigilence questionnaire</description>
         <externalId>false</externalId>
@@ -195,6 +217,12 @@
         <description>CEC: Id of the Lithuania cosmetovigilence questionnaire</description>
         <externalId>false</externalId>
         <label>Lithuania Questionnaire Id</label>
+=======
+        <fullName>Ingestion_Questionnaire_Id__c</fullName>
+        <description>CEC: Id of the personalcare cosmetovigilence questionnaire, used is custom links, for example on the Case record for quick access, e.g 26bnjdwb56aj0</description>
+        <externalId>false</externalId>
+        <label>Ingestion Questionnaire Id</label>
+>>>>>>> FETCH_HEAD
         <length>30</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -212,6 +240,7 @@
         <unique>false</unique>
     </fields>
     <fields>
+<<<<<<< HEAD
         <fullName>Netherland_Questionnaire_Id__c</fullName>
         <description>CEC: Id of the Netherlands cosmetovigilence questionnaire</description>
         <externalId>false</externalId>
@@ -283,6 +312,12 @@
         <externalId>false</externalId>
         <label>Switzerland Questionnaire Id</label>
         <length>30</length>
+=======
+        <fullName>Safety_Alert_Email_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Safety Alert Email Id</label>
+        <length>50</length>
+>>>>>>> FETCH_HEAD
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>

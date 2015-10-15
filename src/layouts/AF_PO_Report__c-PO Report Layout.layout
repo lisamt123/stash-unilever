@@ -224,6 +224,13 @@
                 <behavior>Readonly</behavior>
                 <field>AF_CategoryView__c</field>
             </layoutItems>
+<<<<<<< HEAD
+=======
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>AF_Show_In_Report__c</field>
+            </layoutItems>
+>>>>>>> FETCH_HEAD
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -262,7 +269,11 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
+<<<<<<< HEAD
         <masterLabel>00hL0000000GM0y</masterLabel>
+=======
+        <masterLabel>00hE00000097Kog</masterLabel>
+>>>>>>> FETCH_HEAD
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

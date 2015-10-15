@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+<<<<<<< HEAD
     <applicationVisibilities>
         <application>Agency_Fees</application>
         <default>false</default>
@@ -140,6 +141,104 @@
         <default>false</default>
         <visible>false</visible>
     </applicationVisibilities>
+=======
+    <classAccesses>
+        <apexClass>AA_AddCompetitorName_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_AgentAppServiceController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_AgentAppServiceController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_ApplicationWrapperObj</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_ApplicationWrapperObj_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_BaseApplicationServices</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_BaseApplicationServices_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_BaseApplicationWrapperObj</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_Constants</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_Constants_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_DatabaseServiceUtil</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_DatabaseServiceUtil_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_ExecuteApprovalProcess</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_ExecuteApprovalProcess_tst</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_IBaseAppicationServices</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_RemoteServiceCallController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_RemoteServiceCallController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_TheAgentReportWrapper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_TheAgentReportWrapper_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_TheAgentSingleExecution</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_TheAgentSingleExecution_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_WrapperUtility</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_WrapperUtility_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_theAgent_ChatterPost_FutureClass</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+>>>>>>> FETCH_HEAD
     <classAccesses>
         <apexClass>AFBrandEstimateStCtrlExtSummary</apexClass>
         <enabled>false</enabled>
@@ -1013,6 +1112,13 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+<<<<<<< HEAD
+=======
+        <apexClass>CEC_AlertActionBatchScheduler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+>>>>>>> FETCH_HEAD
         <apexClass>CEC_AlertActionHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1073,6 +1179,13 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+<<<<<<< HEAD
+=======
+        <apexClass>CEC_TestAlertActionBatchScheduler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+>>>>>>> FETCH_HEAD
         <apexClass>CEC_TestAlertActionTriggerHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1105,6 +1218,13 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+<<<<<<< HEAD
+=======
+        <apexClass>CEC_Util</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+>>>>>>> FETCH_HEAD
         <apexClass>CORE_Batch_Deactivate_Ext_User_Scheduler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1134,7 +1254,23 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CORE_ChatterIdeaThemesTrigger_Test</apexClass>
+<<<<<<< HEAD
         <enabled>false</enabled>
+=======
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CORE_IC_Batch_ICampaignStatusUpdate</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CORE_IC_Scheduler_ICampaignStatusUpdate</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CORE_IC_Test_Batch_CampaignStatus</apexClass>
+        <enabled>true</enabled>
+>>>>>>> FETCH_HEAD
     </classAccesses>
     <classAccesses>
         <apexClass>CORE_NewsArticle_Test</apexClass>
@@ -1313,6 +1449,13 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+<<<<<<< HEAD
+=======
+        <apexClass>Core_CA_BaseApplicationServicesTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+>>>>>>> FETCH_HEAD
         <apexClass>Core_CA_BaseApplicationWrapper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -1321,6 +1464,13 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+<<<<<<< HEAD
+=======
+        <apexClass>Core_CA_BaseServiceException_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+>>>>>>> FETCH_HEAD
         <apexClass>Core_CA_HeaderApproveController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -1385,6 +1535,49 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+<<<<<<< HEAD
+=======
+        <apexClass>Core_IC_AppConstants</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_IC_CampaignDetail</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_IC_FAQData</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_IC_IdeaDetail</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_IC_LandingPage</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_IC_PostCommentForAnIdea</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_IC_PostSubmitIdea</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_IC_PostVoteForIdeas</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_IC_Test_IdeationApp</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_IC_WrapperUtility</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+>>>>>>> FETCH_HEAD
         <apexClass>Core_SendToChatterController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -1685,6 +1878,7 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+<<<<<<< HEAD
         <apexClass>IPMExcelTemplate3Controller</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -6662,390 +6856,2004 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_Base_Fee_Status__c</field>
+=======
+        <apexClass>ITrigger</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>MyProfilePageController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>NavigationManager</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>NavigationManager_TEST</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>NewsArticleCommentCount</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>NewsArticleFeedController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>NewsArticleHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>NewsArticleLikeHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>NewsArticle_OverrideViewCon</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Redirect_Brand_Page</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>RemoteServiceCallController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SSOSharepointController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SchedulableToBrandEstimatesBatch</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SchedulableTo_Statuschange</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SiteLoginController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SiteRegisterController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>StringUtil</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TemplateController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TemplateControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TermsOfUseController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TestDataFactory</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AFBrandEstimateStCtrlExtSummary</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AFCallingSchedulable_BrandEstimates</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AFCustomSetting</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_AdjustQuater_Homepage_lightbox</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_AfterInsertUpdateBonusResults</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_AfterUpdateBonusResHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_AfterUpdateOOPSActual</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_AgencyEstimateController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_AgencyReviewCommentsExtension</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_AnnualBonus</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_ApprovProceForBrandEstController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_ApproveActualsCtrl</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_Assigncategories</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_AttachmentUploadController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_BatchProcess_copy</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_BeforeInsertUpdateBrandEstimate</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_BonusFeeStdCtrlExt</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_BonusMatrixOverrideController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_BonusMatrixSummary</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_BonusQuarterly</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_BonusQuaterlyEmailToCatFinance</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_BonusRecordManager</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_BonusSummaryRemote</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_BonusThresholdHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_Bonusthresholds</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_BrandAgencyCombinationController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_BrandEstimateController2</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_BrandEstimateHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_BrandEstimateRemote</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_BrandEstimateStdCtrlExt</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_BrandEstimate_SelController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_BrandEstimate_Statuschange</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_Brand_Controller_Review</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_Category_Brands</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_CloseAndRefresh</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_CommentsListCompController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_CountryBreakdownCheck</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_DocumentListCompController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_EditComment</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_EmailToCatFinance</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_FieldHistoryCompController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_GetBaseFeePOData</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_Locking</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_MatrixAgencySummary</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_MultiSelectComponent</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_OOPSEstimateController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_OOPSRecordManager</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_OOPS_SelectionController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_OopEstimateRemote</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_OopsActualHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_OopsActualStdCtrlExt</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_RaisenewPO_Homepage_lightbox</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_SendEmailToCatFinance</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_Sendemail_categoryfinance</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_UpdOopsEstCatApproverValues</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_UpdateAgencyEstimatesValues</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_UpdateBonusEstimatesValues5</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_UpdateOopsEstimatesValues1</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_Utils</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_middlebonusmatrix</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_sechedule_statuschange</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_sendemail</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_updateBonusThreshold</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AF_usersearch</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_AgencyHomePageController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_BrandEstimateCatApproverValues</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_SchedulableToBrandEstimatesBatch</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Test_af_SendCurrencyReminder</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TriggerException</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TriggerFactory</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Typeahead</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>UW_FetchFeedItemsOfChatterGrp</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>UpdateBrandEstimateCatApproverValues</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>UserContext</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>UserTestUtil</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Utility</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Uw_BET_Batch_Recalculatemembers</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSBatchAssetDelete</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSBatchAssetDelete_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSBatchAssetGroupUpdate</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSBatchAssetGroupUpdate_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSBatchAssetUpdate</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSBatchAssetUpdate_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSBatchCalculateDownloadStats</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSBatchCalculateDownloadStats_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSChatterUploadController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSChatterUploadController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSDropDownController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSDropDownController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSNewChatterUploadController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSNewChatterUploadController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSPrintableViewController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSPurgeStats</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSPurgeStats_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSRemoteActionWrapper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSUploadController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSUserAdminController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSUtil</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSUtilRemoteActions</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOSUtilRemoteActions_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOS_SCH_BatchAssetDelete</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOS_SCH_BatchAssetDelete_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOS_SCH_BatchCalcDownloadStats_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOS_SCH_BatchCalculateDownloadStats</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOS_SCH_PurgeStats</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOS_SCH_PurgeStats_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOS_TH_DeleteChatterFile</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WINatPOS_TH_DeleteChatterFile_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinAtPOSHomeController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinAtPOSHomeController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinAtPOSPrintablePDFViewController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinAtPOSPrintablePDFViewController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinAtPOSSearchPDFViewController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinAtPOSSearchPDFViewController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinAtPOS_BatchFileFeedUrlUpdate</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinAtPOS_BatchableFileMassUpdate</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinAtPOS_BatchableFileMassUpdateExt</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinAtPOS_BatchableFileMassUpdateExt_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinAtPOS_BatchableFileMassUpdate_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinAtPOS_BatchableFileMassUpdate_Test2</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinAtPOS_SCH_FileFeedUrlUpdate</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinAtPOS_SCH_FileFeedUrlUpdate_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinatPOSAssetGroupViewController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinatPOSAssetGroupViewController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinatPOSAssetViewController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinatPOSAssetViewController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinatPOSBrandViewController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinatPOSBrandViewController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinatPOSCategoryViewController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WinatPOSCategoryViewController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>af_SendCurrencyReminder</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>af_usersearch</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cec_EmailMessageHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cec_EmailMessageHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cec_SmartTemplateLoaderHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cec_TestEmailMessageHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cec_TestSmartTemplateLoaderHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>checkRecursive</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>checkRecursiveBonusQuarterly</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>checkRecursivePOReport</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_DefaultPreferenceController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_DefaultPreferenceControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_EventApproval</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_EventApprovalTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_EventDeleteController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_EventDeleteControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_EventEditController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_EventEditControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_EventOptOut</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_EventOptOutTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_EventTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_EventTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_MultiSelectController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_MultiSelectControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_NewsController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_NewsControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_PlannerController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_PlannerControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_PlannerEventVisibilityController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_PlannerEventVisibilityControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_PlannerSelectionController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_PlannerSelectionControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_PlannerTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_PlannerTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_PlannerUtility</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_PoapController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_PoapControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_RecordDetailController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_RecordDetailControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_RecordTypeUtil</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_RecordTypeUtilTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_SpokePersonSelectionController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_SpokePersonSelectionControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_TestData</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>cp_ULERepTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>groupMaster</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>groupMasterBatch</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>im_ImagemapTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>im_IssueCreationDialogueController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>im_IssueCreationDialogueControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>im_IssueTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>im_IssueTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>im_IssuesLPController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>im_IssuesLPControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>im_NewIssueLauncherController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>im_NewIssueLauncherControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>im_imagemap</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_AdditionalContentController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_AdditionalContentControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_ArticleComponentController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_ArticleComponentControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_ArticleEditController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_ArticleEditControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_BrainResultsController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_BrainResultsControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_CarouselController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_CarouselControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_ChatterComponentController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_ChatterComponentControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_ChatterGroupSearchController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_ChatterGroupSearchControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_CmsContentComponentController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_CmsContentComponentControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_ContentUploaderController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_ContentUploaderControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_DeleteChatterHistoryController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_DeleteChatterHistoryControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_EditPageContentController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_EditPageContentControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_EventController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_EventControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_EventDetailExtention</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_EventDetailExtentionTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_EventHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_EventHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_FeedItemTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_FeedItemTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_LibraryController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_LibraryControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_ModeratorComponentController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_ModeratorComponentControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_MultiselectController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_MultiselectControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_NewsArchiveController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_NewsArchiveControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_ReturnUrlExtention</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_ReturnUrlExtentionTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_SustainExpComponentController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_SustainExpComponentControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_SustainableLivingExpertsCntrTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_SustainableLivingExpertsController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_TestData</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_TopInfluencersCloudController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_TopInfluencersCloudControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_USLPBrandTableCompControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_USLPBrandTableComponentController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_UserpicWithFlagController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_UserpicWithFlagControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_Utility</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_UtilityTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_WordCloudController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>isll_WordCloudControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>kof_AccountTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>kof_ContactTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>kof_ContactTriggerHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_ArticleExtensionTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BETDetailService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BETDetailService_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BETDetailService_Test2</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BETDetailService_Test3</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BETRemoteController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BETRemoteController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BETSearchService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BETSearchService_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BETUtil</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BETUtil_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BETWrapper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BET_before_delete_test_class</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BET_schedule_batch_calculatemem_TEST</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BET_schedule_recalculatemembersbatch</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BatchJobHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BatchJobManagerController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BetAndAssetPromotionTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BetEditController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BetEditController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_BrandCentreExtensionTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_Constants</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_CustomAssetUploadExtension</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_CustomAssetUploadExtensionTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_CustomAssetUploadExtensionTest2</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_CustomSettingsManager</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_DeleteObjectsHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_EnableExternalUserBatchJob</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_FeedComments</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_FeedComments_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_FetchFeedItems</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_FetchFeedItems_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_FinishEnableExternalUserBatchJob</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_HelperMethods</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_HelperSOQLMethods</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_MakeAssetsVisible</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_MakeAssetsVisibleTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_MiscTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_OwnerUpdate</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_PinnovateController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_PinnovateController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_RedirectArticle</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_Redirect_Brand_PageTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_SendCollaborationInviteBatchJob</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_SendCollaborationInviteBatchJob_Sch</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_TacAcceptController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_TacHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_TermsConditionsController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_TermsOfUseControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_TokenHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_TriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_TriggerHandler_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_UnitTestDataFactory</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_bet_update_totalnoof_betmembers_TEST</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_bet_update_totalnumberof_betmembers</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_futureHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_testTrigger</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>uw_uploadBCImage</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <custom>true</custom>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Agency_Estimate__c.AF_1stSave__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Brand_Estimate_ID__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Adaptation_Local__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Brand_Estimate_Name__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Adaptation__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Brand__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Adjusted_estimate_1__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Calculate_Adaptation_Local__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Adjusted_estimate_2__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Calculate_Digital_Local__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Agency_Category_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Calculate_Tradition_Local__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Agency_Entity_Column_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Calculated_PO_Value_Formula__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Agency_Entity_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_CategoryView__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Agency_Entity__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Category__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Agency_Exchange_Rate__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Compound_Key__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Agency_Spot_Rate__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_CountNoQuarters__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Agency__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Currency__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Archived__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Digital_Local__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Bonus_Agency_Formula__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Digital_Total_LC__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Brand_Estimate_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Digital__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Brand_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Estimate_Local__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Brand_Logo__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Estimate__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Category_Finance_Flag__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Fiscal_Year__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Legal_Entity_Name__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_CentralBillingMessage__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Matrix_Code__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_CentralBilling__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Max_Quarter__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Comment_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_OOPS_Name__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Compound_Key__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Oops_Estimate_ID__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Controller_Flag__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_PO_Check__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_CountNoQuarters__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_PO_Number__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Crossborder__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_PO_Report_Type__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_DataLoadCheckCrossB__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_PO_TL_Check__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_DataLoadCheckDiffCB__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_PO_Total__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_DataLoadCheckDiff__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_PO_Value_2014__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_DataLoadCheck__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_PO_Value_LC_2014__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Deleted__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_PO_Value_Total_LC__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Digital_Local__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_PO_Value_Tradition_OOPSEuro__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Digital_USD_Formula__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Previous_Quarter_Value_AL__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Digital__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Previous_Quarter_Value_DL__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_EntityExceptionsTotal__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Previous_Quarter_Value_TL_OOPSEuro__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Estimates_don_t_match__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Previous_Quarter_Value_TL__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_External_key__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Previous_Quarter_Value__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Fiscal_Year_FF__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Q4_PO_Total__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Fiscal_Year__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_QuatersAlreadyDone__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_IsCrossBorderImage__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Ready_for_PO_Code__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_IsCrossborder__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Total_Local__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_IsEntityException__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Total__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Is_Unilever_Central_Hub__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Traditional_Local__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_JustQuarters__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Traditional_Total_LC__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_LC_Adaptation__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Traditional__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_LC_Digital__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.AF_Unilever_Entity__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_LC_Total__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.Fiscal_Year__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_LC_Traditional__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.Oops_Actual_Id__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Locked__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.PO_Check_Value_Diff__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Matrix_Data_Entry_Currency__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_PO_Report__c.PO_Check_Value__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Max_Quarter__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Bonusable_Fees__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Mean_Quarter__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Comment__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_No_Previous_POs__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Digital__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_No_of_Estimates__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Locked__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_No_of_Exceptions__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Minimum__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_No_of_Quaters__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Outstanding__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_OOPs_Agency_Formula__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Period__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_OverridePO_Adaptation_LC__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Qual_Bonus_Value__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_OverridePO_Digital_LC__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Qual_Per__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_OverridePO_Traditional_LC__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Qual__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_PO_Number__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Quant_Bonus_Value__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_PO_Report_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Quant_Bonus__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_PO_Value__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Quant__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Previous_PO_Value__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Result_type__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Previous_Quarter_Estimate__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Status__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Previous_Quarters_Done__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Stretching__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Quarter_PO_Raised__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Total_Bonus_Value__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Quarter__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Total_Bonus__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_QuartersAlreadyDone__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Total_bonus_fees__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Rate_Currency__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Traditional__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Rate_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_Unique_Thresholds__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Read_for_PO_Currency__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.AF_country__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Ready_For_PO_Entry_Currency__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.Bonus_Measure__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.Qual_Result__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Sum_of_Percent__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.Quant_Result__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Sum_of_Value__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>AF_Sub_Result__c.key__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Total_Local__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.AccountNumber</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7057,30 +8865,55 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Additional_Information__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Total_USD__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Agency_Estimate__c.AF_Total__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Agency_Contact__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Traditional_Local__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Agency_Expertise__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Traditional__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Agree_to_Audits__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Unilever_Entity_Column_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Agree_to_comply_Unilever_Supplier_Code__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Unilever_Entity_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Agree_to_logo_use__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7102,40 +8935,83 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Business_activity_types__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_Unilever_Entity__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Agency_Estimate__c.AF_Unilever_Estimates__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Agency_Estimate__c.AF_isChange__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Agency_Estimate__c.AF_isChangedDateTime__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.CEC_Marketing_Opt_In__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_isChangedbyUserType__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Children_under_12__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_isCommentImage__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Club_Member_Number__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_isComment__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Company_Structure__c</field>
+=======
+        <field>AF_Agency_Estimate__c.AF_isLocked__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Currency__c</field>
+=======
+        <field>AF_Agency_Estimate__c.Adaptation_USD_Formula__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.D_B_Duns_Number__c</field>
+=======
+        <field>AF_Agency_Estimate__c.Agency_Account_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Demandware_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7147,15 +9023,33 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Discipline__c</field>
+=======
+        <field>AF_Agency_Estimate__c.Agency_Account__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Agency_Estimate__c.Brand__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Agency_Estimate__c.Category_Agency__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Drinking_frequency__c</field>
+=======
+        <field>AF_Agency_Estimate__c.Central_Billing__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.External_Id__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7167,10 +9061,24 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Featured__c</field>
+=======
+        <field>AF_Agency_Estimate__c.IDfromPilot__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Agency_Estimate__c.Indicative_Gain_Loss_in_EUR__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Agency_Estimate__c.Indicative_Gain_in_USD__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.General_Email__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7187,45 +9095,92 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Known_Consumer__c</field>
+=======
+        <field>AF_Agency_Estimate__c.Key__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Agency_Estimate__c.Matrix_Currency_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Agency_Estimate__c.Quarter_PO_Raised_New__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Agency_Estimate__c.Ready_For_PO_Exchange_Rate_Report__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Latest_Case_Product_Code__c</field>
+=======
+        <field>AF_Agency_Estimate__c.TestQuartersDone__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Latest_Case_Reason_Code__c</field>
+=======
+        <field>AF_Agency_Estimate__c.Total_Before_Ready_for_PO__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Legacy_Reference__c</field>
+=======
+        <field>AF_Agency_Estimate__c.Traditional_USD_Formula__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Legal_Designation__c</field>
+=======
+        <field>AF_Agency_Estimate__c.UE_Country_and_Ag_Country__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Length_of_client_relationship__c</field>
+=======
+        <field>AF_Agency_Estimate__c.Unilever_Code__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Machine_Id__c</field>
+=======
+        <field>AF_Agency_Estimate__c.Variance_Total__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Next_Review_Date__c</field>
+=======
+        <field>AF_Agency_Estimate__c.bReqValidation__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.No_of_Tea_drinkers__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7237,15 +9192,33 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Overall_Rating__c</field>
+=======
+        <field>AF_Agency_Estimate__c.testquarters__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Agency_Entity_Column_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Agency_Entity__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Ownership</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Agency_ExchangeRateTemp__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Ownership_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7262,40 +9235,83 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Preferred_Channel__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Agency_Exchange_Rate__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Agency_Spot_Rate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Base_Fee_Country_Total__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_BonusMatrixCode__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Preferred_Tea_Type__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Bonus_Estimate_Local__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Preferred_infusion_type__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Bonus_Estimate__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Previous_Names__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Bonus_Local_Value__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Published__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_BonusableFee__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Rating</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Brand_Estimate__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Registration_Date__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_CrossBorder_No__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Responsible_Unilever_Employee__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7317,15 +9333,43 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Site</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Fiscal_Year_FF__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Fiscal_Year__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_IsCrossBorderImage__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_IsCrossBorderNew__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_IsCrossBorderReport__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Strategic_Capabilities_Video__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_IsCrossBorder__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Strategic_Capabilities__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7337,25 +9381,51 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Tea_moment_of_the_day__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_MatrixCodeTemp__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Overidden__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Q1_c__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Tea_moment_of_the_week__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Q2__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.TickerSymbol</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Q3__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Total_Rating_Count__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Q4__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Total_Rating_Score__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7367,10 +9437,24 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.VIP__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Rate_Currency__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Rate_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Ready_For_PO_Entry_Currency__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Account.Vimeo_Link__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7382,250 +9466,456 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Year_Established__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Ready_For_PO_Exchange_Rate__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_ReadyforPoCodeTemp__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Matrix__c.AF_Status__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Agency_Fee_Field_History__c.Amended_By__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Total_Bonus_Value__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Agency_Fee_Field_History__c.Created_Date__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Total_Country_Row_BF__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Agency_Fee_Field_History__c.Field__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Unilever_Entity_Column_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Agency_Fee_Field_History__c.New_Value__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Unilever_Entity__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Agency_Fee_Field_History__c.Object_Record_Name__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Value_Calc__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Agency_Fee_Field_History__c.Object__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Value_Local__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Agency_Fee_Field_History__c.Old_Value__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_Value__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Application_Usage__c.Accessed__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_bReqValidation__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Application_Usage__c.Application__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_isCommentImage__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Application_Usage__c.Assigned_Date__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.AF_isComment__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Application_Usage__c.Assigned__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.Agency_Entity_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Application_Usage__c.Days_Since_Last_Access__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.Brand__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Application_Usage__c.Last_Accessed_Date__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Application_Usage__c.User_Country__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.IDfrompilot__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Application_Usage__c.User__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.PO_Number__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Allow_Chatter__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.ReadyforPOExchangeRateTemp__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Apply_to_Profiles__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.Unilever_Entity_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Approval_Status__c</field>
+=======
+        <field>AF_Bonus_Matrix__c.Unilver_Code__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Article_Body__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Bonus_Value_Bm__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Article_Subtitle__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Bonusable_Fees__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.AuthorUser__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Digital__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Author__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_IsPilotModel__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Body_Text__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Locked__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Chatter_Enabled__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Period__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Contains_Picture__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Qual_Bonus_Value__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Content_Delivery_Name__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Qual_Per__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Content_Delivery__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Qual__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.End_Time__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Quant_Bonus_Value__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.External_URL__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Quant_Bonus__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Fuse__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Quant__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Image_Align__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Remuneration_Percentage__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Image_Caption__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Remuneration_Rating__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Image_Preview__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Include_web_to_lead__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Sum_of_Bounsable_fees__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Link__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Total_Bonus_Value__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.On_Website__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Total_Bonus__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Ordinal__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Total_Remuneration__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Picture_ID__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_Total_bonus_fees__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Picture__c</field>
+=======
+        <field>AF_Bonus_Results__c.AF_of_Bonus_Matrix__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Publish_Date__c</field>
+=======
+        <field>AF_Bonus_Results__c.IDfromPilot__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Published__c</field>
+=======
+        <field>AF_Bonus_Results__c.Real_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Render_Image__c</field>
+=======
+        <field>AF_Bonus_Results__c.Traditional__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Start_Time__c</field>
+=======
+        <field>AF_Bonus_Results__c.key__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Status_Indicator__c</field>
+=======
+        <field>AF_Bonus_Summary__c.AF_Agency__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Status__c</field>
+=======
+        <field>AF_Bonus_Summary__c.AF_Bonus_Matrix_Value__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Summary__c</field>
+=======
+        <field>AF_Bonus_Summary__c.AF_Brand_Agency_Uq_Combination__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.Type__c</field>
+=======
+        <field>AF_Bonus_Summary__c.AF_Brand__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.YouTube_embed__c</field>
+=======
+        <field>AF_Bonus_Summary__c.AF_Category_View__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Article__c.uw_Brand__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7667,15 +9957,58 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Asset.ProductCode</field>
+=======
+        <field>AF_Bonus_Summary__c.AF_Category__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Fiscal_Year_Difference__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Fiscal_Year__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Is_Pilot_Model__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_No_Of_CrossBorders__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.AF_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.Agency_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.Bonus_Summary__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset.ProductDescription</field>
+=======
+        <field>AF_Bonus_Summary__c.Brand_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset.ProductFamily</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7707,395 +10040,737 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Asset_Group__c.Brand_Name_For_KeyWord_Search__c</field>
+=======
+        <field>AF_Bonus_Summary__c.No_of_Matrix_Cells__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Bonus_Summary__c.VisbleToAgency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Summary__c.key__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Threshold__c.AF_Agency_Brand_Fiscal_Year__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Threshold__c.AF_Bonusable_Fee__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Threshold__c.AF_Brand_Estimate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Bonus_Threshold__c.AF_Category_Name__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset_Group__c.Brand__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.AF_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset_Group__c.Category_Name_for_KeyWord_Search__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.AF_Country_Full_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset_Group__c.Category__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.AF_Country__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset_Group__c.Description__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.AF_Digital__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset_Group__c.Legacy_ID__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.AF_Minimum__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset_Group__c.Market_Cluster__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.AF_No_of_Sub_Results__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset_Group__c.Market_Cluster_for_KeyWord_Search__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.AF_Outstanding__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset_Group__c.Type__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.AF_Pilot_Model__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset_Group__c.Type_for_Keyword_Search__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.AF_Stretching__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Asset_Group__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.AF_Sub_Result_Total_Bonus_Value__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.BET__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.AF_Sub_Result_Total_Bonusable_Fee__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Brand_Name_For_KeyWord_Search__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.AF_Traditional__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Brand__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.AF_UniqueHiddenField__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Buy_Online_in_AAR__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.AF_Unique_Thresholds__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Buy_Online_in_Americas__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.AF_of_Bonus_Result__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Buy_Online_in_Europe__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.Agency_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Carousel_Published__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.Bonus_Measure__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Category_Name_for_KeyWord_Search__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.Brand_Agency_Combination__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Category__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.Brand_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Channels__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.Country_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Country__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.ReadBrandID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Country_for_KeyWord_Search__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.ReadCountryID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Description__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.RealAgencyID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Legacy_ID__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.Unique_Key_Migration__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Market_Cluster__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.Year__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Market_Cluster_for_KeyWord_Search__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.key__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Modern_Channels__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.real_agency__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.POS_Asset_Type__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.real_brand__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.POS_Asset_Type_for_KeyWord_Search__c</field>
+=======
+        <field>AF_Bonus_Threshold__c.real_country__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Placement__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Active__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Scheduled_Delete_Date__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Adaptive__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Status__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_AgencyBaseFees__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Touchpoint__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_AgencyName__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Touchpoint_for_KeyWord_Search__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_AgencyUsers1__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Asset__c.Traditional_Channels__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_AgencyUsers2__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>BET_Category__c.BET_Parent_Category__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_AgencyUsers3__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Author__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_AgencyUsers4__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Body__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_AgencyUsers5__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Display__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_AgencyView__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Embeb_URL__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Agency_Brand_Fiscal_Year__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Front_End_link__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Agency_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Header_Section__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Agency_Sharing__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Header__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Agency__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Help_Text__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Approver_Details__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Icon__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Archived__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Image_Icon_SubType_Other__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_BackupQuarter__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Link_URL__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_BaseFeeCreated__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Ordinal__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_BaseFeeStatusChangedTime__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Position__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Basefee_Estimate_Initial_Quarter__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Preview_Image2__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Bonus_Quaterly_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Preview_Image_ID__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Bonus_Threshold__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Published_Date__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Bonus_Trigger_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.RT_name__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Bonus_Yearly_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Source__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_BrandEstimateName__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Sub_Type__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_BrandName__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Subtitle__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Brand_Agency_FiscalYear__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Summary__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Brand_Category_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_Content__c.Target__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_CMCO_Rejected__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_New__c.Background_Colour__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Cat_Approvers_Report__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_New__c.Background_Image__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Cat_Finance_Approver_10__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_New__c.Brand_Centre_Description__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Cat_Finance_Approver_1__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_New__c.Brand_Name_unique__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Cat_Finance_Approver_2__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_New__c.CSS_All_Stories_Template__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Cat_Finance_Approver_3__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_New__c.CSS_Article_Template__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Cat_Finance_Approver_4__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_New__c.CSS_name__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Cat_Finance_Approver_5__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_New__c.Category__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Cat_Finance_Approver_6__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_New__c.Chatter_Group_Id__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Cat_Finance_Approver_7__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_New__c.Footer__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Cat_Finance_Approver_8__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_New__c.Go_to_Brand_Centre__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Cat_Finance_Approver_9__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_New__c.Logo__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_CategoryView__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_New__c.Parent_Brand__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Category_Finance_Approved__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_New__c.Primary_Contact__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Category_Finance_Flag__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_New__c.Static_Resource_Name__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Category_Name_Wk__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_New__c.Status__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Category_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Centre_New__c.Sub_Category__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Master__c.Apps__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Comment_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Master__c.Brand_Logo__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Community_Link__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Brand_Master__c.Legacy_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -8137,40 +10812,108 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CEC_Case_Market_Mapping__c.Account_Owner_Active_Flag__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Controller_Flag__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Copied__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_CountryBreakdown__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Created_By_Batch__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Crossborder__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Difference_between_Unilever_and_Agenc__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Digital__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Dont_Show_on_Report__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Entity_Combination__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>CEC_Case_Market_Mapping__c.Country__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Fiscal_Year_Difference__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CEC_Case_Market_Mapping__c.DefaultAccountOwnerId__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Fiscal_Year__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CEC_Case_Market_Mapping__c.DefaultCaseOwnerId__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_GR_Approval__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CEC_Case_Market_Mapping__c.Language__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Include_in_OOPS_Adaptation__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CEC_Case_Market_Mapping__c.Locale__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Include_in_OOPS_Digital__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CEC_Case_Market_Mapping__c.Market__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Include_in_OOPS_Traditional__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CEC_Case_Market_Mapping__c.Tag__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -8282,330 +11025,700 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CORE_NT_Project__c.Baselined__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Internal_Link__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Locked__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Measure_Bonus__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_NoOfEntityExceptions__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_No_Bonus__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_No_CrossBorders__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_No_Of_Bonus_Matrix_Crossborders__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_No_of_Central_Billing__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_No_of_OOPS_Crossborder__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_No_of_Reviews__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Notified_To_CatFinance__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Notified_to_Agency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_OOPS_Estimates_Generated__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_OOPS_Overall__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Overall_OOPS__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Pilot_Model__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_ProgressImage_Reviews__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_ProgressImage__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Q2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Q3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_RaiseNewPOQuarters__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Status_Base_Fees__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_Status_Bonus__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.Brand__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Status_OOPs_Atcual__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.CategoryName__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Status_OOPs_Estimate__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.Cluster__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_SumofExceptionPercent__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.Deadline__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Threshold_Key__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.Description__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_TotalNoOfExceptions__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.IPM_Project__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Total__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.ITO__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Traditional__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.ImportID__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_Unique_Key__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.Kickoff__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_User_TYpe__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.OTIF_Status__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_When_changed_to_Ready_fo_PO__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.PercentComplete__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_isComment__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.Project_Scope__c</field>
+=======
+        <field>AF_Brand_Estimate__c.AF_isFirsttime__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.Project_Type__c</field>
+=======
+        <field>AF_Brand_Estimate__c.Agency_Base_Fee__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.SubcategoryName__c</field>
+=======
+        <field>AF_Brand_Estimate__c.Agency_Estimates_LC__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.Total_Complete_Task_Count__c</field>
+=======
+        <field>AF_Brand_Estimate__c.Archived_BrandEstimate_BaseFee__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.Total_Expense_Budget__c</field>
+=======
+        <field>AF_Brand_Estimate__c.Archived_BrandEstimate_Quarter__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.Total_Expenses_Spent__c</field>
+=======
+        <field>AF_Brand_Estimate__c.Base_Fee_Total__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.Total_FTE_Budget__c</field>
+=======
+        <field>AF_Brand_Estimate__c.BrandEstimateArchivedId__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.Total_FTE_Spent__c</field>
+=======
+        <field>AF_Brand_Estimate__c.Brand_Estimate_Name_Migration__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.Total_Hours_Budget__c</field>
+=======
+        <field>AF_Brand_Estimate__c.Brand__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.Total_Late_Task_Count__c</field>
+=======
+        <field>AF_Brand_Estimate__c.CreatedUserEmail__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.Total_Number_Of_tasks__c</field>
+=======
+        <field>AF_Brand_Estimate__c.ExceptionsComplete__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Project__c.Total_Open_Task_Count__c</field>
+=======
+        <field>AF_Brand_Estimate__c.Initiated__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Summary_Task__c.Deadline__c</field>
+=======
+        <field>AF_Brand_Estimate__c.IsUpdate__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Summary_Task__c.Description__c</field>
+=======
+        <field>AF_Brand_Estimate__c.No_of_Approvers__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Summary_Task__c.Expense_Budget__c</field>
+=======
+        <field>AF_Brand_Estimate__c.No_of_Completed_Reviews__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Summary_Task__c.ImportID__c</field>
+=======
+        <field>AF_Brand_Estimate__c.Q1__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Summary_Task__c.Kickoff__c</field>
+=======
+        <field>AF_Brand_Estimate__c.Q4__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Summary_Task__c.MPP_Id__c</field>
+=======
+        <field>AF_Brand_Estimate__c.Time_to_PO__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Summary_Task__c.Milestone_ExtID__c</field>
+=======
+        <field>AF_Brand_Estimate__c.TriggerEmailAgency__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Summary_Task__c.Outline_Number__c</field>
+=======
+        <field>AF_Brand_Estimate__c.Trigger_Time_05__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Summary_Task__c.Parent_Milestone__c</field>
+=======
+        <field>AF_Brand_Estimate__c.UserEmail__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Summary_Task__c.Predecessor_Milestone_Import_Id__c</field>
+=======
+        <field>AF_Category_Brand__c.AF_Brand_Logo__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Summary_Task__c.Predecessor_Milestone__c</field>
+=======
+        <field>AF_Category_Brand__c.AF_Category_Brands__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Summary_Task__c.Project__c</field>
+=======
+        <field>AF_Category_Brand__c.AF_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Summary_Task__c.Total_Expense_Spent__c</field>
+=======
+        <field>AF_Category_Brand__c.AF_Description__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Summary_Task__c.Total_FTE_Budget__c</field>
+=======
+        <field>AF_Category_Brand__c.AF_Pilot_Model__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Summary_Task__c.Total_FTE_Spent__c</field>
+=======
+        <field>AF_Category_Brand__c.AF_Super_category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Summary_Task__c.isParentSummaryTask__c</field>
+=======
+        <field>AF_Category_Brand__c.AF_Unique_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.Assigned_To__c</field>
+=======
+        <field>AF_Category_Brand__c.Brand__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.Complete__c</field>
+=======
+        <field>AF_Comments__c.AF_Agency_Estimate__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.Completed_MPP__c</field>
+=======
+        <field>AF_Comments__c.AF_Bonus_Summary__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.Critical__c</field>
+=======
+        <field>AF_Comments__c.AF_Bonus__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.Days_Late_Formula__c</field>
+=======
+        <field>AF_Comments__c.AF_Brand_Estimate__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.Description__c</field>
+=======
+        <field>AF_Comments__c.AF_Comments__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.Due_Date__c</field>
+=======
+        <field>AF_Comments__c.AF_OOPS_Actual__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.ImportID__c</field>
+=======
+        <field>AF_Comments__c.AF_OOPS_Estimate__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.L1_Manager_Email__c</field>
+=======
+        <field>AF_Comments__c.AF_Parent_Object_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.L2_Manager_Email__c</field>
+=======
+        <field>AF_Comments__c.AF_Parent_Record_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.MPP_Id__c</field>
+=======
+        <field>AF_Comments__c.AF_Public__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.Milestone__c</field>
+=======
+        <field>AF_Comments__c.AF_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.Outline_Number__c</field>
+=======
+        <field>AF_Comments__c.OwnerName__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.PredecessorId__c</field>
+=======
+        <field>AF_Controller_Review__c.AF_Comment__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.Predecessor_Task_Import_Id__c</field>
+=======
+        <field>AF_Controller_Review__c.Controller_Group__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.Predecessor_Task__c</field>
+=======
+        <field>AF_Controller_Review__c.Review_Completed__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.ProjectId__c</field>
+=======
+        <field>AF_Controller_Review__c.key__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.Project_Milestone__c</field>
+=======
+        <field>AF_Controller_Review__c.test_number__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.Start_Date__c</field>
+=======
+        <field>AF_Currency__c.AF_Agency_entity__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.Task_Completed_MPP__c</field>
+=======
+        <field>AF_Currency__c.AF_Average_Exchange_Rate_To_EUR__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.Task_Completed__c</field>
+=======
+        <field>AF_Currency__c.AF_Country_Year_Currency_Code_Unique__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Task__c.Task_ExtId__c</field>
+=======
+        <field>AF_Currency__c.AF_Country__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Team__c.ProjTeam_ExtId__c</field>
+=======
+        <field>AF_Currency__c.AF_Currency_Code__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Team__c.Resource_UID__c</field>
+=======
+        <field>AF_Currency__c.AF_Currency_Trigger_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Team__c.Role__c</field>
+=======
+        <field>AF_Currency__c.AF_Fiscal_Year__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>CORE_NT_Team__c.TeamMemberName__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -8642,60 +11755,139 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Campaign.HierarchyActualCost</field>
+=======
+        <field>AF_Currency__c.AF_Fiscal_Year_new__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Currency__c.AF_UpdateKey__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Currency__c.Country_Currency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Currency__c.Currency_Unit__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Currency__c.Locked__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Currency__c.Ready_For_PO_Exchange_Rate_SGD_To_USD__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Currency__c.Ready_For_PO_Exchange_Rate_To_EUR__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Entity_Exception__c.AF_Agency_Estimate_Value__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Campaign.HierarchyAmountAllOpportunities</field>
+=======
+        <field>AF_Entity_Exception__c.AF_Country__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Campaign.HierarchyAmountWonOpportunities</field>
+=======
+        <field>AF_Entity_Exception__c.AF_Value_Euro__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Campaign.HierarchyBudgetedCost</field>
+=======
+        <field>AF_Entity_Exception__c.AF_Value__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Campaign.HierarchyExpectedRevenue</field>
+=======
+        <field>AF_Entity__c.AF_Agency__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Campaign.HierarchyNumberOfContacts</field>
+=======
+        <field>AF_Entity__c.AF_Billing_City__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Campaign.HierarchyNumberOfConvertedLeads</field>
+=======
+        <field>AF_Entity__c.AF_Billing_Country__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Campaign.HierarchyNumberOfLeads</field>
+=======
+        <field>AF_Entity__c.AF_Billing_State_Province__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Campaign.HierarchyNumberOfOpportunities</field>
+=======
+        <field>AF_Entity__c.AF_Billing_Street__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Campaign.HierarchyNumberOfResponses</field>
+=======
+        <field>AF_Entity__c.AF_Billing_Zip_Postal_Code__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Campaign.HierarchyNumberOfWonOpportunities</field>
+=======
+        <field>AF_Entity__c.AF_Cluster__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Campaign.HierarchyNumberSent</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -8742,100 +11934,222 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Action_Taken__c</field>
+=======
+        <field>AF_Entity__c.AF_Country__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Entity__c.AF_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Entity__c.AF_Entity_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Entity__c.AF_Fax__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Entity__c.AF_Inactive__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Entity__c.AF_Legal_Entity_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Entity__c.AF_Local_Currency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Entity__c.AF_Phone__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Entity__c.AF_Shipping_City__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Entity__c.AF_Shipping_Country__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Alert_Action_Id__c</field>
+=======
+        <field>AF_Entity__c.AF_Shipping_State_Province__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.AssetId</field>
+=======
+        <field>AF_Entity__c.AF_Shipping_Street__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Brand__c</field>
+=======
+        <field>AF_Entity__c.AF_Shipping_Zip_Postal_Code__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Breakdown_Machine__c</field>
+=======
+        <field>AF_Entity__c.AF_UAPL__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.CEC_Product_Hierarchy__c</field>
+=======
+        <field>AF_Entity__c.AF_UKCR__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.CEC_Product__c</field>
+=======
+        <field>AF_Entity__c.AF_Unique_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.CEC_Reason_Code__c</field>
+=======
+        <field>AF_Entity__c.Controller_Group__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.CEC_Reason_Hierarchy__c</field>
+=======
+        <field>AF_Entity__c.IsCentralHub__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.CMMFlag__c</field>
+=======
+        <field>AF_Entity__c.key__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.CMM_Account_Owner_Active_Flag__c</field>
+=======
+        <field>AF_Matrix_Table__c.AF_Agency_Country__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Case_Brand_Mapping__c</field>
+=======
+        <field>AF_Matrix_Table__c.AF_CrossBorder__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Case_Market_Mapping_Country_Id__c</field>
+=======
+        <field>AF_Matrix_Table__c.AF_Matrix_Country__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Case_Market_Mapping_Country__c</field>
+=======
+        <field>AF_Matrix_Table__c.AF_Matrix_Currency_Code__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Case_Market_Tag__c</field>
+=======
+        <field>AF_Matrix_Table__c.AF_Matrix_country_Currency__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Case_Market__c</field>
+=======
+        <field>AF_Matrix_Table__c.AF_POandMatrixSame__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Case_product_category__c</field>
+=======
+        <field>AF_Matrix_Table__c.AF_Ready_For_PO_Country_Currency__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.ClosedDate</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.ClosedOnCreate</field>
+=======
+        <field>AF_Matrix_Table__c.AF_Ready_For_PO_Country__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Matrix_Table__c.AF_Ready_For_PO_Currency_Code__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Consumer_Product_Descriptor_no_size__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -8847,35 +12161,69 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Country_Name__c</field>
+=======
+        <field>AF_Matrix_Table__c.AF_Same_Currency__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Matrix_Table__c.AF_Tax_Implications__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Matrix_Table__c.AF_Unilver_Country__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Country__c</field>
+=======
+        <field>AF_Matrix_Table__c.Ready_For_PO_Conversion__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.DW_Order_Number__c</field>
+=======
+        <field>AF_Matrix_Table__c.Unique_Key_FF__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Date_of_Manufacture__c</field>
+=======
+        <field>AF_Matrix_Table__c.Unique_Key_WF__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Date_of_Manufacture_str__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Active_Rejection_Comment__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.DayCode__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_AgencyUsers1__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.DefaultCMMAccountOwner_Id__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -8887,145 +12235,268 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Expiry_Date__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_AgencyUsers2__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_AgencyUsers3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_AgencyUsers4__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.External_Image_Address__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_AgencyUsers5__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Factory_Investigation_Survey_Link__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Agency_Action_Q1__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Global_Reason_L5_desc__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Agency_Action_Q2__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.HistoricCreatedDate__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Agency_Action_Q3__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Inconsistent_Case__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Agency_Action_Q4__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.IsClosedOnCreate</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Agency__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.IsEscalated</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.IsSelfClosed</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Agency_lk__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_BrandEstimateId__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.IsSelfServiceClosed</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Brand__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.IsVisibleInCss</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Action_Q1__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.IsVisibleInSelfService</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Action_Q2__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Is_Language_Skill_Match__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Action_Q3__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Is_Product_Skill_Match__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Action_Q4__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.L0_Product_Category__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Approver_1__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.L1_Product_Category__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Approver_2__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.L2_Product_Category__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Approver_3__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.L3_Product_Category__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Approver_4__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.L4_Product_Category__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Approver_5__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.L5_Code__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Email_1__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.L5_Product_Category__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Email_2__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.L6_Product_Category__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Email_3__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.L7_Product_Category__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Email_4__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Language__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Email_5__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Legacy_Reference__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_CategoryView__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Machine_ID__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Category_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Market__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Category_View__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Matching_Response__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.NewAccountFlag__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -9037,10 +12508,19 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Out_of_Hours__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Community_Link__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_Compound_key__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.ParentId</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -9052,25 +12532,51 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Product_Code__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Fiscal_Year_Difference__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_Fiscal_year__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_GR_Approval__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Product_Skill__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Internal_Link__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Product_UPC__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Matrix_Generated__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Production_Code__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_No_Of_CrossBorder__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Purchase_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -9082,85 +12588,159 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Reason_Code__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Number_of_0_or_null_OOPS_estimates__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_OOPSActualName__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_OOPS_Estimate__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Reason_L0_desc__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_OOPS_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Reason_L1_desc__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Q1_Approval_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Reason_L2_desc__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Q1_Backup__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Reason_L3_desc__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Q1_Rejection_Comment__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Reason_L4_desc__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Q1__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Reason_L5_desc__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Q2_Approval_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.SEB_Case_Number__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Q2_Backup__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.SEB_Closed_Date__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Q2_Rejection_Comment__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Sapient_Campaign__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Q2__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Sapient_Corporate__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Q3_Approval_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Sapient_DCS_ID__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Q3_Backup__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Sapient_Micro_Site_ID__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Q3_Rejection_Comment__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Set_Assignment_Fields__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Q3__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Skill_Match__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Q4_Approval_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Store_Location__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Q4_Backup__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Store__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -9202,10 +12782,54 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.UPC_Code_Detail__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Q4_Rejection_Comment__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_Q4__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_Quarter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_Rejected_Quarter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_Status_Q1__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_Status_Q2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_Status_Q3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_Status_Q4__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_Status__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.Unique_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -9332,55 +12956,220 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.agf__ADM_Work__c</field>
+=======
+        <field>AF_OOPS_Actual__c.AF_Unique_Combination__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_When_changed_to_Ready_fo_PO__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_iS_OOPS_Percentage__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.Crossborder__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.IDfromPilot__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.Overall__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.Quarter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.Total_Base_Fee__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.Total_Crossborder__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.oopsEstimateStatus__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Adaptation__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Adjusted_estimate_1__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Adjusted_estimate_2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Agency_Account__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Agency_Entity_Column_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Agency_Entity__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Agency_ExchangeRateTemp__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Agency_Exchange_Rate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Agency_Spot_Rate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Agreed_Base_Fee_is_0__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Agreed_Base_Fees__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Archived__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Brand_Estimate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Brand__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.isFormKnown__c</field>
+=======
+        <field>AF_OOPS_Estimate__c.AF_Compound_key__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.isPacksizeKnown__c</field>
+=======
+        <field>AF_OOPS_Estimate__c.AF_CountNoQuarters__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Case.isVariantKnown__c</field>
+=======
+        <field>AF_OOPS_Estimate__c.AF_Digital__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Category_Brands__c.Legacy_ID__c</field>
+=======
+        <field>AF_OOPS_Estimate__c.AF_EstimateLocal__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Category__c.Category_Logo__c</field>
+=======
+        <field>AF_OOPS_Estimate__c.AF_Estimate_Local_Old__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Category__c.Legacy_ID__c</field>
+=======
+        <field>AF_OOPS_Estimate__c.AF_Estimate_Local__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Category__c.Parent_Category_Name__c</field>
+=======
+        <field>AF_OOPS_Estimate__c.AF_Estimate_Overall__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Category__c.Parent_Category__c</field>
+=======
+        <field>AF_OOPS_Estimate__c.AF_Estimate__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Category__c.Sort_Order__c</field>
+=======
+        <field>AF_OOPS_Estimate__c.AF_Fiscal_Year_FF__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Category__c.Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -9462,10 +13251,94 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.HasOptedOutOfEmail</field>
+=======
+        <field>AF_OOPS_Estimate__c.AF_Fiscal_Year__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_IsCrossBorderImage__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_IsCrossBorder__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Is_Crossborder_Wk__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_JustQuarters__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Locked__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_MatrixCodeTemp__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Max_Quarter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Mean_Quarter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_No_of_Quaters__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_OOPS_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_OOPS_Estimate_Local__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_OOPS_Matrix_Currency_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Overall_OOPS__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_OverridePO_Adaptation_LC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_OverridePO_Digital_LC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Override_Estimate_Local__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Contact.HasOptedOutOfFax</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -9517,10 +13390,64 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.Referred_By__c</field>
+=======
+        <field>AF_OOPS_Estimate__c.AF_PO_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_PO_Report_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_PO_Value_LC_2014__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_PO_value_euro2014__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Previous_PO_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Previous_Quarter_Estimate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Previous_Quarter_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Previous_Quarters_Done__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Quarter_PO_Raised__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Quarter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_QuatersAlreadyDone__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Contact.Relationship__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -9542,10 +13469,34 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>ContentVersion.CMS_ID__c</field>
+=======
+        <field>AF_OOPS_Estimate__c.AF_Rate_Currency__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Rate_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Ready_For_PO_Entry_Currency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Ready_For_PO_Exchange_Rate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_ReadyforPOExchangeRateTemp__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Contract.ActivatedById</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -10102,10 +14053,569 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Requested_By_Language__c</field>
+=======
+        <field>AF_OOPS_Estimate__c.AF_ReadyforPoCodeTemp__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Total__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Traditional__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Unilever_Entity_Column_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_Unilever_Entity__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_isCommentImage__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.AF_isComment__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.Agency_Entity_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.IDfromPilot__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.IsUpdate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Estimate__c.Unilever_Entity_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Adaptation_Local__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Adaptation_Total_LC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Adaptation__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Agency_Brand__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Agency_Entity__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Agency_Estimate_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Agency_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Base_Fee_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Big_Category_New__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Brand_Estimate_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Brand_Estimate_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Brand__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Calculate_Adaptation_Local__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Calculate_Digital_Local__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Calculate_Tradition_Local__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Calculated_PO_Value_Formula__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_CategoryView__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Compound_Key__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_CountNoQuarters__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_CrossBorder__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Currency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Digital_Local__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Digital_Total_LC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Digital__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Estimate_Local__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Estimate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Fiscal_Year__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Legal_Entity_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Matrix_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Max_Quarter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_OOPS_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Oops_Estimate_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_OverridePO_Adaptation_LC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_OverridePO_Digital_LC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_OverridePO_Traditional_LC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Check__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Override_Adapt_Report__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Override_Digital_Report__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Override_Trad_Report__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Report_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_TL_Check__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Total__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Value_2014__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Value_LC_2014__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Value_LC_Report__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Value_Total_LC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_PO_Value_Tradition_OOPSEuro__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Previous_Quarter_Value_AL__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Previous_Quarter_Value_DL__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Previous_Quarter_Value_TL_OOPSEuro__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Previous_Quarter_Value_TL__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Previous_Quarter_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Q4_PO_Total__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_QuatersAlreadyDone__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Ready_for_PO_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Show_In_Report__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Total_Local__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Total__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Traditional_Local__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Traditional_Total_LC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Traditional__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.AF_Unilever_Entity__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.Fiscal_Year__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.Oops_Actual_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.PO_Check_Value_Diff__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_PO_Report__c.PO_Check_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Bonusable_Fees__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Class_code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Comment__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Digital__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Locked__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Minimum__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Outstanding__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Period__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Qual_Bonus_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Qual_Per__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Qual__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Quant_Bonus_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Quant_Bonus__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Quant__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Result_type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Stretching__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Total_Bonus_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Total_Bonus__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Total_bonus_fees__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Traditional__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Unique_Key__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_Unique_Thresholds__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_country__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.AF_deletion_key__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.Bonus_Measure__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.Qual_Result__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.Quant_Result__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.Sub_Result_AnnualID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Sub_Result__c.key__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.AccountNumber</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.AccountSource</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Core_Approval_Header__c.Requested_By__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -10142,20 +14652,68 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Status__c</field>
+=======
+        <field>Account.Account_Record_Count__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Additional_Information__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Agency_Contact__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Agency_Expertise__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Agree_to_Audits__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Agree_to_comply_Unilever_Supplier_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Agree_to_logo_use__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.AnnualRevenue</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Core_Approval_Header__c.TF_Currency1__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.TF_Currency2__c</field>
+=======
+        <field>Account.Awards__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.BillingAddress</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Core_Approval_Header__c.TF_Currency3__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -10197,10 +14755,54 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Action__c</field>
+=======
+        <field>Account.Business_activity_types__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.CEC_Marketing_Opt_In__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Children_under_12__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Club_Member_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Company_Structure__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Currency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.D_B_Duns_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Demandware_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Description</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Core_Approver_Details__c.Alternate_Approver__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -10217,10 +14819,29 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.CA_Action__c</field>
+=======
+        <field>Account.Discipline__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Drinking_frequency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.External_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Fax</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Core_Approver_Details__c.CA_Role__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -10237,10 +14858,29 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.CurrentDateTime__c</field>
+=======
+        <field>Account.Featured__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.General_Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Industry</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Jigsaw</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Core_Approver_Details__c.Employee_No__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -10292,25 +14932,102 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Core_Approver_Details__c.Send_to_Source_System__c</field>
+=======
+        <field>Account.Known_Consumer__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Latest_Case_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Latest_Case_Product_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Latest_Case_Reason_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Legacy_Reference__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Legal_Designation__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Length_of_client_relationship__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Machine_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Next_Review_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.No_of_Tea_drinkers__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.NumberOfEmployees</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Core_Approver_Details__c.Sort_Order__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Source_System__c</field>
+=======
+        <field>Account.Overall_Rating__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Ownership</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Ownership_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.ParentId</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+<<<<<<< HEAD
         <field>Core_Approver_Details__c.Status__c</field>
+=======
+        <field>Account.Phone</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Core_Approver_Details__c.TF_Header_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -10337,15 +15054,53 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Course_Attachment__c.Attachment_type__c</field>
+=======
+        <field>Account.Phone_No_Special_Char__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Preferred_Channel__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Preferred_Tea_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Preferred_infusion_type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Previous_Names__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Published__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Rating</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Course_Attachment__c.FA_Download_Available_From__c</field>
+=======
+        <field>Account.Registration_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Download_Statistics__c.Content_Document_Id__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -10357,45 +15112,103 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Download_Statistics__c.Content_Size__c</field>
+=======
+        <field>Account.Responsible_Unilever_Employee__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.ShippingAddress</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Sic</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.SicDesc</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Site</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Download_Statistics__c.Content_Type__c</field>
+=======
+        <field>Account.Strategic_Capabilities_Video__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Download_Statistics__c.Content_Version_Id__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Download_Statistics__c.Downloaded_By__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Download_Statistics__c.Downloaded_in_Country__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Download_Statistics__c.FileId__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Download_Statistics__c.File_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Download_Statistics__c.Timestamp__c</field>
+=======
+        <field>Account.Strategic_Capabilities__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.Subcategories__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Tea_moment_of_the_day__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Download_Statistics__c.Downloaded_in_Country__c</field>
+=======
+        <field>Account.Tea_moment_of_the_week__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Download_Statistics__c.FileId__c</field>
+=======
+        <field>Account.TickerSymbol</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Download_Statistics__c.File_Id__c</field>
+=======
+        <field>Account.Total_Rating_Count__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Download_Statistics__c.Timestamp__c</field>
+=======
+        <field>Account.Total_Rating_Score__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+<<<<<<< HEAD
         <field>Event.Description</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -10407,15 +15220,33 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Event.IsVisibleInSelfService</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Event.Location</field>
+=======
+        <field>Account.Type</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.VIP__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Vimeo_Link__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+<<<<<<< HEAD
+        <field>Event.Location</field>
+=======
+        <field>Account.Website</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Event.Type</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -10432,20 +15263,42 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Event_Member__c.Event__c</field>
+=======
+        <field>Account.Year_Established__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Agency_Fee_Field_History__c.Amended_By__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Agency_Fee_Field_History__c.Created_Date__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Event_Member__c.Is_Expert__c</field>
+=======
+        <field>Agency_Fee_Field_History__c.Field__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Event_Member__c.Member_Type__c</field>
+=======
+        <field>Agency_Fee_Field_History__c.New_Value__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Event_Member__c.User__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -10492,195 +15345,429 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Event__c.Total_Unique_Visits__c</field>
+=======
+        <field>Agency_Fee_Field_History__c.Object_Record_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Agency_Fee_Field_History__c.Object__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Agency_Fee_Field_History__c.Old_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Application_Usage__c.Accessed__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Application_Usage__c.Application__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Application_Usage__c.Assigned_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Application_Usage__c.Assigned__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Application_Usage__c.Days_Since_Last_Access__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Application_Usage__c.Last_Accessed_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Application_Usage__c.User_Country__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Event__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>FAU_Milestone_Participant__c.FAU_1st_Reminder__c</field>
+=======
+        <field>Application_Usage__c.User__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Article__c.Allow_Chatter__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone_Participant__c.FAU_2nd_Reminder__c</field>
+=======
+        <field>Article__c.Apply_to_Profiles__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone_Participant__c.FAU_Due_Date__c</field>
+=======
+        <field>Article__c.Approval_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone_Participant__c.FAU_Front_End_Link__c</field>
+=======
+        <field>Article__c.Article_Body__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone_Participant__c.FAU_Information_for_Completion__c</field>
+=======
+        <field>Article__c.Article_Subtitle__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone_Participant__c.FAU_Milestone_Name__c</field>
+=======
+        <field>Article__c.AuthorUser__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone_Participant__c.FAU_Participant_s_Email__c</field>
+=======
+        <field>Article__c.Author__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone_Participant__c.FAU_Participant_s_Invite_Status__c</field>
+=======
+        <field>Article__c.Body_Text__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone_Participant__c.FAU_Program_Name__c</field>
+=======
+        <field>Article__c.Chatter_Enabled__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone_Participant__c.FAU_Status__c</field>
+=======
+        <field>Article__c.Contains_Picture__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone_Participant__c.FAU_Workflow_1st_Reminder__c</field>
+=======
+        <field>Article__c.Content_Delivery_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone_Participant__c.FAU_Workflow_2nd_Reminder__c</field>
+=======
+        <field>Article__c.Content_Delivery__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone_Participant__c.FAU_Workflow_Due_Date__c</field>
+=======
+        <field>Article__c.End_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone__c.FAU_1st_Reminder__c</field>
+=======
+        <field>Article__c.External_URL__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone__c.FAU_2nd_Reminder__c</field>
+=======
+        <field>Article__c.Fuse__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone__c.FAU_Description__c</field>
+=======
+        <field>Article__c.Image_Align__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone__c.FAU_Due_Date__c</field>
+=======
+        <field>Article__c.Image_Caption__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone__c.FAU_Information_Link__c</field>
+=======
+        <field>Article__c.Image_Preview__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone__c.FAU_Information_to_Complete__c</field>
+=======
+        <field>Article__c.Include_web_to_lead__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone__c.FAU_Milestone_Completition__c</field>
+=======
+        <field>Article__c.Link__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone__c.FAU_No_Milestone_Participants_Completed__c</field>
+=======
+        <field>Article__c.On_Website__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone__c.FAU_No_Milestone_Participants__c</field>
+=======
+        <field>Article__c.Ordinal__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone__c.FAU_Send_Reminder_at_Due_Date__c</field>
+=======
+        <field>Article__c.Picture_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Milestone__c.FAU_Type__c</field>
+=======
+        <field>Article__c.Picture__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Accommodation_Type__c</field>
+=======
+        <field>Article__c.Publish_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Arrival_Car_Transfer_Needed__c</field>
+=======
+        <field>Article__c.Published__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Arrival_Date_and_Time__c</field>
+=======
+        <field>Article__c.Render_Image__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Arrival_Flight_Number__c</field>
+=======
+        <field>Article__c.Start_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Arrival_Time__c</field>
+=======
+        <field>Article__c.Status_Indicator__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Check_in_Date__c</field>
+=======
+        <field>Article__c.Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Check_out_Date__c</field>
+=======
+        <field>Article__c.Summary__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Departure_Car_Transfer_Needed__c</field>
+=======
+        <field>Article__c.Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Departure_Date_and_Time__c</field>
+=======
+        <field>Article__c.YouTube_embed__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Departure_Flight_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>FAU_Module_Participant__c.FAU_Departure_Time__c</field>
+=======
+        <field>Article__c.uw_Brand__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.AccountId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.ContactId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.InstallDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.IsCompetitorProduct</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.Price</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.Product2Id</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset.ProductCode</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Dietary_Restrictions_Describe_Other__c</field>
+=======
+        <field>Asset.ProductDescription</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Dietary_Restrictions__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -10692,395 +15779,737 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FAU_Module_Participant__c.FAU_Has_Flight_Details__c</field>
+=======
+        <field>Asset.ProductFamily</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.PurchaseDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.Quantity</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.SerialNumber</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.Status</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.UsageEndDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset_Group__c.Brand_Name_For_KeyWord_Search__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Has_Hotel_Details__c</field>
+=======
+        <field>Asset_Group__c.Brand__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Hotel_Details_Flag__c</field>
+=======
+        <field>Asset_Group__c.Category_Name_for_KeyWord_Search__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Hotel_Name__c</field>
+=======
+        <field>Asset_Group__c.Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Is_Local__c</field>
+=======
+        <field>Asset_Group__c.Description__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Module_Complete_Flag__c</field>
+=======
+        <field>Asset_Group__c.Legacy_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Module_Complete__c</field>
+=======
+        <field>Asset_Group__c.Market_Cluster__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Module_End_Date__c</field>
+=======
+        <field>Asset_Group__c.Market_Cluster_for_KeyWord_Search__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Module_Form__c</field>
+=======
+        <field>Asset_Group__c.Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Module_Name__c</field>
+=======
+        <field>Asset_Group__c.Type_for_Keyword_Search__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Module_Number__c</field>
+=======
+        <field>Asset__c.Asset_Group__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Module_Pre_Work__c</field>
+=======
+        <field>Asset__c.BET__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Module_Start_Date__c</field>
+=======
+        <field>Asset__c.Brand_Name_For_KeyWord_Search__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Note__c</field>
+=======
+        <field>Asset__c.Brand__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Participant_Name__c</field>
+=======
+        <field>Asset__c.Buy_Online_in_AAR__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Participant_PA_s_Email__c</field>
+=======
+        <field>Asset__c.Buy_Online_in_Americas__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Participant_s_Email__c</field>
+=======
+        <field>Asset__c.Buy_Online_in_Europe__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Participant_s_Invite_Status__c</field>
+=======
+        <field>Asset__c.Carousel_Published__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Program_Banner_URL__c</field>
+=======
+        <field>Asset__c.Category_Name_for_KeyWord_Search__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Program_Location__c</field>
+=======
+        <field>Asset__c.Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Program_Name__c</field>
+=======
+        <field>Asset__c.Channels__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Remind_me_about_completion_of_Bio__c</field>
+=======
+        <field>Asset__c.Country__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Remind_me_about_course_pre_work__c</field>
+=======
+        <field>Asset__c.Country_for_KeyWord_Search__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Reminder_Opt_in_out__c</field>
+=======
+        <field>Asset__c.Description__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Status__c</field>
+=======
+        <field>Asset__c.Legacy_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Travel_Details_Deadline__c</field>
+=======
+        <field>Asset__c.Market_Cluster__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Workflow_End_Date__c</field>
+=======
+        <field>Asset__c.Market_Cluster_for_KeyWord_Search__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module_Participant__c.FAU_Workflow_Start_Date__c</field>
+=======
+        <field>Asset__c.Modern_Channels__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module__c.FAU_Description__c</field>
+=======
+        <field>Asset__c.POS_Asset_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module__c.FAU_End_Date__c</field>
+=======
+        <field>Asset__c.POS_Asset_Type_for_KeyWord_Search__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module__c.FAU_Hotel_Name__c</field>
+=======
+        <field>Asset__c.Placement__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module__c.FAU_Module_Number__c</field>
+=======
+        <field>Asset__c.Scheduled_Delete_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Module__c.FAU_Start_Date__c</field>
+=======
+        <field>Asset__c.Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.Chatter_Group_Id__c</field>
+=======
+        <field>Asset__c.Touchpoint__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.Current_Role_Responibilities__c</field>
+=======
+        <field>Asset__c.Touchpoint_for_KeyWord_Search__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Approver_of_Nomination__c</field>
+=======
+        <field>Asset__c.Traditional_Channels__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Approver_of_Nomination_s_Email__c</field>
+=======
+        <field>BET_Category__c.BET_Parent_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Bio_Completeness_Flag__c</field>
+=======
+        <field>Brand_Centre_Content__c.Author__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Bio_Page_Link__c</field>
+=======
+        <field>Brand_Centre_Content__c.Body__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Biography_Deadline__c</field>
+=======
+        <field>Brand_Centre_Content__c.Display__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Biography__c</field>
+=======
+        <field>Brand_Centre_Content__c.Embeb_URL__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Budget_Holder__c</field>
+=======
+        <field>Brand_Centre_Content__c.Front_End_link__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Budget_Holder_s_Email__c</field>
+=======
+        <field>Brand_Centre_Content__c.Header_Section__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Chatter_Group__c</field>
+=======
+        <field>Brand_Centre_Content__c.Header__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Company_Building_and_Street__c</field>
+=======
+        <field>Brand_Centre_Content__c.Help_Text__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Company_City__c</field>
+=======
+        <field>Brand_Centre_Content__c.Icon__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Company_Code__c</field>
+=======
+        <field>Brand_Centre_Content__c.Image_Icon_SubType_Other__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Company_Country__c</field>
+=======
+        <field>Brand_Centre_Content__c.Link_URL__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Company_Details_Flag__c</field>
+=======
+        <field>Brand_Centre_Content__c.Ordinal__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Company_Details_Message__c</field>
+=======
+        <field>Brand_Centre_Content__c.Position__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Company_Name__c</field>
+=======
+        <field>Brand_Centre_Content__c.Preview_Image2__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Company_Zip_Code__c</field>
+=======
+        <field>Brand_Centre_Content__c.Preview_Image_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Completeness_Flag__c</field>
+=======
+        <field>Brand_Centre_Content__c.Published_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Completeness_Icon__c</field>
+=======
+        <field>Brand_Centre_Content__c.RT_name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Completeness_Message__c</field>
+=======
+        <field>Brand_Centre_Content__c.Source__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Cost_Center__c</field>
+=======
+        <field>Brand_Centre_Content__c.Sub_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Decline_Reason__c</field>
+=======
+        <field>Brand_Centre_Content__c.Subtitle__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Education__c</field>
+=======
+        <field>Brand_Centre_Content__c.Summary__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Email_Address__c</field>
+=======
+        <field>Brand_Centre_Content__c.Target__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Employee_Details_Flag__c</field>
+=======
+        <field>Brand_Centre_New__c.Background_Colour__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Employee_Details_Message__c</field>
+=======
+        <field>Brand_Centre_New__c.Background_Image__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Employee_Number__c</field>
+=======
+        <field>Brand_Centre_New__c.Brand_Centre_Description__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_External_ID__c</field>
+=======
+        <field>Brand_Centre_New__c.Brand_Name_unique__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_First_Name__c</field>
+=======
+        <field>Brand_Centre_New__c.CSS_All_Stories_Template__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_GL_Code__c</field>
+=======
+        <field>Brand_Centre_New__c.CSS_Article_Template__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_ICC__c</field>
+=======
+        <field>Brand_Centre_New__c.CSS_name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Invitation_Link__c</field>
+=======
+        <field>Brand_Centre_New__c.Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Invite_State__c</field>
+=======
+        <field>Brand_Centre_New__c.Chatter_Group_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Invite_Status__c</field>
+=======
+        <field>Brand_Centre_New__c.Footer__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Is_Participant_Shared__c</field>
+=======
+        <field>Brand_Centre_New__c.Go_to_Brand_Centre__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Is_deferred_To_PA__c</field>
+=======
+        <field>Brand_Centre_New__c.Logo__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Job_Title__c</field>
+=======
+        <field>Brand_Centre_New__c.Parent_Brand__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Last_Email_Sent__c</field>
+=======
+        <field>Brand_Centre_New__c.Primary_Contact__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Last_Name__c</field>
+=======
+        <field>Brand_Centre_New__c.Static_Resource_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Line_Manager_Details_Flag__c</field>
+=======
+        <field>Brand_Centre_New__c.Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Line_Manager__c</field>
+=======
+        <field>Brand_Centre_New__c.Sub_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Line_Manager_s_Details_Message__c</field>
+=======
+        <field>Brand_Master__c.Apps__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Line_Manager_s_Email_Address__c</field>
+=======
+        <field>Brand_Master__c.Brand_Logo__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Line_Manager_s_Job_Title__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11122,45 +16551,117 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FAU_Participant__c.FAU_Participants_Workbook__c</field>
+=======
+        <field>Brand_Master__c.Legacy_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Brand_Master__c.Primary_Category__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Brand_USLP_Progress__c.Activating_In_Market__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Brand_USLP_Progress__c.Brand_Centre_Link__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Brand_USLP_Progress__c.Case_Study__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Brand_USLP_Progress__c.Defined_USLP_Ambition__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Brand_USLP_Progress__c.Order_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Brand_USLP_Progress__c.Started__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_Case_Market_Mapping__c.Account_Owner_Active_Flag__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Person_to_Invoice_s_Email__c</field>
+=======
+        <field>CEC_Case_Market_Mapping__c.CaseOrigin__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Person_to_invoice__c</field>
+=======
+        <field>CEC_Case_Market_Mapping__c.Country__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Personal_Assistant__c</field>
+=======
+        <field>CEC_Case_Market_Mapping__c.DefaultAccountOwnerId__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Personal_Assistant_s_Email__c</field>
+=======
+        <field>CEC_Case_Market_Mapping__c.DefaultCaseOwnerId__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Personal_Details_Flag__c</field>
+=======
+        <field>CEC_Case_Market_Mapping__c.Language__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Personal_Details_Message__c</field>
+=======
+        <field>CEC_Case_Market_Mapping__c.Locale__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Personal__c</field>
+=======
+        <field>CEC_Case_Market_Mapping__c.Market__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Previously_a_Participant__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11267,330 +16768,700 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FAU_Participant__c.FAU_Video_Introduction__c</field>
+=======
+        <field>CEC_Case_Market_Mapping__c.Tag__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Article__c.Body__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Article__c.Link__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Article__c.MediaType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Article__c.Media_Content__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Article__c.Media__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Article__c.ThumbnailText__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Article__c.Title__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CMS_ContentToCarousel__c.Order__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Content__c.Content__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Content__c.Event__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Content__c.LinkTitle__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Content__c.Link__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Content__c.MediaDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Content__c.MediaType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CMS_Content__c.ShortMediaDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Content__c.ThumbnailLink__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Content__c.ThumbnailText__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Content__c.Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Page_Article__c.CMS_Article__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Page_Article__c.Order__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMS_Page_Article__c.Page_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CORE_NT_Project__c.Baselined__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Participant__c.FAU_Webinar_Date_Time__c</field>
+=======
+        <field>CORE_NT_Project__c.Brand__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Biography_Deadline__c</field>
+=======
+        <field>CORE_NT_Project__c.CategoryName__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Category__c</field>
+=======
+        <field>CORE_NT_Project__c.Cluster__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Don_t_Send_Reminders__c</field>
+=======
+        <field>CORE_NT_Project__c.Deadline__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_End_Date_of_Module_1__c</field>
+=======
+        <field>CORE_NT_Project__c.Description__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_External_Id__c</field>
+=======
+        <field>CORE_NT_Project__c.IPM_Project__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Icon__c</field>
+=======
+        <field>CORE_NT_Project__c.ITO__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Invitation_ResponseDeadline__c</field>
+=======
+        <field>CORE_NT_Project__c.ImportID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Invite_Form_Text__c</field>
+=======
+        <field>CORE_NT_Project__c.Kickoff__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Make_Template__c</field>
+=======
+        <field>CORE_NT_Project__c.OTIF_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Module_1_End_Date__c</field>
+=======
+        <field>CORE_NT_Project__c.PercentComplete__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Module_1_Start_Date__c</field>
+=======
+        <field>CORE_NT_Project__c.Project_Scope__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Module_2_End_Date__c</field>
+=======
+        <field>CORE_NT_Project__c.Project_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Module_2_Start_Date__c</field>
+=======
+        <field>CORE_NT_Project__c.SubcategoryName__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Number_of_Webinars__c</field>
+=======
+        <field>CORE_NT_Project__c.Total_Complete_Task_Count__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Participant_Chatter_Group_Id__c</field>
+=======
+        <field>CORE_NT_Project__c.Total_Expense_Budget__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Participant_Chatter_Group__c</field>
+=======
+        <field>CORE_NT_Project__c.Total_Expenses_Spent__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Primary_Location__c</field>
+=======
+        <field>CORE_NT_Project__c.Total_FTE_Budget__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Program_Banner_URL__c</field>
+=======
+        <field>CORE_NT_Project__c.Total_FTE_Spent__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Program_Banner__c</field>
+=======
+        <field>CORE_NT_Project__c.Total_Hours_Budget__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Program_Description__c</field>
+=======
+        <field>CORE_NT_Project__c.Total_Late_Task_Count__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Program_Fee__c</field>
+=======
+        <field>CORE_NT_Project__c.Total_Number_Of_tasks__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Program_Number__c</field>
+=======
+        <field>CORE_NT_Project__c.Total_Open_Task_Count__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Program_Template__c</field>
+=======
+        <field>CORE_NT_Summary_Task__c.Deadline__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Program_Type__c</field>
+=======
+        <field>CORE_NT_Summary_Task__c.Description__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Recordtype_Developer_Name__c</field>
+=======
+        <field>CORE_NT_Summary_Task__c.Expense_Budget__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Start_Date_Quarter__c</field>
+=======
+        <field>CORE_NT_Summary_Task__c.ImportID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Start_Date__c</field>
+=======
+        <field>CORE_NT_Summary_Task__c.Kickoff__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Start_Date_of_Module_1__c</field>
+=======
+        <field>CORE_NT_Summary_Task__c.MPP_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Status__c</field>
+=======
+        <field>CORE_NT_Summary_Task__c.Milestone_ExtID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Training_Centre__c</field>
+=======
+        <field>CORE_NT_Summary_Task__c.Outline_Number__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Program__c.FAU_Video_Introduction__c</field>
+=======
+        <field>CORE_NT_Summary_Task__c.Parent_Milestone__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar_Participant__c.FAU_Bio_Fill_Deadline__c</field>
+=======
+        <field>CORE_NT_Summary_Task__c.Predecessor_Milestone_Import_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar_Participant__c.FAU_End_Time__c</field>
+=======
+        <field>CORE_NT_Summary_Task__c.Predecessor_Milestone__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar_Participant__c.FAU_Has_Accepted__c</field>
+=======
+        <field>CORE_NT_Summary_Task__c.Project__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar_Participant__c.FAU_Name__c</field>
+=======
+        <field>CORE_NT_Summary_Task__c.Total_Expense_Spent__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar_Participant__c.FAU_Participant_PA_s_Email__c</field>
+=======
+        <field>CORE_NT_Summary_Task__c.Total_FTE_Budget__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar_Participant__c.FAU_Participants_Email__c</field>
+=======
+        <field>CORE_NT_Summary_Task__c.Total_FTE_Spent__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar_Participant__c.FAU_Program_Participant__c</field>
+=======
+        <field>CORE_NT_Summary_Task__c.isParentSummaryTask__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar_Participant__c.FAU_Program_Webinar__c</field>
+=======
+        <field>CORE_NT_Task__c.Assigned_To__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar_Participant__c.FAU_Start_Time__c</field>
+=======
+        <field>CORE_NT_Task__c.Complete__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar_Participant__c.FAU_Status__c</field>
+=======
+        <field>CORE_NT_Task__c.Completed_MPP__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar_Participant__c.FAU_Title__c</field>
+=======
+        <field>CORE_NT_Task__c.Critical__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar_Participant__c.FAU_URL_Text__c</field>
+=======
+        <field>CORE_NT_Task__c.Days_Late_Formula__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar_Participant__c.FAU_URL__c</field>
+=======
+        <field>CORE_NT_Task__c.Description__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar__c.FAU_Description__c</field>
+=======
+        <field>CORE_NT_Task__c.Due_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar__c.FAU_End_Time__c</field>
+=======
+        <field>CORE_NT_Task__c.ImportID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar__c.FAU_Recordtype_Developer_Name__c</field>
+=======
+        <field>CORE_NT_Task__c.L1_Manager_Email__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar__c.FAU_Status__c</field>
+=======
+        <field>CORE_NT_Task__c.L2_Manager_Email__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FAU_Webinar__c.FAU_URL__c</field>
+=======
+        <field>CORE_NT_Task__c.MPP_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_ChatterGroup__c.FA_Course_Occurence__c</field>
+=======
+        <field>CORE_NT_Task__c.Milestone__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_ChatterGroup__c.FA_Course__c</field>
+=======
+        <field>CORE_NT_Task__c.Outline_Number__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_ChatterGroup__c.FA_Group_ID__c</field>
+=======
+        <field>CORE_NT_Task__c.PredecessorId__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Facilitator__c.FA_External_ID__c</field>
+=======
+        <field>CORE_NT_Task__c.Predecessor_Task_Import_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Facilitator__c.FA_Facilitator__c</field>
+=======
+        <field>CORE_NT_Task__c.Predecessor_Task__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Facilitator__c.FA_Role_Responsibilities__c</field>
+=======
+        <field>CORE_NT_Task__c.ProjectId__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Facilitator__c.FA_Role__c</field>
+=======
+        <field>CORE_NT_Task__c.Project_Milestone__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Occurence__c.FA_Context__c</field>
+=======
+        <field>CORE_NT_Task__c.Start_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Occurence__c.FA_Course_Name__c</field>
+=======
+        <field>CORE_NT_Task__c.Task_Completed_MPP__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Occurence__c.FA_Course_Occ_Name__c</field>
+=======
+        <field>CORE_NT_Task__c.Task_Completed__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Occurence__c.FA_External_ID__c</field>
+=======
+        <field>CORE_NT_Task__c.Task_ExtId__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Occurence__c.FA_Important_Logistics__c</field>
+=======
+        <field>CORE_NT_Team__c.ProjTeam_ExtId__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Occurence__c.FA_Initiate_Feedback__c</field>
+=======
+        <field>CORE_NT_Team__c.Resource_UID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Occurence__c.FA_Mail_Content_1__c</field>
+=======
+        <field>CORE_NT_Team__c.Role__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Occurence__c.FA_Mail_Content_2__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11627,60 +17498,139 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FA_Course_Occurence__c.FA_Required_Action__c</field>
+=======
+        <field>CORE_NT_Team__c.TeamMemberName__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Campaign.ActualCost</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Campaign.BudgetedCost</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Campaign.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Campaign.EndDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Campaign.ExpectedResponse</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Campaign.ExpectedRevenue</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Campaign.HierarchyActualCost</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Occurence__c.FA_Send_Invite_Mail__c</field>
+=======
+        <field>Campaign.HierarchyAmountAllOpportunities</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Occurence__c.FA_Signature__c</field>
+=======
+        <field>Campaign.HierarchyAmountWonOpportunities</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Occurence__c.FA_Status__c</field>
+=======
+        <field>Campaign.HierarchyBudgetedCost</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Occurence__c.FA_Training_Room_Image__c</field>
+=======
+        <field>Campaign.HierarchyExpectedRevenue</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Occurence__c.FA_Training_Room__c</field>
+=======
+        <field>Campaign.HierarchyNumberOfContacts</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course_Occurence__c.FA_Training_Venue_Image__c</field>
+=======
+        <field>Campaign.HierarchyNumberOfConvertedLeads</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course__c.FA_Course_Code__c</field>
+=======
+        <field>Campaign.HierarchyNumberOfLeads</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course__c.FA_Course_Logo__c</field>
+=======
+        <field>Campaign.HierarchyNumberOfOpportunities</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course__c.FA_Course_Objective__c</field>
+=======
+        <field>Campaign.HierarchyNumberOfResponses</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course__c.FA_Course_Overview__c</field>
+=======
+        <field>Campaign.HierarchyNumberOfWonOpportunities</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Course__c.FA_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11727,130 +17677,276 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FA_Feedback_Questionnaire__c.FA_Question__c</field>
+=======
+        <field>Campaign.HierarchyNumberSent</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Campaign.IsActive</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Campaign.NumberSent</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Campaign.ParentId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Campaign.StartDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Campaign.Status</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Campaign.Type</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Carousel__c.RotateSpeed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.AccountId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Action_Taken__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Feedback_Questionnaire__c.FA_Rating__c</field>
+=======
+        <field>Case.Alert_Action_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Feedback__c.FA_Participant__c</field>
+=======
+        <field>Case.AssetId</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Member_ChatterGroup__c.FA_Chatter_Group_Name__c</field>
+=======
+        <field>Case.Brand_Reporting__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Member_ChatterGroup__c.FA_Course_Occurence__c</field>
+=======
+        <field>Case.Brand__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Member_ChatterGroup__c.FA_Group_ID__c</field>
+=======
+        <field>Case.Breakdown_Machine__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Member_ChatterGroup__c.FA_Occurence_Member__c</field>
+=======
+        <field>Case.CEC_Product_Hierarchy__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_Arrival_Date_Time__c</field>
+=======
+        <field>Case.CEC_Product_Reporting_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_Arrival_Information__c</field>
+=======
+        <field>Case.CEC_Product_Reporting_Name_no_size__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_Course_Occ_Group_Name__c</field>
+=======
+        <field>Case.CEC_Product__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_Course_name__c</field>
+=======
+        <field>Case.CEC_Reason_Code__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_Departure_Date_Time__c</field>
+=======
+        <field>Case.CEC_Reason_Hierarchy__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_Departure_Information__c</field>
+=======
+        <field>Case.CMMFlag__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_External_ID__c</field>
+=======
+        <field>Case.CMM_Account_Owner_Active_Flag__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_New_Arrival_Date_Time__c</field>
+=======
+        <field>Case.CPG_Code_Reporting__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_New_Arrival_Date__c</field>
+=======
+        <field>Case.Case_Brand_Mapping__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_New_Arrival_Time__c</field>
+=======
+        <field>Case.Case_Brand__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_New_Depart_Date_Time__c</field>
+=======
+        <field>Case.Case_Market_Mapping_Country_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_New_Depart_Time__c</field>
+=======
+        <field>Case.Case_Market_Mapping_Country__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_New_Departure_Date__c</field>
+=======
+        <field>Case.Case_Market_Tag__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_Other_Accomodation_Needs__c</field>
+=======
+        <field>Case.Case_Market__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_Other_Travel_Arrangements__c</field>
+=======
+        <field>Case.Case_Record_Count__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_Participant_Instructor__c</field>
+=======
+        <field>Case.Case_product_category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_Participation_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>FA_Occurence_Member__c.FA_Role__c</field>
+=======
+        <field>Case.ClosedDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.ClosedOnCreate</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Occurence_Member__c.FA_Send_Feedback_Invitation__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11862,35 +17958,69 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FA_Pre_Work_Task_Assignment__c.FA_Due_Date__c</field>
+=======
+        <field>Case.Consumer_Product_Descriptor_no_size__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.ContactId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Country_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Pre_Work_Task_Assignment__c.FA_Occurence__c</field>
+=======
+        <field>Case.Country__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Pre_Work_Task_Assignment__c.FA_Task_Description_PWTA__c</field>
+=======
+        <field>Case.DW_Order_Number__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Pre_Work_Task_Assignment__c.FA_Upload_Mark_Complete__c</field>
+=======
+        <field>Case.Date_of_Manufacture__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Pre_Work_Task__c.Due_Date_Passed__c</field>
+=======
+        <field>Case.Date_of_Manufacture_str__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Pre_Work_Task__c.FA_Due_Date__c</field>
+=======
+        <field>Case.DayCode__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Pre_Work_Task__c.FA_External_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11902,135 +18032,250 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FA_Pre_Work_Task__c.FA_OccurenceOM__c</field>
+=======
+        <field>Case.DefaultCMMAccountOwner_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Escalated_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Pre_Work_Task__c.FA_Occurence_Task__c</field>
+=======
+        <field>Case.Escalated_to_Closed_Days__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Pre_Work_Task__c.FA_Status__c</field>
+=======
+        <field>Case.Escalated_to_Closed_Hours__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Pre_Work_Task__c.FA_Task_Description__c</field>
+=======
+        <field>Case.Escalated_to_Closed_Minutes__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Pre_Work_Task__c.FA_WFR_Number__c</field>
+=======
+        <field>Case.Expiry_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Room__c.FA_Active__c</field>
+=======
+        <field>Case.External_Image_Address__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Room__c.FA_Capacity__c</field>
+=======
+        <field>Case.Factory_Investigation_Survey_Link__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Room__c.FA_External_ID__c</field>
+=======
+        <field>Case.First_Response_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Room__c.FA_Image_URL__c</field>
+=======
+        <field>Case.First_Response_Email_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Room__c.FA_Network_Connectivity__c</field>
+=======
+        <field>Case.Global_Reason_L5_desc__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Room__c.FA_Room_Image__c</field>
+=======
+        <field>Case.HistoricCreatedDate__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Room__c.FA_VC_Facilities__c</field>
+=======
+        <field>Case.Inconsistent_Case__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Venue__c.FA_Address_Line_1__c</field>
+=======
+        <field>Case.IsClosedOnCreate</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Venue__c.FA_Address_Line_2__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>FA_Training_Venue__c.FA_Address_Line_3__c</field>
+=======
+        <field>Case.IsEscalated</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.IsSelfClosed</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Venue__c.FA_Country__c</field>
+=======
+        <field>Case.IsSelfServiceClosed</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Venue__c.FA_Image_URL__c</field>
+=======
+        <field>Case.IsVisibleInCss</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Venue__c.FA_Local_facilities__c</field>
+=======
+        <field>Case.IsVisibleInSelfService</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Venue__c.FA_Overview__c</field>
+=======
+        <field>Case.Is_Language_Skill_Match__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Venue__c.FA_Postcode__c</field>
+=======
+        <field>Case.Is_Product_Skill_Match__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Venue__c.FA_Things_to_do__c</field>
+=======
+        <field>Case.L0_Product_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Venue__c.FA_Town_City__c</field>
+=======
+        <field>Case.L1_Product_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Venue__c.FA_Travel_Information__c</field>
+=======
+        <field>Case.L2_Product_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_Training_Venue__c.FA_Venue_Image__c</field>
+=======
+        <field>Case.L3_Product_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_UserPreference__c.FA_Arrival_Carrier__c</field>
+=======
+        <field>Case.L3_Product_Reporting__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_UserPreference__c.FA_Arrival_Flight_Number__c</field>
+=======
+        <field>Case.L4_Product_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_UserPreference__c.FA_Arrival_Terminal__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -12047,235 +18292,444 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FA_UserPreference__c.FA_Departure_Carrier__c</field>
+=======
+        <field>Case.L4_Product_Reporting__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.L5_Code__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_UserPreference__c.FA_Departure_Flight_Number__c</field>
+=======
+        <field>Case.L5_Product_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_UserPreference__c.FA_Departure_Terminal__c</field>
+=======
+        <field>Case.L5_Product_Reporting__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_UserPreference__c.FA_DietaryPreference__c</field>
+=======
+        <field>Case.L6_Product_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_UserPreference__c.FA_Education__c</field>
+=======
+        <field>Case.L6_Product_Reporting__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_UserPreference__c.FA_Occurence_Member__c</field>
+=======
+        <field>Case.L7_Product_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_UserPreference__c.FA_Other_dietary_requirements__c</field>
+=======
+        <field>Case.L7_Product_Reporting__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_UserPreference__c.FA_Personal__c</field>
+=======
+        <field>Case.Language__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_UserPreference__c.FA_Prior_Career__c</field>
+=======
+        <field>Case.Legacy_Reference__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_UserPreference__c.FA_Role__c</field>
+=======
+        <field>Case.Machine_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_UserPreference__c.FA_Secretary_Name__c</field>
+=======
+        <field>Case.Market__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_UserPreference__c.FA_Secretary_PhoneNumber__c</field>
+=======
+        <field>Case.Matching_Response__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_UserPreference__c.FA_Terms__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>FA_UserPreference__c.FA_Unilever_Career__c</field>
+=======
+        <field>Case.NewAccountFlag__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Origin</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Original_Description__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>FA_UserPreference__c.FA_User__c</field>
+=======
+        <field>Case.Out_of_Hours__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Asset_Group__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>File__c.Asset__c</field>
+=======
+        <field>Case.ParentId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Priority</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Product_Code__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Brand__c</field>
+=======
+        <field>Case.Product_Skill__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Category__c</field>
+=======
+        <field>Case.Product_UPC__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Chatter_File_Id__c</field>
+=======
+        <field>Case.Production_Code__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Feed_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>File__c.Feed_Thumbnail_URL__c</field>
+=======
+        <field>Case.Purchase_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Reason</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.Reason_Code__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Feed_URL__c</field>
+=======
+        <field>Case.Reason_L0_desc__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.File_Button_Text__c</field>
+=======
+        <field>Case.Reason_L1_desc__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.File_Size_Bytes__c</field>
+=======
+        <field>Case.Reason_L2_desc__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Is_Primary_Image__c</field>
+=======
+        <field>Case.Reason_L3_desc__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Last_Download_Time__c</field>
+=======
+        <field>Case.Reason_L4_desc__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Legacy_ID__c</field>
+=======
+        <field>Case.Reason_L5_desc__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Linked_to_Chatter__c</field>
+=======
+        <field>Case.SEB_Case_Number__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Number_Of_Downloads__c</field>
+=======
+        <field>Case.SEB_Closed_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.POS_File_Type__c</field>
+=======
+        <field>Case.Sapient_Campaign__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Show_Artwork__c</field>
+=======
+        <field>Case.Sapient_Corporate__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Show_Download_Image__c</field>
+=======
+        <field>Case.Sapient_DCS_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Show_Presentation__c</field>
+=======
+        <field>Case.Sapient_Micro_Site_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Show_Production_Engineering__c</field>
+=======
+        <field>Case.Set_Assignment_Fields__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Sort_Order__c</field>
+=======
+        <field>Case.Skill_Match__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Sub_Type__c</field>
+=======
+        <field>Case.Store_Location__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>File__c.Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Home_Page_Feed__c.Active__c</field>
+=======
+        <field>Case.Store__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Subject</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Home_Page_Feed__c.Asset_URL__c</field>
+=======
+        <field>Case.SuppliedCompany</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Home_Page_Feed__c.Display_Text__c</field>
+=======
+        <field>Case.SuppliedEmail</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Home_Page_Feed__c.Group__c</field>
+=======
+        <field>Case.SuppliedName</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Home_Page_Feed__c.Image_URL__c</field>
+=======
+        <field>Case.SuppliedPhone</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Home_Page_Feed__c.Sort_Order__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Home_Page_Feed__c.Type__c</field>
+=======
+        <field>Case.Tag__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.Type</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Bosscard__c.IPM_Assumptions__c</field>
+=======
+        <field>Case.UPC_Code_Detail__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Bosscard__c.IPM_Background__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -12402,55 +18856,220 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Bosscard__c.IPM_Opportunity__c</field>
+=======
+        <field>Case.Unique_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.WorkIt2__Allow_Update__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.WorkIt2__Business_Hours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.WorkIt2__Business_Minutes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.WorkIt2__Business_Seconds__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.WorkIt2__Business_Time_In_Hours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.WorkIt2__Business_Time_In_Minutes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.WorkIt2__Business_Time_In_Seconds__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.WorkIt2__Business_Time__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.WorkIt2__Calculated_Business_Seconds__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.WorkIt2__Calculated_Seconds__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.WorkIt2__Case_Time_Total__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.WorkIt2__Closed_with_Package__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.WorkIt2__Color__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.WorkIt2__Dont_Time__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.WorkIt2__Hours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.WorkIt2__Minutes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.WorkIt2__Overtime_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.WorkIt2__Seconds__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.WorkIt2__Time_In_Hours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.WorkIt2__Time_In_Minutes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.WorkIt2__Time_In_Seconds__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.WorkIt2__Time__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.WorkIt2__Total_Business_Seconds__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.WorkIt2__Total_Seconds__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.agf__ADM_Work__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Bosscard__c.IPM_Potential_Business_Opportunity__c</field>
+=======
+        <field>Case.isFormKnown__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Bosscard__c.IPM_Resources__c</field>
+=======
+        <field>Case.isPacksizeKnown__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Bosscard__c.IPM_Scope__c</field>
+=======
+        <field>Case.isVariantKnown__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Bosscard__c.IPM_Sustainibility__c</field>
+=======
+        <field>Category_Brands__c.Legacy_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Bosscard__c.IPM_Target_Launch_Date__c</field>
+=======
+        <field>Category__c.Category_Logo__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_CompanyUserAssociation__c.IPM_Company_Card__c</field>
+=======
+        <field>Category__c.Legacy_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_CompanyUserAssociation__c.IPM_User_Profile__c</field>
+=======
+        <field>Category__c.Parent_Category_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Company_Card__c.Business_partner_users__c</field>
+=======
+        <field>Category__c.Parent_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Company_Card__c.IPM_Business_Partner__c</field>
+=======
+        <field>Category__c.Sort_Order__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Company_Card__c.IPM_Company_HQ_Country__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -12532,10 +19151,94 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_CorePara_helps_example__c.IPM_Answer__c</field>
+=======
+        <field>Category__c.Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Chatter_History__c.Deleting_Moderator__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Chatter_History__c.Feed_Contents__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Chatter_History__c.Feed_Owner__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.AF_Send_Email_Notification__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.AccountId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.AssistantName</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.AssistantPhone</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Birthdate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.Day_Rate__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Department</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.DoNotCall</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Email</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.Expertise__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Fax</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.HasOptedOutOfEmail</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_CorePara_helps_example__c.IPM_Core_Parameter_Help__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -12587,10 +19290,64 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Country__c.IPM_ISO_Code__c</field>
+=======
+        <field>Contact.HasOptedOutOfFax</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.HomePhone</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.Homebase__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Jigsaw</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.LeadSource</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.MailingAddress</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.MobilePhone</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.OtherAddress</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.OtherPhone</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Phone</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.Referred_By__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Country__c.IPM_Local_Project__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -12612,10 +19369,34 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Country__c.IPM_Region_MCO__c</field>
+=======
+        <field>Contact.Relationship__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.ReportsToId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.Sapient_Language_Preference__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Title</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>ContentVersion.CMS_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Country__c.IPM_Regional_Project__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -13407,70 +20188,912 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Financial__c.Global_Project_Id__c</field>
+=======
+        <field>Contract.ActivatedById</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contract.ActivatedDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.BillingAddress</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.CompanySignedDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.CompanySignedId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.ContractTerm</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.CustomerSignedDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.CustomerSignedId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.CustomerSignedTitle</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contract.EndDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contract.Name</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.OwnerExpirationNotice</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contract.Pricebook2Id</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.ShippingAddress</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.SpecialTerms</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.StartDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Air_Fare_Details__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Allowance_details__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Attachment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Attendees_Details__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.CA_Payment_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Car_Details__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Charge_To__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.City__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Commodity_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Currency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.End_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Expense_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Expense_Comments__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Expense_Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Expense_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Expense_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Expense_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Expense_VAT_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Expense_VAT_Rate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Expense_VAT__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Limo_Vendor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Line_Item_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Merchant__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Miles__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.PONumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Parent_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Payment_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Per_Diem_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Per_Diem_Details__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Policy_Exceptions__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Price__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Private_Km_s__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Purpose__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Quantity__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Reason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Receipt_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Receipt__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Reimbursable__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Room_Details__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.SAPMaterialMaster__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Source_System__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Split_Accounting_Details__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Supplier_ERP_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Supplier_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Tax_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Unit_of_Measure__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Details__c.Valid_Tax_Receipt__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Active__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Advance_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Amount_Paid_Card__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Amount_Paid_Employee__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Amount_to_Card__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Amount_to_Company__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Amount_to_Employee__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Application_URL__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Ariba_Company_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Attachment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Category__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Charge_To__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Comment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Currency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Days__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Delegatee__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.DelegationEnd__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.DelegationStart__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Expected_Completion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.External_Created_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.External_System_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Fully_Approved__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Impact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.International__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Invalid_PR_Approver__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Invalid_PR_Reason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Invalid_PR__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Ledger_Extract__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Manager__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Multi_Approver__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Net_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Non_Reimbursable_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Other_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Policy_Exception__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.PreTrip_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.PreTrip_Location_Details__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.PreTrip_Passenger_Info__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Priority__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Purpose__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Reason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Reminder_Alert_Days__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Reminder_Alert_Needed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Requested_By_Chatter_Preference__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Requested_By_Details__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Requested_By_Language__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Requested_By__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Requested_For_Chatter_Preference__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Requested_For_Details__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Requested_For_Language__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Requested_For__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Requestor_Employee_No__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Source_System__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.TF_Currency1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.TF_Currency2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.TF_Currency3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.TF_Currency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Title_Summary__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Total_Expenses_Amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Total_amount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Turnaround_Time__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Urgency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Action_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Action__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Alternate_Approver__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Approver_Chatter_Preference__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Ariba_Role__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.CA_Action__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.CA_Role__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Chatter_Notification_Sent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Core_Approver_Details__c.Comments__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.CurrentDateTime__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Employee_No__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Header_ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Interested_Party_Details__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Interested_Party_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Interested_Party__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Is_Active__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Rank__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Reason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Received_on__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Role__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Core_Approver_Details__c.Send_to_Source_System__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Sort_Order__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.Source_System__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Core_Approver_Details__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.TF_Header_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.TF_Requested_By__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.TF_Requestor_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.User_Language__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Core_Approver_Details__c.Visible_to_Supplier__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Course_Attachment__c.Attachment_type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Gross_Y1_Gross_Profit_Global__c</field>
+=======
+        <field>Course_Attachment__c.FA_Download_Available_From__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Gross_Y1_Gross_Profit_Local__c</field>
+=======
+        <field>Download_Statistics__c.Content_Document_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Gross_Y1_Gross_Profit_Regional__c</field>
+=======
+        <field>Download_Statistics__c.Content_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Gross_Y1_Profit_Before_Overheads_Global__c</field>
+=======
+        <field>Download_Statistics__c.Content_Size__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Gross_Y1_Profit_Before_Overheads_Local__c</field>
+=======
+        <field>Download_Statistics__c.Content_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Gross_Y1_Profit_Before_Overheads_Regiona__c</field>
+=======
+        <field>Download_Statistics__c.Content_Version_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Gross_Y1_Turnover_Global__c</field>
+=======
+        <field>Download_Statistics__c.Downloaded_By__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Gross_Y1_Turnover_Local__c</field>
+=======
+        <field>Download_Statistics__c.Downloaded_in_Country__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Gross_Y1_Turnover_Regional__c</field>
+=======
+        <field>Download_Statistics__c.FileId__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.IPM_Business_Case_Confirmed__c</field>
+=======
+        <field>Download_Statistics__c.File_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.IPM_Business_Impact__c</field>
+=======
+        <field>Download_Statistics__c.Timestamp__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.IPM_Company_Project_Priority__c</field>
+=======
+        <field>Event.Activity_Record_Count__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.IPM_Country_Feedback__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -13512,20 +21135,72 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Financial__c.IPM_Project__c</field>
+=======
+        <field>Event.Call_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Event.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Event.IsAllDayEvent</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event.IsVisibleInSelfService</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Event.Location</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event.Type</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Event.WhatId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Event.WhoId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event_Member__c.Event__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.IRR_Charter__c</field>
+=======
+        <field>Event_Member__c.Is_Expert__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.IRR_Contract__c</field>
+=======
+        <field>Event_Member__c.Member_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.IRR_Difference__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -13572,1545 +21247,2823 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Financial__c.Incremental_Y1_Profit_Before_Overheads_G__c</field>
+=======
+        <field>Event_Member__c.User__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Event__c.Chatter_Group_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event__c.Event_Carousel__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event__c.Event_Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event__c.Event_Summary_Document_Link__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Event__c.IsStarted__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event__c.Is_Big_Six__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event__c.Locked__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event__c.Total_Unique_Visits__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Incremental_Y1_Profit_Before_Overheads_L__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Financial__c.Incremental_Y1_Profit_Before_Overheads_R__c</field>
+=======
+        <field>Event__c.Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAU_Milestone_Participant__c.FAU_1st_Reminder__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Incremental_Y1_Turnover_Global__c</field>
+=======
+        <field>FAU_Milestone_Participant__c.FAU_2nd_Reminder__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Incremental_Y1_Turnover_Local__c</field>
+=======
+        <field>FAU_Milestone_Participant__c.FAU_Due_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Incremental_Y1_Turnover_Regional__c</field>
+=======
+        <field>FAU_Milestone_Participant__c.FAU_Front_End_Link__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Last_Saved_By_Global__c</field>
+=======
+        <field>FAU_Milestone_Participant__c.FAU_Information_for_Completion__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Last_Saved_By_Local__c</field>
+=======
+        <field>FAU_Milestone_Participant__c.FAU_Milestone_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Last_Saved_By_Regional__c</field>
+=======
+        <field>FAU_Milestone_Participant__c.FAU_Participant_s_Email__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Last_Saved_Global__c</field>
+=======
+        <field>FAU_Milestone_Participant__c.FAU_Participant_s_Invite_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Last_Saved_Local__c</field>
+=======
+        <field>FAU_Milestone_Participant__c.FAU_Program_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Last_Saved_Regional__c</field>
+=======
+        <field>FAU_Milestone_Participant__c.FAU_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Local_Project__c</field>
+=======
+        <field>FAU_Milestone_Participant__c.FAU_Workflow_1st_Reminder__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.MD_Approved__c</field>
+=======
+        <field>FAU_Milestone_Participant__c.FAU_Workflow_2nd_Reminder__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.MD_Locked__c</field>
+=======
+        <field>FAU_Milestone_Participant__c.FAU_Workflow_Due_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.MR_Approved__c</field>
+=======
+        <field>FAU_Milestone__c.FAU_1st_Reminder__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.MR_Locked__c</field>
+=======
+        <field>FAU_Milestone__c.FAU_2nd_Reminder__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Misaligned__c</field>
+=======
+        <field>FAU_Milestone__c.FAU_Description__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.NPV_Charter__c</field>
+=======
+        <field>FAU_Milestone__c.FAU_Due_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.NPV_Contract__c</field>
+=======
+        <field>FAU_Milestone__c.FAU_Information_Link__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.NPV_Difference__c</field>
+=======
+        <field>FAU_Milestone__c.FAU_Information_to_Complete__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.NPV_Global__c</field>
+=======
+        <field>FAU_Milestone__c.FAU_Milestone_Completition__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.NPV_Local__c</field>
+=======
+        <field>FAU_Milestone__c.FAU_No_Milestone_Participants_Completed__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.NPV_MD__c</field>
+=======
+        <field>FAU_Milestone__c.FAU_No_Milestone_Participants__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.NPV_MR__c</field>
+=======
+        <field>FAU_Milestone__c.FAU_Send_Reminder_at_Due_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.NPV_Regional__c</field>
+=======
+        <field>FAU_Milestone__c.FAU_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.PBO_Y1_bps_vs_DNDS_Charter__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Accommodation_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.PBO_Y1_bps_vs_DNDS_Contract__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Arrival_Car_Transfer_Needed__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.PBO_Y1_bps_vs_DNDS_Difference__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Arrival_Date_and_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.PBO_Y1_bps_vs_DNDS_Global__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Arrival_Flight_Number__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.PBO_Y1_bps_vs_DNDS_Local__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Arrival_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.PBO_Y1_bps_vs_DNDS_MD__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Check_in_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.PBO_Y1_bps_vs_DNDS_MR__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Check_out_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.PBO_Y1_bps_vs_DNDS_Regional__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Departure_Car_Transfer_Needed__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Parent_Project__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Departure_Date_and_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Payback_Charter__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Departure_Flight_Number__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Payback_Contract__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Departure_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Payback_Difference__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Dietary_Restrictions_Describe_Other__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Payback_Global__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Dietary_Restrictions__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Payback_Local__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Flight_Details_Flag__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Payback_MD__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Has_Flight_Details__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Payback_MR__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Has_Hotel_Details__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Payback_Regional__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Hotel_Details_Flag__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Regional_External_Id__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Hotel_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Regional_Project__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Is_Local__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Sorting_Order__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Module_Complete_Flag__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Status__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Module_Complete__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Threshold_Status_Global__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Module_End_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Threshold_Status_Local__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Module_Form__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Threshold_Status_Regional__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Module_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Threshold__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Module_Number__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Total_FY_Difference__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Module_Pre_Work__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Volume_Unit_Charter__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Module_Start_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Volume_Unit_Contract__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Note__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Volume_Unit_Difference__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Participant_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Volume_Unit_Global__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Participant_PA_s_Email__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Volume_Unit_Local__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Participant_s_Email__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Volume_Unit_MD__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Participant_s_Invite_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Volume_Unit_MR__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Program_Banner_URL__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Volume_Unit_Regional__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Program_Location__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Volume_Unit__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Program_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Year3_ITO__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Remind_me_about_completion_of_Bio__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Year_3_iTO_Charter__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Remind_me_about_course_pre_work__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Year_3_iTO_Contract__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Reminder_Opt_in_out__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Year_3_iTO_Global__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Year_3_iTO_Local__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Travel_Details_Deadline__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Year_3_iTO_MD__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Workflow_End_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Year_3_iTO_MR__c</field>
+=======
+        <field>FAU_Module_Participant__c.FAU_Workflow_Start_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Financial__c.Year_3_iTO_Regional__c</field>
+=======
+        <field>FAU_Module__c.FAU_Description__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Gate_CMI__c.Approx_Results_Timing__c</field>
+=======
+        <field>FAU_Module__c.FAU_End_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Gate_CMI__c.Country__c</field>
+=======
+        <field>FAU_Module__c.FAU_Hotel_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Gate_CMI__c.Element__c</field>
+=======
+        <field>FAU_Module__c.FAU_Module_Number__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Gate_CMI__c.Gate__c</field>
+=======
+        <field>FAU_Module__c.FAU_Start_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Gate_CMI__c.IPM_Project__c</field>
+=======
+        <field>FAU_Participant__c.Chatter_Group_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Gate_CMI__c.Input__c</field>
+=======
+        <field>FAU_Participant__c.Current_Role_Responibilities__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Gate_CMI__c.KPI__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Approver_of_Nomination__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Gate_CMI__c.Results__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Approver_of_Nomination_s_Email__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Gate_CMI__c.Test__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Bio_Completeness_Flag__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.Clone_Record_Id__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Bio_Page_Link__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.ExternalField__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Biography_Deadline__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_Actual_Target_Launch_Month__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Biography__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_Actual_Target_Launch_Year__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Budget_Holder__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_BET__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Budget_Holder_s_Email__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_Bosscord_Approval_Date__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Chatter_Group__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_Category__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Company_Building_and_Street__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_Completed_On__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Company_City__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_Completed__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Company_Code__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_Due_Date__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Company_Country__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_Market_Type__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Company_Details_Flag__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_Milestone__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Company_Details_Message__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_Name__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Company_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_No_Of_Days_for_Developing_Emerging__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Company_Zip_Code__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_No_Of_Days_for_Developing__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Completeness_Flag__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_No_of_Days__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Completeness_Icon__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_Phase__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Completeness_Message__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_Planned_Date__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Cost_Center__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_Project_Started_Date__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Decline_Reason__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_Project__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Education__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_Type_of_Milestone__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Email_Address__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Milestone__c.IPM_Type_of_gate__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Employee_Details_Flag__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_AssortmentStrategy_From__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Employee_Details_Message__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_AssortmentStrategy_To__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Employee_Number__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Assortment_Strategy_Priority__c</field>
+=======
+        <field>FAU_Participant__c.FAU_External_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Assortment_strategy_Target__c</field>
+=======
+        <field>FAU_Participant__c.FAU_First_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_CMI_Comments__c</field>
+=======
+        <field>FAU_Participant__c.FAU_GL_Code__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_CMI_Country__c</field>
+=======
+        <field>FAU_Participant__c.FAU_ICC__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_CMI_Input__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Invitation_Link__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_CMI_Result__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Invite_State__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_CMI_Results_Acheived__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Invite_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_CRRT_Country__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Is_Participant_Shared__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_CRRT_Status__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Is_deferred_To_PA__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_CU_Sales_SKU_Count_Mapping__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Job_Title__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_CU_Volume__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Last_Email_Sent__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Comparison_SKU_Greenhouse__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Last_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Comparison_SKU_Sourcing__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Line_Manager_Details_Flag__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Comparison_SKU_Waste__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Line_Manager__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Comparison_SKU_Water__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Line_Manager_s_Details_Message__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Comparison_SKU__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Line_Manager_s_Email_Address__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Consumer_Unit__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Line_Manager_s_Job_Title__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Country__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Line_Manager_s_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Customer_Channel_Priority_Order__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Line_Manager_s_Secretary_s_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Customer_Channel_Priority__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Link__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Customer_Channels__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Mobile_Number__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Directional_View_Greenhouse__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Module_1_End_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Directional_View_Sourcing__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Module_1_Start_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Directional_View_Waste__c</field>
+=======
+        <field>FAU_Participant__c.FAU_No_of_Incomplete_Modules__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Directional_View_Water__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Participants_Workbook__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Distribution_Type__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Person_to_Invoice_s_Email__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Expected_Change_Greenhouse__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Person_to_invoice__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Expected_Change_Sourcing__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Personal_Assistant__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Expected_Change_Waste__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Personal_Assistant_s_Email__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Expected_Change_Water__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Personal_Details_Flag__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Gate_CMI__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Personal_Details_Message__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Incumbent_CUs__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Personal__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Input_Gate_CMI__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Previously_a_Participant__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_New_CRRT__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Prior_Career__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_New_SKU_Greenhouse__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Program_Banner_URL__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_New_SKU_Sourcing__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Program_Chatter_Group_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_New_SKU_Waste__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Program_Don_t_Send_Reminders__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_New_SKU_Water__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Program_Fee__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Nutrition__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Program_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_OTIF_HelpText_Amber__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Program_Location__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_OTIF_HelpText_Green__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Program_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_OTIF_HelpText_NA__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Program_Start_Date_Quarter__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_OTIF_HelpText_Red__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Program_Start_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_OTIF_Measure__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Program_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_OTIF_No_of_Status__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Program_Wave__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_OTIF_Responsibility__c</field>
+=======
+        <field>FAU_Participant__c.FAU_RSVP_Deadline__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_OTIF_Sequence__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Request_PA_User_Email_Address__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_OTIF_Status__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Title__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Pack_Image_1_Id__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Unilever_Career__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Pack_Image_2_Id__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Unique_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Pack__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Upload_final_IDP_on_Talent_Plus__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Place_Image_1_Id__c</field>
+=======
+        <field>FAU_Participant__c.FAU_User_License__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Place_Image_2_Id__c</field>
+=======
+        <field>FAU_Participant__c.FAU_User__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Place__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Video_Introduction__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Preposition_Image_1_Id__c</field>
+=======
+        <field>FAU_Participant__c.FAU_Webinar_Date_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Preposition_Image_2_Id__c</field>
+=======
+        <field>FAU_Program__c.FAU_Biography_Deadline__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Preposition__c</field>
+=======
+        <field>FAU_Program__c.FAU_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Price_Image_1_Id__c</field>
+=======
+        <field>FAU_Program__c.FAU_Don_t_Send_Reminders__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Price_Image_2_Id__c</field>
+=======
+        <field>FAU_Program__c.FAU_End_Date_of_Module_1__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Price__c</field>
+=======
+        <field>FAU_Program__c.FAU_External_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Product_Image_1_Id__c</field>
+=======
+        <field>FAU_Program__c.FAU_Icon__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Product_Image_2_Id__c</field>
+=======
+        <field>FAU_Program__c.FAU_Invitation_ResponseDeadline__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Product__c</field>
+=======
+        <field>FAU_Program__c.FAU_Invite_Form_Text__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Project_Document_Section__c</field>
+=======
+        <field>FAU_Program__c.FAU_Make_Template__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Promotion_Image_1_Id__c</field>
+=======
+        <field>FAU_Program__c.FAU_Module_1_End_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Promotion_Image_2_Id__c</field>
+=======
+        <field>FAU_Program__c.FAU_Module_1_Start_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Promotion__c</field>
+=======
+        <field>FAU_Program__c.FAU_Module_2_End_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Section_Id__c</field>
+=======
+        <field>FAU_Program__c.FAU_Module_2_Start_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Section_Name__c</field>
+=======
+        <field>FAU_Program__c.FAU_Number_of_Webinars__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Section_Number__c</field>
+=======
+        <field>FAU_Program__c.FAU_Participant_Chatter_Group_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Section_type__c</field>
+=======
+        <field>FAU_Program__c.FAU_Participant_Chatter_Group__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.IPM_Sustainale_Sourcing__c</field>
+=======
+        <field>FAU_Program__c.FAU_Primary_Location__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section_Content__c.New_SKU__c</field>
+=======
+        <field>FAU_Program__c.FAU_Program_Banner_URL__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_CMI_Selected_Countries__c</field>
+=======
+        <field>FAU_Program__c.FAU_Program_Banner__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Count_of_Comments__c</field>
+=======
+        <field>FAU_Program__c.FAU_Program_Description__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Customer_Channel_Info__c</field>
+=======
+        <field>FAU_Program__c.FAU_Program_Fee__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Default_Section__c</field>
+=======
+        <field>FAU_Program__c.FAU_Program_Number__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_FunctionalRole__c</field>
+=======
+        <field>FAU_Program__c.FAU_Program_Template__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_GateHistory_Date__c</field>
+=======
+        <field>FAU_Program__c.FAU_Program_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_GateHistory__c</field>
+=======
+        <field>FAU_Program__c.FAU_Recordtype_Developer_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Gate_Document_Summary__c</field>
+=======
+        <field>FAU_Program__c.FAU_Start_Date_Quarter__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Is_Excluded__c</field>
+=======
+        <field>FAU_Program__c.FAU_Start_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Negotiable__c</field>
+=======
+        <field>FAU_Program__c.FAU_Start_Date_of_Module_1__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Notify_Team__c</field>
+=======
+        <field>FAU_Program__c.FAU_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_PDPHistoty_Date__c</field>
+=======
+        <field>FAU_Program__c.FAU_Training_Centre__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_PDPHistoty__c</field>
+=======
+        <field>FAU_Program__c.FAU_Video_Introduction__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_PDP_Document_Summary__c</field>
+=======
+        <field>FAU_Webinar_Participant__c.FAU_Bio_Fill_Deadline__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Project_Document__c</field>
+=======
+        <field>FAU_Webinar_Participant__c.FAU_End_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Project_ID__c</field>
+=======
+        <field>FAU_Webinar_Participant__c.FAU_Has_Accepted__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Project_Name__c</field>
+=======
+        <field>FAU_Webinar_Participant__c.FAU_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Project_Section__c</field>
+=======
+        <field>FAU_Webinar_Participant__c.FAU_Participant_PA_s_Email__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Section_Help_Text_Long__c</field>
+=======
+        <field>FAU_Webinar_Participant__c.FAU_Participants_Email__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Section_Help_Text__c</field>
+=======
+        <field>FAU_Webinar_Participant__c.FAU_Program_Participant__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Section_Name__c</field>
+=======
+        <field>FAU_Webinar_Participant__c.FAU_Program_Webinar__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Section_Owner__c</field>
+=======
+        <field>FAU_Webinar_Participant__c.FAU_Start_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Section_Sequence_Number__c</field>
+=======
+        <field>FAU_Webinar_Participant__c.FAU_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Section_Sequence__c</field>
+=======
+        <field>FAU_Webinar_Participant__c.FAU_Title__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Section_Status__c</field>
+=======
+        <field>FAU_Webinar_Participant__c.FAU_URL_Text__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Section_Type__c</field>
+=======
+        <field>FAU_Webinar_Participant__c.FAU_URL__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Section__c</field>
+=======
+        <field>FAU_Webinar__c.FAU_Description__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Selected_Channel_Name__c</field>
+=======
+        <field>FAU_Webinar__c.FAU_End_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document_Section__c.IPM_Status_Icon__c</field>
+=======
+        <field>FAU_Webinar__c.FAU_Recordtype_Developer_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document__c.IPM_Approval_Date__c</field>
+=======
+        <field>FAU_Webinar__c.FAU_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document__c.IPM_Approved_Comments__c</field>
+=======
+        <field>FAU_Webinar__c.FAU_URL__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document__c.IPM_Contract_GateKeeper_Model__c</field>
+=======
+        <field>FA_Course_ChatterGroup__c.FA_Course_Occurence__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document__c.IPM_Document_Status__c</field>
+=======
+        <field>FA_Course_ChatterGroup__c.FA_Course__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document__c.IPM_GateDocuments__c</field>
+=======
+        <field>FA_Course_ChatterGroup__c.FA_Group_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document__c.IPM_Postponed_Comments__c</field>
+=======
+        <field>FA_Course_Facilitator__c.FA_External_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document__c.IPM_Postponement_Date__c</field>
+=======
+        <field>FA_Course_Facilitator__c.FA_Facilitator__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document__c.IPM_Project_Complexity__c</field>
+=======
+        <field>FA_Course_Facilitator__c.FA_Role_Responsibilities__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document__c.IPM_Project_Span__c</field>
+=======
+        <field>FA_Course_Facilitator__c.FA_Role__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document__c.IPM_Project_Template__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Context__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document__c.IPM_Project__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Course_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document__c.IPM_Status_Icon__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Course_Occ_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document__c.IPM_Stopped_Comments__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_External_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Document__c.IPM_Stopped_Date__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Important_Logistics__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Resource__c.IPM_Category__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Initiate_Feedback__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Resource__c.IPM_Member_Email__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Mail_Content_1__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Resource__c.IPM_Project_Name__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Mail_Content_2__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Resource__c.IPM_Project_Role_Owner__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_No_Of_Occurence_Members__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Resource__c.IPM_Project__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_No_of_Participants__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Resource__c.IPM_Role_Type__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Outlook_Invite_URL__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Resource__c.IPM_Role__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Post_Prog_End_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Resource__c.IPM_Section_Id__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Pre_Work_Start_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Resource__c.IPM_Section_Name__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Programme_Overview__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Resource__c.IPM_Sequence_Number__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Required_Action__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Resource__c.IPM_User__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Send_Invite_Mail__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Resource__c.IPM_send_an_email__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Signature__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Resource__c.Project_Leader__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Calculated_Sustainability_Period__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Training_Room_Image__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.External_Id__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Training_Room__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Finance_Member__c</field>
+=======
+        <field>FA_Course_Occurence__c.FA_Training_Venue_Image__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.IPM_Finance_Member_Text__c</field>
+=======
+        <field>FA_Course__c.FA_Course_Code__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.IPM_Local_Rollout_Status__c</field>
+=======
+        <field>FA_Course__c.FA_Course_Logo__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.IPM_Project__c</field>
+=======
+        <field>FA_Course__c.FA_Course_Objective__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.IPM_Regional_PL_Text__c</field>
+=======
+        <field>FA_Course__c.FA_Course_Overview__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.IPM_Regional_PL__c</field>
+=======
+        <field>FA_Course__c.FA_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.IPM_Rollout_Project__c</field>
+=======
+        <field>FA_ErrorLog__c.FA_Apex_Class_Trigger__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.IPM_Status__c</field>
+=======
+        <field>FA_ErrorLog__c.FA_Description__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.KeyMCO__c</field>
+=======
+        <field>FA_ErrorLog__c.FA_Method_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Local_Project_Span__c</field>
+=======
+        <field>FA_ErrorLog__c.FA_Object_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Local_Project_Sustainability_Period__c</field>
+=======
+        <field>FA_ErrorLog__c.FA_Severity__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Local_Project__c</field>
+=======
+        <field>FA_ErrorLog__c.FA_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.MCO_Name__c</field>
+=======
+        <field>FA_Feedback_Questionnaire__c.FA_Comments__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.MCO__c</field>
+=======
+        <field>FA_Feedback_Questionnaire__c.FA_QuestionType__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Market_Cluster_Name__c</field>
+=======
+        <field>FA_Feedback_Questionnaire__c.FA_Question__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Market_Cluster__c</field>
+=======
+        <field>FA_Feedback_Questionnaire__c.FA_Rating__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Project_Span__c</field>
+=======
+        <field>FA_Feedback__c.FA_Participant__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Project_Sustainability_Period__c</field>
+=======
+        <field>FA_Member_ChatterGroup__c.FA_Chatter_Group_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Regional_Project_Span__c</field>
+=======
+        <field>FA_Member_ChatterGroup__c.FA_Course_Occurence__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Regional_Project_Sustainability_Period__c</field>
+=======
+        <field>FA_Member_ChatterGroup__c.FA_Group_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Regional_Project__c</field>
+=======
+        <field>FA_Member_ChatterGroup__c.FA_Occurence_Member__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Regional_Rollout_External_Id__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_Arrival_Date_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Regional_Rollout__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_Arrival_Information__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Target_Launch_Date__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_Course_Occ_Group_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Target_Launch_Month__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_Course_name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Target_Launch_Year__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_Departure_Date_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Type__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_Departure_Information__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Rollout__c.Unilever_Geography__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_External_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Task__c.ExternalField__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_New_Arrival_Date_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Task__c.IPM_Active__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_New_Arrival_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Task__c.IPM_Adhoc__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_New_Arrival_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Task__c.IPM_Assigned_To__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_New_Depart_Date_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Task__c.IPM_Completed__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_New_Depart_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Task__c.IPM_Date__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_New_Departure_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Task__c.IPM_Due_Date__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_Other_Accomodation_Needs__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Task__c.IPM_Gate_Documents__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_Other_Travel_Arrangements__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Task__c.IPM_Project_Section__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_Participant_Instructor__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Task__c.IPM_Project_Status_Icon__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_Participation_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Task__c.IPM_Task_Name__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_Role__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Task__c.IPM_Task_Role__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_Send_Feedback_Invitation__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Task__c.IPM_Task_Status__c</field>
+=======
+        <field>FA_Occurence_Member__c.FA_Send_Invite_Mail__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Task__c.IPM_Task_Type__c</field>
+=======
+        <field>FA_Pre_Work_Task_Assignment__c.FA_Due_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Template__c.IPM_Category__c</field>
+=======
+        <field>FA_Pre_Work_Task_Assignment__c.FA_Occurence__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Template__c.IPM_Project__c</field>
+=======
+        <field>FA_Pre_Work_Task_Assignment__c.FA_Task_Description_PWTA__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Template__c.IPM_Template_Complexity__c</field>
+=======
+        <field>FA_Pre_Work_Task_Assignment__c.FA_Upload_Mark_Complete__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project_Template__c.IPM_Template_Name__c</field>
+=======
+        <field>FA_Pre_Work_Task__c.Due_Date_Passed__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.Deputy_Project_Leader__c</field>
+=======
+        <field>FA_Pre_Work_Task__c.FA_Due_Date__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.Exempt_from_Threshold__c</field>
+=======
+        <field>FA_Pre_Work_Task__c.FA_External_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPMCompany__c</field>
+=======
+        <field>FA_Pre_Work_Task__c.FA_Mark_Completed__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPMPlatform__c</field>
+=======
+        <field>FA_Pre_Work_Task__c.FA_OccurenceOM__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPMProject_Span__c</field>
+=======
+        <field>FA_Pre_Work_Task__c.FA_Occurence_Task__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPMProject_Type__c</field>
+=======
+        <field>FA_Pre_Work_Task__c.FA_Status__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPMRegion__c</field>
+=======
+        <field>FA_Pre_Work_Task__c.FA_Task_Description__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Answer_of_Q1__c</field>
+=======
+        <field>FA_Pre_Work_Task__c.FA_WFR_Number__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Answer_of_Q2__c</field>
+=======
+        <field>FA_Training_Room__c.FA_Active__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Answer_of_Q3__c</field>
+=======
+        <field>FA_Training_Room__c.FA_Capacity__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Approver_of_Charter__c</field>
+=======
+        <field>FA_Training_Room__c.FA_External_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Approver_of_Contract_Market_Ready__c</field>
+=======
+        <field>FA_Training_Room__c.FA_Image_URL__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_BET_Toolkit__c</field>
+=======
+        <field>FA_Training_Room__c.FA_Network_Connectivity__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Bosscard_Status__c</field>
+=======
+        <field>FA_Training_Room__c.FA_Room_Image__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Bosscard__c</field>
+=======
+        <field>FA_Training_Room__c.FA_VC_Facilities__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Brand_Positioning__c</field>
+=======
+        <field>FA_Training_Venue__c.FA_Address_Line_1__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Brand__c</field>
+=======
+        <field>FA_Training_Venue__c.FA_Address_Line_2__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_CPP_Change_Reason__c</field>
+=======
+        <field>FA_Training_Venue__c.FA_Address_Line_3__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_CPP__c</field>
+=======
+        <field>FA_Training_Venue__c.FA_Country__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Category_Group__c</field>
+=======
+        <field>FA_Training_Venue__c.FA_Image_URL__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Category_Icon__c</field>
+=======
+        <field>FA_Training_Venue__c.FA_Local_facilities__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Category_Text__c</field>
+=======
+        <field>FA_Training_Venue__c.FA_Overview__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Category__c</field>
+=======
+        <field>FA_Training_Venue__c.FA_Postcode__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Clustering__c</field>
+=======
+        <field>FA_Training_Venue__c.FA_Things_to_do__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Company_Card__c</field>
+=======
+        <field>FA_Training_Venue__c.FA_Town_City__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Complexity__c</field>
+=======
+        <field>FA_Training_Venue__c.FA_Travel_Information__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Core_Parameters__c</field>
+=======
+        <field>FA_Training_Venue__c.FA_Venue_Image__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Fast_Track_Project__c</field>
+=======
+        <field>FA_UserPreference__c.FA_Arrival_Carrier__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_FilledIn_Percentage__c</field>
+=======
+        <field>FA_UserPreference__c.FA_Arrival_Flight_Number__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Finance_Member__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -15127,195 +24080,362 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.IPM_IsCompleted__c</field>
+=======
+        <field>FA_UserPreference__c.FA_Arrival_Terminal__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FA_UserPreference__c.FA_Company_code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FA_UserPreference__c.FA_Cost_Centre_nr__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FA_UserPreference__c.FA_Departure_Carrier__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Last_Modified_Date_Time__c</field>
+=======
+        <field>FA_UserPreference__c.FA_Departure_Flight_Number__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Local_Project_Type__c</field>
+=======
+        <field>FA_UserPreference__c.FA_Departure_Terminal__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Market_Type__c</field>
+=======
+        <field>FA_UserPreference__c.FA_DietaryPreference__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Market__c</field>
+=======
+        <field>FA_UserPreference__c.FA_Education__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_PM_Approach__c</field>
+=======
+        <field>FA_UserPreference__c.FA_Occurence_Member__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Parent_Project__c</field>
+=======
+        <field>FA_UserPreference__c.FA_Other_dietary_requirements__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Phase__c</field>
+=======
+        <field>FA_UserPreference__c.FA_Personal__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Project_Description__c</field>
+=======
+        <field>FA_UserPreference__c.FA_Prior_Career__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Project_Gatekeeper__c</field>
+=======
+        <field>FA_UserPreference__c.FA_Role__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Project_Leader__c</field>
+=======
+        <field>FA_UserPreference__c.FA_Secretary_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Project_Logo_Id__c</field>
+=======
+        <field>FA_UserPreference__c.FA_Secretary_PhoneNumber__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Project_Logo__c</field>
+=======
+        <field>FA_UserPreference__c.FA_Terms__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Project_Name__c</field>
+=======
+        <field>FA_UserPreference__c.FA_Unilever_Career__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Project_Template__c</field>
+=======
+        <field>FA_UserPreference__c.FA_User__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Project_Type__c</field>
+=======
+        <field>File__c.Asset_Group__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Quit_Project_Tab__c</field>
+=======
+        <field>File__c.Asset__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_STOP__c</field>
+=======
+        <field>File__c.Brand__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Sector__c</field>
+=======
+        <field>File__c.Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Stopped_By__c</field>
+=======
+        <field>File__c.Chatter_File_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Stopped_Comments__c</field>
+=======
+        <field>File__c.Feed_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Stopped_Date_Time__c</field>
+=======
+        <field>File__c.Feed_Thumbnail_URL__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Stopped_Phase__c</field>
+=======
+        <field>File__c.Feed_URL__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Strategic_Intent__c</field>
+=======
+        <field>File__c.File_Button_Text__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Sub_Category__c</field>
+=======
+        <field>File__c.File_Size_Bytes__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Sub_sector__c</field>
+=======
+        <field>File__c.Is_Primary_Image__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Target_Launch_Date__c</field>
+=======
+        <field>File__c.Last_Download_Time__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Target_Launch_Dates__c</field>
+=======
+        <field>File__c.Legacy_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Target_Launch_Month__c</field>
+=======
+        <field>File__c.Linked_to_Chatter__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Target_Launch_Year__c</field>
+=======
+        <field>File__c.Number_Of_Downloads__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Technical_Project_Leader__c</field>
+=======
+        <field>File__c.POS_File_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_Trigger_Time_05__c</field>
+=======
+        <field>File__c.Show_Artwork__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.IPM_UserCategory__c</field>
+=======
+        <field>File__c.Show_Download_Image__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.Is_Archieved__c</field>
+=======
+        <field>File__c.Show_Presentation__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.ManualCheck__c</field>
+=======
+        <field>File__c.Show_Production_Engineering__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.Market_Cluster_Name__c</field>
+=======
+        <field>File__c.Sort_Order__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.Market_Cluster__c</field>
+=======
+        <field>File__c.Sub_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.Project_External_ID__c</field>
+=======
+        <field>File__c.Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Project__c.Sustainability_Period_Changed__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -15527,15 +24647,233 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Task__c.IPM_Section__c</field>
+=======
+        <field>Home_Page_Feed__c.Active__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Home_Page_Feed__c.Asset_URL__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Home_Page_Feed__c.Display_Text__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Home_Page_Feed__c.Group__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Home_Page_Feed__c.Image_URL__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Home_Page_Feed__c.Sort_Order__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Home_Page_Feed__c.Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Idea.Attachment</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Idea.Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Idea.Function__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Idea.Idea_Theme__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Idea.Platform__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Idea.Status</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Idea.StatusFormula__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.Active_Challenge__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.Active__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.BatchInvoked__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.Categories</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.Chatter_Post__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.CommunityId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.Dashboard__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.EndDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.Groups_to_Post__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.IdeaCount</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.Idea_Theme_Poster_URL__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.Idea_Theme_Title__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.Idea_Themes_Banner__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.LeaderboardId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.Promoted__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.StartDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.Status</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.Video_URL__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.View__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.Zone_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.Address</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.AnnualRevenue</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Lead.Category_Brands__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Lead.DoNotCall</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.Email</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Lead.Fax</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Task__c.IPM_Task_Complexity__c</field>
+=======
+        <field>Lead.HasOptedOutOfEmail</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>IPM_Task__c.IPM_Task_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -15647,135 +24985,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.Active_Challenge__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IdeaTheme.Active__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IdeaTheme.Categories</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IdeaTheme.CommunityId</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IdeaTheme.Dashboard__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IdeaTheme.Description</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IdeaTheme.EndDate</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IdeaTheme.Groups_to_Post__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IdeaTheme.IdeaCount</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IdeaTheme.Idea_Theme_Poster_URL__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IdeaTheme.Idea_Theme_Title__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IdeaTheme.Idea_Themes_Banner__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IdeaTheme.LeaderboardId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IdeaTheme.StartDate</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IdeaTheme.Status</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IdeaTheme.Video_URL__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IdeaTheme.View__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IdeaTheme.Zone_Id__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Lead.Address</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Lead.AnnualRevenue</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Lead.Category_Brands__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Lead.Description</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Lead.DoNotCall</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Lead.Email</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Lead.Fax</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Lead.HasOptedOutOfEmail</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
+=======
         <field>Lead.HasOptedOutOfFax</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -15846,6 +25056,451 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Lead.User__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.Website</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Lead.brand__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>My_Library__c.ContentVersion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>My_Library__c.User__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>NewsArticleLike__c.Unique_Key__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>NewsArticleLike__c.User__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>News_Article__c.Admin_Chatter_Group__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>News_Article__c.Archived__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>IdeaTheme.Active__c</field>
+=======
+        <field>News_Article__c.Chatter_Groups__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>IdeaTheme.Categories</field>
+=======
+        <field>News_Article__c.Comment_Count__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>IdeaTheme.CommunityId</field>
+=======
+        <field>News_Article__c.Comment_GA_URL__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>IdeaTheme.Dashboard__c</field>
+=======
+        <field>News_Article__c.Image_URL__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>IdeaTheme.Description</field>
+=======
+        <field>News_Article__c.Image__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>IdeaTheme.EndDate</field>
+=======
+        <field>News_Article__c.Like_Count_RSF__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>IdeaTheme.Groups_to_Post__c</field>
+=======
+        <field>News_Article__c.Like_GA_URL__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>IdeaTheme.IdeaCount</field>
+=======
+        <field>News_Article__c.Post_GA_URL__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>IdeaTheme.Idea_Theme_Poster_URL__c</field>
+=======
+        <field>News_Article__c.Post_to_NewsCentre__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>IdeaTheme.Idea_Theme_Title__c</field>
+=======
+        <field>News_Article__c.Sharepoint_URL__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>IdeaTheme.Idea_Themes_Banner__c</field>
+=======
+        <field>News_Article__c.Site_Name__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>IdeaTheme.LeaderboardId__c</field>
+=======
+        <field>News_Article__c.Site_Type__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>IdeaTheme.StartDate</field>
+=======
+        <field>News_Article__c.Socialise_Activity__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>IdeaTheme.Status</field>
+=======
+        <field>News_Article__c.Sub_Title__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>IdeaTheme.Video_URL__c</field>
+=======
+        <field>News_Article__c.Summary__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>IdeaTheme.View__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IdeaTheme.Zone_Id__c</field>
+=======
+        <field>News_Article__c.Title__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.AccountId</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+<<<<<<< HEAD
+        <field>Lead.Address</field>
+=======
+        <field>Opportunity.Amount</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+<<<<<<< HEAD
+        <field>Lead.AnnualRevenue</field>
+=======
+        <field>Opportunity.CampaignId</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Lead.Category_Brands__c</field>
+=======
+        <field>Opportunity.ContractId</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+<<<<<<< HEAD
+        <field>Lead.Description</field>
+=======
+        <field>Opportunity.Description</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Lead.DoNotCall</field>
+=======
+        <field>Opportunity.ExpectedRevenue</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.IsPrivate</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+<<<<<<< HEAD
+        <field>Lead.Email</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Lead.Fax</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Lead.HasOptedOutOfEmail</field>
+=======
+        <field>Opportunity.LeadSource</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.NextStep</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.PartnerAccountId</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Lead.HasOptedOutOfFax</field>
+=======
+        <field>Opportunity.TotalOpportunityQuantity</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+<<<<<<< HEAD
+        <field>Lead.Industry</field>
+=======
+        <field>Opportunity.Type</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+<<<<<<< HEAD
+        <field>Lead.Jigsaw</field>
+=======
+        <field>OpportunityLineItem.Description</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Lead.LastTransferDate</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.LeadSource</field>
+=======
+        <field>OpportunityLineItem.Discount</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OpportunityLineItem.ListPrice</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Lead.MobilePhone</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.NumberOfEmployees</field>
+=======
+        <field>OpportunityLineItem.ProductCode</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>OpportunityLineItem.ServiceDate</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Lead.PartnerAccountId</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.Phone</field>
+=======
+        <field>OpportunityLineItem.Subtotal</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OpportunityLineItem.TotalPrice</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Pinnovate_Preference__c.Background_Color__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+<<<<<<< HEAD
+        <field>Lead.Rating</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Lead.SFGA__CorrelationID__c</field>
+=======
+        <field>Pinnovate_Preference__c.Background_Image__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Pinnovate_Preference__c.Background_Preview__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Pinnovate_Preference__c.Group_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Pinnovate_Preference__c.Header_Banner__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Pinnovate_Preference__c.Header_Preview__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Pinnovate_Preference__c.Open_Pinnovate_Preference__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Pinnovate_Preference__c.Open_Pinnovate_Wall__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Pinnovate_Preference__c.Pinnovate_Wall__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+<<<<<<< HEAD
+        <field>Lead.SFGA__Correlation_Data__c</field>
+=======
+        <field>Product2.Description</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+<<<<<<< HEAD
+        <field>Lead.SFGA__Web_Source__c</field>
+=======
+        <field>Product2.Family</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+<<<<<<< HEAD
+        <field>Lead.Title</field>
+=======
+        <field>Product2.ProductCode</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>Lead.User__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -15972,160 +25627,7 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Opportunity.AccountId</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Opportunity.Amount</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Opportunity.CampaignId</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.ContractId</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Opportunity.Description</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.ExpectedRevenue</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.IsPrivate</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Opportunity.LeadSource</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Opportunity.NextStep</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.PartnerAccountId</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.TotalOpportunityQuantity</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Opportunity.Type</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>OpportunityLineItem.Description</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OpportunityLineItem.Discount</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OpportunityLineItem.ListPrice</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OpportunityLineItem.ProductCode</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>OpportunityLineItem.ServiceDate</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OpportunityLineItem.Subtotal</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OpportunityLineItem.TotalPrice</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Pinnovate_Preference__c.Background_Color__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Pinnovate_Preference__c.Background_Image__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Pinnovate_Preference__c.Background_Preview__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Pinnovate_Preference__c.Group_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Pinnovate_Preference__c.Header_Banner__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Pinnovate_Preference__c.Header_Preview__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Pinnovate_Preference__c.Open_Pinnovate_Preference__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Pinnovate_Preference__c.Open_Pinnovate_Wall__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Pinnovate_Preference__c.Pinnovate_Wall__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Product2.Description</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Product2.Family</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Product2.ProductCode</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
+=======
         <field>Search_Statistics__c.Asset_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -16242,40 +25744,100 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Solution.IsPublished</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+<<<<<<< HEAD
+        <field>Opportunity.Amount</field>
+=======
         <field>Solution.IsPublishedInPublicKb</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+<<<<<<< HEAD
+        <field>Opportunity.CampaignId</field>
+=======
         <field>Solution.SolutionNote</field>
+>>>>>>> FETCH_HEAD
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Opportunity.ContractId</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.ExpectedRevenue</field>
+=======
         <field>TO_FAQ__kav.Additional_Information__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>TO_FAQ__kav.Additional_Sensitive_Information__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Opportunity.IsPrivate</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.LeadSource</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.NextStep</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.PartnerAccountId</field>
+=======
         <field>TO_FAQ__kav.Answer__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>TO_FAQ__kav.Approved_by_Legal__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Opportunity.TotalOpportunityQuantity</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.Type</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>OpportunityLineItem.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OpportunityLineItem.Discount</field>
+=======
         <field>TO_FAQ__kav.Legacy_Text__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -16292,10 +25854,29 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>TO_FAQ__kav.Sensitive_Text__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>OpportunityLineItem.ListPrice</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OpportunityLineItem.ProductCode</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>OpportunityLineItem.ServiceDate</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OpportunityLineItem.Subtotal</field>
+=======
         <field>TO_Product_Information__kav.Suitability__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -16312,10 +25893,49 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>TO_Product_Information__kav.TO_Approved_by_Legal__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>OpportunityLineItem.TotalPrice</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Pinnovate_Preference__c.Background_Color__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Pinnovate_Preference__c.Background_Image__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Pinnovate_Preference__c.Background_Preview__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Pinnovate_Preference__c.Group_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Pinnovate_Preference__c.Header_Banner__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Pinnovate_Preference__c.Header_Preview__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Pinnovate_Preference__c.Open_Pinnovate_Preference__c</field>
+=======
         <field>TO_Product_Information__kav.TO_Availability__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -16352,15 +25972,43 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>TO_Product_Information__kav.TO_PDF_Version__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Pinnovate_Preference__c.Open_Pinnovate_Wall__c</field>
+=======
         <field>TO_Product_Information__kav.TO_Pack_Shot__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Pinnovate_Preference__c.Pinnovate_Wall__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Description</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Family</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.ProductCode</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Search_Statistics__c.Asset_Type__c</field>
+=======
         <field>TO_Product_Information__kav.TO_Packaging_Description__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -16382,30 +26030,55 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>TO_Product_Information__kav.TO_Sensitive_Text__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Search_Statistics__c.Brand__c</field>
+=======
         <field>TO_Product_Information__kav.TO_Shelf_Life__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Search_Statistics__c.Category__c</field>
+=======
         <field>TO_Product_Information__kav.TO_Size__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Search_Statistics__c.Channels__c</field>
+=======
         <field>TO_Product_Information__kav.TO_Storage__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Search_Statistics__c.Clusters__c</field>
+=======
         <field>TO_Product_Information__kav.Usage__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Search_Statistics__c.Country__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Search_Statistics__c.Keyword__c</field>
+=======
         <field>TO_Product_Information__kav.Variant__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -16415,6 +26088,25 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Task.Activity_Record_Count__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Search_Statistics__c.Placement__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Search_Statistics__c.Searched_By__c</field>
+=======
+        <field>Task.Call_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Task.Description</field>
         <readable>true</readable>
@@ -16422,10 +26114,29 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Task.IsVisibleInSelfService</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Search_Statistics__c.Searched_in_Country__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Search_Statistics__c.Timestamp__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Search_Statistics__c.Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Send_Email__c.AF_CurrencyUpdateRequired__c</field>
+=======
         <field>Task.Type</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -16442,85 +26153,170 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Third_Party_Survey__c.Case__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Send_Email__c.Angency_Name__c</field>
+=======
         <field>Third_Party_Survey__c.Date_Report_Completed__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Send_Email__c.Brand_Name__c</field>
+=======
         <field>Third_Party_Survey__c.Identify_of_the_foreign_Material_size_sh__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Send_Email__c.Category__c</field>
+=======
         <field>Third_Party_Survey__c.Is_there_a_change_required_to_the_subjec__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Send_Email__c.Contact_Email__c</field>
+=======
         <field>Third_Party_Survey__c.Likely_origin_of_the_foreign_body__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Send_Email__c.Contact_Name__c</field>
+=======
         <field>Third_Party_Survey__c.Person_Completing_the_Survey__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Send_Email__c.Financial_Year__c</field>
+=======
         <field>Third_Party_Survey__c.This_plastic_is_the_same_color_and_think__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Send_Email__c.TriggerEmail__c</field>
+=======
         <field>Third_Party_Survey__c.What_corrective_actions_have_been_implem__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Send_Email__c.URL_link_to_Agency_Fees__c</field>
+=======
         <field>Third_Party_Survey__c.What_precautions_are_in_place_to_try_to__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Send_Email__c.sendEmailBonusQuartToCatFinance__c</field>
+=======
         <field>Third_Party_Survey__c.X5_2x_pieces_of_hard_blue_Plastic__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>Send_Email__c.sendEmailToCatFinance__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Solution.IsPublished</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Solution.IsPublishedInPublicKb</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Solution.SolutionNote</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TO_FAQ__kav.Additional_Information__c</field>
+=======
         <field>Third_Party_Survey__c.survey_URL__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>User.AF_Agency_Fees_User_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_FAQ__kav.Additional_Sensitive_Information__c</field>
+=======
         <field>User.AF_Agency_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_FAQ__kav.Answer__c</field>
+=======
         <field>User.AF_Brand__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_FAQ__kav.Approved_by_Legal__c</field>
+=======
         <field>User.AF_Categories__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_FAQ__kav.Legacy_Text__c</field>
+=======
         <field>User.AF_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_FAQ__kav.Question__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TO_FAQ__kav.Related_PDF__c</field>
+=======
         <field>User.AF_UserTypeText__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -16532,60 +26328,70 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.CEC_User_Reference__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_FAQ__kav.Sensitive_Text__c</field>
+=======
         <field>User.Edit_Article_Template_Front_End__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.Suitability__c</field>
+=======
         <field>User.Expertise__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.TO_Additional_Information__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TO_Product_Information__kav.TO_Additional_Sensitive_Information__c</field>
+=======
         <field>User.Function__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>User.IPM_Brand_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.IPM_Brand_Positioning__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.IPM_Category__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.IPM_Role__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>User.IPM_Sub_Category__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>User.Language_Skills_List__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.TO_Approved_by_Legal__c</field>
+=======
         <field>User.Language__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.TO_Availability__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TO_Product_Information__kav.TO_Benefit__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TO_Product_Information__kav.TO_Brand__c</field>
+=======
         <field>User.MCO__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -16597,40 +26403,74 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.Market__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.TO_Date_Code_Location__c</field>
+=======
         <field>User.Pass031212__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.TO_GTIN_Code_Last_4__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TO_Product_Information__kav.TO_Ingredients__c</field>
+=======
         <field>User.Person_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>User.Product_Category_Skills_List2__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.TO_Legacy_Text__c</field>
+=======
         <field>User.Product_Category_Skills_List__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.TO_PDF_Version__c</field>
+=======
         <field>User.Product_Category__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.TO_Pack_Shot__c</field>
+=======
         <field>User.Quality_Check_Percentage__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.TO_Packaging_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>TO_Product_Information__kav.TO_Product_Code__c</field>
+=======
         <field>User.Sub_Function__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -16642,45 +26482,571 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.User_License__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.TO_Product_Description__c</field>
+=======
         <field>User.agf__External_ID__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.TO_Recycling_Info__c</field>
+=======
         <field>User.agf__GUS_User_Type__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.TO_Sensitive_Text__c</field>
+=======
         <field>User.agf__Notification_Level__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.TO_Shelf_Life__c</field>
+=======
         <field>User.agf__Show_All_Work_Comments__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.TO_Size__c</field>
+=======
         <field>User.agf__Summary__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.TO_Storage__c</field>
+=======
         <field>User.agf__Team_Member_Allocation__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.Usage__c</field>
+=======
         <field>User.agf__Wall_Preference__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>TO_Product_Information__kav.Variant__c</field>
+=======
+        <field>User.agf__Work_User_Interface__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+<<<<<<< HEAD
+        <field>Task.ActivityDate</field>
+=======
+        <field>User.is_isll_moderator__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+<<<<<<< HEAD
+        <field>Task.Description</field>
+=======
+        <field>User.isll_SME__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Task.IsVisibleInSelfService</field>
+=======
+        <field>User_Default_Setting__c.Country_Name__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Task.Type</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Task.WhatId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Task.WhoId</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Third_Party_Survey__c.Case__c</field>
+=======
+        <field>User_Default_Setting__c.Country__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User_Default_Setting__c.UserId__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Third_Party_Survey__c.Date_Report_Completed__c</field>
+=======
+        <field>User_Default_Setting__c.UserName__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Third_Party_Survey__c.Identify_of_the_foreign_Material_size_sh__c</field>
+=======
+        <field>Users_Category__c.Agency_Account__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Third_Party_Survey__c.Is_there_a_change_required_to_the_subjec__c</field>
+=======
+        <field>Users_Category__c.Brand__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Third_Party_Survey__c.Likely_origin_of_the_foreign_body__c</field>
+=======
+        <field>Users_Category__c.Category__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Third_Party_Survey__c.Person_Completing_the_Survey__c</field>
+=======
+        <field>Users_Category__c.User__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Third_Party_Survey__c.This_plastic_is_the_same_color_and_think__c</field>
+=======
+        <field>aa_Agent_App_Brand_Category__c.Agent_Competitor_Id__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Third_Party_Survey__c.What_corrective_actions_have_been_implem__c</field>
+=======
+        <field>aa_Agent_App_Brand_Category__c.Brand_Id__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Third_Party_Survey__c.What_precautions_are_in_place_to_try_to__c</field>
+=======
+        <field>aa_Agent_App_Brand_Category__c.Brands_Name__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Third_Party_Survey__c.X5_2x_pieces_of_hard_blue_Plastic__c</field>
+=======
+        <field>aa_Agent_App_Brand_Category__c.Category_Id__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>Third_Party_Survey__c.survey_URL__c</field>
+=======
+        <field>aa_Agent_App_Brand_Category__c.Country_Id__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.AF_Agency_Fees_User_Type__c</field>
+=======
+        <field>aa_Agent_App_Competitor_Brand__c.Competitor__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.AF_Agency_Name__c</field>
+=======
+        <field>aa_Agent_App_User_Preference__c.Agent_App_Unilever_Brand__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.AF_Brand__c</field>
+=======
+        <field>aa_Agent_App_User_Preference__c.Category__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.AF_Categories__c</field>
+=======
+        <field>aa_Agent_App_User_Preference__c.Cluster__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.AF_Category__c</field>
+=======
+        <field>aa_Agent_App_User_Preference__c.Competitor_Brand__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.AF_UserTypeText__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>User.Accepted_Terms_of_Use__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.CEC_User_Reference__c</field>
+=======
+        <field>aa_Agent_App_User_Preference__c.Competitor_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>aa_Agent_App_User_Preference__c.Country__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>aa_Agent_App_User_Preference__c.Is_Accepted_Terms_Condition__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.Edit_Article_Template_Front_End__c</field>
+=======
+        <field>aa_Agent_App_User_Preference__c.RecordTypeId__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.Expertise__c</field>
+=======
+        <field>aa_Agent_App_User_Preference__c.ReportingOn__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.Function__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.IPM_Brand_Name__c</field>
+=======
+        <field>aa_Agent_App_User_Preference__c.Retailer__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>aa_Agent_App_User_Preference__c.T_C_AcceptedDate__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.IPM_Brand_Positioning__c</field>
+=======
+        <field>aa_Agent_App_User_Preference__c.Topic__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.IPM_Category__c</field>
+=======
+        <field>aa_Agent_App_User_Preference__c.UserId__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.IPM_Role__c</field>
+=======
+        <field>aa_Agent_App_User_Preference__c.User_Last_Login__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.IPM_Sub_Category__c</field>
+=======
+        <field>aa_Agent_Report__c.Agent_App_Unilever_Brand__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.Language_Skills_List__c</field>
+=======
+        <field>aa_Agent_Report__c.Approve_Reject__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.Language__c</field>
+=======
+        <field>aa_Agent_Report__c.Approved_By__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.MCO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.Market_Cluster__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.Market__c</field>
+=======
+        <field>aa_Agent_Report__c.Approved_On__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>aa_Agent_Report__c.Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>aa_Agent_Report__c.Chatter_Post_ID__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.Pass031212__c</field>
+=======
+        <field>aa_Agent_Report__c.Cluster_Name__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.Person_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.Product_Category_Skills_List2__c</field>
+=======
+        <field>aa_Agent_Report__c.Code_of_Business_Principles__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>aa_Agent_Report__c.Comments__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.Product_Category_Skills_List__c</field>
+=======
+        <field>aa_Agent_Report__c.Competitor_Brand__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.Product_Category__c</field>
+=======
+        <field>aa_Agent_Report__c.Competitor_Name__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.Quality_Check_Percentage__c</field>
+=======
+        <field>aa_Agent_Report__c.Country__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.Sub_Function__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>User.Sustainability_Expert__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.User_License__c</field>
+=======
+        <field>aa_Agent_Report__c.Is_Accepted_Code_of_Conduct__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>aa_Agent_Report__c.RecordTypeName__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>aa_Agent_Report__c.RejectedBy__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.agf__External_ID__c</field>
+=======
+        <field>aa_Agent_Report__c.Rejected_On__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.agf__GUS_User_Type__c</field>
+=======
+        <field>aa_Agent_Report__c.Report_Description__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.agf__Notification_Level__c</field>
+=======
+        <field>aa_Agent_Report__c.Report_Title__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.agf__Show_All_Work_Comments__c</field>
+=======
+        <field>aa_Agent_Report__c.Report__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.agf__Summary__c</field>
+=======
+        <field>aa_Agent_Report__c.Reporting_on__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.agf__Team_Member_Allocation__c</field>
+=======
+        <field>aa_Agent_Report__c.Retailer__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>User.agf__Wall_Preference__c</field>
+=======
+        <field>aa_Agent_Report__c.Source__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>User.agf__Work_User_Interface__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -16697,41 +27063,87 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User_Default_Setting__c.Country_Name__c</field>
+=======
+        <field>aa_Agent_Report__c.Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>aa_Agent_Report__c.Sub_Topics__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>aa_Agent_Report__c.Topic__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>aa_Agent_Report__c.Town__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
         <field>User_Default_Setting__c.Country__c</field>
+=======
+        <field>aa_Agent_Report__c.User_Department__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>User_Default_Setting__c.UserId__c</field>
+=======
+        <field>aa_Agent_Report__c.latitude__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>User_Default_Setting__c.UserName__c</field>
+=======
+        <field>aa_Agent_Report__c.longitude__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Users_Category__c.Agency_Account__c</field>
+=======
+        <field>aa_Country__c.Cluster_Id__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Users_Category__c.Brand__c</field>
+=======
+        <field>aa_Topic__c.Sub_Topic__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Users_Category__c.Category__c</field>
+=======
+        <field>aa_Topic__c.Test_Sub_Topic__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Users_Category__c.User__c</field>
+=======
+        <field>aa_Topic__c.Topic_Name__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -19116,6 +29528,14 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+=======
+        <field>cec_Alert_Tracker__c.Trigger_Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+>>>>>>> FETCH_HEAD
         <field>cec_Alert_Tracker__c.Unique_Id__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -19246,6 +29666,9 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>cec_Enclosure__c.Type__c</field>
+=======
         <field>cec_Enclosure__c.Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -19262,21 +29685,61 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cec_FAQ__kav.Answer__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>cec_FAQ__kav.Additional_Information__c</field>
+=======
         <field>cec_FAQ__kav.Approved_by_Legal__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>cec_FAQ__kav.Additional_Sensitive_Information__c</field>
+=======
         <field>cec_FAQ__kav.Legacy_Text__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+        <field>cec_FAQ__kav.Answer__c</field>
+=======
+        <field>cec_FAQ__kav.Meta_Tags__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>cec_FAQ__kav.Approved_by_Legal__c</field>
+=======
         <field>cec_FAQ__kav.Question__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>cec_FAQ__kav.Legacy_Text__c</field>
+=======
+        <field>cec_FAQ__kav.Related_PDF_2__c</field>
+>>>>>>> FETCH_HEAD
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+<<<<<<< HEAD
+        <field>cec_FAQ__kav.Question__c</field>
+=======
+        <field>cec_FAQ__kav.Related_PDF_3__c</field>
+>>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -19331,6 +29794,14 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+=======
+        <field>cec_Fulfilment__c.Country_BrandLogo__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+>>>>>>> FETCH_HEAD
         <field>cec_Fulfilment__c.Country__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -19696,6 +30167,14 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+=======
+        <field>cec_Product_Information__kav.Additional_Product_Information__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+>>>>>>> FETCH_HEAD
         <field>cec_Product_Information__kav.Additional_Sensitive_Information__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -19741,6 +30220,29 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+=======
+        <field>cec_Product_Information__kav.Meta_Tags__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Product_Information__kav.Nutrition_Information__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Product_Information__kav.PDF_Version_2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Product_Information__kav.PDF_Version_3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+>>>>>>> FETCH_HEAD
         <field>cec_Product_Information__kav.PDF_Version__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -19761,11 +30263,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+=======
+        <field>cec_Product_Information__kav.Product_De_listed__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+>>>>>>> FETCH_HEAD
         <field>cec_Product_Information__kav.Product_Description__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+=======
+        <field>cec_Product_Information__kav.Recipe_Suggestions__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+>>>>>>> FETCH_HEAD
         <field>cec_Product_Information__kav.Recycling_Info__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -19796,6 +30314,14 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
+=======
+        <field>cec_Product_Information__kav.Telephone_Numbers__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+>>>>>>> FETCH_HEAD
         <field>cec_Product_Information__kav.Usage__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -23185,6 +33711,7 @@
         <layout>FA_UserPreference__c-FA_UserPreference Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+<<<<<<< HEAD
         <layout>File__c-WP File Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -23446,6 +33973,224 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>WorkThanks-Thanks Layout</layout>
+=======
+        <layout>FeedItem-Feed Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>File__c-WP File Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FilesConnect_One_Drive__x-FilesConnect-One Drive Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FilesConnect_SFDev__x-FilesConnect-SFDev Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Global-Global Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Home_Page_Feed__c-HomePage Feed Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Idea-Idea Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Idea-Idea Layout</layout>
+        <recordType>Idea.InternalIdeasIdeaRecordType</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Idea-Idea Layout</layout>
+        <recordType>Idea.Record_type_for_community_09aE0000000PLSXIA4_entity_Idea</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Idea-Idea Layout</layout>
+        <recordType>Idea.Record_type_for_community_09aE0000000PLkaIAG_entity_Idea</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Idea-Idea Layout</layout>
+        <recordType>Idea.Record_type_for_community_09aE0000000PLkuIAG_entity_Idea</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Idea-Idea Layout</layout>
+        <recordType>Idea.Record_type_for_community_09aE0000000YIk2IAG_entity_Idea</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Idea-Spark Ideation Layout</layout>
+        <recordType>Idea.Record_type_for_community_09aE0000000PLkzIAG_entity_Idea</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>IdeaTheme-Idea Theme Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Lead-Lead Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Macro-Macro Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>My_Library__c-My Library Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>NewsArticleLike__c-NewsArticleLike Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>News_Article__c-News Article Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Opportunity Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OpportunityLineItem-Opportunity Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order-Order Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OrderItem-Order Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PersonAccount-Person Account Layout</layout>
+        <recordType>PersonAccount.PersonAccount</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PersonAccount-Pitch Expert Layout</layout>
+        <recordType>PersonAccount.Pitch_Expert</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Pinnovate_Preference__c-Pinnovate Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Pitch_Expertise__c-Pitch Expertise Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Pricebook2-Price Book Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PricebookEntry-Price Book Entry Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product2-Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Project__c-Project Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Search_Statistics__c-WINatPOS Search Statistics Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Send_Email__c-Send_Email Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Solution-Solution Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Sub_Category__c-Sub Category Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>TO_FAQ__kav-TO - FAQ Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>TO_Product_Information__kav-TO - Product Information Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-Task Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Third_Party_Survey__c-ThirdParty Survey Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>User-User Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>UserAlt-User Profile Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>UserProvisioningRequest-User Provisioning Request Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>User_Default_Setting__c-User default setting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Users_Category__c-Users Category Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>WorkAccess-Access Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>WorkBadge-Badge Received Layout 192</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>WorkBadgeDefinition-Badge Layout 192</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>WorkThanks-Thanks Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Agent_App_Brand_Category__c-Agent App Brand Category Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Agent_App_Category__c-Agent App Category Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Agent_App_Competitor_Brand__c-Agent App Brand Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Agent_App_Competitor_Brand__c-Agent App Brand Layout</layout>
+        <recordType>aa_Agent_App_Competitor_Brand__c.Competitor_Brand</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Agent_App_Competitor_Brand__c-Agent App Brand Layout</layout>
+        <recordType>aa_Agent_App_Competitor_Brand__c.Unilever_Brand</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Agent_App_User_Preference__c-Agent App User Preference Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Agent_Competitor__c-Agent Competitor Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Agent_Report__c-Agent Report Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Agent_Report__c-Agent Report Layout</layout>
+        <recordType>aa_Agent_Report__c.Agent_Report</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Agent_Report__c-Competitor Agent Report Layout</layout>
+        <recordType>aa_Agent_Report__c.CI_Manger_Record_type</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Agent_Report__c-Competitor Agent Report Layout</layout>
+        <recordType>aa_Agent_Report__c.Competitor_Report</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Agent_Report__c-Competitor Agent Report View Layout</layout>
+        <recordType>aa_Agent_Report__c.Competitor_Review_Publish_Report</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Agent_Report__c-ETS Member Page Layout</layout>
+        <recordType>aa_Agent_Report__c.ETS_Members_Record_Type</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Agent_Report__c-Unilever Agent Report Layout</layout>
+        <recordType>aa_Agent_Report__c.Unilever_Agent_Report</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Agent_Report__c-Unilever Agent Report View Layout</layout>
+        <recordType>aa_Agent_Report__c.Unilever_Agent_Published_Report</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Agent_Retailer__c-Agent Retailer Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Cluster__c-Agent App Cluster Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Country__c-Agent App Country Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>aa_Topic__c-Agent Topic Layout</layout>
+>>>>>>> FETCH_HEAD
     </layoutAssignments>
     <layoutAssignments>
         <layout>ar_Agency_Portal_CMS__c-Agency Portal CMS Layout</layout>
@@ -23794,6 +34539,18 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
+<<<<<<< HEAD
+=======
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Idea</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+>>>>>>> FETCH_HEAD
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
@@ -23821,6 +34578,17 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
+<<<<<<< HEAD
+=======
+        <apexPage>AA_ReportAccepted</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>AA_ReportRejected</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+>>>>>>> FETCH_HEAD
         <apexPage>AF_AgencyEstimate</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -24089,6 +34857,13 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+<<<<<<< HEAD
+=======
+        <apexPage>Agent_App_Report</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+>>>>>>> FETCH_HEAD
         <apexPage>AnswersHome</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -24377,6 +35152,7 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+<<<<<<< HEAD
         <apexPage>Course_Detail</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -24562,6 +35338,173 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>IPM_TaskStandardPage</apexPage>
+=======
+        <apexPage>Core_IC_FAQPage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_IC_FeaturedCampaignDetails</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_IC_FeaturedCampaignFilter</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_IC_FeaturedCampaignList</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_IC_FeaturedCampaignSort</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_IC_IdeaDetail</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_IC_IdeasList</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_IC_IdeasListFilter</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_IC_IdeasListSort</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_IC_IdeationCacheImages</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_IC_IdeationCacheImagesManifest</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_IC_IdeationHomePage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_IC_LandingPage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_IC_SubmitIdea</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Course_Detail</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Edit_Link</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Exception</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FAQs</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FAU_Create_Program</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FAU_Create_Template</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FAU_EmailTemplateSender</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FAU_GenerateAndAttach</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FAU_LandingPage</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FAU_ModuleParticipant</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FAU_Participant_Bio</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FAU_Participant_Biography_Doc</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FAU_Participant_Register</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FAU_UpdateParticipantMilestone</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FA_Calendar</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FA_Centres</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FA_PreWorkTasks</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FA_Pref</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FA_PrefDetail</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Feedback</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FileNotFound</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Footer</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>FooterScripts</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>ForgotPassword</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>ForgotPasswordConfirm</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Getting_Started</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Header</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Help</apexPage>
+>>>>>>> FETCH_HEAD
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -24573,10 +35516,13 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+<<<<<<< HEAD
         <apexPage>IpmProjectDocumentSectionHistory</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+=======
+>>>>>>> FETCH_HEAD
         <apexPage>Link_Detail</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -24609,6 +35555,13 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+<<<<<<< HEAD
+=======
+        <apexPage>Reassign_Approval</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+>>>>>>> FETCH_HEAD
         <apexPage>RedirectEditArticle</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -24853,6 +35806,17 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+<<<<<<< HEAD
+=======
+        <apexPage>bc_help_pop_up5</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>bc_help_pop_up6</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+>>>>>>> FETCH_HEAD
         <apexPage>bc_help_pop_up7</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -24865,10 +35829,24 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+<<<<<<< HEAD
+=======
+        <apexPage>bc_help_pop_up_combined1</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+>>>>>>> FETCH_HEAD
         <apexPage>bc_help_pop_up_combined2</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+<<<<<<< HEAD
+=======
+        <apexPage>be_help_pop_up</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+>>>>>>> FETCH_HEAD
         <apexPage>cp_DefaultPreference</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -24921,10 +35899,13 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+<<<<<<< HEAD
         <apexPage>createprojectsv</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+=======
+>>>>>>> FETCH_HEAD
         <apexPage>groupMaster</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -24949,6 +35930,7 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+<<<<<<< HEAD
         <apexPage>ipmAddManageSections</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -25173,6 +36155,8 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+=======
+>>>>>>> FETCH_HEAD
         <apexPage>isll_AllContentInIsll</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -25526,6 +36510,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+<<<<<<< HEAD
         <recordType>IPM_Company_Card__c.IPM_Global_Company_Card</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -25542,76 +36527,135 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>IPM_Financial_File__c.Default</recordType>
+=======
+        <recordType>Idea.InternalIdeasIdeaRecordType</recordType>
+>>>>>>> FETCH_HEAD
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+<<<<<<< HEAD
         <recordType>IPM_Financial_File__c.Template</recordType>
+=======
+        <recordType>Idea.Record_type_for_community_09aE0000000PLSXIA4_entity_Idea</recordType>
+>>>>>>> FETCH_HEAD
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+<<<<<<< HEAD
         <recordType>IPM_Financial__c.Consolidated</recordType>
+=======
+        <recordType>Idea.Record_type_for_community_09aE0000000PLkaIAG_entity_Idea</recordType>
+>>>>>>> FETCH_HEAD
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+<<<<<<< HEAD
         <recordType>IPM_Financial__c.Default</recordType>
+=======
+        <recordType>Idea.Record_type_for_community_09aE0000000PLkuIAG_entity_Idea</recordType>
+>>>>>>> FETCH_HEAD
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+<<<<<<< HEAD
         <recordType>IPM_Milestone__c.IPM_Milestones</recordType>
+=======
+        <recordType>Idea.Record_type_for_community_09aE0000000PLkzIAG_entity_Idea</recordType>
+>>>>>>> FETCH_HEAD
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+<<<<<<< HEAD
         <recordType>IPM_Milestone__c.IPM_Project_Milestones</recordType>
+=======
+        <recordType>Idea.Record_type_for_community_09aE0000000YIk2IAG_entity_Idea</recordType>
+>>>>>>> FETCH_HEAD
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+<<<<<<< HEAD
         <recordType>IPM_Project_Rollout__c.Local_Rollouts</recordType>
+=======
+        <recordType>aa_Agent_App_Competitor_Brand__c.Competitor_Brand</recordType>
+>>>>>>> FETCH_HEAD
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+<<<<<<< HEAD
         <recordType>IPM_Project_Rollout__c.Regional_Rollout</recordType>
+=======
+        <recordType>aa_Agent_App_Competitor_Brand__c.Unilever_Brand</recordType>
+>>>>>>> FETCH_HEAD
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+<<<<<<< HEAD
         <recordType>IPM_Questionnaire__c.Corporate_Risk</recordType>
+=======
+        <recordType>aa_Agent_Report__c.Agent_Report</recordType>
+>>>>>>> FETCH_HEAD
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+<<<<<<< HEAD
         <recordType>IPM_Questionnaire__c.GateKeeperChecklist</recordType>
+=======
+        <recordType>aa_Agent_Report__c.CI_Manger_Record_type</recordType>
+>>>>>>> FETCH_HEAD
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+<<<<<<< HEAD
         <recordType>IPM_Questionnaire__c.POS_Questionnaire</recordType>
+=======
+        <recordType>aa_Agent_Report__c.Competitor_Report</recordType>
+>>>>>>> FETCH_HEAD
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+<<<<<<< HEAD
         <recordType>IPM_Questionnaire__c.RNDQuestion</recordType>
+=======
+        <recordType>aa_Agent_Report__c.Competitor_Review_Publish_Report</recordType>
+>>>>>>> FETCH_HEAD
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+<<<<<<< HEAD
         <recordType>IPM_Questionnaire__c.RQS_Questionnaire</recordType>
+=======
+        <recordType>aa_Agent_Report__c.ETS_Members_Record_Type</recordType>
+>>>>>>> FETCH_HEAD
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+<<<<<<< HEAD
         <recordType>IPM_Task__c.IPM_Project_Tasks</recordType>
+=======
+        <recordType>aa_Agent_Report__c.Unilever_Agent_Published_Report</recordType>
+>>>>>>> FETCH_HEAD
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+<<<<<<< HEAD
         <recordType>IPM_Task__c.IPM_Tasks</recordType>
+=======
+        <recordType>aa_Agent_Report__c.Unilever_Agent_Report</recordType>
+>>>>>>> FETCH_HEAD
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -25725,6 +36769,7 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
+<<<<<<< HEAD
         <tab>Agency_Fee_Field_History__c</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
@@ -25761,6 +36806,8 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+=======
+>>>>>>> FETCH_HEAD
         <tab>standard-Account</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -25785,10 +36832,13 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+<<<<<<< HEAD
         <tab>standard-IdeaTheme</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
+=======
+>>>>>>> FETCH_HEAD
         <tab>standard-Lead</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -25816,10 +36866,13 @@
         <tab>standard-WorkBadgeDefinition</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+<<<<<<< HEAD
     <tabVisibilities>
         <tab>uw_Asset__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+=======
+>>>>>>> FETCH_HEAD
     <userLicense>Chatter Only</userLicense>
     <userPermissions>
         <enabled>true</enabled>
@@ -25893,6 +36946,10 @@
         <enabled>true</enabled>
         <name>RunReports</name>
     </userPermissions>
+<<<<<<< HEAD
+=======
+
+>>>>>>> FETCH_HEAD
     <userPermissions>
         <enabled>true</enabled>
         <name>ViewHelpLink</name>

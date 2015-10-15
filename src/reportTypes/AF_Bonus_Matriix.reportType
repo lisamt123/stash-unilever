@@ -2,12 +2,24 @@
 <ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
     <baseObject>AF_Bonus_Matrix__c</baseObject>
     <category>other</category>
+<<<<<<< HEAD
     <deployed>false</deployed>
+=======
+    <deployed>true</deployed>
+>>>>>>> FETCH_HEAD
     <description>Agency Fees Bonus Matrix</description>
     <label>Bonus Matriix</label>
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+<<<<<<< HEAD
+=======
+            <field>Agency_Entity_Name__c</field>
+            <table>AF_Bonus_Matrix__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+>>>>>>> FETCH_HEAD
             <field>AF_Agency_Entity__c</field>
             <table>AF_Bonus_Matrix__c</table>
         </columns>
@@ -118,6 +130,10 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+<<<<<<< HEAD
+=======
+            <displayNameOverride>Agency</displayNameOverride>
+>>>>>>> FETCH_HEAD
             <field>AF_Agency_Entity__c.AF_Agency__c.Name</field>
             <table>AF_Bonus_Matrix__c</table>
         </columns>
@@ -156,6 +172,37 @@
             <field>AF_Bonus_Summary__c.AF_Status__c</field>
             <table>AF_Bonus_Matrix__c</table>
         </columns>
+<<<<<<< HEAD
+=======
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Big Category</displayNameOverride>
+            <field>AF_Bonus_Summary__c.AF_Brand__c.AF_Super_category__c</field>
+            <table>AF_Bonus_Matrix__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Brand</displayNameOverride>
+            <field>AF_Bonus_Summary__c.AF_Brand__c.Name</field>
+            <table>AF_Bonus_Matrix__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AF_IsCrossBorderReport__c</field>
+            <table>AF_Bonus_Matrix__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AF_Fiscal_Year_FF__c</field>
+            <table>AF_Bonus_Matrix__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Big Category</displayNameOverride>
+            <field>AF_Bonus_Summary__c.AF_Brand__c.AF_Category_Brands__c.AF_Super_category__c</field>
+            <table>AF_Bonus_Matrix__c</table>
+        </columns>
+>>>>>>> FETCH_HEAD
         <masterLabel>Bonus Matrix</masterLabel>
     </sections>
 </ReportType>
