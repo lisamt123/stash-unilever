@@ -1804,6 +1804,8 @@
         <members>uw_BET__c.Total_Number_of_Members__c</members>
         <members>uw_BET__c.Total_assets__c</members>
         <members>uw_BET__c.uw_Brand__c</members>
+		<members>uw_BET__c.Deletion_Date__c</members>
+		<members>uw_BET__c.Is_Deleted__c</members>
         <name>CustomField</name>
     </types>
     <types>

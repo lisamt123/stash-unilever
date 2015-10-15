@@ -401,6 +401,7 @@ public with sharing class uw_BetEditController {
     *************************************************************/
     public PageReference softDeleteBET(){
         bet.Is_Deleted__c = true;
+        bet.Deletion_Date__c = date.today();
         try{
             update bet;
         } catch (Exception e){

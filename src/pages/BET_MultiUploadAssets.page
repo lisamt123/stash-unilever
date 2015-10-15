@@ -39,6 +39,7 @@
     var NO_ASSET_NAME = "{!$Label.BET_Asset_Name_Mandatory}";
     var NO_COUNTRY_SELECTED = "{!$Label.BET_Asset_Country_Mandatory}";
     var NO_FILE_SELECTED = "{!$Label.BET_Asset_No_Files_Selected}";
+    var defStatus = '{!status}';
 
     function labelFile(idx,assetName,mediaType,country,status,betId,index){
       Visualforce.remoting.Manager.invokeAction(
