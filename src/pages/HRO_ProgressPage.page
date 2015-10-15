@@ -25,7 +25,7 @@
                 <div class="bodyContent">
                     <img alt="onboarding-progress" id="recordHeader-small" class="centerImage width-80 margin-10" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/onboarding-progress-small.png')}" />
 
-                    <img alrt="onboarding-progress" id="recordHeader" class="width-80" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/onboarding-progress-large.png')}" />
+                    <img alt="onboarding-progress" id="recordHeader" class="width-80" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/onboarding-progress-large.png')}" />
                     <div class="recordArea">
                         <apex:variable value="{!0}" var="rowNum"/>
                         <apex:repeat value="{!progressLst}" var="ProgressItem">
@@ -38,7 +38,10 @@
                                 </div>
 
                                 <div class="col-xs-12 col-sm-6 col-md-6">
-                                    <div id="myStat" data-dimension="120" data-text="{!progressLst[rowNum].perecntOfCompletion}%" data-info="" data-width="7" data-fontsize="15" data-percent="{!progressLst[rowNum].perecntOfCompletion}" data-fgcolor="#61a9dc" data-bgcolor="#eee" data-fill="#ddd" data-total="{!progressLst[rowNum].totalTasks}" data-part="{!progressLst[rowNum].totalCompletedTasks}" data-icon="long-arrow-up" data-icon-size="20" data-icon-color="#fff"></div>
+                                    <div id="myStat" data-dimension="120" data-text="{!progressLst[rowNum].perecntOfCompletion}%" data-info="" data-width="7" 
+                                         data-fontsize="15" data-percent="{!progressLst[rowNum].perecntOfCompletion}" data-fgcolor="#61a9dc" data-bgcolor="#eee" 
+                                         data-fill="#ddd" data-total="{!progressLst[rowNum].totalTasks}" data-part="{!progressLst[rowNum].totalCompletedTasks}" 
+                                         data-icon="long-arrow-up" data-icon-size="20" data-icon-color="#fff"></div>
                                 </div>
                             </div>
                                 
