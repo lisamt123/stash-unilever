@@ -36,15 +36,15 @@ private class HRO_HeadStart_CXTest {
         Test.startTest();
         
         HRO_HeadStart_CX pageController = new HRO_HeadStart_CX();
-        system.assertEquals(pageController.selectedLeader, 'HROtestLeader');
-        system.assertEquals(pageController.getAvailableLeaders().size(), 1);
+        system.assertEquals(pageController.selectedLeader, 'HROtestLeader','There should be selected HROtestLeader');
+        system.assertEquals(pageController.getAvailableLeaders().size(), 1,'Manager should see only one Leader HROtestLeader');
         pageController.getIntroductionHeaderMap();
         pageController.getIntroductionInfoMap();
         List<HRO_Onboarding_Task__c> leaderPhaseOnbordingTasks = pageController.getOnboardingTasks();
-        system.assert(!leaderPhaseOnbordingTasks.isEmpty());
+        system.assertEquals(leaderPhaseOnbordingTasks.isEmpty(),false,'Task should be created for each phase');
         HRO_HeadStart_CX.markComplete(leaderPhaseOnbordingTasks.get(0).id);
         //check if task was marked as completed under db
-        system.assertEquals(true,[Select Completed__c FROM HRO_Onboarding_Task__c WHERE ID =:leaderPhaseOnbordingTasks.get(0).id].get(0).Completed__c);
+        system.assertEquals(true,[Select Completed__c FROM HRO_Onboarding_Task__c WHERE ID =:leaderPhaseOnbordingTasks.get(0).id].get(0).Completed__c,'Task should be marked as competed under database');
         pageController.resetleaderPhase();
         Test.stopTest();
         
@@ -74,67 +74,67 @@ private class HRO_HeadStart_CXTest {
         pageController.getOnboardingTasks();
         pageController.selectedPhaseButton = 'preBoardingBtn';
         pageController.phaseButtonClicked();
-        system.assertEquals(HRO_HeadStart_CX.PREBOARDINGPHASE,pageController.switchToPhase);
+        system.assertEquals(HRO_HeadStart_CX.PREBOARDINGPHASE,pageController.switchToPhase,'Property swichToPhase was not set properly');
         pageController.changeSelectedButton();
         
         pageController.selectedPhaseButton = 'dayOneBtn';
         pageController.phaseButtonClicked();
-        system.assertEquals(HRO_HeadStart_CX.DAY1PHASE,pageController.switchToPhase);
+        system.assertEquals(HRO_HeadStart_CX.DAY1PHASE,pageController.switchToPhase,'Property swichToPhase was not set properly');
         pageController.changeSelectedButton();
         
         pageController.selectedPhaseButton = 'weekOneBtn';
         pageController.phaseButtonClicked();
-        system.assertEquals(HRO_HeadStart_CX.WEEK1PHASE,pageController.switchToPhase);
+        system.assertEquals(HRO_HeadStart_CX.WEEK1PHASE,pageController.switchToPhase,'Property swichToPhase was not set properly');
         pageController.changeSelectedButton();
         
         pageController.selectedPhaseButton = 'monthOneBtn';
         pageController.phaseButtonClicked();
-        system.assertEquals(HRO_HeadStart_CX.MONTH1PHASE,pageController.switchToPhase);
+        system.assertEquals(HRO_HeadStart_CX.MONTH1PHASE,pageController.switchToPhase,'Property swichToPhase was not set properly');
         pageController.changeSelectedButton();
         
         pageController.selectedPhaseButton = 'monthTwoBtn';
         pageController.phaseButtonClicked();
-        system.assertEquals(HRO_HeadStart_CX.MONTH2PHASE,pageController.switchToPhase);
+        system.assertEquals(HRO_HeadStart_CX.MONTH2PHASE,pageController.switchToPhase,'Property swichToPhase was not set properly');
         pageController.changeSelectedButton();
         
         pageController.selectedPhaseButton = 'monthThreeBtn';
         pageController.phaseButtonClicked();
-        system.assertEquals(HRO_HeadStart_CX.MONTH3PHASE,pageController.switchToPhase);
+        system.assertEquals(HRO_HeadStart_CX.MONTH3PHASE,pageController.switchToPhase,'Property swichToPhase was not set properly');
         pageController.changeSelectedButton();
         
         pageController.selectedPhaseButton = 'beyondOnboardingBtn';
         pageController.phaseButtonClicked();
-        system.assertEquals(HRO_HeadStart_CX.BEONBOARDPHASE,pageController.switchToPhase);
+        system.assertEquals(HRO_HeadStart_CX.BEONBOARDPHASE,pageController.switchToPhase,'Property swichToPhase was not set properly');
         pageController.changeSelectedButton();
         
         pageController.switchToPhase = null;
-        system.assertEquals(HRO_HeadStart_CX.WEEK1PHASE,pageController.getLeaderPhase());
+        system.assertEquals(HRO_HeadStart_CX.WEEK1PHASE,pageController.getLeaderPhase(),'Property getLeaderPhase did not return proper Leader phase');
         
         HRO_Onboarding_Task_Set__c taskSet = [Select Start_Date__c From HRO_Onboarding_Task_Set__c Limit 1].get(0);
         taskSet.Start_Date__c = Date.today().addDays(1);
         update taskSet;
-        system.assertEquals(HRO_HeadStart_CX.PREBOARDINGPHASE,pageController.getLeaderPhase());
+        system.assertEquals(HRO_HeadStart_CX.PREBOARDINGPHASE,pageController.getLeaderPhase(),'Property getLeaderPhase did not return proper Leader phase');
         
         taskSet.Start_Date__c = Date.today();
         update taskSet;
-        system.assertEquals(HRO_HeadStart_CX.DAY1PHASE,pageController.getLeaderPhase());
+        system.assertEquals(HRO_HeadStart_CX.DAY1PHASE,pageController.getLeaderPhase(),'Property getLeaderPhase did not return proper Leader phase');
         
         taskSet.Start_Date__c = Date.today().addDays(-8);
         update taskSet;
-        system.assertEquals(HRO_HeadStart_CX.MONTH1PHASE,pageController.getLeaderPhase());
+        system.assertEquals(HRO_HeadStart_CX.MONTH1PHASE,pageController.getLeaderPhase(),'Property getLeaderPhase did not return proper Leader phase');
         
         taskSet.Start_Date__c = Date.today().addDays(-29);
         update taskSet;
-        system.assertEquals(HRO_HeadStart_CX.MONTH2PHASE,pageController.getLeaderPhase());
+        system.assertEquals(HRO_HeadStart_CX.MONTH2PHASE,pageController.getLeaderPhase(),'Property getLeaderPhase did not return proper Leader phase');
         
         taskSet.Start_Date__c = Date.today().addDays(-57);
         update taskSet;
-        system.assertEquals(HRO_HeadStart_CX.MONTH3PHASE,pageController.getLeaderPhase());
+        system.assertEquals(HRO_HeadStart_CX.MONTH3PHASE,pageController.getLeaderPhase(),'Property getLeaderPhase did not return proper Leader phase');
         
         taskSet.Start_Date__c = Date.today().addDays(-85);
         update taskSet;
-        system.assertEquals(HRO_HeadStart_CX.BEONBOARDPHASE,pageController.getLeaderPhase());
-        
+        system.assertEquals(HRO_HeadStart_CX.BEONBOARDPHASE,pageController.getLeaderPhase(),'Property getLeaderPhase did not return proper Leader phase');
+        Test.stopTest();
         
     }
 	

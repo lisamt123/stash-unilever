@@ -47,13 +47,13 @@ public class HRO_ProgressPage_CXTest {
             //List<HRO_ProgressPage_CX.ProgressWrapper> progresLst = pageController.getProgressList();
             for(HRO_ProgressPage_CX.ProgressWrapper pWrapp : pageController.progressLst){
                 
-                system.assertEquals(50, pWrapp.perecntOfCompletion);
+                system.assertEquals(50, pWrapp.perecntOfCompletion,'Percent of completion wrongly calculated');
                 if(pWrapp.phase != 'Overall'){
-                    system.assertEquals(4, pWrapp.totalTasks);
-                    system.assertEquals(2, pWrapp.totalCompletedTasks);
+                    system.assertEquals(4, pWrapp.totalTasks,'Wrong total task calculation');
+                    system.assertEquals(2, pWrapp.totalCompletedTasks,'Wrong total completed tasks');
                 }else{
-                    system.assertEquals(totalTasks.size(), pWrapp.totalTasks);
-                    system.assertEquals(totalTasks.size()/2, pWrapp.totalCompletedTasks);
+                    system.assertEquals(totalTasks.size(), pWrapp.totalTasks,'Wrong Total tasks claculation');
+                    system.assertEquals(totalTasks.size()/2, pWrapp.totalCompletedTasks,'Wrong total task comletion calculation');
                 }
                 
                 

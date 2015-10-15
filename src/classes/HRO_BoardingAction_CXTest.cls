@@ -24,9 +24,6 @@ private class HRO_BoardingAction_CXTest {
   ********************************************************************/
 	@isTest static void testCreatingPreBoardingTasks() {
         
-		User manager = HRO_UnitTestFactory.createUserManager('HROtestManager');
-		User leader = HRO_UnitTestFactory.createUser('HROtestLeader');
-        
         List<HRO_Onboarding_Plan__c> managerTasksTemplate = HRO_UnitTestFactory.createDefaultSetOfOnboardingTasks(true);
         //List<HRO_Onboarding_Plan__c> leaderTasksTemplate = HRO_UnitTestFactory.createDefaultSetOfOnboardingTasks(false);
         insert managerTasksTemplate;
@@ -46,10 +43,11 @@ private class HRO_BoardingAction_CXTest {
         pageController.planInfo.Start_Date__c = Date.today();
         pageController.getProfileUserId();
         pageController.getPreBoardingTasks();
-        system.assert(pageController.listOfTemplateTasks.size()>0); 
+        system.assertEquals(pageController.listOfTemplateTasks.isEmpty(),false,
+                      'System shoud retrive template task check method HRO_UnitTestFactory.createDefaultSetOfOnboardingTasks if creating task templates'); 
         pageController.savePreBoarding();
         //check if task were created for manager and he is the owner
-        system.assert([Select id FROM HRO_Onboarding_Task__c where ownerId = :UserInfo.getUserId()].size()>0);
+        system.assertEquals([Select id FROM HRO_Onboarding_Task__c where ownerId = :UserInfo.getUserId()].isEmpty(),false,'System should create task for manager');
 				
 		Test.stopTest();
 

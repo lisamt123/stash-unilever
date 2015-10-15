@@ -37,10 +37,10 @@ private with sharing class HRO_OnboardingTaskList_CCTest {
         update taskSet;
         
         pageController.cRecordId = taskSet.id;
-        System.assertEquals(HRO_HeadStart_CX.PREBOARDINGPHASE,pageController.getLeaderPhase());
+        System.assertEquals(HRO_HeadStart_CX.PREBOARDINGPHASE,pageController.getLeaderPhase(),'Wrongly calculated Leader Phase');
         List<HRO_OnboardingTaskList_CC.OnboardingTasksWrapper> taskLst = pageController.getTaskAssignedToPhase();
         //there shuld be 4 tasks in PREBOARDINGPHASE
-        system.assertEquals(4, taskLst.size());
+        system.assertEquals(4, taskLst.size(),'Wrong number of retrived task in phase:'+HRO_HeadStart_CX.PREBOARDINGPHASE);
         Test.stopTest();
     }
     
@@ -73,9 +73,9 @@ private with sharing class HRO_OnboardingTaskList_CCTest {
         
         pageController.cRecordId = taskSet.id;
         pageController.cStartDate = taskSet.Start_Date__c;
-        System.assertEquals(HRO_HeadStart_CX.MONTH3PHASE,pageController.getLeaderPhase());
+        System.assertEquals(HRO_HeadStart_CX.MONTH3PHASE,pageController.getLeaderPhase(),'Wrong number of retrived task in phase:'+HRO_HeadStart_CX.PREBOARDINGPHASE);
         List<HRO_OnboardingTaskList_CC.OnboardingTasksWrapper> taskLst = pageController.getOverDuedTaskList();
-        system.assert(taskLst.size()>0);
+        system.assertEquals(taskLst.isEmpty(),false,'There should be retrived task from phase:'+HRO_HeadStart_CX.MONTH3PHASE);
         Test.stopTest();
     }
 }

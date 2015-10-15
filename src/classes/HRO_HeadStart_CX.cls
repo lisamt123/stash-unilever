@@ -289,7 +289,7 @@ global with sharing class HRO_HeadStart_CX {
         List<SelectOption> options = new List<SelectOption>();
 
         Set<String> leadersNames = new Set<String>();
-        Map<String,Integer> totalTasksPerLeader = new Map<String,Integer>();
+        
         for(AggregateResult agr : [Select New_Leader_Name__c,OwnerId, count(id) nbrOfTasks FROM 
                                                  HRO_Onboarding_Task__c  where isDeleted = false  
                                                  AND Completed__c = false

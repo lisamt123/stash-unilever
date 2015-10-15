@@ -18,7 +18,7 @@ public with sharing class HRO_TaskLinkForwarder_CX {
 
 	private final sObject mysObject;
     public String redirectToPage{get;set;}
-    
+    private static final String INSTANCEURL = System.URL.getSalesforceBaseUrl().toExternalForm();
     
     /*******************************************************************
    Purpose:  Class constructor getting record                                                    
@@ -41,8 +41,7 @@ public with sharing class HRO_TaskLinkForwarder_CX {
   ********************************************************************/	
     public PageReference updateActionTaken(){
         system.debug('****HRO Entring updateActionTaken');
-        String instanceUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
-        
+       
         Id recordId = (Id)mysObject.get('Id');
         HRO_Onboarding_Task__c hroTask = new HRO_Onboarding_Task__c(id = recordId);
         hroTask.Completed__c = true;
@@ -53,7 +52,7 @@ public with sharing class HRO_TaskLinkForwarder_CX {
             system.debug('before creating page reference');
         	pageUrl  = ApexPages.currentPage().getParameters().get('pageUrl');
         }else if(ApexPages.currentPage().getParameters().containsKey('selectedLeader')){
-            pageUrl = instanceUrl+'/_ui/core/userprofile/UserProfilePage?tab=HRO_HeadStart&sfdc.userId='+UserInfo.getUserId()+'&tab.HRO_HeadStart.leaderToSelect='+ApexPages.currentPage().getParameters().get('selectedLeader');        
+            pageUrl = INSTANCEURL+'/_ui/core/userprofile/UserProfilePage?tab=HRO_HeadStart&sfdc.userId='+UserInfo.getUserId()+'&tab.HRO_HeadStart.leaderToSelect='+ApexPages.currentPage().getParameters().get('selectedLeader');        
         }
 
         system.debug('****HRO Exiting updateActionTaken:'+EncodingUtil.urlDecode(pageUrl, 'UTF-8'));

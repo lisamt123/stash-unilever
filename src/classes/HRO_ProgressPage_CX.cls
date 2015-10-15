@@ -129,7 +129,6 @@ public with sharing class HRO_ProgressPage_CX {
         }
 
         if(!summaryRecord.totalTasksInPhase.isEmpty()){
-            Boolean isManager = getIsManager();
             Decimal totalNumberOfTasks = 0;
             Decimal totalCompletedTasks = 0;
 

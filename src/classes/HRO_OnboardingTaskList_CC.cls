@@ -28,6 +28,7 @@ global with sharing class HRO_OnboardingTaskList_CC {
     private static final String TASKFORWARDERURL = '/apex/HRO_TaskLinkForwarder?id=';
     private static final String USERPROFILEURL = '/_ui/core/userprofile/UserProfilePage?tab=HRO_HeadStart&sfdc.userId=';
     private static final String SELECTEDLEADERPARAM = '&tab.HRO_HeadStart.leaderToSelect=';
+    private static final String INSTANCEURL = System.URL.getSalesforceBaseUrl().toExternalForm();
     public HRO_OnboardingTaskList_CC(){
         
     }
@@ -40,10 +41,10 @@ global with sharing class HRO_OnboardingTaskList_CC {
   ********************************************************************/	
     public List<OnboardingTasksWrapper> getTaskAssignedToPhase(){
         system.debug('*****HRO entering getTaskAssignedToPhase()');
-        String instanceUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
+        //String instanceUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
         List<OnboardingTasksWrapper> taskWrapperLst = new List<OnboardingTasksWrapper>();
-        String searchByPhase = cPhase != null ? cPhase : getLeaderPhase();
-        for(HRO_Onboarding_Task__c hroTask : [Select Name, Due_Date__c,ExternalPortalLink__c,Id,Task_Detail__c FROM HRO_Onboarding_Task__c 
+        
+        for(HRO_Onboarding_Task__c hroTask : [Select Name, Due_Date__c,ExternalPortalLink__c,Id,Task_Detail__c,New_Leader_Name__c FROM HRO_Onboarding_Task__c 
                                               WHERE Phase__c =:cPhase AND Onboarding_Task_Set__c =: cRecordId]){
         
             OnboardingTasksWrapper taskWrapp = new OnboardingTasksWrapper();
@@ -53,9 +54,12 @@ global with sharing class HRO_OnboardingTaskList_CC {
                                                            
             if(hroTask.ExternalPortalLink__c != null && hroTask.ExternalPortalLink__c != ''){
                 encodedURl = EncodingUtil.urlEncode(hroTask.ExternalPortalLink__c, UTF8);
+                taskWrapp.taskLink = INSTANCEURL+TASKFORWARDERURL+hroTask.id+'&pageUrl='+encodedURl;
+            }else{
+                taskWrapp.taskLink =INSTANCEURL+TASKFORWARDERURL+hroTask.id+'&selectedLeader='+EncodingUtil.urlEncode(hroTask.New_Leader_Name__c,UTF8); 
             }
                                                   
-            taskWrapp.taskLink = instanceUrl+TASKFORWARDERURL+hroTask.id+'&pageUrl='+encodedURl;
+            taskWrapp.taskLink = INSTANCEURL+TASKFORWARDERURL+hroTask.id+'&pageUrl='+encodedURl;
             taskWrapperLst.add(taskWrapp);                                      
         }
         system.debug('*****HRO exiting getTaskAssignedToPhase():'+JSON.serialize(taskWrapperLst));
@@ -71,9 +75,9 @@ global with sharing class HRO_OnboardingTaskList_CC {
   ********************************************************************/	
     public List<OnboardingTasksWrapper> getOverDuedTaskList(){
         system.debug('*****HRO entering getOverDuedTaskList()');
-        String instanceUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
+        //String instanceUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
         List<OnboardingTasksWrapper> taskWrapperLst = new List<OnboardingTasksWrapper>();
-        String searchByPhase = cPhase != null ? cPhase : getLeaderPhase();
+        
         for(HRO_Onboarding_Task__c hroTask : [Select Name, Due_Date__c,ExternalPortalLink__c,Id,OwnerId,New_Leader_Name__c,Task_Detail__c FROM HRO_Onboarding_Task__c 
                                               WHERE Onboarding_Task_Set__c =: cRecordId AND Completed__c=false  AND Due_Date__c < TODAY]){
         
@@ -84,9 +88,9 @@ global with sharing class HRO_OnboardingTaskList_CC {
                                                            
             if(hroTask.ExternalPortalLink__c != null && hroTask.ExternalPortalLink__c != ''){
                 encodedURl = EncodingUtil.urlEncode(hroTask.ExternalPortalLink__c, UTF8);
-                taskWrapp.taskLink = instanceUrl+TASKFORWARDERURL+hroTask.id+'&pageUrl='+encodedURl;
+                taskWrapp.taskLink = INSTANCEURL+TASKFORWARDERURL+hroTask.id+'&pageUrl='+encodedURl;
             }else{
-                taskWrapp.taskLink =instanceUrl+TASKFORWARDERURL+hroTask.id+'&selectedLeader='+EncodingUtil.urlEncode(hroTask.New_Leader_Name__c,UTF8); 
+                taskWrapp.taskLink =INSTANCEURL+TASKFORWARDERURL+hroTask.id+'&selectedLeader='+EncodingUtil.urlEncode(hroTask.New_Leader_Name__c,UTF8); 
             }
             taskWrapperLst.add(taskWrapp);                                      
         }
@@ -132,14 +136,14 @@ global with sharing class HRO_OnboardingTaskList_CC {
   ********************************************************************/	
     public String getHeadStartLink(){
         system.debug('*****HRO entring getHeadStartLink():');            
-        String instanceUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
+        //String instanceUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
         String output = '';
         if(cLeaderName != null){
-          output = instanceUrl+USERPROFILEURL+cOwnerId+SELECTEDLEADERPARAM+EncodingUtil.urlEncode(cLeaderName, UTF8);         
+          output = INSTANCEURL+USERPROFILEURL+cOwnerId+SELECTEDLEADERPARAM+EncodingUtil.urlEncode(cLeaderName, UTF8);         
           system.debug('*****HRO exiting getHeadStartLink():'+output);        
           return output;
         }else{
-            output = instanceUrl+USERPROFILEURL+cOwnerId;
+            output = INSTANCEURL+USERPROFILEURL+cOwnerId;
             system.debug('*****HRO exiting getHeadStartLink():'+output);
             return output;       
         }
@@ -153,13 +157,13 @@ global with sharing class HRO_OnboardingTaskList_CC {
    Throws [Exceptions]: []                                                          
   ********************************************************************/
     public String getTaskLink(){
-        String instanceUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
+        //String instanceUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
         if(cTaskLink != null){
-            return instanceUrl+TASKFORWARDERURL+cTaskId+'&pageUrl='+EncodingUtil.urlEncode(cTaskLink, UTF8);    
+            return INSTANCEURL+TASKFORWARDERURL+cTaskId+'&pageUrl='+EncodingUtil.urlEncode(cTaskLink, UTF8);    
         }else if(cLeaderName != null){
-          return instanceUrl+USERPROFILEURL+cOwnerId+SELECTEDLEADERPARAM+EncodingUtil.urlEncode(cLeaderName, UTF8);       
+          return INSTANCEURL+USERPROFILEURL+cOwnerId+SELECTEDLEADERPARAM+EncodingUtil.urlEncode(cLeaderName, UTF8);       
         }else{
-            return instanceUrl+USERPROFILEURL+cOwnerId;       
+            return INSTANCEURL+USERPROFILEURL+cOwnerId;       
         }
         
     }

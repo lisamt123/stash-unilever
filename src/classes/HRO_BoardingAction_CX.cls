@@ -92,8 +92,6 @@ public with sharing class HRO_BoardingAction_CX {
     public PageReference savePreBoarding(){
         system.debug('*****HRO Entering savePreBoarding');
         createPreBoardingTasks();
-        Schema.DescribeSObjectResult r = HRO_Onboarding_Plan__c.sObjectType.getDescribe();
-        String keyPrefix = r.getKeyPrefix();
         system.debug('*****HRO Exiting savePreBoarding');
         return new PageReference('/_ui/core/userprofile/UserProfilePage?tab=HRO_HeadStart&sfdc.userId='+UserInfo.getUserId()+SELECTEDLEADERPARAM+EncodingUtil.urlEncode(planInfo.New_Leader__c, 'UTF-8'));
     }
@@ -112,7 +110,7 @@ public with sharing class HRO_BoardingAction_CX {
         system.debug('*****HRO Entering createPreBoardingTasks');
 
         List<HRO_Onboarding_Task__c> tasksToCreate = new List<HRO_Onboarding_Task__c>();
-        Map<Id,List<HRO_Onboarding_Task__c>> createdTaskForManager = new Map<Id,List<HRO_Onboarding_Task__c>>();
+        
         HRO_Onboarding_Task_Set__c hroTaskSet = new HRO_Onboarding_Task_Set__c();
         hroTaskSet.Start_Date__c = planInfo.Start_Date__c;
         hroTaskSet.New_Leader_Name__c = planInfo.New_Leader__c;

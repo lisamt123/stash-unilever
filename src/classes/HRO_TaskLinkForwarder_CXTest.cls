@@ -39,8 +39,8 @@ public with sharing class HRO_TaskLinkForwarder_CXTest {
         HRO_TaskLinkForwarder_CX pageController = new HRO_TaskLinkForwarder_CX(new ApexPages.StandardController(managerTasks[0]));
         PageReference pRef1 = pageController.updateActionTaken();
         //check if task mark as completed
-        system.assertEquals(true, [Select Completed__c from HRO_Onboarding_Task__c WHERE ID =: managerTasks.get(0).id].get(0).Completed__c);
-        system.assertEquals('http:\\\\www.salesforce.com', pRef1.getUrl());
+        system.assertEquals(true, [Select Completed__c from HRO_Onboarding_Task__c WHERE ID =: managerTasks.get(0).id].get(0).Completed__c,'Task should be marked Completed');
+        system.assertEquals('http:\\\\www.salesforce.com', pRef1.getUrl(),'System should redirect user to proper page');
         
         
         PageReference pageRef1 = Page.HRO_TaskLinkForwarder;
@@ -48,7 +48,7 @@ public with sharing class HRO_TaskLinkForwarder_CXTest {
         pageRef1.getParameters().put('selectedLeader',managerTasks.get(0).New_Leader_Name__c);
         Test.setCurrentPage(pageRef1);
         PageReference pRef2 = pageController.updateActionTaken();
-        system.assert(pRef2.getUrl().contains('HRO_HeadStart'));
+        system.assert(pRef2.getUrl().contains('HRO_HeadStart'),'System should redirect user to headstart page');
         Test.stopTest();
         
     }

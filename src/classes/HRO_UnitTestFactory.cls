@@ -60,21 +60,21 @@ public with sharing class HRO_UnitTestFactory {
 		Schema.DescribeFieldResult taskTypeeDescribe = HRO_Onboarding_Plan__c.Task_type__c.getDescribe();
 
 		for(Schema.PicklistEntry phaseEntry : phaseDescribe.getPicklistValues()){
-            String currentPhase = phaseEntry.getValue();
+            
 			for(Schema.PicklistEntry typeEntry : taskTypeeDescribe.getPicklistValues()){
 				String currentTaskType = typeEntry.getValue();
 				//do not create pre boarding task for leaders only for managers
-				if(currentPhase == PREBOARDINGPHASE){
+				if(phaseEntry.getValue() == PREBOARDINGPHASE){
 					if(isManager){
-						taskTemplates.add(createOnboardingTaskTemplate(MANAGERTASKTYPE,calculateDueDateForTemplateTask(currentPhase),currentPhase,'www.test.com',currentTaskType));
+						taskTemplates.add(createOnboardingTaskTemplate(MANAGERTASKTYPE,calculateDueDateForTemplateTask(phaseEntry.getValue()),phaseEntry.getValue(),'www.test.com',currentTaskType));
 					}
 					continue;
 				}
 
 				if(isManager){
-					taskTemplates.add(createOnboardingTaskTemplate(MANAGERTASKTYPE,calculateDueDateForTemplateTask(currentPhase),currentPhase,'www.test.com',currentTaskType));
+					taskTemplates.add(createOnboardingTaskTemplate(MANAGERTASKTYPE,calculateDueDateForTemplateTask(phaseEntry.getValue()),phaseEntry.getValue(),'www.test.com',currentTaskType));
 				}else{
-					taskTemplates.add(createOnboardingTaskTemplate(NEWLEADERTASKTYPE,calculateDueDateForTemplateTask(currentPhase),currentPhase,'www.test.com',currentTaskType));
+					taskTemplates.add(createOnboardingTaskTemplate(NEWLEADERTASKTYPE,calculateDueDateForTemplateTask(phaseEntry.getValue()),phaseEntry.getValue(),'www.test.com',currentTaskType));
 				}
 				
 			}
