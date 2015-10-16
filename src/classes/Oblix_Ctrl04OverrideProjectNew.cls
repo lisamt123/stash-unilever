@@ -85,11 +85,11 @@ public with sharing class Oblix_Ctrl04OverrideProjectNew {
 						List<String> lstCountriesString =  project.OblixCountries__c.split(',');
 						System.debug('###lstCountriesString save : '+lstCountriesString);
 						if(lstCountriesString.size()>0){
-							if(lstCountriesString.size()==1) project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market1;
-							if(lstCountriesString.size()>1 && lstCountriesString.size()<=5) project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market2;
-							if(lstCountriesString.size()>5 && lstCountriesString.size()<=10) project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market3;
-							if(lstCountriesString.size()>10 && lstCountriesString.size()<=15) project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market4;
-							if(lstCountriesString.size()>15) project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;
+							if(lstCountriesString.size()==1){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market1;}
+							if(lstCountriesString.size()>1 && lstCountriesString.size()<=5){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market2;}
+							if(lstCountriesString.size()>5 && lstCountriesString.size()<=10){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market3;}
+							if(lstCountriesString.size()>10 && lstCountriesString.size()<=15) {project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market4;}
+							if(lstCountriesString.size()>15){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;}
 							
 						}else{
 							project.Project_Scale_1__c = '';
