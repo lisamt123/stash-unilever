@@ -210,6 +210,8 @@
         <members>BET_BETHandler</members>
         <members>BET_BETHandlerCls</members>
         <members>BET_BETHandlerClsHelper</members>
+        <members>BET_BETHardDelete_Batch</members>
+        <members>BET_BETHardDelete_BatchTest</members>
         <members>BET_BETService</members>
         <members>BET_BETServiceTest</members>
         <members>BET_BETWrapper</members>
