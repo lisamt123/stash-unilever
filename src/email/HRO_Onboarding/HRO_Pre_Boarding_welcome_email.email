@@ -1,4 +1,4 @@
-<messaging:emailTemplate subject="Pre-Boarding welcome email for new Leader {!relatedTo.New_Leader_Name__c}" recipientType="User" relatedToType="HRO_Onboarding_Task_Set__c">
+<messaging:emailTemplate subject="Pre-Boarding welcome email. For new Leader {!relatedTo.New_Leader_Name__c}" recipientType="User" relatedToType="HRO_Onboarding_Task_Set__c">
 <messaging:htmlEmailBody >
     Dear {!relatedTo.owner.name},<br /><br />
     

@@ -1,4 +1,4 @@
-<messaging:emailTemplate subject="Proactive notification of upcoming tasks" recipientType="User" relatedToType="HRO_Onboarding_Task_Set__c">
+<messaging:emailTemplate subject="Headstart Leadership onboarding task notification" recipientType="User" relatedToType="HRO_Onboarding_Task_Set__c">
 <messaging:htmlEmailBody >
     Dear {!relatedTo.owner.name},<br /><br />
     It is now Beyond Onboarding
