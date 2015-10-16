@@ -46,7 +46,7 @@
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
+	<allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <customHelpPage>be_help_pop_up</customHelpPage>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -648,6 +648,16 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Deletion_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Deletion Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Add text that will help others search for your Brand Experience</inlineHelpText>
@@ -824,6 +834,16 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Is Archived</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Deleted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Deleted</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

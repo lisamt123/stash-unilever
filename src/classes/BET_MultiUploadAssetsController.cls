@@ -15,10 +15,13 @@ global class BET_MultiUploadAssetsController {
 
 	public Id chatterGroupId {get;set;}
 	public Id betId {get;set;}
+    public String status {get;set;}
 
 	public BET_MultiUploadAssetsController() {
 		chatterGroupId = (Id)ApexPages.currentPage().getParameters().get('parent');
 		betId = (Id)ApexPages.currentPage().getParameters().get('betid');
+        String tab = (String)ApexPages.currentPage().getParameters().get('status');
+        status = uw_CustomAssetUploadExtension.tabRelatedStatusMap.get(tab);
 	}
 
 	/************************************************************
