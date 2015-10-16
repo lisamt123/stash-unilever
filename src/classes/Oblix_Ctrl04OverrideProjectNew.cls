@@ -22,7 +22,7 @@ public with sharing class Oblix_Ctrl04OverrideProjectNew {
 			o.Date_for_Assets_to_be_in_BET__c, o.Campaign_Idea__c, o.Budget_Burnt_to_date__c, o.Brand_Led_Growth__c, o.OblixRegion__c, o.OblixCountries__c,
 			o.Agency_Percentage_of_Fees_to_this_FY__c From Oblix_SOW_Projects__c o
 				where Id =: ApexPAges.currentPage().getParameters().get('Id')		
-						]; 
+						];  
 		}
 		
 		
