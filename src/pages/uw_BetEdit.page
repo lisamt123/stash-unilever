@@ -27,6 +27,17 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             window.top.postMessage({action: 'saveBetPreferences',moveHome:{!if(moveHome,'true','false')}}, document.location.protocol + '//' + document.domain);
         }
     });
+
+    function areYouSureToDelete(element,confirmationText,elementText){
+        if(confirm(confirmationText)){
+            if(confirm('{!$Label.BET_BET_Delete_Question}')){
+                element.value = elementText;
+                return true;
+            }
+        }
+        return false;
+    }
+
     </script>
             
     <apex:form >
@@ -99,9 +110,21 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             <div class="clear">&nbsp;</div>
             <div style="float:right">
 
+                <apex:commandButton value="{!$Label.BET_Delete_BET}" styleClass="btn-save" 
+                    action="{!softDeleteBET}" rendered="{!AND(currentUserIsOwner,bet.Is_Deleted__c == false,bet.IPM_Project__c == null)}" 
+                    onclick="return areYouSureToDelete(this,'{!$Label.BET_DeleteConfirmation}','{!$Label.BET_Deleting}');"/>
+
+                <apex:commandButton value="{!$Label.BET_Delete_BET}" styleClass="btn-cancel" 
+                    onclick="alert('{!$Label.BET_Delete_BET_Linked}'); return false;"
+                    rendered="{!AND(currentUserIsOwner,bet.Is_Deleted__c == false,bet.IPM_Project__c != null)}"/>
+
+                <apex:outputPanel layout="inline" styleClass="question-icon-left question-icon-large" style="margin-right:5px;"
+                    html-data-tooltip="{!$Label.BET_Delete_BET_Linked}" 
+                    rendered="{!AND(currentUserIsOwner,bet.Is_Deleted__c == false,bet.IPM_Project__c != null)}"/>
+
                 <apex:commandButton value="{!$Label.BET_ArchiveBET}" styleClass="btn-save" 
                     action="{!archiveBET}" rendered="{!AND(currentUserIsOwner,bet.Is_Archived__c == false)}" 
-                    onclick="return areYouSureToArchive(this,'{!$Label.BET_ArchiveConfirmation}','{!$Label.BET_Archiving}');"/>
+                    onclick="return areYouSure(this,'{!$Label.BET_ArchiveConfirmation}','{!$Label.BET_Archiving}');"/>
 
                 <apex:outputPanel layout="inline" styleClass="question-icon-left question-icon-large"
                     html-data-tooltip="Archived BETs are moved to the Archive area on the Home Page and Search" 
@@ -109,7 +132,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
                 <apex:commandButton value="{!$Label.BET_UnArchiveBET}" styleClass="btn-save" 
                     action="{!unArchiveBET}" rendered="{!AND(currentUserIsOwner,bet.Is_Archived__c == true)}" 
-                    onclick="return areYouSureToUnArchive(this,'{!$Label.BET_UnArchiveConfirmation}','{!$Label.BET_UnArchiving}');"/>
+                    onclick="return areYouSure(this,'{!$Label.BET_UnArchiveConfirmation}','{!$Label.BET_UnArchiving}');"/>
 
                 <apex:outputPanel layout="inline" styleClass="question-icon-left question-icon-large"
                     html-data-tooltip="Unarchived BETs are moved from the Archive area on the Home Page and Search" 

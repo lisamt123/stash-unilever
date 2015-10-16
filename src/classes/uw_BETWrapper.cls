@@ -250,6 +250,9 @@ public with sharing class uw_BETWrapper {
 
         public Integer totalActualAssets;
         public Integer totalExpectedAssets;
+
+        public Boolean beforeFinalDueDate;
+        public Boolean beforeFirstDueDate;
         
         public BetSearchItem(String betId, String betName, String betChatterGroupId, Datetime betFinalRelease, String betPresentationId, String betIconLocation, String betDescription, String betBrandName, String betRegion, String betProjectName,
             String betIPMProjectName,  
@@ -338,8 +341,17 @@ public with sharing class uw_BETWrapper {
             if(this.betFirstRelease != null && this.betFirstReleaseDueDate != null ){
                 this.completedFirstAfterDueDate = this.betFirstRelease >  this.betFirstReleaseDueDate;
             }
+            
             if(this.betFinalRelease != null && this.betFinalReleaseDueDate != null ){
                 this.completedFinalAfterDueDate = this.betFinalRelease >  this.betFinalReleaseDueDate;
+            }
+
+            if(this.betFinalReleaseDueDate != null) {
+                this.beforeFinalDueDate = Date.today() <= this.betFinalReleaseDueDate;
+            }
+
+            if(this.betFirstReleaseDueDate != null) {
+                this.beforeFirstDueDate = Date.today() <= this.betFirstReleaseDueDate;
             }
         }
     }

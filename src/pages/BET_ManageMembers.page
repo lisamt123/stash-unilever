@@ -36,7 +36,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
     <apex:tab label="{!$Label.BET_Browse_members}" name="browseMembers" id="browseMembersid">
      
-        <div style="{!If(OR(isBETOperationAdmin,NOT(isBetOwnerOrManager)),'display:none;','')}">
+        <div style="{!If(isBETOperationAdmin,'display:none;','')}">
         <div>
           <apex:outputText value="{!$Label.BET_Add_Internal_User}" styleClass="addMembersUserLabel"/>
         </div>
@@ -57,14 +57,17 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             <td>
               <div style="float:right">
                 <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addMember}"
-                                    styleClass="buttong2y" style="background: #e6007e; color:white;height: 35px;font-size:11px;font-family: Rockwell;width: 100px;" >
+                                    styleClass="buttong2y" style="background: #BE236D; color:white;height: 35px;font-size:12px;font-family: Rockwell;width: 100px;" >
 
                 </apex:commandButton>
               </div>
             </td>
           </tr>
         </table>
+        </div>
     
+        <div style="{!If(OR(isBETOperationAdmin,NOT(isBetOwnerOrManager)),'display:none;','')}">
+
         <div style="padding-top: 20px;">
           <apex:outputText value="{!$Label.BET_External_Agency_User}" styleClass="addMembersUserLabel"/>
         </div>
@@ -76,7 +79,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
               <td>
                 <div style="float:right">
                   <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addExternalMember}"
-                                    styleClass="buttong2y" style="background: #e6007e; color:white;height: 35px;font-size:11px;font-family: Rockwell;width: 100px;"/> 
+                                    styleClass="buttong2y" style="background: #BE236D; color:white;height: 35px;font-size:12px;font-family: Rockwell;width: 100px;"/> 
                 </div>
               </td>
             </tr>
@@ -91,7 +94,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
           <apex:commandButton value="{!$Label.BET_Delete_selected}" action="{!massDelete}" 
                               rendered="{!isBetOwnerOrManager}"
                               styleClass="buttong2y" 
-                              style="background: #e6007e; color:white;height: 35px;font-size:11px;font-family: Rockwell;width: 100px;"/> 
+                              style="background: #BE236D; color:white;height: 35px;font-size:12px;font-family: Rockwell;width: 100px;"/> 
        
         </div>
 
@@ -166,9 +169,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
       <div class="headerButtons">  
         <apex:commandButton value="{!$Label.BET_Approve_selected}" action="{!massApprove}" rendered="{!isBetOwnerOrManager}"
-          styleClass="buttong2y" style="background: #e6007e; color:white;height: 35px;font-size: 11px;font-family: Rockwell;width: 120px;"/> 
+          styleClass="buttong2y" style="background: #BE236D; color:white;height: 35px;font-size: 12px;font-family: Rockwell;width: 120px;"/> 
         <apex:commandButton value="{!$Label.BET_Deny_selected}" action="{!massDeny}" rendered="{!isBetOwnerOrManager}"
-          styleClass="buttong2y" style="background: #64625D; color:white;height: 35px;font-size: 11px;font-family: Rockwell;width: 120px;"/> 
+          styleClass="buttong2y" style="background: #64625D; color:white;height: 35px;font-size: 12px;font-family: Rockwell;width: 120px;"/> 
       </div>
 
       <table width="100%" class="approveMembersTable">
