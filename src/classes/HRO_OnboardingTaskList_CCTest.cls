@@ -73,6 +73,7 @@ private with sharing class HRO_OnboardingTaskList_CCTest {
         
         pageController.cRecordId = taskSet.id;
         pageController.cStartDate = taskSet.Start_Date__c;
+        pageController.getTaskLink();
         System.assertEquals(HRO_HeadStart_CX.MONTH3PHASE,pageController.getLeaderPhase(),'Wrong number of retrived task in phase:'+HRO_HeadStart_CX.PREBOARDINGPHASE);
         List<HRO_OnboardingTaskList_CC.OnboardingTasksWrapper> taskLst = pageController.getOverDuedTaskList();
         system.assertEquals(taskLst.isEmpty(),false,'There should be retrived task from phase:'+HRO_HeadStart_CX.MONTH3PHASE);

@@ -19,7 +19,7 @@ public with sharing class HRO_TaskLinkForwarder_CX {
 	private final sObject mysObject;
     public String redirectToPage{get;set;}
     private static final String INSTANCEURL = System.URL.getSalesforceBaseUrl().toExternalForm();
-    
+    private static final String UTF8 = 'UTF-8';
     /*******************************************************************
    Purpose:  Class constructor getting record                                                    
    Parameters: []
@@ -50,13 +50,13 @@ public with sharing class HRO_TaskLinkForwarder_CX {
         String pageUrl  = null;
         if(ApexPages.currentPage().getParameters().containsKey('pageUrl')){
             system.debug('before creating page reference');
-        	pageUrl  = ApexPages.currentPage().getParameters().get('pageUrl');
+        	pageUrl  = EncodingUtil.urlDecode(ApexPages.currentPage().getParameters().get('pageUrl'),UTF8);
         }else if(ApexPages.currentPage().getParameters().containsKey('selectedLeader')){
-            pageUrl = INSTANCEURL+'/_ui/core/userprofile/UserProfilePage?tab=HRO_HeadStart&sfdc.userId='+UserInfo.getUserId()+'&tab.HRO_HeadStart.leaderToSelect='+ApexPages.currentPage().getParameters().get('selectedLeader');        
+            pageUrl = INSTANCEURL+'/_ui/core/userprofile/UserProfilePage?tab=HRO_HeadStart&sfdc.userId='+UserInfo.getUserId()+'&tab.HRO_HeadStart.leaderToSelect='+EncodingUtil.urlDecode(ApexPages.currentPage().getParameters().get('selectedLeader'),UTF8);        
         }
 
-        system.debug('****HRO Exiting updateActionTaken:'+EncodingUtil.urlDecode(pageUrl, 'UTF-8'));
-        return new PageReference(EncodingUtil.urlDecode(pageUrl, 'UTF-8'));
+        system.debug('****HRO Exiting updateActionTaken:'+pageUrl);
+        return new PageReference(pageUrl);
         
     }
 }

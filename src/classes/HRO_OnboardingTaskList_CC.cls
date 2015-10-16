@@ -58,8 +58,7 @@ global with sharing class HRO_OnboardingTaskList_CC {
             }else{
                 taskWrapp.taskLink =INSTANCEURL+TASKFORWARDERURL+hroTask.id+'&selectedLeader='+EncodingUtil.urlEncode(hroTask.New_Leader_Name__c,UTF8); 
             }
-                                                  
-            taskWrapp.taskLink = INSTANCEURL+TASKFORWARDERURL+hroTask.id+'&pageUrl='+encodedURl;
+            
             taskWrapperLst.add(taskWrapp);                                      
         }
         system.debug('*****HRO exiting getTaskAssignedToPhase():'+JSON.serialize(taskWrapperLst));
@@ -161,7 +160,7 @@ global with sharing class HRO_OnboardingTaskList_CC {
         if(cTaskLink != null){
             return INSTANCEURL+TASKFORWARDERURL+cTaskId+'&pageUrl='+EncodingUtil.urlEncode(cTaskLink, UTF8);    
         }else if(cLeaderName != null){
-          return INSTANCEURL+USERPROFILEURL+cOwnerId+SELECTEDLEADERPARAM+EncodingUtil.urlEncode(cLeaderName, UTF8);       
+          return INSTANCEURL+TASKFORWARDERURL+cTaskId+SELECTEDLEADERPARAM+'&selectedLeader='+EncodingUtil.urlEncode(cLeaderName,UTF8);       
         }else{
             return INSTANCEURL+USERPROFILEURL+cOwnerId;       
         }

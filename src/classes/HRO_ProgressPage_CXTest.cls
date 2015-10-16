@@ -18,7 +18,7 @@ public class HRO_ProgressPage_CXTest {
     @isTest static void testPercentProgress() {
         User manager = HRO_UnitTestFactory.createUserManager('HROtestManager');
 		User leader = HRO_UnitTestFactory.createUser('HROtestLeader');
-        
+        User leader1 = HRO_UnitTestFactory.createUser('HROtestLeader123');
         List<HRO_Onboarding_Plan__c> managerTasksTemplate = HRO_UnitTestFactory.createDefaultSetOfOnboardingTasks(true);
         
         HRO_UnitTestFactory.createPreboardingTask(manager,leader,managerTasksTemplate);
@@ -39,11 +39,21 @@ public class HRO_ProgressPage_CXTest {
             tasksToUpdate.addAll(lstsToUpdate);
         }
         update tasksToUpdate;
+        
+        List<HRO_Onboarding_Task__c> newLeaderTasks = HRO_UnitTestFactory.createPreboardingTask(manager,leader1,managerTasksTemplate);
+        for(HRO_Onboarding_Task__c leaderTask : newLeaderTasks){
+            leaderTask.Completed__c = true;
+        }
+        
+        update newLeaderTasks;
+        
         PageReference pageRef = Page.HRO_ProgressPage;
         pageRef.getParameters().put('sfdc.userId',UserInfo.getUserId());
         Test.setCurrentPage(pageRef);
         Test.startTest();
         	HRO_ProgressPage_CX pageController = new HRO_ProgressPage_CX();
+        	pageController.getProfileUserId();
+            pageController.getIsManager();
             //List<HRO_ProgressPage_CX.ProgressWrapper> progresLst = pageController.getProgressList();
             for(HRO_ProgressPage_CX.ProgressWrapper pWrapp : pageController.progressLst){
                 

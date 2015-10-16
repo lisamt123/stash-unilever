@@ -112,12 +112,21 @@ public with sharing class HRO_ProgressPage_CX {
     private List<ProgressWrapper> getProgressList(){
 		system.debug('***HRO Entring getProgressList');
         List<ProgressWrapper> reportList = new List<ProgressWrapper>();
+        Map<String,LeaderSummarry> leaderSummaryMap = new Map<String,LeaderSummarry>();
         LeaderSummarry summaryRecord = new LeaderSummarry();
         for(HRO_Onboarding_Task__c leaderTask : [SELECT Id, New_Leader_Name__c,Completed__c, Due_Date__c,Phase__c
                                                  FROM HRO_Onboarding_Task__c
-                                                 WHERE OwnerId =: currentUserId Limit 50000]){
+                                                 WHERE OwnerId =: currentUserId
+                                                 AND Onboarding_Task_Set__r.Start_Date__c >= LAST_N_DAYS:365 
+                                                 Limit 50000]){
 
-            
+            if(leaderSummaryMap.containsKey(leaderTask.New_Leader_Name__c)){
+            	summaryRecord = leaderSummaryMap.get(leaderTask.New_Leader_Name__c);                                           
+            }else{
+                summaryRecord = new LeaderSummarry();
+                leaderSummaryMap.put(leaderTask.New_Leader_Name__c,summaryRecord); 
+            }
+                                                     
             if(summaryRecord.totalTasksInPhase.containsKey(leaderTask.Phase__c)){
                 summaryRecord.totalTasksInPhase.put(leaderTask.Phase__c,summaryRecord.totalTasksInPhase.get(leaderTask.Phase__c)+1);
                 summaryRecord.totalTasksCompletedInPhase.put(leaderTask.Phase__c,summaryRecord.totalTasksCompletedInPhase.get(leaderTask.Phase__c)+increaseNumOfCompletedTask(leaderTask));
@@ -128,10 +137,10 @@ public with sharing class HRO_ProgressPage_CX {
             
         }
 
-        if(!summaryRecord.totalTasksInPhase.isEmpty()){
+        if(!leaderSummaryMap.isEmpty()){
             Decimal totalNumberOfTasks = 0;
             Decimal totalCompletedTasks = 0;
-
+			summaryRecord = calculateSummary(leaderSummaryMap);
             for(String userPhase : PHASEORDER){
 
                 ProgressWrapper wrapper = new ProgressWrapper();
@@ -170,7 +179,67 @@ public with sharing class HRO_ProgressPage_CX {
 
 
     }
-
+    /*******************************************************************
+   Purpose:  Calculate progress for manager only for leaders which didn't completed
+   the program 
+   Returns: [LeaderSummarry]
+   Throws [Exceptions]: []                                                          
+  ********************************************************************/
+    private LeaderSummarry calculateSummary(Map<String,LeaderSummarry> leadersMap){
+        system.debug('***HRO Entring calculateSummary with patam @leadersMap'+leadersMap);
+        LeaderSummarry finalSummary = new LeaderSummarry();
+        Map<String,LeaderSummarry> finalMap = leadersMap.clone();  
+        for(String mapKey : leadersMap.keySet()){
+            if(checkIfCompltedProgram(leadersMap.get(mapKey))){
+                finalMap.remove(mapKey);
+            }
+        }
+        
+        for(String mapKey : finalMap.keySet()){
+            LeaderSummarry tmpSummary = finalMap.get(mapKey);
+            for(String userPhase : PHASEORDER){
+                //summary of total in each phase
+                Integer tmpTotalInPhase = tmpSummary.totalTasksInPhase.containsKey(userPhase) ? tmpSummary.totalTasksInPhase.get(userPhase) : 0;
+                Integer tmpTotalInPhaseCompleted = tmpSummary.totalTasksCompletedInPhase.containsKey(userPhase) ? tmpSummary.totalTasksCompletedInPhase.get(userPhase) : 0;
+                if(finalSummary.totalTasksInPhase.containsKey(userPhase)){
+                    Integer currentTotalPhase = finalSummary.totalTasksInPhase.get(userPhase);
+                    finalSummary.totalTasksInPhase.put(userPhase,currentTotalPhase+tmpTotalInPhase);
+                }else{
+                    finalSummary.totalTasksInPhase.put(userPhase,tmpTotalInPhase);
+                }
+                //summarry of completed
+                if(finalSummary.totalTasksCompletedInPhase.containsKey(userPhase)){
+                    Integer currentTotlaCompleted = finalSummary.totalTasksCompletedInPhase.get(userPhase);
+                    finalSummary.totalTasksCompletedInPhase.put(userPhase,currentTotlaCompleted+tmpTotalInPhaseCompleted);
+                }else{
+                    finalSummary.totalTasksCompletedInPhase.put(userPhase,tmpTotalInPhaseCompleted);
+                }
+            }    
+        }
+        system.debug('***HRO Exiting calculateSummary '+finalSummary);
+        return finalSummary;
+    }
+      
+    
+   /*******************************************************************
+   Purpose:  Checking if all task for particular leader where completed
+   the program 
+   Returns: [Boolean]
+   Throws [Exceptions]: []                                                          
+  ********************************************************************/
+    private Boolean checkIfCompltedProgram(LeaderSummarry summaryForLeader){
+        system.debug('***HRO Entring checkIfCompltedProgram with param @summaryForLeader'+summaryForLeader);
+        for(String userPhase : PHASEORDER){
+			if(summaryForLeader.totalTasksInPhase.containsKey(userPhase)){
+                if(summaryForLeader.totalTasksInPhase.get(userPhase) != summaryForLeader.totalTasksCompletedInPhase.get(userPhase)){
+                    system.debug('***HRO Exiting checkIfCompltedProgram'+false);
+                    return false;
+                }
+            }
+        }
+        system.debug('***HRO Exiting checkIfCompltedProgram'+true);
+        return true;
+    }
 
 	/*******************************************************************
    Purpose: Helper class used as placeholder for returned data
@@ -194,9 +263,6 @@ public with sharing class HRO_ProgressPage_CX {
         public Map<String,Integer> totalTasksInPhase = new Map<String,Integer>();
         public Map<String,Integer> totalTasksCompletedInPhase = new Map<String,Integer>();
         public Map<String,Decimal> percentOfCompletionInPhase = new Map<String,Decimal>();
-        public Decimal pecentOfCompletion{get;set;}
-        public Boolean hasOverduedTasks{get;set;}
-        public String uncompletedPhase{get;set;}
 
 
         /*******************************************************************
