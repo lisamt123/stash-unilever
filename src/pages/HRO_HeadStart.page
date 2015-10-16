@@ -12,16 +12,16 @@
             $(function() {
                 bindControls();
                 resizePageContent();
-				
+                
                 //unselectAllPhases();
                 markButtonPhaseSelected();
                 bindClickOnPhasesBtns();
             });
         
-        	function resizePageContent(){
-				Sfdc.canvas.publisher.resize( {width : "750px", height :
-				$('#pageContent').height()+'px'});
-			}
+            function resizePageContent(){
+                Sfdc.canvas.publisher.resize( {width : "750px", height :
+                $('#pageContent').height()+'px'});
+            }
         </script>
         <script src="{!URLFOR($Resource.HROResources, '/scripts/HeadStart.js')}"></script>
     </head>
@@ -83,9 +83,6 @@
                                 <apex:outputPanel layout="block" id="introductionSection">
                                     <apex:inputHidden id="selectedPhaseButton" value="{!selectedPhaseButton}"/>
                                     <div id="legendText" class="col-md-8 col-sm-8 col-xs-12">
-                                        {!introductionHeaderMap[leaderPhase]}<br />
-                                        - Things you should do!
-        
                                         <div id="infoDiv" class="blueArea">
                                              {!introductionInfoMap[leaderPhase]}
                                         </div>
@@ -104,7 +101,7 @@
                                 </apex:outputPanel>
                             </div>
                             
-    						<apex:outputPanel id="onboardingSteps" layout="block">
+                            <apex:outputPanel id="onboardingSteps" layout="block">
                                 <div class="onboardingSteps">
                                     <apex:repeat value="{!OnboardingTasks}" var="onboardTask">
                                         <div class="step group col-md-12 col-sm-12 col-xs-12">
@@ -136,7 +133,7 @@
                                             <div class="stepActions col-md-3 col-sm-3 col-xs-12">
                                                 <div class="stepAction stepBodyDiv col-md-12 col-sm-12 col-xs-6" id="takeActionBtn{!onboardTask.id}">
                                                     <div class="buttonWrapper">
-    													<button class="actionButton" onclick="redirectToRecord('{!onboardTask.id}','{!onboardTask.ExternalPortalLink__c}');markCompleted('UncompletedTask'+'{!onboardTask.id}',this)" type="button" return="false">TAKE ACTION</button>     
+                                                        <button class="actionButton" onclick="redirectToRecord('{!onboardTask.id}','{!onboardTask.ExternalPortalLink__c}');markCompleted('UncompletedTask'+'{!onboardTask.id}',this)" type="button" return="false">TAKE ACTION</button>     
                                                     </div>
                                                 </div>
 
@@ -152,7 +149,7 @@
                                                 </div>
                                             </div>
  
-                                		</div>
+                                        </div>
                                     </apex:repeat>
                                 </div>    
                             </apex:outputPanel>
@@ -163,13 +160,6 @@
                 </div>
             </div>
         </div>
-    </div>	
-    	<!--
-        <div class="row bodyRow">
-            <div class="col-xs-12 footer">
-                Unilever 2015
-            </div>
-        </div>
-     	-->
+    </div>  
 </html>
 </apex:page>
