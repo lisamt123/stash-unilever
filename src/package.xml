@@ -989,6 +989,8 @@
         <members>BET_UpdateExpectedAssetsController</members>
 		<members>BET_MultiUploadAssetsController</members>
 		<members>BET_MultiUploadAssetsControllerTest</members>
+		<members>BET_BETHardDelete_Batch</members>
+		<members>BET_BETHardDelete_BatchTest</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -2344,6 +2346,7 @@
         <members>BET_ManageMembersSettings__c</members>
         <members>BET_Member_Request__c</members>
         <members>BET_Request_Access__c</members>
+		<members>BET_Settings__c</members>
         <members>BonusReportVisibletoAgency__c</members>
         <members>Brand_Centre_Content__c</members>
         <members>Brand_Centre_New__c</members>
