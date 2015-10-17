@@ -13,6 +13,10 @@
         <name>AF_CurrencyUpdateRequired__c</name>
     </fields>
     <fields>
+        <label><!-- Quarter --></label>
+        <name>AF_Quarter__c</name>
+    </fields>
+    <fields>
         <label><!-- Angency Name --></label>
         <name>Angency_Name__c</name>
     </fields>

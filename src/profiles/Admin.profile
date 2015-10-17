@@ -6271,17 +6271,17 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_OverridePO_Adaptation_LC__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_OverridePO_Digital_LC__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_OverridePO_Traditional_LC__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -6296,17 +6296,17 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_PO_Override_Adapt_Report__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_PO_Override_Digital_Report__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_PO_Report__c.AF_PO_Override_Trad_Report__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -12536,6 +12536,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Send_Email__c.AF_CurrencyUpdateRequired__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Send_Email__c.AF_Quarter__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
