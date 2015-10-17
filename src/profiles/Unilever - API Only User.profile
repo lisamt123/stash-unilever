@@ -12228,6 +12228,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Send_Email__c.AF_Quarter__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Send_Email__c.Angency_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>

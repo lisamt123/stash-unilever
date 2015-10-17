@@ -2238,6 +2238,14 @@
                 <name>FY Year OOPs - LC</name>
             </columns>
             <columns>
+                <label><!-- Override PO Estimate --></label>
+                <name>Override PO Estimate</name>
+            </columns>
+            <columns>
+                <label><!-- PO Override Estimate --></label>
+                <name>PO Override Estimate</name>
+            </columns>
+            <columns>
                 <label><!-- PO Value - Euro --></label>
                 <name>PO Value - Euro</name>
             </columns>

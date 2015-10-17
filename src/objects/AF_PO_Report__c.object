@@ -512,7 +512,7 @@
     <fields>
         <fullName>AF_PO_Override_Adapt_Report__c</fullName>
         <externalId>false</externalId>
-        <label>PO Override Adapt Report</label>
+        <label>PO Override Adaptation</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -524,7 +524,7 @@
         <fullName>AF_PO_Override_Digital_Report__c</fullName>
         <description>Used in reports</description>
         <externalId>false</externalId>
-        <label>PO Override Digital Report</label>
+        <label>PO Override Digital</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -535,7 +535,7 @@
     <fields>
         <fullName>AF_PO_Override_Trad_Report__c</fullName>
         <externalId>false</externalId>
-        <label>PO Override Trad Report</label>
+        <label>PO Override Traditional</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -610,7 +610,7 @@
         <externalId>false</externalId>
         <formula>AF_PO_Override_Adapt_Report__c +  AF_PO_Override_Digital_Report__c +  AF_PO_Override_Trad_Report__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>PO Value LC Report</label>
+        <label>PO Override Value Total-LC</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
