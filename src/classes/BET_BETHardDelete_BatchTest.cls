@@ -17,10 +17,10 @@ private class BET_BETHardDelete_BatchTest {
 
 		BET_BETHardDelete_Batch batch = new BET_BETHardDelete_Batch();
 		Database.executeBatch(batch);
+		Test.stopTest();
+
 		List<uw_Bet__c> bets = [select id from uw_Bet__c where id =: bet.id];
 		System.assert(bets.isEmpty(),'BET should be removed');
-
-		Test.stopTest();
 	}
 	
 }
