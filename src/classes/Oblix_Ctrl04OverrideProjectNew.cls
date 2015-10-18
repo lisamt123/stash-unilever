@@ -30,13 +30,11 @@ public with sharing class Oblix_Ctrl04OverrideProjectNew {
 					m.parent_L1__c, m.geography_type__c, m.Name, m.Id, parent_L5__r.Name From MDO_Geography__c m where geography_type__c Like 'Country%'
 					];
 					
-		if(lstCountries.size()>0){
+		if(!lstCountries.isEmpty()){
 			MapCountryToRegion = new Map<String, String>();
 			for(MDO_Geography__c country : lstCountries){
-				if(country.parent_L5__c != null){
-					if(!MapCountryToRegion.containsKey(country.Name)){
+				if(country.parent_L5__c != null && (!MapCountryToRegion.containsKey(country.Name))){
 						MapCountryToRegion.put(country.Name, country.parent_L5__r.Name);
-					}
 				}
 			}
 		}
@@ -65,11 +63,11 @@ public with sharing class Oblix_Ctrl04OverrideProjectNew {
 			project.OblixCountries__c = selectedCountries;//.substring(0,selectedCountries.length()-1);
 			project.OblixRegion__c = RegionsName;
 			if(lstCountriesString != null && lstCountriesString.size()>0){
-				if(lstCountriesString.size()==1) project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market1;
-				if(lstCountriesString.size()>1 && lstCountriesString.size()<=5) project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market2;
-				if(lstCountriesString.size()>5 && lstCountriesString.size()<=10) project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market3;
-				if(lstCountriesString.size()>10 && lstCountriesString.size()<=15) project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market4;
-				if(lstCountriesString.size()>15) project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;
+				if(lstCountriesString.size()==1){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market1;}
+				if(lstCountriesString.size()>1 && lstCountriesString.size()<=5){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market2;}
+				if(lstCountriesString.size()>5 && lstCountriesString.size()<=10){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market3;}
+				if(lstCountriesString.size()>10 && lstCountriesString.size()<=15){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market4;}
+				if(lstCountriesString.size()>15){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;}
 				
 			}else{
 				project.Project_Scale_1__c = '';
@@ -80,8 +78,7 @@ public with sharing class Oblix_Ctrl04OverrideProjectNew {
 	
 	public PageReference Save(){
 		try{
-				if(selectedCountries == null || selectedCountries == ''){
-					if( project.OblixCountries__c != null){
+				if((selectedCountries == null || selectedCountries == '') && project.OblixCountries__c != null){
 						List<String> lstCountriesString =  project.OblixCountries__c.split(',');
 						System.debug('###lstCountriesString save : '+lstCountriesString);
 						if(lstCountriesString.size()>0){
@@ -94,8 +91,6 @@ public with sharing class Oblix_Ctrl04OverrideProjectNew {
 						}else{
 							project.Project_Scale_1__c = '';
 						}
-					}
-					
 				}
 			if(project != null && project.Id != null){
 				update project;
