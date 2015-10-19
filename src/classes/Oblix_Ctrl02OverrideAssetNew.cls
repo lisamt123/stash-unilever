@@ -7,11 +7,13 @@ public with sharing class Oblix_Ctrl02OverrideAssetNew {
 	public Id rt_Digital {get;set;}
 	public Id rt_Experiential {get;set;}
 	
-	public Id projectId {get;set;}
 	public Id agencyid {get;set;}
 	
 	public Oblix_Ctrl02OverrideAssetNew(ApexPages.StandardController controller){
-		 controller.addFields(new List<String>{'Sub_Category__c', 'Asset_Type__c'});
+		 if(!System.Test.isRunningTest()){
+		 	 controller.addFields(new List<String>{'Sub_Category__c', 'Asset_Type__c'});
+		 }
+		
 		 this.asset  = (Oblix_Project_Assets__c) controller.getRecord();
 		 agencyid = asset.Agency_Projects__c;
 		 rt_AudioVisuel = Oblix_Utils.MapRecordType('Oblix_Project_Assets__c').get('Audio_Visual'); 
@@ -43,9 +45,5 @@ public with sharing class Oblix_Ctrl02OverrideAssetNew {
 		 
 		 
 	}
-	public Oblix_Ctrl02OverrideAssetNew(){
-		
-		
-		
-	}
+	
 }

@@ -96,7 +96,7 @@ public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
         if(lstMarketingBasicsChild.size()>0){
             for(Marketing_Basics__c marketingBasic : lstMarketingBasicsChild){
                 //update the Sow MArketing field from Parent ==> Child
-                marketingBasic.Name += financialYear+''+(nextStageTypeSow.substring(nextStageTypeSow.length()-2, nextStageTypeSow.length()-1)== 'Q' ? nextStageTypeSow.substring(nextStageTypeSow.length()-2, nextStageTypeSow.length()) : 'Baseline');
+                //marketingBasic.Name += financialYear+''+(nextStageTypeSow.substring(nextStageTypeSow.length()-2, nextStageTypeSow.length()-1)== 'Q' ? nextStageTypeSow.substring(nextStageTypeSow.length()-2, nextStageTypeSow.length()) : 'Baseline');
                 marketingBasic.Oblix_SOWMarketing__c = sowChild.Id;
             }
             insert lstMarketingBasicsChild;

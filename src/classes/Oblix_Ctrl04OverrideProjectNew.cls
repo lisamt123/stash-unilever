@@ -1,6 +1,5 @@
 public with sharing class Oblix_Ctrl04OverrideProjectNew {
 	public Oblix_SOW_Projects__c project {get;set;}
-	public Id SowId {get;set;}
 	public String selectedCountries {get;set;}
 	public Map<String, String> MapCountryToRegion = new Map<String, String>();
 	public set<String> setRegionsName {get;set;} 
@@ -78,9 +77,10 @@ public with sharing class Oblix_Ctrl04OverrideProjectNew {
 	
 	public PageReference Save(){
 		try{
+				System.debug('###selectedCountries save : '+selectedCountries);
 				if((selectedCountries == null || selectedCountries == '') && project.OblixCountries__c != null){
 						List<String> lstCountriesString =  project.OblixCountries__c.split(',');
-						System.debug('###lstCountriesString save : '+lstCountriesString);
+						System.debug('###lsstCountriesString save : '+lstCountriesString);
 						if(lstCountriesString.size()>0){
 							if(lstCountriesString.size()==1){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market1;}
 							if(lstCountriesString.size()>1 && lstCountriesString.size()<=5){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market2;}

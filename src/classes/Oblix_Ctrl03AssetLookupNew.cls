@@ -1,13 +1,12 @@
 public with sharing class Oblix_Ctrl03AssetLookupNew {
 	public String searchString{get;set;}
-	public String assetType {get;set;}
 	public String subCategory{get;set;}
 	
 	public List<Asset_Scoring__c> lstResultAssetScoring{get;set;}
 	
 	public Oblix_Ctrl03AssetLookupNew(){
 		 searchString = System.currentPageReference().getParameters().get('lksrch');
-		 assetType = System.currentPageReference().getParameters().get('assetType');
+		 //assetType = System.currentPageReference().getParameters().get('assetType');
 		 subCategory = System.currentPageReference().getParameters().get('subCategory');
     	runSearch();  
 	}
