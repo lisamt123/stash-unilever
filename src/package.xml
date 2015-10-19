@@ -828,6 +828,7 @@
 		<members>HRO_HeaderScripts</members>
         <members>HRO_HeadstartLink</members>
         <members>HRO_JourneyMenu</members>
+		<members>HRO_JourneyMobile</members>
         <members>HRO_LeaderPhase</members>
         <members>HRO_NavMenu</members>
         <members>HRO_OnboardingTaskList</members>
