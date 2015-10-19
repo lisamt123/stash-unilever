@@ -9,19 +9,21 @@
         var HROCultureLink = '{!$Label.HROCultureLink}';
         var HROOwnershipLink = '{!$Label.HROOwnershipLink}';
         var HROCapabilityLink = '{!$Label.HROCapabilityLink}';
-            $(function() {
-                bindControls();
-                resizePageContent();
-                
-                //unselectAllPhases();
-                markButtonPhaseSelected();
-                bindClickOnPhasesBtns();
-            });
         
-            function resizePageContent(){
+        $(function() {
+            bindControls();
+            resizePageContent();
+            
+            //unselectAllPhases();
+            markButtonPhaseSelected();
+            bindClickOnPhasesBtns();
+        });
+        
+        function resizePageContent(){
                 Sfdc.canvas.publisher.resize( {width : "750px", height :
                 $('#pageContent').height()+'px'});
-            }
+        }
+        
         </script>
         <script src="{!URLFOR($Resource.HROResources, '/scripts/HeadStart.js')}"></script>
     </head>
@@ -40,6 +42,7 @@
                                 <apex:param id="btnClikced" value="" name="btnClikced" assignTo="{!selectedPhaseButton}"/>
                             </apex:actionFunction>    
                         <c:HRO_JourneyMenu id="jurneyMenu"/>
+                        <c:HRO_JourneyMobile id="jurneyMobile"/>
                         
                             
                         <div class="row bodyRow" style="padding-top: 20px;">
@@ -160,6 +163,7 @@
                 </div>
             </div>
         </div>
-    </div>  
+    </div>
+                                              
 </html>
 </apex:page>
