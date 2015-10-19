@@ -182,19 +182,15 @@ public with sharing class HRO_ProgressPage_CX {
     /*******************************************************************
    Purpose:  Calculate progress for manager only for leaders which didn't completed
    the program 
+   Parameters: [Map<String,LeaderSummarry>]	
    Returns: [LeaderSummarry]
    Throws [Exceptions]: []                                                          
   ********************************************************************/
     private LeaderSummarry calculateSummary(Map<String,LeaderSummarry> leadersMap){
         system.debug('***HRO Entring calculateSummary with patam @leadersMap'+leadersMap);
         LeaderSummarry finalSummary = new LeaderSummarry();
-        Map<String,LeaderSummarry> finalMap = leadersMap.clone();  
-        for(String mapKey : leadersMap.keySet()){
-            if(checkIfCompltedProgram(leadersMap.get(mapKey))){
-                finalMap.remove(mapKey);
-            }
-        }
-        
+        Map<String,LeaderSummarry> finalMap = getLeadersWithUncompletedTasks(leadersMap.clone());  
+
         for(String mapKey : finalMap.keySet()){
             LeaderSummarry tmpSummary = finalMap.get(mapKey);
             for(String userPhase : PHASEORDER){
@@ -219,7 +215,25 @@ public with sharing class HRO_ProgressPage_CX {
         system.debug('***HRO Exiting calculateSummary '+finalSummary);
         return finalSummary;
     }
-      
+    
+   /*******************************************************************
+   Purpose:  Returning map with leaders which didn't completed Headstart 
+   Program yet.
+   Parameters: [Map<String,LeaderSummarry>]		
+   Returns: [Map<String,LeaderSummarry>]
+   Throws [Exceptions]: []                                                          
+  ********************************************************************/
+    private Map<String,LeaderSummarry> getLeadersWithUncompletedTasks(Map<String,LeaderSummarry> leadersMap){
+        system.debug('***HRO Entring getLeadersWithUncompletedTasks @leadersMap:'+leadersMap);
+        Map<String,LeaderSummarry> finalMap = leadersMap.clone();  
+        for(String mapKey : leadersMap.keySet()){
+            if(checkIfCompltedProgram(leadersMap.get(mapKey))){
+                finalMap.remove(mapKey);
+            }
+        }
+        system.debug('***HRO Exiting LeadersWithUncompletedTasks '+finalMap);
+        return finalMap;
+    }
     
    /*******************************************************************
    Purpose:  Checking if all task for particular leader where completed
@@ -230,11 +244,12 @@ public with sharing class HRO_ProgressPage_CX {
     private Boolean checkIfCompltedProgram(LeaderSummarry summaryForLeader){
         system.debug('***HRO Entring checkIfCompltedProgram with param @summaryForLeader'+summaryForLeader);
         for(String userPhase : PHASEORDER){
-			if(summaryForLeader.totalTasksInPhase.containsKey(userPhase)){
-                if(summaryForLeader.totalTasksInPhase.get(userPhase) != summaryForLeader.totalTasksCompletedInPhase.get(userPhase)){
-                    system.debug('***HRO Exiting checkIfCompltedProgram'+false);
-                    return false;
-                }
+			if(summaryForLeader.totalTasksInPhase.containsKey(userPhase) &&
+               (summaryForLeader.totalTasksInPhase.get(userPhase) != summaryForLeader.totalTasksCompletedInPhase.get(userPhase))){
+                
+                system.debug('***HRO Exiting checkIfCompltedProgram'+false);
+                return false;
+                
             }
         }
         system.debug('***HRO Exiting checkIfCompltedProgram'+true);
