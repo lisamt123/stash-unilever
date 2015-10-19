@@ -9,6 +9,7 @@ History
 VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   m.bluj@polsource.com            15/10/2015      INITIAL DEVELOPMENT
 *******************************************************************************************************************************/
+/* class without sharing modifier due to this is a batch */
 global class BET_BETHardDelete_Batch implements Database.Batchable<sObject> {
 	
 	global BET_BETHardDelete_Batch() {}
@@ -27,7 +28,7 @@ global class BET_BETHardDelete_Batch implements Database.Batchable<sObject> {
 	}
 	
 	global void finish(Database.BatchableContext BC) {
-		
+		System.debug('Finish');
 	}
 	
 }

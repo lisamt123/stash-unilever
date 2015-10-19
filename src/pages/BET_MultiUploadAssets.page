@@ -28,7 +28,6 @@
   
   <apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />   
   
-
   <script type="text/javascript">
     var __sfdcSessionId = '{!GETSESSIONID()}';
     var groupId = "{!chatterGroupId}"; 
@@ -40,35 +39,13 @@
     var NO_COUNTRY_SELECTED = "{!$Label.BET_Asset_Country_Mandatory}";
     var NO_FILE_SELECTED = "{!$Label.BET_Asset_No_Files_Selected}";
     var defStatus = '{!status}';
-
-    function labelFile(idx,assetName,mediaType,country,status,betId,index){
-      Visualforce.remoting.Manager.invokeAction(
-        '{!$RemoteAction.BET_MultiUploadAssetsController.saveFileAndConnect}',
-        idx,
-        assetName,
-        mediaType,
-        country,
-        status,
-        betId,
-        function(result, event){
-          if (event.status) {
-            if(result == null) {
-              jQuery(".uploadStatusCell:eq("+index+")").html('{!$Label.BET_Asset_Uploaded}');
-            } else {
-              jQuery(".uploadStatusCell:eq("+index+")").html('{!$Label.BET_Asset_Not_Uploaded}');
-              jQuery('.form-errors').html(result);
-              jQuery('.form-errors').show();
-            }
-          } else {
-            jQuery(".uploadStatusCell:eq("+index+")").html('{!$Label.BET_Asset_Not_Uploaded}');
-            jQuery('.form-errors').html(result);
-            jQuery('.form-errors').show();
-          }
-        },
-        {escape: true}
-      );
+    var uploadOkInfo = '{!$Label.BET_Asset_Uploaded}';
+    var uploadFailedInfo = '{!$Label.BET_Asset_Not_Uploaded}';
+    function labelFile(idx,assetName,mediaType,country,status,betId,index,cb){
+      Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.BET_MultiUploadAssetsController.saveFileAndConnect}',
+        idx,assetName,mediaType,country,status,betId,
+        function(result, event){labelFileCallback(event,result,index,cb);},{escape: true});
     }
-
   </script>
 
   <apex:includeScript value="{!$Resource.BET}/scripts/BETMultiUploadAssets.js" />
