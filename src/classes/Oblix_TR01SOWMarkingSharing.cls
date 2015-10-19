@@ -38,7 +38,7 @@ public without sharing class Oblix_TR01SOWMarkingSharing {
                         Marketing_SOW__Share marketingSowShare = new Marketing_SOW__Share();
                             marketingSowShare.ParentId = marketingSow.ID;
                             marketingSowShare.AccessLevel = 'Edit';
-                            marketingSowShare.UserOrGroupId = userSow.Id;
+                            marketingSowShare.UserOrGroupId = userSow.User__c;
                         lstMarketingShare.add(marketingSowShare);
                    }
                 }

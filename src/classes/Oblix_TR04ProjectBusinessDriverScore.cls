@@ -6,7 +6,6 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
 					 Box_9__c, Box_8__c, Box_7__c, Box_6__c, Box_5__c, Box_4__c, Box_3__c, Box_2__c, Box_20__c, Box_1__c, Box_19__c, Box_18__c, Box_17__c, Box_16__c, Box_15__c, Box_14__c, Box_13__c, Box_12__c, Box_11__c, Box_10__c 
 					 from Oblix_Calculator__c where RecordTypeId =: Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Box_Range')];
 		
-		Map<Id, String> MapProjectToBoxRange = new Map<Id, String>();
 		set<Id> setProjectIds = new set<Id>();
 		
 		for(Oblix_SOW_Projects__c project : lstProjectTrigger){
@@ -16,7 +15,7 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
 		Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>> MapProjectToSplits = new Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>>();
 		 set<String> setCountries = new set<String>();
 		 
-		if(lstProjectSplits.size()>0){
+		if(!lstProjectSplits.isEmpty()){
 			for(Oblix_Marketing_SOW_Project_Splits__c projSplit : lstProjectSplits){
 				setCountries.add(projSplit.Country__c);
 				if(!MapProjectToSplits.containsKey(projSplit.Project_Splits__c)){
@@ -131,25 +130,31 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
 			//Calculate TotalBusinessvaluedriverScore
 			TotalBusinessvaluedriverScore = score_innonvation+score_brandLedGrowth+score_market+score_hubPartner+score_campaignIdea+TotalBusinessvaluedriverScore;
 			if(project.ProjectTotalAssetScore__c != null) TotalProjectScore = (project.ProjectTotalAssetScore__c/100)*TotalBusinessvaluedriverScore;
-			
-			if(lstCalculatorBoxRange.size()>0){
+			System.debug('###TotalProjectScore : '+TotalProjectScore);
+			if(!lstCalculatorBoxRange.isEmpty()){
 				for(Oblix_Calculator__c calculatorRange : lstCalculatorBoxRange){
+					System.debug('###TotalProjectScore : '+TotalProjectScore);
+					System.debug('###calculatorRange.Points_Low__c : '+calculatorRange.Points_Low__c);
+					System.debug('###calculatorRange.Points_HigH__c : '+calculatorRange.Points_HigH__c);
 					if(TotalProjectScore >= calculatorRange.Points_Low__c && TotalProjectScore <= calculatorRange.Points_HigH__c){
 						//Create Field Project Box Number
 						Calculator_BoxRange =  calculatorRange.Box_Range__c;
 						project.Oblix_ProjectBoxNumber__c = calculatorRange.Box_Range__c;
+						
 					}
 				}
 			}
 			Calculator_BoxRange = Calculator_BoxRange.replace(' ', '_');
+			System.debug('###Calculator_BoxRange bef: '+Calculator_BoxRange);
 		Calculator_BoxRange += '__c';
-		System.debug('###Calculator_BoxRange : '+Calculator_BoxRange);
+		System.debug('###Calculator_BoxRange aft: '+Calculator_BoxRange);
+		//System.debug('###Calculator_BoxRange : '+Calculator_BoxRange);
 		// A project has multi project splits, for every split we need to have a Calculator By Country
 		//For every project look over Splits and for every split get with a Map the Correct Calculator Country.
 		if(MapProjectToSplits.get(project.Id) != null){
 			for(Oblix_Marketing_SOW_Project_Splits__c projSplit : MapProjectToSplits.get(project.Id)){
 				for(Oblix_Calculator__c calculatorCountry : lstCalculatorCountryRange){
-					if(calculatorCountry.Name == projsplit.Country__c){
+					if(calculatorCountry.Name == projsplit.Country__c && Calculator_BoxRange.contains('Box_')){
 						tmp_projectFee += (Decimal) (calculatorCountry.get(Calculator_BoxRange)!= null ? calculatorCountry.get(Calculator_BoxRange) : 0)* (projSplit.Percentage__c != null ? projSplit.Percentage__c : 0);
 					}
 				}
