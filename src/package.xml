@@ -1159,6 +1159,8 @@
         <members>HRO_PreBoardingActionPage</members>
         <members>HRO_ProgressPage</members>
         <members>HRO_TaskLinkForwarder</members>
+        <members>PRSupplyChainMetrics</members>
+        <members>PSARDashboardLink</members>
         <name>ApexPage</name>
     </types>
     <types>
@@ -1304,8 +1306,11 @@
     <types>
         <members>ONE_Correspond</members>
         <members>WorkIt_Console_App_Hidden</members>
-        <members>PSAR</members>
         <name>CustomApplicationComponent</name>
+    </types>
+    <types>
+        <members>PSAR</members>
+        <name>CustomApplication</name>
     </types>
     <types>
         <members>Event.Activity_Record_Count__c</members>
@@ -1728,6 +1733,8 @@
         <members>Brand_Centre_Content__c</members>
         <members>Brand_Centre_New__c</members>
         <members>Brand_Master__c</members>
+        <members>Category_Data__c</members>
+        <members>PSARCategory__c</members>
         <members>Brand_USLP_Progress__c</members>
         <members>CEC_Alert_Rule_Matching__c</members>
         <members>CEC_Case_Market_Mapping__c</members>
@@ -1935,6 +1942,11 @@
 		<members>HRO_Onboarding_Plan__c</members>
         <members>HRO_Onboarding_Task_Set__c</members>
         <members>HRO_Onboarding_Task__c</members>
+        <members>Category_Data__c</members>
+        <members>PSARCategory__c</members>
+        <members>PSAR_Alert_Details__c</members>
+        <members>PSAR_Alert_Extract__c</members>
+        <members>PSAR_Location__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -2473,6 +2485,11 @@
         <name>CustomPageWebLink</name>
     </types>
 	<types>
+        <members>PSARCategory__c</members>
+        <members>PSAR_Alert_Details__c</members>
+        <members>PSAR_Alert_Extract__c</members>
+        <members>PSAR_Location__c</members>
+        <members>PR_Supply_Chain_Metrics</members>
         <members>HRO_HeadStart</members>
         <members>HRO_Onboarding_Plan__c</members>
         <name>CustomTab</name>
@@ -2890,6 +2907,13 @@
         <name>Layout</name>
     </types>
     <types>
+        <members>PSAR_Dashboards</members>
+        <members>PSAR_Dashboards/Predictive_Service_Alert_Planner_View</members>
+        <members>PSAR_Dashboards/Predictive_Service_Alerts_Director_View</members>
+        <members>PSAR_Dashboards/Predictive_Service_Alerts_Planning_Lead_View</members>
+        <name>Dashboard</name>
+    </types>
+    <types>
         <members>AF_CMCO_Finance</members>
         <members>AF_CMCO_Super_User</members>
         <members>AF_Category_Finance</members>
@@ -2975,6 +2999,10 @@
         <members>isll_CMS_Admin</members>
 		<members>HRO_HRAdmin</members>
         <members>HRO_HeadstartManager</members>
+        <members>PSARDirector</members>
+        <members>PSARIntegrationUser</members>
+        <members>PSARPlanner</members>
+        <members>PSARPlanningLead</members>
         <name>PermissionSet</name>
     </types>
     <types>
@@ -3123,6 +3151,23 @@
         <name>Queue</name>
     </types>
     <types>
+        <members>PSAR_Reports</members>
+        <members>PSAR_Reports/Alerts_by_Location_Director</members>
+        <members>PSAR_Reports/Alerts_by_Location_Planner</members>
+        <members>PSAR_Reports/Alerts_by_Location_Planning_Lead</members>
+        <members>PSAR_Reports/All_Team_Alerts</members>
+        <members>PSAR_Reports/Categories_with_Alerts_Director</members>
+        <members>PSAR_Reports/Categories_with_Alerts_Planner</members>
+        <members>PSAR_Reports/Categories_with_Alerts_Planning_Lead</members>
+        <members>PSAR_Reports/MyTeamAlerts_Director</members>
+        <members>PSAR_Reports/MyTeamAlerts_Planning_Lead</members>
+        <members>PSAR_Reports/My_Alerts</members>
+        <members>PSAR_Reports/PSAR_Alerts_with_Details_Director</members>
+        <members>PSAR_Reports/PSAR_Alerts_with_Details_Planner</members>
+        <members>PSAR_Reports/PSAR_Alerts_with_Details_Planning_Lead</members>
+        <name>Report</name>
+		</types>
+    <types>
         <members>Account.Pitch_Add_Expertise</members>
         <members>Approve</members>
         <members>Case.NewChildCase</members>
@@ -3230,6 +3275,8 @@
         <members>Users_with_User_Feed_and_Comments</members>
         <members>Win_POS_Upload_Stats</members>
         <members>win_POS_Download_Statistics</members>
+        <members>Alert_Extracts_with_Alert_Details</members>
+        <members>Locations_with_PSAR_Alerts_and_Details</members>
         <name>ReportType</name>
     </types>
     <types>
