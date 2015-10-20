@@ -143,8 +143,12 @@ public with sharing class uw_BETWrapper {
             this.assetDescription = asset.Description__c;
             this.assetDownloadLink = asset.Url_of_asset__c;  
             this.assetOwner = aOwner;    
-            this.displayOrder = (Integer)asset.Order_Of_Display__c;     
-            this.assetPreviewLink = '';
+            this.displayOrder = (Integer)asset.Order_Of_Display__c;
+            if(this.assetDownloadLink != null){ 
+                Integer startIdx = this.assetDownloadLink.indexOf('/download/');
+                Integer endIdx = this.assetDownloadLink.indexOf('?');    
+                this.assetPreviewLink = '/'+this.assetDownloadLink.substring(startIdx+10, endIdx);
+            }
         }
     }
 

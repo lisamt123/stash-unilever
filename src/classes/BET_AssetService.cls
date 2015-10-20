@@ -17,6 +17,27 @@ public without sharing class BET_AssetService {
 
 	private BET_AssetService() {}
 
+
+	/************************************************************
+        Purpose: Grants access to files attached to bet
+        Parameters: Id betId,Id userId
+        Returns: -
+        Throws: -
+    *************************************************************/
+	@Future
+	public static void grantAccessToBetsAssets(Id betId,Id userId){
+		List<ContentDocumentLink> links = new List<ContentDocumentLink>();
+		for(uw_Asset__c asset : [select id from uw_Asset__c where uw_BET__c =: betId]){
+			ContentDocumentLink link = new ContentDocumentLink();
+			link.LinkedEntityId = userId;
+			link.ContentDocumentId = '069c0000000AtAGAA0';
+			link.ShareType = 'V';
+			link.Visibility = 'AllUsers';
+			links.add(link);
+		}
+		insert links;
+	}
+
 	/************************************************************
         Purpose: Checks if bets have related expected assets
         Parameters: List<Id> betIds
