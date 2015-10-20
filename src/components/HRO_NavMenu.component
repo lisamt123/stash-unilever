@@ -20,9 +20,9 @@
         <div class="menu-wrap">
             <nav class="menu">
                 <div class="icon-list">
-                    <a href="" onclick="navigateToUrl('/apex/HRO_Headstart?sfdc.userId={!componentUserId}')"><i class="fa fa-fw fa-star-o"></i><span>My Tasks</span></a>
-                    <a href="" onclick="navigateToUrl('/apex/HRO_ProgressPage?sfdc.userId={!componentUserId}')"><i class="fa fa-fw fa-play"></i><span>My Progress</span></a>
-					<a href="" onclick="navigateToUrl('/apex/HRO_PreBoardingActionPage?sfdc.userId={!componentUserId}')"><i class="fa fa-fw fa-play"></i><span>Register new joiner</span></a>   
+                    <a href="" onclick="navigateToUrl('/apex/HRO_Headstart?sfdc.userId={!componentUserId}')"><em class="fa fa-fw fa-star-o"></em><span>My Tasks</span></a>
+                    <a href="" onclick="navigateToUrl('/apex/HRO_ProgressPage?sfdc.userId={!componentUserId}')"><em class="fa fa-fw fa-play"></em><span>My Progress</span></a>
+					<a href="" onclick="navigateToUrl('/apex/HRO_PreBoardingActionPage?sfdc.userId={!componentUserId}')"><em class="fa fa-fw fa-play"></em><span>Register new joiner</span></a>   
                 </div>
             </nav>
             <button class="close-button" id="close-button">Close Menu</button>
