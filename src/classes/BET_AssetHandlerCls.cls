@@ -13,6 +13,30 @@ public with sharing class BET_AssetHandlerCls {
 	private BET_AssetHandlerCls() {}
 
 	/************************************************************
+        Purpose: Method updated assets ordering
+        Parameters: List<uw_Asset__c> newAssets
+        Returns: -
+        Throws: -
+    *************************************************************/
+	public static void updateAssetOrdering(List<uw_Asset__c> newAssets){
+		System.debug('Entering updateAssetOrdering : ' + newAssets);
+		Set<Id> betsIds = new Set<Id>();
+		for(uw_Asset__c asset : newAssets){
+			asset.Order_Of_Display__c = 1;
+			betsIds.add(asset.uw_BET__c);
+		}
+
+		List<uw_Asset__c> assets = new List<uw_Asset__c>();
+		for(uw_Asset__c existingAsset : [select id,Order_Of_Display__c from uw_Asset__c where uw_BET__c in : betsIds]) {
+			existingAsset.Order_Of_Display__c++;
+			assets.add(existingAsset);
+		}
+
+		update assets;
+		System.debug('Exit updateAssetOrdering : ' + assets);
+	}
+
+	/************************************************************
         Purpose: Method updated actual assets number for bet
         Parameters: List<uw_Asset__c> deletedAssets
         Returns: -
