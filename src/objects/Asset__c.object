@@ -1264,7 +1264,7 @@ ToDelete=Asset will be removed by the system automatically at the scheduled dele
     </fields>
     <label>Asset</label>
     <listViews>
-        <fullName>adm</fullName>
+        <fullName>ALL</fullName>
         <columns>NAME</columns>
         <columns>Category__c</columns>
         <columns>Brand__c</columns>
@@ -1273,12 +1273,7 @@ ToDelete=Asset will be removed by the system automatically at the scheduled dele
         <columns>Channels__c</columns>
         <columns>POS_Asset_Type__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>Category__c</field>
-            <operation>contains</operation>
-            <value>beverage</value>
-        </filters>
-        <label>adm</label>
+        <label>ALL</label>
         <language>en_US</language>
     </listViews>
     <nameField>
