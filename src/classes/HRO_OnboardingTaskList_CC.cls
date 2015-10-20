@@ -50,10 +50,9 @@ global with sharing class HRO_OnboardingTaskList_CC {
             OnboardingTasksWrapper taskWrapp = new OnboardingTasksWrapper();
             taskWrapp.taskName = hroTask.Task_Detail__c;
             taskWrapp.taskDueDate = DateTime.newInstance(hroTask.Due_Date__c.year(),hroTask.Due_Date__c.month(),hroTask.Due_Date__c.day()).format('dd MMM yyyy');
-            String encodedURl = null;
                                                            
             if(hroTask.ExternalPortalLink__c != null && hroTask.ExternalPortalLink__c != ''){
-                encodedURl = EncodingUtil.urlEncode(hroTask.ExternalPortalLink__c, UTF8);
+                String encodedURl = EncodingUtil.urlEncode(hroTask.ExternalPortalLink__c, UTF8);
                 taskWrapp.taskLink = INSTANCEURL+TASKFORWARDERURL+hroTask.id+'&pageUrl='+encodedURl;
             }else{
                 taskWrapp.taskLink =INSTANCEURL+TASKFORWARDERURL+hroTask.id+'&selectedLeader='+EncodingUtil.urlEncode(hroTask.New_Leader_Name__c,UTF8); 
@@ -83,10 +82,9 @@ global with sharing class HRO_OnboardingTaskList_CC {
             OnboardingTasksWrapper taskWrapp = new OnboardingTasksWrapper();
             taskWrapp.taskName = hroTask.Task_Detail__c;
             taskWrapp.taskDueDate = DateTime.newInstance(hroTask.Due_Date__c.year(),hroTask.Due_Date__c.month(),hroTask.Due_Date__c.day()).format('dd MMM yyyy');
-            String encodedURl = null;
                                                            
             if(hroTask.ExternalPortalLink__c != null && hroTask.ExternalPortalLink__c != ''){
-                encodedURl = EncodingUtil.urlEncode(hroTask.ExternalPortalLink__c, UTF8);
+                String encodedURl = EncodingUtil.urlEncode(hroTask.ExternalPortalLink__c, UTF8);
                 taskWrapp.taskLink = INSTANCEURL+TASKFORWARDERURL+hroTask.id+'&pageUrl='+encodedURl;
             }else{
                 taskWrapp.taskLink =INSTANCEURL+TASKFORWARDERURL+hroTask.id+'&selectedLeader='+EncodingUtil.urlEncode(hroTask.New_Leader_Name__c,UTF8); 
