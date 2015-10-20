@@ -104,6 +104,26 @@ public with sharing class uw_BETRemoteController {
     }
 
     /*******************************************************************
+    Purpose: Search engine method resposible for returning applicable bets
+    Parameters: [String brandId, String categoryId, String keyWord, Integer pageSize,Integer pageNumber,Boolean withFilters, Boolean sortAsc]
+    Returns: uw_BETWrapper 
+    ********************************************************************/
+    @RemoteAction
+    public static uw_BETWrapper searchActiveAndArchived(String brandId, String categoryId, String keyWord, Integer pageSize,Integer pageNumber,Boolean withFilters, Boolean sortAsc, String sortField){
+        Map<String, Object> resultMap = new Map<String, Object>();
+        try{
+            uw_BETWrapper.SearchWrapper resultsActive = uw_BETSearchService.searchActive(brandId, categoryId, keyWord, pageSize, pageNumber, withFilters, sortAsc, sortField);
+            uw_BETWrapper.SearchWrapper resultsArchived = uw_BETSearchService.searchArchived(brandId, categoryId, keyWord, pageSize, pageNumber, withFilters, sortAsc, sortField);
+            resultMap.put('betsActive', resultsActive.betSearchResult);
+            resultMap.put('betsArchived', resultsArchived.betSearchResult);
+            resultMap.put('filters', resultsActive.searchFilters);
+        }catch(Exception ex){
+            return new uw_BETWrapper(ex.getMessage(), '-1', null,'');
+        }
+        return new uw_BETWrapper('Results', '0', resultMap,''); 
+    }
+
+    /*******************************************************************
     Purpose: Search engine method resposible for request for access to BET
     Parameters: [String betId] 
     Returns: uw_BETWrapper
@@ -154,10 +174,16 @@ public with sharing class uw_BETRemoteController {
         Id currentUserId = UserInfo.getUserId();
         Map<String, Object> resultMap = new Map<String, Object>();
         try{
+
+            if(BET_CommonService.isBETOperationAdmin()){
+                BET_AssetService.grantAccessToBetsAssets(betId,currentUserId);
+            }
+
             uw_BETWrapper.DetailWrapper results = uw_BETDetailService.getBETDetails(betId, currentUserId);
             if(results.bet.betIPMProjectId != null) {
                 results.bet.currentUserHasAccessToIPM = IPM_BETUpdateService.UserAccess((Id)betId, results.bet.betIPMProjectId,currentUserId);
             }
+
             resultMap.put('bet', results.bet);
             resultMap.put('members', results.memberSetting);
             return new uw_BETWrapper('Result', '0', resultMap,'');        

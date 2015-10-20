@@ -107,4 +107,50 @@ private class uw_BetEditController_Test {
         System.assert(controller.saveBET() == null,EMPTY_PAGE_REFERENCE);
         Test.stopTest();
     }
+
+    static testMethod void softDeleteTest(){
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
+        BET_TestingHelper.initBET('Test BET2', true);
+        
+        uw_Bet__c tbet = BET_TestUtils.getTestBet();
+        tbet.Launch_Date__c = date.today();
+        insert tbet;
+        wrap.BET = tbet;
+
+        System.CurrentPageReference().getParameters().put('Id', wrap.BET.Id);
+
+        ApexPages.Standardcontroller sc = new ApexPages.Standardcontroller(wrap.BET);
+        uw_BetEditController controller = new uw_BetEditController(sc);
+
+        Test.startTest();
+        System.assert(controller.softDeleteBET() == null,EMPTY_PAGE_REFERENCE);
+        Test.stopTest();
+
+    }
+
+    static testMethod void updateBetTest(){
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
+        BET_TestingHelper.initBET('Test BET2', true);
+        
+        uw_Bet__c tbet = BET_TestUtils.getTestBet();
+        tbet.Launch_Date__c = date.today();
+        insert tbet;
+
+        tbet.Status__c = 'First release';
+
+        tbet.Launch_Date__c = date.today().addDays(180);
+        
+        tbet.FinalReleaseDate__c = date.today().addDays(1);
+
+        tbet.FirstReleaseDate__c = date.today().addDays(1);
+
+        update tbet;
+
+        tbet = [select Status__c from uw_Bet__c where id =: tbet.id];
+
+        Test.startTest();
+        System.assertEquals(tbet.Status__c,'First release','Status should be First release');
+        Test.stopTest();
+
+    }
 }

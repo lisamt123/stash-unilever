@@ -11,11 +11,63 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 
 /*Without sharing due to it is a service method */
 
-public without sharing class BET_AssetService {
+global class BET_AssetService {
 
 	private static final Set<String> excludedMediaType = new Set<String>{'BET Presentation'};
+	private static final String START_STR = '/download/';
+	private static final String END_STR = '?';
 
 	private BET_AssetService() {}
+
+
+	/************************************************************
+        Purpose: Grants access to files attached to bet
+        Parameters: Id betId,Id userId
+        Returns: -
+        Throws: -
+    *************************************************************/
+	@Future
+	public static void grantAccessToBetsAssets(Id betId,Id userId){
+		List<ContentDocumentLink> links = new List<ContentDocumentLink>();
+
+		Set<Id> cVersions = new Set<Id>();
+
+		List<uw_Asset__c> assets = [select id, Url_of_asset__c from uw_Asset__c where uw_BET__c =: betId];
+
+		for(uw_Asset__c asset : assets){
+			if(!String.isBlank(asset.Url_of_asset__c)){
+				Integer startIdx = asset.Url_of_asset__c.indexOf(START_STR);
+		        Integer endIdx = asset.Url_of_asset__c.indexOf(END_STR); 
+		        asset.Url_of_asset__c.substring(startIdx+10, endIdx);
+				cVersions.add((Id)asset.Url_of_asset__c.substring(startIdx+10, endIdx));
+			}
+		}
+
+		Map<Id,Id> versionsDocumentMap = new Map<Id,Id>();
+
+		System.debug('cVersions ' + cVersions);
+
+		for(ContentVersion cv : [select id, ContentDocumentId from ContentVersion where id in : cVersions]){
+			versionsDocumentMap.put((Id)cv.id,cv.ContentDocumentId);
+		}
+
+
+		System.debug('versionsDocumentMap ' + versionsDocumentMap);
+		for(uw_Asset__c asset : assets){
+			if(!String.isBlank(asset.Url_of_asset__c)){
+				Integer startIdx = asset.Url_of_asset__c.indexOf(START_STR);
+	            Integer endIdx = asset.Url_of_asset__c.indexOf(END_STR); 
+				ContentDocumentLink link = new ContentDocumentLink();
+				link.LinkedEntityId = userId;
+				System.debug('versionsDocumentMap key ' + (Id)asset.Url_of_asset__c.substring(startIdx+10, endIdx));
+				link.ContentDocumentId = versionsDocumentMap.get((Id)asset.Url_of_asset__c.substring(startIdx+10, endIdx));
+				link.ShareType = 'V';
+				link.Visibility = 'AllUsers';
+				links.add(link);
+			}
+		}
+		insert links;
+	}
 
 	/************************************************************
         Purpose: Checks if bets have related expected assets

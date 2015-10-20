@@ -131,6 +131,8 @@ public with sharing class uw_BETWrapper {
         public String assetDescription;
         public String assetDownloadLink;
         public Boolean assetOwner;
+        public Integer displayOrder;
+        public String assetPreviewLink;
        
         public AssetItem(uw_Asset__c asset, Boolean aOwner){            
             this.assetId = asset.Id;
@@ -140,7 +142,13 @@ public with sharing class uw_BETWrapper {
             this.assetLastModifiedDate = asset.LastModifiedDate;
             this.assetDescription = asset.Description__c;
             this.assetDownloadLink = asset.Url_of_asset__c;  
-            this.assetOwner = aOwner;         
+            this.assetOwner = aOwner;    
+            this.displayOrder = (Integer)asset.Order_Of_Display__c;
+            if(this.assetDownloadLink != null){ 
+                Integer startIdx = this.assetDownloadLink.indexOf('/download/');
+                Integer endIdx = this.assetDownloadLink.indexOf('?');    
+                this.assetPreviewLink = '/'+this.assetDownloadLink.substring(startIdx+10, endIdx);
+            }
         }
     }
 
