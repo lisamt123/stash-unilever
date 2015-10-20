@@ -10,8 +10,7 @@ global class BET_AssetsOrderController {
 			if (liAssets == null){
 				liAssets = new List<uw_Asset__c>();
 				for(uw_Asset__c asset : [select id, name, Order_Of_Display__c, Media_Type__c, Country__c, Studio_Asset_Type__c
-							from uw_Asset__c
-							where uw_BET__c = :betId and Status__c = 'Approved'
+							from uw_Asset__c where uw_BET__c = :betId and Status__c = 'Approved'
 							order by Order_Of_Display__c asc]){
 					if(asset.Country__c != null && asset.Country__c.indexOf(';') != -1){
 						asset.Country__c = 'Multi';
