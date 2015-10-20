@@ -1,18 +1,18 @@
 /*****************************************************************************************************************************
-Name: BET_BETHardDelete_Batch
+Name: BET_BETHardDelete_BatchSchedule
 Copyright © 2015 Unilever. 
 
-Purpose: Deletes BETs marked for deletion after 90 days period.
+Purpose: Scheduler for Bet hard delete batch
 
 History
 -------
 VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
-1.0 -   m.bluj@polsource.com            15/10/2015      INITIAL DEVELOPMENT
+1.0 -   m.bluj@polsource.com            17/10/2015      INITIAL DEVELOPMENT
 *******************************************************************************************************************************/
-/* class without sharing modifier due to this is a batch */
-global class BET_BETHardDelete_Batch implements Database.Batchable<sObject>,Schedulable {
+/* class without sharing modifier due to this is a batch scheduler */
+global class BET_BETHardDelete_BatchSchedule implements Database.Batchable<sObject>,Schedulable {
 	
-	global BET_BETHardDelete_Batch() {}
+	global BET_BETHardDelete_BatchSchedule() {}
 	
 	global Database.QueryLocator start(Database.BatchableContext BC) {
 		Integer daysPast = BET_Settings__c.getOrgDefaults().SoftDeletePeriod__c == null ? 90 : (Integer)BET_Settings__c.getOrgDefaults().SoftDeletePeriod__c;
@@ -32,7 +32,7 @@ global class BET_BETHardDelete_Batch implements Database.Batchable<sObject>,Sche
 	}
 
 	global void execute(SchedulableContext sc) {
-		BET_BETHardDelete_Batch batch = new BET_BETHardDelete_Batch();
+		BET_BETHardDelete_BatchSchedule batch = new BET_BETHardDelete_BatchSchedule();
 		database.executebatch(batch);
    	}
 	

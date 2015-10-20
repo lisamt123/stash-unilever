@@ -989,8 +989,8 @@
         <members>BET_UpdateExpectedAssetsController</members>
 		<members>BET_MultiUploadAssetsController</members>
 		<members>BET_MultiUploadAssetsControllerTest</members>
-		<members>BET_BETHardDelete_Batch</members>
-		<members>BET_BETHardDelete_BatchTest</members>
+		<members>BET_BETHardDelete_BatchSchedule</members>
+		<members>BET_BETHardDelete_BatchSchedule_Test</members>
         <name>ApexClass</name>
     </types>
     <types>
