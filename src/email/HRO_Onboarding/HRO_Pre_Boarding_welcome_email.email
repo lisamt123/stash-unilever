@@ -2,7 +2,7 @@
 <messaging:htmlEmailBody >
     Dear {!relatedTo.owner.name},<br /><br />
     
-    Thank you for registering for Headstart On-boarding for your new leader {!relatedTo.New_Leader_Name__c}.<br/>
+    Thank you for registering for Headstart On-boarding for your new leader {!relatedTo.New_Leader_Name__c}.<br/><br/>
     As the line manager of a new leader joining Unilever, you play a pivotal role in helping them<br/>
     land, integrate and perform. You hired them for a reason, and their on-boarding experience<br/>
     will enable them to be their very best from day one.<br/><br/> 
