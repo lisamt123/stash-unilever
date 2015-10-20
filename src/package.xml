@@ -1304,6 +1304,7 @@
     <types>
         <members>ONE_Correspond</members>
         <members>WorkIt_Console_App_Hidden</members>
+        <members>PSAR</members>
         <name>CustomApplicationComponent</name>
     </types>
     <types>
