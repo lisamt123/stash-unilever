@@ -3,7 +3,7 @@
     Dear {!relatedTo.owner.name},<br /><br />
     
     It is now <c:HRO_LeaderPhase ownerName="{!relatedTo.owner.name}" startDate="{!relatedTo.Onboarding_Task_Set__r.Start_Date__c}"/>
-    for your new leader, {!relatedTo.New_Leader_Name__c} <br /><br />
+    for your new leader, {!relatedTo.New_Leader_Name__c}. <br /><br />
     
     To ensure that the on-boarding journey is a successful one, we ask that you do the following as soon as possible. This task is now considered overdue.
     <br /><br />
