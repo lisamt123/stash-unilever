@@ -2,7 +2,7 @@
 <messaging:htmlEmailBody >
     Dear {!relatedTo.owner.name},<br /><br />
     It is now Month 1
-    for your new leader, {!relatedTo.New_Leader_Name__c} <br /><br />
+    for your new leader, {!relatedTo.New_Leader_Name__c}. <br /><br />
     To ensure that the on-boarding journey is a successful one, we highly recommend you do the following at this stage: <br /><br />
     <c:HRO_OnboardingTaskList selectedPhase="Month 1" leaderName="{!relatedTo.New_Leader_Name__c}" recordId="{!relatedTo.Id}" startDate="{!relatedTo.Start_Date__c}"/>
     <br /><br />
