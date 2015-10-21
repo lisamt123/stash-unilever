@@ -103,7 +103,7 @@ public with sharing class HRO_UnitTestFactory {
                 managerTask.Action_Type__c = p.Task_type__c;
                 managerTask.Completed__c = false;
                 managerTask.Due_Date__c = Date.today().addDays(Integer.valueOf(p.Due__c));
-                managerTask.OwnerId = UserInfo.getUserId();
+                //managerTask.OwnerId = UserInfo.getUserId();
                 managerTask.New_Leader_Name__c = leader.LastName;
                 managerTask.Onboarding_Task_Set__c=taskSet.id;
                 //managerTask.Onboarding_Plan__c =  p.id;

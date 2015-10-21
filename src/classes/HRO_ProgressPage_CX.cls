@@ -116,7 +116,7 @@ public with sharing class HRO_ProgressPage_CX {
         LeaderSummarry summaryRecord = new LeaderSummarry();
         for(HRO_Onboarding_Task__c leaderTask : [SELECT Id, New_Leader_Name__c,Completed__c, Due_Date__c,Phase__c
                                                  FROM HRO_Onboarding_Task__c
-                                                 WHERE OwnerId =: currentUserId
+                                                 WHERE Onboarding_Task_Set__r.OwnerId =: currentUserId
                                                  AND Onboarding_Task_Set__r.Start_Date__c >= LAST_N_DAYS:365 
                                                  Limit 50000]){
 

@@ -74,7 +74,7 @@ public with sharing class HRO_BoardingAction_CX {
     public List<HRO_Onboarding_Plan__c> getPreBoardingTasks(){
         system.debug('***HRO getPreBoardingTasks entring');
         listOfTemplateTasks = new List<HRO_Onboarding_Plan__c>();
-        for(HRO_Onboarding_Plan__c template : [Select Id,Due__c, Link__c,Name, New_Leader__c, Phase__c, Start_Date__c, Task_type__c,Task_Description__c from HRO_Onboarding_Plan__c Order by Due__c asc LIMIT 2000]){
+        for(HRO_Onboarding_Plan__c template : [Select Id,Due__c, Link__c,Name, New_Leader__c, Phase__c, Start_Date__c, Task_type__c,Task_Description__c from HRO_Onboarding_Plan__c Order by Due__c,CreatedDate asc LIMIT 2000]){
             listOfTemplateTasks.add(template);
         }
         system.debug('***HRO getPreBoardingTasks exit return following list:'+listOfTemplateTasks);
@@ -121,7 +121,7 @@ public with sharing class HRO_BoardingAction_CX {
             managerTask.Action_Type__c = p.Task_type__c;
             managerTask.Completed__c = false;
             managerTask.Due_Date__c = planInfo.Start_Date__c.addDays(Integer.valueOf(p.Due__c));
-            managerTask.OwnerId = UserInfo.getUserId();
+            //managerTask.OwnerId = UserInfo.getUserId();
             managerTask.New_Leader_Name__c = planInfo.New_Leader__c;
             //managerTask.Onboarding_Plan__c =  p.id;
             managerTask.Onboarding_Task_Set__c = hroTaskSet.id;

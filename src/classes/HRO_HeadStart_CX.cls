@@ -260,13 +260,13 @@ global with sharing class HRO_HeadStart_CX {
         //add Task_Detail__c
         String query =  'select Action_Taken__c, Action_Type__c, Completed__c, Due_Date__c, '+
             'ExternalPortalLink__c, Id, New_Leader_Name__c, '+ 
-            'OwnerId, Phase__c,Task_Detail__c from HRO_Onboarding_Task__c '+
+            'Onboarding_Task_Set__r.OwnerId, Phase__c,Task_Detail__c from HRO_Onboarding_Task__c '+
             'WHERE Phase__c =\''+getLeaderPhase()+'\' and New_Leader_Name__c =:selectedLeader ';
         
         if(selectTaskList == 'My Task'){
-            query += ' AND OwnerId =\'' + UserInfo.getUserId()+'\'';
+            query += ' AND Onboarding_Task_Set__r.OwnerId =\'' + UserInfo.getUserId()+'\'';
         }
-        query += ' ORDER by Due_Date__c asc Limit 50000'; 
+        query += ' ORDER by Due_Date__c,CreatedDate asc Limit 50000'; 
 
         onboardingTasks = (List<HRO_Onboarding_Task__c>)Database.query(query);                                                        
 
@@ -290,11 +290,11 @@ global with sharing class HRO_HeadStart_CX {
 
         Set<String> leadersNames = new Set<String>();
         
-        for(AggregateResult agr : [Select New_Leader_Name__c,OwnerId, count(id) nbrOfTasks FROM 
+        for(AggregateResult agr : [Select New_Leader_Name__c, count(id) nbrOfTasks FROM 
                                                  HRO_Onboarding_Task__c  where isDeleted = false  
                                                  AND Completed__c = false
-                                   				 AND OwnerId =: UserInfo.getUserId() 	
-                                                 GROUP BY New_Leader_Name__c,OwnerId]){
+                                   				 AND Onboarding_Task_Set__r.OwnerId =: UserInfo.getUserId() 	
+                                                 GROUP BY New_Leader_Name__c]){
 
             if(!leadersNames.contains(String.valueOf(agr.get(NEWLEADERAPINAME)))){
                 options.add(new SelectOption(String.valueOf(agr.get(NEWLEADERAPINAME)),String.valueOf(agr.get(NEWLEADERAPINAME))));

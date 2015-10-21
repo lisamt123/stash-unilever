@@ -47,7 +47,7 @@ private class HRO_BoardingAction_CXTest {
                       'System shoud retrive template task check method HRO_UnitTestFactory.createDefaultSetOfOnboardingTasks if creating task templates'); 
         pageController.savePreBoarding();
         //check if task were created for manager and he is the owner
-        system.assertEquals([Select id FROM HRO_Onboarding_Task__c where ownerId = :UserInfo.getUserId()].isEmpty(),false,'System should create task for manager');
+        system.assertEquals([Select id FROM HRO_Onboarding_Task__c where Onboarding_Task_Set__r.OwnerId = :UserInfo.getUserId()].isEmpty(),false,'System should create task for manager');
 				
 		Test.stopTest();
 

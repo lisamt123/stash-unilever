@@ -75,8 +75,7 @@ global with sharing class HRO_OnboardingTaskList_CC {
         system.debug('*****HRO entering getOverDuedTaskList()');
         //String instanceUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
         List<OnboardingTasksWrapper> taskWrapperLst = new List<OnboardingTasksWrapper>();
-        
-        for(HRO_Onboarding_Task__c hroTask : [Select Name, Due_Date__c,ExternalPortalLink__c,Id,OwnerId,New_Leader_Name__c,Task_Detail__c FROM HRO_Onboarding_Task__c 
+        for(HRO_Onboarding_Task__c hroTask : [Select Name, Due_Date__c,ExternalPortalLink__c,Id,Onboarding_Task_Set__r.OwnerId,New_Leader_Name__c,Task_Detail__c FROM HRO_Onboarding_Task__c 
                                               WHERE Onboarding_Task_Set__c =: cRecordId AND Completed__c=false  AND Due_Date__c < TODAY]){
         
             OnboardingTasksWrapper taskWrapp = new OnboardingTasksWrapper();
@@ -89,8 +88,13 @@ global with sharing class HRO_OnboardingTaskList_CC {
             }else{
                 taskWrapp.taskLink =INSTANCEURL+TASKFORWARDERURL+hroTask.id+'&selectedLeader='+EncodingUtil.urlEncode(hroTask.New_Leader_Name__c,UTF8); 
             }
-            taskWrapperLst.add(taskWrapp);                                      
+                                                  
+            taskWrapperLst.add(taskWrapp);
+                                                
         }
+        
+        //List<Database.SaveResult> sr = Database.update(tasksToUpdate,false);
+       
         system.debug('*****HRO exiting getOverDuedTaskList():'+JSON.serialize(taskWrapperLst));
         return taskWrapperLst;
         
