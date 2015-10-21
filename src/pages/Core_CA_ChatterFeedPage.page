@@ -1,5 +1,13 @@
 <apex:page showHeader="false" sidebar="false">
 
+<script>
+if(navigator.userAgent.indexOf('Salesforce1') >= 0) {
+  try {
+    window.localStorage["sfdc.h_and_t.cookieset"] = true;
+  } catch(err) {}
+}
+</script>
+
 <!--
 <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
 <script>
