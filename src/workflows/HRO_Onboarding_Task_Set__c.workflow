@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>HRO_Overdue_task_notifications</fullName>
+        <description>HRO Overdue task notifications</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>HRO_Onboarding/HRO_Overdue_task_notifications</template>
+    </alerts>
+    <alerts>
         <fullName>Pre_Boarding_welcome_email_to_Manager</fullName>
         <description>Pre-Boarding welcome email to Manager</description>
         <protected>false</protected>
@@ -70,6 +80,22 @@
         <senderType>CurrentUser</senderType>
         <template>HRO_Onboarding/HRO_Proactive_notification_Week1</template>
     </alerts>
+    <rules>
+        <fullName>HRO Overdue task notifications</fullName>
+        <active>true</active>
+        <description>Notifications: Overdue task notifications</description>
+        <formula>AND(NOT(ISBLANK(Overdue_Notification_Date__c)),Overdue_Notification_Date__c&lt;TODAY())</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>HRO_Overdue_task_notifications</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>HRO_Onboarding_Task_Set__c.Overdue_Notification_Date__c</offsetFromField>
+            <timeLength>1</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
     <rules>
         <fullName>HRO Proactive notification of upcoming tasks</fullName>
         <actions>
