@@ -66,16 +66,14 @@ public with sharing class BET_EditAssetController {
     Returns: Boolean
     Author: Blessy Voola
     ********************************************************************/
-    public boolean isVisualApproved()
-    {
-    List<uw_Asset__c> fl=  [SELECT Name, Sub_Function__c, Studio_Asset_Type__c, Media_Type__c, Country__c, Status__c, Is_bucket_field__c, Id, uw_BET__c, Related_Feed_Item__c FROM uw_Asset__c WHERE uw_bet__c =: file.uw_BET__c];
-              for(uw_Asset__c flist:fl)
-              {
-                if(flist.Media_Type__c == 'Key Visual' && flist.Status__c == 'Approved'){
-                    return true;
-                }
-              }
-              return false;
+    public boolean isVisualApproved(){
+        List<uw_Asset__c> fl=  [SELECT Name, Sub_Function__c, Studio_Asset_Type__c, Media_Type__c, Country__c, Status__c, Is_bucket_field__c, Id, uw_BET__c, Related_Feed_Item__c FROM uw_Asset__c WHERE uw_bet__c =: file.uw_BET__c];
+        for(uw_Asset__c flist:fl){
+            if(flist.Media_Type__c == 'Key Visual' && flist.Status__c == 'Approved'){
+                return true;
+            }
+        }
+        return false;
     }
         /*T0-End*/
     
@@ -99,58 +97,10 @@ public with sharing class BET_EditAssetController {
         Boolean updateBet = false;  
 
         if(file.Sub_Function__c == 'Brand Development' && file.Status__c == 'Approved'){
-            if( file.Studio_Asset_Type__c == 'Brand Experience Presentation' && bet.Status__c != 'Final release' && bet.Status__c != 'First release'){
-
-                // IPM-BET US43
-                Boolean keyVisualIsThere = false;
-                if(file.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){ // IPM-BET US43
-                    bet.FirstReleaseDate__c = date.today();
-
-                    keyVisualIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 
-                                                          where Studio_Asset_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_TYPE_CW
-                                                          and Media_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW
-                                                          and Status__c =: uw_CustomAssetUploadExtension.BET_ASSET_APPROVED
-                                                          and uw_bet__c =: file.uw_BET__c].isEmpty();
-                }
-
-                if(keyVisualIsThere){
-                    bet.FinalReleaseDate__c = date.today();
-                    updateBet=true;
-                }
-                
-                // IPM-BET US43
-
-                /*T0-Begin*/
-                if(isVisualApproved()){
-                    bet.Status__c = 'Final release';
-                    updateBet=true;
-                    message = 'Your BET is now in Final Release';
-                } else {
-                    bet.Status__c = 'First release';
-                    updateBet = true;
-                    message = 'Your BET is now in First Release';
-                }
-                
-               /*T0-End*/                        
+            if(file.Studio_Asset_Type__c == 'Brand Experience Presentation' && bet.Status__c != 'Final release' && bet.Status__c != 'First release'){
+                updateBet = brandExperiencePresentation();                       
             }else if(file.Studio_Asset_Type__c == 'Creative Work' && file.Media_Type__c == 'Key Visual' && bet.Status__c == 'First release'){
-                
-                    // IPM-BET US43
-                    if(file.Media_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW && file.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){ // IPM-BET US43
-                        Boolean brandExperiencePresnetationIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 
-                                                              where Studio_Asset_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_TYPE_BEP
-                                                              and Status__c =: uw_CustomAssetUploadExtension.BET_ASSET_APPROVED
-                                                              and uw_bet__c =: file.uw_BET__c].isEmpty();
-                        if(brandExperiencePresnetationIsThere) {
-                            bet.FinalReleaseDate__c = date.today();
-                            updateBet = true;
-                        }
-                    }
-                    // IPM-BET US43
-
-                    bet.Status__c = 'Final release';
-                    updateBet = true;
-                    message = 'Your BET is now in Final Release';
-                
+                updateBet = creativeWork();
             }
         }  
 
@@ -162,6 +112,7 @@ public with sharing class BET_EditAssetController {
             ConnectApi.ContentAttachment ca = (ConnectApi.ContentAttachment) fi.attachment;
             caId = ca.Id;
         }
+
         if(file.Studio_Asset_Type__c == 'Brand Experience Presentation'){
             file.Think_Big_Promotion_Date__c = Datetime.now();
             file.Big_Think_Pack__c = true;
@@ -197,6 +148,59 @@ public with sharing class BET_EditAssetController {
         runJsSuccess = true;
 
         return null;           
+    }
+
+    private Boolean brandExperiencePresentation(){
+        Boolean updateBet = false;  
+        // IPM-BET US43
+        Boolean keyVisualIsThere = false;
+        if(file.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){ // IPM-BET US43
+            bet.FirstReleaseDate__c = date.today();
+
+            keyVisualIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 
+                                                          where Studio_Asset_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_TYPE_CW
+                                                          and Media_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW
+                                                          and Status__c =: uw_CustomAssetUploadExtension.BET_ASSET_APPROVED
+                                                          and uw_bet__c =: file.uw_BET__c].isEmpty();
+        }
+
+        if(keyVisualIsThere){
+            bet.FinalReleaseDate__c = date.today();
+            updateBet = true;
+        }
+        // IPM-BET US43
+
+        /*T0-Begin*/
+        if(isVisualApproved()){
+            bet.Status__c = 'Final release';
+            updateBet = true;
+            message = 'Your BET is now in Final Release';
+        } else {
+            bet.Status__c = 'First release';
+            updateBet = true;
+            message = 'Your BET is now in First Release';
+        }
+        return updateBet;
+    }
+
+    private Boolean creativeWork(){
+        Boolean updateBet = false; 
+        // IPM-BET US43
+        if(file.Media_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW && file.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){ // IPM-BET US43
+            Boolean brandExperiencePresnetationIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 
+                                                              where Studio_Asset_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_TYPE_BEP
+                                                              and Status__c =: uw_CustomAssetUploadExtension.BET_ASSET_APPROVED
+                                                              and uw_bet__c =: file.uw_BET__c].isEmpty();
+            if(brandExperiencePresnetationIsThere) {
+                bet.FinalReleaseDate__c = date.today();
+                updateBet = true;
+            }
+        }
+        // IPM-BET US43
+        bet.Status__c = 'Final release';
+        updateBet = true;
+        message = 'Your BET is now in Final Release';
+        return updateBet;
     }
 
     /*******************************************************************
