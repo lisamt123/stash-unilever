@@ -44,9 +44,9 @@ public without sharing class BET_CommonService {
                               FROM PermissionSet
                               WHERE Id IN (SELECT PermissionSetId FROM PermissionSetAssignment WHERE AssigneeId =: userId)];
 
-        if (userPermissions != null && userPermissions.size() > 0) {
+        if (userPermissions != null && !userPermissions.isEmpty()) {
             for (PermissionSet userPermission : userPermissions) {
-                if (userPermission.ObjectPerms != null && userPermission.ObjectPerms.size() > 0) {
+                if (userPermission.ObjectPerms != null && !userPermission.ObjectPerms.isEmpty()) {
                     for (ObjectPermissions op : userPermission.ObjectPerms) {
                         if (checkReadOnly && op.PermissionsViewAllRecords) {
                             return true;
@@ -117,11 +117,11 @@ public static boolean hasPermissionSet(String permSetName){
         }else{
             Id currentUserId = UserInfo.getUserId();        
             List<uw_BET_Team_Member__c> teamMemberList = [SELECT Id, Name, Role__c, BET__c, BET__r.Studio_Chatter_Group__c, Team_Member__c FROM uw_BET_Team_Member__c WHERE Team_Member__c = :currentUserId AND BET__c = :betId];
-            if(teamMemberList.size() > 0 && teamMemberList[0].Role__c == 'Manager'){
+            if(!teamMemberList.isEmpty() && teamMemberList[0].Role__c == 'Manager'){
                 isAllowed = true;
             }else{
                 List<uw_BET__c> betList = [SELECT Id, Name, OwnerId FROM uw_BET__c WHERE Id = :betId LIMIT 1];
-                if(betList.size() > 0 && betList[0].OwnerId == currentUserId){
+                if(!betList.isEmpty() && betList[0].OwnerId == currentUserId){
                     isAllowed = true;
                 }   
             }
