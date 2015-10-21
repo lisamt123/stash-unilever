@@ -54,7 +54,7 @@
     <enableReports>true</enableReports>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>Action_Taken__c</fullName>
         <defaultValue>false</defaultValue>
@@ -135,16 +135,17 @@
     </fields>
     <fields>
         <fullName>Onboarding_Task_Set__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Onboarding Task Set</label>
         <referenceTo>HRO_Onboarding_Task_Set__c</referenceTo>
         <relationshipLabel>Onboarding Tasks</relationshipLabel>
         <relationshipName>Onboarding_Tasks</relationshipName>
-        <required>false</required>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
-        <type>Lookup</type>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>Phase__c</fullName>
@@ -209,5 +210,5 @@
     </nameField>
     <pluralLabel>Onboarding Tasks</pluralLabel>
     <searchLayouts/>
-    <sharingModel>Private</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

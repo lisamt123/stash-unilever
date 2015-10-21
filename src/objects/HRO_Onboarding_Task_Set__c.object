@@ -67,6 +67,22 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Overdue_Notification_Date__c</fullName>
+        <description>Date when overdue task will be sent</description>
+        <externalId>false</externalId>
+        <label>Overdue Notification Date</label>
+        <summarizedField>HRO_Onboarding_Task__c.Due_Date__c</summarizedField>
+        <summaryFilterItems>
+            <field>HRO_Onboarding_Task__c.Completed__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </summaryFilterItems>
+        <summaryForeignKey>HRO_Onboarding_Task__c.Onboarding_Task_Set__c</summaryForeignKey>
+        <summaryOperation>min</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>Start_Date__c</fullName>
         <description>Stores the actual start date of the User</description>
         <externalId>false</externalId>
