@@ -44,9 +44,9 @@ public without sharing class BET_CommonService {
                               FROM PermissionSet
                               WHERE Id IN (SELECT PermissionSetId FROM PermissionSetAssignment WHERE AssigneeId =: userId)];
 
-        if (userPermissions != null && userPermissions.size() > 0) {
+        if (userPermissions != null && !userPermissions.isEmpty()) {
             for (PermissionSet userPermission : userPermissions) {
-                if (userPermission.ObjectPerms != null && userPermission.ObjectPerms.size() > 0) {
+                if (userPermission.ObjectPerms != null && !userPermission.ObjectPerms.isEmpty()) {
                     for (ObjectPermissions op : userPermission.ObjectPerms) {
                         if (checkReadOnly && op.PermissionsViewAllRecords) {
                             return true;
@@ -117,11 +117,11 @@ public static boolean hasPermissionSet(String permSetName){
         }else{
             Id currentUserId = UserInfo.getUserId();        
             List<uw_BET_Team_Member__c> teamMemberList = [SELECT Id, Name, Role__c, BET__c, BET__r.Studio_Chatter_Group__c, Team_Member__c FROM uw_BET_Team_Member__c WHERE Team_Member__c = :currentUserId AND BET__c = :betId];
-            if(teamMemberList.size() > 0 && teamMemberList[0].Role__c == 'Manager'){
+            if(!teamMemberList.isEmpty() && teamMemberList[0].Role__c == 'Manager'){
                 isAllowed = true;
             }else{
                 List<uw_BET__c> betList = [SELECT Id, Name, OwnerId FROM uw_BET__c WHERE Id = :betId LIMIT 1];
-                if(betList.size() > 0 && betList[0].OwnerId == currentUserId){
+                if(!betList.isEmpty() && betList[0].OwnerId == currentUserId){
                     isAllowed = true;
                 }   
             }
@@ -165,9 +165,8 @@ public static boolean hasPermissionSet(String permSetName){
         mail.setHtmlBody(template);
         mail.setReplyTo(settings.Email_Address__c);
 
-        List<Messaging.Sendemailresult> mailResult;
         if(!Test.isRunningTest()){
-            mailResult = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail }); 
+            Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail }); 
         }
     } 
 
@@ -251,10 +250,10 @@ public static boolean hasPermissionSet(String permSetName){
         if(!betList.isEmpty()){
             uw_BET__c bet = betList[0];
             BET_Request_Access__c settings  = BET_Request_Access__c.getInstance();
-            User owner;
-            if(settings.Send_Mail_To_Owner__c){
-                owner = [SELECT Id, Email, Name FROM User WHERE Id = :bet.OwnerId];
-            }        
+            //User owner;
+            //if(settings.Send_Mail_To_Owner__c){
+            //    owner = [SELECT Id, Email, Name FROM User WHERE Id = :bet.OwnerId];
+            //}        
 
             String status = BET_AccessService.HasUserAccess(userId,betId);
 

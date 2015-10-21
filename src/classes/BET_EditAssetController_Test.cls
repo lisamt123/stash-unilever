@@ -5,6 +5,11 @@ private class BET_EditAssetController_Test {
     private static final String RESULT_NULL = 'Result should be null';
     private static final String ERROR_MESSAGE_MATCH = 'Error message should match';
     private static final String ONE_RECORD = 'There should be one record';
+    private static final String BLANK_MESSAGE = 'Message should be blank';
+    private static final String MOD_ACCESS = 'User should have mod access';
+    private static final String JS_FLAG_SET = 'Run JS flag should be set';
+    private static final String FORM_DISPLAYED = 'Form should be displayed';
+    private static final String BET_ID_MATCH = 'Bet is should match';
 
     private static BET_TestingHelper.BET_TestingData prepareData() {
         return prepareData(false, BET_TestingHelper.BET_STATUS_UNRELEASED);
@@ -33,11 +38,13 @@ private class BET_EditAssetController_Test {
         BET_EditAssetController controller;
         List<String> result;
         
+        Test.startTest();
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
             controller.file.Sub_Function__c = null;
             result = controller.validateData();            
         }         
+        Test.stopTest();
         System.assertNotEquals(null, result,RESULT_NOT_NULL);
         System.assertEquals(1, result.size(),ONE_RECORD);
         System.assertEquals('Sub Function cannot be empty.', result[0],ERROR_MESSAGE_MATCH);
@@ -49,12 +56,15 @@ private class BET_EditAssetController_Test {
         BET_EditAssetController controller;
         List<String> result;
         
+        Test.startTest();
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
             controller.file.Status__c = null;
             controller.file.Studio_Asset_Type__c = null;
             result = controller.validateData();            
         }         
+        Test.stopTest();
+
         System.assertNotEquals(null, result,RESULT_NOT_NULL);
         System.assertEquals(2, result.size(),'There should be two records');
         System.assertEquals('Status cannot be empty.', result[0],ERROR_MESSAGE_MATCH);
@@ -66,7 +76,8 @@ private class BET_EditAssetController_Test {
 
         BET_EditAssetController controller;
         List<String> result;
-        
+
+        Test.startTest();
         System.runAs(BET_TestingHelper.getDefaultMember()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
             controller.file.Sub_Function__c = BET_TestingHelper.ASSET_SUBFUNCTION_BD;
@@ -74,6 +85,8 @@ private class BET_EditAssetController_Test {
             controller.file.Studio_Asset_Type__c = null;
             result = controller.validateData();            
         }         
+        Test.stopTest();
+
         System.assertNotEquals(null, result,RESULT_NOT_NULL);
         System.assertEquals(3, result.size(),'There should be three records');
         System.assertEquals('Not allowed to add Brand Development.', result[0],ERROR_MESSAGE_MATCH);
@@ -86,7 +99,7 @@ private class BET_EditAssetController_Test {
 
         BET_EditAssetController controller;
         List<String> result;
-        
+        Test.startTest();
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
             controller.file.Sub_Function__c      = BET_TestingHelper.ASSET_SUBFUNCTION_BD;
@@ -96,6 +109,8 @@ private class BET_EditAssetController_Test {
             controller.file.Media_Type__c        = null;
             result = controller.validateData();            
         }         
+        Test.stopTest();
+
         System.assertNotEquals(null, result,RESULT_NOT_NULL);
         System.assertEquals(1, result.size(),ONE_RECORD);
         System.assertEquals('Media Type cannot be empty.', result[0],ERROR_MESSAGE_MATCH);
@@ -106,7 +121,8 @@ private class BET_EditAssetController_Test {
 
         BET_EditAssetController controller;
         List<String> result;
-        
+
+        Test.startTest();
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
             controller.file.Sub_Function__c      = BET_TestingHelper.ASSET_SUBFUNCTION_BD;
@@ -115,7 +131,9 @@ private class BET_EditAssetController_Test {
             controller.file.Media_Type__c        = BET_TestingHelper.ASSET_MEDIATYPE_BETPRESENTATION;
             controller.file.Country__c           = BET_TestingHelper.UT_COUNTRY;
             result = controller.validateData();            
-        }         
+        }
+        Test.stopTest();
+
         System.assertNotEquals(null, result,RESULT_NOT_NULL);
         System.assertEquals(1, result.size(),ONE_RECORD);
         System.assertEquals('Media Type cannot be Brand Experience Presentation.', result[0],ERROR_MESSAGE_MATCH);
@@ -127,6 +145,7 @@ private class BET_EditAssetController_Test {
         BET_EditAssetController controller;
         List<String> result;
         
+        Test.startTest();
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
             controller.file.Sub_Function__c      = BET_TestingHelper.ASSET_SUBFUNCTION_BD;
@@ -136,6 +155,8 @@ private class BET_EditAssetController_Test {
             controller.file.Country__c           = null;
             result = controller.validateData();            
         }         
+        Test.stopTest();
+
         System.assertNotEquals(null, result,RESULT_NOT_NULL);
         System.assertEquals(1, result.size(),ONE_RECORD);
         System.assertEquals('Country cannot be empty.', result[0],ERROR_MESSAGE_MATCH);
@@ -147,6 +168,7 @@ private class BET_EditAssetController_Test {
         BET_EditAssetController controller;
         List<String> result;
         
+        Test.startTest();
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
             controller.file.Sub_Function__c      = BET_TestingHelper.ASSET_SUBFUNCTION_BD;
@@ -156,6 +178,8 @@ private class BET_EditAssetController_Test {
             controller.file.Country__c           = BET_TestingHelper.UT_COUNTRY;
             result = controller.validateData();            
         }         
+        Test.stopTest();
+
         System.assertNotEquals(null, result,RESULT_NOT_NULL);
         System.assertEquals(0, result.size(),'There should be no records');
         System.assertEquals(null, controller.file.Media_Type__c,RESULT_NULL);
@@ -168,6 +192,7 @@ private class BET_EditAssetController_Test {
         BET_EditAssetController controller;
         List<String> result;
         
+        Test.startTest();
         System.runAs(BET_TestingHelper.getDefaultMember()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
             controller.file.Sub_Function__c      = BET_TestingHelper.ASSET_SUBFUNCTION_BB;
@@ -177,6 +202,8 @@ private class BET_EditAssetController_Test {
             controller.file.Country__c           = BET_TestingHelper.UT_COUNTRY;
             result = controller.validateData();            
         }         
+        Test.stopTest();
+
         System.assertNotEquals(null, result,RESULT_NOT_NULL);
         System.assertEquals(0, result.size(),'There should be no records');
         System.assertEquals(BET_TestingHelper.ASSET_STATUS_SHARED, controller.file.Status__c);
@@ -189,6 +216,7 @@ private class BET_EditAssetController_Test {
         BET_EditAssetController controller;
         List<String> result;
         
+        Test.startTest();
         System.runAs(BET_TestingHelper.getDefaultMember()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
             controller.file.Sub_Function__c      = BET_TestingHelper.ASSET_SUBFUNCTION_BB;
@@ -196,6 +224,8 @@ private class BET_EditAssetController_Test {
             controller.file.Media_Type__c        = null;
             result = controller.validateData();            
         }         
+        Test.stopTest();
+
         System.assertNotEquals(null, result,RESULT_NOT_NULL);
         System.assertEquals(1, result.size(),ONE_RECORD);
         System.assertEquals('Media Type cannot be empty.', result[0],ERROR_MESSAGE_MATCH);
@@ -207,6 +237,7 @@ private class BET_EditAssetController_Test {
         BET_EditAssetController controller;
         List<String> result;
         
+        Test.startTest();
         System.runAs(BET_TestingHelper.getDefaultMember()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
             controller.file.Sub_Function__c      = BET_TestingHelper.ASSET_SUBFUNCTION_BB;
@@ -214,6 +245,8 @@ private class BET_EditAssetController_Test {
             controller.file.Media_Type__c        = BET_TestingHelper.ASSET_MEDIATYPE_BETPRESENTATION;
             result = controller.validateData();            
         }         
+        Test.stopTest();
+
         System.assertNotEquals(null, result,RESULT_NOT_NULL);
         System.assertEquals(1, result.size(),ONE_RECORD);
         System.assertEquals('Media Type cannot be Brand Experience Presentation.', result[0],ERROR_MESSAGE_MATCH);
@@ -225,13 +258,16 @@ private class BET_EditAssetController_Test {
         BET_EditAssetController controller;
         List<String> result;
         
+        Test.startTest();
         System.runAs(BET_TestingHelper.getDefaultMember()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
             controller.file.Sub_Function__c      = BET_TestingHelper.ASSET_SUBFUNCTION_BB;
             controller.file.Media_Type__c        = BET_TestingHelper.ASSET_MEDIATYPE_KEYVISUAL;
             controller.file.Country__c           = null;
             result = controller.validateData();            
-        }         
+        }
+        Test.stopTest();         
+
         System.assertNotEquals(null, result,RESULT_NOT_NULL);
         System.assertEquals(1, result.size(),ONE_RECORD);
         System.assertEquals('Country cannot be empty.', result[0],ERROR_MESSAGE_MATCH);
@@ -243,6 +279,7 @@ private class BET_EditAssetController_Test {
         BET_EditAssetController controller;
         List<String> result;
         
+        Test.startTest();
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
             controller.file.Sub_Function__c      = BET_TestingHelper.ASSET_SUBFUNCTION_BB;
@@ -250,6 +287,8 @@ private class BET_EditAssetController_Test {
             controller.file.Country__c           = BET_TestingHelper.UT_COUNTRY;
             result = controller.validateData();            
         }         
+        Test.stopTest();
+
         System.assertNotEquals(null, result,RESULT_NOT_NULL);
         System.assertEquals(1, result.size(),ONE_RECORD);
         System.assertEquals('Not allowed to add Brand Building.', result[0],ERROR_MESSAGE_MATCH);
@@ -261,6 +300,7 @@ private class BET_EditAssetController_Test {
         BET_EditAssetController controller;
         PageReference result;
         
+        Test.startTest();
         System.runAs(BET_TestingHelper.getDefaultMember()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
             controller.file.Sub_Function__c      = BET_TestingHelper.ASSET_SUBFUNCTION_BB;
@@ -268,11 +308,13 @@ private class BET_EditAssetController_Test {
             controller.file.Country__c           = null;
             result = controller.updateMetadata();            
         }         
+        Test.stopTest();
+
         System.assertEquals(null, result,RESULT_NULL);
         System.assert(BET_TestingHelper.checkifPageMessageExists(
             'Country cannot be empty.',
             ApexPages.Severity.ERROR
-        ));
+        ),'Message should exist');
     }  
 
     static testMethod void updateToApprovedPresentationAsOwner(){
@@ -280,23 +322,25 @@ private class BET_EditAssetController_Test {
 
         BET_EditAssetController controller;
         
+        Test.startTest();
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
-            System.assert(String.isBlank(controller.message));
-            System.assertEquals(true, controller.displayForm);
-            System.assertEquals(betWrapper.BET.Id, controller.bet.Id);
+            System.assert(String.isBlank(controller.message),BLANK_MESSAGE);
+            System.assertEquals(true, controller.displayForm,FORM_DISPLAYED);
+            System.assertEquals(betWrapper.BET.Id, controller.bet.Id,BET_ID_MATCH);
             
             controller.file.Sub_Function__c      = BET_TestingHelper.ASSET_SUBFUNCTION_BD;
             controller.file.Status__c            = BET_TestingHelper.ASSET_STATUS_APPROVED;
             controller.file.Studio_Asset_Type__c = BET_TestingHelper.ASSET_STUDIOTYPE_PRESENTATION;
             controller.updateMetadata();            
         }         
+        Test.stopTest();
 
         System.assertEquals(BET_TestingHelper.ASSET_SUBFUNCTION_BD, controller.file.Sub_Function__c);
-        System.assertEquals(true, controller.hasModifyAccess);
-        System.assertEquals(true, controller.runJsSuccess);
+        System.assertEquals(true, controller.hasModifyAccess,MOD_ACCESS);
+        System.assertEquals(true, controller.runJsSuccess,JS_FLAG_SET);
         System.assertEquals('Your BET is now in First Release', controller.message);
-        System.assertEquals(true, controller.isPresentationUploaded);
+        System.assertEquals(true, controller.isPresentationUploaded,'Presentations should be uploaded');
         System.assertEquals(BET_TestingHelper.ASSET_MEDIATYPE_BETPRESENTATION, controller.file.Media_Type__c);
 
         uw_BET__c updatedBET = BET_TestingHelper.getBET(betWrapper.BET.Id);
@@ -308,11 +352,12 @@ private class BET_EditAssetController_Test {
 
         BET_EditAssetController controller;
         
+        Test.startTest();
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
-            System.assert(String.isBlank(controller.message));
-            System.assertEquals(true, controller.displayForm);
-            System.assertEquals(betWrapper.BET.Id, controller.bet.Id);
+            System.assert(String.isBlank(controller.message),BLANK_MESSAGE);
+            System.assertEquals(true, controller.displayForm,FORM_DISPLAYED);
+            System.assertEquals(betWrapper.BET.Id, controller.bet.Id,BET_ID_MATCH);
             
             controller.file.Sub_Function__c      = BET_TestingHelper.ASSET_SUBFUNCTION_BD;
             controller.file.Status__c            = BET_TestingHelper.ASSET_STATUS_APPROVED;
@@ -320,12 +365,13 @@ private class BET_EditAssetController_Test {
             controller.file.Media_Type__c        = BET_TestingHelper.ASSET_MEDIATYPE_KEYVISUAL;
             controller.updateMetadata();            
         }         
+        Test.stopTest();
 
         System.assertEquals(BET_TestingHelper.ASSET_SUBFUNCTION_BD, controller.file.Sub_Function__c);
-        System.assertEquals(true, controller.hasModifyAccess);
-        System.assertEquals(true, controller.runJsSuccess);
+        System.assertEquals(true, controller.hasModifyAccess,MOD_ACCESS);
+        System.assertEquals(true, controller.runJsSuccess,JS_FLAG_SET);
         System.assertEquals('Your BET is now in Final Release', controller.message);
-        System.assertEquals(false, controller.isPresentationUploaded);
+        System.assertEquals(false, controller.isPresentationUploaded,'Presentations should not be uploaded');
 
         uw_BET__c updatedBET = BET_TestingHelper.getBET(betWrapper.BET.Id);
         System.assertEquals(betWrapper.BET.Presentation_Id__c, updatedBET.Presentation_Id__c);
@@ -339,38 +385,41 @@ private class BET_EditAssetController_Test {
 
         BET_EditAssetController controller;
         
+        Test.startTest();
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
-            System.assert(String.isBlank(controller.message),'Message should be blank');
-            System.assertEquals(true, controller.displayForm,'Form should be displayed');
-            System.assertEquals(betWrapper.BET.Id, controller.bet.Id,'Bet ids should match');
+            System.assert(String.isBlank(controller.message),BLANK_MESSAGE);
+            System.assertEquals(true, controller.displayForm,FORM_DISPLAYED);
+            System.assertEquals(betWrapper.BET.Id, controller.bet.Id,BET_ID_MATCH);
             
             controller.file.Sub_Function__c      = BET_TestingHelper.ASSET_SUBFUNCTION_BD;
             controller.file.Status__c            = BET_TestingHelper.ASSET_STATUS_APPROVED;
             controller.file.Studio_Asset_Type__c = BET_TestingHelper.ASSET_STUDIOTYPE_CREATIVEWORK;
             controller.file.Media_Type__c        = BET_TestingHelper.ASSET_MEDIATYPE_KEYVISUAL;
             controller.updateMetadata();            
-        }         
+        }      
+        Test.stopTest();   
 
         System.assertEquals(BET_TestingHelper.ASSET_SUBFUNCTION_BD, controller.file.Sub_Function__c,'Sub function should match');
-        System.assertEquals(true, controller.hasModifyAccess, 'User should have mod access');
-        System.assertEquals(true, controller.runJsSuccess,'Run JS flag should be set');
+        System.assertEquals(true, controller.hasModifyAccess, MOD_ACCESS);
+        System.assertEquals(true, controller.runJsSuccess,JS_FLAG_SET);
         System.assertEquals('', controller.message,'Message should be empty');
         System.assertEquals(true, controller.isPresentationUploaded,'Presentations should be uploaded');
 
         uw_BET__c updatedBET = BET_TestingHelper.getBET(betWrapper.BET.Id);
-        System.assertEquals(null, updatedBET.Presentation_Id__c);
+        System.assertEquals(null, updatedBET.Presentation_Id__c,RESULT_NULL);
     }
     static testMethod void handleDMLException(){
         BET_TestingHelper.BET_TestingData betWrapper = prepareData(false, BET_TestingHelper.BET_STATUS_FIRSTRELEASE);
 
         BET_EditAssetController controller;
         
+        Test.startTest();
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
-            System.assert(String.isBlank(controller.message),'Message should be blank');
-            System.assertEquals(true, controller.displayForm,'Form should be displayed');
-            System.assertEquals(betWrapper.BET.Id, controller.bet.Id,'Bet ids should match');
+            System.assert(String.isBlank(controller.message),BLANK_MESSAGE);
+            System.assertEquals(true, controller.displayForm,FORM_DISPLAYED);
+            System.assertEquals(betWrapper.BET.Id, controller.bet.Id,BET_ID_MATCH);
             
             controller.file.Sub_Function__c      = BET_TestingHelper.ASSET_SUBFUNCTION_BD;
             controller.file.Status__c            = BET_TestingHelper.ASSET_STATUS_APPROVED;
@@ -378,7 +427,8 @@ private class BET_EditAssetController_Test {
             controller.file.Media_Type__c        = BET_TestingHelper.ASSET_MEDIATYPE_KEYVISUAL;
             controller.throwUTException          = 1;
             controller.updateMetadata();            
-        }         
+        }   
+        Test.stopTest();      
 
         System.assertEquals(false, controller.runJsSuccess,'Run JS flag should not be set');
         System.assertEquals(false, controller.isPresentationUploaded,'Presentations should not be uploaded');
