@@ -1934,6 +1934,7 @@
         <members>uw_Terms_Conditions__c</members>
 		<members>HRO_Onboarding_Plan__c</members>
         <members>HRO_Onboarding_Task_Set__c</members>
+		<members>HRO_Onboarding_Task__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -3591,7 +3592,6 @@
         <members>uw_SSO_Settings__c</members>
         <members>uw_Terms_Conditions__c</members>
 		<members>HRO_Onboarding_Task_Set__c</members>
-        <members>HRO_Onboarding_Task__c</members>
         <name>Workflow</name>
     </types>
     <version>34.0</version>
