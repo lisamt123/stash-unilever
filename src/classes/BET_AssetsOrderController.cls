@@ -8,9 +8,7 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  21-10-2015  Initial
 *************************************************************************************/
-
-/*Without sharing (global) due to remote method used in iframe*/
-global class BET_AssetsOrderController {
+global with sharing class BET_AssetsOrderController {
 	public Id betId {get;set;}
 
 	public BET_AssetsOrderController() {
