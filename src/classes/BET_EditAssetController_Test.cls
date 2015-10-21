@@ -10,6 +10,7 @@ private class BET_EditAssetController_Test {
     private static final String JS_FLAG_SET = 'Run JS flag should be set';
     private static final String FORM_DISPLAYED = 'Form should be displayed';
     private static final String BET_ID_MATCH = 'Bet is should match';
+    private static final String STATUS_MATCH = 'Status should match';
 
     private static BET_TestingHelper.BET_TestingData prepareData() {
         return prepareData(false, BET_TestingHelper.BET_STATUS_UNRELEASED);
@@ -206,7 +207,7 @@ private class BET_EditAssetController_Test {
 
         System.assertNotEquals(null, result,RESULT_NOT_NULL);
         System.assertEquals(0, result.size(),'There should be no records');
-        System.assertEquals(BET_TestingHelper.ASSET_STATUS_SHARED, controller.file.Status__c);
+        System.assertEquals(BET_TestingHelper.ASSET_STATUS_SHARED, controller.file.Status__c,STATUS_MATCH);
         System.assertEquals(null, controller.file.Studio_Asset_Type__c,RESULT_NULL);
     }    
 
@@ -336,16 +337,16 @@ private class BET_EditAssetController_Test {
         }         
         Test.stopTest();
 
-        System.assertEquals(BET_TestingHelper.ASSET_SUBFUNCTION_BD, controller.file.Sub_Function__c);
+        System.assertEquals(BET_TestingHelper.ASSET_SUBFUNCTION_BD, controller.file.Sub_Function__c,'Subfunction should match');
         System.assertEquals(true, controller.hasModifyAccess,MOD_ACCESS);
         System.assertEquals(true, controller.runJsSuccess,JS_FLAG_SET);
-        System.assertEquals('Your BET is now in First Release', controller.message);
+        System.assertEquals('Your BET is now in First Release', controller.message,'Message should be : Your BET is now in First Release');
         System.assertEquals(true, controller.isPresentationUploaded,'Presentations should be uploaded');
-        System.assertEquals(BET_TestingHelper.ASSET_MEDIATYPE_BETPRESENTATION, controller.file.Media_Type__c);
+        System.assertEquals(BET_TestingHelper.ASSET_MEDIATYPE_BETPRESENTATION, controller.file.Media_Type__c,'Media Type should match');
 
         uw_BET__c updatedBET = BET_TestingHelper.getBET(betWrapper.BET.Id);
-        System.assertNotEquals(betWrapper.BET.Presentation_Id__c, updatedBET.Presentation_Id__c);
-        System.assertEquals(BET_TestingHelper.BET_STATUS_FIRSTRELEASE, updatedBET.Status__c);
+        System.assertNotEquals(betWrapper.BET.Presentation_Id__c, updatedBET.Presentation_Id__c,'Presentations id should be different');
+        System.assertEquals(BET_TestingHelper.BET_STATUS_FIRSTRELEASE, updatedBET.Status__c,STATUS_MATCH);
     }
     static testMethod void updateToApprovedCreativeWorkAsOwner(){
         BET_TestingHelper.BET_TestingData betWrapper = prepareData(false, BET_TestingHelper.BET_STATUS_FIRSTRELEASE);
@@ -370,12 +371,12 @@ private class BET_EditAssetController_Test {
         System.assertEquals(BET_TestingHelper.ASSET_SUBFUNCTION_BD, controller.file.Sub_Function__c);
         System.assertEquals(true, controller.hasModifyAccess,MOD_ACCESS);
         System.assertEquals(true, controller.runJsSuccess,JS_FLAG_SET);
-        System.assertEquals('Your BET is now in Final Release', controller.message);
+        System.assertEquals('Your BET is now in Final Release', controller.message,'Message should be equal to : Your BET is now in Final Release');
         System.assertEquals(false, controller.isPresentationUploaded,'Presentations should not be uploaded');
 
         uw_BET__c updatedBET = BET_TestingHelper.getBET(betWrapper.BET.Id);
-        System.assertEquals(betWrapper.BET.Presentation_Id__c, updatedBET.Presentation_Id__c);
-        System.assertEquals(BET_TestingHelper.BET_STATUS_FINALRELEASE, updatedBET.Status__c);
+        System.assertEquals(betWrapper.BET.Presentation_Id__c, updatedBET.Presentation_Id__c,'Presentations ids should match');
+        System.assertEquals(BET_TestingHelper.BET_STATUS_FINALRELEASE, updatedBET.Status__c,STATUS_MATCH);
     }
     static testMethod void changePresentationToCreativeWorkAsOwner(){
         BET_TestingHelper.BET_TestingData betWrapper = prepareData();
@@ -437,6 +438,6 @@ private class BET_EditAssetController_Test {
 
         uw_BET__c updatedBET = BET_TestingHelper.getBET(betWrapper.BET.Id);
         System.assertEquals(betWrapper.BET.Presentation_Id__c, updatedBET.Presentation_Id__c,'Presentation id should match');
-        System.assertEquals(BET_TestingHelper.BET_STATUS_FIRSTRELEASE, updatedBET.Status__c,'Status should match');
+        System.assertEquals(BET_TestingHelper.BET_STATUS_FIRSTRELEASE, updatedBET.Status__c,STATUS_MATCH);
     }
 }

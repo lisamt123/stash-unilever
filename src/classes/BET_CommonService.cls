@@ -44,21 +44,17 @@ public without sharing class BET_CommonService {
                               FROM PermissionSet
                               WHERE Id IN (SELECT PermissionSetId FROM PermissionSetAssignment WHERE AssigneeId =: userId)];
 
-        if (userPermissions != null && !userPermissions.isEmpty()) {
-            for (PermissionSet userPermission : userPermissions) {
-                if (userPermission.ObjectPerms != null && !userPermission.ObjectPerms.isEmpty()) {
-                    for (ObjectPermissions op : userPermission.ObjectPerms) {
-                        if (checkReadOnly && op.PermissionsViewAllRecords) {
-                            return true;
-                        } 
-                        else if (!checkReadOnly && op.PermissionsModifyAllRecords)
-                               {
-                             return true;
-                             }
+        
+        for (PermissionSet userPermission : userPermissions) {
+            if (userPermission.ObjectPerms != null && !userPermission.ObjectPerms.isEmpty()) {
+                for (ObjectPermissions op : userPermission.ObjectPerms) {
+                    if (checkReadOnly && op.PermissionsViewAllRecords || (!checkReadOnly && op.PermissionsModifyAllRecords)) {
+                        return true;
                     }
                 }
             }
         }
+        
         return false;
     }
 
