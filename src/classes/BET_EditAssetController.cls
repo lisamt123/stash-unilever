@@ -99,40 +99,36 @@ public with sharing class BET_EditAssetController {
         Boolean updateBet = false;  
 
         if(file.Sub_Function__c == 'Brand Development' && file.Status__c == 'Approved'){
-            if( file.Studio_Asset_Type__c == 'Brand Experience Presentation'){
-
-
-                if(bet.Status__c != 'Final release' && bet.Status__c != 'First release'){
+            if( file.Studio_Asset_Type__c == 'Brand Experience Presentation' && bet.Status__c != 'Final release' && bet.Status__c != 'First release'){
 
                 // IPM-BET US43
+                Boolean keyVisualIsThere = false;
                 if(file.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){ // IPM-BET US43
                     bet.FirstReleaseDate__c = date.today();
 
-                    Boolean keyVisualIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 
+                    keyVisualIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 
                                                           where Studio_Asset_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_TYPE_CW
                                                           and Media_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW
                                                           and Status__c =: uw_CustomAssetUploadExtension.BET_ASSET_APPROVED
                                                           and uw_bet__c =: file.uw_BET__c].isEmpty();
-                    if(keyVisualIsThere){
-                        bet.FinalReleaseDate__c = date.today();
-                        updateBet=true;
-                    }
                 }
-                // IPM-BET US43
 
+                if(keyVisualIsThere){
+                    bet.FinalReleaseDate__c = date.today();
+                    updateBet=true;
+                }
+                
+                // IPM-BET US43
 
                 /*T0-Begin*/
                 if(isVisualApproved()){
-                             bet.Status__c = 'Final release';
-                             updateBet=true;
-                              message = 'Your BET is now in Final Release';
-                     }
-                    
-                else{
+                    bet.Status__c = 'Final release';
+                    updateBet=true;
+                    message = 'Your BET is now in Final Release';
+                } else {
                     bet.Status__c = 'First release';
                     updateBet = true;
                     message = 'Your BET is now in First Release';
-                    }
                 }
                 
                /*T0-End*/                        
