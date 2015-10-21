@@ -1159,7 +1159,7 @@
         <members>HRO_PreBoardingActionPage</members>
         <members>HRO_ProgressPage</members>
         <members>HRO_TaskLinkForwarder</members>
-        <members>PRSupplyChainMetrics</members>
+        <members>PSARSupplyChainMetrics</members>
         <members>PSARDashboardLink</members>
         <name>ApexPage</name>
     </types>
@@ -2489,7 +2489,7 @@
         <members>PSAR_Alert_Details__c</members>
         <members>PSAR_Alert_Extract__c</members>
         <members>PSAR_Location__c</members>
-        <members>PR_Supply_Chain_Metrics</members>
+        <members>PSARSupplyChainMetrics</members>
         <members>HRO_HeadStart</members>
         <members>HRO_Onboarding_Plan__c</members>
         <name>CustomTab</name>
