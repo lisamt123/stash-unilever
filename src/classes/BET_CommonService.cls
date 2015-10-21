@@ -165,9 +165,8 @@ public static boolean hasPermissionSet(String permSetName){
         mail.setHtmlBody(template);
         mail.setReplyTo(settings.Email_Address__c);
 
-        List<Messaging.Sendemailresult> mailResult;
         if(!Test.isRunningTest()){
-            mailResult = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail }); 
+            Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail }); 
         }
     } 
 
@@ -251,10 +250,10 @@ public static boolean hasPermissionSet(String permSetName){
         if(!betList.isEmpty()){
             uw_BET__c bet = betList[0];
             BET_Request_Access__c settings  = BET_Request_Access__c.getInstance();
-            User owner;
-            if(settings.Send_Mail_To_Owner__c){
-                owner = [SELECT Id, Email, Name FROM User WHERE Id = :bet.OwnerId];
-            }        
+            //User owner;
+            //if(settings.Send_Mail_To_Owner__c){
+            //    owner = [SELECT Id, Email, Name FROM User WHERE Id = :bet.OwnerId];
+            //}        
 
             String status = BET_AccessService.HasUserAccess(userId,betId);
 
