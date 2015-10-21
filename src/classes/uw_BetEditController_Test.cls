@@ -19,8 +19,10 @@ private class uw_BetEditController_Test {
 
     private static final String TEST_BLOB = 'aGVsbG8=';
 
+    private static final String TEST_BET_NAME = 'Test BET1_';
+
     static testMethod void testMethodOne(){     
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET(TEST_BET_NAME+system.now(), true);
 
         uw_Bet__c tbet = BET_TestUtils.getTestBet();
         tbet.Launch_Date__c = date.today();
@@ -79,7 +81,7 @@ private class uw_BetEditController_Test {
     }
     
     static testMethod void testMethodThree(){     
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET(TEST_BET_NAME+system.now(), true);
         BET_TestingHelper.initBET('Test BET2', true);
         
         uw_Bet__c tbet = BET_TestUtils.getTestBet();
@@ -109,7 +111,7 @@ private class uw_BetEditController_Test {
     }
 
     static testMethod void softDeleteTest(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET(TEST_BET_NAME+system.now(), true);
         BET_TestingHelper.initBET('Test BET2', true);
         
         uw_Bet__c tbet = BET_TestUtils.getTestBet();
@@ -129,7 +131,7 @@ private class uw_BetEditController_Test {
     }
 
     static testMethod void updateBetTest(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET(TEST_BET_NAME+system.now(), true);
         BET_TestingHelper.initBET('Test BET2', true);
         
         uw_Bet__c tbet = BET_TestUtils.getTestBet();

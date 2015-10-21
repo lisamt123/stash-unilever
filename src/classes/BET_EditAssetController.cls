@@ -24,8 +24,6 @@ public with sharing class BET_EditAssetController {
     public Boolean isPresentationUploaded{get;set;}
     public String message{get;set;}
     public Boolean hasModifyAccess {get; protected set;}
-
-    private final SObject parent;
     
     PageReference pageRef = null;
 
@@ -73,8 +71,9 @@ public with sharing class BET_EditAssetController {
     List<uw_Asset__c> fl=  [SELECT Name, Sub_Function__c, Studio_Asset_Type__c, Media_Type__c, Country__c, Status__c, Is_bucket_field__c, Id, uw_BET__c, Related_Feed_Item__c FROM uw_Asset__c WHERE uw_bet__c =: file.uw_BET__c];
               for(uw_Asset__c flist:fl)
               {
-              if(flist.Media_Type__c == 'Key Visual'&&flist.Status__c == 'Approved')
-              return true;
+                if(flist.Media_Type__c == 'Key Visual' && flist.Status__c == 'Approved'){
+                    return true;
+                }
               }
               return false;
     }
@@ -90,7 +89,7 @@ public with sharing class BET_EditAssetController {
         message = '';
 
         List<String> errorResult = validateData();
-        if (errorResult.size()>0){
+        if (!errorResult.isEmpty()){
             for(string error : errorResult){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, + error ));
             }
@@ -137,10 +136,8 @@ public with sharing class BET_EditAssetController {
                 }
                 
                /*T0-End*/                        
-            }else if(file.Studio_Asset_Type__c == 'Creative Work'){
-                if(file.Media_Type__c == 'Key Visual' && bet.Status__c == 'First release'){
-
-
+            }else if(file.Studio_Asset_Type__c == 'Creative Work' && file.Media_Type__c == 'Key Visual' && bet.Status__c == 'First release'){
+                
                     // IPM-BET US43
                     if(file.Media_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW && file.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){ // IPM-BET US43
                         Boolean brandExperiencePresnetationIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 
@@ -157,8 +154,7 @@ public with sharing class BET_EditAssetController {
                     bet.Status__c = 'Final release';
                     updateBet = true;
                     message = 'Your BET is now in Final Release';
-                }
-
+                
             }
         }  
 

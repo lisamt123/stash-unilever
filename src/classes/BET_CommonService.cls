@@ -14,7 +14,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.1 -   Blessy Voola            17 Mar 2015     T0-Fix to resolve the issue-when a user clicks access toolkit, user is redirected to bet home page.
 1.2 -    Blessy Voola            28 Apr 2015    T1-Fix to resolve the issue-User with CB4L Hub admin permission set cannot access chatter on toolkit page for public BET.
 **********************************************************************/
-
+/* withour sharing sue to this is service class */
 public without sharing class BET_CommonService {
 
     public static final String BET_REQUEST_ACCESS = 'BET_Request_Access';
@@ -323,9 +323,15 @@ public static boolean hasPermissionSet(String permSetName){
         Savepoint sp = Database.setSavepoint();
         try {
            delete teamMember;
-           if ( betShare != null ) delete betShare;
-           if ( cgm != null) delete cgm;
-           if ( entitySubscription != null ) delete entitySubscription;
+           if ( betShare != null ) {
+                delete betShare;
+           }
+           if ( cgm != null) {
+                delete cgm;
+           }
+           if ( entitySubscription != null ) {
+                delete entitySubscription;
+           }
         } catch (Exception e) {
             Database.rollback(sp);
             throw new BetException ('Update Exception for BET Share record: '+ e.getMessage()+ 'BET Member Id: ' + teamMember.Id,e);
@@ -341,7 +347,7 @@ public static boolean hasPermissionSet(String permSetName){
     ******************************************************************************************/ 
     private static uw_BET__Share deleteBETShare(uw_BET_Team_Member__c teamMember) {
         List<uw_BET__Share> betShareList = [SELECT Id FROM uw_BET__Share WHERE ParentId = :teamMember.Team_Member__c AND userOrGroupId = :teamMember.Id LIMIT 1]; 
-        if (betShareList.size() == 0 ) {
+        if (betShareList.isEmpty()) {
            System.Debug('No BET Share is found');
            return null;
         }
@@ -357,7 +363,7 @@ public static boolean hasPermissionSet(String permSetName){
     private static CollaborationGroupMember deleteCollaborationGroupMember(uw_BET_Team_Member__c teamMember) {
         Id chatterGroupId = teamMember.BET__r.Studio_Chatter_Group__c;
         List<CollaborationGroupMember> cgmList = [SELECT Id FROM CollaborationGroupMember WHERE CollaborationGroupId =: chatterGroupId AND memberId=:teamMember.Team_Member__c];
-        if ( cgmList.size() == 0 ) {
+        if ( cgmList.isEmpty()) {
            System.Debug('No CollaborationGroupMember found.');
            return null;
         }
@@ -372,7 +378,7 @@ public static boolean hasPermissionSet(String permSetName){
     ******************************************************************************************/
     private static EntitySubscription deleteEntitySubscription(uw_BET_Team_Member__c teamMember) {
         List<EntitySubscription> entitySubscriptionList = [Select Id,SubscriberId,ParentId from EntitySubscription where SubscriberId=:teamMember.Team_Member__c and ParentId=:teamMember.BET__c LIMIT 1];
-        if ( entitySubscriptionList.size() == 0 ) {
+        if ( entitySubscriptionList.isEmpty() ) {
            System.Debug('No CollaborationGroupMember found.');
            return null;
         }
@@ -408,7 +414,7 @@ public static boolean hasPermissionSet(String permSetName){
                                     (SELECT Id,Team_Member__c FROM BET_Team_Members__r WHERE Team_Member__c =: userId) 
                                 FROM uw_BET__c
                                 WHERE Id = :betId ];
-                if (bet.Sharing__c == 'Public'  && (bet.BET_Team_Members__r == null || bet.BET_Team_Members__r.size() == 0 )) {
+                if (bet.Sharing__c == 'Public'  && (bet.BET_Team_Members__r == null || bet.BET_Team_Members__r.isEmpty())) {
                     BET_CommonService.addUserToPublicBET(bet, userId);
                     
                 }
@@ -431,7 +437,7 @@ public static boolean hasPermissionSet(String permSetName){
 
         uw_BET_Team_Member__c BETTeamMember = new uw_BET_Team_Member__c();
         List<RecordType> recordTypeIdList = [SELECT Id FROM RecordType WHERE SobjectType = :BETMemberObjectName and Name = :InternalUserRecordType LIMIT 1];
-        if ( recordTypeIdList.size() == 0 ) {
+        if ( recordTypeIdList.isEmpty()) {
             System.Debug('No RecordType found');
             return;
         }     

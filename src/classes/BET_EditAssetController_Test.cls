@@ -1,5 +1,11 @@
 @istest
 private class BET_EditAssetController_Test {
+
+    private static final String RESULT_NOT_NULL = 'Result should not be null';
+    private static final String RESULT_NULL = 'Result should be null';
+    private static final String ERROR_MESSAGE_MATCH = 'Error message should match';
+    private static final String ONE_RECORD = 'There should be one record';
+
     private static BET_TestingHelper.BET_TestingData prepareData() {
         return prepareData(false, BET_TestingHelper.BET_STATUS_UNRELEASED);
     }
@@ -32,9 +38,9 @@ private class BET_EditAssetController_Test {
             controller.file.Sub_Function__c = null;
             result = controller.validateData();            
         }         
-        System.assertNotEquals(null, result);
-        System.assertEquals(1, result.size());
-        System.assertEquals('Sub Function cannot be empty.', result[0]);
+        System.assertNotEquals(null, result,RESULT_NOT_NULL);
+        System.assertEquals(1, result.size(),ONE_RECORD);
+        System.assertEquals('Sub Function cannot be empty.', result[0],ERROR_MESSAGE_MATCH);
     }
 
     static testMethod void validateDataBDEmptyStatusAndStudioAssetType(){
@@ -49,10 +55,10 @@ private class BET_EditAssetController_Test {
             controller.file.Studio_Asset_Type__c = null;
             result = controller.validateData();            
         }         
-        System.assertNotEquals(null, result);
-        System.assertEquals(2, result.size());
-        System.assertEquals('Status cannot be empty.', result[0]);
-        System.assertEquals('Type cannot be empty.', result[1]);
+        System.assertNotEquals(null, result,RESULT_NOT_NULL);
+        System.assertEquals(2, result.size(),'There should be two records');
+        System.assertEquals('Status cannot be empty.', result[0],ERROR_MESSAGE_MATCH);
+        System.assertEquals('Type cannot be empty.', result[1],ERROR_MESSAGE_MATCH);
     }
 
     static testMethod void validateDataBDInvalidSubFunctionForUser(){
@@ -68,11 +74,11 @@ private class BET_EditAssetController_Test {
             controller.file.Studio_Asset_Type__c = null;
             result = controller.validateData();            
         }         
-        System.assertNotEquals(null, result);
-        System.assertEquals(3, result.size());
-        System.assertEquals('Not allowed to add Brand Development.', result[0]);
-        System.assertEquals('Status cannot be empty.', result[1]);
-        System.assertEquals('Type cannot be empty.', result[2]);
+        System.assertNotEquals(null, result,RESULT_NOT_NULL);
+        System.assertEquals(3, result.size(),'There should be three records');
+        System.assertEquals('Not allowed to add Brand Development.', result[0],ERROR_MESSAGE_MATCH);
+        System.assertEquals('Status cannot be empty.', result[1],ERROR_MESSAGE_MATCH);
+        System.assertEquals('Type cannot be empty.', result[2],ERROR_MESSAGE_MATCH);
     }
 
     static testMethod void validateDataBDEmptyMediaType(){
@@ -90,9 +96,9 @@ private class BET_EditAssetController_Test {
             controller.file.Media_Type__c        = null;
             result = controller.validateData();            
         }         
-        System.assertNotEquals(null, result);
-        System.assertEquals(1, result.size());
-        System.assertEquals('Media Type cannot be empty.', result[0]);
+        System.assertNotEquals(null, result,RESULT_NOT_NULL);
+        System.assertEquals(1, result.size(),ONE_RECORD);
+        System.assertEquals('Media Type cannot be empty.', result[0],ERROR_MESSAGE_MATCH);
     }
 
     static testMethod void validateDataBDInvalidInvalidMediaType(){
@@ -110,9 +116,9 @@ private class BET_EditAssetController_Test {
             controller.file.Country__c           = BET_TestingHelper.UT_COUNTRY;
             result = controller.validateData();            
         }         
-        System.assertNotEquals(null, result);
-        System.assertEquals(1, result.size());
-        System.assertEquals('Media Type cannot be Brand Experience Presentation.', result[0]);
+        System.assertNotEquals(null, result,RESULT_NOT_NULL);
+        System.assertEquals(1, result.size(),ONE_RECORD);
+        System.assertEquals('Media Type cannot be Brand Experience Presentation.', result[0],ERROR_MESSAGE_MATCH);
     }
 
     static testMethod void validateDataBDEmptyCountry(){
@@ -130,9 +136,9 @@ private class BET_EditAssetController_Test {
             controller.file.Country__c           = null;
             result = controller.validateData();            
         }         
-        System.assertNotEquals(null, result);
-        System.assertEquals(1, result.size());
-        System.assertEquals('Country cannot be empty.', result[0]);
+        System.assertNotEquals(null, result,RESULT_NOT_NULL);
+        System.assertEquals(1, result.size(),ONE_RECORD);
+        System.assertEquals('Country cannot be empty.', result[0],ERROR_MESSAGE_MATCH);
     }
 
     static testMethod void validateDataBDBDClearCountryAndMediaType(){
@@ -150,10 +156,10 @@ private class BET_EditAssetController_Test {
             controller.file.Country__c           = BET_TestingHelper.UT_COUNTRY;
             result = controller.validateData();            
         }         
-        System.assertNotEquals(null, result);
-        System.assertEquals(0, result.size());
-        System.assertEquals(null, controller.file.Media_Type__c );
-        System.assertEquals(null, controller.file.Country__c );
+        System.assertNotEquals(null, result,RESULT_NOT_NULL);
+        System.assertEquals(0, result.size(),'There should be no records');
+        System.assertEquals(null, controller.file.Media_Type__c,RESULT_NULL);
+        System.assertEquals(null, controller.file.Country__c,RESULT_NULL);
     }    
 
     static testMethod void validateDataBBEnforceStatus(){
@@ -171,10 +177,10 @@ private class BET_EditAssetController_Test {
             controller.file.Country__c           = BET_TestingHelper.UT_COUNTRY;
             result = controller.validateData();            
         }         
-        System.assertNotEquals(null, result);
-        System.assertEquals(0, result.size());
+        System.assertNotEquals(null, result,RESULT_NOT_NULL);
+        System.assertEquals(0, result.size(),'There should be no records');
         System.assertEquals(BET_TestingHelper.ASSET_STATUS_SHARED, controller.file.Status__c);
-        System.assertEquals(null, controller.file.Studio_Asset_Type__c );
+        System.assertEquals(null, controller.file.Studio_Asset_Type__c,RESULT_NULL);
     }    
 
     static testMethod void validateDataBBEmptyMediaType(){
@@ -190,9 +196,9 @@ private class BET_EditAssetController_Test {
             controller.file.Media_Type__c        = null;
             result = controller.validateData();            
         }         
-        System.assertNotEquals(null, result);
-        System.assertEquals(1, result.size());
-        System.assertEquals('Media Type cannot be empty.', result[0]);
+        System.assertNotEquals(null, result,RESULT_NOT_NULL);
+        System.assertEquals(1, result.size(),ONE_RECORD);
+        System.assertEquals('Media Type cannot be empty.', result[0],ERROR_MESSAGE_MATCH);
     }  
 
     static testMethod void validateDataBBInvalidMediaType(){
@@ -208,9 +214,9 @@ private class BET_EditAssetController_Test {
             controller.file.Media_Type__c        = BET_TestingHelper.ASSET_MEDIATYPE_BETPRESENTATION;
             result = controller.validateData();            
         }         
-        System.assertNotEquals(null, result);
-        System.assertEquals(1, result.size());
-        System.assertEquals('Media Type cannot be Brand Experience Presentation.', result[0]);
+        System.assertNotEquals(null, result,RESULT_NOT_NULL);
+        System.assertEquals(1, result.size(),ONE_RECORD);
+        System.assertEquals('Media Type cannot be Brand Experience Presentation.', result[0],ERROR_MESSAGE_MATCH);
     }  
 
     static testMethod void validateDataBBEmptyCountry(){
@@ -226,9 +232,9 @@ private class BET_EditAssetController_Test {
             controller.file.Country__c           = null;
             result = controller.validateData();            
         }         
-        System.assertNotEquals(null, result);
-        System.assertEquals(1, result.size());
-        System.assertEquals('Country cannot be empty.', result[0]);
+        System.assertNotEquals(null, result,RESULT_NOT_NULL);
+        System.assertEquals(1, result.size(),ONE_RECORD);
+        System.assertEquals('Country cannot be empty.', result[0],ERROR_MESSAGE_MATCH);
     }  
 
     static testMethod void validateDataBBNotAllowed(){
@@ -244,9 +250,9 @@ private class BET_EditAssetController_Test {
             controller.file.Country__c           = BET_TestingHelper.UT_COUNTRY;
             result = controller.validateData();            
         }         
-        System.assertNotEquals(null, result);
-        System.assertEquals(1, result.size());
-        System.assertEquals('Not allowed to add Brand Building.', result[0]);
+        System.assertNotEquals(null, result,RESULT_NOT_NULL);
+        System.assertEquals(1, result.size(),ONE_RECORD);
+        System.assertEquals('Not allowed to add Brand Building.', result[0],ERROR_MESSAGE_MATCH);
     }
 
     static testMethod void updateMetadataBBEmptyCountry(){
@@ -262,7 +268,7 @@ private class BET_EditAssetController_Test {
             controller.file.Country__c           = null;
             result = controller.updateMetadata();            
         }         
-        System.assertEquals(null, result);
+        System.assertEquals(null, result,RESULT_NULL);
         System.assert(BET_TestingHelper.checkifPageMessageExists(
             'Country cannot be empty.',
             ApexPages.Severity.ERROR
@@ -273,7 +279,6 @@ private class BET_EditAssetController_Test {
         BET_TestingHelper.BET_TestingData betWrapper = prepareData();
 
         BET_EditAssetController controller;
-        PageReference result;
         
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
@@ -302,7 +307,6 @@ private class BET_EditAssetController_Test {
         BET_TestingHelper.BET_TestingData betWrapper = prepareData(false, BET_TestingHelper.BET_STATUS_FIRSTRELEASE);
 
         BET_EditAssetController controller;
-        PageReference result;
         
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
@@ -334,13 +338,12 @@ private class BET_EditAssetController_Test {
         update betWrapper.BET;
 
         BET_EditAssetController controller;
-        PageReference result;
         
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
-            System.assert(String.isBlank(controller.message));
-            System.assertEquals(true, controller.displayForm);
-            System.assertEquals(betWrapper.BET.Id, controller.bet.Id);
+            System.assert(String.isBlank(controller.message),'Message should be blank');
+            System.assertEquals(true, controller.displayForm,'Form should be displayed');
+            System.assertEquals(betWrapper.BET.Id, controller.bet.Id,'Bet ids should match');
             
             controller.file.Sub_Function__c      = BET_TestingHelper.ASSET_SUBFUNCTION_BD;
             controller.file.Status__c            = BET_TestingHelper.ASSET_STATUS_APPROVED;
@@ -349,11 +352,11 @@ private class BET_EditAssetController_Test {
             controller.updateMetadata();            
         }         
 
-        System.assertEquals(BET_TestingHelper.ASSET_SUBFUNCTION_BD, controller.file.Sub_Function__c);
-        System.assertEquals(true, controller.hasModifyAccess);
-        System.assertEquals(true, controller.runJsSuccess);
-        System.assertEquals('', controller.message);
-        System.assertEquals(true, controller.isPresentationUploaded);
+        System.assertEquals(BET_TestingHelper.ASSET_SUBFUNCTION_BD, controller.file.Sub_Function__c,'Sub function should match');
+        System.assertEquals(true, controller.hasModifyAccess, 'User should have mod access');
+        System.assertEquals(true, controller.runJsSuccess,'Run JS flag should be set');
+        System.assertEquals('', controller.message,'Message should be empty');
+        System.assertEquals(true, controller.isPresentationUploaded,'Presentations should be uploaded');
 
         uw_BET__c updatedBET = BET_TestingHelper.getBET(betWrapper.BET.Id);
         System.assertEquals(null, updatedBET.Presentation_Id__c);
@@ -362,13 +365,12 @@ private class BET_EditAssetController_Test {
         BET_TestingHelper.BET_TestingData betWrapper = prepareData(false, BET_TestingHelper.BET_STATUS_FIRSTRELEASE);
 
         BET_EditAssetController controller;
-        PageReference result;
         
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
-            System.assert(String.isBlank(controller.message));
-            System.assertEquals(true, controller.displayForm);
-            System.assertEquals(betWrapper.BET.Id, controller.bet.Id);
+            System.assert(String.isBlank(controller.message),'Message should be blank');
+            System.assertEquals(true, controller.displayForm,'Form should be displayed');
+            System.assertEquals(betWrapper.BET.Id, controller.bet.Id,'Bet ids should match');
             
             controller.file.Sub_Function__c      = BET_TestingHelper.ASSET_SUBFUNCTION_BD;
             controller.file.Status__c            = BET_TestingHelper.ASSET_STATUS_APPROVED;
@@ -378,13 +380,13 @@ private class BET_EditAssetController_Test {
             controller.updateMetadata();            
         }         
 
-        System.assertEquals(false, controller.runJsSuccess);
-        System.assertEquals(false, controller.isPresentationUploaded);
+        System.assertEquals(false, controller.runJsSuccess,'Run JS flag should not be set');
+        System.assertEquals(false, controller.isPresentationUploaded,'Presentations should not be uploaded');
 
-        System.assert(BET_TestingHelper.checkIfAnyPageMessageExists(ApexPages.Severity.ERROR));
+        System.assert(BET_TestingHelper.checkIfAnyPageMessageExists(ApexPages.Severity.ERROR),'There should be some page messages');
 
         uw_BET__c updatedBET = BET_TestingHelper.getBET(betWrapper.BET.Id);
-        System.assertEquals(betWrapper.BET.Presentation_Id__c, updatedBET.Presentation_Id__c);
-        System.assertEquals(BET_TestingHelper.BET_STATUS_FIRSTRELEASE, updatedBET.Status__c);
+        System.assertEquals(betWrapper.BET.Presentation_Id__c, updatedBET.Presentation_Id__c,'Presentation id should match');
+        System.assertEquals(BET_TestingHelper.BET_STATUS_FIRSTRELEASE, updatedBET.Status__c,'Status should match');
     }
 }

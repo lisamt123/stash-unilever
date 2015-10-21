@@ -21,7 +21,7 @@
 		</apex:repeat>
 	</div>
 
-	<button onclick="saveOrder(); return false;" class="btnPink">{!$Label.BET_Save}</button> 
+	<button onclick="this.innerHTML = '{!$Label.BET_Saving}'; saveOrder(); return false;" class="btnPink">{!$Label.BET_Save}</button> 
 
 	<apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />
 	<apex:includeScript value="{!$Resource.BET}/scripts/BETAssetsOrder.js" />
