@@ -86,6 +86,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>HRO_Onboarding_Task_Set__c.Overdue_Notification_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>HRO_Onboarding_Task_Set__c.Start_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -117,11 +122,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>HRO_Onboarding_Task__c.New_Leader_Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>HRO_Onboarding_Task__c.Onboarding_Task_Set__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -180,7 +180,7 @@
     </pageAccesses>
     <tabSettings>
         <tab>HRO_HeadStart</tab>
-        <visibility>Visible</visibility>
+        <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
         <tab>HRO_Onboarding_Plan__c</tab>
