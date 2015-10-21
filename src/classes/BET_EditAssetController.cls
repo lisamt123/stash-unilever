@@ -24,8 +24,6 @@ public with sharing class BET_EditAssetController {
     public Boolean isPresentationUploaded{get;set;}
     public String message{get;set;}
     public Boolean hasModifyAccess {get; protected set;}
-
-    private final SObject parent;
     
     PageReference pageRef = null;
 

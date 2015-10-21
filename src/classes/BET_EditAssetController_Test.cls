@@ -273,7 +273,6 @@ private class BET_EditAssetController_Test {
         BET_TestingHelper.BET_TestingData betWrapper = prepareData();
 
         BET_EditAssetController controller;
-        PageReference result;
         
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
@@ -302,7 +301,6 @@ private class BET_EditAssetController_Test {
         BET_TestingHelper.BET_TestingData betWrapper = prepareData(false, BET_TestingHelper.BET_STATUS_FIRSTRELEASE);
 
         BET_EditAssetController controller;
-        PageReference result;
         
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
@@ -334,7 +332,6 @@ private class BET_EditAssetController_Test {
         update betWrapper.BET;
 
         BET_EditAssetController controller;
-        PageReference result;
         
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
@@ -362,7 +359,6 @@ private class BET_EditAssetController_Test {
         BET_TestingHelper.BET_TestingData betWrapper = prepareData(false, BET_TestingHelper.BET_STATUS_FIRSTRELEASE);
 
         BET_EditAssetController controller;
-        PageReference result;
         
         System.runAs(BET_TestingHelper.getDefaultOwner()){
             controller = new BET_EditAssetController(new ApexPages.StandardController(betWrapper.creativeWork));
