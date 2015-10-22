@@ -9,6 +9,18 @@
         <value>SWOP Other Items</value>
     </caseValues>
     <fields>
+        <label><!-- Activities --></label>
+        <name>Activities__c</name>
+        <picklistValues>
+            <masterLabel>Competitor Review</masterLabel>
+            <translation><!-- Competitor Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Agency Department --></label>
         <name>Agency_Department__c</name>
         <picklistValues>
@@ -49,12 +61,8 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Agency Fees --></label>
-        <name>Agency_Fees__c</name>
-    </fields>
-    <fields>
-        <label><!-- Allocation % --></label>
-        <name>Allocation__c</name>
+        <label><!-- Agency --></label>
+        <name>Agency__c</name>
     </fields>
     <fields>
         <help><!-- Please enter a full description of the Tasks / Activities required --></help>
@@ -74,8 +82,16 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- FTE --></label>
+        <name>FTE__c</name>
+    </fields>
+    <fields>
         <label><!-- Financial Year --></label>
         <name>Financial_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Financial Year_old --></label>
+        <name>Financial_Year_old__c</name>
         <picklistValues>
             <masterLabel>FY2015</masterLabel>
             <translation><!-- FY2015 --></translation>
@@ -122,9 +138,27 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Enter the number or hours this activity is estimated to take. --></help>
+        <label><!-- No of Hours Required --></label>
+        <name>No_of_Hours_Required__c</name>
+    </fields>
+    <fields>
+        <label><!-- Geography --></label>
+        <name>OblixCountry__c</name>
+        <relationshipLabel><!-- SWOP Other Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Other Item Fee --></label>
+        <name>OblixOtherItemFee__c</name>
+    </fields>
+    <fields>
         <label><!-- Marketing SOW --></label>
         <name>Oblix_SOWMarketing__c</name>
         <relationshipLabel><!-- SWOP Other Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Other Activities --></label>
+        <name>Other_Activities__c</name>
     </fields>
     <fields>
         <label><!-- Role Title --></label>
@@ -622,13 +656,31 @@
             <translation><!-- Traffic Supervisor --></translation>
         </picklistValues>
     </fields>
+    <layouts>
+        <layout>Activity</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Look Section 2 --></label>
+            <section>New Look Section 2</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Resource</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Look Section 2 --></label>
+            <section>New Look Section 2</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label><!-- Activity --></label>
         <name>Activity</name>
-    </recordTypes>
-    <recordTypes>
-        <label><!-- Exceptional Work --></label>
-        <name>Exceptional_Work</name>
     </recordTypes>
     <recordTypes>
         <label><!-- Resource --></label>

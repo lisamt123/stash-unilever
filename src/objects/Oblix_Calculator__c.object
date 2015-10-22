@@ -109,18 +109,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Allocation__c</fullName>
-        <description>Used to calculate the Rate</description>
-        <externalId>false</externalId>
-        <label>Allocation</label>
-        <precision>7</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Percent</type>
-    </fields>
-    <fields>
         <fullName>Box_10__c</fullName>
         <externalId>false</externalId>
         <label>Box 10</label>
@@ -394,6 +382,18 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>FTE__c</fullName>
+        <description>Used to calculate the Rate</description>
+        <externalId>false</externalId>
+        <label>FTE</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
         <fullName>Financial_Year__c</fullName>
         <description>Oblix Calculator Financial year</description>
         <externalId>false</externalId>
@@ -458,6 +458,19 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>OblixCountry__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Country</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>SWOP Calculator</relationshipLabel>
+        <relationshipName>SWOP_Calculator</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Points_HigH__c</fullName>
@@ -1166,10 +1179,13 @@
         <columns>RECORDTYPE</columns>
         <columns>OBJECT_ID</columns>
         <columns>Financial_Year__c</columns>
+        <columns>OblixCountry__c</columns>
         <columns>Discipline__c</columns>
         <columns>Job_Description__c</columns>
-        <columns>Role_Title__c</columns>
+        <columns>Agency_Department__c</columns>
         <columns>NAME</columns>
+        <columns>Role_Title__c</columns>
+        <columns>FTE__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>

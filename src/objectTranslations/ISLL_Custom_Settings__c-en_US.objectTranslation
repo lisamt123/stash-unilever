@@ -8,13 +8,5 @@
         <plural>true</plural>
         <value>ISLL Custom Settings</value>
     </caseValues>
-    <fields>
-        <label><!-- Integer Value --></label>
-        <name>Integer_Value__c</name>
-    </fields>
-    <fields>
-        <label><!-- String Value --></label>
-        <name>String_Value__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -8,14 +8,5 @@
         <plural>true</plural>
         <value>Consumer Units</value>
     </caseValues>
-    <fields>
-        <label><!-- CPG Code --></label>
-        <name>CPG_Code__c</name>
-    </fields>
-    <fields>
-        <help><!-- Please enter number --></help>
-        <label><!-- CU-SKU_TotalCount --></label>
-        <name>CU_SKU_TotalCount__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

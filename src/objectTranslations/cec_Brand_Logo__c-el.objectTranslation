@@ -40,15 +40,6 @@
         <plural>true</plural>
         <value><!-- Brand Logo --></value>
     </caseValues>
-    <fields>
-        <label>χώρα</label>
-        <name>Country__c</name>
-        <relationshipLabel>μάρκα Λογότυπα</relationshipLabel>
-    </fields>
-    <fields>
-        <label>Λογότυπο</label>
-        <name>Logo__c</name>
-    </fields>
     <gender><!-- Neuter --></gender>
     <nameFieldLabel><!-- Brand Logo Name --></nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>

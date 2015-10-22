@@ -8,10 +8,5 @@
         <plural>true</plural>
         <value>Event Unique Visits</value>
     </caseValues>
-    <fields>
-        <label><!-- Event --></label>
-        <name>Event__c</name>
-        <relationshipLabel><!-- Event Unique Visits --></relationshipLabel>
-    </fields>
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

@@ -284,6 +284,19 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>OblixSOWOverallTotal__c</fullName>
+        <externalId>false</externalId>
+        <formula>OblixTotalProjectsFees__c  +  OblixTotalOtherItemsFees__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SOW Overall Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>OblixTotalAdaptFees__c</fullName>
         <externalId>false</externalId>
         <label>Total Adapt Fees</label>
@@ -321,6 +334,17 @@
         <label>Total Number of projects</label>
         <summaryForeignKey>Oblix_SOW_Projects__c.Financial_Year__c</summaryForeignKey>
         <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>OblixTotalOtherItemsFees__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Other Items Fees</label>
+        <summarizedField>Marketing_Basics__c.OblixOtherItemFee__c</summarizedField>
+        <summaryForeignKey>Marketing_Basics__c.Oblix_SOWMarketing__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
@@ -474,6 +498,15 @@
         <externalId>false</externalId>
         <inlineHelpText>Who will Approve this SOW on behave of Unilever</inlineHelpText>
         <label>Unilever SOW Approver Name</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>User.MarketingSOWApprover__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
         <referenceTo>User</referenceTo>
         <relationshipName>Marketing_SOW</relationshipName>
         <required>false</required>

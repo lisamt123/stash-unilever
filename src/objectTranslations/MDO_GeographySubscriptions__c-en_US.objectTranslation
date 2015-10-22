@@ -8,19 +8,5 @@
         <plural>true</plural>
         <value>GeographySubscriptions</value>
     </caseValues>
-    <fields>
-        <label><!-- Geo ID --></label>
-        <name>geo_id__c</name>
-        <relationshipLabel><!-- GeographySubscriptions --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- MDO ID --></label>
-        <name>mdo_id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Subscription Id --></label>
-        <name>subscription_id__c</name>
-        <relationshipLabel><!-- GeographySubscriptions --></relationshipLabel>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

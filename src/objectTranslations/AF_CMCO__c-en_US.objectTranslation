@@ -8,9 +8,5 @@
         <plural>true</plural>
         <value>AF_CMCO</value>
     </caseValues>
-    <fields>
-        <label><!-- AF_CMCO_Rights --></label>
-        <name>AF_CMCO_Rights__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

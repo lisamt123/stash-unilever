@@ -8,14 +8,5 @@
         <plural>true</plural>
         <value>My Library</value>
     </caseValues>
-    <fields>
-        <label><!-- ContentVersion --></label>
-        <name>ContentVersion__c</name>
-    </fields>
-    <fields>
-        <label><!-- User --></label>
-        <name>User__c</name>
-        <relationshipLabel><!-- My Library --></relationshipLabel>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -4,18 +4,15 @@
     <customConsoleComponents>
         <subtabComponents>
             <containers>
-                <isContainerAutoSizeEnabled>true</isContainerAutoSizeEnabled>
                 <region>Right</region>
                 <sidebarComponents>
-                    <componentType>KnowledgeOne</componentType>
+                    <knowledgeOneEnable>true</knowledgeOneEnable>
                 </sidebarComponents>
                 <sidebarComponents>
-                    <componentType>VisualForcePage</componentType>
                     <label>Search</label>
                     <page>CEC_NewAccountContact</page>
                 </sidebarComponents>
                 <sidebarComponents>
-                    <componentType>Lookup</componentType>
                     <label>Account</label>
                     <lookup>Account</lookup>
                 </sidebarComponents>
@@ -31,8 +28,6 @@
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <feedLayout>
-        <autocollapsePublisher>true</autocollapsePublisher>
-        <compactFeed>true</compactFeed>
         <feedFilterPosition>CenterDropDown</feedFilterPosition>
         <feedFilters>
             <feedFilterType>AllUpdates</feedFilterType>
@@ -61,9 +56,7 @@
             <feedFilterType>FeedItemType</feedFilterType>
             <feedItemType>ActivityEvent</feedItemType>
         </feedFilters>
-        <fullWidthFeed>true</fullWidthFeed>
         <hideSidebar>false</hideSidebar>
-        <highlightExternalFeedItems>false</highlightExternalFeedItems>
         <rightComponents>
             <componentType>HelpAndToolLinks</componentType>
         </rightComponents>
@@ -120,8 +113,8 @@
                 <field>ParentId</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Case_Brand__c</field>
+                <behavior>Edit</behavior>
+                <field>Brand__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -414,7 +407,7 @@
     <showRunAssignmentRulesCheckbox>true</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>true</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00he0000000HJjy</masterLabel>
+        <masterLabel>00hc0000000ZBmV</masterLabel>
         <sizeX>3</sizeX>
         <sizeY>4</sizeY>
         <summaryLayoutItems>

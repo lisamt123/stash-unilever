@@ -1,5 +1,17 @@
 trigger SOWProjectBusinessValueDriverScore on Oblix_SOW_Projects__c (before insert, before update) {
 	
+	if(Trigger.isInsert && Trigger.IsBefore){
+		List<Oblix_SOW_Projects__c>  lstProjectToFire = new List<Oblix_SOW_Projects__c>();
+		
+		for(Oblix_SOW_Projects__c project : Trigger.New){
+			System.Debug('###project.Brand_Led_Growth__c : '+project.Brand_Led_Growth__c);
+			if(project.Brand_Led_Growth__c != null || project.Innovation_Projects__c != null || project.Project_Scale_1__c != null || project.Project_Scale_2__c != null || project.Campaign_Idea__c != null){
+					lstProjectToFire.add(project);
+				}
+		}
+		if(lstProjectToFire.size()>0) Oblix_TR04ProjectBusinessDriverScore.myMethod(lstProjectToFire);
+	}
+	
 	if(Trigger.isUpdate && Trigger.isBefore){
 		List<Oblix_SOW_Projects__c>  lstProjectToFire = new List<Oblix_SOW_Projects__c>();
 		
@@ -16,15 +28,5 @@ trigger SOWProjectBusinessValueDriverScore on Oblix_SOW_Projects__c (before inse
 		if(lstProjectToFire.size()>0) Oblix_TR04ProjectBusinessDriverScore.myMethod(lstProjectToFire);
 	}
 	
-	if(Trigger.isInsert && Trigger.IsBefore){
-		List<Oblix_SOW_Projects__c>  lstProjectToFire = new List<Oblix_SOW_Projects__c>();
-		
-		for(Oblix_SOW_Projects__c project : Trigger.New){
-			if(project.Brand_Led_Growth__c != null || project.Innovation_Projects__c != null || project.Project_Scale_1__c != null 
-				|| project.Project_Scale_2__c != null || project.Campaign_Idea__c != null){
-					lstProjectToFire.add(project);
-				}
-		}
-		if(lstProjectToFire.size()>0) Oblix_TR04ProjectBusinessDriverScore.myMethod(lstProjectToFire);
-	}
+	
 }

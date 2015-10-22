@@ -8,9 +8,5 @@
         <plural>true</plural>
         <value>AF_CatFinanceThreshold</value>
     </caseValues>
-    <fields>
-        <label><!-- AF_Date --></label>
-        <name>AF_Date__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

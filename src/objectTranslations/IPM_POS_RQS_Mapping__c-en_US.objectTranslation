@@ -8,17 +8,5 @@
         <plural>true</plural>
         <value>IPM POS RQS Mapping</value>
     </caseValues>
-    <fields>
-        <label><!-- Charter --></label>
-        <name>Charter__c</name>
-    </fields>
-    <fields>
-        <label><!-- Contract --></label>
-        <name>Contract__c</name>
-    </fields>
-    <fields>
-        <label><!-- Score --></label>
-        <name>Score__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

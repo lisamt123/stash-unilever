@@ -8,9 +8,5 @@
         <plural>true</plural>
         <value>AF_BonusQuarterly</value>
     </caseValues>
-    <fields>
-        <label><!-- AF_BonusQuarterlyDate --></label>
-        <name>AF_BonusQuarterlyDate__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

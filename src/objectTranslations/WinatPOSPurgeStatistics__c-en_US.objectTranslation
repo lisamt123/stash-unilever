@@ -8,13 +8,5 @@
         <plural>true</plural>
         <value>WinatPOSPurgeStatistics</value>
     </caseValues>
-    <fields>
-        <label><!-- Download_Statistics --></label>
-        <name>Download_Statistics__c</name>
-    </fields>
-    <fields>
-        <label><!-- Search Statistics --></label>
-        <name>Search_Statistics__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

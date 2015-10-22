@@ -3,18 +3,15 @@
     <customConsoleComponents>
         <subtabComponents>
             <containers>
-                <isContainerAutoSizeEnabled>true</isContainerAutoSizeEnabled>
                 <region>Right</region>
                 <sidebarComponents>
-                    <componentType>KnowledgeOne</componentType>
+                    <knowledgeOneEnable>true</knowledgeOneEnable>
                 </sidebarComponents>
                 <sidebarComponents>
-                    <componentType>VisualForcePage</componentType>
                     <label>Search</label>
                     <page>CEC_NewAccountContact</page>
                 </sidebarComponents>
                 <sidebarComponents>
-                    <componentType>Lookup</componentType>
                     <label>Account</label>
                     <lookup>Account</lookup>
                 </sidebarComponents>
@@ -30,8 +27,6 @@
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <feedLayout>
-        <autocollapsePublisher>true</autocollapsePublisher>
-        <compactFeed>true</compactFeed>
         <feedFilterPosition>CenterDropDown</feedFilterPosition>
         <feedFilters>
             <feedFilterType>AllUpdates</feedFilterType>
@@ -60,9 +55,7 @@
             <feedFilterType>FeedItemType</feedFilterType>
             <feedItemType>ActivityEvent</feedItemType>
         </feedFilters>
-        <fullWidthFeed>true</fullWidthFeed>
         <hideSidebar>true</hideSidebar>
-        <highlightExternalFeedItems>false</highlightExternalFeedItems>
         <rightComponents>
             <componentType>HelpAndToolLinks</componentType>
         </rightComponents>

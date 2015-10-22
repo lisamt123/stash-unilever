@@ -4,10 +4,8 @@
     <customConsoleComponents>
         <subtabComponents>
             <containers>
-                <isContainerAutoSizeEnabled>true</isContainerAutoSizeEnabled>
                 <region>Right</region>
                 <sidebarComponents>
-                    <componentType>VisualForcePage</componentType>
                     <height>100</height>
                     <label>Consumer</label>
                     <page>CEC_NewAccountContact</page>

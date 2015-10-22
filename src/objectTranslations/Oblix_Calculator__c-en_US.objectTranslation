@@ -49,10 +49,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Allocation --></label>
-        <name>Allocation__c</name>
-    </fields>
-    <fields>
         <label><!-- Box 10 --></label>
         <name>Box_10__c</name>
     </fields>
@@ -149,6 +145,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- FTE --></label>
+        <name>FTE__c</name>
+    </fields>
+    <fields>
         <label><!-- Financial Year --></label>
         <name>Financial_Year__c</name>
         <picklistValues>
@@ -199,6 +199,11 @@
     <fields>
         <label><!-- Job Description --></label>
         <name>Job_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>OblixCountry__c</name>
+        <relationshipLabel><!-- SWOP Calculator --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Points HigH --></label>
@@ -708,6 +713,27 @@
             <translation><!-- Traffic Supervisor --></translation>
         </picklistValues>
     </fields>
+    <layouts>
+        <layout>BoxRange</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Oblix Calculator Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Role Rate Card</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label><!-- Box Range --></label>
         <name>Box_Range</name>

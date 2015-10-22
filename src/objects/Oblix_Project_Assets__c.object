@@ -82,9 +82,10 @@
         <externalId>false</externalId>
         <label>Agency Projects</label>
         <referenceTo>Oblix_SOW_Projects__c</referenceTo>
+        <relationshipLabel>SWOP Project Assets</relationshipLabel>
         <relationshipName>Agency_Project_Assets</relationshipName>
         <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>

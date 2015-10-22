@@ -1,4 +1,4 @@
-@isTest
+@isTest 
 private class Oblix_Ctrl03AssetLookupNew_Test {
 
     static testMethod void myUnitTest() {

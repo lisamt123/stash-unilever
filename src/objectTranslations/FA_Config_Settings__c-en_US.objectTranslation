@@ -8,13 +8,5 @@
         <plural>true</plural>
         <value>FA Config Settings</value>
     </caseValues>
-    <fields>
-        <label><!-- Description --></label>
-        <name>FA_Description__c</name>
-    </fields>
-    <fields>
-        <label><!-- Value --></label>
-        <name>FA_Value__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

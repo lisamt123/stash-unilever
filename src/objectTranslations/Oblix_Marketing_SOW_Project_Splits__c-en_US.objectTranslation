@@ -10,26 +10,6 @@
     </caseValues>
     <fields>
         <label><!-- Country --></label>
-        <name>Country__c</name>
-        <picklistValues>
-            <masterLabel>France</masterLabel>
-            <translation><!-- France --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Germany</masterLabel>
-            <translation><!-- Germany --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Ireland</masterLabel>
-            <translation><!-- Ireland --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>UK</masterLabel>
-            <translation><!-- UK --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Country --></label>
         <name>OblixCountry__c</name>
         <relationshipLabel><!-- SWOP Project Splits --></relationshipLabel>
     </fields>
@@ -43,5 +23,12 @@
         <name>Project_Splits__c</name>
         <relationshipLabel><!-- SWOP Project Splits --></relationshipLabel>
     </fields>
+    <layouts>
+        <layout>Marketing SOW Project Splits Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -33,5 +33,12 @@
         <label><!-- Post Code /Area Code --></label>
         <name>Post_Code_Area_Code__c</name>
     </fields>
+    <layouts>
+        <layout>Marketing Agencies Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

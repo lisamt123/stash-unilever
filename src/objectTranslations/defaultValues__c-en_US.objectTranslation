@@ -8,9 +8,5 @@
         <plural>true</plural>
         <value>defaultValues</value>
     </caseValues>
-    <fields>
-        <label><!-- defaultBrandBanner --></label>
-        <name>defaultBrandBanner__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

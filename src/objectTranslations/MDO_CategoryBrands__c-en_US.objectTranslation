@@ -8,31 +8,5 @@
         <plural>true</plural>
         <value>CategoryBrands</value>
     </caseValues>
-    <fields>
-        <label><!-- Brand Id --></label>
-        <name>brand_id__c</name>
-        <relationshipLabel><!-- CategoryBrands --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Brand MDM Id --></label>
-        <name>brand_mdm_id__c</name>
-    </fields>
-    <fields>
-        <label><!-- MDM ID --></label>
-        <name>mdm_id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Product Category Id --></label>
-        <name>product_Category_Id__c</name>
-        <relationshipLabel><!-- CategoryBrands --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Product Category MDM Id --></label>
-        <name>product_category_mdm_id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Status --></label>
-        <name>status__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

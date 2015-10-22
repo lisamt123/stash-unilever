@@ -128,6 +128,10 @@
         <relationshipLabel><!-- SWOP --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- SOW Overall Total --></label>
+        <name>OblixSOWOverallTotal__c</name>
+    </fields>
+    <fields>
         <label><!-- Total Adapt Fees --></label>
         <name>OblixTotalAdaptFees__c</name>
     </fields>
@@ -142,6 +146,10 @@
     <fields>
         <label><!-- Total Number of projects --></label>
         <name>OblixTotalNumberofprojects__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Other Items Fees --></label>
+        <name>OblixTotalOtherItemsFees__c</name>
     </fields>
     <fields>
         <label><!-- Total Projects Fees --></label>
@@ -234,6 +242,44 @@
         <name>Unilever_SOW_Approver_Name__c</name>
         <relationshipLabel><!-- SWOP (Unilever SOW Approver Name) --></relationshipLabel>
     </fields>
+    <layouts>
+        <layout>Copy Marketing SOW Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- SOW Approval &amp; Contacts --></label>
+            <section>SOW Approval &amp; Contacts</section>
+        </sections>
+        <sections>
+            <label><!-- SOW Budget --></label>
+            <section>SOW Budget</section>
+        </sections>
+        <sections>
+            <label><!-- Version Control Attributes (to be hidden) --></label>
+            <section>Version Control Attributes (to be hidden)</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Marketing SOW Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Financials --></label>
+            <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- Sow Approval &amp; Contact --></label>
+            <section>Sow Approval &amp; Contact</section>
+        </sections>
+        <sections>
+            <label><!-- Version Control Attributes (to be hidden) --></label>
+            <section>Version Control Attributes (to be hidden)</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label><!-- Child Sow Marketing --></label>
         <name>ChildSowMarketing</name>

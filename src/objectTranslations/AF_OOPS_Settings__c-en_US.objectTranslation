@@ -8,9 +8,5 @@
         <plural>true</plural>
         <value>AF OOPS Settings</value>
     </caseValues>
-    <fields>
-        <label><!-- Overall Percentage --></label>
-        <name>Overall_Percentage__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

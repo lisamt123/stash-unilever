@@ -22,18 +22,18 @@
         urlArr = urlArr[1].split('=');
         txtId = urlArr[1];
       }
- 		baseURL = "/apex/Oblix_VF03CustomAssetLookup?txt=" + txtId;
+        baseURL = "/apex/Oblix_VF03CustomAssetLookup?txt=" + txtId;
       // Following is the url of Custom Lookup page. You need to change that accordingly
       var assetType = '{!asset.Asset_Type__c}';
       var categoryType = '{!asset.Sub_Category__c}'; 
       if( assetType != null && assetType != ''){
-      	baseURL += "&assetType="+assetType;
+        baseURL += "&assetType="+assetType;
       }
       if(categoryType != null && categoryType != ''){
-      	baseURL += "&subCategory="+categoryType;
-      	
+        baseURL += "&subCategory="+categoryType;
+        
       }
- 	  
+      
       // Following is the id of apex:form control "myForm". You need to change that accordingly
       baseURL = baseURL + "&frm=" + escapeUTF("{!$Component.myForm}");
       if (modified == '1') {
@@ -56,35 +56,35 @@
 </script>
   
 <apex:sectionHeader title="Project Asset"  subtitle="{!IF(asset.Id<>null, asset.Name, 'New Asset')}" />
-	<apex:actionFunction action="{!NULL}" name="changeType" reRender="myForm"/>
-	<!-- ADMIN RT  -->
-	<apex:pageBlock title="Admin RT" rendered="{!asset.RecordTypeId == rt_Admin}">
-		<apex:pageBlockButtons >
-			<apex:commandButton action="{!save}" value="Save"/>
-			<apex:commandButton action="{!Cancel}" value="Cancel"/>
-		</apex:pageBlockButtons>
-		<apex:pageBlockSection >
-				<apex:inputField value="{!asset.Name}"></apex:inputField>
-				<!-- <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField>--><!-- onChange="changeType();"-->
-		         
-		        <apex:inputField value="{!asset.Agency_Projects__c}"  />
-		        <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
-		        <apex:inputField value="{!asset.Quantity__c}"  /> 
-		        <apex:inputField value="{!asset.Channels__c}"  /> 
-		        <apex:inputField value="{!asset.Location__c}"  /> 
-		        <apex:inputField id="Asset1" value="{!asset.FULL_Description__c}"  />
-		        <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
-		        <apex:inputField value="{!asset.Additional_Description__c}"  />		
-		</apex:pageBlockSection>
-		
-	</apex:pageBlock>
+    <apex:actionFunction action="{!NULL}" name="changeType" reRender="myForm"/>
+    <!-- ADMIN RT  -->
+    <apex:pageBlock title="Admin RT" rendered="{!asset.RecordTypeId == rt_Admin}">
+        <apex:pageBlockButtons >
+            <apex:commandButton action="{!save}" value="Save"/>
+            <apex:commandButton action="{!Cancel}" value="Cancel"/>
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection >
+                <apex:inputField value="{!asset.Name}"></apex:inputField>
+                <!-- <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField>--><!-- onChange="changeType();"-->
+                 
+                <apex:inputField value="{!asset.Agency_Projects__c}"  />
+                <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
+                <apex:inputField value="{!asset.Quantity__c}"  /> 
+                <apex:inputField value="{!asset.Channels__c}"  /> 
+                <apex:inputField value="{!asset.Location__c}"  /> 
+                <apex:inputField id="Asset1" value="{!asset.FULL_Description__c}"  />
+                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                <apex:inputField value="{!asset.Additional_Description__c}"  />     
+        </apex:pageBlockSection>
+        
+    </apex:pageBlock>
     <!-- Audio Visual RT  -->
     <apex:pageBlock id="PageBlockAV" title="Project Asset" rendered="{!asset.RecordTypeId == rt_AudioVisuel}">        
       <apex:pageBlockButtons >
-			<apex:commandButton action="{!save}" value="Save"/>
-			<apex:commandButton action="{!Cancel}" value="Cancel"/>
-		</apex:pageBlockButtons>
-		
+            <apex:commandButton action="{!save}" value="Save"/>
+            <apex:commandButton action="{!Cancel}" value="Cancel"/>
+        </apex:pageBlockButtons>
+        
       <apex:pageBlockSection columns="2" title="Information">
         <apex:inputField value="{!asset.Name}"></apex:inputField>
          <apex:inputField id="Asset2" value="{!asset.FULL_Description__c}"  />
@@ -102,32 +102,32 @@
     <!-- Static Imagery RT -->
      <apex:pageBlock id="PageBlockIm" title="Project Asset" rendered="{!asset.RecordTypeId == rt_StaticImagery}">        
       <apex:pageBlockButtons >
-			<apex:commandButton action="{!save}" value="Save"/>
-			<apex:commandButton action="{!Cancel}" value="Cancel"/>
-		</apex:pageBlockButtons>
-		
+            <apex:commandButton action="{!save}" value="Save"/>
+            <apex:commandButton action="{!Cancel}" value="Cancel"/>
+        </apex:pageBlockButtons>
+        
       <apex:pageBlockSection columns="2" title="Information">
-	    <apex:inputField value="{!asset.Name}"></apex:inputField>
-	        <!-- <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField> onChange="changeType();"-->
-	         
-	         <apex:inputField value="{!asset.Additional_Description__c}"  />
-	         <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
-	         <apex:pageBlockSectionItem />
-	          <apex:inputField value="{!asset.Channels__c}"  />
-	          <apex:pageBlockSectionItem />
-	          <apex:inputField id="Asset3" value="{!asset.FULL_Description__c}"  />
-	          <apex:pageBlockSectionItem />
-	         <apex:inputField value="{!asset.Quantity__c}"  /> 
-	         <apex:pageBlockSectionItem />
-	       	 <apex:inputField value="{!asset.Agency_Projects__c}"  />
-	   </apex:pageBlockSection>
+        <apex:inputField value="{!asset.Name}"></apex:inputField>
+            <!-- <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField> onChange="changeType();"-->
+             
+             <apex:inputField value="{!asset.Additional_Description__c}"  />
+             <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
+             <apex:pageBlockSectionItem />
+              <apex:inputField value="{!asset.Channels__c}"  />
+              <apex:pageBlockSectionItem />
+              <apex:inputField id="Asset3" value="{!asset.FULL_Description__c}"  />
+              <apex:pageBlockSectionItem />
+             <apex:inputField value="{!asset.Quantity__c}"  /> 
+             <apex:pageBlockSectionItem />
+             <apex:inputField value="{!asset.Agency_Projects__c}"  />
+       </apex:pageBlockSection>
     </apex:PageBlock>
     <!-- Experiential -->
      <apex:pageBlock id="PageBlockExp" title="Project Asset" rendered="{!asset.RecordTypeId == rt_Experiential}">        
       <apex:pageBlockButtons >
-			<apex:commandButton action="{!save}" value="Save"/>
-			<apex:commandButton action="{!Cancel}" value="Cancel"/>
-		</apex:pageBlockButtons>
+            <apex:commandButton action="{!save}" value="Save"/>
+            <apex:commandButton action="{!Cancel}" value="Cancel"/>
+        </apex:pageBlockButtons>
       <apex:pageBlockSection columns="2" title="Information">
         <apex:inputField value="{!asset.Name}"></apex:inputField>
         <!-- <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField> onChange="changeType();"-->
@@ -141,16 +141,16 @@
           <apex:pageBlockSectionItem />
          <apex:inputField value="{!asset.Quantity__c}"  /> 
          <apex:pageBlockSectionItem />
-       	 <apex:inputField value="{!asset.Agency_Projects__c}"  />
+         <apex:inputField value="{!asset.Agency_Projects__c}"  />
       </apex:pageBlockSection>
     </apex:PageBlock>
     <!-- Digital -->
      <apex:pageBlock id="PageBlockDigital" title="Project Asset" rendered="{!asset.RecordTypeId == rt_Digital}">        
       <apex:pageBlockButtons >
-			<apex:commandButton action="{!save}" value="Save"/>
-			<apex:commandButton action="{!Cancel}" value="Cancel"/>
-		</apex:pageBlockButtons>
-		
+            <apex:commandButton action="{!save}" value="Save"/>
+            <apex:commandButton action="{!Cancel}" value="Cancel"/>
+        </apex:pageBlockButtons>
+        
       <apex:pageBlockSection columns="2" title="Information">
         <apex:inputField value="{!asset.Name}"></apex:inputField>
         <!-- <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField> onChange="changeType();"-->
@@ -164,7 +164,7 @@
           <apex:pageBlockSectionItem />
          <apex:inputField value="{!asset.Quantity__c}"  /> 
          <apex:pageBlockSectionItem />
-       	 <apex:inputField value="{!asset.Agency_Projects__c}"  />
+         <apex:inputField value="{!asset.Agency_Projects__c}"  />
       </apex:pageBlockSection>
     </apex:PageBlock>
   </apex:form>

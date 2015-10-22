@@ -8,19 +8,5 @@
         <plural>true</plural>
         <value>ProductCategorySubscriptions</value>
     </caseValues>
-    <fields>
-        <label><!-- MDO ID --></label>
-        <name>mdo_id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Product Category Id --></label>
-        <name>product_category_id__c</name>
-        <relationshipLabel><!-- ProductCategorySubscriptions --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Subscription Id --></label>
-        <name>subscription_id__c</name>
-        <relationshipLabel><!-- ProductCategorySubscriptions --></relationshipLabel>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

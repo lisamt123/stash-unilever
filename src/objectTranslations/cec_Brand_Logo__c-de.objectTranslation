@@ -40,15 +40,6 @@
         <plural>true</plural>
         <value><!-- Brand Logo --></value>
     </caseValues>
-    <fields>
-        <label>Land</label>
-        <name>Country__c</name>
-        <relationshipLabel>Markenlogos</relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Logo --></label>
-        <name>Logo__c</name>
-    </fields>
     <gender><!-- Neuter --></gender>
     <nameFieldLabel><!-- Brand Logo Name --></nameFieldLabel>
 </CustomObjectTranslation>

@@ -8,15 +8,5 @@
         <plural>true</plural>
         <value>Brands Users</value>
     </caseValues>
-    <fields>
-        <label><!-- Brand --></label>
-        <name>Brand__c</name>
-        <relationshipLabel><!-- Brands Users --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- User --></label>
-        <name>User__c</name>
-        <relationshipLabel><!-- Brands Users --></relationshipLabel>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

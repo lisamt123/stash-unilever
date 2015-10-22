@@ -8,9 +8,5 @@
         <plural>true</plural>
         <value>isllBrainResultsSettings</value>
     </caseValues>
-    <fields>
-        <label><!-- NumericValue --></label>
-        <name>NumericValue__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

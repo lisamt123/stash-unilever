@@ -8,13 +8,5 @@
         <plural>true</plural>
         <value>IPM MCO Short Names</value>
     </caseValues>
-    <fields>
-        <label><!-- Country Group --></label>
-        <name>Country_Group__c</name>
-    </fields>
-    <fields>
-        <label><!-- Short Name --></label>
-        <name>Short_Name__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

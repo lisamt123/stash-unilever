@@ -1,4 +1,4 @@
-public with sharing class Oblix_Ctrl02OverrideAssetNew {
+public with sharing class Oblix_Ctrl02OverrideAssetNew { 
     
     public Oblix_Project_Assets__c asset {get;set;}
     public Id rt_AudioVisuel {get;set;}

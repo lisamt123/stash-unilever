@@ -8,13 +8,5 @@
         <plural>true</plural>
         <value>Subscriptions</value>
     </caseValues>
-    <fields>
-        <label><!-- MDO ID --></label>
-        <name>mdo_id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Subscriber --></label>
-        <name>subscriber__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

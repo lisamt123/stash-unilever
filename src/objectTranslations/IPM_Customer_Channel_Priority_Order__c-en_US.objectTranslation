@@ -8,9 +8,5 @@
         <plural>true</plural>
         <value>IPM Customer Channel Priority Order</value>
     </caseValues>
-    <fields>
-        <label><!-- Priority Order Value --></label>
-        <name>Priority_Order_Value__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

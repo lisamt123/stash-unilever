@@ -8,14 +8,5 @@
         <plural>true</plural>
         <value>Brand Logos</value>
     </caseValues>
-    <fields>
-        <label><!-- Country --></label>
-        <name>Country__c</name>
-        <relationshipLabel><!-- Brand Logos --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Logo --></label>
-        <name>Logo__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

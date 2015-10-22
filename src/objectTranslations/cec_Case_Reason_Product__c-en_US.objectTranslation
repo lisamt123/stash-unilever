@@ -8,26 +8,5 @@
         <plural>true</plural>
         <value>Case Reason Products</value>
     </caseValues>
-    <fields>
-        <label><!-- Case Product --></label>
-        <name>Case_Product__c</name>
-        <relationshipLabel><!-- Case Reason Products --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Reason Code --></label>
-        <name>Reason_Code__c</name>
-        <relationshipLabel><!-- Case Reason Products --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Unique ID --></label>
-        <name>Unique_ID__c</name>
-    </fields>
-    <layouts>
-        <layout>Reason Product Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

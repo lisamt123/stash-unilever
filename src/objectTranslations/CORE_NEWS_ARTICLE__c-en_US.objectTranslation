@@ -8,13 +8,5 @@
         <plural>true</plural>
         <value>CORE NEWS ARTICLE</value>
     </caseValues>
-    <fields>
-        <label><!-- Checkbox Value --></label>
-        <name>Checkbox_Value__c</name>
-    </fields>
-    <fields>
-        <label><!-- Text Value --></label>
-        <name>Text_Value__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

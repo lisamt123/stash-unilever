@@ -8,9 +8,5 @@
         <plural>true</plural>
         <value>AF_TriggerDate</value>
     </caseValues>
-    <fields>
-        <label><!-- Date --></label>
-        <name>Date__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

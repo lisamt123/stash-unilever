@@ -8,15 +8,5 @@
         <plural>true</plural>
         <value>IPM_CompanyUserAssociation</value>
     </caseValues>
-    <fields>
-        <label><!-- Company Card --></label>
-        <name>IPM_Company_Card__c</name>
-        <relationshipLabel><!-- IPM_CompanyUserAssociation --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- User Profile --></label>
-        <name>IPM_User_Profile__c</name>
-        <relationshipLabel><!-- IPM_CompanyUserAssociation --></relationshipLabel>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

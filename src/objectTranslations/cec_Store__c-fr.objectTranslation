@@ -8,19 +8,7 @@
         <plural>true</plural>
         <value><!-- Store --></value>
     </caseValues>
-    <fields>
-        <label>Pays</label>
-        <name>Country__c</name>
-        <relationshipLabel>Magasins</relationshipLabel>
-    </fields>
     <gender><!-- Masculine --></gender>
-    <layouts>
-        <layout>Store Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Store Name --></nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

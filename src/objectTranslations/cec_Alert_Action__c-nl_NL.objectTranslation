@@ -8,67 +8,6 @@
         <plural>true</plural>
         <value><!-- Alert Action --></value>
     </caseValues>
-    <fields>
-        <label><!-- Alert Rule --></label>
-        <name>Alert_Rule_Id__c</name>
-        <relationshipLabel><!-- Alert Actions --></relationshipLabel>
-    </fields>
-    <fields>
-        <help><!-- Developer name of the email template --></help>
-        <label>Naam Email Template</label>
-        <name>Email_Template_Name__c</name>
-    </fields>
-    <fields>
-        <label><!-- Popup Message --></label>
-        <name>Popup_Message__c</name>
-    </fields>
-    <fields>
-        <label><!-- Questionnaire URL --></label>
-        <name>Questionnaire_URL__c</name>
-    </fields>
-    <fields>
-        <label>Aan</label>
-        <name>To__c</name>
-    </fields>
-    <fields>
-        <label><!-- Type --></label>
-        <name>Type__c</name>
-        <picklistValues>
-            <masterLabel>Email</masterLabel>
-            <translation><!-- Email --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Popup</masterLabel>
-            <translation><!-- Popup --></translation>
-        </picklistValues>
-    </fields>
     <gender><!-- Neuter --></gender>
-    <layouts>
-        <layout>Alert Action Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Alert Action Name --></nameFieldLabel>
-    <validationRules>
-        <errorMessage>Gelieve een Alert Type toe te voegen</errorMessage>
-        <name>Alert_Type_Mandatory_Validation</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage>Gelieve een naam voor Email Template toe te voegen, type is &apos;Email&apos;</errorMessage>
-        <name>Email_Template_Name_Validation</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage><!-- Please enter value for Popup message as the type is &apos;Popup&apos; --></errorMessage>
-        <name>Popup_Message_Validation</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage>Gelieve een waarde toe te voegen voor de URL  vragenlijst,  omdat het  type is &apos;Vragenlijst&apos;</errorMessage>
-        <name>Questionnaire_URL_Validation</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage>Gelieve een waarde toe te voegen aan het &apos;Aan&apos; veld ,Type is &apos;Email&apos;</errorMessage>
-        <name>To_field_validation</name>
-    </validationRules>
 </CustomObjectTranslation>

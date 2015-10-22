@@ -8,13 +8,5 @@
         <plural>true</plural>
         <value>IPM Feedback</value>
     </caseValues>
-    <fields>
-        <label><!-- Summary --></label>
-        <name>Summary__c</name>
-    </fields>
-    <fields>
-        <label><!-- Title --></label>
-        <name>Title__c</name>
-    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

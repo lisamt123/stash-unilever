@@ -8,22 +8,5 @@
         <plural>true</plural>
         <value>Feedback</value>
     </caseValues>
-    <fields>
-        <label><!-- Course Occurence --></label>
-        <name>FA_Course_Occurence__c</name>
-        <relationshipLabel><!-- Feedback --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Participant --></label>
-        <name>FA_Participant__c</name>
-        <relationshipLabel><!-- Feedback --></relationshipLabel>
-    </fields>
-    <layouts>
-        <layout>FA_Feedback Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
