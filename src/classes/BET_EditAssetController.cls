@@ -122,23 +122,24 @@ public with sharing class BET_EditAssetController {
     }
 
     private Boolean setPresentation(Boolean updateBet,Id caId){
+        Boolean updBet = false;
         if(file.Studio_Asset_Type__c == 'Brand Experience Presentation'){
             file.Think_Big_Promotion_Date__c = Datetime.now();
             file.Big_Think_Pack__c = true;
             if (bet.Presentation_Id__c != caId) {
                 bet.Presentation_Id__c = caId;
-                updateBet = true;
+                updBet = true;
             }
             file.Media_Type__c = 'BET Presentation';
             isPresentationUploaded = true;
         }else{
             if (bet.Presentation_Id__c == caId) {
                 bet.Presentation_Id__c = null;
-                updateBet = true;
+                updBet = true;
                 isPresentationUploaded = true;
             }
         }
-        return updateBet;
+        return updBet == false ? updateBet : updBet;
     }
 
     private PageReference udateAsset(Boolean updateBet){

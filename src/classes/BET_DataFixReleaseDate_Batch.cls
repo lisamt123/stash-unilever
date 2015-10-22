@@ -31,7 +31,7 @@ global class BET_DataFixReleaseDate_Batch implements Database.Batchable<sObject>
             assets.addAll(bet.Assets__r);
         }
         update bets;
-        BET_AssetService.updateFileId(assets);
+        update BET_AssetService.updateFileId(assets);
         System.debug('Exit execute : ' + bets);
     }
     
