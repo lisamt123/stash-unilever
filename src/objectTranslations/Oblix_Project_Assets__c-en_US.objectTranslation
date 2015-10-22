@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>SWOP Project Assets</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>SWOP Project Assets</value>
+    </caseValues>
+    <fields>
+        <help><!-- The date the asset was delivered --></help>
+        <label><!-- Actual Delivery Date --></label>
+        <name>Actual_Delivery_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Add further details of the required asset to be produced --></help>
+        <label><!-- Additional Description --></label>
+        <name>Additional_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Agency Projects --></label>
+        <name>Agency_Projects__c</name>
+        <relationshipLabel><!-- SWOP Project Assets --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Asset Description --></label>
+        <name>Asset_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset Scoring Number --></label>
+        <name>Asset_Scoring_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset Total Score --></label>
+        <name>Asset_Total_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset Type --></label>
+        <name>Asset_Type__c</name>
+        <picklistValues>
+            <masterLabel>Audio Visual</masterLabel>
+            <translation><!-- Audio Visual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital</masterLabel>
+            <translation><!-- Digital --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Experiential</masterLabel>
+            <translation><!-- Experiential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Static Imagery</masterLabel>
+            <translation><!-- Static Imagery --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Channels --></label>
+        <name>Channels__c</name>
+        <picklistValues>
+            <masterLabel>Cinema</masterLabel>
+            <translation><!-- Cinema --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cut Downs &amp; Tags</masterLabel>
+            <translation><!-- Cut Downs &amp; Tags --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Instore</masterLabel>
+            <translation><!-- Instore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KV</masterLabel>
+            <translation><!-- KV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mobile</masterLabel>
+            <translation><!-- Mobile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Online</masterLabel>
+            <translation><!-- Online --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outdoor</masterLabel>
+            <translation><!-- Outdoor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Print</masterLabel>
+            <translation><!-- Print --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Radio</masterLabel>
+            <translation><!-- Radio --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Research Materials</masterLabel>
+            <translation><!-- Research Materials --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TV</masterLabel>
+            <translation><!-- TV --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Filter on the word &quot;Score&quot; to capture full descriptions of the asset --></help>
+        <label><!-- Full Description --></label>
+        <name>FULL_Description__c</name>
+        <relationshipLabel><!-- SWOP Project Assets --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Oblix Cloned From Parent Asset --></label>
+        <name>OblixClonedFromParentAsset__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quantity --></label>
+        <name>Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Category --></label>
+        <name>Sub_Category__c</name>
+        <picklistValues>
+            <masterLabel>Adaptation</masterLabel>
+            <translation><!-- Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Adaptations &amp; Reedits</masterLabel>
+            <translation><!-- Adaptations &amp; Reedits --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Always on Social</masterLabel>
+            <translation><!-- Always on Social --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Audio</masterLabel>
+            <translation><!-- Audio --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cut Downs &amp; Tags</masterLabel>
+            <translation><!-- Cut Downs &amp; Tags --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Data, Analytics, Dashboards, Reporting</masterLabel>
+            <translation><!-- Data, Analytics, Dashboards, Reporting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Adaptation</masterLabel>
+            <translation><!-- Digital Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital Campaign Assets</masterLabel>
+            <translation><!-- Digital Campaign Assets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Origination</masterLabel>
+            <translation><!-- Origination --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Specialist Digital Requirements</masterLabel>
+            <translation><!-- Specialist Digital Requirements --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stimulus Requirements</masterLabel>
+            <translation><!-- Stimulus Requirements --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- When is this asset due to be delivered? --></help>
+        <label><!-- Target Delivery Date --></label>
+        <name>Target_Delivery_Date__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Admin --></label>
+        <name>Admin</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Audio Visual --></label>
+        <name>Audio_Visual</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Digital --></label>
+        <name>Digital</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Experiential --></label>
+        <name>Experiential</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Static Imagery --></label>
+        <name>Static_Imagery</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

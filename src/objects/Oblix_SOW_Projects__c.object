@@ -1,0 +1,1420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>Oblix_VF04OverrideProjectNew</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>Oblix_VF04OverrideProjectNew</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Oblix Project - SOW Projects for a Financial Year. Also copies of the projects at certain points in time through the FY are stored in this object (and Related objects) to form a comparison</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Agency_Percentage_of_Fees_to_this_FY__c</fullName>
+        <defaultValue>(0)</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the percentage of Fee targeted for this FY</inlineHelpText>
+        <label>Agency Percentage of Fees to this FY</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Brand_Led_Growth__c</fullName>
+        <description>Business Value Creation:</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Identifying priorities for the brand based on the total turnover the campaign is protecting (Select this option, only if incremental turnover value is unavailable)</inlineHelpText>
+        <label>Business Value</label>
+        <picklist>
+            <controllingField>Innovation_Projects__c</controllingField>
+            <picklistValues>
+                <fullName>&lt;€100m</fullName>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>€100-€200m</fullName>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>€200-€300m</fullName>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>€300-€400m</fullName>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>&gt;€400m</fullName>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Incremental Turnover &lt;10M</fullName>
+                <controllingFieldValues>Innovation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Incremental Turnover 10M - 20M</fullName>
+                <controllingFieldValues>Innovation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Incremental Turnover 20M - 30M</fullName>
+                <controllingFieldValues>Innovation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Incremental Turnover 30M - 40M</fullName>
+                <controllingFieldValues>Innovation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Incremental Turnover &gt;40M</fullName>
+                <controllingFieldValues>Innovation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Budget_Burnt_to_date__c</fullName>
+        <description>How much of the budget has been burnt to date</description>
+        <externalId>false</externalId>
+        <label>Budget Burnt to date</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Campaign_Idea__c</fullName>
+        <description>Strategy &amp; Creative  - Campaign Idea</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Strategic and creative requirement to develop a new CAMPAIGN IDEA (based on existing brand campaign idea BCI)</inlineHelpText>
+        <label>Campaign Idea</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Existing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New – One channel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New – Multi channel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Countries__c</fullName>
+        <externalId>false</externalId>
+        <label>Countries</label>
+        <picklist>
+            <controllingField>Region__c</controllingField>
+            <picklistValues>
+                <fullName>Lookup to the MDO Geographies objects</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Algeria</fullName>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Angola</fullName>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Argentina</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Australia</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Austria</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Azerbaijan</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bahrain</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bangladesh</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Belarus</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Belgium</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bermuda</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bolivia</fullName>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bosnian</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Botswana</fullName>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brazil</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bulgaria</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cambodia</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canada</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chile</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>China</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Colombia</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Congo (Dem.Rep)</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Costa Rica</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Croatia</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cyprus</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Czech Rep</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Denmark</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dominican Rep</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ecuador</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Egypt</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EEC</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Estonia</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ethiopia</fullName>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fiji</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finland</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>France</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>French Africa</fullName>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Germany</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ghana</fullName>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Greece</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Guatemala</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Honduras</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hong Kong</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hungary</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Iceland</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>India</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Indonesia</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Iran</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Iraq</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ireland</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Israel</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Italy</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Jamaica</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Japan</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Jordan</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Kazakhstan</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Kenya</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Korea</fullName>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Kuwait</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Latvia</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lebanon</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lithuania</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Malawi</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Malaysia</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mexico</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Morocco</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mozambique</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Myanmar (Burma)</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Namibia</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nepal</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Netherlands</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Netherland Ant</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Zealand</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nicaragua</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nigeria</fullName>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Norway</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oman</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pakistan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Panama</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Paraguay</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Peru</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Philippines</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <controllingFieldValues>Latin America</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Poland</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Portugal</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Qatar</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Romania</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Russia/CIS</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rwanda</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Salvador</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Saudi Arabia</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Serbia</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Singapore</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Slovakia</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Slovenia</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Africa</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spain</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sri Lanka</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sweden</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Switzerland</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Taiwan</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tanzania</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thailand</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Trinidad</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tunisia</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkey</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Uganda</fullName>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UAE</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UK</fullName>
+                <controllingFieldValues>Europe</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ukraine</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Uruguay</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>USA</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Venezuela **</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vietnam</fullName>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Zambia</fullName>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Zimbabwe ***</fullName>
+                <controllingFieldValues>Africa</controllingFieldValues>
+                <controllingFieldValues>Global</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Date_for_Assets_to_be_in_BET__c</fullName>
+        <description>Date for Assets to be in BET</description>
+        <externalId>false</externalId>
+        <label>Date for Assets to be in BET</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>Description of the project</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Financial_Year__c</fullName>
+        <externalId>false</externalId>
+        <label>Marketing SOW</label>
+        <referenceTo>Marketing_SOW__c</referenceTo>
+        <relationshipName>Marketing_Projects</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>First_Air_Date__c</fullName>
+        <description>Date when deliverable first aired</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When is the first airing?</inlineHelpText>
+        <label>First Air Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Innovation_Projects__c</fullName>
+        <description>Business Value Creation:INNOVATION PROJECTS</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Identifying priorities for the brand based on the incremental turnover the project drives</inlineHelpText>
+        <label>Business Value Creation</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Brand Led Growth</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Innovation</fullName>
+                <default>true</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Is_this_High_Risk__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>High risk item/production true/false</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this item/production/activity high risk?</inlineHelpText>
+        <label>Is this High Risk?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_type_of_item_usually_poduced_by_this__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check if item is usual/unusual for agency to produce. Eg. packaging brief to digital agency</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Item usual for this agency to produce?</inlineHelpText>
+        <label>Item usual for this agency to produce?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Jobs_to_be_Done__c</fullName>
+        <description>Low level detail of items that need to be completed by the agencies -- Outcomes</description>
+        <externalId>false</externalId>
+        <label>Jobs to be Done</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>List_Preview_Markets__c</fullName>
+        <description>Multipicker of region and country for preview</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose region and countrys for previews</inlineHelpText>
+        <label>List Preview Markets</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Africa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Asia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Number_of_Markets_for_Preview__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Number of preview markets</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the number of markets the previews will appear in</inlineHelpText>
+        <label>Number of Preview Markets</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Previews__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Number of Previews</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter number of previews required</inlineHelpText>
+        <label>Number of Previews</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OblixClonedFromParentProject__c</fullName>
+        <externalId>false</externalId>
+        <label>Oblix Cloned From Parent Project</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OblixCountries__c</fullName>
+        <externalId>false</externalId>
+        <label>Countries</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>OblixProjectSplitPercentage_Comment__c</fullName>
+        <externalId>false</externalId>
+        <label>Oblix Project Split Percentage Comment</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>OblixRegion__c</fullName>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Oblix_ProjectBoxNumber__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Box Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Other_Kinds_of_Research__c</fullName>
+        <description>Text field for capturing other types for research or notes</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Type in any other types of research to be used</inlineHelpText>
+        <label>Other Kinds of Research</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Overall_Project_Complete__c</fullName>
+        <description>Estimate of how complete the project is</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Estimate how complete the project is?</inlineHelpText>
+        <label>Overall Project Complete</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Percentage_of_Fee_for_this_FY__c</fullName>
+        <defaultValue>(0)</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the percentage of the Total Project Fees that is targeted to be paid this FY?</inlineHelpText>
+        <label>Percentage of Fee for this FY</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Platform__c</fullName>
+        <externalId>false</externalId>
+        <label>Platform</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Preview_Feedback__c</fullName>
+        <description>Preview Feedback</description>
+        <externalId>false</externalId>
+        <label>Preview Feedback</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Red</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Amber</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Green</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Production_Completion_Date__c</fullName>
+        <description>Date of production completion</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When will the production be completed by?</inlineHelpText>
+        <label>Production Completion Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ProjectTotalAssetscore__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Total Asset score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Completion_Date__c</fullName>
+        <description>date of project completion</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When will the project be completed?</inlineHelpText>
+        <label>Project Completion Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Project_Finish_Date__c</fullName>
+        <description>Date of project completion</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When will the project be completed by?</inlineHelpText>
+        <label>Project Finish Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Project_Priority__c</fullName>
+        <description>Current project priority score -</description>
+        <externalId>false</externalId>
+        <label>Project Priority</label>
+        <picklist>
+            <picklistValues>
+                <fullName>High Gold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Med Gold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Med Silver</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low Silver</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low Bronze</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project_Scale_1__c</fullName>
+        <description>Geographic scale
+ - Number of Markets</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Geographic coverage (number of locations that will execute the campaign)</inlineHelpText>
+        <label>Project Scale 1: Geographic coverage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Local campaign, single language only</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local / regional campaign, mutiple languages (5)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Multiple countries (5-10), multiple language (5-10)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Multiple countries (11-15), mutiple language (c.15)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global campaign/s suitable for  &gt;15 number of markets</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project_Scale_2__c</fullName>
+        <description>Agency Hubs or partners</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Agency involvement required to manage the scale of the project effectively. (eg/ number of lead markets to be consulted or Lead agency coordinating among many other suppliers/ partners.)</inlineHelpText>
+        <label>Project Scale 2: Agecny Hubs</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1 location</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Up to 2 locations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Up to 3 locations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Up to 4 locations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Up to 5 locations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project_Stage__c</fullName>
+        <description>The high level stages for the project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the stage that the project is currently within</inlineHelpText>
+        <label>Project Stage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Strategy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Research</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On hold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project_Start_Date__c</fullName>
+        <description>Date project starts</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When will the project commence?</inlineHelpText>
+        <label>Project Start Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Region__c</fullName>
+        <description>The project regional selection</description>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Africa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Latin America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NAMET &amp; RUB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>North Asia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SEAA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Asia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Should_legal_review_this_project__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>should legal check true/false</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Should legal review this project?</inlineHelpText>
+        <label>Should legal review this project?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Stimulus_Requirements__c</fullName>
+        <description>Picklist of research types</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose the types of research you will use</inlineHelpText>
+        <label>Stimulus Requirements</label>
+        <picklist>
+            <picklistValues>
+                <fullName>qual (eg stil-o-matics)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>preview (eg animatics)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Timescale_Notes__c</fullName>
+        <description>Notes relating to timescale</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter any notes relevant to the timescale</inlineHelpText>
+        <label>Timescale Notes</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Total_Adapt_Fees__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Adapt Fees</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Digital_Fee__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Digital Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Fees_for_Project__c</fullName>
+        <description>The total cost of the project</description>
+        <externalId>false</externalId>
+        <label>Total Fees for Project</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>SWOP Projects</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Agency Projects Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>SWOP Projects</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>
