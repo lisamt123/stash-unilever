@@ -989,11 +989,14 @@
         <members>uw_testTrigger</members>
         <members>uw_uploadBCImage</members>
         <members>BET_UpdateExpectedAssetsController</members>
+		<members>BET_UpdateExpectedAssetsController_Test</members>
 		<members>BET_MultiUploadAssetsController</members>
 		<members>BET_MultiUploadAssetsControllerTest</members>
 		<members>BET_BETHardDelete_BatchSchedule</members>
 		<members>BET_BETHardDelete_BatchSchedule_Test</members>
 		<members>BET_CommonServiceHelper</members>
+		<members>BET_AssetsOrderController</members>
+		<members>BET_AssetsOrderController_Test</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -1525,6 +1528,7 @@
         <members>uw_CustomAssetUpload</members>
         <members>BET_UpdateExpectedAssets</members>
 		<members>BET_MultiUploadAssets</members>
+		<members>BET_AssetsOrder</members>
         <name>ApexPage</name>
     </types>
     <types>

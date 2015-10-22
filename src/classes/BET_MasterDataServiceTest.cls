@@ -15,6 +15,7 @@ public class BET_MasterDataServiceTest {
 		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
 		List<sObject> categories = BET_MasterDataService.getBETCategoriesForGivenGroup(categoryGroup.id);
 		System.assertEquals(categories.get(0).id,category.id,'Category id must match');
+		System.assert(BET_MasterDataService.getBETCategoriesForGivenGroup(null).isEmpty(),'Result set should be empty');
 		Test.stopTest();
 	}
 
@@ -81,6 +82,28 @@ public class BET_MasterDataServiceTest {
 		System.assertEquals(BET_MasterDataService.getAllAvailableUniqueBrandsForCategory(category.id).size(),0,'There should be no available brands for category');
 		BET_TestUtils.createBrandPosition(category);
 		System.assertEquals(BET_MasterDataService.getAllAvailableUniqueBrandsForCategory(category.id).size(),1,'There should be one available brand for category');
+		Test.stopTest();
+	}
+
+	@isTest static void isFabricConditionersCategoryTest(){
+		Test.startTest();
+		MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
+		MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup);
+		category.Name = BET_MasterDataService.LAUNDRY;
+		update category;
+		System.assert(BET_MasterDataService.isFabricConditionersCategory(category.id),'This should be fabric conditioners category');
+		Test.stopTest();
+	}
+
+	@isTest static void isValidRelationWithBrandPositionAndCategoryNullTest(){
+		Test.startTest();
+		System.assert(!BET_MasterDataService.isValidRelationWithBrandPositionAndCategory(null,null),'Should be not valid');
+		Test.stopTest();
+	}
+
+	@isTest static void isValidRelationWithCategoryAndCategoryGroupNullTest(){
+		Test.startTest();
+		System.assert(!BET_MasterDataService.isValidRelationWithCategoryAndCategoryGroup(null,null),'Should be not valid');
 		Test.stopTest();
 	}
 	

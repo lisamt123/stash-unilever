@@ -1,6 +1,8 @@
 @isTest(seeAllData=false)
 private class BET_AccessServiceTest {
 	
+	private static final String EXCEPTION_MSG = 'There should be exception thrown';
+
 	@isTest static void HasUserAccessNoAccessTest() {
 		Test.startTest();
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
@@ -89,6 +91,31 @@ private class BET_AccessServiceTest {
 		}catch(BET_CustomBETException e){
 			System.assertEquals(e.getMessage(),'BET record not found for given id null','Bet record should not be found');
 		}
+		Test.stopTest();
+	}
+
+	@isTest static void checkEmailUnileverTest(){
+		Test.startTest();
+		System.assert(BET_AccessService.checkEmail('mbluj@unilever.com') != null,'There should be error message');
+		Test.stopTest();
+	}
+
+	@isTest static void validateAndGetUserIdNullTest(){
+		Test.startTest();
+		try{
+			BET_AccessService.validateAndGetUserId(null,null);
+			System.assertEquals(0,1,EXCEPTION_MSG);
+		}catch(Exception e){
+			System.assertEquals(1,1,EXCEPTION_MSG);
+		}
+
+		try{
+			BET_AccessService.validateAndGetUserId('m.bluj@polsource.com',null);
+			System.assertEquals(0,1,EXCEPTION_MSG);
+		}catch(Exception e){
+			System.assertEquals(1,1,EXCEPTION_MSG);
+		}
+
 		Test.stopTest();
 	}
 	
