@@ -225,6 +225,7 @@
         <members>BET_DataFixReleaseDate_BatchTest</members>
         <members>BET_EditAssetController</members>
         <members>BET_EditAssetController_Test</members>
+		<members>BET_EditAssetController1_Test</members>
         <members>BET_EmailNotificationService</members>
         <members>BET_EmailNotificationServiceTest</members>
         <members>BET_ExpectedAssetsController</members>
