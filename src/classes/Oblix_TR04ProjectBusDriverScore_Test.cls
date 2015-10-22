@@ -12,7 +12,7 @@ private class Oblix_TR04ProjectBusDriverScore_Test {
           TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
           UserName='testuser@test123321.com');//,AF_Brand__c='Test Brand1',AF_Category__c='Test Beverages1'
          insert u; 
-         
+          
          System.runAs(u){
             Oblix_Calculator__c calculatorRange = new Oblix_Calculator__c();
                 calculatorRange.RecordTypeId = Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Box_Range');

@@ -1,3 +1,20 @@
+/** 
+    About
+    -----
+    Description: Class Oblix_Ctrl04OverrideProjectNew
+    Created for: Oblix Unilever Project
+    Create date: 10/ 2015
+    Created by Jamal Rida
+    Author : @Jamal
+    Details
+    -------
+    This class is  : Used as a  class to Override New/Edit of Project
+                  		
+            Functionnalities : 
+                    
+    Update History
+    --------------    
+*/ 
 public with sharing class Oblix_Ctrl04OverrideProjectNew { 
 	public Oblix_SOW_Projects__c project {get;set;}
 	public String selectedCountries {get;set;}

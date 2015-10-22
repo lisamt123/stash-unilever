@@ -49,7 +49,7 @@ private class Oblix_TR03AssetPrScoreCalculator_Test {
         		System.debug('###assetRetrieve.Asset_Scoring_Number__c : '+assetRetrieve.Asset_Scoring_Number__c);
         		System.debug('###projectRetrieve.ProjectTotalAssetScore__c : '+projectRetrieve.ProjectTotalAssetScore__c);
         		System.assertequals(assetRetrieve.Asset_Scoring_Number__c, projectRetrieve.ProjectTotalAssetScore__c);
-        		
+        		 
         		asset.FULL_Description__c = assetScoring2.Id;
         		update asset;  
         		

@@ -15,7 +15,7 @@
                     
     Update History
     --------------    
-*/
+*/ 
 public with sharing class Oblix_TR03AssetProjectScoreCalculator {
 	
 	public static void CalculateProjectScore(List<Oblix_Project_Assets__c> lstAsset){

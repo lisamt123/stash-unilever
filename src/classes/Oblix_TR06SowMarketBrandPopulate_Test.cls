@@ -13,7 +13,7 @@ private class Oblix_TR06SowMarketBrandPopulate_Test {
 	      UserName='testuser@test123321.com');//,AF_Brand__c='Test Brand1',AF_Category__c='Test Beverages1'
 	     insert u; 
 	     
-	     System.runAs(u){
+	     System.runAs(u){ 
 	     	MDO_Brand__c brand = new MDO_Brand__c();
 	     		brand.Name = 'Food';
 	     		brand.status__c = 'active';

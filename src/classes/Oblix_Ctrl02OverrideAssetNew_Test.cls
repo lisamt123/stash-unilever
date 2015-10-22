@@ -1,6 +1,6 @@
 @isTest 
 private class Oblix_Ctrl02OverrideAssetNew_Test {
-
+ 
     static testMethod void myUnitTest() {
         // TO DO: implement unit test
         Profile p=[Select Id from Profile where Name='System Administrator' or Name='Système Administrateur'];       

@@ -13,7 +13,7 @@ public with sharing class Oblix_Ctrl02OverrideAssetNew {
          if(!System.Test.isRunningTest()){
              controller.addFields(new List<String>{'Sub_Category__c', 'Asset_Type__c', 'Agency_Projects__c'});
          }
-        
+         
          this.asset  = (Oblix_Project_Assets__c) controller.getRecord();
          agencyid = asset.Agency_Projects__c;
          rt_AudioVisuel = Oblix_Utils.MapRecordType('Oblix_Project_Assets__c').get('Audio_Visual'); 

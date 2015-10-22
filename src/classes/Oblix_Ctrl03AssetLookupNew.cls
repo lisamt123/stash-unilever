@@ -14,7 +14,7 @@
                     
     Update History
     --------------    
-*/
+*/ 
 public with sharing class Oblix_Ctrl03AssetLookupNew {
 	public String searchString{get;set;}
 	public String subCategory{get;set;}

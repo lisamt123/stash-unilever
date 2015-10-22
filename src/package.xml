@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>Oblix_Ctrl001DeepCloneSOW_CC</members>
+        <members>Oblix_Ctrl001DeepCloneSOW_Test_CC</members>
+        <members>Oblix_Ctrl02OverrideAssetNew</members>
+        <members>Oblix_Ctrl02OverrideAssetNew_Test</members>
+        <members>Oblix_Ctrl03AssetLookupNew</members>
+        <members>Oblix_Ctrl03AssetLookupNew_Test</members>
+        <members>Oblix_Ctrl04Bis_OverOtherItemsNews_Test</members>
+        <members>Oblix_Ctrl04Bis_OverrideOtherItemsNews</members>
+        <members>Oblix_Ctrl04OverrideProjectNew</members>
+        <members>Oblix_Ctrl04OverrideProjectNew_Test</members>
+        <members>Oblix_TR01SOWMarkingSharing_Test</members>
+        <members>Oblix_TR02SubmitSOWForApproval</members>
+        <members>Oblix_TR02SubmitSOWForApproval_Test</members>
+        <members>Oblix_TR03AssetPrScoreCalculator_Test</members>
+        <members>Oblix_TR03AssetProjectScoreCalculator</members>
+        <members>Oblix_TR04ProjectBusDriverScore_Test</members>
+        <members>Oblix_TR04ProjectBusinessDriverScore</members>
+        <members>Oblix_TR05SOWSplitProjectAvoid</members>
+        <members>Oblix_TR05SOWSplitProjectAvoid_Test</members>
+        <members>Oblix_TR06SowMarketBrandPopulate</members>
+        <members>Oblix_TR06SowMarketBrandPopulate_Test</members>
+        <members>Oblix_Utils</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
         <members>Oblix_VF02OverrideAsetNewLookup</members>
+        <members>Oblix_VF03CustomAssetLookup</members>
         <members>Oblix_VF04OverrideProjectNew</members>
         <members>Oblix_VF4Bis_OverrideOtherItemsNews</members>
         <name>ApexPage</name>

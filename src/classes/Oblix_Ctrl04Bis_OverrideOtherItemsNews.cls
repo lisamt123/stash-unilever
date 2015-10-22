@@ -14,7 +14,7 @@
                     
     Update History
     --------------    
-*/
+*/ 
 public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
 	private List<Oblix_Calculator__c> lstCalculatorRate = new List<Oblix_Calculator__c>();
 	public Marketing_Basics__c OItem {get;set;}

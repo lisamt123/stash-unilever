@@ -11,7 +11,7 @@ private class Oblix_TR05SOWSplitProjectAvoid_Test {
           LocaleSidKey='en_US', ProfileId = p.Id,firstname='sf test one', 
           TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
           UserName='testuser@test123321.com');//,AF_Brand__c='Test Brand1',AF_Category__c='Test Beverages1'
-         insert u; 
+         insert u;  
          
          System.runAs(u){
                 Marketing_SOW__c marketingSow = new Marketing_SOW__c();
