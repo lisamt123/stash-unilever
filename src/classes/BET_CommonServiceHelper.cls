@@ -1,3 +1,16 @@
+/**********************************************************************
+Name: BET_CommonServiceHelper
+Copyright © 2014 Unilever.
+======================================================
+==========================================================
+Purpose: Serviece helper class
+==========================================================
+History
+-------
+VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
+1.0     Michal Bluj             21/10/2015      Initial
+***********************************************************************/
+/* Sharing setting taken from 'parent' class */
 public class BET_CommonServiceHelper {
 
 	private BET_CommonServiceHelper() {}

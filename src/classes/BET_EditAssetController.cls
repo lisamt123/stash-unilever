@@ -93,7 +93,10 @@ public with sharing class BET_EditAssetController {
             }
             return null;
         }  
+        return proceedAssetUpdate();
+    }
 
+    private PageReference proceedAssetUpdate(){
         Boolean updateBet = false;  
 
         if(file.Sub_Function__c == 'Brand Development' && file.Status__c == 'Approved'){
@@ -113,6 +116,12 @@ public with sharing class BET_EditAssetController {
             caId = ca.Id;
         }
 
+        updateBet = setPresentation(updateBet,caId);
+
+        return udateAsset(updateBet);
+    }
+
+    private Boolean setPresentation(Boolean updateBet,Id caId){
         if(file.Studio_Asset_Type__c == 'Brand Experience Presentation'){
             file.Think_Big_Promotion_Date__c = Datetime.now();
             file.Big_Think_Pack__c = true;
@@ -129,7 +138,10 @@ public with sharing class BET_EditAssetController {
                 isPresentationUploaded = true;
             }
         }
+        return updateBet;
+    }
 
+    private PageReference udateAsset(Boolean updateBet){
         Savepoint sp = Database.setSavepoint();
         try {
             if (Test.isRunningTest() && throwUTException == 1) {
@@ -144,10 +156,8 @@ public with sharing class BET_EditAssetController {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, e.getMessage()));  
             return null;
         }
-
         runJsSuccess = true;
-
-        return null;           
+        return null;       
     }
 
     private Boolean brandExperiencePresentation(){

@@ -225,6 +225,7 @@
         <members>BET_DataFixReleaseDate_BatchTest</members>
         <members>BET_EditAssetController</members>
         <members>BET_EditAssetController_Test</members>
+		<members>BET_EditAssetController1_Test</members>
         <members>BET_EmailNotificationService</members>
         <members>BET_EmailNotificationServiceTest</members>
         <members>BET_ExpectedAssetsController</members>
@@ -249,6 +250,7 @@
         <members>BET_ManageMembersController_Test</members>
         <members>BET_ManageMembersController_Test2</members>
         <members>BET_ManageMembersController_Test3</members>
+		<members>BET_ManageMembersService</members>
         <members>BET_MasterDataService</members>
         <members>BET_MasterDataServiceTest</members>
         <members>BET_MemberBucketWrapper</members>
@@ -1809,6 +1811,7 @@
         <members>uw_BET__c.uw_Brand__c</members>
 		<members>uw_BET__c.Deletion_Date__c</members>
 		<members>uw_BET__c.Is_Deleted__c</members>
+		<members>uw_Asset__c.File_Id__c</members>
         <name>CustomField</name>
     </types>
     <types>
