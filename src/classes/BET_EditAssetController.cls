@@ -139,7 +139,7 @@ public with sharing class BET_EditAssetController {
                 isPresentationUploaded = true;
             }
         }
-        return updBet == false ? updateBet : updBet;
+        return !updBet ? updateBet : updBet;
     }
 
     private PageReference udateAsset(Boolean updateBet){
