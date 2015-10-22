@@ -136,5 +136,27 @@ private class BET_CategoryBrandSelectionControllerTest {
 		System.assertEquals(controller.compData.inoplanProject,b.Inoplan_Project__c,'Inoplan project ids should match');
 		Test.stopTest();
 	}
+
+	@isTest static void getUserHasAccessToProjectTest(){
+		Test.startTest();
+		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
+		System.assert(!controller.getUserHasAccessToProject(),'User should not have access');
+		Test.stopTest();
+	}
+
+	@isTest static void updateFabricDataTest(){
+		Test.startTest();
+		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
+		uw_Bet__c b = BET_TestUtils.getTestBet();
+		BET_CategoryComponentData compData = new BET_CategoryComponentData();
+		compData.categoryMigrated = true;
+		compData.categoryNotMigrated = false;
+		controller.compData = compData;
+		controller.bet = b;
+		controller.updateFabricData(true);
+		controller.onFabricConditionersChange();
+		System.assert(controller.compData.fabricConditionerCategory,'Conditioner category flag should be set');
+		Test.stopTest();
+	}
 	
 }
