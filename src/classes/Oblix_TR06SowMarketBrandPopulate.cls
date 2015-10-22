@@ -1,3 +1,20 @@
+/**
+    About
+    -----
+    Description: Class Oblix_TR06SowMarketBrandPopulate
+    Created for: Oblix Unilever Project
+    Create date: 10/ 2015
+    Created by Jamal Rida
+    Author : @Jamal
+    Details
+    -------
+    This class is  : used as a fired class from Trigger  "Before insert, before update" to populate the correct Small and bug Category
+                  		
+            Functionnalities : 
+                    
+    Update History
+    --------------    
+*/
 public with sharing class Oblix_TR06SowMarketBrandPopulate {
 	
 	public static void PopulateBrandCategoriesforSOW(List<Marketing_SOW__c> lstMarketingSow){

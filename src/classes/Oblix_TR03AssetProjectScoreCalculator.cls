@@ -1,3 +1,21 @@
+/**
+    About
+    -----
+    Description: Class Oblix_TR03AssetProjectScoreCalculator
+    Created for: Oblix Unilever Project
+    Create date: 10/ 2015
+    Created by Jamal Rida
+    Author : @Jamal
+    Details
+    -------
+    This class is  : used as a fired class from Trigger  "After insert, update, delete" on SOW Asset object, to calculate the "ProjectTotalAssetScore__c"
+    				from the asset record to the project object
+                     
+            Functionnalities : 
+                    
+    Update History
+    --------------    
+*/
 public with sharing class Oblix_TR03AssetProjectScoreCalculator {
 	
 	public static void CalculateProjectScore(List<Oblix_Project_Assets__c> lstAsset){
@@ -20,6 +38,7 @@ public with sharing class Oblix_TR03AssetProjectScoreCalculator {
 						tmp_totalassetScoringNumber += Integer.ValueOf(projectAsset.Asset_Scoring_Number__c);
 					}
 					project.ProjectTotalAssetScore__c = tmp_totalassetScoringNumber;
+					System.debug('###project.ProjectTotalAssetScore__c : '+project.ProjectTotalAssetScore__c);
 				}
 			}	
 		update lstProjectAgencies;

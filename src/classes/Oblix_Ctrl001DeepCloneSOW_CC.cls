@@ -1,3 +1,20 @@
+/**
+    About
+    -----
+    Description: Class Oblix_Ctrl001DeepCloneSOW_CC
+    Created for: Oblix Unilever Project
+    Create date: 10/ 2015
+    Created by Jamal Rida
+    Author : @Jamal
+    Details
+    -------
+    This class is  : Used as a  class to make Version Control fro SOW Record
+                  		
+            Functionnalities : 
+                    
+    Update History
+    --------------    
+*/
 public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
     
     public String sowRecordID {get;set;}
@@ -11,7 +28,11 @@ public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
         
         
     }
-    
+    /**
+     * Initialise the treatment,
+     * @param sowId [sowId]
+     * @param fyear [fyear]
+     */  
     public void init(){
         sowRecordID = ApexPages.currentPage().getParameters().get('sowId');
         financialYear = ApexPages.currentPage().getParameters().get('fyear');
@@ -63,7 +84,10 @@ public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
         }
     }
     
-    
+     /**
+     * Clone the Statement of Work
+     * @return [RecordId] page reference
+     */  
     public PageReference CloneSowParent(){
         //Parent Records
         
@@ -113,7 +137,7 @@ public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
 				                     Number_of_Markets_for_Preview__c, Name, List_Preview_Markets__c, LastModifiedDate, 
 				                     Jobs_to_be_Done__c, Is_type_of_item_usually_poduced_by_this__c, Is_this_High_Risk__c, 
 				                     Innovation_Projects__c, Id, First_Air_Date__c, Financial_Year__c, Description__c, 
-				                     CreatedDate, Countries__c, Campaign_Idea__c, Budget_Burnt_to_date__c, Brand_Led_Growth__c,
+				                     CreatedDate, Campaign_Idea__c, Budget_Burnt_to_date__c, Brand_Led_Growth__c,
 				                     (Select Target_Delivery_Date__c, Sub_Category__c,
 											 RecordTypeId, Quantity__c, OblixClonedFromParentAsset__c, Name, 
 											 Location__c, Id, FULL_Description__c, CreatedDate, Channels__c, 

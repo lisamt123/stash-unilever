@@ -1,3 +1,20 @@
+/**
+    About
+    -----
+    Description: Class Oblix_Ctrl03AssetLookupNew
+    Created for: Oblix Unilever Project
+    Create date: 10/ 2015
+    Created by Jamal Rida
+    Author : @Jamal
+    Details
+    -------
+    This class is  : Used as a  class to Construct Lookup of Full Description"Asset Scoring"
+                  		
+            Functionnalities : 
+                    
+    Update History
+    --------------    
+*/
 public with sharing class Oblix_Ctrl03AssetLookupNew {
 	public String searchString{get;set;}
 	public String subCategory{get;set;}
@@ -11,13 +28,19 @@ public with sharing class Oblix_Ctrl03AssetLookupNew {
     	runSearch();  
 	}
 	
-	
+	/**
+     * Search for the Full Description
+     * runSearch() : Execute the query 
+     */ 
 	public void SearchDescription(){
 		runSearch();
 		system.debug('###lstResultAssetScoring ActionFunction :' + lstResultAssetScoring );    
 	}
 	
-	 // prepare the query and issue the search command
+  /**
+     * prepare the query and issue the search command
+     * param : [lstResultAssetScoring] lstOf AssetScoring Result
+     */ 
   private void runSearch() {
     // TODO prepare query string for complex serarches & prevent injections
     lstResultAssetScoring = performSearch();    
@@ -58,8 +81,10 @@ public with sharing class Oblix_Ctrl03AssetLookupNew {
         return s != null ? String.escapeSingleQuotes(s) : null;
     }
     
-  
-   // run the search and return the records found. 
+  /**
+   * run the search and return the records found. 
+   * @return : lstAssetScoring search
+   */
   private List<Asset_Scoring__c> performSearch() {
  
     List<String> lstQueryWhere = buildQueryWhere();
@@ -87,12 +112,18 @@ public with sharing class Oblix_Ctrl03AssetLookupNew {
  
   }
  
-   // used by the visualforce page to send the link to the right dom element
+  /**
+   * used by the visualforce page to send the link to the right dom element
+   * @return : lstAssetScoring search
+   */
   public string getFormTag() {
     return System.currentPageReference().getParameters().get('frm');
   }
  
-  // used by the visualforce page to send the link to the right dom element for the text box
+ /**
+   *  used by the visualforce page to send the link to the right dom element for the text box
+   * @return : lstAssetScoring search
+   */
   public string getTextBox() {
     return System.currentPageReference().getParameters().get('txt');
   }

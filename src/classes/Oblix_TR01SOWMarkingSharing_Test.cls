@@ -37,7 +37,7 @@ private class Oblix_TR01SOWMarkingSharing_Test {
         		insert marketingSow;
         		
         		update marketingSow;
-        		
+        		System.assertequals(marketingSow.OblixBrand__c, brandUser.Brand__c);
 	     }
     }
 }

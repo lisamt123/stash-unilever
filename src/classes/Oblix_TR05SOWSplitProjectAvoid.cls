@@ -1,3 +1,20 @@
+/**
+    About
+    -----
+    Description: Class Oblix_TR05SOWSplitProjectAvoid
+    Created for: Oblix Unilever Project
+    Create date: 10/ 2015
+    Created by Jamal Rida
+    Author : @Jamal
+    Details
+    -------
+    This class is  : Used as a fired class from Trigger "" to avoid having more than 100% on split
+                  		
+            Functionnalities : 
+                    
+    Update History
+    --------------    
+*/
 public with sharing class Oblix_TR05SOWSplitProjectAvoid {
 	  
 	public static void SOWSplitProjectAvoid(List<Oblix_Marketing_SOW_Project_Splits__c> lstSplitProject){
@@ -41,11 +58,10 @@ public with sharing class Oblix_TR05SOWSplitProjectAvoid {
 		}
 		
 		for(Oblix_SOW_Projects__c proj : lstProjects){
+			proj.OblixProjectSplitPercentage_Comment__c = '';
 			for(Id idProj : setProjectIdsComment){
 				if(proj.Id == idProj){
 					proj.OblixProjectSplitPercentage_Comment__c = 'Total Percentage for that project is below 100%, please raise it';
-				}else{
-					proj.OblixProjectSplitPercentage_Comment__c = '';
 				}
 			}
 		}
