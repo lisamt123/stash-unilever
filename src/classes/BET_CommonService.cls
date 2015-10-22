@@ -126,25 +126,6 @@ public static boolean hasPermissionSet(String permSetName){
     }
 
     /*****************************************************************************************
-    Purpose: Checks if user is already member of BET with status PENDING
-    Parameters: String String
-    Returns: Boolean
-    ******************************************************************************************/  
-    /*private static Boolean isExistingPendingUser(String email, String betId){
-        List<uw_BET_Team_Member__c> teamMemberList = [SELECT Id, Pending_Request__c, Email__c, Team_Member__c, Team_Member__r.Name, Name, Role__c, StudioEnabled__c, 
-                                                BETEnabled__c, IsOwner__c, Editing__c 
-                                                FROM uw_Bet_Team_Member__c 
-                                                WHERE Email__c= :email AND Pending_Request__c = true AND 
-                                                BET__c = :betId]; 
-
-        if(teamMemberList.size() > 0){
-            return true;
-        }else{
-            return false;
-        }
-    }*/
-
-    /*****************************************************************************************
     Purpose: Function to send email to owner of bet
     Parameters: uw_BET__c, Id, BET_Request_Access__c
     ******************************************************************************************/  
@@ -167,31 +148,6 @@ public static boolean hasPermissionSet(String permSetName){
     } 
 
     /*****************************************************************************************
-    Purpose: Function to create BET Team member
-    Parameters: Id, Id, String, String, Boolean, String
-    Returns: uw_Bet_Team_Member__c
-    Throws [Exceptions]: [optional]
-    ******************************************************************************************/  
-    /*private static uw_Bet_Team_Member__c createBetTeamMember(Id userId, Id betId, String roleName, String accessName, Boolean isPending, String email) {        
-        uw_Bet_Team_Member__c teamMember = new uw_Bet_Team_Member__c();
-        teamMember.Team_Member__c = userId;
-        teamMember.BET__c = betId;
-        teamMember.Role__c = roleName;
-        teamMember.Access_Level__c = accessName;
-        teamMember.BETEnabled__c = false;                 
-        teamMember.Pending_Request__c = isPending;
-        teamMember.Email__c = email;
-        
-        try {
-            insert teamMember;   
-        }catch(Exception qe) {
-            throw new BetException('Problem with inserting BET member.',qe);
-        }       
-        
-        return teamMember;
-    }*/
-
-    /*****************************************************************************************
     Purpose: Function to save request of access to the bet
     Parameters: Id, Id, String
     Returns: Boolean
@@ -209,10 +165,7 @@ public static boolean hasPermissionSet(String permSetName){
         if(!betList.isEmpty()){
             uw_BET__c bet = betList[0];
             BET_Request_Access__c settings  = BET_Request_Access__c.getInstance();
-            //User owner;
-            //if(settings.Send_Mail_To_Owner__c){
-            //    owner = [SELECT Id, Email, Name FROM User WHERE Id = :bet.OwnerId];
-            //}        
+   
 
             String status = BET_AccessService.HasUserAccess(userId,betId);
 
@@ -234,23 +187,6 @@ public static boolean hasPermissionSet(String permSetName){
                 }
             }
 
-            //if(BET_CommonService.isExistingPendingUser(email, betId)){
-                 //commented out because of issue #88
-                //BET_CommonService.sendAlreadyPendingMail(betId, email, userId);
-            //    return false;
-            //}else{
-            //    try{                
-            //        uw_Bet_Team_Member__c teamMember = BET_CommonService.createBetTeamMember(userId, betId, 'Member', 'Toolkit Experience (Toolkit only)', true, email);
-                    //commented out because of issue #88
-                    //BET_CommonService.sendApprovalMail(betId, email, userId);
-            //        if(settings.Send_Mail_To_Owner__c){
-             //           BET_CommonService.sendApprovalMailToOwner(bet, userId, settings);
-             //       }
-            //        return true;
-            //    }catch(Exception e){
-            //        throw new BetException ('Problem occured while creating new member or sending mail',e);
-            //    }
-            //}
         }else{
             throw new BetException ('No BET found1');
         }        
