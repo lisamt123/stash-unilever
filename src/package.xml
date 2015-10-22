@@ -250,6 +250,7 @@
         <members>BET_ManageMembersController_Test</members>
         <members>BET_ManageMembersController_Test2</members>
         <members>BET_ManageMembersController_Test3</members>
+		<members>BET_ManageMembersService</members>
         <members>BET_MasterDataService</members>
         <members>BET_MasterDataServiceTest</members>
         <members>BET_MemberBucketWrapper</members>
