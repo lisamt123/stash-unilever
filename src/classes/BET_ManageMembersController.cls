@@ -18,7 +18,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.4     Michal Bluj             11/08/2015      IPM Member Related Changes
 ***********************************************************************/
 
-global without sharing class BET_ManageMembersController {
+global with sharing class BET_ManageMembersController {
 
     private static final String DEFAULT_USER_PHOTO = '/profilephoto/005/F';
 

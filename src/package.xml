@@ -1809,6 +1809,7 @@
         <members>uw_BET__c.uw_Brand__c</members>
 		<members>uw_BET__c.Deletion_Date__c</members>
 		<members>uw_BET__c.Is_Deleted__c</members>
+		<members>uw_Asset__c.File_Id__c</members>
         <name>CustomField</name>
     </types>
     <types>

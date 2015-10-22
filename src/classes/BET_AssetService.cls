@@ -11,14 +11,10 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 
 /*Without sharing due to it is a service method */
 
-global class BET_AssetService {
+global without sharing class BET_AssetService {
 
 	private static final Set<String> excludedMediaType = new Set<String>{'BET Presentation'};
-	private static final String START_STR = '/download/';
-	private static final String END_STR = '?';
-
 	private BET_AssetService() {}
-
 
 	/************************************************************
         Purpose: Grants access to files attached to bet
@@ -30,43 +26,50 @@ global class BET_AssetService {
 	public static void grantAccessToBetsAssets(Id betId,Id userId){
 		List<ContentDocumentLink> links = new List<ContentDocumentLink>();
 
-		Set<Id> cVersions = new Set<Id>();
-
-		List<uw_Asset__c> assets = [select id, Url_of_asset__c from uw_Asset__c where uw_BET__c =: betId];
-
-		for(uw_Asset__c asset : assets){
-			if(!String.isBlank(asset.Url_of_asset__c)){
-				Integer startIdx = asset.Url_of_asset__c.indexOf(START_STR);
-		        Integer endIdx = asset.Url_of_asset__c.indexOf(END_STR); 
-		        asset.Url_of_asset__c.substring(startIdx+10, endIdx);
-				cVersions.add((Id)asset.Url_of_asset__c.substring(startIdx+10, endIdx));
-			}
+		Set<Id> linkedFiles = new Set<Id>();
+		for(ContentDocumentLink cl : [select ContentDocumentId from ContentDocumentLink where LinkedEntityId =: userId]){
+			linkedFiles.add(cl.ContentDocumentId);
 		}
 
-		Map<Id,Id> versionsDocumentMap = new Map<Id,Id>();
-
-		System.debug('cVersions ' + cVersions);
-
-		for(ContentVersion cv : [select id, ContentDocumentId from ContentVersion where id in : cVersions]){
-			versionsDocumentMap.put((Id)cv.id,cv.ContentDocumentId);
-		}
-
-
-		System.debug('versionsDocumentMap ' + versionsDocumentMap);
-		for(uw_Asset__c asset : assets){
-			if(!String.isBlank(asset.Url_of_asset__c)){
-				Integer startIdx = asset.Url_of_asset__c.indexOf(START_STR);
-	            Integer endIdx = asset.Url_of_asset__c.indexOf(END_STR); 
+		for(uw_Asset__c asset : [select id, File_Id__c from uw_Asset__c where uw_BET__c =: betId]){
+			if(!String.isBlank(asset.File_Id__c) && !linkedFiles.contains(asset.File_Id__c)){
 				ContentDocumentLink link = new ContentDocumentLink();
 				link.LinkedEntityId = userId;
-				System.debug('versionsDocumentMap key ' + (Id)asset.Url_of_asset__c.substring(startIdx+10, endIdx));
-				link.ContentDocumentId = versionsDocumentMap.get((Id)asset.Url_of_asset__c.substring(startIdx+10, endIdx));
+				link.ContentDocumentId = asset.File_Id__c;
 				link.ShareType = 'V';
 				link.Visibility = 'AllUsers';
 				links.add(link);
 			}
 		}
 		insert links;
+	}
+
+	public static void updateFileId(List<uw_Asset__c> assets){
+
+		Set<Id> identifiers = new Set<Id>();
+		for(uw_Asset__c asset : assets){
+			if(!String.isEmpty(asset.URL_of_Asset__c)){
+				Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/');
+	        	Integer endIdx = asset.URL_of_Asset__c.indexOf('?');    
+	        	Id identifier = (Id)asset.URL_of_Asset__c.substring(startIdx+10, endIdx);
+	        	identifiers.add(identifier);
+        	}
+        }
+
+        Map<Id,Id> versionFileMap = new Map<Id,Id>();
+		for(ContentVersion cv : [select id, ContentDocumentId from ContentVersion where id in : identifiers]){
+			versionFileMap.put(cv.id,cv.ContentDocumentId);
+		}
+
+		for(uw_Asset__c asset : assets){
+			if(!String.isEmpty(asset.URL_of_Asset__c)){
+				Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/');
+	        	Integer endIdx = asset.URL_of_Asset__c.indexOf('?');    
+	        	Id identifier = (Id)asset.URL_of_Asset__c.substring(startIdx+10, endIdx);
+				asset.File_Id__c = versionFileMap.get(identifier);
+			}
+		}
+		update assets;
 	}
 
 	/************************************************************

@@ -101,10 +101,12 @@ global class BET_MultiUploadAssetsController {
         ConnectApi.FeedItem fi;
         ConnectApi.ContentAttachment ca;
         
-        fi = ConnectApi.ChatterFeeds.getFeedItem(null, file.Related_Feed_Item__c);      
+        fi = ConnectApi.ChatterFeeds.getFeedItem(null, file.Related_Feed_Item__c);   
         ca = (ConnectApi.ContentAttachment) fi.attachment;
+
         file.URL_of_Asset__c = ca.downloadUrl;
         file.thumbnail__c = ca.renditionUrl;
+        file.File_Id__c = ca.id;
         
         Boolean updateBet = false;
         if(file.Sub_Function__c == 'Brand Development' && file.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){

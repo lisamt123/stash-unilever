@@ -368,7 +368,7 @@ private class BET_EditAssetController_Test {
         }         
         Test.stopTest();
 
-        System.assertEquals(BET_TestingHelper.ASSET_SUBFUNCTION_BD, controller.file.Sub_Function__c);
+        System.assertEquals(BET_TestingHelper.ASSET_SUBFUNCTION_BD, controller.file.Sub_Function__c,'Sub function should match');
         System.assertEquals(true, controller.hasModifyAccess,MOD_ACCESS);
         System.assertEquals(true, controller.runJsSuccess,JS_FLAG_SET);
         System.assertEquals('Your BET is now in Final Release', controller.message,'Message should be equal to : Your BET is now in Final Release');

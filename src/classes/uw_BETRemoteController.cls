@@ -176,6 +176,9 @@ public with sharing class uw_BETRemoteController {
         try{
 
             if(BET_CommonService.isBETOperationAdmin()){
+                /*
+                    Future method is invoked for BET Operation admin to grant access to all BETs assets
+                */
                 BET_AssetService.grantAccessToBetsAssets(betId,currentUserId);
             }
 
