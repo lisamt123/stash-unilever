@@ -2564,7 +2564,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>HROCultureLink</shortDescription>
-        <value>http://www.onet.pl</value>
+        <value>https://developer.salesforce.com</value>
     </labels>
     <labels>
         <fullName>HRONetworkLink</fullName>
@@ -2572,7 +2572,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>HRONetworkLink</shortDescription>
-        <value>http://www.wp.pl</value>
+        <value>https://www.yahoo.com/</value>
     </labels>
     <labels>
         <fullName>HROOwnershipLink</fullName>

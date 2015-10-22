@@ -17,6 +17,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>HRO_NavMenu_CC</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>HRO_NavMenu_CCTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>HRO_OnboardingTaskList_CC</apexClass>
         <enabled>true</enabled>
     </classAccesses>

@@ -759,6 +759,8 @@
         <members>HRO_BoardingAction_CXTest</members>
         <members>HRO_HeadStart_CX</members>
         <members>HRO_HeadStart_CXTest</members>
+		<members>HRO_NavMenu_CC</members>
+        <members>HRO_NavMenu_CCTest</members>
         <members>HRO_OnboardingTaskList_CC</members>
         <members>HRO_OnboardingTaskList_CCTest</members>
         <members>HRO_ProgressPage_CX</members>

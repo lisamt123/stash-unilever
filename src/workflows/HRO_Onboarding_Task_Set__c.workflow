@@ -84,7 +84,7 @@
         <fullName>HRO Overdue task notifications</fullName>
         <active>true</active>
         <description>Notifications: Overdue task notifications</description>
-        <formula>AND(NOT(ISBLANK(Overdue_Notification_Date__c)),Overdue_Notification_Date__c&lt;TODAY())</formula>
+        <formula>NOT(ISBLANK(Overdue_Notification_Date__c))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>

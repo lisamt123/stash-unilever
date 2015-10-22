@@ -17,6 +17,8 @@ public with sharing class HRO_BoardingAction_CX {
     @testVisible
     private List<HRO_Onboarding_Plan__c> listOfTemplateTasks{get;set;}
     public HRO_Onboarding_Plan__c planInfo{get;set;}
+    public Boolean isSalesforce1{get;set;}
+    public String userId{get;set;}
 	private static final String SELECTEDLEADERPARAM = '&tab.HRO_HeadStart.leaderToSelect=';
     /*******************************************************************
    Purpose:  Class constructor                                                   
@@ -28,6 +30,10 @@ public with sharing class HRO_BoardingAction_CX {
     public HRO_BoardingAction_CX(ApexPages.StandardSetController ctrl){
         system.debug('****HRO Entring HRO_BoardingAction_CX class constructor');
         planInfo = new HRO_Onboarding_Plan__c();
+        userId = UserInfo.getUserId();
+        if(Test.isRunningTest()){
+            isSalesforce1 = false;
+        }
         system.debug('****HRO Exiting HRO_BoardingAction_CX class constructor');
     }
     
@@ -41,6 +47,10 @@ public with sharing class HRO_BoardingAction_CX {
     public HRO_BoardingAction_CX(ApexPages.StandardController crl){
         system.debug('****HRO Entring HRO_BoardingAction_CX class constructor for standardSet');
         planInfo = new HRO_Onboarding_Plan__c();
+        userId = UserInfo.getUserId();
+        if(Test.isRunningTest()){
+            isSalesforce1 = false;
+        }
         system.debug('****HRO Exiting HRO_BoardingAction_CX class constructor for standardSet');
     }
     
@@ -93,10 +103,12 @@ public with sharing class HRO_BoardingAction_CX {
         system.debug('*****HRO Entering savePreBoarding');
         createPreBoardingTasks();
         system.debug('*****HRO Exiting savePreBoarding');
-        return new PageReference('/_ui/core/userprofile/UserProfilePage?tab=HRO_HeadStart&sfdc.userId='+UserInfo.getUserId()+SELECTEDLEADERPARAM+EncodingUtil.urlEncode(planInfo.New_Leader__c, 'UTF-8'));
+        if(!isSalesforce1){
+            return new PageReference('/_ui/core/userprofile/UserProfilePage?tab=HRO_HeadStart&sfdc.userId='+UserInfo.getUserId()+SELECTEDLEADERPARAM+EncodingUtil.urlEncode(planInfo.New_Leader__c, 'UTF-8'));    
+        }else{
+            return null; 
+        }           
     }
-
-
     
     
     /*******************************************************************
