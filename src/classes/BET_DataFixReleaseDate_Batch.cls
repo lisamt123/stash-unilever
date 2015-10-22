@@ -1,7 +1,7 @@
 /*************************************************************************************
 Name : BET_DataFixReleaseDate
 
-Purpose : Class responsible for update first and final due dates 
+Purpose : Class responsible for update first/final due dates and set chatter file id of asset related file 
 History
 
 VERSION  AUTHOR                DATE        DETAIL   Description
