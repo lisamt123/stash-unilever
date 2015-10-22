@@ -20,7 +20,7 @@
 				<apex:outputText id="agencyid" value="{!agency}"/>
 			</apex:pageBlockSectionItem>
 			<apex:inputField value="{!OItem.FTE__c}"/>
-			<apex:pageBlockSectionItem >
+			<apex:pageBlockSectionItem > 
 				<apex:outputLabel for="disciplineId">Discipline</apex:outputLabel>
 				<apex:selectList id="disciplineId" value="{!selectedDiscipline}" size="1" >
 		          <apex:selectoptions value="{!PickListDiscipline}"></apex:selectoptions> 
