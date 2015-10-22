@@ -2281,7 +2281,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.LAST_UPDATE_DATE_ONLY</field>
             <operation>lessThan</operation>
-            <value>LAST_N_DAYS:5</value>
+            <value>LAST_N_DAYS:2</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
@@ -2325,7 +2325,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Benelux_queue</fullName>
+        <fullName>CEC_Benelux_Backlog</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -2333,8 +2333,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <columns>Language__c</columns>
-        <columns>Brand__c</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
@@ -2342,7 +2340,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>Closed,Closed as Duplicate</value>
         </filters>
         <label>CEC Benelux queue</label>
-        <language>nl_NL</language>
+        <language>en_US</language>
         <queue>CEC_Benelux_Queue</queue>
     </listViews>
     <listViews>
@@ -3424,7 +3422,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.LAST_UPDATE_DATE_ONLY</field>
             <operation>greaterOrEqual</operation>
-            <value>LAST_N_DAYS:5</value>
+            <value>LAST_N_DAYS:2</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
