@@ -118,7 +118,7 @@
     
                
    
-         
+ <apex:pageMessages escape="false" />     
   <apex:sectionHeader title="Sow Prooject"  subtitle="{!IF(project.Id<>null, project.Name, 'New Project')}" />
         <apex:pageBlock title="Marketing SOW Projects Edit">
             <apex:pageBlockButtons >

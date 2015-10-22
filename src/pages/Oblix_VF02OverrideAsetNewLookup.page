@@ -65,7 +65,8 @@
 		</apex:pageBlockButtons>
 		<apex:pageBlockSection >
 				<apex:inputField value="{!asset.Name}"></apex:inputField>
-				<apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField><!-- onChange="changeType();"-->
+				<!-- <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField>--><!-- onChange="changeType();"-->
+		         
 		        <apex:inputField value="{!asset.Agency_Projects__c}"  />
 		        <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
 		        <apex:inputField value="{!asset.Quantity__c}"  /> 
@@ -88,7 +89,7 @@
         <apex:inputField value="{!asset.Name}"></apex:inputField>
          <apex:inputField id="Asset2" value="{!asset.FULL_Description__c}"  />
          
-        <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField><!-- onChange="changeType();"-->
+        <!--<apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField> onChange="changeType();"-->
         <apex:inputField value="{!asset.Additional_Description__c}"  />
         
         <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
@@ -107,7 +108,7 @@
 		
       <apex:pageBlockSection columns="2" title="Information">
 	    <apex:inputField value="{!asset.Name}"></apex:inputField>
-	         <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField><!-- onChange="changeType();"-->
+	        <!-- <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField> onChange="changeType();"-->
 	         
 	         <apex:inputField value="{!asset.Additional_Description__c}"  />
 	         <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
@@ -129,7 +130,7 @@
 		</apex:pageBlockButtons>
       <apex:pageBlockSection columns="2" title="Information">
         <apex:inputField value="{!asset.Name}"></apex:inputField>
-         <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField><!-- onChange="changeType();"-->
+        <!-- <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField> onChange="changeType();"-->
          
          <apex:inputField value="{!asset.Additional_Description__c}"  />
          <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
@@ -152,7 +153,7 @@
 		
       <apex:pageBlockSection columns="2" title="Information">
         <apex:inputField value="{!asset.Name}"></apex:inputField>
-         <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField><!-- onChange="changeType();"-->
+        <!-- <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField> onChange="changeType();"-->
          
          <apex:inputField value="{!asset.Additional_Description__c}"  />
          <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
