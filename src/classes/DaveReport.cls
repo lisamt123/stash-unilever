@@ -1,0 +1,16 @@
+public class DaveReport
+{
+    public List<OOH_DAVEWeekly__c> getDaveData()
+    {
+    return [SELECT Id,Name,OOH_AustriaTarget__c,OOH_AustriaYTD__c,OOH_BelgiumTarget__c,OOH_BelgiumYTD__c,OOH_CORESKU__c,OOH_DenmarkTarget__c,OOH_DenmarkYTD__c,OOH_FranceTarget__c,OOH_FranceYTD__c,OOH_GermanyTarget__c,OOH_GermanyYTD__c,OOH_IrelandTarget__c,OOH_IrelandYTD__c,OOH_ItalyTarget__c,OOH_ItalyYTD__c,OOH_NetherlandsTarget__c,OOH_NetherlandsYTD__c,OOH_PolandTarget__c,OOH_PolandYTD__c,OOH_PortugalTarget__c,OOH_PortugalYTD__c,OOH_SKUDescrip1__c,OOH_SKUDescrip2__c,OOH_SKUDescrip3__c,OOH_SpainTarget__c,OOH_SpainYTD__c,OOH_SwitzerlandTarget__c,OOH_SwitzerlandYTD__c,OOH_TABLE__c,OOH_UnitedKingdomTarget__c,OOH_UnitedKingdomYTD__c,OwnerId FROM OOH_DAVEWeekly__c where ooh_table__c='table1'];
+    }
+     public List<OOH_DAVEWeekly__c> getDaveData1()
+    {
+    return [SELECT Id,Name,OOH_AustriaTarget__c,OOH_AustriaYTD__c,OOH_BelgiumTarget__c,OOH_BelgiumYTD__c,OOH_CORESKU__c,OOH_DenmarkTarget__c,OOH_DenmarkYTD__c,OOH_FranceTarget__c,OOH_FranceYTD__c,OOH_GermanyTarget__c,OOH_GermanyYTD__c,OOH_IrelandTarget__c,OOH_IrelandYTD__c,OOH_ItalyTarget__c,OOH_ItalyYTD__c,OOH_NetherlandsTarget__c,OOH_NetherlandsYTD__c,OOH_PolandTarget__c,OOH_PolandYTD__c,OOH_PortugalTarget__c,OOH_PortugalYTD__c,OOH_SKUDescrip1__c,OOH_SKUDescrip2__c,OOH_SKUDescrip3__c,OOH_SpainTarget__c,OOH_SpainYTD__c,OOH_SwitzerlandTarget__c,OOH_SwitzerlandYTD__c,OOH_TABLE__c,OOH_UnitedKingdomTarget__c,OOH_UnitedKingdomYTD__c,OwnerId FROM OOH_DAVEWeekly__c where ooh_table__c='table1'];
+    }
+     public List<OOH_DAVEWeekly__c> getDaveData2()
+    {
+    return [SELECT Id,Name,OOH_AustriaTarget__c,OOH_AustriaYTD__c,OOH_BelgiumTarget__c,OOH_BelgiumYTD__c,OOH_CORESKU__c,OOH_DenmarkTarget__c,OOH_DenmarkYTD__c,OOH_FranceTarget__c,OOH_FranceYTD__c,OOH_GermanyTarget__c,OOH_GermanyYTD__c,OOH_IrelandTarget__c,OOH_IrelandYTD__c,OOH_ItalyTarget__c,OOH_ItalyYTD__c,OOH_NetherlandsTarget__c,OOH_NetherlandsYTD__c,OOH_PolandTarget__c,OOH_PolandYTD__c,OOH_PortugalTarget__c,OOH_PortugalYTD__c,OOH_SKUDescrip1__c,OOH_SKUDescrip2__c,OOH_SKUDescrip3__c,OOH_SpainTarget__c,OOH_SpainYTD__c,OOH_SwitzerlandTarget__c,OOH_SwitzerlandYTD__c,OOH_TABLE__c,OOH_UnitedKingdomTarget__c,OOH_UnitedKingdomYTD__c,OwnerId FROM OOH_DAVEWeekly__c where ooh_table__c='table2'];
+    }
+
+}

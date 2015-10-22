@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <acrossGroupingContext>OOH_ULAsset__c.OOH_LastControlDate__c</acrossGroupingContext>
+        <calculatedFormula>if(PREVGROUPVAL(OOH_ULAsset__c.scaned__c:SUM, OOH_ULAsset__c.OOH_LastControlDate__c)=0,0,(OOH_ULAsset__c.scaned__c:SUM - PREVGROUPVAL(OOH_ULAsset__c.scaned__c:SUM, OOH_ULAsset__c.OOH_LastControlDate__c))/PREVGROUPVAL(OOH_ULAsset__c.scaned__c:SUM, OOH_ULAsset__c.OOH_LastControlDate__c))</calculatedFormula>
+        <datatype>percent</datatype>
+        <description>thius is trhe field to shows the Assets Scaned</description>
+        <developerName>FORMULA1</developerName>
+        <downGroupingContext>OOH_ULAsset__c.Type__c</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>%Control</masterLabel>
+        <scale>1</scale>
+    </aggregates>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>OOH_ULAsset__c.OOH_Age__c</field>
+    </columns>
+    <description>Cabinet Performance Report</description>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Year</dateGranularity>
+        <field>OOH_ULAsset__c.OOH_LastMoveDate__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsAcross>
+        <dateGranularity>Year</dateGranularity>
+        <field>OOH_ULAsset__c.OOH_LastControlDate__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>OOH_ULAsset__c.Type__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Cabinet Performance Report</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>CustomEntity$OOH_ULAsset__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>OOH_ULAsset__c.OOH_LastControlDate__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

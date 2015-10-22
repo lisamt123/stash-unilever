@@ -318,6 +318,10 @@
         <fields>Organisation__c</fields>
         <relatedList>ar_Insurance_and_Policy__c.Agency__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Target__c.OOH_Account__c</relatedList>
+    </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>

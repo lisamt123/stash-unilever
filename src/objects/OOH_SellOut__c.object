@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This object stores all sale records containing GSV values, selling terminal, distributor, POS</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Agg__c</fullName>
+        <externalId>false</externalId>
+        <label>Agg Gsv</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>GSV_Lost_Flag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>GSV Lost Flag</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OOH_Boxes__c</fullName>
+        <externalId>false</externalId>
+        <label>Boxes</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_DistributorAccount__c</fullName>
+        <externalId>false</externalId>
+        <label>Distributor Account</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>OOH Distributor</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Distributor Sell Out Information</relationshipLabel>
+        <relationshipName>Sell_Out_Distributor</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>OOH_GSVLost__c</fullName>
+        <description>Thi sis the field to use the GSv net growth Report</description>
+        <externalId>false</externalId>
+        <formula>if( OOH_PointOFSaleOutlet__r.OOH_Is_New__c =false, OOH_GSV__c ,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>GSV Lost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>OOH_GSVNew__c</fullName>
+        <description>this is the field to create for the net customer growth report</description>
+        <externalId>false</externalId>
+        <formula>if( OOH_PointOFSaleOutlet__r.OOH_Is_New__c =true, OOH_GSV__c ,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>GSV New</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>OOH_GSVYTD__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( OOH_YTD_Flag__c = True,  OOH_GSV__c , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>GSV YTD</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>OOH_GSV_Current_Year__c</fullName>
+        <description>Used in reports</description>
+        <externalId>false</externalId>
+        <formula>if(AND(OOH_YTD_Flag__c = true, YEAR( OOH_SellOutDate__c ) = YEAR(TODAY())),  OOH_GSV__c , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Current Year GSV</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>OOH_GSV__c</fullName>
+        <externalId>false</externalId>
+        <label>GSV</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>OOH_N2_Product__c</fullName>
+        <externalId>false</externalId>
+        <formula>OOH_ULProduct__r.OOH_N2Product__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>N2 Product</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_N4Product__c</fullName>
+        <externalId>false</externalId>
+        <formula>OOH_ULProduct__r.OOH_N4Product__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>N4 Product</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_PREVIOUS_LOST_GSV__c</fullName>
+        <description>this is the filed to create the reports for GSV</description>
+        <externalId>false</externalId>
+        <formula>IF( AND( OOH_PointOFSaleOutlet__r.OOH_GSVLostFlag__c = false ,YEAR(OOH_SellOutDate__c) = (YEAR(TODAY()) - 1)),     OOH_PointOFSaleOutlet__r.OOH_GSVLostValue__c  ,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PREVIOUS LOST GSV</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>OOH_Pieces__c</fullName>
+        <externalId>false</externalId>
+        <label>Pieces</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_PointOFSaleOutlet__c</fullName>
+        <externalId>false</externalId>
+        <label>Point Of Sale Outlet</label>
+        <referenceTo>OOH_PointofSaleOutlet__c</referenceTo>
+        <relationshipLabel>Sell Out</relationshipLabel>
+        <relationshipName>Sell_Out</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>OOH_Prev_Year_GSV_Full__c</fullName>
+        <description>Used in reports</description>
+        <externalId>false</externalId>
+        <formula>if(YEAR( OOH_SellOutDate__c ) = YEAR(TODAY()) -1,  OOH_GSV__c , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Prev Year GSV (Full)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>OOH_Prev_Year_GSV_YTD__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(AND(OOH_YTD_Flag__c = true, YEAR( OOH_SellOutDate__c ) = YEAR(TODAY()) -1),  OOH_GSV__c , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Prev Year GSV YTD</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>OOH_SaleTerminalAccount__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sale Terminal Account</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>OOH Sale Terminal</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Sale Terminal Sell Out Information</relationshipLabel>
+        <relationshipName>Sell_Out_SaleTerminal</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OOH_SellOutDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Sell Out Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>OOH_SellOutYear__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(YEAR( OOH_SellOutDate__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SellOut Year</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_ULProduct__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>UL Product</label>
+        <referenceTo>OOH_ULProduct__c</referenceTo>
+        <relationshipLabel>Sell Out</relationshipLabel>
+        <relationshipName>Sell_Out</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OOH_ULProductcountincurrent_year__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(AND((year(OOH_SellOutDate__c)=year(today())),OOH_ULProduct__r.product_sold_in_current_year__c =true),1,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>UL Product count in current year</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_ULProductcountinpreviousyear__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(and(OOH_ULProduct__r.product_sold_in_current_year__c =true,(year(OOH_SellOutDate__c)=year(today()))),0,1)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>UL Product count in previous year</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_Units__c</fullName>
+        <externalId>false</externalId>
+        <label>Units</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_Week__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case(
+MOD( DATE(YEAR( OOH_SellOutDate__c ), 1, 1) - DATE (1900, 1, 7), 7),
+0, ( OOH_SellOutDate__c- DATE(YEAR(OOH_SellOutDate__c),1,1) + 3) /7, 
+1, ( OOH_SellOutDate__c- DATE(YEAR(OOH_SellOutDate__c),1,1) + 4) /7, 
+2, ( OOH_SellOutDate__c- DATE(YEAR(OOH_SellOutDate__c),1,1) + 5) /7, 
+3, ( OOH_SellOutDate__c- DATE(YEAR(OOH_SellOutDate__c),1,1) + 6) /7, 
+4, ( OOH_SellOutDate__c- DATE(YEAR(OOH_SellOutDate__c),1,1) + 7) /7, 
+5, ( OOH_SellOutDate__c- DATE(YEAR(OOH_SellOutDate__c),1,1) + 1) /7, 
+6, ( OOH_SellOutDate__c- DATE(YEAR(OOH_SellOutDate__c),1,1) + 2) /7, 
+99)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Week</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_YTD_Flag__c</fullName>
+        <description>Used to filter for sellout YTD reports</description>
+        <externalId>false</externalId>
+        <formula>IF(OR(AND(year(OOH_SellOutDate__c)=YEAR(TODAY()), OOH_SellOutDate__c&lt;=TODAY()),DATE(year(OOH_SellOutDate__c) + 1,MONTH( OOH_SellOutDate__c ),DAY(OOH_SellOutDate__c)) &lt;= TODAY()), true, false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>YTD Flag</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OOH_previousyearposcount__c</fullName>
+        <externalId>false</externalId>
+        <formula>if( OOH_Prev_Year_GSV_YTD__c &gt;0,1,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>previous year pos count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Sell Out</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>OOH_SellOutDate__c</columns>
+        <columns>OOH_DistributorAccount__c</columns>
+        <columns>OOH_PointOFSaleOutlet__c</columns>
+        <columns>OOH_SaleTerminalAccount__c</columns>
+        <columns>OOH_ULProduct__c</columns>
+        <columns>OOH_N2_Product__c</columns>
+        <columns>OOH_Pieces__c</columns>
+        <columns>OOH_Units__c</columns>
+        <columns>OOH_GSV__c</columns>
+        <columns>OOH_YTD_Flag__c</columns>
+        <columns>OOH_GSVNew__c</columns>
+        <columns>OOH_GSVLost__c</columns>
+        <columns>OOH_PREVIOUS_LOST_GSV__c</columns>
+        <columns>OOH_N4Product__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>sellout-{000000000}</displayFormat>
+        <label>Sellout Id</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Sell Out</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>OOH_ULProduct__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OOH_DistributorAccount__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OOH_SaleTerminalAccount__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OOH_SellOutDate__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

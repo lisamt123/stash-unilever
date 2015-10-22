@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <acrossGroupingContext>OOH_SellOut__c.OOH_SellOutDate__c</acrossGroupingContext>
+        <calculatedFormula>if(PREVGROUPVAL(OOH_SellOut__c.OOH_GSV__c:SUM, OOH_SellOut__c.OOH_SellOutDate__c) &gt;0, (OOH_SellOut__c.OOH_GSV__c:SUM - PREVGROUPVAL(OOH_SellOut__c.OOH_GSV__c:SUM, OOH_SellOut__c.OOH_SellOutDate__c))/PREVGROUPVAL(OOH_SellOut__c.OOH_GSV__c:SUM, OOH_SellOut__c.OOH_SellOutDate__c), IF(AND(PREVGROUPVAL(OOH_SellOut__c.OOH_GSV__c:SUM, OOH_SellOut__c.OOH_SellOutDate__c) &gt;0, OOH_SellOut__c.OOH_GSV__c:SUM&gt;0), 1, 0))</calculatedFormula>
+        <datatype>percent</datatype>
+        <developerName>FORMULA1</developerName>
+        <downGroupingContext>ACCOUNT.NAME</downGroupingContext>
+        <isActive>false</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>%Growth</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <aggregates>
+        <acrossGroupingContext>OOH_SellOut__c.OOH_SellOutDate__c</acrossGroupingContext>
+        <calculatedFormula>if(PREVGROUPVAL(OOH_SellOut__c.OOH_GSV__c:SUM, OOH_SellOut__c.OOH_SellOutDate__c) &gt;0, (OOH_SellOut__c.OOH_GSV__c:SUM - PREVGROUPVAL(OOH_SellOut__c.OOH_GSV__c:SUM, OOH_SellOut__c.OOH_SellOutDate__c))/PREVGROUPVAL(OOH_SellOut__c.OOH_GSV__c:SUM, OOH_SellOut__c.OOH_SellOutDate__c), 0)</calculatedFormula>
+        <datatype>percent</datatype>
+        <developerName>FORMULA2</developerName>
+        <downGroupingContext>GRAND_SUMMARY</downGroupingContext>
+        <isActive>false</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>%Overall Growth</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <aggregates>
+        <acrossGroupingContext>GRAND_SUMMARY</acrossGroupingContext>
+        <calculatedFormula>Account.OOH_Target_GSV_Percent__c:MAX</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA3</developerName>
+        <downGroupingContext>ACCOUNT.NAME</downGroupingContext>
+        <isActive>false</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Target GSV %</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>OOH_SellOut__c.OOH_GSV__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.OOH_Target_GSV_Percent__c</field>
+    </columns>
+    <description>Operation KPI Report</description>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Year</dateGranularity>
+        <field>OOH_SellOut__c.OOH_SellOutDate__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ACCOUNT.NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Operation KPI Report</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>AccountCustomEntity$OOH_SellOut__c@OOH_SellOut__c.OOH_PointOFSaleOutlet__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <timeFrameFilter>
+        <dateColumn>OOH_SellOut__c.OOH_SellOutDate__c</dateColumn>
+        <interval>INTERVAL_PREVCURY</interval>
+    </timeFrameFilter>
+</Report>

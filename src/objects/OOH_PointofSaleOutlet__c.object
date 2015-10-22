@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>OOH: Used to store Point of Sale Terminal details</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Agg_Gsv__c</fullName>
+        <externalId>false</externalId>
+        <label>Agg Gsv</label>
+        <summarizedField>OOH_SellOut__c.OOH_GSV__c</summarizedField>
+        <summaryForeignKey>OOH_SellOut__c.OOH_PointOFSaleOutlet__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>No_of_Days__c</fullName>
+        <externalId>false</externalId>
+        <formula>TODAY() - OOH_Activition_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>No of Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_Activition_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Activition Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>OOH_Address__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Address</label>
+        <referenceTo>OOH_Address__c</referenceTo>
+        <relationshipLabel>Point of Sale Outlets</relationshipLabel>
+        <relationshipName>Point_of_Sale_Outlets</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OOH_Chain_outlet_flag__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(OR(ISNULL(OOH_POS_Outlet_chain__c ),ISBLANK(OOH_POS_Outlet_chain__c )),false,true)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Chain outlet flag</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OOH_Channel__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Channel</label>
+        <referenceTo>OOH_Channel__c</referenceTo>
+        <relationshipLabel>Point of Sale Outlets</relationshipLabel>
+        <relationshipName>Point_of_Sale_Outlets</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OOH_Delayed_Activation__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( OOH_Activition_Date__c + 386 &lt; TODAY(), true, false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Delayed Activation</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OOH_GSVLostFlag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>GSV Lost Flag</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OOH_GSVLostValue__c</fullName>
+        <externalId>false</externalId>
+        <label>GSV Lost Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>OOH_ImageDocumentID__c</fullName>
+        <externalId>false</externalId>
+        <label>Image Document ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_Image__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE(&quot;/servlet/servlet.FileDownload?file=&quot;+OOH_ImageDocumentID__c,&quot;Point of Sale Image&quot; , 100, 60)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Image</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_Indicator__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Agg_Gsv__c  &gt;= 400, &apos;High&apos;,  IF( AND(Agg_Gsv__c  &lt; 400,Agg_Gsv__c &gt;= 1), &apos;Low&apos;, &apos;New&apos;) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Indicator</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_Is_New__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is New</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OOH_POS_ID__c</fullName>
+        <externalId>true</externalId>
+        <label>POS ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_POS_Outlet_chain__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>POS Outlet chain</label>
+        <referenceTo>OOH_PointofSaleOutlet__c</referenceTo>
+        <relationshipLabel>Point of Sale Outlets</relationshipLabel>
+        <relationshipName>OOH_POS_Outlet_chain</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OOH_Poscount__c</fullName>
+        <externalId>false</externalId>
+        <formula>if( OOH_GSVLostFlag__c =true,0,1)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Pos count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_Sub_Channel__c</fullName>
+        <description>this is the field to get the values of sub channel</description>
+        <externalId>false</externalId>
+        <formula>OOH_Channel__r.OOH_Sub_channel_name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sub Channel</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Performence__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Agg_Gsv__c &gt;= 400,true,false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Performence</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Upcoming_Activations__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(AND( (OOH_Activition_Date__c + 386) &lt;= (TODAY() + 7),(OOH_Activition_Date__c + 386) &gt;= TODAY()  ),true, false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Upcoming Activations</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Point Of Sale Outlet</label>
+    <listViews>
+        <fullName>POS_Outlets</fullName>
+        <columns>NAME</columns>
+        <columns>OOH_Activition_Date__c</columns>
+        <columns>OOH_Indicator__c</columns>
+        <columns>Performence__c</columns>
+        <columns>OOH_Address__c</columns>
+        <columns>OOH_POS_Outlet_chain__c</columns>
+        <columns>OOH_Sub_Channel__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <label>POS Outlets</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>POS Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Point of Sale Outlets</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>OOH_Activition_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OOH_Indicator__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OOH_Delayed_Activation__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+</CustomObject>

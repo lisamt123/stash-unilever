@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>DataDotComClean</excludeButtons>
+    <excludeButtons>DataDotComAccountInsights</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -23,6 +23,22 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Subcategories__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OOH_SellingTerminalID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OOH_DistributorCode__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OOH_CommercialName__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OOH_DistributorSAPID__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -149,6 +165,7 @@
         <fields>CONTACT.TITLE</fields>
         <fields>CONTACT.EMAIL</fields>
         <fields>CONTACT.PHONE1</fields>
+        <fields>CONTACT.PHONE3</fields>
         <relatedList>RelatedContactList</relatedList>
     </relatedLists>
     <relatedLists>
@@ -200,6 +217,10 @@
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Target__c.OOH_Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

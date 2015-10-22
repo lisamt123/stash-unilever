@@ -175,6 +175,10 @@
         <fields>Expertise__c.NAME</fields>
         <relatedList>Pitch_Expertise__c.Account__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Target__c.OOH_Account__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
     <showInteractionLogPanel>true</showInteractionLogPanel>

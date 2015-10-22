@@ -1,0 +1,14 @@
+<apex:page standardController="OOH_PointofSaleOutlet__c" extensions="test1">
+<apex:pageBlock >
+<apex:pageBlockSection title="Report" columns="3" >
+ <analytics:reportChart reportId="00OL0000000b18L" size="small" showRefreshButton="true" />
+ <analytics:reportChart reportId="00OL0000000b186" size="small" showRefreshButton="true" />
+ <analytics:reportChart reportId="00OL0000000b1F7" size="small" showRefreshButton="true" />
+  <analytics:reportChart reportId="00OL0000000b1MN" size="small" showRefreshButton="true" />
+ <analytics:reportChart reportId="00OL0000000b1MX" size="small" showRefreshButton="true" />
+ <analytics:reportChart reportId="00OL0000000b1Mc" size="small" showRefreshButton="true" />
+ <analytics:reportChart reportId="00OL0000000b1Fq" size="small" showRefreshButton="true" />
+ 
+ </apex:pageBlockSection>
+ </apex:pageBlock>
+</apex:page>

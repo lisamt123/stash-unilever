@@ -79,6 +79,7 @@
         <rightComponents>
             <componentType>CustomButtons</componentType>
         </rightComponents>
+        <useInlineFiltersInConsole>false</useInlineFiltersInConsole>
     </feedLayout>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -139,8 +140,8 @@
                 <field>Case_Market__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Case_Brand__c</field>
+                <behavior>Edit</behavior>
+                <field>Brand__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -222,14 +223,6 @@
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Attachments</label>
-        <layoutColumns/>
-        <style>OneColumn</style>
-    </layoutSections>
-    <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
@@ -239,16 +232,8 @@
                 <customLink>Cosmetovigilence</customLink>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <customLink>Homecare_Cosmetovigilence</customLink>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <customLink>Ingestion_Cosmetovigilence</customLink>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
+        <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
     <layoutSections>
@@ -359,10 +344,10 @@
     </miniLayout>
     <quickActionList>
         <quickActionListItems>
-            <quickActionName>Case.Email</quickActionName>
+            <quickActionName>FeedItem.TextPost</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
-            <quickActionName>FeedItem.TextPost</quickActionName>
+            <quickActionName>Case.Email</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>FeedItem.ContentPost</quickActionName>

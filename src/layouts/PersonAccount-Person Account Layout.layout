@@ -23,10 +23,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>PersonOtherPhone</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>PersonMobilePhone</field>
             </layoutItems>
             <layoutItems>
@@ -35,10 +31,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>PersonMailingAddress</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Phone_No_Special_Char__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -61,10 +53,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>CEC_Marketing_Opt_In__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>PersonBirthdate</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -192,6 +180,10 @@
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Target__c.OOH_Account__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>

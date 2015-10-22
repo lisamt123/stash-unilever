@@ -1,0 +1,102 @@
+<apex:page standardController="OOH_Address__c" >
+<head>
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/> 
+<apex:includeScript value="https://code.jquery.com/ui/1.11.4/jquery-ui.js"/> 
+<apex:includeScript value="maps.googleapis.com/maps/api/js?sensor=false"/> 
+    
+<script type="text/javascript"> 
+ 
+            $(document).ready(function() {
+              var myOptions = {
+                zoom: 6,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: false,
+                scrollwheel: false
+              }
+              var map;
+              //create map
+              map = new google.maps.Map(document.getElementById("map"), myOptions);
+                            var conAddresses  = new Array();
+              conAddresses  = "Steel Authority of India Ltd, Ispat Bhavan,Lodhi Road,NEW DELHI,110003,INDIA";
+              //conAddresses=["A-4,Malati Madhav,819 Bhandarkar Institute Road, Bhandarkar Road, Pune","Office No: 104 , Animesh Appts, Lohar Ali Lane, Shivaji Path, Opposite Laxmi Book Depot, Thane"];
+              //conAddresses=["Empire State Building NY NY,3,Long lines","Washington Square Park NY NY,4,Beautiful fountains","127 W. 28th Street NY NY,2,Nice brownstone","75 Washington Place NY NY,2,Short walk from park"];
+
+              var address  = "Steel Authority of India Ltd, Ispat Bhavan,Lodhi Road,NEW DELHI,110003,INDIA";
+              var checkAdd = '{!JSENCODE("Steel Authority of India Ltd, Ispat Bhavan,Lodhi Road,NEW DELHI,110003,INDIA")}';
+                            //if(checkAdd != ''){
+                  displayAddress(address);
+              //} else
+                  for (var i = 0; i < conAddresses.length; i++) {
+                 // alert("Hi");
+                     //if(i==1) break;
+                     //console.log('Address11 '+ conAddresses[i].Street__c);
+                     var addr = "Steel Authority of India Ltd, Ispat Bhavan,Lodhi Road,NEW DELHI,110003,INDIA"
+                     //conAddresses[i].Street__c+", "+conAddresses[i].City__c+", "+conAddresses[i].Zip_Code__c+", "+conAddresses[i].Country__c;
+                     displayAddress(conAddresses[i]);
+                     //console.log(addr);
+                  }
+             // }
+              function displayAddress(address)
+              {
+                  var marker;
+                  var geocoder = new google.maps.Geocoder();
+                  alert(geocoder );
+                  var infowindow = new google.maps.InfoWindow({content:address});
+                  geocoder.geocode( { address: address}, function(results, status) {
+                  if (status == google.maps.GeocoderStatus.OK && results.length) {
+                      if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+                        //center map
+                        map.setCenter(results[0].geometry.location);
+                        //create marker
+                        marker = new google.maps.Marker({
+                            position: results[0].geometry.location,
+                            map: map,
+                            title: "Test Title"
+                        });
+                
+                        // Add listeners
+                        google.maps.event.addListener(marker, 'click', function() {
+                          infowindow.open(map,marker);
+                        });
+                        google.maps.event.addListener(infowindow, 'closeclick', function() {
+                          map.setCenter(marker.getPosition()); 
+                        });
+                      }
+                    } else {
+                      $('#map').css({'height' : '15px'});
+                      $('#map').html("Oops! this contact address could not be found, please make sure the address is correct.");
+                      //resizeIframe();
+                    }
+                  });
+              }              function resizeIframe() {
+                var me = window.name;
+                if (me) {
+                  var iframes = parent.document.getElementsByName(me);
+                  if (iframes && iframes.length == 1) {
+                    height = document.body.offsetHeight;
+                    iframes[0].style.height = height + "px";
+                  }
+                }
+              }
+            
+            });
+            
+            function ToggelUserSetting(name)
+                {
+                    SaveUserSetting(name);
+                }
+        </script>
+</head>
+<apex:outputText value="{!OOH_Address__c.name}"/>
+<apex:form >
+<div style="float: right; WIDTH: 20%">
+                                            <DIV
+                                                style="text-align: center; padding-bottom: 3px; font-weight: bold">
+                                                <a
+                                                    href="javascript:window.open('https://google-developers.appspot.com/maps/documentation/javascript/examples/full/directions-simple','mywindow','width=800,height=600');">View
+                                                    All Location</a>
+                                            </DIV>
+                                            <div id="map"></div>
+                                        </div>
+</apex:form>
+</apex:page>

@@ -1,6 +1,0 @@
-<apex:page standardcontroller="uw_Brand__c" extensions="Redirect_Brand_Page" action="{!redirect}">
-
-
-
-
-</apex:page>

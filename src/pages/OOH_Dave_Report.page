@@ -1,0 +1,445 @@
+<apex:page controller="DaveReport">
+
+    <!--<apex:pageBlock Title="Dave Data"  >
+    
+        <apex:pageBlockTable value="{!DaveData1}" var="daveObj" rules="all" cellpadding="20px" styleClass="tablestyle">
+                <apex:column >
+                    <apex:facet name="header">CORE SKU</apex:facet>
+                    {!daveObj.OOH_CORESKU__c}
+                </apex:column>
+<apex:column >
+    <apex:facet name="header">SKU descrip 1</apex:facet>
+    {!daveObj.OOH_SKUDescrip1__c}
+</apex:column>
+<apex:column >
+    <apex:facet name="header">SKU descrip 2</apex:facet>
+    {!daveObj.OOH_SKUDescrip2__c}
+</apex:column>
+<apex:column >
+    <apex:facet name="header">SKU descrip 3</apex:facet>
+    {!daveObj.OOH_SKUDescrip3__c}
+</apex:column>
+<apex:column >
+    <apex:facet name="header">PortugalYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_PortugalYTD__c}" style="background:{!if(daveObj.OOH_PortugalYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">PortugalTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_PortugalTarget__c}" style="background:{!if(daveObj.OOH_PortugalTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">SpainYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_SpainYTD__c}" style="background:{!if(daveObj.OOH_SpainYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">SpainTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_SpainTarget__c}" style="background:{!if(daveObj.OOH_SpainTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">FranceYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_FranceYTD__c}" style="background:{!if(daveObj.OOH_FranceYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">FranceTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_FranceTarget__c}" style="background:{!if(daveObj.OOH_FranceTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">NetherlandsYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_NetherlandsYTD__c}" style="background:{!if(daveObj.OOH_NetherlandsYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">NetherlandsTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_NetherlandsTarget__c}" style="background:{!if(daveObj.OOH_NetherlandsTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">BelgiumYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_BelgiumYTD__c}" style="background:{!if(daveObj.OOH_BelgiumYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">BelgiumTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_BelgiumTarget__c}" style="background:{!if(daveObj.OOH_BelgiumTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">UKYTD</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_UnitedKingdomYTD__c}" style="background:{!if(daveObj.OOH_UnitedKingdomYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">UKTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_UnitedKingdomYTD__c}" style="background:{!if(daveObj.OOH_UnitedKingdomYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">IrelandYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_IrelandYTD__c}" style="background:{!if(daveObj.OOH_IrelandYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">IrelandTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_IrelandTarget__c}" style="background:{!if(daveObj.OOH_IrelandTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">GermanyYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_GermanyYTD__c}" style="background:{!if(daveObj.OOH_GermanyYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">GermanyTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_GermanyTarget__c}" style="background:{!if(daveObj.OOH_GermanyTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">SwitzerlandYTD</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_SwitzerlandYTD__c}" style="background:{!if(daveObj.OOH_SwitzerlandYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">SwitcherlandTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_SwitzerlandTarget__c}" style="background:{!if(daveObj.OOH_SwitzerlandTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">AustriaYTD</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_AustriaYTD__c}" style="background:{!if(daveObj.OOH_AustriaYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">AustriaTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_AustriaTarget__c}" style="background:{!if(daveObj.OOH_AustriaTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">ItalyYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_ItalyYTD__c}" style="background:{!if(daveObj.OOH_ItalyYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">ItalyTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_ItalyTarget__c}" style="background:{!if(daveObj.OOH_ItalyTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">DenmarkTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_DenmarkTarget__c}" style="background:{!if(daveObj.OOH_DenmarkTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">PolandYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_PolandYTD__c}" style="background:{!if(daveObj.OOH_PolandYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">PolandTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_PolandTarget__c}" style="background:{!if(daveObj.OOH_PolandTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+            </apex:pageBlockTable>
+            <br/>
+            <br/>
+ <apex:pageBlockTable value="{!DaveData2}" var="daveObj" rules="all" cellpadding="20px">
+                <apex:column >
+                    <apex:facet name="header">CORE SKU</apex:facet>
+                    {!daveObj.OOH_CORESKU__c}
+                </apex:column>
+<apex:column >
+    <apex:facet name="header">SKU descrip 1</apex:facet>
+    {!daveObj.OOH_SKUDescrip1__c}
+</apex:column>
+<apex:column >
+    <apex:facet name="header">SKU descrip 2</apex:facet>
+    {!daveObj.OOH_SKUDescrip2__c}
+</apex:column>
+<apex:column >
+    <apex:facet name="header">SKU descrip 3</apex:facet>
+    {!daveObj.OOH_SKUDescrip3__c}
+</apex:column>
+<apex:column >
+    <apex:facet name="header">PortugalYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_PortugalYTD__c}" style="background:{!if(daveObj.OOH_PortugalYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">PortugalTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_PortugalTarget__c}" style="background:{!if(daveObj.OOH_PortugalTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">SpainYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_SpainYTD__c}" style="background:{!if(daveObj.OOH_SpainYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">SpainTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_SpainTarget__c}" style="background:{!if(daveObj.OOH_SpainTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">FranceYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_FranceYTD__c}" style="background:{!if(daveObj.OOH_FranceYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">FranceTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_FranceTarget__c}" style="background:{!if(daveObj.OOH_FranceTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">NetherlandsYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_NetherlandsYTD__c}" style="background:{!if(daveObj.OOH_NetherlandsYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">NetherlandsTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_NetherlandsTarget__c}" style="background:{!if(daveObj.OOH_NetherlandsTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">BelgiumYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_BelgiumYTD__c}" style="background:{!if(daveObj.OOH_BelgiumYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">BelgiumTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_BelgiumTarget__c}" style="background:{!if(daveObj.OOH_BelgiumTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">UKYTD</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_UnitedKingdomYTD__c}" style="background:{!if(daveObj.OOH_UnitedKingdomYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">UKTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_UnitedKingdomYTD__c}" style="background:{!if(daveObj.OOH_UnitedKingdomYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">IrelandYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_IrelandYTD__c}" style="background:{!if(daveObj.OOH_IrelandYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">IrelandTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_IrelandTarget__c}" style="background:{!if(daveObj.OOH_IrelandTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">GermanyYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_GermanyYTD__c}" style="background:{!if(daveObj.OOH_GermanyYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">GermanyTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_GermanyTarget__c}" style="background:{!if(daveObj.OOH_GermanyTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">SwitzerlandYTD</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_SwitzerlandYTD__c}" style="background:{!if(daveObj.OOH_SwitzerlandYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">SwitcherlandTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_SwitzerlandTarget__c}" style="background:{!if(daveObj.OOH_SwitzerlandTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">AustriaYTD</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_AustriaYTD__c}" style="background:{!if(daveObj.OOH_AustriaYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">AustriaTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_AustriaTarget__c}" style="background:{!if(daveObj.OOH_AustriaTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">ItalyYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_ItalyYTD__c}" style="background:{!if(daveObj.OOH_ItalyYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">ItalyTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_ItalyTarget__c}" style="background:{!if(daveObj.OOH_ItalyTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">DenmarkTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_DenmarkTarget__c}" style="background:{!if(daveObj.OOH_DenmarkTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">PolandYTD*</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_PolandYTD__c}" style="background:{!if(daveObj.OOH_PolandYTD__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+<apex:column >
+    <apex:facet name="header">PolandTarget</apex:facet>
+    <apex:outputLabel value="{!daveObj.OOH_PolandTarget__c}" style="background:{!if(daveObj.OOH_PolandTarget__c==0.00,'#538DD5','#FFFFFF')}"/>
+</apex:column>
+            </apex:pageBlockTable>
+            -->
+   <table border="1" cellpadding="0" cellspacing="0" align="center">
+    <thead bgcolor="#BFBFBF">
+        <tr>
+
+            <th  border="1"  style="border-bottom-style:none;"  align="center" ></th>
+            <th  border="1"  style="border-bottom-style:none;" align="center"></th>
+            <th  border="1"  style="border-bottom-style:none;" align="center"></th>
+            <th  border="1"  style="border-bottom-style:none;" align="center"></th>
+
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Portugal</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Spain</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">France</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Netherlands</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Belgium</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">United Kingdom</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Ireland</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Germany</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Switzerland</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Austria</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Italy</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Denmark</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Poland</th>
+        </tr>
+        <tr>
+            <th scope='col' style="border-top-style: none;color:darkred;width:10%">CORE SKU</th>
+            <th scope='col' style="border-top-style: none;width:10%">SKU descrip 1</th>
+            <th scope='col' style="border-top-style: none;width:10%">SKU descrip 2</th>
+            <th scope='col' style="border-top-style: none;width:10%">SKU descrip 3</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+
+        </tr>
+    </thead>
+    <tbody>
+       
+         <apex:repeat value="{!DaveData1}" var="daveObj">
+          <tr>
+<td style="white-space:noWrap;">{!daveObj.OOH_CORESKU__c}</td>
+<td  style="white-space:noWrap;">{!daveObj.OOH_SKUDescrip1__c}</td>
+
+<td  style="white-space:noWrap;">{!daveObj.OOH_SKUDescrip2__c}</td>
+<td  style="white-space:noWrap;">{!daveObj.OOH_SKUDescrip3__c}</td>
+
+<td style="background:{!if(daveObj.OOH_PortugalYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_PortugalYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_PortugalYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_PortugalTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_PortugalYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_SpainYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_SpainTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_SpainTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_FranceYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_FranceYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_FranceTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_FranceTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_NetherlandsYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_NetherlandsYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_NetherlandsTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_NetherlandsTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_BelgiumYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_BelgiumYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_BelgiumTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_BelgiumTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_UnitedKingdomYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_UnitedKingdomYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_UnitedKingdomTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_UnitedKingdomTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_IrelandYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_IrelandYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_IrelandTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_IrelandTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_GermanyYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_GermanyYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_GermanyTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_GermanyTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_SwitzerlandYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_SwitzerlandYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_SwitzerlandTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_SwitzerlandTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_AustriaYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_AustriaYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_AustriaTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_AustriaTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_ItalyYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_ItalyYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_ItalyTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_ItalyTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_DenmarkYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_DenmarkYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_DenmarkTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_DenmarkTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_PolandYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_PolandYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_PolandTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_PolandTarget__c}%</td>
+             </tr>
+  </apex:repeat>          
+        
+    </tbody>
+</table>
+
+<br/>
+<br/>
+
+   <table border="1" cellpadding="0" cellspacing="0" width="100%">
+    <thead bgcolor="#BFBFBF">
+        <tr>
+
+            <th  border="1"  style="border-bottom-style: none;"  align="center"></th>
+            <th  border="1"  style="border-bottom-style: none;" align="center"></th>
+            <th  border="1"  style="border-bottom-style: none;" align="center"></th>
+            <th  border="1"  style="border-bottom-style: none;" align="center"></th>
+
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Portugal</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Spain</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">France</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Netherlands</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Belgium</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">United Kingdom</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Ireland</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Germany</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Switzerland</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Austria</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Italy</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Denmark</th>
+            <th colspan="2" scope='colgroup' border="1" style="text-align:center;color:darkred">Poland</th>
+        </tr>
+        <tr>
+<th scope='col' style="border-top-style: none;color:darkred;">NPD</th>
+<th scope='col' style="border-top-style: none;">SKU descrip 1</th>
+<th scope='col' style="border-top-style: none;">SKU descrip 2</th>
+<th scope='col' style="border-top-style: none;">SKU descrip 3</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+<th scope='col'>YTD*</th>
+<th scope='col'>Target</th>
+
+        </tr>
+    </thead>
+    <tbody>
+       
+         <apex:repeat value="{!DaveData2}" var="daveObj">
+          <tr>
+<td style="white-space:noWrap;width:10%">{!daveObj.OOH_CORESKU__c}</td>
+<td style="white-space:noWrap;width:10%">{!daveObj.OOH_SKUDescrip1__c}</td>
+
+<td style="white-space:noWrap;width:10%">{!daveObj.OOH_SKUDescrip2__c}</td>
+<td style="white-space:noWrap;width:10%">{!daveObj.OOH_SKUDescrip3__c}</td>
+
+<td style="background:{!if(daveObj.OOH_PortugalYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_PortugalYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_PortugalYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_PortugalTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_PortugalYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_SpainYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_SpainTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_SpainTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_FranceYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_FranceYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_FranceTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_FranceTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_NetherlandsYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_NetherlandsYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_NetherlandsTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_NetherlandsTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_BelgiumYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_BelgiumYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_BelgiumTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_BelgiumTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_UnitedKingdomYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_UnitedKingdomYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_UnitedKingdomTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_UnitedKingdomTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_IrelandYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_IrelandYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_IrelandTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_IrelandTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_GermanyYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_GermanyYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_GermanyTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_GermanyTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_SwitzerlandYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_SwitzerlandYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_SwitzerlandTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_SwitzerlandTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_AustriaYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_AustriaYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_AustriaTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_AustriaTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_ItalyYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_ItalyYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_ItalyTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_ItalyTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_DenmarkYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_DenmarkYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_DenmarkTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_DenmarkTarget__c}%</td>
+<td style="background:{!if(daveObj.OOH_PolandYTD__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_PolandYTD__c}%</td>
+<td style="background:{!if(daveObj.OOH_PolandTarget__c==0.00,'#538DD5','#FFFFFF')}">{!daveObj.OOH_PolandTarget__c}%</td>
+             </tr>
+  </apex:repeat>          
+        
+    </tbody>
+</table>
+
+</apex:page>

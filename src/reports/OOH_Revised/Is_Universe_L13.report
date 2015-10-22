@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>OOH_DAVE__c.OOH_Country__c</field>
+    </columns>
+    <columns>
+        <field>OOH_DAVE__c.OOH_VanguardL13Code__c</field>
+    </columns>
+    <columns>
+        <field>OOH_DAVE__c.OOH_VanguardL13Name__c</field>
+    </columns>
+    <columns>
+        <field>OOH_DAVE__c.OOH_PYPOSTotal__c</field>
+    </columns>
+    <columns>
+        <field>OOH_DAVE__c.OOH_PYPOSFiltered__c</field>
+    </columns>
+    <columns>
+        <field>OOH_DAVE__c.OOH_YTDPOSFull__c</field>
+    </columns>
+    <columns>
+        <field>OOH_DAVE__c.OOH_POSbuyingSKU__c</field>
+    </columns>
+    <columns>
+        <field>OOH_DAVE__c.OOH_SKUDISTIBUITONYTDPOSFull__c</field>
+    </columns>
+    <columns>
+        <field>OOH_DAVE__c.OOH_SKUDISTIBUITONPYPOSFiltered__c</field>
+    </columns>
+    <description>user stroy OOH_US_0014B</description>
+    <filter>
+        <criteriaItems>
+            <column>OOH_DAVE__c.OOH_Type__c</column>
+            <operator>equals</operator>
+            <value>IS Universe L13</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Is Universe L13</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$OOH_DAVE__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

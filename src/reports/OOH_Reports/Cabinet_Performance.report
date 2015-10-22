@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>OOH_ULAsset__c.scaned__c:SUM/OOH_ULAsset__c.OOH_Cabinet_Count__c:SUM</calculatedFormula>
+        <datatype>percent</datatype>
+        <developerName>FORMULA1</developerName>
+        <downGroupingContext>OOH_ULAsset__c.Type__c</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>%Control</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <aggregates>
+        <calculatedFormula>if(OOH_ULAsset__c.OOH_UnderperformingCount__c:SUM&gt;0, OOH_ULAsset__c.OOH_UnderperformingCount__c:SUM/OOH_ULAsset__c.OOH_Cabinet_Count__c:SUM, 0)</calculatedFormula>
+        <datatype>percent</datatype>
+        <developerName>FORMULA2</developerName>
+        <downGroupingContext>OOH_ULAsset__c.Type__c</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>%Low Consumption</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <aggregates>
+        <calculatedFormula>IF(OOH_ULAsset__c.OOH_Inactive_Flag__c:SUM&gt;0, OOH_ULAsset__c.OOH_Inactive_Flag__c:SUM/OOH_ULAsset__c.OOH_Cabinet_Count__c:SUM, 0)</calculatedFormula>
+        <datatype>percent</datatype>
+        <developerName>FORMULA3</developerName>
+        <downGroupingContext>OOH_ULAsset__c.Type__c</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>%Inactive</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>OOH_ULAsset__c.OOH_Cabinet_Count__c</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>OOH_ULAsset__c.OOH_Age__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>OOH_ULAsset__c.OOH_New_Asset__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>OOH_ULAsset__c.OOH_UnderperformingCount__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>OOH_ULAsset__c.OOH_Inactive_Flag__c</field>
+    </columns>
+    <description>User Story : OOH_US_0052 : This report shows cabinet performance (Slide 7 in Country reports)</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>OOH_ULAsset__c.Type__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Cabinet Performance Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$OOH_ULAsset__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <sortColumn>OOH_ULAsset__c.OOH_Cabinet_Count__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>OOH_ULAsset__c.OOH_LastMoveDate__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

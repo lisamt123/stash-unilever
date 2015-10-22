@@ -769,14 +769,6 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Results</value>
     </labels>
     <labels>
-        <fullName>CEC_ConsumerResultsNoMatchTitle</fullName>
-        <categories>CEC: VF Page Global Display</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_ConsumerResultsNoMatchTitle</shortDescription>
-        <value>No Match Found</value>
-    </labels>
-    <labels>
         <fullName>CEC_ConsumerResultsTitleDisplay</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
@@ -1106,14 +1098,6 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <protected>false</protected>
         <shortDescription>CEC_RelatedCases</shortDescription>
         <value>Related Cases</value>
-    </labels>
-    <labels>
-        <fullName>CEC_SearchValidationError</fullName>
-        <categories>CEC:Case_Error</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CEC_SearchValidationError</shortDescription>
-        <value>Validation Error : Please fill at least one field in the search form</value>
     </labels>
     <labels>
         <fullName>CEC_Search_Button</fullName>
@@ -1591,18 +1575,214 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>/servlet/servlet.FileDownload?file=015E0000002OHxf</value>
     </labels>
     <labels>
-        <fullName>GoogleAPIKey</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>GoogleAPIKey</shortDescription>
-        <value>Null</value>
-    </labels>
-    <labels>
         <fullName>HideTermsOfUseLabel</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>HideTermsOfUseLabel</shortDescription>
         <value>I Accept</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Bosscard_Save_Before_Share</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Bosscard Save Before Share</shortDescription>
+        <value>Please Save BOSSCARD Before Sharing</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Bosscard_Shared_Chatter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Bosscard Shared Chatter</shortDescription>
+        <value>BOSSCARD Shared Via Chatter</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Category_list</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Category list</shortDescription>
+        <value>HouseHold Cleaning;Laundry;Skin Cleansing;Skin Care;Hair;Oral Care;Savoury;HHC;NONHHC;Household Care</value>
+    </labels>
+    <labels>
+        <fullName>IPM_CoreParameters_validation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM CoreParameters validation</shortDescription>
+        <value>Please select mandatory fields before going to next screen.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Deployment_Char_Limit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Deployment Char Limit</shortDescription>
+        <value>0</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Description_Restricted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Description Restricted</shortDescription>
+        <value>Description Restricted to 255 Characters</value>
+    </labels>
+    <labels>
+        <fullName>IPM_External_Char_Limit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM External Char Limit</shortDescription>
+        <value>2430</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Finance_Char_Limit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Finance Char Limit</shortDescription>
+        <value>4860</value>
+    </labels>
+    <labels>
+        <fullName>IPM_GateStatus_msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM GateStatus msg</shortDescription>
+        <value>Please provide reasons below for skipping these sections. these reasons would be added to the gate document.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_GenerateRollout</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_GenerateRollout</shortDescription>
+        <value>Please select cluster to Generate Rollout</value>
+    </labels>
+    <labels>
+        <fullName>IPM_GlobalOperationalProject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GlobalOperationalProject</shortDescription>
+        <value>Operational</value>
+    </labels>
+    <labels>
+        <fullName>IPM_GlobalProject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GlobalProject</shortDescription>
+        <value>Original</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ImageLogo_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ImageLogo_URL</shortDescription>
+        <value>&apos;&lt;img src=&quot;https://unilever--cogstagin--c.cs8.content.force.com/servlet/servlet.FileDownload?file=&apos;</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Image_format</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Image format</shortDescription>
+        <value>Please select image with format like &quot;.jpg,.gif,.png,.bmp,.psd,.psp,.thm,.tif,.yuv,.jpeg&quot;.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Introduction_Char_Limit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Introduction Char Limit</shortDescription>
+        <value>2430</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Milestone_Due_Date_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Milestone Due Date Error</shortDescription>
+        <value>Due Date of this milestone should not exceed its Gate&apos;s Due Date.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Mix_Char_Limit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Mix Char Limit</shortDescription>
+        <value>4860</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Not_applicable</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Not applicable</shortDescription>
+        <value>The system considers this as section not completed(&apos;You have entered less than 15 character&apos;)</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ProjectManagement_Char_Limit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM ProjectManagement Char Limit</shortDescription>
+        <value>4860</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Project_Name_Exists</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Project Name Exists</shortDescription>
+        <value>Project Name Already Exists, Please Select Another Project Name</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Project_Name_Mandatory</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Project Name Mandatory</shortDescription>
+        <value>Please Enter Project Name</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Record_Insert_Success</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Record Insert Success</shortDescription>
+        <value>BOSSCARD saved successfully</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Record_Saved_Archives</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Record Saved Archives</shortDescription>
+        <value>Record Saved in Archives</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Skip_Bosscard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Skip_Bosscard</shortDescription>
+        <value>BOSSCARD is not created for this project yet, In future if you want to create a BOSSCARD for this project , you need to Archive the entire project</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Stopmsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Stopmsg</shortDescription>
+        <value>Please enter Postpone On Date, Comments and required actions from Gate Meeting</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Strategic_Intent_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Strategic Intent message</shortDescription>
+        <value>&apos;Global Operational’</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Technical_Char_Limit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Technical Char Limit</shortDescription>
+        <value>4860</value>
+    </labels>
+    <labels>
+        <fullName>IPM_backto_intermediate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM backto intermediate</shortDescription>
+        <value>You have not completed core parameter wizard.&quot;Click here to go back&quot;.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_image</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM image</shortDescription>
+        <value>&quot;https://unilever.my.salesforce.com</value>
     </labels>
     <labels>
         <fullName>LAUNCH_PINNOVATE_CMD</fullName>
@@ -1612,6 +1792,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>#launchthewall</value>
     </labels>
     <labels>
+        <fullName>MLST_OBJ_NAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MLST_OBJ_NAME</shortDescription>
+        <value>a4N</value>
+    </labels>
+    <labels>
         <fullName>Matrix_Currency_Desc</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1619,11 +1806,88 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>All figures in thousands of Euro unless another currency is specified.</value>
     </labels>
     <labels>
+        <fullName>PD_OBJ_NAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PD_OBJ_NAME</shortDescription>
+        <value>a4S</value>
+    </labels>
+    <labels>
+        <fullName>PMO_Defect_Open</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PMO_Defect_Open</shortDescription>
+        <value>Open</value>
+    </labels>
+    <labels>
+        <fullName>PMO_Defect_Subject</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PMO_Defect_Subject</shortDescription>
+        <value>Defect Found on Requirement #</value>
+    </labels>
+    <labels>
+        <fullName>PMO_TaskType_Customization</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PMO_TaskType_Customization</shortDescription>
+        <value>Customization</value>
+    </labels>
+    <labels>
+        <fullName>PMO_Task_CodeReview</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PMO_Task_CodeReview</shortDescription>
+        <value>Code Review</value>
+    </labels>
+    <labels>
+        <fullName>PMO_Task_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PMO_Task_Error</shortDescription>
+        <value>Some error occured while creating a new Task</value>
+    </labels>
+    <labels>
+        <fullName>PMO_Task_Execution</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PMO_Task_Execution</shortDescription>
+        <value>Execution</value>
+    </labels>
+    <labels>
+        <fullName>PMO_Task_Review</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PMO_Task_Review</shortDescription>
+        <value>Review</value>
+    </labels>
+    <labels>
+        <fullName>PS_OBJ_NAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PS_OBJ_NAME</shortDescription>
+        <value>a4R</value>
+    </labels>
+    <labels>
+        <fullName>Project_Name_Contains_Brand_Name_Target_Launch_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Project Name Contains Brand Name Target Launch Date</shortDescription>
+        <value>Project Name Should not Contain Brand Name and Target Launch Date</value>
+    </labels>
+    <labels>
         <fullName>Rollout_No_Records_Msg</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Rollout No Records Msg</shortDescription>
         <value>No Rollouts exist for this project, Please select one from the above.</value>
+    </labels>
+    <labels>
+        <fullName>TASK_OBJ_NAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TASK_OBJ_NAME</shortDescription>
+        <value>a4a</value>
     </labels>
     <labels>
         <fullName>TO_CaseIdentifier</fullName>
@@ -2549,149 +2813,5 @@ Which Communications team do you represent? You must be associated to one Planne
         <protected>false</protected>
         <shortDescription>User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos;</shortDescription>
         <value>Please enter your Inoplan project name. If you do not have an Inoplan project please select No Inoplan Project</value>
-    </labels>
-	<labels>
-        <fullName>HROCapabilityLink</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HROCapabilityLink</shortDescription>
-        <value>htttp://www.google.com</value>
-    </labels>
-    <labels>
-        <fullName>HROCultureLink</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HROCultureLink</shortDescription>
-        <value>http://www.onet.pl</value>
-    </labels>
-    <labels>
-        <fullName>HRONetworkLink</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HRONetworkLink</shortDescription>
-        <value>http://www.wp.pl</value>
-    </labels>
-    <labels>
-        <fullName>HROOwnershipLink</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HROOwnershipLink</shortDescription>
-        <value>http://www.salesforce.com</value>
-    </labels>
-    <labels>
-        <fullName>HROPhaseIntroHeaderBeforeArrival</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HROPhaseIntroHeaderBeforeArrival</shortDescription>
-        <value>Pre-Boarding:</value>
-    </labels>
-    <labels>
-        <fullName>HROPhaseIntroHeaderBeonBoard</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HROPhaseIntroHeaderBeonBoard</shortDescription>
-        <value>Welcome to the final stage of your journey</value>
-    </labels>
-    <labels>
-        <fullName>HROPhaseIntroHeaderDay1</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HROPhaseIntroHeaderDay1</shortDescription>
-        <value>Day 1:</value>
-    </labels>
-    <labels>
-        <fullName>HROPhaseIntroHeaderMonth1</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HROPhaseIntroHeaderMonth1</shortDescription>
-        <value>Month 1:</value>
-    </labels>
-    <labels>
-        <fullName>HROPhaseIntroHeaderMonth2</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HROPhaseIntroHeaderMonth2</shortDescription>
-        <value>Month 2:</value>
-    </labels>
-    <labels>
-        <fullName>HROPhaseIntroHeaderMonth3</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HROPhaseIntroHeaderMonth3</shortDescription>
-        <value>Month 3:</value>
-    </labels>
-    <labels>
-        <fullName>HROPhaseIntroHeaderWeek1</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HROPhaseIntroHeaderWeek1</shortDescription>
-        <value>Week 1:</value>
-    </labels>
-    <labels>
-        <fullName>HROPhaseIntroInfoBeforeArrival</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HROPhaseIntroInfoBeforeArrival</shortDescription>
-        <value>Before your new recruit begins please send them to our Before Arrival website where they can learn what Unilever is, what, how and why we work.....</value>
-    </labels>
-    <labels>
-        <fullName>HROPhaseIntroInfoBeonBoard</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HROPhaseIntroInfoBeonBoard</shortDescription>
-        <value>Welcome to the final stage of your journey</value>
-    </labels>
-    <labels>
-        <fullName>HROPhaseIntroInfoDay1</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HROPhaseIntroInfoDay1</shortDescription>
-        <value>It&apos;s meet and greet day. Complete the following steps to get acquainted with your new sorroundings and team.</value>
-    </labels>
-    <labels>
-        <fullName>HROPhaseIntroInfoMonth1</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HROPhaseIntroInfoMonth1</shortDescription>
-        <value>Welcome to month 1</value>
-    </labels>
-    <labels>
-        <fullName>HROPhaseIntroInfoMonth2</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HROPhaseIntroInfoMonth2</shortDescription>
-        <value>Welcome to month 2</value>
-    </labels>
-    <labels>
-        <fullName>HROPhaseIntroInfoMonth3</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HROPhaseIntroInfoMonth3</shortDescription>
-        <value>Welcome to month 3</value>
-    </labels>
-    <labels>
-        <fullName>HROPhaseIntroInfoWeek1</fullName>
-        <categories>HRO</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>HROPhaseIntroInfoWeek1</shortDescription>
-        <value>Welcome to week 1</value>
     </labels>
 </CustomLabels>

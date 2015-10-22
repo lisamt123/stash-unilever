@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>OOH : Used to store Unilever Cabinet details</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>OOH_Age__c</fullName>
+        <externalId>false</externalId>
+        <label>Age</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_AssetDistributor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Asset Distributor</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Assets</relationshipLabel>
+        <relationshipName>Asset_Distributor</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OOH_AssetImageID__c</fullName>
+        <externalId>false</externalId>
+        <label>Asset Image ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_AssetImage__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE(&quot;/servlet/servlet.FileDownload?file=&quot;+ OOH_AssetImageID__c ,&quot;Image&quot; , 100, 60)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Asset Image</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_AssetSaleTerminal__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Asset Sale Terminal</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>OOH Sale Terminal</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Assets At Sale Terminal</relationshipLabel>
+        <relationshipName>Asset_Sale_Terminal</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OOH_AssetType__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Asset Type</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>$Source.Type__c</field>
+                <operation>equals</operation>
+                <valueField>OOH_AssetType__c.OOH_TypeName__c</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>OOH_AssetType__c</referenceTo>
+        <relationshipLabel>Assets</relationshipLabel>
+        <relationshipName>UL_Assets</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OOH_Asset_Scrapped_Date__c</fullName>
+        <description>Used to store asset scrapped date</description>
+        <externalId>false</externalId>
+        <label>Asset Scrapped Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>OOH_Cabinet_Count__c</fullName>
+        <description>This field is used to show cabinet count in cabinet reports</description>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Cabinet Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_Cabinet_Location__c</fullName>
+        <description>Used capture sales terminal address</description>
+        <externalId>false</externalId>
+        <formula>OOH_AssetSaleTerminal__r.BillingStreet+&quot;,&quot;+OOH_AssetSaleTerminal__r.BillingCity+&quot;,&quot;+ OOH_AssetSaleTerminal__r.BillingCountry +&quot;,&quot;+ OOH_AssetSaleTerminal__r.BillingState +&quot;,&quot;+   OOH_AssetSaleTerminal__r.BillingPostalCode</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Cabinet Location</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_Contract__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_First_Install_Date__c</fullName>
+        <description>Used to capture first installation date of Asset</description>
+        <externalId>false</externalId>
+        <label>First Install Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>OOH_Image__c</fullName>
+        <externalId>false</externalId>
+        <formula>image(&apos;http://www.millsdisplay.com.au/shop/images/biggalleryimg1.gif&apos;,&apos;&apos;,300,300)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Image</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_Inactive_Flag__c</fullName>
+        <description>This flag is used in report to check inactive assets</description>
+        <externalId>false</externalId>
+        <formula>IF( OR(ISNULL(OOH_AssetSaleTerminal__c), ISBLANK(OOH_AssetSaleTerminal__c)), true, false )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Inactive</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OOH_LastControlDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Control Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>OOH_LastMoveDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Move Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>OOH_Location_status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(OOH_AssetSaleTerminal__c = NULL, &quot;In warehouse&quot;, &quot;Positioned&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Location status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_Model__c</fullName>
+        <externalId>false</externalId>
+        <formula>OOH_AssetType__r.OOH_ModelName__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Model</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_New_Asset__c</fullName>
+        <description>Used to calculate sum of new assets (installed current year) in reports</description>
+        <externalId>false</externalId>
+        <formula>IF(YEAR( OOH_First_Install_Date__c )= YEAR(TODAY()), 1, 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>New Asset</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_Point_Of_Sale_Outlet__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Point Of Sale Outlet</label>
+        <referenceTo>OOH_PointofSaleOutlet__c</referenceTo>
+        <relationshipLabel>Assets on POS Outlet</relationshipLabel>
+        <relationshipName>UL_Assets</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OOH_Scrapped__c</fullName>
+        <description>This field is used in report to aggregate no. of scrapped assets (cabinets)</description>
+        <externalId>false</externalId>
+        <formula>IF( OR( ISBLANK(OOH_Asset_Scrapped_Date__c), ISNULL(OOH_Asset_Scrapped_Date__c) ), 0, 1)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Scrapped</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_UnderPerforming__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Under Performing</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OOH_UnderPerformingunchecked__c</fullName>
+        <description>this is the field to used for the cabinet report find low consumption value</description>
+        <externalId>false</externalId>
+        <formula>if( OOH_UnderPerforming__c =false,1,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Under Performing unchecked</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_UnderperformingCount__c</fullName>
+        <description>this is the field to used for the cabinet report find low consumption value</description>
+        <externalId>false</externalId>
+        <formula>if( OOH_UnderPerforming__c =true,1,0)</formula>
+        <label>Under performing Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>NEVERAS (&gt;150)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VITRINAS &lt; 16 SABORES</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ARMARIOS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ESPECIALES (&lt;150)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KIOSCOS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ISLAS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VENDING</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CORNETTO SOFT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VITRINAS &gt; 16 SABORES</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GRANIZADORAS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MODULOS CARTE D&apos;OR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VISIMAX</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CAF├ë ZERO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SIN FRIO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>scaned__c</fullName>
+        <externalId>false</externalId>
+        <formula>if( year(OOH_LastControlDate__c)=Year(today()),1,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>scaned</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>UL Asset</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>OOH_Age__c</columns>
+        <columns>OOH_AssetDistributor__c</columns>
+        <columns>OOH_AssetSaleTerminal__c</columns>
+        <columns>Type__c</columns>
+        <columns>OOH_LastControlDate__c</columns>
+        <columns>OOH_LastMoveDate__c</columns>
+        <columns>OOH_AssetImage__c</columns>
+        <columns>OOH_Inactive_Flag__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Asset ID</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>UL Assets</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>OOH_AssetImage__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OOH_AssetDistributor__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OOH_AssetSaleTerminal__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OOH_Age__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OOH_UnderPerforming__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <startsWith>Vowel</startsWith>
+</CustomObject>

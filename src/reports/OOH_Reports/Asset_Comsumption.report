@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <acrossGroupingContext>GRAND_SUMMARY</acrossGroupingContext>
+        <calculatedFormula>OOH_ULAsset__c.OOH_UnderperformingCount__c:SUM/RowCount</calculatedFormula>
+        <datatype>percent</datatype>
+        <developerName>FORMULA1</developerName>
+        <downGroupingContext>OOH_ULAsset__c.Type__c</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>%Under performing</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <aggregates>
+        <acrossGroupingContext>GRAND_SUMMARY</acrossGroupingContext>
+        <calculatedFormula>OOH_ULAsset__c.OOH_UnderperformingCount__c:SUM</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA2</developerName>
+        <downGroupingContext>OOH_ULAsset__c.Type__c</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Under performing Count</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <aggregates>
+        <acrossGroupingContext>GRAND_SUMMARY</acrossGroupingContext>
+        <calculatedFormula>OOH_ULAsset__c.OOH_UnderperformingCount__c:SUM/RowCount</calculatedFormula>
+        <datatype>percent</datatype>
+        <developerName>FORMULA3</developerName>
+        <downGroupingContext>GRAND_SUMMARY</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>%Overall Underperforming</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <aggregates>
+        <acrossGroupingContext>GRAND_SUMMARY</acrossGroupingContext>
+        <calculatedFormula>OOH_ULAsset__c.OOH_Cabinet_Count__c:SUM</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA4</developerName>
+        <downGroupingContext>OOH_ULAsset__c.Type__c</downGroupingContext>
+        <isActive>false</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Total Cabinets</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>OOH_ULAsset__c.OOH_Cabinet_Count__c</field>
+    </columns>
+    <description>User Story : OOH_US_0052 : This is the report to find the comsumption percentage of Total Assets</description>
+    <format>Matrix</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>OOH_ULAsset__c.Type__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Cabinet Consumption Report</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>CustomEntity$OOH_ULAsset__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <timeFrameFilter>
+        <dateColumn>OOH_ULAsset__c.OOH_LastControlDate__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

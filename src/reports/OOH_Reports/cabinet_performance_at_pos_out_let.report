@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>(OOH_ULAsset__c.OOH_Cabinet_Count__c:SUM-OOH_ULAsset__c.OOH_UnderperformingCount__c:SUM)/OOH_ULAsset__c.OOH_Cabinet_Count__c:SUM</calculatedFormula>
+        <datatype>percent</datatype>
+        <developerName>FORMULA2</developerName>
+        <downGroupingContext>FK_NAME</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>%performance</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>OOH_ULAsset__c.OOH_Cabinet_Count__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>OOH_ULAsset__c.OOH_UnderperformingCount__c</field>
+    </columns>
+    <columns>
+        <field>OOH_ULAsset__c.scaned__c</field>
+    </columns>
+    <description>User story(OOH_US_0064)</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>OOH_ULAsset__c.Type__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>cabinet performance at pos out let</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$OOH_ULAsset__c@OOH_ULAsset__c.OOH_Point_Of_Sale_Outlet__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <timeFrameFilter>
+        <dateColumn>OOH_ULAsset__c.OOH_Asset_Scrapped_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>
