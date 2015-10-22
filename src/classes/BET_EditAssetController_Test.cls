@@ -5,11 +5,6 @@ private class BET_EditAssetController_Test {
     private static final String RESULT_NULL = 'Result should be null';
     private static final String ERROR_MESSAGE_MATCH = 'Error message should match';
     private static final String ONE_RECORD = 'There should be one record';
-    private static final String BLANK_MESSAGE = 'Message should be blank';
-    private static final String MOD_ACCESS = 'User should have mod access';
-    private static final String JS_FLAG_SET = 'Run JS flag should be set';
-    private static final String FORM_DISPLAYED = 'Form should be displayed';
-    private static final String BET_ID_MATCH = 'Bet is should match';
     private static final String STATUS_MATCH = 'Status should match';
 
     private static BET_TestingHelper.BET_TestingData prepareData() {

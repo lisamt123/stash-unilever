@@ -44,7 +44,13 @@ global without sharing class BET_AssetService {
 		insert links;
 	}
 
-	public static void updateFileId(List<uw_Asset__c> assets){
+	/************************************************************
+        Purpose: Updates fileId field based on asset url
+        Parameters: List<uw_Asset__c> assets
+        Returns: -
+        Throws: -
+    *************************************************************/
+	public static List<uw_Asset__c> updateFileId(List<uw_Asset__c> assets){
 
 		Set<Id> identifiers = new Set<Id>();
 		for(uw_Asset__c asset : assets){
@@ -69,7 +75,7 @@ global without sharing class BET_AssetService {
 				asset.File_Id__c = versionFileMap.get(identifier);
 			}
 		}
-		update assets;
+		return assets;
 	}
 
 	/************************************************************
