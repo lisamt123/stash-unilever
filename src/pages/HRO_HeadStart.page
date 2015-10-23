@@ -136,7 +136,7 @@
                                             <div class="stepActions col-md-3 col-sm-3 col-xs-12">
                                                 <div class="stepAction stepBodyDiv col-md-12 col-sm-12 col-xs-6" id="takeActionBtn{!onboardTask.id}">
                                                     <div class="buttonWrapper">
-                                                        <button class="actionButton" onclick="redirectToRecord('{!onboardTask.id}','{!onboardTask.ExternalPortalLink__c}');markCompleted('UncompletedTask'+'{!onboardTask.id}',this)" type="button" return="false">ACTION COMPLETE</button>     
+                                                        <button class="actionButton" onclick="redirectToRecord('{!onboardTask.id}','{!onboardTask.ExternalPortalLink__c}');markCompleted('UncompletedTask'+'{!onboardTask.id}',this)" type="button" return="false">{!IF(ISBLANK(onboardTask.ExternalPortalLink__c),'ACTION COMPLETE','TAKE ACTION')}</button>     
                                                     </div>
                                                 </div>
 

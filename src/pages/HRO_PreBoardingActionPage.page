@@ -7,6 +7,7 @@
                 isSF1=true;
             }
             $('[id$=isSF1]').val(isSF1);
+            $('[id$=NewLeaderName]').after('<span> Please enter full First and Last name for the new leader</span>');
         });    
     
         function navigateToHeadStart(){
@@ -17,15 +18,16 @@
     <apex:sectionHeader title="Register Tasks for New Leader"/>
     
     <apex:form >
-            
         <apex:pageMessages id="ErrMsg" />
         <apex:pageBlock id="block">
             <apex:pageBlockButtons >
-                <apex:commandButton action="{!savePreBoarding}" reRender="ErrMsg,block" oncomplete="navigateToHeadStart();" value="Continue"/>
+                <apex:commandButton action="{!savePreBoarding}" reRender="ErrMsg" oncomplete="navigateToHeadStart();" value="Continue"/>
             </apex:pageBlockButtons>
             <apex:pageBlockSection columns="1">
                <apex:inputHidden id="isSF1" value="{!isSalesforce1}"/>
-               <apex:inputField id="NewLeaderName" required="true" value="{!planInfo.New_Leader__c}" ></apex:inputField>
+                
+                <apex:inputField id="NewLeaderName" required="true" value="{!planInfo.New_Leader__c}" ></apex:inputField>
+                
                <apex:inputField id="NewLeaderStartDate" required="true" value="{!planInfo.Start_Date__c}" ></apex:inputField>
             </apex:pageBlockSection>
             <apex:pageBlockSection title="Register New Leader">
