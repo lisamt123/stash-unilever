@@ -5,7 +5,7 @@
     It is now <c:HRO_LeaderPhase ownerName="{!relatedTo.owner.name}" startDate="{!relatedTo.Start_Date__c}"/>
     for your new leader, {!relatedTo.New_Leader_Name__c}. <br /><br />
     
-    To ensure that the on-boarding journey is a successful one, we ask that you do the following as soon as possible. These tasks is now considered overdue.
+    To ensure that the on-boarding journey is a successful one, we ask that you do the following as soon as possible. These tasks are now considered overdue.
     <br /><br />
     <c:HRO_OverDuedTasks recordId="{!relatedTo.id}"/>
     <br /><br />
