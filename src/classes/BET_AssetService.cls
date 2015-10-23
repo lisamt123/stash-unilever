@@ -84,6 +84,12 @@ global without sharing class BET_AssetService {
 		return assets;
 	}
 
+	/************************************************************
+        Purpose: Checks if there are expected assets objects set for given bet
+        Parameters: Id betid
+        Returns: Boolean
+        Throws: -
+    *************************************************************/
 	public static Boolean expectedAssetsSetForBet(Id betid){
 		if(betid == null) return false;
 		Boolean exists = false;
