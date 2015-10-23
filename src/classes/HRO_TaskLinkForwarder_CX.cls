@@ -41,12 +41,16 @@ public with sharing class HRO_TaskLinkForwarder_CX {
   ********************************************************************/	
     public PageReference updateActionTaken(){
         system.debug('****HRO Entring updateActionTaken');
-       
-        Id recordId = (Id)mysObject.get('Id');
-        HRO_Onboarding_Task__c hroTask = new HRO_Onboarding_Task__c(id = recordId);
-        hroTask.Completed__c = true;
-        update hroTask;
-       
+        
+        try{
+            Id recordId = (Id)mysObject.get('Id');
+            HRO_Onboarding_Task__c hroTask = new HRO_Onboarding_Task__c(id = recordId);
+            hroTask.Completed__c = true;
+            List<Database.SaveResult> sr = Database.update(new List<HRO_Onboarding_Task__c>{hroTask});
+        }catch(Exception ex){
+            system.debug('***HRO updateActionTaken method could not be able to update record: '+ex.getMessage());
+        }
+        
         String pageUrl  = null;
         if(ApexPages.currentPage().getParameters().containsKey('pageUrl')){
             system.debug('before creating page reference');

@@ -49,6 +49,7 @@ public with sharing class HRO_TaskLinkForwarder_CXTest {
         Test.setCurrentPage(pageRef1);
         PageReference pRef2 = pageController.updateActionTaken();
         system.assert(pRef2.getUrl().contains('HRO_HeadStart'),'System should redirect user to headstart page');
+        pageController.redirectToPage ='some page';
         Test.stopTest();
         
     }
