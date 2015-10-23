@@ -45,7 +45,7 @@ global with sharing class HRO_OnboardingTaskList_CC {
         List<OnboardingTasksWrapper> taskWrapperLst = new List<OnboardingTasksWrapper>();
         
         for(HRO_Onboarding_Task__c hroTask : [Select Name, Due_Date__c,ExternalPortalLink__c,Id,Task_Detail__c,New_Leader_Name__c FROM HRO_Onboarding_Task__c 
-                                              WHERE Phase__c =:cPhase AND Onboarding_Task_Set__c =: cRecordId]){
+                                              WHERE Phase__c =:cPhase AND Onboarding_Task_Set__c =: cRecordId ORDER BY Due_Date__c,CreatedDate ASC]){
         
             OnboardingTasksWrapper taskWrapp = new OnboardingTasksWrapper();
             taskWrapp.taskName = hroTask.Task_Detail__c;
@@ -76,7 +76,7 @@ global with sharing class HRO_OnboardingTaskList_CC {
         //String instanceUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
         List<OnboardingTasksWrapper> taskWrapperLst = new List<OnboardingTasksWrapper>();
         for(HRO_Onboarding_Task__c hroTask : [Select Name, Due_Date__c,ExternalPortalLink__c,Id,Onboarding_Task_Set__r.OwnerId,New_Leader_Name__c,Task_Detail__c FROM HRO_Onboarding_Task__c 
-                                              WHERE Onboarding_Task_Set__c =: cRecordId AND Completed__c=false  AND Due_Date__c < TODAY]){
+                                              WHERE Onboarding_Task_Set__c =: cRecordId AND Completed__c=false  AND Due_Date__c < TODAY ORDER BY Due_Date__c,CreatedDate ASC]){
         
             OnboardingTasksWrapper taskWrapp = new OnboardingTasksWrapper();
             taskWrapp.taskName = hroTask.Task_Detail__c;
