@@ -1,0 +1,735 @@
+<apex:page sidebar="false" controller="Oblix_Ctrl06SOWView_CC" docType="html-5.0">
+
+  <apex:form id="jqueryId">
+  
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+    <script src="{!URLFOR($Resource.JQueryBlockUI)}" ></script>
+ 
+   
+    <style>
+         .Oblix_Container{
+            background-image : url("{!URLFOR($Resource.bgPattern)}");
+            background-repeat: no-repeat;
+            position:relative;
+            top: -11px;
+            
+        }
+        table tr th h1{
+            font-size: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .Oblix_sowDashboard{
+            height:300px;
+        }
+
+        .Oblix_header_title2{
+             font-size: 22px;
+        }
+        .Oblix_header_title{
+            font-size: 32px;
+        }
+        .Oblix_header{
+            background-image : url("{!URLFOR($Resource.Header_back)}");
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            height:100px;
+            width:1220px;
+            position: relative;
+            line-height: 100%;
+            letter-spacing: 1px;         
+        }
+        .Oblix_header td{
+             font-size: 15px;
+             font-family: Georgia, "DejaVu Serif", Norasi, serif;
+        }
+        
+        .Oblix_sowDetail{
+            display: block;
+            padding: 9.5px;
+            margin: 0 58px 23px;
+            font-size: 13px;
+            line-height: 1.42857143;
+            color: #333;
+            word-break: break-all;
+            word-wrap: break-word;
+            background-color: rgb(183, 193, 175);
+            border: 1px solid #969696;
+            border-radius: 4px;
+            font-size:15px;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        }
+      .Oblix_large_btn{
+            border-style:none;
+            width: 220px !important;
+            height: 30px;
+            background-position: 0 0;
+            border : 1px solid rgb(158, 145, 145);
+        }
+        
+        .Oblix_large_btn:hover{
+           border-style:none;
+            border : 1px solid rgb(223, 213, 213);
+            background-position: 0 0;
+        }
+        .Oblix_large_btn:active{
+            border-style:none;
+            border : 1px solid rgb(223, 213, 213);
+            background-position: 0 0;
+        }
+         .Oblix_btn{
+            border-style:none;
+            width: 125px;
+            height: 30px;
+            background-position: 0 0;
+            border : 1px solid rgb(158, 145, 145);
+        }
+        
+        .Oblix_btn:hover{
+            border-style:none;
+            border : 1px solid rgb(223, 213, 213);
+            background-position: 0 0;
+        }
+        .Oblix_btn:active{
+            border-style:none;
+            border : 1px solid rgb(223, 213, 213);
+            background-position: 0 0;
+        }
+        .Oblix_notes{
+            PADDING-right: 41px;
+        }
+        .Oblix_tableDetails tr h1{
+            font-size:16px;
+        }
+        table tr td {       
+            font-size : 12px;
+        }
+        .search_init{
+            transition: all .2s linear;
+            background: #fff;
+            padding: 5px 9px;
+            margin: 0;
+            border-radius: 4px;
+            width: 100%;
+            font-size: 13px;
+            height: 32px;
+        }
+        .Oblix_input{
+            transition: all .2s linear;
+            background: #fff;
+            padding: 5px 9px;
+            margin: 0;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .dataTables_length label select,.dataTables_filter input{
+            margin: 11px !important;
+        }
+        .dataTables_length label,.dataTables_filter label{
+            font-size:14px;
+        }
+        .Oblix_attachment{
+            width:90%;
+        }
+       .Oblix_filter_btn{
+           color: #333;
+            background: #fff !important;
+            border: 1px solid #b5b5b5 !important;
+            display: inline-block;
+            padding: 4px 12px !important;
+            width:100px;
+            margin-bottom: 0;
+            font-size: 14px !important;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+        }
+        .Oblix_projects_btn{
+        color: #333;
+            background: #fff !important;
+            border: 1px solid #b5b5b5 !important;
+            display: inline-block;
+            padding: 4px 12px !important;
+            width:200px;
+            margin-bottom: 0;
+            font-size: 14px !important;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+         }
+       .Oblix_filter_btn:hover, .Oblix_filter_btn:active{
+           background: #eaeaea !important;
+           border: 1px solid #b5b5b5 !important;
+       }     
+       .ui-tooltip, .arrow:after {
+        background: black;
+        border: 2px solid white;
+      }
+      .ui-tooltip {
+        padding: 10px;
+        color: white;
+        width:150px;
+        border-radius: 2px;
+        border-color:black;
+        font-size:12px;
+        box-shadow: 0 0 2px black;
+        text-align:center;
+      }
+      .arrow {
+        width: 70px;
+        height: 16px;
+        overflow: hidden;
+        position: absolute;
+        left: 50%;
+        border-color:black;
+        margin-left: -35px;
+        bottom: -16px;
+      }
+      .arrow.top {
+        top: -16px;
+        bottom: auto;
+      }
+      .arrow.left {
+        left: 20%;
+      }
+      .arrow:after {
+        content: "";
+        position: absolute;
+        left: 20px;
+        top: -20px;
+        width: 25px;
+        height: 25px;
+        border-color:black;
+        box-shadow: 6px 5px 9px -9px black;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      .arrow.top:after {
+        bottom: -20px;
+        top: auto;
+      }
+
+    .column1,.column2 {
+        width: 49%; 
+        float: left;
+    }
+
+    .column3{
+        width: 100%; 
+        float: left;
+    }
+
+    .column5{
+        width: 50%; 
+        float: left;
+    }
+    .column4{
+        width: 40%; 
+        float: left;
+    }
+    .column4 h1 {
+        font-size: 16px;
+    }
+    .PrColumn1 {
+        width: 45%; 
+        float: left;
+    }
+    .PrColumn2{
+        width: 45%;
+        float: left;
+    }
+
+    .PrColumn3{
+        width: 100%; 
+        float: left;
+    }
+
+    .PrColumn5{
+        width: 55%; 
+        float: left;
+    }
+    .PrColumn4{
+        width: 40%; 
+        float: left;
+    }
+   
+     .Oblix_table{
+            display:block;
+            padding: 9.5px;
+            margin: 0 58px 23px;
+            font-size: 13px;
+            line-height: 1.42857143;
+            color: #333;
+            word-break: break-all;
+            word-wrap: break-word;
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+    }
+   
+    /* for 900px or less */
+    @media screen and (max-width: 1200px) {
+     
+        .column1,.column2,.column3,.column4,.column5,.PrColumn1,.PrColumn2,.PrColumn3,.PrColumn4{
+            width: 100%;
+        }
+    }
+    
+    .Oblix_heading th{
+       background-color: rgba(29, 130, 40, 0.86);
+        padding: 10px;
+        color: white;
+        font-size: 14px;
+        border-radius: 4px;
+    }
+    .Oblix_table strong{
+        padding-right:20px;
+    }
+    .data table{
+        background-color: #fff;
+        padding:10px;
+    }
+    .Oblix_assets{
+        padding:10px;
+        background-color: #DFE4E0;
+    }
+    .Oblix_projects_container h1{
+        font-size: 16px;
+        /* text-transform: uppercase; */
+        letter-spacing: 1px;
+    }
+    .Oblix_projects_header{
+        padding: 20px;
+    }
+    .padding_remove{
+        padding:0px!important;
+    }
+    .Oblix_heading i.fa.fa-2x.fa-sort-desc,.Oblix_recordTypeth i.fa.fa-2x.fa-sort-desc{
+        display:none;
+    }
+    .Oblix_heading i.fa.fa-2x.fa-sort-up,.Oblix_recordTypeth i.fa.fa-2x.fa-sort-up{
+        display:block;
+    }
+     .show i.fa.fa-2x.fa-sort-desc{
+        display:none;
+    }
+    .show i.fa.fa-2x.fa-sort-up{
+        display:block;
+    }
+    .Oblix_icon {
+        cursor:pointer;
+    }
+    .Oblix_recordType{
+        float:left;
+        width:70%;
+    }
+    .Oblix_card{
+        float: right;
+        width: 25%;
+        background-color: #BDCEBF;
+        padding: 10px;
+        margin-top: 12px;
+        font-weight: bold;
+        height: 218px;
+        border-radius: 4px;
+        margin-right: 14px;
+    }
+    .Oblix_icon_right{
+        float:right;
+        width: 3%;
+    }
+    .Oblix_div_left{
+        float:left;
+     }
+    
+     .Oblix_subCat{
+         padding-left : 10px;
+     }
+     .Oblix_recordTypeth th{
+        background-color: #BDCEBF;
+        padding: 10px;
+     }
+     .data td{
+         background-color:white;
+     }
+     .Oblix_heading tr{
+         color:white;
+     }
+
+     .ui-widget-header {
+        border: 0px;
+        background: #E8E8E8;
+    }
+    
+    .ui-widget-content {
+        border: 0px;
+    }
+   
+    .ui-tabs .ui-tabs-panel {
+        display: block;
+        border-width: 0;
+        padding: 1em 1.4em;
+        background: #E8E8E8;
+        cursor: pointer;
+    }
+    .ui-tabs {
+       padding:0em;
+    } 
+    .ui-tabs .ui-tabs-nav li {
+        border-bottom-width: 1px;
+    }  
+    textarea,select,input {
+        vertical-align: top;
+    }
+    </style>
+   <script>
+   $(document).ready(function(){
+
+        $('tr.data, tr.btt').show().find('td').wrapInner('<div />');
+        $('tr.data, tr.btt').find('td > div').hide();
+        $('table tr.Oblix_heading').click(function(){
+            var data = $(this).next('tr');
+            var btt = data.next('tr');
+            data.find('td > div').slideToggle('slow');
+            btt.find('td > div').slideToggle('slow');
+            $(this).toggleClass('show');
+        });
+         $('table tr.Oblix_recordTypeth').click(function(){
+            var data = $(this).next('tr');
+            var btt = data.next('tr');
+            data.find('td > div').slideToggle('slow');
+            btt.find('td > div').slideToggle('slow');
+            $(this).toggleClass('show');
+        });
+        var IdsProject = {!IdsProject};
+        console.dir(IdsProject);
+        for (var i=0; i<IdsProject.length;i++) {
+            $('#'+IdsProject[i]+'_Audio_tabs').tabs();
+            $('#'+IdsProject[i]+'_Audio_tabs1').tabs();
+            $('#'+IdsProject[i]+'_Audio_tabs2').tabs();
+            $('#'+IdsProject[i]+'_Static_tabs').tabs();
+            $('#'+IdsProject[i]+'_Static_tabs1').tabs();
+            $('#'+IdsProject[i]+'_Static_tabs2').tabs();
+            $('#'+IdsProject[i]+'_Exper_tabs').tabs();
+            $('#'+IdsProject[i]+'_Exper_tabs1').tabs();
+            $('#'+IdsProject[i]+'_Exper_tabs2').tabs();
+            $('#'+IdsProject[i]+'_Value_tabs').tabs();
+            $('#'+IdsProject[i]+'_Value_tabs1').tabs();
+            $('#'+IdsProject[i]+'_Value_tabs2').tabs();
+            $('#'+IdsProject[i]+'_Digital_tabs').tabs();
+            $('#'+IdsProject[i]+'_Digital_tabs1').tabs();
+            $('#'+IdsProject[i]+'_Digital_tabs2').tabs();
+            $('#'+IdsProject[i]+'_Research_tabs').tabs();
+            $('#'+IdsProject[i]+'_Research_tabs1').tabs();
+            $('#'+IdsProject[i]+'_Research_tabs2').tabs();
+        }
+   });
+   
+    function Popup(){
+             $("#dialog").dialog({
+             width: 600,
+             modal:true,
+             close: function(event,ui){
+                 $("pop").dialog('destroy');          
+                    }
+             }); 
+            
+     }
+   </script>
+   
+    <div class="Oblix_Container">
+    <div id="dialog" title="Attachment list" style="display:none">   
+      <apex:pageBlock >
+       <apex:pageBlockTable value="{!lstAttachements}" var="attach">
+           <apex:column headerValue="Name">
+               
+               <apex:outputLink value="{!attach.Id}">{!attach.Name}</apex:outputLink>
+           </apex:column>
+            <apex:column headerValue="Parent Name">
+                 <apex:outputField value="{!attach.Parent.Name}"/>
+           </apex:column>
+       </apex:pageBlockTable>
+     </apex:pageBlock>
+   </div>
+
+   <!-- </div> -->
+    <center>
+    <div class="Oblix_header">
+       
+       <table width="90%" cellspacing="10px">
+            <tr>
+                <td width="8%">
+                <apex:image value="{!$Resource.Unilever_logo}" width="60px" height="60px" />
+                </td>
+                <td width="20%">
+                <div class="Oblix_header_title">SWOP</div><br/>Sow Online Planner
+                </td>
+                <td width="15%">
+                <div class="Oblix_header_title2">View SOW </div><br/>
+                </td>
+                <td width="15%">
+                <div class="Oblix_header_title2">Add Project </div><br/>
+                </td>
+                <td></td>
+                <td>
+                <div style="float:right"><p>Hi {!userConnected.Name} !</p></div>
+                </td>
+            </tr>
+        </table>
+       
+    </div>
+   
+     </center>
+     <div class="Oblix_table padding_remove">
+         <div class="Oblix_projects_container">  
+            <table class="Oblix_projects_header" width="100%">
+                <tr>
+                    <td width="20%">
+                        <h1> Add/Edit Project</h1>
+                    </td>
+                    <td>
+                    </td>
+                    <td  width="15%">
+                        <apex:commandButton value="Save Project" styleClass="Oblix_projects_btn" action="{!SaveProjectAction}"/>
+                    </td>                    
+                </tr>
+            </table>
+            <table width="100%">
+                <tbody>   
+                 <tr class="Oblix_heading">
+                    <th>
+                        <table width="100%">
+                            <tr>
+                                <td width="20%">
+                                    {!SelectedProject.name}
+                                </td>
+                                <td>
+                                </td>
+                                <td width="10%">
+                                    In progress
+                                </td>
+                                <td width="3%" class="Oblix_icon">
+                                    <i class="fa fa-2x fa-sort-desc"></i>
+                                </td>
+                            </tr>
+                        </table>
+                    </th>   
+                </tr>
+                <tr>
+                    <td width="100%">
+                         <table width="100%">
+                            <tr>
+                            <td width="40%">
+                               <section class="PrColumn1">
+                                   <table width="100%" >
+                                     <tr>
+                                          <td>
+                                            <strong>Description</strong><br/>
+                                            <apex:outputField value="{!SelectedProject.Description__c}"/>
+                                          </td>
+                                          
+                                     </tr>
+                                     <tr><td colspan="2">&nbsp;</td></tr>                                 
+                                     <tr>
+                                         <td>
+                                             <strong>JTBD</strong><br/>
+                                             <apex:outputField value="{!SelectedProject.Description__c}"/>
+                                         </td>
+                                     </tr>   
+                                    
+                                   </table>
+                               </section>
+                               
+                               <section class="PrColumn2">
+                                   <table width="100%"> 
+                                        <tr>    
+                                          <td colspan="2"><strong>Priority </strong><apex:outputField value="{!SelectedProject.Project_Priority__c}"/></td>
+                                       </tr>
+                                       <tr>    
+                                          <td colspan="2"><strong>Platforme </strong><apex:outputField value="{!SelectedProject.Platform__c}"/></td>
+                                       </tr>
+                                       <tr>
+                                          <td style="vertical-align: top;" ><strong>Contries/Region </strong><br/><apex:outputField value="{!SelectedProject.OblixCountries__c}"/></td>
+                                       </tr>
+                                       <tr><td colspan="2">&nbsp;</td></tr>
+                                       <tr>
+                                          <td colspan="2"><strong>Agency Hub Split</strong></td>
+                                       </tr>   
+                                       <tr>
+                                            <td> tak tak</td>
+                                            <td width="30%"> 50%</td>
+                                       </tr>
+                                       <tr>
+                                            <td> tak tak</td>
+                                            <td> 50%</td>
+                                       </tr>
+                                       <tr>
+                                            <td> tak tak</td>
+                                            <td> 50%</td>
+                                       </tr>
+                                       <tr><td colspan="2">&nbsp;</td></tr>
+                                       <tr>
+                                          <td colspan="2"><strong>Value drivers</strong></td>
+                                       </tr>   
+                                       <tr>
+                                            <td> tak tak</td>
+                                            <td>NO</td>
+                                       </tr>
+                                       <tr>
+                                            <td colspan="2"> tak tak</td>
+                                       </tr>
+                                       <tr>
+                                            <td colspan="2"> tak tak</td>
+                                       </tr>                    
+                                   </table>
+                               </section> 
+                           </td>
+                           <td width="25%">
+                               <section class="PrColumn3">   
+                                   <table width="100%"> 
+                                        <tr>    
+                                          <td><strong>Project Start date </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Production_Completion_Date__c}" /></apex:outputText></td>
+                                       </tr>
+                                       <tr>    
+                                          <td><strong>Project Completion </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Production_Completion_Date__c}" /></apex:outputText></td>
+                                       </tr>
+                                       <tr>
+                                          <td><strong>First Air date </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Production_Completion_Date__c}" /></apex:outputText></td>
+                                       </tr>
+                                       <tr>
+                                           <td><strong>Production Complete </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Production_Completion_Date__c}" /></apex:outputText></td>
+                                       </tr>   
+                                       <tr>
+                                            <td><strong>Due Date of BET </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Production_Completion_Date__c}" /></apex:outputText></td>
+                                       </tr>
+                                       <tr>
+                                            <td><strong>Bet First Release </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Production_Completion_Date__c}" /></apex:outputText></td>
+                                       </tr>
+                                       <tr>
+                                            <td><strong>Preview </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Production_Completion_Date__c}" /></apex:outputText></td>
+                                       </tr>
+                                       <tr>
+                                           <td><strong>Start on TV production </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Production_Completion_Date__c}" /></apex:outputText></td>
+                                       </tr>   
+                                       <tr>
+                                            <td><strong>Final release </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Production_Completion_Date__c}" /></apex:outputText></td>
+                                       </tr>
+                                       <tr>
+                                            <td><strong>Live date </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Production_Completion_Date__c}" /></apex:outputText></td>
+                                       </tr>
+                                       <tr>
+                                            <td><strong>Live date/Asset delivery </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Production_Completion_Date__c}" /></apex:outputText></td>
+                                       </tr>    
+                                       <tr><td colspan="2">&nbsp;</td></tr>             
+                                       <tr>
+                                            <td colspan="2"><strong>Timescale notes</strong></td>
+                                       </tr>  
+                                        <tr>
+                                            <td colspan="2">Tak tak</td>
+                                       </tr>                         
+                                   </table>
+                               </section>
+                           </td>
+                           <td>
+                           <section class="PrColumn4">
+                               <table width="100%" >  
+                                    <tr>    
+                                      <td><strong>% of fee this FY </strong></td>
+                                      <td> 70% </td>
+                                   </tr>
+                                   <tr>    
+                                      <td><strong>Agency % fee this FY </strong></td>
+                                      <td> 70% </td>
+                                   </tr>
+                                   <tr><td colspan="2">&nbsp;</td></tr> 
+                                   <tr><td colspan="2">&nbsp;</td></tr> 
+                                   <tr><td colspan="2">&nbsp;</td></tr> 
+                                   <tr>
+                                       <td colspan="2"><span style="text-decoration: underline;">Updated</span> &nbsp;<apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Production_Completion_Date__c}" /></apex:outputText><br/> by Asmae</td>
+                                   </tr>
+                                   <tr><td colspan="2">&nbsp;</td></tr> 
+                                   <tr><td colspan="2">&nbsp;</td></tr> 
+                                   <tr><td colspan="2">&nbsp;</td></tr>
+                                   <tr>
+                                        <td colspan="2">
+                                            <apex:inputField value="{!SelectedProject.Project_Stage__c}" styleClass="search_init"/>
+                                        </td>
+                                   </tr>
+                                   <tr>
+                                       <td colspan="2">
+                                            <apex:inputField value="{!SelectedProject.Project_Stage__c}" styleClass="search_init"/>
+                                        </td>
+                                   </tr>    
+                                   <tr><td colspan="2">&nbsp;</td></tr>  
+                              </table>
+                              </section>
+                             
+                              <section class="PrColumn5">
+                                 <center>
+                                     <br/> <br/> <br/> <br/>
+                                     <apex:commandButton value="Back " action="{!EditAction}" rerender="EditPanel" styleClass="Oblix_projects_btn"/><br/>
+                                      <apex:commandButton value="Save project" action="{!EditAction}" rerender="EditPanel" styleClass="Oblix_projects_btn"/><br/>
+                                      <apex:commandButton value="Edit / Add items" styleClass="Oblix_projects_btn"/><br/>
+                                      <apex:commandButton value="Clone Project" styleClass="Oblix_projects_btn"/>
+                                 </center>  
+                              </section>   
+                              </td>
+                           </tr>
+                           </table>
+                           
+                           <div class="Oblix_recordType">
+                           <table width="100%">
+                               <apex:repeat value="{!setRecordType}" var="recordType">
+                                <tr class="Oblix_recordTypeth">
+                                    <th>
+                                        <div class="Oblix_div_left">
+                                            {!recordType}
+                                        </div>
+                                        <div class="Oblix_icon_right Oblix_icon">
+                                            <i class="fa fa-2x fa-sort-desc"></i>
+                                            <i class="fa fa-2x fa-sort-up"></i>      
+                                        </div>
+                                    </th>   
+                                </tr>
+                                <tr class="data Oblix_subCat">
+                                    <td width="100%" style="paddding:20px">
+                                     <apex:repeat value="{!lstAssets}" var="asset">
+                                        <apex:outputpanel rendered="{!if(asset.RecordType.Name == recordType && asset.Agency_Projects__r.id == SelectedProject.id ,true,false)}" >
+                                           <div class="Oblix_assets"> <strong>{!asset.Name}</strong>- {!asset.Channels__c}</div>
+                                        </apex:outputpanel>
+                                    </apex:repeat>
+                                    </td>  
+                                </tr>                               
+                               </apex:repeat>
+                            </table>
+                            </div>
+                            
+                         <div class="Oblix_card"> Card </div>
+                       </td>
+                </tr>
+          </tbody>
+        </table>
+     
+    </div>
+ </div>
+ </div><!--  End Container -->
+</apex:form>
+</apex:page>

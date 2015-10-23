@@ -11,6 +11,8 @@
         <members>Oblix_Ctrl04Bis_OverrideOtherItemsNews</members>
         <members>Oblix_Ctrl04OverrideProjectNew</members>
         <members>Oblix_Ctrl04OverrideProjectNew_Test</members>
+        <members>Oblix_Ctrl05SOWDetails_CC</members>
+        <members>Oblix_Ctrl06SOWView_CC</members>
         <members>Oblix_TR01SOWMarkingSharing_Test</members>
         <members>Oblix_TR02SubmitSOWForApproval</members>
         <members>Oblix_TR02SubmitSOWForApproval_Test</members>
@@ -29,6 +31,11 @@
         <members>Oblix_VF02OverrideAsetNewLookup</members>
         <members>Oblix_VF03CustomAssetLookup</members>
         <members>Oblix_VF04OverrideProjectNew</members>
+        <members>Oblix_VF05_SOWDetails</members>
+        <members>Oblix_VF06_SOWView</members>
+        <members>Oblix_VF07_ProjectNew</members>
+        <members>Oblix_VF07_SOWNew</members>
+        <members>Oblix_VF08_ProjectEdit</members>
         <members>Oblix_VF4Bis_OverrideOtherItemsNews</members>
         <name>ApexPage</name>
     </types>
