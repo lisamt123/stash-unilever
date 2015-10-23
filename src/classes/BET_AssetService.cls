@@ -24,24 +24,30 @@ global without sharing class BET_AssetService {
     *************************************************************/
 	@Future
 	public static void grantAccessToBetsAssets(Id betId,Id userId){
-		List<ContentDocumentLink> links = new List<ContentDocumentLink>();
+		try{
+			List<ContentDocumentLink> links = new List<ContentDocumentLink>();
 
-		Set<Id> linkedFiles = new Set<Id>();
-		for(ContentDocumentLink cl : [select ContentDocumentId from ContentDocumentLink where LinkedEntityId =: userId]){
-			linkedFiles.add(cl.ContentDocumentId);
-		}
-
-		for(uw_Asset__c asset : [select id, File_Id__c from uw_Asset__c where uw_BET__c =: betId]){
-			if(!String.isBlank(asset.File_Id__c) && !linkedFiles.contains(asset.File_Id__c)){
-				ContentDocumentLink link = new ContentDocumentLink();
-				link.LinkedEntityId = userId;
-				link.ContentDocumentId = asset.File_Id__c;
-				link.ShareType = 'V';
-				link.Visibility = 'AllUsers';
-				links.add(link);
+			Set<Id> linkedFiles = new Set<Id>();
+			for(ContentDocumentLink cl : [select ContentDocumentId from ContentDocumentLink where LinkedEntityId =: userId]){
+				linkedFiles.add(cl.ContentDocumentId);
 			}
+
+			for(uw_Asset__c asset : [select id, File_Id__c from uw_Asset__c where uw_BET__c =: betId]){
+				if(!String.isBlank(asset.File_Id__c) && !linkedFiles.contains(asset.File_Id__c)){
+					ContentDocumentLink link = new ContentDocumentLink();
+					link.LinkedEntityId = userId;
+					link.ContentDocumentId = asset.File_Id__c;
+					link.ShareType = 'V';
+					link.Visibility = 'AllUsers';
+					links.add(link);
+				}
+			}
+			insert links;
+		}catch(Exception ex){
+			ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_AssetService','grantAccessToBetsAssets',
+                'Exception while granting access for ' + betId + ' for BET ' +  betId + ' related assets',
+                new BET_CustomBETException(ex.getMessage()),null,null,null,(Integer)DateTime.now().getTime(),'BET');
 		}
-		insert links;
 	}
 
 	/************************************************************
