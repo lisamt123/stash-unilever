@@ -27,9 +27,15 @@ public with sharing class BET_AssetHandlerCls {
 		}
 
 		List<uw_Asset__c> assets = new List<uw_Asset__c>();
-		for(uw_Asset__c existingAsset : [select id,Order_Of_Display__c from uw_Asset__c where uw_BET__c in : betsIds]) {
+		Map<Id,Integer> betNullPriorityAssetIndex = new Map<Id,Integer>();
+		for(uw_Asset__c existingAsset : [select id,Order_Of_Display__c,uw_BET__c from uw_Asset__c where uw_BET__c in : betsIds]) {
 			if(existingAsset.Order_Of_Display__c == null){
-				existingAsset.Order_Of_Display__c = 1;
+				if(betNullPriorityAssetIndex.keySet().contains(existingAsset.uw_BET__c)){
+					betNullPriorityAssetIndex.put(existingAsset.uw_BET__c,betNullPriorityAssetIndex.get(existingAsset.uw_BET__c) + 1);
+				} else {
+					betNullPriorityAssetIndex.put(existingAsset.uw_BET__c,1);
+				}
+				existingAsset.Order_Of_Display__c = betNullPriorityAssetIndex.get(existingAsset.uw_BET__c);
 			}
 			existingAsset.Order_Of_Display__c++;
 			assets.add(existingAsset);

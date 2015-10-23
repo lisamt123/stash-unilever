@@ -68,11 +68,15 @@ public with sharing class BET_ManageMembersService {
         Returns: List<selectOption>
         Throws: -
     *************************************************************/
-    public static List<selectOption> getRoles(Schema.DescribeFieldResult fieldResult){
+    public static List<selectOption> getRoles(Schema.DescribeFieldResult fieldResult,Boolean isBetOwnerOrManager){
         List<selectOption> options = new List<selectOption>();           
         List<Schema.PicklistEntry> picklistEntryList = fieldResult.getPicklistValues();
         for(Schema.PicklistEntry picklistEntry : picklistEntryList){
-             options.add(new SelectOption(picklistEntry.getLabel(), picklistEntry.getValue()));
+            if(!isBetOwnerOrManager && picklistEntry.getLabel() != 'Manager') {
+                options.add(new SelectOption(picklistEntry.getLabel(), picklistEntry.getValue()));
+            } else if (isBetOwnerOrManager) {
+                options.add(new SelectOption(picklistEntry.getLabel(), picklistEntry.getValue()));
+            }
         }       
         return options;
     }

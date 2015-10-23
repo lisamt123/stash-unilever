@@ -78,6 +78,19 @@ global without sharing class BET_AssetService {
 		return assets;
 	}
 
+	public static Boolean expectedAssetsSetForBet(Id betid){
+		if(betid == null) return false;
+		Boolean exists = false;
+		for(BET_ExpectedAssets__c eAssets : [select Expected__c from BET_ExpectedAssets__c where Brand_Experience_Toolkit__c =: betid]){
+			if(eAssets.Expected__c != null && eAssets.Expected__c > 0){
+				exists = true;
+				break;
+			}
+		}
+		return exists;
+	}
+
+
 	/************************************************************
         Purpose: Checks if bets have related expected assets
         Parameters: List<Id> betIds

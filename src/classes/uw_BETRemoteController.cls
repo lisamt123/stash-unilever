@@ -41,9 +41,19 @@ public with sharing class uw_BETRemoteController {
     public String BETTemplateLink {get; protected set;}
 
     /**
-    *Boolean flag indicates is user is bet operation admin
+    *Boolean flag indicates if user is bet operation admin
     */
     public String betOperationAdmin {get; protected set;}
+
+    /**
+    * Home page ipm integration information
+    */
+    public String homeInfoText {get; protected set;}
+
+    /**
+    *Boolean flag indicates if expected assets are provided
+    */
+    public String expectedAssetsProvided {get; protected set;} 
 
     /*******************************************************************
     Purpose: class constructor
@@ -56,8 +66,8 @@ public with sharing class uw_BETRemoteController {
     Purpose: class constructor
     ********************************************************************/
     public uw_BETRemoteController(ApexPages.StandardController sc) {
-        init();
         newBetId = sc.getId();
+        init();
     }
     /*******************************************************************
     Purpose: initialize application variables
@@ -67,11 +77,14 @@ public with sharing class uw_BETRemoteController {
         hasReadAll = BET_CommonService.hasAccess(true) ? 'true' : 'false';
         hasModifyAll = BET_CommonService.hasAccess(false) ? 'true' : 'false';
         betOperationAdmin = BET_CommonService.isBETOperationAdmin() ? 'true' : 'false';
+        expectedAssetsProvided = BET_AssetService.expectedAssetsSetForBet(newBetId) ? 'true' : 'false';
         if (newBetId == null) {
             newBetId = '';
         }
         BETTemplateLink = uw_CustomSettingsManager.getCustomSettingStringVal(uw_CustomSettingsManager.BET_TEMPALTE_DOWNLOAD_URL, '');
         helpLink = uw_CustomSettingsManager.getCustomSettingStringVal(uw_CustomSettingsManager.BET_HELP_URL, '');
+        String groupId = BET_Settings__c.getOrgDefaults().HelpChatterGroupId__c == null ? '' : (String)BET_Settings__c.getOrgDefaults().HelpChatterGroupId__c;
+        homeInfoText = String.format(Label.BET_Home_Page_Info,new List<String>{groupId});
     }
     /*******************************************************************
     Purpose: Method returns list of BET Owned by current logged in user
@@ -186,6 +199,10 @@ public with sharing class uw_BETRemoteController {
             if(results.bet.betIPMProjectId != null) {
                 results.bet.currentUserHasAccessToIPM = IPM_BETUpdateService.UserAccess((Id)betId, results.bet.betIPMProjectId,currentUserId);
             }
+
+            results.bet.expectedAssetsProvided = BET_AssetService.expectedAssetsSetForBet(betId);
+
+            System.debug('results.bet.expectedAssetsProvided ' + results.bet.expectedAssetsProvided);
 
             resultMap.put('bet', results.bet);
             resultMap.put('members', results.memberSetting);

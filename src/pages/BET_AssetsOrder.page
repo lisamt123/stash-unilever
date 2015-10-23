@@ -2,6 +2,10 @@
   	<apex:stylesheet value="{!$Resource.BET}/libs/jquery-ui/jquery-ui.css" />
   	<apex:stylesheet value="{!$Resource.BET}/css/BETAssetsOrder.css" />
 
+  	<div class="assetsDragAndDropInfo">
+  		{!$Label.BET_Please_Drag_And_Drop}
+  	</div>
+
 	<div class="assetsRowHeader">
 		<div class="assetElemHeaderBig">{!$ObjectType.uw_Asset__c.Fields.Name.Label}</div>
 		<div class="assetElemHeader">{!$ObjectType.uw_Asset__c.Fields.Studio_Asset_Type__c.Label}</div>
@@ -21,7 +25,10 @@
 		</apex:repeat>
 	</div>
 
-	<button onclick="this.innerHTML = '{!$Label.BET_Saving}'; saveOrder(); return false;" class="btnPink">{!$Label.BET_Save}</button> 
+	<button id="sbid" onclick="this.innerHTML = '{!$Label.BET_Saving}'; saveOrder(); return false;" 
+			class="btnPink">
+			{!$Label.BET_Save}
+	</button> 
 
 	<apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />
 	<apex:includeScript value="{!$Resource.BET}/scripts/BETAssetsOrder.js" />
@@ -33,7 +40,8 @@
 	        '{!$RemoteAction.BET_AssetsOrderController.updateAssetsOrder}',
 	        orderedAssets,
 	        function(result, event){
-	          saveOrderRemoteCallBack(event,result)
+	          document.getElementById('sbid').innerHTML='{!$Label.BET_Save}';
+	          saveOrderRemoteCallBack(event,result);
 	        },
 	        {escape: true}
 	      );

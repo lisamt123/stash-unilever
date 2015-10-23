@@ -327,7 +327,7 @@ global with sharing class BET_ManageMembersController {
     *************************************************************/
     public List<selectOption> getMemberRequestRoles() {
         Schema.DescribeFieldResult fieldResult = BET_Member_Request__c.Role__c.getDescribe();
-        return BET_ManageMembersService.getRoles(fieldResult);
+        return BET_ManageMembersService.getRoles(fieldResult,isBetOwnerOrManager);
     }
 
     /************************************************************
@@ -338,7 +338,7 @@ global with sharing class BET_ManageMembersController {
     *************************************************************/
     public List<selectOption> getMemberRoles() {
         Schema.DescribeFieldResult fieldResult = uw_BET_Team_Member__c.Role__c.getDescribe(); 
-        return BET_ManageMembersService.getRoles(fieldResult);
+        return BET_ManageMembersService.getRoles(fieldResult,isBetOwnerOrManager);
     }
 
     /************************************************************
