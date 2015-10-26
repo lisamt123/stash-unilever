@@ -11,6 +11,38 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 @isTest
 private class BET_SuggestMembersControllerTest {
 	
+    @isTest static void getWrapperTest(){
+        BET_SuggestMembersController.SuggestedMembersWrapper otherMemebersWrapper = new BET_SuggestMembersController.SuggestedMembersWrapper();
+        otherMemebersWrapper.groupName = Label.BET_SuggestedMemberOtherMembers;
+        otherMemebersWrapper.groupUsers = new List<BET_SuggestMembersController.SuggestedMemberItemWrapper>();
+        List<Id> otherMemebers = new List<Id>{UserInfo.getUserId()};
+        Map<Id,User> suggestedUsers = new Map<Id,User>{UserInfo.getUserId() => new User()};
+        Map<Id,Id> managersMap = new Map<Id,Id> {UserInfo.getUserId() => UserInfo.getUserId()};
+
+        BET_SuggestMembersController componentController = new BET_SuggestMembersController();
+        Test.startTest();
+        System.assert(!componentController.getWrapper(otherMemebersWrapper,otherMemebers,suggestedUsers,managersMap).groupUsers.isEmpty(),'Collection should not be empty');
+        Test.stopTest();
+    }
+
+    @isTest static void addNewMembersTest(){
+
+        uw_BET__c betObject = BET_TestUtils.getTestBet();
+        insert betObject;
+
+        BET_SuggestMembersController componentController = new BET_SuggestMembersController();
+        componentController.betIdCtrl = betObject.id;
+        componentController.newlyAddedUsers = ''+UserInfo.getUserId();
+        componentController.addNewMembers();
+        componentController.memberToDelete = UserInfo.getUserId();
+        componentController.deleteMember();
+        componentController.searchUserName = UserInfo.getFirstName();
+        componentController.searchUsers();
+        Test.startTest();
+        System.assert(componentController.suggested_MembersCtrl.isEmpty(),'List should be empty');
+        Test.stopTest();
+    }
+
     @isTest static void testGetSuggestedMembers(){
         uw_BET__c betObject = BET_TestUtils.getTestBet();
         insert betObject;

@@ -86,6 +86,30 @@ private class BET_ManageMembersController_Test {
     Test.stopTest();
   }
 
+  @isTest private static void addExternalMemberUnileverTest(){
+    uw_Bet__c testBET = BET_TestUtils.getTestBet();
+    insert testBET;
+
+    PageReference pageRef = Page.BET_ManageMembers;  
+    Test.setCurrentPage(pageRef);
+    ApexPages.currentPage().getParameters().put(BET_PARAM,testBET.Id);
+    ApexPages.StandardController ctr = new ApexPages.StandardController(new BET_Member_Request__c());
+    BET_ManageMembersController controller = new BET_ManageMembersController(ctr);
+
+    List<User> users = [select id from User where isActive = true and id !=: UserInfo.getUserId() limit 2];
+
+    List<BET_Member_Request__c> rmembers = [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c=:testBET.id and Status__C =: APROVED_STATUS];
+    Test.startTest();
+    System.assert(rmembers.isEmpty(),NO_MEMBER_REQUEST_MESSAGE);
+
+    controller.betMemberRequest.External_User_Email__c = 'm.bluj@unilever.com';
+    controller.addExternalMember();
+
+    rmembers = [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c=:testBET.id];
+    System.assertEquals(rmembers.size(),0,NO_MEMBER_REQUEST_MESSAGE);
+    Test.stopTest();
+  }
+
   @isTest private static void doApproveTest(){
     uw_Bet__c testBET = BET_TestUtils.getTestBet();
     insert testBET;

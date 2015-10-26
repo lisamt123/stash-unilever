@@ -21,8 +21,14 @@ public with sharing class BET_AssetHandlerCls {
 	public static void updateAssetOrdering(List<uw_Asset__c> newAssets){
 		System.debug('Entering updateAssetOrdering : ' + newAssets);
 		Set<Id> betsIds = new Set<Id>();
+		Map<Id,Integer> betNewAssetNo = new Map<Id,Integer>();
 		for(uw_Asset__c asset : newAssets){
-			asset.Order_Of_Display__c = 1;
+			if(betNewAssetNo.keySet().contains(asset.uw_BET__c)){
+				betNewAssetNo.put(asset.uw_BET__c,betNewAssetNo.get(asset.uw_BET__c)+1);
+			} else {
+				betNewAssetNo.put(asset.uw_BET__c,1);
+			}
+			asset.Order_Of_Display__c = betNewAssetNo.get(asset.uw_BET__c);
 			betsIds.add(asset.uw_BET__c);
 		}
 
@@ -33,11 +39,12 @@ public with sharing class BET_AssetHandlerCls {
 				if(betNullPriorityAssetIndex.keySet().contains(existingAsset.uw_BET__c)){
 					betNullPriorityAssetIndex.put(existingAsset.uw_BET__c,betNullPriorityAssetIndex.get(existingAsset.uw_BET__c) + 1);
 				} else {
-					betNullPriorityAssetIndex.put(existingAsset.uw_BET__c,1);
+					betNullPriorityAssetIndex.put(existingAsset.uw_BET__c,betNewAssetNo.get(existingAsset.uw_BET__c));
 				}
-				existingAsset.Order_Of_Display__c = betNullPriorityAssetIndex.get(existingAsset.uw_BET__c);
+				existingAsset.Order_Of_Display__c = betNullPriorityAssetIndex.get(existingAsset.uw_BET__c) + 1;
+			} else {
+				existingAsset.Order_Of_Display__c = existingAsset.Order_Of_Display__c + betNewAssetNo.get(existingAsset.uw_BET__c);
 			}
-			existingAsset.Order_Of_Display__c++;
 			assets.add(existingAsset);
 		}
 

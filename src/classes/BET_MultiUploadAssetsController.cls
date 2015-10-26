@@ -83,7 +83,7 @@ global class BET_MultiUploadAssetsController {
 	@RemoteAction
 	global static String saveFileAndConnect(String feedid, String assetName,String mediaType,String country,String status, String betId){
 
-		uw_Asset__c file = new uw_Asset__c(name = assetName,uw_BET__c = betId,Status__c = status,Studio_Asset_Type__c = uw_CustomAssetUploadExtension.BET_ASSET_TYPE_CW,Media_Type__c = mediaType, Country__c = country);
+		uw_Asset__c file = new uw_Asset__c(name = assetName,uw_BET__c = betId,Status__c = status,Studio_Asset_Type__c = uw_CustomAssetUploadExtension.BET_ASSET_TYPE_CW,Media_Type__c = mediaType, Country__c = country,Order_Of_Display__c = 1.0);
 
 		uw_Bet__c bet = [select id, Status__c from uw_bet__c where id =: betId];
 
