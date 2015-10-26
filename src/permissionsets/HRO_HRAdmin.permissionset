@@ -84,11 +84,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>HRO_Onboarding_Plan__c.Worklevel__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>HRO_Onboarding_Task_Set__c.New_Leader_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
