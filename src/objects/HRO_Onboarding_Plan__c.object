@@ -171,32 +171,6 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
-    <fields>
-        <fullName>Worklevel__c</fullName>
-        <externalId>false</externalId>
-        <label>Work Level</label>
-        <picklist>
-            <picklistValues>
-                <fullName>L2</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>L3</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>L4</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>L5</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
     <label>Onboarding Task Template</label>
     <listViews>
         <fullName>All</fullName>
