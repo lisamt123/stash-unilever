@@ -759,6 +759,8 @@
         <members>HRO_BoardingAction_CXTest</members>
         <members>HRO_HeadStart_CX</members>
         <members>HRO_HeadStart_CXTest</members>
+		<members>HRO_NavMenu_CC</members>
+        <members>HRO_NavMenu_CCTest</members>
         <members>HRO_OnboardingTaskList_CC</members>
         <members>HRO_OnboardingTaskList_CCTest</members>
         <members>HRO_ProgressPage_CX</members>
@@ -828,6 +830,7 @@
 		<members>HRO_HeaderScripts</members>
         <members>HRO_HeadstartLink</members>
         <members>HRO_JourneyMenu</members>
+		<members>HRO_JourneyMobile</members>
         <members>HRO_LeaderPhase</members>
         <members>HRO_NavMenu</members>
         <members>HRO_OnboardingTaskList</members>
@@ -1658,13 +1661,6 @@
         <members>HROCultureLink</members>
         <members>HRONetworkLink</members>
         <members>HROOwnershipLink</members>
-        <members>HROPhaseIntroHeaderBeforeArrival</members>
-        <members>HROPhaseIntroHeaderBeonBoard</members>
-        <members>HROPhaseIntroHeaderDay1</members>
-        <members>HROPhaseIntroHeaderMonth1</members>
-        <members>HROPhaseIntroHeaderMonth2</members>
-        <members>HROPhaseIntroHeaderMonth3</members>
-        <members>HROPhaseIntroHeaderWeek1</members>
         <members>HROPhaseIntroInfoBeforeArrival</members>
         <members>HROPhaseIntroInfoBeonBoard</members>
         <members>HROPhaseIntroInfoDay1</members>
@@ -1933,7 +1929,7 @@
         <members>uw_Terms_Conditions__c</members>
 		<members>HRO_Onboarding_Plan__c</members>
         <members>HRO_Onboarding_Task_Set__c</members>
-        <members>HRO_Onboarding_Task__c</members>
+		<members>HRO_Onboarding_Task__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -3291,10 +3287,11 @@
         <members>*</members>
         <name>SharingOwnerRule</name>
     </types>
-	<types>
+    <types>
         <members>HROResources</members>
         <members>AA_forcetk</members>
         <members>AgentAppStaticResource</members>
+        <members>Core_IC_IdeationApp</members>
         <members>LoadImage</members>
         <name>StaticResource</name>
     </types>
@@ -3590,7 +3587,6 @@
         <members>uw_SSO_Settings__c</members>
         <members>uw_Terms_Conditions__c</members>
 		<members>HRO_Onboarding_Task_Set__c</members>
-        <members>HRO_Onboarding_Task__c</members>
         <name>Workflow</name>
     </types>
     <version>34.0</version>
