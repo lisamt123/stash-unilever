@@ -75,17 +75,15 @@ global class BET_MultiUploadAssetsController {
     }
 
     /************************************************************
-        Purpose: Creates feed attachemnt related asset
-        Parameters: String feedid, String assetName,String mediaType,String country,String status, String betId
-        Returns: String
+        Purpose: Updates bet fields
+        Parameters: uw_Asset__c file,uw_Bet__c bet
+        Returns: Boolean
         Throws: -
     *************************************************************/
-	@RemoteAction
-	global static String saveFileAndConnect(String feedid, String assetName,String mediaType,String country,String status, String betId){
+    global static Boolean refreshRelatedBet(uw_Asset__c file,uw_Bet__c bet){
 
-		uw_Asset__c file = new uw_Asset__c(name = assetName,uw_BET__c = betId,Status__c = status,Studio_Asset_Type__c = uw_CustomAssetUploadExtension.BET_ASSET_TYPE_CW,Media_Type__c = mediaType, Country__c = country,Order_Of_Display__c = 1.0);
-
-		uw_Bet__c bet = [select id, Status__c from uw_bet__c where id =: betId];
+        Boolean updateBet = false;
+        Boolean brandExperiencePresnetationIsThere = false;
 
         file.Sub_Function__c = BRAND_BUILDING;
 
@@ -95,26 +93,6 @@ global class BET_MultiUploadAssetsController {
             file.Status__c = uw_CustomAssetUploadExtension.BET_ASSET_SHARED;
         }
 
-        Boolean brandExperiencePresnetationIsThere = false;
-        
-        
-        ConnectApi.FeedItem fi; 
-        ConnectApi.ContentAttachment ca; 
-        List<FeedItem> chatterContentPostList;
-        FeedItem chatterContentPost;
-        if(!Test.isRunningTest()){  
-            chatterContentPostList = [SELECT Id, RelatedRecordId, ContentDescription, Type, ContentFileName FROM FeedItem WHERE Id = :feedid LIMIT 1];
-            chatterContentPost = chatterContentPostList[0];   
-            file.Related_Feed_Item__c = chatterContentPost.Id;        
-            fi = ConnectApi.ChatterFeeds.getFeedItem(null, file.Related_Feed_Item__c);   
-            ca = (ConnectApi.ContentAttachment) fi.attachment;
-        }
-
-        file.URL_of_Asset__c = ca == null ? null : ca.downloadUrl;
-        file.thumbnail__c = ca == null ? null : ca.renditionUrl;
-        file.File_Id__c = ca == null ? null : ca.id;
-        
-        Boolean updateBet = false;
         if(file.Sub_Function__c == 'Brand Development' && file.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){
             if(file.Media_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW && bet.Status__c == 'First release'){
                 bet.Status__c = 'Final release';
@@ -131,7 +109,16 @@ global class BET_MultiUploadAssetsController {
                 }
             }
         }
+        return updateBet;
+    } 
 
+    /************************************************************
+        Purpose: Saves asset
+        Parameters: uw_Asset__c file,uw_Bet__c bet,List<FeedItem> chatterContentPostList,FeedItem chatterContentPost,Boolean updateBet
+        Returns: String
+        Throws: -
+    *************************************************************/
+    global static String saveAsset(uw_Asset__c file,uw_Bet__c bet,List<FeedItem> chatterContentPostList,FeedItem chatterContentPost,Boolean updateBet){
         if (String.isEmpty(file.Name)) {
             file.Name = Test.isRunningTest() ? 'Unit test file name' : chatterContentPost.ContentFileName;
         }
@@ -147,5 +134,38 @@ global class BET_MultiUploadAssetsController {
             return e.getMessage();
         }           
         return null;      
+    } 
+
+    /************************************************************
+        Purpose: Creates feed attachemnt related asset
+        Parameters: String feedid, String assetName,String mediaType,String country,String status, String betId
+        Returns: String
+        Throws: -
+    *************************************************************/
+	@RemoteAction
+	global static String saveFileAndConnect(String feedid, String assetName,String mediaType,String country,String status, String betId){
+
+		uw_Asset__c file = new uw_Asset__c(name = assetName,uw_BET__c = betId,Status__c = status,Studio_Asset_Type__c = uw_CustomAssetUploadExtension.BET_ASSET_TYPE_CW,Media_Type__c = mediaType, Country__c = country,Order_Of_Display__c = 1.0);
+
+		uw_Bet__c bet = [select id, Status__c from uw_bet__c where id =: betId];
+           
+        ConnectApi.FeedItem fi = null;
+        ConnectApi.ContentAttachment ca = null;
+        List<FeedItem> chatterContentPostList = null;
+        FeedItem chatterContentPost = null;
+        if(!Test.isRunningTest()){  
+            chatterContentPostList = [SELECT Id, RelatedRecordId, ContentDescription, Type, ContentFileName FROM FeedItem WHERE Id = :feedid LIMIT 1];
+            chatterContentPost = chatterContentPostList[0];   
+            file.Related_Feed_Item__c = chatterContentPost.Id;        
+            fi = ConnectApi.ChatterFeeds.getFeedItem(null, file.Related_Feed_Item__c);   
+            ca = (ConnectApi.ContentAttachment) fi.attachment;
+        }
+
+        file.URL_of_Asset__c = ca == null ? null : ca.downloadUrl;
+        file.thumbnail__c = ca == null ? null : ca.renditionUrl;
+        file.File_Id__c = ca == null ? null : ca.id;
+        
+        Boolean updateBet = refreshRelatedBet(file,bet);
+        return saveAsset(file,bet,chatterContentPostList,chatterContentPost,updateBet);
 	}
 }
