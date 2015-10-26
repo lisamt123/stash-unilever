@@ -94,7 +94,7 @@ global with sharing class BET_ManageMembersController {
                 betMemberRequest.Status__c = requestsShouldBeAutoapproved ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW;
                 betMemberRequest.Do_Not_Notify_Bet__c = requestsShouldBeAutoapproved ? true : false;
                 betMemberRequest.External_User_Request__c = false;
-                betMemberRequest.Do_Not_Notify_Bet__c = true;
+                betMemberRequest.Do_Not_Notify_Bet__c = !requestsShouldBeAutoapproved;
                 insert betMemberRequest;
                 betMemberRequest.UserId__c = null;
 
@@ -327,7 +327,7 @@ global with sharing class BET_ManageMembersController {
     *************************************************************/
     public List<selectOption> getMemberRequestRoles() {
         Schema.DescribeFieldResult fieldResult = BET_Member_Request__c.Role__c.getDescribe();
-        return BET_ManageMembersService.getRoles(fieldResult);
+        return BET_ManageMembersService.getRoles(fieldResult,isBetOwnerOrManager);
     }
 
     /************************************************************
@@ -338,7 +338,7 @@ global with sharing class BET_ManageMembersController {
     *************************************************************/
     public List<selectOption> getMemberRoles() {
         Schema.DescribeFieldResult fieldResult = uw_BET_Team_Member__c.Role__c.getDescribe(); 
-        return BET_ManageMembersService.getRoles(fieldResult);
+        return BET_ManageMembersService.getRoles(fieldResult,isBetOwnerOrManager);
     }
 
     /************************************************************

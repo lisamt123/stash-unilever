@@ -3,6 +3,16 @@
     <customSettingsType>Hierarchy</customSettingsType>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>HelpChatterGroupId__c</fullName>
+        <externalId>false</externalId>
+        <label>HelpChatterGroupId</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>SoftDeletePeriod__c</fullName>
         <externalId>false</externalId>
         <label>SoftDeletePeriod</label>

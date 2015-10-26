@@ -2300,6 +2300,9 @@
         <members>BET_Deleting</members>
         <members>BET_Delete_BET_Linked</members>
 		<members>BET_BET_Delete_Question</members>
+		<members>BET_Please_Drag_And_Drop</members>
+		<members>BET_Suggest_Member</members>
+		<members>BET_Home_Page_Info</members>
         <name>CustomLabel</name>
     </types>
     <types>
