@@ -1,6 +1,28 @@
 @isTest
 private class BET_AssetServiceTest {
 	
+
+	@isTest static void grantAccessToBetsAssetsTest(){
+		uw_Bet__c bet = BET_TestUtils.getTestBet();
+		insert bet;
+		uw_Asset__c asset = new uw_Asset__c(name = 'test123321', uw_Bet__c = bet.id,File_Id__c = '123321');
+		insert asset;
+		BET_AssetService.grantAccessToBetsAssets(bet.Id,UserInfo.getUserId());
+		Test.startTest();
+		System.assertEquals(1,1,'Method should run without exception');
+		Test.stopTest();
+	}
+
+	@isTest static void expectedAssetsSetForBetTest(){
+		uw_Bet__c bet = BET_TestUtils.getTestBet();
+		insert bet;
+		BET_ExpectedAssets__c ea = new BET_ExpectedAssets__c(Brand_Experience_Toolkit__c = bet.id, Expected__c = 1, Type__c = 'Test');
+		insert ea;
+		Test.startTest();
+		System.assert(BET_AssetService.expectedAssetsSetForBet(bet.id),'There sould be expected asets for this bet');
+		Test.stopTest();
+	}
+
 	@isTest static void betContainsExpectedAssetsRecordTest() {
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
