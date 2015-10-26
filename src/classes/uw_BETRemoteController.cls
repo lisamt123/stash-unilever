@@ -84,7 +84,7 @@ public with sharing class uw_BETRemoteController {
         BETTemplateLink = uw_CustomSettingsManager.getCustomSettingStringVal(uw_CustomSettingsManager.BET_TEMPALTE_DOWNLOAD_URL, '');
         helpLink = uw_CustomSettingsManager.getCustomSettingStringVal(uw_CustomSettingsManager.BET_HELP_URL, '');
         String groupId = BET_Settings__c.getOrgDefaults().HelpChatterGroupId__c == null ? '' : (String)BET_Settings__c.getOrgDefaults().HelpChatterGroupId__c;
-        homeInfoText = String.format(Label.BET_Home_Page_Info,new List<String>{groupId});
+        homeInfoText = String.format(Label.BET_Home_Page_Info,new List<String>{groupId,Label.BET_Help_Group_Name});
     }
     /*******************************************************************
     Purpose: Method returns list of BET Owned by current logged in user

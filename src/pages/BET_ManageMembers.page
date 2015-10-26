@@ -98,7 +98,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
           <apex:commandButton value="{!$Label.BET_Delete_selected}" action="{!massDelete}" 
                               rendered="{!isBetOwnerOrManager}"
                               styleClass="buttong2y" 
-                              style="background: #BE236D; color:white;height: 35px;font-size:12px;font-family: Rockwell;width: 100px;"/> 
+                              style="background: #BE236D; color:white;height: 35px;font-size:12px;font-family: Rockwell;width: 110px;"/> 
        
         </div>
 
