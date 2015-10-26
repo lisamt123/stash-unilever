@@ -147,7 +147,9 @@ public with sharing class uw_BETWrapper {
             if(this.assetDownloadLink != null){ 
                 Integer startIdx = this.assetDownloadLink.indexOf('/download/');
                 Integer endIdx = this.assetDownloadLink.indexOf('?');    
-                this.assetPreviewLink = '/'+this.assetDownloadLink.substring(startIdx+10, endIdx);
+                if(startIdx > -1 && endIdx > -1){
+                    this.assetPreviewLink = '/'+this.assetDownloadLink.substring(startIdx+10, endIdx);
+                }
             }
         }
     }

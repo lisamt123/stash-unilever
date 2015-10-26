@@ -13,7 +13,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 @isTest (seeAllData=false)
 private class BET_BETServiceTest {
 	
-    private static String EXCEPTION_MSG = 'Method should throw BET_CustomBETException'; 
+    private static final String EXCEPTION_MSG = 'Method should throw BET_CustomBETException'; 
 
     @isTest static void testGetBet(){
 		uw_BET__c betObject = BET_TestUtils.getTestBet();

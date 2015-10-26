@@ -11,8 +11,10 @@ History
 -------
 VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   Maciej Krol             22/12/2014      INITIAL DEVELOPMENT
-1.1 -   Blessy Voola            17 Mar 2015     T0-Fix to resolve the issue-when a user clicks access toolkit, user is redirected to bet home page.
-1.2 -    Blessy Voola            28 Apr 2015    T1-Fix to resolve the issue-User with CB4L Hub admin permission set cannot access chatter on toolkit page for public BET.
+1.1 -   Blessy Voola            17 Mar 2015     T0-Fix to resolve the issue-when a user clicks access toolkit, 
+                                                user is redirected to bet home page.
+1.2 -    Blessy Voola            28 Apr 2015    T1-Fix to resolve the issue-User with CB4L Hub admin permission set 
+                                                cannot access chatter on toolkit page for public BET.
 **********************************************************************/
 /* withour sharing due to this is service class */
 public without sharing class BET_CommonService {

@@ -11,7 +11,8 @@ History
 -------
 VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   Maciej Krol             22/12/2014      INITIAL DEVELOPMENT
-1.1 -   Blessy Voola            28 Apr 2015   T0- Move BET to final release if a key visual and BET presentation is uploaded and approved irrespective of their order of uploading.
+1.1 -   Blessy Voola            28 Apr 2015   T0- Move BET to final release if a key visual and BET presentation 
+                                                is uploaded and approved irrespective of their order of uploading.
 **********************************************************************/
 public with sharing class BET_EditAssetController {
     @TestVisible private Integer throwUTException;
