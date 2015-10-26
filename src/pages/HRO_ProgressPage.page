@@ -1,0 +1,58 @@
+<apex:page docType="html-5.0" showHeader="false" sidebar="false" standardStylesheets="false" controller="HRO_ProgressPage_CX">
+<html>
+    <head>
+        <c:HRO_HeaderScripts />
+     	   
+        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.HROResources, '/DECircliful/jquery.circliful.css')}" />
+        <script src="{!URLFOR($Resource.HROResources, '/DECircliful/jquery.circliful.min.js')}"></script>    
+		<script src="{!URLFOR($Resource.HROResources, '/scripts/ProgressPage.js')}"></script>
+        <script>
+            $(function() {
+                scrollbackground();
+                $("[id$='myStat']").each(function( index ) {
+                    $( this ).circliful();
+                });
+                resizePageContent();    
+            });
+        </script>
+    </head>
+
+    <c:HRO_NavMenu id="navMenu" isAdmin="true" componentUserId="{!profileUserId}"/>
+    
+    <div id="pageContent" class="row bodyRow">
+        <div class="col-xs-12 bodyDiv">
+            <div class="bodyWrapper">
+                <div class="bodyContent">
+                    <img alt="onboarding-progress" id="recordHeader-small" class="centerImage width-80 margin-10" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/onboarding-progress-small.png')}" />
+
+                    <img alt="onboarding-progress" id="recordHeader" class="width-80" src="{!URLFOR($Resource.HROResources, '/SEUnileverResources/onboarding-progress-large.png')}" />
+                    <div class="recordArea">
+                        <apex:variable value="{!0}" var="rowNum"/>
+                        <apex:repeat value="{!progressLst}" var="ProgressItem">
+
+                            <div class="col-xs-12 col-sm-6 col-md-6 without-paddings">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="progress-label">
+                                       {!progressLst[rowNum].phase}
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div id="myStat" data-dimension="120" data-text="{!progressLst[rowNum].perecntOfCompletion}%" data-info="" data-width="7" 
+                                         data-fontsize="15" data-percent="{!progressLst[rowNum].perecntOfCompletion}" data-fgcolor="#61a9dc" data-bgcolor="#eee" 
+                                         data-fill="#ddd" data-total="{!progressLst[rowNum].totalTasks}" data-part="{!progressLst[rowNum].totalCompletedTasks}" 
+                                         data-icon="long-arrow-up" data-icon-size="20" data-icon-color="#fff"></div>
+                                </div>
+                            </div>
+                                
+                           
+                            <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                        </apex:repeat>
+                     </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</html> 
+</apex:page>
