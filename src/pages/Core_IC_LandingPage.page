@@ -1,0 +1,308 @@
+<!-- 
+   Page Name :  Core_IC_LandingPage
+   Author : Mindtree
+   Date : 1/6/15
+   Requirement/Project Name: Ideation App
+   Description: Landing page used for Ideation                 
+ -->
+<apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false">
+    <meta http-equiv="content-type" content="text/html; charset=UTF8" />
+    <div class="container">
+        <div class="row iPhoneHomeScreenHeight">
+            <div class="pageBottomSpace">
+                <div id="homePage1" class="headerBarBackground">
+                    <table class="headerBarWidth" id="pageTop">
+                        <tr>
+                            <td class="headerBarRowAlign">
+                                <a href="/#home"><img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/back.svg')}" class="backImageStyle" /></a>
+    
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <script type="text/javascript">
+                    var param1var = getQueryVariable();
+                    if (param1var) {
+                        document.getElementById("homePage1").style.display = "none";
+                    }
+    
+                    function getQueryVariable() {
+                        var query = window.location.search.substring(1);
+                        var vars = query.split("&");
+                        for (var i = 0; i < vars.length; i++) {
+                            var pair = vars[i].split("=");
+                            if (pair[0] == 'isdtp') {
+                                return (true);
+                            }
+                        }
+                        return (false);
+                    }
+                </script>
+                <div class="homePageSection borderRadius">
+                    <table class="homePageSection borderRadius">
+                        <tr>
+                            <td colspan="2">
+                                <div class="ideationCampaignDetailBlock">
+                                    <span class="homePageSectionTitle">{{'LBL_FEATURED_CAMPAIGNS' | translate}}</span>
+                                    <span id="alignRight" ng-click="gotoFeaturedCampaignListPage()" ng-show="ideationCampaignList.SeeAllLinkForFeaturedCampaigns" class="homePageSectionLink">{{'LBL_SEE_ALL' | translate}}&nbsp;<img src="{!URLFOR($Resource.Core_IC_IdeationApp,'img/Link.svg')}" class="imageIconStyle"/> </span>
+                                </div>
+                            </td>
+                        </tr>
+    
+                        <!--Notification Error Message starts-->
+                        <tr ng-show="(ideationCampaignList.FeaturedCampaigns.length==0 ? true : false)">
+                            <td>
+                                <label class="notificationMessageForMyUpdates" ng-if="ideationCampaignList.CampaignTypeForFeaturedCampaigns== 'NoActive'">{{'LBL_FEATURED_CAMPAIGNS_NOACTIVE' | translate}}</label><!---->
+                                <br />
+                                <label class="notificationMessageForMyUpdates" ng-if="ideationCampaignList.CampaignTypeForFeaturedCampaigns== 'NoClosed'">{{'LBL_FEATURED_CAMPAIGNS_NOCLOSED' | translate}}</label><!---->
+                                <br />
+                            </td>
+                        </tr>
+                        <!--Notification Error Message ends-->
+    
+                        <tr ng-show="ideationCampaignList.SeeAllLinkForFeaturedCampaigns" id="bottomSpace">
+                            <td colspan="2" id="paddingBottom" ng-hide="(ideationCampaignList.FeaturedCampaigns.length==0 ? true : false)">
+                            <!-- <div class="homePageCarosalImageDiv">
+                                    <div class="featuredCampaignHomePageCarosalLeftImage">
+                                        <img ng-click="featuredCampaignsCount = featuredCampaignsCount - 1" ng-hide="(featuredCampaignsCount==0 ? true : false)" src="{!URLFOR($Resource.Core_IC_IdeationApp,'img/Carousel_left.svg')}" class="carosalImageStyle" />
+                                    </div>
+                                    <div class="featuredCampaignHomePageCarosalRightImage">
+                                        <img ng-click="featuredCampaignsCount = featuredCampaignsCount + 1" ng-hide="(featuredCampaignsCount==ideationCampaignList.FeaturedCampaigns.length-1 ? true : false)" src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/Carousel_right.svg')}" class="carosalImageStyle" />
+                                    </div>
+                                </div> -->
+                                <div>
+                              <!-- <div class="featuredCampaignHomePageMainDiv" ng-click="gotoFeaturedCampaignDetailPage(ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].IdeaThemeId)">
+                                        <div class="featuredCampaignHomePageLeftDiv">
+                                            <div class="ideationCampaignImageBlock">
+                                                <img class="featureCampaignsBanner" src="{{ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].Banner}}"></img>
+                                                <span class="ideationCampaignImageBlockLabel">
+                                                <label class="ideationCampaignImageBlockSubText" id="paddingLeft">{{ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].EndDate}}&nbsp;&nbsp;</label><br />
+                                                <div class="ideationCampaignImageBlockCampaignTitle" id="paddingLeft" >{{ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].CampaignTitle}}</div>
+                                            </span>
+                                            </div>
+                                        </div>
+                                        <div id="featuredCampaignHomePageRichTextFormate">
+                                            <div id="paddingLeft" class="bodyText">{{ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].Description}}</div>
+                                        </div>
+                                    </div>-->
+                                    <carousel interval="{!$Setup.Core_Ideation_heirarchical__c.CarouselInterval__c}" disable-animation="true">                                   
+                                        <slide ng-repeat="slide in ideationCampaignList.FeaturedCampaigns"  active="slide.active">     
+                                            <div ng-show="(featuredCampaignsCount==0? true : false)" ng-hide="(featuredCampaignsCount!=0 ? true : false)">                                  
+                                                <div class="featuredCampaignHomePageMainDiv" ng-click="gotoFeaturedCampaignDetailPage(ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].IdeaThemeId)">
+                                                    <div class="featuredCampaignHomePageLeftDiv">
+                                                        <div class="ideationCampaignImageBlock">                                                        
+                                                              <img class="featureCampaignsBanner" src="{{ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].Banner}}" />                                                              
+                                                              <span class="ideationCampaignImageBlockLabel">
+                                                                  <label class="ideationCampaignImageBlockSubText defaultTopSpace paddingRight" id="paddingLeft">{{ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].EndDate}}&nbsp;&nbsp;</label><br />
+                                                                  <div class="ideationCampaignImageBlockCampaignTitle" id="paddingLeft" >{{ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].CampaignTitle}}</div>
+                                                              </span>                                                                                                                    
+                                                        </div>
+                                                    </div>                                                    
+                                                    <div  class="ideationCampaignDetailBlock" id="featuredCampaignHomePageRichTextFormate">
+                                                        <div class="bodyText">{{ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].Description}}</div>
+                                                    </div>                                                    
+                                                </div>                                        
+                                           </div>
+                                           <div ng-show="(featuredCampaignsCount!=0? true : false)" ng-hide="(featuredCampaignsCount==0 ? true : false)">                                  
+                                                <div class="featuredCampaignHomePageMainDiv" ng-show="featuredCampaignsCount=$index" ng-click="gotoFeaturedCampaignDetailPage(ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].IdeaThemeId)">
+                                                    <div class="featuredCampaignHomePageLeftDiv">
+                                                        <div class="ideationCampaignImageBlock">                                                        
+                                                              <img class="featureCampaignsBanner" src="{{ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].Banner}}" />
+                                                              <span class="ideationCampaignImageBlockLabel">
+                                                                  <label class="ideationCampaignImageBlockSubText defaultTopSpace paddingRight" id="paddingLeft">{{ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].EndDate}}&nbsp;&nbsp;</label><br />
+                                                                  <div class="ideationCampaignImageBlockCampaignTitle" id="paddingLeft" >{{ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].CampaignTitle}}</div>
+                                                              </span>                                                        
+                                                        </div>
+                                                    </div>
+                                                    <div id="featuredCampaignHomePageRichTextFormate">
+                                                        <div id="paddingLeft" class="bodyText">{{ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].Description}}</div>
+                                                    </div>
+                                                </div>                                        
+                                           </div>
+                                           <div class="ideationCampaignDetailBlock">
+                                                <hr class="featuredCampaignHomePageBottomBorder" />
+                                                <span class="subText" id="alignLeft" ng-click="gotoSubmitIdea(ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].IdeaThemeId,ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].CampaignTitle,ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].Categories)">
+                                                    <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/Idea_grey.svg')}" class="imageIconStyle"/>&nbsp;
+                                                    {{'LBL_SUBMIT_AN_IDEA' | translate}}
+                                                </span>
+                                                <span class="subText" id="alignRight">{{ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].IdeaCount}}&nbsp;
+                                                    <span ng-show="(ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].IdeaCount==1? true : false)">{{'LBL_IDEA' | translate}}</span>
+                                                    <span ng-show="(ideationCampaignList.FeaturedCampaigns[featuredCampaignsCount].IdeaCount!=1? true : false)">{{'LBL_IDEAS' | translate}}</span>
+                                                </span>
+                                           </div>
+                                       </slide>
+                                    </carousel>
+                                    <br />
+                                    
+                               <!-- <div class="alignCenter">
+                                        <span ng-repeat="listItems in ideationCampaignList.FeaturedCampaigns">
+                                        <span ng-show="(featuredCampaignsCount==$index? true : false)"><img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/Carousel_focussed.svg')}" class="carosalImageIconStyle"/></span>
+                                        <span ng-show="(featuredCampaignsCount!=$index? true : false)" ng-click="goNextFeaturedCampaign($index)"><img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/Carousel_hidden.svg')}" class="carosalImageIconStyle"/></span>
+                                        </span>
+                                    </div> -->
+                                    <div>
+                                        <script id="template/carousel/carousel.html" type="text/ng-template">
+                                            <div ng-mouseenter="pause()" ng-mouseleave="play()" class="carousel" style="align:center;">
+                                                <ol class="carousel-indicators" ng-show="slides.length > 1">                                 
+                                                    <li ng-repeat="slide in slides" ng-class="{active: isActive(slide)}" ng-click="select(slide)"></li>
+                                                </ol>
+                                            <div class="carousel-inner" ng-transclude set-ng-animate="$parent.animate"></div>
+                                                <div class="featuredCampaignHomePageCarosalLeftImage">
+                                                    <a ng-click="prev()" class="carousel-control left" ng-show="slides.length > 1"><img src="{!URLFOR($Resource.Core_IC_IdeationApp,'img/Carousel_left.svg')}" class="carosalImageStyle" /></a>
+                                                </div>
+                                                <div class="featuredCampaignHomePageCarosalRightImage">
+                                                    <a ng-click="next()" class="carousel-control right" ng-show="slides.length > 1"><img src="{!URLFOR($Resource.Core_IC_IdeationApp,'img/Carousel_right.svg')}" class="carosalImageStyle" /></a>                                  
+                                                </div>
+                                            </div>
+                                        </script>
+                                    </div>
+                                </div>                                                         
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br/>
+                <div class="homePageSection borderRadius">
+                    <table class="homePageSection">
+                        <tr>
+                            <td colspan="2">
+                                <div class="ideationCampaignDetailBlock">
+                                    <span class="homePageSectionTitle">{{'LBL_IDEAS_OF_THE_WEEK' | translate}}</span>
+                                    <span id="alignRight" class="homePageSectionLink" ng-click="gotoIdeasListPage('IdeasOfTheWeek')" ng-show="ideationCampaignList.SeeAllLinkForIdeasOfTheWeek">{{'LBL_SEE_ALL' | translate}} <img src="{!URLFOR($Resource.Core_IC_IdeationApp,'img/Link.svg')}" class="imageIconStyle"/></span>
+                                </div>
+                            </td>
+                        </tr>
+    
+                        <!--Notification Error Message starts-->
+                        <tr ng-show="(ideationCampaignList.IdeasOfTheWeek.length==0 ? true : false)">
+                            <td>
+                                <label class="notificationMessageForMyUpdates" ng-if="ideationCampaignList.CampaignTypeForIdeasOfTheWeek== 'NoActive'">{{'LBL_IDEAS_OF_THE_WEEK_NOACTIVE' | translate}}</label>                            
+                                <label class="notificationMessageForMyUpdates" ng-if="ideationCampaignList.CampaignTypeForIdeasOfTheWeek== 'NoClosed'">{{'LBL_IDEAS_OF_THE_WEEK_NOCLOSED' | translate}}</label>
+                                <br />
+                            </td>
+                        </tr>
+                        <!--Notification Error Message ends-->
+    
+                        <tr id="bottomSpace" ng-show="ideationCampaignList.SeeAllLinkForIdeasOfTheWeek">
+                            <td colspan="2" id="paddingBottom" ng-hide="(ideationCampaignList.IdeasOfTheWeek.length==0 ? true : false)">
+                                <div class="homePageCarosalImageDiv">
+                                    <div class="ideasOfTheWeekHomePageCarosalLeftImage">
+                                        <img ng-click="ideasOfTheWeekCount = ideasOfTheWeekCount - 1" ng-hide="(ideasOfTheWeekCount==0 ? true : false)" src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/Carousel_left.svg')}" class="carosalImageStyle" />
+                                    </div>
+                                    <div class="ideasOfTheWeekHomePageCarosalRightImage">
+                                        <img ng-click="ideasOfTheWeekCount = ideasOfTheWeekCount + 1" ng-hide="(ideasOfTheWeekCount==ideationCampaignList.IdeasOfTheWeek.length-1 ? true : false)" src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/Carousel_right.svg')}" class="carosalImageStyle" />
+                                    </div>
+                                </div>
+                                <div class="ideationCampaignDetailBlock">
+                                    <hr class="bottomBorder" />
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <img src="{{ideationCampaignList.IdeasOfTheWeek[ideasOfTheWeekCount].BackgroundImage}}"  class="userImageHeight" id="imageBorderRadius" />
+                                            </td>
+                                            <td id="paddingLeft">
+                                                <span class="subText" id="linkTextColor">{{ideationCampaignList.IdeasOfTheWeek[ideasOfTheWeekCount].CreatorName}}</span>
+                                                <br />
+                                                <span class="subText">{{ideationCampaignList.IdeasOfTheWeek[ideasOfTheWeekCount].CreatedDateTime}}</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <hr class="bottomBorder" />
+                                    <div class="subText">
+                                        <div class="uiViewDefaultSpace" ng-click="gotoIdeaDetailPage(ideationCampaignList.IdeasOfTheWeek[ideasOfTheWeekCount])">
+                                            <span class="title" id="linkTextColor">{{ideationCampaignList.IdeasOfTheWeek[ideasOfTheWeekCount].IdeaTitle}}</span>
+                                            <br/>
+                                            <div id="fieldValueRichTextFormate" class="bodyText">{{ideationCampaignList.IdeasOfTheWeek[ideasOfTheWeekCount].IdeaBody}}</div>
+                                        </div>
+                                        <hr class="bottomBorder" />
+                                        <span class="subText">
+                                        <span ng-show="ideationCampaignList.IdeasOfTheWeek[ideasOfTheWeekCount].Voted">
+                                            <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/like_blue.svg')}" class="imageIconStyle"/> &nbsp;{{'LBL_VOTED' | translate}}
+                                        </span>
+                                        <span ng-hide="ideationCampaignList.IdeasOfTheWeek[ideasOfTheWeekCount].Voted" ng-click='ideasVoteForTheWeek(ideationCampaignList.IdeasOfTheWeek[ideasOfTheWeekCount])'>
+                                            <img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/like_grey.svg')}" class="imageIconStyle"/> &nbsp;{{'LBL_VOTE' | translate}}
+                                        </span>
+                                        </span>
+                                        <span class="subText" id="alignRight">
+                                        {{ideationCampaignList.IdeasOfTheWeek[ideasOfTheWeekCount].VoteCount}}&nbsp;
+                                        <span ng-show="(ideationCampaignList.IdeasOfTheWeek[ideasOfTheWeekCount].VoteCount==1? true : false)">{{'LBL_VOTE' | translate}}</span>
+                                        <span ng-show="(ideationCampaignList.IdeasOfTheWeek[ideasOfTheWeekCount].VoteCount!=1? true : false)">{{'LBL_VOTES' | translate}}</span> &nbsp;&nbsp;&nbsp;{{ideationCampaignList.IdeasOfTheWeek[ideasOfTheWeekCount].CommentCount}}&nbsp;
+                                        <span ng-show="(ideationCampaignList.IdeasOfTheWeek[ideasOfTheWeekCount].CommentCount==1? true : false)">{{'LBL_COMMENT' | translate}}</span>
+                                        <span ng-show="(ideationCampaignList.IdeasOfTheWeek[ideasOfTheWeekCount].CommentCount!=1? true : false)">{{'LBL_COMMENTS' | translate}}</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="alignCenter">
+                                    <span ng-repeat="listItems in ideationCampaignList.IdeasOfTheWeek">
+                                        <span ng-show="(ideasOfTheWeekCount==$index? true : false)" class="defaultLeftSpace"><img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/Carousel_focussed.svg')}"  class="carosalImageIconStyle"/></span>
+                                        <span ng-show="(ideasOfTheWeekCount!=$index? true : false)" ng-click="goNextIdeasOfTheWeek($index)" class="defaultLeftSpace"><img src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/Carousel_hidden.svg')}"  class="carosalImageIconStyle"/></span>
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br/>
+                <div class="homePageMyUpdatesSection borderRadius" id="paddingBottom">
+                    <table class="homePageMyUpdatesSection">
+                        <tr>
+                            <td colspan="2">
+                                <div class="ideationCampaignDetailBlock">
+                                    <span class="homePageSectionTitle" id="whiteColor">{{'LBL_MY_UPDATES' | translate}}</span>
+                                    <span id="alignRight" ng-show="ideationCampaignList.SeeAllLinkForMyUpdates" ng-click="gotoIdeasListPage('MyUpdates')" class="homePageSectionLink">{{'LBL_SEE_MY_IDEAS' | translate}} <img src="{!URLFOR($Resource.Core_IC_IdeationApp,'img/Link.svg')}" class="imageIconStyle"/></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+    
+                    <!--Notification Error Message starts-->
+                    <div ng-show="(ideationCampaignList.MyUpdates.length==0 ? true : false)">
+                        <label class="notificationMessageForMyUpdates" ng-if="ideationCampaignList.CampaignTypeForMyUpdates== 'NoActive'">{{'LBL_MY_UPDATES_NOACTIVE' | translate}}</label>
+                        <br />
+                        <label class="notificationMessageForMyUpdates" ng-if="ideationCampaignList.CampaignTypeForMyUpdates== 'NoIdeas'">{{'LBL_MY_UPDATES_NOIDEAS' | translate}}</label>
+                        <br />
+                        <label class="notificationMessageForMyUpdates" ng-if="ideationCampaignList.CampaignTypeForMyUpdates== 'NoUpdates'">{{'LBL_MY_UPDATES_NOUPDATES' | translate}}</label>
+                        <br />
+                    </div>
+                    <!--Notification Error Message ends-->
+    
+                    <div class="ideationCampaignDetailBlock" ng-repeat="myUpdatesListItems in ideationCampaignList.MyUpdates ">
+                        <hr class="bottomBorder" />
+                        <table>
+                            <tr>
+                                <td>
+                                    <img src="{{myUpdatesListItems.BackgroundImage}}" class="userImageHeight" id="imageBorderRadius"/>
+                                </td>
+                                <td class="homePageMyUpdatesBodyText" id="paddingLeft">
+                                    <span id="linkTextColor">{{myUpdatesListItems.CreatorName}}</span>
+                                    <span ng-if="myUpdatesListItems.MyUpdatesType == 'Comment'">{{'LBL_COMMENT_AN_IDEA' | translate}}</span>
+                                    <span ng-if="myUpdatesListItems.MyUpdatesType == 'Vote'">{{'LBL_VOTED' | translate |lowercase}}</span>
+                                    <span>{{myUpdatesListItems.CreatedDateTime}}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="alignCenter">
+                <loading></loading> 
+            </div> 
+            <!-- Fixed APPROVE / REJECT / COMMENT Bar -->
+            <nav class="fixed-nav-bar">
+                <div id="alignCenter" class="fixed-nav-bar-padding fixed-nav-bar-spacing">
+                    <table class="homePageMenuWidth">
+                        <tr id="alignCenter">
+                            <td id="alignCenter" ng-show="ideationCampaignList.ActiveStatus">
+                                <img class="fixedbar-icon-style" ng-click="gotoSubmitIdea(null,null,null)" src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/ActionBar_Idea.svg')}" />
+                            </td>
+                            <td id="alignCenter">
+                                <img class="fixedbar-icon-style" ng-click="gotoFAQPage()" src="{!URLFOR($Resource.Core_IC_IdeationApp, 'img/ActionBar_Info.svg')}" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <site:googleAnalyticsTracking id="UA-66235450-1" rendered="true"/>    
+</apex:page>
