@@ -1459,6 +1459,7 @@ private Boolean canDemoteAsset(String objId, uw_Asset__c asset, SObject so) {
         newGroup.Description = bet.Description__c; 
         newGroup.CollaborationType = 'Private';
         newGroup.CanHaveGuests = true;
+        newGroup.IsAutoArchiveDisabled = true;
         // START NEW CODE ADDED BY Istvan Szegedi January 6th, 2015
         // This is to ensure that the BET Owner is the same as the Collaboration Group Owner.
         newGroup.OwnerId = bet.OwnerId;

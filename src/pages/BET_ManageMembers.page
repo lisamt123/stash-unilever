@@ -56,9 +56,13 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             </td>
             <td>
               <div style="float:right">
-                <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addMember}"
-                                    styleClass="buttong2y" style="background: #BE236D; color:white;height: 35px;font-size:12px;font-family: Rockwell;width: 100px;" >
+                <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addMember}" rendered="{!isBetOwnerOrManager}"
+                                    styleClass="buttong2y" style="background: #BE236D; color:white;height: 35px;font-size:12px;font-family: Rockwell;width: 110px;" >
 
+                </apex:commandButton>
+
+                <apex:commandButton value="{!$Label.BET_Suggest_Member}" action="{!addMember}" rendered="{!NOT(isBetOwnerOrManager)}"
+                                    styleClass="buttong2y" style="background: #BE236D; color:white;height: 35px;font-size:12px;font-family: Rockwell;width: 110px;" >
                 </apex:commandButton>
               </div>
             </td>
@@ -79,7 +83,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
               <td>
                 <div style="float:right">
                   <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addExternalMember}"
-                                    styleClass="buttong2y" style="background: #BE236D; color:white;height: 35px;font-size:12px;font-family: Rockwell;width: 100px;"/> 
+                                    styleClass="buttong2y" style="background: #BE236D; color:white;height: 35px;font-size:12px;font-family: Rockwell;width: 110px;"/> 
                 </div>
               </td>
             </tr>

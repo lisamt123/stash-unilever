@@ -21,11 +21,7 @@ public with sharing class BET_CategoryBrandSelectionController {
 	public Boolean fabricConditionerCategory {get;set;}
 
 	public Boolean getUserHasAccessToProject() {
-		if(bet == null || bet.id == null || bet.IPM_Project__c == null) {
-			return false;
-		} else {
-			return IPM_BETUpdateService.UserAccess(bet.id,bet.IPM_Project__c,UserInfo.getUserId());
-		}
+		return bet == null || bet.id == null || bet.IPM_Project__c == null ? false : IPM_BETUpdateService.UserAccess(bet.id,bet.IPM_Project__c,UserInfo.getUserId());
 	}
 
 	//FabricConditioner begin
@@ -90,12 +86,7 @@ public with sharing class BET_CategoryBrandSelectionController {
 	public void onCategoryChange(){
 		System.debug('Entering onCategoryChange : ' + selectedCategory + ', '+compData);
 
-		try{
-			categoryMigrated = IPM_BETUpdateService.CategoryCheck(selectedCategory);
-		}catch(Exception e){
-			categoryMigrated = false;
-		}
-
+		categoryMigrated = String.isBlank(selectedCategory) ? false : IPM_BETUpdateService.CategoryCheck(selectedCategory);
 		categoryNotMigrated = !categoryMigrated;
 		compData.category = selectedCategory;
 		selectedBrandPositioning = null;
@@ -104,13 +95,18 @@ public with sharing class BET_CategoryBrandSelectionController {
 		//FabricConditioner begin
 		if(fbEnabled) {
 			fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(selectedCategory) : false;
-			compData.fabricConditionerCategory = fabricConditionerCategory;
-			bet.Is_Fabric_Conditioners__c = fabricConditionerCategory;
+			updateFabricData(fabricConditionerCategory);
 		}
 		//FabricConditioner end
 
 		compData.brandpositioning = selectedBrandPositioning;
 		compData.brand = selectedBrand;
+	}
+
+	@TestVisible
+	private void updateFabricData(Boolean fabricConditionerCategory){
+		compData.fabricConditionerCategory = fabricConditionerCategory;
+		bet.Is_Fabric_Conditioners__c = fabricConditionerCategory;
 	}
 
 	/************************************************************
@@ -143,8 +139,7 @@ public with sharing class BET_CategoryBrandSelectionController {
 		//FabricConditioner begin
 		if(fbEnabled){
 			fabricConditionerCategory = false;
-			bet.Is_Fabric_Conditioners__c = fabricConditionerCategory;
-			compData.fabricConditionerCategory = fabricConditionerCategory;
+			updateFabricData(fabricConditionerCategory);
 		}
 		//FabricConditioner end
 

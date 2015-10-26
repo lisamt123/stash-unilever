@@ -14,6 +14,9 @@ public with sharing class BET_AssetHandler implements ITrigger {
 
 	public void bulkBefore() {
 		System.debug('Entering bulkBefore');
+		if(Trigger.isInsert){
+			BET_AssetHandlerCls.updateAssetOrdering(Trigger.new);
+		}
 	}
 
 	public void bulkAfter() {

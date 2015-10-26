@@ -187,6 +187,7 @@ public with sharing class uw_CustomAssetUploadExtension {
             ca = (ConnectApi.ContentAttachment) fi.attachment;
             file.URL_of_Asset__c = ca.downloadUrl;
             file.thumbnail__c = ca.renditionUrl;
+            file.File_Id__c = ca.id;
         }
         Boolean updateBet = false;
         if(file.Sub_Function__c == 'Brand Development' && file.Status__c == BET_ASSET_APPROVED){

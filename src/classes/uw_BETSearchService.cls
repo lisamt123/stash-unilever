@@ -74,9 +74,15 @@ public without sharing class uw_BETSearchService {
     Returns: [String]
     Throws [Exceptions]: [optional] 
     ********************************************************************/
-    private static String buildWhereClausesForSearch(String brandId, String categoryId){
+    private static String buildWhereClausesForSearch(String brandId, String categoryId, Boolean active){
         //String whereClauseForBet = 'where Is_Archived__c = false AND Id != \'\'';
         String whereClauseForBet = 'where Id != \'\' AND Is_Deleted__c = false ';
+        if(active != null && active){
+            whereClauseForBet = 'where Id != \'\' AND Is_Deleted__c = false and Is_Archived__c = false ';
+        } else if(active !=null && !active){
+            whereClauseForBet = 'where Id != \'\' AND Is_Deleted__c = false and Is_Archived__c = true ';
+        }
+
         try{
             if(brandId != null && brandId != '' ){
                 Id.valueOf(brandId);             
@@ -104,10 +110,13 @@ public without sharing class uw_BETSearchService {
     Throws [Exceptions]: [optional] 
     ********************************************************************/
     //private static List<uw_BET__c> gatherResultsForSearch(String brandId, String categoryId, String keyWord, Boolean lastUpdatedSortAsc){
-    private static List<uw_BET__c> gatherResultsForSearch(String brandId, String categoryId, String keyWordStr, Boolean sortAsc, String sortFieldStr, Integer pageSize, Integer pageNumber){
-        Integer startIndex=pageSize*(pageNumber-1);
+    private static List<uw_BET__c> gatherResultsForSearch(String brandId, String categoryId, String keyWordStr, Boolean sortAsc, String sortFieldStr, Integer pageSize, Integer pageNumber, Boolean active){
+        String whereClauseForBet = uw_BETSearchService.buildWhereClausesForSearch(brandId, categoryId, active);
+        return buildResultsForSearch(whereClauseForBet,brandId,categoryId,keyWordStr,sortAsc, sortFieldStr, pageSize, pageNumber) ;
+    }
 
-        String whereClauseForBet = uw_BETSearchService.buildWhereClausesForSearch(brandId, categoryId);
+    private static List<uw_BET__c> buildResultsForSearch(String whereClauseForBet,String brandId, String categoryId, String keyWordStr, Boolean sortAsc, String sortFieldStr, Integer pageSize, Integer pageNumber){
+        Integer startIndex=pageSize*(pageNumber-1);
 
         String sortField;
 
@@ -147,6 +156,32 @@ public without sharing class uw_BETSearchService {
     }
 
     /*******************************************************************
+    Purpose: Method is unified method for searching appropriate active bets in system.
+    Parameterd Description:   
+    Parameters: [String searchType, String brandId, String categoryId, String keyWord, 
+    Integer pageSize,Integer pageNumber,Boolean withFilters, Boolean sortAsc, String sortField]
+    Returns: [Map<String, Object>]
+    Throws [Exceptions]: [optional] 
+    ********************************************************************/
+    public static uw_BETWrapper.SearchWrapper searchActive(String brandId, String categoryId, String keyWord, Integer pageSize, Integer pageNumber, Boolean withFilters, Boolean sortAsc, String sortField){       
+        List<uw_BET__c> betsSearchList = gatherResultsForSearch(brandId, categoryId, keyWord, sortAsc, sortField, pageSize, pageNumber,true);
+        return buildSearchResult(betsSearchList,brandId, categoryId,keyWord, pageSize, pageNumber, withFilters, sortAsc, sortField);
+    }
+
+    /*******************************************************************
+    Purpose: Method is unified method for searching appropriate archived bets in system.
+    Parameterd Description:   
+    Parameters: [String searchType, String brandId, String categoryId, String keyWord, 
+    Integer pageSize,Integer pageNumber,Boolean withFilters, Boolean sortAsc, String sortField]
+    Returns: [Map<String, Object>]
+    Throws [Exceptions]: [optional] 
+    ********************************************************************/
+    public static uw_BETWrapper.SearchWrapper searchArchived(String brandId, String categoryId, String keyWord, Integer pageSize, Integer pageNumber, Boolean withFilters, Boolean sortAsc, String sortField){       
+        List<uw_BET__c> betsSearchList = gatherResultsForSearch(brandId, categoryId, keyWord, sortAsc, sortField, pageSize, pageNumber,false);
+        return buildSearchResult(betsSearchList,brandId, categoryId,keyWord, pageSize, pageNumber, withFilters, sortAsc, sortField);
+    }
+
+    /*******************************************************************
     Purpose: Method is unified method for searching appropriate bets in system.
     Parameterd Description:   
     Parameters: [String searchType, String brandId, String categoryId, String keyWord, 
@@ -155,10 +190,13 @@ public without sharing class uw_BETSearchService {
     Throws [Exceptions]: [optional] 
     ********************************************************************/
     public static uw_BETWrapper.SearchWrapper search(String brandId, String categoryId, String keyWord, Integer pageSize, Integer pageNumber, Boolean withFilters, Boolean sortAsc, String sortField){       
-        Id currentUserId = UserInfo.getUserId();
+        List<uw_BET__c> betsSearchList = gatherResultsForSearch(brandId, categoryId, keyWord, sortAsc, sortField, pageSize, pageNumber,null);
+        return buildSearchResult(betsSearchList,brandId, categoryId,keyWord, pageSize, pageNumber, withFilters, sortAsc, sortField);
+    }
 
-        //List<uw_BET__c> betsSearchList = gatherResultsForSearch(brandId, categoryName, keyWord, lastUpdatedSortAsc);
-        List<uw_BET__c> betsSearchList = gatherResultsForSearch(brandId, categoryId, keyWord, sortAsc, sortField, pageSize, pageNumber);
+    private static uw_BETWrapper.SearchWrapper buildSearchResult (List<uw_BET__c> betsSearchList,String brandId, String categoryId, String keyWord, Integer pageSize, Integer pageNumber, Boolean withFilters, Boolean sortAsc, String sortField){
+
+        Id currentUserId = UserInfo.getUserId();
 
         Set<Id> allBetsIds = new Set<Id>();
         for(uw_BET__c b : betsSearchList){

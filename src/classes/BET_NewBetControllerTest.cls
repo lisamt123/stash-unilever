@@ -14,7 +14,7 @@ private class BET_NewBetControllerTest {
 		ApexPages.currentPage().getParameters().put('id',bet.id);
 		Test.startTest();
 		BET_NewBetController controller = new BET_NewBetController(new ApexPages.StandardController(new uw_BET__c()));
-		System.assertEquals(controller.bet.id,bet.id,'Bet ids should match');
+		System.assertEquals(controller.bet.id,bet.id,'Bet is should match');
 		Test.stopTest();
 	}
 	

@@ -18,7 +18,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.4     Michal Bluj             11/08/2015      IPM Member Related Changes
 ***********************************************************************/
 
-global without sharing class BET_ManageMembersController {
+global with sharing class BET_ManageMembersController {
 
     private static final String DEFAULT_USER_PHOTO = '/profilephoto/005/F';
 
@@ -92,20 +92,18 @@ global without sharing class BET_ManageMembersController {
                 betMemberRequest.id = null;
                 betMemberRequest.Bet_owner__c = bet.ownerid;
                 betMemberRequest.Status__c = requestsShouldBeAutoapproved ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW;
-                betMemberRequest.Do_Not_Notify_Bet__c = requestsShouldBeAutoapproved ? true : false;
+                betMemberRequest.Do_Not_Notify_Bet__c = false;
                 betMemberRequest.External_User_Request__c = false;
-                betMemberRequest.Do_Not_Notify_Bet__c = true;
                 insert betMemberRequest;
+
+                //BET_CommonService.sendApprovalMailToOwner(bet, betMemberRequest.UserId__c , settings);
                 betMemberRequest.UserId__c = null;
-
-                BET_CommonService.sendApprovalMailToOwner(bet, betMemberRequest.UserId__c , settings);
-
                 betMemberRequest = new BET_Member_Request__c(Brand_Experience_Toolkit__c = betId);
             } catch (Exception ex){
                 return null;
             }
 
-            pr = forward();
+            pr = BET_ManageMembersService.forward(betId);
         }
         System.debug('Exit addMember : ' + pr);
         return pr;
@@ -144,18 +142,18 @@ global without sharing class BET_ManageMembersController {
                 betMemberRequest.id = null;
                 betMemberRequest.Bet_owner__c = bet.ownerid;
                 betMemberRequest.Status__c = requestsShouldBeAutoapproved ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW;
-                betMemberRequest.Do_Not_Notify_Bet__c = true;
+                betMemberRequest.Do_Not_Notify_Bet__c = false;
                 betMemberRequest.External_User_Request__c = true;
                 betMemberRequest.UserId__c = externalUserSalesforceId; 
                 insert betMemberRequest;
 
-                if(betMemberRequest.UserId__c != null){
+                /*if(betMemberRequest.UserId__c != null){
                     BET_Request_Access__c settings  = BET_Request_Access__c.getInstance();
                     BET_CommonService.sendApprovalMailToOwner(bet, betMemberRequest.UserId__c , settings);
-                }
+                }*/
 
                 betMemberRequest = new BET_Member_Request__c(Brand_Experience_Toolkit__c = betId);
-                pr = forward();
+                pr = BET_ManageMembersService.forward(betId);
             }
         } else {
             Apexpages.Message m = new apexpages.Message(ApexPages.Severity.ERROR, 'The external user email address is blank. Please enter a value.');
@@ -202,9 +200,9 @@ global without sharing class BET_ManageMembersController {
         System.debug('Entering doDelete : ' + selectedMemberId);
         uw_BET_Team_Member__c member = [select id,BET__c,Team_Member__c from uw_BET_Team_Member__c where id =:selectedMemberId];
         delete member;
-        deleteRelatedMemberRequests(new List<uw_BET_Team_Member__c> {member});
-        cleanUpSharesGroupsSubscriptions(new List<uw_BET_Team_Member__c> {member});
-        PageReference pr = forward();
+        BET_ManageMembersService.deleteRelatedMemberRequests(new List<uw_BET_Team_Member__c> {member},betId);
+        BET_ManageMembersService.cleanUpSharesGroupsSubscriptions(new List<uw_BET_Team_Member__c> {member},bet);
+        PageReference pr = BET_ManageMembersService.forward(betId);
         System.debug('Exit doDelete : ' + pr);
         return pr;
     }
@@ -228,45 +226,11 @@ global without sharing class BET_ManageMembersController {
             return null;
         }
         delete membersToDelete;
-        deleteRelatedMemberRequests(membersToDelete);
-        cleanUpSharesGroupsSubscriptions(membersToDelete);
-        PageReference pr = forward();
+        BET_ManageMembersService.deleteRelatedMemberRequests(membersToDelete,betId);
+        BET_ManageMembersService.cleanUpSharesGroupsSubscriptions(membersToDelete,bet);
+        PageReference pr = BET_ManageMembersService.forward(betId);
         System.debug('Exit massDelete : ' + pr);
         return pr;
-    }
-
-    /************************************************************
-        Purpose: Method cleans up after removed tem members
-        Parameters: -
-        Returns: -
-        Throws: -
-    *************************************************************/
-    public void cleanUpSharesGroupsSubscriptions(List<uw_BET_Team_Member__c> deletedMembers){
-        System.debug('Entering cleanUpSharesGroupsSubscriptions : ' + deletedMembers);
-        Set<Id> usersIds = new Set<Id>();
-        for(uw_BET_Team_Member__c teamMember : deletedMembers){
-            usersIds.add(teamMember.Team_Member__c);
-        }
-        delete [SELECT Id FROM uw_BET__Share WHERE parentId = :betId AND userOrGroupId in:usersIds]; 
-        delete [SELECT Id FROM CollaborationGroupMember WHERE CollaborationGroupId =: bet.Studio_Chatter_Group__c AND memberId in : usersIds];
-        delete [Select Id,SubscriberId,ParentId from EntitySubscription where SubscriberId in:usersIds and ParentId=:bet.id];
-        System.debug('Exit cleanUpSharesGroupsSubscriptions');
-    }
-
-    /************************************************************
-        Purpose: Method deletes related member requests
-        Parameters: List<uw_BET_Team_Member__c> deletedMembers
-        Returns: -
-        Throws: -
-    *************************************************************/
-    private void deleteRelatedMemberRequests(List<uw_BET_Team_Member__c> deletedMembers){
-        System.debug('Entering deleteRelatedMemberRequests : ' + deletedMembers);
-        Set<Id> usersIds = new Set<Id>();
-        for(uw_BET_Team_Member__c teamMember : deletedMembers){
-            usersIds.add(teamMember.Team_Member__c);
-        }
-        delete [select id from BET_Member_Request__c where Brand_Experience_Toolkit__c =: betId and UserId__c in :usersIds];
-        System.debug('Entering deleteRelatedMemberRequests');
     }
 
     /************************************************************
@@ -286,7 +250,7 @@ global without sharing class BET_ManageMembersController {
             System.debug('Exception in doApprove : ' + e.getMessage());
             return null;
         }
-        PageReference pr = forward();
+        PageReference pr = BET_ManageMembersService.forward(betId);
         System.debug('Exit doApprove');
         return pr;
     }
@@ -307,7 +271,7 @@ global without sharing class BET_ManageMembersController {
             System.debug('Exception in doApprove : ' + e.getMessage());
             return null;
         }
-        PageReference pr = forward();
+        PageReference pr = BET_ManageMembersService.forward(betId);
         System.debug('Exit doDeny');
         return pr;
     }
@@ -320,7 +284,7 @@ global without sharing class BET_ManageMembersController {
     *************************************************************/
     public PageReference massApprove(){
         System.debug('Entering massApprove');
-        PageReference pr = doMassApproveDeny('Approved');
+        PageReference pr = BET_ManageMembersService.doMassApproveDeny('Approved',memberRequests,betId);
         System.debug('Exit massApprove : ' + pr);
         return pr;
     }
@@ -333,47 +297,8 @@ global without sharing class BET_ManageMembersController {
     *************************************************************/
     public PageReference massDeny(){
         System.debug('Entering massDeny');
-        PageReference pr = doMassApproveDeny('Rejected');
+        PageReference pr = BET_ManageMembersService.doMassApproveDeny('Rejected',memberRequests,betId);
         System.debug('Exit massDeny : ' + pr);
-        return pr;
-    }
-
-    private PageReference doMassApproveDeny(String status){
-        System.debug('Entering massDeny');
-        List<BET_Member_Request__c> requests = new List<BET_Member_Request__c>();
-        for(MemberRequestWrapper memberRequest : memberRequests){
-            if(memberRequest.isSelected){
-                memberRequest.obj.Status__c = status;
-                requests.add(memberRequest.obj);
-            }
-        }
-        try{
-            if(requests.isEmpty()){
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, Label.BET_Member_Requests_Not_Marked));  
-                return null;
-            } else {
-                update requests;
-            }
-        }catch (Exception e){
-            System.debug('Exception in doApprove : ' + e.getMessage());
-            return null;
-        }
-        PageReference pr = forward();
-        System.debug('Exit massDeny : ' + pr);
-        return pr;
-    }
-
-    /************************************************************
-        Purpose: Method refreshes page
-        Parameters: -
-        Returns: PageReference
-        Throws: -
-    *************************************************************/
-    private PageReference forward(){
-        System.debug('Entering forward');
-        PageReference pr = new PageReference('/apex/BET_ManageMembers?bet='+betId);
-        pr.setRedirect(true);
-        System.debug('Exit forward ' + pr);
         return pr;
     }
 
@@ -400,7 +325,7 @@ global without sharing class BET_ManageMembersController {
     *************************************************************/
     public List<selectOption> getMemberRequestRoles() {
         Schema.DescribeFieldResult fieldResult = BET_Member_Request__c.Role__c.getDescribe();
-        return getRoles(fieldResult);
+        return BET_ManageMembersService.getRoles(fieldResult,isBetOwnerOrManager);
     }
 
     /************************************************************
@@ -411,22 +336,7 @@ global without sharing class BET_ManageMembersController {
     *************************************************************/
     public List<selectOption> getMemberRoles() {
         Schema.DescribeFieldResult fieldResult = uw_BET_Team_Member__c.Role__c.getDescribe(); 
-        return getRoles(fieldResult);
-    }
-
-    /************************************************************
-        Purpose: Method retrieves picklist value for given fieldresult
-        Parameters: Schema.DescribeFieldResult fieldResult
-        Returns: List<selectOption>
-        Throws: -
-    *************************************************************/
-    private List<selectOption> getRoles(Schema.DescribeFieldResult fieldResult){
-        List<selectOption> options = new List<selectOption>();           
-        List<Schema.PicklistEntry> picklistEntryList = fieldResult.getPicklistValues();
-        for(Schema.PicklistEntry picklistEntry : picklistEntryList){
-             options.add(new SelectOption(picklistEntry.getLabel(), picklistEntry.getValue()));
-        }       
-        return options;
+        return BET_ManageMembersService.getRoles(fieldResult,isBetOwnerOrManager);
     }
 
     /************************************************************

@@ -1,5 +1,5 @@
 @isTest
-private class BET_BETHardDelete_BatchTest {
+private class BET_BETHardDelete_BatchSchedule_Test {
 	
 	@isTest static void deleteTest() {
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
@@ -15,12 +15,11 @@ private class BET_BETHardDelete_BatchTest {
 
 		System.assert(!objects.isEmpty(),'BET should be there');
 
-		BET_BETHardDelete_Batch batch = new BET_BETHardDelete_Batch();
+		BET_BETHardDelete_BatchSchedule batch = new BET_BETHardDelete_BatchSchedule();
 		Database.executeBatch(batch);
+		Test.stopTest();
+
 		List<uw_Bet__c> bets = [select id from uw_Bet__c where id =: bet.id];
 		System.assert(bets.isEmpty(),'BET should be removed');
-
-		Test.stopTest();
 	}
-	
 }

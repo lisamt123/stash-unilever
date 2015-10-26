@@ -13,6 +13,46 @@ public with sharing class BET_AssetHandlerCls {
 	private BET_AssetHandlerCls() {}
 
 	/************************************************************
+        Purpose: Method updated assets ordering
+        Parameters: List<uw_Asset__c> newAssets
+        Returns: -
+        Throws: -
+    *************************************************************/
+	public static void updateAssetOrdering(List<uw_Asset__c> newAssets){
+		System.debug('Entering updateAssetOrdering : ' + newAssets);
+		Set<Id> betsIds = new Set<Id>();
+		Map<Id,Integer> betNewAssetNo = new Map<Id,Integer>();
+		for(uw_Asset__c asset : newAssets){
+			if(betNewAssetNo.keySet().contains(asset.uw_BET__c)){
+				betNewAssetNo.put(asset.uw_BET__c,betNewAssetNo.get(asset.uw_BET__c)+1);
+			} else {
+				betNewAssetNo.put(asset.uw_BET__c,1);
+			}
+			asset.Order_Of_Display__c = betNewAssetNo.get(asset.uw_BET__c);
+			betsIds.add(asset.uw_BET__c);
+		}
+
+		List<uw_Asset__c> assets = new List<uw_Asset__c>();
+		Map<Id,Integer> betNullPriorityAssetIndex = new Map<Id,Integer>();
+		for(uw_Asset__c existingAsset : [select id,Order_Of_Display__c,uw_BET__c from uw_Asset__c where uw_BET__c in : betsIds]) {
+			if(existingAsset.Order_Of_Display__c == null){
+				if(betNullPriorityAssetIndex.keySet().contains(existingAsset.uw_BET__c)){
+					betNullPriorityAssetIndex.put(existingAsset.uw_BET__c,betNullPriorityAssetIndex.get(existingAsset.uw_BET__c) + 1);
+				} else {
+					betNullPriorityAssetIndex.put(existingAsset.uw_BET__c,betNewAssetNo.get(existingAsset.uw_BET__c));
+				}
+				existingAsset.Order_Of_Display__c = betNullPriorityAssetIndex.get(existingAsset.uw_BET__c) + 1;
+			} else {
+				existingAsset.Order_Of_Display__c = existingAsset.Order_Of_Display__c + betNewAssetNo.get(existingAsset.uw_BET__c);
+			}
+			assets.add(existingAsset);
+		}
+
+		update assets;
+		System.debug('Exit updateAssetOrdering : ' + assets);
+	}
+
+	/************************************************************
         Purpose: Method updated actual assets number for bet
         Parameters: List<uw_Asset__c> deletedAssets
         Returns: -
@@ -70,24 +110,6 @@ public with sharing class BET_AssetHandlerCls {
 		increaseActualAssetNumber(approvedAssets);
 		decreaseActualAssetNumber(unapprovedAssets);
 	}
-
-	/************************************************************
-        Purpose: Method initiates Expected Assets REcords for bets
-        Parameters: List<Id> betIds
-        Returns: -
-        Throws: -
-    *************************************************************/
-	/*private static void createExpectedAssetsRecordsIfNeecssary(List<Id> betIds){
-		System.debug('Entering createExpectedAssetsRecordsIfNeecssary ' + betIds);
-		Map<Id,Boolean> assetsExistsMap = BET_AssetService.betContainsExpectedAssetsRecord(betIds);
-		List<Id> betsWithoutExpectedAssetsRecords = new List<Id>();
-		for(Id betId : betIds){
-			if(!assetsExistsMap.get(betId)){
-				betsWithoutExpectedAssetsRecords.add(betId);
-			}
-		}
-		BET_AssetService.createExpectedAssetsRecordsForBet(betsWithoutExpectedAssetsRecords);
-	}*/
 
 	/************************************************************
         Purpose: Method increases actual assets counter
