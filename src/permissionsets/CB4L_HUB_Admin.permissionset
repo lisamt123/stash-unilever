@@ -19198,11 +19198,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>uw_Inoplan_Project__c.External_ID__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>uw_Inoplan_Project__c.Phase__c</field>
         <readable>true</readable>
     </fieldPermissions>
