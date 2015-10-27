@@ -2397,10 +2397,6 @@
         <name>Approve</name>
     </quickActions>
     <quickActions>
-        <label><!-- Approve --></label>
-        <name>Approve</name>
-    </quickActions>
-    <quickActions>
         <label><!-- LogACall --></label>
         <name>LogACall</name>
     </quickActions>
