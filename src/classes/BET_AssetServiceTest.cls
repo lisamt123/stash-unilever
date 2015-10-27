@@ -5,9 +5,15 @@ private class BET_AssetServiceTest {
 	@isTest static void grantAccessToBetsAssetsTest(){
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
-		uw_Asset__c asset = new uw_Asset__c(name = 'test123321', uw_Bet__c = bet.id,File_Id__c = '123321');
+
+		uw_Asset__c asset = new uw_Asset__c(name = 'test123321', uw_Bet__c = bet.id,File_Id__c = '069c0000000Atsc');
 		insert asset;
 		BET_AssetService.grantAccessToBetsAssets(bet.Id,UserInfo.getUserId());
+
+		uw_Asset__c asset1 = new uw_Asset__c(name = 'test123321', uw_Bet__c = bet.id,File_Id__c = '123321');
+		insert asset1;
+		BET_AssetService.grantAccessToBetsAssets(bet.Id,UserInfo.getUserId());
+
 		Test.startTest();
 		System.assertEquals(1,1,'Method should run without exception');
 		Test.stopTest();
@@ -59,6 +65,25 @@ private class BET_AssetServiceTest {
 		Test.stopTest();
 		System.assert(!bets.isEmpty(),'BETs collection should not be empty');
 
+	}
+
+	@isTest static void forceAssetReorderingTest(){
+		uw_Bet__c bet = BET_TestUtils.getTestBet();
+		insert bet;
+
+		uw_Asset__c asset1 = new uw_Asset__c(name = 'test123321a', uw_Bet__c = bet.id,File_Id__c = '123321',Order_Of_Display__c = null,Status__c = 'Approved');
+		uw_Asset__c asset2 = new uw_Asset__c(name = 'test123321b', uw_Bet__c = bet.id,File_Id__c = '123321',Order_Of_Display__c = 1.0,Status__c = 'Approved');
+		uw_Asset__c asset3 = new uw_Asset__c(name = 'test123321c', uw_Bet__c = bet.id,File_Id__c = '123321',Order_Of_Display__c = 1.0,Status__c = 'Approved');
+		uw_Asset__c asset4 = new uw_Asset__c(name = 'test123321d', uw_Bet__c = bet.id,File_Id__c = '123321',Order_Of_Display__c = 2.0,Status__c = 'Approved');
+
+		List<uw_Asset__c> assets = new List<uw_Asset__c>{asset1,asset2,asset3,asset4};
+		insert assets;
+		BET_AssetService.forceAssetReordering(''+bet.id);
+
+		assets = [select id from uw_Asset__c where uw_Bet__c =: bet.id];
+		Test.startTest();
+		System.assertEquals(assets.size(),4,'There should be 4 records');
+		Test.stopTest();
 	}
 	
 }
