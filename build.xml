@@ -162,6 +162,7 @@
       <delete><fileset dir="${basedir}" includes="**/API_Only.permissionset"/></delete>
       <delete><fileset dir="${basedir}" includes="**/CEC_Delegated_Administrators.permissionset"/></delete>
       <delete><fileset dir="${basedir}" includes="**/CEC_Automated_User.permissionset"/></delete>
+      <delete><fileset dir="${basedir}" includes="**/***HELP***.homePageComponent"/></delete>
       <antcall target="generatePackage"/>
     </target>     
 
