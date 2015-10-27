@@ -2325,7 +2325,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Benelux_queue</fullName>
+        <fullName>CEC_Benelux_Backlog</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -2333,8 +2333,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
+        <columns>Country_Name__c</columns>
         <columns>Language__c</columns>
-        <columns>Brand__c</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
@@ -2342,7 +2342,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>Closed,Closed as Duplicate</value>
         </filters>
         <label>CEC Benelux queue</label>
-        <language>nl_NL</language>
+        <language>en_US</language>
         <queue>CEC_Benelux_Queue</queue>
     </listViews>
     <listViews>
@@ -3052,7 +3052,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.LAST_UPDATE_DATE_ONLY</field>
             <operation>greaterOrEqual</operation>
-            <value>LAST_N_DAYS:2</value>
+            <value>LAST_N_DAYS:1</value>
         </filters>
         <label>India tier 1 within SLA</label>
         <language>en_US</language>
@@ -3383,17 +3383,17 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>Lareuman</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
             <value>Anlasser</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
             <value>anclasen</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>mschn</value>
         </filters>
         <label>DACH Vacation Queue</label>
         <language>de</language>
@@ -4113,7 +4113,7 @@ sforce.console.openPrimaryTab(null, &apos;/&apos;+caseId, true);
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
-        <url>http://survey.clicktools.com/go?iv= {!$Setup.cec_Org_Settings__c.Cosmetovigilence_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}</url>
+        <url>http://survey.clicktools.com/go?iv= {!$Setup.cec_Org_Settings__c.Cosmetovigilence_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}&amp;q2={!Case.CaseNumber}&amp;q3={!Case.CreatedDate}&amp;q4={!Case.Country_Name__c}&amp;q7={!Case.Case_product_category__c}&amp;q9={!Case.Case_Brand__c}&amp;q10={!Case.L5_Product_Category__c}&amp;q11={!Case.Product_UPC__c}&amp;q12={!Case.Date_of_Manufacture__c}&amp;q13={!Case.Origin}</url>
     </webLinks>
     <webLinks>
         <fullName>Homecare_Cosmetovigilence</fullName>
@@ -4133,7 +4133,7 @@ sforce.console.openPrimaryTab(null, &apos;/&apos;+caseId, true);
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
-        <url>http://survey.clicktools.com/go?iv={!$Setup.cec_Org_Settings__c.Homecare_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}</url>
+        <url>http://survey.clicktools.com/go?iv={!$Setup.cec_Org_Settings__c.Homecare_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}&amp;q2={!Case.CreatedDate}&amp;q3={!Case.Country_Name__c}&amp;q6={!Case.Case_product_category__c}&amp;q8={!Case.Case_Brand__c}&amp;q9={!Case.L5_Product_Category__c}&amp;q10={!Case.Product_UPC__c}&amp;q11={!Case.Date_of_Manufacture__c}&amp;q12={!Case.Origin}</url>
     </webLinks>
     <webLinks>
         <fullName>Ingestion_Cosmetovigilence</fullName>
@@ -4153,7 +4153,7 @@ sforce.console.openPrimaryTab(null, &apos;/&apos;+caseId, true);
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
-        <url>http://survey.clicktools.com/go?iv={!$Setup.cec_Org_Settings__c.Ingestion_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}</url>
+        <url>http://survey.clicktools.com/go?iv={!$Setup.cec_Org_Settings__c.Ingestion_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}&amp;q2={!Case.CreatedDate}&amp;q3={!Case.Country_Name__c}&amp;q6={!Case.Case_product_category__c}&amp;q8={!Case.Case_Brand__c}&amp;q9={!Case.L5_Product_Category__c}&amp;q10={!Case.Product_UPC__c}&amp;q11={!Case.Date_of_Manufacture__c}&amp;q12={!Case.Origin}</url>
     </webLinks>
     <webLinks>
         <fullName>New_Case</fullName>
