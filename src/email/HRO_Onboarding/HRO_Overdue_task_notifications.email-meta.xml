@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>34.0</apiVersion>
+    <available>true</available>
+    <description>Notifications: Overdue task notifications</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>HRO Overdue task notifications</name>
+    <style>none</style>
+    <subject>HRO Overdue task notifications</subject>
+    <type>visualforce</type>
+</EmailTemplate>

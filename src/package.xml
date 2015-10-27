@@ -512,19 +512,19 @@
 		<members>FeedCommentHandler</members>
 		<members>FeedItemCommentHandler</members>
 		<members>ForgotPasswordController</members>
-		<members>HRO_BoardingAction_CX</members>
-		<members>HRO_BoardingAction_CXTest</members>
-		<members>HRO_HeadStart_CX</members>
-		<members>HRO_HeadStart_CXTest</members>
-		<members>HRO_NavMenu_CC</members>
-		<members>HRO_NavMenu_CCTest</members>
-		<members>HRO_OnboardingTaskList_CC</members>
-		<members>HRO_OnboardingTaskList_CCTest</members>
-		<members>HRO_ProgressPage_CX</members>
-		<members>HRO_ProgressPage_CXTest</members>
-		<members>HRO_TaskLinkForwarder_CX</members>
-		<members>HRO_TaskLinkForwarder_CXTest</members>
-		<members>HRO_UnitTestFactory</members>
+		 <members>HRO_BoardingAction_CX</members>
+        <members>HRO_BoardingAction_CXTest</members>
+        <members>HRO_HeadStart_CX</members>
+        <members>HRO_HeadStart_CXTest</members>
+        <members>HRO_NavMenu_CC</members>
+        <members>HRO_NavMenu_CCTest</members>
+        <members>HRO_OnboardingTaskList_CC</members>
+        <members>HRO_OnboardingTaskList_CCTest</members>
+        <members>HRO_ProgressPage_CX</members>
+        <members>HRO_ProgressPage_CXTest</members>
+        <members>HRO_TaskLinkForwarder_CX</members>
+        <members>HRO_TaskLinkForwarder_CXTest</members>
+        <members>HRO_UnitTestFactory</members>
 		<members>ITrigger</members>
 		<members>MyProfilePageController</members>
 		<members>NavigationManager</members>
@@ -875,10 +875,15 @@
 		<members>BackgroundImageStyleRule</members>
 		<members>BasicMenu</members>
 		<members>Core_AutoComplete</members>
-		<members>HRO_JourneyMenu</members>
-		<members>HRO_JourneyMobile</members>
-		<members>HRO_NavMenu</members>
-		<members>HRO_OverDuedTasks</members>
+		<members>HRO_HeaderScripts</members>
+        <members>HRO_HeadstartLink</members>
+        <members>HRO_JourneyMenu</members>
+        <members>HRO_JourneyMobile</members>
+        <members>HRO_LeaderPhase</members>
+        <members>HRO_NavMenu</members>
+        <members>HRO_OnboardingTaskList</members>
+        <members>HRO_OverDuedTasks</members>
+        <members>HRO_TaskAction</members>
 		<members>RemoteServiceCallComponent</members>
 		<members>Sidebar</members>
 		<members>SiteFooter</members>
@@ -1100,9 +1105,9 @@
 		<members>ForgotPasswordConfirm</members>
 		<members>Getting_Started</members>
 		<members>HRO_HeadStart</members>
-		<members>HRO_PreBoardingActionPage</members>
-		<members>HRO_ProgressPage</members>
-		<members>HRO_TaskLinkForwarder</members>
+        <members>HRO_PreBoardingActionPage</members>
+        <members>HRO_ProgressPage</members>
+        <members>HRO_TaskLinkForwarder</members>
 		<members>Header</members>
 		<members>Help</members>
 		<members>IdeasHome</members>
@@ -2267,6 +2272,8 @@
 		<members>cp_Planner__c</members>
 		<members>cp_PoaP</members>
 		<members>cp_ULE_Contact__c</members>
+		<members>HRO_HeadStart</members>
+        <members>HRO_Onboarding_Plan__c</members>
 		<members>im_Issue_Tracker__c</members>
 		<members>im_Issue__c</members>
 		<members>im_Issues</members>
@@ -2541,6 +2548,7 @@
 		<members>FilesConnect_SFDev__x-FilesConnect-SFDev Layout</members>
 		<members>Global-Global Layout</members>
 		<members>HRO_Onboarding_Plan__c-Onboarding Plan Layout</members>
+		<members>HRO_Onboarding_Task_Set__c-Onboarding Task Set Layout</members>
 		<members>HRO_Onboarding_Task__c-Onboarding Task Layout</members>
 		<members>Home_Page_Feed__c-HomePage Feed Layout</members>
 		<members>Idea-Idea Layout</members>
