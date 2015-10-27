@@ -2177,6 +2177,7 @@
         <members>IPM_Bosscard__c</members>
         <members>IPM_Company_Card__c</members>
         <members>IPM_Project_Resource__c</members>
+        <members>IPM_Project_Template__c</members>
         <name>CustomObject</name>
     </types>
     <types>
