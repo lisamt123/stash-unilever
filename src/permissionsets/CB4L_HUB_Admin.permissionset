@@ -19103,11 +19103,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>uw_Brand__c.External_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>uw_Brand__c.Facebook_URL__c</field>
         <readable>false</readable>
     </fieldPermissions>
