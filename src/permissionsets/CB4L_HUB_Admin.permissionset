@@ -7133,17 +7133,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BET_Category_Brands__c.External_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BET_Category__c.BET_Parent_Category__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BET_Category__c.External_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

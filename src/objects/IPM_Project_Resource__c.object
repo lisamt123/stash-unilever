@@ -57,17 +57,6 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
-        <fullName>IPM_Category__c</fullName>
-        <description>displaying from user record</description>
-        <externalId>false</externalId>
-        <formula>$User.IPM_Category__c</formula>
-        <label>Category</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>IPM_Member_Email__c</fullName>
         <description>for send an email to this email address</description>
         <externalId>false</externalId>
@@ -115,17 +104,6 @@
         <externalId>false</externalId>
         <label>IPM Role Type</label>
         <length>50</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>IPM_Role__c</fullName>
-        <description>Displaying from user record</description>
-        <externalId>false</externalId>
-        <formula>(text($User.IPM_Role__c))</formula>
-        <label>Role</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
