@@ -940,13 +940,21 @@ Are you sure you wish to proceed?</value>
         <shortDescription>BET_Header</shortDescription>
         <value>Brand Experience Details</value>
     </labels>
+	<labels>
+        <fullName>BET_Help_Group_Name</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Help_Group_Name</shortDescription>
+        <value>BET – Help and Guidance chatter group</value>
+    </labels>
     <labels>
         <fullName>BET_Home_Page_Info</fullName>
         <categories>BET</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Home_Page_Info</shortDescription>
-        <value>The BET system is currently being upgraded to integrate with IPM, whilst this is being rolled out to all Categories you may experience changes to functionality.&lt;br/&gt; Please direct all queries to the &lt;a href=&quot;/{0}&quot; target=&quot;_blank&quot;&gt;BET – Help and Guidance chatter group&lt;/a&gt;</value>
+        <value>The BET system is currently being upgraded to integrate with IPM, whilst this is being rolled out to all Categories you may experience changes to functionality.&lt;br/&gt; Please direct all queries to the &lt;a href=&quot;/{0}&quot; target=&quot;_blank&quot;&gt;{1}&lt;/a&gt;</value>
     </labels>
     <labels>
         <fullName>BET_IPMProject</fullName>
@@ -1271,6 +1279,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>BET_Suggest_Member</shortDescription>
         <value>Suggest Member</value>
+    </labels>
+	<labels>
+        <fullName>BET_Suggest_Member_Message</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Suggest_Member_Message</shortDescription>
+        <value>Your suggestion has been send to the BET owner for approval. Your suggested member will receive notification directly</value>
     </labels>
     <labels>
         <fullName>BET_SuggestedMemberAddOtherMember</fullName>
