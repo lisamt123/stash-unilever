@@ -195,6 +195,8 @@ public with sharing class uw_BETRemoteController {
                 BET_AssetService.grantAccessToBetsAssets(betId,currentUserId);
             }
 
+            BET_AssetService.forceAssetReordering(betId);
+
             uw_BETWrapper.DetailWrapper results = uw_BETDetailService.getBETDetails(betId, currentUserId);
             if(results.bet.betIPMProjectId != null) {
                 results.bet.currentUserHasAccessToIPM = IPM_BETUpdateService.UserAccess((Id)betId, results.bet.betIPMProjectId,currentUserId);
