@@ -37,13 +37,13 @@ global without sharing class BET_AssetService {
 					ContentDocumentLink link = new ContentDocumentLink();
 					link.LinkedEntityId = userId;
 					link.ContentDocumentId = asset.File_Id__c;
-					link.ShareType = 'Viewer';
+					link.ShareType = 'v';
 					link.Visibility = 'AllUsers';
 					links.add(link);
 				}
 			}
 			if(!Test.isRunningTest()){
-				insert links;
+				Database.insert(links, false);
 			}
 		}catch(Exception ex){
 			ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_AssetService','grantAccessToBetsAssets',
