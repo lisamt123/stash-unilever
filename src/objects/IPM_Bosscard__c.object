@@ -208,6 +208,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Company_Card__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>IPM Company Card</label>
+        <referenceTo>IPM_Company_Card__c</referenceTo>
+        <relationshipLabel>IPM Bosscard</relationshipLabel>
+        <relationshipName>IPM_Bosscard</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>IPM_Company__c</fullName>
         <externalId>false</externalId>
         <label>Company</label>

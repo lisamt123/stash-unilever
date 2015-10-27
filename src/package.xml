@@ -2175,6 +2175,7 @@
         <members>HRO_Onboarding_Task_Set__c</members>
         <members>HRO_Onboarding_Task__c</members>
         <members>IPM_Bosscard__c</members>
+        <members>IPM_Company_Card__c</members>
         <members>IPM_Project_Resource__c</members>
         <name>CustomObject</name>
     </types>
