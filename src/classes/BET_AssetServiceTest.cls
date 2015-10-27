@@ -8,10 +8,6 @@ private class BET_AssetServiceTest {
         return prepareData(false, BET_TestingHelper.BET_STATUS_UNRELEASED);
     }
 
-    private static BET_TestingHelper.BET_TestingData prepareData(Boolean addMember) {
-        return prepareData(addMember, BET_TestingHelper.BET_STATUS_UNRELEASED);
-    }
-
     private static BET_TestingHelper.BET_TestingData prepareData(Boolean addMember, String status) {
         BET_TestingHelper.BET_TestingData betWrapper = BET_TestingHelper.initBET(
             BET_TestingHelper.getDefaultOwner(), 'UT_BET', status, true, true);
