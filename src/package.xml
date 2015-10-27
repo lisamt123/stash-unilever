@@ -1661,6 +1661,13 @@
         <members>HROCultureLink</members>
         <members>HRONetworkLink</members>
         <members>HROOwnershipLink</members>
+        <members>HROPhaseIntroHeaderBeforeArrival</members>
+        <members>HROPhaseIntroHeaderBeonBoard</members>
+        <members>HROPhaseIntroHeaderDay1</members>
+        <members>HROPhaseIntroHeaderMonth1</members>
+        <members>HROPhaseIntroHeaderMonth2</members>
+        <members>HROPhaseIntroHeaderMonth3</members>
+        <members>HROPhaseIntroHeaderWeek1</members>
         <members>HROPhaseIntroInfoBeforeArrival</members>
         <members>HROPhaseIntroInfoBeonBoard</members>
         <members>HROPhaseIntroInfoDay1</members>

@@ -40,6 +40,7 @@ private class HRO_HeadStart_CXTest {
         HRO_HeadStart_CX pageController = new HRO_HeadStart_CX();
         system.assertEquals(pageController.selectedLeader, 'HROtestLeader','There should be selected HROtestLeader');
         system.assertEquals(pageController.getAvailableLeaders().size(), 1,'Manager should see only one Leader HROtestLeader');
+        pageController.getIntroductionHeaderMap();
         pageController.getIntroductionInfoMap();
         List<HRO_Onboarding_Task__c> leaderPhaseOnbordingTasks = pageController.getOnboardingTasks();
         system.assertEquals(leaderPhaseOnbordingTasks.isEmpty(),false,'Task should be created for each phase');
