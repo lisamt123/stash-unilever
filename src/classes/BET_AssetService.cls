@@ -24,28 +24,26 @@ global without sharing class BET_AssetService {
     *************************************************************/
 	public static void forceAssetReordering(String betId){
 		Boolean reorder = false;
-            List<String> assetsOrdered = new List<String>();
-            Set<Integer> orderSet = new Set<Integer>();
-            for(uw_Asset__c asset : [select id, name, Order_Of_Display__c, Media_Type__c, Country__c, Studio_Asset_Type__c
-                            from uw_Asset__c where uw_BET__c = :betId and Status__c = 'Approved'
+        List<String> assetsOrdered = new List<String>();
+        Set<Integer> orderSet = new Set<Integer>();
+        for(uw_Asset__c asset : [select Order_Of_Display__c from uw_Asset__c where uw_BET__c = :betId and Status__c = 'Approved'
                             order by Order_Of_Display__c asc]){
-                assetsOrdered.add((String)asset.id);
-                if(asset.Order_Of_Display__c == null) {
+            assetsOrdered.add((String)asset.id);
+            if(asset.Order_Of_Display__c == null) {
+                reorder = true;
+                break;
+            } else {
+                if(orderSet.contains((Integer)asset.Order_Of_Display__c)){
                     reorder = true;
                     break;
                 } else {
-                    if(orderSet.contains((Integer)asset.Order_Of_Display__c)){
-                        reorder = true;
-                        break;
-                    } else {
-                        orderSet.add((Integer)asset.Order_Of_Display__c);
-                    }
+                    orderSet.add((Integer)asset.Order_Of_Display__c);
                 }
             }
-
-            if(reorder) {
-                BET_AssetsOrderController.updateAssetsOrder(assetsOrdered);
-            }
+        }
+        if(reorder) {
+            BET_AssetsOrderController.updateAssetsOrder(assetsOrdered);
+        }
 	}
 
 	/************************************************************
