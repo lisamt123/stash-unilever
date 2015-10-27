@@ -23,7 +23,6 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
 	public String rtResourceId {get;set;}
 	public String rtActivityId {get;set;}
 	
-	public String selectedDiscipline{get;set;}
 	public String selectedAgencyDepartment{get;set;}
 	public String selectedRoleTitle{get;set;}
 	public String selectedOblixCountry{get;set;}
@@ -46,8 +45,8 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
 		
 		System.debug('###OItem : '+OItem);
 		System.debug('###rtResourceId : '+rtResourceId);
-		System.debug('###rtActivityId : '+rtActivityId);
-		lstCalculatorRate = [Select Id, Name, RecordTypeId, Role_Daily_Rate_EUR__c, Agency_Department__c, Discipline__c, OblixCountry__r.Name,
+		System.debug('###rtActivityId : '+rtActivityId);//Discipline__c
+		lstCalculatorRate = [Select Id, Name, RecordTypeId, Role_Daily_Rate_EUR__c, Agency_Department__c,  OblixCountry__r.Name,
 					Role_Title__c, FTE__c, OblixCountry__c from Oblix_Calculator__c where 
 				RecordTypeId =: Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Role_Rate') Limit 1];
 		System.debug('###lstCalculatorRate : '+lstCalculatorRate);
@@ -57,6 +56,7 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
 		agency = parentSow.Marketing_Agency__c;
 	}
 	
+	 /*
 	 public List<SelectOption> getPickListDiscipline(){
 	 	
 	 	 List<SelectOption> options= new List<SelectOption>();
@@ -69,6 +69,7 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
 	       
 	       	return options;
 	 }
+	 */
 	 
 	 public List<SelectOption> getAgencyDepartment(){
 	 	
@@ -119,11 +120,10 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
 			}else{
 				OItem.OblixOtherItemFee__c = 0;
 			}
-			OItem.Discipline__c = selectedDiscipline;
+			//OItem.Discipline__c = selectedDiscipline;
 			OItem.Agency_Department__c = selectedAgencyDepartment;
 			OItem.Role_Title__c = selectedRoleTitle;
 			OItem.OblixCountry__c = selectedOblixCountry;
-			
 			
 			if(OItem.Id != null){
 				update OItem;
@@ -137,6 +137,5 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
 			ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,'Error Occured during save please review data entry'));
 		}
 		return null;
-		
 	}
 }

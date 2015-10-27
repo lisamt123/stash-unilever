@@ -1,172 +1,226 @@
-<!-- VF Created By Jamal -->
-<apex:page standardController="Oblix_Project_Assets__c" extensions="Oblix_Ctrl02OverrideAssetNew" id="Page" tabstyle="Oblix_Project_Assets__c">
- <apex:form id="myForm"> 
-  <script type="text/javascript"> 
-  function openLookup(baseURL, width, modified, searchParam){
-    var originalbaseURL = baseURL;
-    var originalwidth = width;
-    var originalmodified = modified;
-    var originalsearchParam = searchParam;
- 
-    var lookupType = baseURL.substr(baseURL.length-3, 3);
-    if (modified == '1') baseURL = baseURL + searchParam;
- 
-    var isCustomLookup = false;
- 
-    // Following "001" is the lookup type for Account object so change this as per your standard or custom object
-    if(lookupType == "a6N"){
- 
-      var urlArr = baseURL.split("&");
-      var txtId = '';
-      if(urlArr.length > 2) {
-        urlArr = urlArr[1].split('=');
-        txtId = urlArr[1];
-      }
-        baseURL = "/apex/Oblix_VF03CustomAssetLookup?txt=" + txtId;
-      // Following is the url of Custom Lookup page. You need to change that accordingly
-      var assetType = '{!asset.Asset_Type__c}';
-      var categoryType = '{!asset.Sub_Category__c}'; 
-      if( assetType != null && assetType != ''){
-        baseURL += "&assetType="+assetType;
-      }
-      if(categoryType != null && categoryType != ''){
-        baseURL += "&subCategory="+categoryType;
+<apex:page standardcontroller="Oblix_SOW_Projects__c" extensions="Oblix_Ctrl04OverrideProjectNew">
+<apex:form id="myForm">
+    <head>
+   
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+        <apex:stylesheet value="{!$Resource.bootstrapMultiselectcss}" />
+        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.bootstrapMultiselectcss)}" />
+        <script type="text/javascript" src="{!URLFOR($Resource.bootstrapMultiselectjs)}"></script>
+
         
+    </head>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            
+            var country = '{!project.OblixCountries__c}';
+                    var country = country.replace(';',','); 
+                    
+            setTimeout(function() {
+                  if(country != null && country != '') {
+                            getName(country);        
+                        }
+                    
+               
+            }, 100);
+            
+            
+            $('#example-filterBehavior').multiselect({
+                enableFiltering: true,
+                filterBehavior: 'value',
+                includeSelectAllOption: true,
+                maxHeight: '300',
+                onChange: function(option, checked, select) {
+                     
+                    if(!(country).match($(option).val())){
+                          country +=  $(option).val()+',';
+                     }else{
+                         country = country.replace($(option).val()+',','');
+                     }
+                    
+                     
+                 },
+                 onDropdownHide: function(event) {
+                    var array = $('#example-filterBehavior').val();
+                        country = country.replace(',,',',');
+                        if(country != 'undefined' && country != null){
+                            var result = '';
+                            for (var i = 0; i < country.length; i++) {
+                                result += country[i]+';';
+                            }
+                        getName(country); 
+                        myRegions(country);
+                        }
+                }
+                
+            });    
+        }); 
+        
+        function getName(selectedValue)
+        {
+            var sizeCountries = '{!lstCountries.size}';
+            var partices = $('.btn-group');
+            var ul = partices.find('.multiselect-container');
+               //alert(selectedValue);
+               var resultSelected = selectedValue.toString();
+              //alert(resultSelected );
+               for(var i = 1;i<=sizeCountries;i++){
+                  if((resultSelected).match($('a label input','li')[i].getAttribute('value'))){
+                  
+                  // if(containsWord(resultSelected, $('a label input','li')[i].getAttribute('value'))){
+                          // alert('test');
+                           $('.multiselect-container li')[i+1].setAttribute('class','active');
+                           $('.multiselect span').text(selectedValue);
+                           $('.multiselect').attr('title',selectedValue);
+                           $('a label input','li')[i].setAttribute('checked','checked');
+                    }
+
+               }
+         
+        }     
+        function containsWord(haystack, needle) {
+           return (" " + haystack + " ").indexOf(" " + needle + " ") !== -1;
+        }                 
+     </script>
+     <style>
+    
+     .btn{
+         padding: 6px 12px !important;
+     }
+     .multiselect-clear-filter{
+             background: #fff !important;
+             height: 32px !important;
       }
-      
-      // Following is the id of apex:form control "myForm". You need to change that accordingly
-      baseURL = baseURL + "&frm=" + escapeUTF("{!$Component.myForm}");
-      if (modified == '1') {
-        baseURL = baseURL + "&lksearch=" + searchParam;
-      }
-      // Following is the ID of inputField that is the lookup to be customized as custom lookup
-      if(txtId.indexOf('Asset') > -1 ){
-        isCustomLookup = true;
-      }
+   
+    .btn-group.open > ul > li{
+        margin:0px !important
     }
- 
-    if(isCustomLookup == true){
-      openPopup(baseURL, "lookup", 350, 480, "width="+width+",height=480,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no", true);
+    .multiselect{
+        min-width:170px;
+     }
+     .multiselect span{
+         float:left;
+     }    
+     .multiselect b{
+        float: right;
+        top: :5px;
+        margin: 5px;
+        }
+   td#sidebarCell {
+    font-size: inherit;
+   }
+    #sidebarDiv .sidebarModuleHeader h2{
+        font-size : 12px;
     }
-    else {
-      if (modified == '1') originalbaseURL = originalbaseURL + originalsearchParam;
-      openPopup(originalbaseURL, "lookup", 350, 480, "width="+originalwidth+",height=480,toolbar=yes,status=yes,directories=no,menubar=yes,resizable=yes,scrollable=no", true);
-    } 
-  }
-</script>
-  
-<apex:sectionHeader title="Project Asset"  subtitle="{!IF(asset.Id<>null, asset.Name, 'New Asset')}" />
-    <apex:actionFunction action="{!NULL}" name="changeType" reRender="myForm"/>
-    <!-- ADMIN RT  -->
-    <apex:pageBlock title="Admin RT" rendered="{!asset.RecordTypeId == rt_Admin}">
-        <apex:pageBlockButtons >
-            <apex:commandButton action="{!save}" value="Save"/>
-            <apex:commandButton action="{!Cancel}" value="Cancel"/>
-        </apex:pageBlockButtons>
-        <apex:pageBlockSection >
-                <apex:inputField value="{!asset.Name}"></apex:inputField>
-                <!-- <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField>--><!-- onChange="changeType();"-->
-                 
-                <apex:inputField value="{!asset.Agency_Projects__c}"  />
-                <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
-                <apex:inputField value="{!asset.Quantity__c}"  /> 
-                <apex:inputField value="{!asset.Channels__c}"  /> 
-                <apex:inputField value="{!asset.Location__c}"  /> 
-                <apex:inputField id="Asset1" value="{!asset.FULL_Description__c}"  />
+    .content{
+        font-size : 12px;
+    }
+    #tabBar{
+        font-size : 12px;
+    }
+     </style>
+    <body data-spy="scroll" data-target="#affix" class="bootstrap-styles">
+       
+    <apex:actionFunction name="myRegions" action="{!RelatedCountriesRegions}" reRender="regionId, CountryID,marketId" immediate="true">
+        <apex:param name="selectedCountries" assignTo="{!selectedCountries}" value=""></apex:param>
+    </apex:actionFunction>
+    
+               
+   
+ <apex:pageMessages escape="false" />     
+  <apex:sectionHeader title="Sow Prooject"  subtitle="{!IF(project.Id<>null, project.Name, 'New Project')}" />
+        <apex:pageBlock title="Marketing SOW Projects Edit">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!save}" value="Save"></apex:commandButton>
+                <apex:commandButton action="{!Cancel}" value="Cancel"></apex:commandButton>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Information" id="pbs1">
+                <apex:inputField value="{!project.Name}"></apex:inputField>
+                <apex:inputField value="{!project.Description__c}"></apex:inputField>
+                <!-- Start Multi Select Countries -->
+            <apex:pageBlockSectionItem >
+            <apex:outputLabel >Countries</apex:outputLabel>
+            <apex:outputLabel >
+                    <div class="example">
+                        <select id="example-filterBehavior" multiple="multiple" style="display: none;  height: 120px !important;overflow-y: auto;">
+                       <apex:repeat value="{!lstCountries}" var="country">
+                            <option value="{!country.Name}" id="{!country.Name}">{!country.Name}</option> 
+                       </apex:repeat> 
+                    </select>
+                     <div class="btn-group">
+                        <ul class="multiselect-container dropdown-menu">
+                            <li class="multiselect-item filter" value="0">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </span>
+                                    <input class="form-control multiselect-search" type="text" placeholder="Search"/>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default multiselect-clear-filter" type="button">
+                                            <i class="glyphicon glyphicon-remove-circle"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </li>
+                          
+                        </ul>
+                    </div>
+                    
+                </div>    
+            </apex:outputLabel>
+            
+            </apex:pageBlockSectionItem>    
+            
+            
+        <!-- End Multi Select Countries -->
+                <apex:inputField value="{!project.Jobs_to_be_Done__c}"></apex:inputField>
+                 <apex:inputField value="{!project.OblixCountries__c}" id="CountryID"></apex:inputField>
+                <apex:inputField value="{!project.OblixRegion__c}" id="regionId"></apex:inputField>
+                <apex:inputField value="{!project.Platform__c}"></apex:inputField>
+                <apex:inputField value="{!project.OblixProjectSplitPercentage_Comment__c}"></apex:inputField>
+                <apex:inputField value="{!project.Project_Priority__c}"></apex:inputField>
+                
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Business Value Drivers">
+                 <apex:inputField value="{!project.Innovation_Projects__c}"></apex:inputField>
+                 <apex:inputField value="{!project.Project_Scale_1__c}" id="marketId"></apex:inputField>
+                 <apex:inputField value="{!project.Brand_Led_Growth__c}"></apex:inputField>
+                 <apex:inputField value="{!project.Project_Scale_2__c}"></apex:inputField>
+                 <apex:inputField value="{!project.Campaign_Idea__c}"></apex:inputField>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Financials">
+                <apex:inputField value="{!project.Percentage_of_Fee_for_this_FY__c}"></apex:inputField>
+                <apex:inputField value="{!project.Agency_Percentage_of_Fees_to_this_FY__c}"></apex:inputField>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection title="Time Scales">
+                <apex:inputField value="{!project.Project_Stage__c}"></apex:inputField>
                 <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
-                <apex:inputField value="{!asset.Additional_Description__c}"  />     
-        </apex:pageBlockSection>
-        
-    </apex:pageBlock>
-    <!-- Audio Visual RT  -->
-    <apex:pageBlock id="PageBlockAV" title="Project Asset" rendered="{!asset.RecordTypeId == rt_AudioVisuel}">        
-      <apex:pageBlockButtons >
-            <apex:commandButton action="{!save}" value="Save"/>
-            <apex:commandButton action="{!Cancel}" value="Cancel"/>
-        </apex:pageBlockButtons>
-        
-      <apex:pageBlockSection columns="2" title="Information">
-        <apex:inputField value="{!asset.Name}"></apex:inputField>
-         <apex:inputField id="Asset2" value="{!asset.FULL_Description__c}"  />
-         
-        <!--<apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField> onChange="changeType();"-->
-        <apex:inputField value="{!asset.Additional_Description__c}"  />
-        
-        <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
-        <apex:inputField value="{!asset.Quantity__c}"  /> 
-        
-        <apex:inputField value="{!asset.Channels__c}"  />
-         <apex:inputField value="{!asset.Agency_Projects__c}"  />
-      </apex:pageBlockSection>
-    </apex:PageBlock>
-    <!-- Static Imagery RT -->
-     <apex:pageBlock id="PageBlockIm" title="Project Asset" rendered="{!asset.RecordTypeId == rt_StaticImagery}">        
-      <apex:pageBlockButtons >
-            <apex:commandButton action="{!save}" value="Save"/>
-            <apex:commandButton action="{!Cancel}" value="Cancel"/>
-        </apex:pageBlockButtons>
-        
-      <apex:pageBlockSection columns="2" title="Information">
-        <apex:inputField value="{!asset.Name}"></apex:inputField>
-            <!-- <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField> onChange="changeType();"-->
-             
-             <apex:inputField value="{!asset.Additional_Description__c}"  />
-             <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
-             <apex:pageBlockSectionItem />
-              <apex:inputField value="{!asset.Channels__c}"  />
-              <apex:pageBlockSectionItem />
-              <apex:inputField id="Asset3" value="{!asset.FULL_Description__c}"  />
-              <apex:pageBlockSectionItem />
-             <apex:inputField value="{!asset.Quantity__c}"  /> 
-             <apex:pageBlockSectionItem />
-             <apex:inputField value="{!asset.Agency_Projects__c}"  />
-       </apex:pageBlockSection>
-    </apex:PageBlock>
-    <!-- Experiential -->
-     <apex:pageBlock id="PageBlockExp" title="Project Asset" rendered="{!asset.RecordTypeId == rt_Experiential}">        
-      <apex:pageBlockButtons >
-            <apex:commandButton action="{!save}" value="Save"/>
-            <apex:commandButton action="{!Cancel}" value="Cancel"/>
-        </apex:pageBlockButtons>
-      <apex:pageBlockSection columns="2" title="Information">
-        <apex:inputField value="{!asset.Name}"></apex:inputField>
-        <!-- <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField> onChange="changeType();"-->
-         
-         <apex:inputField value="{!asset.Additional_Description__c}"  />
-         <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
-         <apex:pageBlockSectionItem />
-          <apex:inputField value="{!asset.Channels__c}"  />
-          <apex:pageBlockSectionItem />
-          <apex:inputField id="Asset4" value="{!asset.FULL_Description__c}"  />
-          <apex:pageBlockSectionItem />
-         <apex:inputField value="{!asset.Quantity__c}"  /> 
-         <apex:pageBlockSectionItem />
-         <apex:inputField value="{!asset.Agency_Projects__c}"  />
-      </apex:pageBlockSection>
-    </apex:PageBlock>
-    <!-- Digital -->
-     <apex:pageBlock id="PageBlockDigital" title="Project Asset" rendered="{!asset.RecordTypeId == rt_Digital}">        
-      <apex:pageBlockButtons >
-            <apex:commandButton action="{!save}" value="Save"/>
-            <apex:commandButton action="{!Cancel}" value="Cancel"/>
-        </apex:pageBlockButtons>
-        
-      <apex:pageBlockSection columns="2" title="Information">
-        <apex:inputField value="{!asset.Name}"></apex:inputField>
-        <!-- <apex:inputField id="assetType" value="{!asset.Asset_Type__c}" ></apex:inputField> onChange="changeType();"-->
-         
-         <apex:inputField value="{!asset.Additional_Description__c}"  />
-         <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
-         <apex:pageBlockSectionItem />
-          <apex:inputField value="{!asset.Channels__c}"  />
-          <apex:pageBlockSectionItem />
-          <apex:inputField id="Asset5" value="{!asset.FULL_Description__c}"  />
-          <apex:pageBlockSectionItem />
-         <apex:inputField value="{!asset.Quantity__c}"  /> 
-         <apex:pageBlockSectionItem />
-         <apex:inputField value="{!asset.Agency_Projects__c}"  />
-      </apex:pageBlockSection>
-    </apex:PageBlock>
-  </apex:form>
- 
+                <apex:inputField value="{!project.Project_Start_Date__c}"></apex:inputField>
+                <apex:inputField value="{!project.Date_for_Assets_to_be_in_BET__c}"></apex:inputField>
+                <apex:inputField value="{!project.Project_Finish_Date__c}"></apex:inputField>
+                <apex:inputField value="{!project.Production_Completion_Date__c}"></apex:inputField>
+                <apex:inputField value="{!project.Timescale_Notes__c}"></apex:inputField>
+                <apex:inputField value="{!project.First_Air_Date__c}"></apex:inputField>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection title="Research">
+                <apex:inputField value="{!project.List_Preview_Markets__c}"></apex:inputField>
+                <apex:inputField value="{!project.Number_of_Markets_for_Preview__c}"></apex:inputField>
+                <apex:inputField value="{!project.Other_Kinds_of_Research__c}"></apex:inputField>
+                <apex:inputField value="{!project.Number_of_Previews__c}"></apex:inputField>
+                <apex:inputField value="{!project.Preview_Feedback__c}"></apex:inputField>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection title="System Information">
+                <apex:inputField value="{!project.Oblix_ProjectBoxNumber__c}"></apex:inputField>
+                
+                <apex:inputField value="{!project.Financial_Year__c}"></apex:inputField>
+                <apex:inputField value="{!project.OblixClonedFromParentProject__c}"></apex:inputField>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </body>
+</apex:form>
 </apex:page>

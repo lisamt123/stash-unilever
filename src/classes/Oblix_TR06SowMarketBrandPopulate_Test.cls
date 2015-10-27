@@ -33,7 +33,8 @@ private class Oblix_TR06SowMarketBrandPopulate_Test {
 	     		mdoCategBrand.brand_id__c = brand.Id;
 	     			mdoCategBrand.product_Category_Id__c = categoryBrand.Id;
 	     			insert mdoCategBrand;
-	     			
+	     	Test.startTest();
+	     	
 	     	Marketing_SOW__c marketingSow = new Marketing_SOW__c();
         		marketingSow.Active__c = true;
         		marketingSow.Name = 'Marketinf Sow Approval Test';
@@ -50,6 +51,7 @@ private class Oblix_TR06SowMarketBrandPopulate_Test {
         		delete mdoCategBrand;
         		marketingSow.OblixBrand__c = null;
         		update marketingSow;
+        	Test.stopTest();
 	     }
     }
 }

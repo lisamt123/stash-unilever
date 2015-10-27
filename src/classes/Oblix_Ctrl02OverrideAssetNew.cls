@@ -26,7 +26,7 @@ public with sharing class Oblix_Ctrl02OverrideAssetNew {
             
             
             if(ApexPages.currentPage().getParameters().get('RecordType') != null){
-                 asset = (Oblix_Project_Assets__c)Oblix_Project_Assets__c.sObjectType.newSObject(ApexPages.currentPage().getParameters().get('RecordType'), true) ;
+                 asset = new Oblix_Project_Assets__c(RecordTypeId=ApexPages.currentPage().getParameters().get('RecordType'));//(Oblix_Project_Assets__c)Oblix_Project_Assets__c.sObjectType.newSObject(ApexPages.currentPage().getParameters().get('RecordType'), true) ;
                 asset.Agency_Projects__c = agencyid;
             }
             System.debug('###ASSET : '+asset);

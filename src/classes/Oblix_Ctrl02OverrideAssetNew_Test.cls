@@ -44,15 +44,16 @@ private class Oblix_Ctrl02OverrideAssetNew_Test {
         		asset2.Sub_Category__c = 'Origination';	
         		asset2.Agency_Projects__c = project.Id;
         		asset2.FULL_Description__c = assetScoring.Id;
-
-        		PageReference pageref = Page.Oblix_VF02OverrideAsetNewLookup ; 
-        			pageRef.getParameters().put('Id', asset.Id);
-        			pageRef.getParameters().put('RecordType', Oblix_Utils.MapRecordType('Oblix_Project_Assets__c').get('Experiential'));
-        	  	Test.setCurrentPage(pageref) ;
-        	  Oblix_Ctrl02OverrideAssetNew controller = new Oblix_Ctrl02OverrideAssetNew(new ApexPages.StandardController(asset));
-        	  	System.assertEquals(controller.asset.Id, asset.Id);
-        	   Oblix_Ctrl02OverrideAssetNew controller2 = new Oblix_Ctrl02OverrideAssetNew(new ApexPages.StandardController(asset2));	
-        	   System.assertEquals(controller2.asset.Id, null);
+				Test.startTest();
+	        		PageReference pageref = Page.Oblix_VF02OverrideAsetNewLookup ; 
+	        			pageRef.getParameters().put('Id', asset.Id);
+	        			pageRef.getParameters().put('RecordType', Oblix_Utils.MapRecordType('Oblix_Project_Assets__c').get('Experiential'));
+	        	  	Test.setCurrentPage(pageref) ;
+	        	  Oblix_Ctrl02OverrideAssetNew controller = new Oblix_Ctrl02OverrideAssetNew(new ApexPages.StandardController(asset));
+	        	  	System.assertEquals(controller.asset.Id, asset.Id);
+	        	   Oblix_Ctrl02OverrideAssetNew controller2 = new Oblix_Ctrl02OverrideAssetNew(new ApexPages.StandardController(asset2));	
+	        	   System.assertEquals(controller2.asset.Id, null);
+        	   Test.stopTest();
 	     }
     }
 }

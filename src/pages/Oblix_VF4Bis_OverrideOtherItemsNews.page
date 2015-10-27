@@ -20,12 +20,14 @@
 				<apex:outputText id="agencyid" value="{!agency}"/>
 			</apex:pageBlockSectionItem>
 			<apex:inputField value="{!OItem.FTE__c}"/>
+			<!--
 			<apex:pageBlockSectionItem > 
 				<apex:outputLabel for="disciplineId">Discipline</apex:outputLabel>
 				<apex:selectList id="disciplineId" value="{!selectedDiscipline}" size="1" >
 		          <apex:selectoptions value="{!PickListDiscipline}"></apex:selectoptions> 
 		    	</apex:selectList>
 			</apex:pageBlockSectionItem>
+			-->
 			<apex:pageBlockSectionItem >
 				<apex:outputLabel for="agencydeptid">Agency Department</apex:outputLabel>
 				<apex:selectList id="agencydeptid" value="{!selectedAgencyDepartment}" size="1" >
@@ -59,12 +61,14 @@
 				<apex:outputText id="agencyid" value="{!agency}"/>
 			</apex:pageBlockSectionItem>
 			<apex:inputField value="{!OItem.No_of_Hours_Required__c}"/>
+			<!--
 			<apex:pageBlockSectionItem >
 				<apex:outputLabel for="disciplineId">Discipline</apex:outputLabel>
 				<apex:selectList id="disciplineId" value="{!selectedDiscipline}" size="1" >
 		          <apex:selectoptions value="{!PickListDiscipline}"></apex:selectoptions> 
 		    	</apex:selectList>
 			</apex:pageBlockSectionItem>
+			-->
 			<apex:pageBlockSectionItem >
 				<apex:outputLabel for="agencydeptid">Agency Department</apex:outputLabel>
 				<apex:selectList id="agencydeptid" value="{!selectedAgencyDepartment}" size="1" >

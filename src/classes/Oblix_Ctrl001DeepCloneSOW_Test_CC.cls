@@ -60,26 +60,26 @@ private class Oblix_Ctrl001DeepCloneSOW_Test_CC {
         		marketingSowClone.MarketingSOWParent__c = marketingSow.Id;
         		marketingSowClone.RecordTypeId = Oblix_Utils.MapRecordType('Marketing_SOW__c').get('ChildSowMarketing');
         		insert marketingSowClone;
-        			
-        	 PageReference pageref = Page.Oblix_VF01DeepCloneSOW ; 
-        	  //Add params
-        	  pageRef.getParameters().put('sowId', marketingSow.Id);
-        	  pageRef.getParameters().put('fyear', marketingSow.Financial_Year__c);
-        	  Test.setCurrentPage(pageref) ;
-        	  Oblix_Ctrl001DeepCloneSOW_CC controller = new Oblix_Ctrl001DeepCloneSOW_CC();
-        	  
-        	  	controller.init();
-        	  	controller.CloneSowParent();
-        	  		System.assertEquals(controller.nextStageTypeSow, marketingSowClone.Financial_Year__c+'Q1');
-        	  	marketingSowClone.Type_of_SOW__c = 'Q1';
-        	  	update marketingSowClone;
-        	  	controller.init();
-        	  	controller.CloneSowParent();
-        	  	 	System.assertEquals(controller.nextStageTypeSow, marketingSowClone.Financial_Year__c+'Q2');
-        	  	delete marketingSowClone;
-        	  	controller.init();
-        	  	 System.assertEquals(controller.isEnaughCopies, false);
-        	  	
+        	Test.startTest();		
+	        	 PageReference pageref = Page.Oblix_VF01DeepCloneSOW ; 
+	        	  //Add params
+	        	  pageRef.getParameters().put('sowId', marketingSow.Id);
+	        	  pageRef.getParameters().put('fyear', marketingSow.Financial_Year__c);
+	        	  Test.setCurrentPage(pageref) ;
+	        	  Oblix_Ctrl001DeepCloneSOW_CC controller = new Oblix_Ctrl001DeepCloneSOW_CC();
+	        	  
+	        	  	controller.init();
+	        	  	controller.CloneSowParent();
+	        	  		System.assertEquals(controller.nextStageTypeSow, marketingSowClone.Financial_Year__c+'Q1');
+	        	  	marketingSowClone.Type_of_SOW__c = 'Q1';
+	        	  	update marketingSowClone;
+	        	  	controller.init();
+	        	  	controller.CloneSowParent();
+	        	  	 	System.assertEquals(controller.nextStageTypeSow, marketingSowClone.Financial_Year__c+'Q2');
+	        	  	delete marketingSowClone;
+	        	  	controller.init();
+	        	  	 System.assertEquals(controller.isEnaughCopies, false);
+        	Test.stopTest();  	
 	     }
     }
 }

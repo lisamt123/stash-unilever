@@ -39,6 +39,7 @@ private class Oblix_TR04ProjectBusDriverScore_Test {
                 geography.geography_type__c = 'Country Cluste';
                 insert geography;
                 
+            Test.startTest();
             
             Oblix_SOW_Projects__c project = new Oblix_SOW_Projects__c();
                 project.Name = 'Project #2';
@@ -117,7 +118,7 @@ private class Oblix_TR04ProjectBusDriverScore_Test {
                 project.Brand_Led_Growth__c    = Oblix_Constants.BrandLedGrowth_IncremTurnoverLessAbove400;
                 update project;
                 
-                
+               Test.stopTest(); 
          }
     }
 }

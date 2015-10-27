@@ -29,6 +29,9 @@ private class Oblix_TR05SOWSplitProjectAvoid_Test {
                 project.OblixCountries__c = 'France';
                 project.Financial_Year__c = marketingSow.Id;
                 insert project;     
+               
+				Test.startTest();
+				      
                 List<Oblix_Marketing_SOW_Project_Splits__c> lstSplit = new List<Oblix_Marketing_SOW_Project_Splits__c>();
                 for(Integer i=0;i<5;i++){
                     Oblix_Marketing_SOW_Project_Splits__c projectSplit = new Oblix_Marketing_SOW_Project_Splits__c();
@@ -52,6 +55,7 @@ private class Oblix_TR05SOWSplitProjectAvoid_Test {
         		}catch(Exception e){
         			System.debug('###Split error valdiation : '+e.getMessage());
         		}
+        		Test.stopTest();         
          }
     }
 }

@@ -41,7 +41,7 @@ private class Oblix_Ctrl04OverrideProjectNew_Test {
         		geographyCountry.geography_type__c = 'Country Cluste';
         		geographyCountry.parent_L5__c = geographyRegion.Id;
         		insert geographyCountry;
-        		
+        	Test.StartTest();
         		PageReference pageref = Page.Oblix_VF04OverrideProjectNew ; 
         			pageRef.getParameters().put('Id', project.Id);
         	  	Test.setCurrentPage(pageref) ;
@@ -56,6 +56,7 @@ private class Oblix_Ctrl04OverrideProjectNew_Test {
         	  	Oblix_Ctrl04OverrideProjectNew controller2 = new Oblix_Ctrl04OverrideProjectNew(new ApexPages.StandardController(project2));
         	  	controller2.selectedCountries = null;
         	  	controller2.save();
+        	Test.stopTest()	;
 	     }
     }
 }

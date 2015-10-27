@@ -14,16 +14,18 @@ private class Oblix_TR02SubmitSOWForApproval_Test {
 	     insert u; 
 	     
 	     System.runAs(u){
-	     	 Marketing_SOW__c marketingSow = new Marketing_SOW__c();
-        		marketingSow.Active__c = true;
-        		marketingSow.Name = 'Marketinf Sow Approval Test';
-        		marketingSow.SOW_Status__c = 'Open';
-        		insert marketingSow;
-        		marketingSow.SOW_Status__c = Oblix_Constants.Lbl_SOWSTATUS_AWAITINGAPPROVAL;
-        		update marketingSow;
-		        // ensure that the opp was submitted for approval
-		        List<ProcessInstance> processInstances = [select Id, Status from ProcessInstance where TargetObjectId = :marketingSow.id];
-		    System.assertEquals(processInstances.size(),1);	
+	     	Test.startTest();
+		     	 Marketing_SOW__c marketingSow = new Marketing_SOW__c();
+	        		marketingSow.Active__c = true;
+	        		marketingSow.Name = 'Marketinf Sow Approval Test';
+	        		marketingSow.SOW_Status__c = 'Open';
+	        		insert marketingSow;
+	        		marketingSow.SOW_Status__c = Oblix_Constants.Lbl_SOWSTATUS_AWAITINGAPPROVAL;
+	        		update marketingSow;
+			        // ensure that the opp was submitted for approval
+			        List<ProcessInstance> processInstances = [select Id, Status from ProcessInstance where TargetObjectId = :marketingSow.id];
+			    System.assertEquals(processInstances.size(),1);	
+		    Test.stopTest();
 	     } 
     }
 }

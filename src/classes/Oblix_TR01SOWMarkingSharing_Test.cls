@@ -28,7 +28,7 @@ private class Oblix_TR01SOWMarkingSharing_Test {
         			brandUser.Brand__c = brand.Id;
         			brandUser.User__c = userShare.Id;	
         		insert brandUser;
-        		
+        	Test.startTest();	
 	     	Marketing_SOW__c marketingSow = new Marketing_SOW__c();
         		marketingSow.Active__c = true;
         		marketingSow.Name = 'Marketinf Sow Approval Test';
@@ -38,6 +38,7 @@ private class Oblix_TR01SOWMarkingSharing_Test {
         		
         		update marketingSow;
         		System.assertequals(marketingSow.OblixBrand__c, brandUser.Brand__c);
+        	Test.stopTest();
 	     }
     }
 }

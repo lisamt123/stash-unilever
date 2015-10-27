@@ -40,22 +40,23 @@ private class Oblix_Ctrl03AssetLookupNew_Test {
         		asset.Agency_Projects__c = project.Id;
         		asset.FULL_Description__c = assetScoring.Id;
         		insert asset;
-        	
-        	PageReference pageref = Page.Oblix_VF03CustomAssetLookup ; 
-        			pageRef.getParameters().put('lksrch', assetScoring.Name);
-        			pageRef.getParameters().put('subCategory', assetScoring.Sub_Category__c);
-        	  	Test.setCurrentPage(pageref) ;
-        	  Oblix_Ctrl03AssetLookupNew controller = new Oblix_Ctrl03AssetLookupNew();
-        	  	controller.SearchDescription();
-        	  	controller.getFormTag();
-        	  	controller.getTextBox();
-        	  	for(Asset_Scoring__c assettmp : controller.lstResultAssetScoring){
-        	  		System.assertEquals(assettmp.Id, assetScoring.Id);
-        	  	}
-        	  	 pageRef.getParameters().put('lksrch', null);
-        		pageRef.getParameters().put('subCategory', null);
-        	  	 Oblix_Ctrl03AssetLookupNew controller2 = new Oblix_Ctrl03AssetLookupNew();
-        		controller2.SearchDescription();
+        	Test.StartTest();
+	        	PageReference pageref = Page.Oblix_VF03CustomAssetLookup ; 
+	        			pageRef.getParameters().put('lksrch', assetScoring.Name);
+	        			pageRef.getParameters().put('subCategory', assetScoring.Sub_Category__c);
+	        	  	Test.setCurrentPage(pageref) ;
+	        	  Oblix_Ctrl03AssetLookupNew controller = new Oblix_Ctrl03AssetLookupNew();
+	        	  	controller.SearchDescription();
+	        	  	controller.getFormTag();
+	        	  	controller.getTextBox();
+	        	  	for(Asset_Scoring__c assettmp : controller.lstResultAssetScoring){
+	        	  		System.assertEquals(assettmp.Id, assetScoring.Id);
+	        	  	}
+	        	  	 pageRef.getParameters().put('lksrch', null);
+	        		pageRef.getParameters().put('subCategory', null);
+	        	  	 Oblix_Ctrl03AssetLookupNew controller2 = new Oblix_Ctrl03AssetLookupNew();
+	        		controller2.SearchDescription();
+        		Test.stopTest();
 	     }
     }
 }

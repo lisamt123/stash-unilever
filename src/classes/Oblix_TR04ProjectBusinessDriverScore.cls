@@ -149,6 +149,7 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
             
             //Calculate TotalBusinessvaluedriverScore
             TotalBusinessvaluedriverScore = score_innonvation+score_brandLedGrowth+score_market+score_hubPartner+score_campaignIdea+TotalBusinessvaluedriverScore;
+            project.Total_Value_Driver__c = TotalBusinessvaluedriverScore;
             if(project.ProjectTotalAssetScore__c != null) TotalProjectScore = (project.ProjectTotalAssetScore__c/100)*TotalBusinessvaluedriverScore;
             System.debug('###TotalProjectScore : '+TotalProjectScore);
             if(!lstCalculatorBoxRange.isEmpty()){
