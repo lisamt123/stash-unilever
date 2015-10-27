@@ -2583,6 +2583,62 @@ Which Communications team do you represent? You must be associated to one Planne
         <value>http://www.salesforce.com</value>
     </labels>
     <labels>
+        <fullName>HROPhaseIntroHeaderBeforeArrival</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroHeaderBeforeArrival</shortDescription>
+        <value>Pre-Boarding:</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroHeaderBeonBoard</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroHeaderBeonBoard</shortDescription>
+        <value>Welcome to the final stage of your journey</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroHeaderDay1</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroHeaderDay1</shortDescription>
+        <value>Day 1:</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroHeaderMonth1</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroHeaderMonth1</shortDescription>
+        <value>Month 1:</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroHeaderMonth2</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroHeaderMonth2</shortDescription>
+        <value>Month 2:</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroHeaderMonth3</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroHeaderMonth3</shortDescription>
+        <value>Your new leader has been part of Unilever, and your team for 3 months now. As they integrate fully, there are some simple things you can do to help elevate their position and demonstrate your investment in their development.</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroHeaderWeek1</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroHeaderWeek1</shortDescription>
+        <value>Week 1:</value>
+    </labels>
+    <labels>
         <fullName>HROPhaseIntroInfoBeforeArrival</fullName>
         <categories>HRO</categories>
         <language>en_US</language>
