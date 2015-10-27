@@ -33,6 +33,7 @@ global with sharing class BET_ManageMembersController {
     public Id selectedMemberId {get;set;}
     public Boolean isBetOwnerOrManager {get;set;}
     public Boolean isBETOperationAdmin {get;set;}
+    public Boolean isHubAdmin {get;set;}
 
     public String setErrorMessage{get;set;}
     public String setEmailAdd{get;set;}
@@ -52,10 +53,12 @@ global with sharing class BET_ManageMembersController {
         betMemberRequest = new BET_Member_Request__c(Brand_Experience_Toolkit__c = betId);
         selectAll = false;
         requestsShouldBeAutoapproved = false;
+
         isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
         isBETOperationAdmin = BET_CommonService.isBETOperationAdmin();
+        isHubAdmin = BET_CommonService.isHubAdmin();
 
-        requestsShouldBeAutoapproved = isBetOwnerOrManager;
+        requestsShouldBeAutoapproved = isBetOwnerOrManager || isHubAdmin;
     
 
         chatterExternalProfile = [SELECT Id FROM Profile WHERE Name='Chatter External User' LIMIT 1];

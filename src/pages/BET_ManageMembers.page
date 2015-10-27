@@ -38,7 +38,8 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
      
         <div style="{!If(isBETOperationAdmin,'display:none;','')}">
         <div>
-          <apex:outputText value="{!$Label.BET_Add_Internal_User}" styleClass="addMembersUserLabel"/>
+          <apex:outputText value="{!$Label.BET_Add_Internal_User}" rendered="{!OR(isBetOwnerOrManager,isHubAdmin)}" styleClass="addMembersUserLabel"/>
+          <apex:outputText value="{!$Label.BET_Suggest_Member}" rendered="{!NOT(OR(isBetOwnerOrManager,isHubAdmin))}" styleClass="addMembersUserLabel"/>
         </div>
         <table width="100%">
           <tr>
@@ -56,12 +57,14 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             </td>
             <td>
               <div style="float:right">
-                <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addMember}" rendered="{!isBetOwnerOrManager}"
+                <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addMember}" rendered="{!OR(isBetOwnerOrManager,isHubAdmin)}"
                                     styleClass="buttong2y" style="background: #BE236D; color:white;height: 35px;font-size:12px;font-family: Rockwell;width: 110px;" >
 
                 </apex:commandButton>
 
-                <apex:commandButton value="{!$Label.BET_Suggest_Member}" action="{!addMember}" rendered="{!NOT(isBetOwnerOrManager)}"
+                <apex:commandButton value="{!$Label.BET_Suggest_Member}" action="{!addMember}" 
+                                    rendered="{!NOT(OR(isBetOwnerOrManager,isHubAdmin))}"
+                                    onclick="alert('{!$Label.BET_Suggest_Member_Message}'); return true;"
                                     styleClass="buttong2y" style="background: #BE236D; color:white;height: 35px;font-size:12px;font-family: Rockwell;width: 110px;" >
                 </apex:commandButton>
               </div>
@@ -70,7 +73,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
         </table>
         </div>
     
-        <div style="{!If(OR(isBETOperationAdmin,NOT(isBetOwnerOrManager)),'display:none;','')}">
+        <div style="{!If(OR(isBETOperationAdmin,NOT(OR(isBetOwnerOrManager,isHubAdmin))),'display:none;','')}">
 
         <div style="padding-top: 20px;">
           <apex:outputText value="{!$Label.BET_External_Agency_User}" styleClass="addMembersUserLabel"/>
@@ -96,14 +99,14 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
         <div class="headerButtonsBrowsMembers"> 
         
           <apex:commandButton value="{!$Label.BET_Delete_selected}" action="{!massDelete}" 
-                              rendered="{!isBetOwnerOrManager}"
+                              rendered="{!OR(isBetOwnerOrManager,isHubAdmin)}"
                               styleClass="buttong2y" 
                               style="background: #BE236D; color:white;height: 35px;font-size:12px;font-family: Rockwell;width: 110px;"/> 
        
         </div>
 
         <table width="100%" class="browseMembersTable">
-          <th class="browseMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'width: 45px;','display:none')}">
+          <th class="browseMembersheaderStyle" style="{!IF(OR(isBetOwnerOrManager,isHubAdmin),'width: 45px;','display:none')}">
             <apex:inputCheckbox value="{!selectAll}" id="globcheckboxbrowse" onchange="selectOrDeselectkAllBrowse();"/>
           </th>
           <th class="browseMembersheaderStyle" style="width: 90px;">
@@ -118,7 +121,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
           <th class="browseMembersheaderStyle" style="width: 200px;">
             {!$ObjectType.BET_Member_Request__c.Fields.Role__c.Label}
           </th>
-          <th class="browseMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'','display:none')}">
+          <th class="browseMembersheaderStyle" style="{!IF(OR(isBetOwnerOrManager,isHubAdmin),'','display:none')}">
             {!$Label.BET_Delete}
           </th>
           <apex:variable var="cnt" value="{!0}" /> 
@@ -136,10 +139,10 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
               <td>
                 <apex:outputText value="{!member.title}"/>
               </td>
-              <td style="{!IF(NOT(isBetOwnerOrManager),'','display:none')}">
+              <td style="{!IF(NOT(OR(isBetOwnerOrManager,isHubAdmin)),'','display:none')}">
                 <apex:outputText id="role" value="{!member.role}"/>
               </td>
-              <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
+              <td style="{!IF(OR(isBetOwnerOrManager,isHubAdmin),'','display:none')}">
 
                 <apex:selectList value="{!member.obj.Role__c}" required="false" size="1" multiselect="false" 
                                  style="width: 180px;" 
@@ -152,7 +155,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                                   rendered="{!OR(member.isbetOwner,member.obj.Role__c == 'External Agency User')}"/> 
 
               </td>
-              <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
+              <td style="{!IF(OR(isBetOwnerOrManager,isHubAdmin),'','display:none')}">
                 <apex:commandButton action="{!doDelete}" value="{!$Label.BET_Delete}" styleClass="buttong2y" style="background: #e6007e; color:white;" rendered="{!NOT(member.isbetOwner)}" rerender="browseMembersid" status="saveStatus4">
                   <apex:actionStatus id="saveStatus4">
                     <apex:facet name="start">

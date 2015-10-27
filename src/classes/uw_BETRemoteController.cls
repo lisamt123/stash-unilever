@@ -188,7 +188,7 @@ public with sharing class uw_BETRemoteController {
         Map<String, Object> resultMap = new Map<String, Object>();
         try{
 
-            if(BET_CommonService.isBETOperationAdmin()){
+            if(BET_CommonService.isBETOperationAdmin() || BET_CommonService.isHubAdmin()){
                 /*
                     Future method is invoked for BET Operation admin to grant access to all BETs assets
                 */
