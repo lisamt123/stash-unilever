@@ -31,11 +31,9 @@ global without sharing class BET_AssetService {
             assetsOrdered.add((String)asset.id);
             if(asset.Order_Of_Display__c == null) {
                 reorder = true;
-                break;
             } else {
                 if(orderSet.contains((Integer)asset.Order_Of_Display__c)){
                     reorder = true;
-                    break;
                 } else {
                     orderSet.add((Integer)asset.Order_Of_Display__c);
                 }
