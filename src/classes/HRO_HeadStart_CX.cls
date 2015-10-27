@@ -35,28 +35,8 @@ global with sharing class HRO_HeadStart_CX {
     public static final  String MONTH3PHASE = 'Month 3';
     public static final String BEONBOARDPHASE = 'Beyond Onboarding';
     private static final String NEWLEADERAPINAME = 'New_Leader_Name__c';
-	// map for introduction header for each phase
-    private Map<String,String> introductionHeaderMap = new Map<String,String>{
-        PREBOARDINGPHASE => Label.HROPhaseIntroHeaderBeforeArrival,
-        DAY1PHASE => Label.HROPhaseIntroHeaderDay1,
-        WEEK1PHASE => Label.HROPhaseIntroHeaderWeek1,
-        MONTH1PHASE => Label.HROPhaseIntroHeaderMonth1,
-        MONTH2PHASE => Label.HROPhaseIntroHeaderMonth2,
-        MONTH3PHASE => Label.HROPhaseIntroHeaderMonth3,
-        BEONBOARDPHASE => Label.HROPhaseIntroHeaderBeonBoard
-    };
-        
-	/*******************************************************************
-   Purpose:  Property returning introduction header map                                                     
-   Parameters: []
-   Returns: []
-   Throws [Exceptions]: []                                                          
-  ********************************************************************/
-    public Map<String,String> getIntroductionHeaderMap(){
-        system.debug('***HRO executing getIntroductionHeaderMap:'+introductionHeaderMap);
-        return introductionHeaderMap;
-    }
-
+	
+    
     private Map<String,String> introductionInfoMap = new Map<String,String>{
         PREBOARDINGPHASE => Label.HROPhaseIntroInfoBeforeArrival,
         DAY1PHASE => Label.HROPhaseIntroInfoDay1,
