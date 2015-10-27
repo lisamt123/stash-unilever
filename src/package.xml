@@ -1492,7 +1492,6 @@
 		<members>Idea</members>
 		<members>IdeaComment</members>
 		<members>IdeaTheme</members>
-		<members>KnowledgeArticleVersion</members>
 		<members>Lead</members>
 		<members>Macro</members>
 		<members>My_Library__c</members>
@@ -2160,16 +2159,6 @@
 		<name>CustomSite</name>
 	</types>
 	<types>
-		<members>FourAcres</members>
-		<members>Inside_NewsCentre</members>
-		<members>Inside_YourNews</members>
-		<members>Sharepoint_Online_Prod</members>
-		<members>Teamsite_Document_Management</members>
-		<members>Unilever_SP_Teamsites</members>
-		<members>getAbstract</members>
-		<name>ConnectedApp</name>
-	</types>
-	<types>
 		<members>ONE_Correspond</members>
 		<members>WorkIt_Console_App_Hidden</members>
 		<name>CustomApplicationComponent</name>
@@ -2305,13 +2294,6 @@
 		<name>Datacategorygroup</name>
 	</types>
 	<types>
-		<members>Inside_Unilever_com</members>
-		<members>Unilever_Messaging_Colloboration</members>
-		<members>Unilever_OneDrive</members>
-		<members>Unilever_SFDev</members>
-		<name>DataSource</name>
-	</types>
-	<types>
 		<members>AF_AXE_RO</members>
 		<members>AF_AXE_RW</members>
 		<members>AF_Agency_Fee_Internal_Users</members>
@@ -2414,7 +2396,6 @@
 	</types>
 	<types>
 		<members>%2E</members>
-		<members>***HELP***</members>
 		<members>Getting Started Old</members>
 		<members>Getting Started</members>
 		<members>Home Links</members>
@@ -2706,11 +2687,6 @@
 		<name>Layout</name>
 	</types>
 	<types>
-		<members>Agencies</members>
-		<members>Agency Fees Online</members>
-		<name>Network</name>
-	</types>
-	<types>
 		<members>cp_Event__c.Approval_Request_Global</members>
 		<members>cp_Event__c.Approval_Request_Local</members>
 		<name>PostTemplate</name>
@@ -2889,7 +2865,6 @@
 		<members>AF_Category_Finance_Regional</members>
 		<members>AF_Controllers</members>
 		<members>AF_Procurement</members>
-		<members>API_Only</members>
 		<members>Agency_Roster_Marketing</members>
 		<members>Agency_Roster_Procurement</members>
 		<members>Brand_Centre_Administrator</members>
@@ -2897,11 +2872,9 @@
 		<members>Brand_Centre_Restricted_User</members>
 		<members>CB4L_HUB_Admin</members>
 		<members>CB4L_Standard_User</members>
-		<members>CEC_Automated_User</members>
 		<members>CEC_Business_Admin</members>
 		<members>CEC_CRUD</members>
 		<members>CEC_DeDuplication</members>
-		<members>CEC_Delegated_Administrators</members>
 		<members>CEC_Email_Administrator</members>
 		<members>CEC_Knowledge_Manager</members>
 		<members>CEC_Manager</members>
@@ -3307,7 +3280,6 @@
 		<members>Search_Statistics__c</members>
 		<members>Send_Email__c</members>
 		<members>Site</members>
-		<members>SocialPersona</members>
 		<members>Solution</members>
 		<members>StreamingChannel</members>
 		<members>Sub_Category__c</members>
