@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>AF_SendEmailBonusQuartToCatFinance</fullName>
+        <description>AF_SendEmailBonusQuartToCatFinance</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>AF_Category_Finance_Email</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Agency_Fees/AF_Email_To_CatFinance_ToEnterActuals_HTML</template>
+    </alerts>
+    <alerts>
         <fullName>AF_SendEmailToCatFinance</fullName>
         <description>AF_SendEmailToCatFinance</description>
         <protected>false</protected>
@@ -9,7 +20,7 @@
             <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>Agency_Fees/AF_Email_To_CatFinance_ToEnterActuals_HTML</template>
+        <template>Agency_Fees/AF_Email_To_CatFinance_ToEnterActualsAnnual_HTML</template>
     </alerts>
     <alerts>
         <fullName>Email_to_send_out_when_Currency_Update_is_Required</fullName>
@@ -25,7 +36,7 @@
     <rules>
         <fullName>AF_SendEmailBonusQuartToCatFinance</fullName>
         <actions>
-            <name>AF_SendEmailToCatFinance</name>
+            <name>AF_SendEmailBonusQuartToCatFinance</name>
             <type>Alert</type>
         </actions>
         <active>true</active>
