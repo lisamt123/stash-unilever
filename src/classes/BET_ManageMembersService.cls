@@ -1,4 +1,5 @@
-public with sharing class BET_ManageMembersService {
+/* service class without sharing */
+public without sharing class BET_ManageMembersService {
 
 	private BET_ManageMembersService() {}
 
@@ -57,7 +58,7 @@ public with sharing class BET_ManageMembersService {
         }
         delete [SELECT Id FROM uw_BET__Share WHERE parentId = :bet.id AND userOrGroupId in:usersIds]; 
         delete [SELECT Id FROM CollaborationGroupMember WHERE CollaborationGroupId =: bet.Studio_Chatter_Group__c AND memberId in : usersIds];
-        delete [Select Id,SubscriberId,ParentId from EntitySubscription where SubscriberId in:usersIds and ParentId=:bet.id];
+        delete [Select Id,SubscriberId,ParentId from EntitySubscription where SubscriberId in:usersIds and ParentId=:bet.id limit 1000];
         System.debug('Exit cleanUpSharesGroupsSubscriptions');
     }
 

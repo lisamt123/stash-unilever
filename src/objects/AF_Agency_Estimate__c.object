@@ -191,9 +191,9 @@ IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q
         <description>AgencyFee#GLOBAL#To Store agency exchange rates.</description>
         <externalId>false</externalId>
         <label>Matrix Data Entry Exchange Rate</label>
-        <precision>14</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -204,9 +204,9 @@ IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q
         <description>AgencyFee#GLOBAL#To Store agency spot rate.</description>
         <externalId>false</externalId>
         <label>Ready For PO Exchange Rate</label>
-        <precision>14</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>

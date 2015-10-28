@@ -84,7 +84,7 @@ public with sharing class uw_BETRemoteController {
         BETTemplateLink = uw_CustomSettingsManager.getCustomSettingStringVal(uw_CustomSettingsManager.BET_TEMPALTE_DOWNLOAD_URL, '');
         helpLink = uw_CustomSettingsManager.getCustomSettingStringVal(uw_CustomSettingsManager.BET_HELP_URL, '');
         String groupId = BET_Settings__c.getOrgDefaults().HelpChatterGroupId__c == null ? '' : (String)BET_Settings__c.getOrgDefaults().HelpChatterGroupId__c;
-        homeInfoText = String.format(Label.BET_Home_Page_Info,new List<String>{groupId});
+        homeInfoText = String.format(Label.BET_Home_Page_Info,new List<String>{groupId,Label.BET_Help_Group_Name});
     }
     /*******************************************************************
     Purpose: Method returns list of BET Owned by current logged in user
@@ -188,12 +188,14 @@ public with sharing class uw_BETRemoteController {
         Map<String, Object> resultMap = new Map<String, Object>();
         try{
 
-            if(BET_CommonService.isBETOperationAdmin()){
+            if(BET_CommonService.isBETOperationAdmin() || BET_CommonService.isHubAdmin()){
                 /*
                     Future method is invoked for BET Operation admin to grant access to all BETs assets
                 */
                 BET_AssetService.grantAccessToBetsAssets(betId,currentUserId);
             }
+
+            BET_AssetService.forceAssetReordering(betId);
 
             uw_BETWrapper.DetailWrapper results = uw_BETDetailService.getBETDetails(betId, currentUserId);
             if(results.bet.betIPMProjectId != null) {

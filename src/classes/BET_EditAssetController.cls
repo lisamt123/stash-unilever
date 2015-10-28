@@ -39,7 +39,7 @@ public with sharing class BET_EditAssetController {
         
         displayForm = false;            
         if (assetId != null) {
-            file = [SELECT Name, Sub_Function__c, Studio_Asset_Type__c, Media_Type__c, Country__c, Status__c, Is_bucket_field__c, Id, uw_BET__c, Related_Feed_Item__c FROM uw_Asset__c WHERE Id =: assetId LIMIT 1];
+            file = [SELECT Name, Sub_Function__c, Studio_Asset_Type__c, Media_Type__c, Country__c, Status__c, Is_bucket_field__c, Id, uw_BET__c, Related_Feed_Item__c, File_Id__c FROM uw_Asset__c WHERE Id =: assetId LIMIT 1];
             if (file != null) {
                 displayForm = true;
                 pepareForm();
@@ -112,9 +112,10 @@ public with sharing class BET_EditAssetController {
         if (Test.isRunningTest()) {
             caId = Id.valueOf('069000000000001');
         } else {
-            ConnectApi.FeedItem fi = ConnectApi.ChatterFeeds.getFeedItem(null, file.Related_Feed_Item__c);      
-            ConnectApi.ContentAttachment ca = (ConnectApi.ContentAttachment) fi.attachment;
-            caId = ca.Id;
+            //ConnectApi.FeedItem fi = ConnectApi.ChatterFeeds.getFeedItem(null, file.Related_Feed_Item__c);      
+            //ConnectApi.ContentAttachment ca = (ConnectApi.ContentAttachment) fi.attachment;
+            //caId = ca.Id;
+            caId = Id.valueOf(file.File_Id__c);
         }
 
         updateBet = setPresentation(updateBet,caId);
