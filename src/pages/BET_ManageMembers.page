@@ -127,7 +127,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
           <apex:variable var="cnt" value="{!0}" /> 
           <apex:repeat value="{!members}" var="member" id="repeater">
             <tr class="memberRow" id="{!member.objectId}" >
-              <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
+              <td style="{!IF(OR(isBetOwnerOrManager,isHubAdmin),'','display:none')}">
                 <apex:inputCheckbox value="{!member.isSelected}" rendered="{!NOT(member.isbetOwner)}"/>
               </td>
               <td>
