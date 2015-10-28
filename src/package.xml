@@ -197,7 +197,7 @@
         <members>BC_picker_color</members>
         <members>BC_picker_color_Test</members>
         <members>BC_updateEmbedURL_Test</members>
-         <members>BET_AccessService</members>
+        <members>BET_AccessService</members>
         <members>BET_AccessServiceTest</members>
         <members>BET_ApproveProjectsComponentContrTest</members>
         <members>BET_ApproveProjectsComponentController</members>
@@ -4981,7 +4981,6 @@
 		<members>cp_ULE_Contact__c</members>
 		<members>HRO_HeadStart</members>
         <members>HRO_Onboarding_Plan__c</members>
-<<<<<<< HEAD
         <name>CustomTab</name>
     </types>
 	 <types>
