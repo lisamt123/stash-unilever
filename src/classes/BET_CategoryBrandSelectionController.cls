@@ -20,6 +20,11 @@ public with sharing class BET_CategoryBrandSelectionController {
 	public Boolean categoryNotMigrated {get;set;}
 	public Boolean fabricConditionerCategory {get;set;}
 
+	public String fabricConditioner {get;set;}
+
+	public static final String YES = 'Yes';
+	public static final String NO = 'No';
+
 	public Boolean getUserHasAccessToProject() {
 		return bet == null || bet.id == null || bet.IPM_Project__c == null ? false : IPM_BETUpdateService.UserAccess(bet.id,bet.IPM_Project__c,UserInfo.getUserId());
 	}
@@ -66,6 +71,16 @@ public with sharing class BET_CategoryBrandSelectionController {
 		}
 		set{
 			bet = value;
+			if(bet != null && bet.id != null && bet.Is_Fabric_Conditioners__c){
+				fabricConditioner = YES;
+			} else {
+				if(fabricConditioner != YES){
+					fabricConditioner = NO;
+				    bet.Is_Fabric_Conditioners__c = false;
+				} else {
+					bet.Is_Fabric_Conditioners__c = true;
+				}
+			}
 		}
 	}
 
@@ -107,6 +122,7 @@ public with sharing class BET_CategoryBrandSelectionController {
 	private void updateFabricData(Boolean fabricConditionerCategory){
 		compData.fabricConditionerCategory = fabricConditionerCategory;
 		bet.Is_Fabric_Conditioners__c = fabricConditionerCategory;
+		fabricConditioner = NO;
 	}
 
 	/************************************************************
@@ -161,6 +177,11 @@ public with sharing class BET_CategoryBrandSelectionController {
 
 	public void onFabricConditionersChange(){
 		System.debug('Entering onFabricConditionersChange');
+		if(String.isBlank(fabricConditioner) || fabricConditioner == NO){
+			bet.Is_Fabric_Conditioners__c = false;
+		} else {
+			bet.Is_Fabric_Conditioners__c = true;
+		}
 	}
 
 	/************************************************************
@@ -211,6 +232,11 @@ public with sharing class BET_CategoryBrandSelectionController {
     *************************************************************/
 	public List<SelectOption> getBrands(){
 		return getSelectOptionsForList(BET_MasterDataService.getBETBrandsForGivenPositioning(selectedBrandPositioning));
+	}
+
+	public List<SelectOption> getFabricConditioners(){
+		List<SelectOption> values = new List<SelectOption>{new SelectOption(NO,NO),new SelectOption(YES,YES)};
+		return values;
 	}
 
 	/************************************************************

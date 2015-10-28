@@ -65,7 +65,7 @@
                     <apex:selectList id="scid" value="{!selectedCategory}" size="1" multiselect="false">
                         <apex:actionSupport event="onchange" onsubmit="showProcessing('posspinner')" 
                                             oncomplete="hideProcessing('posspinner')" action="{!onCategoryChange}" 
-                                            reRender="projectsPanels,fabricConditioners,brandPositioningPanel"/>
+                                            reRender="projectsPanels,fabricConditioners1,fabricConditioners2,brandPositioningPanel"/>
                         <apex:selectOptions value="{!categories}" />
                     </apex:selectList>
                 </div>
@@ -81,25 +81,66 @@
     </apex:outputPanel>
 
     <!-- FabricConditioner begin -->
-    <apex:outputPanel id="fabricConditioners">
+    <apex:outputPanel id="fabricConditioners1" rendered="{!bet.id == null}">
         <apex:outputPanel rendered="{!fabricConditionerCategory}">
-            <div class="form-item" style="padding-bottom: 20px;">
+            <div class="form-item" style="padding-bottom: 10px;">
                 <div class="item-label">
                     <apex:outputLabel >
                         {!$ObjectType.uw_BET__c.Fields.Is_Fabric_Conditioners__c.Label}
                     </apex:outputLabel>
                 </div>
-                <div class="item-input-checkbox">
+                <!--<div class="item-input-checkbox">-->
+                <div class="item-input" style="left: 245px;">
                     <apex:actionRegion >
-                        <apex:inputCheckbox value="{!bet.Is_Fabric_Conditioners__c}">
+                        <!--<apex:inputCheckbox value="{!bet.Is_Fabric_Conditioners__c}">
                             <apex:actionSupport event="onchange" action="{!onFabricConditionersChange}" 
                                                 reRender="projectsPanels,brandPositioningPanel"/>
-                        </apex:inputCheckbox>
+                        </apex:inputCheckbox>-->
+                        <div class="styled-select" style="width: 455px;">
+                        <apex:selectList value="{!fabricConditioner}" size="1" multiselect="false">
+                            <apex:actionSupport event="onchange" action="{!onFabricConditionersChange}" 
+                                                reRender="projectsPanels,brandPositioningPanel,fabricConditioners1"/>
+                            <apex:selectOptions value="{!fabricConditioners}" />
+                        </apex:selectList>
+                        </div>
+
                     </apex:actionRegion>
                 </div>
             </div>
         </apex:outputPanel>
     </apex:outputPanel>
+
+
+    <apex:outputPanel id="fabricConditioners2" rendered="{!bet.id != null}">
+        <apex:outputPanel rendered="{!fabricConditionerCategory}">
+            <div class="form-item" style="padding-bottom: 10px;">
+                <div class="item-label">
+                    <apex:outputLabel >
+                        {!$ObjectType.uw_BET__c.Fields.Is_Fabric_Conditioners__c.Label}
+                    </apex:outputLabel>
+                </div>
+                <!--<div class="item-input-checkbox">-->
+                <div class="item-input" style="left: 265px;">
+                    <apex:actionRegion >
+                        <!--<apex:inputCheckbox value="{!bet.Is_Fabric_Conditioners__c}">
+                            <apex:actionSupport event="onchange" action="{!onFabricConditionersChange}" 
+                                                reRender="projectsPanels,brandPositioningPanel"/>
+                        </apex:inputCheckbox>-->
+                        <div class="styled-select" style="width: 315px;">
+                        <apex:selectList value="{!fabricConditioner}" size="1" multiselect="false">
+                            <apex:actionSupport event="onchange" action="{!onFabricConditionersChange}" 
+                                                reRender="projectsPanels,brandPositioningPanel"/>
+                            <apex:selectOptions value="{!fabricConditioners}" />
+                        </apex:selectList>
+                        </div>
+
+                    </apex:actionRegion>
+                </div>
+            </div>
+        </apex:outputPanel>
+    </apex:outputPanel>
+
+
     <!-- FabricConditioner end -->
 
     <apex:outputPanel id="brandPositioningPanel">
@@ -163,7 +204,7 @@
 
     <apex:outputPanel id="projectsPanels" style="padding-top:30px;">
         <!-- FabricConditioner begin -->
-        <apex:outputPanel rendered="{!AND(categoryMigrated,bet.id != null,NOT(bet.Is_Fabric_Conditioners__c))}">
+        <apex:outputPanel rendered="{!AND(categoryMigrated,bet.id != null,fabricConditioner == 'No')}">
         <!-- FabricConditioner end -->
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
@@ -183,7 +224,7 @@
             </div>
         </apex:outputPanel>
         <!-- FabricConditioner begin -->
-        <apex:outputPanel rendered="{!AND(categoryNotMigrated,NOT(bet.Is_Fabric_Conditioners__c))}">
+        <apex:outputPanel rendered="{!AND(categoryNotMigrated,fabricConditioner == 'No')}">
         <!-- FabricConditioner end -->
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
