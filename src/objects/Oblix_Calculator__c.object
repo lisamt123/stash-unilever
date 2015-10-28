@@ -56,50 +56,40 @@
         <externalId>false</externalId>
         <label>Agency Department</label>
         <picklist>
-            <controllingField>Discipline__c</controllingField>
             <picklistValues>
                 <fullName>Account Management</fullName>
-                <controllingFieldValues>Advertising</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Creative</fullName>
-                <controllingFieldValues>Advertising</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Digital Account Management</fullName>
-                <controllingFieldValues>Digital</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Digital Creative</fullName>
-                <controllingFieldValues>Digital</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Digital Production</fullName>
-                <controllingFieldValues>Digital</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Digital Strategic Planning</fullName>
-                <controllingFieldValues>Digital</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Digital Technology</fullName>
-                <controllingFieldValues>Digital</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Production</fullName>
-                <controllingFieldValues>Advertising</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Strategic Planning</fullName>
-                <controllingFieldValues>Advertising</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -363,29 +353,10 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Discipline__c</fullName>
-        <externalId>false</externalId>
-        <label>Discipline</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Advertising</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Digital</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>FTE__c</fullName>
         <description>Used to calculate the Rate</description>
         <externalId>false</externalId>
-        <label>FTE</label>
+        <label>FTE Rate (EUR)</label>
         <precision>7</precision>
         <required>false</required>
         <scale>2</scale>
@@ -498,8 +469,10 @@
     </fields>
     <fields>
         <fullName>Role_Daily_Rate_EUR__c</fullName>
+        <description>This is the hourly rate for the Role selected for the Agency selected, for the country selected.</description>
         <externalId>false</externalId>
-        <label>Role Daily Rate (EUR)</label>
+        <inlineHelpText>This is the hourly rate for the Role selected for the Agency selected, for the country selected.</inlineHelpText>
+        <label>Role Hourly Rate (EUR)</label>
         <precision>8</precision>
         <required>false</required>
         <scale>2</scale>
@@ -1158,6 +1131,7 @@
     </listViews>
     <listViews>
         <fullName>CountryBoxInfo</fullName>
+        <columns>OBJECT_ID</columns>
         <columns>RECORDTYPE</columns>
         <columns>NAME</columns>
         <columns>Financial_Year__c</columns>
@@ -1167,9 +1141,9 @@
         <columns>CREATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>NAME</field>
-            <operation>notEqual</operation>
-            <value>Box Range</value>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Oblix_Calculator__c.Country_Box_Number</value>
         </filters>
         <label>Country Box Info</label>
         <language>en_US</language>
@@ -1180,7 +1154,6 @@
         <columns>OBJECT_ID</columns>
         <columns>Financial_Year__c</columns>
         <columns>OblixCountry__c</columns>
-        <columns>Discipline__c</columns>
         <columns>Job_Description__c</columns>
         <columns>Agency_Department__c</columns>
         <columns>NAME</columns>
@@ -1243,17 +1216,6 @@
             </values>
             <values>
                 <fullName>Strategic Planning</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Discipline__c</picklist>
-            <values>
-                <fullName>Advertising</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Digital</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1803,7 +1765,7 @@
     <recordTypes>
         <fullName>Country_Box_Number</fullName>
         <active>true</active>
-        <description>All</description>
+        <description>Score for countries box number</description>
         <label>Country Box Number</label>
         <picklistValues>
             <picklist>Agency_Department__c</picklist>
@@ -1841,17 +1803,6 @@
             </values>
             <values>
                 <fullName>Strategic Planning</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Discipline__c</picklist>
-            <values>
-                <fullName>Advertising</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Digital</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2439,17 +2390,6 @@
             </values>
             <values>
                 <fullName>Strategic Planning</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Discipline__c</picklist>
-            <values>
-                <fullName>Advertising</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Digital</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

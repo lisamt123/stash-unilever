@@ -2,11 +2,11 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value>SWOP Project Assets</value>
+        <value>SWOP Campaign Assets</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>SWOP Project Assets</value>
+        <value>SWOP Campaign Assets</value>
     </caseValues>
     <fields>
         <help><!-- The date the asset was delivered --></help>
@@ -21,7 +21,7 @@
     <fields>
         <label><!-- Agency Projects --></label>
         <name>Agency_Projects__c</name>
-        <relationshipLabel><!-- SWOP Project Assets --></relationshipLabel>
+        <relationshipLabel><!-- SWOP Campaign Assets --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Asset Description --></label>
@@ -107,7 +107,7 @@
         <help><!-- Filter on the word &quot;Score&quot; to capture full descriptions of the asset --></help>
         <label><!-- Full Description --></label>
         <name>FULL_Description__c</name>
-        <relationshipLabel><!-- SWOP Project Assets --></relationshipLabel>
+        <relationshipLabel><!-- SWOP Campaign Assets --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Location --></label>

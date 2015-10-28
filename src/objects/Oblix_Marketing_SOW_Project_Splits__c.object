@@ -88,7 +88,7 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-    <label>SWOP Project Splits</label>
+    <label>SWOP Campaign Splits</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
@@ -100,7 +100,7 @@
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>SWOP Project Splits</pluralLabel>
+    <pluralLabel>SWOP Campaign Splits</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

@@ -128,7 +128,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -165,7 +165,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -191,6 +191,21 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Financial_Adjustment_Value__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This is used as part of the formula for Total Campaign fees on the project</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a (+/-) value to adjust the Total Campaign Fees</inlineHelpText>
+        <label>Financial Adjustment Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Financial_Year__c</fullName>
         <externalId>false</externalId>
         <label>Marketing SOW</label>
@@ -210,7 +225,7 @@
         <inlineHelpText>When is the first airing?</inlineHelpText>
         <label>First Air Date</label>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -231,7 +246,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -263,7 +278,7 @@
         <externalId>false</externalId>
         <label>Jobs to be Done</label>
         <length>32768</length>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
@@ -297,7 +312,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
         <visibleLines>4</visibleLines>
@@ -373,7 +388,7 @@
     <fields>
         <fullName>Oblix_ProjectBoxNumber__c</fullName>
         <externalId>false</externalId>
-        <label>Project Box Number</label>
+        <label>Campaign Box Number</label>
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -407,14 +422,13 @@
     </fields>
     <fields>
         <fullName>Percentage_of_Fee_for_this_FY__c</fullName>
-        <defaultValue>(0)</defaultValue>
         <externalId>false</externalId>
         <inlineHelpText>Enter the percentage of the Total Project Fees that is targeted to be paid this FY?</inlineHelpText>
         <label>Percentage of Fee for this FY</label>
-        <precision>3</precision>
+        <precision>5</precision>
         <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
     </fields>
@@ -467,11 +481,11 @@
     <fields>
         <fullName>ProjectTotalAssetscore__c</fullName>
         <externalId>false</externalId>
-        <label>Project Total Asset score</label>
+        <label>Campaign Total Asset score</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -481,7 +495,7 @@
         <description>date of project completion</description>
         <externalId>false</externalId>
         <inlineHelpText>When will the project be completed?</inlineHelpText>
-        <label>Project Completion Date</label>
+        <label>Campaign Completion Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -492,7 +506,7 @@
         <description>Date of project completion</description>
         <externalId>false</externalId>
         <inlineHelpText>When will the project be completed by?</inlineHelpText>
-        <label>Project Finish Date</label>
+        <label>Campaign Finish Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -502,7 +516,7 @@
         <fullName>Project_Priority__c</fullName>
         <description>Current project priority score -</description>
         <externalId>false</externalId>
-        <label>Project Priority</label>
+        <label>Campaign Priority</label>
         <picklist>
             <picklistValues>
                 <fullName>High Gold</fullName>
@@ -536,7 +550,7 @@
  - Number of Markets</description>
         <externalId>false</externalId>
         <inlineHelpText>Geographic coverage (number of locations that will execute the campaign)</inlineHelpText>
-        <label>Project Scale 1: Geographic coverage</label>
+        <label>Campaign Scale 1: Geographic coverage</label>
         <picklist>
             <picklistValues>
                 <fullName>Local campaign, single language only</fullName>
@@ -569,7 +583,7 @@
         <description>Agency Hubs or partners</description>
         <externalId>false</externalId>
         <inlineHelpText>Agency involvement required to manage the scale of the project effectively. (eg/ number of lead markets to be consulted or Lead agency coordinating among many other suppliers/ partners.)</inlineHelpText>
-        <label>Project Scale 2: Agecny Hubs</label>
+        <label>Campaign Scale 2: Agecny Hubs</label>
         <picklist>
             <picklistValues>
                 <fullName>1 location</fullName>
@@ -599,42 +613,34 @@
     </fields>
     <fields>
         <fullName>Project_Stage__c</fullName>
-        <description>The high level stages for the project.</description>
+        <description>The high level stages for the project. (Used to Project stage)</description>
         <externalId>false</externalId>
         <inlineHelpText>Select the stage that the project is currently within</inlineHelpText>
-        <label>Project Stage</label>
+        <label>Campaign Stage</label>
         <picklist>
             <picklistValues>
-                <fullName>Not Started</fullName>
+                <fullName>Briefing</fullName>
                 <default>true</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Strategy</fullName>
+                <fullName>Strategy &amp; Planning</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Creative</fullName>
+                <fullName>Creative Ideation</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Research</fullName>
+                <fullName>Creative Execution</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Production</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>On hold</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Completed</fullName>
-                <default>false</default>
-            </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -643,7 +649,7 @@
         <description>Date project starts</description>
         <externalId>false</externalId>
         <inlineHelpText>When will the project commence?</inlineHelpText>
-        <label>Project Start Date</label>
+        <label>Campaign Start Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -737,7 +743,7 @@
         <inlineHelpText>Enter any notes relevant to the timescale</inlineHelpText>
         <label>Timescale Notes</label>
         <length>32768</length>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
@@ -772,25 +778,40 @@
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
-    <label>SWOP Projects</label>
+    <fields>
+        <fullName>Total_Value_Driver__c</fullName>
+        <description>Score for the Business Value Drivers used in Reporting and in the calculator</description>
+        <externalId>false</externalId>
+        <label>Total Value Driver Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>SWOP Campaigns</label>
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
         <columns>CREATEDBY_USER</columns>
+        <columns>Project_Stage__c</columns>
+        <columns>Percentage_of_Fee_for_this_FY__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
     </listViews>
     <nameField>
         <label>Agency Projects Name</label>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Text</type>
     </nameField>
-    <pluralLabel>SWOP Projects</pluralLabel>
+    <pluralLabel>SWOP Campaigns</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

@@ -663,8 +663,4 @@
         <name>Asset</name>
     </recordTypes>
     <startsWith>Consonant</startsWith>
-    <webLinks>
-        <label><!-- Mass_Delete --></label>
-        <name>Mass_Delete</name>
-    </webLinks>
 </CustomObjectTranslation>

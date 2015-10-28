@@ -2,11 +2,11 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value>SWOP Projects</value>
+        <value>SWOP Campaigns</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>SWOP Projects</value>
+        <value>SWOP Campaigns</value>
     </caseValues>
     <fields>
         <help><!-- Enter the percentage of Fee targeted for this FY --></help>
@@ -88,9 +88,14 @@
         <name>Description__c</name>
     </fields>
     <fields>
+        <help><!-- Enter a (+/-) value to adjust the Total Campaign Fees --></help>
+        <label><!-- Financial Adjustment Value --></label>
+        <name>Financial_Adjustment_Value__c</name>
+    </fields>
+    <fields>
         <label><!-- Marketing SOW --></label>
         <name>Financial_Year__c</name>
-        <relationshipLabel><!-- SWOP Projects --></relationshipLabel>
+        <relationshipLabel><!-- SWOP Campaigns --></relationshipLabel>
     </fields>
     <fields>
         <help><!-- When is the first airing? --></help>
@@ -176,7 +181,7 @@
         <name>OblixRegion__c</name>
     </fields>
     <fields>
-        <label><!-- Project Box Number --></label>
+        <label><!-- Campaign Box Number --></label>
         <name>Oblix_ProjectBoxNumber__c</name>
     </fields>
     <fields>
@@ -220,21 +225,21 @@
         <name>Production_Completion_Date__c</name>
     </fields>
     <fields>
-        <label><!-- Project Total Asset score --></label>
+        <label><!-- Campaign Total Asset score --></label>
         <name>ProjectTotalAssetscore__c</name>
     </fields>
     <fields>
         <help><!-- When will the project be completed? --></help>
-        <label><!-- Project Completion Date --></label>
+        <label><!-- Campaign Completion Date --></label>
         <name>Project_Completion_Date__c</name>
     </fields>
     <fields>
         <help><!-- When will the project be completed by? --></help>
-        <label><!-- Project Finish Date --></label>
+        <label><!-- Campaign Finish Date --></label>
         <name>Project_Finish_Date__c</name>
     </fields>
     <fields>
-        <label><!-- Project Priority --></label>
+        <label><!-- Campaign Priority --></label>
         <name>Project_Priority__c</name>
         <picklistValues>
             <masterLabel>High Gold</masterLabel>
@@ -259,7 +264,7 @@
     </fields>
     <fields>
         <help><!-- Geographic coverage (number of locations that will execute the campaign) --></help>
-        <label><!-- Project Scale 1: Geographic coverage --></label>
+        <label><!-- Campaign Scale 1: Geographic coverage --></label>
         <name>Project_Scale_1__c</name>
         <picklistValues>
             <masterLabel>Global campaign/s suitable for  &gt;15 number of markets</masterLabel>
@@ -284,7 +289,7 @@
     </fields>
     <fields>
         <help><!-- Agency involvement required to manage the scale of the project effectively. (eg/ number of lead markets to be consulted or Lead agency coordinating among many other suppliers/ partners.) --></help>
-        <label><!-- Project Scale 2: Agecny Hubs --></label>
+        <label><!-- Campaign Scale 2: Agecny Hubs --></label>
         <name>Project_Scale_2__c</name>
         <picklistValues>
             <masterLabel>1 location</masterLabel>
@@ -309,40 +314,32 @@
     </fields>
     <fields>
         <help><!-- Select the stage that the project is currently within --></help>
-        <label><!-- Project Stage --></label>
+        <label><!-- Campaign Stage --></label>
         <name>Project_Stage__c</name>
         <picklistValues>
-            <masterLabel>Completed</masterLabel>
-            <translation><!-- Completed --></translation>
+            <masterLabel>Briefing</masterLabel>
+            <translation><!-- Briefing --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Creative</masterLabel>
-            <translation><!-- Creative --></translation>
+            <masterLabel>Creative Execution</masterLabel>
+            <translation><!-- Creative Execution --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Not Started</masterLabel>
-            <translation><!-- Not Started --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>On hold</masterLabel>
-            <translation><!-- On hold --></translation>
+            <masterLabel>Creative Ideation</masterLabel>
+            <translation><!-- Creative Ideation --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Production</masterLabel>
             <translation><!-- Production --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Research</masterLabel>
-            <translation><!-- Research --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Strategy</masterLabel>
-            <translation><!-- Strategy --></translation>
+            <masterLabel>Strategy &amp; Planning</masterLabel>
+            <translation><!-- Strategy &amp; Planning --></translation>
         </picklistValues>
     </fields>
     <fields>
         <help><!-- When will the project commence? --></help>
-        <label><!-- Project Start Date --></label>
+        <label><!-- Campaign Start Date --></label>
         <name>Project_Start_Date__c</name>
     </fields>
     <fields>
@@ -420,6 +417,10 @@
         <label><!-- Total Fees for Project --></label>
         <name>Total_Fees_for_Project__c</name>
     </fields>
+    <fields>
+        <label><!-- Total Value Driver Score --></label>
+        <name>Total_Value_Driver__c</name>
+    </fields>
     <layouts>
         <layout>Agency Projects Layout</layout>
         <sections>
@@ -433,6 +434,10 @@
         <sections>
             <label><!-- Financials --></label>
             <section>Financials</section>
+        </sections>
+        <sections>
+            <label><!-- General --></label>
+            <section>General</section>
         </sections>
         <sections>
             <label><!-- Research --></label>

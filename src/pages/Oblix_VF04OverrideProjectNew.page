@@ -108,6 +108,19 @@
         top: :5px;
         margin: 5px;
         }
+   td#sidebarCell {
+    font-size: inherit;
+   }
+    #sidebarDiv .sidebarModuleHeader h2{
+        font-size : 12px;
+    }
+    .content{
+        font-size : 12px;
+        
+    }
+    #tabBar{
+        font-size : 12px;
+    }
     
      </style>
     <body data-spy="scroll" data-target="#affix" class="bootstrap-styles">

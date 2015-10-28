@@ -182,7 +182,6 @@
         <fields>NAME</fields>
         <fields>RECORDTYPE</fields>
         <fields>Description__c</fields>
-        <fields>Discipline__c</fields>
         <fields>Agency_Department__c</fields>
         <fields>Role_Title__c</fields>
         <fields>Financial_Year_old__c</fields>

@@ -22,7 +22,7 @@
                 <field>OwnerId</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Required</behavior>
                 <field>Project_Splits__c</field>
             </layoutItems>
             <layoutItems>

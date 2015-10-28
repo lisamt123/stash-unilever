@@ -2,11 +2,11 @@
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
         <plural>false</plural>
-        <value>SWOP Other Items</value>
+        <value>SWOP Non Campaign Items</value>
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>SWOP Other Items</value>
+        <value>SWOP Non Campaign Items</value>
     </caseValues>
     <fields>
         <label><!-- Activities --></label>
@@ -68,18 +68,6 @@
         <help><!-- Please enter a full description of the Tasks / Activities required --></help>
         <label><!-- Description --></label>
         <name>Description__c</name>
-    </fields>
-    <fields>
-        <label><!-- Discipline --></label>
-        <name>Discipline__c</name>
-        <picklistValues>
-            <masterLabel>Advertising</masterLabel>
-            <translation><!-- Advertising --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Digital</masterLabel>
-            <translation><!-- Digital --></translation>
-        </picklistValues>
     </fields>
     <fields>
         <label><!-- FTE --></label>
@@ -145,7 +133,7 @@
     <fields>
         <label><!-- Geography --></label>
         <name>OblixCountry__c</name>
-        <relationshipLabel><!-- SWOP Other Items --></relationshipLabel>
+        <relationshipLabel><!-- SWOP Non Campaign Items --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Other Item Fee --></label>
@@ -154,7 +142,7 @@
     <fields>
         <label><!-- Marketing SOW --></label>
         <name>Oblix_SOWMarketing__c</name>
-        <relationshipLabel><!-- SWOP Other Items --></relationshipLabel>
+        <relationshipLabel><!-- SWOP Non Campaign Items --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Other Activities --></label>
@@ -683,7 +671,7 @@
         <name>Activity</name>
     </recordTypes>
     <recordTypes>
-        <label><!-- Resource --></label>
+        <label><!-- Dedicated Resource --></label>
         <name>Resource</name>
     </recordTypes>
     <startsWith>Consonant</startsWith>

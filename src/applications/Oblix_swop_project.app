@@ -14,4 +14,5 @@
     <tab>Oblix_Marketing_SOW_Project_Splits__c</tab>
     <tab>Oblix_Calculator__c</tab>
     <tab>Asset_Scoring__c</tab>
+    <tab>MDO_BrandUser__c</tab>
 </CustomApplication>

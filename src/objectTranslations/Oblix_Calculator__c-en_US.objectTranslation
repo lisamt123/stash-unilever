@@ -133,19 +133,7 @@
         <name>Box_Range__c</name>
     </fields>
     <fields>
-        <label><!-- Discipline --></label>
-        <name>Discipline__c</name>
-        <picklistValues>
-            <masterLabel>Advertising</masterLabel>
-            <translation><!-- Advertising --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Digital</masterLabel>
-            <translation><!-- Digital --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- FTE --></label>
+        <label><!-- FTE Rate (EUR) --></label>
         <name>FTE__c</name>
     </fields>
     <fields>
@@ -214,7 +202,8 @@
         <name>Points_Low__c</name>
     </fields>
     <fields>
-        <label><!-- Role Daily Rate (EUR) --></label>
+        <help><!-- This is the hourly rate for the Role selected for the Agency selected, for the country selected. --></help>
+        <label><!-- Role Hourly Rate (EUR) --></label>
         <name>Role_Daily_Rate_EUR__c</name>
     </fields>
     <fields>

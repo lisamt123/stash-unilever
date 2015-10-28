@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>Oblix_Constants</members>
         <members>Oblix_Ctrl001DeepCloneSOW_CC</members>
         <members>Oblix_Ctrl001DeepCloneSOW_Test_CC</members>
         <members>Oblix_Ctrl02OverrideAssetNew</members>
@@ -13,6 +14,9 @@
         <members>Oblix_Ctrl04OverrideProjectNew_Test</members>
         <members>Oblix_Ctrl05SOWDetails_CC</members>
         <members>Oblix_Ctrl06SOWView_CC</members>
+        <members>Oblix_Ctrl07ProjectEdit_CC</members>
+        <members>Oblix_Ctrl07ProjectView_CC</members>
+        <members>Oblix_TR01SOWMarkingSharing</members>
         <members>Oblix_TR01SOWMarkingSharing_Test</members>
         <members>Oblix_TR02SubmitSOWForApproval</members>
         <members>Oblix_TR02SubmitSOWForApproval_Test</members>
@@ -216,7 +220,16 @@
         <members>Oblix_Project_Assets__c-Experiential</members>
         <members>Oblix_Project_Assets__c-Static Imagery</members>
         <members>Oblix_SOW_Projects__c-Agency Projects Layout</members>
+        <members>User-User Layout</members>
         <name>Layout</name>
+    </types>
+    <types>
+        <members>Oblix_SWOP_Global_User</members>
+        <members>Oblix_SWOP_Super_User</members>
+        <members>Oblix_SWOP_UL2</members>
+        <members>Oblix_SWOP_UL3_4</members>
+        <members>Oblix_SWOP_UL_1</members>
+        <name>PermissionSet</name>
     </types>
     <types>
         <members>Admin</members>
@@ -224,6 +237,14 @@
         <members>Oblix Community User Login</members>
         <members>System Administrator Lite</members>
         <name>Profile</name>
+    </types>
+    <types>
+        <members>Oblix_Calculator__c</members>
+        <members>Oblix_Marketing_Agency_Hubs__c</members>
+        <members>Oblix_Marketing_SOW_Project_Splits__c</members>
+        <members>Oblix_Project_Assets__c</members>
+        <members>Oblix_SOW_Projects__c</members>
+        <name>Workflow</name>
     </types>
     <version>30.0</version>
 </Package>
