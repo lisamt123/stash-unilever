@@ -87,9 +87,9 @@
         <description>This field is used for Reporting backup</description>
         <externalId>false</externalId>
         <label>Agency ExchangeRateTemp</label>
-        <precision>14</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -114,9 +114,9 @@
         <description>AgencyFee#GLOBAL#To Store agency spot rate.</description>
         <externalId>false</externalId>
         <label>Agency Spot Rate</label>
-        <precision>12</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>5</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -443,9 +443,9 @@
         <description>Exchange Rate used by agency unilever combination where values are at Ready for po</description>
         <externalId>false</externalId>
         <label>Ready For PO Exchange Rate</label>
-        <precision>14</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -685,9 +685,9 @@ if( AF_Bonus_Results__r.AF_IsPilotModel__c , AF_Bonus_Results__r.AF_Total_Remune
         <fullName>ReadyforPOExchangeRateTemp__c</fullName>
         <externalId>false</externalId>
         <label>ReadyforPOExchangeRateTemp</label>
-        <precision>14</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>

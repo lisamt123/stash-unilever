@@ -1,0 +1,17 @@
+<messaging:emailTemplate subject="Headstart Pre-Boarding welcome email. For new Leader {!relatedTo.New_Leader_Name__c}" recipientType="User" relatedToType="HRO_Onboarding_Task_Set__c">
+<messaging:htmlEmailBody >
+    Dear {!relatedTo.owner.name},<br /><br />
+    
+    Thank you for registering for Headstart On-boarding for your new leader {!relatedTo.New_Leader_Name__c}.<br/><br/>
+    As the line manager of a new leader joining Unilever, you play a pivotal role in helping them<br/>
+    land, integrate and perform. You hired them for a reason, and their on-boarding experience<br/>
+    will enable them to be their very best from day one.<br/><br/> 
+    Headstart will provide you with everything you need to make your new leader’s first 90 days<br/>
+    a positive experience.<br/><br/>
+    You will be sent notifications for specific recommended actions, and you will be able to track<br/>
+    your progress as you go.<br/><br/>
+    Meanwhile, your new leader will also be receiving guidance around what they can do to help themselves.<br/><br/>
+    Click here to access your <c:HRO_HeadstartLink ownerId="{!relatedTo.owner.id}" leaderName="{!relatedTo.New_Leader_Name__c}" /> site now.<br/><br/>  
+    Thank you for being a Talent Champion.<br/><br/>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

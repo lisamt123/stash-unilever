@@ -1262,8 +1262,7 @@ ToDelete=Asset will be removed by the system automatically at the scheduled dele
         <type>MultiselectPicklist</type>
         <visibleLines>4</visibleLines>
     </fields>
-    <label>Asset</label>
-    <nameField>
+    <label>Asset</label>    <nameField>
         <label>Asset Name</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>

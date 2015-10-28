@@ -362,7 +362,19 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>PO Override Estimate</displayNameOverride>
             <field>AF_PO_Override_Trad_Report__c</field>
+            <table>AF_PO_Report__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Override PO Estimate</displayNameOverride>
+            <field>AF_OverridePO_Traditional_LC__c</field>
+            <table>AF_PO_Report__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AF_PO_Value_LC_Report__c</field>
             <table>AF_PO_Report__c</table>
         </columns>
         <masterLabel>PO Report</masterLabel>
