@@ -1,16 +1,42 @@
 @isTest
 private class BET_AssetServiceTest {
 	
+	private static final String APPROVED_STATUS = 'Approved';
+	private static final String BAD_FILE_ID = '123321';
+
+	private static BET_TestingHelper.BET_TestingData prepareData() {
+        return prepareData(false, BET_TestingHelper.BET_STATUS_UNRELEASED);
+    }
+
+    private static BET_TestingHelper.BET_TestingData prepareData(Boolean addMember, String status) {
+        BET_TestingHelper.BET_TestingData betWrapper = BET_TestingHelper.initBET(
+            BET_TestingHelper.getDefaultOwner(), 'UT_BET', status, true, true);
+
+        if (addMember) {
+            betWrapper.addMember();
+        }
+
+        Id parentId = betWrapper.BET.Studio_Chatter_Group__c; 
+            
+        System.Test.setCurrentPageReference(Page.uw_CustomAssetUpload);
+        System.currentPageReference().getParameters().put('id', parentId);
+
+        return betWrapper; 
+    }
 
 	@isTest static void grantAccessToBetsAssetsTest(){
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
 
-		uw_Asset__c asset = new uw_Asset__c(name = 'test123321', uw_Bet__c = bet.id,File_Id__c = '069c0000000Atsc');
+		BET_TestingHelper.BET_TestingData betWrapper = prepareData();
+		betWrapper.addUnlabelledFile('new file.pdf');
+
+		uw_Asset__c asset = new uw_Asset__c(name = 'test123321', uw_Bet__c = bet.id,File_Id__c = betWrapper.unlabelledFeedItem.Id);
 		insert asset;
+
 		BET_AssetService.grantAccessToBetsAssets(bet.Id,UserInfo.getUserId());
 
-		uw_Asset__c asset1 = new uw_Asset__c(name = 'test123321', uw_Bet__c = bet.id,File_Id__c = '123321');
+		uw_Asset__c asset1 = new uw_Asset__c(name = 'test123321', uw_Bet__c = bet.id,File_Id__c = BAD_FILE_ID);
 		insert asset1;
 		BET_AssetService.grantAccessToBetsAssets(bet.Id,UserInfo.getUserId());
 
@@ -71,10 +97,10 @@ private class BET_AssetServiceTest {
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
 
-		uw_Asset__c asset1 = new uw_Asset__c(name = 'test123321a', uw_Bet__c = bet.id,File_Id__c = '123321',Order_Of_Display__c = null,Status__c = 'Approved');
-		uw_Asset__c asset2 = new uw_Asset__c(name = 'test123321b', uw_Bet__c = bet.id,File_Id__c = '123321',Order_Of_Display__c = 1.0,Status__c = 'Approved');
-		uw_Asset__c asset3 = new uw_Asset__c(name = 'test123321c', uw_Bet__c = bet.id,File_Id__c = '123321',Order_Of_Display__c = 1.0,Status__c = 'Approved');
-		uw_Asset__c asset4 = new uw_Asset__c(name = 'test123321d', uw_Bet__c = bet.id,File_Id__c = '123321',Order_Of_Display__c = 2.0,Status__c = 'Approved');
+		uw_Asset__c asset1 = new uw_Asset__c(name = 'test123321a', uw_Bet__c = bet.id,File_Id__c = BAD_FILE_ID,Order_Of_Display__c = null,Status__c = APPROVED_STATUS);
+		uw_Asset__c asset2 = new uw_Asset__c(name = 'test123321b', uw_Bet__c = bet.id,File_Id__c = BAD_FILE_ID,Order_Of_Display__c = 1.0,Status__c = APPROVED_STATUS);
+		uw_Asset__c asset3 = new uw_Asset__c(name = 'test123321c', uw_Bet__c = bet.id,File_Id__c = BAD_FILE_ID,Order_Of_Display__c = 1.0,Status__c = APPROVED_STATUS);
+		uw_Asset__c asset4 = new uw_Asset__c(name = 'test123321d', uw_Bet__c = bet.id,File_Id__c = BAD_FILE_ID,Order_Of_Display__c = 2.0,Status__c = APPROVED_STATUS);
 
 		List<uw_Asset__c> assets = new List<uw_Asset__c>{asset1,asset2,asset3,asset4};
 		insert assets;

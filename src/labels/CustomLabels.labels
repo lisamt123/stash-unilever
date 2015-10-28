@@ -938,7 +938,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Header</shortDescription>
-        <value>Brand Experience Details</value>
+        <value>Create a New Brand Experience Toolkit</value>
     </labels>
 	<labels>
         <fullName>BET_Help_Group_Name</fullName>
@@ -1102,7 +1102,7 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Name</shortDescription>
-        <value>Name</value>
+        <value>BET Name</value>
     </labels>
     <labels>
         <fullName>BET_NameExists</fullName>
