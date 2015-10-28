@@ -1894,6 +1894,7 @@
 		<members>BET_Please_Drag_And_Drop</members>
 		<members>BET_Suggest_Member</members>
 		<members>BET_Home_Page_Info</members>
+		<members>BET_Help_Group_Name</members>
         <name>CustomLabel</name>
     </types>
     <types>

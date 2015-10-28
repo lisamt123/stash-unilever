@@ -713,7 +713,8 @@
           <div id="ballsWaveG_1" class="ballsWaveG">
           </div>
           <div id="ballsWaveG_2" class="ballsWaveG">
-                  <div id="ballsWaveG_3" class="ballsWaveG">
+          </div>
+          <div id="ballsWaveG_3" class="ballsWaveG">
           </div>
           <div id="ballsWaveG_4" class="ballsWaveG">
           </div>
@@ -734,7 +735,7 @@
         </apex:actionFunction> 
 
         <apex:pageMessages />
-  </div>
+  <!--</div> -->
         
         </apex:tab>
         
