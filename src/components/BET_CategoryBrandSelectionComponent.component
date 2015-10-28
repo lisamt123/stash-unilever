@@ -96,8 +96,8 @@
                             <apex:actionSupport event="onchange" action="{!onFabricConditionersChange}" 
                                                 reRender="projectsPanels,brandPositioningPanel"/>
                         </apex:inputCheckbox>-->
-                        <div class="styled-select" style="width: 455px;">
-                        <apex:selectList value="{!fabricConditioner}" size="1" multiselect="false">
+                        <div class="styled-select" style="width: 155px;">
+                        <apex:selectList value="{!fabricConditioner}" size="1" multiselect="false" style="width: 200px;">
                             <apex:actionSupport event="onchange" action="{!onFabricConditionersChange}" 
                                                 reRender="projectsPanels,brandPositioningPanel,fabricConditioners1"/>
                             <apex:selectOptions value="{!fabricConditioners}" />
@@ -126,8 +126,8 @@
                             <apex:actionSupport event="onchange" action="{!onFabricConditionersChange}" 
                                                 reRender="projectsPanels,brandPositioningPanel"/>
                         </apex:inputCheckbox>-->
-                        <div class="styled-select" style="width: 315px;">
-                        <apex:selectList value="{!fabricConditioner}" size="1" multiselect="false">
+                        <div class="styled-select" style="width: 155px;">
+                        <apex:selectList value="{!fabricConditioner}" size="1" multiselect="false" style="width: 200px;">
                             <apex:actionSupport event="onchange" action="{!onFabricConditionersChange}" 
                                                 reRender="projectsPanels,brandPositioningPanel"/>
                             <apex:selectOptions value="{!fabricConditioners}" />

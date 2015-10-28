@@ -1,4 +1,5 @@
-public with sharing class BET_ManageMembersService {
+/* service class without sharing */
+public without sharing class BET_ManageMembersService {
 
 	private BET_ManageMembersService() {}
 
