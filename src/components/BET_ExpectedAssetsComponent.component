@@ -1,13 +1,19 @@
 <apex:component controller="BET_ExpectedAssetsController" allowDML="true" >
 
 	<apex:attribute name="betId" assignTo="{!betIdentifier}" description="Id of an related BET" required="true" type="Id" />
+
 	<apex:stylesheet value="{!$Resource.BET}/css/BETExpectedAssetsStyles.css" />
-	
+
 	<apex:outputPanel id="expectedAssetsPanel">
-	
+
 	<apex:actionFunction name="saveExpAssets" action="{!upsertExceptedAssets}" rerender="maincontainer"/>
+
 	<apex:actionFunction name="saveExpAssetsOne" action="{!upsertExceptedAssets}"/>
-	
+
+	<div style="font-family: Rockwell;font-size: 13px;">
+		{!$Label.BET_Tick_Info}
+	</div>
+
 	<table class="expectedAssetsTable">
 		<tr>
 			<td class="expectedAssetsTableHeader">
@@ -28,7 +34,8 @@
 			</tr>
 		</apex:repeat>
 	</table>
-	
+
 	</apex:outputPanel>
-	
+
+
 </apex:component>
