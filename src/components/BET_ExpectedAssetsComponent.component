@@ -10,7 +10,7 @@
 
 	<apex:actionFunction name="saveExpAssetsOne" action="{!upsertExceptedAssets}"/>
 
-	<div style="font-family: Rockwell;font-size: 13px;">
+	<div style="font-family: Rockwell;font-size: 13px;padding-bottom:10px;">
 		{!$Label.BET_Tick_Info}
 	</div>
 
