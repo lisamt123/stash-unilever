@@ -1,1 +1,1 @@
-An individual request has been made to become a BET {!BET_Member_Request__c.Brand_Experience_Toolkit__c} member
+An individual request has been made to become a BET <a href="{!BET_Member_Request__c.BET_Link__c}">{!BET_Member_Request__c.Brand_Experience_Toolkit__c}</a> member

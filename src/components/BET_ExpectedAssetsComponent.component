@@ -25,7 +25,8 @@
 					{!eab.assetTypeName}
 				</td>
 				<td>
-					<apex:inputText styleClass="expectedAssetsNumber" value="{!eab.assetTypeNameExpectedNumber}" />
+					<!-- <apex:inputText styleClass="expectedAssetsNumber" value="{!eab.assetTypeNameExpectedNumber}" /> -->
+					<apex:inputCheckbox value="{!eab.assetTypeNameExpected}" />
 				</td>
 			</tr>
 		</apex:repeat>

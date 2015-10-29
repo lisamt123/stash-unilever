@@ -2304,6 +2304,7 @@
 		<members>BET_Suggest_Member</members>
 		<members>BET_Home_Page_Info</members>
 		<members>BET_Help_Group_Name</members>
+		<members>BET_InoplanProjectName</members>
         <name>CustomLabel</name>
     </types>
     <types>

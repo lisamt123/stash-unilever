@@ -972,6 +972,14 @@ Are you sure you wish to proceed?</value>
         <shortDescription>BET_InoplanProjectMandatory</shortDescription>
         <value>Inoplan Project is mandatory</value>
     </labels>
+	<labels>
+        <fullName>BET_InoplanProjectName</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_InoplanProjectName</shortDescription>
+        <value>Inoplan Project Name</value>
+    </labels>
     <labels>
         <fullName>BET_LaunchDateMandatory</fullName>
         <categories>BET</categories>
