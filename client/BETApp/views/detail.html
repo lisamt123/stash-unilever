@@ -1,0 +1,738 @@
+<header class="detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 brand-banner" uw-brand-banner="{{bet.betBannerLocation}}">
+                <div class="first-box">
+
+                </div>
+            </div>
+            <div class="col-xs-6" style="height:150px; background: #f5f4f5; padding: 45px 0;">
+                <form class="form-inline form-search" role="form" style="margin-left: 20px;">
+                    <div class="form-group">
+                        <input ng-model="keyWord" class="form-control" type="text" name="search" placeholder="Search a BET, brand, project, region or person">
+                        <button ng-click="search(keyWord)" type="submit" class="btn btn-search"><span class="glyphicon glyphicon-search"></span></button>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+                <div id="menu-brand">
+                    <a name="menu">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <nav class="main-nav">
+                        <ul>
+                            <li>
+                                <a href="#/home">
+                                    <span class="icon icon-home"></span>
+                                    <span>Home</span>
+                                </a>
+                            </li>
+                            <li>
+                                <!--<a href="/{{sfConfig.betPrefix}}/e">
+                                <span class="icon icon-add"></span>
+                                <span>Create New Toolkit</span>
+                                Changed to return to Bet home tab
+                            </a>-->
+                                <a href="/apex/BET_NewBet?retURL=/apex/BET">
+                                    <span class="icon icon-add"></span>
+                                    <span>Create New Toolkit</span>
+                                </a>
+                            </li>
+                            </li>
+                            <li>
+                                <a href="#/search">
+                                    <span class="icon icon-search"></span>
+                                    <span>Browse All Toolkits</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{sfConfig.helpLink}}" target="_blank">
+                                    <span class="icon icon-information"></span>
+                                    <span>Help &amp; Guidance</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container-fluid main-content details-page">
+    <!-- BEGIN my bets -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="col-left">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <h2 class="section-title">{{bet.betName}}</h2>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="section-buttons pull-right">
+                            <a class="btn btn-gray btn-margin-right" data-toggle="modal" data-target="#members" ng-click="setMemberUrl()"><span class="icon icon-members"></span><span>Members</span></a>
+                            <!--<a class="btn btn-gray btn-margin-right" data-toggle="modal" data-target="#groups"><span class="icon icon-earth"></span><span>Related Groups</span></a>-->
+                            <a class="btn btn-gray" data-toggle="modal" data-target="#settings" ng-hide="hideSettings" ng-click="setSettingsUrl()"><span class="icon icon-settings"></span><span>Settings</span></a>
+                            <a class="btn btn-gray" data-toggle="modal" data-target="#removeme" ng-hide="hideRemoveMe"><span class="icon icon-removeme"></span><span>Remove me</span></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="navigation-bar">
+                    <ul>
+                        <li ng-class="{'active':state.activeTab=='info'}">
+                            <a href ng-click="setActive('info')">Toolkit Summary</a>
+                        </li>
+                        <li ng-class="{'active':state.activeTab=='approved'}">
+                            <a href ng-click="setActive('approved')">BD Approved Assets</a>
+                        </li>
+                        <li ng-class="{'active':state.activeTab=='draft'}">
+                            <a href ng-click="setActive('draft')">Draft Assets</a>
+                        </li>
+                        <li ng-class="{'active':state.activeTab=='sharing'}">
+                            <a href ng-click="setActive('sharing')">BB Sharing</a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="toolkit-box">
+                    <div class="toolkit-info" ng-hide="state.activeTab!='info'">
+                        <div class="row">
+                            <div class="col-xs-7">
+							
+								<!--<div ng-controller="DetailCtrl">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{dynamic}}" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': dynamic+'%'}">
+                                        {{dynamic}}%
+                                        </div>
+                                    </div>
+								</div> -->
+
+                                <!-- PDF -->
+                                <div class="pdf-check-status" ng-hide="showPDF">
+                                    <div class="pdf-check-message" ng-bind-html="presentationCheckStatus"></div>
+                                </div>
+                                <div class="pdf-preview" ng-hide="!showPDF">
+                                    <div id="outerContainer" class="loadingInProgress">
+                                        <div id="mainContainer">
+                                            <div class="findbar hidden doorHanger hiddenSmallView" id="findbar">
+                                                <label for="findInput" class="toolbarLabel" data-l10n-id="find_label">Find:</label>
+                                                <input id="findInput" class="toolbarField" tabindex="91" />
+                                                <div class="splitToolbarButton">
+                                                    <button class="toolbarButton findPrevious" title="" id="findPrevious" tabindex="92" data-l10n-id="find_previous">
+                                                        <span data-l10n-id="find_previous_label">Previous</span>
+                                                    </button>
+                                                    <div class="splitToolbarButtonSeparator"></div>
+                                                    <button class="toolbarButton findNext" title="" id="findNext" tabindex="93" data-l10n-id="find_next">
+                                                        <span data-l10n-id="find_next_label">Next</span>
+                                                    </button>
+                                                </div>
+                                                <input type="checkbox" id="findHighlightAll" class="toolbarField" />
+                                                <label for="findHighlightAll" class="toolbarLabel" tabindex="94" data-l10n-id="find_highlight">Highlight all</label>
+                                                <input type="checkbox" id="findMatchCase" class="toolbarField" />
+                                                <label for="findMatchCase" class="toolbarLabel" tabindex="95" data-l10n-id="find_match_case_label">Match case</label>
+                                                <span id="findMsg" class="toolbarLabel"></span>
+                                            </div>
+
+                                            <div class="toolbar">
+                                                <div id="toolbarContainer">
+                                                    <div id="toolbarViewer">
+                                                        <div id="toolbarViewerLeft">
+                                                            <div class="splitToolbarButton">
+                                                                <button class="toolbarButton pageUp" title="Previous Page" id="previous" tabindex="13" data-l10n-id="previous">
+                                                                    <span data-l10n-id="previous_label">Previous</span>
+                                                                </button>
+                                                                <div class="splitToolbarButtonSeparator"></div>
+                                                                <button class="toolbarButton pageDown" title="Next Page" id="next" tabindex="14" data-l10n-id="next">
+                                                                    <span data-l10n-id="next_label">Next</span>
+                                                                </button>
+                                                            </div>
+                                                            <div>
+                                                                <label id="pageNumberLabel" class="toolbarLabel" for="pageNumber" data-l10n-id="page_label">Page: </label>
+                                                                <input type="number" id="pageNumber" class="toolbarField pageNumber" value="1" size="4" min="1" tabindex="15" />
+                                                                <span id="numPages" class="toolbarLabel"></span>
+                                                            </div>
+                                                            <div class="splitToolbarButton">
+                                                                <button id="zoomOut" class="toolbarButton zoomOut" title="Zoom Out" tabindex="21" data-l10n-id="zoom_out">
+                                                                    <span data-l10n-id="zoom_out_label">Zoom Out</span>
+                                                                </button>
+                                                                <div class="splitToolbarButtonSeparator"></div>
+                                                                <button id="zoomIn" class="toolbarButton zoomIn" title="Zoom In" tabindex="22" data-l10n-id="zoom_in">
+                                                                    <span data-l10n-id="zoom_in_label">Zoom In</span>
+                                                                </button>
+                                                            </div>
+                                                            <div id="scaleSelectContainer" class="dropdownToolbarButton">
+                                                                <select id="scaleSelect" title="Zoom" tabindex="23" data-l10n-id="zoom">
+                                                                    <option id="pageAutoOption" title="" value="auto" selected="selected" data-l10n-id="page_scale_auto">Automatic Zoom</option>
+                                                                    <option id="pageActualOption" title="" value="page-actual" data-l10n-id="page_scale_actual">Actual Size</option>
+                                                                    <option id="pageFitOption" title="" value="page-fit" data-l10n-id="page_scale_fit">Fit Page</option>
+                                                                    <option id="pageWidthOption" title="" value="page-width" data-l10n-id="page_scale_width">Full Width</option>
+                                                                    <option id="customScaleOption" title="" value="custom"></option>
+                                                                    <option title="" value="0.5">50%</option>
+                                                                    <option title="" value="0.75">75%</option>
+                                                                    <option title="" value="1">100%</option>
+                                                                    <option title="" value="1.25">125%</option>
+                                                                    <option title="" value="1.5">150%</option>
+                                                                    <option title="" value="2">200%</option>
+                                                                    <option title="" value="3">300%</option>
+                                                                    <option title="" value="4">400%</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div id="toolbarViewerRight">
+                                                            <button id="presentationMode" class="toolbarButton presentationMode hiddenLargeView" title="Switch to Presentation Mode" tabindex="31" data-l10n-id="presentation_mode">
+                                                                <span data-l10n-id="presentation_mode_label">Presentation Mode</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div id="loadingBar">
+                                                        <div class="progress">
+                                                            <div class="glimmer">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="viewerContainer" tabindex="0">
+                                                <div id="viewer"></div>
+                                            </div>
+
+                                            <div id="errorWrapper" hidden='true'>
+                                                <div id="errorMessageLeft">
+                                                    <span id="errorMessage"></span>
+                                                    <button id="errorShowMore" data-l10n-id="error_more_info">
+                                                        More Information
+                                                    </button>
+                                                    <button id="errorShowLess" data-l10n-id="error_less_info" hidden='true'>
+                                                        Less Information
+                                                    </button>
+                                                </div>
+                                                <div id="errorMessageRight">
+                                                    <button id="errorClose" data-l10n-id="error_close">
+                                                        Close
+                                                    </button>
+                                                </div>
+                                                <div class="clearBoth"></div>
+                                                <textarea id="errorMoreInfo" hidden='true' readonly="readonly"></textarea>
+                                            </div>
+                                        </div> <!-- mainContainer -->
+                                    </div> <!-- outerContainer -->
+                                    <!-- PDF -->
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-xs-5 toolkit-info-detail">
+                                <h3>Toolkit Info</h3>
+                                <div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <span>Owner:</span>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <strong>{{bet.betOwnerName}}</strong>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6" ng-if="bet.brandPosition == null">
+                                            <span>Brand:</span>
+                                        </div>
+                                        <div class="col-xs-6" ng-if="bet.brandPosition == null">
+                                            <strong>{{bet.betBrandName}}</strong>
+                                        </div>
+										<div class="col-xs-6" ng-if="bet.brandPosition != null">
+                                            <span>Brand Position:</span>
+                                        </div>
+                                        <div class="col-xs-6" ng-if="bet.brandPosition != null">
+                                            <strong>{{bet.betBrandPositionName}}</strong>
+                                        </div>
+                                    </div>
+									<div class="row" ng-if="bet.betIPMProjectId!=null">
+										<div class="col-xs-6">
+											<span>Project:</span>
+										</div>
+										<div class="col-xs-6" ng-if="bet.currentUserHasAccessToIPM">
+											<strong><a href="/apex/IPM_ProjectOverview?id={{bet.betIPMProjectId}}" target="_blank">{{bet.betIPMProjectName}}</a></strong>
+										</div>
+										<div class="col-xs-6" ng-if="!bet.currentUserHasAccessToIPM">
+											<strong>{{bet.betIPMProjectName}}</strong>
+										</div>
+									</div>
+									<div class="row" ng-if="bet.betIPMProjectId==null && bet.betProjectId!=null">
+										<div class="col-xs-6">
+											<span>Project:</span>
+										</div>
+										<div class="col-xs-6">
+											<strong>{{bet.betProjectName}}</strong>
+										</div>
+									</div>
+									<div class="row" ng-if="bet.betIPMProjectId==null && bet.betProjectId==null">
+										<div class="col-xs-6">
+											<span>Project:</span>
+										</div>
+										<div class="col-xs-6">
+											<strong>No IPM Project</strong>
+										</div>
+									</div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <span>Status:</span>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <strong>{{bet.betStatus}}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+								<div class="row">
+                                    <div class="col-xs-6">
+                                          <span>Target Launch Date:</span>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <strong>{{bet.betLaunchDate | date: sfConfig.date.bet}}</strong>
+                                        </div>
+                                    </div>
+                                    
+                            
+                                <div class="bordered">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <span>First Release Due:</span>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <strong>{{bet.betFirstReleaseDueDate | date: sfConfig.date.bet}}</strong>
+                                        </div>
+                                    </div>
+									<div class="row">
+                                        <div class="col-xs-6">
+                                            <span>First Release Completed:</span>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <strong>{{bet.betFirstRelease | date: sfConfig.date.bet}}</strong>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <span>Final Release Due:</span>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <strong>{{bet.betFinalReleaseDueDate | date: sfConfig.date.bet}}</strong>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <span>Final Release Completed:</span>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <strong>{{bet.betFinalRelease | date: sfConfig.date.bet}}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                        <div class="col-xs-6">
+                                            <span>Last updated:</span>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <strong>{{bet.betLastUpdated | date: sfConfig.date.bet}}</strong>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-7 text-right" style="position: absolute;top: 460px;left: -260px;">
+                                <a ng-if="downloadPresentationButton!=''" ng-href="{{downloadPresentationButtonLink}}" class="btn btn-primary">{{downloadPresentationButton}}</a>
+                            </div>
+                        </div>
+						<div class="row">
+							<div class="col-xs-7 text-left" style="padding-top:10px;">
+								<div>
+									BET Progress : Final Asset Delivery
+								</div>
+								<div ng-if="!bet.expectedAssetsProvided" style="position:absolute;top:38px;left:20px;">
+									Expected assets have not been provided
+								</div>
+								<div ng-controller="DetailCtrl" style="padding-top:10px;">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="{{dynamic}}" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': dynamic+'%'}">
+                                        {{dynamic}}%
+                                        </div>
+                                    </div>
+								</div>
+							</div>
+						</div>
+						
+                    </div>
+                    <div class="bd-approved" ng-hide="state.activeTab=='info'">
+                        <div class="bd-intro">
+                            <div class="row">
+                                <div class="col-xs-8">
+                                    <p ng-bind-html="assetListHead"></p>
+                                </div>
+                                <div class="col-xs-4">
+                                    <a class="btn btn-primary btn-upload btn-block" data-toggle="modal" data-target="#uploadAsset" ng-hide="!canUploadAsset" ng-click="setUploadAssetUrl()"><span>Upload an asset</span><span class="right-arrow"></span></a>
+									<a class="btn btn-primary btn-upload btn-block" data-toggle="modal" data-target="#setExpectedAssets" ng-hide="!canUploadAsset || selectedAssetTab != 'approved'" ng-click="setExpectedAssetsUrl()"><span>Update expected assets</span><span class="right-arrow"></span></a>
+									<a class="btn btn-primary btn-upload btn-block" data-toggle="modal" data-target="#reorderAssets" ng-hide="!canUploadAsset || selectedAssetTab != 'approved'" ng-click="setReorderAssetsUrl()"><span>Reorder assets</span><span class="right-arrow"></span></a>
+                                    <a class="btn btn-primary btn-unlabelled btn-block" ng-hide="!canCreateAssetFromChatter" ng-click="showChatterAssets()"><span>Show unlabelled files</span><span class="right-arrow"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filters-container">
+                            <div class="filter-holder filter-active" ng-class="{'filter-collapsed' : !showCategory}" ng-click="showCategory = !showCategory" ng-mouseleave="showCategory=false">
+                                <div class="filter-bar">
+                                    <a name="subcategory" class="filter-title">Media Types<span class="filters-arrow"></span></a>
+                                </div>
+                                <div class="filters">
+                                    <form role="form">
+                                        <div class="form-group" ng-repeat="filter in filters.MediaTypes.filterValues">
+                                            <input id="all_categories{{$index}}" type="radio" name="category" ng-checked="filter.value == selectedCategory.value">
+                                            <label for="all_categories{{$index}}" ng-click="selectCategory(filter)">{{filter.label}}</label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="filter-holder filter-active" ng-class="{'filter-collapsed' : !showBrand}" ng-click="showBrand = !showBrand" ng-mouseleave="showBrand=false">
+                                <div class="filter-bar">
+                                    <a name="brand" class="filter-title">Countries<span class="filters-arrow"></span></a>
+                                </div>
+                                <div class="filters">
+                                    <form role="form">
+                                        <div class="form-group" ng-repeat="filter in filters.Countries.filterValues">
+                                            <input id="all_brands{{$index}}" type="radio" name="brand" ng-checked="filter.value == selectedBrand.value">
+                                            <label for="all_brands{{$index}}" ng-click="selectBrand(filter)">{{filter.label}}</label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!-- table header -->
+                        <div class="table-bet">
+                            <div class="row head">
+                                <div class="col-xs-4" ng-hide="selectedAssetTab != 'approved'" ng-click="changeSort('assetName')" ng-class="{'sort':state.field=='assetName','sort-desc':state.reverse,'sort-asc':!state.reverse}"><span>Title</span></div>
+								<div class="col-xs-4" ng-hide="selectedAssetTab == 'approved'" ng-click="changeSort('assetName')" ng-class="{'sort':state.field=='assetName','sort-desc':state.reverse,'sort-asc':!state.reverse}"><span>Title</span></div>
+                                <div class="col-xs-2" ng-hide="selectedAssetTab != 'approved'" ng-click="changeSort('assetMediaType')" ng-class="{'sort':state.field=='assetMediaType','sort-desc':state.reverse,'sort-asc':!state.reverse}"><span>Media Type</span></div>
+								<div class="col-xs-3" ng-hide="selectedAssetTab == 'approved'" ng-click="changeSort('assetMediaType')" ng-class="{'sort':state.field=='assetMediaType','sort-desc':state.reverse,'sort-asc':!state.reverse}"><span>Media Type</span></div>
+                                <div ng-hide="selectedAssetTab == 'approved'" class="col-xs-2-5" ng-class="{'sort':state.field=='assetCountry','sort-desc':state.reverse,'sort-asc':!state.reverse}"><span>Country</span></div>
+								<div ng-hide="selectedAssetTab != 'approved'" class="col-xs-2" ng-class="{'sort':state.field=='assetCountry','sort-desc':state.reverse,'sort-asc':!state.reverse}"><span>Country</span></div>
+                                <div class="col-xs-2-5 dl" ng-hide="selectedAssetTab == 'approved'" ng-click="changeSort('assetLastModifiedDate')" ng-class="{'sort':state.field=='assetLastModifiedDate','sort-desc':state.reverse,'sort-asc':!state.reverse}"><span>Last<br />updated</span></div>
+								<div class="col-xs-2 dl" ng-hide="selectedAssetTab != 'approved'" ng-click="changeSort('assetLastModifiedDate')" ng-class="{'sort':state.field=='assetLastModifiedDate','sort-desc':state.reverse,'sort-asc':!state.reverse}"><span>Last<br />updated</span></div>
+								<div class="col-xs-2" ng-hide="selectedAssetTab != 'approved'" ng-click="changeSort('displayOrder')" ng-class="{'sort':state.field=='displayOrder','sort-desc':state.reverse,'sort-asc':!state.reverse}"><span>PRIORITY</span></div>
+                            </div>
+                            <div class="row" ng-if="assets.length == 0">
+                                <div class="col-xs-12">No data</div>
+                            </div>
+                            <!-- table data -->
+                            <div class="elements" infinite-scroll='nextPage()' infinite-scroll-disabled='scrollDisabled == true'>
+                                <div class="row data-row" ng-repeat="asset in assets" ng-if="assets.length > 0">
+                                    <div class="col-xs-4" ng-hide="selectedAssetTab != 'approved'">
+										<a href="{{asset.assetDownloadLink}}">
+											<!--<span class="icon icon-document"></span>-->
+											<img src="{{sfConfig.resourceBasePath}}images/download.png" style="padding-left:8px;"/>
+										</a>
+                                        <a target="_blank" href="{{asset.assetPreviewLink}}">
+                                            <span uw-tooltip class="bet-name" style="padding-left:10px;">{{asset.assetName}}</span>
+                                        </a>
+                                        <span class="icon icon-question" ng-if="asset.assetDescription" data-tooltip="{{asset.assetDescription}}"></span>
+                                    </div>
+									
+									<div class="col-xs-4" ng-hide="selectedAssetTab == 'approved'">
+                                        <a href="{{asset.assetDownloadLink}}">
+											<!--<span class="icon icon-document"></span>-->
+											<img src="{{sfConfig.resourceBasePath}}images/download.png" style="padding-left:8px;"/>
+										</a>
+                                        <a target="_blank" href="{{asset.assetPreviewLink}}">
+                                            <span uw-tooltip class="bet-name" style="padding-left:10px;">{{asset.assetName}}</span>
+                                        </a>
+                                        <span class="icon icon-question" ng-if="asset.assetDescription" data-tooltip="{{asset.assetDescription}}"></span>
+                                    </div>
+									
+									
+                                    <div uw-tooltip class="col-xs-2" ng-hide="selectedAssetTab != 'approved'">{{asset.assetMediaType}}</div>
+									<div uw-tooltip class="col-xs-3" ng-hide="selectedAssetTab == 'approved'">{{asset.assetMediaType}}</div>
+                                    <div ng-hide="selectedAssetTab == 'approved'" uw-tooltip uw-country-tooltip="{{asset.assetCountry}}" class="col-xs-2-5">{{asset.assetCountry}}</div>
+									<div ng-hide="selectedAssetTab != 'approved'" uw-tooltip uw-country-tooltip="{{asset.assetCountry}}" class="col-xs-2">{{asset.assetCountry}}</div>
+                                    <div uw-tooltip class="col-xs-2-5" ng-hide="selectedAssetTab == 'approved'">
+										{{asset.assetLastModifiedDate | date: sfConfig.date.list}}
+										<span class="pull-right" ng-hide="bet.archived || (!assetModify && !asset.assetOwner) || selectedAssetTab == 'approved'">
+											<span class="icon icon-settings" data-toggle="modal" data-target="#editasset" ng-click="setEditAsset(asset.assetId)"></span>
+											<span class="icon icon-trash" data-toggle="modal" data-target="#removeasset" ng-click="setAssetToRemove($index)"></span>
+										</span>
+									</div>
+									<div uw-tooltip class="col-xs-2" ng-hide="selectedAssetTab != 'approved'">
+										{{asset.assetLastModifiedDate | date: sfConfig.date.list}}
+										<span class="pull-right" ng-hide="bet.archived || (!assetModify && !asset.assetOwner) || selectedAssetTab == 'approved'">
+											<span class="icon icon-settings" data-toggle="modal" data-target="#editasset" ng-click="setEditAsset(asset.assetId)"></span>
+											<span class="icon icon-trash" data-toggle="modal" data-target="#removeasset" ng-click="setAssetToRemove($index)"></span>
+										</span>
+									</div>
+									<div uw-tooltip class="col-xs-2" ng-hide="selectedAssetTab != 'approved'">
+										<span style="padding-left:20px;">
+											{{asset.displayOrder}}
+										</span>
+										<span class="pull-right" ng-hide="bet.archived || (!assetModify && !asset.assetOwner)">
+											<span class="icon icon-settings" data-toggle="modal" data-target="#editasset" ng-click="setEditAsset(asset.assetId)"></span>
+											<span class="icon icon-trash" style="padding-right:8px;" data-toggle="modal" data-target="#removeasset" ng-click="setAssetToRemove($index)"></span>
+										</span>
+									</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="chatterFeed">
+                <h2 class="section-title">Chatter</h2>
+                <div id="chatter-loading">
+                    <h3>Loading...</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END my bets -->
+
+
+    <div class="modal modal-bet fade" id="members">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ng-click="clearMemberUrl()"><span class="icon icon-close"></span></button>
+                    <h4 class="modal-title"><span class="icon icon-members"></span>Members</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe ng-if="memberUrl" ng-src="{{memberUrl}}" style="width: 100%;height: 300px;border: 0 none transparent;"></iframe>
+                </div>
+                <!--<div class="modal-footer">
+                  <button type="button" class="btn btn-gray" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>-->
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal modal-bet fade" id="groups">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span class="icon icon-close"></span></button>
+                    <h4 class="modal-title"><span class="icon icon-earth"></span>Related Groups</h4>
+                </div>
+                <div class="modal-body">
+                    <p>One fine body&hellip;</p>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal modal-bet fade" id="settings">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ng-click="clearSettingsUrl()"><span class="icon icon-close"></span></button>
+                    <h4 class="modal-title"><span class="icon icon-settings"></span>Settings</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe ng-if="settingsUrl" ng-src="{{settingsUrl}}" style="width: 100%;height: 300px;border: 0 none transparent;"></iframe>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal modal-bet fade" id="uploadAsset">
+        <div class="modal-dialog" id="uploadAssetmd" style="width:1200px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ng-click="clearUploadAssetUrl()"><span class="icon icon-close"></span></button>
+                    <h4 class="modal-title"><span class="icon icon-settings"></span>Upload Asset</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe ng-if="uploadAssetUrl" ng-src="{{uploadAssetUrl}}" style="width: 100%;height: 500px;border: 0 none transparent;"></iframe>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+	
+	<div class="modal modal-bet fade" id="setExpectedAssets">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ng-click="clearExpectedAssetUrl()"><span class="icon icon-close"></span></button>
+                    <h4 class="modal-title"><span class="icon icon-settings"></span>Set Expected Assets</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe ng-if="expectedAssetsUrl" ng-src="{{expectedAssetsUrl}}" style="width: 100%;height: 500px;border: 0 none transparent;"></iframe>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+	
+	<div class="modal modal-bet fade" id="reorderAssets">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ng-click="clearReorderAssetUrl()"><span class="icon icon-close"></span></button>
+                    <h4 class="modal-title"><span class="icon icon-settings"></span>Reorder Assets</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe ng-if="reorderAssetsUrl" ng-src="{{reorderAssetsUrl}}" style="width: 100%;height: 500px;border: 0 none transparent;"></iframe>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal modal-bet fade" id="editasset">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span class="icon icon-close"></span></button>
+                    <h4 class="modal-title"><span class="icon icon-settings"></span>Edit Asset</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe ng-if="editAssetUrl" ng-src="{{editAssetUrl}}" style="width: 100%;height: 300px;border: 0 none transparent;"></iframe>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal modal-bet fade" id="betMessage">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span class="icon icon-close"></span></button>
+                    <h4 class="modal-title"><img src="{{sfConfig.resourceBasePath}}images/info.png" class="info-modal"/></span>Information</h4>
+                </div>
+                <div class="modal-body">
+                    {{betMessage}}
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal modal-bet fade" id="removeme">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span class="icon icon-close"></span></button>
+                    <h4 class="modal-title"><span class="icon icon-removeme"></span>Confirm</h4>
+                </div>
+                <div class="modal-body">
+                    Please confirm removing you from BET
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="removeMe()">OK</button>
+                    <button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal modal-bet fade" id="removeasset">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span class="icon icon-close"></span></button>
+                    <h4 class="modal-title"><span class="icon icon-removeasset"></span>Confirm</h4>
+                </div>
+                <div class="modal-body">
+                    Please confirm removing asset
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="deleteBETAsset()">OK</button>
+                    <button type="button" class="btn btn-gray" data-dismiss="modal">Cancel</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal modal-bet fade" id="chatterassets">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span class="icon icon-close"></span></button>
+                    <h4 class="modal-title"><span class="icon icon-removeasset"></span>Unlabelled Files</h4>
+                </div>
+                <div class="modal-body" id="uwChatterFileContainer">
+                    <!-- table header -->
+                    <div class="table-bet">
+                        <div class="row head">
+                            <div class="col-xs-4" ng-click="changeChatterSort('draftName')" ng-class="{'sort':chatterState.field=='draftName','sort-desc':chatterState.reverse,'sort-asc':!chatterState.reverse}"><span>File Name</span></div>
+                            <div class="col-xs-3 dl" ng-click="changeChatterSort('draftCreatedDate')" ng-class="{'sort':chatterState.field=='draftCreatedDate','sort-desc':chatterState.reverse,'sort-asc':!chatterState.reverse}"><span>Date<br />Uploaded</span></div>
+                            <div class="col-xs-4 no-sort"><span>Uploaded by</span></div>
+                            <div class="col-xs-1">&nbsp;</div>
+                        </div>
+                        <div class="row" ng-if="chatterAssets.length == 0">
+                            <div class="col-xs-12">There are currently no unlabelled files</div>
+                        </div>
+                        <!-- table data -->
+                        <div class="elements" infinite-scroll='chatterNextPage()' infinite-scroll-container="uwChatterFileContainer" infinite-scroll-disabled='chatterScrollDisabled == true' infinite-scroll-distance="chatterScrollDistance">
+                            <div class="row data-row" ng-repeat="chatterAsset in chatterAssets" ng-if="chatterAssets.length > 0">
+                                <div class="col-xs-4">
+                                    <span class="icon icon-document"></span>
+                                    <span uw-tooltip class="bet-name">{{chatterAsset.draftName}}</span>
+                                    </a>
+                                </div>
+                                <div uw-tooltip class="col-xs-3">{{chatterAsset.draftCreatedDate | date: sfConfig.date.list}}</div>
+                                <div uw-tooltip class="col-xs-4">{{chatterAsset.draftCreatedByName}}</div>
+                                <div uw-tooltip class="col-xs-1">
+                        <span class="pull-right">
+                            <span class="icon icon-settings" ng-click="createAssetFromChatterFile(chatterAsset.draftId)"></span>
+                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <script type="text/javascript">
+        var countNewHeight = function(maxHeight, modalHeader, modalBody) {
+            var newHeight = jQuery(window).height() - parseInt(jQuery('.modal-dialog').css('marginTop'), 10) * 2 +
+                    modalHeader.height() - parseInt(modalHeader.css('padding-top'), 10) -
+                    parseInt(modalHeader.css('padding-bottom'), 10) - parseInt(modalBody.css('padding-top'), 10) -
+                    parseInt(modalBody.css('padding-bottom'), 10);
+            return Math.min(newHeight, maxHeight);
+        };
+        jQuery('.modal').on('show.bs.modal', function(event) {
+            var modalHeader = jQuery('.modal-header', this);
+            var modalBody = jQuery('.modal-body', this);
+            var iframe = jQuery('iframe', modalBody);
+            if (iframe && iframe.length == 1) {
+                var maxHeight = 400;
+                if (this.id == 'members' || this.id == 'groups' || this.id == 'settings' || this.id == 'uploadAsset' || this.id == 'setExpectedAssets') {
+                    maxHeight = 800;
+                }
+                iframe.height(countNewHeight(maxHeight, modalBody, modalBody));
+            } else if (this.id === 'chatterassets') {
+                modalBody.height(countNewHeight(800, modalBody, modalBody));
+                modalBody.css('overflow-y', 'auto');
+            }
+        });
+
+
+        if ($('.navigation-bar').length > 0) {
+            var width = $('.navigation-bar').width();
+            var temp = 0;
+            var additional;
+            var count = $('.navigation-bar ul li').length;
+            $.each($('.navigation-bar ul li'), function () {
+                var _w = $(this).outerWidth();
+                temp += _w;
+                $(this).data('width', _w);
+            });
+            if (temp < width) {
+                additional = Math.floor((width - temp) / count);
+                var modulo = (width - temp) % count;
+                $.each($('.navigation-bar ul li'), function (index, element) {
+                    $(element).outerWidth($(element).data('width') + additional);
+                    if (index === count - 1 && modulo !== 0) {
+                        $(element).outerWidth($(element).data('width') + additional + modulo);
+                    }
+                });
+            }
+        }
+    </script>
