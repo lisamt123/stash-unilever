@@ -10,6 +10,10 @@
 
 	<apex:actionFunction name="saveExpAssetsOne" action="{!upsertExceptedAssets}"/>
 
+	<div style="font-family: Rockwell;font-size: 13px;padding-bottom:10px;">
+		{!$Label.BET_Tick_Info}
+	</div>
+
 	<table class="expectedAssetsTable">
 		<tr>
 			<td class="expectedAssetsTableHeader">
@@ -25,7 +29,6 @@
 					{!eab.assetTypeName}
 				</td>
 				<td>
-					<!-- <apex:inputText styleClass="expectedAssetsNumber" value="{!eab.assetTypeNameExpectedNumber}" /> -->
 					<apex:inputCheckbox value="{!eab.assetTypeNameExpected}" />
 				</td>
 			</tr>

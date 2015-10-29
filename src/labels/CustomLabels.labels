@@ -1395,6 +1395,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <shortDescription>BET_TargetLaunchDate</shortDescription>
         <value>Target Launch Date</value>
     </labels>
+	<labels>
+        <fullName>BET_Tick_Info</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Tick_Info</shortDescription>
+        <value>Please tick each type of the following assets you will be delivering</value>
+    </labels>
     <labels>
         <fullName>BET_Title</fullName>
         <categories>BET</categories>
