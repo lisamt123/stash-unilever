@@ -228,7 +228,7 @@
         <!-- FabricConditioner end -->
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
-                    <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_ProjectName}</apex:outputLabel>
+                    <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_InoplanProjectName}</apex:outputLabel>
                 </div>
                 <div class="item-input">
                     <apex:actionRegion >

@@ -1,0 +1,23 @@
+.expectedAssetsTable{
+	width: 300px;
+}
+
+.expectedAssetsTable td {
+	font-family: "Rockwell";
+	font-size: 14px;
+}
+
+.expectedAssetsTableHeader{
+	width: 100px;
+	background: #666A6B none repeat scroll 0% 0%;
+	color: #FFF;
+	font-size: 18px;
+	font-weight: 500;
+	font-family: "Rockwell";
+	text-align: center;
+}
+
+.expectedAssetsNumber{
+	width: 30px;
+	text-align: center;
+}

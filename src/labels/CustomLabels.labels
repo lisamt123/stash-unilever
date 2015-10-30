@@ -972,6 +972,14 @@ Are you sure you wish to proceed?</value>
         <shortDescription>BET_InoplanProjectMandatory</shortDescription>
         <value>Inoplan Project is mandatory</value>
     </labels>
+	<labels>
+        <fullName>BET_InoplanProjectName</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_InoplanProjectName</shortDescription>
+        <value>Inoplan Project Name</value>
+    </labels>
     <labels>
         <fullName>BET_LaunchDateMandatory</fullName>
         <categories>BET</categories>
@@ -1286,7 +1294,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Suggest_Member_Message</shortDescription>
-        <value>Your suggestion has been send to the BET owner for approval. Your suggested member will receive notification directly</value>
+        <value>Your suggestion has been sent to the BET owner for approval. Your suggested member will receive notification directly</value>
     </labels>
     <labels>
         <fullName>BET_SuggestedMemberAddOtherMember</fullName>
@@ -1386,6 +1394,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>BET_TargetLaunchDate</shortDescription>
         <value>Target Launch Date</value>
+    </labels>
+	<labels>
+        <fullName>BET_Tick_Info</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Tick_Info</shortDescription>
+        <value>Please tick each type of the following assets you will be delivering</value>
     </labels>
     <labels>
         <fullName>BET_Title</fullName>
