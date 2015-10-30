@@ -95,7 +95,7 @@ global with sharing class BET_ManageMembersController {
                 betMemberRequest.id = null;
                 betMemberRequest.Bet_owner__c = bet.ownerid;
                 betMemberRequest.Status__c = requestsShouldBeAutoapproved ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW;
-                betMemberRequest.Do_Not_Notify_Bet__c = false;
+                betMemberRequest.Do_Not_Notify_Bet__c = requestsShouldBeAutoapproved;
                 betMemberRequest.External_User_Request__c = false;
                 insert betMemberRequest;
                 betMemberRequest.UserId__c = null;
