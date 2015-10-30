@@ -109,7 +109,7 @@ private class BET_SuggestedMemberServiceTest {
         //create test member request data
         List<BET_Member_Request__c> betMembersToInsert = new List<BET_Member_Request__c>();
         List<User> usedUsers = new List<User>();
-        for(User u : [Select id FROM User where isActive = true and Profile.name = 'System Administrator' Limit 5]){
+        for(User u : [Select id FROM User where isActive = true and Profile.name = 'System Administrator' and id != : betObject.ownerId Limit 5]){
             BET_Member_Request__c betMemeberItem = new BET_Member_Request__c();
             betMemeberItem.Brand_Experience_Toolkit__c = betObject.id;
             betMemeberItem.ProjectRequest__c = followRequest.id;
