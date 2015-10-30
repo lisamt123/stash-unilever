@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>BET_Member_Request_Created</name>
     <style>none</style>
-    <subject>BET member request has been created</subject>
+    <subject>{!BET_Member_Request__c.CreatedBy} has requested access to the {!BET_Member_Request__c.Brand_Experience_Toolkit__c} for {!BET_Member_Request__c.UserId__c}</subject>
     <type>custom</type>
 </EmailTemplate>
