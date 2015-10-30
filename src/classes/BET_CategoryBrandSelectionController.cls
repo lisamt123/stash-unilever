@@ -235,8 +235,7 @@ public with sharing class BET_CategoryBrandSelectionController {
 	}
 
 	public List<SelectOption> getFabricConditioners(){
-		List<SelectOption> values = new List<SelectOption>{new SelectOption(NO,NO),new SelectOption(YES,YES)};
-		return values;
+		return new List<SelectOption>{new SelectOption(NO,NO),new SelectOption(YES,YES)};
 	}
 
 	/************************************************************
