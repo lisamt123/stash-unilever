@@ -25,21 +25,31 @@ private class HRO_NavMenu_CCTest {
    Throws [Exceptions]: []                                                          
   ********************************************************************/
 	@isTest static void testIsHroAdmin() {
+        User hroAdmin = HRO_UnitTestFactory.createUserManager('HROtestManager');
+		
         Id hroAdminId = [Select id From PermissionSet Where name =: HRADMIN Limit 1].get(0).Id;
-        PermissionSetAssignment permSet = new PermissionSetAssignment(PermissionSetId = hroAdminId, AssigneeId =UserInfo.getUserId());
-        List<PermissionSetAssignment> perSetLst = [Select id from PermissionSetAssignment where PermissionSetId =: hroAdminId and AssigneeId =: UserInfo.getUserId()];
+        PermissionSetAssignment permSet = new PermissionSetAssignment(PermissionSetId = hroAdminId, AssigneeId =hroAdmin.id);
+        List<PermissionSetAssignment> perSetLst = [Select id from PermissionSetAssignment where PermissionSetId =: hroAdminId and AssigneeId =: hroAdmin.id];
         if(perSetLst.isEmpty()){
         	insert permSet;    
         }
         Test.startTest();
-        HRO_NavMenu_CC componentCtrl = new HRO_NavMenu_CC();
-        system.assertEquals(true, componentCtrl.getIsHROAdmin(),'User should have assinged HRO Manager Permission set');
-         if(!perSetLst.isEmpty()){
+        System.runAs(hroAdmin){
+            HRO_NavMenu_CC componentCtrl = new HRO_NavMenu_CC();
+        	system.assertEquals(true, componentCtrl.getIsHROAdmin(),'User should have assinged HRO Admin Permission set');
+        }
+        //delete permission set
+        if(!perSetLst.isEmpty()){
             delete perSetLst;
         }else{
             delete permSet;
         }
-        system.assertEquals(false, componentCtrl.getIsHROAdmin(),'User should not have assinged HRO Manager Permission set');
+        
+        System.runAs(hroAdmin){
+            HRO_NavMenu_CC componentCtrl1 = new HRO_NavMenu_CC();
+        	system.assertEquals(false, componentCtrl1.getIsHROAdmin(),'User should not have assinged HRO Admin Permission set');
+        }
+        
         Test.stopTest();
     }
     
@@ -50,22 +60,30 @@ private class HRO_NavMenu_CCTest {
    Throws [Exceptions]: []                                                          
   ********************************************************************/
 	@isTest static void testIsHrManager() {
+        User hroManager = HRO_UnitTestFactory.createUserManager('HROtestManager');
         Id hroManagerId = [Select id From PermissionSet Where name =: HRMANAGER Limit 1].get(0).Id;
-        PermissionSetAssignment permSet = new PermissionSetAssignment(PermissionSetId = hroManagerId, AssigneeId =UserInfo.getUserId());
-        List<PermissionSetAssignment> perSetLst = [Select id from PermissionSetAssignment where PermissionSetId =: hroManagerId and AssigneeId =: UserInfo.getUserId()];
+        PermissionSetAssignment permSet = new PermissionSetAssignment(PermissionSetId = hroManagerId, AssigneeId =hroManager.id);
+        List<PermissionSetAssignment> perSetLst = [Select id from PermissionSetAssignment where PermissionSetId =: hroManagerId and AssigneeId =: hroManager.id];
         if(perSetLst.isEmpty()){
         	insert permSet;    
         }
         Test.startTest();
+        System.runAs(hroManager){
+            HRO_NavMenu_CC componentCtrl = new HRO_NavMenu_CC();
+        	system.assertEquals(true, componentCtrl.getIsManager(),'User should have assinged HRO Manager Permission set');
+        }
         
-        HRO_NavMenu_CC componentCtrl = new HRO_NavMenu_CC();
-        system.assertEquals(true, componentCtrl.getIsManager(),'User should have assinged HRO Manager Permission set');
         if(!perSetLst.isEmpty()){
             delete perSetLst;
         }else{
             delete permSet;
         }
-        system.assertEquals(false, componentCtrl.getIsManager(),'User should not have assinged HRO Manager Permission set');
+        
+        System.runAs(hroManager){
+            HRO_NavMenu_CC componentCtrl1 = new HRO_NavMenu_CC();
+        	system.assertEquals(false, componentCtrl1.getIsManager(),'User should not have assinged HRO Manager Permission set');
+        }
+        
         Test.stopTest();
     }
 
