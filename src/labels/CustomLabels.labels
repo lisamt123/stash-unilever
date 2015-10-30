@@ -1294,7 +1294,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Suggest_Member_Message</shortDescription>
-        <value>Your suggestion has been send to the BET owner for approval. Your suggested member will receive notification directly</value>
+        <value>Your suggestion has been sent to the BET owner for approval. Your suggested member will receive notification directly</value>
     </labels>
     <labels>
         <fullName>BET_SuggestedMemberAddOtherMember</fullName>

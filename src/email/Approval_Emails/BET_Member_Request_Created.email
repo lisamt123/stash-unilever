@@ -1,1 +1,9 @@
-An individual request has been made to become a BET <a href="{!BET_Member_Request__c.BET_Link__c}">{!BET_Member_Request__c.Brand_Experience_Toolkit__c}</a> member
+<html>
+<br/>
+<br/>
+{!BET_Member_Request__c.CreatedBy} has requested access to the {!BET_Member_Request__c.Brand_Experience_Toolkit__c} (Private With Customers) for {!BET_Member_Request__c.UserId__c}.
+<br/>
+<br/>
+To view this BET, go to:<br/>  
+<a href="{!BET_Member_Request__c.BET_Link__c}">{!BET_Member_Request__c.Brand_Experience_Toolkit__c} </a>
+</html>
