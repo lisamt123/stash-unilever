@@ -246,8 +246,8 @@ global with sharing class HRO_HeadStart_CX {
         if(selectTaskList == 'My Task'){
             query += ' AND Onboarding_Task_Set__r.OwnerId =\'' + UserInfo.getUserId()+'\'';
         }
-        query += ' ORDER by Due_Date__c,CreatedDate asc Limit 50000'; 
-
+        query += ' ORDER by Due_Date__c,Name asc Limit 50000'; 
+	
         onboardingTasks = (List<HRO_Onboarding_Task__c>)Database.query(query);                                                        
 
         system.debug('*****HRO Exiting getOnboardingTasks returned:'+JSON.serialize(onboardingTasks));
