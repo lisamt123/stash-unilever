@@ -11,8 +11,8 @@
         <template>HRO_Onboarding/HRO_Overdue_task_notifications</template>
     </alerts>
     <alerts>
-        <fullName>Pre_Boarding_welcome_email_to_Manager</fullName>
-        <description>Pre-Boarding welcome email to Manager</description>
+        <fullName>HRO_Pre_Boarding_welcome_email_to_Manager</fullName>
+        <description>HRO Pre-Boarding welcome email to Manager</description>
         <protected>false</protected>
         <recipients>
             <type>owner</type>
@@ -21,8 +21,8 @@
         <template>HRO_Onboarding/HRO_Pre_Boarding_welcome_email</template>
     </alerts>
     <alerts>
-        <fullName>Upcoming_tasks_Beyond</fullName>
-        <description>Upcoming tasks Beyond Onboarding</description>
+        <fullName>HRO_Upcoming_tasks_Beyond</fullName>
+        <description>HRO Upcoming tasks Beyond Onboarding</description>
         <protected>false</protected>
         <recipients>
             <type>owner</type>
@@ -31,8 +31,8 @@
         <template>HRO_Onboarding/HRO_Proactive_notification_Beyond</template>
     </alerts>
     <alerts>
-        <fullName>Upcoming_tasks_Day1</fullName>
-        <description>Upcoming tasks Day 1</description>
+        <fullName>HRO_Upcoming_tasks_Day1</fullName>
+        <description>HRO Upcoming tasks Day 1</description>
         <protected>false</protected>
         <recipients>
             <type>owner</type>
@@ -41,8 +41,8 @@
         <template>HRO_Onboarding/HRO_Proactive_notification_Day1</template>
     </alerts>
     <alerts>
-        <fullName>Upcoming_tasks_Month1</fullName>
-        <description>Upcoming tasks Month 1</description>
+        <fullName>HRO_Upcoming_tasks_Month1</fullName>
+        <description>HRO Upcoming tasks Month 1</description>
         <protected>false</protected>
         <recipients>
             <type>owner</type>
@@ -51,8 +51,8 @@
         <template>HRO_Onboarding/HRO_Proactive_notification_Month1</template>
     </alerts>
     <alerts>
-        <fullName>Upcoming_tasks_Month2</fullName>
-        <description>Upcoming tasks Month 2</description>
+        <fullName>HRO_Upcoming_tasks_Month2</fullName>
+        <description>HRO Upcoming tasks Month 2</description>
         <protected>false</protected>
         <recipients>
             <type>owner</type>
@@ -61,8 +61,8 @@
         <template>HRO_Onboarding/HRO_Proactive_notification_Month2</template>
     </alerts>
     <alerts>
-        <fullName>Upcoming_tasks_Month3</fullName>
-        <description>Upcoming tasks Month 3</description>
+        <fullName>HRO_Upcoming_tasks_Month3</fullName>
+        <description>HRO Upcoming tasks Month 3</description>
         <protected>false</protected>
         <recipients>
             <type>owner</type>
@@ -71,8 +71,8 @@
         <template>HRO_Onboarding/HRO_Proactive_notification_Month3</template>
     </alerts>
     <alerts>
-        <fullName>Upcoming_tasks_Week1</fullName>
-        <description>Upcoming tasks Week 1</description>
+        <fullName>HRO_Upcoming_tasks_Week1</fullName>
+        <description>HRO Upcoming tasks Week 1</description>
         <protected>false</protected>
         <recipients>
             <type>owner</type>
@@ -99,7 +99,7 @@
     <rules>
         <fullName>HRO Proactive notification of upcoming tasks</fullName>
         <actions>
-            <name>Pre_Boarding_welcome_email_to_Manager</name>
+            <name>HRO_Pre_Boarding_welcome_email_to_Manager</name>
             <type>Alert</type>
         </actions>
         <active>true</active>
@@ -111,7 +111,7 @@
         <triggerType>onCreateOnly</triggerType>
         <workflowTimeTriggers>
             <actions>
-                <name>Upcoming_tasks_Week1</name>
+                <name>HRO_Upcoming_tasks_Week1</name>
                 <type>Alert</type>
             </actions>
             <offsetFromField>HRO_Onboarding_Task_Set__c.Start_Date__c</offsetFromField>
@@ -120,7 +120,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Upcoming_tasks_Month2</name>
+                <name>HRO_Upcoming_tasks_Month2</name>
                 <type>Alert</type>
             </actions>
             <offsetFromField>HRO_Onboarding_Task_Set__c.Start_Date__c</offsetFromField>
@@ -129,7 +129,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Upcoming_tasks_Month3</name>
+                <name>HRO_Upcoming_tasks_Month3</name>
                 <type>Alert</type>
             </actions>
             <offsetFromField>HRO_Onboarding_Task_Set__c.Start_Date__c</offsetFromField>
@@ -138,7 +138,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Upcoming_tasks_Day1</name>
+                <name>HRO_Upcoming_tasks_Day1</name>
                 <type>Alert</type>
             </actions>
             <offsetFromField>HRO_Onboarding_Task_Set__c.Start_Date__c</offsetFromField>
@@ -147,7 +147,7 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Upcoming_tasks_Month1</name>
+                <name>HRO_Upcoming_tasks_Month1</name>
                 <type>Alert</type>
             </actions>
             <offsetFromField>HRO_Onboarding_Task_Set__c.Start_Date__c</offsetFromField>
@@ -156,22 +156,12 @@
         </workflowTimeTriggers>
         <workflowTimeTriggers>
             <actions>
-                <name>Upcoming_tasks_Beyond</name>
+                <name>HRO_Upcoming_tasks_Beyond</name>
                 <type>Alert</type>
             </actions>
             <offsetFromField>HRO_Onboarding_Task_Set__c.Start_Date__c</offsetFromField>
             <timeLength>84</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
-    </rules>
-    <rules>
-        <fullName>Sent Email Notifications</fullName>
-        <active>false</active>
-        <criteriaItems>
-            <field>HRO_Onboarding_Task_Set__c.Start_Date__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <description>Workflow sent email notifications basing on</description>
-        <triggerType>onCreateOnly</triggerType>
     </rules>
 </Workflow>
