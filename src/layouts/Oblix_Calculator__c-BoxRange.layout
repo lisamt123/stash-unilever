@@ -25,7 +25,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Points_HigH__c</field>
+                <field>Points_High__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

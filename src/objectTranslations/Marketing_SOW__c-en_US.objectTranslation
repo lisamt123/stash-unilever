@@ -132,14 +132,6 @@
         <name>OblixSOWOverallTotal__c</name>
     </fields>
     <fields>
-        <label><!-- Total Adapt Fees --></label>
-        <name>OblixTotalAdaptFees__c</name>
-    </fields>
-    <fields>
-        <label><!-- Total Digital Fees --></label>
-        <name>OblixTotalDigitalFees__c</name>
-    </fields>
-    <fields>
         <label><!-- Total Number of basics --></label>
         <name>OblixTotalNumberofbasics__c</name>
     </fields>
@@ -148,11 +140,11 @@
         <name>OblixTotalNumberofprojects__c</name>
     </fields>
     <fields>
-        <label><!-- Total Other Items Fees --></label>
+        <label><!-- Total Non Campaign Fees --></label>
         <name>OblixTotalOtherItemsFees__c</name>
     </fields>
     <fields>
-        <label><!-- Total Projects Fees --></label>
+        <label><!-- Total Campaign Fees --></label>
         <name>OblixTotalProjectsFees__c</name>
     </fields>
     <fields>
@@ -274,10 +266,6 @@
         <sections>
             <label><!-- Sow Approval &amp; Contact --></label>
             <section>Sow Approval &amp; Contact</section>
-        </sections>
-        <sections>
-            <label><!-- Version Control Attributes (to be hidden) --></label>
-            <section>Version Control Attributes (to be hidden)</section>
         </sections>
     </layouts>
     <recordTypes>

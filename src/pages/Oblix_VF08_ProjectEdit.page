@@ -1,53 +1,191 @@
-<apex:page sidebar="false" controller="Oblix_Ctrl06SOWView_CC" docType="html-5.0">
+<apex:page sidebar="false" controller="Oblix_Ctrl07ProjectEdit_CC" docType="html-5.0">
 
   <apex:form id="jqueryId">
-  
+   
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
     <script src="{!URLFOR($Resource.JQueryBlockUI)}" ></script>
- 
    
-    <style>
-         .Oblix_Container{
-            background-image : url("{!URLFOR($Resource.bgPattern)}");
+    <script>
+
+   $(document).ready(function(){
+
+        $('tr.data, tr.btt').show().find('td').wrapInner('<div />');
+        $('tr.data, tr.btt').find('td > div').hide();
+        $('table tr.Oblix_recordTypeth').click(function(){
+            var data = $(this).next('tr');
+            var btt = data.next('tr');
+            data.find('td > div').slideToggle('slow');
+            btt.find('td > div').slideToggle('slow');
+            $(this).toggleClass('show');
+        });
+        var setIdCss = {!setIdCss};
+        for (var i=0; i<setIdCss.length;i++) {
+            $('#'+setIdCss[i]+'_tabs').tabs();
+            $('#'+setIdCss[i]+'_tabs1').tabs();
+            $('#'+setIdCss[i]+'_tabs2').tabs();
+            $('#'+setIdCss[i]+'_tabs');
+            $('#'+setIdCss[i]+'_tabs').addClass('tabs-sub');
+            $('#'+setIdCss[i]+'_tabs1').addClass('tabs-min');
+            $('#'+setIdCss[i]+'_tabs2').addClass('tabs-min');
+            console.dir('#'+setIdCss[i]+'_tabs2');
+        }
+        
+   });
+   
+    function PopupValueDrivers(){           
+         $(function() {
+                $( "#dialogDrivers" ).dialog({
+                  modal: true,
+                  width: 600,
+                  buttons: {
+                    "Close": function() {
+                      $( this ).dialog( "close" );
+                       
+                    },
+                    Done: function() {
+                      $( this ).dialog( "close" );
+                      //ValueDriversUpdate();
+                    }
+                  }
+                });
+              });           
+     }
+     function PopupdialogCountries(){
+       
+         $(function() {
+                $( "#dialogCountries" ).dialog({
+                  modal: true,
+                  width: 600,
+                  buttons: {
+                    "Close": function() {
+                      $( this ).dialog( "close" );
+                       
+                    },
+                    Done: function() {
+                      $( this ).dialog( "close" );
+                      //ValueDriversUpdate();
+                    }
+                  }
+                });
+              });           
+     }
+     
+     function PopupTimeLine(){
+       
+         $(function() {
+                $( "#dialogTimeLine" ).dialog({
+                  modal: true,
+                  width: 1400,
+                  buttons: {
+                    "Close": function() {
+                      $( this ).dialog( "close" );
+                       
+                    },
+                    Done: function() {
+                      $( this ).dialog( "close" );
+                      
+                    }
+                  }
+                });
+              });           
+     }
+     function PopupAgencyHub(){
+       
+         $(function() {
+                $( "#agencyHub" ).dialog({
+                  modal: true,
+                  width: 1400,
+                  buttons: {
+                    "Close": function() {
+                      $( this ).dialog( "close" );
+                      
+                    },
+                    Done: function() {
+                      $( this ).dialog( "close" );
+                      
+                    }
+                  }
+                });
+              });           
+     }
+     function blockme() {
+       $.blockUI({ css: { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff' 
+        } }); 
+    }
+   </script>
+   
+   <style>
+           .Oblix_Container{
+            background-image : url("{!URLFOR($Resource.assetUI,'bg_pattern.png')}");
             background-repeat: no-repeat;
             position:relative;
             top: -11px;
             
+        }
+        .bg_selected{
+            background-color:rgb(183, 193, 175) !important;
         }
         table tr th h1{
             font-size: 25px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+        .topAlign tr{
+            vertical-align: top;
+        }
         .Oblix_sowDashboard{
             height:300px;
         }
-
-        .Oblix_header_title2{
-             font-size: 22px;
-        }
         .Oblix_header_title{
-            font-size: 32px;
+            font-size: 35px;
+            margin: 4px;   
+            padding-top: 7px;        
+           
         }
+        .Oblix_header_activeArrow{       
+            background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow_down.png')}");
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            color:white;
+            font-size: 21px;
+        }
+        .Oblix_header_previousArrow{       
+            background-image : url("{!URLFOR($Resource.assetUI,'previouslevel_arrow.png')}");
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            font-size: 21px;
+        }
+       
         .Oblix_header{
-            background-image : url("{!URLFOR($Resource.Header_back)}");
+            background-image : url("{!URLFOR($Resource.assetUI,'header_panel.png')}");
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
             height:100px;
-            width:1220px;
             position: relative;
             line-height: 100%;
+            width:95%;
             letter-spacing: 1px;         
         }
-        .Oblix_header td{
-             font-size: 15px;
-             font-family: Georgia, "DejaVu Serif", Norasi, serif;
+        .Oblix_header span{
+            line-height: 140%;
         }
-        
+        .Oblix_header td{
+             font-family: Georgia, "DejaVu Serif", Norasi, serif;
+             text-align: center;
+        }
         .Oblix_sowDetail{
             display: block;
             padding: 9.5px;
@@ -57,7 +195,7 @@
             color: #333;
             word-break: break-all;
             word-wrap: break-word;
-            background-color: rgb(183, 193, 175);
+            background-color: rgb(202, 212, 190);
             border: 1px solid #969696;
             border-radius: 4px;
             font-size:15px;
@@ -108,13 +246,28 @@
         table tr td {       
             font-size : 12px;
         }
-        .search_init{
+        .picklist_init{
             transition: all .2s linear;
             background: #fff;
             padding: 5px 9px;
             margin: 0;
-            border-radius: 4px;
-            width: 100%;
+            width: 68%;
+            font-size: 13px;
+        }
+        .input_init{
+            transition: all .2s linear;
+            background: #fff;
+            padding: 5px 9px;
+            margin: 0;
+            font-size: 13px;
+        }
+        .textArea_init{
+            transition: all .2s linear;
+            background: #fff;
+            padding: 5px 9px;
+            margin: 0;
+            width: 88%;
+            min-height:80px;
             font-size: 13px;
             height: 32px;
         }
@@ -123,7 +276,6 @@
             background: #fff;
             padding: 5px 9px;
             margin: 0;
-            border-radius: 4px;
             font-size: 13px;
         }
 
@@ -156,11 +308,31 @@
             -webkit-user-select: none;
         }
         .Oblix_projects_btn{
-        color: #333;
+            color: #333;
             background: #fff !important;
             border: 1px solid #b5b5b5 !important;
             display: inline-block;
             padding: 4px 12px !important;
+            width:200px;
+            margin-bottom: 0;
+            font-size: 14px !important;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+         }
+          .Oblix_popup_btn{
+            color: #333;
+            background: #B0CC8F !important;
+            display: inline-block;
+            padding: 4px 12px !important;
+            brder-radius:0px!important;
+            border:1px solid #FBEFEF !important;
             width:200px;
             margin-bottom: 0;
             font-size: 14px !important;
@@ -263,11 +435,11 @@
     }
 
     .PrColumn5{
-        width: 55%; 
+        width: 45%; 
         float: left;
     }
     .PrColumn4{
-        width: 40%; 
+        width: 50%; 
         float: left;
     }
    
@@ -298,8 +470,7 @@
         padding: 10px;
         color: white;
         font-size: 14px;
-        border-radius: 4px;
-    }
+     }
     .Oblix_table strong{
         padding-right:20px;
     }
@@ -317,22 +488,24 @@
         letter-spacing: 1px;
     }
     .Oblix_projects_header{
-        padding: 20px;
+        padding: 20px;       
+        rgba(58, 145, 67, 0.81) !important;
     }
     .padding_remove{
         padding:0px!important;
     }
-    .Oblix_heading i.fa.fa-2x.fa-sort-desc,.Oblix_recordTypeth i.fa.fa-2x.fa-sort-desc{
+    .Oblix_recordType i.fa.fa-2x.fa-sort-desc{
         display:none;
     }
-    .Oblix_heading i.fa.fa-2x.fa-sort-up,.Oblix_recordTypeth i.fa.fa-2x.fa-sort-up{
+    
+    .Oblix_recordType i.fa.fa-2x.fa-sort-up{
         display:block;
     }
      .show i.fa.fa-2x.fa-sort-desc{
-        display:none;
+        display:block;
     }
     .show i.fa.fa-2x.fa-sort-up{
-        display:block;
+        display:none;
     }
     .Oblix_icon {
         cursor:pointer;
@@ -346,10 +519,8 @@
         width: 25%;
         background-color: #BDCEBF;
         padding: 10px;
-        margin-top: 12px;
         font-weight: bold;
         height: 218px;
-        border-radius: 4px;
         margin-right: 14px;
     }
     .Oblix_icon_right{
@@ -387,7 +558,6 @@
         display: block;
         border-width: 0;
         padding: 1em 1.4em;
-        background: #E8E8E8;
         cursor: pointer;
     }
     .ui-tabs {
@@ -399,94 +569,212 @@
     textarea,select,input {
         vertical-align: top;
     }
+    
+    
+    
+    .tabs-min { 
+        background: transparent; 
+        border: none; 
+    } 
+    .tabs-min .ui-widget-header { 
+        background: transparent; 
+        border: none; 
+        border-bottom: 1px solid #c0c0c0; 
+        -moz-border-radius: 0px; 
+        -webkit-border-radius: 0px; 
+        border-radius: 0px; 
+    } 
+    .tabs-min .ui-tabs-nav .ui-state-default { 
+        background: transparent; 
+        border: none; 
+    } 
+    .tabs-min .ui-tabs-nav .ui-state-active { 
+        background: transparent url("{!URLFOR($Resource.Oblix_uiTabsArrow)}") no-repeat bottom center; 
+        border: none; 
+    } 
+    .tabs-min .ui-tabs-nav .ui-state-default a { 
+        color: #c0c0c0; 
+    } 
+    .tabs-min .ui-tabs-nav .ui-state-active a { 
+        color: #459e00; 
+    }
+    .tabs-sub .ui-widget-header {
+        background: transparent;
+    }
+    .dateFormat {
+        position: relative;
+        top: 5px;
+    }
+    .Oblix_card_title{
+        font-size:13px;
+    }
+    .Oblix_card_elmt{
+        font-size:13px;
+        margin-top:20px;
+        border-bottom:1px solid black;
+    }
+    
     </style>
-   <script>
-   $(document).ready(function(){
-
-        $('tr.data, tr.btt').show().find('td').wrapInner('<div />');
-        $('tr.data, tr.btt').find('td > div').hide();
-        $('table tr.Oblix_heading').click(function(){
-            var data = $(this).next('tr');
-            var btt = data.next('tr');
-            data.find('td > div').slideToggle('slow');
-            btt.find('td > div').slideToggle('slow');
-            $(this).toggleClass('show');
-        });
-         $('table tr.Oblix_recordTypeth').click(function(){
-            var data = $(this).next('tr');
-            var btt = data.next('tr');
-            data.find('td > div').slideToggle('slow');
-            btt.find('td > div').slideToggle('slow');
-            $(this).toggleClass('show');
-        });
-        var IdsProject = {!IdsProject};
-        console.dir(IdsProject);
-        for (var i=0; i<IdsProject.length;i++) {
-            $('#'+IdsProject[i]+'_Audio_tabs').tabs();
-            $('#'+IdsProject[i]+'_Audio_tabs1').tabs();
-            $('#'+IdsProject[i]+'_Audio_tabs2').tabs();
-            $('#'+IdsProject[i]+'_Static_tabs').tabs();
-            $('#'+IdsProject[i]+'_Static_tabs1').tabs();
-            $('#'+IdsProject[i]+'_Static_tabs2').tabs();
-            $('#'+IdsProject[i]+'_Exper_tabs').tabs();
-            $('#'+IdsProject[i]+'_Exper_tabs1').tabs();
-            $('#'+IdsProject[i]+'_Exper_tabs2').tabs();
-            $('#'+IdsProject[i]+'_Value_tabs').tabs();
-            $('#'+IdsProject[i]+'_Value_tabs1').tabs();
-            $('#'+IdsProject[i]+'_Value_tabs2').tabs();
-            $('#'+IdsProject[i]+'_Digital_tabs').tabs();
-            $('#'+IdsProject[i]+'_Digital_tabs1').tabs();
-            $('#'+IdsProject[i]+'_Digital_tabs2').tabs();
-            $('#'+IdsProject[i]+'_Research_tabs').tabs();
-            $('#'+IdsProject[i]+'_Research_tabs1').tabs();
-            $('#'+IdsProject[i]+'_Research_tabs2').tabs();
-        }
-   });
    
-    function Popup(){
-             $("#dialog").dialog({
-             width: 600,
-             modal:true,
-             close: function(event,ui){
-                 $("pop").dialog('destroy');          
-                    }
-             }); 
-            
-     }
-   </script>
-   
+    
     <div class="Oblix_Container">
-    <div id="dialog" title="Attachment list" style="display:none">   
-      <apex:pageBlock >
-       <apex:pageBlockTable value="{!lstAttachements}" var="attach">
-           <apex:column headerValue="Name">
-               
-               <apex:outputLink value="{!attach.Id}">{!attach.Name}</apex:outputLink>
-           </apex:column>
-            <apex:column headerValue="Parent Name">
-                 <apex:inputField value="{!attach.Parent.Name}"/>
-           </apex:column>
-       </apex:pageBlockTable>
-     </apex:pageBlock>
+    <!-- Countries popUp Start-->
+    <apex:actionFunction name="AddToProjectAction" action="{!AddToProjectAction}" reRender="Oblix_card"/>
+      <apex:inputField value="{!assetJoe.Oblix_Quantity__c}"/>
+      <apex:outputPanel id="testReR">
+          <apex:outputField value="{!assetJoe.Oblix_Quantity__c}"/>
+      </apex:outputPanel>
+    <div id="dialogCountries" title="Choose Countries" style="display:none">   
+      <table width="100%">
+         <center>
+              <tr>
+                  <td width="50%"><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Innovation_Projects__c.label} </strong></td>
+                  <td width="50%"><apex:inputField value="{!project.Innovation_Projects__c}" styleClass="input_init"/> </td>
+              </tr>
+               <tr>
+                  <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Brand_Led_Growth__c.label} </strong></td>
+                  <td> <apex:inputField value="{!project.Brand_Led_Growth__c}" styleClass="input_init"/></td>
+              </tr>
+               <tr>
+                  <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Scale_1__c.label} </strong></td>
+                  <td> <apex:inputField value="{!project.Project_Scale_1__c}" styleClass="input_init"/></td>
+              </tr>
+               <tr>
+                  <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Scale_2__c.label} </strong></td>
+                  <td><apex:inputField value="{!project.Project_Scale_2__c}" styleClass="input_init"/></td>
+              </tr>
+              <tr>
+                  <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Idea__c.label} </strong></td>
+                  <td> <apex:inputField value="{!project.Campaign_Idea__c}" styleClass="input_init"/></td>
+              </tr>
+          </center>
+      </table>
    </div>
-
-   <!-- </div> -->
+  <!-- Countries PopUp End -->
+   <!-- ValueDrivers popUp Start-->
+    <div id="dialogDrivers" title="Value Drivers" style="display:none">   
+      <table width="100%">
+         <center>
+              <tr>
+                  <td width="50%"><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Innovation_Projects__c.label} </strong></td>
+                  <td width="50%"><apex:inputField value="{!project.Innovation_Projects__c}" styleClass="input_init"/> </td>
+              </tr>
+               <tr>
+                  <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Brand_Led_Growth__c.label} </strong></td>
+                  <td> <apex:inputField value="{!project.Brand_Led_Growth__c}" styleClass="input_init"/></td>
+              </tr>
+               <tr>
+                  <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Scale_1__c.label} </strong></td>
+                  <td> <apex:inputField value="{!project.Project_Scale_1__c}" styleClass="input_init"/></td>
+              </tr>
+               <tr>
+                  <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Scale_2__c.label} </strong></td>
+                  <td><apex:inputField value="{!project.Project_Scale_2__c}" styleClass="input_init"/></td>
+              </tr>
+              <tr>
+                  <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Idea__c.label} </strong></td>
+                  <td> <apex:inputField value="{!project.Campaign_Idea__c}" styleClass="input_init"/></td>
+              </tr>
+          </center>
+      </table>
+   </div>
+  <!-- ValueDrivers PopUp End -->
+   <!-- Agency Hub popUp Start-->
+    <div id="agencyHub" title="Agency Hub Split " style="display:none">   
+      <table width="100%">
+         <center>
+              <tr>
+                  <td width="50%"><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Innovation_Projects__c.label} </strong></td>
+                  <td width="50%"><apex:inputField value="{!project.Innovation_Projects__c}" styleClass="input_init"/> </td>
+              </tr>
+               <tr>
+                  <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Brand_Led_Growth__c.label} </strong></td>
+                  <td> <apex:inputField value="{!project.Brand_Led_Growth__c}" styleClass="input_init"/></td>
+              </tr>
+               <tr>
+                  <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Scale_1__c.label} </strong></td>
+                  <td> <apex:inputField value="{!project.Project_Scale_1__c}" styleClass="input_init"/></td>
+              </tr>
+               <tr>
+                  <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Scale_2__c.label} </strong></td>
+                  <td><apex:inputField value="{!project.Project_Scale_2__c}" styleClass="input_init"/></td>
+              </tr>
+              <tr>
+                  <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Idea__c.label} </strong></td>
+                  <td> <apex:inputField value="{!project.Campaign_Idea__c}" styleClass="input_init"/></td>
+              </tr>
+          </center>
+      </table>
+   </div>
+  <!-- Agency hub PopUp End -->
+  <!-- TimeLines popUp Start-->
+      <div id="dialogTimeLine" title="TimeLines" style="display:none">   
+      <table width="100%">
+         <center>
+              <tr>
+                  <td ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Start_Date__c.label} </strong></td>
+                  <td ><apex:inputField value="{!project.Project_Start_Date__c}" showDatePicker="true" styleClass="input_init"/> </td>
+                  
+                   <td ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Date_for_Assets_to_be_in_BET__c.label} </strong></td>
+                  <td ><apex:inputField value="{!project.Date_for_Assets_to_be_in_BET__c}" styleClass="input_init"/> </td>
+                  
+                   <td ><strong>to be defined </strong></td>
+                  <td ><apex:inputField value="{!project.Date_for_Assets_to_be_in_BET__c}" styleClass="input_init"/> </td>
+              </tr>
+               <tr>
+                  <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Completion_Date__c.label} </strong></td>
+                  <td> <apex:inputField value="{!project.Project_Completion_Date__c}" styleClass="input_init"/></td>
+              </tr>
+               <tr>
+                  <td><strong>To be defined </strong></td>
+                  <td> <apex:inputField value="{!project.Project_Completion_Date__c}" styleClass="input_init"/></td>
+              </tr>
+               <tr>
+                  <td><strong>To be defined </strong></td>
+                  <td><apex:inputField value="{!project.First_Air_Date__c}" styleClass="input_init"/></td>
+              
+                  <td><strong>To be defined </strong></td>
+                  <td> <apex:inputField value="{!project.First_Air_Date__c}" styleClass="input_init"/></td>
+                  <td><strong>To be defined </strong></td>
+                  <td> <apex:inputField value="{!project.First_Air_Date__c}" styleClass="input_init"/></td>
+              </tr>
+              <tr>
+                  <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Production_Completion_Date__c.label} </strong></td>
+                  <td> <apex:inputField value="{!project.Production_Completion_Date__c}" styleClass="input_init"/></td>
+                  <td><strong>To be defined </strong></td>
+                  <td> <apex:inputField value="{!project.Project_Finish_Date__c}" styleClass="input_init"/></td>
+              </tr>
+              <tr>
+                  <td colspan="6">
+                      <td align="center"> <apex:inputField value="{!project.Timescale_Notes__c}" styleClass="input_init"/></td>
+                  </td>
+              </tr>
+          </center>
+      </table>
+   </div>
+   <!-- TimeLines popUp End -->
+      <apex:actionFunction name="ValueDriversUpdate" action="{!ValueDriversUpdate}" reRender="jqueryId"/>
+  
     <center>
     <div class="Oblix_header">
        
-       <table width="90%" cellspacing="10px">
+      <table width="90%" height="90%">
             <tr>
-                <td width="8%">
+                <td width="5%">
                 <apex:image value="{!$Resource.Unilever_logo}" width="60px" height="60px" />
                 </td>
-                <td width="20%">
-                <div class="Oblix_header_title">SWOP</div><br/>Sow Online Planner
+                <td width="15%">
+                <div class="Oblix_header_title">SWOP</div><br/><span>Scope of Work<br/>Online Planner</span>
+                </td>
+                <td width="15%" class="Oblix_header_previousArrow">
+                    View SOW 
+                </td>
+                <td width="15%" class="Oblix_header_activeArrow">
+                    <apex:outputPanel rendered="{!projectId != null}" > Edit Campaign <br/></apex:outputPanel>
+                    <apex:outputPanel rendered="{!projectId == null}" > View Campaign <br/></apex:outputPanel>
                 </td>
                 <td width="15%">
-                <div class="Oblix_header_title2">View SOW </div><br/>
-                </td>
-                <td width="15%">
-                <div class="Oblix_header_title2">Add Project </div><br/>
+                <div></div><br/>
                 </td>
                 <td></td>
                 <td>
@@ -496,63 +784,48 @@
         </table>
        
     </div>
-   
+     
     </center>
- 
+    <apex:pagemessages ></apex:pagemessages>
+  
      <div class="Oblix_table padding_remove">
          <div class="Oblix_projects_container">  
+            
             <table class="Oblix_projects_header" width="100%">
                 <tr>
                     <td width="20%">
-                        <h1> Add/Edit Project</h1>
+                        <h1><apex:outputText rendered="{!IF(project.Id==null,true, false)}">Add Campaign</apex:outputText> <apex:outputText rendered="{!IF(project.Id<>null,true, false)}">Edit Campaign</apex:outputText></h1>
                     </td>
                     <td>
-                    </td>
-                    <td  width="15%">
-                        <apex:commandButton value="Save Project" styleClass="Oblix_projects_btn" action="{!SaveProjectAction}"/>
-                    </td>                    
+                    </td>                                     
                 </tr>
             </table>
+
             <table width="100%">
                 <tbody>   
-                 <tr class="Oblix_heading">
-                    <th>
-                        <table width="100%">
-                            <tr>
-                                <td width="20%">
-                                    {!SelectedProject.name}
-                                </td>
-                                <td>
-                                </td>
-                                <td width="10%">
-                                    In progress
-                                </td>
-                                <td width="3%" class="Oblix_icon">
-                                    <i class="fa fa-2x fa-sort-desc"></i>
-                                </td>
-                            </tr>
-                        </table>
-                    </th>   
-                </tr>
+                
                 <tr>
                     <td width="100%">
-                         <table width="100%">
+                    
+                         <!-- Project details -->   
+                             <apex:outputPanel id="projectDetailId">
+                            <table width="100%">
                             <tr>
                             <td width="40%">
                                <section class="PrColumn1">
                                    <table width="100%" >
                                      <tr>
                                           <td>
-                                            <strong>Description</strong><br/>
-                                            <apex:inputField value="{!SelectedProject.Description__c}"/>
+                                            <strong>Project Name</strong><br/>
+                                            <apex:inputField styleClass="input_init" value="{!project.Name}"/>
                                           </td>
                                           
                                      </tr>
                                      <tr><td colspan="2">&nbsp;</td></tr>                                 
                                      <tr>
                                          <td>
-                                             <strong>JTBD</strong><br/>
-                                             <apex:inputField value="{!SelectedProject.Description__c}"/>
+                                             <strong>Description</strong><br/>
+                                             <apex:inputField styleClass="textArea_init"   value="{!project.Description__c}"/>
                                          </td>
                                      </tr>   
                                     
@@ -562,143 +835,95 @@
                                <section class="PrColumn2">
                                    <table width="100%"> 
                                         <tr>    
-                                          <td colspan="2"><strong>Priority </strong><apex:inputField value="{!SelectedProject.Project_Priority__c}"/></td>
+                                          <td colspan="2"><strong>Priority </strong><apex:inputField styleClass="picklist_init"   value="{!project.Project_Priority__c}"/></td>
                                        </tr>
                                        <tr>    
-                                          <td colspan="2"><strong>Platforme </strong><apex:inputField value="{!SelectedProject.Platform__c}"/></td>
+                                          <td colspan="2"><strong>Platforme </strong><apex:inputField styleClass="input_init"   value="{!project.Platform__c}"/></td>
                                        </tr>
                                        <tr>
-                                          <td style="vertical-align: top;" ><strong>Contries/Region </strong><br/><apex:inputField value="{!SelectedProject.OblixCountries__c}"/></td>
-                                       </tr>
-                                       <tr><td colspan="2">&nbsp;</td></tr>
-                                       <tr>
-                                          <td colspan="2"><strong>Agency Hub Split</strong></td>
-                                       </tr>   
-                                       <tr>
-                                            <td> tak tak</td>
-                                            <td width="30%"> 50%</td>
-                                       </tr>
-                                       <tr>
-                                            <td> tak tak</td>
-                                            <td> 50%</td>
-                                       </tr>
-                                       <tr>
-                                            <td> tak tak</td>
-                                            <td> 50%</td>
+                                          <td>
+                                             <strong>JTBD</strong><br/>
+                                             <apex:inputField styleClass="textArea_init"   value="{!project.Description__c}"/>
+                                         </td>
                                        </tr>
                                        <tr><td colspan="2">&nbsp;</td></tr>
-                                       <tr>
-                                          <td colspan="2"><strong>Value drivers</strong></td>
-                                       </tr>   
-                                       <tr>
-                                            <td> tak tak</td>
-                                            <td>NO</td>
-                                       </tr>
-                                       <tr>
-                                            <td colspan="2"> tak tak</td>
-                                       </tr>
-                                       <tr>
-                                            <td colspan="2"> tak tak</td>
-                                       </tr>                    
+                                       
                                    </table>
                                </section> 
                            </td>
-                           <td width="25%">
+                           <td width="20%">
                                <section class="PrColumn3">   
-                                   <table width="100%"> 
-                                        <tr>    
-                                          <td><strong>Project Start date </strong></td><td><apex:inputField value="{!SelectedProject.Production_Completion_Date__c}" /></td>
-                                       </tr>
-                                       <tr>    
-                                          <td><strong>Project Completion </strong></td><td><apex:inputField value="{!SelectedProject.Production_Completion_Date__c}" /></td>
-                                       </tr>
-                                       <tr>
-                                          <td><strong>First Air date </strong></td><td><apex:inputField value="{!SelectedProject.Production_Completion_Date__c}" /></td>
-                                       </tr>
-                                       <tr>
-                                           <td><strong>Production Complete </strong></td><td><apex:inputField value="{!SelectedProject.Production_Completion_Date__c}" /></td>
-                                       </tr>   
-                                       <tr>
-                                            <td><strong>Due Date of BET </strong></td><td><apex:inputField value="{!SelectedProject.Production_Completion_Date__c}" /></td>
-                                       </tr>
-                                       <tr>
-                                            <td><strong>Bet First Release </strong></td><td><apex:inputField value="{!SelectedProject.Production_Completion_Date__c}" /></td>
-                                       </tr>
-                                       <tr>
-                                            <td><strong>Preview </strong></td><td><apex:inputField value="{!SelectedProject.Production_Completion_Date__c}" /></td>
-                                       </tr>
-                                       <tr>
-                                           <td><strong>Start on TV production </strong></td><td><apex:inputField value="{!SelectedProject.Production_Completion_Date__c}" /></td>
-                                       </tr>   
-                                       <tr>
-                                            <td><strong>Final release </strong></td><td><apex:inputField value="{!SelectedProject.Production_Completion_Date__c}" /></td>
-                                       </tr>
-                                       <tr>
-                                            <td><strong>Live date </strong></td><td><apex:inputField value="{!SelectedProject.Production_Completion_Date__c}" /></td>
-                                       </tr>
-                                       <tr>
-                                            <td><strong>Live date/Asset delivery </strong></td><td><apex:inputField value="{!SelectedProject.Production_Completion_Date__c}" /></td>
-                                       </tr>    
-                                       <tr><td colspan="2">&nbsp;</td></tr>             
-                                       <tr>
-                                            <td colspan="2"><strong>Timescale notes</strong></td>
+                                   <table width="100%">  
+                                      <tr>
+                                          <td>
+                                             <apex:commandButton value="Contries \ Region" styleClass="Oblix_popup_btn" onclick="PopupdialogCountries();return false"/>
+                                          </td>
                                        </tr>  
-                                        <tr>
-                                            <td colspan="2">Tak tak</td>
-                                       </tr>                         
+                                       <tr>
+                                          <td>
+                                             <apex:commandButton value="Agency Hub split" styleClass="Oblix_popup_btn" onclick="PopupAgencyHub();return false"/>
+                                          </td>
+                                       </tr>  
+                                       <tr>
+                                          <td>
+                                             <apex:commandButton value="Value Drivers" styleClass="Oblix_popup_btn"  onclick="PopupValueDrivers();return false" />
+                                            
+                                          </td>
+                                       </tr>  
+                                       <tr>
+                                          <td>
+                                             <apex:commandButton value="TimeLine" styleClass="Oblix_popup_btn" onclick="PopupTimeLine();return false"/>
+                                          </td>
+                                       </tr>      
                                    </table>
                                </section>
                            </td>
                            <td>
                            <section class="PrColumn4">
-                               <table width="100%" >  
+                               <table width="100%">  
                                     <tr>    
                                       <td><strong>% of fee this FY </strong></td>
-                                      <td> 70% </td>
+                                      <td><apex:inputField value="{!project.Project_Stage__c}" styleClass="input_init"/></td>
                                    </tr>
                                    <tr>    
                                       <td><strong>Agency % fee this FY </strong></td>
-                                      <td> 70% </td>
+                                      <td><apex:inputField value="{!project.Project_Stage__c}" styleClass="input_init"/> </td>
                                    </tr>
-                                   <tr><td colspan="2">&nbsp;</td></tr> 
-                                   <tr><td colspan="2">&nbsp;</td></tr> 
-                                   <tr><td colspan="2">&nbsp;</td></tr> 
-                                   <tr>
-                                       <td colspan="2"><span style="text-decoration: underline;">Updated</span> &nbsp;<apex:inputField value="{!SelectedProject.Production_Completion_Date__c}" /><br/> by Asmae</td>
-                                   </tr>
-                                   <tr><td colspan="2">&nbsp;</td></tr> 
-                                   <tr><td colspan="2">&nbsp;</td></tr> 
-                                   <tr><td colspan="2">&nbsp;</td></tr>
                                    <tr>
                                         <td colspan="2">
-                                            <apex:inputField value="{!SelectedProject.Project_Stage__c}" styleClass="search_init"/>
+                                            <apex:inputField value="{!project.Project_Stage__c}" styleClass="picklist_init"/>
                                         </td>
                                    </tr>
                                    <tr>
                                        <td colspan="2">
-                                            <apex:inputField value="{!SelectedProject.Project_Stage__c}" styleClass="search_init"/>
+                                            <apex:inputField styleClass="picklist_init" value="{!project.Project_Stage__c}"/>
                                         </td>
                                    </tr>    
-                                   <tr><td colspan="2">&nbsp;</td></tr>  
+                                   <tr><td></td></tr>  
                               </table>
                               </section>
                              
                               <section class="PrColumn5">
                                  <center>
-                                     <br/> <br/> <br/> <br/>
-                                     <apex:commandButton value="Back " action="{!EditAction}" rerender="EditPanel" styleClass="Oblix_projects_btn"/><br/>
-                                      <apex:commandButton value="Save project" action="{!EditAction}" rerender="EditPanel" styleClass="Oblix_projects_btn"/><br/>
-                                      <apex:commandButton value="Edit / Add items" styleClass="Oblix_projects_btn"/><br/>
+                                     <apex:commandButton value="Back " action="{!BackAction}" rerender="EditPanel" styleClass="Oblix_projects_btn"/><br/>
+                                      <apex:commandButton value="Save project" action="{!SaveProjectAction}"  rendered="{!projectId != null}" styleClass="Oblix_projects_btn"/><br/>
+                                      <apex:commandButton value="Save project" action="{!InsertProjectAction}" rendered="{!projectId == null}" styleClass="Oblix_projects_btn"/><br/>
+                                      <apex:commandButton value="Edit / Add items" action="{!EditAction}" styleClass="Oblix_projects_btn"/><br/>
                                       <apex:commandButton value="Clone Project" styleClass="Oblix_projects_btn"/>
                                  </center>  
                               </section>   
                               </td>
                            </tr>
-                           </table>
+                           </table>  
+                        </apex:outputPanel>
+                         <!-- End Project Details -->                        
+                           <!-- Record Type Content -->
                            
+                           <apex:outputPanel rendered="{!projectId != null}" id="Oblix_ItemsId">
                            <div class="Oblix_recordType">
                            <table width="100%">
-                               <apex:repeat value="{!setRecordType}" var="recordType">
+                               <apex:repeat value="{!lstRecordType}" var="recordType">
+                               
                                 <tr class="Oblix_recordTypeth">
                                     <th>
                                         <div class="Oblix_div_left">
@@ -711,26 +936,142 @@
                                     </th>   
                                 </tr>
                                 <tr class="data Oblix_subCat">
-                                    <td width="100%" style="paddding:20px">
-                                     <apex:repeat value="{!lstAssets}" var="asset">
-                                        <apex:outputpanel rendered="{!if(asset.RecordType.Name == recordType && asset.Agency_Projects__r.id == SelectedProject.id ,true,false)}" >
-                                           <div class="Oblix_assets"> <strong>{!asset.Name}</strong>- {!asset.Channels__c}</div>
-                                        </apex:outputpanel>
-                                    </apex:repeat>
-                                    </td>  
-                                </tr>                               
+                                    <td width="100%">
+                                      <apex:outputPanel rendered="{!isEdit == true}">  
+                                        <apex:repeat value="{!lstAssets}" var="asset">
+                                            <apex:outputpanel rendered="{!if(asset.RecordType.Name == recordType && asset.Agency_Projects__r.id == project.id ,true,false)}" >
+                                               <div class="Oblix_assets"> <strong>{!asset.Name}</strong>- {!asset.Channels__c}</div>
+                                            </apex:outputpanel>
+                                        </apex:repeat>
+                                     </apex:outputPanel>
+                                     <apex:outputPanel rendered="{!isEdit == false}">  
+                                     <div id="{!mapRTIdCSS[recordType]}_tabs">
+                                         <ul>
+                                             <apex:variable var="count" value="{!1}"/>
+                                             <apex:repeat value="{!mapRTSUBCat[recordType]}" var="subCat">
+                                                <li><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count}">{!subCat}</a></li>
+                                                <apex:variable var="count" value="{!count + 1}"/>
+                                             </apex:repeat>
+                                             
+                                        </ul>
+                                        
+                                        <div id="{!mapRTIdCSS[recordType]}_tabs-1">
+                                            <p>
+                                                <div id="{!mapRTIdCSS[recordType]}_tabs1">
+                                                    <ul>
+                                                        <li><a href="#{!mapRTIdCSS[recordType]}_tabs-11">Complexity 2</a></li>
+                                                        <li><a href="#{!mapRTIdCSS[recordType]}_tabs-12">Complexity 3</a></li>
+                                                        <li><a href="#{!mapRTIdCSS[recordType]}_tabs-13">Complexity 4</a></li>
+                                                        <li><a href="#{!mapRTIdCSS[recordType]}_tabs-14">Complexity 5</a></li>
+                                                    </ul>
+                                                    <div id="{!mapRTIdCSS[recordType]}_tabs-11">
+                                                         <center>
+                                                         <apex:variable var="idMap" value="Admin_{!mapRTSUBCat[recordType][0]}_1"/>
+                                                         <table width="70%">
+                                                             <tr>                                                           
+                                                                <td><apex:inputField styleClass="input_init"  value="{!asset.Location__c}" /></td>  
+                                                                <td><apex:commandButton value="Add more details" styleClass="Oblix_popup_btn"/></td>
+                                                                <td><apex:inputText value="{!assetJoe.Oblix_Quantity__c}" styleClass="input_init" style="width: 40px;" /><span style="font-size:19px">&nbsp;x&nbsp;</span>
+                                                                <apex:commandButton value="Add to project" action="{!AddToProjectAction}" onclick="blockme()" oncomplete="$.unblockUI()" styleClass="Oblix_projects_btn"  reRender="Oblix_card">
+                                                                    <apex:param assignTo="{!recordType}" name="recordType" value="{!recordType}" />
+                                                                    <apex:param assignTo="{!subCat}" name="subCat" value="ORIGINATION" />
+                                                                    <apex:param assignTo="{!complexity}" name="complexity" value="1" />
+                                                                </apex:commandButton>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        </center>
+                                                    </div>
+                                                    <div id="{!mapRTIdCSS[recordType]}_tabs-12">
+                                                        <center>
+                                                        <apex:variable var="idMap" value="Admin_{!mapRTSUBCat[recordType][0]}_2"/>
+                                                         <table width="70%">
+                                                             <tr>
+                                                                <td><apex:inputField styleClass="input_init"  value="{!asset.Location__c}" /></td>  
+                                                                <td><apex:commandButton value="Add more details" styleClass="Oblix_popup_btn"/></td>
+                                                                <td><apex:inputField value="{!mapRTSUBCatAsset[idMap].Oblix_Quantity__c}" styleClass="input_init" style="width: 40px;"/><span style="font-size:19px">&nbsp;x&nbsp;</span>
+                                                                <apex:commandButton value="Add to project" action="{!AddToProjectAction}" onclick="blockme()" oncomplete="$.unblockUI()" styleClass="Oblix_projects_btn" reRender="Oblix_card">
+                                                                    <apex:param assignTo="{!recordType}" name="recordType" value="{!recordType}" />
+                                                                    <apex:param assignTo="{!subCat}" name="subCat" value="ORIGINATION" />
+                                                                    <apex:param assignTo="{!complexity}" name="complexity" value="2" />
+                                                                </apex:commandButton>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        </center>
+                                                    </div>
+                                                     <div id="{!mapRTIdCSS[recordType]}_tabs-13">
+                                                        <center>
+                                                        <apex:variable var="idMap" value="Admin_{!mapRTSUBCat[recordType][0]}_3"/>
+                                                         <table width="70%">
+                                                             <tr>
+                                                                <td><apex:inputField styleClass="input_init"  value="{!asset.Location__c}" /></td>  
+                                                                <td><apex:commandButton value="Add more details" styleClass="Oblix_popup_btn"/></td>
+                                                                <td><apex:inputField value="{!mapRTSUBCatAsset[idMap].Oblix_Quantity__c}" styleClass="input_init" style="width: 40px;"/><span style="font-size:19px">&nbsp;x&nbsp;</span>
+                                                                <apex:commandButton value="Add to project" action="{!AddToProjectAction}" onclick="blockme()" oncomplete="$.unblockUI()" styleClass="Oblix_projects_btn" reRender="Oblix_card">
+                                                                    <apex:param assignTo="{!recordType}" name="recordType" value="{!recordType}" />
+                                                                    <apex:param assignTo="{!subCat}" name="subCat" value="ORIGINATION" />
+                                                                    <apex:param assignTo="{!complexity}" name="complexity" value="3" />
+                                                                </apex:commandButton>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        </center>
+                                                    </div>
+                                                    <div id="{!mapRTIdCSS[recordType]}_tabs-14">
+                                                        <center>
+                                                          <table width="70%">
+                                                             <tr>
+                                                                <td><apex:inputField styleClass="input_init"  value="{!asset.Location__c}" /></td>  
+                                                                <td><apex:commandButton value="Add more details" styleClass="Oblix_popup_btn"/></td>
+                                                                <td><apex:inputField value="{!mapRTSUBCatAsset[idMap].Oblix_Quantity__c}" styleClass="input_init" style="width: 40px;"/><span style="font-size:19px">&nbsp;x&nbsp;</span>
+                                                                <apex:commandButton value="Add to project" action="{!AddToProjectAction}" onclick="blockme()" oncomplete="$.unblockUI()" styleClass="Oblix_projects_btn" reRender="Oblix_card">
+                                                                    <apex:param assignTo="{!recordType}" name="recordType" value="{!recordType}" />
+                                                                    <apex:param assignTo="{!subCat}" name="subCat" value="ORIGINATION" />
+                                                                    <apex:param assignTo="{!complexity}" name="complexity" value="3" />
+                                                                </apex:commandButton>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        </center>
+                                                    </div>
+                                                </div>            
+                                            </p>
+                                        </div>                                                                     
+                                    </div>
+                                    </apex:outputPanel>
+                                    
+                                    </td>
+                                </tr>
+                                                            
                                </apex:repeat>
                             </table>
                             </div>
                             
-                         <div class="Oblix_card"> Card </div>
-                       </td>
+                           <!-- End Record Type Content -->      
+                           <!-- Card Content -->              
+                            <div class="Oblix_card">
+                                <div class="Oblix_card_title">
+                                    <div style="float:left">Estimation Cost :</div>
+                                    <div style="float:right">  $</div>
+                                </div>
+                                <apex:outputPanel id="Oblix_card">
+                                    <apex:outputField value="{!assetJoe.Oblix_Quantity__c}"/>
+                                    <apex:repeat value="{!lstAssetsForCard}" var="asset">
+                                            <div class="Oblix_card_elmt"><apex:outputField value="{!assetJoe.Oblix_Quantity__c}"/><span style="font-size:19px">&nbsp;x&nbsp;</span>{!asset.Name}</div>                                       
+                                    </apex:repeat>
+                                </apex:outputPanel>
+                            </div>
+                            </apex:outputPanel>
+                            
+                          <!-- End Card Content --> 
+                       </td>                     
                 </tr>
           </tbody>
-        </table>
-     
-    </div>
+        </table>     
+    </div>   
  </div>
  </div><!--  End Container -->
 </apex:form>
+
 </apex:page>

@@ -24,8 +24,9 @@
       }
         baseURL = "/apex/Oblix_VF03CustomAssetLookup?txt=" + txtId;
       // Following is the url of Custom Lookup page. You need to change that accordingly
-      var assetType = '{!asset.Asset_Type__c}';
+      var assetType = '{!rtName}';
       var categoryType = '{!asset.Sub_Category__c}'; 
+      //alert(categoryType);
       if( assetType != null && assetType != ''){
         baseURL += "&assetType="+assetType;
       }

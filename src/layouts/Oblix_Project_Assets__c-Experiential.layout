@@ -15,6 +15,10 @@
                 <behavior>Edit</behavior>
                 <field>Additional_Description__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Oblix_Quantity__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -44,7 +48,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Field to be Hidden</label>
+        <label>General</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>

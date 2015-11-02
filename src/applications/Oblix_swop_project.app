@@ -8,11 +8,4 @@
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
     <tab>Marketing_SOW__c</tab>
-    <tab>Oblix_SOW_Projects__c</tab>
-    <tab>Oblix_Project_Assets__c</tab>
-    <tab>Marketing_Basics__c</tab>
-    <tab>Oblix_Marketing_SOW_Project_Splits__c</tab>
-    <tab>Oblix_Calculator__c</tab>
-    <tab>Asset_Scoring__c</tab>
-    <tab>MDO_BrandUser__c</tab>
 </CustomApplication>

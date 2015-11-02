@@ -118,6 +118,10 @@
         <name>OblixClonedFromParentAsset__c</name>
     </fields>
     <fields>
+        <label><!-- Oblix Quantity --></label>
+        <name>Oblix_Quantity__c</name>
+    </fields>
+    <fields>
         <label><!-- Quantity --></label>
         <name>Quantity__c</name>
     </fields>
@@ -210,8 +214,8 @@
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label><!-- Field to be Hidden --></label>
-            <section>Field to be Hidden</section>
+            <label><!-- General --></label>
+            <section>General</section>
         </sections>
     </layouts>
     <layouts>

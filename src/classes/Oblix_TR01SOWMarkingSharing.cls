@@ -15,7 +15,7 @@
     Update History
     --------------    
 */ 
-public without sharing class Oblix_TR01SOWMarkingSharing {
+public with sharing class Oblix_TR01SOWMarkingSharing {
     
     public static void sowMarketingSharing(List<Marketing_SOW__c> lstMarketingSow){
         //Select m.UserOrGroupId, m.RowCause, m.ParentId, m.Id From Marketing_SOW__Share m

@@ -2,5 +2,4 @@
 <HomePageLayout xmlns="http://soap.sforce.com/2006/04/metadata">
     <narrowComponents>standard-RecentItems</narrowComponents>
     <narrowComponents>TH1__ONE Widget</narrowComponents>
-    <wideComponents>Unilever Way</wideComponents>
 </HomePageLayout>

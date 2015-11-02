@@ -56,7 +56,6 @@
         <externalId>false</externalId>
         <label>Brand</label>
         <referenceTo>MDO_Brand__c</referenceTo>
-        <relationshipLabel>Brands Users</relationshipLabel>
         <relationshipName>Brands_Users</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>true</reparentableMasterDetail>
@@ -75,18 +74,22 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-    <label>Brand User</label>
+    <label>SWOP Brand User</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Brand__c</columns>
+        <columns>User__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>BU-{0000}</displayFormat>
         <label>Brand User Name</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Brands Users</pluralLabel>
+    <pluralLabel>SWOP Brands Users</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

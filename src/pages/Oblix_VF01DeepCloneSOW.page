@@ -14,41 +14,58 @@
     
 		$(window).load(function() {
 			 //First Check is to verify if there are any copies left to be created
-			 if({!isEnaughCopies} == true){ 
-			 	$.unblockUI();
-			 	$(function() {
-				    $( "#dialog-message" ).dialog({
-				      modal: true,
-				      buttons: {
-				        Ok: function() {
-				          $( this ).dialog( "close" );
-				          blockme();
-				          window.location.href = '/{!sowRecordID}';
-				        }
-				      }
-				    });
-		  		});
-			 	
+			 if({!canClone} == true ){
+			 		if({!isEnaughCopies} == true){ 
+					 	$.unblockUI();
+					 	$(function() {
+						    $( "#dialog-message" ).dialog({
+						      modal: true,
+						      buttons: {
+						        Ok: function() {
+						          $( this ).dialog( "close" );
+						          blockme();
+						          window.location.href = '/{!sowRecordID}';
+						        }
+						      }
+						    });
+				  		});
+					 	
+					 }else{
+					 	$.unblockUI();
+					 	$(function() {
+						    $( "#dialog-confirm" ).dialog({
+						      modal: true,
+						      buttons: {
+						        "Copy Items": function() {
+						          $( this ).dialog( "close" );
+						           blockme();
+						           CloneSOWParent();
+						        },
+						        Cancel: function() {
+						          $( this ).dialog( "close" );
+						          window.location.href = '/{!sowRecordID}';
+						        }
+						      }
+						    });
+						  });
+					 	
+					 }
 			 }else{
 			 	$.unblockUI();
-			 	$(function() {
-				    $( "#dialog-confirm" ).dialog({
-				      modal: true,
-				      buttons: {
-				        "Copy Items": function() {
-				          $( this ).dialog( "close" );
-				           blockme();
-				           CloneSOWParent();
-				        },
-				        Cancel: function() {
-				          $( this ).dialog( "close" );
-				          window.location.href = '/{!sowRecordID}';
-				        }
-				      }
-				    });
-				  });
-			 	
+					 	$(function() {
+						    $( "#dialog-message-NoClone" ).dialog({
+						      modal: true,
+						      buttons: {
+						        Ok: function() {
+						          $( this ).dialog( "close" );
+						          blockme();
+						          window.location.href = '/{!sowRecordID}';
+						        }
+						      }
+						    });
+				  		});
 			 }
+			 
 		});
 			
 		function blockme() {
@@ -78,7 +95,12 @@
 		<div id="dialog-confirm" title="Confirm SOW Copy?">
   			<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Next Stage is {!nextStageTypeSow}. Are you sure you want to make a copy</p>
 		</div>
-		
+		<div id="dialog-message-NoClone" title="Can't Clone">
+  			<p>
+			    <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+			    	You don't have the permission to clone this Statement of work
+			</p>
+		</div>
 		<apex:actionFunction name="CloneSOWParent" action="{!CloneSowParent}"></apex:actionFunction>
 	</apex:form>
 	

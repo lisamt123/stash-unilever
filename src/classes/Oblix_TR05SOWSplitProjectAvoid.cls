@@ -33,6 +33,7 @@ public with sharing class Oblix_TR05SOWSplitProjectAvoid {
 				if(project.Marketing_SOW_Project_Splits__r.size()>0){
 					Decimal tmp_percentageSplit = 0;
 					for(Oblix_Marketing_SOW_Project_Splits__c split : project.Marketing_SOW_Project_Splits__r){
+						if(split.Percentage__c == null) { split.Percentage__c = 0;}
 						tmp_percentageSplit += split.Percentage__c;
 					}
 					if(!MapProjectToPercentage.containsKey(project.Id)){

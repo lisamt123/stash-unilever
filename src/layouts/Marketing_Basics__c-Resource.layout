@@ -17,10 +17,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Financial_Year__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>Agency__c</field>
             </layoutItems>
             <layoutItems>
@@ -38,8 +34,8 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Financial_Year_old__c</field>
+                <behavior>Readonly</behavior>
+                <field>Financial_Year__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

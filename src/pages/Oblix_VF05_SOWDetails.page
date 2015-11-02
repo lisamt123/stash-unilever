@@ -7,13 +7,11 @@
     <script src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="{!URLFOR($Resource.jquerydataTablescolumnFilter)}"></script>
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.css" />
-    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" />
     <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
 
-    <script src="https://code.highcharts.com/stock/highstock.js"></script> 
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="{!URLFOR($Resource.JQueryBlockUI)}" ></script>
  
   
@@ -62,10 +60,10 @@
                 });
                  var table = $('#example').DataTable();
                  $('#example tbody').on( 'click', 'tr', function () {
-                     blockme();
+                    blockme();
                     $(this).toggleClass('selected');
-                     $(this).addClass('bg_selected');
-                     var ids = $.map(table.rows('.selected').data(), function (item) {
+                    $(this).addClass('bg_selected');
+                    var ids = $.map(table.rows('.selected').data(), function (item) {
                         return item[0];
                     });
                     RerenderSelectedSow(ids);
@@ -74,10 +72,9 @@
                 $('#example tfoot tr').insertBefore($('#example thead tr'));
                 $('.Oblix_large_btn,.Oblix_btn').tooltip({delay: { "show": 500},
                 position:  {
-
                     using: function( position, feedback ) {
-                      $( this ).css( position );
-                      $( "<div>" )
+                    $( this ).css( position );
+                    $( "<div>" )
                         .addClass( "arrow" )
                         .addClass( feedback.vertical )
                         .addClass( feedback.horizontal )
@@ -87,6 +84,7 @@
          });
     
         function Popup(){
+            // lstAttachementsView();
              $("#dialog").dialog({
                  width: 600,
                  modal:true,
@@ -99,67 +97,146 @@
     </script>
       
     <style>
-    
+        /**** Header and container CSS ****/
         .Oblix_Container{
-            background-image : url("{!URLFOR($Resource.bgPattern)}");
+            background-image : url("{!URLFOR($Resource.assetUI,'bg_pattern.png')}");
             background-repeat: no-repeat;
             position:relative;
             top: -11px;
-            
         }
-        .bg_selected{
-            background-color:rgb(183, 193, 175) !important;
-        }
-        table tr th h1{
-            font-size: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .Oblix_sowDashboard{
-            height:300px;
-        }
+        
         .Oblix_header_title{
-            font-size: 32px;
+            font-size: 30px;
+            margin: 4px;   
+            padding-top: 7px;   
+            position:relative;
+            left: 30px;               
         }
+        .Oblix_header_activeArrow{       
+            background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow_down.png')}");
+            background-repeat: no-repeat;
+            color:white;
+        }
+       
         .Oblix_header{
-            background-image : url("{!URLFOR($Resource.Header_back)}");
+            background-image : url("{!URLFOR($Resource.assetUI,'header_panel.png')}");
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
             height:100px;
-            width:1220px;
             position: relative;
-            line-height: 100%;
+            line-height: 65%;
+            width:95%;
             letter-spacing: 1px;         
         }
+        .Oblix_header span{
+            line-height: 140%;
+            position:relative;
+            left: 39px;
+            font-size: 10px;
+        }
         .Oblix_header td{
-             font-size: 15px;
              font-family: Georgia, "DejaVu Serif", Norasi, serif;
         }
+        /**** Content CSS ****/
         .Oblix_sowDetail{
             display: block;
             padding: 9.5px;
             margin: 0 58px 23px;
-            font-size: 13px;
             line-height: 1.42857143;
             color: #333;
             word-break: break-all;
             word-wrap: break-word;
-            background-color: rgb(183, 193, 175);
-            border: 1px solid #969696;
+            background-color: rgb(202, 212, 190);
+            border: 1px solid #D6D6D6;
             border-radius: 4px;
-            font-size:15px;
             font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
         }
-        
-      .Oblix_large_btn{
+        .bg_selected{
+            background-color:#00573F !important;
+        }
+        table tr th h1{
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .topAlign tr{
+            vertical-align: top;
+        }
+        .Oblix_sowDashboard{
+            height:300px;
+        }
+        .Oblix_tableDetails tr h1{
+            font-size:16px;
+        }
+        .search_init{
+            transition: all .2s linear;
+            background: #fff;
+            padding: 5px 9px;
+            margin: 0;
+            border-radius: 4px;
+            width: 100%;
+            font-size: 13px;
+            height: 32px;
+        }        
+        .Oblix_attachment{
+            width:85% !important;
+        }
+        .column1,.column2 {
+            width: 49%; 
+            float: left;
+        }
+        .column3{
+            width: 100%; 
+            float: left;
+        }   
+        .column5{
+            width: 40%; 
+            float: left;
+            vertical-align:center;
+        }
+        .column4{
+            width: 55%; 
+            float: left;
+        }
+        .column4 h1{
+             font-size:17px;
+        }
+        .Oblix_Dash{
+                display:{!if(seriesProject == '' || seriesProject == '[]','none','block')};
+                padding: 9.5px;
+                margin: 0 58px 23px;
+                font-size: 13px;
+                line-height: 1.42857143;
+                color: #333;
+                word-break: break-all;
+                word-wrap: break-word;
+                background-color: #f5f5f5;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+        }
+         .Oblix_table{
+                display:block;
+                padding: 9.5px;
+                margin: 0 58px 23px;
+                font-size: 13px;
+                line-height: 1.42857143;
+                color: #333;
+                word-break: break-all;
+                word-wrap: break-word;
+                background-color: #f5f5f5;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+        }
+  
+        /**** Button CSS ****/
+         .Oblix_large_btn{
             border-style:none;
-            width: 85% !important;
+            width: 160px;
             height: 30px;
             background-position: 0 0;
             border : 1px solid rgb(158, 145, 145);
-        }
-        
+          }       
         .Oblix_large_btn:hover{
            border-style:none;
             border : 1px solid rgb(223, 213, 213);
@@ -172,7 +249,7 @@
         }
          .Oblix_btn{
             border-style:none;
-            width: 111px;
+            width: 80px;
             height: 30px;
             background-position: 0 0;
             border : 1px solid rgb(158, 145, 145);
@@ -191,31 +268,7 @@
         .Oblix_notes{
             PADDING-right: 41px;
         }
-        .Oblix_tableDetails tr h1{
-            font-size:16px;
-        }
-        table tr td {       
-            font-size : 12px;
-        }
-        .search_init{
-            transition: all .2s linear;
-            background: #fff;
-            padding: 5px 9px;
-            margin: 0;
-            border-radius: 4px;
-            width: 100%;
-            font-size: 13px;
-            height: 32px;
-        }
-        .dataTables_length label select,.dataTables_filter input{
-            margin: 11px !important;
-        }
-        .dataTables_length label,.dataTables_filter label{
-            font-size:14px;
-        }
-        .Oblix_attachment{
-            width:90%;
-        }
+        
        .Oblix_filter_btn{
            color: #333;
             background: #fff !important;
@@ -224,7 +277,6 @@
             padding: 4px 12px !important;
             width:100px;
             margin-bottom: 0;
-            font-size: 14px !important;
             font-weight: normal;
             line-height: 1.42857143;
             text-align: center;
@@ -235,14 +287,12 @@
             cursor: pointer;
             -webkit-user-select: none;
         }
-        .Oblix_Create_btn{
-            width:120px;
-        }
-        
+       
        .Oblix_filter_btn:hover, .Oblix_filter_btn:active{
            background: #eaeaea !important;
            border: 1px solid #b5b5b5 !important;
-       }     
+       }    
+       /**** ui tooltip CSS ****/
        .ui-tooltip, .arrow:after {
         background: black;
         border: 2px solid white;
@@ -292,53 +342,6 @@
         top: auto;
       }
 
-    .column1,.column2 {
-        width: 49%; 
-        float: left;
-    }
-
-    .column3{
-        width: 100%; 
-        float: left;
-    }
-
-    .column5{
-        width: 40%; 
-        float: left;
-    }
-    .column4{
-        width: 55%; 
-        float: left;
-    }
-    
-    .Oblix_Dash{
-            display:{!if(seriesProject == '' || seriesProject == '[]','none','block')};
-            padding: 9.5px;
-            margin: 0 58px 23px;
-            font-size: 13px;
-            line-height: 1.42857143;
-            color: #333;
-            word-break: break-all;
-            word-wrap: break-word;
-            background-color: #f5f5f5;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-    }
-     .Oblix_table{
-            display:block;
-            padding: 9.5px;
-            margin: 0 58px 23px;
-            font-size: 13px;
-            line-height: 1.42857143;
-            color: #333;
-            word-break: break-all;
-            word-wrap: break-word;
-            background-color: #f5f5f5;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-    }
-  
-   
     /* for 900px or less */
     @media screen and (max-width: 1200px) {
      
@@ -346,9 +349,7 @@
             width: 100%;
         }
     }
-    .column4 h1{
-         font-size: 20px;
-    }
+    
 
     </style>
    <div class="Oblix_Container">
@@ -370,24 +371,32 @@
     <center>
     <div class="Oblix_header">
        
-        <table width="90%" cellspacing="10px">
+         <table width="90%" height="90%">
             <tr>
-                <td width="8%">
+                <td width="5%">
                 <apex:image value="{!$Resource.Unilever_logo}" width="60px" height="60px" />
                 </td>
-                <td>
-                <div class="Oblix_header_title">SWOP</div><br/>Sow Online Planner
+                <td width="20%" class="Oblix_header_activeArrow">
+                <div class="Oblix_header_title">SWOP</div><br/><span>Scope of Work<br/>Online Planner</span>
                 </td>
+                <td width="20%">
+               
+                </td>
+                <td width="20%">
+                <div></div><br/>
+                </td>
+                <td></td>
                 <td>
                 <div style="float:right"><p>Hi {!userConnected.Name} !</p></div>
                 </td>
             </tr>
         </table>
-       
     </div>
+    <br/><br/>
       <apex:actionFunction name="RerenderSelectedSow" action="{!RerenderSelectedSow}" reRender="jqueryId">
              <apex:param name="selectedSewId" assignTo="{!selectedSewId}" value=""/>
          </apex:actionFunction>
+        <!-- <apex:actionFunction name="lstAttachementsView" action="{!ViewAttachements}" reRender="jqueryId"/>-->
     </center>
        <apex:outputPanel rendered="{!selectedSewId<>null}">
         <div class="Oblix_sowDetail">
@@ -398,23 +407,27 @@
             <tr>
             <td width="40%">
             <section class="column1">
-               <table width="100%" class="Oblix_tableDetails">
+               <table width="100%" class="Oblix_tableDetails topAlign ">
                  <tr>
                       <td width="50%"><strong>SOW Name</strong></td>
                       <td>{!selSow.Name}</td>
                  </tr>
+                 <tr><td colspan="2">&nbsp;</td></tr>   
                  <tr>
                      <td><strong>BD/BD</strong></td>
                      <td>{!selSow.BB_or_BD__c}</td>
                  </tr>   
+                 <tr><td colspan="2">&nbsp;</td></tr>   
                  <tr>
                      <td><strong>Brand</strong></td>
                      <td>{!selSow.OblixBrand__r.Name}</td>
                  </tr>
+                 <tr><td colspan="2">&nbsp;</td></tr>   
                  <tr>
                      <td><strong>Big Category</strong></td>
                      <td>{!selSow.BigOblixProductCategory__r.name}</td>
                  </tr>
+                 <tr><td colspan="2">&nbsp;</td></tr>   
                  <tr>
                      <td><strong>Small Category</strong></td>
                      <td>{!selSow.SmallProductCategory__r.name}</td>
@@ -423,22 +436,29 @@
            </section>
            
            <section class="column2">
-               <table width="100%" > 
+               <table width="100%" class="topAlign "> 
                    <tr>    
                       <td width="50%"><strong>Agency Contact</strong></td>
                       <td>{!selSow.Agency_Contact__r.name}</td>
                    </tr>
+                   <tr><td colspan="2">&nbsp;</td></tr>   
                    <tr>
                       <td><strong>Unilever Contact</strong></td>
                       <td>{!selSow.Unilever_Lead__r.name}</td>
                    </tr>
+                   <tr><td colspan="2">&nbsp;</td></tr>   
                    <tr>
                      <td><strong>FY 2015</strong></td>
                      <td>{!selSow.Financial_Year__c}</td>
                    </tr>
+                   <tr><td colspan="2">&nbsp;</td></tr>   
                    <tr>
-                     <td><strong>Currency</strong></td>
-                     <td>{!selSow.Currency__c}</td>
+                     <td><strong>Lastest</strong></td>
+                     <td>.........$ </td>
+                   </tr>
+                   <tr>
+                     <td><strong>Approuved</strong></td>
+                     <td>.........$ </td>
                    </tr>
                </table>
            </section> 
@@ -458,41 +478,31 @@
     
                </apex:outputPanel>
                <br/>
-               <apex:commandButton value="View Attachments" title="View list of Attachment " onclick="Popup();return false" styleClass="Oblix_large_btn Oblix_attachment" rendered="{!lstAttachements.size<>0}"/>
+               <apex:commandButton value="View {!lstAttachements.size} Attachments" title="View list of Attachment " onclick="Popup();return false" styleClass="Oblix_large_btn Oblix_attachment" rendered="{!lstAttachements.size<>0}"/>
                
            </section>
            </td>
            <td>
            <section class="column4">
-               <table width="100%" >  
+               <table width="100%" class="topAlign">  
                    <tr> 
-                      <td width="50%"><strong>Created today by </strong></td>
-                      <td>{!selSow.CreatedBy.Name}</td>
+                      <td width="50%" colspan="2"><span style="text-decoration: underline;">Updated</span> &nbsp;<apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!selSow.LastModifiedDate}" /></apex:outputText><br/> by {!selSow.LastModifiedBy.Name}</td>
                    </tr>
-                   <tr>
-                      <td>&nbsp;</td>
-                      <td>&nbsp;</td>
-                   </tr>   
-                   <tr>
-                     <td><strong>Lastest</strong></td>
-                     <td>.........</td>
-                   </tr>
-                    <tr>
-                     <td><strong>Approved</strong></td>
-                     <td>{!selSow.FINAL_APPROVED_FEE_K__c}</td>
-                   </tr>
+                   <tr><td colspan="2">&nbsp;</td></tr>         
+                   <tr><td colspan="2">&nbsp;</td></tr>    
+                   <tr><td colspan="2">&nbsp;</td></tr>    
                    <tr>
                        <td colspan = "2"><h1><center><br/>{!selSow.SOW_Status__c}</center></h1></td>
                    </tr>
               </table>
           </section>
          
-          <section class="column5">
+          <section class="column5" >
              <center>
-                 <apex:commandButton value="View" title="View project details" reRender="Oblix_sowDetail" action="{!ViewAction}" styleClass="Oblix_large_btn Oblix_view_btn"/><br/>
-                 <apex:commandButton value="Share" onclick="" title="Share SOW with others"  styleClass="Oblix_large_btn"/><br/>
-                 <apex:commandButton value="Reporting" onclick="" title="View PDF format"  styleClass="Oblix_large_btn"/><br/>
-                 <apex:commandButton value="Return" title="Return"  onclick="" styleClass="Oblix_btn"/><apex:commandButton value="Approve" title="Approve"  onclick="" styleClass="Oblix_btn"/>
+                 <apex:commandButton value="Back" onclick="" title="Back to the SOW List"  styleClass="Oblix_large_btn"/><br/>
+                 <apex:commandButton value="View" title="View project details" reRender="Oblix_sowDetail" action="{!ViewAction}" styleClass="Oblix_large_btn"/><br/>
+                 <apex:commandButton value="Export" onclick="" title="Export"  styleClass="Oblix_btn"/><apex:commandButton value="Reporting" title="Reporting"  onclick="" styleClass="Oblix_btn"/><br/>
+                 <apex:commandButton value="Approve" title="Approve"  onclick="" styleClass="Oblix_large_btn"/>
              </center>  
           </section>   
           </td>
@@ -501,11 +511,7 @@
    <!--</apex:form>    -->
   </div>
   </apex:outputPanel>  
-  <br/>
-  <div class="Oblix_Dash">
-      <div id="lease-gantt-chart" style="margin: 0 58px 23px;"></div>
-  </div>
-  <br/>
+ 
   <!--<apex:form >-->
   <div class="Oblix_table" id="Oblix_DashId" >
     <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
@@ -528,10 +534,10 @@
                         <td style="display:none;width:0px !important">{!sow.Id}</td>
                         <td>{!sow.Name}</td>
                         <td>{!sow.OblixBrand__r.Name}</td>
-                        <td>{!sow.Marketing_Agency__c}</td>
+                        <td width="15%">{!sow.Marketing_Agency__c}</td>
                         <td>{!sow.Name}</td>
-                        <td>{!sow.LastModifiedDate}</td>
-                        <td>{!sow.CreatedDate}</td>
+                        <td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!sow.LastModifiedDate}" /></apex:outputText></td>
+                        <td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!sow.CreatedDate}" /></apex:outputText></td>
                         <td>{!sow.SOW_Status__c}</td>
                      </tr>
                 </apex:repeat>
@@ -567,7 +573,7 @@
                     </th>
                    
                     <th><apex:commandButton value="Filter" action="{!applyFilters}" styleClass="Oblix_filter_btn" reRender="jqueryId"/><br/> </th><!-- -->
-                    <th style="text-align: right; padding-right: 8px;"><apex:commandButton value="Create Sow + " action="{!CreateSOWAction}" styleClass="Oblix_filter_btn Oblix_Create_btn" reRender="jqueryId"/></th>
+                    <th style="text-align: right; padding-right: 8px;"><apex:commandButton value="Create Sow + " action="{!CreateSOWAction}" styleClass="Oblix_filter_btn" reRender="jqueryId"/></th>
                 </tr>
             </tfoot>
           </table>
@@ -575,179 +581,6 @@
     <!--  </apex:form>-->
     </div><!--  End Container -->
     
-    <script>
-      
-      (function () {
-          
-    var leaseData = {!seriesProject};
-
-    // create new set of data structure for rendering chart
-
-    var groupUnitData = _.groupBy(leaseData, 'unitName');
-    var uniqueUnitNames = _.sortBy(_.keys(groupUnitData), function (name) {
-        return name;
-    });
-    console.log(JSON.stringify(groupUnitData, null, 4));
-
-
-    var getLeaseIntervals = function (unitLeases, unitName) {
-        // Find highest rent for the unit
-        var highestRent = _.max(unitLeases, function (unitLease) {
-            return unitLease.rent;
-        })['rent'];
-
-        // Get all the intervals for the unit
-        var leaseIntervals = [];
-        
-        $.each(unitLeases, function (i, unitLeaseVal) {
-            
-            leaseIntervals.push({
-                    x: unitLeaseVal.beginTimestamp,
-                    y: _.indexOf(uniqueUnitNames, unitName),
-                    start: unitLeaseVal.beginTimestamp,
-                    end: unitLeaseVal.endTimestamp,
-                    name:"Project Start date "
-                },{
-                    x:unitLeaseVal.endTimestamp,
-                    y:_.indexOf(uniqueUnitNames, unitName),
-                    start:unitLeaseVal.beginTimestamp,
-                    end:unitLeaseVal.endTimestamp,
-                    name:"Project Finish date "
-                },{
-                    x: unitLeaseVal.x1Timestamp,
-                    y: _.indexOf(uniqueUnitNames, unitName),
-                    start: unitLeaseVal.beginTimestamp,
-                    end: unitLeaseVal.endTimestamp,
-                    name:"Project Completion date "
-                },{
-                    x:unitLeaseVal.x2Timestamp,
-                    y:_.indexOf(uniqueUnitNames, unitName),
-                    start:unitLeaseVal.beginTimestamp,
-                    end:unitLeaseVal.endTimestamp,
-                    name:"First Air date "
-                },{
-                    x:unitLeaseVal.x3Timestamp,
-                    y:_.indexOf(uniqueUnitNames, unitName),
-                    start:unitLeaseVal.beginTimestamp,
-                    end:unitLeaseVal.endTimestamp,
-                    name:"Production Completion date "
-                }
-                );
-            if (unitLeases[i + 1]) {
-                leaseIntervals.push(
-                    [(unitLeaseVal.endTimestamp + unitLeases[i + 1].beginTimestamp)/2 , null]
-                )
-            }
-        });
-
-        return leaseIntervals;
-
-    };
-
-    var leaseRent = _.map(groupUnitData, function (unitLeases, unitName) {
-        var lease = getLeaseIntervals(
-            _.sortBy(unitLeases, function (obj) {
-                return obj.beginTimestamp;
-            }),
-            unitName
-        );
-
-        return {
-            name:unitName,
-            data:lease
-        };
-
-    });
-    //Sort the data, otherwise Highchart will complain error15
-    var series = _.sortBy(leaseRent, function (obj) {
-        return obj.name;
-    });
-
-    console.log(series);
-    //Render Gantt Chart
-    var chart = new Highcharts.Chart({
-        chart:{
-            renderTo:'lease-gantt-chart',
-            backgroundColor: null
-        },
-        title:{
-            text:''
-        },
-        xAxis:{
-            type:'datetime'
-        },
-        yAxis:{
-            tickInterval:1,
-            startOnTick:true,
-            endOnTick:false,
-            labels:{
-                // apartment names
-                formatter:function () {
-                    if (series[this.value]) {
-                        return uniqueUnitNames[this.value];
-                    }
-                }
-            },
-
-            title:{
-                text:"Projects"
-            },
-            minPadding:0.2,
-            maxPadding:0.2
-
-        },
-        credits: {
-                  enabled: false
-            },
-       
-        legend:{
-            enabled:false
-        },
-        tooltip:{
-            formatter:function () {
-                debugger;
-                return '<b>' + uniqueUnitNames[this.y] + ' : </b> <br/>'
-                     +this.point.options.name +'<br/>'
-                     +Highcharts.dateFormat('%e, %b %Y', this.point.options.x);
-            }
-        },
-        plotOptions:{
-            line:{
-                lineWidth:5,  
-                marker : {
-                    enabled : true,
-                    symbol: 'url(http://www.highcharts.com/demo/gfx/sun.png)',
-                    width: 20,
-                    height: 20
-                },
-            },
-        },
-        series:series,
-        exporting: {
-            buttons: {
-                contextButton: {
-                        menuItems: [{
-                            textKey: 'downloadPNG',
-                            onclick: function () {
-                                this.exportChart();
-                            }
-                        }, {
-                            textKey: 'downloadJPEG',
-                            onclick: function () {
-                                this.exportChart({
-                                    type: 'image/jpeg'
-                                });
-                            }
-                        }]
-                }
-            }
-        }
-    });
-
-})();
-
-      </script>
-      
      
 </apex:form>
 </apex:page>

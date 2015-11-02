@@ -180,42 +180,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Asset_Scoring__c.Agency_Department__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Asset_Scoring__c.Ave_Yr_Experience__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Asset_Scoring__c.Daily_Rate__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Asset_Scoring__c.Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Asset_Scoring__c.Discipline__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Asset_Scoring__c.Job_Description__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Asset_Scoring__c.Point_Score__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Asset_Scoring__c.RoleTitle__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4365,16 +4335,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Marketing_SOW__c.OblixTotalAdaptFees__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Marketing_SOW__c.OblixTotalDigitalFees__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Marketing_SOW__c.OblixTotalNumberofbasics__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -4560,7 +4520,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Oblix_Calculator__c.Points_HigH__c</field>
+        <field>Oblix_Calculator__c.Oblix_Agency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Oblix_Calculator__c.Points_High__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4641,6 +4606,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Oblix_Project_Assets__c.OblixClonedFromParentAsset__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Oblix_Project_Assets__c.Oblix_Quantity__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5781,6 +5751,10 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
+        <apexPage>Oblix_VF01DeepCloneSOW</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Oblix_VF02OverrideAsetNewLookup</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -5797,7 +5771,15 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>Oblix_VF05_SOWDetails_AES</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Oblix_VF06_SOWView</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Oblix_VF07_ProjectView</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -5819,7 +5801,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>IPM_Company_Card__c.IPM_Global_Company_Card</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -5835,7 +5816,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>IPM_Financial_File__c.Default</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -5846,7 +5826,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>IPM_Financial__c.Consolidated</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -5857,7 +5836,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>IPM_Milestone__c.IPM_Milestones</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -5868,7 +5846,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>IPM_Project_Rollout__c.Local_Rollouts</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -5884,7 +5861,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>IPM_Questionnaire__c.GateKeeperChecklist</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -5910,7 +5886,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>IPM_Task__c.IPM_Tasks</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -5931,7 +5906,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>Marketing_SOW__c.ParentSowMarketing</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -5952,7 +5926,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>Oblix_Project_Assets__c.Admin</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>

@@ -109,14 +109,6 @@
                 <behavior>Readonly</behavior>
                 <field>OblixTotalProjectsFees__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>OblixTotalAdaptFees__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>OblixTotalDigitalFees__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

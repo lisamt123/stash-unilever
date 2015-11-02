@@ -13,34 +13,17 @@ private class Oblix_Ctrl04Bis_OverOtherItemsNews_Test {
 	     insert u; 
 	     
 	     System.runAs(u){
+	     	Account myAccount = new Account();
+	     			myAccount.Name = 'AgencyAccount';
+	     	insert myAccount;
 	     	Marketing_SOW__c marketingSow = new Marketing_SOW__c();
         		marketingSow.Active__c = true;
         		marketingSow.Name = 'Marketinf Sow Approval Test';
         		marketingSow.SOW_Status__c = 'Open';
         		marketingSow.Financial_Year__c = 'FY2015';
+        		marketingSow.Oblix_AgencyEstimate__c = myAccount.Id;
         		insert marketingSow;
-        	Marketing_Basics__c basicParent = new Marketing_Basics__c();
-        		basicParent.Oblix_SOWMarketing__c = marketingSow.Id;
-        		basicParent.RecordTypeId = Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Resource');
-        		insert basicParent;
-			Marketing_Basics__c basicParent1 = new Marketing_Basics__c();
-        		basicParent1.Oblix_SOWMarketing__c = marketingSow.Id;
-        		basicParent1.RecordTypeId = Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Resource');
-        		basicParent1.FTE__c = 50;
-        		insert basicParent1;
-        		
-        		
-        	Marketing_Basics__c basicParentActivity = new Marketing_Basics__c();
-        		basicParentActivity.Oblix_SOWMarketing__c = marketingSow.Id;
-        		basicParentActivity.RecordTypeId = Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Activity');
-        	
-        	Marketing_Basics__c basicParentActivity1 = new Marketing_Basics__c();
-        		basicParentActivity1.Oblix_SOWMarketing__c = marketingSow.Id;
-        		basicParentActivity1.RecordTypeId = Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Activity');	
-        		//basicParentActivity1.FTE__c = 50;
-        		basicParentActivity.No_of_Hours_Required__c = 10;
-        		insert basicParentActivity1;
-        	MDO_Geography__c geographyRegion = new MDO_Geography__c();
+        		MDO_Geography__c geographyRegion = new MDO_Geography__c();
         		geographyRegion.Name = 'Europe';
         		geographyRegion.geography_type__c = 'Region';
         		insert geographyRegion;
@@ -56,8 +39,35 @@ private class Oblix_Ctrl04Bis_OverOtherItemsNews_Test {
         			roleRate.OblixCountry__c = geographyCountry.Id;
         			roleRate.FTE__c = 20;
         			roleRate.Role_Daily_Rate_EUR__c = 10;
+        			roleRate.Financial_Year__c = marketingSow.Financial_Year__c ;
         			roleRate.RecordTypeId = Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Role_Rate');
+        			roleRate.Oblix_Agency__c = marketingSow.Oblix_AgencyEstimate__c;
         			insert roleRate; 
+        	Marketing_Basics__c basicParent = new Marketing_Basics__c();
+        		basicParent.Oblix_SOWMarketing__c = marketingSow.Id;
+        		basicParent.RecordTypeId = Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Resource');
+        		basicParent.OblixCountry__c = geographyCountry.Id;
+        		insert basicParent;
+			Marketing_Basics__c basicParent1 = new Marketing_Basics__c();
+        		basicParent1.Oblix_SOWMarketing__c = marketingSow.Id;
+        		basicParent1.RecordTypeId = Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Resource');
+        		basicParent1.FTE__c = 50;
+        		basicParent1.OblixCountry__c = geographyCountry.Id;
+        		insert basicParent1;
+        	
+        		
+        	Marketing_Basics__c basicParentActivity = new Marketing_Basics__c();
+        		basicParentActivity.Oblix_SOWMarketing__c = marketingSow.Id;
+        		basicParentActivity.RecordTypeId = Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Activity');
+        		basicParentActivity.OblixCountry__c = geographyCountry.Id;
+        	Marketing_Basics__c basicParentActivity1 = new Marketing_Basics__c();
+        		basicParentActivity1.Oblix_SOWMarketing__c = marketingSow.Id;
+        		basicParentActivity1.RecordTypeId = Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Activity');	
+        		//basicParentActivity1.FTE__c = 50;
+        		basicParentActivity1.No_of_Hours_Required__c = 10;
+        		basicParentActivity1.OblixCountry__c = geographyCountry.Id;
+        		insert basicParentActivity1;
+        
         	
         	
         	Test.StartTest();
@@ -65,16 +75,29 @@ private class Oblix_Ctrl04Bis_OverOtherItemsNews_Test {
 	        			pageRef.getParameters().put('Id', basicParent1.Id);
 	        	  	Test.setCurrentPage(pageref) ;
 	        	  	Oblix_Ctrl04Bis_OverrideOtherItemsNews controller = new Oblix_Ctrl04Bis_OverrideOtherItemsNews(new ApexPages.StandardController(basicParent1));
-	        	  		controller.getAgencyDepartment();
-	        	  		controller.getRoleTitle();
-	        	  		controller.getOblixCountry();
+	        	  		controller.reRenderAgencyDepartments();
+	        	  		controller.selectedAgencyDepartment = roleRate.Agency_Department__c;
+	        	  		controller.reRenderRoleTitle();
+	        	  		 System.assertEquals(controller.selectedAgencyDepartment, roleRate.Agency_Department__c);
+	        	  		//controller.getRoleTitle();
+	        	  		//controller.getOblixCountry();
 	        	  		controller.save(); 
 	        	  
 	        	  Oblix_Ctrl04Bis_OverrideOtherItemsNews controller1 = new Oblix_Ctrl04Bis_OverrideOtherItemsNews(new ApexPages.StandardController(basicParentActivity));
-	        	  		controller1.getAgencyDepartment();
-	        	  		controller1.getRoleTitle();
-	        	  		controller1.getOblixCountry();
+	        	  		controller1.reRenderAgencyDepartments();
+	        	  		controller1.selectedAgencyDepartment = roleRate.Agency_Department__c;
+	        	  		controller1.reRenderRoleTitle();
+	        	  		//controller1.getRoleTitle();
+	        	  		//controller1.getOblixCountry();
 	        	  		controller1.save(); 
+	        	  		
+	        	  Oblix_Ctrl04Bis_OverrideOtherItemsNews controller2 = new Oblix_Ctrl04Bis_OverrideOtherItemsNews(new ApexPages.StandardController(basicParentActivity1));
+	        	  		controller2.reRenderAgencyDepartments();
+	        	  		controller2.selectedAgencyDepartment = roleRate.Agency_Department__c;
+	        	  		controller2.reRenderRoleTitle();
+	        	  		//controller1.getRoleTitle();
+	        	  		//controller1.getOblixCountry();
+	        	  		controller2.save(); 
         	  Test.stopTest();		
 	     }
 		        

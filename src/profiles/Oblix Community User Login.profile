@@ -179,44 +179,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Asset_Scoring__c.Agency_Department__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Asset_Scoring__c.Ave_Yr_Experience__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Asset_Scoring__c.Daily_Rate__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>Asset_Scoring__c.Description__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Asset_Scoring__c.Discipline__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Asset_Scoring__c.Job_Description__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Asset_Scoring__c.Point_Score__c</field>
         <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Asset_Scoring__c.RoleTitle__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -4365,16 +4335,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Marketing_SOW__c.OblixTotalAdaptFees__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Marketing_SOW__c.OblixTotalDigitalFees__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Marketing_SOW__c.OblixTotalNumberofbasics__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -4560,7 +4520,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Oblix_Calculator__c.Points_HigH__c</field>
+        <field>Oblix_Calculator__c.Oblix_Agency__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_Calculator__c.Points_High__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4641,6 +4606,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_Project_Assets__c.OblixClonedFromParentAsset__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_Project_Assets__c.Oblix_Quantity__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5408,6 +5378,10 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
+        <apexPage>Oblix_VF01DeepCloneSOW</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Oblix_VF02OverrideAsetNewLookup</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -5424,7 +5398,15 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>Oblix_VF05_SOWDetails_AES</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Oblix_VF06_SOWView</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Oblix_VF07_ProjectView</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>

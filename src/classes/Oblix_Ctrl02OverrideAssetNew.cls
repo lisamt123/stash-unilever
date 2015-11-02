@@ -6,12 +6,13 @@ public with sharing class Oblix_Ctrl02OverrideAssetNew {
     public Id rt_Admin {get;set;}
     public Id rt_Digital {get;set;}
     public Id rt_Experiential {get;set;}
+    public  String rtName{get;set;}
     
     public Id agencyid {get;set;}
     
     public Oblix_Ctrl02OverrideAssetNew(ApexPages.StandardController controller){
          if(!System.Test.isRunningTest()){
-             controller.addFields(new List<String>{'Sub_Category__c', 'Asset_Type__c', 'Agency_Projects__c'});
+             controller.addFields(new List<String>{'RecordType.Name','RecordTypeId','Sub_Category__c', 'Asset_Type__c', 'Agency_Projects__c'});
          }
          
          this.asset  = (Oblix_Project_Assets__c) controller.getRecord();
@@ -26,8 +27,9 @@ public with sharing class Oblix_Ctrl02OverrideAssetNew {
             
             
             if(ApexPages.currentPage().getParameters().get('RecordType') != null){
-                 asset = new Oblix_Project_Assets__c(RecordTypeId=ApexPages.currentPage().getParameters().get('RecordType'));//(Oblix_Project_Assets__c)Oblix_Project_Assets__c.sObjectType.newSObject(ApexPages.currentPage().getParameters().get('RecordType'), true) ;
-                asset.Agency_Projects__c = agencyid;
+                  asset = new Oblix_Project_Assets__c(RecordTypeId=ApexPages.currentPage().getParameters().get('RecordType'));//(Oblix_Project_Assets__c)Oblix_Project_Assets__c.sObjectType.newSObject(ApexPages.currentPage().getParameters().get('RecordType'), true) ;
+                  rtName = [Select Id, Name, DeveloperName from RecordType where Id =: asset.RecordTypeId Limit 1].Name;
+                asset.Agency_Projects__c = agencyid;  
             }
             System.debug('###ASSET : '+asset);
             //projectId = ApexPages.currentPage().getParameters().get('projectID');
@@ -35,7 +37,7 @@ public with sharing class Oblix_Ctrl02OverrideAssetNew {
             
          }else{
             
-            asset = [Select Id, Name, Asset_Type__c, Sub_Category__c, Agency_Projects__c, RecordTypeId,
+            asset = [Select Id, Name, Asset_Type__c, Sub_Category__c, Agency_Projects__c, RecordTypeId,RecordType.Name,
                     Quantity__c, Channels__c, Location__c, FULL_Description__c, Additional_Description__c
                         from Oblix_Project_Assets__c where Id =: ApexPAges.currentPage().getParameters().get('Id')
                     ];

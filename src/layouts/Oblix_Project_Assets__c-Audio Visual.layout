@@ -19,6 +19,10 @@
                 <behavior>Edit</behavior>
                 <field>Channels__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Oblix_Quantity__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

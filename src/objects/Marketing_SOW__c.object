@@ -297,28 +297,6 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>OblixTotalAdaptFees__c</fullName>
-        <externalId>false</externalId>
-        <label>Total Adapt Fees</label>
-        <summarizedField>Oblix_SOW_Projects__c.Total_Adapt_Fees__c</summarizedField>
-        <summaryForeignKey>Oblix_SOW_Projects__c.Financial_Year__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>OblixTotalDigitalFees__c</fullName>
-        <externalId>false</externalId>
-        <label>Total Digital Fees</label>
-        <summarizedField>Oblix_SOW_Projects__c.Total_Digital_Fee__c</summarizedField>
-        <summaryForeignKey>Oblix_SOW_Projects__c.Financial_Year__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
         <fullName>OblixTotalNumberofbasics__c</fullName>
         <externalId>false</externalId>
         <label>Total Number of basics</label>
@@ -341,7 +319,7 @@
     <fields>
         <fullName>OblixTotalOtherItemsFees__c</fullName>
         <externalId>false</externalId>
-        <label>Total Other Items Fees</label>
+        <label>Total Non Campaign Fees</label>
         <summarizedField>Marketing_Basics__c.OblixOtherItemFee__c</summarizedField>
         <summaryForeignKey>Marketing_Basics__c.Oblix_SOWMarketing__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
@@ -352,7 +330,7 @@
     <fields>
         <fullName>OblixTotalProjectsFees__c</fullName>
         <externalId>false</externalId>
-        <label>Total Projects Fees</label>
+        <label>Total Campaign Fees</label>
         <summarizedField>Oblix_SOW_Projects__c.Total_Fees_for_Project__c</summarizedField>
         <summaryForeignKey>Oblix_SOW_Projects__c.Financial_Year__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>

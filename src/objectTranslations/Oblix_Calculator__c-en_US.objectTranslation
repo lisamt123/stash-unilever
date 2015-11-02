@@ -194,8 +194,13 @@
         <relationshipLabel><!-- SWOP Calculator --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Points HigH --></label>
-        <name>Points_HigH__c</name>
+        <label><!-- Agency --></label>
+        <name>Oblix_Agency__c</name>
+        <relationshipLabel><!-- SWOP Calculator --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Points High --></label>
+        <name>Points_High__c</name>
     </fields>
     <fields>
         <label><!-- Points Low --></label>
@@ -721,6 +726,10 @@
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- General --></label>
+            <section>General</section>
         </sections>
     </layouts>
     <recordTypes>

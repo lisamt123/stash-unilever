@@ -32,12 +32,15 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>Oblix_VF01DeepCloneSOW</members>
         <members>Oblix_VF02OverrideAsetNewLookup</members>
         <members>Oblix_VF03CustomAssetLookup</members>
         <members>Oblix_VF04OverrideProjectNew</members>
         <members>Oblix_VF05_SOWDetails</members>
+        <members>Oblix_VF05_SOWDetails_AES</members>
         <members>Oblix_VF06_SOWView</members>
         <members>Oblix_VF07_ProjectNew</members>
+        <members>Oblix_VF07_ProjectView</members>
         <members>Oblix_VF07_SOWNew</members>
         <members>Oblix_VF08_ProjectEdit</members>
         <members>Oblix_VF4Bis_OverrideOtherItemsNews</members>
@@ -151,6 +154,10 @@
         <name>CustomTab</name>
     </types>
     <types>
+        <members>Dashboard Home Page Default</members>
+        <name>HomePageLayout</name>
+    </types>
+    <types>
         <members>Asset_Group__c-WP Asset Group Layout</members>
         <members>Asset_Scoring__c-Asset Scoring Layout</members>
         <members>Asset_Scoring__c-Resource</members>
@@ -224,11 +231,26 @@
         <name>Layout</name>
     </types>
     <types>
+        <members>Oblix_SWOP_Agency_Global_User</members>
+        <members>Oblix_SWOP_Agency_Super_User</members>
         <members>Oblix_SWOP_Global_User</members>
+        <members>Oblix_SWOP_Global_User_Salesforce_Platform</members>
+        <members>Oblix_SWOP_Global_User_V1</members>
         <members>Oblix_SWOP_Super_User</members>
+        <members>Oblix_SWOP_Super_User_Salesforce_Platform</members>
+        <members>Oblix_SWOP_Super_User_V1</members>
         <members>Oblix_SWOP_UL2</members>
+        <members>Oblix_SWOP_UL2_Salesforce_Platform</members>
         <members>Oblix_SWOP_UL3_4</members>
+        <members>Oblix_SWOP_UL3_4_Agency</members>
+        <members>Oblix_SWOP_UL3_4_Salesforce_Platform</members>
+        <members>Oblix_SWOP_UL3_4_V1</members>
         <members>Oblix_SWOP_UL_1</members>
+        <members>Oblix_SWOP_UL_1_Agency</members>
+        <members>Oblix_SWOP_UL_1_Salesforce_Platform</members>
+        <members>Oblix_SWOP_UL_1_V1</members>
+        <members>Oblix_SWOP_UL_2_Agency</members>
+        <members>Oblix_SWOP_UL_2_V1</members>
         <name>PermissionSet</name>
     </types>
     <types>
