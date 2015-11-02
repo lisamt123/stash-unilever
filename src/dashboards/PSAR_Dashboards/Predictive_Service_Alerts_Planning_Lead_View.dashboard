@@ -36,7 +36,7 @@
             <header>Alert History</header>
             <legendPosition>Bottom</legendPosition>
             <maxValuesDisplayed>10</maxValuesDisplayed>
-            <report>PSAR_Reports/Categories_with_Alerts_Planning_Lead</report>
+            <report>PSAR_Reports/Alerts_by_Load_Date_Planner</report>
             <showPercentage>false</showPercentage>
             <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
@@ -51,8 +51,7 @@
             <chartAxisRange>Auto</chartAxisRange>
             <componentType>Donut</componentType>
             <displayUnits>Integer</displayUnits>
-            <drillDownUrl>https://unilever--sfdc3--c.cs8.visual.force.com/apex/PRSupplyChainMetrics?id=a6FL000000007DAMAY</drillDownUrl>
-            <drillEnabled>false</drillEnabled>
+            <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>false</enableHover>
             <expandOthers>false</expandOthers>
@@ -124,7 +123,7 @@
             <pageHeightInPixels>225</pageHeightInPixels>
         </components>
     </rightSection>
-    <runningUser>simon.g.crowther@unilever.com</runningUser>
+    <runningUser>roy.robinson@unilever.com</runningUser>
     <textColor>#000000</textColor>
     <title>Predictive Service Alerts ( Planning Lead View)</title>
     <titleColor>#000000</titleColor>

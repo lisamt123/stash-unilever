@@ -1678,6 +1678,7 @@
         <members>HROPhaseIntroInfoMonth2</members>
         <members>HROPhaseIntroInfoMonth3</members>
         <members>HROPhaseIntroInfoWeek1</members>
+        <members>PSAR_Chatter</members>
         <name>CustomLabel</name>
     </types>
     <types>
@@ -2612,6 +2613,7 @@
         <members>Terms_and_Conditions</members>
         <members>X72_and_Sunny_Agency_Group</members>
         <members>chatter_post</members>
+        <members>PSARUsers</members>
         <name>Group</name>
     </types>
     <types>
@@ -3344,6 +3346,7 @@
         <members>AA_forcetk</members>
         <members>AgentAppStaticResource</members>
         <members>LoadImage</members>
+        <members>PSARViewTableauDashboard</members>
         <name>StaticResource</name>
     </types>
     <types>

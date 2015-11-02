@@ -7,11 +7,6 @@
     </folderShares>
     <folderShares>
         <accessLevel>View</accessLevel>
-        <sharedTo>DA_All</sharedTo>
-        <sharedToType>Group</sharedToType>
-    </folderShares>
-    <folderShares>
-        <accessLevel>View</accessLevel>
         <sharedTo>PSARUsers</sharedTo>
         <sharedToType>Group</sharedToType>
     </folderShares>

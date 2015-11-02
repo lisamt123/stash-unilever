@@ -7,41 +7,6 @@
     <description>For directors using Predictive Service Alert App dashboard</description>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Category_Data__c.Bias__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Category_Data__c.CCFOT__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Category_Data__c.Category_Name_del__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Category_Data__c.DOH__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Category_Data__c.Data_Point__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Category_Data__c.Month__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Category_Data__c.Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>PSARCategory__c.CCFOT__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -332,15 +297,6 @@
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>Category_Data__c</object>
-        <viewAllRecords>false</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
         <object>PSARCategory__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
@@ -372,24 +328,20 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
-        <apexPage>PRSupplyChainMetrics</apexPage>
+        <apexPage>PSARDashboardLink</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>PSARDashboardLink</apexPage>
-        <enabled>false</enabled>
+        <apexPage>PSARSupplyChainMetrics</apexPage>
+        <enabled>true</enabled>
     </pageAccesses>
-    <tabSettings>
-        <tab>Category__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>PR_Supply_Chain_Metrics</tab>
-        <visibility>None</visibility>
-    </tabSettings>
     <tabSettings>
         <tab>PSARCategory__c</tab>
         <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>PSARSupplyChainMetrics</tab>
+        <visibility>Available</visibility>
     </tabSettings>
     <tabSettings>
         <tab>PSAR_Alert_Details__c</tab>
@@ -417,15 +369,7 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>ExportReport</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
         <name>RunReports</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ViewMyTeamsDashboards</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

@@ -12,11 +12,6 @@
                  </apex:pageBlockSection>
             </apex:pageBlockSectionItem>
           
-            <apex:pageBlockSectionItem >
-                Alerts
-                <analytics:reportChart reportId="00OL0000000PlxM" showRefreshButton="true" size="tiny"></analytics:reportChart>
-            </apex:pageBlockSectionItem>
-            
         </apex:pageBlockSection>
 
         <apex:pageBlockSection columns="1">
@@ -30,7 +25,7 @@
         
     </apex:pageBlock>
 
-    <apex:pageBlock title="Collaborate on PR Supply Chain Metrics">
+    <apex:pageBlock title="{!$Label.PSAR_Chatter}">
         
         <apex:pageBlockSection columns="1">
             

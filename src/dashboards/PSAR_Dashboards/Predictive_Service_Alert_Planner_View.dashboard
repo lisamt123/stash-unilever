@@ -3,7 +3,7 @@
     <backgroundEndColor>#FFFFFF</backgroundEndColor>
     <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
     <backgroundStartColor>#FFFFFF</backgroundStartColor>
-    <dashboardType>SpecifiedUser</dashboardType>
+    <dashboardType>LoggedInUser</dashboardType>
     <leftSection>
         <columnSize>Medium</columnSize>
         <components>
@@ -15,8 +15,7 @@
             </chartSummary>
             <componentType>Donut</componentType>
             <displayUnits>Integer</displayUnits>
-            <drillDownUrl>https://unilever--sfdc3--c.cs8.visual.force.com/apex/PRSupplyChainMetrics?id=a6FL000000007DAMAY</drillDownUrl>
-            <drillEnabled>false</drillEnabled>
+            <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>false</enableHover>
             <expandOthers>false</expandOthers>
@@ -76,21 +75,27 @@
             <useReportChart>false</useReportChart>
         </components>
         <components>
-            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <axisBinding>y</axisBinding>
+                <column>RowCount</column>
+            </chartSummary>
             <componentType>ColumnStacked</componentType>
             <displayUnits>Integer</displayUnits>
             <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>false</enableHover>
             <expandOthers>false</expandOthers>
+            <groupingColumn>PSAR_Alert_Extract__c.LoadDate__c</groupingColumn>
+            <groupingColumn>PSAR_Alert_Details__c.ActionBucket__c</groupingColumn>
             <legendPosition>Bottom</legendPosition>
             <maxValuesDisplayed>10</maxValuesDisplayed>
-            <report>PSAR_Reports/Categories_with_Alerts_Planner</report>
+            <report>PSAR_Reports/Alerts_by_Load_Date_Planner</report>
             <showPercentage>false</showPercentage>
             <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
-            <title>By Load Date</title>
+            <title>Alerts By Load Date</title>
             <useReportChart>false</useReportChart>
         </components>
     </middleSection>
@@ -104,7 +109,7 @@
             <pageHeightInPixels>225</pageHeightInPixels>
         </components>
     </rightSection>
-    <runningUser>sbapu@salesforce.com</runningUser>
+    <runningUser>jane.fahey@unilever.com</runningUser>
     <textColor>#000000</textColor>
     <title>Predictive Service Alerts (Planner View)</title>
     <titleColor>#000000</titleColor>

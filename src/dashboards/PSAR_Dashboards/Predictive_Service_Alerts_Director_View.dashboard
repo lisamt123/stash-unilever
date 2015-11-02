@@ -15,7 +15,7 @@
             </chartSummary>
             <componentType>Column</componentType>
             <displayUnits>Integer</displayUnits>
-            <drillEnabled>false</drillEnabled>
+            <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>false</enableHover>
             <expandOthers>false</expandOthers>
@@ -59,8 +59,7 @@
             <chartAxisRange>Auto</chartAxisRange>
             <componentType>Donut</componentType>
             <displayUnits>Integer</displayUnits>
-            <drillDownUrl>https://unilever--sfdc3--c.cs8.visual.force.com/apex/PRSupplyChainMetrics?id=a6FL000000007DAMAY</drillDownUrl>
-            <drillEnabled>false</drillEnabled>
+            <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>false</enableHover>
             <expandOthers>false</expandOthers>
@@ -75,21 +74,27 @@
             <useReportChart>false</useReportChart>
         </components>
         <components>
-            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <axisBinding>y</axisBinding>
+                <column>RowCount</column>
+            </chartSummary>
             <componentType>ColumnStacked</componentType>
             <displayUnits>Integer</displayUnits>
             <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>false</enableHover>
             <expandOthers>false</expandOthers>
+            <groupingColumn>PSAR_Location__c$Location_Code__c</groupingColumn>
+            <groupingColumn>PSAR_Location__c.PSAR_Alerts__r.PSAR_Alerts_Details__r$ActionBucket__c</groupingColumn>
             <legendPosition>Bottom</legendPosition>
             <maxValuesDisplayed>10</maxValuesDisplayed>
-            <report>PSAR_Reports/Categories_with_Alerts_Director</report>
+            <report>PSAR_Reports/Alerts_by_Location_Director</report>
             <showPercentage>false</showPercentage>
             <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
-            <title>By Load Date</title>
+            <title>Alerts By Location</title>
             <useReportChart>false</useReportChart>
         </components>
     </middleSection>

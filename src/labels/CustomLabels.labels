@@ -2694,4 +2694,11 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>HROPhaseIntroInfoWeek1</shortDescription>
         <value>Welcome to week 1</value>
     </labels>
+    <labels>
+        <fullName>PSAR_Chatter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PSAR_CollaborateOnChatter</shortDescription>
+        <value>Collaborate on PR Supply Chain Metrics</value>
+    </labels>
 </CustomLabels>

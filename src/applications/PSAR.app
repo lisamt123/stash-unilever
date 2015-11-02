@@ -9,5 +9,5 @@
     <tab>PSAR_Alert_Extract__c</tab>
     <tab>PSAR_Alert_Details__c</tab>
     <tab>PSAR_Location__c</tab>
-    <tab>PR_Supply_Chain_Metrics</tab>
+    <tab>PSARSupplyChainMetrics</tab>
 </CustomApplication>
