@@ -36,11 +36,12 @@ private class HRO_HeadStart_CXTest {
         System.runAs(adminUser){
             managerTasksTemplate = HRO_UnitTestFactory.createDefaultSetOfOnboardingTasks(true);
         }
+        
+        PageReference pageRef = Page.HRO_HeadStart;
+        pageRef.getParameters().put('sfdc.userId',manager.id);
+        Test.setCurrentPage(pageRef);
+        
         System.runAs(manager){
-            PageReference pageRef = Page.HRO_HeadStart;
-            pageRef.getParameters().put('sfdc.userId',manager.id);
-            Test.setCurrentPage(pageRef);
-            
             HRO_UnitTestFactory.createPreboardingTask(manager,adminUser,managerTasksTemplate);
             HRO_HeadStart_CX pageController = new HRO_HeadStart_CX();
             system.assertEquals(pageController.selectedLeader, NEWLEADERNAME,'There should be selected :'+NEWLEADERNAME);
@@ -52,6 +53,13 @@ private class HRO_HeadStart_CXTest {
             //check if task was marked as completed under db
             system.assertEquals(true,[Select Completed__c FROM HRO_Onboarding_Task__c WHERE ID =:leaderPhaseOnbordingTasks.get(0).id].get(0).Completed__c,'Task should be marked as competed under database');
             pageController.resetleaderPhase();
+            
+            //test passing param for selected leader
+            pageRef.getParameters().put('leaderToSelect',NEWLEADERNAME);
+            Test.setCurrentPage(pageRef);
+            HRO_HeadStart_CX pageControllerWithParam = new HRO_HeadStart_CX();
+            system.assertEquals(pageControllerWithParam.selectedLeader, NEWLEADERNAME,'Following leader should be selected'+NEWLEADERNAME);
+            
         }
         
         Test.stopTest();

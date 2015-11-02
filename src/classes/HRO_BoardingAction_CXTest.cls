@@ -58,6 +58,23 @@ private class HRO_BoardingAction_CXTest {
             pageController.savePreBoarding();
             //check if task were created for manager and he is the owner
             system.assertEquals([Select id FROM HRO_Onboarding_Task__c where Onboarding_Task_Set__r.OwnerId = :UserInfo.getUserId()].isEmpty(),false,'System should create task for manager');
+            
+            //test passing param to page
+            pageRef.getParameters().put('sfdc.userId',manager.id);
+            Test.setCurrentPage(pageRef);
+            HRO_BoardingAction_CX pageControllerWithParam = new HRO_BoardingAction_CX(new ApexPages.StandardController(managerTasksTemplate[0]));
+            HRO_BoardingAction_CX pageSetControllerWithParam = new HRO_BoardingAction_CX(new ApexPages.StandardSetController(managerTasksTemplate));
+            pageController.planInfo = new HRO_Onboarding_Plan__c();
+            //pageController.planInfo.Manager__c = manager.id;
+            pageController.planInfo.New_Leader__c = 'Test leader 1';
+            pageController.planInfo.Start_Date__c = Date.today();
+            pageController.getProfileUserId();
+            pageController.getPreBoardingTasks();
+            system.assertEquals(pageController.listOfTemplateTasks.isEmpty(),false,
+                          'System shoud retrive template tasks');
+            pageController.isSalesforce1 = true;
+            pageController.savePreBoarding();
+            
         }
         
 				

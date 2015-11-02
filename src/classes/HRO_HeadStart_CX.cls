@@ -20,11 +20,6 @@ global with sharing class HRO_HeadStart_CX {
 	public String selectTaskList{get;set;}
     public String selectedLeader{get;set;}
     public Boolean isAdmin{get;set;}
-    public String userPhase{get;set;}
-    public Id leaderId{get;set;}
-    public Id taskForUser{get;set;}
-    public String currentLeaderPhase{get;set;}
-    public Boolean managerMode{get;set;}
     public String switchToPhase{get;set;}
     public String selectedPhaseButton{get;set;}
     public static final String PREBOARDINGPHASE = 'Pre-Boarding';
