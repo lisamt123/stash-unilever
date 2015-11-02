@@ -40,12 +40,14 @@ private class BET_SuggestedMemberServiceTest {
         insert betObject;
         system.assertEquals(true, BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betObject.id,UserInfo.getUserId()),BET_OWNER_OR_MANAGER);
         //create team member with manager role
+        /*
         Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator'];
         User testUser = new User(Alias = 'newBet', Email='nebetTestUSr@testorg.com',
                           EmailEncodingKey='UTF-8', LastName='newBetTestUsr', LanguageLocaleKey='en_US',
                           LocaleSidKey='en_US', ProfileId = p.Id,
                           TimeZoneSidKey='America/Los_Angeles', UserName='nebetTestUSr@testorg.com',isActive = true);
-        
+        */
+        User testUser = BET_TestUtils.createUserSystemAdmin();
         
         System.runAs(testUser){
             //check if before manager creation method return false
@@ -98,27 +100,26 @@ private class BET_SuggestedMemberServiceTest {
         Test.stopTest();
     }
     
-    @isTest static void testRemoveMemberRequestDuplicatesWhileInsertForvailidProjectId(){
+    @isTest static void testRemoveMemberRequestDuplicatesWhileInsertForVailidProjectId(){
         Test.startTest();
         //check for owner
         uw_BET__c betObject = BET_TestUtils.getTestBet();
         insert betObject;
-        String invalidProjectID = betObject.id;
-        BET_Follow_Request__c followRequest = BET_TestUtils.createBetFollowRequest(betObject.id,invalidProjectID);
+        IPM_Project__c project = BET_TestUtils.createIPMProject('Unit Test IPM Project for Members');
+        BET_Follow_Request__c followRequest = BET_TestUtils.createBetFollowRequest(betObject.id,project.id);
         insert followRequest;
         //create test member request data
         List<BET_Member_Request__c> betMembersToInsert = new List<BET_Member_Request__c>();
-        List<User> usedUsers = new List<User>();
-        for(User u : [Select id FROM User where isActive = true and Profile.name = 'System Administrator' and id != : betObject.ownerId Limit 5]){
+        List<User> usedUsers = BET_TestUtils.createUserSystemAdmin(5);
+        for(User u : usedUsers){
             BET_Member_Request__c betMemeberItem = new BET_Member_Request__c();
             betMemeberItem.Brand_Experience_Toolkit__c = betObject.id;
             betMemeberItem.ProjectRequest__c = followRequest.id;
             betMemeberItem.UserId__c = u.id;
-            betMemeberItem.Project_Id__c = invalidProjectID;
+            betMemeberItem.Project_Id__c = project.id;
             betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
             betMemeberItem.Role__c = Label.BetTeamMemberRoleMember;
             betMembersToInsert.add(betMemeberItem);
-            usedUsers.add(u);
         }
         //BET_CustomBETException should occure for invailid ProjectID wrong format
         
@@ -131,7 +132,7 @@ private class BET_SuggestedMemberServiceTest {
             betMemeberItem.Brand_Experience_Toolkit__c = betObject.id;
             betMemeberItem.ProjectRequest__c = followRequest.id;
             betMemeberItem.UserId__c = u.id;
-            betMemeberItem.Project_Id__c = invalidProjectID;
+            betMemeberItem.Project_Id__c = project.id;
             betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
             betMemeberItem.Role__c = Label.BetTeamMemberRoleMember;
             tmpMemberRequests.add(betMemeberItem);
@@ -142,13 +143,16 @@ private class BET_SuggestedMemberServiceTest {
         for(BET_Member_Request__c member : betMembersToInsert){
             member.Status__c = Label.BETTeamMemberRequestApprovedStatus;
         }
-        Integer numberOfTeamMembersBeforeUpdate = [Select id FROM uw_BET_Team_Member__c where BET__c =:betObject.id].size();
+        Integer numberOfTeamMembersBeforeUpdate = [Select count() FROM uw_BET_Team_Member__c where BET__c =:betObject.id];
         update betMembersToInsert;
+        Test.stopTest();
+
         //check if tem members were added to db
-        system.assertEquals(betMembersToInsert.size(), [Select id FROM uw_BET_Team_Member__c where BET__c =:betObject.id].size() - numberOfTeamMembersBeforeUpdate,'Number of members should match');
+        system.assertEquals([Select count() FROM uw_BET_Team_Member__c where BET__c =:betObject.id]
+                - numberOfTeamMembersBeforeUpdate, betMembersToInsert.size(),'Number of members should match');
         tmpMemberRequests = BET_SuggestedMemberService.removeMemberRequestDuplicatesWhileInsert(tmpMemberRequests);
         //such records are already approved so no recors should be added
         system.assertEquals(0, tmpMemberRequests.size(),'There should be no member requests');
-        Test.stopTest();
+        
     }
 }
