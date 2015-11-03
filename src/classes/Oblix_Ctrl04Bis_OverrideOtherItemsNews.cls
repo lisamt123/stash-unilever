@@ -35,7 +35,7 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
      
     public Oblix_Ctrl04Bis_OverrideOtherItemsNews(ApexPAges.StandardController controller){
          if(!System.Test.isRunningTest()){
-             controller.addFields(new List<String>{'OblixCountry__c','RecordType.Name','Oblix_SOWMarketing__c','Description__c', 'FTE__c', 'No_of_Hours_Required__c', 'Name', 'Id', 'RecordTypeId'});
+             controller.addFields(new List<String>{'OblixCountry__c','Activities__c','RecordType.Name','Oblix_SOWMarketing__c','Description__c', 'FTE__c', 'No_of_Hours_Required__c', 'Name', 'Id', 'RecordTypeId'});
          }
          rtResourceId = Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Resource');
          rtActivityId = Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Activity');

@@ -51,16 +51,28 @@
         </apex:pageBlockSection>
         <apex:pageBlockSection title="SWOP Other Items Edit" rendered="{!rtActivityId == OItem.RecordTypeId}">
             <apex:inputField value="{!OItem.Oblix_SOWMarketing__c}"/>
+            <apex:inputField value="{!OItem.Activities__c}"/>
             <apex:inputField value="{!OItem.OblixCountry__c}" onchange="reRenderAgencyDepartments()"/>
             <apex:pageBlockSectionItem >
                 <apex:outputLabel for="fyear">Financial Year</apex:outputLabel>
                 <apex:outputText id="fyear" value="{!fYear}"/>
             </apex:pageBlockSectionItem>
+             <apex:pageBlockSectionItem >
+                <apex:outputLabel for="agencydeptid">Agency Department</apex:outputLabel>
+                <apex:selectList id="agencydeptid" value="{!selectedAgencyDepartment}" size="1" onchange="reRenderRoleTitle()" disabled="{!isAgencydisabled}">
+                  <apex:selectoptions value="{!AgencyDepartment}"></apex:selectoptions> 
+                 </apex:selectList>
+            </apex:pageBlockSectionItem>
             
-            <apex:inputField value="{!OItem.Description__c}"/>
             <apex:pageBlockSectionItem >
                 <apex:outputLabel for="agencyid">Agency</apex:outputLabel>
                 <apex:outputText id="agencyid" value="{!agency}"/>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel for="roleId">Role title</apex:outputLabel>
+                <apex:selectList id="roleId" value="{!selectedRoleTitle}" size="1" disabled="{!isroledisabled}">
+                  <apex:selectoptions value="{!RoleTitle}"></apex:selectoptions> 
+                </apex:selectList>
             </apex:pageBlockSectionItem>
             <apex:inputField value="{!OItem.No_of_Hours_Required__c}"/>
             <!--
@@ -71,18 +83,8 @@
                 </apex:selectList>
             </apex:pageBlockSectionItem>
             -->
-            <apex:pageBlockSectionItem >
-                <apex:outputLabel for="agencydeptid">Agency Department</apex:outputLabel>
-                <apex:selectList id="agencydeptid" value="{!selectedAgencyDepartment}" size="1" onchange="reRenderRoleTitle()" disabled="{!isAgencydisabled}">
-                  <apex:selectoptions value="{!AgencyDepartment}"></apex:selectoptions> 
-                 </apex:selectList>
-            </apex:pageBlockSectionItem>
-            <apex:pageBlockSectionItem >
-                <apex:outputLabel for="roleId">Role title</apex:outputLabel>
-                <apex:selectList id="roleId" value="{!selectedRoleTitle}" size="1" disabled="{!isroledisabled}">
-                  <apex:selectoptions value="{!RoleTitle}"></apex:selectoptions> 
-                </apex:selectList>
-            </apex:pageBlockSectionItem>
+           <apex:inputField value="{!OItem.Description__c}"/>
+            
             
         </apex:pageBlockSection>
     </apex:pageBlock>

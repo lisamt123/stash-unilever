@@ -6,6 +6,7 @@ public with sharing class Oblix_Ctrl02OverrideAssetNew {
     public Id rt_Admin {get;set;}
     public Id rt_Digital {get;set;}
     public Id rt_Experiential {get;set;}
+    public Id rt_Stimulus_Materials_Research_requirements{get;set;}
     public  String rtName{get;set;}
     
     public Id agencyid {get;set;}
@@ -22,7 +23,7 @@ public with sharing class Oblix_Ctrl02OverrideAssetNew {
             rt_Admin = Oblix_Utils.MapRecordType('Oblix_Project_Assets__c').get('Admin');
             rt_Digital = Oblix_Utils.MapRecordType('Oblix_Project_Assets__c').get('Digital');
             rt_Experiential = Oblix_Utils.MapRecordType('Oblix_Project_Assets__c').get('Experiential');
-                
+            rt_Stimulus_Materials_Research_requirements    = Oblix_Utils.MapRecordType('Oblix_Project_Assets__c').get('Stimulus_Materials_Research_requirements');
          if(asset == null || asset.Id == null){
             
             
@@ -38,7 +39,7 @@ public with sharing class Oblix_Ctrl02OverrideAssetNew {
          }else{
             
             asset = [Select Id, Name, Asset_Type__c, Sub_Category__c, Agency_Projects__c, RecordTypeId,RecordType.Name,
-                    Quantity__c, Channels__c, Location__c, FULL_Description__c, Additional_Description__c
+                    Quantity__c, Channels__c, Location__c, FULL_Description__c, Additional_Description__c, Asset_Picklist__c
                         from Oblix_Project_Assets__c where Id =: ApexPAges.currentPage().getParameters().get('Id')
                     ];
                         

@@ -23,23 +23,25 @@
             <apex:pageBlock id="searchResults"> 
               <apex:pageBlockTable value="{!lstResultAssetScoring}" var="a" id="tblResults">
                 <apex:column >
-                  <apex:facet name="header">
-                    <apex:outputPanel >Name</apex:outputPanel>
+                <apex:facet name="header">
+                    <apex:outputPanel >Description </apex:outputPanel>
                   </apex:facet>
-                   <apex:outputLink value="javascript:top.window.opener.lookupPick2('{!FormTag}','{!TextBox}_lkid','{!TextBox}','{!a.Id}','{!a.Name}', false)" rendered="{!NOT(ISNULL(a.Id))}">{!a.Name}</apex:outputLink>     
+                   <apex:outputField value="{!a.Description__c}"></apex:outputField>     
                 </apex:column>
-                 <apex:column >
+                  <apex:column >
                 <apex:facet name="header">
                     <apex:outputPanel >SubCategory</apex:outputPanel>
                   </apex:facet>
                    <apex:outputField value="{!a.Sub_Category__c}"></apex:outputField>          
                 </apex:column>
                 <apex:column >
-                <apex:facet name="header">
-                    <apex:outputPanel >Description </apex:outputPanel>
+                  <apex:facet name="header">
+                    <apex:outputPanel >Name</apex:outputPanel>
                   </apex:facet>
-                   <apex:outputField value="{!a.Description__c}"></apex:outputField>     
+                   <apex:outputLink value="javascript:top.window.opener.lookupPick2('{!FormTag}','{!TextBox}_lkid','{!TextBox}','{!a.Id}','{!a.Name}', false)" rendered="{!NOT(ISNULL(a.Id))}">{!a.Name}</apex:outputLink>     
                 </apex:column>
+               
+                
                
               </apex:pageBlockTable>
             </apex:pageBlock>

@@ -1,4 +1,4 @@
-<apex:page standardcontroller="Oblix_SOW_Projects__c" extensions="Oblix_Ctrl04OverrideProjectNew">
+<apex:page standardcontroller="Oblix_SOW_Projects__c" extensions="Oblix_Ctrl04OverrideProjectNew" sidebar="false">
 <apex:form id="myForm">
     <head>
    
@@ -63,13 +63,15 @@
             var sizeCountries = '{!lstCountries.size}';
             var partices = $('.btn-group');
             var ul = partices.find('.multiselect-container');
-               //alert(selectedValue);
+              // alert(sizeCountries);
                var resultSelected = selectedValue.toString();
-              //alert(resultSelected );
+               
+               var aray = resultSelected.split(',');
+              
                for(var i = 1;i<=sizeCountries;i++){
                   if((resultSelected).match($('a label input','li')[i].getAttribute('value'))){
                   
-                  // if(containsWord(resultSelected, $('a label input','li')[i].getAttribute('value'))){
+                  // if(containsWord(resultSelected, $('a label input','li')[i].getAttribute('value')))
                           // alert('test');
                            $('.multiselect-container li')[i+1].setAttribute('class','active');
                            $('.multiselect span').text(selectedValue);
@@ -78,7 +80,11 @@
                     }
 
                }
-         
+               
+               if(aray.length>4){
+                    $('.multiselect span').text(aray.length-1+' Selected');
+                    $('.multiselect').attr('title',aray.length-1+' Selected');
+               }
         }     
         function containsWord(haystack, needle) {
            return (" " + haystack + " ").indexOf(" " + needle + " ") !== -1;
@@ -121,7 +127,12 @@
     #tabBar{
         font-size : 12px;
     }
-    
+     .multiselect-all{
+        display: none;
+      }
+    .multiselect-item multiselect-all{
+        display : none;
+    }
      </style>
     <body data-spy="scroll" data-target="#affix" class="bootstrap-styles">
        
@@ -132,8 +143,8 @@
                
    
  <apex:pageMessages escape="false" />     
-  <apex:sectionHeader title="Sow Prooject"  subtitle="{!IF(project.Id<>null, project.Name, 'New Project')}" />
-        <apex:pageBlock title="Marketing SOW Projects Edit">
+  <apex:sectionHeader title="Sow Campaign"  subtitle="{!IF(project.Id<>null, project.Name, 'New Campaign')}" />
+        <apex:pageBlock title="Marketing SOW Campaign Edit">
             <apex:pageBlockButtons >
                 <apex:commandButton action="{!save}" value="Save"></apex:commandButton>
                 <apex:commandButton action="{!Cancel}" value="Cancel"></apex:commandButton>
@@ -178,8 +189,8 @@
             
         <!-- End Multi Select Countries -->
                 <apex:inputField value="{!project.Jobs_to_be_Done__c}"></apex:inputField>
-                 <apex:inputField value="{!project.OblixCountries__c}" id="CountryID"></apex:inputField>
-                <apex:inputField value="{!project.OblixRegion__c}" id="regionId"></apex:inputField>
+                 <apex:outputField value="{!project.OblixCountries__c}" id="CountryID"></apex:outputField>
+                <apex:outputField value="{!project.OblixRegion__c}" id="regionId"></apex:outputField>
                 <apex:inputField value="{!project.Platform__c}"></apex:inputField>
                 <apex:inputField value="{!project.OblixProjectSplitPercentage_Comment__c}"></apex:inputField>
                 <apex:inputField value="{!project.Project_Priority__c}"></apex:inputField>
@@ -195,6 +206,7 @@
             <apex:pageBlockSection title="Financials">
                 <apex:inputField value="{!project.Percentage_of_Fee_for_this_FY__c}"></apex:inputField>
                 <apex:inputField value="{!project.Agency_Percentage_of_Fees_to_this_FY__c}"></apex:inputField>
+                <apex:inputField value="{!project.Campaign_Total_Adjustment__c}"/>
             </apex:pageBlockSection>
             
             <apex:pageBlockSection title="Time Scales">

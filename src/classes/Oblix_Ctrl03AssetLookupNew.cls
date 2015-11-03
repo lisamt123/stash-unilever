@@ -9,34 +9,35 @@
     Details
     -------
     This class is  : Used as a  class to Construct Lookup of Full Description"Asset Scoring"
-                  		
+                        
             Functionnalities : 
                     
     Update History
     --------------    
 */ 
 public with sharing class Oblix_Ctrl03AssetLookupNew {
-	public String searchString{get;set;}
-	public String subCategory{get;set;}
-	
-	public List<Asset_Scoring__c> lstResultAssetScoring{get;set;}
-	
-	public Oblix_Ctrl03AssetLookupNew(){
-		 searchString = System.currentPageReference().getParameters().get('lksrch');
-		 //assetType = System.currentPageReference().getParameters().get('assetType');
-		 subCategory = System.currentPageReference().getParameters().get('subCategory');
-    	runSearch();  
-	}
-	
-	/**
+    public String searchString{get;set;}
+    public String subCategory{get;set;}
+    public String assetType{get;set;}
+    
+    public List<Asset_Scoring__c> lstResultAssetScoring{get;set;}
+    
+    public Oblix_Ctrl03AssetLookupNew(){
+         searchString = System.currentPageReference().getParameters().get('lksrch');
+         assetType = System.currentPageReference().getParameters().get('assetType');
+         subCategory = System.currentPageReference().getParameters().get('subCategory');
+        runSearch();  
+    }
+    
+    /**
      * Search for the Full Description
      * runSearch() : Execute the query 
      */ 
-	public void SearchDescription(){
-		runSearch();
-		system.debug('###lstResultAssetScoring ActionFunction :' + lstResultAssetScoring );    
-	}
-	
+    public void SearchDescription(){
+        runSearch();
+        system.debug('###lstResultAssetScoring ActionFunction :' + lstResultAssetScoring );    
+    }
+    
   /**
      * prepare the query and issue the search command
      * param : [lstResultAssetScoring] lstOf AssetScoring Result
@@ -52,7 +53,7 @@ public with sharing class Oblix_Ctrl03AssetLookupNew {
      * @return [the Where part of the query as string] 
      */                      
     private List<String> buildQueryWhere(){
-    	 List<String> lstQueryWhere = new List<String>();
+         List<String> lstQueryWhere = new List<String>();
         
         String strToAdd = esc(searchString);
         if (strToAdd != null && strToAdd != '')
@@ -60,11 +61,11 @@ public with sharing class Oblix_Ctrl03AssetLookupNew {
             lstQueryWhere.add('Name LIKE \'' + strToAdd +'\'');
         }
         
-        /* strToAdd = esc(assetType);
+         strToAdd = esc(assetType);
         if (strToAdd != null && strToAdd != '')
         {
             lstQueryWhere.add('Type__c= \'' + strToAdd +'\'');
-        }*/
+        }
          strToAdd = esc(subCategory);
         if (strToAdd != null && strToAdd != '')
         {
@@ -105,8 +106,8 @@ public with sharing class Oblix_Ctrl03AssetLookupNew {
             {
                 WhereQuery = WhereQuery.subString(0, WhereQuery.lastIndexOf('AND'));
             }
-             WhereQuery += ' Limit 999';
-        	 system.debug('###WhereQuery:' + WhereQuery);  
+             WhereQuery += ' order by Name Limit 999';
+             system.debug('###WhereQuery:' + WhereQuery);  
              return database.query(WhereQuery); 
         }
  
