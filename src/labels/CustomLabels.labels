@@ -2638,4 +2638,11 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>HROPhaseIntroInfoWeek1</shortDescription>
         <value>Your new leader has now been with us for a week. It has probably been a week full of information, so help them navigate their new role and their surroundings by continuing with their on-boarding journey. The tasks below will help.</value>
     </labels>
+    <labels>
+        <fullName>PSAR_Chatter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PSAR_CollaborateOnChatter</shortDescription>
+        <value>Collaborate on PR Supply Chain Metrics</value>
+    </labels>
 </CustomLabels>

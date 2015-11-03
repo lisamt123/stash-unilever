@@ -21,6 +21,7 @@
 		<members>Issue_Briefing_Centre</members>
 		<members>Network_Tracking</members>
 		<members>New_Win_POS</members>
+		<members>PSAR</members>
 		<members>Pitch</members>
 		<members>Stakeholder_Database</members>
 		<members>Sustainable_Living_Lab</members>
@@ -512,19 +513,19 @@
 		<members>FeedCommentHandler</members>
 		<members>FeedItemCommentHandler</members>
 		<members>ForgotPasswordController</members>
-		 <members>HRO_BoardingAction_CX</members>
-        <members>HRO_BoardingAction_CXTest</members>
-        <members>HRO_HeadStart_CX</members>
-        <members>HRO_HeadStart_CXTest</members>
-        <members>HRO_NavMenu_CC</members>
-        <members>HRO_NavMenu_CCTest</members>
-        <members>HRO_OnboardingTaskList_CC</members>
-        <members>HRO_OnboardingTaskList_CCTest</members>
-        <members>HRO_ProgressPage_CX</members>
-        <members>HRO_ProgressPage_CXTest</members>
-        <members>HRO_TaskLinkForwarder_CX</members>
-        <members>HRO_TaskLinkForwarder_CXTest</members>
-        <members>HRO_UnitTestFactory</members>
+		<members>HRO_BoardingAction_CX</members>
+		<members>HRO_BoardingAction_CXTest</members>
+		<members>HRO_HeadStart_CX</members>
+		<members>HRO_HeadStart_CXTest</members>
+		<members>HRO_NavMenu_CC</members>
+		<members>HRO_NavMenu_CCTest</members>
+		<members>HRO_OnboardingTaskList_CC</members>
+		<members>HRO_OnboardingTaskList_CCTest</members>
+		<members>HRO_ProgressPage_CX</members>
+		<members>HRO_ProgressPage_CXTest</members>
+		<members>HRO_TaskLinkForwarder_CX</members>
+		<members>HRO_TaskLinkForwarder_CXTest</members>
+		<members>HRO_UnitTestFactory</members>
 		<members>ITrigger</members>
 		<members>MyProfilePageController</members>
 		<members>NavigationManager</members>
@@ -876,14 +877,14 @@
 		<members>BasicMenu</members>
 		<members>Core_AutoComplete</members>
 		<members>HRO_HeaderScripts</members>
-        <members>HRO_HeadstartLink</members>
-        <members>HRO_JourneyMenu</members>
-        <members>HRO_JourneyMobile</members>
-        <members>HRO_LeaderPhase</members>
-        <members>HRO_NavMenu</members>
-        <members>HRO_OnboardingTaskList</members>
-        <members>HRO_OverDuedTasks</members>
-        <members>HRO_TaskAction</members>
+		<members>HRO_HeadstartLink</members>
+		<members>HRO_JourneyMenu</members>
+		<members>HRO_JourneyMobile</members>
+		<members>HRO_LeaderPhase</members>
+		<members>HRO_NavMenu</members>
+		<members>HRO_OnboardingTaskList</members>
+		<members>HRO_OverDuedTasks</members>
+		<members>HRO_TaskAction</members>
 		<members>RemoteServiceCallComponent</members>
 		<members>Sidebar</members>
 		<members>SiteFooter</members>
@@ -1105,9 +1106,9 @@
 		<members>ForgotPasswordConfirm</members>
 		<members>Getting_Started</members>
 		<members>HRO_HeadStart</members>
-        <members>HRO_PreBoardingActionPage</members>
-        <members>HRO_ProgressPage</members>
-        <members>HRO_TaskLinkForwarder</members>
+		<members>HRO_PreBoardingActionPage</members>
+		<members>HRO_ProgressPage</members>
+		<members>HRO_TaskLinkForwarder</members>
 		<members>Header</members>
 		<members>Help</members>
 		<members>IdeasHome</members>
@@ -1118,6 +1119,8 @@
 		<members>New_Link</members>
 		<members>NewsArticleFeed</members>
 		<members>NewsArticle_OverrideView</members>
+		<members>PSARDashboardLink</members>
+		<members>PSARSupplyChainMetrics</members>
 		<members>Pinnovate</members>
 		<members>Programme</members>
 		<members>Reassign_Approval</members>
@@ -1437,6 +1440,7 @@
 		<members>CaseComment</members>
 		<members>CaseContactRole</members>
 		<members>Category_Brands__c</members>
+		<members>Category_Data__c</members>
 		<members>Category__c</members>
 		<members>ChatterIdeaThemes__c</members>
 		<members>Chatter_History__c</members>
@@ -1507,6 +1511,10 @@
 		<members>OpportunityCompetitor</members>
 		<members>OpportunityContactRole</members>
 		<members>OpportunityLineItem</members>
+		<members>PSARCategory__c</members>
+		<members>PSAR_Alert_Details__c</members>
+		<members>PSAR_Alert_Extract__c</members>
+		<members>PSAR_Location__c</members>
 		<members>PartnerRole</members>
 		<members>Pinnovate_Preference__c</members>
 		<members>Pitch_Expertise__c</members>
@@ -2222,6 +2230,8 @@
 		<members>File__c</members>
 		<members>FourAcres_App</members>
 		<members>GroupMaster</members>
+		<members>HRO_HeadStart</members>
+		<members>HRO_Onboarding_Plan__c</members>
 		<members>Home_Page_Feed__c</members>
 		<members>Ideas</members>
 		<members>In_Store_Executions</members>
@@ -2232,6 +2242,11 @@
 		<members>My_Requests</members>
 		<members>Network_Tracking</members>
 		<members>News_Article__c</members>
+		<members>PSARCategory__c</members>
+		<members>PSARSupplyChainMetrics</members>
+		<members>PSAR_Alert_Details__c</members>
+		<members>PSAR_Alert_Extract__c</members>
+		<members>PSAR_Location__c</members>
 		<members>Pinnovate_Preference__c</members>
 		<members>Repeatable_Models</members>
 		<members>SME_Selection</members>
@@ -2272,8 +2287,6 @@
 		<members>cp_Planner__c</members>
 		<members>cp_PoaP</members>
 		<members>cp_ULE_Contact__c</members>
-		<members>HRO_HeadStart</members>
-        <members>HRO_Onboarding_Plan__c</members>
 		<members>im_Issue_Tracker__c</members>
 		<members>im_Issue__c</members>
 		<members>im_Issues</members>
@@ -2389,6 +2402,7 @@
 		<members>Marketing_Scheduled_Dashboards</members>
 		<members>Oral_GCLT</members>
 		<members>PDC_Information_Catalog_Scrum_Team</members>
+		<members>PSARUsers</members>
 		<members>Pitch</members>
 		<members>Planner_Algeria_Country</members>
 		<members>Planner_Argentina_Country</members>
@@ -2798,6 +2812,7 @@
 		<members>Activity</members>
 		<members>Agency_Entities_with_or_Without_Estimates</members>
 		<members>Agency_Estimate_with_Country_Breakdown</members>
+		<members>Alert_Extracts_with_Alert_Details</members>
 		<members>All_BETs_with_members</members>
 		<members>Base_Fee_Brand_Status</members>
 		<members>Base_Fee_Estimates</members>
@@ -2813,6 +2828,7 @@
 		<members>CEC_Case_Cluster_Report</members>
 		<members>CEC_Fulfillment_Enclosure</members>
 		<members>Cases_with_AdditionalCaseInfo</members>
+		<members>Categories_with_PSAR_Alert_and_Details</members>
 		<members>Chatter_Groups_with_Group_Feed</members>
 		<members>Chatter_Groups_with_Group_Feed_and_Comments</members>
 		<members>Chatter_Groups_with_Group_Members</members>
@@ -2833,6 +2849,7 @@
 		<members>Hashtag_Definitions</members>
 		<members>Ideas</members>
 		<members>Last_Password_Report_Type</members>
+		<members>Locations_with_PSAR_Alerts_and_Details</members>
 		<members>MC_Mobile_Usage</members>
 		<members>Mobile_Users</members>
 		<members>OOPS</members>
@@ -2921,6 +2938,10 @@
 		<members>Kay_Test_Developer1</members>
 		<members>Manage_Public_Reports</members>
 		<members>News_Centre_Admin</members>
+		<members>PSARDirector</members>
+		<members>PSARIntegrationUser</members>
+		<members>PSARPlanner</members>
+		<members>PSARPlanningLead</members>
 		<members>Password_Never_Expires</members>
 		<members>Personal_Report_Dashboard_Builder</members>
 		<members>Pitch_Manager_User</members>
@@ -3014,6 +3035,7 @@
 		<members>SolutionManager</members>
 		<members>Standard</members>
 		<members>StandardAul</members>
+		<members>System Administrator Lite</members>
 		<members>TO %E2%80%93 Salesforce MultiApp Standard Secured</members>
 		<members>TO %E2%80%93 Salesforce MultiApp Standard</members>
 		<members>Unilever - API Only User</members>
@@ -3029,6 +3051,7 @@
 		<members>Unilever Power Analytics User</members>
 		<members>Unilever Way - Marketing - HUB Admin</members>
 		<members>Unilever Way - Marketing - Standard Marketing User</members>
+		<members>Unilever Way - Marketing - System Administrator Lite</members>
 		<members>tacsite Profile</members>
 		<members>uwssosite1 Profile</members>
 		<name>Profile</name>
@@ -3098,6 +3121,7 @@
 		<members>Core_IC_IdeationApp</members>
 		<members>HROResources</members>
 		<members>LoadImage</members>
+		<members>PSARViewTableauDashboard</members>
 		<name>StaticResource</name>
 	</types>
 	<types>
@@ -3395,6 +3419,37 @@
 		<name>Workflow</name>
 	</types>
 	<types>
+		<members>AF_Images</members>
+		<members>AF_Images/Agency_Fees_Masthead.png</members>
+		<members>Agency_Collateral</members>
+		<members>Agency_Collateral/App_Logo.png</members>
+		<members>Communications_Planner</members>
+		<members>Communications_Planner/Unilever_Logo_for_App.gif</members>
+		<members>Unilever_Images</members>
+		<members>Unilever_Images/New_Unilever_Way_Logo.png</members>
+		<name>Document</name>
+	</types>
+	<types>
+		<members>PSAR_Reports</members>
+		<members>PSAR_Reports/Alerts_by_Load_Date_Planner</members>
+		<members>PSAR_Reports/Alerts_by_Location_Director</members>
+		<members>PSAR_Reports/Alerts_by_Location_Planner</members>
+		<members>PSAR_Reports/Alerts_by_Location_Planning_Lead</members>
+		<members>PSAR_Reports/All_Team_Alerts</members>
+		<members>PSAR_Reports/Categories_with_Alerts_Director</members>
+		<members>PSAR_Reports/Categories_with_Alerts_Planner</members>
+		<members>PSAR_Reports/Categories_with_Alerts_Planning_Lead</members>
+		<members>PSAR_Reports/MyTeamAlerts_Director</members>
+		<members>PSAR_Reports/MyTeamAlerts_Planning_Lead</members>
+		<members>PSAR_Reports/My_Alerts</members>
+		<members>PSAR_Reports/PSAR_Alerts_with_Details_Director</members>
+		<members>PSAR_Reports/PSAR_Alerts_with_Details_Planner</members>
+		<members>PSAR_Reports/PSAR_Alerts_with_Details_Planning_Lead</members>
+		<name>Report</name>
+	</types>
+	<types>
+		<members>Agency_Fees</members>
+		<members>Agency_Fees/AF_Email_To_CatFinance_ToEnterActualsAnnual_HTML</members>
 		<members>HRO_Onboarding</members>
 		<members>HRO_Onboarding/HRO_Overdue_task_notifications</members>
 		<members>HRO_Onboarding/HRO_Pre_Boarding_welcome_email</members>
@@ -3410,6 +3465,13 @@
 		<members>unfiled$public/AA_Report_Rejected</members>
 		<members>unfiled$public/Unilver_Custom_Template</members>
 		<name>EmailTemplate</name>
+	</types>
+	<types>
+		<members>PSAR_Dashboards</members>
+		<members>PSAR_Dashboards/Predictive_Service_Alert_Planner_View</members>
+		<members>PSAR_Dashboards/Predictive_Service_Alerts_Director_View</members>
+		<members>PSAR_Dashboards/Predictive_Service_Alerts_Planning_Lead_View</members>
+		<name>Dashboard</name>
 	</types>
 	<types>
 		<name>AuraDefinitionBundle</name>
@@ -3762,13 +3824,6 @@
 		<members>HROCultureLink</members>
 		<members>HRONetworkLink</members>
 		<members>HROOwnershipLink</members>
-		<members>HROPhaseIntroHeaderBeforeArrival</members>
-		<members>HROPhaseIntroHeaderBeonBoard</members>
-		<members>HROPhaseIntroHeaderDay1</members>
-		<members>HROPhaseIntroHeaderMonth1</members>
-		<members>HROPhaseIntroHeaderMonth2</members>
-		<members>HROPhaseIntroHeaderMonth3</members>
-		<members>HROPhaseIntroHeaderWeek1</members>
 		<members>HROPhaseIntroInfoBeforeArrival</members>
 		<members>HROPhaseIntroInfoBeonBoard</members>
 		<members>HROPhaseIntroInfoDay1</members>
@@ -3776,6 +3831,7 @@
 		<members>HROPhaseIntroInfoMonth2</members>
 		<members>HROPhaseIntroInfoMonth3</members>
 		<members>HROPhaseIntroInfoWeek1</members>
+		<members>PSAR_Chatter</members>
 		<name>CustomLabel</name>
 	</types>
 	<version>34.0</version>
