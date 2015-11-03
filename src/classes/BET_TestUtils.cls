@@ -353,6 +353,35 @@ public class BET_TestUtils {
     }
 
     /************************************************************
+		Purpose: Create test users
+		Parameters: number of users to create
+		Returns: List of Users
+		Throws: -
+	*************************************************************/
+    public static List<User> createUserSystemAdmin(Integer iCount){
+    	List<User> retVal = new List<User>();
+    	Id sysAdminId = [SELECT id FROM Profile WHERE Name = 'System Administrator'].id;
+    	Integer randNo = Integer.valueOf(Math.random() * 100000);
+
+    	for (Integer i=0; i<iCount; i++){
+			retVal.add( new User(alias = '' + randNo, 
+							email = 'TestUsert@unittest.com',
+							emailencodingkey = 'UTF-8',
+							firstname = 'Test',
+							lastname = 'BETUnitTest-' + randNo,
+							languagelocalekey = 'en_US',
+							localesidkey = 'en_US', 
+							profileid = sysAdminId,
+							timezonesidkey = 'Europe/London',
+							username = 'TestAdmin@unittest.com' + randNo)
+			);
+			randNo++;
+		}
+		insert retVal;
+		return retVal;
+    }
+
+    /************************************************************
 		Purpose: Method creates creates test BET_Follow_Request__c record with given status
 		Parameters: uw_Bet__c bet, IPM_Project__c project,String status
 		Returns: BET_Follow_Request__c record
