@@ -2,8 +2,7 @@
   	<apex:stylesheet value="{!$Resource.BET}/libs/jquery-ui/jquery-ui.css" />
   	<apex:stylesheet value="{!$Resource.BET}/css/BETAssetsOrder.css" />
 
-  	<apex:outputPanel layout="block" style="border: 3px solid rgb(190, 35, 109);
-															   background-color: #F4F4F4;">
+  	<apex:outputPanel layout="block" styleClass="frame">
 
   	<div class="assetsDragAndDropInfo">
   		{!$Label.BET_Please_Drag_And_Drop}
@@ -28,7 +27,7 @@
 		</apex:repeat>
 	</div>
 
-	<div style="padding-bottom:10px;">
+	<div class="aoButton">
 		<button id="sbid" onclick="this.innerHTML = '{!$Label.BET_Saving}'; saveOrder(); return false;" 
 			class="btnPink">
 			{!$Label.BET_Save}
