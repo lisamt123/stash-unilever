@@ -44,8 +44,8 @@
         </actions>
         <active>true</active>
         <formula>IF(ISNEW(), 
- ISPICKVAL(Status__c,&apos;Approved&apos;)
-,AND(ISPICKVAL(Status__c,&apos;Approved&apos;), ISCHANGED(Status__c))
+AND(ISPICKVAL(Status__c,&apos;Approved&apos;),NOT(Do_Not_Notify_User__c))
+,AND(ISPICKVAL(Status__c,&apos;Approved&apos;), ISCHANGED(Status__c), NOT(Do_Not_Notify_User__c))
 )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>

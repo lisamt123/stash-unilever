@@ -33,6 +33,7 @@ public with sharing class BET_SuggestedMemberService {
         if(isBetOwnerOrManager){
             betMemeberItem.Status__c = Label.BETTeamMemberRequestApprovedStatus;
             betMemeberItem.Do_Not_Notify_Bet__c = true;
+            betMemeberItem.Do_Not_Notify_User__c = true;
         }else{
             betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
         }
@@ -57,6 +58,7 @@ public with sharing class BET_SuggestedMemberService {
         if(isBetOwnerOrManager){
             betMemeberItem.Status__c = Label.BETTeamMemberRequestApprovedStatus;
             betMemeberItem.Do_Not_Notify_Bet__c = true;
+            betMemeberItem.Do_Not_Notify_User__c = true;
         }else{
             betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
         }

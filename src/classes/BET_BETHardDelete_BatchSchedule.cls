@@ -17,7 +17,7 @@ global class BET_BETHardDelete_BatchSchedule implements Database.Batchable<sObje
 	global Database.QueryLocator start(Database.BatchableContext BC) {
 		Integer daysPast = BET_Settings__c.getOrgDefaults().SoftDeletePeriod__c == null ? 90 : (Integer)BET_Settings__c.getOrgDefaults().SoftDeletePeriod__c;
 		Date deletionDate = Date.today().addDays(-daysPast);
-		String query = 'select id from uw_Bet__c where Is_Deleted__c = true and Deletion_Date__c =: deletionDate';
+		String query = 'select id from uw_Bet__c where Is_Deleted__c = true and Deletion_Date__c <=: deletionDate';
 		System.debug('query ' + query);
 		return Database.getQueryLocator(query);
 	}
