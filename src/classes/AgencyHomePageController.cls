@@ -400,6 +400,7 @@ public with sharing class AgencyHomePageController {
                    }
                    else if(bonusResultSelectedObj.size()>0){
                     for(AF_Bonus_Results__c bonusResult:bonusResultSelectedObj){
+                    Quarter = false;
                     if(bonusResult.AF_Period__c == 'Q1' && bonusDate==true && (bonusResult.AF_Status__c == 'Draft' || bonusResult.AF_Status__c =='None')){
                         Quarter= true;
                         uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c='W/Cat Finance';

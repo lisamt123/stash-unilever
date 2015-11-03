@@ -77,7 +77,7 @@
         <label>Average Exchange Rate To EUR</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1076,7 +1076,7 @@
         <label>Ready For PO Exchange Rate GBP</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1089,7 +1089,7 @@
         <label>Ready For PO Exchange Rate To USD</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>

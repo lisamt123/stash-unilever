@@ -104,11 +104,6 @@
         <unique>false</unique>
     </fields>
     <label>Course ChatterGroup</label>
-    <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
     <nameField>
         <displayFormat>CN-{00000}</displayFormat>
         <label>Record No.</label>

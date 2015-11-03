@@ -513,7 +513,96 @@ Captured Images will be stored as attachment or document object.</description>
         <unique>false</unique>
     </fields>
     <label>Agent Report</label>
-    
+    <listViews>
+        <fullName>CI_Manager_Africa_Queue_aa_Agent_Report</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CI Manager Africa Queue</label>
+        <queue>CI_Manager_Africa_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CI_Manager_Default_Queue_aa_Agent_Report</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CI Manager Default Queue</label>
+        <queue>CI_Manager_Default_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CI_Manager_Europe_Queue_aa_Agent_Report</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CI Manager Europe Queue</label>
+        <queue>CI_Manager_Europe_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CI_Manager_Latin_America_Queue_aa_Agent_Report</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CI Manager Latin America Queue</label>
+        <queue>CI_Manager_Latin_America_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CI_Manager_NametRub_Queue_aa_Agent_Report</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CI Manager NametRub Queue</label>
+        <queue>CI_Manager_NametRub_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CI_Manager_North_America_Queue_aa_Agent_Report</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CI Manager North America Queue</label>
+        <queue>CI_Manager_North_America_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CI_Manager_North_Asia_Queue_aa_Agent_Report</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CI Manager North Asia Queue</label>
+        <queue>CI_Manager_North_Asia_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CI_Manager_SEAA_Queue_aa_Agent_Report</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CI Manager SEAA Queue</label>
+        <queue>CI_Manager_SEAA_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CI_Manager_South_Asia_Queue_aa_Agent_Report</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CI Manager South Asia Queue</label>
+        <queue>CI_Manager_South_Asia_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ETS_Queue_aa_Agent_Report</fullName>
+        <filterScope>Queue</filterScope>
+        <label>ETS Queue</label>
+        <queue>ETS_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>{000000}</displayFormat>
         <label>Report Id</label>
