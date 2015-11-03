@@ -146,9 +146,9 @@
         <fullName>AF_Agency_ExchangeRateTemp__c</fullName>
         <externalId>false</externalId>
         <label>Agency ExchangeRateTemp</label>
-        <precision>14</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -159,9 +159,9 @@
         <description>AgencyFee#GLOBAL#To store Agency exchange rate values</description>
         <externalId>false</externalId>
         <label>Agency Exchange Rate</label>
-        <precision>14</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -814,9 +814,9 @@ IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q4&quot;), &quot;Q3&quot;, null)
         <description>Stores the ready for PO Currency exchange rate</description>
         <externalId>false</externalId>
         <label>Ready For PO Exchange Rate</label>
-        <precision>14</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -826,9 +826,9 @@ IF(INCLUDES(AF_OOPS_Actual__r.Quarter__c, &quot;Q4&quot;), &quot;Q3&quot;, null)
         <fullName>AF_ReadyforPOExchangeRateTemp__c</fullName>
         <externalId>false</externalId>
         <label>ReadyforPOExchangeRateTemp</label>
-        <precision>14</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
