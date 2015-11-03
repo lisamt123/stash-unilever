@@ -1,3 +1,27 @@
+.frame {
+		border: 3px solid rgb(190, 35, 109);
+		background-color: #F4F4F4;
+}
+.eaComponent{
+	padding-left:20px;
+	padding-top:10px;
+}
+
+.eaButton{
+	padding-bottom:10px;
+	padding-left:20px;
+}
+.eaSaveButton {
+	background: #BE236D;
+	color:white;
+	width:80px;
+	height:30px;
+	font-size:15px;
+	border:none;
+	border-radius: 0px;
+	font-family:Rockwell;
+}
+	
 .addMembersUserLabel {
   font-family: "Rockwell";
   font-weight: 400;
