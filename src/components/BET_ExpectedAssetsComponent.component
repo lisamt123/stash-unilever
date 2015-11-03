@@ -10,18 +10,18 @@
 
 	<apex:actionFunction name="saveExpAssetsOne" action="{!upsertExceptedAssets}"/>
 
-	<div style="font-family: Rockwell;font-size: 13px;padding-bottom:10px;">
+	<div style="font-family: Rockwell;font-size: 14px;padding-bottom:10px;">
 		{!$Label.BET_Tick_Info}
 	</div>
 
 	<table class="expectedAssetsTable">
 		<tr>
-			<td class="expectedAssetsTableHeader">
+			<th class="expectedAssetsTableHeader">
 				{!$Label.BET_AssetType}
-			</td>
-			<td class="expectedAssetsTableHeader">
+			</th>
+			<th class="expectedAssetsTableHeader">
 				{!$Label.BET_ExpectedAssets}
-			</td>
+			</th>
 		</tr>
 		<apex:repeat value="{!expectedAssetsForBET}" var="eab">
 			<tr>
