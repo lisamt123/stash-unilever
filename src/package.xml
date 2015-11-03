@@ -3692,9 +3692,21 @@
 		<members>FA_SG_Taste_Cafeteria</members>
 		<members>FA_SG_Wall_Room</members>
 		<members>GoogleAPIKey</members>
+		<members>HROCapabilityLink</members>
+		<members>HROCultureLink</members>
+		<members>HRONetworkLink</members>
+		<members>HROOwnershipLink</members>
+		<members>HROPhaseIntroInfoBeforeArrival</members>
+		<members>HROPhaseIntroInfoBeonBoard</members>
+		<members>HROPhaseIntroInfoDay1</members>
+		<members>HROPhaseIntroInfoMonth1</members>
+		<members>HROPhaseIntroInfoMonth2</members>
+		<members>HROPhaseIntroInfoMonth3</members>
+		<members>HROPhaseIntroInfoWeek1</members>
 		<members>HideTermsOfUseLabel</members>
 		<members>LAUNCH_PINNOVATE_CMD</members>
 		<members>Matrix_Currency_Desc</members>
+		<members>PSAR_Chatter</members>
 		<members>Rollout_No_Records_Msg</members>
 		<members>TO_CaseIdentifier</members>
 		<members>TermsOfUseTitle</members>
