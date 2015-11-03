@@ -72,7 +72,7 @@ body button.clearButton {
 
 .form-item .item-input {
   position: relative;
-  left: 175px;
+  left: 195px;
   top: -30px;
   display: inline-block;
 }
@@ -86,7 +86,7 @@ body button.clearButton {
 
 .form-item .item-input-date {
   position: relative;
-  left: 175px;
+  left: 195px;
   top: -30px;
   display: inline-block;
 }
@@ -247,7 +247,7 @@ body .bPageBlock .requiredInput {
   font-style: italic;
   color: #515151;
   font-size: 13px;
-  margin-left: 175px;
+  margin-left: 195px;
 }
 
 .form-item-brandtip {
@@ -256,7 +256,7 @@ body .bPageBlock .requiredInput {
 
 .spinnerclass{
   position: relative;
-  left: 175px;
+  left: 195px;
   top: -30px;
   font-size: 13px;
   font-family: "Rockwell";
@@ -316,7 +316,7 @@ body .bPageBlock .requiredInput {
 
 .form-item .item-input-approve {
   position: relative;
-  left: 175px;
+  left: 195px;
   top: -17px;
   display: inline-block;
 }
