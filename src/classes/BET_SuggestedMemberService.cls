@@ -30,10 +30,10 @@ public with sharing class BET_SuggestedMemberService {
         betMemeberItem.UserId__c = userId;
         betMemeberItem.Project_Id__c = projectIdCtrl;
         betMemeberItem.Bet_owner__c = betOwnerId;
-        betMemeberItem.Do_Not_Notify_User__c = true;
         if(isBetOwnerOrManager){
             betMemeberItem.Status__c = Label.BETTeamMemberRequestApprovedStatus;
             betMemeberItem.Do_Not_Notify_Bet__c = true;
+            betMemeberItem.Do_Not_Notify_User__c = true;
         }else{
             betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
         }
@@ -55,10 +55,10 @@ public with sharing class BET_SuggestedMemberService {
         betMemeberItem.External_User_Email__c = eam.email;
         betMemeberItem.Bet_owner__c = betOwnerId;
         betMemeberItem.UserId__c = eam.userId;
-        betMemeberItem.Do_Not_Notify_User__c = true;
         if(isBetOwnerOrManager){
             betMemeberItem.Status__c = Label.BETTeamMemberRequestApprovedStatus;
             betMemeberItem.Do_Not_Notify_Bet__c = true;
+            betMemeberItem.Do_Not_Notify_User__c = true;
         }else{
             betMemeberItem.Status__c = Label.BETTeamMemberRequestNewStatus;
         }
