@@ -105,6 +105,331 @@ Changed to Campaign on 26/10/2015</description>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Asset_Picklist__c</fullName>
+        <description>Types of Typical Assets</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please select the Asset that most meets the type of Asset required?</inlineHelpText>
+        <label>Asset Names</label>
+        <picklist>
+            <controllingField>Sub_Category__c</controllingField>
+            <picklistValues>
+                <fullName>TV Master</fullName>
+                <controllingFieldValues>Origination</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Re-Shoot</fullName>
+                <controllingFieldValues>Origination</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Voice to Camera Shots</fullName>
+                <controllingFieldValues>Origination</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Branded Videos</fullName>
+                <controllingFieldValues>Origination</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product Demos</fullName>
+                <controllingFieldValues>Origination</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cinema Film</fullName>
+                <controllingFieldValues>Origination</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Campaign Teaser Video</fullName>
+                <controllingFieldValues>Origination</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Behind the scenes footage</fullName>
+                <controllingFieldValues>Origination</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tactical Video</fullName>
+                <controllingFieldValues>Origination</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Simple Adaptation</fullName>
+                <controllingFieldValues>Adaptations &amp; Reedits</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Simple Edit</fullName>
+                <controllingFieldValues>Adaptations &amp; Reedits</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Moderate Edit</fullName>
+                <controllingFieldValues>Adaptations &amp; Reedits</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Complex Re-Edit</fullName>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <controllingFieldValues>Adaptations &amp; Reedits</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Complex Adaptation</fullName>
+                <controllingFieldValues>Adaptations &amp; Reedits</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mood Boards</fullName>
+                <controllingFieldValues>Stimulus Requirements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Extended Stills</fullName>
+                <controllingFieldValues>Stimulus Requirements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Storyboard</fullName>
+                <controllingFieldValues>Stimulus Requirements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Animatics</fullName>
+                <controllingFieldValues>Stimulus Requirements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Stillomatics</fullName>
+                <controllingFieldValues>Stimulus Requirements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finished Film</fullName>
+                <controllingFieldValues>Stimulus Requirements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Photomatic</fullName>
+                <controllingFieldValues>Stimulus Requirements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Narration</fullName>
+                <controllingFieldValues>Stimulus Requirements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Stilomatic</fullName>
+                <controllingFieldValues>Stimulus Requirements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Concept Quals</fullName>
+                <controllingFieldValues>Stimulus Requirements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tag</fullName>
+                <controllingFieldValues>Cut Downs &amp; Tags</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cutdown</fullName>
+                <controllingFieldValues>Cut Downs &amp; Tags</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Radio</fullName>
+                <controllingFieldValues>Audio</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Webcast</fullName>
+                <controllingFieldValues>Audio</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Podcast</fullName>
+                <controllingFieldValues>Audio</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Key Visual</fullName>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Logo</fullName>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bus Wraps</fullName>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bus Shelters</fullName>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Billboards</fullName>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Street Banners</fullName>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tactical Print</fullName>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Strategic Print</fullName>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Moderate Adaptation</fullName>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mobile Marketing Strategy</fullName>
+                <controllingFieldValues>Specialist Digital Requirements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UX Strategy</fullName>
+                <controllingFieldValues>Specialist Digital Requirements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Interactive Game</fullName>
+                <controllingFieldValues>Specialist Digital Requirements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mobile APP Conceptualisation</fullName>
+                <controllingFieldValues>Specialist Digital Requirements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Website Optimisation for Mobile</fullName>
+                <controllingFieldValues>Specialist Digital Requirements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Static Banners</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Static Landing Pages</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Static page take overs</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Flash Banners</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Flash Landing Pages</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Flash Take Overs</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Simple Microsite</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Complex Microsite</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Youtube Uploads</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EDM</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Enewletters</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Banner Adaptations</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Landing Pages Adaptations</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital Strategy Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EDM Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>eNewsletter Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mobile App Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Interactive Game Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Asset_Scoring_Number__c</fullName>
         <externalId>false</externalId>
         <formula>FULL_Description__r.Point_Score__c</formula>
@@ -379,6 +704,253 @@ Changed to Campaign on 26/10/2015</description>
         <active>true</active>
         <label>Admin</label>
         <picklistValues>
+            <picklist>Asset_Picklist__c</picklist>
+            <values>
+                <fullName>Animatics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banner Adaptations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Behind the scenes footage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Billboards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Branded Videos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bus Shelters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bus Wraps</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Campaign Teaser Video</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cinema Film</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Microsite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Re-Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Concept Quals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cutdown</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Strategy Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enewletters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Extended Stills</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finished Film</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Landing Pages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Take Overs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interactive Game</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interactive Game Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Key Visual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landing Pages Adaptations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile APP Conceptualisation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile App Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile Marketing Strategy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moderate Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moderate Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mood Boards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Narration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photomatic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Podcast</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Demos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Radio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Re-Shoot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Microsite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static Landing Pages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static page take overs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stillomatics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stilomatic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Storyboard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Print</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Street Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TV Master</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tactical Print</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tactical Video</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tag</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UX Strategy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Voice to Camera Shots</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webcast</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website Optimisation for Mobile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Youtube Uploads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>eNewsletter Adaptation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Asset_Type__c</picklist>
             <values>
                 <fullName>Audio Visual</fullName>
@@ -474,6 +1046,253 @@ Changed to Campaign on 26/10/2015</description>
         <description>Audio Visual</description>
         <label>Audio Visual</label>
         <picklistValues>
+            <picklist>Asset_Picklist__c</picklist>
+            <values>
+                <fullName>Animatics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banner Adaptations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Behind the scenes footage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Billboards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Branded Videos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bus Shelters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bus Wraps</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Campaign Teaser Video</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cinema Film</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Microsite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Re-Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Concept Quals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cutdown</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Strategy Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enewletters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Extended Stills</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finished Film</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Landing Pages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Take Overs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interactive Game</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interactive Game Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Key Visual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landing Pages Adaptations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile APP Conceptualisation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile App Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile Marketing Strategy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moderate Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moderate Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mood Boards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Narration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photomatic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Podcast</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Demos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Radio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Re-Shoot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Microsite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static Landing Pages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static page take overs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stillomatics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stilomatic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Storyboard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Print</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Street Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TV Master</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tactical Print</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tactical Video</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tag</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UX Strategy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Voice to Camera Shots</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webcast</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website Optimisation for Mobile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Youtube Uploads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>eNewsletter Adaptation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Asset_Type__c</picklist>
             <values>
                 <fullName>Audio Visual</fullName>
@@ -528,6 +1347,253 @@ Changed to Campaign on 26/10/2015</description>
         <active>true</active>
         <description>Digital Asset type</description>
         <label>Digital</label>
+        <picklistValues>
+            <picklist>Asset_Picklist__c</picklist>
+            <values>
+                <fullName>Animatics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banner Adaptations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Behind the scenes footage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Billboards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Branded Videos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bus Shelters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bus Wraps</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Campaign Teaser Video</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cinema Film</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Microsite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Re-Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Concept Quals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cutdown</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Strategy Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enewletters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Extended Stills</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finished Film</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Landing Pages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Take Overs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interactive Game</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interactive Game Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Key Visual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landing Pages Adaptations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile APP Conceptualisation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile App Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile Marketing Strategy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moderate Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moderate Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mood Boards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Narration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photomatic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Podcast</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Demos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Radio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Re-Shoot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Microsite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static Landing Pages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static page take overs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stillomatics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stilomatic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Storyboard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Print</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Street Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TV Master</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tactical Print</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tactical Video</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tag</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UX Strategy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Voice to Camera Shots</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webcast</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website Optimisation for Mobile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Youtube Uploads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>eNewsletter Adaptation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Asset_Type__c</picklist>
             <values>
@@ -612,6 +1678,253 @@ Changed to Campaign on 26/10/2015</description>
         <description>Experiential Asset type</description>
         <label>Experiential</label>
         <picklistValues>
+            <picklist>Asset_Picklist__c</picklist>
+            <values>
+                <fullName>Animatics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banner Adaptations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Behind the scenes footage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Billboards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Branded Videos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bus Shelters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bus Wraps</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Campaign Teaser Video</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cinema Film</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Microsite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Re-Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Concept Quals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cutdown</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Strategy Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enewletters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Extended Stills</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finished Film</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Landing Pages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Take Overs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interactive Game</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interactive Game Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Key Visual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landing Pages Adaptations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile APP Conceptualisation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile App Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile Marketing Strategy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moderate Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moderate Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mood Boards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Narration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photomatic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Podcast</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Demos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Radio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Re-Shoot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Microsite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static Landing Pages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static page take overs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stillomatics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stilomatic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Storyboard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Print</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Street Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TV Master</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tactical Print</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tactical Video</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tag</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UX Strategy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Voice to Camera Shots</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webcast</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website Optimisation for Mobile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Youtube Uploads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>eNewsletter Adaptation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Asset_Type__c</picklist>
             <values>
                 <fullName>Experiential</fullName>
@@ -642,6 +1955,253 @@ Changed to Campaign on 26/10/2015</description>
         <active>true</active>
         <description>Static Imagery Asset</description>
         <label>Static Imagery</label>
+        <picklistValues>
+            <picklist>Asset_Picklist__c</picklist>
+            <values>
+                <fullName>Animatics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banner Adaptations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Behind the scenes footage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Billboards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Branded Videos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bus Shelters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bus Wraps</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Campaign Teaser Video</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cinema Film</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Microsite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Re-Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Concept Quals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cutdown</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Strategy Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enewletters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Extended Stills</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finished Film</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Landing Pages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Take Overs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interactive Game</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interactive Game Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Key Visual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landing Pages Adaptations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile APP Conceptualisation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile App Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile Marketing Strategy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moderate Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moderate Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mood Boards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Narration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photomatic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Podcast</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Demos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Radio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Re-Shoot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Microsite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static Landing Pages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static page take overs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stillomatics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stilomatic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Storyboard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Print</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Street Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TV Master</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tactical Print</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tactical Video</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tag</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UX Strategy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Voice to Camera Shots</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webcast</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website Optimisation for Mobile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Youtube Uploads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>eNewsletter Adaptation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Asset_Type__c</picklist>
             <values>
@@ -676,6 +2236,10 @@ Changed to Campaign on 26/10/2015</description>
             <picklist>Sub_Category__c</picklist>
             <values>
                 <fullName>Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Origination</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
