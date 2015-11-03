@@ -142,6 +142,7 @@
         <externalId>false</externalId>
         <label>BigProductCategory</label>
         <referenceTo>MDO_Category__c</referenceTo>
+        <relationshipLabel>SWOP (BigProductCategory)</relationshipLabel>
         <relationshipName>Marketing_SOW</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -352,6 +353,20 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Oblix_tec_Unique_Name__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>This is a technical field used for having Unique Record by Name</description>
+        <externalId>false</externalId>
+        <label>Unique Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>SOW_Status__c</fullName>
         <description>SOW Status - Used in the Approval process</description>
         <externalId>false</externalId>
@@ -362,30 +377,22 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Awaiting Approval</fullName>
+                <fullName>Awaiting Unilever Approval</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Awaiting GVP Approval</fullName>
+                <fullName>Awaiting Agency Acceptance</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Locked</fullName>
+                <fullName>Draft - with Agency</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Open</fullName>
+                <fullName>Draft - with Unilever</fullName>
                 <default>true</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Returned</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -398,6 +405,7 @@
         <externalId>false</externalId>
         <label>SmallProductCategory</label>
         <referenceTo>MDO_Category__c</referenceTo>
+        <relationshipLabel>SWOP (SmallProductCategory)</relationshipLabel>
         <relationshipName>Marketing_SOW1</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -498,8 +506,15 @@
         <fullName>All</fullName>
         <columns>RECORDTYPE</columns>
         <columns>NAME</columns>
+        <columns>Oblix_AgencyEstimate__c</columns>
         <columns>Financial_Year__c</columns>
         <columns>Unilever_Approval_Date__c</columns>
+        <columns>SOW_Status__c</columns>
+        <columns>OblixBrand__c</columns>
+        <columns>BB_or_BD__c</columns>
+        <columns>BigOblixProductCategory__c</columns>
+        <columns>SmallProductCategory__c</columns>
+        <columns>FINAL_APPROVED_FEE_K__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Active__c</field>
@@ -597,28 +612,20 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Awaiting Approval</fullName>
+                <fullName>Awaiting Agency Acceptance</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Awaiting GVP Approval</fullName>
+                <fullName>Awaiting Unilever Approval</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Locked</fullName>
+                <fullName>Draft - with Agency</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Open</fullName>
+                <fullName>Draft - with Unilever</fullName>
                 <default>true</default>
-            </values>
-            <values>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Returned</fullName>
-                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -725,28 +732,20 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Awaiting Approval</fullName>
+                <fullName>Awaiting Agency Acceptance</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Awaiting GVP Approval</fullName>
+                <fullName>Awaiting Unilever Approval</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Locked</fullName>
+                <fullName>Draft - with Agency</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Open</fullName>
+                <fullName>Draft - with Unilever</fullName>
                 <default>true</default>
-            </values>
-            <values>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Returned</fullName>
-                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>

@@ -233,21 +233,15 @@
     <types>
         <members>Oblix_SWOP_Agency_Global_User</members>
         <members>Oblix_SWOP_Agency_Super_User</members>
-        <members>Oblix_SWOP_Global_User</members>
-        <members>Oblix_SWOP_Global_User_Salesforce_Platform</members>
         <members>Oblix_SWOP_Global_User_V1</members>
         <members>Oblix_SWOP_Super_User</members>
-        <members>Oblix_SWOP_Super_User_Salesforce_Platform</members>
         <members>Oblix_SWOP_Super_User_V1</members>
         <members>Oblix_SWOP_UL2</members>
-        <members>Oblix_SWOP_UL2_Salesforce_Platform</members>
         <members>Oblix_SWOP_UL3_4</members>
         <members>Oblix_SWOP_UL3_4_Agency</members>
-        <members>Oblix_SWOP_UL3_4_Salesforce_Platform</members>
         <members>Oblix_SWOP_UL3_4_V1</members>
         <members>Oblix_SWOP_UL_1</members>
         <members>Oblix_SWOP_UL_1_Agency</members>
-        <members>Oblix_SWOP_UL_1_Salesforce_Platform</members>
         <members>Oblix_SWOP_UL_1_V1</members>
         <members>Oblix_SWOP_UL_2_Agency</members>
         <members>Oblix_SWOP_UL_2_V1</members>
