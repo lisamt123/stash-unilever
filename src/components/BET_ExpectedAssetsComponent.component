@@ -25,10 +25,10 @@
 		</tr>
 		<apex:repeat value="{!expectedAssetsForBET}" var="eab">
 			<tr>
-				<td>
+				<td style="padding-left:8px;">
 					{!eab.assetTypeName}
 				</td>
-				<td>
+				<td style="text-align:center;">
 					<apex:inputCheckbox value="{!eab.assetTypeNameExpected}" />
 				</td>
 			</tr>

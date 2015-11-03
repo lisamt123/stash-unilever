@@ -4,7 +4,8 @@
 	<apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />    
 
 
-	<apex:outputPanel layout="block" id="maincontainer">
+	<apex:outputPanel layout="block" id="maincontainer" style="border: 3px solid rgb(190, 35, 109);
+															   background-color: #F4F4F4;">
 
       	<script>
         	function setFlag(){
@@ -19,8 +20,10 @@
 
 		<apex:form >
 			<apex:inputHidden value="{!runJsSuccess}" id="runJsSuccess"/>
-			<c:BET_ExpectedAssetsComponent betId="{!betId}" />
-			<div style="padding-top:10px;">
+			<div style="padding-left:20px;padding-top:10px;">
+				<c:BET_ExpectedAssetsComponent betId="{!betId}"/>
+			</div>
+			<div style="padding-bottom:10px;padding-left:20px;">
 				<apex:commandButton onclick="this.value = '{!$Label.BET_Saving}';saveExpAssetsOne();setFlag();"
 								value="{!$Label.BET_Save}"  
 								oncomplete="this.value = '{!$Label.BET_Save}';" 
