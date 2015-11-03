@@ -87,7 +87,7 @@
 	}
 
 	.assetsRowHeader{
-		background: #666a6b none repeat scroll 0 0;
+		background: #64625D none repeat scroll 0 0;
     	color: #fff;
 		width: 96%;
 		margin-left: 20px;		
@@ -99,6 +99,7 @@
 			font-weight: 500;
 			padding-bottom: 10px;
 			margin-left: 20px;
+			padding-top: 10px;
   	}
 	
 	.btnPink{
