@@ -38,27 +38,41 @@ public with sharing class Oblix_Utils {
 
        list<string> lst = new list<string>(); 
            if(recType == 'Admin'){
-               lst.add('ORIGINATION');
+               lst.add(Oblix_Constants.UIUX_Origination);
                lst.add('ADAPTATIONS and RE-EDITS');
                lst.add('Stimulus requirements');
                lst.add('Cut downs and Tag');
            }
            if(recType == 'Audio Visual'){
-               lst.add('ORIGINATION');
+               lst.add(Oblix_Constants.UIUX_Origination);
            }
            if(recType == 'Static Imagery'){
-               lst.add('ORIGINATION');
+               lst.add(Oblix_Constants.UIUX_Origination);
            }
            if(recType == 'Experiential'){
-               lst.add('ORIGINATION');
+               lst.add(Oblix_Constants.UIUX_Origination);
            }
            if(recType == 'Experiential'){
-               lst.add('ORIGINATION');
+               lst.add(Oblix_Constants.UIUX_Origination);
            }
            if(recType == 'Digital'){
-               lst.add('ORIGINATION');
+               lst.add(Oblix_Constants.UIUX_Origination);
            }          
              
        return lst;   
     }
+    
+    public static list<string> getStageList(){
+        
+        list<string> lstStage = new list<string>();
+        Schema.DescribeFieldResult lstProjectStage = Oblix_SOW_Projects__c.Project_Stage__c.getDescribe();
+        List<Schema.PicklistEntry> lstStageValues = lstProjectStage.getPicklistValues();
+        for (Schema.PicklistEntry a : lstStageValues){ 
+             lstStage.add(a.getLabel()); 
+         }
+          return lstStage;
+    }
+    
+    
+    
 }

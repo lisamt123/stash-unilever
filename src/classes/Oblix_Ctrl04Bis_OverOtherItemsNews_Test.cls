@@ -43,14 +43,15 @@ private class Oblix_Ctrl04Bis_OverOtherItemsNews_Test {
         			roleRate.RecordTypeId = Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Role_Rate');
         			roleRate.Oblix_Agency__c = marketingSow.Oblix_AgencyEstimate__c;
         			insert roleRate; 
+        	String marKObjName = 'Marketing_Basics__c';
         	Marketing_Basics__c basicParent = new Marketing_Basics__c();
         		basicParent.Oblix_SOWMarketing__c = marketingSow.Id;
-        		basicParent.RecordTypeId = Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Resource');
+        		basicParent.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get('Resource');
         		basicParent.OblixCountry__c = geographyCountry.Id;
         		insert basicParent;
 			Marketing_Basics__c basicParent1 = new Marketing_Basics__c();
         		basicParent1.Oblix_SOWMarketing__c = marketingSow.Id;
-        		basicParent1.RecordTypeId = Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Resource');
+        		basicParent1.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get('Resource');
         		basicParent1.FTE__c = 50;
         		basicParent1.OblixCountry__c = geographyCountry.Id;
         		insert basicParent1;
@@ -58,11 +59,11 @@ private class Oblix_Ctrl04Bis_OverOtherItemsNews_Test {
         		
         	Marketing_Basics__c basicParentActivity = new Marketing_Basics__c();
         		basicParentActivity.Oblix_SOWMarketing__c = marketingSow.Id;
-        		basicParentActivity.RecordTypeId = Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Activity');
+        		basicParentActivity.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get('Activity');
         		basicParentActivity.OblixCountry__c = geographyCountry.Id;
         	Marketing_Basics__c basicParentActivity1 = new Marketing_Basics__c();
         		basicParentActivity1.Oblix_SOWMarketing__c = marketingSow.Id;
-        		basicParentActivity1.RecordTypeId = Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Activity');	
+        		basicParentActivity1.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get('Activity');	
         		//basicParentActivity1.FTE__c = 50;
         		basicParentActivity1.No_of_Hours_Required__c = 10;
         		basicParentActivity1.OblixCountry__c = geographyCountry.Id;
@@ -87,16 +88,12 @@ private class Oblix_Ctrl04Bis_OverOtherItemsNews_Test {
 	        	  		controller1.reRenderAgencyDepartments();
 	        	  		controller1.selectedAgencyDepartment = roleRate.Agency_Department__c;
 	        	  		controller1.reRenderRoleTitle();
-	        	  		//controller1.getRoleTitle();
-	        	  		//controller1.getOblixCountry();
 	        	  		controller1.save(); 
 	        	  		
 	        	  Oblix_Ctrl04Bis_OverrideOtherItemsNews controller2 = new Oblix_Ctrl04Bis_OverrideOtherItemsNews(new ApexPages.StandardController(basicParentActivity1));
 	        	  		controller2.reRenderAgencyDepartments();
 	        	  		controller2.selectedAgencyDepartment = roleRate.Agency_Department__c;
 	        	  		controller2.reRenderRoleTitle();
-	        	  		//controller1.getRoleTitle();
-	        	  		//controller1.getOblixCountry();
 	        	  		controller2.save(); 
         	  Test.stopTest();		
 	     }

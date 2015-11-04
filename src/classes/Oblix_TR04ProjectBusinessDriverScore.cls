@@ -10,7 +10,8 @@
     -------
     This class is  : used as a fired class from Trigger  "After insert, update, delete" on SOW Asset object, to calculate the TotalProjectFee
                   information retrieved from : Porject Split "Countries" then retrieve from Calculator the related Box range record,
-                  calculate the TotalBusinessvaluedriverScore then the TotalProjectScore, and that value is between >Low_Point and High_Point from Calculator, and this fits into a box number
+                  calculate the TotalBusinessvaluedriverScore then the TotalProjectScore, and that value is between >Low_Point and High_Point
+                   from Calculator, and this fits into a box number
                   to be selected from Calculator "Countries" then Calculate the Fee on the project
                         
             Functionnalities : 
@@ -31,7 +32,7 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
         for(Oblix_SOW_Projects__c project : lstProjectTrigger){
             setProjectIds.add(project.Id);
         }
-        List<Oblix_Marketing_SOW_Project_Splits__c>  lstProjectSplits = [Select Id, Name, Project_Splits__c, OblixCountry__c, OblixCountry__r.Name, Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c in : setProjectIds];
+        List<Oblix_Marketing_SOW_Project_Splits__c>  lstProjectSplits = [Select Id, Name, Project_Splits__c, OblixCountry__c, OblixCountry__r.Name, Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c in : setProjectIds and Project_Splits__c != null];
         Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>> MapProjectToSplits = new Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>>();
          set<String> setCountries = new set<String>();
          
@@ -81,9 +82,7 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
                         score_innonvation = 0;
                     }
                 }
-            }
             //Business Value Creation BrandLedGrowth
-            if(project.Innovation_Projects__c != null){
                 if(project.Innovation_Projects__c == Oblix_Constants.Innovation_Projects_BrandLedGrowth){
                     if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_Less100){
                         score_brandLedGrowth = 0.150;
@@ -131,7 +130,7 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
                     score_hubPartner = 0.300;
                 }else{
                     score_hubPartner = 0;
-                }   
+                } 
             }
             
             //Business Value Campaign Idea
@@ -150,13 +149,12 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
             //Calculate TotalBusinessvaluedriverScore
             TotalBusinessvaluedriverScore = score_innonvation+score_brandLedGrowth+score_market+score_hubPartner+score_campaignIdea+TotalBusinessvaluedriverScore;
             project.Total_Value_Driver__c = TotalBusinessvaluedriverScore;
+             System.debug('###project.ProjectTotalAssetScore__c : '+project.ProjectTotalAssetScore__c);
             if(project.ProjectTotalAssetScore__c != null) TotalProjectScore = (project.ProjectTotalAssetScore__c/100)*TotalBusinessvaluedriverScore;
-            System.debug('###TotalProjectScore : '+TotalProjectScore);
+            
             if(!lstCalculatorBoxRange.isEmpty()){
                 for(Oblix_Calculator__c calculatorRange : lstCalculatorBoxRange){
-                    System.debug('###TotalProjectScore : '+TotalProjectScore);
-                    System.debug('###calculatorRange.Points_Low__c : '+calculatorRange.Points_Low__c);
-                    System.debug('###calculatorRange.Points_HigH__c : '+calculatorRange.Points_HigH__c);
+                    
                     if(TotalProjectScore >= calculatorRange.Points_Low__c && TotalProjectScore <= calculatorRange.Points_HigH__c){
                         //Create Field Project Box Number
                         Calculator_BoxRange =  calculatorRange.Box_Range__c;
@@ -166,24 +164,27 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
                 }
             }
             Calculator_BoxRange = Calculator_BoxRange.replace(' ', '_');
-            System.debug('###Calculator_BoxRange bef: '+Calculator_BoxRange);
-        Calculator_BoxRange += '__c';
-        System.debug('###Calculator_BoxRange aft: '+Calculator_BoxRange);
-        //System.debug('###Calculator_BoxRange : '+Calculator_BoxRange);
-        // A project has multi project splits, for every split we need to have a Calculator By Country
-        //For every project look over Splits and for every split get with a Map the Correct Calculator Country.
-        if(MapProjectToSplits.get(project.Id) != null){
-            for(Oblix_Marketing_SOW_Project_Splits__c projSplit : MapProjectToSplits.get(project.Id)){
-                for(Oblix_Calculator__c calculatorCountry : lstCalculatorCountryRange){
-                    if(calculatorCountry.Name == projsplit.OblixCountry__r.Name && Calculator_BoxRange.contains('Box_')){
-                        tmp_projectFee += (Decimal) (calculatorCountry.get(Calculator_BoxRange)!= null ? calculatorCountry.get(Calculator_BoxRange) : 0)* (projSplit.Percentage__c != null ? projSplit.Percentage__c : 0);
-                    }
-                }
-            }
-        }
-        project.Total_Fees_for_Project__c = tmp_projectFee;
-            
-        }
+        	Calculator_BoxRange += '__c';
+	        // A project has multi project splits, for every split we need to have a Calculator By Country
+	        //For every project look over Splits and for every split get with a Map the Correct Calculator Country.
+	        if(MapProjectToSplits.get(project.Id) != null){
+	           tmp_projectFee = TotalCalculatedFee(Calculator_BoxRange,MapProjectToSplits.get(project.Id),lstCalculatorCountryRange);
+	        }
+	        project.Total_Fees_for_Project__c = tmp_projectFee;
+	     }
         
     }
+    
+    private static Decimal TotalCalculatedFee(String Calculator_BoxRange, List<Oblix_Marketing_SOW_Project_Splits__c> lstProjectSplits, List<Oblix_Calculator__c> lstCalculatorCountrRange){
+    		 Decimal tmp_fee = 0;
+    		 for(Oblix_Marketing_SOW_Project_Splits__c projSplit : lstProjectSplits){
+	                for(Oblix_Calculator__c calculatorCountry : lstCalculatorCountrRange){
+	                    if(calculatorCountry.Name == projsplit.OblixCountry__r.Name && Calculator_BoxRange.contains('Box_')){
+	                        tmp_fee += (Decimal) (calculatorCountry.get(Calculator_BoxRange)!= null ? calculatorCountry.get(Calculator_BoxRange) : 0)* (projSplit.Percentage__c != null ? projSplit.Percentage__c : 0);
+	                    }
+	                }
+	            }
+	       return tmp_fee;
+    }
+    
 }

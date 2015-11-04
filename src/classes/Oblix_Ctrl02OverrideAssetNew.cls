@@ -8,7 +8,7 @@ public with sharing class Oblix_Ctrl02OverrideAssetNew {
     public Id rt_Experiential {get;set;}
     public Id rt_Stimulus_Materials_Research_requirements{get;set;}
     public  String rtName{get;set;}
-    
+    private String assetObjectName = 'oblix_project_assets__c';
     public Id agencyid {get;set;}
     
     public Oblix_Ctrl02OverrideAssetNew(ApexPages.StandardController controller){
@@ -18,12 +18,12 @@ public with sharing class Oblix_Ctrl02OverrideAssetNew {
          
          this.asset  = (Oblix_Project_Assets__c) controller.getRecord();
          agencyid = asset.Agency_Projects__c;
-         rt_AudioVisuel = Oblix_Utils.MapRecordType('Oblix_Project_Assets__c').get('Audio_Visual'); 
-            rt_StaticImagery = Oblix_Utils.MapRecordType('Oblix_Project_Assets__c').get('Static_Imagery');
-            rt_Admin = Oblix_Utils.MapRecordType('Oblix_Project_Assets__c').get('Admin');
-            rt_Digital = Oblix_Utils.MapRecordType('Oblix_Project_Assets__c').get('Digital');
-            rt_Experiential = Oblix_Utils.MapRecordType('Oblix_Project_Assets__c').get('Experiential');
-            rt_Stimulus_Materials_Research_requirements    = Oblix_Utils.MapRecordType('Oblix_Project_Assets__c').get('Stimulus_Materials_Research_requirements');
+         rt_AudioVisuel = Oblix_Utils.MapRecordType(assetObjectName).get('Audio_Visual'); 
+            rt_StaticImagery = Oblix_Utils.MapRecordType(assetObjectName).get('Static_Imagery');
+            rt_Admin = Oblix_Utils.MapRecordType(assetObjectName).get('Admin');
+            rt_Digital = Oblix_Utils.MapRecordType(assetObjectName).get('Digital');
+            rt_Experiential = Oblix_Utils.MapRecordType(assetObjectName).get('Experiential');
+            rt_Stimulus_Materials_Research_requirements    = Oblix_Utils.MapRecordType(assetObjectName).get('Stimulus_Materials_Research_requirements');
          if(asset == null || asset.Id == null){
             
             

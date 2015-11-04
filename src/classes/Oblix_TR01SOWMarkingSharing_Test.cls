@@ -4,19 +4,19 @@ private class Oblix_TR01SOWMarkingSharing_Test {
     static testMethod void myUnitTest() {
         // TO DO: implement unit test
          Profile p=[Select Id from Profile where Name='System Administrator' or Name='Système Administrateur'];       
-     
+         string en_us = 'en_US';
 	     //Insert User 
 	     User u= new User(Alias = 'test123', Email='standarduser@unilever.com', 
-	      EmailEncodingKey='UTF-8', LastName='af test', LanguageLocaleKey='en_US', 
-	      LocaleSidKey='en_US', ProfileId = p.Id,firstname='sf test one', 
+	      EmailEncodingKey='UTF-8', LastName='af test', LanguageLocaleKey=en_us, 
+	      LocaleSidKey=en_us, ProfileId = p.Id,firstname='sf test one', 
 	      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-	      UserName='testuser@test123321.com');//,AF_Brand__c='Test Brand1',AF_Category__c='Test Beverages1'
+	      UserName='testuser@test123321.com');
 	     insert u; 
 	     
 	     System.runAs(u){
 	     	User userShare= new User(Alias = 'test1233', Email='standarduser@unilever.com', 
-			      EmailEncodingKey='UTF-8', LastName='af test', LanguageLocaleKey='en_US', 
-			      LocaleSidKey='en_US', ProfileId = p.Id,firstname='sf test one', 
+			      EmailEncodingKey='UTF-8', LastName='af test', LanguageLocaleKey=en_us, 
+			      LocaleSidKey=en_us, ProfileId = p.Id,firstname='sf test one', 
 			      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
 			      UserName='JOE@unilever1.com');
 			     insert userShare; 
@@ -37,7 +37,7 @@ private class Oblix_TR01SOWMarkingSharing_Test {
         		insert marketingSow;
         		
         		update marketingSow;
-        		System.assertequals(marketingSow.OblixBrand__c, brandUser.Brand__c);
+        		System.assertequals(marketingSow.OblixBrand__c, brandUser.Brand__c, 'Sow Brand existe on the Table reference and is sharing with other users');
         	Test.stopTest();
 	     }
     }

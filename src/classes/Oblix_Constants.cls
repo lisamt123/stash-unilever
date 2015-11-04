@@ -52,5 +52,7 @@ global class Oblix_Constants {
          	
          	//UI/UX Labels : 
          	public static string SELECT_ONE_FILTER							= Label.Oblix_Lbl_UI_SELECT_ONE_FILTER;
+         	public static string UIUX_Origination							= Label.Oblix_Lbl_UIUX_Origination;
+         	
          	
 }

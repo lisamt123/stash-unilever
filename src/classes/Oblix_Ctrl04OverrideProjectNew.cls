@@ -65,59 +65,50 @@ public with sharing class Oblix_Ctrl04OverrideProjectNew {
             List<String> lstCountriesString = new List<String>();
             if(selectedCountries != null && selectedCountries != ''){
                 lstCountriesString =  selectedCountries.split(',');
+                ValueDriversProject(selectedCountries);
             }
             
             for(String selectedCountry : lstCountriesString){
                 if(MapCountryToRegion.get(selectedCountry) != null){
                     setRegionsName.add(MapCountryToRegion.get(selectedCountry));
-                     
                 }
             }
             for(String reg : setRegionsName){
-                RegionsName += reg + ';';
+                RegionsName += reg + ',';
             }
-            project.OblixCountries__c = selectedCountries;//.substring(0,selectedCountries.length()-1);
-            project.OblixRegion__c = RegionsName;
-            if(lstCountriesString != null && lstCountriesString.size()>0){
-                if(lstCountriesString.size()==1){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market1;}
-                if(lstCountriesString.size()>1 && lstCountriesString.size()<=5){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market2;}
-                if(lstCountriesString.size()>5 && lstCountriesString.size()<=10){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market3;}
-                if(lstCountriesString.size()>10 && lstCountriesString.size()<=15){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market4;}
-                if(lstCountriesString.size()>15){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;}
-                
-            }else{
-                project.Project_Scale_1__c = '';
-            }
+            project.OblixCountries__c = selectedCountries.removeEnd(',');//.substring(0,selectedCountries.length()-1);
+            project.OblixRegion__c = RegionsName.removeEnd(',');
             
-            System.debug('###project : '+project);
+    }
+    
+    private void ValueDriversProject(String selectedCountriesLoc){
+                        List<String> lstCountriesString =  selectedCountriesLoc.split(',');
+                        System.debug('###lsstCountriesString save : '+lstCountriesString);
+                        project.Project_Scale_1__c = '';
+                        if(!lstCountriesString.isEmpty()){
+                            if(lstCountriesString.size()==1){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market1;}
+                            else if(lstCountriesString.size()>1 && lstCountriesString.size()<=5){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market2;}
+                            else if(lstCountriesString.size()>5 && lstCountriesString.size()<=10){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market3;}
+                            else if(lstCountriesString.size()>10 && lstCountriesString.size()<=15) {project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market4;}
+                            else if(lstCountriesString.size()>15){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;}
+                        }
     }
     
     public PageReference Save(){
-        try{
-                System.debug('###selectedCountries save : '+selectedCountries);
-                if((selectedCountries == null || selectedCountries == '') && project.OblixCountries__c != null){
-                        List<String> lstCountriesString =  project.OblixCountries__c.split(',');
-                        System.debug('###lsstCountriesString save : '+lstCountriesString);
-                        if(lstCountriesString.size()>0){
-                            if(lstCountriesString.size()==1){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market1;}
-                            if(lstCountriesString.size()>1 && lstCountriesString.size()<=5){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market2;}
-                            if(lstCountriesString.size()>5 && lstCountriesString.size()<=10){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market3;}
-                            if(lstCountriesString.size()>10 && lstCountriesString.size()<=15) {project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market4;}
-                            if(lstCountriesString.size()>15){ project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;}
-                            
-                        }else{
-                            project.Project_Scale_1__c = '';
-                        }
-                }
-            if(project != null && project.Id != null){
-                update project;
-            }else{
-                insert project;
+            /*if((selectedCountries == null || selectedCountries == '') && project.OblixCountries__c != null){
+            	 ValueDriversProject(project.OblixCountries__c);    
+            }*/
+           
+            try{
+            	if(project != null && project.Id != null){
+                	update project;
+	            }else{
+	                insert project;
+	            }
+	            return new PageReference('/'+project.Id);
+            }catch(Exception e){
+            	ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,e.getMessage()+ ' Error Occured during save please review data entry'));
             }
-            return new PageReference('/'+project.Id);
-        }catch(Exception e){
-            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,'Error Occured during save please review data entry'));
-        }
         return null;
     }
 }

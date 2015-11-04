@@ -58,7 +58,7 @@ public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
         }
         
         
-        if(canClone == true){
+        if(canClone){
             isEnaughCopies = false;
             nextStageTypeSow = financialYear;
             sowParent = new Marketing_SOW__c();
@@ -130,7 +130,7 @@ public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
         sowChild.Type_of_SOW__c = (nextStageTypeSow.substring(nextStageTypeSow.length()-2, nextStageTypeSow.length()-1)== 'Q' ? nextStageTypeSow.substring(nextStageTypeSow.length()-2, nextStageTypeSow.length()) : baseline);
         sowChild.Active__c = false;
         
-        if(sowChild!= null) insert sowChild;
+        if(sowChild!= null){ insert sowChild;}
         //List of Parent Basics Marketing
         lstMarketingBasicsParent = [Select Id, Name, Oblix_SOWMarketing__c from Marketing_Basics__c where Oblix_SOWMarketing__c =: sowRecordID];
         //list of cloned marketing basics from parent
@@ -138,7 +138,8 @@ public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
         if(!lstMarketingBasicsChild.isEmpty()){
             for(Marketing_Basics__c marketingBasic : lstMarketingBasicsChild){
                 //update the Sow MArketing field from Parent ==> Child
-                //marketingBasic.Name += financialYear+''+(nextStageTypeSow.substring(nextStageTypeSow.length()-2, nextStageTypeSow.length()-1)== 'Q' ? nextStageTypeSow.substring(nextStageTypeSow.length()-2, nextStageTypeSow.length()) : 'Baseline');
+                //marketingBasic.Name += financialYear+''+(nextStageTypeSow.substring(nextStageTypeSow.length()-2, 
+                //nextStageTypeSow.length()-1)== 'Q' ? nextStageTypeSow.substring(nextStageTypeSow.length()-2, nextStageTypeSow.length()) : 'Baseline');
                 marketingBasic.Oblix_SOWMarketing__c = sowChild.Id;
             }
             insert lstMarketingBasicsChild;

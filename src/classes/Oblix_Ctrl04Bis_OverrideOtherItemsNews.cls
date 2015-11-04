@@ -32,13 +32,15 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
     public set<String> setRoleTitle {get;set;}
     public Boolean isroledisabled {get;set;}
     public Boolean isAgencydisabled {get;set;}
-     
+    private String marKObjName = 'Marketing_Basics__c';
+    private String calcObjName = 'Oblix_Calculator__c'; 
+    
     public Oblix_Ctrl04Bis_OverrideOtherItemsNews(ApexPAges.StandardController controller){
          if(!System.Test.isRunningTest()){
              controller.addFields(new List<String>{'OblixCountry__c','Activities__c','RecordType.Name','Oblix_SOWMarketing__c','Description__c', 'FTE__c', 'No_of_Hours_Required__c', 'Name', 'Id', 'RecordTypeId'});
          }
-         rtResourceId = Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Resource');
-         rtActivityId = Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Activity');
+         rtResourceId = Oblix_Utils.MapRecordType(marKObjName).get('Resource');
+         rtActivityId = Oblix_Utils.MapRecordType(marKObjName).get('Activity');
          setAgencyDept = new set<String>();
          setRoleTitle = new set<String>();
          isAgencydisabled = true;
@@ -80,7 +82,7 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
      public void reRenderAgencyDepartments(){
             lstCalculatorRate = [Select Id, Name, RecordTypeId, Role_Daily_Rate_EUR__c, Agency_Department__c,  OblixCountry__r.Name, Oblix_Agency__c,
                     Role_Title__c, FTE__c, OblixCountry__c from Oblix_Calculator__c where Financial_Year__c=: fYear and OblixCountry__c =: OItem.OblixCountry__c and
-                RecordTypeId =: Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Role_Rate') and Oblix_Agency__c =: parentSow.Oblix_AgencyEstimate__c ];
+                RecordTypeId =: Oblix_Utils.MapRecordType(calcObjName).get('Role_Rate') and Oblix_Agency__c =: parentSow.Oblix_AgencyEstimate__c ];
                 setAgencyDept = new set<String>();
                 if(!lstCalculatorRate.isEmpty()){
                     for(Oblix_Calculator__c calc : lstCalculatorRate){
@@ -94,7 +96,7 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
      public void reRenderRoleTitle(){
             lstCalculatorRate = [Select Id, Name, RecordTypeId, Role_Daily_Rate_EUR__c, Agency_Department__c,  OblixCountry__r.Name, Oblix_Agency__c,
                     Role_Title__c, FTE__c, OblixCountry__c from Oblix_Calculator__c where Financial_Year__c=: fYear and OblixCountry__c =: OItem.OblixCountry__c and
-                RecordTypeId =: Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Role_Rate') and Oblix_Agency__c =: parentSow.Oblix_AgencyEstimate__c and Agency_Department__c =:selectedAgencyDepartment];
+                RecordTypeId =: Oblix_Utils.MapRecordType(calcObjName).get('Role_Rate') and Oblix_Agency__c =: parentSow.Oblix_AgencyEstimate__c and Agency_Department__c =:selectedAgencyDepartment];
             setRoleTitle = new set<String>();       
             if(!lstCalculatorRate.isEmpty()){
                     for(Oblix_Calculator__c calc : lstCalculatorRate){
@@ -138,12 +140,12 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
      
     public PageReference save(){
         try{
-            if(OItem.RecordTypeId == Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Resource') && !lstCalculatorRate.IsEmpty() && lstCalculatorRate.size()>0 && OItem.FTE__c != null && OItem.FTE__c > 0){
+            if(OItem.RecordTypeId == Oblix_Utils.MapRecordType(marKObjName).get('Resource') && !lstCalculatorRate.IsEmpty() && lstCalculatorRate.size()>0 && OItem.FTE__c != null && OItem.FTE__c > 0){
                 OItem.OblixOtherItemFee__c = lstCalculatorRate[0].FTE__c/OItem.FTE__c; 
             }else{
                 OItem.OblixOtherItemFee__c = lstCalculatorRate[0].FTE__c;
             }
-            if(OItem.RecordTypeId == Oblix_Utils.MapRecordType('Marketing_Basics__c').get('Activity') && !lstCalculatorRate.IsEmpty() && lstCalculatorRate.size()>0 && OItem.No_of_Hours_Required__c != null && lstCalculatorRate[0].Role_Daily_Rate_EUR__c != null){
+            if(OItem.RecordTypeId == Oblix_Utils.MapRecordType(marKObjName).get('Activity') && !lstCalculatorRate.IsEmpty() && lstCalculatorRate.size()>0 && OItem.No_of_Hours_Required__c != null && lstCalculatorRate[0].Role_Daily_Rate_EUR__c != null){
                 OItem.OblixOtherItemFee__c = lstCalculatorRate[0].Role_Daily_Rate_EUR__c * OItem.No_of_Hours_Required__c;
             }else{
                 OItem.OblixOtherItemFee__c = 0;

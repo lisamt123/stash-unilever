@@ -11,22 +11,15 @@
 
         
     </head>
-    
     <script type="text/javascript">
         $(document).ready(function() {
-            
             var country = '{!project.OblixCountries__c}';
-                    var country = country.replace(';',','); 
-                    
+        	var country = country.replace(';',','); 
             setTimeout(function() {
                   if(country != null && country != '') {
                             getName(country);        
                         }
-                    
-               
             }, 100);
-            
-            
             $('#example-filterBehavior').multiselect({
                 enableFiltering: true,
                 filterBehavior: 'value',
@@ -57,7 +50,8 @@
                 
             });    
         }); 
-        
+     </script>
+     <script>
         function getName(selectedValue)
         {
             var sizeCountries = '{!lstCountries.size}';
@@ -65,13 +59,10 @@
             var ul = partices.find('.multiselect-container');
               // alert(sizeCountries);
                var resultSelected = selectedValue.toString();
-               
                var aray = resultSelected.split(',');
               
                for(var i = 1;i<=sizeCountries;i++){
                   if((resultSelected).match($('a label input','li')[i].getAttribute('value'))){
-                  
-                  // if(containsWord(resultSelected, $('a label input','li')[i].getAttribute('value')))
                           // alert('test');
                            $('.multiselect-container li')[i+1].setAttribute('class','active');
                            $('.multiselect span').text(selectedValue);
@@ -80,16 +71,14 @@
                     }
 
                }
-               
                if(aray.length>4){
                     $('.multiselect span').text(aray.length-1+' Selected');
                     $('.multiselect').attr('title',aray.length-1+' Selected');
                }
-        }     
-        function containsWord(haystack, needle) {
-           return (" " + haystack + " ").indexOf(" " + needle + " ") !== -1;
-        }                 
+        }
      </script>
+     
+     
      <style>
     
      .btn{
