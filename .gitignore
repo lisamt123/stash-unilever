@@ -24,3 +24,7 @@ Referenced Packages
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Files breaking git for Windows users 
+######################
+***HELP***.homePageComponent
