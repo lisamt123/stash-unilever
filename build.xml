@@ -163,7 +163,8 @@
       <delete><fileset dir="${basedir}" includes="**/CEC_Delegated_Administrators.permissionset"/></delete>
       <delete><fileset dir="${basedir}" includes="**/CEC_Automated_User.permissionset"/></delete>
       <delete><fileset dir="${basedir}" includes="**/***HELP***.homePageComponent"/></delete>
-      <antcall target="generatePackage"/>
+      <delete><fileset dir="${basedir}" includes="src/package.xml"/></delete>
+      <!--<antcall target="generatePackage"/>-->
     </target>     
 
 </project>

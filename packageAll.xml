@@ -159,6 +159,11 @@
     <types>
         <members>Agency_Fees</members>
         <members>Agency_Fees/AF_Email_To_CatFinance_ToEnterActualsAnnual_HTML</members>
+        <members>AA_Email_Templates</members>
+        <members>AA_Email_Templates/AA_Report_Accepted1</members>
+        <members>AA_Email_Templates/Unilver_Custom_Template</members>
+        <members>AA_Email_Templates/AA_ETS_To_CIManager</members>
+        <members>AA_Email_Templates/AA_Report_Rejected</members>
         <members>unfiled$public</members>
         <members>unfiled$public/AA_ETS_To_CIManager</members>
         <members>unfiled$public/AA_Report_Accepted1</members>
