@@ -2555,6 +2555,7 @@
 		<members>aa_Agent_App_Category__c-Agent App Category Layout</members>
 		<members>aa_Agent_App_Competitor_Brand__c-Agent App Brand Layout</members>
 		<members>aa_Agent_App_Competitor_Brand__c-Agent App Competitor Brand Layout</members>
+		<members>aa_Agent_App_Competitor_Brand__c-Unilever Brand Layout</members>
 		<members>aa_Agent_App_User_Preference__c-Agent App User Preference Layout</members>
 		<members>aa_Agent_Competitor__c-Agent Competitor Layout</members>
 		<members>aa_Agent_Report__c-Agent Report Layout</members>
@@ -3366,11 +3367,6 @@
 	<types>
 		<members>Agency_Fees</members>
 		<members>Agency_Fees/AF_Email_To_CatFinance_ToEnterActualsAnnual_HTML</members>
-		<members>unfiled$public</members>
-		<members>unfiled$public/AA_ETS_To_CIManager</members>
-		<members>unfiled$public/AA_Report_Accepted1</members>
-		<members>unfiled$public/AA_Report_Rejected</members>
-		<members>unfiled$public/Unilver_Custom_Template</members>
 		<name>EmailTemplate</name>
 	</types>
 	<types>
