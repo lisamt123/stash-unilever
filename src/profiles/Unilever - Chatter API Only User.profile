@@ -20020,14 +20020,14 @@
         <layout>aa_Agent_App_Category__c-Agent App Category Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>aa_Agent_App_Competitor_Brand__c-Agent App Brand Layout</layout>
+        <layout>aa_Agent_App_Competitor_Brand__c-Agent App Competitor Brand Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>aa_Agent_App_Competitor_Brand__c-Agent App Brand Layout</layout>
+        <layout>aa_Agent_App_Competitor_Brand__c-Agent App Competitor Brand Layout</layout>
         <recordType>aa_Agent_App_Competitor_Brand__c.Competitor_Brand</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>aa_Agent_App_Competitor_Brand__c-Agent App Brand Layout</layout>
+        <layout>aa_Agent_App_Competitor_Brand__c-Unilever Brand Layout</layout>
         <recordType>aa_Agent_App_Competitor_Brand__c.Unilever_Brand</recordType>
     </layoutAssignments>
     <layoutAssignments>
