@@ -8,7 +8,7 @@
             <type>creator</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/AA_Report_Accepted1</template>
+        <template>AA_Email_Templates/AA_Report_Accepted1</template>
     </alerts>
     <alerts>
         <fullName>AA_Report_Rejected</fullName>
@@ -18,7 +18,7 @@
             <type>creator</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/AA_Report_Rejected</template>
+        <template>AA_Email_Templates/AA_Report_Rejected</template>
     </alerts>
     <alerts>
         <fullName>Mail_To_ETS_Members</fullName>
@@ -29,7 +29,7 @@
             <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Unilver_Custom_Template</template>
+        <template>AA_Email_Templates/Unilver_Custom_Template</template>
     </alerts>
     <alerts>
         <fullName>Send_email_notification_to_CI_manager_for_Approval</fullName>
@@ -39,7 +39,7 @@
             <type>owner</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/AA_ETS_To_CIManager</template>
+        <template>AA_Email_Templates/AA_ETS_To_CIManager</template>
     </alerts>
     <fieldUpdates>
         <fullName>AA_ETS_Owner_Assignment</fullName>
@@ -49,6 +49,15 @@
         <name>AA_ETS_Owner_Assignment</name>
         <notifyAssignee>true</notifyAssignee>
         <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Add_Name_to_Report</fullName>
+        <field>Name</field>
+        <formula>LPAD( Report_Title__c,80 )</formula>
+        <name>Add Name to Report</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -129,6 +138,19 @@
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <rules>
+        <fullName>AA Add Name to Report</fullName>
+        <actions>
+            <name>Add_Name_to_Report</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>aa_Agent_Report__c.Report_Title__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
     <rules>
         <fullName>AA_ApprovedBy_ETS_Group</fullName>
         <actions>
