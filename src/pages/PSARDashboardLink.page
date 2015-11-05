@@ -1,0 +1,7 @@
+<apex:page >
+<apex:form >
+<apex:outputLink value="/apex/PSARSupplyChainMetrics" target="_blank" >
+<apex:image url="{!URLFOR($Resource.PSARViewTableauDashboard)}" width="100" height="100" />
+</apex:outputLink>
+</apex:form>
+</apex:page>
