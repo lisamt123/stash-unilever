@@ -1868,6 +1868,10 @@ if( AF_Cat_Finance_Approver_5__c =$Setup.DummyUser__c.User_id__c,0,1)</formula>
         <picklistValues>
             <picklist>AF_Status_Base_Fees__c</picklist>
             <values>
+                <fullName>Initiate</fullName>
+                <default>true</default>
+            </values>
+            <values>
                 <fullName>Ready for PO</fullName>
                 <default>false</default>
             </values>
@@ -1885,7 +1889,7 @@ if( AF_Cat_Finance_Approver_5__c =$Setup.DummyUser__c.User_id__c,0,1)</formula>
             </values>
             <values>
                 <fullName>With Category Finance</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
