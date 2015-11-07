@@ -181,6 +181,10 @@
         <name>AF_DummyUserID</name>
     </customLabels>
     <customLabels>
+        <label><!-- Dummy User --></label>
+        <name>AF_Dummy_User</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Email To CatFinance --></label>
         <name>AF_Email_To_CatFinance</name>
     </customLabels>

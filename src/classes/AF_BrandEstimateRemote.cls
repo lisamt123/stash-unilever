@@ -223,7 +223,7 @@ global with sharing class AF_BrandEstimateRemote {
             rowDetailToReturn += ' e=\"' + dispTotal + '\" l=\"' + dispLocalTotal + '\"';
             rowDetailToReturn += ' class=\"modalButton3\">';
             if(total != 0) {
-                rowDetailToReturn += '<div class="imageHolder" style=\"float:left;height:100%\">' + crsBrdrImg + '<br/>' + cmntImg;
+                rowDetailToReturn += '<div class="imageHolder" style=\"float:left;height:100%\">' + crsBrdrImg + cmntImg;
                 rowDetailToReturn += '</div><div>' + 'EUR ' + currencyFormatted(total);
                 rowDetailToReturn = agSObj.AF_Total__c != agSObj.AF_Total_Local__c ? rowDetailToReturn + lBreak + currCode + ' ' + currencyFormatted(totalLocal) : rowDetailToReturn;
             } else if(totalWithoutRounding > 0 && totalWithoutRounding <= 499){
