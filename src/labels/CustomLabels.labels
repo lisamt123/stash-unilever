@@ -188,6 +188,13 @@
         <value>This holds the Dummy user id for Approval process</value>
     </labels>
     <labels>
+        <fullName>AF_Dummy_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Dummy User</shortDescription>
+        <value>005E0000006K6h2</value>
+    </labels>
+    <labels>
         <fullName>AF_Email_To_CatFinance</fullName>
         <language>en_US</language>
         <protected>false</protected>
