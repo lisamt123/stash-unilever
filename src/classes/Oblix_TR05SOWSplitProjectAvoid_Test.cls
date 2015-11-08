@@ -30,8 +30,8 @@ private class Oblix_TR05SOWSplitProjectAvoid_Test {
                 project.Financial_Year__c = marketingSow.Id;
                 insert project;     
                
-				Test.startTest();
-				      
+                Test.startTest();
+                      
                 List<Oblix_Marketing_SOW_Project_Splits__c> lstSplit = new List<Oblix_Marketing_SOW_Project_Splits__c>();
                 for(Integer i=0;i<5;i++){
                     Oblix_Marketing_SOW_Project_Splits__c projectSplit = new Oblix_Marketing_SOW_Project_Splits__c();
@@ -43,19 +43,24 @@ private class Oblix_TR05SOWSplitProjectAvoid_Test {
                     lstSplit.add(projectSplit);
                 }
                 insert lstSplit;
-               Oblix_SOW_Projects__c projectRetrieve = [Select Id, Name, OblixProjectSplitPercentage_Comment__c from Oblix_SOW_Projects__c where Id =: project.Id];
-        		System.assertequals(projectRetrieve.OblixProjectSplitPercentage_Comment__c, 'Total Percentage for that project is below 100%, please raise it');
                 
-        		try{
-        			for(Oblix_Marketing_SOW_Project_Splits__c split : lstSplit){
-        				split.Percentage__c = 60;
-        			}
-        			update lstSplit;
-        			System.assertequals(projectRetrieve.OblixProjectSplitPercentage_Comment__c, 'Total Percentage for that project is below 100%, please raise it');
-        		}catch(Exception e){
-        			System.debug('###Split error valdiation : '+e.getMessage());
-        		}
-        		Test.stopTest();         
+               Oblix_SOW_Projects__c projectRetrieve = [Select Id, Name, OblixProjectSplitPercentage_Comment__c from Oblix_SOW_Projects__c where Id =: project.Id];
+                System.assertequals(projectRetrieve.OblixProjectSplitPercentage_Comment__c, 'Total Percentage for that project is below 100%, please raise it');
+                
+                try{
+                    for(Oblix_Marketing_SOW_Project_Splits__c split : lstSplit){
+                        split.Percentage__c = 60;
+                    }
+                    update lstSplit;
+                    System.assertequals(projectRetrieve.OblixProjectSplitPercentage_Comment__c, 'Total Percentage for that project is below 100%, please raise it');
+                    delete lstSplit[4];
+                    delete lstSplit[3];
+                    delete lstSplit[2];
+                    delete lstSplit[1];
+                }catch(Exception e){
+                    System.debug('###Split error valdiation : '+e.getMessage());
+                }
+                Test.stopTest();         
          }
     }
 }

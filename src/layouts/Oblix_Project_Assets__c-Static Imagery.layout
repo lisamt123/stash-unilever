@@ -19,15 +19,15 @@
                 <behavior>Edit</behavior>
                 <field>Oblix_Quantity__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Asset_Picklist__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Sub_Category__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Channels__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

@@ -11,29 +11,31 @@
 
         
     </head>
-    <script type="text/javascript">
+    <script>
+         var country = '{!project.OblixCountries__c}';
+         var country = country.replace(';',','); 
         $(document).ready(function() {
-            var country = '{!project.OblixCountries__c}';
-        	var country = country.replace(';',','); 
+           
             setTimeout(function() {
                   if(country != null && country != '') {
                             getName(country);        
                         }
             }, 100);
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
             $('#example-filterBehavior').multiselect({
                 enableFiltering: true,
                 filterBehavior: 'value',
                 includeSelectAllOption: true,
                 maxHeight: '300',
                 onChange: function(option, checked, select) {
-                     
                     if(!(country).match($(option).val())){
                           country +=  $(option).val()+',';
                      }else{
                          country = country.replace($(option).val()+',','');
                      }
-                    
-                     
                  },
                  onDropdownHide: function(event) {
                     var array = $('#example-filterBehavior').val();
@@ -47,7 +49,6 @@
                         myRegions(country);
                         }
                 }
-                
             });    
         }); 
      </script>
@@ -207,21 +208,6 @@
                 <apex:inputField value="{!project.Production_Completion_Date__c}"></apex:inputField>
                 <apex:inputField value="{!project.Timescale_Notes__c}"></apex:inputField>
                 <apex:inputField value="{!project.First_Air_Date__c}"></apex:inputField>
-            </apex:pageBlockSection>
-            
-            <apex:pageBlockSection title="Research">
-                <apex:inputField value="{!project.List_Preview_Markets__c}"></apex:inputField>
-                <apex:inputField value="{!project.Number_of_Markets_for_Preview__c}"></apex:inputField>
-                <apex:inputField value="{!project.Other_Kinds_of_Research__c}"></apex:inputField>
-                <apex:inputField value="{!project.Number_of_Previews__c}"></apex:inputField>
-                <apex:inputField value="{!project.Preview_Feedback__c}"></apex:inputField>
-            </apex:pageBlockSection>
-            
-            <apex:pageBlockSection title="System Information">
-                <apex:inputField value="{!project.Oblix_ProjectBoxNumber__c}"></apex:inputField>
-                
-                <apex:inputField value="{!project.Financial_Year__c}"></apex:inputField>
-                <apex:inputField value="{!project.OblixClonedFromParentProject__c}"></apex:inputField>
             </apex:pageBlockSection>
         </apex:pageBlock>
     </body>

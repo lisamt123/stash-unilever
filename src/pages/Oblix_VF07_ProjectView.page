@@ -1,0 +1,1291 @@
+<apex:page sidebar="false" controller="Oblix_Ctrl07ProjectView_CC" docType="html-5.0" action="{!init}">
+
+  <apex:form id="jqueryId">
+  
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+    <script src="{!URLFOR($Resource.JQueryBlockUI)}" ></script>
+ 
+   
+     <style>
+     
+        /**** Header and container CSS ****/
+        
+        .darkGreen{color: #44883E  ;}
+        .mainGreen{color: #6BA539;}
+        h2{ font-size: 130%;}
+        h3{font-size: 14px;}
+
+        .Oblix_Container{
+            background-image : url("{!URLFOR($Resource.assetUI,'bg_pattern_2.png')}");
+            background-repeat: no-repeat;
+            position:relative;
+            top: -11px;
+        }
+        .Oblix_header_logo{
+        position:relative;
+        left:-15px;
+        top:-55px;
+        }
+        
+        .Oblix_header_title{
+            font-family: DIN, Arial;
+            font-size: 30px;
+            margin: 4px;   
+           /* padding-top: 7px; */  
+            position:relative;
+            top:-50px;              
+        }
+
+        
+           .Oblix_header_arrowTitle{
+            font-family: DIN, Arial;
+            font-size: 17px;
+            margin: 4px;   
+           /* padding-top: 7px; */  
+            position:relative;
+            text-align: center;
+            top:30px;              
+        }
+        
+        .Oblix_header_activeArrow{ 
+        background-color: transparent;      
+            background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow_down.png')}");
+            background-repeat: no-repeat;
+             font-family: DIN, Arial;
+            color:white;
+            padding-left: 10px;
+            width:160px;
+           height: 90px;
+            text-align: center;
+            position: relative;
+           
+
+        }
+          .Oblix_header_Arrow_none{ 
+          background-color: transparent;      
+            background: initial;
+            background-repeat: no-repeat;
+            font-family: DIN, Arial;
+            color:white;
+            padding-left: 10px;
+            width:160px;
+            height: 90px;
+            text-align: center;
+            position: relative;
+        }
+          .Oblix_header_Arrow{ 
+          background-color: transparent;      
+            background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow.png')}");
+            background-repeat: no-repeat;
+            font-family: DIN, Arial;
+            color:white;
+            padding-left: 10px;
+            width:160px;
+            height: 90px;
+            text-align: center;
+            position: relative;
+          
+
+
+        }
+          .Oblix_header_Arrow:active, .Oblix_header_Arrow:hover {
+          background-color: transparent;
+            background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
+            background-repeat: no-repeat;
+
+          }
+           .Oblix_header_previousArrow{ 
+           background-color: transparent;      
+            background-image : url("{!URLFOR($Resource.assetUI,'previouslevel_arrow.png')}");
+            background-repeat: no-repeat;
+            font-family: DIN, Arial;
+            color:white;
+            padding-left: 10px;
+            width:160px;
+             height: 90px;
+            text-align: center;
+            position: relative;
+         
+
+        }
+       .Oblix_header_previousArrow:active, .Oblix_header_previousArrow:hover {
+            background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
+            background-repeat: no-repeat;
+
+          }
+
+        .header_pos_2 {
+            top:-5px;
+            left:-18px;
+            }
+        .header_pos_3 {
+            top: -100px;
+            left:138px;
+           }
+        .Oblix_header{
+            background-image : url("{!URLFOR($Resource.assetUI,'header_panel.png')}");
+            background-size: 100% 100%;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+            height: 90px;
+            position: relative;
+            /* line-height: 65%; */
+            width:95%;
+            letter-spacing: 1px;         
+        }
+        .Oblix_header_desc{
+        text-align:center;
+            /* line-height: 140%; */
+            position:relative;
+            font-size: 10px;
+            top:-65px;
+
+        }
+        .Oblix_header td{
+             font-family: DIN, Arial;
+        }
+        /**** Content CSS ****/
+        
+        .textArea_init {
+            transition: all .2s linear;
+            background: #fff;
+            padding: 5px 9px;
+            margin: 0;
+            width: 93%;
+            min-height: 80px;
+            font-size: 13px;
+            height: 32px;
+        }
+        .Oblix_projects_container h1{
+            font-size: 16px;
+            color: white;
+            letter-spacing: 1px;
+        }
+         .Oblix_projects_container h2{
+            font-size: 13px;
+            color: white;
+            float: right;
+        }
+        .Oblix_projects_header{
+            padding: 20px;
+            background-color: rgb(0, 87, 63);
+        }
+        .Oblix_sowDetail{
+            display: block;
+            padding: 9.5px;
+            margin: 0 58px 23px;
+            line-height: 1.42857143;
+            color: #333;
+            word-break: break-all;
+            word-wrap: break-word;
+            background-color: rgb(202, 212, 190);
+            border: 1px solid #D6D6D6;
+            border-radius: 4px;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        }
+        .bg_selected{
+            background-color:#00573F !important;
+        }
+        table tr th h1{
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        #tabs-centre h1{
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: transparent !important;
+            padding-left: 26px;
+            top: 22px;
+            position: relative;
+         }
+        .topAlign tr{
+            vertical-align: top;
+        }
+        .Oblix_sowDashboard{
+            height:300px;
+        }
+        .Oblix_tableDetails tr h1{
+            font-size:16px;
+        }
+        .search_init{
+            transition: all .2s linear;
+            background: #fff;
+            padding: 5px 9px;
+            margin: 0;
+            font-size: 13px;
+        }        
+        .Oblix_attachment{
+            width:85%;
+        }
+        .PrColumn1 {
+            width: 100%; 
+            float: left;
+            padding-right: 25px;
+             word-break: normal;
+            word-wrap: break-word;
+        }
+        .PrColumn2{
+            width: 35%;
+            float: left;
+             word-break: normal;
+            word-wrap: break-word;
+        }
+    
+        .PrColumn3{
+            width: 60%; 
+            float: left;
+             word-break: normal;
+            word-wrap: break-word;
+        }
+    
+        .PrColumn5{
+            width: 50%; 
+            float: left;
+             word-break: normal;
+            word-wrap: break-word;
+        }
+        .PrColumn4{
+            width: 50%; 
+            word-break: normal;
+            word-wrap: break-word;
+            float: left;
+        }
+ 
+        .topAlign tr{
+            vertical-align: top;
+        }
+         .Oblix_table{
+            display:block;
+            padding: 9.5px;
+            margin: 0 58px 23px;
+            font-size: 13px;
+            line-height: 1.42857143;
+            color: #333;
+            word-break: break-all;
+            word-wrap: break-word;
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .padding_remove{
+            padding:0px!important;
+        }
+        .Oblix_heading i.fa.fa-2x.fa-sort-desc,.Oblix_recordTypeth i.fa.fa-2x.fa-sort-desc{
+            display:none;
+        }
+        .Oblix_heading i.fa.fa-2x.fa-sort-up,.Oblix_recordTypeth i.fa.fa-2x.fa-sort-up{
+            display:block;
+        }
+         .show i.fa.fa-2x.fa-sort-desc{
+            display:block;
+        }
+        .show i.fa.fa-2x.fa-sort-up{
+            display:none;
+        }
+        .Oblix_icon {
+            cursor:pointer;
+        }
+        .Oblix_recordType{
+            float:left;
+            width:100%;
+        }
+        
+        .Oblix_icon_right{
+            float:right;
+            width: 3%;
+        }
+        .Oblix_div_left{
+            float:left;
+         }
+        
+         .Oblix_subCat{
+             padding-left : 10px;
+             background:white;
+         }
+         .styleTH2 th{
+            background-color: #DAD8D8;
+            padding: 10px;
+         }
+         .styleTH1 th{
+            background-color: #BDCEBF;
+            padding: 10px;
+         }
+         
+          .Oblix_accordiHeader{
+                background-color: #BDCEBF;
+                padding: 10px;
+                font-size: 13px;
+                font-weight: bold;
+          }
+        /**** Button CSS ****/
+         .Oblix_large_btn{
+            border-style:none;
+            width: 160px;
+            height: 30px;
+            background-position: 0 0;
+            border : 1px solid rgb(158, 145, 145);
+          }       
+        .Oblix_large_btn:hover{
+           border-style:none;
+            border : 1px solid rgb(223, 213, 213);
+            background-position: 0 0;
+        }
+        .Oblix_large_btn:active{
+            border-style:none;
+            border : 1px solid rgb(223, 213, 213);
+            background-position: 0 0;
+        }
+         .Oblix_btn{
+            border-style:none;
+            width: 80px;
+            height: 30px;
+            background-position: 0 0;
+            border : 1px solid rgb(158, 145, 145);
+        }
+        
+        .Oblix_btn:hover{
+            border-style:none;
+            border : 1px solid rgb(223, 213, 213);
+            background-position: 0 0;
+        }
+        .Oblix_btn:active{
+            border-style:none;
+            border : 1px solid rgb(223, 213, 213);
+            background-position: 0 0;
+        }
+        .Oblix_notes{
+            PADDING-right: 41px;
+        }
+        .Oblix_attachment{
+            width:85%;
+        }
+       .Oblix_filter_btn{
+           color: #333;
+            background: #fff !important;
+            border: 1px solid #b5b5b5 !important;
+            display: inline-block;
+            padding: 4px 12px !important;
+            width:100px;
+            margin-bottom: 0;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+        }
+       
+       .Oblix_filter_btn:hover, .Oblix_filter_btn:active{
+           background: #eaeaea !important;
+           border: 1px solid #b5b5b5 !important;
+       }
+       .Oblix_projects_btn{
+            color: #333;
+            background: #fff !important;
+            border: 1px solid #b5b5b5 !important;
+            display: inline-block;
+            padding: 4px 12px !important;
+            width: 144px;
+            height: 42px;
+            margin-bottom: 0;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+         }    
+       /**** ui tooltip CSS ****/
+       .ui-tooltip, .arrow:after {
+        background: black;
+        border: 2px solid white;
+      }
+      .ui-tooltip {
+        padding: 10px;
+        color: white;
+        width:150px;
+        border-radius: 2px;
+        border-color:black;
+        font-size:12px;
+        box-shadow: 0 0 2px black;
+        text-align:center;
+      }
+      .arrow {
+        width: 70px;
+        height: 16px;
+        overflow: hidden;
+        position: absolute;
+        left: 50%;
+        border-color:black;
+        margin-left: -35px;
+        bottom: -16px;
+      }
+      .arrow.top {
+        top: -16px;
+        bottom: auto;
+      }
+      .arrow.left {
+        left: 20%;
+      }
+      .arrow:after {
+        content: "";
+        position: absolute;
+        left: 20px;
+        top: -20px;
+        width: 25px;
+        height: 25px;
+        border-color:black;
+        box-shadow: 6px 5px 9px -9px black;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      .arrow.top:after {
+        bottom: -20px;
+        top: auto;
+      }
+
+    /* for 900px or less */
+    @media screen and (max-width: 1200px) {
+     
+        .column1,.column2,.column3,.column4,.column5{
+            width: 100%;
+        }
+    }
+    
+    .Oblix_heading tr{
+         color:white;
+     }
+
+    .ui-widget-header {
+        border: 0px;
+        background: #E8E8E8;
+    }
+    
+    .ui-widget-content {
+        border: 0px;
+    }
+   
+    .ui-tabs .ui-tabs-panel {
+        display: block;
+        border-width: 0;
+        padding: 1em 1.4em;
+        background: #E8E8E8;
+        cursor: pointer;
+    }
+    .ui-tabs {
+       padding:0em;
+    } 
+    .ui-tabs .ui-tabs-nav li {
+        border-bottom-width: 1px;
+    }  
+    
+    </style>
+   <script>
+   $(document).ready(function(){
+
+        $('tr.data, tr.btt').show().find('td').wrapInner('<div />');
+        $('tr.data, tr.btt').find('td > div').hide();
+        $('table tr.Oblix_heading').click(function(){
+            var data = $(this).next('tr');
+            var btt = data.next('tr');
+            data.find('td > div').slideToggle('slow');
+            btt.find('td > div').slideToggle('slow');
+            $(this).toggleClass('show');
+        });
+         $('table tr.Oblix_recordTypeth').click(function(){
+            var data = $(this).next('tr');
+            var btt = data.next('tr');
+            data.find('td > div').slideToggle('slow');
+            btt.find('td > div').slideToggle('slow');
+            $(this).toggleClass('show');
+        });
+     
+        
+   });
+   
+    function Popup(){
+             $("#dialog").dialog({
+             width: 600,
+             modal:true,
+             close: function(event,ui){
+                 $("pop").dialog('destroy');          
+                    }
+             }); 
+            
+     }
+   </script>
+   
+   
+   <div class="Oblix_Container">
+    <center>
+    <div class="Oblix_header"><!-- 3 levels -->
+       <div style="postion: relative; top:-200px; background: transparent;">
+         <table width="90%" height="100%">
+            <tr>
+                <td width="50px" class="Oblix_header_logo">
+                <apex:image value="{!$Resource.Unilever_logo}" width="60px" height="60px" />
+                </td>
+                <td class="Oblix_header_Arrow">
+                <div class="Oblix_header_title">SWOP</div><br/><span class="Oblix_header_desc">Scope of Work<br/>Online Planner</span>
+                </td>
+                <td>
+                <div class="Oblix_header_previousArrow header_pos_2">
+                <div class="Oblix_header_arrowTitle">View SOW</div>
+                </div>
+                
+                <div class="Oblix_header_activeArrow header_pos_3">
+                <div class="Oblix_header_arrowTitle">View Campaign</div>
+                </div>
+                </td>
+                <td>
+                <div style="float:right; position:relative; top:-55px;"><p>Hi {!userConnected.Name} !</p></div>
+                </td>
+            </tr>
+        </table></div>
+    </div>
+
+    </center>
+    <br/><br/>
+     <apex:pageMessages ></apex:pageMessages>
+     <div class="Oblix_table padding_remove">
+         <div class="Oblix_projects_container">  
+            <table class="Oblix_projects_header" width="100%">
+                <tr>
+                    <td width="20%">
+                        <h1> View Campaign : {!SelectedProject.name}</h1>
+                    </td>
+                    <td>
+                    </td>
+                    <td  width="15%">
+                        <apex:commandButton value="Adjust Fee" styleClass="Oblix_projects_btn" action="{!SaveProject}" reRender="jqueryId"/>
+                    </td>  
+                    <td  width="20%">
+                        <h2> {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Fees_Total__c.label} &nbsp;:&nbsp; {!SelectedProject.Campaign_Fees_Total__c}&nbsp;{!SelectedProject.Financial_Year__r.currency__c}<br/>
+                        {!$ObjectType.Oblix_SOW_Projects__c.fields.Value_to_be_paid_in_Current_FY__c.label} &nbsp;:&nbsp; {!SelectedProject.Value_to_be_paid_in_Current_FY__c}&nbsp;{!SelectedProject.Financial_Year__r.currency__c}
+                        </h2>
+                    </td>                    
+                </tr>
+            </table>
+            <table width="100%" class="topAlign">
+                <tbody>                  
+                <tr>
+                    <td width="100%">
+                         <table width="100%" cellspacing="10px" cellpadding="10px">
+                            <tr>
+                            <td width="20%">
+                               <section class="PrColumn1">
+                                   <table width="100%">
+                                     <tr>
+                                          <td>
+                                            <strong>Description</strong><br/>
+                                            <apex:outputField value="{!SelectedProject.Description__c}"/>
+                                          </td>
+                                          
+                                     </tr>
+                                     <tr><td colspan="2">&nbsp;</td></tr> 
+                                     <tr>    
+                                         <td colspan="2"><strong>Platforme </strong><apex:outputField value="{!SelectedProject.Platform__c}"/></td>
+                                     </tr>
+                                     <tr><td colspan="2">&nbsp;</td></tr>                                 
+                                     <tr>
+                                         <td>
+                                             <strong>JTBD</strong><br/>
+                                             <apex:outputField value="{!SelectedProject.Description__c}"/>
+                                         </td>
+                                     </tr>   
+                                    
+                                   </table>
+                               </section>
+                               
+                              
+                           </td>
+                           <td width="40%">
+                                <section class="PrColumn3">   
+                                   <table width="90%"> 
+                                         <tr><td colspan="2"><strong>Dates for Campaign Timeline :</strong></td></tr>                                      
+                                        <tr>    
+                                          <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Start_Date__c.label} </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Project_Start_Date__c}" /></apex:outputText></td>
+                                       </tr>
+                                       <tr>    
+                                          <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Completion_Date__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Project_Completion_Date__c}" /></apex:outputText></td>
+                                       </tr>
+                                       <tr>
+                                          <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.First_Air_Date__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.First_Air_Date__c}" /></apex:outputText></td>
+                                       </tr>
+                                       
+                                       <tr>
+                                           <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Date_for_Assets_to_be_in_BET__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Date_for_Assets_to_be_in_BET__c}" /></apex:outputText></td>
+                                       </tr>  
+                                       
+                                       <tr>
+                                            <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.BET_first_release__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.BET_first_release__c}" /></apex:outputText></td>
+                                       </tr>
+                                       
+                                      <tr>
+                                            <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Production_Completion_Date__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Production_Completion_Date__c}" /></apex:outputText></td>
+                                       </tr>
+                                        <tr>
+                                           <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Start_of_TV_production__c.label} </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Start_of_TV_production__c}" /></apex:outputText></td>
+                                       </tr>  
+                                       <tr>
+                                           <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Final_release__c.label} </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Final_release__c}" /></apex:outputText></td>
+                                       </tr>   
+                                       <tr>
+                                            <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Live_Date__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Live_Date__c}" /></apex:outputText></td>
+                                       </tr>
+                                       <tr>
+                                            <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Live_date_Asset_delivery__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Live_date_Asset_delivery__c}" /></apex:outputText></td>
+                                       </tr>
+                                       <tr><td colspan="2">&nbsp;</td></tr> 
+                                       
+                                       <tr>
+                                            <td colspan="2"><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Timescale_Notes__c.label}  </strong><br/>
+                                            <apex:outputText value="{!SelectedProject.Timescale_Notes__c}" /></td>
+                                       </tr>
+                                       
+                                       <tr><td colspan="2">&nbsp;</td></tr> 
+                                       <tr>    
+                                          <td colspan="2"><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Priority__c.label} &nbsp; : &nbsp;</strong><apex:outputField value="{!SelectedProject.Project_Priority__c}"/></td>
+                                       </tr>    
+                                   </table>
+                               </section>
+                                <section class="PrColumn2">
+                                   <table width="100%"> 
+                                       
+                                       <tr>
+                                          <apex:outputPanel rendered="{!SelectedProject.OblixCountries__c != null}"> <td style="vertical-align: top;" ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixCountries__c.label} </strong><br/>{!SelectedProject.OblixCountries__c}</td></apex:outputPanel>
+                                          <apex:outputPanel rendered="{!SelectedProject.OblixCountries__c == null}"> <td style="vertical-align: top;" ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixRegion__c.label} </strong><br/>{!SelectedProject.OblixRegion__c}</td></apex:outputPanel>
+                                       </tr>
+                                       <tr><td colspan="2">&nbsp;</td></tr>
+                                       <tr>
+                                          <td colspan="2"><strong>Agency Hub Split</strong></td>
+                                       </tr>   
+                                       <apex:repeat value="{!lstProjectSplitHubs}" var="split">
+                                               <tr>
+                                                    <td> {!split.Name}</td>
+                                                    <td> {!split.Percentage__c }% </td>
+                                               </tr>
+                                       </apex:repeat>                                     
+                                                                           
+                                       <tr><td colspan="2">&nbsp;</td></tr>
+                                       <tr>
+                                          <td colspan="2"><strong>Value drivers</strong></td>
+                                       </tr>   
+                                       <tr>
+                                            <td> <apex:outputField value="{!SelectedProject.Innovation_Projects__c}" rendered="{!SelectedProject.Innovation_Projects__c <> null}"/></td>
+                                       </tr>
+                                       <tr>
+                                            <td> <apex:outputField value="{!SelectedProject.Brand_Led_Growth__c}" rendered="{!SelectedProject.Brand_Led_Growth__c <> null}"/></td>
+                                       </tr>
+                                        <tr>
+                                            <td> <apex:outputField value="{!SelectedProject.Campaign_Idea__c}" rendered="{!SelectedProject.Campaign_Idea__c <> null}"/></td>
+                                       </tr>
+                                        <tr>
+                                            <td> <apex:outputField value="{!SelectedProject.Project_Scale_1__c}" rendered="{!SelectedProject.Project_Scale_1__c <> null}"/></td>
+                                       </tr>
+                                        <tr>
+                                            <td> <apex:outputField value="{!SelectedProject.Project_Scale_2__c}" rendered="{!SelectedProject.Project_Scale_2__c<> null}"/></td>
+                                       </tr>
+                                        <tr><td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Idea__c.label}</strong><br/> {!SelectedProject.Campaign_Idea__c}</td></tr> 
+                                                      
+                                   </table>
+                               </section> 
+                               
+                           </td>
+                           <td>
+                           <section class="PrColumn4">
+                               <table width="100%">  
+                                   <tr>    
+                                      <td colspan="3"><strong>Stage </strong></td>                                       
+                                   </tr>
+                                   <tr>    
+                                      <td colspan="3">Confirm which stages of the project will be completed in the current year. <br/>  This will impact the proportion of the fee that is paid in the current FY. </td>                                       
+                                   </tr>   
+                                   <tr>
+                                       <td width="50%">&nbsp;</td>
+                                       <td><strong>Projected</strong></td>
+                                       <td><strong>Complete</strong></td>
+                                   </tr>
+                                   <apex:repeat value="{!lstStage}" var="stage"> 
+                                    <tr>
+                                       <td>{!stage}</td>
+                                       <td><apex:inputCheckbox value="{!SelectedProject.Project_Stage__c}" disabled="true" selected="true"/></td>
+                                       <td><apex:inputCheckbox value="{!SelectedProject.Project_Stage__c}" disabled="true" /></td>
+                                   </tr>   
+                                   </apex:repeat>   
+                                   <tr><td colspan="2">&nbsp;</td></tr>                           
+                                   <tr>
+                                        <td><strong>&nbsp; {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Status__c.label} &nbsp; &nbsp;</strong></td>
+                                         <td><apex:inputField styleClass="picklist_init" style="width:130%" value="{!SelectedProject.Campaign_Status__c}"/></td> 
+                                   </tr>  
+                                    <tr><td colspan="2">&nbsp;</td></tr>  
+                                    <tr>
+                                       <td colspan="2"><span style="text-decoration: underline;">Updated</span> &nbsp;<apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.LastModifiedDate}" /></apex:outputText><br/> by {!SelectedProject.LastModifiedBy.Name}</td>
+                                   </tr>
+                              </table>
+                              </section>
+                             
+                              <section class="PrColumn5">
+                                 <center>
+                                     <br/> <br/>
+                                     <apex:commandButton value="Back to SOW " action="{!BackToSow}" styleClass="Oblix_projects_btn"/><br/><br/><!-- EditAction -->
+                                     <apex:commandButton value="Clone Campaign" styleClass="Oblix_projects_btn" action="{!CloneCampaign}"/><br/><br/>
+                                      <apex:commandButton value="Cancel Campaign" rerender="EditPanel" styleClass="Oblix_projects_btn" disabled="true"/><br/><br/>
+                                      <apex:commandButton value="Edit / Add items" action="{!EditAddItems}" styleClass="Oblix_projects_btn"/><br/><br/><br/>
+                                      <apex:commandButton value="Save Campaign" action="{!SaveProject}" styleClass="Oblix_projects_btn"/><br/>
+                                 </center>  
+                              </section>   
+                              </td>
+                           </tr>
+                           </table>
+                           
+                           <div class="Oblix_recordType">
+                           <apex:outputPanel rendered="{!lstAssets.size != 0}"> 
+                               <table width="100%" class="Oblix_accordiHeader">
+                                   <tr>
+                                       <td width="30%">Items </td>
+                                       <td width="40%"><span style="Color:grey">Cost estimate requires Agency Hub Split and Value Drivers to be completed</span></td>
+                                       <td>Cost</td>
+                                       <td width="5%">{!SelectedProject.ProjectTotalAssetscore__c} {!SelectedProject.Financial_Year__r.currency__c}</td>
+                                   </tr>
+                               </table>
+                           </apex:outputPanel>  
+                          
+                             
+                             <table width="100%">
+                             
+                               <!--  Audio Visual -->
+                                <apex:outputPanel rendered="{!mapNumberItem['Audio Visual'] != 0}">
+                                <tr class="Oblix_recordTypeth styleTH1">
+                                    <th>
+                                    <table width="100%">
+                                       <tr>
+                                           <td width="70%"><strong>Audio Visual</strong> - TV, Video, etc</td>
+                                           <td width="27%"> {!mapNumberItem['Audio Visual']} items</td>
+                                           <td>
+                                           <div class=" Oblix_icon">
+                                                <i class="fa fa-2x fa-sort-desc"></i>
+                                                <i class="fa fa-2x fa-sort-up"></i>      
+                                            </div>
+                                           </td>
+                                          </tr>
+                                       </table>
+                                    </th>   
+                                </tr>
+                                <tr class="data Oblix_subCat">
+                                    <td width="100%" style="paddding:20px">
+                                         <table width="100%">
+                                            <apex:repeat value="{!lstAssets}" var="asset">
+                                            <apex:outputPanel rendered="{!asset.RecordType.Name == 'Audio Visual'}">
+                                                <tr class="Oblix_recordTypeth styleTH2">
+                                                    <th>  
+                                                            <table width="100%">
+                                                               <tr>
+                                                                   <td width="70%">{!asset.Name} </td>
+                                                                   <td width="28%"><apex:outputPanel id="assetDateLastApp"> Last updated : &nbsp; <apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.LastModifiedDate}" /></apex:outputText></apex:outputPanel></td>
+                                                                   <td>
+                                                                    <div class="Oblix_icon">
+                                                                        <i class="fa fa-2x fa-sort-desc"></i>
+                                                                        <i class="fa fa-2x fa-sort-up"></i>      
+                                                                    </div>
+                                                                   </td>
+                                                              </tr>
+                                                           </table>
+                                                    </th>   
+                                                </tr>
+                                                
+                                                <tr class="data Oblix_subCat">
+                                                    <td width="100%" style="paddding:20px">
+                                                             <apex:outputPanel id="asset">
+                                                             <center>
+                                                             <apex:outputPanel rendered="{!isEditItem == false}">
+                                                              <table width="80%" cellpadding="20px">
+                                                                <tbody>
+                                                                    <tr>                      
+                                                                        <td width="20%"><strong>Countries </strong><br/> ? </td>
+                                                                        <td width="30%"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Actual_Delivery_Date__c.label}   </strong><apex:outputField value="{!asset.Actual_Delivery_Date__c}"/></td>
+                                                                        <td width="30%"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Additional_Description__c.label}  </strong><br/><apex:outputField value="{!asset.Additional_Description__c}"/></td>
+                                                                        <td width="20%">
+                                                                             <apex:commandButton value="Edit" action="{!EditItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                             </apex:commandButton>
+                                                                               <br/><br/><!-- EditAction -->
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                              <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
+                                                                             </apex:commandButton>
+                                                                             <br/>
+                                                                        </td>
+                                                                    </tr>
+                                                                  
+                                                                </tbody>
+                                                            </table>
+                                                            </apex:outputPanel>
+                                                            
+                                                             <apex:outputPanel rendered="{!isEditItem == true}">
+                                                              <table width="80%" cellpadding="20px">
+                                                                <tbody>
+                                                                    <tr>                      
+                                                                        <td width="20%"><strong>Countries </strong><br/> ? </td>
+                                                                        <td width="30%"><strong>Due Date  </strong><apex:inputField value="{!asset.Actual_Delivery_Date__c}"/></td>
+                                                                        <td width="30%"><strong>Additional notes </strong><br/><apex:inputField value="{!asset.Additional_Description__c}"/></td>
+                                                                        <td width="20%">
+                                                                             <apex:commandButton value="Save" action="{!SaveItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                                 <apex:param assignTo="{!itemToEdit.location__c}" name="ItemsEdit" value="{!asset.id}"/>
+                                                                                 <apex:param assignTo="{!itemToEdit.Actual_Delivery_Date__c}" name="ItemsEdit2" value="{!asset.Actual_Delivery_Date__c}"/>
+                                                                                 <apex:param assignTo="{!itemToEdit.Additional_Description__c}" name="ItemsEdit3" value="{!asset.Additional_Description__c}"/>
+                                                                             </apex:commandButton>
+                                                                               <br/><br/><!-- EditAction -->
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset">
+                                                                              <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
+                                                                             </apex:commandButton>
+                                                                             <br/>
+                                                                        </td>
+                                                                    </tr>
+                                                                  
+                                                                </tbody>
+                                                            </table>
+                                                            </apex:outputPanel>
+                                                           </center>
+                                                           </apex:outputPanel>
+                                                   </td>                                                      
+                                                </tr>
+                                            </apex:outputPanel>                                                                          
+                                           </apex:repeat>
+                                        </table> 
+                                    </td>  
+                                </tr>
+                               </apex:outputPanel>                           
+                               <!--  End Audio Visual -->
+                               
+                                <!--  Stimulus Materials / Research requirements -->
+                                <apex:outputPanel rendered="{!mapNumberItem['Stimulus Materials / Research requirements'] != 0}">
+                                <tr class="Oblix_recordTypeth styleTH1">
+                                    <th>
+                                    <table width="100%">
+                                       <tr>
+                                           <td width="70%"><strong>Stimulus Materials / Research requirements </strong></td>
+                                           <td width="27%"> {!mapNumberItem['Stimulus Materials / Research requirements']} items</td>
+                                           <td>
+                                           <div class=" Oblix_icon">
+                                                <i class="fa fa-2x fa-sort-desc"></i>
+                                                <i class="fa fa-2x fa-sort-up"></i>      
+                                            </div>
+                                           </td>
+                                          </tr>
+                                       </table>
+                                    </th>   
+                                </tr>
+                                <tr class="data Oblix_subCat">
+                                    <td width="100%" style="paddding:20px">
+                                         <table width="100%">
+                                            <apex:repeat value="{!lstAssets}" var="asset">
+                                            <apex:outputPanel rendered="{!asset.RecordType.Name == 'Stimulus Materials / Research requirements'}">
+                                                <tr class="Oblix_recordTypeth styleTH2">
+                                                    <th>  
+                                                            <table width="100%">
+                                                               <tr>
+                                                                   <td width="70%">{!asset.Name} </td>
+                                                                   <td width="28%"><apex:outputPanel id="assetDateLastApp"> Last updated : &nbsp; <apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.LastModifiedDate}" /></apex:outputText></apex:outputPanel></td>
+                                                                   <td>
+                                                                    <div class="Oblix_icon">
+                                                                        <i class="fa fa-2x fa-sort-desc"></i>
+                                                                        <i class="fa fa-2x fa-sort-up"></i>      
+                                                                    </div>
+                                                                   </td>
+                                                              </tr>
+                                                           </table>
+                                                    </th>   
+                                                </tr>
+                                                
+                                                <tr class="data Oblix_subCat">
+                                                    <td width="100%" style="paddding:20px">
+                                                             <apex:outputPanel id="asset">
+                                                             <center>
+                                                             <apex:outputPanel rendered="{!isEditItem == false}">
+                                                              <table width="80%" cellpadding="20px">
+                                                                <tbody>
+                                                                    <tr>                      
+                                                                        <td width="20%"><strong>Countries </strong><br/> ? </td>
+                                                                        <td width="30%"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Actual_Delivery_Date__c.label}   </strong><apex:outputField value="{!asset.Actual_Delivery_Date__c}"/></td>
+                                                                        <td width="30%"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Additional_Description__c.label}  </strong><br/><apex:outputField value="{!asset.Additional_Description__c}"/></td>
+                                                                        <td width="20%">
+                                                                             <apex:commandButton value="Edit" action="{!EditItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                             </apex:commandButton>
+                                                                               <br/><br/><!-- EditAction -->
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                              <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
+                                                                             </apex:commandButton>
+                                                                             <br/>
+                                                                        </td>
+                                                                    </tr>
+                                                                  
+                                                                </tbody>
+                                                            </table>
+                                                            </apex:outputPanel>
+                                                            
+                                                             <apex:outputPanel rendered="{!isEditItem == true}">
+                                                              <table width="80%" cellpadding="20px">
+                                                                <tbody>
+                                                                    <tr>                      
+                                                                        <td width="20%"><strong>Countries </strong><br/> ? </td>
+                                                                        <td width="30%"><strong>Due Date  </strong><apex:inputField value="{!asset.Actual_Delivery_Date__c}"/></td>
+                                                                        <td width="30%"><strong>Additional notes </strong><br/><apex:inputField value="{!asset.Additional_Description__c}"/></td>
+                                                                        <td width="20%">
+                                                                             <apex:commandButton value="Save" action="{!SaveItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                                 <apex:param assignTo="{!itemToEdit.location__c}" name="ItemsEdit" value="{!asset.id}"/>
+                                                                                 <apex:param assignTo="{!itemToEdit.Actual_Delivery_Date__c}" name="ItemsEdit2" value="{!asset.Actual_Delivery_Date__c}"/>
+                                                                                 <apex:param assignTo="{!itemToEdit.Additional_Description__c}" name="ItemsEdit3" value="{!asset.Additional_Description__c}"/>
+                                                                             </apex:commandButton>
+                                                                               <br/><br/><!-- EditAction -->
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset">
+                                                                              <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
+                                                                             </apex:commandButton>
+                                                                             <br/>
+                                                                        </td>
+                                                                    </tr>
+                                                                  
+                                                                </tbody>
+                                                            </table>
+                                                            </apex:outputPanel>
+                                                           </center>
+                                                           </apex:outputPanel>
+                                                   </td>                                                      
+                                                </tr>
+                                            </apex:outputPanel>                                                                          
+                                           </apex:repeat>
+                                        </table> 
+                                    </td>  
+                                </tr>            
+                                </apex:outputPanel>                        
+                               <!--  End Stimulus Materials / Research requirements -->
+                               
+                                <!--  Static Imagery -->
+                                <apex:outputPanel rendered="{!mapNumberItem['Static Imagery'] != 0}">
+                                <tr class="Oblix_recordTypeth styleTH1">
+                                    <th>
+                                    <table width="100%">
+                                       <tr>
+                                           <td width="70%"><strong>Static Imagery</strong> - KV, logo, OOH, Billboards, vehicle wraps, etc</td>
+                                           <td width="27%"> {!mapNumberItem['Static Imagery']} items</td>
+                                           <td>
+                                           <div class=" Oblix_icon">
+                                                <i class="fa fa-2x fa-sort-desc"></i>
+                                                <i class="fa fa-2x fa-sort-up"></i>      
+                                            </div>
+                                           </td>
+                                          </tr>
+                                       </table>
+                                    </th>   
+                                </tr>
+                                <tr class="data Oblix_subCat">
+                                    <td width="100%" style="paddding:20px">
+                                         <table width="100%">
+                                            <apex:repeat value="{!lstAssets}" var="asset">
+                                            <apex:outputPanel rendered="{!asset.RecordType.Name == 'Static Imagery'}">
+                                                <tr class="Oblix_recordTypeth styleTH2">
+                                                    <th>  
+                                                            <table width="100%">
+                                                               <tr>
+                                                                   <td width="70%">{!asset.Name} </td>
+                                                                   <td width="28%"><apex:outputPanel id="assetDateLastApp"> Last updated : &nbsp; <apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.LastModifiedDate}" /></apex:outputText></apex:outputPanel></td>
+                                                                   <td>
+                                                                    <div class="Oblix_icon">
+                                                                        <i class="fa fa-2x fa-sort-desc"></i>
+                                                                        <i class="fa fa-2x fa-sort-up"></i>      
+                                                                    </div>
+                                                                   </td>
+                                                              </tr>
+                                                           </table>
+                                                    </th>   
+                                                </tr>
+                                                
+                                                <tr class="data Oblix_subCat">
+                                                    <td width="100%" style="paddding:20px">
+                                                             <apex:outputPanel id="asset">
+                                                             <center>
+                                                             <apex:outputPanel rendered="{!isEditItem == false}">
+                                                              <table width="80%" cellpadding="20px">
+                                                                <tbody>
+                                                                    <tr>                      
+                                                                        <td width="20%"><strong>Countries </strong><br/> ? </td>
+                                                                        <td width="30%"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Actual_Delivery_Date__c.label}   </strong><apex:outputField value="{!asset.Actual_Delivery_Date__c}"/></td>
+                                                                        <td width="30%"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Additional_Description__c.label}  </strong><br/><apex:outputField value="{!asset.Additional_Description__c}"/></td>
+                                                                        <td width="20%">
+                                                                             <apex:commandButton value="Edit" action="{!EditItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                             </apex:commandButton>
+                                                                               <br/><br/><!-- EditAction -->
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                              <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
+                                                                             </apex:commandButton>
+                                                                             <br/>
+                                                                        </td>
+                                                                    </tr>
+                                                                  
+                                                                </tbody>
+                                                            </table>
+                                                            </apex:outputPanel>
+                                                            
+                                                             <apex:outputPanel rendered="{!isEditItem == true}">
+                                                              <table width="80%" cellpadding="20px">
+                                                                <tbody>
+                                                                    <tr>                      
+                                                                        <td width="20%"><strong>Countries </strong><br/> ? </td>
+                                                                        <td width="30%"><strong>Due Date  </strong><apex:inputField value="{!asset.Actual_Delivery_Date__c}"/></td>
+                                                                        <td width="30%"><strong>Additional notes </strong><br/><apex:inputField value="{!asset.Additional_Description__c}"/></td>
+                                                                        <td width="20%">
+                                                                             <apex:commandButton value="Save" action="{!SaveItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                                 <apex:param assignTo="{!itemToEdit.location__c}" name="ItemsEdit" value="{!asset.id}"/>
+                                                                                 <apex:param assignTo="{!itemToEdit.Actual_Delivery_Date__c}" name="ItemsEdit2" value="{!asset.Actual_Delivery_Date__c}"/>
+                                                                                 <apex:param assignTo="{!itemToEdit.Additional_Description__c}" name="ItemsEdit3" value="{!asset.Additional_Description__c}"/>
+                                                                             </apex:commandButton>
+                                                                               <br/><br/><!-- EditAction -->
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset">
+                                                                              <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
+                                                                             </apex:commandButton>
+                                                                             <br/>
+                                                                        </td>
+                                                                    </tr>
+                                                                  
+                                                                </tbody>
+                                                            </table>
+                                                            </apex:outputPanel>
+                                                           </center>
+                                                           </apex:outputPanel>
+                                                   </td>                                                      
+                                                </tr>
+                                            </apex:outputPanel>                                                                          
+                                           </apex:repeat>
+                                        </table> 
+                                    </td>  
+                                </tr>    
+                                </apex:outputPanel>                              
+                               <!--  End Static Imagery -->
+                               
+                                <!--  Experiential -->
+                                <apex:outputPanel rendered="{!mapNumberItem['Experiential'] != 0}">
+                                <tr class="Oblix_recordTypeth styleTH1" >
+                                    <th>
+                                    <table width="100%">
+                                       <tr>
+                                           <td width="70%"><strong>Experiential</strong> - Experiential, promotional ideas</td>
+                                           <td width="27%"> {!mapNumberItem['Experiential']} items</td>
+                                           <td>
+                                           <div class=" Oblix_icon">
+                                                <i class="fa fa-2x fa-sort-desc"></i>
+                                                <i class="fa fa-2x fa-sort-up"></i>      
+                                            </div>
+                                           </td>
+                                          </tr>
+                                       </table>
+                                    </th>   
+                                </tr>
+                                <tr class="data Oblix_subCat">
+                                    <td width="100%" style="paddding:20px">
+                                         <table width="100%">
+                                            <apex:repeat value="{!lstAssets}" var="asset">
+                                            <apex:outputPanel rendered="{!asset.RecordType.Name == 'Experiential'}">
+                                                <tr class="Oblix_recordTypeth styleTH2">
+                                                    <th>  
+                                                            <table width="100%">
+                                                               <tr>
+                                                                   <td width="70%">{!asset.Name} </td>
+                                                                   <td width="28%"><apex:outputPanel id="assetDateLastApp"> Last updated : &nbsp; <apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.LastModifiedDate}" /></apex:outputText></apex:outputPanel></td>
+                                                                   <td>
+                                                                    <div class="Oblix_icon">
+                                                                        <i class="fa fa-2x fa-sort-desc"></i>
+                                                                        <i class="fa fa-2x fa-sort-up"></i>      
+                                                                    </div>
+                                                                   </td>
+                                                              </tr>
+                                                           </table>
+                                                    </th>   
+                                                </tr>
+                                                
+                                                <tr class="data Oblix_subCat">
+                                                    <td width="100%" style="paddding:20px">
+                                                             <apex:outputPanel id="asset">
+                                                             <center>
+                                                             <apex:outputPanel rendered="{!isEditItem == false}">
+                                                              <table width="80%" cellpadding="20px">
+                                                                <tbody>
+                                                                    <tr>                      
+                                                                        <td width="20%"><strong>Countries </strong><br/> ? </td>
+                                                                        <td width="30%"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Actual_Delivery_Date__c.label}   </strong><apex:outputField value="{!asset.Actual_Delivery_Date__c}"/></td>
+                                                                        <td width="30%"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Additional_Description__c.label}  </strong><br/><apex:outputField value="{!asset.Additional_Description__c}"/></td>
+                                                                        <td width="20%">
+                                                                             <apex:commandButton value="Edit" action="{!EditItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                             </apex:commandButton>
+                                                                               <br/><br/><!-- EditAction -->
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                              <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
+                                                                             </apex:commandButton>
+                                                                             <br/>
+                                                                        </td>
+                                                                    </tr>
+                                                                  
+                                                                </tbody>
+                                                            </table>
+                                                            </apex:outputPanel>
+                                                            
+                                                             <apex:outputPanel rendered="{!isEditItem == true}">
+                                                              <table width="80%" cellpadding="20px">
+                                                                <tbody>
+                                                                    <tr>                      
+                                                                        <td width="20%"><strong>Countries </strong><br/> ? </td>
+                                                                        <td width="30%"><strong>Due Date  </strong><apex:inputField value="{!asset.Actual_Delivery_Date__c}"/></td>
+                                                                        <td width="30%"><strong>Additional notes </strong><br/><apex:inputField value="{!asset.Additional_Description__c}"/></td>
+                                                                        <td width="20%">
+                                                                             <apex:commandButton value="Save" action="{!SaveItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                                 <apex:param assignTo="{!itemToEdit.location__c}" name="ItemsEdit" value="{!asset.id}"/>
+                                                                                 <apex:param assignTo="{!itemToEdit.Actual_Delivery_Date__c}" name="ItemsEdit2" value="{!asset.Actual_Delivery_Date__c}"/>
+                                                                                 <apex:param assignTo="{!itemToEdit.Additional_Description__c}" name="ItemsEdit3" value="{!asset.Additional_Description__c}"/>
+                                                                             </apex:commandButton>
+                                                                               <br/><br/><!-- EditAction -->
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset">
+                                                                              <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
+                                                                             </apex:commandButton>
+                                                                             <br/>
+                                                                        </td>
+                                                                    </tr>
+                                                                  
+                                                                </tbody>
+                                                            </table>
+                                                            </apex:outputPanel>
+                                                           </center>
+                                                           </apex:outputPanel>
+                                                   </td>                                                      
+                                                </tr>
+                                            </apex:outputPanel>                                                                          
+                                           </apex:repeat>
+                                        </table> 
+                                    </td>  
+                                </tr>  
+                                </apex:outputPanel>                              
+                               <!--  End Experiential -->
+                               
+                                <!--  Digital -->
+                                <apex:outputPanel rendered="{!mapNumberItem['Digital'] != 0}" id="recordType">
+                                <tr class="Oblix_recordTypeth styleTH1" >
+                                    <th>
+                                    <table width="100%">
+                                       <tr>
+                                           <td width="70%"><strong>Digital</strong> - Websites, Digital assets, Data, Social media</td>
+                                           <td width="27%"> {!mapNumberItem['Digital']} items</td>
+                                           <td>
+                                           <div class=" Oblix_icon">
+                                                <i class="fa fa-2x fa-sort-desc"></i>
+                                                <i class="fa fa-2x fa-sort-up"></i>      
+                                            </div>
+                                           </td>
+                                          </tr>
+                                       </table>
+                                    </th>   
+                                </tr>
+                                <tr class="data Oblix_subCat">
+                                    <td width="100%" style="paddding:20px">
+                                         <table width="100%">
+                                            <apex:repeat value="{!lstAssets}" var="asset">
+                                            <apex:outputPanel rendered="{!asset.RecordType.Name == 'Digital'}">
+                                                <tr class="Oblix_recordTypeth styleTH2">
+                                                    <th>  
+                                                            <table width="100%">
+                                                               <tr>
+                                                                   <td width="70%">{!asset.Name} </td>
+                                                                   <td width="28%"><apex:outputPanel id="assetDateLastApp"> Last updated : &nbsp; <apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.LastModifiedDate}" /></apex:outputText></apex:outputPanel></td>
+                                                                   <td>
+                                                                    <div class="Oblix_icon">
+                                                                        <i class="fa fa-2x fa-sort-desc"></i>
+                                                                        <i class="fa fa-2x fa-sort-up"></i>      
+                                                                    </div>
+                                                                   </td>
+                                                              </tr>
+                                                           </table>
+                                                    </th>   
+                                                </tr>
+                                                
+                                                <tr class="data Oblix_subCat">
+                                                    <td width="100%" style="paddding:20px">
+                                                             <apex:outputPanel id="asset">
+                                                             <center>
+                                                             <apex:outputPanel rendered="{!isEditItem == false}">
+                                                              <table width="80%" cellpadding="20px">
+                                                                <tbody>
+                                                                    <tr>                      
+                                                                        <td width="20%"><strong>Countries </strong><br/> ? </td>
+                                                                        <td width="30%"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Actual_Delivery_Date__c.label}   </strong><apex:outputField value="{!asset.Actual_Delivery_Date__c}"/></td>
+                                                                        <td width="30%"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Additional_Description__c.label}  </strong><br/><apex:outputField value="{!asset.Additional_Description__c}"/></td>
+                                                                        <td width="20%">
+                                                                             <apex:commandButton value="Edit" action="{!EditItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                             </apex:commandButton>
+                                                                               <br/><br/><!-- EditAction -->
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                              <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
+                                                                             </apex:commandButton>
+                                                                             <br/>
+                                                                        </td>
+                                                                    </tr>
+                                                                  
+                                                                </tbody>
+                                                            </table>
+                                                            </apex:outputPanel>
+                                                            
+                                                             <apex:outputPanel rendered="{!isEditItem == true}">
+                                                              <table width="80%" cellpadding="20px">
+                                                                <tbody>
+                                                                    <tr>                      
+                                                                        <td width="20%"><strong>Countries </strong><br/> ? </td>
+                                                                        <td width="30%"><strong>Due Date  </strong><apex:inputField value="{!asset.Actual_Delivery_Date__c}"/></td>
+                                                                        <td width="30%"><strong>Additional notes </strong><br/><apex:inputField value="{!asset.Additional_Description__c}" styleClass="textArea_init"/></td>
+                                                                        <td width="20%">
+                                                                             <apex:commandButton value="Save" action="{!SaveItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                                 <apex:param assignTo="{!itemToEdit.location__c}" name="ItemsEdit" value="{!asset.id}"/>
+                                                                                 <apex:param assignTo="{!itemToEdit.Actual_Delivery_Date__c}" name="ItemsEdit2" value="{!asset.Actual_Delivery_Date__c}"/>
+                                                                                 <apex:param assignTo="{!itemToEdit.Additional_Description__c}" name="ItemsEdit3" value="{!asset.Additional_Description__c}"/>
+                                                                             </apex:commandButton>
+                                                                               <br/><br/><!-- EditAction -->
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="recordType">
+                                                                              <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
+                                                                             </apex:commandButton>
+                                                                             <br/>
+                                                                        </td>
+                                                                    </tr>
+                                                                  
+                                                                </tbody>
+                                                            </table>
+                                                            </apex:outputPanel>
+                                                           </center>
+                                                           </apex:outputPanel>
+                                                   </td>                                                      
+                                                </tr>
+                                            </apex:outputPanel>                                                                          
+                                           </apex:repeat>
+                                        </table> 
+                                    </td>  
+                                </tr>   
+                                </apex:outputPanel>                      
+                               <!--  End Digital -->
+                                      
+                            </table>
+                        
+                       </div>
+                   </td>
+                </tr>
+          </tbody>
+        </table>
+     
+    </div>
+ </div>
+ </div><!--  End Container -->
+</apex:form>
+</apex:page>

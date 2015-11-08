@@ -7,15 +7,10 @@
     var originalwidth = width;
     var originalmodified = modified;
     var originalsearchParam = searchParam;
- 
     var lookupType = baseURL.substr(baseURL.length-3, 3);
     if (modified == '1') baseURL = baseURL + searchParam;
- 
     var isCustomLookup = false;
- 
-    // Following "001" is the lookup type for Account object so change this as per your standard or custom object
-    if(lookupType == "a6N"){
- 
+    if(lookupType == "a6N"){// Following "001" is the lookup type for Account object so change this as per your standard or custom object
       var urlArr = baseURL.split("&");
       var txtId = '';
       if(urlArr.length > 2) {
@@ -23,32 +18,15 @@
         txtId = urlArr[1];
       }
         baseURL = "/apex/Oblix_VF03CustomAssetLookup?txt=" + txtId;
-      // Following is the url of Custom Lookup page. You need to change that accordingly
-      var assetType = '{!rtName}';
+      var assetType = '{!rtName}';// Following is the url of Custom Lookup page. You need to change that accordingly
       var categoryType = '{!asset.Sub_Category__c}'; 
-      //alert(categoryType);
-      if( assetType != null && assetType != ''){
-        baseURL += "&assetType="+assetType;
-      }
-      if(categoryType != null && categoryType != ''){
-        baseURL += "&subCategory="+categoryType;
-        
-      }
-      
-      // Following is the id of apex:form control "myForm". You need to change that accordingly
-      baseURL = baseURL + "&frm=" + escapeUTF("{!$Component.myForm}");
-      if (modified == '1') {
-        baseURL = baseURL + "&lksearch=" + searchParam;
-      }
-      // Following is the ID of inputField that is the lookup to be customized as custom lookup
-      if(txtId.indexOf('Asset') > -1 ){
-        isCustomLookup = true;
-      }
+      if( assetType != null && assetType != ''){ baseURL += "&assetType="+assetType; }
+      if(categoryType != null && categoryType != ''){ baseURL += "&subCategory="+categoryType; }
+      baseURL = baseURL + "&frm=" + escapeUTF("{!$Component.myForm}");// Following is the id of apex:form control "myForm". You need to change that accordingly
+      if (modified == '1') { baseURL = baseURL + "&lksearch=" + searchParam;}
+      if(txtId.indexOf('Asset') > -1 ){isCustomLookup = true;}// Following is the ID of inputField that is the lookup to be customized as custom lookup
     }
- 
-    if(isCustomLookup == true){
-      openPopup(baseURL, "lookup", 350, 480, "width="+width+",height=480,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no", true);
-    }
+    if(isCustomLookup == true){openPopup(baseURL, "lookup", 350, 480, "width="+width+",height=480,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no", true);}
     else {
       if (modified == '1') originalbaseURL = originalbaseURL + originalsearchParam;
       openPopup(originalbaseURL, "lookup", 350, 480, "width="+originalwidth+",height=480,toolbar=yes,status=yes,directories=no,menubar=yes,resizable=yes,scrollable=no", true);

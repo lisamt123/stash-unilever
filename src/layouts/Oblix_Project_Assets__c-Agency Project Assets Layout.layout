@@ -28,6 +28,10 @@
                 <field>Asset_Scoring_Number__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Actual_Delivery_Date__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Asset_Total_Score__c</field>
             </layoutItems>

@@ -10,7 +10,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Clone</actionName>
-        <type>Default</type>
+        <content>Oblix_VF04OverrideProjectNew</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
@@ -240,6 +242,20 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Campaign_Total_Fees__c</fullName>
+        <description>Camapgin Total fee, to be calculated based on the adjusted fee entered by the Super User + the Total calculated fee through Oblix Calculator</description>
+        <externalId>false</externalId>
+        <formula>Total_Fees_for_Project__c  +  Campaign_Total_Adjustment__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Campaign Total Fees</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Completed_Stage__c</fullName>
@@ -574,30 +590,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Preview_Feedback__c</fullName>
-        <description>Preview Feedback</description>
-        <externalId>false</externalId>
-        <label>Preview Feedback</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Red</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Amber</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Green</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Production_Completion_Date__c</fullName>
@@ -952,10 +944,22 @@
         <label>Campaign Calculated Total Fees</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Project_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Project Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Total_Value_Driver__c</fullName>

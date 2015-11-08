@@ -13,15 +13,23 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Region__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>OblixRegion__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OblixCountries__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Projected_Stage__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Completed_Stage__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Campaign_Status__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -68,6 +76,14 @@
                 <behavior>Edit</behavior>
                 <field>Campaign_Idea__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Project_Scale_1__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Project_Scale_2__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -83,7 +99,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Financial_Adjustment_Value__c</field>
+                <field>Total_Fees_for_Project__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Campaign_Total_Adjustment__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Campaign_Total_Fees__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -92,8 +116,16 @@
                 <field>Project_Stage__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Value_to_be_paid_in_Current_FY__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Agency_Percentage_of_Fees_to_this_FY__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Total_Project_Score__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -114,16 +146,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Timescale_Notes__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Date_for_Assets_to_be_in_BET__c</field>
+                <field>First_Air_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -131,38 +154,40 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>First_Air_Date__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Research</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>List_Preview_Markets__c</field>
+                <field>Date_for_Assets_to_be_in_BET__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Other_Kinds_of_Research__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Preview_Feedback__c</field>
+                <field>BET_first_release__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Number_of_Markets_for_Preview__c</field>
+                <field>Preview_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Number_of_Previews__c</field>
+                <field>Start_of_TV_production__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Final_release__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Live_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Live_date_Asset_delivery__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Timescale_Notes__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -194,6 +219,10 @@
                 <behavior>Edit</behavior>
                 <field>Total_Value_Driver__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ProjectTotalAssetscore__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -222,6 +251,7 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
+        <fields>OblixCountry__c</fields>
         <fields>Percentage__c</fields>
         <fields>NAME</fields>
         <relatedList>Oblix_Marketing_SOW_Project_Splits__c.Project_Splits__c</relatedList>
@@ -229,11 +259,13 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Asset_Description__c</fields>
-        <fields>Asset_Type__c</fields>
+        <fields>RECORDTYPE</fields>
         <fields>Sub_Category__c</fields>
         <fields>Channels__c</fields>
         <fields>Location__c</fields>
         <fields>Quantity__c</fields>
+        <fields>Asset_Total_Score__c</fields>
+        <fields>Asset_Scoring_Number__c</fields>
         <relatedList>Oblix_Project_Assets__c.Agency_Projects__c</relatedList>
     </relatedLists>
     <relatedLists>

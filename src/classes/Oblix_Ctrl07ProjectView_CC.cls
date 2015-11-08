@@ -1,0 +1,175 @@
+/**
+    About
+    -----
+    Description: Class Oblix_Ctrl07ProjectView_CC 
+    Created for: OBLIX Project
+    Create date: 10/ 2015  (23/10/2015)
+    Created by Jamal Rida
+    Author : @Jamal
+    Details
+    -------
+    
+       Update History
+    --------------    
+*/
+
+public with sharing class Oblix_Ctrl07ProjectView_CC {
+        
+        public Oblix_SOW_Projects__c SelectedProject {get;set;}
+        public List<Oblix_Marketing_SOW_Project_Splits__c> lstProjectSplitHubs {get;set;}
+        public list<Oblix_Project_Assets__c> lstAssets {get;set;}
+        public set<string> setRecordType  {get;set;}
+        public string IdsProject {get;set;}
+        public String sowID  {get;set;}
+        public String ItemsEdit {get;set;}
+        public User userConnected {get;set;}
+        public list<string> lstStage {get;set;}
+        public map<string,integer> mapNumberItem {get;set;}
+        public string itemToDelete {get;set;}
+        public Oblix_Project_Assets__c  itemToEdit {get;set;}
+        public boolean isEditItem {get;set;}
+        
+        public Oblix_Ctrl07ProjectView_CC (){
+              IdsProject = '';
+              isEditItem = false;
+              lstStage = new list<string>();
+              mapNumberItem = new map<string,integer>();
+              itemToEdit = new Oblix_Project_Assets__c();
+        }
+              
+        public void init(){
+            setRecordType = new set<String>();
+            Id idUser = UserInfo.getUserId();  
+            userConnected = [Select Name from User where Id =: idUser ];
+            SelectedProject = [Select o.Total_Fees_for_Project__c, o.Total_Digital_Fee__c,o.Value_to_be_paid_in_Current_FY__c ,o.Campaign_Status__c, o.Total_Adapt_Fees__c, o.Timescale_Notes__c, o.SystemModstamp, o.Stimulus_Requirements__c, 
+                                 o.Should_legal_review_this_project__c, o.Region__c, o.Project_Start_Date__c, o.Project_Stage__c, o.Project_Scale_2__c, o.Project_Scale_1__c, o.Project_Priority__c, 
+                                 o.Project_Finish_Date__c, o.Project_Completion_Date__c, o.ProjectTotalAssetscore__c, o.Production_Completion_Date__c, o.Platform__c, 
+                                 o.Percentage_of_Fee_for_this_FY__c, o.Overall_Project_Complete__c, o.Other_Kinds_of_Research__c, o.Oblix_ProjectBoxNumber__c, o.OblixRegion__c, 
+                                 o.OblixProjectSplitPercentage_Comment__c,o.Campaign_Fees_Total__c, o.OblixCountries__c, o.OblixClonedFromParentProject__c, o.Number_of_Previews__c, o.Number_of_Markets_for_Preview__c, 
+                                 o.Name, o.List_Preview_Markets__c, o.LastViewedDate, o.LastModifiedDate, o.LastModifiedById, LastModifiedBy.Name, o.Jobs_to_be_Done__c, 
+                                 o.Is_type_of_item_usually_poduced_by_this__c, o.Is_this_High_Risk__c, o.IsDeleted, o.Innovation_Projects__c, o.Id, o.First_Air_Date__c, o.Financial_Year__c, 
+                                 o.Description__c, o.Date_for_Assets_to_be_in_BET__c, o.CreatedDate, o.CreatedById, o.Campaign_Idea__c, o.Budget_Burnt_to_date__c, o.Brand_Led_Growth__c, 
+                                 o.Agency_Percentage_of_Fees_to_this_FY__c,o.Financial_Year__r.currency__c,o.BET_first_release__c,o.Final_release__c,o.Start_of_TV_production__c,o.Live_date_Asset_delivery__c,o.Live_Date__c From Oblix_SOW_Projects__c o where id =:ApexPages.currentPage().getParameters().get('projectId')];
+              if(SelectedProject.OblixCountries__c != null){
+                  SelectedProject.OblixCountries__c = SelectedProject.OblixCountries__c.replaceAll(',',' ,');
+              }    
+              sowID =  SelectedProject.Financial_Year__c;                  
+              IdsProject = IdsProject +'\''+SelectedProject.id+'\',';
+              IdsProject = '['+IdsProject.removeEnd(',')+']';   
+                              
+             lstProjectSplitHubs = [Select Id, Name, OblixCountry__c, Project_Splits__c, Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c =: SelectedProject.Id ];
+             
+             lstAssets = [select Id,Agency_Projects__r.id,LastModifiedDate,Additional_Description__c,Target_Delivery_Date__c ,Actual_Delivery_Date__c, FULL_Description__r.Name, Channels__c,RecordType.Name,Name,RecordTypeId,Sub_Category__c,FULL_Description__c from Oblix_Project_Assets__c where Agency_Projects__c =:SelectedProject.Id];
+             System.debug('###lstAssets : '+lstAssets );
+             
+             if(!lstAssets.isEmpty()){
+                  for(Oblix_Project_Assets__c asset:lstAssets){
+                      if(!mapNumberItem.containsKey(asset.RecordType.Name)){
+                          mapNumberItem.put(asset.RecordType.Name,1);
+                      }else{                    
+                          mapNumberItem.put(asset.RecordType.Name,mapNumberItem.get(asset.RecordType.Name)+1);
+                      }
+                  }
+                  
+             } 
+             if(mapNumberItem.get('Audio Visual') == null) { mapNumberItem.put('Audio Visual',0);}
+             if(mapNumberItem.get('Digital') == null) { mapNumberItem.put('Digital',0);}
+             if(mapNumberItem.get('Experiential') == null) { mapNumberItem.put('Experiential',0);}
+             if(mapNumberItem.get('Static Imagery') == null) { mapNumberItem.put('Static Imagery',0);}
+             if(mapNumberItem.get('Stimulus Materials / Research requirements') == null) { mapNumberItem.put('Stimulus Materials / Research requirements',0);}    
+             System.debug('###setRecordType : '+setRecordType);
+             Schema.DescribeFieldResult lstProjectStage = Oblix_SOW_Projects__c.Project_Stage__c.getDescribe();
+             List<Schema.PicklistEntry> lstStageValues = lstProjectStage.getPicklistValues();
+             for (Schema.PicklistEntry a : lstStageValues){ 
+                 lstStage.add(a.getLabel()); 
+             }
+              
+         }
+        /* Method used to redirect Back To Sow View
+         * @return [Redirection to the Sow View Page] 
+         */ 
+        public PageReference BackToSow(){
+            return new PageReference('/apex/Oblix_VF06_SOWView?sowId='+SelectedProject.Financial_Year__c);
+        }
+        public pageReference CloneCampaign(){
+
+           Oblix_SOW_Projects__c project = SelectedProject.clone();
+           insert project;
+         //get assets of the parent
+         List<Oblix_Project_Assets__c> lstAssetFromParent = [Select Target_Delivery_Date__c, Sub_Category__c,
+                                             RecordTypeId, Quantity__c, OblixClonedFromParentAsset__c, Name, 
+                                             Location__c, Id, FULL_Description__c, CreatedDate, Channels__c, 
+                                             Asset_Type__c, Asset_Total_Score__c, Asset_Scoring_Number__c, Asset_Description__c, 
+                                             Agency_Projects__c, Additional_Description__c, Actual_Delivery_Date__c 
+                                             From Oblix_Project_Assets__c where Agency_Projects__c =:SelectedProject.Id];
+        //clone assets, insert them 
+         List<Oblix_Project_Assets__c> lstAssetClone = lstAssetFromParent.deepClone();
+                    if(!lstAssetClone.isEmpty()){
+                        for(Oblix_Project_Assets__c assetClone : lstAssetClone){
+                            assetClone.Agency_Projects__c = project.Id;
+                        }
+                        insert lstAssetClone;
+                    }                        
+           //get splits of the parent         
+          List<Oblix_Marketing_SOW_Project_Splits__c> lstSplitFromParent = [Select Id, Name, Project_Splits__c, OblixCountry__c, 
+                                                Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c =: SelectedProject.Id
+                                                            ];
+        //clone splits, insert them 
+         List<Oblix_Marketing_SOW_Project_Splits__c> lstSplitClone = lstSplitFromParent.deepClone();
+                    if(!lstSplitClone.isEmpty()){
+                        for(Oblix_Marketing_SOW_Project_Splits__c splitClone : lstSplitClone){
+                            splitClone.Project_Splits__c = project.Id;
+                        }
+                        insert lstSplitClone;
+                    }
+           // id clonedProjId = Oblix_Utils.CloneProject(project.id);
+            return new PageReference('/apex/Oblix_VF08_ProjectEdit?projectId='+project.Id);
+        }
+        /* 
+        Function related to the asset record 
+        */
+         public void EditItemsAction(){
+             isEditItem = true;
+         }
+         public void DeleteItemsAction(){
+             Oblix_Project_Assets__c todelete = [select id,name from Oblix_Project_Assets__c where id=:itemToDelete.substring(0,15)];
+             delete todelete;
+         }
+         public void SaveItemsAction(){  
+             itemToEdit.id = (itemToEdit.location__c).substring(0,15);
+             itemToEdit.Actual_Delivery_Date__c = itemToEdit.Actual_Delivery_Date__c;             
+             itemToEdit.Additional_Description__c=itemToEdit.Additional_Description__c;
+             Update itemToEdit;
+             itemToEdit = new Oblix_Project_Assets__c();
+             isEditItem = false;
+         }
+         
+         
+         public void SaveProject(){
+             try{
+                 update SelectedProject;
+             }catch(Exception e){
+                 System.debug('###Error Occured : '+e.getMessage());
+                 ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,'Error while saving the project, please review data'));
+             }
+         }   
+     
+         /* Method used to redirect Back To Item Edit Page
+         * @return [Redirection to the Items Edit Page] 
+         */ 
+         public PageReference EditItems(){
+             system.debug('###ItemsEdit : '+ItemsEdit);
+           
+            return new PageReference('/apex/Oblix_VF08_ProjectEdit?projectId='+SelectedProject.Id+'&assetId='+ItemsEdit);
+         }
+         /* Method used to redirect Back To Project Edit Page
+         * @return [Redirection to theProject Edit Page] 
+         */ 
+         public PageReference EditAddItems(){
+             return new PageReference('/apex/Oblix_VF08_ProjectEdit?projectId='+SelectedProject.Id);
+         }
+       
+         
+     
+     
+}

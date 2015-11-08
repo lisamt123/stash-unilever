@@ -14,6 +14,11 @@
         <name>Agency_Percentage_of_Fees_to_this_FY__c</name>
     </fields>
     <fields>
+        <help><!-- BET first release date --></help>
+        <label><!-- BET first release --></label>
+        <name>BET_first_release__c</name>
+    </fields>
+    <fields>
         <help><!-- Identifying priorities for the brand based on the total turnover the campaign is protecting (Select this option, only if incremental turnover value is unavailable) --></help>
         <label><!-- Business Value --></label>
         <name>Brand_Led_Growth__c</name>
@@ -63,6 +68,10 @@
         <name>Budget_Burnt_to_date__c</name>
     </fields>
     <fields>
+        <label><!-- Campaign Fees Total --></label>
+        <name>Campaign_Fees_Total__c</name>
+    </fields>
+    <fields>
         <help><!-- Strategic and creative requirement to develop a new CAMPAIGN IDEA (based on existing brand campaign idea BCI) --></help>
         <label><!-- Campaign Idea --></label>
         <name>Campaign_Idea__c</name>
@@ -80,6 +89,64 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Please select if this project has been started or is on hold --></help>
+        <label><!-- Campaign Status --></label>
+        <name>Campaign_Status__c</name>
+        <picklistValues>
+            <masterLabel>Canceled</masterLabel>
+            <translation><!-- Canceled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Started</masterLabel>
+            <translation><!-- Not Started --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Hold</masterLabel>
+            <translation><!-- On Hold --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Enter a (+/-) value to adjust the Campaign Total Fee value --></help>
+        <label><!-- Campaign Total Adjustment --></label>
+        <name>Campaign_Total_Adjustment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Campaign Total Fees --></label>
+        <name>Campaign_Total_Fees__c</name>
+    </fields>
+    <fields>
+        <label><!-- Completed Stage --></label>
+        <name>Completed_Stage__c</name>
+        <picklistValues>
+            <masterLabel>Completed Briefing</masterLabel>
+            <translation><!-- Completed Briefing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Completed Creative Execution</masterLabel>
+            <translation><!-- Completed Creative Execution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Completed Creative Ideation</masterLabel>
+            <translation><!-- Completed Creative Ideation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Completed Production</masterLabel>
+            <translation><!-- Completed Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Completed Strategy &amp; Planning</masterLabel>
+            <translation><!-- Completed Strategy &amp; Planning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Date for Assets to be in BET --></label>
         <name>Date_for_Assets_to_be_in_BET__c</name>
     </fields>
@@ -88,9 +155,9 @@
         <name>Description__c</name>
     </fields>
     <fields>
-        <help><!-- Enter a (+/-) value to adjust the Total Campaign Fees --></help>
-        <label><!-- Financial Adjustment Value --></label>
-        <name>Financial_Adjustment_Value__c</name>
+        <help><!-- Enter the the date for final release --></help>
+        <label><!-- Final release --></label>
+        <name>Final_release__c</name>
     </fields>
     <fields>
         <label><!-- Marketing SOW --></label>
@@ -155,6 +222,16 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Enter the Live date --></help>
+        <label><!-- Live Date --></label>
+        <name>Live_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the Live date / Asset delivery date --></help>
+        <label><!-- Live date / Asset delivery --></label>
+        <name>Live_date_Asset_delivery__c</name>
+    </fields>
+    <fields>
         <help><!-- Enter the number of markets the previews will appear in --></help>
         <label><!-- Number of Preview Markets --></label>
         <name>Number_of_Markets_for_Preview__c</name>
@@ -204,20 +281,9 @@
         <name>Platform__c</name>
     </fields>
     <fields>
-        <label><!-- Preview Feedback --></label>
-        <name>Preview_Feedback__c</name>
-        <picklistValues>
-            <masterLabel>Amber</masterLabel>
-            <translation><!-- Amber --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Green</masterLabel>
-            <translation><!-- Green --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Red</masterLabel>
-            <translation><!-- Red --></translation>
-        </picklistValues>
+        <help><!-- Enter the preview date --></help>
+        <label><!-- Preview Date --></label>
+        <name>Preview_Date__c</name>
     </fields>
     <fields>
         <help><!-- When will the production be completed by? --></help>
@@ -343,6 +409,30 @@
         <name>Project_Start_Date__c</name>
     </fields>
     <fields>
+        <label><!-- Projected Stage --></label>
+        <name>Projected_Stage__c</name>
+        <picklistValues>
+            <masterLabel>Projected Briefing</masterLabel>
+            <translation><!-- Projected Briefing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Projected Creative Execution</masterLabel>
+            <translation><!-- Projected Creative Execution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Projected Creative Ideation</masterLabel>
+            <translation><!-- Projected Creative Ideation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Projected Production</masterLabel>
+            <translation><!-- Projected Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Projected Strategy &amp; Planning</masterLabel>
+            <translation><!-- Projected Strategy &amp; Planning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Region --></label>
         <name>Region__c</name>
         <picklistValues>
@@ -388,6 +478,11 @@
         <name>Should_legal_review_this_project__c</name>
     </fields>
     <fields>
+        <help><!-- Enter the date your TV production will start --></help>
+        <label><!-- Start of TV production --></label>
+        <name>Start_of_TV_production__c</name>
+    </fields>
+    <fields>
         <help><!-- Choose the types of research you will use --></help>
         <label><!-- Stimulus Requirements --></label>
         <name>Stimulus_Requirements__c</name>
@@ -414,12 +509,20 @@
         <name>Total_Digital_Fee__c</name>
     </fields>
     <fields>
-        <label><!-- Total Fees for Project --></label>
+        <label><!-- Campaign Calculated Total Fees --></label>
         <name>Total_Fees_for_Project__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Project Score --></label>
+        <name>Total_Project_Score__c</name>
     </fields>
     <fields>
         <label><!-- Total Value Driver Score --></label>
         <name>Total_Value_Driver__c</name>
+    </fields>
+    <fields>
+        <label><!-- Value to be paid in Current FY --></label>
+        <name>Value_to_be_paid_in_Current_FY__c</name>
     </fields>
     <layouts>
         <layout>Agency Projects Layout</layout>
@@ -438,10 +541,6 @@
         <sections>
             <label><!-- General --></label>
             <section>General</section>
-        </sections>
-        <sections>
-            <label><!-- Research --></label>
-            <section>Research</section>
         </sections>
         <sections>
             <label><!-- Time Scales --></label>

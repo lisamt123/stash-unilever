@@ -1185,7 +1185,7 @@
         <language>en_US</language>
     </listViews>
     <nameField>
-        <label>Oblix Calculator Name</label>
+        <label>Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>

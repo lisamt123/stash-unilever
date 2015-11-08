@@ -1,0 +1,1577 @@
+<apex:page sidebar="false" controller="Oblix_Ctrl07ProjectEdit_CC" docType="html-5.0">
+
+  <apex:form id="jqueryId">
+   
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+    <script src="{!URLFOR($Resource.JQueryBlockUI)}" ></script>
+   
+    <script>
+   $(document).ready(function(){
+   
+        $('#datePicker').addClass('ui-dialog');
+        // Select default checkbox values 
+        if('{!lstIdCSSSelected}' != ''){
+         var selectedId = ('{!lstIdCSSSelected}').split(',');
+         //alert(selectedId);
+         for (var i = 0; i < selectedId.length; i++) {
+                    $( "."+selectedId[i]).prop( "checked", true);
+         } 
+        }
+        
+        $('tr.data, tr.btt').show().find('td').wrapInner('<div />');
+        $('tr.data, tr.btt').find('td > div').hide();
+        $('table tr.Oblix_recordTypeth').click(function(){
+            //alert($(this).find('span.recordTypeValue').text());
+            getAssetRecordType($(this).find('span.recordTypeValue').text());
+            var data = $(this).next('tr');
+            var btt = data.next('tr');
+            data.find('td > div').slideToggle('slow');
+            btt.find('td > div').slideToggle('slow');
+            $(this).toggleClass('show');
+        });
+        var setIdCss = {!setIdCss};   
+        for (var i=0; i<setIdCss.length;i++) {
+            $('#'+setIdCss[i]+'_tabs').tabs();
+            $('#'+setIdCss[i]+'_tabs1').tabs();
+            $('#'+setIdCss[i]+'_tabs2').tabs();
+            $('#'+setIdCss[i]+'_tabs3').tabs();
+            $('#'+setIdCss[i]+'_tabs4').tabs();
+            $('#'+setIdCss[i]+'_tabs5').tabs();
+            $('#'+setIdCss[i]+'_tabs');
+            $('#'+setIdCss[i]+'_tabs').addClass('tabs-sub');
+            $('#'+setIdCss[i]+'_tabs1').addClass('ui-tabs-vertical');
+            $('#'+setIdCss[i]+'_tabs2').addClass('ui-tabs-vertical');
+            $('#'+setIdCss[i]+'_tabs3').addClass('ui-tabs-vertical');
+            $('#'+setIdCss[i]+'_tabs4').addClass('ui-tabs-vertical');
+            $('#'+setIdCss[i]+'_tabs5').addClass('ui-tabs-vertical');
+            console.dir('#'+setIdCss[i]+'_tabs2');
+        }
+       $(function () {
+           $(".checkboxCountry").change(function () {
+                var selectedText = $(this).find("option:selected").text();
+                var selectedValue = $(this).val();
+                alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+            });
+    });
+    
+   });
+</script>  
+<script>     
+    function PopupValueDrivers(){           
+         $(function() {
+                $( "#dialogDrivers" ).dialog({
+                  modal: true,
+                  width: 900,
+                  zIndex: 9,
+                  buttons: {
+                    Save : function() {   
+                           //alert($(".projInnovation").val());                       
+                           setInfoDrivers($(".projInnovation").val(),$(".projBrandLedGrwth").val(),$(".projScale1").val(),$(".projScale2").val(),$(".projCampaignIdea").val());   
+                           $(this).dialog("close");  
+                   },                                      
+                    Close: function() {
+                      $( this ).dialog( "close" );
+                      //ValueDriversUpdate();
+                    }
+                  }
+                });
+              });           
+     }
+     function PopupdialogCountries(){
+        
+         $(function() {
+                           
+                $( "#dialogCountries" ).dialog({
+                  modal: true,
+                  width: 1200,                             
+                  height:450,
+                  buttons: {
+                     Save : function() {                            
+                            var lstRegion = '';
+                            var lstCountry = '';                                                   
+                            $("input:checkbox[name='checkboxRegion']:checked").each(function(){
+                                 lstRegion = lstRegion + $(this).attr('value')+',';
+                                //alert('lstRegion: '+$(this).attr('value'));                                
+                            }); 
+                            $("input:checkbox[name='checkboxCountry']:checked").each(function(){
+                                lstCountry = lstCountry + $(this).attr('value')+',';
+                                //alert('lstCountry : '+$(this).attr('value'));  
+                               //arr[i++] = $(this).attr('value');                                 
+                            });                        
+                            alert(lstRegion);
+                            alert(lstCountry);                            
+                            setInfoCountries(lstRegion.substring(0, lstRegion.length-1),lstCountry.substring(0, lstCountry.length-1));
+                            console.dir('here');
+                            
+                            $( this ).dialog( "close");   
+                        },                                       
+                    Close : function() {
+                      $( this ).dialog( "close" );
+                      //ValueDriversUpdate();
+                    }                                                     
+                  }
+                });
+              });           
+     }
+     
+     function PopupTimeLine(){
+       
+         $(function() {
+                $( "#dialogTimeLine" ).dialog({
+                  modal: true,
+                  width: 1200,
+                  modal: true, 
+                  zIndex: 9,
+                  buttons: {
+                     Save : function() {                   
+                             //alert($(".dateProjCD").val());         
+                             setInfoTimeLine($(".dateProjSD").val(),$(".dateProjBFR").val(),$(".dateProjFR").val(),$(".dateProjCD").val(),$(".dateProjABET").val(),$(".dateProjLD").val(),$(".dateFAD").val(),$(".dateProjPREV").val(),$(".dateProjAD").val(),$(".dateProdCD").val(),$(".dateProdSP").val(),$(".ProjTimescale").val(),$(".ProjPriority").val());              
+                             $(this).dialog("close");  
+                          },                                       
+                    Close : function() {
+                      $( this ).dialog( "close" );
+                      //ValueDriversUpdate();
+                    }                  
+                  }
+                });
+              });           
+     }
+      function PopupStages(){
+       
+         $(function() {
+                $( "#dialogStages" ).dialog({
+                  width: 600,
+                  modal: true, 
+                  zIndex: 9,
+                  buttons: {
+                     Save : function() {                            
+                            var lstCompleted = '';
+                            var lstProjected = '';
+                            $("input:checkbox[name='checkbxProjected']:checked").each(function(){
+                                lstProjected = $(this).attr('value');
+                                                              
+                            }); 
+                            $("input:checkbox[name='checkboxCompleted']:checked").each(function(){
+                                lstCompleted = $(this).attr('value');                                           
+                            }); 
+                            alert('array lstCompleted:'+lstCompleted);
+                            alert('array lstProjected :'+lstProjected );                           
+                            if(lstCompleted != '' && lstProjected != ''){
+                               setInfoStages(lstProjected,lstCompleted,lstCompleted.replace('Completed ',''));
+                               console.dir('here');
+                            }  
+                            $( this ).dialog( "close");   
+                        },                                       
+                    Close : function() {
+                      $( this ).dialog( "close" );
+                    }                 
+                  }
+                });
+              });           
+     }
+     function PopupAgencyHub(){
+        
+        var counter = {!counterAsset};
+        $('.addAnotherBtn').click(function(event){            
+            event.preventDefault();   
+            counter = counter+1;                                        
+            var newRow = $('<tr><td></td><td><div class="idSplit_'+counter+'" style="display:none">{!split.id}</div></td><td><apex:inputField styleClass="countrySplit_'+counter+'" value="{!agencySplitInstanceJS.Percentage__c}"/></td><td><apex:inputField value="{!agencySplitInstanceJS.Percentage__c}" styleClass=" percentage pourcentageSplit_'+counter+'" style="width:30px"/> %</td><td></td></tr>');
+            $('table.agencyHubList').append(newRow);           
+           
+        });
+
+         $(function() {
+                $( "#agencyHub" ).dialog({
+                  width: 800,
+                  modal: true, 
+                  zIndex: 9,
+                  buttons: {
+                     Save : function() {                            
+                            var sum = 0;
+                            $(".percentage").each(function(){
+                                sum = sum + Number($(this).val());
+                                //alert(sum);
+                           });      
+                           alert( $(".countrySplit_1").val()); 
+                           //alert( $(".dateProdCD").val());                
+                           if(sum != 100){
+                                alert('the values must be equal to 100');
+                            }else{
+                                for(var indice = 1;indice<counter+1;indice++){                               
+                                    alert($(".idSplit_"+indice).text());
+                                    alert($(".pourcentageSplit_"+indice).val());
+                                    setAgencyHub($(".idSplit_"+indice).text(),$(".countrySplit_"+indice).val(),$(".pourcentageSplit_"+indice).val());
+                                }
+                                //setAgencyHubOnComplete();
+                                $( this ).dialog( "close");   
+                            }
+                        },                                       
+                    Close : function() {
+                      $( this ).dialog( "close" );
+                    }                 
+                  }
+                });
+              });           
+     }
+     function PopupdialogMoreDetails(){
+       
+         $(function() {
+                $( "#dialogMoreDetails" ).dialog({
+                  width: 600,
+                  modal: true, 
+                  zIndex: 9,
+                  buttons: {
+                     Save : function() {          
+                             alert($(".itemDueDate").val()); 
+                             alert($(".itemAdditionalNote").val());             
+                            setMoreDetails($(".itemDueDate").val(),$(".itemAdditionalNote").val());          
+                            $( this ).dialog( "close");   
+                        },                                       
+                    Close : function() {
+                      $( this ).dialog( "close" );
+                    }                 
+                  }
+                });
+              });           
+     }
+     function blockme() {
+       $.blockUI({ css: { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff' 
+        } }); 
+    }
+    function zebla(x){        
+         $( "."+x).prop( "checked", true);
+    }
+   
+   </script>
+   <!-- All action functions used in the VF  -->
+   <apex:actionFunction name="setInfoTimeLine" action="{!setInfoTimeLine}" rerender="accountTable, pageMessages">  
+      <apex:param name="projDate1" assignTo="{!project.Project_Start_Date__c}" value="" />  
+      <apex:param name="projDate5" assignTo="{!project.BET_first_release__c}" value="" />      
+      <apex:param name="projDate6" assignTo="{!project.Final_release__c}" value="" />  
+      <apex:param name="projDate2" assignTo="{!project.Project_Completion_Date__c}" value="" />
+      <apex:param name="projDate7" assignTo="{!project.Date_for_Assets_to_be_in_BET__c}" value="" />
+      <apex:param name="projDate8" assignTo="{!project.Live_Date__c}" value="" />         
+      <apex:param name="projDate3" assignTo="{!project.First_Air_Date__c}" value="" />  
+      <apex:param name="projDate9" assignTo="{!project.Preview_Date__c}" value="" />  
+      <apex:param name="projDate10" assignTo="{!project.Live_date_Asset_delivery__c}" value="" />  
+      <apex:param name="projDate4" assignTo="{!project.Production_Completion_Date__c}" value="" /> 
+      <apex:param name="projDate11" assignTo="{!project.Start_of_TV_production__c}" value="" />  
+      <apex:param name="notes" assignTo="{!project.Timescale_Notes__c}" value="" />  
+      <apex:param name="otherInfo" assignTo="{!project.Project_Priority__c}" value="" />  
+   </apex:actionFunction> 
+   
+   <apex:actionFunction name="setInfoCountries" action="{!setInfoCountries}" rerender="accountTable, pageMessages">  
+      <apex:param name="region" assignTo="{!project.OblixRegion__c}" value="" />  
+      <apex:param name="countries" assignTo="{!project.OblixCountries__c}" value="" />  
+   </apex:actionFunction> 
+   
+   <apex:actionFunction name="setInfoStages" action="{!setInfoStages}" rerender="accountTable, pageMessages">  
+      <apex:param name="projected" assignTo="{!project.Projected_Stage__c}" value="" />  
+      <apex:param name="completed" assignTo="{!project.Completed_Stage__c}" value="" />
+      <apex:param name="stage" assignTo="{!project.Project_Stage__c}" value="" />  
+   </apex:actionFunction> 
+   
+   <apex:actionFunction name="setInfoDrivers" action="{!setInfoDrivers}" rerender="accountTable, pageMessages">  
+        <apex:param name="innovation" assignTo="{!project.Innovation_Projects__c}" value="" />  
+        <apex:param name="brandLG" assignTo="{!project.Brand_Led_Growth__c}" value="" /> 
+        <apex:param name="scale1" assignTo="{!project.Project_Scale_1__c}" value="" /> 
+        <apex:param name="scale2" assignTo="{!project.Project_Scale_2__c}" value="" /> 
+        <apex:param name="campaignIdea" assignTo="{!project.Campaign_Idea__c}" value="" />  
+   </apex:actionFunction>  
+   
+   <apex:actionFunction name="setMoreDetails" action="{!setMoreDetails}" rerender="accountTable, pageMessages">  
+        <apex:param name="dateAsset" assignTo="{!assetInstance.Actual_Delivery_Date__c}" value="" />  
+        <apex:param name="descAsset" assignTo="{!assetInstance.Additional_Description__c}" value="" /> 
+   </apex:actionFunction>   
+    <apex:actionFunction name="setAgencyHub" action="{!setInfoSplitHub}" oncomplete="setAgencyHubOnComplete()" rerender="accountTable, pageMessages">  
+        <apex:param name="splitId" assignTo="{!idSplit}" value="" />   
+        <apex:param name="splitCount" assignTo="{!agencySplitInstanceJS.OblixCountry__r.name}" value="" />   
+        <apex:param name="splitPerc" assignTo="{!agencySplitInstanceJS.Percentage__c}" value="" />   
+   </apex:actionFunction>   
+   <apex:actionFunction name="setAgencyHubOnComplete" action="{!setAgencyHubOnComplete}" rerender="accountTable, pageMessages">     
+   </apex:actionFunction>    
+   <apex:actionFunction name="getAssetRecordType" action="{!getAssetRecordType}" rerender="accountTable, pageMessages" reRender="Oblix_card">    
+       <apex:param name="recordType" assignTo="{!recordType}" value="" />  
+   </apex:actionFunction>    
+
+   <apex:actionFunction action="{!NULL}" name="changeType" reRender="jqueryId" />
+   <!-- End action functions -->
+   
+   <style>
+       /**** Header and container CSS ****/
+        
+        .darkGreen{color: #44883E  ;}
+        .mainGreen{color: #6BA539;}
+        h2{ font-size: 130%;}
+        h3{font-size: 14px;}
+
+        .Oblix_Container{
+            background-image : url("{!URLFOR($Resource.assetUI,'bg_pattern_2.png')}");
+            background-repeat: no-repeat;
+            position:relative;
+            top: -11px;
+        }
+        .Oblix_header_logo{
+        position:relative;
+        left:-15px;
+        top:-55px;
+        }
+        
+        .Oblix_header_title{
+            font-family: DIN, Arial;
+            font-size: 30px;
+            margin: 4px;   
+           /* padding-top: 7px; */  
+            position:relative;
+            top:-50px;              
+        }
+
+        
+           .Oblix_header_arrowTitle{
+            font-family: DIN, Arial;
+            font-size: 17px;
+            margin: 4px;   
+           /* padding-top: 7px; */  
+            position:relative;
+            text-align: center;
+            top:30px;              
+        }
+        
+        .Oblix_header_activeArrow{ 
+        background-color: transparent;      
+            background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow_down.png')}");
+            background-repeat: no-repeat;
+             font-family: DIN, Arial;
+            color:white;
+            padding-left: 10px;
+            width:160px;
+           height: 90px;
+            text-align: center;
+            position: relative;
+           
+
+        }
+          .Oblix_header_Arrow_none{ 
+          background-color: transparent;      
+            background: initial;
+            background-repeat: no-repeat;
+            font-family: DIN, Arial;
+            color:white;
+            padding-left: 10px;
+            width:160px;
+            height: 90px;
+            text-align: center;
+            position: relative;
+        }
+          .Oblix_header_Arrow{ 
+          background-color: transparent;      
+            background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow.png')}");
+            background-repeat: no-repeat;
+            font-family: DIN, Arial;
+            color:white;
+            padding-left: 10px;
+            width:160px;
+            height: 90px;
+            text-align: center;
+            position: relative;
+          
+
+
+        }
+          .Oblix_header_Arrow:active, .Oblix_header_Arrow:hover {
+          background-color: transparent;
+            background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
+            background-repeat: no-repeat;
+
+          }
+           .Oblix_header_previousArrow{ 
+           background-color: transparent;      
+            background-image : url("{!URLFOR($Resource.assetUI,'previouslevel_arrow.png')}");
+            background-repeat: no-repeat;
+            font-family: DIN, Arial;
+            color:white;
+            padding-left: 10px;
+            width:160px;
+             height: 90px;
+            text-align: center;
+            position: relative;
+         
+
+        }
+       .Oblix_header_previousArrow:active, .Oblix_header_previousArrow:hover {
+            background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
+            background-repeat: no-repeat;
+
+          }
+
+        .header_pos_2 {
+            top:-5px;
+            left:-18px;
+            }
+        .header_pos_3 {
+            top: -100px;
+            left:138px;
+           }
+        .Oblix_header{
+            background-image : url("{!URLFOR($Resource.assetUI,'header_panel.png')}");
+            background-size: 100% 100%;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+            height: 90px;
+            position: relative;
+            /* line-height: 65%; */
+            width:95%;
+            letter-spacing: 1px;         
+        }
+        .Oblix_header_desc{
+             text-align:center;
+            /* line-height: 140%; */
+            position:relative;
+            font-size: 10px;
+            top:-65px;
+
+        }
+        .Oblix_header td{
+             font-family: DIN, Arial;
+        }
+        .Oblix_projects_container h2 {
+            font-size: 13px;
+            color: white;
+            float: right;
+        }
+        .Oblix_sowDetail{
+            display: block;
+            padding: 9.5px;
+            margin: 0 58px 23px;
+            font-size: 13px;
+            line-height: 1.42857143;
+            color: #333;
+            word-break: break-all;
+            word-wrap: break-word;
+            background-color: rgb(202, 212, 190);
+            border: 1px solid #969696;
+            border-radius: 4px;
+            font-size:15px;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        }
+      .Oblix_large_btn{
+            border-style:none;
+            width: 220px !important;
+            height: 30px;
+            background-position: 0 0;
+            border : 1px solid rgb(158, 145, 145);
+        }
+        
+        .Oblix_large_btn:hover{
+           border-style:none;
+            border : 1px solid rgb(223, 213, 213);
+            background-position: 0 0;
+        }
+        .Oblix_large_btn:active{
+            border-style:none;
+            border : 1px solid rgb(223, 213, 213);
+            background-position: 0 0;
+        }
+         .Oblix_btn{
+            border-style:none;
+            width: 125px;
+            height: 30px;
+            background-position: 0 0;
+            border : 1px solid rgb(158, 145, 145);
+        }
+        
+        .Oblix_btn:hover{
+            border-style:none;
+            border : 1px solid rgb(223, 213, 213);
+            background-position: 0 0;
+        }
+        .Oblix_btn:active{
+            border-style:none;
+            border : 1px solid rgb(223, 213, 213);
+            background-position: 0 0;
+        }
+        .Oblix_notes{
+            PADDING-right: 41px;
+        }
+        .Oblix_tableDetails tr h1{
+            font-size:16px;
+        }
+        table tr td {       
+            font-size : 12px;
+        }
+        .picklist_init{
+            transition: all .2s linear;
+            background: #fff;
+            padding: 5px 9px;
+            margin: 0;
+            width: 68%;
+            font-size: 13px;
+        }
+        .input_init{
+            transition: all .2s linear;
+            background: #fff;
+            padding: 5px 9px;
+            margin: 0;
+            font-size: 13px;
+        }
+        .textArea_init{
+            transition: all .2s linear;
+            background: #fff;
+            padding: 5px 9px;
+            margin: 0;
+            width: 93%;
+            min-height:80px;
+            font-size: 13px;
+            height: 32px;
+        }
+        .Oblix_input{
+            transition: all .2s linear;
+            background: #fff;
+            padding: 5px 9px;
+            margin: 0;
+            font-size: 13px;
+        }
+
+        .dataTables_length label select,.dataTables_filter input{
+            margin: 11px !important;
+        }
+        .dataTables_length label,.dataTables_filter label{
+            font-size:14px;
+        }
+        .Oblix_attachment{
+            width:90%;
+        }
+       .Oblix_filter_btn{
+           color: #333;
+            background: #fff !important;
+            border: 1px solid #b5b5b5 !important;
+            display: inline-block;
+            padding: 4px 12px !important;
+            width:100px;
+            margin-bottom: 0;
+            font-size: 14px !important;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+        }
+         .Oblix_projects_btn{
+            color: #333;
+            background: #fff !important;
+            border: 1px solid #b5b5b5 !important;
+            display: inline-block;
+            padding: 4px 12px !important;
+            width: 144px;
+            height: 42px;
+            margin-bottom: 0;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+         } 
+          .Oblix_popup_btn{
+            color: #333;
+            background: #B0CC8F !important;
+            display: inline-block;
+            padding: 4px 12px !important;
+            brder-radius:0px!important;
+            border:1px solid #FBEFEF !important;
+            width:100%;
+            margin-bottom: 0;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+         }
+        .Oblix_addAsset_btn{
+            padding: 7px !important;
+            width:60%;
+        }
+         
+       .Oblix_filter_btn:hover, .Oblix_filter_btn:active{
+           background: #eaeaea !important;
+           border: 1px solid #b5b5b5 !important;
+       }     
+       .ui-tooltip, .arrow:after {
+        background: black;
+        border: 2px solid white;
+      }
+      .ui-tooltip {
+        padding: 10px;
+        color: white;
+        width:150px;
+        border-radius: 2px;
+        border-color:black;
+        font-size:12px;
+        box-shadow: 0 0 2px black;
+        text-align:center;
+      }
+      .arrow {
+        width: 70px;
+        height: 16px;
+        overflow: hidden;
+        position: absolute;
+        left: 50%;
+        border-color:black;
+        margin-left: -35px;
+        bottom: -16px;
+      }
+      .arrow.top {
+        top: -16px;
+        bottom: auto;
+      }
+      .arrow.left {
+        left: 20%;
+      }
+      .arrow:after {
+        content: "";
+        position: absolute;
+        left: 20px;
+        top: -20px;
+        width: 25px;
+        height: 25px;
+        border-color:black;
+        box-shadow: 6px 5px 9px -9px black;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      .arrow.top:after {
+        bottom: -20px;
+        top: auto;
+      }
+
+    .column1,.column2 {
+        width: 49%; 
+        float: left;
+    }
+
+    .column3{
+        width: 100%; 
+        float: left;
+    }
+
+    .column5{
+        width: 50%; 
+        float: left;
+    }
+    .column4{
+        width: 40%; 
+        float: left;
+    }
+    .PrColumn4 h2 {
+        font-size: 16px;
+        text-align:center;
+    }
+    .PrColumn1 {
+        width: 45%; 
+        float: left;
+    }
+    .PrColumn2{
+        width: 45%;
+        float: left;
+    }
+
+    .PrColumn3{
+        width: 100%; 
+        float: left;
+    }
+
+    .PrColumn5{
+        width: 45%; 
+        float: left;
+    }
+    .PrColumn4{
+        width: 50%; 
+        float: left;
+    }
+    
+  
+     .Oblix_table{
+            display:block;
+            padding: 9.5px;
+            margin: 0 58px 23px;
+            font-size: 13px;
+            line-height: 1.42857143;
+            color: #333;
+            word-break: break-all;
+            word-wrap: break-word;
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+    }
+   
+    /* for 900px or less */
+    @media screen and (max-width: 1200px) {
+     
+        .column1,.column2,.column3,.column4,.column5,.PrColumn1,.PrColumn2,.PrColumn3,.PrColumn4{
+            width: 100%;
+        }
+    }
+    
+    .Oblix_heading th{
+       background-color: rgba(29, 130, 40, 0.86);
+        padding: 10px;
+        color: white;
+        font-size: 14px;
+     }
+    .Oblix_table strong{
+        padding-right:20px;
+    }
+    .data table{
+        background-color: #fff;
+        padding:10px;
+    }
+    .Oblix_assets{
+        padding:10px;
+        background-color: #DFE4E0;
+    }
+    .Oblix_projects_container h1{
+        font-size: 16px;
+        color: white;
+        letter-spacing: 1px;
+    }
+
+    .Oblix_projects_header{
+        padding: 20px;
+        background-color: rgb(0, 87, 63);
+    }
+    
+    .padding_remove{
+        padding:0px!important;
+    }
+    .Oblix_recordType i.fa.fa-2x.fa-sort-desc{
+        display:none;
+    }
+    
+    .Oblix_recordType i.fa.fa-2x.fa-sort-up{
+        display:block;
+    }
+     .show i.fa.fa-2x.fa-sort-desc{
+        display:block;
+    }
+    .show i.fa.fa-2x.fa-sort-up{
+        display:none;
+    }
+    .Oblix_icon {
+        cursor:pointer;
+    }
+    .Oblix_recordType{
+        float:left;
+        width:70%;
+    }
+    .Oblix_card{
+        float: right;
+        width: 25%;
+        font-weight: bold;
+        height: 218px;
+        margin-right: 14px;
+    }
+    .Oblix_card_content{
+        background: #BDCEBF;
+        HEIGHT: 100%;
+        padding :10px;
+    }
+    .Oblix_icon_right{
+        float:right;
+        width: 3%;
+    }
+    .Oblix_div_left{
+        float:left;
+     }
+    
+     .Oblix_subCat{
+         padding-left : 10px;
+     }
+     .Oblix_recordTypeth th,.Oblix_recordTypeth_title th{
+        background-color: #BDCEBF;
+        padding: 10px;
+     }
+     .data td{
+         background-color:white;
+     }
+     .Oblix_heading tr{
+         color:white;
+     }
+     
+    .topAlign tr{
+        vertical-align: top;
+    }
+
+     .ui-widget-header {
+        border: 0px;
+        background: #E8E8E8;
+    }
+    
+    .ui-widget-content {
+        border: 0px;
+    }
+   
+    .ui-tabs .ui-tabs-panel {
+        display: block;
+        border-width: 0;
+        padding: 1em 1.4em;
+        cursor: pointer;
+    }
+    .ui-tabs {
+       padding:0em;
+    } 
+    .ui-tabs .ui-tabs-nav li {
+        border-bottom-width: 1px;
+    }  
+    
+    
+    .tabs-min { 
+        background: transparent; 
+        border: none; 
+    } 
+    .tabs-min .ui-widget-header { 
+        background: transparent; 
+        border: none; 
+        border-bottom: 1px solid #c0c0c0; 
+        -moz-border-radius: 0px; 
+        -webkit-border-radius: 0px; 
+        border-radius: 0px; 
+    } 
+    .tabs-min .ui-tabs-nav .ui-state-default { 
+        background: transparent; 
+        border: none; 
+    } 
+    .tabs-min .ui-tabs-nav .ui-state-active { 
+        background: transparent url("{!URLFOR($Resource.Oblix_uiTabsArrow)}") no-repeat bottom center; 
+        border: none; 
+    } 
+    .tabs-min .ui-tabs-nav .ui-state-default a { 
+        color: #c0c0c0; 
+    } 
+    .tabs-min .ui-tabs-nav .ui-state-active a { 
+        color: #459e00; 
+    }
+    .tabs-sub .ui-widget-header {
+        background: transparent;
+    }
+    .ui-tabs.ui-tabs-vertical {
+        padding: 0;
+        width: 100%;
+    }
+    .ui-tabs.ui-tabs-vertical .ui-widget-header {
+        border: none;
+    }
+    .ui-tabs.ui-tabs-vertical .ui-tabs-nav {
+        float: left;
+        width: 60%;
+        border-radius: 4px 0 0 4px;
+        border-right: 1px solid gray;
+    }
+    .ui-tabs.ui-tabs-vertical .ui-tabs-nav li {
+        clear: left;
+        width: 100%;
+        border: 1px solid gray;
+        border-width: 1px 0 1px 1px;
+        border-radius: 4px 0 0 4px;
+        overflow: hidden;
+        position: relative;
+        right: -2px;
+        z-index: 2;
+    }
+    .ui-tabs.ui-tabs-vertical .ui-tabs-nav li a {
+        display: block;
+        width: 100%;
+        padding: 0.6em 1em;
+        
+    }
+    .ui-tabs.ui-tabs-vertical .ui-tabs-nav li a:hover {
+        cursor: pointer;
+    }
+    .ui-tabs.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
+        margin-bottom: 0.2em;
+        padding-bottom: 0;
+        border-right: 1px solid white;
+    }
+    .ui-tabs.ui-tabs-vertical .ui-tabs-nav li:last-child {
+        margin-bottom: 10px;
+    }
+    .ui-tabs.ui-tabs-vertical .ui-tabs-panel {
+        float: left;
+        border: 1px solid gray;
+        border-radius: 0;
+        position: relative;
+        left: -1px;
+        width: 33%;
+    }
+    .dateFormat {
+        position: relative;
+        top: 5px;
+    }
+    .Oblix_card_title{
+        font-size: 14px;
+        PADDING-bottom: 27px;
+        background: #BDCEBF;
+        margin-bottom: 3px;
+        padding-top: 7px;
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+    .Oblix_card_elmt{
+        font-size:13px;
+        margin-top:20px;
+        border-bottom:1px solid black;
+    }
+    /* Override the Standard Salesforce CSS */
+    .dateOnlyInput input {
+        width: 7em;
+    }
+    
+    .ui-datepicker { width: 17em; padding: .2em .2em 0; display: none; z-index: 2000 !important;}
+    .datePicker{
+        position:absolute;  
+        z-index:1000;
+     }
+
+    </style>
+   
+    <div class="Oblix_Container">
+    <!-- Countries popUp Start-->
+    
+    <div id="dialogCountries" title="Choose Countries" style="display:none">   
+    <center>
+      <table width="90%">        
+          <tr valign="top">
+          <apex:repeat value="{!lstRegion}" var="region">
+              <td>
+                   <strong>
+                   <input class="{!mapIdCSSCountryRegion[region]}" type="checkbox" name="checkboxRegion" value="{!region}" disabled="true">{!region}</input></strong>
+                   <apex:repeat value="{!mapRelatedCntries[region]}" var="country">                      
+                        <br/><input class="{!mapIdCSSCountryRegion[country]}" type="checkbox" name="checkboxCountry" value="{!country}" id="{!mapIdCSSCountryRegion[region]}" onchange ="zebla($(this).attr('id'))">{!country}</input>
+                   </apex:repeat> 
+               </td>
+           </apex:repeat>
+           </tr>    
+      </table>
+      </center>
+   </div>
+  <!-- Countries PopUp End -->
+   <!-- ValueDrivers popUp Start-->
+    <div id="dialogDrivers" title="Value Drivers" style="display:none">   
+    <br/>
+     Visible to Unilever only<br/>
+    <center>
+    <br/>
+      <h1>Please Choose Innovation Projects or Brand Leg Growth</h1>
+      <br/><br/>
+      <table width="90%">
+            
+               <tr>
+                  <td colspan="2" width="50%">
+                      <apex:inputField value="{!project.Innovation_Projects__c}" style="width:90%" styleClass="input_init projInnovation"/><br/>
+                      <div style="width:80%;PADDING-TOP: 8px;">Identifying priorities for the brand based on the total turnover the campaign is protecting ( Select this option, only if incremental turnover value is unavailable )</div>
+                      
+                  </td>
+                   <td colspan="2" width="50%">
+                      <apex:inputField value="{!project.Brand_Led_Growth__c}" style="width:90% !important;padding: 5px 9px;" styleClass="input_init projBrandLedGrwth"/><br/>
+                      <div style="width:80%;PADDING-TOP: 8px;">Identifying priprities for the brand based on the incremental turnover the project drives </div>
+                  </td>                
+              </tr>                           
+              <tr><td colspan="4">&nbsp;</td></tr>  
+              <tr><td colspan="4">&nbsp;</td></tr>  
+              <tr>
+                  <td width="20%">&nbsp;</td>
+                  <td colspan="3"><apex:inputField value="{!project.Project_Scale_1__c}" style="width:60%" styleClass="input_init projScale1"/></td>               
+              </tr>
+               <tr>
+                   <td>&nbsp;</td>
+                  <td colspan="3"><apex:inputField value="{!project.Project_Scale_2__c}" style="width:60%" styleClass="input_init projScale2"/>&nbsp;Determined by Countries selector</td>
+              </tr>
+              <tr>
+                  <td>&nbsp;</td>
+                  <td colspan="3"><apex:inputField value="{!project.Campaign_Idea__c}" style="width:60%" styleClass="input_init projCampaignIdea"/>&nbsp;Determined by Agency Hubs Split selector </td>
+              </tr>
+      </table>
+      </center>
+   </div>
+  <!-- ValueDrivers PopUp End -->
+   <!-- Agency Hub popUp Start-->
+    <div id="agencyHub" title="Agency Hub Split " style="display:none" class="agencyHub"> 
+   
+      <center>
+     <br/>
+      <h1>List lead agency market and any other supporting agency hub with % </h1>
+      <br/><br/>
+      <table width="70%" class="agencyHubList">
+         <center>
+               <apex:variable value="{!1}" var="display"/>
+               <apex:repeat value="{!lstProjectSplitHubs}" var="split">
+                    <tr>
+                        <td><strong><div style="display :{!if(display == 1,'block','none')}">&nbsp;Lead Agency</div></strong></td>
+                        <td><div class="idSplit_{!display}" style="display:none">{!split.id}</div></td>
+                        <td><apex:inputField value="{!split.OblixCountry__c}" styleClass="countrySplit_{!display}"/></td>                       
+                        <td><apex:inputField value="{!split.Percentage__c}" style="width:30px" styleClass=" percentage pourcentageSplit_{!display}"/> %</td>
+                        <td><div style="display :{!if(display == 1,'block','none')}">&nbsp;<button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only addAnotherBtn" role="button" aria-disabled="false"><span class="ui-button-text">Add Another</span></button></div></td>
+                   </tr>               
+                 <apex:variable var="display" value="{!display + 1}"/>               
+               </apex:repeat>                              
+          </center>
+      </table>
+      </center>
+   </div>
+  <!-- Agency hub PopUp End -->
+  
+   <!-- Stage popUp Start-->
+    <div id="dialogStages" title="Choose stages for this FY  " style="display:none">   
+       <center>
+       <table width="80%">  
+           <tr>    
+              <td colspan="3"><strong>Stages : </strong></td>                                       
+           </tr>
+           <tr>    
+              <td colspan="4">Confirm which stages of the project will be completed in the current year. This will impact the proportion of the fee that is paid in the current FY. </td>                                       
+           </tr> 
+           <tr><td colspan="2">&nbsp;</td></tr>   
+           <tr>
+               <td>&nbsp;</td>
+               <td><strong>% Fee</strong></td>
+               <td><strong>Projected</strong></td>
+               <td><strong>Completed</strong></td>
+           </tr>
+           <apex:repeat value="{!lstStage}" var="stage"> 
+           <tr>
+               <td>{!stage}</td>
+               <td>{!feePercentages[stage]} %</td>
+               <td><input class="Projected_{!mapStageIdCSS[stage]}" type="checkbox" name="checkbxProjected" value="Projected {!stage}"/></td>
+               <td><input class="Completed_{!mapStageIdCSS[stage]}" type="checkbox" name="checkboxCompleted" value="Completed {!stage}"/></td>
+           </tr>   
+           </apex:repeat>            
+      </table>
+      </center>
+   </div>
+  <!-- Stage End -->
+  <!-- TimeLines popUp Start-->
+      <div id="dialogTimeLine" title="TimeLines and Other info" style="display:none">  
+      <center> 
+      <br/>
+      <center><h1>Fill any Date would you like to see in Campaign Timeline</h1></center>
+      <br/>
+      <table width="90%">
+         <center>
+            <tr>    
+              <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Start_Date__c.label} </strong></td><td><apex:inputField value="{!project.Project_Start_Date__c}" styleclass="dateProjSD"/></td>
+              <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.BET_first_release__c.label} </strong></td><td><apex:inputField value="{!project.BET_first_release__c}" styleclass="dateProjBFR" /></td>
+              <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Final_release__c.label}  </strong></td><td><apex:inputField value="{!project.Final_release__c}" styleclass="dateProjFR"/></td>
+           </tr>
+          <tr>    
+              <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Completion_Date__c.label}  </strong></td><td><apex:inputField value="{!project.Project_Completion_Date__c}" styleclass="dateProjCD"/></td>
+              <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Date_for_Assets_to_be_in_BET__c.label} </strong></td><td><apex:inputField value="{!project.Date_for_Assets_to_be_in_BET__c}" styleclass="dateProjABET"/></td>
+              <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Live_Date__c.label}</strong></td><td><apex:inputField value="{!project.Live_Date__c}" styleclass="dateProjLD"/></td>
+           </tr>
+           <tr>
+              <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.First_Air_Date__c.label}  </strong></td><td><apex:inputField value="{!project.First_Air_Date__c}"  styleclass="dateFAD"/></td>
+              <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Preview_Date__c.label} </strong></td><td><apex:inputField value="{!project.Preview_Date__c}" styleclass="dateProjPREV"/></td>                      
+              <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Live_date_Asset_delivery__c.label} </strong></td><td><apex:inputField value="{!project.Live_date_Asset_delivery__c}" styleclass="dateProjAD"/></td>
+           </tr>
+            <tr>
+                <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Production_Completion_Date__c.label}  </strong></td><td><apex:inputField value="{!project.Production_Completion_Date__c}" styleclass="dateProdCD"/></td>
+                 <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Start_of_TV_production__c.label} </strong></td><td><apex:inputField value="{!project.Start_of_TV_production__c}" styleclass="dateProdSP"/></td>
+              </tr> 
+              <tr><td colspan="2">&nbsp;</td></tr> 
+              <tr>
+                <td colspan="6"><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Timescale_Notes__c.label}  </strong><br/><br/><apex:inputField style="width:100%;min-height:100px"  value="{!project.Timescale_Notes__c}" styleclass="ProjTimescale"/></td>
+              </tr>   
+              <tr><td colspan="2">&nbsp;</td></tr> 
+              <tr><td colspan="6"><center><h1>Other info</h1></center></td></tr> 
+              <tr><td colspan="2">&nbsp;</td></tr> 
+              <tr><td colspan="6"><center><apex:inputField value="{!project.Project_Priority__c}" style="width:20%" styleclass="ProjPriority picklist_init"/></center></td></tr> 
+          </center>
+      </table>
+      </center>
+   </div>
+   <!-- TimeLines popUp End -->
+   
+     <!-- More Details Popup Start-->
+      <div id="dialogMoreDetails" title="Add more details (Optional) " style="display:none">  
+      <center> 
+      <br/>
+      <center><h1>Choose the specific countries from your list for this item</h1></center>
+      <br/>
+      <table width="90%">
+         <center>
+            
+              <tr><td colspan="4">&nbsp;</td></tr> 
+              <tr>
+                <td>&nbsp;</td>
+                <td><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Actual_Delivery_Date__c.label}  </strong></td><td><apex:inputField value="{!assetInstance.Actual_Delivery_Date__c}" styleclass="itemDueDate"/></td>
+                <td>&nbsp;</td>
+             </tr> 
+             <tr><td colspan="4">&nbsp;</td></tr>
+             <tr>
+                <td colspan="4"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Additional_Description__c.label} </strong><br/><apex:inputField style="width:100%;min-height:100px"  value="{!assetInstance.Additional_Description__c}" styleclass="itemAdditionalNote"/></td>
+              </tr>  
+          </center>
+      </table>
+      </center>
+   </div>
+   <!-- More Details popUp End -->
+   <apex:actionFunction name="ValueDriversUpdate" action="{!ValueDriversUpdate}" reRender="jqueryId"/>
+  <center>
+    
+    <div class="Oblix_header"><!-- 3 levels -->
+       <div style="postion: relative; top:-200px; background: transparent;">
+         <table width="90%" height="100%">
+            <tr>
+                <td width="50px" class="Oblix_header_logo">
+                <apex:image value="{!$Resource.Unilever_logo}" width="60px" height="60px" />
+                </td>
+                <td class="Oblix_header_Arrow">
+                <div class="Oblix_header_title">SWOP</div><br/><span class="Oblix_header_desc">Scope of Work<br/>Online Planner</span>
+                </td>
+                <td>
+                <div class="Oblix_header_previousArrow header_pos_2">
+                <div class="Oblix_header_arrowTitle">View SOW</div>
+                </div>
+                
+                <div class="Oblix_header_activeArrow header_pos_3">
+                <div class="Oblix_header_arrowTitle">
+                    <apex:outputPanel rendered="{!projectId != null}" ><span>Edit Campaign  </span><br/></apex:outputPanel>
+                    <apex:outputPanel rendered="{!projectId == null}" ><span> New Campaign  </span><br/></apex:outputPanel>
+                </div>
+                </div>
+                </td>
+                <td>
+                <div style="float:right; position:relative; top:-55px;"><p>Hi {!userConnected.Name} !</p></div>
+                </td>
+            </tr>
+        </table></div>
+    </div>
+    </center>
+    <br/><br/>
+    <apex:pagemessages ></apex:pagemessages>
+  
+     <div class="Oblix_table padding_remove">
+         <div class="Oblix_projects_container">  
+            
+             <table class="Oblix_projects_header" width="100%">
+                <tr>
+                    <td width="20%">
+                        <h1> View Campaign : {!project.name}</h1>
+                    </td>
+                    <td>
+                    </td>
+                    <td  width="15%">
+                        <apex:commandButton value="Adjust Fee" styleClass="Oblix_projects_btn" reRender="jqueryId"/>
+                    </td>  
+                    <td  width="20%">
+                        <h2> {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Fees_Total__c.label} &nbsp;:&nbsp; {!project.Campaign_Fees_Total__c}&nbsp;{!project.Financial_Year__r.currency__c}<br/>
+                        {!$ObjectType.Oblix_SOW_Projects__c.fields.Value_to_be_paid_in_Current_FY__c.label} &nbsp;:&nbsp; {!project.Value_to_be_paid_in_Current_FY__c}&nbsp;{!project.Financial_Year__r.currency__c}
+                        </h2>
+                    </td>                    
+                </tr>
+            </table>
+            <table width="100%" class="topAlign">
+                <tbody>   
+                
+                <tr>
+                    <td width="100%">
+                    <apex:messages dir="msg"/>
+                     <!-- Project details -->   
+                              <apex:outputPanel id="projectDetailId">
+                            <table width="100%">
+                            <tr>
+                            <td width="40%">
+                               <section class="PrColumn1">
+                                   <table width="100%" >
+                                     <tr>
+                                          <td>
+                                            <strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.name.label}</strong><br/>
+                                            <apex:inputField styleClass="input_init"  value="{!project.Name}"/>
+                                           
+                                          </td>
+                                          
+                                     </tr>
+                                     <tr><td colspan="2">&nbsp;</td></tr>                                 
+                                     <tr collrow="2">
+                                         <td>
+                                             <strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Description__c.label}</strong><br/>
+                                             <apex:inputField styleClass="textArea_init" value="{!project.Description__c}"/>
+                                         </td>
+                                     </tr>   
+                                    
+                                   </table>
+                               </section>
+                               
+                               <section class="PrColumn2">
+                                   <table width="100%"> 
+                                       
+                                       <tr>    
+                                          <td colspan="2"><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Platform__c.label}</strong><apex:inputField styleClass="input_init"   value="{!project.Platform__c}"/></td>
+                                       </tr>
+                                       <tr>
+                                          <td>
+                                             <strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Description__c.label}</strong><br/>
+                                             <apex:inputField styleClass="textArea_init"   value="{!project.Description__c}"/>
+                                         </td>
+                                       </tr>
+                                       <tr>
+                                          <td>
+                                             <apex:commandButton value="TimeLines and Othes info" styleClass="Oblix_popup_btn" onclick="PopupTimeLine();return false"/>
+                                          </td>
+                                       </tr>
+                                       
+                                   </table>
+                               </section> 
+                           </td>
+                           <td width="20%" >
+                               <section class="PrColumn3">   
+                                   <table width="100%" class="topAlign">  
+                                      <tr>
+                                          <td>
+                                             <apex:commandButton value="* Contries and Region " styleClass="Oblix_popup_btn" onclick="PopupdialogCountries();return false"/>
+                                          </td>
+                                       </tr>  
+                                       <tr>
+                                          <td>
+                                             <apex:commandButton value="* Agency Hub split " styleClass="Oblix_popup_btn" onclick="PopupAgencyHub();return false"/>
+                                          </td>
+                                       </tr>  
+                                       <tr>
+                                          <td>
+                                             <apex:commandButton value="* Value Drivers" styleClass="Oblix_popup_btn"  onclick="PopupValueDrivers();return false" />
+                                            
+                                          </td>
+                                       </tr>  
+                                             
+                                   </table>
+                               </section>
+                           </td>
+                           <td>
+                           <section class="PrColumn4">
+                               <table width="100%">  
+                                        <tr>
+                                        <td colspan="2">
+                                             <apex:commandButton value="* Stage " styleClass="Oblix_popup_btn"  onclick="PopupStages();return false" />                                         
+                                       </td>
+                                       </tr>
+                                       <tr>
+                                       <td ><strong>&nbsp; &nbsp; {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Status__c.label}</strong></td>
+                                       <td>
+                                            <apex:inputField styleClass="picklist_init" style="width:100%" value="{!project.Campaign_Status__c}"/>
+                                        </td>                                       
+                                     </tr>    
+                                   <tr><td><strong>&nbsp;</strong></td></tr>
+                                   <tr><td colspan="2"><h3><center>Unsaved</center></h3></td></tr>  
+                              </table>
+                              </section>
+                             
+                              <section class="PrColumn5">
+                                 <center>
+                                     <br/><br/>
+                                     <apex:commandButton value="Back " action="{!BackAction}" rerender="EditPanel" styleClass="Oblix_projects_btn"/><br/><br/>
+                                     <apex:commandButton value="Save Campaign" action="{!SaveProjectAction}" styleClass="Oblix_projects_btn" reRender="Oblix_ItemsId"/><br/>              
+                                 </center>  
+                              </section>   
+                              </td>
+                           </tr>
+                           </table>
+                            
+                        </apex:outputPanel>
+                         <!-- End Project Details -->  
+                         
+                           <!-- Record Type Content -->
+                           
+                           <apex:outputPanel rendered="{!projectId != null}" id="Oblix_ItemsId">
+                           <div class="Oblix_recordType">
+                           <!-- <apex:COmmandButton action="{!AddToProjectAction}" reRender="Oblix_card"/>
+                           <apex:inputField value="{!assetJoe.Oblix_Quantity__c}" /> -->
+                           <table width="100%">
+                              <tr class="Oblix_recordTypeth_title">
+                                  <th>
+                                   <div class="Oblix_div_left">
+                                         <div style="font-size:14px">  Add items </div>
+                                    </div>
+                                    <div class="Oblix_icon_right" style="color:red;width:50%">
+                                         <div style="float:right">  Cost estimate requires Agency Hub Split and Value Drivers to be completed &nbsp;&nbsp;</div>
+                                   </div>
+                                   </th>
+                              </tr>
+                              
+                              <apex:repeat value="{!lstRecordType}" var="recordType">
+                                
+                                <tr class="Oblix_recordTypeth">
+                                    <th>
+                                        <div class="Oblix_div_left">
+                                            <apex:outputText value="{!recordType}" styleClass="recordTypeValue"/>
+                            
+                                        </div>
+                                        <div class="Oblix_icon_right Oblix_icon">
+                                            <i class="fa fa-2x fa-sort-desc"></i>
+                                            <i class="fa fa-2x fa-sort-up"></i>      
+                                        </div>
+                                    </th>   
+                                </tr>
+                                <tr class="data Oblix_subCat">
+                                    <td width="100%">
+                                      <apex:outputPanel rendered="{!isEdit == true}">  
+                                        <apex:repeat value="{!lstAssets}" var="asset">
+                                            <apex:outputpanel rendered="{!if(asset.RecordType.Name == recordType && asset.Agency_Projects__r.id == project.id ,true,false)}" >
+                                               <div class="Oblix_assets"> <strong>{!asset.Name}</strong>- {!asset.Channels__c}</div>
+                                            </apex:outputpanel>
+                                        </apex:repeat>
+                                     </apex:outputPanel>
+                                     <apex:outputPanel rendered="{!isEdit == false}">  
+                                     <div id="{!mapRTIdCSS[recordType]}_tabs">
+                                         <ul>
+                                             <apex:variable var="count" value="{!1}"/>
+                                             <apex:repeat value="{!mapRTSUBCat[recordType]}" var="subCat">
+                                                <li><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count}">{!subCat}</a></li>
+                                                <apex:variable var="count" value="{!count + 1}"/>
+                                             </apex:repeat>
+                                             
+                                        </ul>
+                                        <!-- Admin tabs-1--> 
+                                        <apex:variable var="count2" value="{!1}"/>
+                                        <apex:repeat value="{!mapRTSUBCat[recordType]}" var="subCat">
+                                        <div id="{!mapRTIdCSS[recordType]}_tabs-{!count2}">
+                                            <p>
+                                                Creation of creative assets that require copy and art direction. Ranges from simple tactical executions through to strategic print work.<br/>
+                                                KV/print online/mobile/outdour<br/>
+                                                
+                                                <div id="{!mapRTIdCSS[recordType]}_tabs{!count2}">
+                                                    <ul>
+                                                        <li><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}1">Option 1 </a></li>  
+                                                        <li><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}2">Option 2 </a></li>
+                                                        <li><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}3">Option 3 </a></li>
+                                                        <li><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}4">Option 4 </a></li>
+                                                        <li><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}5">Option 5 </a></li>
+                                                    </ul>
+                                        
+                                                    <div id="{!mapRTIdCSS[recordType]}_tabs-{!count2}1">
+                                                         <center>
+                                                         
+                                                         <apex:actionRegion >
+                                                         <table width="100%">                                                    
+                                                              <tr> 
+                                                                <td valign = "bottom"><apex:inputField style="display:none"  value="{!asset.Sub_Category__c}" /><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label} </strong> </td><td><apex:inputField value="{!asset.Asset_Picklist__c}" styleClass="picklist_init" style="padding: 5px 9px;width: 94%;"/></td>                                                           
+                                                              </tr>
+                                                              <tr>     
+                                                                <td valign = "bottom"><strong>Please describe of not exist </strong></td><td><apex:inputField styleClass="input_init"  value="{!assetInstance.Location__c}" /></td>  
+                                                              </tr>
+                                                              <tr><td colspan="2">&nbsp;</td></tr>  
+                                                              <tr> 
+                                                                <td  colspan="2"><apex:commandButton value="Add more details (Optional) " styleClass="Oblix_popup_btn" onclick="PopupdialogMoreDetails();return false"/></td>
+                                                              </tr>
+                                                              <tr><td colspan="2">&nbsp;</td></tr> 
+                                                              <tr>  
+                                                                <td colspan="2">
+                                                                <center>
+                                                                <apex:inputField value="{!assetInstance.Quantity__c}" styleClass="input_init" style="width: 40px;" /><span style="font-size:19px">&nbsp;x&nbsp;</span>
+                                                                <apex:commandButton value="Add to project" action="{!AddToProjectAction}" onclick="blockme()" oncomplete="$.unblockUI()" reRender="Oblix_card" styleClass="ui-button ui-state-default Oblix_addAsset_btn">
+                                                                    <apex:param assignTo="{!recordType}" name="recordType" value="{!recordType}" />
+                                                                    <apex:param assignTo="{!assetInstance.Sub_Category__c}" name="subCat" value="{!subCat}" />
+                                                                    <apex:param assignTo="{!complexity}" name="complexity" value="1" />
+                                                                </apex:commandButton>
+                                                                </center>
+                                                                </td>
+                                                              </tr>                                                    
+                                                        </table>
+                                                        </apex:actionRegion>   
+                                                        </center>
+                                                    </div>
+                                                    <div id="{!mapRTIdCSS[recordType]}_tabs-{!count2}2">
+                                                       <center>
+                                                         
+                                                         <apex:actionRegion >
+                                                         <table width="100%">                                                    
+                                                              <tr>     
+                                                                <td valign = "bottom"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label} </strong> </td><td><apex:inputField styleClass="input_init"  value="{!assetInstance.Location__c}" /></td>  
+                                                              </tr>
+                                                              <tr>     
+                                                                <td valign = "bottom"><strong>Please describe of not exist </strong></td><td><apex:inputField styleClass="input_init"  value="{!assetInstance.Location__c}" /></td>  
+                                                              </tr>
+                                                              <tr><td colspan="2">&nbsp;</td></tr>  
+                                                              <tr> 
+                                                                <td  colspan="2"><apex:commandButton value="Add more details (Optional) " styleClass="Oblix_popup_btn" onclick="PopupdialogMoreDetails();return false"/></td>
+                                                              </tr>
+                                                              <tr><td colspan="2">&nbsp;</td></tr> 
+                                                              <tr>  
+                                                                <td colspan="2">
+                                                                <center>
+                                                                <apex:inputText value="{!assetInstance.Oblix_Quantity__c}" styleClass="input_init" style="width: 40px;" /><span style="font-size:19px">&nbsp;x&nbsp;</span>
+                                                                <apex:commandButton value="Add to project" action="{!AddToProjectAction}" onclick="blockme()" oncomplete="$.unblockUI()" reRender="Oblix_card" styleClass="ui-button ui-state-default Oblix_addAsset_btn">
+                                                                    <apex:param assignTo="{!assetInstance.Asset_Type__c}" name="recordType" value="{!recordType}" />
+                                                                    <apex:param assignTo="{!assetInstance.Sub_Category__c}" name="subCat" value="{!subCat}" />
+                                                                    <apex:param assignTo="{!complexity}" name="complexity" value="2" />
+                                                                </apex:commandButton>
+                                                                </center>
+                                                                </td>
+                                                              </tr>                                                    
+                                                        </table>
+                                                        </apex:actionRegion>   
+                                                        </center>
+                                                    </div>
+                                                    <div id="{!mapRTIdCSS[recordType]}_tabs-{!count2}3">
+                                                         <center>
+                                                         
+                                                         <apex:actionRegion >
+                                                         <table width="100%">                                                    
+                                                              <tr>     
+                                                                <td valign = "bottom"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label} </strong> </td><td><apex:inputField styleClass="input_init"  value="{!assetInstance.Location__c}" /></td>  
+                                                              </tr>
+                                                              <tr>     
+                                                                <td valign = "bottom"><strong>Please describe of not exist </strong></td><td><apex:inputField styleClass="input_init"  value="{!assetInstance.Location__c}" /></td>  
+                                                              </tr>
+                                                              <tr><td colspan="2">&nbsp;</td></tr>  
+                                                              <tr> 
+                                                                <td  colspan="2"><apex:commandButton value="Add more details (Optional) " styleClass="Oblix_popup_btn" onclick="PopupdialogMoreDetails();return false"/></td>
+                                                              </tr>
+                                                              <tr><td colspan="2">&nbsp;</td></tr> 
+                                                              <tr>  
+                                                                <td colspan="2">
+                                                                <center>
+                                                                <apex:inputText value="{!assetInstance.Oblix_Quantity__c}" styleClass="input_init" style="width: 40px;" /><span style="font-size:19px">&nbsp;x&nbsp;</span>
+                                                                <apex:commandButton value="Add to project" action="{!AddToProjectAction}" onclick="blockme()" oncomplete="$.unblockUI()" reRender="Oblix_card" styleClass="ui-button ui-state-default Oblix_addAsset_btn">
+                                                                    <apex:param assignTo="{!assetInstance.Asset_Type__c}" name="recordType" value="{!recordType}" />
+                                                                    <apex:param assignTo="{!assetInstance.Sub_Category__c}" name="subCat" value="{!subCat}" />
+                                                                    <apex:param assignTo="{!complexity}" name="complexity" value="3" />
+                                                                </apex:commandButton>
+                                                                </center>
+                                                                </td>
+                                                              </tr>                                                    
+                                                        </table>
+                                                        </apex:actionRegion>   
+                                                        </center>
+                                                    </div>
+                                                    <div id="{!mapRTIdCSS[recordType]}_tabs-{!count2}4">
+                                                         <center>
+                                                         
+                                                         <apex:actionRegion >
+                                                         <table width="100%">                                                    
+                                                              <tr>     
+                                                                <td valign = "bottom"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label} </strong> </td><td><apex:inputField styleClass="input_init"  value="{!assetInstance.Location__c}" /></td>  
+                                                              </tr>
+                                                              <tr>     
+                                                                <td valign = "bottom"><strong>Please describe of not exist </strong></td><td><apex:inputField styleClass="input_init"  value="{!assetInstance.Location__c}" /></td>  
+                                                              </tr>
+                                                              <tr><td colspan="2">&nbsp;</td></tr>  
+                                                              <tr> 
+                                                                <td  colspan="2"><apex:commandButton value="Add more details (Optional) " styleClass="Oblix_popup_btn" onclick="PopupdialogMoreDetails();return false"/></td>
+                                                              </tr>
+                                                              <tr><td colspan="2">&nbsp;</td></tr> 
+                                                              <tr>  
+                                                                <td colspan="2">
+                                                                <center>
+                                                                <apex:inputText value="{!assetInstance.Oblix_Quantity__c}" styleClass="input_init" style="width: 40px;" /><span style="font-size:19px">&nbsp;x&nbsp;</span>
+                                                                <apex:commandButton value="Add to project" action="{!AddToProjectAction}" onclick="blockme()" oncomplete="$.unblockUI()" reRender="Oblix_card" styleClass="ui-button ui-state-default Oblix_addAsset_btn">
+                                                                    <apex:param assignTo="{!assetInstance.Asset_Type__c}" name="recordType" value="{!recordType}" />
+                                                                    <apex:param assignTo="{!assetInstance.Sub_Category__c}" name="subCat" value="{!subCat}" />
+                                                                    <apex:param assignTo="{!complexity}" name="complexity" value="4" />
+                                                                </apex:commandButton>
+                                                                </center>
+                                                                </td>
+                                                              </tr>                                                    
+                                                        </table>
+                                                        </apex:actionRegion>   
+                                                        </center>
+                                                    </div>   
+                                                    <div id="{!mapRTIdCSS[recordType]}_tabs-{!count2}5">
+                                                         <center>
+                                                         
+                                                         <apex:actionRegion >
+                                                         <table width="100%">
+                                                              <tr>     
+                                                                <td valign = "bottom"><strong>Name of Asset (Required) </strong> </td><td><apex:inputField styleClass="input_init"  value="{!asset.Location__c}" /></td>  
+                                                              </tr>
+                                                              <tr>     
+                                                                <td valign = "bottom"><strong>Please describe of not exist </strong></td><td><apex:inputField styleClass="input_init"  value="{!asset.Location__c}" /></td>  
+                                                              </tr>
+                                                              <tr><td colspan="2">&nbsp;</td></tr>  
+                                                              <tr> 
+                                                                <td  colspan="2"><apex:commandButton value="Add more details (Optional) " styleClass="Oblix_popup_btn" onclick="PopupdialogMoreDetails();return false"/></td>
+                                                              </tr>
+                                                              <tr><td colspan="2">&nbsp;</td></tr> 
+                                                              <tr>  
+                                                                <td colspan="2">
+                                                                <center>
+                                                                <apex:inputText value="{!assetInstance.Oblix_Quantity__c}" styleClass="input_init" style="width: 40px;" /><span style="font-size:19px">&nbsp;x&nbsp;</span>
+                                                                <apex:commandButton value="Add to project" action="{!AddToProjectAction}" onclick="blockme()" oncomplete="$.unblockUI()" reRender="Oblix_card" styleClass="ui-button ui-state-default Oblix_addAsset_btn">
+                                                                    <apex:param assignTo="{!recordType}" name="recordType" value="{!recordType}" />
+                                                                    <apex:param assignTo="{!subCat}" name="subCat" value="{!subCat}" />
+                                                                    <apex:param assignTo="{!complexity}" name="complexity" value="5" />
+                                                                </apex:commandButton>
+                                                                </center>
+                                                                </td>
+                                                              </tr>                                                    
+                                                        </table>
+                                                        </apex:actionRegion>   
+                                                        </center>
+                                                    </div>   
+                                                                                               
+                                                </div> 
+                                                          
+                                            </p>
+                                        </div>        
+                                         <apex:variable var="count2" value="{!count2 + 1}"/>                                  
+                                        </apex:repeat>    
+                                       <!-- End Admin tabs-1-->                                                                                    
+                                    </div>
+                                    </apex:outputPanel>                                  
+                                    </td>
+                                </tr>                                                           
+                               </apex:repeat>
+                            </table>
+                            </div>
+                            
+                           <!-- End Record Type Content -->      
+                           <!-- Card Content -->              
+                            <div class="Oblix_card">
+                                <div class="Oblix_card_title">
+                                    <div style="float:left">Estimation Cost : </div>
+                                    <div style="float:right">{!project.Financial_Year__r.currency__c}</div>
+                                </div>
+                                <apex:outputPanel id="Oblix_card">
+                                <div class="Oblix_card_content">
+                                    <apex:repeat value="{!lstAssetsForCard}" var="asset">
+                                            <div class="Oblix_card_elmt"><span>{!asset.Quantity__c} &nbsp; X &nbsp;{!asset.Name}</span></div>                                       
+                                    </apex:repeat>
+                                </div>    
+                                </apex:outputPanel>
+                            </div>
+                            </apex:outputPanel>
+                            
+                          <!-- End Card Content --> 
+                       </td>                     
+                </tr>
+          </tbody>
+        </table>     
+    </div>   
+ </div>
+ </div><!--  End Container -->
+</apex:form>
+
+<script>
+   function setFocusOnLoad() {}
+</script>
+
+</apex:page>

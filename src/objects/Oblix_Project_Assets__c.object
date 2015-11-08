@@ -10,7 +10,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Clone</actionName>
-        <type>Default</type>
+        <content>Oblix_VF02OverrideAsetNewLookup</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
@@ -159,28 +161,30 @@ Changed to Campaign on 26/10/2015</description>
             </picklistValues>
             <picklistValues>
                 <fullName>Simple Adaptation</fullName>
-                <controllingFieldValues>Adaptations &amp; Reedits</controllingFieldValues>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <controllingFieldValues>Adaptations and Reedits</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Simple Edit</fullName>
-                <controllingFieldValues>Adaptations &amp; Reedits</controllingFieldValues>
+                <controllingFieldValues>Adaptations and Reedits</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Moderate Edit</fullName>
-                <controllingFieldValues>Adaptations &amp; Reedits</controllingFieldValues>
+                <controllingFieldValues>Adaptations and Reedits</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Complex Re-Edit</fullName>
                 <controllingFieldValues>Adaptation</controllingFieldValues>
-                <controllingFieldValues>Adaptations &amp; Reedits</controllingFieldValues>
+                <controllingFieldValues>Adaptations and Reedits</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Complex Adaptation</fullName>
-                <controllingFieldValues>Adaptations &amp; Reedits</controllingFieldValues>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <controllingFieldValues>Adaptations and Reedits</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -235,12 +239,12 @@ Changed to Campaign on 26/10/2015</description>
             </picklistValues>
             <picklistValues>
                 <fullName>Tag</fullName>
-                <controllingFieldValues>Cut Downs &amp; Tags</controllingFieldValues>
+                <controllingFieldValues>Cut Downs and Tags</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Cutdown</fullName>
-                <controllingFieldValues>Cut Downs &amp; Tags</controllingFieldValues>
+                <controllingFieldValues>Cut Downs and Tags</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -305,27 +309,27 @@ Changed to Campaign on 26/10/2015</description>
             </picklistValues>
             <picklistValues>
                 <fullName>Mobile Marketing Strategy</fullName>
-                <controllingFieldValues>Specialist Digital Requirements</controllingFieldValues>
+                <controllingFieldValues>Specialist Digital</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>UX Strategy</fullName>
-                <controllingFieldValues>Specialist Digital Requirements</controllingFieldValues>
+                <controllingFieldValues>Specialist Digital</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Interactive Game</fullName>
-                <controllingFieldValues>Specialist Digital Requirements</controllingFieldValues>
+                <controllingFieldValues>Specialist Digital</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Mobile APP Conceptualisation</fullName>
-                <controllingFieldValues>Specialist Digital Requirements</controllingFieldValues>
+                <controllingFieldValues>Specialist Digital</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Website Optimisation for Mobile</fullName>
-                <controllingFieldValues>Specialist Digital Requirements</controllingFieldValues>
+                <controllingFieldValues>Specialist Digital</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -423,6 +427,16 @@ Changed to Campaign on 26/10/2015</description>
                 <controllingFieldValues>Digital Adaptation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Experiential</fullName>
+                <controllingFieldValues>Origination</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Promotional</fullName>
+                <controllingFieldValues>Origination</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
@@ -477,6 +491,10 @@ Changed to Campaign on 26/10/2015</description>
             </picklistValues>
             <picklistValues>
                 <fullName>Static Imagery</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Stimulus Materials - Research requirements</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>true</sorted>
@@ -622,11 +640,11 @@ Changed to Campaign on 26/10/2015</description>
         <label>Sub Category</label>
         <picklist>
             <picklistValues>
-                <fullName>Adaptations &amp; Reedits</fullName>
+                <fullName>Adaptations and Reedits</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Cut Downs &amp; Tags</fullName>
+                <fullName>Cut Downs and Tags</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -642,7 +660,7 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Specialist Digital Requirements</fullName>
+                <fullName>Specialist Digital</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -654,7 +672,7 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Data, Analytics, Dashboards, Reporting</fullName>
+                <fullName>Data Analytics Reporting Dashboards</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1019,7 +1037,7 @@ Changed to Campaign on 26/10/2015</description>
         <picklistValues>
             <picklist>Sub_Category__c</picklist>
             <values>
-                <fullName>Adaptations %26 Reedits</fullName>
+                <fullName>Adaptations and Reedits</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1027,12 +1045,12 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cut Downs %26 Tags</fullName>
+                <fullName>Cut Downs and Tags</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Origination</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Stimulus Requirements</fullName>
@@ -1321,7 +1339,7 @@ Changed to Campaign on 26/10/2015</description>
         <picklistValues>
             <picklist>Sub_Category__c</picklist>
             <values>
-                <fullName>Adaptations %26 Reedits</fullName>
+                <fullName>Adaptations and Reedits</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1329,15 +1347,11 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cut Downs %26 Tags</fullName>
+                <fullName>Cut Downs and Tags</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Origination</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Stimulus Requirements</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1655,7 +1669,7 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Data%2C Analytics%2C Dashboards%2C Reporting</fullName>
+                <fullName>Data Analytics Reporting Dashboards</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1667,8 +1681,8 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Specialist Digital Requirements</fullName>
-                <default>true</default>
+                <fullName>Specialist Digital</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
@@ -1680,127 +1694,11 @@ Changed to Campaign on 26/10/2015</description>
         <picklistValues>
             <picklist>Asset_Picklist__c</picklist>
             <values>
-                <fullName>Animatics</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Banner Adaptations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Behind the scenes footage</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Billboards</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Branded Videos</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bus Shelters</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bus Wraps</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Campaign Teaser Video</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cinema Film</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Complex Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Complex Microsite</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Complex Re-Edit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Concept Quals</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cutdown</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Digital Strategy Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>EDM</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>EDM Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Enewletters</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Extended Stills</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Finished Film</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Flash Banners</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Flash Landing Pages</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Flash Take Overs</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Interactive Game</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Interactive Game Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Key Visual</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Landing Pages Adaptations</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Logo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mobile APP Conceptualisation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mobile App Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mobile Marketing Strategy</fullName>
+                <fullName>Experiential</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1808,119 +1706,11 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Moderate Edit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mood Boards</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Narration</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Photomatic</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Podcast</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Product Demos</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Radio</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Re-Shoot</fullName>
+                <fullName>Promotional</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Simple Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Simple Edit</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Simple Microsite</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Static Banners</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Static Landing Pages</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Static page take overs</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Stillomatics</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Stilomatic</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Storyboard</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Strategic Print</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Street Banners</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TV Master</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tactical Print</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tactical Video</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tag</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UX Strategy</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Voice to Camera Shots</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Webcast</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Website Optimisation for Mobile</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Youtube Uploads</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>eNewsletter Adaptation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1928,7 +1718,7 @@ Changed to Campaign on 26/10/2015</description>
             <picklist>Asset_Type__c</picklist>
             <values>
                 <fullName>Experiential</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -1946,6 +1736,10 @@ Changed to Campaign on 26/10/2015</description>
             <picklist>Sub_Category__c</picklist>
             <values>
                 <fullName>Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Origination</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2240,6 +2034,292 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Origination</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Stimulus_Materials_Research_requirements</fullName>
+        <active>true</active>
+        <description>Stimulus Materials / Research Requirements</description>
+        <label>Stimulus Materials - Research requirements</label>
+        <picklistValues>
+            <picklist>Asset_Picklist__c</picklist>
+            <values>
+                <fullName>Animatics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banner Adaptations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Behind the scenes footage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Billboards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Branded Videos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bus Shelters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bus Wraps</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Campaign Teaser Video</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cinema Film</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Microsite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Re-Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Concept Quals</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cutdown</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital Strategy Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EDM Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enewletters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Extended Stills</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finished Film</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Landing Pages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flash Take Overs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interactive Game</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interactive Game Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Key Visual</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landing Pages Adaptations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile APP Conceptualisation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile App Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile Marketing Strategy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moderate Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moderate Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mood Boards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Narration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photomatic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Podcast</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product Demos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Radio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Re-Shoot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Edit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Simple Microsite</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static Landing Pages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Static page take overs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stillomatics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stilomatic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Storyboard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Print</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Street Banners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TV Master</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tactical Print</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tactical Video</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tag</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UX Strategy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Voice to Camera Shots</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webcast</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website Optimisation for Mobile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Youtube Uploads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>eNewsletter Adaptation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Asset_Type__c</picklist>
+            <values>
+                <fullName>Stimulus Materials - Research requirements</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Channels__c</picklist>
+            <values>
+                <fullName>Cinema</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TV</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Category__c</picklist>
+            <values>
+                <fullName>Stimulus Requirements</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

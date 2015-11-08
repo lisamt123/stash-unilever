@@ -151,7 +151,7 @@ public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
                                      Should_legal_review_this_project__c, Region__c, Project_Start_Date__c, 
                                      Project_Stage__c, Project_Scale_2__c, Project_Scale_1__c, 
                                      Project_Priority__c, Project_Finish_Date__c, Project_Completion_Date__c, 
-                                     Production_Completion_Date__c, Preview_Feedback__c, Platform__c, Overall_Project_Complete__c, 
+                                     Production_Completion_Date__c, Platform__c, Overall_Project_Complete__c, 
                                      Other_Kinds_of_Research__c, OblixClonedFromParentProject__c, Number_of_Previews__c, 
                                      Number_of_Markets_for_Preview__c, Name, List_Preview_Markets__c, LastModifiedDate, 
                                      Jobs_to_be_Done__c, Is_type_of_item_usually_poduced_by_this__c, Is_this_High_Risk__c, 

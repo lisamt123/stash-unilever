@@ -16,8 +16,12 @@
     --------------    
 */ 
 public with sharing class Oblix_TR01SOWMarkingSharing {
+    //list of MArketingShare to Delete First
+    public static List<Marketing_SOW__Share> retrieveMarketingShare(List<Marketing_SOW__c> lstMarketingSow, set<Id> setOWnerdsIds){
+    	return [Select Id, ParentId from  Marketing_SOW__Share where ParentId in :lstMarketingSow and UserOrGroupId Not IN : setOWnerdsIds];
+    }
     
-    public static void sowMarketingSharing(List<Marketing_SOW__c> lstMarketingSow){
+    public static List<Marketing_SOW__Share> sowMarketingSharing(Marketing_SOW__c sowTrig, List<Marketing_SOW__c> lstMarketingSow){
         //Select m.UserOrGroupId, m.RowCause, m.ParentId, m.Id From Marketing_SOW__Share m
         set<String> setBrandIds = new set<String>();
         set<String> setCategoryNames = new set<String>();
@@ -26,18 +30,18 @@ public with sharing class Oblix_TR01SOWMarkingSharing {
         set<Id> setOWnerdsIds = new set<Id>();
         
         for(Marketing_SOW__c markSow : lstMarketingSow){
-           	if(markSow.OblixBrand__c != null) setBrandIds.add(markSow.OblixBrand__c);
-           	setOWnerdsIds.add(markSow.OwnerId);
+           	if(sowTrig.Id == markSow.Id){
+           		if(markSow.OblixBrand__c != null){ setBrandIds.add(markSow.OblixBrand__c);}
+           		setOWnerdsIds.add(markSow.OwnerId);
+           	}
         }
         lstBrandUsers = [Select Id, Name, Brand__c, User__c, Level_of_Visibility__c from MDO_BrandUser__c where Brand__c in: setBrandIds];
         
         List<Marketing_SOW__Share> lstMarketingShare = new List<Marketing_SOW__Share>();
-        List<Marketing_SOW__Share> lstMarketingShareToDelete = new List<Marketing_SOW__Share>();     
-        	lstMarketingShareToDelete = [Select Id, ParentId from  Marketing_SOW__Share where ParentId in :lstMarketingSow and UserOrGroupId Not IN : setOWnerdsIds];
-        	if(!lstMarketingShareToDelete.isEmpty()){ delete lstMarketingShareToDelete;}
         	
         for(Marketing_SOW__c marketingSow : lstMarketingSow){
-            if(lstBrandUsers.size()>0){
+        	if(marketingSow.Id == sowTrig.Id){
+        		if(lstBrandUsers.size()>0){
                 for(MDO_BrandUser__c userSow : lstBrandUsers){
                     if(marketingSow.OblixBrand__c != null && userSow.Brand__c == marketingSow.OblixBrand__c && marketingSow.OwnerId != userSow.User__c){
                         Marketing_SOW__Share marketingSowShare = new Marketing_SOW__Share();
@@ -48,10 +52,10 @@ public with sharing class Oblix_TR01SOWMarkingSharing {
                    }
                 }
             }
+        	}
+            
         }
-        if(lstMarketingShare.size()>0){
-            insert lstMarketingShare;
-            System.debug('###lstMArketingShare : '+lstMarketingShare);
-        }
+       
+        return lstMarketingShare;
     }
 }
