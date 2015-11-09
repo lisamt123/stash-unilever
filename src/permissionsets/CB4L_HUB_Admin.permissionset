@@ -7133,6 +7133,26 @@
         <field>BET_ExpectedAssets__c.Computed_Actual__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>BET_ExpectedAssets__c.Actual__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>BET_ExpectedAssets__c.Brand_Experience_Toolkit__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>BET_ExpectedAssets__c.Expected__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>BET_ExpectedAssets__c.Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BET_Follow_Request__c.Bet_Link__c</field>
