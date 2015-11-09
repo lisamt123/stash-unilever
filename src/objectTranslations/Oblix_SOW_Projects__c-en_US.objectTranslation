@@ -272,6 +272,10 @@
         <name>Overall_Project_Complete__c</name>
     </fields>
     <fields>
+        <label><!-- Percentage of Fee for Next FY --></label>
+        <name>Percentage_of_Fee_for_Next_FY__c</name>
+    </fields>
+    <fields>
         <help><!-- Enter the percentage of the Total Project Fees that is targeted to be paid this FY? --></help>
         <label><!-- Percentage of Fee for this FY --></label>
         <name>Percentage_of_Fee_for_this_FY__c</name>

@@ -31,6 +31,10 @@
                 <behavior>Edit</behavior>
                 <field>Campaign_Status__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Percentage_of_Fee_for_Next_FY__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

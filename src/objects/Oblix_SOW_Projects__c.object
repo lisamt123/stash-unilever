@@ -558,13 +558,26 @@
         <type>Percent</type>
     </fields>
     <fields>
+        <fullName>Percentage_of_Fee_for_Next_FY__c</fullName>
+        <externalId>false</externalId>
+        <formula>100 - Percentage_of_Fee_for_this_FY__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Percentage of Fee for Next FY</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
         <fullName>Percentage_of_Fee_for_this_FY__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Enter the percentage of the Total Project Fees that is targeted to be paid this FY?</inlineHelpText>
         <label>Percentage of Fee for this FY</label>
-        <precision>5</precision>
+        <precision>3</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>0</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1000,7 +1013,7 @@
         <language>en_US</language>
     </listViews>
     <nameField>
-        <label>Agency Projects Name</label>
+        <label>Campiagn Name</label>
         <trackHistory>true</trackHistory>
         <type>Text</type>
     </nameField>

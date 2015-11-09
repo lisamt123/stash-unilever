@@ -115,8 +115,7 @@
         }
         .Oblix_header_logo{
         position:relative;
-        left:-15px;
-        top:-55px;
+        top:5px;
         }
         
         .Oblix_header_title{
@@ -124,8 +123,8 @@
             font-size: 30px;
             margin: 4px;   
            /* padding-top: 7px; */  
-            position:relative;
-            top:-50px;              
+            position: relative;
+            top: 5px;              
         }
 
         
@@ -133,10 +132,8 @@
             font-family: DIN, Arial;
             font-size: 20px;
             margin: 4px;   
-           /* padding-top: 7px; */  
-            position:relative;
+            padding-top: 24px;
             text-align: center;
-            top:30px;              
         }
         
         .Oblix_header_activeArrow{ 
@@ -149,7 +146,7 @@
             width:160px;
            height: 90px;
             text-align: center;
-            position: relative;
+            position: absolute;
            
 
         }
@@ -163,7 +160,7 @@
             width:160px;
             height: 90px;
             text-align: center;
-            position: relative;
+            position: absolute;
         }
           .Oblix_header_Arrow{ 
           background-color: transparent;      
@@ -175,7 +172,7 @@
             width:160px;
             height: 90px;
             text-align: center;
-            position: relative;
+            position: absolute;
           
 
 
@@ -196,7 +193,7 @@
             width:160px;
              height: 90px;
             text-align: center;
-            position: relative;
+            position: absolute;
          
 
         }
@@ -205,15 +202,18 @@
             background-repeat: no-repeat;
 
           }
-
+         .header_pos_1 {
+            top: 2px;
+            left:113px;
+            }
         .header_pos_2 {
-            top:-5px;
-            left:-18px;
+            top: 2px;
+            left:270px;
             }
         .header_pos_3 {
-            top: -100px;
-            left:138px;
-           }
+            top: 2px;
+            left:427px;
+                       }
         .Oblix_header{
             background-image : url("{!URLFOR($Resource.assetUI,'header_panel.png')}");
             background-size: 100% 100%;
@@ -223,14 +223,16 @@
             position: relative;
             /* line-height: 65%; */
             width:95%;
-            letter-spacing: 1px;         
+            letter-spacing: 1px;
+            margin-left: auto;
+            margin-right: auto;         
         }
         .Oblix_header_desc{
             text-align:center;
             /* line-height: 140%; */
             position:relative;
             font-size: 10px;
-            top:-65px;
+            top:-10px;
 
         }
         .Oblix_header td{
@@ -239,7 +241,7 @@
         /**** Content CSS ****/
                
         .Oblix_sowDetail{
-            display: block;
+             display: block;
             padding: 9.5px;
             margin: 0 58px 23px;
             line-height: 1.42857143;
@@ -252,8 +254,7 @@
             border-radius: 15px;
             font-family: DIN, Arial,'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
             font-size: 120%;
-
-        }
+            }
         
         .bg_selected{
             background-color:#00573F !important;
@@ -348,6 +349,13 @@
         }
   
         /**** Button CSS ****/
+        .btnDisabled {
+          background-color: #6BA539;
+            color: #fff;
+            opacity: .5;
+
+        }
+        
          input.btn {
             background-color: #6BA539;
             background-image: none;
@@ -361,6 +369,12 @@
              background-color: #44883E;
              color: #fff;
         }
+         input.btn:disabled {
+             background-color: #6BA539;
+            color: #fff;
+            opacity: .5;
+}
+
         
         .medGreenB{
              background-color: #6BA539;
@@ -457,7 +471,7 @@
        } 
        .Oblix_projects_btn{
             color: #333;
-            background: #fff !important;
+            background-color: #6BA539;
             border: 1px solid #b5b5b5 !important;
             display: inline-block;
             padding: 4px 12px !important;
@@ -695,15 +709,15 @@
      </apex:pageBlock>
    </div>
    <!-- end Popup attachment -->
-    <center>
+   
      <div class="Oblix_header"><!-- 2 levels -->
-       <div style="postion: relative; top:-200px; background: transparent;">
-         <table width="90%" height="100%">
+       <div style="postion: relative; top:-200px; background: transparent;width: 95%;margin-left: auto;margin-right: auto;">
+         <table width="95%" height="100%">
             <tr>
                 <td width="50px" class="Oblix_header_logo">
                 <apex:image value="{!$Resource.Unilever_logo}" width="60px" height="60px" />
                 </td>
-                <td class="Oblix_header_Arrow">
+                <td class="Oblix_header_Arrow header_pos_1">
                 <div class="Oblix_header_title">SWOP</div><br/><span class="Oblix_header_desc">Scope of Work<br/>Online Planner</span>
                 </td>
                 <td>
@@ -719,31 +733,30 @@
                 </div>
                 </td>
                 <td>
-                <div style="float:right; position:relative; top:-55px;"><p>Hi {!userConnected.Name} !</p></div>
+                <div style="float:right;"><p>Hi {!userConnected.Name} !</p></div>
                 </td>
             </tr>
         </table></div>
     </div>
     
-    </center>
+    
     <br/><br/>
     
     <div class="Oblix_sowDetail">
     <apex:form styleclass="showForm" id="showForm">
        <apex:pageMessages id="MSG"/> 
-       <br/>
        <apex:outputPanel rendered="{!sowId != null && isEdit == false}" Id="sowDetailId">
             <table cellspacing="20px" width="100%">
-            <tr>
-                      <td width="50%"><strong>{!$ObjectType.Marketing_SOW__c.fields.Name.label}  </strong></td>
-                      <td>{!selSow.Name}</td>
+             <tr>
+                      <td colspan="6" style="border-bottom: 1px solid #6BA539; text-align:top; padding-bottom:20px;">
+                      <h2 class="darkGreen">{!selSow.Name}</h2>
+                    </td>
                  </tr>
-                 
             <tr>
             <td width="45%">
             <section class="column1">
                <table width="100%" class="Oblix_tableDetails topAlign">
-                 
+                   
                  <tr>
                      <td><strong>{!$ObjectType.Marketing_SOW__c.fields.BB_or_BD__c.label} </strong></td>
                      <td>{!selSow.BB_or_BD__c}</td>
@@ -788,12 +801,12 @@
                      <td>{!selSow.Financial_Year__c}</td>
                    </tr> 
                     <tr><td colspan="2">&nbsp;</td></tr>                      
-                   <tr>
-                     <td><strong>Approved &nbsp; : &nbsp;
+                    <tr>
+                     <td colspan="2"><h2 class="darkGreen">Approved: &nbsp;</h2> <strong>
                      {!mapApproved[selSow.id]} {!selSow.Currency__c}</strong></td>
                    </tr>
                    <tr>
-                     <td><strong>Current &nbsp; : &nbsp;
+                     <td colspan="2"><h2 class="mainGreen">Current: &nbsp; &nbsp; &nbsp; </h2><strong>
                       {!selSow.OblixSOWOverallTotal__c} {!selSow.Currency__c}</strong></td>
                    </tr>
                </table>
@@ -825,18 +838,20 @@
                    <tr><td colspan="2">&nbsp;</td></tr>         
                    <tr><td colspan="2">&nbsp;</td></tr>    
                    <tr><td colspan="2">&nbsp;</td></tr>    
+                   <tr><td colspan="2">&nbsp;</td></tr>    
+
                    <tr>
-                       <td colspan = "2"><h1><center><br/>{!selSow.SOW_Status__c}</center></h1></td>
+                       <td colspan = "2" style="position: relative; top:-5px;"><h1><center><br/>{!selSow.SOW_Status__c}</center></h1></td>
                    </tr>
               </table>
           </section>
          
           <section class="column5">
              <center>
-                     <apex:commandButton value="Back To Dashboard" title="View Campaign details"  action="{!backAction}" styleClass="Oblix_large_btn Oblix_view_btn"/><br/>
-                     <apex:commandButton value="Edit"  title="Go back to the edit mode"  action="{!EditAction}" onclick="blockme()" oncomplete="$.unblockUI()" styleClass="Oblix_large_btn" reRender="showForm"/><br/>
-                     <apex:commandButton value="Export" onclick="" title="View PDF format"  styleClass="Oblix_btn" disabled="true"/><apex:commandButton value="Reporting" onclick="" disabled="true" title="View PDF format"  styleClass="Oblix_btn"/><br/>
-                     <apex:commandButton value="Approve" title="Change status"  onclick="" styleClass="Oblix_large_btn" disabled="true"/>
+                     <apex:commandButton value="Back To Dashboard"  title="View Campaign details"  action="{!backAction}" styleClass="Oblix_large_btn Oblix_view_btn"/><br/><br/>
+                     <apex:commandButton value="Edit"  title="Go back to the edit mode"  action="{!EditAction}" onclick="blockme()" oncomplete="$.unblockUI()" styleClass="Oblix_large_btn" reRender="showForm"/><br/><br/>
+                     <apex:commandButton value="Export" onclick="" title="View PDF format"  styleClass="Oblix_btn" disabled="true"/><apex:commandButton value="Reporting" onclick="" disabled="true" title="View PDF format"  styleClass="Oblix_btn"/><br/><br/>
+                     <apex:commandButton value="Approval" title="Approval"  onclick="" styleClass="Oblix_large_btn" disabled="true"/>
              </center>  
           </section>   
           </td>
@@ -844,6 +859,7 @@
           </table>
        </apex:outputPanel>
        <apex:outputPanel rendered="{!sowId == null || isEdit == true}" id="sowNewId">
+       
             <table cellspacing="20px" width="100%">
             <tr>
             <td width="55%">
@@ -852,11 +868,11 @@
                <table width="100%" class="Oblix_tableDetails">
                  <tr>
                       <td width="50%"><strong>{!$ObjectType.Marketing_SOW__c.fields.Name.label}  * </strong></td>
-                      <td><apex:inputField value="{!selSow.Name}" required="true" /></td>
+                      <td><apex:inputField value="{!selSow.Name}" /></td>
                  </tr>
                  <tr>
                      <td><strong>{!$ObjectType.Marketing_SOW__c.fields.BB_or_BD__c.label}  * </strong></td>
-                     <td><apex:inputField value="{!selSow.BB_or_BD__c}" required="true" styleClass="Oblix_picklist" /></td>
+                     <td><apex:inputField value="{!selSow.BB_or_BD__c}"  styleClass="Oblix_picklist" /></td>
                  </tr>
                  <tr>
                      <td><strong>{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label} *</strong></td>
@@ -888,14 +904,14 @@
                    </tr>
                    <tr>
                      <td><strong>{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label} * </strong></td>
-                     <td><apex:inputField value="{!selSow.Financial_Year__c}"  required="true"  styleClass="Oblix_picklist"/></td>
+                     <td><apex:inputField value="{!selSow.Financial_Year__c}"   styleClass="Oblix_picklist"/></td>
                    </tr>                 
                    <tr>
-                     <td><strong>Approved &nbsp; : &nbsp; 
+                     <td colspan="2"><strong class="darkGreen">Approved: &nbsp;</strong> <strong>
                      <apex:outputPanel rendered="{!selSow.id != null}"> {!mapApproved[selSow.id]} </apex:outputPanel> {!selSow.Currency__c} </strong></td>
                    </tr>
                     <tr>
-                     <td><strong>Current &nbsp; : &nbsp;
+                     <td colspan="2"><strong class="mainGreen">Current: &nbsp; &nbsp; &nbsp; </strong><strong>
                       {!selSow.OblixSOWOverallTotal__c} {!selSow.Currency__c} </strong></td>
                    </tr>
                    <tr>
@@ -909,7 +925,7 @@
               <p class="Oblix_notes">
                  <apex:inputField value="{!noteAsset.body}" styleclass="textArea_init"/>
               </p>               
-            <apex:commandButton value="Add attachments" title="Add Attachments to this SOW " styleClass="Oblix_large_btn Oblix_attachment" onclick="PopupAddAttachmnt();return false" />  
+            <apex:commandButton value="Add Attachments" title="Add New Attachment "  onclick="openAtt();return false" styleClass="Oblix_large_btn Oblix_attachment" rendered="{!selSow.Id <> null}"/>
            </section>
            </td>
            <td>
@@ -919,20 +935,24 @@
                       <td></td>
                    </tr>                  
                    <tr>
-                     <td></td>
+                     <td><br/></td>
                    </tr>
                    <tr>
-                       <td><h1><center><br/>Unsaved</center></h1></td>
+                     <td><br/></td>
+                   </tr>
+                   <tr>
+                       <td><h1 style="position:relative; top:-10px;"><center><br/></center></h1></td>
                    </tr>
               </table>
           </section>
          
           <section class="column5">
              <center>
-                 
-                     <apex:commandButton value="Back" action="{!backAction}" title="Back to Sow" styleClass="Oblix_large_btn"/><br/>
+                 <apex:actionRegion >
+                     <apex:commandButton value="Back" immediate="true" action="{!backAction}"  title="Back to Sow" styleClass="Oblix_large_btn"/><br/>
+                 </apex:actionRegion>
                      <apex:commandButton value="Approval" onclick="" disabled="true" title="Comming soon"  styleClass="Oblix_large_btn"/><br/>
-                     <apex:commandButton value="Save"   action="{!SaveSOW}" onclick="blockme()" oncomplete="$.unblockUI()" title="Save Sow" reRender="showForm,projectButtonId" styleClass="Oblix_large_btn"/><br/>
+                     <apex:commandButton value="Save"   action="{!SaveSOW}" title="Save Sow" reRender="showForm,projectButtonId" styleClass="Oblix_large_btn"/><br/>
                  
              </center>  
           </section>   
@@ -993,7 +1013,7 @@
                         </td>
                         <td  width="15%">
                             
-                                <apex:commandButton value="Non Campaign items" title="new btn"  action="{!msDetail}" styleClass="Oblix_projects_btn" disabled="{!IF(selSow == null, true, false)}"/><br/>
+                                <apex:commandButton value="Non Campaign items" title="new btn"  action="{!msDetail}" styleClass="Oblix_projects_btn" disabled="{!IF(sowId == null, true, false)}"/><br/>
                            
                         </td>
                         
@@ -1015,6 +1035,7 @@
             <div id="tabs-centre">
                    <h1>All SOW Items</h1>
                <ul>
+
                 <li><a href="#tabs-centre-1">View as list</a></li>
                 <li><a href="#tabs-centre-2">View Campaign TimeLine</a></li>
               </ul>

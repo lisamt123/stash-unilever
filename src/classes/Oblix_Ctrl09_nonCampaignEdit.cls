@@ -12,29 +12,27 @@
     --------------    
 */
     public with sharing class Oblix_Ctrl09_nonCampaignEdit{
+
+    public String getSowId() {
+        return null;
+    }
+
     
       
         public User userConnected {get;set;}
         
         public  id MSid  {get;set;}
         public Marketing_SOW__c Marketing_SOW   {get;set;}
+    
         public Marketing_Basics__c newItem  {get;set;}
         public Marketing_Basics__c newItem1  {get;set;}
-        
         public List<Marketing_Basics__c> newItems  {get;set;}
+        
         public Boolean pick {get;set;}
         public Boolean nopick {get;set;}
+        
         public String fYear {get;set;}
         public String agency {get;set;}
-        private List<Oblix_Calculator__c> lstCalculatorRate = new List<Oblix_Calculator__c>();
-        public Marketing_Basics__c OItem {get;set;}
-        public set<String> setAgencyDept {get;set;}
-        
-        
-       
-        public Boolean isroledisabled {get;set;}
-        public Boolean isAgencydisabled {get;set;}
-        public set<String> setRoleTitle {get;set;}
         
         public String name {get;set;}
         public Marketing_Basics__c lookupActivity{get;set;}
@@ -47,7 +45,6 @@
         public integer hours{get;set;}
         
         public String name1{get;set;}
-        public String dedicatedResource {get;set;}
         public String selectedRoleTitle1{get;set;}
         public String selectedCountry1{get;set;}
         public String selectedCountryname1{get;set;}
@@ -79,6 +76,7 @@
         Public boolean edit2{get;set;}
         
         public List<SelectOption> countries {get;set;}
+        
         public List<SelectOption> AgencyDepartments{get;set;}
         public List<SelectOption> RoleTitles{get;set;}
         
@@ -90,20 +88,24 @@
         public  id rtResource  {get;set;}
         
         public  id rtCountry {get;set;}
+        
         private String marKObjName= 'Marketing_Basics__c';
+        private String ActivityName= 'Activity';
+        private String noRole= 'Role';
+        
        
+        private Integer somme ;
 
-
-        
+         /* Constructor
+         */ 
         public Oblix_Ctrl09_nonCampaignEdit(){
-        
              Id idUser = UserInfo.getUserId();
              userConnected = [Select Name from User where Id =: idUser ];
              newItems = new List<Marketing_Basics__c> () ;
              newItem= new Marketing_Basics__c();
              newItem1= new Marketing_Basics__c(); 
              lookupActivity= new Marketing_Basics__c(); 
-             lookupActivity.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get('Activity');
+             lookupActivity.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get(ActivityName);
              pick=true;
              nopick=false;
              
@@ -120,7 +122,7 @@
              edit1=false;
              edit2=false;
              
-              rtActivity  = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get('Activity').getRecordTypeId();
+              rtActivity  = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get(ActivityName).getRecordTypeId();
               rtResource = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get('Dedicated Resource').getRecordTypeId();
               rtCountry =  Schema.SObjectType.Oblix_Calculator__c.getRecordTypeInfosByName().get('Role Rate').getRecordTypeId();
               
@@ -128,28 +130,36 @@
              
         }
         
+        /* Void Method used to initialise SelectOptions
+         */  
       private void  initialiseOptions(){
-        
          AgencyDepartments = new List<SelectOption>();         AgencyDepartments.add(new SelectOption('','Agency Department'));  
-         RoleTitles =new  List<SelectOption>();           RoleTitles.add(new SelectOption('','Role'));  
+         RoleTitles =new  List<SelectOption>();           RoleTitles.add(new SelectOption('',noRole));  
          AgencyDepartments1  =new  List<SelectOption>();           AgencyDepartments1.add(new SelectOption('','Agency Department'));  
-         RoleTitles1 =new List<SelectOption>();           RoleTitles1.add(new SelectOption('','Role'));  
+         RoleTitles1 =new List<SelectOption>();           RoleTitles1.add(new SelectOption('',noRole));  
                
       }
-        
+      
+      
+        /* Void Method used to initialise Marketing_SOW  
+         */    
       public void reRenderSOW(){
-            MSid= ApexPAges.currentPage().getParameters().get('MSid');
-          //   if (MSid==null) MSid='a6KM00000004gB8' ;
-             
-           if (MSid==null) MSid='a6KM0000000CdFJ' ;
-             
-             Marketing_SOW  = [select id,Financial_Year__c,Oblix_AgencyEstimate__c,Oblix_AgencyEstimate__r.Name from Marketing_SOW__c where id =: MSid];
-             fYear = Marketing_SOW.Financial_Year__c;
-             agency = Marketing_SOW.Oblix_AgencyEstimate__c;
-             fillCountries();
+             MSid= ApexPAges.currentPage().getParameters().get('MSid');
+             if (MSid!=null){
+               Marketing_SOW  = [select id,Financial_Year__c,Oblix_AgencyEstimate__c,Oblix_AgencyEstimate__r.Name from Marketing_SOW__c where id =: MSid];
+               fYear = Marketing_SOW.Financial_Year__c;
+               agency = Marketing_SOW.Oblix_AgencyEstimate__c;
+               fillCountries();
+             }
              
              
      }
+     
+     
+      /* Method used to clear form activity
+         * @Void
+      */ 
+      
      public void clear(){
      
          lookupActivity.Activities__c= '';
@@ -160,15 +170,16 @@
          selectedAgencyDepartment='';
          result='';
          rate = '';
-         
-         
              agencyVisible =false;
              roleVisible =false;         
              hoursVisible =false;
              resultVisible =false;
              addVisible=false;
-     
      }
+     
+      /* Method used to clear form resource
+         * @Void
+      */ 
       public void clear1(){
              agencyVisible1 =false;
              roleVisible1 =false;         
@@ -177,25 +188,32 @@
              addVisible1=false;
      }
      
+      /* Method used to save current List (upsert)
+       * @Void 
+      */ 
      public pagereference saveList(){
-         upsert newItems;
+         try{
+             upsert newItems;
+         }catch(DmlException e){
+             System.debug('###Exception Occured :'+e.getMessage());  
+             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,'Error Occured during save please review data entry'));
+         }
          saveStatus='Saved';
          return null;
      }
+     
+     
      public void delElm(){
          if (newItems[elemToDel].id!=null) delete newItems[elemToDel];
          newItems.remove(elemToDel);
          saveStatus='Unsaved';
-         
      }
      
      
      
      public void editItem(){
-         //newItems[elemToEdit] ;
          
-         
-         Id devRecordTypeId = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get('Activity').getRecordTypeId();
+         Id devRecordTypeId = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get(ActivityName).getRecordTypeId();
          
          if (newItems[elemToEdit].recordTypeId == devRecordTypeId){
              newItem=newItems[elemToEdit]; 
@@ -234,7 +252,7 @@
      
          saveStatus ='Unsaved';
          
-         Id devRecordTypeId = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get('Activity').getRecordTypeId();
+         Id devRecordTypeId = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get(ActivityName).getRecordTypeId();
          
         
          //recordtype
@@ -280,7 +298,6 @@
          newItem1=new Marketing_Basics__c ();
          
          newItem1.name=name1;
-         newItem1.Activities__c= dedicatedResource ;
          newItem1.recordTypeId=  devRecordTypeId ;
          newItem1.Oblix_SOWMarketing__c=Marketing_SOW.id;
          newItem1.FTE__c= prcent;
@@ -334,7 +351,7 @@
             }//else there is more than 1 or 0 => error 
      }
       public void fillRate(){ 
-        //   if (selectedRoleTitle =='Role' || selectedRoleTitle ==null){return ;}
+        //   if (selectedRoleTitle ==noRole || selectedRoleTitle ==null){return ;}
             rateVisible =false;
             hoursVisible =false;
             resultVisible =false;
@@ -368,7 +385,7 @@
                 RoleTitleNamesMap.put(c.Role_Title__c ,c.Role_Title__c);
             }
             RoleTitles= new List<SelectOption>();
-            RoleTitles.add(new SelectOption('','Role'));
+            RoleTitles.add(new SelectOption('',noRole));
             if( RoleTitleNamesMap.size()>0){
                 roleVisible =true;
                 selectedRoleTitle=null ;
@@ -394,7 +411,7 @@
                 RoleTitleNamesMap.put(c.Role_Title__c ,c.Role_Title__c);
             }
             RoleTitles1= new List<SelectOption>();
-            RoleTitles1.add(new SelectOption('','Role'));
+            RoleTitles1.add(new SelectOption('',noRole));
             if( RoleTitleNamesMap.size()>0){
                 roleVisible1 =true;
                 selectedRoleTitle1=null ;
@@ -408,7 +425,7 @@
      public void fillAgencyDepartment(){
                  
               RoleTitles =new  List<SelectOption>();         
-              RoleTitles.add(new SelectOption('','Role')); 
+              RoleTitles.add(new SelectOption('',noRole)); 
               selectedRoleTitle=''; 
         
              
@@ -541,47 +558,14 @@
             return options;
      }
     
-     public void fillCountries(){ 
-     
-                 
+     public void fillCountries(){    
             countries=getCountry();
-          
-    }
+     }
     
     
     
-   
-    public PageReference save(){ 
-        try{
-            if(OItem.RecordTypeId == Oblix_Utils.MapRecordType(marKObjName).get('Resource') && !lstCalculatorRate.IsEmpty() && lstCalculatorRate.size()>0 && OItem.FTE__c != null && OItem.FTE__c > 0){
-                OItem.OblixOtherItemFee__c = lstCalculatorRate[0].FTE__c/OItem.FTE__c; 
-            }else if(OItem.FTE__c == null || OItem.FTE__c == 0){
-                OItem.OblixOtherItemFee__c = lstCalculatorRate[0].FTE__c;
-            }
-            else if(OItem.RecordTypeId == Oblix_Utils.MapRecordType(marKObjName).get('Activity') && !lstCalculatorRate.IsEmpty() && lstCalculatorRate.size()>0 && OItem.No_of_Hours_Required__c != null && lstCalculatorRate[0].Role_Daily_Rate_EUR__c != null){
-                OItem.OblixOtherItemFee__c = lstCalculatorRate[0].Role_Daily_Rate_EUR__c * OItem.No_of_Hours_Required__c;
-            }else{
-                 OItem.OblixOtherItemFee__c = 0;
-            }
-            //OItem.Discipline__c = selectedDiscipline;
-            OItem.Agency_Department__c = selectedAgencyDepartment;
-            OItem.Role_Title__c = selectedRoleTitle;
-            
-            if(OItem.Id != null){
-                update OItem;
-            }else{
-                insert OItem;
-            }
-            return new PageReference('/'+OItem.Id);
-            
-        }catch(DmlException e){
-            System.debug('###Exception Occured :'+e.getMessage());  
-            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,'Error Occured during save please review data entry'));
-        }
-        return null;
-    }
-        
-    public Integer calculsomme(){
+      
+    public Integer getsomme(){
         Decimal somme = 0;
         for (Marketing_Basics__c a : newitems){
             somme+=a.OblixOtherItemFee__c ;
@@ -589,7 +573,7 @@
         return Integer.valueof(somme);
     }
     public pagereference back(){
-         PageReference  page = new PageReference('/apex/Oblix_VF06_SOWView?sowId='+MSid);
+         PageReference  page = new PageReference('/apex/Oblix_VF10_nonCampaignView?MSid='+MSid);
            page.setRedirect(True);
            return page;
         return null;

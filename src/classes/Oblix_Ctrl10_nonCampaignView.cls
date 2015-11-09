@@ -27,8 +27,8 @@
          Id idUser = UserInfo.getUserId();
          userConnected = [Select Name from User where Id =: idUser ];
          MSid= ApexPAges.currentPage().getParameters().get('MSid');
-         if (MSid==null) MSid='a6KM00000004gB8' ;
-         Id RdevRecordTypeId = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get('Dedicated Resource').getRecordTypeId();
+         
+        // Id RdevRecordTypeId = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get('Dedicated Resource').getRecordTypeId();
          Id ARecordTypeId    = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get('Activity').getRecordTypeId();
      
          activities= new List <Marketing_Basics__c>();
@@ -47,23 +47,24 @@
     }
    
    
-   
+    /* Method used to redirect Back 
+         * @return [Redirection VF 06] 
+         */ 
     public pagereference back(){
          PageReference  page = new PageReference('/apex/Oblix_VF06_SOWView?sowId='+MSid);
            page.setRedirect(True);
            return page;
         
-        return null;
         }
-    
-   
-   
-   
-    public pagereference walo(){
-        return null;
+        
+     /* Method used to redirect o Item Edit Page
+         * @return [Redirection to vf09 to add items] 
+         */     
+    public pagereference addnewItems(){
+          PageReference  page = new PageReference('/apex/Oblix_VF09_nonCampaignEdit?MSid='+MSid);
+           page.setRedirect(True);
+           return page;
+       
         }
-    
-    
-    
-    
+   
     }

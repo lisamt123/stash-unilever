@@ -135,7 +135,7 @@ public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
         lstMarketingBasicsParent = [Select Id, Name, Oblix_SOWMarketing__c from Marketing_Basics__c where Oblix_SOWMarketing__c =: sowRecordID];
         //list of cloned marketing basics from parent
         lstMarketingBasicsChild = lstMarketingBasicsParent.deepClone();
-        if(!lstMarketingBasicsChild.isEmpty()){
+       
             for(Marketing_Basics__c marketingBasic : lstMarketingBasicsChild){
                 //update the Sow MArketing field from Parent ==> Child
                 //marketingBasic.Name += financialYear+''+(nextStageTypeSow.substring(nextStageTypeSow.length()-2, 
@@ -143,7 +143,7 @@ public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
                 marketingBasic.Oblix_SOWMarketing__c = sowChild.Id;
             }
             insert lstMarketingBasicsChild;
-        }
+       
         
         //List of Parent Projects MArketing with there childs of Asset projects
         lstMarketingProjectPArent = [Select Total_Fees_for_Project__c, Total_Digital_Fee__c, Total_Adapt_Fees__c, 

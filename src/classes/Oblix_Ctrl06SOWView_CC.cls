@@ -25,7 +25,7 @@
         //Projects to the Sow
         public List<Oblix_SOW_Projects__c> lstProjects {get;set;}
         // Ids of SOW projects
-        private set<id> setIdsProject;
+        // private set<id> setIdsProject;
         public string IdsProject {get;set;}
         public list<Oblix_Project_Assets__c> lstAssets {get;set;}
         public boolean isEdit {get;set;}
@@ -151,7 +151,7 @@
                    string seriesbis = '';
                 date d_projStart, d_prodCompletion, d_projEnd,d_firstAir,d_projCompletion ;
                 string series = '';
-                date d1,d2;
+                //date d1,d2;
                 if(lstProjects.size() >0)
                 
                 for(Oblix_SOW_Projects__c  pr:lstProjects){
@@ -167,14 +167,14 @@
                     else d_firstAir = date.newInstance(2015,1,1);   
                     if(pr.Project_Completion_Date__c != null) d_projCompletion = pr.Project_Completion_Date__c.addMonths(-1);
                     else d_projCompletion = date.newInstance(2015,1,1);   
-                   
+                    String dateutc = 'Date.UTC(' ; 
                     series = series +'{'+
                             '"unitName"'+':"'+pr.name+'",'+
-                            '"beginTimestamp"'+':'+'Date.UTC('+d_projStart.year()+','+d_projStart.month()+','+ d_projStart.day()+'),'+
-                            '"x1Timestamp"'+':'+'Date.UTC('+d_projCompletion.year()+','+d_projCompletion.month()+','+ d_projCompletion.day()+'),'+
-                            '"x2Timestamp"'+':'+'Date.UTC('+d_firstAir.year()+','+d_firstAir.month()+','+d_firstAir.day()+'),'+
-                            '"x3Timestamp"'+':'+'Date.UTC('+d_prodCompletion.year()+','+d_prodCompletion.month()+','+ d_prodCompletion.day()+'),'+
-                            '"endTimestamp"'+':'+'Date.UTC('+d_projEnd.year()+','+d_projEnd.month()+','+ d_projEnd.day()+')'+
+                            '"beginTimestamp"'+':'+dateutc +d_projStart.year()+','+d_projStart.month()+','+ d_projStart.day()+'),'+
+                            '"x1Timestamp"'+':'+dateutc +d_projCompletion.year()+','+d_projCompletion.month()+','+ d_projCompletion.day()+'),'+
+                            '"x2Timestamp"'+':'+dateutc +d_firstAir.year()+','+d_firstAir.month()+','+d_firstAir.day()+'),'+
+                            '"x3Timestamp"'+':'+dateutc +d_prodCompletion.year()+','+d_prodCompletion.month()+','+ d_prodCompletion.day()+'),'+
+                            '"endTimestamp"'+':'+dateutc +d_projEnd.year()+','+d_projEnd.month()+','+ d_projEnd.day()+')'+
                             +'}' + ',' ;            
                 }
               seriesProject = '['+series.removeEnd(',')+']';
@@ -258,7 +258,7 @@
          
          
          private Integer NumberOfSowChatterFeedItem(Id sowFeedId){
-             Integer rows = [select count() from Marketing_SOW__Feed]; 
+             Integer rows = [select count() from Marketing_SOW__Feed ]; 
              return rows ;
              
          }
@@ -302,6 +302,7 @@
         //return null;
     }
     public void Cancel (){
+     return;
     }
            
            

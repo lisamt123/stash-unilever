@@ -132,15 +132,23 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
              isEditItem = true;
          }
          public void DeleteItemsAction(){
-             Oblix_Project_Assets__c todelete = [select id,name from Oblix_Project_Assets__c where id=:itemToDelete.substring(0,15)];
-             delete todelete;
+             
+             for(Integer i=0;i<lstAssets.size();i++){
+                 if(lstAssets[i].Id == itemToDelete){
+                    delete lstAssets[i] ;
+                    lstAssets.remove(i);
+                 }
+             }
+            mapNumberItem.put('Digital', mapNumberItem.get('Digital')-1);
+             lstAssets = [select Id,Agency_Projects__r.id,LastModifiedDate,Additional_Description__c,Target_Delivery_Date__c ,Actual_Delivery_Date__c, FULL_Description__r.Name, Channels__c,RecordType.Name,Name,RecordTypeId,Sub_Category__c,FULL_Description__c from Oblix_Project_Assets__c where Agency_Projects__c =:SelectedProject.Id];
          }
          public void SaveItemsAction(){  
-             itemToEdit.id = (itemToEdit.location__c).substring(0,15);
-             itemToEdit.Actual_Delivery_Date__c = itemToEdit.Actual_Delivery_Date__c;             
-             itemToEdit.Additional_Description__c=itemToEdit.Additional_Description__c;
-             Update itemToEdit;
-             itemToEdit = new Oblix_Project_Assets__c();
+             for(Oblix_Project_Assets__c  asset : lstAssets){
+                 if(asset.Id == itemToDelete){
+                     update asset;
+                 }
+             }
+             lstAssets = [select Id,Agency_Projects__r.id,LastModifiedDate,Additional_Description__c,Target_Delivery_Date__c ,Actual_Delivery_Date__c, FULL_Description__r.Name, Channels__c,RecordType.Name,Name,RecordTypeId,Sub_Category__c,FULL_Description__c from Oblix_Project_Assets__c where Agency_Projects__c =:SelectedProject.Id];
              isEditItem = false;
          }
          

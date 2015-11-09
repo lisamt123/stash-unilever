@@ -534,7 +534,7 @@
                            <td>
                            <section class="PrColumn4">
                                <table width="100%">  
-                               <apex:commandButton value="Edit / Add items" action="{!walo}" styleClass="Oblix_projects_btn"/><br/><br/><br/>
+                               <apex:commandButton value="Edit / Add items"  action="{!addnewItems}" styleClass="Oblix_projects_btn"/><br/><br/><br/>
                                      <tr><td colspan="2">&nbsp;</td></tr>   
                                       
                               </table>

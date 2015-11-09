@@ -20,69 +20,74 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
         System.debug('Entering Oblix_ProjectHandler.bulkBefore'); 
         List<Marketing_SOW__c> lstMarkBrandCateg1 = Trigger.New;
         if(Trigger.isInsert){
-        	for(Marketing_SOW__c markSow : lstMarkBrandCateg1){
-				if(markSow.OblixBrand__c != null){
-					lstMarkBrandCateg.add(markSow);
-				}
-			}
+            for(Marketing_SOW__c markSow : lstMarkBrandCateg1){
+                if(markSow.OblixBrand__c != null){
+                    lstMarkBrandCateg.add(markSow);
+                }
+            }
         }
         if(Trigger.isUpdate){
-        	for(Marketing_SOW__c markSow : lstMarkBrandCateg1){
-        		Marketing_SOW__c markSow_tmp = (Marketing_SOW__c)Trigger.oldMap.get(markSow.Id);
-				if(markSow.OblixBrand__c != markSow_tmp.OblixBrand__c){
-					lstMarkBrandCateg.add(markSow);
-				}
-			}
+            for(Marketing_SOW__c markSow : lstMarkBrandCateg1){
+                Marketing_SOW__c markSow_tmp = (Marketing_SOW__c)Trigger.oldMap.get(markSow.Id);
+                if(markSow.OblixBrand__c != markSow_tmp.OblixBrand__c){
+                    lstMarkBrandCateg.add(markSow);
+                }
+            }
         }
     }
     
     public void bulkAfter()
     {
-    	set<Id> setOWnerdsIds = new set<Id>();
-    	List<Marketing_SOW__c> lstSOW = Trigger.New;
-    	if(Trigger.isInsert || Trigger.isUpdate){
-    		for(Marketing_SOW__c markSow : lstSOW){
-				setOWnerdsIds.add(markSow.OwnerId);
-			}
-			lstMarketingShareToDelete = Oblix_TR01SOWMarkingSharing.retrieveMarketingShare(Trigger.New, setOWnerdsIds);
-			
-			//Start Approval Process Part
-			 for (Integer i = 0; i < Trigger.new.size(); i++) {
-	        	if (((Marketing_SOW__c)Trigger.old[i]).SOW_Status__c != Oblix_Constants.Lbl_SOWSTATUS_AWAITINGAPPROVAL && ((Marketing_SOW__c)Trigger.new[i]).SOW_Status__c == Oblix_Constants.Lbl_SOWSTATUS_AWAITINGAPPROVAL) {
-					lstSowRecordsApproval.add((Marketing_SOW__c)Trigger.new[i]);
-	        	}
-	    	 }
-    	}
-    }
+        set<Id> setOWnerdsIds = new set<Id>();
+        List<Marketing_SOW__c> lstSOW = Trigger.New;
+        if(Trigger.isInsert || Trigger.isUpdate){
+            for(Marketing_SOW__c markSow : lstSOW){
+                setOWnerdsIds.add(markSow.OwnerId);
+            }
+            lstMarketingShareToDelete = Oblix_TR01SOWMarkingSharing.retrieveMarketingShare(Trigger.New, setOWnerdsIds);
+        }
+        if(Trigger.isUpdate){
+            //Start Approval Process Part
+             for (Integer i = 0; i < Trigger.new.size(); i++) {
+                if (((Marketing_SOW__c)Trigger.old[i]).SOW_Status__c != Oblix_Constants.Lbl_SOWSTATUS_AWAITINGAPPROVAL && ((Marketing_SOW__c)Trigger.new[i]).SOW_Status__c == Oblix_Constants.Lbl_SOWSTATUS_AWAITINGAPPROVAL) {
+                    lstSowRecordsApproval.add((Marketing_SOW__c)Trigger.new[i]);
+                }
+             }
+        }    
+            
+        }
+    
         
     public void beforeInsert(SObject so)
     {
-    	Oblix_TR06SowMarketBrandPopulate.PopulateBrandCategoriesforSOWHandler((Marketing_SOW__c)so, lstMarkBrandCateg);
+        Oblix_TR06SowMarketBrandPopulate.PopulateBrandCategoriesforSOWHandler((Marketing_SOW__c)so, lstMarkBrandCateg);
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-    	Oblix_TR06SowMarketBrandPopulate.PopulateBrandCategoriesforSOWHandler((Marketing_SOW__c)so, lstMarkBrandCateg);
+        Oblix_TR06SowMarketBrandPopulate.PopulateBrandCategoriesforSOWHandler((Marketing_SOW__c)so, lstMarkBrandCateg);
     }
      
 
     public void beforeDelete(SObject so)
     {
+        return;
     }
     
     public void afterInsert(SObject so) 
     {
-    	lstMarketingShare = Oblix_TR01SOWMarkingSharing.sowMarketingSharing((Marketing_SOW__c)so, Trigger.New);
+        lstMarketingShare = Oblix_TR01SOWMarkingSharing.sowMarketingSharing((Marketing_SOW__c)so, Trigger.New);
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-    	lstMarketingShare = Oblix_TR01SOWMarkingSharing.sowMarketingSharing((Marketing_SOW__c)so, Trigger.New);
-    	lstApprovalReq = Oblix_TR02SubmitSOWForApproval.SubmitSowForApproval((Marketing_SOW__c)so, lstSowRecordsApproval);
+        lstMarketingShare = Oblix_TR01SOWMarkingSharing.sowMarketingSharing((Marketing_SOW__c)so, Trigger.New);
+        lstApprovalReq = Oblix_TR02SubmitSOWForApproval.SubmitSowForApproval((Marketing_SOW__c)so, lstSowRecordsApproval);
     }
     
     public void afterDelete(SObject so)
     {
+        return;
     }
     
     /**
@@ -95,17 +100,17 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
     {
         System.debug('Entering FAU_ProgramHandler.andFinally');
         if(triggerShouldExecute){
-        	if(Trigger.isAfter){
-        		delete lstMarketingShareToDelete;
-	        	insert lstMarketingShare;
-	        	for(Approval.ProcessSubmitRequest req : lstApprovalReq){
-	        		Approval.ProcessResult result = Approval.process(req);
-	            	// display if the reqeust was successful
-	            	System.debug('Submitted for approval successfully: '+result.isSuccess());
-	        	}
-	        	
-        	}
-        	
+            if(Trigger.isAfter){
+                delete lstMarketingShareToDelete;
+                insert lstMarketingShare;
+                for(Approval.ProcessSubmitRequest req : lstApprovalReq){
+                    Approval.ProcessResult result = Approval.process(req);
+                    // display if the reqeust was successful
+                    System.debug('Submitted for approval successfully: '+result.isSuccess());
+                }
+                
+            }
+            
         }
         System.debug('Exiting Oblix_ProjectHandler.andFinally');
     }

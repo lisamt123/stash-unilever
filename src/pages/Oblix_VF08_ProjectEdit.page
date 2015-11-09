@@ -7,7 +7,8 @@
     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
     <script src="{!URLFOR($Resource.JQueryBlockUI)}" ></script>
-   
+    
+       
     <script>
    $(document).ready(function(){
    
@@ -24,13 +25,13 @@
         $('tr.data, tr.btt').show().find('td').wrapInner('<div />');
         $('tr.data, tr.btt').find('td > div').hide();
         $('table tr.Oblix_recordTypeth').click(function(){
-            //alert($(this).find('span.recordTypeValue').text());
-            getAssetRecordType($(this).find('span.recordTypeValue').text());
+            //alert($(this show).find('span.recordTypeValue').text());            
             var data = $(this).next('tr');
             var btt = data.next('tr');
             data.find('td > div').slideToggle('slow');
-            btt.find('td > div').slideToggle('slow');
-            $(this).toggleClass('show');
+            btt.find('td > div').slideToggle('slow');             
+            $(this).toggleClass('show');   
+            getAssetRecordType($(this).find('span.recordTypeValue').text());
         });
         var setIdCss = {!setIdCss};   
         for (var i=0; i<setIdCss.length;i++) {
@@ -53,7 +54,7 @@
            $(".checkboxCountry").change(function () {
                 var selectedText = $(this).find("option:selected").text();
                 var selectedValue = $(this).val();
-                alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+                //alert("Selected Text: " + selectedText + " Value: " + selectedValue);
             });
     });
     
@@ -101,8 +102,8 @@
                                 //alert('lstCountry : '+$(this).attr('value'));  
                                //arr[i++] = $(this).attr('value');                                 
                             });                        
-                            alert(lstRegion);
-                            alert(lstCountry);                            
+                            //alert(lstRegion);
+                            //alert(lstCountry);                            
                             setInfoCountries(lstRegion.substring(0, lstRegion.length-1),lstCountry.substring(0, lstCountry.length-1));
                             console.dir('here');
                             
@@ -157,8 +158,8 @@
                             $("input:checkbox[name='checkboxCompleted']:checked").each(function(){
                                 lstCompleted = $(this).attr('value');                                           
                             }); 
-                            alert('array lstCompleted:'+lstCompleted);
-                            alert('array lstProjected :'+lstProjected );                           
+                            //alert('array lstCompleted:'+lstCompleted);
+                            //alert('array lstProjected :'+lstProjected );                           
                             if(lstCompleted != '' && lstProjected != ''){
                                setInfoStages(lstProjected,lstCompleted,lstCompleted.replace('Completed ',''));
                                console.dir('here');
@@ -178,7 +179,7 @@
         $('.addAnotherBtn').click(function(event){            
             event.preventDefault();   
             counter = counter+1;                                        
-            var newRow = $('<tr><td></td><td><div class="idSplit_'+counter+'" style="display:none">{!split.id}</div></td><td><apex:inputField styleClass="countrySplit_'+counter+'" value="{!agencySplitInstanceJS.Percentage__c}"/></td><td><apex:inputField value="{!agencySplitInstanceJS.Percentage__c}" styleClass=" percentage pourcentageSplit_'+counter+'" style="width:30px"/> %</td><td></td></tr>');
+            var newRow = $('<tr><td></td><td><div class="idSplit_'+counter+'" style="display:none">{!split.id}</div></td><td></td><td><apex:inputField value="{!agencySplitInstanceJS.Percentage__c}" styleClass=" percentage pourcentageSplit_'+counter+'" style="width:30px"/> %</td><td></td></tr>');
             $('table.agencyHubList').append(newRow);           
            
         });
@@ -191,20 +192,29 @@
                   buttons: {
                      Save : function() {                            
                             var sum = 0;
+                            var listItems = '';
                             $(".percentage").each(function(){
                                 sum = sum + Number($(this).val());
                                 //alert(sum);
                            });      
-                           alert( $(".countrySplit_1").val()); 
+                           //alert( $(".countrySplit_1").val()); 
                            //alert( $(".dateProdCD").val());                
                            if(sum != 100){
                                 alert('the values must be equal to 100');
                             }else{
                                 for(var indice = 1;indice<counter+1;indice++){                               
-                                    alert($(".idSplit_"+indice).text());
-                                    alert($(".pourcentageSplit_"+indice).val());
-                                    setAgencyHub($(".idSplit_"+indice).text(),$(".countrySplit_"+indice).val(),$(".pourcentageSplit_"+indice).val());
-                                }
+                                   // alert($(".idSplit_"+indice).text());
+                                    //alert($(".pourcentageSplit_"+indice).val());
+                                    
+                                    if($(".pourcentageSplit_"+indice).val() != ''){
+                                        
+                                            listItems = listItems + $(".idSplit_"+indice).text()+'_'+$(".countrySplit_"+indice).val()+'_'+$(".pourcentageSplit_"+indice).val()+',';
+                                        
+                                    }
+                                }       
+                                alert(listItems);                        
+                                setAgencyHub(listItems);
+                                listItems = '';
                                 //setAgencyHubOnComplete();
                                 $( this ).dialog( "close");   
                             }
@@ -225,8 +235,8 @@
                   zIndex: 9,
                   buttons: {
                      Save : function() {          
-                             alert($(".itemDueDate").val()); 
-                             alert($(".itemAdditionalNote").val());             
+                             //alert($(".itemDueDate").val()); 
+                             //alert($(".itemAdditionalNote").val());             
                             setMoreDetails($(".itemDueDate").val(),$(".itemAdditionalNote").val());          
                             $( this ).dialog( "close");   
                         },                                       
@@ -293,14 +303,13 @@
         <apex:param name="dateAsset" assignTo="{!assetInstance.Actual_Delivery_Date__c}" value="" />  
         <apex:param name="descAsset" assignTo="{!assetInstance.Additional_Description__c}" value="" /> 
    </apex:actionFunction>   
-    <apex:actionFunction name="setAgencyHub" action="{!setInfoSplitHub}" oncomplete="setAgencyHubOnComplete()" rerender="accountTable, pageMessages">  
-        <apex:param name="splitId" assignTo="{!idSplit}" value="" />   
-        <apex:param name="splitCount" assignTo="{!agencySplitInstanceJS.OblixCountry__r.name}" value="" />   
-        <apex:param name="splitPerc" assignTo="{!agencySplitInstanceJS.Percentage__c}" value="" />   
+    <apex:actionFunction name="setAgencyHub" action="{!setInfoSplitHub}" rerender="accountTable, pageMessages">  
+        <apex:param name="splitId" assignTo="{!listItems}" value="" />   
+
    </apex:actionFunction>   
    <apex:actionFunction name="setAgencyHubOnComplete" action="{!setAgencyHubOnComplete}" rerender="accountTable, pageMessages">     
    </apex:actionFunction>    
-   <apex:actionFunction name="getAssetRecordType" action="{!getAssetRecordType}" rerender="accountTable, pageMessages" reRender="Oblix_card">    
+   <apex:actionFunction name="getAssetRecordType" action="{!getAssetRecordType}" rerender="accountTable, pageMessages" reRender="Oblix_card" >    
        <apex:param name="recordType" assignTo="{!recordType}" value="" />  
    </apex:actionFunction>    
 
@@ -1023,13 +1032,25 @@
       <h1>List lead agency market and any other supporting agency hub with % </h1>
       <br/><br/>
       <table width="70%" class="agencyHubList">
+        
          <center>
                <apex:variable value="{!1}" var="display"/>
                <apex:repeat value="{!lstProjectSplitHubs}" var="split">
                     <tr>
                         <td><strong><div style="display :{!if(display == 1,'block','none')}">&nbsp;Lead Agency</div></strong></td>
                         <td><div class="idSplit_{!display}" style="display:none">{!split.id}</div></td>
-                        <td><apex:inputField value="{!split.OblixCountry__c}" styleClass="countrySplit_{!display}"/></td>                       
+                        <td><apex:selectList value="{!split.OblixCountry__c}" multiselect="false" size="1" styleClass="countrySplit_{!display}">
+                                <apex:selectOptions value="{!countryOptions}"/>
+                            </apex:selectList>
+                        </td>  
+                       <!--
+                        <td class="Jamal"> 
+                            setTimeout(function() {
+                                <c:AutoCompleteV2 allowClear="true" importJquery="true" labelField="Name" SObject="MDO_Geography__c" valueField="Id" targetField="{!split.OblixCountry__c}" style="width:200px"/>                                                                                    
+                            }, 2000);
+                     
+                        </td>   
+                        --> 
                         <td><apex:inputField value="{!split.Percentage__c}" style="width:30px" styleClass=" percentage pourcentageSplit_{!display}"/> %</td>
                         <td><div style="display :{!if(display == 1,'block','none')}">&nbsp;<button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only addAnotherBtn" role="button" aria-disabled="false"><span class="ui-button-text">Add Another</span></button></div></td>
                    </tr>               
@@ -1169,7 +1190,6 @@
     </center>
     <br/><br/>
     <apex:pagemessages ></apex:pagemessages>
-  
      <div class="Oblix_table padding_remove">
          <div class="Oblix_projects_container">  
             
@@ -1359,21 +1379,21 @@
                                                 KV/print online/mobile/outdour<br/>
                                                 
                                                 <div id="{!mapRTIdCSS[recordType]}_tabs{!count2}">
+                                                   
                                                     <ul>
-                                                        <li><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}1">Option 1 </a></li>  
-                                                        <li><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}2">Option 2 </a></li>
-                                                        <li><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}3">Option 3 </a></li>
-                                                        <li><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}4">Option 4 </a></li>
-                                                        <li><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}5">Option 5 </a></li>
+                                                        <apex:repeat value="{!mapSubCategOption[subCat]}" var="opt">
+                                                        <li><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}{!opt}">Option {!opt} </a></li>  
+                                                        </apex:repeat>
                                                     </ul>
-                                        
-                                                    <div id="{!mapRTIdCSS[recordType]}_tabs-{!count2}1">
+                                                   
+                                                    <apex:repeat value="{!mapSubCategOption[subCat]}" var="opt">
+                                                    <div id="{!mapRTIdCSS[recordType]}_tabs-{!count2}{!opt}">
                                                          <center>
                                                          
                                                          <apex:actionRegion >
                                                          <table width="100%">                                                    
                                                               <tr> 
-                                                                <td valign = "bottom"><apex:inputField style="display:none"  value="{!asset.Sub_Category__c}" /><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label} </strong> </td><td><apex:inputField value="{!asset.Asset_Picklist__c}" styleClass="picklist_init" style="padding: 5px 9px;width: 94%;"/></td>                                                           
+                                                                <td valign = "bottom"><apex:inputField style="display:none"  value="{!assetInstance.Sub_Category__c}" /><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label} </strong> </td><td><apex:inputField value="{!assetInstance.Asset_Picklist__c}" styleClass="picklist_init" style="padding: 5px 9px;width: 94%;"/></td>                                                           
                                                               </tr>
                                                               <tr>     
                                                                 <td valign = "bottom"><strong>Please describe of not exist </strong></td><td><apex:inputField styleClass="input_init"  value="{!assetInstance.Location__c}" /></td>  
@@ -1390,7 +1410,7 @@
                                                                 <apex:commandButton value="Add to project" action="{!AddToProjectAction}" onclick="blockme()" oncomplete="$.unblockUI()" reRender="Oblix_card" styleClass="ui-button ui-state-default Oblix_addAsset_btn">
                                                                     <apex:param assignTo="{!recordType}" name="recordType" value="{!recordType}" />
                                                                     <apex:param assignTo="{!assetInstance.Sub_Category__c}" name="subCat" value="{!subCat}" />
-                                                                    <apex:param assignTo="{!complexity}" name="complexity" value="1" />
+                                                                    <apex:param assignTo="{!complexity}" name="complexity" value="{!opt}" />
                                                                 </apex:commandButton>
                                                                 </center>
                                                                 </td>
@@ -1399,135 +1419,7 @@
                                                         </apex:actionRegion>   
                                                         </center>
                                                     </div>
-                                                    <div id="{!mapRTIdCSS[recordType]}_tabs-{!count2}2">
-                                                       <center>
-                                                         
-                                                         <apex:actionRegion >
-                                                         <table width="100%">                                                    
-                                                              <tr>     
-                                                                <td valign = "bottom"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label} </strong> </td><td><apex:inputField styleClass="input_init"  value="{!assetInstance.Location__c}" /></td>  
-                                                              </tr>
-                                                              <tr>     
-                                                                <td valign = "bottom"><strong>Please describe of not exist </strong></td><td><apex:inputField styleClass="input_init"  value="{!assetInstance.Location__c}" /></td>  
-                                                              </tr>
-                                                              <tr><td colspan="2">&nbsp;</td></tr>  
-                                                              <tr> 
-                                                                <td  colspan="2"><apex:commandButton value="Add more details (Optional) " styleClass="Oblix_popup_btn" onclick="PopupdialogMoreDetails();return false"/></td>
-                                                              </tr>
-                                                              <tr><td colspan="2">&nbsp;</td></tr> 
-                                                              <tr>  
-                                                                <td colspan="2">
-                                                                <center>
-                                                                <apex:inputText value="{!assetInstance.Oblix_Quantity__c}" styleClass="input_init" style="width: 40px;" /><span style="font-size:19px">&nbsp;x&nbsp;</span>
-                                                                <apex:commandButton value="Add to project" action="{!AddToProjectAction}" onclick="blockme()" oncomplete="$.unblockUI()" reRender="Oblix_card" styleClass="ui-button ui-state-default Oblix_addAsset_btn">
-                                                                    <apex:param assignTo="{!assetInstance.Asset_Type__c}" name="recordType" value="{!recordType}" />
-                                                                    <apex:param assignTo="{!assetInstance.Sub_Category__c}" name="subCat" value="{!subCat}" />
-                                                                    <apex:param assignTo="{!complexity}" name="complexity" value="2" />
-                                                                </apex:commandButton>
-                                                                </center>
-                                                                </td>
-                                                              </tr>                                                    
-                                                        </table>
-                                                        </apex:actionRegion>   
-                                                        </center>
-                                                    </div>
-                                                    <div id="{!mapRTIdCSS[recordType]}_tabs-{!count2}3">
-                                                         <center>
-                                                         
-                                                         <apex:actionRegion >
-                                                         <table width="100%">                                                    
-                                                              <tr>     
-                                                                <td valign = "bottom"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label} </strong> </td><td><apex:inputField styleClass="input_init"  value="{!assetInstance.Location__c}" /></td>  
-                                                              </tr>
-                                                              <tr>     
-                                                                <td valign = "bottom"><strong>Please describe of not exist </strong></td><td><apex:inputField styleClass="input_init"  value="{!assetInstance.Location__c}" /></td>  
-                                                              </tr>
-                                                              <tr><td colspan="2">&nbsp;</td></tr>  
-                                                              <tr> 
-                                                                <td  colspan="2"><apex:commandButton value="Add more details (Optional) " styleClass="Oblix_popup_btn" onclick="PopupdialogMoreDetails();return false"/></td>
-                                                              </tr>
-                                                              <tr><td colspan="2">&nbsp;</td></tr> 
-                                                              <tr>  
-                                                                <td colspan="2">
-                                                                <center>
-                                                                <apex:inputText value="{!assetInstance.Oblix_Quantity__c}" styleClass="input_init" style="width: 40px;" /><span style="font-size:19px">&nbsp;x&nbsp;</span>
-                                                                <apex:commandButton value="Add to project" action="{!AddToProjectAction}" onclick="blockme()" oncomplete="$.unblockUI()" reRender="Oblix_card" styleClass="ui-button ui-state-default Oblix_addAsset_btn">
-                                                                    <apex:param assignTo="{!assetInstance.Asset_Type__c}" name="recordType" value="{!recordType}" />
-                                                                    <apex:param assignTo="{!assetInstance.Sub_Category__c}" name="subCat" value="{!subCat}" />
-                                                                    <apex:param assignTo="{!complexity}" name="complexity" value="3" />
-                                                                </apex:commandButton>
-                                                                </center>
-                                                                </td>
-                                                              </tr>                                                    
-                                                        </table>
-                                                        </apex:actionRegion>   
-                                                        </center>
-                                                    </div>
-                                                    <div id="{!mapRTIdCSS[recordType]}_tabs-{!count2}4">
-                                                         <center>
-                                                         
-                                                         <apex:actionRegion >
-                                                         <table width="100%">                                                    
-                                                              <tr>     
-                                                                <td valign = "bottom"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label} </strong> </td><td><apex:inputField styleClass="input_init"  value="{!assetInstance.Location__c}" /></td>  
-                                                              </tr>
-                                                              <tr>     
-                                                                <td valign = "bottom"><strong>Please describe of not exist </strong></td><td><apex:inputField styleClass="input_init"  value="{!assetInstance.Location__c}" /></td>  
-                                                              </tr>
-                                                              <tr><td colspan="2">&nbsp;</td></tr>  
-                                                              <tr> 
-                                                                <td  colspan="2"><apex:commandButton value="Add more details (Optional) " styleClass="Oblix_popup_btn" onclick="PopupdialogMoreDetails();return false"/></td>
-                                                              </tr>
-                                                              <tr><td colspan="2">&nbsp;</td></tr> 
-                                                              <tr>  
-                                                                <td colspan="2">
-                                                                <center>
-                                                                <apex:inputText value="{!assetInstance.Oblix_Quantity__c}" styleClass="input_init" style="width: 40px;" /><span style="font-size:19px">&nbsp;x&nbsp;</span>
-                                                                <apex:commandButton value="Add to project" action="{!AddToProjectAction}" onclick="blockme()" oncomplete="$.unblockUI()" reRender="Oblix_card" styleClass="ui-button ui-state-default Oblix_addAsset_btn">
-                                                                    <apex:param assignTo="{!assetInstance.Asset_Type__c}" name="recordType" value="{!recordType}" />
-                                                                    <apex:param assignTo="{!assetInstance.Sub_Category__c}" name="subCat" value="{!subCat}" />
-                                                                    <apex:param assignTo="{!complexity}" name="complexity" value="4" />
-                                                                </apex:commandButton>
-                                                                </center>
-                                                                </td>
-                                                              </tr>                                                    
-                                                        </table>
-                                                        </apex:actionRegion>   
-                                                        </center>
-                                                    </div>   
-                                                    <div id="{!mapRTIdCSS[recordType]}_tabs-{!count2}5">
-                                                         <center>
-                                                         
-                                                         <apex:actionRegion >
-                                                         <table width="100%">
-                                                              <tr>     
-                                                                <td valign = "bottom"><strong>Name of Asset (Required) </strong> </td><td><apex:inputField styleClass="input_init"  value="{!asset.Location__c}" /></td>  
-                                                              </tr>
-                                                              <tr>     
-                                                                <td valign = "bottom"><strong>Please describe of not exist </strong></td><td><apex:inputField styleClass="input_init"  value="{!asset.Location__c}" /></td>  
-                                                              </tr>
-                                                              <tr><td colspan="2">&nbsp;</td></tr>  
-                                                              <tr> 
-                                                                <td  colspan="2"><apex:commandButton value="Add more details (Optional) " styleClass="Oblix_popup_btn" onclick="PopupdialogMoreDetails();return false"/></td>
-                                                              </tr>
-                                                              <tr><td colspan="2">&nbsp;</td></tr> 
-                                                              <tr>  
-                                                                <td colspan="2">
-                                                                <center>
-                                                                <apex:inputText value="{!assetInstance.Oblix_Quantity__c}" styleClass="input_init" style="width: 40px;" /><span style="font-size:19px">&nbsp;x&nbsp;</span>
-                                                                <apex:commandButton value="Add to project" action="{!AddToProjectAction}" onclick="blockme()" oncomplete="$.unblockUI()" reRender="Oblix_card" styleClass="ui-button ui-state-default Oblix_addAsset_btn">
-                                                                    <apex:param assignTo="{!recordType}" name="recordType" value="{!recordType}" />
-                                                                    <apex:param assignTo="{!subCat}" name="subCat" value="{!subCat}" />
-                                                                    <apex:param assignTo="{!complexity}" name="complexity" value="5" />
-                                                                </apex:commandButton>
-                                                                </center>
-                                                                </td>
-                                                              </tr>                                                    
-                                                        </table>
-                                                        </apex:actionRegion>   
-                                                        </center>
-                                                    </div>   
-                                                                                               
+                                                  </apex:repeat>                               
                                                 </div> 
                                                           
                                             </p>

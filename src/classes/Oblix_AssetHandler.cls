@@ -17,43 +17,46 @@ public with sharing class Oblix_AssetHandler implements ITrigger {
     
     public void bulkAfter()
     {
-    	if(Trigger.isInsert || Trigger.isUpdate ){
-    		lstProjectAgencies = Oblix_TR03AssetProjectScoreCalculator.retrieveProjectAgency(Trigger.New);
-    	}
-    	if(Trigger.isDelete){
-    		lstProjectAgencies = Oblix_TR03AssetProjectScoreCalculator.retrieveProjectAgency(Trigger.Old);
-    	}
+        if(Trigger.isInsert || Trigger.isUpdate ){
+            lstProjectAgencies = Oblix_TR03AssetProjectScoreCalculator.retrieveProjectAgency(Trigger.New);
+        }
+        if(Trigger.isDelete){
+            lstProjectAgencies = Oblix_TR03AssetProjectScoreCalculator.retrieveProjectAgency(Trigger.Old);
+        }
     }
         
     public void beforeInsert(SObject so)
     {
+        return;// Sonar Document empty method
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
+        return;
     }
      
 
     public void beforeDelete(SObject so)
     {
+        return;
     }
     
     public void afterInsert(SObject so) 
     {
-    	//Fire the trigger on After insert to calculate Project Score Asset
-    	lstProjectAgenciesToUpdate= Oblix_TR03AssetProjectScoreCalculator.CalculateProjectScore((Oblix_Project_Assets__c)so, Trigger.New, lstProjectAgencies);
+        //Fire the trigger on After insert to calculate Project Score Asset
+        lstProjectAgenciesToUpdate= Oblix_TR03AssetProjectScoreCalculator.CalculateProjectScore((Oblix_Project_Assets__c)so, Trigger.New, lstProjectAgencies);
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-    	//Fire the trigger on After Update to calculate Project Score Asset
-    	lstProjectAgenciesToUpdate = Oblix_TR03AssetProjectScoreCalculator.CalculateProjectScore((Oblix_Project_Assets__c)so, Trigger.New, lstProjectAgencies);
+        //Fire the trigger on After Update to calculate Project Score Asset
+        lstProjectAgenciesToUpdate = Oblix_TR03AssetProjectScoreCalculator.CalculateProjectScore((Oblix_Project_Assets__c)so, Trigger.New, lstProjectAgencies);
     }
     
     public void afterDelete(SObject so)
     {
-    	//Fire the trigger on After Delete to re-calculate Project Score Asset
-    	lstProjectAgenciesToUpdate = Oblix_TR03AssetProjectScoreCalculator.CalculateProjectScore((Oblix_Project_Assets__c)so, Trigger.Old, lstProjectAgencies);
+        //Fire the trigger on After Delete to re-calculate Project Score Asset
+        lstProjectAgenciesToUpdate = Oblix_TR03AssetProjectScoreCalculator.CalculateProjectScore((Oblix_Project_Assets__c)so, Trigger.Old, lstProjectAgencies);
     }
     
     /**
@@ -66,10 +69,10 @@ public with sharing class Oblix_AssetHandler implements ITrigger {
     {
         System.debug('Entering FAU_ProgramHandler.andFinally');
         if(triggerShouldExecute){
-        	if(Trigger.isAfter){
-	        	update lstProjectAgenciesToUpdate;
-        	}
-        	
+            if(Trigger.isAfter){
+                update lstProjectAgenciesToUpdate;
+            }
+            
         }
         System.debug('Exiting Oblix_ProjectHandler.andFinally');
     }

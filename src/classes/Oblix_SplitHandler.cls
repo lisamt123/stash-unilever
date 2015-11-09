@@ -31,17 +31,21 @@ public with sharing class Oblix_SplitHandler implements ITrigger {
        
     }
         
+        
     public void beforeInsert(SObject so)
     {
+        return;
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
-    {
+    { 
+    return;
     }
      
 
     public void beforeDelete(SObject so)
     {
+    return;
     }
     
     public void afterInsert(SObject so) 

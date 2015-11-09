@@ -39,7 +39,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
      public String selectedBigCat{get;set;}
      
      //Filters vars 
-     public final List<Marketing_SOW__c> lstMarkCategoriesFilter = [Select Id, Name, SmallProductCategory__c, SmallProductCategory__r.Name, BigOblixProductCategory__c, BigOblixProductCategory__r.Name, OblixBrand__c, OblixBrand__r.Name from Marketing_SOW__c where SmallProductCategory__c != null or BigOblixProductCategory__c != null or OblixBrand__c != null ];
+     public final List<Marketing_SOW__c> lstMarkCategoriesFilter = [Select Id, Name, SmallProductCategory__c, SmallProductCategory__r.Name, BigOblixProductCategory__c, BigOblixProductCategory__r.Name, OblixBrand__c, OblixBrand__r.Name from Marketing_SOW__c where RecordTypeId =:Oblix_Utils.MapRecordType('Marketing_SOW__c').get('ParentSowMarketing') and  (SmallProductCategory__c != null or BigOblixProductCategory__c != null or OblixBrand__c != null)];
      public String WhereQuery {get; set;}
      
      //OverView Variables
@@ -53,7 +53,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
      public string seriesProject {get;set;}
      public User userConnected {get;set;}
      public map<id,decimal> mapApproved{get;set;}
-     
+     private String parentSOWRTID ='';
      //achraf
       public Attachment attachment {
           get {
@@ -76,6 +76,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
         selectedFYear ='';
         selectedSmallCat ='';
         selectedBigCat ='';
+		parentSOWRTID  = Oblix_Utils.MapRecordType('Marketing_SOW__c').get('ParentSowMarketing');
         init();
     }
     
@@ -85,7 +86,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
      */      
       
     public void init(){
-        WhereQuery = 'Select Id, Agency_Contact__c,OblixSOWOverallTotal__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c  where recordType.name = \'Parent Sow Marketing\'';
+        WhereQuery = 'Select Id, Agency_Contact__c,OblixSOWOverallTotal__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c  where recordTypeId=\''+parentSOWRTID+'\'';
         runQuery();
     } 
     
@@ -152,7 +153,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
         Map<Id, String> MapBrandIdToName = new Map<Id, String>();
         if(lstMarkCategoriesFilter.size()>0){
             for(Marketing_SOW__c mark : lstMarkCategoriesFilter){
-                if(mark.BigOblixProductCategory__c != null){
+                if(mark.OblixBrand__c != null){
                     if(!MapBrandIdToName.containsKey(mark.OblixBrand__c)) MapBrandIdToName.put(mark.OblixBrand__c, mark.OblixBrand__r.Name);  
                 }
             }
@@ -448,5 +449,6 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
         //return null;
     }
     public void Cancel (){
+        return;
     }
 }

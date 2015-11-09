@@ -12,15 +12,18 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
     public void bulkBefore()
     {   
         System.debug('Entering Oblix_ProjectHandler.bulkBefore'); 
+        /*
         if(triggerShouldExecute){
             if(Trigger.isUpdate) {
                 //lstProjectTrigger =  Oblix_TR04ProjectBusinessDriverScore.retrieveProject(trigger.new);
             }
         }
+        */
     }
     
     public void bulkAfter()
     {
+        return;
     }
         
     public void beforeInsert(SObject so)
@@ -35,19 +38,23 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
      
 
     public void beforeDelete(SObject so)
-    {   
+    { 
+        return;  
     }
     
     public void afterInsert(SObject so) 
     {
+        return;
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
+        return;
     }
     
     public void afterDelete(SObject so)
     {
+        return;
     }
     
     /**
@@ -59,9 +66,10 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
     public void andFinally()
     {
         System.debug('Entering FAU_ProgramHandler.andFinally');
-        if(triggerShouldExecute){
+        /*if(triggerShouldExecute){
             //upsert Trigger.New;
         }
+        */
         System.debug('Exiting Oblix_ProjectHandler.andFinally');
     }
 }

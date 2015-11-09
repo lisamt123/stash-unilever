@@ -61,57 +61,142 @@
    
    <style>
         /**** Header and container CSS ****/
+        .darkGreen{color: #44883E  ;}
+        .mainGreen{color: #6BA539;}
+        h2{ font-size: 130%;}
+        h3{font-size: 14px;}
+
         .Oblix_Container{
-            background-image : url("{!URLFOR($Resource.assetUI,'bg_pattern.png')}");
+            background-image : url("{!URLFOR($Resource.assetUI,'bg_pattern_2.png')}");
             background-repeat: no-repeat;
             position:relative;
             top: -11px;
         }
+        .Oblix_header_logo{
+        position:relative;
+        top:5px;
+        }
         
         .Oblix_header_title{
+            font-family: DIN, Arial;
             font-size: 30px;
             margin: 4px;   
-            padding-top: 7px;   
-            position:relative;
-            left: 30px;               
+           /* padding-top: 7px; */  
+            position: relative;
+            top: 5px;              
         }
-        .Oblix_header_activeArrow{       
+
+        
+           .Oblix_header_arrowTitle{
+            font-family: DIN, Arial;
+            font-size: 20px;
+            margin: 4px;   
+            padding-top: 24px;
+            text-align: center;
+        }
+        
+        .Oblix_header_activeArrow{ 
+        background-color: transparent;      
             background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow_down.png')}");
             background-repeat: no-repeat;
+             font-family: DIN, Arial;
             color:white;
+            padding-left: 10px;
+            width:160px;
+           height: 90px;
+            text-align: center;
+            position: absolute;
+           
+
         }
-        .Oblix_header_previousArrow{       
+          .Oblix_header_Arrow_none{ 
+          background-color: transparent;      
+            background: initial;
+            background-repeat: no-repeat;
+            font-family: DIN, Arial;
+            color:white;
+            padding-left: 10px;
+            width:160px;
+            height: 90px;
+            text-align: center;
+            position: absolute;
+        }
+          .Oblix_header_Arrow{ 
+          background-color: transparent;      
+            background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow.png')}");
+            background-repeat: no-repeat;
+            font-family: DIN, Arial;
+            color:white;
+            padding-left: 10px;
+            width:160px;
+            height: 90px;
+            text-align: center;
+            position: absolute;
+          
+
+
+        }
+          .Oblix_header_Arrow:active, .Oblix_header_Arrow:hover {
+          background-color: transparent;
+            background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
+            background-repeat: no-repeat;
+
+          }
+           .Oblix_header_previousArrow{ 
+           background-color: transparent;      
             background-image : url("{!URLFOR($Resource.assetUI,'previouslevel_arrow.png')}");
             background-repeat: no-repeat;
+            font-family: DIN, Arial;
             color:white;
+            padding-left: 10px;
+            width:160px;
+             height: 90px;
+            text-align: center;
+            position: absolute;
+         
+
         }
-        .Oblix_header_activeArrow span{ 
-             font-size: 17px !important;
-         }
-         .Oblix_header_previousArrow span{ 
-             font-size: 17px !important;
-             left: 15px !important;
-         }
+       .Oblix_header_previousArrow:active, .Oblix_header_previousArrow:hover {
+            background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
+            background-repeat: no-repeat;
+
+          }
+        .header_pos_1 {
+            top: 2px;
+            left:113px;
+            }
+        .header_pos_2 {
+            top: 2px;
+            left:270px;
+            }
+        .header_pos_3 {
+            top: 2px;
+            left:427px;
+                       }
         .Oblix_header{
             background-image : url("{!URLFOR($Resource.assetUI,'header_panel.png')}");
-            background-size: cover;
-            background-position: center center;
+            background-size: 100% 100%;
+            background-position: center bottom;
             background-repeat: no-repeat;
-            height:100px;
+            height: 90px;
             position: relative;
-            line-height: 65%;
+            /* line-height: 65%; */
             width:95%;
-            letter-spacing: 1px;         
+            letter-spacing: 1px;
+            margin-left: auto;
+            margin-right: auto;         
         }
-        .Oblix_header span{
-            line-height: 140%;
+        .Oblix_header_desc{
+            text-align:center;
+            /* line-height: 140%; */
             position:relative;
-            left: 39px;
             font-size: 10px;
+            top:-10px;
+
         }
         .Oblix_header td{
-             font-family: Georgia, "DejaVu Serif", Norasi, serif;
-        }
+             font-family: DIN, Arial;
+             }
         .Oblix_sowDetail{
             display: block;
             padding: 9.5px;
@@ -213,6 +298,65 @@
         .Oblix_attachment{
             width:90%;
         }
+        
+          .btnDisabled {
+          background-color: #6BA539;
+            color: #fff;
+            opacity: .5;
+
+        }
+        
+         input.btn {
+            background-color: #6BA539;
+            background-image: none;
+            color: #fff;
+            padding: 4px 10px 3px 10px  !important;
+            height: 30px;
+
+        }
+        input.btn:active, input.btn:hover{
+        background-image: none;
+             background-color: #44883E;
+             color: #fff;
+        }
+         input.btn:disabled {
+             background-color: #6BA539;
+            color: #fff;
+            opacity: .5;
+}
+
+        
+        .medGreenB{
+             background-color: #6BA539;
+             color: #fff;
+        }
+ 
+           .medGreenB:active, .medGreenB:hover{
+             background-color: #00573F;
+             color: #fff;
+        }
+        
+         .GreenB{
+             background-color: #44883E;
+             color: #fff;
+        }
+ 
+           .GreenB:active, .GreenB:hover{
+             background-color: #00573F;
+             color: #fff;
+        }
+        
+        .tintGreenB{
+             background-color: #C2DBB6;
+             color: #000;
+        
+        }
+        
+        .tintGreenB:active, .tintGreenB:hover{
+             background-color: #00573F;
+             color: #fff;
+        }
+      
        .Oblix_filter_btn{
            color: #333;
             background: #fff !important;
@@ -233,14 +377,11 @@
             -webkit-user-select: none;
         }
          .Oblix_projects_btn{
-            color: #333;
-            background: #fff !important;
-            border: 1px solid #b5b5b5 !important;
             display: inline-block;
             padding: 4px 12px !important;
             width: 144px;
             height: 42px;
-            margin-bottom: 0;
+            margin: 0px;
             font-weight: normal;
             line-height: 1.42857143;
             text-align: center;
@@ -413,9 +554,10 @@
     }
 
     .Oblix_projects_header{
-        padding: 20px;
+        padding: 15px;
         background-color: rgb(0, 87, 63);
-    }
+        border-top-left-radius:15px;
+        border-top-right-radius:15px;    }
     
     .padding_remove{
         padding:0px!important;
@@ -560,48 +702,53 @@
    
     <div class="Oblix_Container">
    
-  <center>
-    <div class="Oblix_header">
-         <table width="90%" height="90%">
+     <div class="Oblix_header"><!-- 2 levels -->
+       <div style="postion: relative; top:-200px; background: transparent;width: 95%;margin-left: auto;margin-right: auto;">
+         <table width="95%" height="100%">
             <tr>
-                <td width="5%">
+                <td width="50px" class="Oblix_header_logo">
                 <apex:image value="{!$Resource.Unilever_logo}" width="60px" height="60px" />
                 </td>
-                <td width="15%">
-                <div class="Oblix_header_title">SWOP</div><br/><span>Scope of Work<br/>Online Planner</span>
+                <td class="Oblix_header_Arrow header_pos_1">
+                <div class="Oblix_header_title">SWOP</div><br/><span class="Oblix_header_desc">Scope of Work<br/>Online Planner</span>
                 </td>
-                <td width="20%" class="Oblix_header_activeArrow">
-                <span> View SOW </span>
-                </td>
-                <td width="20%" class="Oblix_header_previousArrow">
-                   
-                    <apex:outputPanel rendered="1" ><span> New Campaign</span><br/></apex:outputPanel>
-                </td>
-                <td width="15%">
-                <div></div><br/>
-                </td>
-                <td></td>
                 <td>
-                <div style="float:right"><p>Hi {!userConnected.Name} !</p></div>
+                <div class="Oblix_header_activeArrow header_pos_2">
+                <div class="Oblix_header_arrowTitle" style="padding-top: 7px;">
+                    <apex:outputPanel rendered="{!sowId == null}" > Add Non Campaign Items <br/></apex:outputPanel>
+                    <apex:outputPanel rendered="{!sowId != null}" > Edit Non Campaign items<br/></apex:outputPanel>
+                </div>
+                </div>
+                
+                <div class="Oblix_header_Arrow_none header_pos_3">
+                <div class="Oblix_header_arrowTitle"></div>
+                </div>
+                </td>
+                <td>
+                <div style="float:right;"><p>Hi {!userConnected.Name} !</p></div>
                 </td>
             </tr>
-        </table>
-       
+        </table></div>
     </div>
-    </center>
     <br/><br/>
     <apex:pagemessages ></apex:pagemessages>
   
-     <div class="Oblix_table padding_remove">
+     <div class="Oblix_table padding_remove" style="border-radius: 15px;">
          <div class="Oblix_projects_container">  
             
             <table class="Oblix_projects_header" width="100%">
                 <tr>
-                    <td width="20%">
-                        <h1><apex:outputText rendered="1">Add Campaign</apex:outputText> <apex:outputText rendered="1">Edit Campaign</apex:outputText></h1>
+                    <td width="100%">
+                        <h1 style="color: #fff;"><apex:outputText rendered="1">Add Non Campaign Items</apex:outputText> <apex:outputText rendered="1">Edit Non Campaign Items</apex:outputText></h1>
                     </td>
-                     <td>
-                    </td>                                     
+                   
+                     <td style="font-size: 20px; color: #fff; word-break: normal; padding-right:20px;">
+                                              <apex:outputLabel value="{!saveStatus}" id="saveStatus"></apex:outputLabel>
+                                          </td><td width="160px" style="text-align: right;">
+                                              <apex:commandButton value="Save" action="{!saveList}" rerender="saveStatus" onclick="blockme();" oncomplete="$.unblockUI()" styleClass="Oblix_projects_btn"/>
+                                          </td><td width="160px" style="text-align: right;">
+                                              <apex:commandButton value="Back" action="{!back}" styleClass="Oblix_projects_btn" reRender="Oblix_ItemsId"/><br/>       
+                                          </td>                                     
                 </tr>
             </table>
             <table width="100%" class="topAlign">
@@ -633,13 +780,7 @@
                                <section class="PrColumn3">   
                                    <table width="100%" class="topAlign">  
                                       <tr>
-                                          <td style="vertical-align:middle; font-size: 20px;" >
-                                              <apex:outputLabel value="{!saveStatus}" id="saveStatus"></apex:outputLabel>  
-                                          </td><td>
-                                              <apex:commandButton value="Save" action="{!saveList}" rerender="saveStatus" onclick="blockme();" oncomplete="$.unblockUI()" styleClass="Oblix_projects_btn"/><br/><br/>
-                                          </td><td>
-                                              <apex:commandButton value="Back" action="{!back}" styleClass="Oblix_projects_btn" reRender="Oblix_ItemsId"/><br/>       
-                                          </td>  
+                                          <td></td>
                                       </tr>
                                   </table>
                               </section>
@@ -753,7 +894,7 @@
                                            
                                            <td width="10%x">
                                              <apex:outputLabel value="{!rate}" style="width:90%;" id="rate" >
-                                             <span style="font-size:17px">  euro X </span>
+                                             <span style="font-size:17px">   * </span>
                                              </apex:outputLabel>
                                            </td>
                                             <td>
@@ -783,9 +924,7 @@
                                 <tr>
                                  <td>  <apex:inputtext styleClass="input_init"  value="{!name1}" style="width:200px ;" html-placeholder="Non Campaign Item Name" id="nameid1"  />
                                           </td>
-                                          <td>
-                                           <apex:inputText value="{!dedicatedResource }" style="input_init"  id="dr"/>
-                                            </td>
+                                          
                                                 
                                </tr>
                              </table> 
@@ -857,11 +996,13 @@
                            <!-- End Record Type Content -->      
                            <!-- Card Content -->              
                             <div class="Oblix_card">
-                                <div class="Oblix_card_title">
-                                    <div style="float:left">Estimation Cost :</div>
-                                    <div style="float:right">  $</div>
-                                </div>
+                                
                                 <apex:outputPanel id="Oblix_card">
+                                <div class="Oblix_card_title">
+                                    <div style="float:left">Estimation Cost : </div>
+                                    <div style="float:right">{!somme}  $</div>
+                                </div>
+                                <br/>
                                     
                                    <apex:variable value="{!0}" var="rowNum"/>
                                     <apex:repeat value="{!newItems }" var="asset">
@@ -874,7 +1015,7 @@
                                                    </div>
                                                   
                                                    <div style="float: right;display:block;"> 
-                                                       <span style="font-size:17px"> <apex:outputText value="{!asset.OblixOtherItemFee__c }"/> Euro</span>
+                                                       <span style="font-size:17px"> <apex:outputText value="{!asset.OblixOtherItemFee__c }"/> </span>
                                                       
                                                     <apex:commandButton value="Delete" action="{!delElm}" rerender="Oblix_card" onclick="blockme();" oncomplete="$.unblockUI()" id="del">
                                                         <apex:param name="param1" assignTo="{!ElemToDel  }" value="{!rowNum}" />

@@ -819,9 +819,10 @@
                                                                         <td width="30%"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Additional_Description__c.label}  </strong><br/><apex:outputField value="{!asset.Additional_Description__c}"/></td>
                                                                         <td width="20%">
                                                                              <apex:commandButton value="Edit" action="{!EditItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                             	
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="jqueryId">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -840,13 +841,11 @@
                                                                         <td width="30%"><strong>Due Date  </strong><apex:inputField value="{!asset.Actual_Delivery_Date__c}"/></td>
                                                                         <td width="30%"><strong>Additional notes </strong><br/><apex:inputField value="{!asset.Additional_Description__c}"/></td>
                                                                         <td width="20%">
-                                                                             <apex:commandButton value="Save" action="{!SaveItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
-                                                                                 <apex:param assignTo="{!itemToEdit.location__c}" name="ItemsEdit" value="{!asset.id}"/>
-                                                                                 <apex:param assignTo="{!itemToEdit.Actual_Delivery_Date__c}" name="ItemsEdit2" value="{!asset.Actual_Delivery_Date__c}"/>
-                                                                                 <apex:param assignTo="{!itemToEdit.Additional_Description__c}" name="ItemsEdit3" value="{!asset.Additional_Description__c}"/>
+                                                                              <apex:commandButton value="Save" action="{!SaveItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                                 <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset">
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="jqueryId">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -923,7 +922,7 @@
                                                                              <apex:commandButton value="Edit" action="{!EditItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="jqueryId">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -942,13 +941,11 @@
                                                                         <td width="30%"><strong>Due Date  </strong><apex:inputField value="{!asset.Actual_Delivery_Date__c}"/></td>
                                                                         <td width="30%"><strong>Additional notes </strong><br/><apex:inputField value="{!asset.Additional_Description__c}"/></td>
                                                                         <td width="20%">
-                                                                             <apex:commandButton value="Save" action="{!SaveItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
-                                                                                 <apex:param assignTo="{!itemToEdit.location__c}" name="ItemsEdit" value="{!asset.id}"/>
-                                                                                 <apex:param assignTo="{!itemToEdit.Actual_Delivery_Date__c}" name="ItemsEdit2" value="{!asset.Actual_Delivery_Date__c}"/>
-                                                                                 <apex:param assignTo="{!itemToEdit.Additional_Description__c}" name="ItemsEdit3" value="{!asset.Additional_Description__c}"/>
+                                                                              <apex:commandButton value="Save" action="{!SaveItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                                 <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset">
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="jqueryId">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -1025,7 +1022,7 @@
                                                                              <apex:commandButton value="Edit" action="{!EditItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="jqueryId">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -1045,12 +1042,10 @@
                                                                         <td width="30%"><strong>Additional notes </strong><br/><apex:inputField value="{!asset.Additional_Description__c}"/></td>
                                                                         <td width="20%">
                                                                              <apex:commandButton value="Save" action="{!SaveItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
-                                                                                 <apex:param assignTo="{!itemToEdit.location__c}" name="ItemsEdit" value="{!asset.id}"/>
-                                                                                 <apex:param assignTo="{!itemToEdit.Actual_Delivery_Date__c}" name="ItemsEdit2" value="{!asset.Actual_Delivery_Date__c}"/>
-                                                                                 <apex:param assignTo="{!itemToEdit.Additional_Description__c}" name="ItemsEdit3" value="{!asset.Additional_Description__c}"/>
+                                                                                 <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset">
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="jqueryId">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -1127,7 +1122,7 @@
                                                                              <apex:commandButton value="Edit" action="{!EditItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="jqueryId">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -1147,12 +1142,10 @@
                                                                         <td width="30%"><strong>Additional notes </strong><br/><apex:inputField value="{!asset.Additional_Description__c}"/></td>
                                                                         <td width="20%">
                                                                              <apex:commandButton value="Save" action="{!SaveItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
-                                                                                 <apex:param assignTo="{!itemToEdit.location__c}" name="ItemsEdit" value="{!asset.id}"/>
-                                                                                 <apex:param assignTo="{!itemToEdit.Actual_Delivery_Date__c}" name="ItemsEdit2" value="{!asset.Actual_Delivery_Date__c}"/>
-                                                                                 <apex:param assignTo="{!itemToEdit.Additional_Description__c}" name="ItemsEdit3" value="{!asset.Additional_Description__c}"/>
+                                                                                 <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset">
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="jqueryId">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -1229,7 +1222,7 @@
                                                                              <apex:commandButton value="Edit" action="{!EditItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="jqueryId">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -1249,12 +1242,10 @@
                                                                         <td width="30%"><strong>Additional notes </strong><br/><apex:inputField value="{!asset.Additional_Description__c}" styleClass="textArea_init"/></td>
                                                                         <td width="20%">
                                                                              <apex:commandButton value="Save" action="{!SaveItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
-                                                                                 <apex:param assignTo="{!itemToEdit.location__c}" name="ItemsEdit" value="{!asset.id}"/>
-                                                                                 <apex:param assignTo="{!itemToEdit.Actual_Delivery_Date__c}" name="ItemsEdit2" value="{!asset.Actual_Delivery_Date__c}"/>
-                                                                                 <apex:param assignTo="{!itemToEdit.Additional_Description__c}" name="ItemsEdit3" value="{!asset.Additional_Description__c}"/>
+                                                                                 <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="recordType">
+                                                                              <apex:commandButton value="Delete item" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="jqueryId">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>

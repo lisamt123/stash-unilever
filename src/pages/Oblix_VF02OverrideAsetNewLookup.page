@@ -13,8 +13,9 @@
     if(lookupType == "a6N"){// Following "001" is the lookup type for Account object so change this as per your standard or custom object
       var urlArr = baseURL.split("&");
       var txtId = '';
+      var spliter= '=';
       if(urlArr.length > 2) {
-        urlArr = urlArr[1].split('=');
+        urlArr = urlArr[1].split(spliter);
         txtId = urlArr[1];
       }
         baseURL = "/apex/Oblix_VF03CustomAssetLookup?txt=" + txtId;
@@ -33,8 +34,8 @@
     } 
   }
 </script>
-  
-<apex:sectionHeader title="Project Asset"  subtitle="{!IF(asset.Id<>null, asset.Name, 'New Asset')}" />
+  {!$Label.Oblix_Lbl_SOW_Marketing_Clone_Procedure}
+<apex:sectionHeader title="{!$Label.Oblix_Lbl_VF02_Project_Asset}"  subtitle="{!IF(asset.Id<>null, asset.Name, 'New Asset')}" />
     <apex:actionFunction action="{!NULL}" name="changeType" reRender="myForm"/>
     <!-- ADMIN RT  -->
     <apex:pageBlock title="Admin RT" rendered="{!asset.RecordTypeId == rt_Admin}">
