@@ -7173,6 +7173,11 @@
         <field>BET_Follow_Request__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>BET_Member_Request__c.Bet_Link__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>BET_Member_Request__c.Bet_owner__c</field>
@@ -18816,7 +18821,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>uw_BET__c.Deletion_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -18896,7 +18901,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>uw_BET__c.Is_Deleted__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
