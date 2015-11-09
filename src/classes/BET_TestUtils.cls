@@ -20,6 +20,7 @@ public class BET_TestUtils {
 
 	public static final String MDO_STATUS_ACTIVE = 'Active';
 	public static final String TEST_USER_EMAIL = 'm.bluj@polsource.com';
+	public static final String USER_LOCAL = 'en_US';
 	
 
 	/************************************************************
@@ -343,13 +344,42 @@ public class BET_TestUtils {
 								emailencodingkey = 'UTF-8',
 								firstname = 'Test',
 								lastname = 'ChatterAnswersCreateAccountTest',
-								languagelocalekey = 'en_US',
-								localesidkey = 'en_US', 
+								languagelocalekey = USER_LOCAL,
+								localesidkey = USER_LOCAL, 
 								profileid = [SELECT Name FROM Profile WHERE Name = 'System Administrator'].id,
 								timezonesidkey = 'Europe/London',
 								username = 'TestAdmin@unittest.com' + randNo);
 		insert newUser;
 		return newUser;
+    }
+
+    /************************************************************
+		Purpose: Create test users
+		Parameters: number of users to create
+		Returns: List of Users
+		Throws: -
+	*************************************************************/
+    public static List<User> createUserSystemAdmin(Integer iCount){
+    	List<User> retVal = new List<User>();
+    	Id sysAdminId = [SELECT id FROM Profile WHERE Name = 'System Administrator'].id;
+    	Integer randNo = Integer.valueOf(Math.random() * 100000);
+
+    	for (Integer i=0; i<iCount; i++){
+			retVal.add( new User(alias = '' + randNo, 
+							email = 'TestUsert@unittest.com',
+							emailencodingkey = 'UTF-8',
+							firstname = 'Test',
+							lastname = 'BETUnitTest-' + randNo,
+							languagelocalekey = USER_LOCAL,
+							localesidkey = USER_LOCAL, 
+							profileid = sysAdminId,
+							timezonesidkey = 'Europe/London',
+							username = 'TestAdmin@unittest.com' + randNo)
+			);
+			randNo++;
+		}
+		insert retVal;
+		return retVal;
     }
 
     /************************************************************

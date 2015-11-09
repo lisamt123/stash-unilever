@@ -16,6 +16,26 @@ public without sharing class BET_BETHandlerCls {
   private BET_BETHandlerCls(){}
 
   /************************************************************
+    Purpose: Method verifies if bet was soft deleted
+    Parameters: List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap
+    Returns: -
+    Throws: -
+  *************************************************************/
+  public static void deleteBet(List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap){
+    System.debug('Entering deleteBet : ' + newBetList + ', ' + oldBetMap);
+    List<uw_BET__c> deletedBets = new List<uw_BET__c>();
+    for(uw_BET__c bet : newBetList){
+       if(bet.Is_Deleted__c && bet.Is_Deleted__c != oldBetMap.get(bet.id).Is_Deleted__c){
+        deletedBets.add(bet);
+      }
+    }
+    if(!deletedBets.isEmpty()){
+      BET_BETHandlerClsHelper.softDelete(deletedBets);
+    }
+    System.debug('Exit deleteBet');
+  }
+
+  /************************************************************
     Purpose: Method verifies if bet ws archive/unarchived and runs related logic
     Parameters: List<uw_BET__c> newBetList,Map<Id,uw_BET__c> oldBetMap
     Returns: -

@@ -92,11 +92,9 @@ public with sharing class BET_NewBetComponentController {
     @TestVisible
     private void proceedWithSave(Boolean redirectToMembersComponent){
         System.debug('Entering proceedWithSave : ' + redirectToMembersComponent);
-        try{
-            compData.categoryMigrated = IPM_BETUpdateService.CategoryCheck(compData.category);
-        }catch(Exception e){
-            compData.categoryMigrated = false;
-        }
+        
+        compData.categoryMigrated = compData.category == null ? false : IPM_BETUpdateService.CategoryCheck(compData.category);
+        
         //FabricConditioner begin
         try{
             compData.fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(compData.category) : false;

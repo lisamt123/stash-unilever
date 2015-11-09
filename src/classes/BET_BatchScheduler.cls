@@ -14,6 +14,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.1     Blessy Voola            17 Mar 2015    T0- code changes to send reminder mail only once i.e., 
                                                 30 days before first and final release due date.    
 **********************************************************************/
+/* class without sharing modifier due to this is a batch scheduler */
 global class BET_BatchScheduler implements Schedulable {
     
     global void execute(SchedulableContext sc) {

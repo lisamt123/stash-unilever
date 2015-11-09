@@ -16,5 +16,18 @@ private class BET_DataFixReleaseDate_BatchTest {
     System.assert(bet.First_Release_Due_Date__c != null,'First Release Due Date should be set');
     System.assert(bet.Final_Release_Due_Date__c != null,'Final Release Due Date should be set');
   }
+
+  @isTest static void updateFileIdTest(){
+    uw_Bet__c bet = BET_TestUtils.getTestBet();
+    bet.Launch_Date__c = Date.today();
+    insert bet;
+
+    uw_Asset__c asset = new uw_Asset__c(URL_of_Asset__c = 'smth/download/'+bet.id+'?smth');
+    List<uw_Asset__c> assets = new List<uw_Asset__c>{asset};
+    List<uw_Asset__c> nAssets = BET_AssetService.updateFileId(assets);
+    Test.startTest();
+    System.assert(!nAssets.isEmpty(),'List should not be empty');
+    Test.stopTest();
+  }
   
 }

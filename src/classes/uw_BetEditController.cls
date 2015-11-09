@@ -72,7 +72,8 @@ public with sharing class uw_BetEditController {
         bet = [ SELECT Id, Name, Inoplan_Project__c, Scope__c, Market_Clusters__c,
                         Launch_Date__c, Sharing__c, Description__c, Banner_1_Location__c, Background_Colour__c, Icon_Location__c, OwnerId,
                         Font_Colour__c, Banner_Colour__c, Component_Colour__c, Is_Archived__c, Studio_Chatter_Group__c,
-                        Category_Group__c, IPM_Project__c,IPM_Project__r.name,Brand_Position__c, Product_Category__c,Product_Brand__c,Inherit_Branding__c,Is_Fabric_Conditioners__c FROM uw_BET__c WHERE Id = :currentId ];
+                        Category_Group__c, IPM_Project__c,IPM_Project__r.name,Brand_Position__c, Product_Category__c,Product_Brand__c,Inherit_Branding__c,Is_Fabric_Conditioners__c,
+                        Is_Deleted__c FROM uw_BET__c WHERE Id = :currentId ];
 
         initialOwnerId = initialBETShare.UserOrGroupId;
 
@@ -389,5 +390,26 @@ public with sharing class uw_BetEditController {
     public Boolean getHasProjectsToApprove(){
         List<BET_Follow_Request__c> followRequests = [select Project_Name__c,Project_Id__c,Project_Lead__r.name,CreatedDate from BET_Follow_Request__c where Brand_Experience_Toolkit__c =: bet.id and Status__c =: BET_LinkingService.FOLLOW_STATUS_NEW limit 1];
         return !followRequests.isEmpty();
+    }
+
+
+    /***********************************************************
+        Purpose: Method soft deleted related bet record
+        Parameters: -
+        Returns: - Page reference
+        Throws: -
+    *************************************************************/
+    public PageReference softDeleteBET(){
+        bet.Is_Deleted__c = true;
+        bet.Deletion_Date__c = date.today();
+        try{
+            update bet;
+        } catch (Exception e){
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception Saving record '+e));
+            return null;
+        }
+        runJsSuccess = true;
+        moveHome = true;
+        return null;
     }
 }

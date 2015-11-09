@@ -353,18 +353,18 @@
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/19.0/connection.js&quot;)} 
-var o = new sforce.SObject(&quot;CORE_NT_Task__C&quot;);
-o.id = &quot;{!CORE_NT_Task__c.Id}&quot;;
-var url = parent.location.href;
-this.style.visibility=&apos;hidden&apos;;
-if({!CORE_NT_Task__c.Complete__c}!= true){
-o.Complete__c = true;
-sforce.connection.update([o]);
-parent.location.href = url;
-this.style.visibility=&apos;hidden&apos;;
-}
-else{
-alert(&apos;Task has alredy completed&apos;);
+var o = new sforce.SObject(&quot;CORE_NT_Task__C&quot;); 
+o.id = &quot;{!CORE_NT_Task__c.Id}&quot;; 
+var url = parent.location.href; 
+this.disabled=true; 
+if({!CORE_NT_Task__c.Complete__c}!= true){ 
+o.Complete__c = true; 
+sforce.connection.update([o]); 
+parent.location.href = url; 
+this.disabled=true; 
+} 
+else{ 
+alert(&apos;Task has alredy completed&apos;); 
 }</url>
     </webLinks>
 </CustomObject>

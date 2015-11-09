@@ -39,6 +39,18 @@ private class BET_NewBetComponentControllerTest {
 		Test.stopTest();
 	}
 
+	@isTest static void proceedWithSaveExceptionsTest(){
+		Test.startTest();
+		BET_NewBetComponentController controller = new BET_NewBetComponentController();
+		uw_BET__c betObject = BET_TestUtils.getTestBet();
+		controller.bet = betObject;
+		controller.compData = new BET_CategoryComponentData(betObject);
+		controller.compData.category = null;
+		controller.proceedWithSave(true);
+		System.assert(!controller.compData.categoryMigrated ,'Category should be marked as not migrated');
+		Test.stopTest();
+	}
+
 	@isTest static void moveComponentDataToBETTest() {
 		Test.startTest();
 		BET_NewBetComponentController controller = new BET_NewBetComponentController();

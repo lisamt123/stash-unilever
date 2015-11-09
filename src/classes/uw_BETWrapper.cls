@@ -131,6 +131,8 @@ public with sharing class uw_BETWrapper {
         public String assetDescription;
         public String assetDownloadLink;
         public Boolean assetOwner;
+        public Integer displayOrder;
+        public String assetPreviewLink;
        
         public AssetItem(uw_Asset__c asset, Boolean aOwner){            
             this.assetId = asset.Id;
@@ -140,7 +142,15 @@ public with sharing class uw_BETWrapper {
             this.assetLastModifiedDate = asset.LastModifiedDate;
             this.assetDescription = asset.Description__c;
             this.assetDownloadLink = asset.Url_of_asset__c;  
-            this.assetOwner = aOwner;         
+            this.assetOwner = aOwner;    
+            this.displayOrder = (Integer)asset.Order_Of_Display__c;
+            if(this.assetDownloadLink != null){ 
+                Integer startIdx = this.assetDownloadLink.indexOf('/download/');
+                Integer endIdx = this.assetDownloadLink.indexOf('?');    
+                if(startIdx > -1 && endIdx > -1){
+                    this.assetPreviewLink = '/'+this.assetDownloadLink.substring(startIdx+10, endIdx);
+                }
+            }
         }
     }
 
@@ -250,6 +260,11 @@ public with sharing class uw_BETWrapper {
 
         public Integer totalActualAssets;
         public Integer totalExpectedAssets;
+
+        public Boolean beforeFinalDueDate;
+        public Boolean beforeFirstDueDate;
+
+        public Boolean expectedAssetsProvided {get;set;}
         
         public BetSearchItem(String betId, String betName, String betChatterGroupId, Datetime betFinalRelease, String betPresentationId, String betIconLocation, String betDescription, String betBrandName, String betRegion, String betProjectName,
             String betIPMProjectName,  
@@ -338,8 +353,17 @@ public with sharing class uw_BETWrapper {
             if(this.betFirstRelease != null && this.betFirstReleaseDueDate != null ){
                 this.completedFirstAfterDueDate = this.betFirstRelease >  this.betFirstReleaseDueDate;
             }
+            
             if(this.betFinalRelease != null && this.betFinalReleaseDueDate != null ){
                 this.completedFinalAfterDueDate = this.betFinalRelease >  this.betFinalReleaseDueDate;
+            }
+
+            if(this.betFinalReleaseDueDate != null) {
+                this.beforeFinalDueDate = Date.today() <= this.betFinalReleaseDueDate;
+            }
+
+            if(this.betFirstReleaseDueDate != null) {
+                this.beforeFirstDueDate = Date.today() <= this.betFirstReleaseDueDate;
             }
         }
     }

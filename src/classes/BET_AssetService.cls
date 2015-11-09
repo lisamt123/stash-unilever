@@ -11,11 +11,129 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 
 /*Without sharing due to it is a service method */
 
-public without sharing class BET_AssetService {
+global without sharing class BET_AssetService {
 
 	private static final Set<String> excludedMediaType = new Set<String>{'BET Presentation'};
-
 	private BET_AssetService() {}
+
+	/************************************************************
+        Purpose: Reorders assets
+        Parameters: String betId
+        Returns: -
+        Throws: -
+    *************************************************************/
+	public static void forceAssetReordering(String betId){
+		Boolean reorder = false;
+        List<String> assetsOrdered = new List<String>();
+        Set<Integer> orderSet = new Set<Integer>();
+        for(uw_Asset__c asset : [select Order_Of_Display__c from uw_Asset__c where uw_BET__c = :betId and Status__c = 'Approved'
+                            order by Order_Of_Display__c asc]){
+            assetsOrdered.add((String)asset.id);
+            if(asset.Order_Of_Display__c == null) {
+                reorder = true;
+            } else {
+                if(orderSet.contains((Integer)asset.Order_Of_Display__c)){
+                    reorder = true;
+                } else {
+                    orderSet.add((Integer)asset.Order_Of_Display__c);
+                }
+            }
+        }
+        if(reorder) {
+            BET_AssetsOrderController.updateAssetsOrder(assetsOrdered);
+        }
+	}
+
+	/************************************************************
+        Purpose: Grants access to files attached to bet
+        Parameters: Id betId,Id userId
+        Returns: -
+        Throws: -
+    *************************************************************/
+	@Future
+	public static void grantAccessToBetsAssets(Id betId,Id userId){
+		try{
+			List<ContentDocumentLink> links = new List<ContentDocumentLink>();
+
+			Set<Id> linkedFiles = new Set<Id>();
+			for(ContentDocumentLink cl : [select ContentDocumentId from ContentDocumentLink where LinkedEntityId =: userId]){
+				linkedFiles.add(cl.ContentDocumentId);
+			}
+
+			for(uw_Asset__c asset : [select id, File_Id__c from uw_Asset__c where uw_BET__c =: betId]){
+				if(!String.isBlank(asset.File_Id__c) && !linkedFiles.contains(asset.File_Id__c)){
+					ContentDocumentLink link = new ContentDocumentLink();
+					link.LinkedEntityId = userId;
+					link.ContentDocumentId = asset.File_Id__c;
+					link.ShareType = 'v';
+					link.Visibility = 'AllUsers';
+					links.add(link);
+				}
+			}
+			if(!Test.isRunningTest()){
+				Database.insert(links, false);
+			}
+		}catch(Exception ex){
+			ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_AssetService','grantAccessToBetsAssets',
+                'Exception while granting access for ' + betId + ' for BET ' +  betId + ' related assets',
+                new BET_CustomBETException(ex.getMessage()),null,null,null,(Integer)DateTime.now().getTime(),'BET');
+		}
+	}
+
+	/************************************************************
+        Purpose: Updates fileId field based on asset url
+        Parameters: List<uw_Asset__c> assets
+        Returns: -
+        Throws: -
+    *************************************************************/
+	public static List<uw_Asset__c> updateFileId(List<uw_Asset__c> assets){
+
+		Set<Id> identifiers = new Set<Id>();
+		for(uw_Asset__c asset : assets){
+			if(!String.isEmpty(asset.URL_of_Asset__c)){
+				Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/');
+	        	Integer endIdx = asset.URL_of_Asset__c.indexOf('?');    
+	        	Id identifier = (Id)asset.URL_of_Asset__c.substring(startIdx+10, endIdx);
+	        	identifiers.add(identifier);
+        	}
+        }
+
+        Map<Id,Id> versionFileMap = new Map<Id,Id>();
+		for(ContentVersion cv : [select id, ContentDocumentId from ContentVersion where id in : identifiers]){
+			versionFileMap.put(cv.id,cv.ContentDocumentId);
+		}
+
+		for(uw_Asset__c asset : assets){
+			if(!String.isEmpty(asset.URL_of_Asset__c)){
+				Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/');
+	        	Integer endIdx = asset.URL_of_Asset__c.indexOf('?');    
+	        	Id identifier = (Id)asset.URL_of_Asset__c.substring(startIdx+10, endIdx);
+				asset.File_Id__c = versionFileMap.get(identifier);
+			}
+		}
+		return assets;
+	}
+
+	/************************************************************
+        Purpose: Checks if there are expected assets objects set for given bet
+        Parameters: Id betid
+        Returns: Boolean
+        Throws: -
+    *************************************************************/
+	public static Boolean expectedAssetsSetForBet(Id betid){
+		if(betid == null){
+			return false;
+		}
+		Boolean exists = false;
+		for(BET_ExpectedAssets__c eAssets : [select Expected__c from BET_ExpectedAssets__c where Brand_Experience_Toolkit__c =: betid]){
+			if(eAssets.Expected__c != null && eAssets.Expected__c > 0){
+				exists = true;
+				break;
+			}
+		}
+		return exists;
+	}
+
 
 	/************************************************************
         Purpose: Checks if bets have related expected assets

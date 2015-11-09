@@ -8,7 +8,6 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  23-07-2015  Initial
 *************************************************************************************/
-/* Without sharing due to this is a service class used by external system */
 public without sharing class BET_AccessService {
 	
 	public static final String NO_BET_ACCESS = 'No';
@@ -175,6 +174,7 @@ public without sharing class BET_AccessService {
 		Returns: Id of an user
 		Throws: BET_CustomBETException
 	*************************************************************/
+	@TestVisible
 	private static Id validateAndGetUserId(String userEmail, Id betId){
 		if(String.isBlank(userEmail)){
 			throw new BET_CustomBETException(EXT_ACCESS_REQ_ERROR+' Provided user email is blank');
@@ -208,6 +208,7 @@ public without sharing class BET_AccessService {
 		Returns: Error message if needed
 		Throws: -
 	*************************************************************/
+	@TestVisible
 	private static String checkEmail(String emailAddEntered){ 
 		String setErrorMessage = null;
         if (emailAddEntered.trim().contains('@unilever.com')) {

@@ -1,6 +1,9 @@
 @isTest(seeAllData=false)
 private class BET_AccessServiceTest {
 	
+	private static final String EXCEPTION_MSG = 'There should be exception thrown';
+	private static final String EMAIL_TEST = 'm.bluj@polsource.com';
+
 	@isTest static void HasUserAccessNoAccessTest() {
 		Test.startTest();
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
@@ -46,9 +49,9 @@ private class BET_AccessServiceTest {
 		Test.startTest();
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
-		BET_Member_Request__c memberR = new BET_Member_Request__c(Status__c = 'New', External_User_Email__c = 'm.bluj@polsource.com',Brand_Experience_Toolkit__c = bet.id);
+		BET_Member_Request__c memberR = new BET_Member_Request__c(Status__c = 'New', External_User_Email__c = EMAIL_TEST,Brand_Experience_Toolkit__c = bet.id);
 		insert memberR;
-		System.assert(BET_AccessService.checkIfRequestExternalAccessIsPending(bet.id,'m.bluj@polsource.com'),'There should be pending member request for external user');
+		System.assert(BET_AccessService.checkIfRequestExternalAccessIsPending(bet.id,EMAIL_TEST),'There should be pending member request for external user');
 		Test.stopTest();
 	}
 	
@@ -68,7 +71,7 @@ private class BET_AccessServiceTest {
 		Test.startTest();
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
-		Id requestId = BET_AccessService.RequestExternalUserAccess('m.bluj@polsource.com',bet.id);
+		Id requestId = BET_AccessService.RequestExternalUserAccess(EMAIL_TEST,bet.id);
 		System.assert(requestId != null,'Access request identifier should not equal to null');
 		Test.stopTest();
 	}
@@ -89,6 +92,31 @@ private class BET_AccessServiceTest {
 		}catch(BET_CustomBETException e){
 			System.assertEquals(e.getMessage(),'BET record not found for given id null','Bet record should not be found');
 		}
+		Test.stopTest();
+	}
+
+	@isTest static void checkEmailUnileverTest(){
+		Test.startTest();
+		System.assert(BET_AccessService.checkEmail('mbluj@unilever.com') != null,'There should be error message');
+		Test.stopTest();
+	}
+
+	@isTest static void validateAndGetUserIdNullTest(){
+		Test.startTest();
+		try{
+			BET_AccessService.validateAndGetUserId(null,null);
+			System.assertEquals(0,1,EXCEPTION_MSG);
+		}catch(Exception e){
+			System.assertEquals(1,1,EXCEPTION_MSG);
+		}
+
+		try{
+			BET_AccessService.validateAndGetUserId(EMAIL_TEST,null);
+			System.assertEquals(0,1,EXCEPTION_MSG);
+		}catch(Exception e){
+			System.assertEquals(1,1,EXCEPTION_MSG);
+		}
+
 		Test.stopTest();
 	}
 	

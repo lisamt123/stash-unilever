@@ -15,6 +15,8 @@ global class AF_SendEmailToCatFinance implements Schedulable
             if(catFinanceDate[0].AF_Date__c == system.today()){
                 Send_Email__c NewEmailRecord= new Send_Email__c();
                 NewEmailRecord.sendEmailToCatFinance__c = true;
+                NewEmailRecord.Financial_Year__c =  String.valueOf(System.Today().year());
+                NewEmailRecord.URL_link_to_Agency_Fees__c = Label.AF_UrlLink;
                 insert NewEmailRecord;
                 system.debug('NewEmailRecord....'+NewEmailRecord);
             }

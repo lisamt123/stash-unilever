@@ -13,12 +13,14 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 @isTest (seeAllData=false)
 private class BET_BETServiceTest {
 	
+    private static final String EXCEPTION_MSG = 'Method should throw BET_CustomBETException'; 
+
     @isTest static void testGetBet(){
 		uw_BET__c betObject = BET_TestUtils.getTestBet();
         //test for not created bet 
         try{
             BET_BETService.GetBet(betObject.id);
-            system.assertEquals(0,1,'method should throw BET_CustomBETException');
+            system.assertEquals(0,1,EXCEPTION_MSG);
         }catch(BET_CustomBETException ex){
             system.assertEquals(String.format(Label.BetServiceGetBetError,new List<String>{betObject.id}),ex.getMessage(),'Exception should be equal to ' + String.format(Label.BetServiceGetBetError,new List<String>{betObject.id}));
         }
@@ -109,5 +111,38 @@ private class BET_BETServiceTest {
         System.assertEquals(tld.year(),2015,'Year should be 2015');
         System.assertEquals(tld.month(),3,'Month should be set to March');
         System.assertEquals(tld.day(),10,'Day should be 10');
+    }
+
+    @isTest static void getProductCategoryByMDOIdNullTest(){
+        Test.startTest();
+        try{
+            BET_BETService.getProductCategoryByMDOId('123xyz');
+            system.assertEquals(0,1,EXCEPTION_MSG);
+        }catch(BET_CustomBETException e){
+            system.assertEquals(1,1,EXCEPTION_MSG);
+        }
+        Test.stopTest();
+    }
+
+    @isTest static void updateBetNullTest(){
+        Test.startTest();
+        try{
+            BET_BETService.updateBet(null,null);
+            system.assertEquals(0,1,EXCEPTION_MSG);
+        }catch(BET_CustomBETException e){
+            system.assertEquals(1,1,EXCEPTION_MSG);
+        }
+        Test.stopTest();
+    }
+
+    @isTest static void updateBetFieldsNullTest(){
+        Test.startTest();
+        try{
+            BET_BETService.updateBetFields(null,null);
+            system.assertEquals(0,1,EXCEPTION_MSG);
+        }catch(BET_CustomBETException e){
+            system.assertEquals(1,1,EXCEPTION_MSG);
+        }
+        Test.stopTest();
     }
 }

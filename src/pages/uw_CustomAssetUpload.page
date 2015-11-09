@@ -5,6 +5,14 @@
     <apex:includeScript value="{!$Resource.BETApp}/js/jquery-ui.js" />
 
 	<style>
+    /*BEGIN fit content into dialog box*/
+    html, body {
+      height: 100%;
+    }
+    .min100 {
+      height: 100%;
+    }
+    /*END fit content into dialog box*/
     #ballsWaveG{
     position:relative;
     width:128px;
@@ -594,7 +602,7 @@
   }
   
   </style>
-  <apex:outputPanel layout="block" id="maincontainer" rendered="{!displayForm}">
+  <apex:outputPanel layout="block" id="maincontainer" styleClass="min100" rendered="{!displayForm}">
       <script>
         jQuery.noConflict();
         jQuery( document ).ready(function() {
@@ -631,9 +639,9 @@
       </script>
 
 
-      <apex:form >
+      <apex:form styleClass="min100">
       
-        <apex:tabPanel switchType="client" id="FileTabPanel" selectedTab="name1" tabClass="activeTab" inactiveTabClass="inactiveTab">
+        <apex:tabPanel switchType="client" id="FileTabPanel" selectedTab="name1" tabClass="activeTab" inactiveTabClass="inactiveTab" styleClass="min100">
 
         <apex:tab label="{!$Label.BET_File_Upload}" name="name1" id="tabOne">
         
@@ -647,41 +655,41 @@
           <apex:outputPanel >
             <input id="file-input" type="file" name="file"/>
             <div class="clear">&nbsp;</div>
-            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Asset_Name}</apex:outputLabel></div>
+            <div class="elem-label"><apex:outputLabel >{!$Label.BET_Asset_Name}</apex:outputLabel></div>
             <div class="elem"><apex:inputField value="{!file.Name}" id="fileName" /></div>
           </apex:outputPanel>
           <div class="clear">&nbsp;</div>
         </div>
         <div id="fileSubFunctionArea" class="elementHidden">
           <apex:outputPanel >
-            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Sub_Function}</apex:outputLabel></div> 
+            <div class="elem-label"><apex:outputLabel >{!$Label.BET_Sub_Function}</apex:outputLabel></div> 
             <div class="elem"><apex:inputField value="{!file.Sub_Function__c}" id="fileSubFunction"/></div>
           </apex:outputPanel>
         </div>
         <div id="fileAssetTypeArea" class="elementHidden">
           <apex:outputPanel >
-            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Asset_Type}</apex:outputLabel></div> 
+            <div class="elem-label"><apex:outputLabel >{!$Label.BET_Asset_Type}</apex:outputLabel></div> 
             <div class="elem"><apex:inputField value="{!file.Studio_Asset_Type__c}" id="fileAssetType"/></div>
           </apex:outputPanel>
           <div class="clear">&nbsp;</div>
         </div>       
         <div id="fileMediaChannelArea" class="elementHidden">
           <apex:outputPanel >
-            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Asset_Media_Type}</apex:outputLabel></div> 
+            <div class="elem-label"><apex:outputLabel >{!$Label.BET_Asset_Media_Type}</apex:outputLabel></div> 
             <div class="elem"><apex:inputField value="{!file.Media_Type__c}" id="fileMediaChannel"/></div>
           </apex:outputPanel>
           <div class="clear">&nbsp;</div>
         </div>
         <div id="fileCountryArea" class="elementHidden">
           <apex:outputPanel >
-            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Asset_Country}</apex:outputLabel></div> 
+            <div class="elem-label"><apex:outputLabel >{!$Label.BET_Asset_Country}</apex:outputLabel></div> 
             <div class="elem"><apex:inputField value="{!file.Country__c}" id="fileCountry"/></div>
           </apex:outputPanel>
           <div class="clear">&nbsp;</div>
         </div>
         <div id="fileStatusArea">
           <apex:outputPanel rendered="{!hasModifyAccess}">
-            <div class="elem-label"><apex:outputLabel>{!$Label.BET_Asset_Status}</apex:outputLabel></div> 
+            <div class="elem-label"><apex:outputLabel >{!$Label.BET_Asset_Status}</apex:outputLabel></div> 
             <div class="elem"><apex:inputField value="{!file.Status__c}" id="fileStatus" onchange="toogleExpectedAssetsComponent(this.value);"/></div>
             <div class="clear">&nbsp;</div>
           </apex:outputPanel>
@@ -697,13 +705,16 @@
         <br />        
         <p class="form-errors"></p> 
         <br />
-        <input type="button" value="{!$Label.BET_Upload_And_Save}" onclick="saveForm();"/> 
+        <input type="button" value="{!$Label.BET_Upload_And_Save}" onclick="saveForm();" 
+               style="background: #BE236D;color:white;width:120px;height:30px;font-size:15px;font-family: Rockwell;border: none;
+               font-weight: 600;"/> 
         <p class="process-status"></p> 
         <div id="ballsWaveG">
           <div id="ballsWaveG_1" class="ballsWaveG">
           </div>
           <div id="ballsWaveG_2" class="ballsWaveG">
-                  <div id="ballsWaveG_3" class="ballsWaveG">
+          </div>
+          <div id="ballsWaveG_3" class="ballsWaveG">
           </div>
           <div id="ballsWaveG_4" class="ballsWaveG">
           </div>
@@ -724,12 +735,12 @@
         </apex:actionFunction> 
 
         <apex:pageMessages />
-  </div>
+  <!--</div> -->
         
         </apex:tab>
         
           <apex:tab label="{!$Label.BET_Multi_File_Upload}" name="name2" id="tabTwo">
-            <iframe src="/apex/BET_MultiUploadAssets?betid={!bet.id}&parent={!parentId}" style="width:100%;height:100%;border:none;"></iframe>
+            <iframe src="/apex/BET_MultiUploadAssets?betid={!bet.id}&parent={!parentId}&status={!assetTab}" style="width:100%;height:100%;border:none;"></iframe>
           </apex:tab>
         
         </apex:tabPanel>

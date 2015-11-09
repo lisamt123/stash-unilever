@@ -45,11 +45,12 @@ public with sharing class BET_ExpectedAssetsController {
 			Boolean hasSavedExpectedAssetsData = !expectedAssetsData.isEmpty();
 			if(hasSavedExpectedAssetsData) {
 				for(BET_ExpectedAssets__c exAsset : expectedAssetsData){
-					expectedAssetsForBET.add(new ExpectedAssetsWrapper(exAsset.Type__c,Integer.valueOf(exAsset.Expected__c),exAsset.id));
+					Integer exp = Integer.valueOf(exAsset.Expected__c);
+					expectedAssetsForBET.add(new ExpectedAssetsWrapper(exAsset.Type__c,exp == 0 ? false : true,exAsset.id));
 				}
 			} else {
 				for(String mediaType : getAvailableMediaTypes()){
-					expectedAssetsForBET.add(new ExpectedAssetsWrapper(mediaType,0));
+					expectedAssetsForBET.add(new ExpectedAssetsWrapper(mediaType,false));
 				}
 			}
 		}
@@ -92,13 +93,13 @@ public with sharing class BET_ExpectedAssetsController {
 		Map<String,Integer> assetNumberMap = BET_AssetService.approvedAssetTypesNumerMap(betIdentifier);
 
 		for(ExpectedAssetsWrapper wrapper : expectedAssetsForBET){
-			System.debug(wrapper.assetTypeName + ' : ' + wrapper.assetTypeNameExpectedNumber);
+			System.debug(wrapper.assetTypeName + ' : ' + wrapper.assetTypeNameExpected);
 			Integer actual = assetNumberMap.get(wrapper.assetTypeName) == null ? 0 : assetNumberMap.get(wrapper.assetTypeName);
-			if(wrapper.assetTypeNameExpectedNumber == 0){
+			if(!wrapper.assetTypeNameExpected){
 				actual = 0;
 			}
 			expectedAssetsData.add(new BET_ExpectedAssets__c(id = wrapper.relatedObjectId,
-											Expected__c = wrapper.assetTypeNameExpectedNumber,
+											Expected__c = wrapper.assetTypeNameExpected ? 1 : 0,
 											Actual__c = actual,
 											Type__c = wrapper.assetTypeName,
 											Brand_Experience_Toolkit__c = betIdentifier));
@@ -111,17 +112,17 @@ public with sharing class BET_ExpectedAssetsController {
     *************************************************************/
 	public class ExpectedAssetsWrapper {
 		public String assetTypeName{get;set;}
-		public Integer assetTypeNameExpectedNumber{get;set;}
+		public Boolean assetTypeNameExpected{get;set;}
 		public Id relatedObjectId {get;set;}
 
-		public ExpectedAssetsWrapper(String name, Integer count){
+		public ExpectedAssetsWrapper(String name, Boolean exp){
 			assetTypeName = name;
-			assetTypeNameExpectedNumber = count;
+			assetTypeNameExpected = exp;
 		}
 
-		public ExpectedAssetsWrapper(String name, Integer count, Id objectId){
+		public ExpectedAssetsWrapper(String name, Boolean exp, Id objectId){
 			assetTypeName = name;
-			assetTypeNameExpectedNumber = count;
+			assetTypeNameExpected = exp;
 			relatedObjectId = objectId;
 		}
 	}

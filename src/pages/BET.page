@@ -14,10 +14,6 @@
 
     <script src="{!$Resource.BET_PDF_JS}/web/compatibility.js"></script>
 
-    <apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    
     <!-- This snippet is used in production (included from viewer.html) -->
     <link rel="resource" type="application/l10n" href="{!$Resource.BET_PDF_JS}/web/locale/locale.properties"/>
     <script src="{!$Resource.BET_PDF_JS}/web/l10n.js"></script>
@@ -36,7 +32,14 @@
     <![endif]-->
     <script src="{!$Resource.BETApp}/js/vendor.js"></script>
 
-    <script src="{!$Resource.BET}/scripts/BET_UI_BOOTSTRAP.js"></script>
+	<style>
+	
+		#uploadAssetmd .unileverApp .modal-dialog {
+			width:1200px;
+			margin:30px auto;
+		}
+	
+	</style>
 
 
     <script type="text/javascript">
@@ -54,7 +57,8 @@
             helpLink: '{!helpLink}',
             BETTemplateLink: '{!BETTemplateLink}',
             environment: 'SF',
-            betOperationAdmin : {!betOperationAdmin}
+            betOperationAdmin: {!betOperationAdmin},
+            homeInfoText: '{!homeInfoText}'
         };
         var appConfig = angular.module('appConfig', []).constant('sfConfig', sfConfig);
     </script>

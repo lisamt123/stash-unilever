@@ -44,8 +44,8 @@
         </actions>
         <active>true</active>
         <formula>IF(ISNEW(), 
- ISPICKVAL(Status__c,&apos;Approved&apos;)
-,AND(ISPICKVAL(Status__c,&apos;Approved&apos;), ISCHANGED(Status__c))
+AND(ISPICKVAL(Status__c,&apos;Approved&apos;),NOT(Do_Not_Notify_User__c))
+,AND(ISPICKVAL(Status__c,&apos;Approved&apos;), ISCHANGED(Status__c), NOT(Do_Not_Notify_User__c))
 )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
@@ -56,11 +56,6 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <criteriaItems>
-            <field>BET_Member_Request__c.Status__c</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </criteriaItems>
         <criteriaItems>
             <field>BET_Member_Request__c.Do_Not_Notify_Bet__c</field>
             <operation>equals</operation>

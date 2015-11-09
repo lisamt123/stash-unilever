@@ -19,8 +19,10 @@ private class uw_BetEditController_Test {
 
     private static final String TEST_BLOB = 'aGVsbG8=';
 
+    private static final String TEST_BET_NAME = 'Test BET1_';
+
     static testMethod void testMethodOne(){     
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET(TEST_BET_NAME+system.now(), true);
 
         uw_Bet__c tbet = BET_TestUtils.getTestBet();
         tbet.Launch_Date__c = date.today();
@@ -79,7 +81,7 @@ private class uw_BetEditController_Test {
     }
     
     static testMethod void testMethodThree(){     
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET(TEST_BET_NAME+system.now(), true);
         BET_TestingHelper.initBET('Test BET2', true);
         
         uw_Bet__c tbet = BET_TestUtils.getTestBet();
@@ -106,5 +108,51 @@ private class uw_BetEditController_Test {
         Test.startTest();
         System.assert(controller.saveBET() == null,EMPTY_PAGE_REFERENCE);
         Test.stopTest();
+    }
+
+    static testMethod void softDeleteTest(){
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET(TEST_BET_NAME+system.now(), true);
+        BET_TestingHelper.initBET('Test BET2', true);
+        
+        uw_Bet__c tbet = BET_TestUtils.getTestBet();
+        tbet.Launch_Date__c = date.today();
+        insert tbet;
+        wrap.BET = tbet;
+
+        System.CurrentPageReference().getParameters().put('Id', wrap.BET.Id);
+
+        ApexPages.Standardcontroller sc = new ApexPages.Standardcontroller(wrap.BET);
+        uw_BetEditController controller = new uw_BetEditController(sc);
+
+        Test.startTest();
+        System.assert(controller.softDeleteBET() == null,EMPTY_PAGE_REFERENCE);
+        Test.stopTest();
+
+    }
+
+    static testMethod void updateBetTest(){
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET(TEST_BET_NAME+system.now(), true);
+        BET_TestingHelper.initBET('Test BET2', true);
+        
+        uw_Bet__c tbet = BET_TestUtils.getTestBet();
+        tbet.Launch_Date__c = date.today();
+        insert tbet;
+
+        tbet.Status__c = 'First release';
+
+        tbet.Launch_Date__c = date.today().addDays(180);
+        
+        tbet.FinalReleaseDate__c = date.today().addDays(1);
+
+        tbet.FirstReleaseDate__c = date.today().addDays(1);
+
+        update tbet;
+
+        tbet = [select Status__c from uw_Bet__c where id =: tbet.id];
+
+        Test.startTest();
+        System.assertEquals(tbet.Status__c,'First release','Status should be First release');
+        Test.stopTest();
+
     }
 }

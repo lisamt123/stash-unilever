@@ -220,15 +220,24 @@ public with sharing class BET_SuggestMembersController {
         SuggestedMembersWrapper otherMemebersWrapper = new SuggestedMembersWrapper();
         otherMemebersWrapper.groupName = Label.BET_SuggestedMemberOtherMembers;
         otherMemebersWrapper.groupUsers = new List<SuggestedMemberItemWrapper>();
+        otherMemebersWrapper = getWrapper(otherMemebersWrapper,otherMemebers,suggestedUsers,managersMap);
+        membersToDisplay.add(otherMemebersWrapper);
+
+        System.debug('Exiting method getSuggestedMembers with following result:'+JSON.serialize(membersToDisplay));
+        return membersToDisplay;
+	}
+
+    @TestVisible
+    private SuggestedMembersWrapper getWrapper(SuggestedMembersWrapper otherMemebersWrapper,List<Id> otherMemebers,Map<Id,User> suggestedUsers,Map<Id,Id> managersMap){
         if(!otherMemebers.isEmpty()){
             for(Id otherMemberId : otherMemebers){
                 if(suggestedUsers.containsKey(otherMemberId)){
                     SuggestedMemberItemWrapper memberItemWrap = new SuggestedMemberItemWrapper();
-                    memberItemWrap.userInfo =   suggestedUsers.get(otherMemberId);
+                    memberItemWrap.userInfo = suggestedUsers.get(otherMemberId);
                    
                     //check if user is manager  
                     if(managersMap.containsKey(otherMemberId)){
-                     	memberItemWrap.isManager = true;     
+                        memberItemWrap.isManager = true;     
                     }else{
                         memberItemWrap.isManager = false;
                     }
@@ -237,11 +246,8 @@ public with sharing class BET_SuggestMembersController {
                 }
             }
         }
-        membersToDisplay.add(otherMemebersWrapper);
-
-        System.debug('Exiting method getSuggestedMembers with following result:'+JSON.serialize(membersToDisplay));
-        return membersToDisplay;
-	}
+        return otherMemebersWrapper;
+    }
     
     /************************************************************
         Purpose: Method adding newly added members to suggested_MembersCtrl property from 
