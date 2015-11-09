@@ -287,6 +287,8 @@
         <members>BET_AssetHandler</members>
         <members>BET_AssetHandlerCls</members>
         <members>BET_AssetHandlerClsTest</members>
+		<members>BET_AssetsOrderController</members>
+		<members>BET_AssetsOrderController_Test</members>
         <members>BET_AssetService</members>
         <members>BET_AssetServiceTest</members>
         <members>BET_BETChangesLogger</members>
@@ -1090,6 +1092,7 @@
         <members>BC_picker_color_result</members>
         <members>BC_uploadImage_Attachments</members>
         <members>BET</members>
+		<members>BET_AssetsOrder</members>
         <members>BET_Chatter</members>
         <members>BET_EditAsset</members>
         <members>BET_ManageMembers</members>
