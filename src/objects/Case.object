@@ -2335,6 +2335,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CORE.USERS.ALIAS</columns>
         <columns>Country_Name__c</columns>
         <columns>Language__c</columns>
+        <columns>Brand__c</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
