@@ -54,9 +54,9 @@ global with sharing class BET_ManageMembersController {
         selectAll = false;
         requestsShouldBeAutoapproved = false;
 
-        isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
-        isBETOperationAdmin = BET_CommonService.isBETOperationAdmin();
         isHubAdmin = BET_CommonService.isHubAdmin();
+        isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(betId, UserInfo.getUserId());
+        isBETOperationAdmin = BET_CommonService.isBETOperationAdmin() && !isBetOwnerOrManager && !isHubAdmin;
 
         requestsShouldBeAutoapproved = isBetOwnerOrManager || isHubAdmin;
     

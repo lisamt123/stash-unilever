@@ -1098,6 +1098,7 @@
         <members>BET_ManageMembers</members>
 		<members>BET_MultiUploadAssets</members>
         <members>BET_NewBet</members>
+        <members>BET_SingleAssetUpload</members>
         <members>BET_UpdateExpectedAssets</members>
         <members>BandwidthExceeded</members>
         <members>BatchJobManager</members>
