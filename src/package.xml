@@ -1529,6 +1529,7 @@
         <members>BET_UpdateExpectedAssets</members>
 		<members>BET_MultiUploadAssets</members>
 		<members>BET_AssetsOrder</members>
+		<members>BET_SingleAssetUpload</members>
         <name>ApexPage</name>
     </types>
     <types>
