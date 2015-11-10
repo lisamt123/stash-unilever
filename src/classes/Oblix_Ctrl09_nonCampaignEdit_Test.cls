@@ -142,9 +142,10 @@ private class Oblix_Ctrl09_nonCampaignEdit_Test {
             
             controller.ElemToDel = 0; 
             controller.delElm();    
-                 
-              
-                 Test.stopTest();
+            System.assertEquals(controller.newItems.size(),1);
+            
+            
+            Test.stopTest();
                
          }
     }

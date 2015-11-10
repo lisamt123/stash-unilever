@@ -29,6 +29,7 @@ private class Oblix_Ctrl10_nonCampaignView_Test {
                        Test.setCurrentPage(pageref) ;
                   Oblix_Ctrl10_nonCampaignView  controller = new Oblix_Ctrl10_nonCampaignView();
                  //   System.assertEquals(controller.asset.Id, asset.Id); // assert that the controller take the ID from params
+                 System.assertEquals(controller.activities.size(),0);
                  controller.addnewItems();
                  controller.back();
                Test.stopTest();
