@@ -111,6 +111,8 @@ public with sharing class BET_CategoryBrandSelectionController {
 		if(fbEnabled) {
 			fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(selectedCategory) : false;
 			updateFabricData(fabricConditionerCategory);
+		} else {
+			fabricConditioner = NO;
 		}
 		//FabricConditioner end
 
@@ -156,6 +158,8 @@ public with sharing class BET_CategoryBrandSelectionController {
 		if(fbEnabled){
 			fabricConditionerCategory = false;
 			updateFabricData(fabricConditionerCategory);
+		} else {
+			fabricConditioner = NO;
 		}
 		//FabricConditioner end
 

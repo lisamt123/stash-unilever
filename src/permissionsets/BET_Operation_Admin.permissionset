@@ -7140,11 +7140,6 @@
     </fieldPermissions>
 	<fieldPermissions>
         <editable>false</editable>
-        <field>BET_ExpectedAssets__c.Brand_Experience_Toolkit__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>false</editable>
         <field>BET_ExpectedAssets__c.Expected__c</field>
         <readable>true</readable>
     </fieldPermissions>
