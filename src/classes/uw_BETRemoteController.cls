@@ -76,7 +76,11 @@ public with sharing class uw_BETRemoteController {
         betPrefix = uw_BET__c.SObjectType.getDescribe().getKeyPrefix();
         hasReadAll = BET_CommonService.hasAccess(true) ? 'true' : 'false';
         hasModifyAll = BET_CommonService.hasAccess(false) ? 'true' : 'false';
-        betOperationAdmin = BET_CommonService.isBETOperationAdmin() ? 'true' : 'false';
+
+        Boolean isHubAdmin = BET_CommonService.isHubAdmin();
+        Boolean isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(newBetId, UserInfo.getUserId());
+
+        betOperationAdmin = BET_CommonService.isBETOperationAdmin() && !isHubAdmin && !isBetOwnerOrManager ? 'true' : 'false';
         expectedAssetsProvided = BET_AssetService.expectedAssetsSetForBet(newBetId) ? 'true' : 'false';
         if (newBetId == null) {
             newBetId = '';
