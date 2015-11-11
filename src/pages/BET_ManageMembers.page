@@ -9,6 +9,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
 <apex:page standardController="BET_Member_Request__c" showHeader="false" extensions="BET_ManageMembersController"  id="memberpage">
 
+  <apex:stylesheet value="{!$Resource.BET}/css/BETCommon.css" />
   <apex:stylesheet value="{!$Resource.BET}/css/BETManageMembersStyles.css" />
   <apex:includeScript value="{!$Resource.BET}/scripts/BETManageMembersJS.js" />
 
@@ -57,15 +58,14 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             </td>
             <td>
               <div style="float:right">
-                <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addMember}" rendered="{!OR(isBetOwnerOrManager,isHubAdmin)}"
-                                    styleClass="buttong2y" style="background: #BE236D; color:white;height: 35px;font-size:12px;font-family: Rockwell;width: 110px;" >
+                <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addMember}" rendered="{!OR(isBetOwnerOrManager,isHubAdmin)}" styleClass="btn-small-pink" style="height: 35px;width: 110px;" >
 
                 </apex:commandButton>
 
                 <apex:commandButton value="{!$Label.BET_Suggest_Member}" action="{!addMember}" 
                                     rendered="{!NOT(OR(isBetOwnerOrManager,isHubAdmin))}"
                                     onclick="alert('{!$Label.BET_Suggest_Member_Message}'); return true;"
-                                    styleClass="buttong2y" style="background: #BE236D; color:white;height: 35px;font-size:12px;font-family: Rockwell;width: 110px;" >
+                                    styleClass="btn-small-pink" style="height: 35px;width: 110px;">
                 </apex:commandButton>
               </div>
             </td>
@@ -86,7 +86,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
               <td>
                 <div style="float:right">
                   <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addExternalMember}"
-                                    styleClass="buttong2y" style="background: #BE236D; color:white;height: 35px;font-size:12px;font-family: Rockwell;width: 110px;"/> 
+                                    styleClass="btn-small-pink" style="height: 35px;width: 110px;"/> 
                 </div>
               </td>
             </tr>
@@ -100,8 +100,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
         
           <apex:commandButton value="{!$Label.BET_Delete_selected}" action="{!massDelete}" 
                               rendered="{!OR(isBetOwnerOrManager,isHubAdmin)}"
-                              styleClass="buttong2y" 
-                              style="background: #BE236D; color:white;height: 35px;font-size:12px;font-family: Rockwell;width: 110px;"/> 
+                              styleClass="btn-small-pink" style="height: 35px;width: 110px;"/> 
        
         </div>
 
