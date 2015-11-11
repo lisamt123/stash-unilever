@@ -1626,6 +1626,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>All figures in thousands of Euro unless another currency is specified.</value>
     </labels>
     <labels>
+        <fullName>PSAR_Chatter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PSAR_CollaborateOnChatter</shortDescription>
+        <value>Collaborate on PR Supply Chain Metrics</value>
+    </labels>
+    <labels>
         <fullName>Rollout_No_Records_Msg</fullName>
         <language>en_US</language>
         <protected>false</protected>

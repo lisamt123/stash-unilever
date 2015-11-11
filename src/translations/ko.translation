@@ -45,6 +45,14 @@
         <name>New_Win_POS</name>
     </customApplications>
     <customApplications>
+        <label><!-- OneView --></label>
+        <name>OneView</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- PSAR --></label>
+        <name>PSAR</name>
+    </customApplications>
+    <customApplications>
         <label><!-- Pitch --></label>
         <name>Pitch</name>
     </customApplications>
@@ -1773,6 +1781,10 @@
         <name>Matrix_Currency_Desc</name>
     </customLabels>
     <customLabels>
+        <label><!-- PSAR_CollaborateOnChatter --></label>
+        <name>PSAR_Chatter</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Rollout No Records Msg --></label>
         <name>Rollout_No_Records_Msg</name>
     </customLabels>
@@ -2357,6 +2369,14 @@
         <name>Network_Tracking</name>
     </customTabs>
     <customTabs>
+        <label><!-- One View --></label>
+        <name>One_View</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Supply Chain Metrics --></label>
+        <name>PSARSupplyChainMetrics</name>
+    </customTabs>
+    <customTabs>
         <label><!-- Repeatable Models --></label>
         <name>Repeatable_Models</name>
     </customTabs>
@@ -2578,6 +2598,19 @@
         <sections>
             <label><!-- Entity Exceptions --></label>
             <name>Entity Exceptions</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Alert Extracts with Alert Details --></description>
+        <label><!-- Alert Extracts with Alert Details --></label>
+        <name>Alert_Extracts_with_Alert_Details</name>
+        <sections>
+            <label><!-- Alert Extracts --></label>
+            <name>Alert Extracts</name>
+        </sections>
+        <sections>
+            <label><!-- Predictive Service Alerts --></label>
+            <name>Predictive Service Alerts</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -2932,6 +2965,23 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- Categories with PSAR Alert and Details --></description>
+        <label><!-- Categories with PSAR Alert and Details --></label>
+        <name>Categories_with_PSAR_Alert_and_Details</name>
+        <sections>
+            <label><!-- PSAR Alerts --></label>
+            <name>PSAR Alerts</name>
+        </sections>
+        <sections>
+            <label><!-- PSAR Alerts Details --></label>
+            <name>PSAR Alerts Details</name>
+        </sections>
+        <sections>
+            <label><!-- PSAR Categories --></label>
+            <name>PSAR Categories</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- Chatter Groups with Group Feed --></description>
         <label><!-- Chatter Groups with Group Feed --></label>
         <name>Chatter_Groups_with_Group_Feed</name>
@@ -3184,6 +3234,23 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- Locations with PSAR Alerts and Details --></description>
+        <label><!-- Locations with PSAR Alerts and Details --></label>
+        <name>Locations_with_PSAR_Alerts_and_Details</name>
+        <sections>
+            <label><!-- PSAR Alerts --></label>
+            <name>PSAR Alerts</name>
+        </sections>
+        <sections>
+            <label><!-- PSAR Alerts Details --></label>
+            <name>PSAR Alerts Details</name>
+        </sections>
+        <sections>
+            <label><!-- PSAR Locations --></label>
+            <name>PSAR Locations</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- MC Mobile Usage --></description>
         <label><!-- MC Mobile Usage --></label>
         <name>MC_Mobile_Usage</name>
@@ -3308,6 +3375,15 @@
             </columns>
             <label><!-- PO Report --></label>
             <name>PO Report</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- One View Report Usage --></description>
+        <label><!-- One View Report Usage --></label>
+        <name>One_View_Report_Usage</name>
+        <sections>
+            <label><!-- One View Report Usage --></label>
+            <name>One View Report Usage</name>
         </sections>
     </reportTypes>
     <reportTypes>

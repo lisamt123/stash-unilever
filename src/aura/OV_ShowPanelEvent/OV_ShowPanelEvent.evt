@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT" description="ShowPanel">
+    <aura:attribute name="targetPanelId" type="String" />
+</aura:event>

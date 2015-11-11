@@ -47,4 +47,9 @@
         <fullName>Title</fullName>
         <trackHistory>false</trackHistory>
     </fields>
+    <recordTypes>
+        <fullName>One_View</fullName>
+        <active>true</active>
+        <label>One View</label>
+    </recordTypes>
 </CustomObject>

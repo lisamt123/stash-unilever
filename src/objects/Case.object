@@ -3302,7 +3302,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.LAST_UPDATE_DATE_ONLY</field>
             <operation>lessOrEqual</operation>
-            <value>9/29/2015 12:00 AM</value>
+            <value>10/27/2015 12:00 AM</value>
         </filters>
         <label>Open cases older than 2 weeks</label>
         <language>en_US</language>
