@@ -50,3 +50,10 @@ body .btn.btn-small-pink {
     font-weight: normal;
     padding: 0px 0px;
 }
+
+body .btn.btn-small-gray {
+    background: #666a6b none repeat scroll 0 0;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 0px 0px;
+}
