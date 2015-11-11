@@ -1,5 +1,6 @@
-<apex:page showHeader="false" sidebar="false" controller="BET_UpdateExpectedAssetsController">
+<apex:page showHeader="false" sidebar="false" controller="BET_UpdateExpectedAssetsController" standardStylesheets="false">
 
+	<apex:stylesheet value="{!$Resource.BET}/css/BETCommon.css" />
 	<apex:stylesheet value="{!$Resource.BET}/css/BETManageMembersStyles.css" />
 	<apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />    
 
@@ -26,8 +27,7 @@
 				<apex:commandButton onclick="this.value = '{!$Label.BET_Saving}';saveExpAssetsOne();setFlag();"
 								value="{!$Label.BET_Save}"  
 								oncomplete="this.value = '{!$Label.BET_Save}';" 
-								styleClass="buttong2y" 
-								style="background: #BE236D;color:white;width:80px;height:30px;font-size:15px;border:none;border-radius: 0px;font-family:Rockwell;"
+								styleClass="betBtnPink" 
 								rerender="maincontainer"/>
 			</div>
 		</apex:form>

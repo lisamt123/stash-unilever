@@ -86,7 +86,6 @@ body .lookupInput input {
 .addmemberEmailInput{
   width: 432px;
 }
-
 body .btn.buttong2y[value="Delete"] {
   text-indent: -9999px;
   background-color: transparent !important;
@@ -97,7 +96,6 @@ body .btn.buttong2y[value="Delete"] {
   border: none;
   height: 25px;
 }
-
 
 body .lookupIcon,
 body .lookupIconOn {

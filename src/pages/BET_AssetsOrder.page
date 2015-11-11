@@ -1,5 +1,6 @@
 <apex:page controller="BET_AssetsOrderController" docType="html-5.0" title="Order Assets" showHeader="false" sidebar="false">
   	<apex:stylesheet value="{!$Resource.BET}/libs/jquery-ui/jquery-ui.css" />
+  	<apex:stylesheet value="{!$Resource.BET}/css/BETCommon.css" />
   	<apex:stylesheet value="{!$Resource.BET}/css/BETAssetsOrder.css" />
 
   	<apex:outputPanel layout="block" styleClass="frame">
@@ -29,7 +30,7 @@
 
 	<div class="aoButton">
 		<button id="sbid" onclick="this.innerHTML = '{!$Label.BET_Saving}'; saveOrder(); return false;" 
-			class="btnPink">
+			class="betBtnPink" style="margin-left: 20px; margin-top: 15px;">
 			{!$Label.BET_Save}
 		</button> 
 	</div>
