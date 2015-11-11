@@ -1,5 +1,6 @@
 <apex:page controller="uw_CustomAssetUploadExtension" showHeader="false" action="{!checkfeed}" >
 
+    <apex:stylesheet value="{!$Resource.BET}/css/BETCommon.css" />
     <apex:stylesheet value="{!$Resource.BET}/css/BETUploadAssetsStyles.css" />
     <apex:stylesheet value="{!$Resource.BET}/css/BETSingleAssetUpload.css" />
     <apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />
@@ -511,9 +512,7 @@
         <br />        
         <p class="form-errors"></p> 
         <br />
-        <input type="button" value="{!$Label.BET_Upload_And_Save}" onclick="saveForm();" 
-               style="background: #BE236D;color:white;width:120px;height:30px;font-size:15px;font-family: Rockwell;border: none;
-               font-weight: 600;"/> 
+        <input type="button" value="{!$Label.BET_Upload_And_Save}" onclick="saveForm();" class="betBtnPink" /> 
         <p class="process-status"></p> 
         <div id="ballsWaveG">
           <div id="ballsWaveG_1" class="ballsWaveG">

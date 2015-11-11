@@ -1,0 +1,59 @@
+.betBtnPink {
+    background: #BE236D none repeat scroll 0 0;
+    border: medium none;
+    color: white;
+    font-family: Rockwell;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 12px 40px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.betBtnGray {
+    background: #666a6b none repeat scroll 0 0;
+    border: medium none;
+    color: white;
+    font-family: Rockwell;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 12px 40px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+body .btn {
+    border: medium none;
+    color: white;
+    font-family: Rockwell;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 12px 40px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+body .btn.btn-pink {
+  	background: #BE236D none repeat scroll 0 0;
+}
+
+body .btn.btn-gray {
+  	background: #666a6b none repeat scroll 0 0;
+}
+
+body .btn.btn-small-pink {
+    background: #BE236D none repeat scroll 0 0;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 0px 0px;
+}
+
+body .btn.btn-small-gray {
+    background: #666a6b none repeat scroll 0 0;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 0px 0px;
+}
