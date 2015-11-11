@@ -1,0 +1,18 @@
+<aura:component >
+    <aura:attribute name="offset" type="integer" default="0"/>
+    <div class="row">
+        <div class="row kpiContent">
+            <div class="col-xs-12">
+                <div aura:id="scroller" class="js-scrollable">
+                  <c:OV_ReportKPIItem kpiTrend="decrease" delta="-2.5"/>
+                  <c:OV_ReportKPIItem kpiType="lead" delta="+3.5"/>
+                  <c:OV_ReportKPIItem isLarge="true" kpiType="case" delta="+15.3"/>
+                  <c:OV_ReportKPIItem kpiType="case" delta="+1.5"/>
+                  <c:OV_ReportKPIItem delta="+2.4"/>
+                  <c:OV_ReportKPIItem kpiTrend="decrease" kpiType="case" delta="-7.3"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offset">{!v.offset}</div>
+</aura:component>
