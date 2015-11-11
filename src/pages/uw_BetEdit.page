@@ -7,6 +7,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
   <apex:includeScript value="{!URLFOR($Resource.jscolor_1_4_1, 'jscolor/jscolor.js')}" />
     <apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />    
     <apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />    
+    <apex:stylesheet value="{!$Resource.BET}/css/BETCommon.css" />
     <apex:stylesheet value="{!$Resource.BET}/css/BETEditBetStyles.css" />
     <apex:includeScript value="{!$Resource.BET}/scripts/BetEdit.js" />  
     <script>
@@ -59,7 +60,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                         <div id="banner-area">
                             <apex:image width="325" height="62" rendered="{! bet.Banner_1_Location__c!=''  }" value="/servlet/servlet.FileDownload?file={!bet.Banner_1_Location__c }"/>
                         </div>
-                        <button type="button" id="clearCurrentBanner" class="clearButton">Clear</button> 
+                        <button type="button" id="clearCurrentBanner" class="betBtnPink">Clear</button> 
                     </apex:outputPanel>
                 </div>
                 <div>
@@ -68,7 +69,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                         html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Banner_1_Location__c.inlineHelpText}" />
                     <apex:outputLabel >Banner (640x150 pixels)</apex:outputLabel>
                     <apex:inputFile id="upload_banner" value="{!banner.body}" filename="{!banner.name}"/>
-                    <button type="button" id="clearFutureBanner" class="clearButton">Clear</button> 
+                    <button type="button" id="clearFutureBanner" class="betBtnPink">Clear</button> 
                 </div>
                 <div class="clear">&nbsp;</div> 
 
@@ -79,7 +80,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                         <div id="icon-area">
                             <apex:image width="40" height="40" rendered="{! bet.Icon_Location__c!=''  }" value="/servlet/servlet.FileDownload?file={!bet.Icon_Location__c }"/>
                         </div>
-                        <button type="button" id="clearCurrentIcon" class="clearButton">Clear</button>  
+                        <button type="button" id="clearCurrentIcon" class="betBtnPink">Clear</button>  
                     </apex:outputPanel>         
                 </div>
                 <div>
@@ -88,7 +89,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                         html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Icon_Location__c.inlineHelpText}" />
                     <apex:outputLabel >Icon (40x40 pixels)</apex:outputLabel>
                     <apex:inputFile id="upload_icon" value="{!icon.body}" filename="{!icon.name}"/>
-                    <button type="button" id="clearFutureIcon" class="clearButton">Clear</button> 
+                    <button type="button" id="clearFutureIcon" class="betBtnPink">Clear</button> 
                 </div>              
                 <div class="clear">&nbsp;</div> 
                 <div class="clear">&nbsp;</div> 
@@ -110,11 +111,11 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             <div class="clear">&nbsp;</div>
             <div style="float:right">
 
-                <apex:commandButton value="{!$Label.BET_Delete_BET}" styleClass="btn-save" 
+                <apex:commandButton value="{!$Label.BET_Delete_BET}" styleClass="btn-pink" 
                     action="{!softDeleteBET}" rendered="{!AND(currentUserIsOwner,bet.Is_Deleted__c == false,bet.IPM_Project__c == null)}" 
                     onclick="return areYouSureToDelete(this,'{!$Label.BET_DeleteConfirmation}','{!$Label.BET_Deleting}');"/>
 
-                <apex:commandButton value="{!$Label.BET_Delete_BET}" styleClass="btn-cancel" 
+                <apex:commandButton value="{!$Label.BET_Delete_BET}" styleClass="btn-gray" 
                     onclick="alert('{!$Label.BET_Delete_BET_Linked}'); return false;"
                     rendered="{!AND(currentUserIsOwner,bet.Is_Deleted__c == false,bet.IPM_Project__c != null)}"/>
 
@@ -122,7 +123,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                     html-data-tooltip="{!$Label.BET_Delete_BET_Linked}" 
                     rendered="{!AND(currentUserIsOwner,bet.Is_Deleted__c == false,bet.IPM_Project__c != null)}"/>
 
-                <apex:commandButton value="{!$Label.BET_ArchiveBET}" styleClass="btn-save" 
+                <apex:commandButton value="{!$Label.BET_ArchiveBET}" styleClass="btn-pink" 
                     action="{!archiveBET}" rendered="{!AND(currentUserIsOwner,bet.Is_Archived__c == false)}" 
                     onclick="return areYouSure(this,'{!$Label.BET_ArchiveConfirmation}','{!$Label.BET_Archiving}');"/>
 
@@ -130,7 +131,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                     html-data-tooltip="Archived BETs are moved to the Archive area on the Home Page and Search" 
                     rendered="{!AND(currentUserIsOwner,bet.Is_Archived__c == false)}"/>
 
-                <apex:commandButton value="{!$Label.BET_UnArchiveBET}" styleClass="btn-save" 
+                <apex:commandButton value="{!$Label.BET_UnArchiveBET}" styleClass="btn-pink" 
                     action="{!unArchiveBET}" rendered="{!AND(currentUserIsOwner,bet.Is_Archived__c == true)}" 
                     onclick="return areYouSure(this,'{!$Label.BET_UnArchiveConfirmation}','{!$Label.BET_UnArchiving}');"/>
 
@@ -140,8 +141,8 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                 </div>
 
             <div style="float:left;">
-                <apex:commandButton value="{!$Label.BET_Save}" styleClass="btn-save" action="{!saveBET}" onclick="this.value = '{!$Label.BET_Saving}'"/>
-                <apex:commandButton value="{!$Label.BET_Cancel}"  styleClass="btn-cancel" action="{!cancelBET}"  onclick="this.value = '{!$Label.BET_Canceling}'"/>
+                <apex:commandButton value="{!$Label.BET_Save}" styleClass="btn-pink" action="{!saveBET}" onclick="this.value = '{!$Label.BET_Saving}'"/>
+                <apex:commandButton value="{!$Label.BET_Cancel}"  styleClass="btn-gray" action="{!cancelBET}"  onclick="this.value = '{!$Label.BET_Canceling}'"/>
             </div>
         </apex:outputPanel>
 

@@ -940,7 +940,7 @@ Are you sure you wish to proceed?</value>
         <shortDescription>BET_Header</shortDescription>
         <value>Create a New Brand Experience Toolkit</value>
     </labels>
-	<labels>
+    <labels>
         <fullName>BET_Help_Group_Name</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -972,7 +972,7 @@ Are you sure you wish to proceed?</value>
         <shortDescription>BET_InoplanProjectMandatory</shortDescription>
         <value>Inoplan Project is mandatory</value>
     </labels>
-	<labels>
+    <labels>
         <fullName>BET_InoplanProjectName</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -1288,7 +1288,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <shortDescription>BET_Suggest_Member</shortDescription>
         <value>Suggest Member</value>
     </labels>
-	<labels>
+    <labels>
         <fullName>BET_Suggest_Member_Message</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -1395,7 +1395,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <shortDescription>BET_TargetLaunchDate</shortDescription>
         <value>Target Launch Date</value>
     </labels>
-	<labels>
+    <labels>
         <fullName>BET_Tick_Info</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -1506,7 +1506,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Upload_And_Save</shortDescription>
-        <value>Upload &amp; save</value>
+        <value>Upload &amp; Save</value>
     </labels>
     <labels>
         <fullName>BET_Upload_Files</fullName>

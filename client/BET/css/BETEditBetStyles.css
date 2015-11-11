@@ -7,31 +7,7 @@ body {
 body input.btn {
   padding: 12px 40px;
 }
-body .btn {
-  font-family: 'Arial';
-  font-weight: normal;
-  border: none;
-  font-size: 13px;
-  color: #ffffff;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  border-radius: 0px;
-}
-body .btn.btn-cancel {
-  background: #666a6b;
-}
 
-body .btn.btn-deny {
-  background: #BE236D
-}
-
-body .btn.btn-approve {
-  background: #BE236D
-}
-
-body .btn.btn-save {
-  background: #be236d;
-}
 body button.clearButton {
   background: #be236d;
   border: none;
