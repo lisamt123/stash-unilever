@@ -175,9 +175,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 
       <div class="headerButtons">  
         <apex:commandButton value="{!$Label.BET_Approve_selected}" action="{!massApprove}" rendered="{!isBetOwnerOrManager}"
-          styleClass="buttong2y" style="background: #BE236D; color:white;height: 35px;font-size: 12px;font-family: Rockwell;width: 120px;"/> 
+          styleClass="btn-small-pink" style="height: 35px;width: 130px;"/> 
         <apex:commandButton value="{!$Label.BET_Deny_selected}" action="{!massDeny}" rendered="{!isBetOwnerOrManager}"
-          styleClass="buttong2y" style="background: #64625D; color:white;height: 35px;font-size: 12px;font-family: Rockwell;width: 120px;"/> 
+          styleClass="btn-small-gray" style="height: 35px;width: 130px;" /> 
       </div>
 
       <table width="100%" class="approveMembersTable">
