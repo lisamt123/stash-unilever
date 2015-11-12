@@ -281,7 +281,9 @@ public with sharing class BET_SuggestMembersController {
         System.debug('Entering method searchUsers : ' + betIdCtrl);
         Id betOwnerId = [SELECT OwnerId FROM uw_BET__c WHERE Id =: betIdCtrl Limit 1].get(0).OwnerId;
         System.debug('Preparing searchUsers query : ' + searchUserName  +', ' + betOwnerId);
-        String query = 'SELECT Id,Name,SmallPhotoUrl,Title from User where   name like \'%'+searchUserName+'%\' and isActive = true {0} and Id !=: betOwnerId Limit 50';
+        String query = 'SELECT Id,Name,SmallPhotoUrl,Title from User where   name like \'%'+searchUserName+'%\'  '
+         + ' and isActive = true {0} and Id !=: betOwnerId ' 
+         + ' and (Profile.UserLicense.Name = \'Salesforce Platform\' or Profile.UserLicense.Name = \'Salesforce\') Limit 50';
         
         if(suggested_MembersCtrl == null){
             query = query.replace('{0}','');
