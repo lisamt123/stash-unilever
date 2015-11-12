@@ -1,6 +1,77 @@
 @isTest 
 private class Oblix_Ctrl04OverrideProjectNew_Test {
 
+
+    static testMethod void ValueDriversProjectTest(){
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {
+            Test.startTest();
+
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
+
+            Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.id);
+
+            ApexPages.currentPage().getParameters().put('clone','1');
+            ApexPages.currentPage().getParameters().put('retUrl',project.id);
+            ApexPages.currentPage().getParameters().put('Id',project.id);
+
+            Oblix_Ctrl04OverrideProjectNew controller = new Oblix_Ctrl04OverrideProjectNew(new ApexPages.StandardController(project));
+
+            controller.project = project;
+
+            controller.ValueDriversProject('c1,c2,c4,c4');
+            controller.ValueDriversProject('c1,c2,c4,c4,c5,c6');
+            controller.ValueDriversProject('c1,c2,c4,c4,c5,c6,c7,c8,c9,c10,c11');
+            controller.ValueDriversProject('c1,c2,c4,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15,c16');
+
+            Test.stopTest();
+
+            System.assertEquals(controller.project.Project_Scale_1__c ,Oblix_Constants.Innovation_Projects_Market5,'Field should not be empty');
+
+        }
+
+    }
+
+    static testMethod void CloneProjectTest(){
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {
+            Test.startTest();
+
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
+
+            Oblix_TestUtils.createProjectAssets(project.id);
+
+            Oblix_TestUtils.createSowProjectSplits(project.id);
+
+            ApexPages.currentPage().getParameters().put('clone','1');
+            ApexPages.currentPage().getParameters().put('retUrl',project.id);
+            ApexPages.currentPage().getParameters().put('Id',project.id);
+
+            Oblix_Ctrl04OverrideProjectNew controller = new Oblix_Ctrl04OverrideProjectNew(new ApexPages.StandardController(project));
+
+            controller.project = project;
+
+            controller.CloneProject();
+
+            Test.stopTest();
+
+            List<Oblix_Project_Assets__c> assets = [select id from Oblix_Project_Assets__c limit 3];
+            List<Oblix_Marketing_SOW_Project_Splits__c> splits = [select id from Oblix_Marketing_SOW_Project_Splits__c limit 3];
+
+            System.assertEquals(assets.size(),2,'There should be 2 assets');
+            System.assertEquals(splits.size(),2,'There should be 2 splits');
+
+        }
+    }
+
     static testMethod void myUnitTest() {
         // TO DO: implement unit test
         Profile p=[Select Id from Profile where Name='System Administrator' or Name='Système Administrateur'];       

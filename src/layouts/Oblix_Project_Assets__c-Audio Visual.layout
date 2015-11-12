@@ -23,8 +23,16 @@
                 <behavior>Edit</behavior>
                 <field>Asset_Picklist__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Asset_Title__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Actual_Delivery_Date__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FULL_Description__c</field>

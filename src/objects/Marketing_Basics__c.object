@@ -63,14 +63,66 @@ Renamed to Other SOW items in reviews</description>
         <label>Activities</label>
         <picklist>
             <picklistValues>
-                <fullName>Competitor Review</fullName>
+                <fullName>Brand Book</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand Communication Idea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand equity development</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand Key Presentations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand Leadership Meetings</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand Leadership Workshops</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand Led Training for the agency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand Technical &amp;/or Infrastructure Reviews</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Competitive Reviews</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global Status Meetings</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Network Co-ordination (other agencies)</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Other</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>false</sorted>
+            <picklistValues>
+                <fullName>Regtional Status Meetings</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Status Reports</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>USLP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -273,6 +325,15 @@ Renamed to Other SOW items in reviews</description>
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Order__c</fullName>
+        <displayFormat>{0}</displayFormat>
+        <externalId>false</externalId>
+        <label>Order</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
     </fields>
     <fields>
         <fullName>Other_Activities__c</fullName>
@@ -787,6 +848,17 @@ Renamed to Other SOW items in reviews</description>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
+    <fields>
+        <fullName>non_campaign_title__c</fullName>
+        <externalId>false</externalId>
+        <label>non campaign title</label>
+        <length>36</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>SWOP Non Campaign Items</label>
     <listViews>
         <fullName>All</fullName>
@@ -794,10 +866,9 @@ Renamed to Other SOW items in reviews</description>
         <label>All</label>
     </listViews>
     <nameField>
-        <displayFormat>PROJOI {00000}</displayFormat>
         <label>Resource Name</label>
         <trackHistory>false</trackHistory>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>SWOP Non Campaign Items</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
@@ -809,11 +880,63 @@ Renamed to Other SOW items in reviews</description>
         <picklistValues>
             <picklist>Activities__c</picklist>
             <values>
-                <fullName>Competitor Review</fullName>
+                <fullName>Brand Book</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand Communication Idea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand Key Presentations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand Leadership Meetings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand Leadership Workshops</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand Led Training for the agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand Technical %26%2For Infrastructure Reviews</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand equity development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitive Reviews</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Status Meetings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Network Co-ordination %28other agencies%29</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regtional Status Meetings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Status Reports</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USLP</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1406,10 +1529,6 @@ Renamed to Other SOW items in reviews</description>
         <label>Dedicated Resource</label>
         <picklistValues>
             <picklist>Activities__c</picklist>
-            <values>
-                <fullName>Competitor Review</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>Other</fullName>
                 <default>false</default>

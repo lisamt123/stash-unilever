@@ -34,6 +34,31 @@ public with sharing class Oblix_Utils {
          return MapRTCaseToDeveloperName;
         
     }
+    public static list<string> getlstSubCat(){
+        
+         list<string> lst = new list<string>(); 
+         
+           lst.add(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory);
+           lst.add(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory);
+           lst.add(Label.Oblix_Lbl_UIUX_Audio_Subcategory);
+           lst.add(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory);
+           lst.add(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory);
+           lst.add(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory);
+           lst.add(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory);
+           lst.add(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory);
+           lst.add(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory);
+           lst.add(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory);
+           lst.add(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory);
+     
+           lst.add(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory);
+           lst.add(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory);
+     
+          lst.add(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory);
+          
+       return lst;   
+
+    
+    }
     public static list<string> lstSubCatPerRecT(string recType){
 
        list<string> lst = new list<string>(); 
@@ -58,7 +83,7 @@ public with sharing class Oblix_Utils {
                lst.add(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory);
                lst.add(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory);
            }          
-           if(recType == Label.Oblix_Lbl_UIUX_Stimulus){
+           if(recType == Label.Oblix_Lbl_UIUX_Stimulus_Materials){
               lst.add(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory);
            }          
              
@@ -75,41 +100,322 @@ public with sharing class Oblix_Utils {
          }
           return lstStage;
     }
+    public static map<string,list<string>> getMapSubCategOption(){
+            map<string,list<string>> mapSubCategOption = new map<string,list<string>>();
+            mapSubCategOption.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory,new list<string>());
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory).add('2');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory).add('3');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory).add('4');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory).add('5');
+            
+            mapSubCategOption.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory,new list<string>());
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory).add('1');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory).add('2');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory).add('3');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory).add('4');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory).add('5');
+            
+            mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory,new list<string>());
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('1');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('2');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('3');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('4');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('5');
+            
+            mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory,new list<string>());
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory).add('1');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory).add('2');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory).add('3');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory).add('4');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory).add('5');
+            
+            mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory,new list<string>());
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory).add('2');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory).add('3');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory).add('4');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory).add('5');
+           
+            mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory,new list<string>());
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory).add('1');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory).add('2');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory).add('3');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory).add('4');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory).add('5');
+            
+            mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory,new list<string>());
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory).add('1');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory).add('2');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory).add('3');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory).add('4');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory).add('5');
+                       
+            mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory,new list<string>());
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory).add('1');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory).add('2');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory).add('3');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory).add('4');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory).add('5');
+            
+            mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory,new list<string>());
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory).add('1');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory).add('2');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory).add('3');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory).add('4');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory).add('5');
+            
+            mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory,new list<string>());
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory).add('3');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory).add('4');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory).add('5');
+            
+            mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory,new list<string>());
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory).add('1');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory).add('2');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory).add('3');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory).add('4');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory).add('5');
+            
+            mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory,new list<string>());
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory).add('3');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory).add('4');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory).add('5');
+            
+            mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory,new list<string>());
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory).add('1');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory).add('2');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory).add('3');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory).add('4');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory).add('5');
+
+            mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory,new list<string>());
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory).add('2');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory).add('3');
+            mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory).add('4');
+
+        return mapSubCategOption;
+    }
     
-    public static id CloneProject(id idClonedFrom){
+    public static map<string,string> getmapSubCategOptionDescription(){
     
-     Oblix_SOW_Projects__c project = [Select Id,Name, Innovation_Projects__c ,Campaign_Fees_Total__c,Completed_Stage__c,Financial_Year__r.currency__c,Projected_Stage__c,BET_first_release__c,Value_to_be_paid_in_Current_FY__c,Campaign_Status__c,Preview_Date__c,Start_of_TV_production__c,Final_release__c,Live_Date__c,Live_date_Asset_delivery__c, Date_for_Assets_to_be_in_BET__c,Timescale_Notes__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c, Project_Finish_Date__c,Project_Stage__c,Platform__c,CreatedById, Project_Start_Date__c,CreatedDate,OblixRegion__c,Project_Priority__c,Project_Completion_Date__c,Description__c,OblixCountries__c,First_Air_Date__c,Production_Completion_Date__c, Financial_Year__c from Oblix_SOW_Projects__c where id=:idClonedFrom];   
-    //project old cloned, and assgned to it self for the new clone, Insert the cloned project   
-     project = project.clone();
-     insert project;
-     //get assets of the parent
-     List<Oblix_Project_Assets__c> lstAssetFromParent = [Select Target_Delivery_Date__c, Sub_Category__c,
-                                                 RecordTypeId, Quantity__c, OblixClonedFromParentAsset__c, Name, 
-                                                 Location__c, Id, FULL_Description__c, CreatedDate, Channels__c, 
-                                                 Asset_Type__c, Asset_Total_Score__c, Asset_Scoring_Number__c, Asset_Description__c, 
-                                                 Agency_Projects__c, Additional_Description__c, Actual_Delivery_Date__c 
-                                                 From Oblix_Project_Assets__c where Agency_Projects__c =: idClonedFrom];
-     //clone assets, insert them 
-     List<Oblix_Project_Assets__c> lstAssetClone = lstAssetFromParent.deepClone();
-                if(!lstAssetClone.isEmpty()){
-                    for(Oblix_Project_Assets__c assetClone : lstAssetClone){
-                        assetClone.Agency_Projects__c = project.Id;
-                    }
-                    insert lstAssetClone;
-                }                        
-     //get splits of the parent         
-     List<Oblix_Marketing_SOW_Project_Splits__c> lstSplitFromParent = [Select Id, Name, Project_Splits__c, OblixCountry__c, 
-                                                    Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c =: idClonedFrom
-                                                                ];
-     //clone splits, insert them 
-     List<Oblix_Marketing_SOW_Project_Splits__c> lstSplitClone = lstSplitFromParent.deepClone();
-            if(!lstSplitClone.isEmpty()){
-                for(Oblix_Marketing_SOW_Project_Splits__c splitClone : lstSplitClone){
-                    splitClone.Project_Splits__c = project.Id;
-                }
-                insert lstSplitClone;
+            map<string,string> mapSubCategOptionDescription = new map<string,string>();
+            
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory+2,Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score2);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory+3,Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score3);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory+4,Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score4);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory+5,Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score5);
+            
+
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory+1,Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score1);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory+2,Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score2);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory+3,Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score3);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory+4,Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score4);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory+5,Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score5);
+            
+
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory+1,Label.Oblix_Lbl_UIUX_Audio_Score1);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory+2,Label.Oblix_Lbl_UIUX_Audio_Score2);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory+3,Label.Oblix_Lbl_UIUX_Audio_Score3);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory+4,Label.Oblix_Lbl_UIUX_Audio_Score4);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory+5,Label.Oblix_Lbl_UIUX_Audio_Score5);
+            
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory+1,Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Score1);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory+2,Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Score2);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory+3,Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Score3);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory+4,Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Score4);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory+5,Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Score5);
+            
+
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory+2,Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Score2);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory+3,Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Score3);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory+4,Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Score4);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory+5,Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Score5);
+           
+
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory+1,Label.Oblix_Lbl_UIUX_Digital_campaign_assets_score1);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory+2,Label.Oblix_Lbl_UIUX_Digital_campaign_assets_score2);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory+3,Label.Oblix_Lbl_UIUX_Digital_campaign_assets_score3);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory+4,Label.Oblix_Lbl_UIUX_Digital_campaign_assets_score4);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory+5,Label.Oblix_Lbl_UIUX_Digital_campaign_assets_score5);
+            
+
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory+1,Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Score1);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory+2,Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Score2);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory+3,Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Score3);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory+4,Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Score4);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory+5,Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Score5);
+                       
+
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory+1,Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Score1);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory+2,Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Score2);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory+3,Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Score3);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory+4,Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Score4);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory+5,Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Score5);
+            
+
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory+1,Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Score1);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory+2,Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Score2);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory+3,Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Score3);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory+4,Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Score4);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory+5,Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Score5);
+            
+
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory+3,Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Score3);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory+4,Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Score4);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory+5,Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Score5);
+            
+
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory+1,Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score1);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory+2,Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score2);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory+3,Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score3);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory+4,Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score4);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory+5,Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score5);
+            
+
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory+3,Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Score3);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory+4,Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Score4);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory+5,Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Score5);
+            
+
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory+1,Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Score1);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory+2,Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Score2);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory+3,Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Score3);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory+4,Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Score4);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory+5,Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Score5);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory+2,Label.Oblix_Lbl_UIUX_Stim_require_Score2);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory+3,Label.Oblix_Lbl_UIUX_Stim_require_Score3);
+            mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory+4,Label.Oblix_Lbl_UIUX_Stim_require_Score4);
+            
+
+        return mapSubCategOptionDescription;
+    }
+    
+    public static map<string,string> getmapSubCategOptionDefinition(){
+    
+            map<string,string> mapSubCategOptionDefinition = new map<string,string>();
+            
+            mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory,Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Definition);
+
+            mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory,Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Definition);
+          
+            mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory,Label.Oblix_Lbl_UIUX_Audio_Definition);
+         
+            mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory,Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Definition);
+            
+
+            mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory,Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Definition);
+          
+            mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory,Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Definition);
+           
+            mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory,Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Definition);
+                 
+
+            mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory,Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Definition);
+           
+            mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory,Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Definition);
+           
+            mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory,Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Definition);
+            
+            mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory,Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Definition);
+            
+
+            mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory,Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Definition);       
+
+            mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory,Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Definition);
+
+            mapSubCategOptionDefinition.put(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory,Label.Oblix_Lbl_UIUX_Stim_require_Definition);
+
+        return mapSubCategOptionDefinition;
+    }
+    
+    public static string getSelectedStageCheckbox(string projected,string Completed){
+            string lstProjectedItems = '';
+            string lstCompletedItems = '';
+            if(projected == 'Projected Briefing'){
+                lstProjectedItems = 'Projected_Briefing';
+            } 
+            if(projected == 'Projected Strategy & Planning'){
+                lstProjectedItems = 'Projected_Briefing' + ',Projected_Strategy_Planning';
+            } 
+            if(projected == 'Projected Creative Ideation'){
+                lstProjectedItems = 'Projected_Briefing' + ',Projected_Strategy_Planning'+',Projected_Creative_Ideation';
+            } 
+            if(projected == 'Projected Creative Execution'){
+                lstProjectedItems = 'Projected_Briefing' + ',Projected_Strategy_Planning'+',Projected_Creative_Ideation'+',Projected_Creative_Execution';
             }
-        return project.id;     
-       }
-    
+            
+            if(projected == 'Projected Production'){
+                lstProjectedItems = 'Projected_Briefing' + ',Projected_Strategy_Planning'+',Projected_Creative_Ideation'+',Projected_Creative_Execution'+',Projected_Production';
+            }           
+            if(Completed == 'Completed Briefing'){
+                lstCompletedItems = 'Completed_Briefing' ;
+            } 
+            if(Completed == 'Completed Strategy & Planning'){
+                lstCompletedItems = 'Completed_Briefing' + ',Completed_Strategy_Planning';
+            } 
+            if(Completed == 'Completed Creative Ideation'){
+                lstCompletedItems = 'Completed_Briefing' + ',Completed_Strategy_Planning'+',Completed_Creative_Ideation';
+            } 
+            if(Completed == 'Completed Creative Execution'){
+                lstCompletedItems = 'Completed_Briefing' + ',Completed_Strategy_Planning'+',Completed_Creative_Ideation'+',Completed_Creative_Execution';
+            }
+            if(Completed == 'Completed Production'){
+                lstCompletedItems = 'Completed_Briefing' + ',Completed_Strategy_Planning'+',Completed_Creative_Ideation'+',Completed_Creative_Execution'+',Completed_Production';
+            } 
+            system.debug('###lst Stage :'+lstCompletedItems +','+lstProjectedItems); 
+            if(lstProjectedItems != '' && lstCompletedItems != ''){
+                return (lstCompletedItems +','+lstProjectedItems) ;  
+            }
+            else if(lstProjectedItems == ''){
+                return lstCompletedItems ;  
+            }
+            else if(lstCompletedItems != ''){
+                return lstProjectedItems ;  
+            }else{
+                return '';  
+             }                     
+        }
+        
+        public static map<string,string> getAbreViationForCardAssets(){
+        
+            map<string,string> mapAbreviation = new map<string,string>();
+            
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory,'OF');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory,'OL');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory,'AU');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory,'A');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory,'CD');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory,'CA');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory,'AR');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory,'AO');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory,'DA');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory,'A');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory,'O');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory,'A');      
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory,'O');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory,'R');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_AudioVisuel,'AV');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Digital,'D');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Experiential,'E');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Static_Img,'SI');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Stimulus_Materials,'SM');
+            
+            mapAbreviation.put('Activity','ACT');
+            mapAbreviation.put('Brand Communication Idea','BCI');
+            mapAbreviation.put('USLP','USLP');
+            mapAbreviation.put('Brand equity development',' BED');
+            mapAbreviation.put('Brand Leadership Meetings','BLM');
+            mapAbreviation.put('Brand Leadership Workshops','BLW');
+            mapAbreviation.put('Brand Technical &/or Infrastructure','BTI');
+            mapAbreviation.put('Brand Key Presentations','BKP');
+            mapAbreviation.put('Status Reports','SR');
+            mapAbreviation.put('Global Status Meetings','GSM');
+            mapAbreviation.put('Regional Status Meetings','RSM');
+            mapAbreviation.put('Network Co-ordination (other agencies)','NC');
+            mapAbreviation.put('Competitive Reviews','CR');
+            mapAbreviation.put('Brand Led Training for the agency','BLT');
+            mapAbreviation.put('Brand Book','BBK');
+            
+
+            return mapAbreviation;
+        }
 }

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
     <script src="{!URLFOR($Resource.JQueryBlockUI)}" ></script>
     <script>
-    
+    var showTab = false; 
     function showTab1(){
     $('#ui-id-1').trigger('click');
     blockme();
@@ -27,8 +27,6 @@
     $('#ui-id-2').trigger('click');
     blockme();
     /*
-        
-       
         $( "#tabs-1" ).css( "display", "none" );
         $( "#tabs-2" ).css( "display", "block" );
          
@@ -53,9 +51,19 @@
        } }); 
    }
    $(document).ready(function(){
-   
+          //
+          
+          if (!$('.hourss').val()) $('.hourss').val(0);
+          if (!$('.prcentt').val()) $('.prcentt').val(0);
         
             $('#tabs').tabs();
+           
+            if(showTab){
+                 
+                 showTab2();
+                $.unblockUI(); 
+                
+            } 
     });        
    </script>
    
@@ -699,7 +707,7 @@
          width:70px;
     }
     </style>
-   
+   <apex:outputPanel rendered="{!selectResource}">  <script> showTab = {!selectResource};</script>  </apex:outputPanel>
     <div class="Oblix_Container">
    
      <div class="Oblix_header"><!-- 2 levels -->
@@ -715,8 +723,8 @@
                 <td>
                 <div class="Oblix_header_activeArrow header_pos_2">
                 <div class="Oblix_header_arrowTitle" style="padding-top: 7px;">
-                    <apex:outputPanel rendered="{!sowId == null}" > Add Non Campaign Items <br/></apex:outputPanel>
-                    <apex:outputPanel rendered="{!sowId != null}" > Edit Non Campaign items<br/></apex:outputPanel>
+                    <apex:outputPanel rendered="{!MSid == null}" > Add Non Campaign Items <br/></apex:outputPanel>
+                    <apex:outputPanel rendered="{!MSid != null}" > Edit Non Campaign items<br/></apex:outputPanel>
                 </div>
                 </div>
                 
@@ -725,13 +733,13 @@
                 </div>
                 </td>
                 <td>
-                <div style="float:right;"><p>Hi {!userConnected.Name} !</p></div>
+                <div style="float:right;"><p>Hi  {!userConnected.Name} !</p></div>
                 </td>
             </tr>
         </table></div>
     </div>
     <br/><br/>
-    <apex:pagemessages ></apex:pagemessages>
+   
   
      <div class="Oblix_table padding_remove" style="border-radius: 15px;">
          <div class="Oblix_projects_container">  
@@ -739,7 +747,8 @@
             <table class="Oblix_projects_header" width="100%">
                 <tr>
                     <td width="100%">
-                        <h1 style="color: #fff;"><apex:outputText rendered="1">Add Non Campaign Items</apex:outputText> <apex:outputText rendered="1">Edit Non Campaign Items</apex:outputText></h1>
+                    
+                        <h1 style="color: #fff;"><apex:outputText rendered="{!!TitleEdit}" >Add Non Campaign Items</apex:outputText> <apex:outputText rendered="{!TitleEdit}">Edit Non Campaign Items</apex:outputText></h1>
                     </td>
                    
                      <td style="font-size: 20px; color: #fff; word-break: normal; padding-right:20px;">
@@ -800,22 +809,24 @@
                            
                            
                            <apex:outputPanel id="Oblix_ItemsId">
-                           <apex:actionFunction action="{!fillAgencyDepartment}" oncomplete="$.unblockUI()" name="adupdate" reRender="AD,RT,rate,hours,result,add"/>
-                            <apex:actionFunction action="{!fillRoleTitle}" oncomplete="$.unblockUI()" name="RTupdate" reRender="RT,rate,hours,result,add"/>
-                             <apex:actionFunction action="{!fillRate}" oncomplete="$.unblockUI()" name="Rateupdate" reRender="rate,hours,result,add"/>
-                             <apex:actionFunction action="{!calculResult}" oncomplete="$.unblockUI()"  name="resultupdate" reRender="result,add"/>
-                            <apex:actionFunction action="{!fillAgencyDepartment1}" oncomplete="$.unblockUI()" name="adupdate1" reRender="AD1,RT1,rate1,prcent,result1,add1"/>
-                            <apex:actionFunction action="{!fillRoleTitle1}" oncomplete="$.unblockUI()" name="RTupdate1" reRender="RT1,rate1,prcent,add1"/>
-                             <apex:actionFunction action="{!fillRate1}" oncomplete="$.unblockUI()" name="Rateupdate1" reRender="rate1,prcent,result1,add1"/>
-                             <apex:actionFunction action="{!calculResult1}" oncomplete="$.unblockUI()"  name="resultupdate1" reRender="result1,add1"/>
+                           <apex:actionFunction action="{!fillAgencyDepartment}" oncomplete="$.unblockUI()" name="adupdate" reRender="AD,RT,rate,result,add,errMsg" />
+                            <apex:actionFunction action="{!fillRoleTitle}" oncomplete="$.unblockUI()" name="RTupdate" reRender="RT,rate,result,add,errMsg"/>
+                             <apex:actionFunction action="{!fillRate}" oncomplete="$.unblockUI()" name="Rateupdate" reRender="rate,hours,result,add,errMsg"/>
+                             <apex:actionFunction action="{!calculResult}" oncomplete="$.unblockUI()"  name="resultupdate" reRender="result,add,errMsg"/>
+                            <apex:actionFunction action="{!fillAgencyDepartment1}" oncomplete="$.unblockUI()" name="adupdate1" reRender="AD1,RT1,rate1,result1,add1,errMsg1"/>
+                            <apex:actionFunction action="{!fillRoleTitle1}" oncomplete="$.unblockUI()" name="RTupdate1" reRender="RT1,rate1,add1,errMsg1"/>
+                             <apex:actionFunction action="{!fillRate1}" oncomplete="$.unblockUI()" name="Rateupdate1" reRender="rate1,prcent,result1,add1,errMsg1"/>
+                             <apex:actionFunction action="{!calculResult1}" oncomplete="$.unblockUI()"  name="resultupdate1" reRender="result1,add1,errMsg1"/>
                               
-                             <apex:actionFunction action="{!delElm}" oncomplete="$.unblockUI()"  name="delelem" reRender="Oblix_card"/>
-                             <apex:actionFunction action="{!editItem}" oncomplete="$.unblockUI()"  name="delelemEdit" reRender="Oblix_card,country,AD, RT, rate, hours,result"/>
+                             <apex:actionFunction action="{!delElm}" oncomplete="$.unblockUI()"  name="delelem" reRender="Oblix_card,errMsg"/>
+                             <apex:actionFunction action="{!editItem}" oncomplete="$.unblockUI()"  name="delelemEdit" reRender="Oblix_card,country,AD, RT, rate, hours,result,errMsg1"/>
                 
                 <apex:outputPanel id="allInputs">              
                            <div class="Oblix_recordType">
                            <!-- <apex:COmmandButton action="{!AddToProjectAction}" reRender="Oblix_card"/>
                            <apex:inputField value="{!assetJoe.Oblix_Quantity__c}" /> -->
+                            
+                             
                            <table width="100%">
                                <tr class="Oblix_recordTypeth">
                                     <th>
@@ -832,27 +843,44 @@
                                             <li id="t1"><a href="#tabs-1">Activity</a></li>
                                             <li id="t2"><a href="#tabs-2">Dedicated Resource</a></li>
                                           </ul>
-                                          <div id="tabs-1">
-                                               <table width="100%">
+                                     <div id="tabs-1">
+                                
+                               
+                               <apex:actionRegion >
+                             <apex:outputPanel id="errMsg">
+                                   <apex:outputPanel rendered="{!errMsg}"  >                          
+                                        <apex:pagemessages ></apex:pagemessages>
+                                   </apex:outputPanel>   
+                              </apex:outputPanel>
+                               
+                               <apex:outputPanel id="myMessages">      
+                                   <apex:outputPanel rendered="{!myMessages}"  >                          
+                                       <apex:pagemessages ></apex:pagemessages>
+                                   </apex:outputPanel>         
+                              </apex:outputPanel>
+                             
+                                <table width="100%">
                             <tr>
+                             
                             <td width="100%">
                                <section class="PrColumn1">
                                    <table width="100%" >
+                                  
                                      <tr>
-                                          <td>  <apex:inputtext styleClass="input_init"  value="{!name}" style="width:200px ;" html-placeholder="Non Campaign Item Name" id="nameid" />
+                                          <td>  <apex:inputtext styleClass="input_init"  value="{!name}" style="width:200px ;" html-placeholder="Activity name" id="nameid"  />
                                           </td>
                                           <td>
                                             <input type="radio" name="activity" value="{!pick}"  />
                                           <!--  <input type="radio" name="activity" value="{!pick}" onclick="changeValue(this,'{!$Component.RadioButtonValue}');" /> -->
                                           </td>
                                            <td>
-                                            <apex:inputField value="{!lookupActivity.Activities__c}"  style="min-width:90%; min-height:30px;" id="activityid" />
+                                            <apex:inputField value="{!lookupActivity.Activities__c}"  style="min-width:90%; min-height:30px;" id="activityid"  onchange="if ($(this).val()=='Other'){ $('.otherr').prop('disabled', false);}else{ $('.otherr').prop('disabled', true);}"  />
                                           </td>
                                             <td>
                                             <input type="radio" name="activity" value="{!nopick}" />
                                           </td>
                                           <td>
-                                            <apex:inputText value="{!lookupActivity.Other_Activities__c}" styleClass="input_init"    html-placeholder="please describe if not listed"/>
+                                            <apex:inputText value="{!lookupActivity.Other_Activities__c}" styleClass="input_init otherr"  id="otherId"   html-placeholder="please describe if not listed" disabled="true"/>
                                           </td>
                                      </tr>
                                     
@@ -872,43 +900,46 @@
                                           
                                          -->
                                           <td>
-                                               <apex:selectList size="1" value="{!selectedCountryname}" onchange="adupdate();blockme();" styleclass="picklist_init"   style="min-width:90%;" id="country">
+                                               <apex:selectList size="1" value="{!selectedCountryname}" onchange="adupdate();blockme();" styleclass="picklist_init"   style="min-width:98%;" id="country">
                                                    <apex:selectOptions value="{!countries }"/>
                                                </apex:selectList>
                                           </td>
                                        
                                                                      
             
-                                            <td width="25%">
-                                              <apex:selectList size="1" value="{!selectedAgencyDepartment}" styleclass="picklist_init" id="AD" onchange="RTupdate();blockme();" disabled="{!IF(agencyVisible==false,true,false)}"  style="min-width:90%;">
+                                            <td width="20%">
+                                              <apex:selectList size="1" value="{!selectedAgencyDepartment}" styleclass="picklist_init" id="AD" onchange="RTupdate();blockme();" disabled="{!IF(agencyVisible==false,true,false)}"  style="min-width:98%;">
                                                <apex:selectOptions value="{!AgencyDepartments}"/>
                                               </apex:selectList>
                                            </td>
                                          
-                                           <td width="25%">
-                                              <apex:selectList size="1" value="{!selectedRoleTitle}" id="RT"  styleclass="picklist_init" style="min-width:90%;" disabled="{!IF(roleVisible==false,true,false)}" onchange="Rateupdate();blockme();">
+                                           <td width="20%">
+                                              <apex:selectList size="1" value="{!selectedRoleTitle}" id="RT"  styleclass="picklist_init" style="min-width:98%;" disabled="{!IF(roleVisible==false,true,false)}" onchange="Rateupdate();blockme();">
                                                <apex:selectOptions value="{!RoleTitles}"/>
                                               </apex:selectList>
                                            </td>
                                            
                                            
-                                           <td width="10%x">
-                                             <apex:outputLabel value="{!rate}" style="width:90%;" id="rate" >
-                                             <span style="font-size:17px">   * </span>
+                                           <td width="16%">
+                                           <span style="font-size:14px">   Hourly rate: </span>
+                                             <apex:outputLabel value="{!rate}" style="width:90%;font-size:17px" id="rate" styleclass="rateclass" >
+                                             
                                              </apex:outputLabel>
                                            </td>
-                                            <td>
-                                                 <apex:input type="number" styleclass="input_init" value="{!hours}"  style="width:40px;" onchange="resultupdate();blockme();" disabled="{!IF(hoursVisible==false,true,false)}" id="hours"  />
+                                             <td width="5%">
+                                                 <apex:input type="number"  styleClass="hourss input_init"  html-min="0" value="{!hours}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(($(this).val()*parseInt($('.rateclass').text())).toFixed(2));}" disabled="{!IF(hoursVisible==false,false,false)}" id="hours" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);"/>
                                            </td>
-                                           <td width="10%">
-                                                <span style="font-size:17px">
-                                                     <apex:outputLabel value="{!result}"  style="width:90%;"   id="result"  >
+                                           <td width="16%">
+                                                <span style="font-size:14px">
+                                                 <span style="font-size:14px">hours = </span>
+                                                     <apex:outputLabel value="{!result}"  style="width:90%;font-size:14px"   id="result" styleclass="rslt" >
+                                                     {!MScurrency}
                                                      </apex:outputLabel>
                                                  </span>
                                            </td>
-                                           <td width="10%">
-                                           <apex:commandButton value="{!IF(edit1,'update','Add')}" action="{!addToNew}" styleclass="btn ui-button ui-state-default largBtn" onclick="blockme();" oncomplete="$.unblockUI()" rerender="Oblix_card, add,saveStatus,Oblix_card,country,AD, RT, rate, hours,result,Oblix_card,add" disabled="{!IF(addVisible==false,true,false)}" id="add"/>
-                                           
+                                           <td width="8%">
+                                           <apex:commandButton value="{!IF(edit1,'update','Add')}" action="{!addToNew}" styleclass="btn ui-button ui-state-default largBtn" onclick="blockme();" oncomplete="$.unblockUI()" rerender="Oblix_card,myMessages,saveStatus,Oblix_card,add" disabled="{!IF(addVisible==false,true,false)}" id="add"/>
+                                           <!--rerender="Oblix_card, add,saveStatus,Oblix_card,country,AD, RT, rate, hours,result,Oblix_card,add"-->
                                            </td>
                                       </tr>
                                   </table>
@@ -916,13 +947,25 @@
                            
                            
                            
-                               
+                                 </apex:actionRegion>
                                 </div>
+                               
+                                  <apex:actionRegion >
                             <div id="tabs-2">
-                                   
+                                 <apex:outputPanel rendered="errMsg1">
+                                      <apex:outputPanel rendered="{!errMsg1}"  >                          
+                                       <apex:pagemessages ></apex:pagemessages>
+                                   </apex:outputPanel> 
+                               </apex:outputPanel>
+                               <apex:outputPanel id="myMessages1">      
+                                   <apex:outputPanel rendered="{!myMessages1}"  >                          
+                                       <apex:pagemessages ></apex:pagemessages>
+                                   </apex:outputPanel>         
+                              </apex:outputPanel>
+                             
                              <table width="100%">
                                 <tr>
-                                 <td>  <apex:inputtext styleClass="input_init"  value="{!name1}" style="width:200px ;" html-placeholder="Non Campaign Item Name" id="nameid1"  />
+                                 <td>  <apex:inputtext styleClass="input_init"  value="{!name1}" style="width:200px ;" html-placeholder="Resource Name" id="nameid1"   />
                                           </td>
                                           
                                                 
@@ -942,37 +985,40 @@
                                       
                                                                      
           
-                                            <td width="25%">
-                                              <apex:selectList size="1" value="{!selectedAgencyDepartment1}" styleclass="picklist_init" id="AD1" onchange="RTupdate1();blockme();" disabled="{!IF(agencyVisible1==false,true,false)}"   style="min-width:90%;">
+                                            <td width="20%">
+                                              <apex:selectList size="1" value="{!selectedAgencyDepartment1}" styleclass="picklist_init" id="AD1" onchange="RTupdate1();blockme();" disabled="{!IF(agencyVisible1==false,true,false)}"   style="min-width:98%;">
                                                <apex:selectOptions value="{!AgencyDepartments1}"/>
                                               </apex:selectList>
                                            </td>
                                          
-                                           <td width="25%">
-                                              <apex:selectList size="1" value="{!selectedRoleTitle1}" id="RT1"  styleclass="picklist_init" style="min-width:90%;" disabled="{!IF(roleVisible1==false,true,false)}" onchange="Rateupdate1();blockme();">
+                                           <td width="20%">
+                                              <apex:selectList size="1" value="{!selectedRoleTitle1}" id="RT1"  styleclass="picklist_init" style="min-width:98%;" disabled="{!IF(roleVisible1==false,true,false)}" onchange="Rateupdate1();blockme();">
                                                <apex:selectOptions value="{!RoleTitles1}"/>
                                               </apex:selectList>
                                            </td>
                                              
                                           
-                                           <td width="10%x">
+                                           <td width="15%x">
                                            <span style="font-size:17px"> 
-                                             <apex:outputLabel value="{!rate1}" style="width:90%;" id="rate1" >
-                                             <span style="font-size:17px"> %  </span>
+                                            <span style="font-size:14px">FTE:  </span>
+                                             <apex:outputLabel value="{!rate1}" style="width:90%;" id="rate1" styleClass="rateclass1">
+                                            
                                              </apex:outputLabel>
                                               </span>
                                            </td>
                                             
-                                            <td>
-                                                 <apex:input type="number" styleclass="input_init" value="{!prcent}"  style="width:40px;" onchange="resultupdate1();blockme();" disabled="{!IF(prcentVisible1 ==false,true,false)}" id="prcent"  />
-                                           </td>
-                                             
-                                           <td width="10%">
-                                             <apex:outputLabel value="{!result1}"  style="width:90%;"   id="result1" >
+                                            <td width="5%">
+                                                 <apex:input type="number" styleclass="prcentt input_init" html-min="0" value="{!prcent}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass1').text()))){ $('.rslt1').text(($(this).val()/100*parseInt($('.rateclass1').text())).toFixed(2));}" disabled="{!IF(prcentVisible1 ==false,false,false)}" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  " />
+                                            </td>
+                                             <!-- if($(this).val()==0){  $(this).val(1);alert('Error 0 : you can not divide by zero !') ;}-->
+                                           <td width="15%">
+                                           <span style="font-size:14px">% = </span>
+                                             <apex:outputLabel value="{!result1}"   style="width:90%;font-size:17px;"   id="result1"  styleClass="rslt1">
+                                             {!MScurrency}
                                              </apex:outputLabel>
                                            </td>
                                            <td width="10px">
-                                           <apex:commandButton value="{!IF(edit2,'update','Add')}" action="{!addToNew1}" styleclass="btn ui-button ui-state-default" onclick="blockme();" oncomplete="$.unblockUI()" rerender="Oblix_card, add1,saveStatus,country1,AD1, RT1, rate1, prcent,result1,add1" disabled="{!IF(addVisible1==false,true,false)}" id="add1"/>
+                                           <apex:commandButton value="{!IF(edit2,'update','Add')}" action="{!addToNew1}" styleclass="btn ui-button ui-state-default" onclick="blockme();" oncomplete="$.unblockUI()" rerender="Oblix_card, myMessages1,saveStatus,country1,AD1, RT1, rate1, prcent,add1" disabled="{!IF(addVisible1==false,true,false)}" id="add1"/>
                                            
                                            </td>
                                            
@@ -982,9 +1028,10 @@
                                   </table>
                            
                                    </div>
-                                      
+                                   
+                                   </apex:actionRegion>     
                                 </div>
- 
+  
                                     
                                 </td>
                                 </tr>
@@ -1000,7 +1047,7 @@
                                 <apex:outputPanel id="Oblix_card">
                                 <div class="Oblix_card_title">
                                     <div style="float:left">Estimation Cost : </div>
-                                    <div style="float:right">{!somme}  $</div>
+                                    <div style="float:right">{!somme} {!MScurrency}</div>
                                 </div>
                                 <br/>
                                     
@@ -1009,18 +1056,20 @@
                                     
                                             <div class="Oblix_card_elmt">
                                                    <div style="float: left;display:block;">                                                   
-                                                       <apex:outputText value="{!asset.name}" style="width:60px;"/> &nbsp;&nbsp;&nbsp;&nbsp;
+                                                       <apex:outputText value="{!asset.non_campaign_title__c}" style="width:60px;"/> &nbsp;&nbsp;
+                                                       
                                                        <span style="font-size:17px"> <apex:outputText value="{!asset.FTE__c}"/> </span>
                                                        <span style="font-size:17px"> <apex:outputText value="{!asset.No_of_Hours_Required__c }"/> </span>
+                                                       {!asset.OblixCountry__c }
                                                    </div>
                                                   
                                                    <div style="float: right;display:block;"> 
-                                                       <span style="font-size:17px"> <apex:outputText value="{!asset.OblixOtherItemFee__c }"/> </span>
+                                                       <span style="font-size:14px"> <apex:outputText value="{!asset.OblixOtherItemFee__c }"/> {!MScurrency} </span>
                                                       
                                                     <apex:commandButton value="Delete" action="{!delElm}" rerender="Oblix_card" onclick="blockme();" oncomplete="$.unblockUI()" id="del">
                                                         <apex:param name="param1" assignTo="{!ElemToDel  }" value="{!rowNum}" />
                                                     </apex:commandButton>
-                                                    <apex:commandButton value="Edit" action="{!editItem}" reRender="nameid,activityid,name1,dr,Oblix_card,country,AD, RT, rate, hours,result,Oblix_card,add,country1,AD1, RT1, rate1, prcent,result1,add1" onclick="{!IF(rtActivity==asset.recordTypeId,'showTab1();','showTab2();')}"  oncomplete="$.unblockUI()" id="edit">
+                                                    <apex:commandButton value="Edit" action="{!editItem}" reRender="nameid,otherId,activityid,name1,dr,Oblix_card,country,AD, RT, rate, hours,result,Oblix_card,add,country1,AD1, RT1, rate1, prcent,result1,add1" onclick="{!IF(rtActivity==asset.recordTypeId,'showTab1();','showTab2();')}"  oncomplete="$.unblockUI()" id="edit">
                                                          <apex:param name="param2" assignTo="{!elemToEdit}" value="{!rowNum}" />
                                                     </apex:commandButton>
                                                    </div>

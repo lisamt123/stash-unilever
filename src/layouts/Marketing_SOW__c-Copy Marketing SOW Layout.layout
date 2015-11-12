@@ -35,6 +35,10 @@
                 <behavior>Readonly</behavior>
                 <field>OblixSOWOverallTotal__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Total_Campaign_Fee__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -107,7 +111,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>OblixTotalProjectsFees__c</field>
+                <field>OblixTotalCampaignCalculatedTotalFee__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

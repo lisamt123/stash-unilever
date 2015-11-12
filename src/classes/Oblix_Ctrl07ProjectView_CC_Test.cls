@@ -1,0 +1,98 @@
+@isTest
+private class Oblix_Ctrl07ProjectView_CC_Test {
+
+    private static final String NOT_NULL_MESSAGE = 'Page Reference should not be null';
+    
+    @isTest static void actionTest() {
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {
+            Test.startTest();
+
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
+
+            Oblix_TestUtils.createProjectAssets(project.id);
+
+            ApexPages.currentPage().getParameters().put('projectId', project.id);
+        
+            Oblix_Ctrl07ProjectView_CC controller = new Oblix_Ctrl07ProjectView_CC();
+
+            Test.stopTest();
+
+            controller.init();
+
+            controller.SaveProject();
+
+            System.assert(controller.BackToSow()!=null,NOT_NULL_MESSAGE);
+            System.assert(controller.CloneCampaign()!=null,NOT_NULL_MESSAGE);
+            System.assert(controller.EditItems()!=null,NOT_NULL_MESSAGE);
+            System.assert(controller.EditAddItems()!=null,NOT_NULL_MESSAGE);
+        }
+    }
+
+    @isTest static void DeleteItemsActionTest(){
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {
+            Test.startTest();
+
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
+
+            Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.id);
+
+            ApexPages.currentPage().getParameters().put('projectId', project.id);
+        
+            Oblix_Ctrl07ProjectView_CC controller = new Oblix_Ctrl07ProjectView_CC();
+
+            controller.init();
+
+            controller.itemToDelete = asset.id;
+
+            controller.DeleteItemsAction();
+
+            Test.stopTest();
+
+            List<Oblix_Project_Assets__c> assets = [select id from Oblix_Project_Assets__c where id =: asset.id];
+
+            System.assert(assets.isEmpty(),'Asset list should be empty');
+        }
+    }
+
+    @istest static void SaveItemsActionTest(){
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {
+            Test.startTest();
+
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
+
+            Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.id);
+
+            ApexPages.currentPage().getParameters().put('projectId', project.id);
+        
+            Oblix_Ctrl07ProjectView_CC controller = new Oblix_Ctrl07ProjectView_CC();
+
+            controller.init();
+
+            controller.itemToDelete = asset.id;
+
+            controller.SaveItemsAction();
+
+            Test.stopTest();
+
+            List<Oblix_Project_Assets__c> assets = [select id from Oblix_Project_Assets__c where id =: asset.id];
+
+            System.assert(!assets.isEmpty(),'Asset list should not be empty');
+        }
+    }
+    
+}

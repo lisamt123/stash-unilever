@@ -78,10 +78,6 @@
                 <behavior>Edit</behavior>
                 <field>IPM_Role__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>MarketingSOWApprover__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>

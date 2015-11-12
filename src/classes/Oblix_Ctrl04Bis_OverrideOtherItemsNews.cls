@@ -25,6 +25,7 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
     
     public String selectedAgencyDepartment{get;set;}
     public String selectedRoleTitle{get;set;}
+    public String selectedCountryId{get;set;}
     public String selectedCountry{get;set;}
     
     private Marketing_SOW__c parentSow = new Marketing_SOW__c();
@@ -60,7 +61,11 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
             agency = parentSow.Oblix_AgencyEstimate__r.Name;
         }
         if(OItem.Id != null){
-            selectedCountry = OItem.OblixCountry__r.Name.toUpperCase();
+        	System.debug('!!! '+OItem);
+        	selectedCountryId = OItem.OblixCountry__c;
+        	if(selectedCountryId != null){
+            	selectedCountry = [select name from MDO_Geography__c where id =:selectedCountryId].Name.toUpperCase();
+        	}
             reRenderAgencyDepartments();
             selectedAgencyDepartment = OItem.Agency_Department__c;
             reRenderRoleTitle();
@@ -92,7 +97,7 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
               
           }
             lstCalculatorRate = [Select Id, Name, RecordTypeId, Role_Daily_Rate_EUR__c, Agency_Department__c,  OblixCountry__r.Name, Oblix_Agency__c,
-                    Role_Title__c, FTE__c, OblixCountry__c from Oblix_Calculator__c where Financial_Year__c=: fYear and OblixCountry__r.name =: selectedCountry  and
+                    Role_Title__c, FTE__c, OblixCountry__c from Oblix_Calculator__c where Financial_Year__c=: fYear and OblixCountry__c =: selectedCountryId  and
                 RecordTypeId =: Oblix_Utils.MapRecordType(calcObjName).get('Role_Rate') and Oblix_Agency__c =: parentSow.Oblix_AgencyEstimate__c ];
                 
                 setAgencyDept = new set<String>();
@@ -107,7 +112,7 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
      
      public void reRenderRoleTitle(){
             lstCalculatorRate = [Select Id, Name, RecordTypeId, Role_Daily_Rate_EUR__c, Agency_Department__c,  OblixCountry__r.Name, Oblix_Agency__c,
-                    Role_Title__c, FTE__c, OblixCountry__c from Oblix_Calculator__c where Financial_Year__c=: fYear and OblixCountry__r.Name =: selectedCountry   and
+                    Role_Title__c, FTE__c, OblixCountry__c from Oblix_Calculator__c where Financial_Year__c=: fYear and OblixCountry__c =: selectedCountryId   and
                 RecordTypeId =: Oblix_Utils.MapRecordType(calcObjName).get('Role_Rate') and Oblix_Agency__c =: parentSow.Oblix_AgencyEstimate__c and Agency_Department__c =:selectedAgencyDepartment];
             setRoleTitle = new set<String>();       
             if(!lstCalculatorRate.isEmpty()){
@@ -194,10 +199,10 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
     public PageReference save(){
         try{
             system.debug('###OItem.FTE__c :'+OItem.FTE__c);
-            system.debug('###lstCalculatorRate[0].FTE__c :'+lstCalculatorRate[0].FTE__c);
+            system.debug('###lstCalculatorRate[0].FTE__c :'+lstCalculatorRate);
             if(OItem.RecordTypeId == Oblix_Utils.MapRecordType(marKObjName).get('Resource') && !lstCalculatorRate.IsEmpty() && lstCalculatorRate.size()>0 && OItem.FTE__c != null && OItem.FTE__c > 0){
                 OItem.OblixOtherItemFee__c = lstCalculatorRate[0].FTE__c/OItem.FTE__c; 
-            }else if(OItem.FTE__c == null || OItem.FTE__c == 0){
+            }else if((OItem.FTE__c == null || OItem.FTE__c == 0) && !lstCalculatorRate.IsEmpty()){
                 OItem.OblixOtherItemFee__c = lstCalculatorRate[0].FTE__c;
             }
             else if(OItem.RecordTypeId == Oblix_Utils.MapRecordType(marKObjName).get('Activity') && !lstCalculatorRate.IsEmpty() && lstCalculatorRate.size()>0 && OItem.No_of_Hours_Required__c != null && lstCalculatorRate[0].Role_Daily_Rate_EUR__c != null){

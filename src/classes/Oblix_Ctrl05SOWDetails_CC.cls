@@ -435,17 +435,19 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
         attachment.IsPrivate = true;
         try {
                 insert attachment;
+                 ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO,'Attachment uploaded successfully'));
             } catch (DMLException e) {
                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Error uploading attachment'));
                //return null;
             } finally {
-              lstAttachements.add(attachment );
-              attachment = new Attachment();
-               
+              if(attachment.Id != null){
+                  lstAttachements.add(attachment );
+                  attachment = new Attachment();
+              }
         }
         
 
-        ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO,'Attachment uploaded successfully'));
+       
         //return null;
     }
     public void Cancel (){

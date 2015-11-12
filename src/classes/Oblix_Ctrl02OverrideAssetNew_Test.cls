@@ -53,6 +53,8 @@ private class Oblix_Ctrl02OverrideAssetNew_Test {
                     System.assertEquals(controller.asset.Id, asset.Id); // assert that the controller take the ID from params
                    Oblix_Ctrl02OverrideAssetNew controller2 = new Oblix_Ctrl02OverrideAssetNew(new ApexPages.StandardController(asset2));   
                    System.assertEquals(controller2.asset.Id, null);//Verify if the id is null
+                   pageRef.getParameters().put('clone', '1');
+                   pageRef.getParameters().put('retUrl', '/'+asset.Id);
                Test.stopTest();
          }
     }

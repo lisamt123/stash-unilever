@@ -64,6 +64,24 @@
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
+        <fullName>Level_of_Visibility__c</fullName>
+        <externalId>false</externalId>
+        <label>Level of Visibility</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Read</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Edit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>User__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -80,6 +98,7 @@
         <columns>NAME</columns>
         <columns>Brand__c</columns>
         <columns>User__c</columns>
+        <columns>Level_of_Visibility__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>

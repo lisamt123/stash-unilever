@@ -46,7 +46,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- BigProductCategory --></label>
+        <label><!-- Big Category --></label>
         <name>BigOblixProductCategory__c</name>
         <relationshipLabel><!-- SWOP (BigProductCategory) --></relationshipLabel>
     </fields>
@@ -132,6 +132,10 @@
         <name>OblixSOWOverallTotal__c</name>
     </fields>
     <fields>
+        <label><!-- shTotal Campaign Fees --></label>
+        <name>OblixTotalCampaignCalculatedTotalFee__c</name>
+    </fields>
+    <fields>
         <label><!-- Total Number of basics --></label>
         <name>OblixTotalNumberofbasics__c</name>
     </fields>
@@ -144,13 +148,17 @@
         <name>OblixTotalOtherItemsFees__c</name>
     </fields>
     <fields>
-        <label><!-- Total Campaign Fees --></label>
-        <name>OblixTotalProjectsFees__c</name>
-    </fields>
-    <fields>
         <label><!-- Agency --></label>
         <name>Oblix_AgencyEstimate__c</name>
         <relationshipLabel><!-- SWOP --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Total Campaign Adjustment --></label>
+        <name>Oblix_TotalCampaignAdjustment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unique Name --></label>
+        <name>Oblix_tec_Unique_Name__c</name>
     </fields>
     <fields>
         <label><!-- SOW Status --></label>
@@ -160,34 +168,30 @@
             <translation><!-- Approved --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Awaiting Approval</masterLabel>
-            <translation><!-- Awaiting Approval --></translation>
+            <masterLabel>Awaiting Agency Acceptance</masterLabel>
+            <translation><!-- Awaiting Agency Acceptance --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Awaiting GVP Approval</masterLabel>
-            <translation><!-- Awaiting GVP Approval --></translation>
+            <masterLabel>Awaiting Unilever Approval</masterLabel>
+            <translation><!-- Awaiting Unilever Approval --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Locked</masterLabel>
-            <translation><!-- Locked --></translation>
+            <masterLabel>Draft - with Agency</masterLabel>
+            <translation><!-- Draft - with Agency --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Open</masterLabel>
-            <translation><!-- Open --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Rejected</masterLabel>
-            <translation><!-- Rejected --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Returned</masterLabel>
-            <translation><!-- Returned --></translation>
+            <masterLabel>Draft - with Unilever</masterLabel>
+            <translation><!-- Draft - with Unilever --></translation>
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- SmallProductCategory --></label>
+        <label><!-- Small Category --></label>
         <name>SmallProductCategory__c</name>
         <relationshipLabel><!-- SWOP (SmallProductCategory) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Total Campaign Fee --></label>
+        <name>Total_Campaign_Fee__c</name>
     </fields>
     <fields>
         <help><!-- Enter a label for the SOW to be referred to --></help>

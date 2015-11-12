@@ -136,6 +136,16 @@ public with sharing class TriggerFactory
 		if (soType == FAU_Webinar__c.sObjectType){
 			return new FAU_WebinarHandler();
 		}
+		if (soType == Oblix_SOW_Projects__c.sObjectType){
+			return new Oblix_ProjectHandler();
+		}if (soType == Oblix_Marketing_SOW_Project_Splits__c.sObjectType){
+			return new Oblix_SplitHandler(); 
+		}if (soType == Marketing_SOW__c.sObjectType){
+			return new Oblix_SOWHandler(); 
+		}if (soType == Oblix_Project_Assets__c.sObjectType){
+			return new Oblix_AssetHandler(); 
+		}
+		
 		return null;
 	}
 }

@@ -21,6 +21,7 @@
     public id MSid {get;set;}
     
     public Integer total{get;set;}
+    public String itemToUpdate {get;set;}
     
     public Oblix_Ctrl10_nonCampaignView() {
    
@@ -35,7 +36,7 @@
          resources= new List <Marketing_Basics__c>();
          total=0; 
              
-         List <Marketing_Basics__c>  Marketing_Basics = [select name,Activities__c, recordTypeId,FTE__c,No_of_Hours_Required__c, Oblix_SOWMarketing__c,OblixCountry__c,OblixCountry__r.name ,Role_Title__c,Agency_Department__c,OblixOtherItemFee__c from Marketing_Basics__c  where Oblix_SOWMarketing__c= :MSid ];
+         List <Marketing_Basics__c>  Marketing_Basics = [select name,Activities__c, Other_Activities__c , recordTypeId,FTE__c,No_of_Hours_Required__c, Oblix_SOWMarketing__c,OblixCountry__c,OblixCountry__r.name ,Role_Title__c,Agency_Department__c,OblixOtherItemFee__c from Marketing_Basics__c  where Oblix_SOWMarketing__c= :MSid ];
        for (Marketing_Basics__c  M :Marketing_Basics  ){
             if(m.OblixOtherItemFee__c!= null)   total+=Integer.valueof(m.OblixOtherItemFee__c ) ; 
              if (m.recordTypeId ==ARecordTypeId   ) activities.add(m);
@@ -65,6 +66,11 @@
            page.setRedirect(True);
            return page;
        
-        }
+    }
+    
+    public pagereference goToEditItem(){
+        system.debug('###itemToUpdate : '+itemToUpdate);
+        return new PageReference('/apex/Oblix_VF09_nonCampaignEdit?itm='+itemToUpdate);
+    }
    
     }

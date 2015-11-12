@@ -49,7 +49,6 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
         List<Oblix_Marketing_SOW_Project_Splits__c>  lstProjectSplits = [Select Id, Name, Project_Splits__c, OblixCountry__c, OblixCountry__r.Name, Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c in : setProjectIds and Project_Splits__c != null];
         Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>> MapProjectToSplits = new Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>>();
          set<String> setCountries = new set<String>();
-         
         if(!lstProjectSplits.isEmpty()){
             for(Oblix_Marketing_SOW_Project_Splits__c projSplit : lstProjectSplits){
                 setCountries.add(projSplit.OblixCountry__r.Name);
@@ -60,11 +59,11 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
             }
         }
         
+        system.Debug('###setCountries : '+setCountries);
         //List of Oblix Calculator with these Countries and RT  = Country_Box_Number // For very Calculator associate its related Split Project.
         List<Oblix_Calculator__c> lstCalculatorCountryRange = [Select Id, Name, Points_Low__c, Points_HigH__c, Box_Range__c,
                  Box_9__c, Box_8__c, Box_7__c, Box_6__c, Box_5__c, Box_4__c, Box_3__c, Box_2__c, Box_20__c, Box_1__c, Box_19__c, Box_18__c, Box_17__c, Box_16__c, Box_15__c, Box_14__c, Box_13__c, Box_12__c, Box_11__c, Box_10__c
-         from Oblix_Calculator__c where RecordTypeId =: Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Country_Box_Number') and Name in :setCountries];
-        
+         from Oblix_Calculator__c where RecordTypeId =: Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Country_Box_Number') and  Name in:setCountries];
         
         
         //Loop Over Project for the Initial requirement : calculating Score
@@ -191,6 +190,7 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
                 // A project has multi project splits, for every split we need to have a Calculator By Country
                 //For every project look over Splits and for every split get with a Map the Correct Calculator Country.
                 if(MapProjectToSplits.get(project.Id) != null){
+                   system.debug('###lstCalculatorCountryRange :'+lstCalculatorCountryRange);
                    tmp_projectFee = TotalCalculatedFee(Calculator_BoxRange,MapProjectToSplits.get(project.Id),lstCalculatorCountryRange);
                    System.debug('###tmp_projectFee : '+tmp_projectFee);
                 }
@@ -202,12 +202,13 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
    
     private static Decimal TotalCalculatedFee(String Calculator_BoxRange, List<Oblix_Marketing_SOW_Project_Splits__c> lstProjectSplitsTmp, List<Oblix_Calculator__c> lstCalculatorCountrRange){
              Decimal tmp_fee = 0;
-             
+             system.debug('###lstProjectSplitsTmp : '+lstProjectSplitsTmp);
+             system.debug('###lstCalculatorCountrRange : '+lstCalculatorCountrRange);
              for(Oblix_Marketing_SOW_Project_Splits__c projSplit : lstProjectSplitsTmp){
-                 
                     for(Oblix_Calculator__c calculatorCountry : lstCalculatorCountrRange){
-                        if(calculatorCountry.Name == projsplit.OblixCountry__r.Name && Calculator_BoxRange.contains('Box_')){
+                        if( projsplit.OblixCountry__r.Name.toUpperCase().contains(calculatorCountry.Name) && Calculator_BoxRange.contains('Box_')){
                             tmp_fee += (Decimal) (calculatorCountry.get(Calculator_BoxRange)!= null ? calculatorCountry.get(Calculator_BoxRange) : 0)* (projSplit.Percentage__c != null ? projSplit.Percentage__c/100 : 0);
+                            System.debug('###tmp_fee : '+tmp_fee);
                         }
                     }
                 }

@@ -12,27 +12,29 @@
     --------------    
 */
     public with sharing class Oblix_Ctrl09_nonCampaignEdit{
-
-    public String getSowId() {
-        return null;
-    }
-
     
-      
+    
         public User userConnected {get;set;}
         
         public  id MSid  {get;set;}
         public Marketing_SOW__c Marketing_SOW   {get;set;}
     
         public Marketing_Basics__c newItem  {get;set;}
+        
+        public List<Marketing_Basics__c > XItems  {get;set;}
+        
         public Marketing_Basics__c newItem1  {get;set;}
         public List<Marketing_Basics__c> newItems  {get;set;}
         
         public Boolean pick {get;set;}
         public Boolean nopick {get;set;}
+        public Boolean TitleEdit {get;set;}
+        
         
         public String fYear {get;set;}
         public String agency {get;set;}
+        public String MScurrency {get;set;}
+        
         
         public String name {get;set;}
         public Marketing_Basics__c lookupActivity{get;set;}
@@ -42,7 +44,10 @@
         public String selectedAgencyDepartment{get;set;}
         public String Rate {get;set;}
         public String result {get;set;}
-        public integer hours{get;set;}
+        
+        public  integer hours {get;set;}
+      //  public integer hours{get{if (hours == null) return 0; else return hours ;  }set;}
+       // public Integer gethours(){if (hours == null) return 0; else return hours ;  }
         
         public String name1{get;set;}
         public String selectedRoleTitle1{get;set;}
@@ -94,14 +99,33 @@
         private String noRole= 'Role';
         
        
-        private Integer somme ;
+        private Decimal somme ;
+        
+        public boolean errMsg  {get;set;}
+        public boolean myMessages {get;set;}
+        public boolean errMsg1  {get;set;}
+        public boolean myMessages1 {get;set;}
+        
+        
+        public boolean   selectResource {get;set;}    //true to render a js code who trigger  resource tab                
 
          /* Constructor
          */ 
         public Oblix_Ctrl09_nonCampaignEdit(){
+        
+              selectResource=false;
+              TitleEdit =false;
+        
+         errMsg  =false;
+         myMessages = false;
+         errMsg1  =false;
+         myMessages1 = false;
+       
+        
              Id idUser = UserInfo.getUserId();
              userConnected = [Select Name from User where Id =: idUser ];
              newItems = new List<Marketing_Basics__c> () ;
+             XItems  =new List<Marketing_Basics__c >();
              newItem= new Marketing_Basics__c();
              newItem1= new Marketing_Basics__c(); 
              lookupActivity= new Marketing_Basics__c(); 
@@ -109,7 +133,9 @@
              pick=true;
              nopick=false;
              
+             MSid= ApexPAges.currentPage().getParameters().get('MSid');
              reRenderSOW(); 
+             
              saveStatus ='';
              agencyVisible =false;
              roleVisible =false;
@@ -127,8 +153,133 @@
               rtCountry =  Schema.SObjectType.Oblix_Calculator__c.getRecordTypeInfosByName().get('Role Rate').getRecordTypeId();
               
               initialiseOptions();
+              
+              
+            id EditId =  ApexPAges.currentPage().getParameters().get('itm');
+            if (EditId !=null){
+                TitleEdit =true;
+               
+             
+                Marketing_Basics__c  editItem = [select id,name,non_campaign_title__c,FTE__c,recordTypeId,OblixOtherItemFee__c,Agency_Department__c,Role_Title__c,Activities__c,Other_Activities__c,No_of_Hours_Required__c,OblixCountry__c ,Oblix_SOWMarketing__c from Marketing_Basics__c where id = :EditId  ];
+                MDO_Geography__c g = [ select id, name from MDO_Geography__c where id =:editItem.OblixCountry__c ];
+                
+ 
+                MSid= editItem.Oblix_SOWMarketing__c ;
+                reRenderSOW(); 
+                newItems.add(editItem);
+                fillData(editItem);
+                
+               /*  
+                
+                if (editItem.recordTypeId == rtActivity ) {
+                  agencyVisible =true;
+                  roleVisible =true;
+                  hoursVisible =true;
+                  //rateVisible =true;
+                  resultVisible =true;
+                  addVisible=true;
+                  hours=Integer.valueof(editItem.No_of_Hours_Required__c);
+                  elemToEdit=0 ;
+                  editItem();
+                  fillCountries();
+                  selectedCountryname = 'France';
+                  //selectedCountryname =  editItem.OblixCountry__c ;
+                  fillAgencyDepartment();
+                   selectedAgencyDepartment = editItem.Agency_Department__c;
+                 fillRoleTitle();
+                   selectedRoleTitle =  editItem.Role_Title__c ;      
+                  fillRate();
+                  
+                  selectedCountryname=  g.name.toUpperCase()  ;//'FRANCE' ;
+                  
+                  
+                }else{  
+                  selectResource = true;
+                  agencyVisible1 =true;
+                  roleVisible1 =true;
+                  prcentVisible1 =true;
+                  prcent=Integer.valueof(editItem.FTE__c);
+                  //rateVisible =true;
+                  resultVisible1 =true;
+                  addVisible1=true;
+                  elemToEdit=0 ;
+                  editItem();
+                  
+                  fillCountries();
+                  selectedCountryname1 = 'France';
+                  //selectedCountryname =  editItem.OblixCountry__c ;
+                  fillAgencyDepartment1();
+                   selectedAgencyDepartment1 = editItem.Agency_Department__c;
+                 fillRoleTitle1();
+                   selectedRoleTitle1 =  editItem.Role_Title__c ;      
+                  fillRate1();
+                  
+                  selectedCountryname1=  g.name.toUpperCase() ;//'FRANCE' ;
+                  
+                }*/
+                 
+            }
              
         }
+        
+        
+        
+private void fillData(Marketing_Basics__c   eeditItem){
+               
+         MDO_Geography__c g ;
+               if (eeditItem.recordTypeId == rtActivity ) {
+                  agencyVisible =true;
+                  roleVisible =true;
+                  hoursVisible =true;
+                  //rateVisible =true;
+                  resultVisible =true;
+                  addVisible=true;
+                  hours=Integer.valueof(eeditItem.No_of_Hours_Required__c);
+                  elemToEdit=0 ;
+                 
+                 
+                  fillCountries();
+                   g = [ select id, name from MDO_Geography__c where id =:eeditItem.OblixCountry__c ];
+                   selectedCountryname=  g.name.toUpperCase()  ;//'FRANCE' ;
+                  fillAgencyDepartment();                  
+                   selectedAgencyDepartment = eeditItem.Agency_Department__c;
+                 fillRoleTitle();
+                   selectedRoleTitle =  eeditItem.Role_Title__c ;      
+                  fillRate();
+                   edit1=true;
+                 
+                  name=eeditItem.name;
+                  lookupActivity.Activities__c = eeditItem.Activities__c ;
+                  lookupActivity.Other_Activities__c= eeditItem.Other_Activities__c;
+                  
+                  
+                }else{  
+                  selectResource = true;
+                  agencyVisible1 =true;
+                  roleVisible1 =true;
+                  prcentVisible1 =true;
+                  prcent=Integer.valueof(eeditItem.FTE__c);
+                  //rateVisible =true;
+                  resultVisible1 =true;
+                  addVisible1=true;
+                  elemToEdit=0 ;
+                  name1=eeditItem.name;
+                 
+                  
+                 fillCountries();
+                  g = [ select id, name from MDO_Geography__c where id =:eeditItem.OblixCountry__c ];
+                   
+                  selectedCountryname1=  g.name.toUpperCase() ;//'FRANCE' ;
+                 fillAgencyDepartment1();
+                   selectedAgencyDepartment1 = eeditItem.Agency_Department__c;
+                 fillRoleTitle1();
+                   selectedRoleTitle1 =  eeditItem.Role_Title__c ;      
+                  fillRate1();
+                   edit2=true;
+                 
+                  
+                }
+          }
         
         /* Void Method used to initialise SelectOptions
          */  
@@ -144,11 +295,12 @@
         /* Void Method used to initialise Marketing_SOW  
          */    
       public void reRenderSOW(){
-             MSid= ApexPAges.currentPage().getParameters().get('MSid');
+           
              if (MSid!=null){
-               Marketing_SOW  = [select id,Financial_Year__c,Oblix_AgencyEstimate__c,Oblix_AgencyEstimate__r.Name from Marketing_SOW__c where id =: MSid];
+               Marketing_SOW  = [select id,Financial_Year__c,currency__c,Oblix_AgencyEstimate__c,Oblix_AgencyEstimate__r.Name from Marketing_SOW__c where id =: MSid];
                fYear = Marketing_SOW.Financial_Year__c;
                agency = Marketing_SOW.Oblix_AgencyEstimate__c;
+               MScurrency = Marketing_SOW.currency__c ; 
                fillCountries();
              }
              
@@ -194,17 +346,23 @@
      public pagereference saveList(){
          try{
              upsert newItems;
+             delete Xitems;
+             myMessages=false;
+             myMessages1=false;
          }catch(DmlException e){
              System.debug('###Exception Occured :'+e.getMessage());  
              ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,'Error Occured during save please review data entry'));
+             myMessages=true;
+             myMessages1=true;
          }
+         Xitems=new List<Marketing_Basics__c >();
          saveStatus='Saved';
          return null;
      }
      
      
      public void delElm(){
-         if (newItems[elemToDel].id!=null) delete newItems[elemToDel];
+         if (newItems[elemToDel].id!=null) Xitems.add(newItems[elemToDel]);
          newItems.remove(elemToDel);
          saveStatus='Unsaved';
      }
@@ -212,6 +370,9 @@
      
      
      public void editItem(){
+     
+       fillData(newItems[elemToEdit]);
+     /*
          
          Id devRecordTypeId = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get(ActivityName).getRecordTypeId();
          
@@ -244,14 +405,22 @@
          system.debug('===========newItems[elemToEdit].recordTypeId='+newItems[elemToEdit].recordTypeId);
          system.debug('===========newItem1='+newItem1);
          system.debug('===========newItem='+newItem);
+        */
      }
         
      
      
      public void addToNew(){
      
-         saveStatus ='Unsaved';
+        
          
+        if (name == null || name == '' ){
+              ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,'Name value is required.'));
+              myMessages=true;
+              return;
+         }
+          saveStatus ='Unsaved';
+        myMessages=false;
          Id devRecordTypeId = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get(ActivityName).getRecordTypeId();
          
         
@@ -259,22 +428,31 @@
          
          newItem=new Marketing_Basics__c ();
          newItem.name=name;
-        // if (pick) {
+        
              newItem.Activities__c= lookupActivity.Activities__c;
              newItem.Other_Activities__c= lookupActivity.Other_Activities__c;
              
-        // }else { newItem.Activities__c= lookupActivity.name;} 
+         Map <String,String > abrev = Oblix_Utils.getAbreViationForCardAssets();
+         string abr= abrev.get(lookupActivity.Activities__c);
+         if (abr == null) abr = '';
+         newItem.non_campaign_title__c =  'ACT-'+abr;
+         //lookupActivity.Activities__c
+         
          newItem.recordTypeId=  devRecordTypeId ;
          newItem.Oblix_SOWMarketing__c=Marketing_SOW.id;
          newItem.No_of_Hours_Required__c = hours;
          newItem.OblixCountry__c =selectedCountry;
          newItem.Role_Title__c =selectedRoleTitle;
          newItem.Agency_Department__c =selectedAgencyDepartment;
-         newItem.OblixOtherItemFee__c = Integer.valueof(result);
+         calculResult();
+         newItem.OblixOtherItemFee__c = Decimal.valueof(result).setScale(2);  // result =result.setScale(2);
+         Marketing_Basics__c  x = newItem ;
          if (edit1){ // c'est un update
-              newItems[ElemToEdit] = newItem; 
+             
+              newItems[ElemToEdit] = x; 
               edit1=false;
-             }else newItems.add(newItem);// cest un ajout
+             
+             }else newItems.add(x);// cest un ajout
              
            
          newItem=new Marketing_Basics__c ();
@@ -290,6 +468,12 @@
      
      public void addToNew1(){
          saveStatus ='Unsaved';
+          if (name1 == null || name1 == '' ){
+              ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,'Name value is required.'));
+               myMessages1=true;
+              return;
+         }
+         myMessages1=false;
          
          Id devRecordTypeId = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get('Dedicated Resource').getRecordTypeId();
          
@@ -298,13 +482,15 @@
          newItem1=new Marketing_Basics__c ();
          
          newItem1.name=name1;
+         newItem1.non_campaign_title__c=name1;
          newItem1.recordTypeId=  devRecordTypeId ;
          newItem1.Oblix_SOWMarketing__c=Marketing_SOW.id;
          newItem1.FTE__c= prcent;
          newItem1.OblixCountry__c =selectedCountry1;
          newItem1.Role_Title__c =selectedRoleTitle1;
          newItem1.Agency_Department__c =selectedAgencyDepartment1;
-         newItem1.OblixOtherItemFee__c = Integer.valueof(result1);
+         calculResult1();
+         newItem1.OblixOtherItemFee__c = Decimal.valueof(result1).setScale(2);  // result =result.setScale(2)
           if (edit2){ // c'est un Edit
               newItems[ElemToEdit] = newItem1;
               edit2=false;
@@ -321,19 +507,23 @@
      }
      
      public void calculResult(){ 
-          result = String.valueof( Integer.valueof(rate.trim()) *hours );
+        system.debug('============+=+=+=+=+=+=+=+=+= calculResult=+=+=+=+=+=+=+=+=+============================');    
+     
+          result = String.valueof(( Decimal.valueof(rate.trim()) *hours).setScale(2) );
+        //  result =result;
           
      }
      public void calculResult1(){ 
+      system.debug('============+=+=+=+=+=+=+=+=+= calculResult1=+=+=+=+=+=+=+=+=+============================');    
      
-          if ( prcent !=0 ){     result1 = String.valueof( Integer.valueof(rate1.trim()) /prcent);}
-          else result1 =  String.valueof(0);
-          
-          
+           result1 = String.valueof(( Decimal.valueof(rate1.trim()) *prcent/100).setScale(2)); 
+           //result1 =result1;       
      }
      
      
      public void fillRate1(){ 
+      system.debug('============+=+=+=+=+=+=+=+=+= fillrate1 =+=+=+=+=+=+=+=+=+============================');    
+           
             rateVisible1 =false;
             prcentVisible1 =false;
             resultVisible1 =false;
@@ -341,16 +531,24 @@
             List <Oblix_Calculator__c> Rates= new List <Oblix_Calculator__c>();
             //system.debug('===========newItem.OblixCountry__c'+newItem.OblixCountry__c);
             Rates=[select Financial_Year__c,Oblix_Agency__c, OblixCountry__c, OblixCountry__r.name,Agency_Department__c,Role_Title__c,FTE__c from Oblix_Calculator__c where Financial_Year__c=:fYear and  Oblix_Agency__c =:agency and OblixCountry__c=:selectedCountry1 and Agency_Department__c  =:selectedAgencyDepartment1 and Role_Title__c  =:selectedRoleTitle1 ];
-            if (Rates.size()==1)
+            if (Rates.size()>=1)
             {
                 rateVisible1 =true;
                 prcentVisible1 =true;
                 resultVisible1 =true;
                 addVisible1=true;       
                 rate1=String.valueOf(Rates[0].FTE__c) ;
-            }//else there is more than 1 or 0 => error 
+                errMsg1=false;
+            }
+            if (Rates.size()>1){
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Warning,'There are duplicate records with the selected values'));
+                  errMsg1=true;
+            }
+            //else there is more than 1 or 0 => error 
      }
       public void fillRate(){ 
+          system.debug('============+=+=+=+=+=+=+=+=+= fillrate =+=+=+=+=+=+=+=+=+============================');    
+      
         //   if (selectedRoleTitle ==noRole || selectedRoleTitle ==null){return ;}
             rateVisible =false;
             hoursVisible =false;
@@ -359,17 +557,25 @@
             List <Oblix_Calculator__c> Rates= new List <Oblix_Calculator__c>();
             //system.debug('===========newItem.OblixCountry__c'+newItem.OblixCountry__c);
             Rates=[select Financial_Year__c,Oblix_Agency__c, OblixCountry__c, OblixCountry__r.name,Agency_Department__c,Role_Title__c,Role_Daily_Rate_EUR__c from Oblix_Calculator__c where Financial_Year__c=:fYear and  Oblix_Agency__c =:agency and OblixCountry__c=:selectedCountry and Agency_Department__c  =:selectedAgencyDepartment and Role_Title__c  =:selectedRoleTitle ];
-            if (Rates.size()==1)
+            if (Rates.size()>=1)
             {
                 rateVisible =true;
                 hoursVisible =true;
                 resultVisible =true;
                 addVisible=true;       
                 rate=String.valueOf(Rates[0].Role_Daily_Rate_EUR__c) ;
-            }//else there is more than 1 or 0 => error 
+                  errMsg=false;
+            }
+            if (Rates.size()>1){
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Warning,'There are duplicate records with the selected values'));
+                  errMsg=true;
+            }
+            //else there is more than 1 or 0 => error 
      }
      
      public void fillRoleTitle(){
+     system.debug('============+=+=+=+=+=+=+=+=+= fillRoleTitle=+=+=+=+=+=+=+=+=+============================');    
+      
      //   if (selectedAgencyDepartment=='' || selectedAgencyDepartment==null){return ;}
             roleVisible =false;
          //   rateVisible =false;
@@ -397,6 +603,9 @@
             }
     }
      public void fillRoleTitle1(){
+     
+     system.debug('============+=+=+=+=+=+=+=+=+= fillRoleTitle1=+=+=+=+=+=+=+=+=+============================');    
+      
             roleVisible1 =false;
          //   rateVisible1 =false;
             prcentVisible1 =false;
@@ -423,6 +632,9 @@
             }
     }
      public void fillAgencyDepartment(){
+          system.debug('============+=+=+=+=+=+=+=+=+= fillAgencyDepartment=+=+=+=+=+=+=+=+=+============================');    
+     
+     
                  
               RoleTitles =new  List<SelectOption>();         
               RoleTitles.add(new SelectOption('',noRole)); 
@@ -469,10 +681,14 @@
              resultVisible =false;
              addVisible=false;
                 }
+                
+                
           //  fillRoleTitle();
           
     }
     public void fillAgencyDepartment1(){
+       system.debug('============+=+=+=+=+=+=+=+=+= fillAgencyDepartment1=+=+=+=+=+=+=+=+=+============================');    
+     
             selectedCountry1 = CountrryGetId(selectedCountryname1 );
             //if  (selectedCountry1  == null ) return;
              newItem1.OblixCountry__c = selectedCountry1;   
@@ -558,19 +774,20 @@
             return options;
      }
     
-     public void fillCountries(){    
+     public void fillCountries(){
+           system.debug('============+=+=+=+=+=+=+=+=+= fillCountries =+=+=+=+=+=+=+=+=+============================');    
             countries=getCountry();
      }
     
     
     
       
-    public Integer getsomme(){
+    public Decimal getsomme(){
         Decimal somme = 0;
         for (Marketing_Basics__c a : newitems){
             somme+=a.OblixOtherItemFee__c ;
         } 
-        return Integer.valueof(somme);
+        return somme.setScale(2);  
     }
     public pagereference back(){
          PageReference  page = new PageReference('/apex/Oblix_VF10_nonCampaignView?MSid='+MSid);

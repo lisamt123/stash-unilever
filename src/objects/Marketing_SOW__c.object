@@ -140,7 +140,7 @@
         <fullName>BigOblixProductCategory__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>BigProductCategory</label>
+        <label>Big Category</label>
         <referenceTo>MDO_Category__c</referenceTo>
         <relationshipLabel>SWOP (BigProductCategory)</relationshipLabel>
         <relationshipName>Marketing_SOW</relationshipName>
@@ -287,7 +287,7 @@
     <fields>
         <fullName>OblixSOWOverallTotal__c</fullName>
         <externalId>false</externalId>
-        <formula>OblixTotalProjectsFees__c  +  OblixTotalOtherItemsFees__c</formula>
+        <formula>OblixTotalCampaignCalculatedTotalFee__c  +  OblixTotalOtherItemsFees__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>SOW Overall Total</label>
         <precision>18</precision>
@@ -296,6 +296,17 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>OblixTotalCampaignCalculatedTotalFee__c</fullName>
+        <externalId>false</externalId>
+        <label>shTotal Campaign Fees</label>
+        <summarizedField>Oblix_SOW_Projects__c.Total_Fees_for_Project__c</summarizedField>
+        <summaryForeignKey>Oblix_SOW_Projects__c.Financial_Year__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>OblixTotalNumberofbasics__c</fullName>
@@ -329,17 +340,6 @@
         <type>Summary</type>
     </fields>
     <fields>
-        <fullName>OblixTotalProjectsFees__c</fullName>
-        <externalId>false</externalId>
-        <label>Total Campaign Fees</label>
-        <summarizedField>Oblix_SOW_Projects__c.Total_Fees_for_Project__c</summarizedField>
-        <summaryForeignKey>Oblix_SOW_Projects__c.Financial_Year__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
         <fullName>Oblix_AgencyEstimate__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -351,6 +351,17 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Oblix_TotalCampaignAdjustment__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Campaign Adjustment</label>
+        <summarizedField>Oblix_SOW_Projects__c.Campaign_Total_Adjustment__c</summarizedField>
+        <summaryForeignKey>Oblix_SOW_Projects__c.Financial_Year__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>Oblix_tec_Unique_Name__c</fullName>
@@ -403,7 +414,7 @@
         <fullName>SmallProductCategory__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>SmallProductCategory</label>
+        <label>Small Category</label>
         <referenceTo>MDO_Category__c</referenceTo>
         <relationshipLabel>SWOP (SmallProductCategory)</relationshipLabel>
         <relationshipName>Marketing_SOW1</relationshipName>
@@ -412,6 +423,19 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Total_Campaign_Fee__c</fullName>
+        <externalId>false</externalId>
+        <formula>Oblix_TotalCampaignAdjustment__c  +  OblixTotalCampaignCalculatedTotalFee__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Campaign Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Type_of_SOW__c</fullName>
@@ -484,15 +508,6 @@
         <externalId>false</externalId>
         <inlineHelpText>Who will Approve this SOW on behave of Unilever</inlineHelpText>
         <label>Unilever SOW Approver Name</label>
-        <lookupFilter>
-            <active>true</active>
-            <filterItems>
-                <field>User.MarketingSOWApprover__c</field>
-                <operation>equals</operation>
-                <value>True</value>
-            </filterItems>
-            <isOptional>false</isOptional>
-        </lookupFilter>
         <referenceTo>User</referenceTo>
         <relationshipName>Marketing_SOW</relationshipName>
         <required>false</required>
@@ -516,16 +531,11 @@
         <columns>SmallProductCategory__c</columns>
         <columns>FINAL_APPROVED_FEE_K__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>Active__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
         <label>All</label>
         <language>en_US</language>
     </listViews>
     <nameField>
-        <label>Marketing SOW Name</label>
+        <label>SOW Name</label>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>

@@ -24,36 +24,40 @@
             <translation><!-- Adaptation --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Adaptations &amp; Reedits</masterLabel>
-            <translation><!-- Adaptations &amp; Reedits --></translation>
+            <masterLabel>Adaptations and Reedits</masterLabel>
+            <translation><!-- Adaptations and Reedits --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Always on Social/ Digital requirements</masterLabel>
-            <translation><!-- Always on Social/ Digital requirements --></translation>
+            <masterLabel>Always on Social</masterLabel>
+            <translation><!-- Always on Social --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Audio</masterLabel>
             <translation><!-- Audio --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Cut downs &amp; Tag</masterLabel>
-            <translation><!-- Cut downs &amp; Tag --></translation>
+            <masterLabel>Cut downs and Tag</masterLabel>
+            <translation><!-- Cut downs and Tag --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Data, Analytics, Reporting, Dashboards</masterLabel>
-            <translation><!-- Data, Analytics, Reporting, Dashboards --></translation>
+            <masterLabel>Data Analytics Reporting Dashboards</masterLabel>
+            <translation><!-- Data Analytics Reporting Dashboards --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Digital Adaptation Requirements</masterLabel>
-            <translation><!-- Digital Adaptation Requirements --></translation>
+            <masterLabel>Digital Adaptation</masterLabel>
+            <translation><!-- Digital Adaptation --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Digital Campaign Assets</masterLabel>
             <translation><!-- Digital Campaign Assets --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Origination</masterLabel>
-            <translation><!-- Origination --></translation>
+            <masterLabel>Origination Full</masterLabel>
+            <translation><!-- Origination Full --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Origination Lite</masterLabel>
+            <translation><!-- Origination Lite --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Specialist Digital</masterLabel>
@@ -84,8 +88,8 @@
             <translation><!-- Static Imagery --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Stimulus Materials/ Research Requirements</masterLabel>
-            <translation><!-- Stimulus Materials/ Research Requirements --></translation>
+            <masterLabel>Stimulus Materials - Research Requirements</masterLabel>
+            <translation><!-- Stimulus Materials - Research Requirements --></translation>
         </picklistValues>
     </fields>
     <layouts>

@@ -887,14 +887,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>MarketingSOWApprover__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Unilever GVP Approver</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Pass031212__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Last Password report upload for 3rd December 2012 - Post QMF trigger</description>
@@ -2149,19 +2141,6 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <label>Active Admin Users</label>
     </listViews>
     <listViews>
-        <fullName>AllUsers</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.USERNAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.USERS.ACTIVE</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>CREATED_BY_NAME</columns>
-        <filterScope>Everything</filterScope>
-        <label>All Users</label>
-    </listViews>
-    <listViews>
         <fullName>Brand_Centre_or_Hub_Admins</fullName>
         <booleanFilter>1 OR 2</booleanFilter>
         <columns>FULL_NAME</columns>
@@ -2648,6 +2627,7 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
     </listViews>
     <listViews>
         <fullName>SWOP_QA_User_list</fullName>
+        <booleanFilter>1 OR 2</booleanFilter>
         <columns>FULL_NAME</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CORE.USERS.USERNAME</columns>
@@ -2659,6 +2639,11 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CORE.USERS.LAST_NAME</field>
+            <operation>startsWith</operation>
+            <value>SWOP</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.FIRST_NAME</field>
             <operation>startsWith</operation>
             <value>SWOP</value>
         </filters>
@@ -2750,6 +2735,25 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
             <value>1</value>
         </filters>
         <label>chatter external users</label>
+    </listViews>
+    <listViews>
+        <fullName>oblix_com_user</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATED_BY_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.USERS.EMAIL</field>
+            <operation>equals</operation>
+            <value>shunt@salesforce.com</value>
+        </filters>
+        <label>Oblix Community Users</label>
+        <language>en_US</language>
     </listViews>
     <searchLayouts>
         <lookupDialogsAdditionalFields>FULL_NAME</lookupDialogsAdditionalFields>

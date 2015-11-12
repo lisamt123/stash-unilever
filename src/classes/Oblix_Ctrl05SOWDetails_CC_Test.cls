@@ -1,0 +1,108 @@
+@isTest 
+private class Oblix_Ctrl05SOWDetails_CC_Test {
+
+
+  private static final String TWO_ELEMENTS_MESSSAGE = 'There should be two elements';
+  private static final String NOT_NULL_MESSSAGE = 'Page reference should not be null';
+
+  @isTest static void selectOptionsTest() {
+    User u = Oblix_TestUtils.createTestUser();
+
+    System.runAs(u) {
+      Test.startTest();
+
+      MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+      Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+      mSow.RecordTypeId = Oblix_Utils.MapRecordType('Marketing_SOW__c').get('ParentSowMarketing');
+      update mSow;
+
+      Oblix_Ctrl05SOWDetails_CC controller = new Oblix_Ctrl05SOWDetails_CC();
+
+      Test.stopTest();
+
+      System.assertEquals(controller.getSmallCategory().size(),2,TWO_ELEMENTS_MESSSAGE);
+      System.assertEquals(controller.getBigCategory().size(),2,TWO_ELEMENTS_MESSSAGE);
+      System.assertEquals(controller.getBrandItems().size(),2,TWO_ELEMENTS_MESSSAGE);
+      System.assert(!controller.getFinancialYear().isEmpty(),'There should be financial year options');
+
+    }
+  }
+
+  @isTest static void getthousandBlocksTest(){
+
+    User u = Oblix_TestUtils.createTestUser();
+    System.runAs(u) {
+      Test.startTest();
+
+      Oblix_Ctrl05SOWDetails_CC controller = new Oblix_Ctrl05SOWDetails_CC();
+
+
+      List<Marketing_SOW__c> lstSowsMarketingLocal = new List<Marketing_SOW__c>();
+      for(Integer i = 0 ; i < 2000 ; i ++){
+        Marketing_SOW__c item = new Marketing_SOW__c();
+        lstSowsMarketingLocal.add(item);
+      }
+
+      Oblix_Ctrl05SOWDetails_CC.limitWrapper[] wrapperlist = controller.getthousandBlocks(lstSowsMarketingLocal);
+
+      Test.stopTest();
+
+      System.assert(!wrapperlist.isEmpty(),'There should be elements in the list');
+    }
+  }
+
+  @isTest static void actionsTest(){
+    User u = Oblix_TestUtils.createTestUser();
+    System.runAs(u) {
+      Test.startTest();
+
+      MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+      Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+
+      Oblix_Ctrl05SOWDetails_CC controller = new Oblix_Ctrl05SOWDetails_CC();
+
+      Test.stopTest();
+
+      controller.selectedSewId = mSow.id;
+      controller.RerenderSelectedSow();
+
+      Attachment att = new Attachment(parentId = mSow.id, name = 'attachmentUnitTest', body = Blob.valueOf('test'));
+      insert att;
+
+      controller.ViewAttachements();
+      controller.applyFilters();
+      controller.Cancel();
+
+      System.assert(controller.CreateSOWAction() != null,NOT_NULL_MESSSAGE);
+      System.assert(controller.ViewAction() != null,NOT_NULL_MESSSAGE);
+      System.assert(controller.ViewSow() != null,NOT_NULL_MESSSAGE);
+      System.assert(controller.selSow.id != null,'Record should be selected');
+      System.assert(!controller.lstAttachements.isEmpty(),'List should not be empty');
+
+    }
+  }
+
+  @isTest static void uploadeAttachmentTest(){
+    User u = Oblix_TestUtils.createTestUser();
+    System.runAs(u) {
+      Test.startTest();
+
+      MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+
+      Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+
+      Oblix_Ctrl05SOWDetails_CC controller = new Oblix_Ctrl05SOWDetails_CC();
+
+      controller.attachment = new Attachment(name = 'Test',body = Blob.valueOf('Test'));
+
+      controller.selectedSewId = mSow.id;
+
+      controller.uploadeAttachment();
+
+      Test.stopTest();
+
+      System.assert(!controller.lstAttachements.isEmpty() ,'Attachment should be uploaded');
+    }
+  }
+
+}

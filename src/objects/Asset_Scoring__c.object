@@ -81,7 +81,7 @@
         <label>Sub Category</label>
         <picklist>
             <picklistValues>
-                <fullName>Adaptations &amp; Reedits</fullName>
+                <fullName>Adaptations and Reedits</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -89,7 +89,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Cut downs &amp; Tag</fullName>
+                <fullName>Cut downs and Tag</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -97,7 +97,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Origination</fullName>
+                <fullName>Origination Lite</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -113,15 +113,19 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Digital Adaptation Requirements</fullName>
+                <fullName>Digital Adaptation</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Data, Analytics, Reporting, Dashboards</fullName>
+                <fullName>Data Analytics Reporting Dashboards</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Always on Social/ Digital requirements</fullName>
+                <fullName>Always on Social</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Origination Full</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -152,7 +156,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Stimulus Materials/ Research Requirements</fullName>
+                <fullName>Stimulus Materials - Research Requirements</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -262,11 +266,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Adaptations %26 Reedits</fullName>
+                <fullName>Adaptations and Reedits</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Always on Social%2F Digital requirements</fullName>
+                <fullName>Always on Social</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -274,15 +278,15 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cut downs %26 Tag</fullName>
+                <fullName>Cut downs and Tag</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Data%2C Analytics%2C Reporting%2C Dashboards</fullName>
+                <fullName>Data Analytics Reporting Dashboards</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Digital Adaptation Requirements</fullName>
+                <fullName>Digital Adaptation</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -290,7 +294,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Origination</fullName>
+                <fullName>Origination Full</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Origination Lite</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -321,7 +329,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Stimulus Materials%2F Research Requirements</fullName>
+                <fullName>Stimulus Materials - Research Requirements</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

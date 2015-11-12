@@ -39,6 +39,10 @@
                 <behavior>Edit</behavior>
                 <field>Oblix_Quantity__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Asset_Title__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

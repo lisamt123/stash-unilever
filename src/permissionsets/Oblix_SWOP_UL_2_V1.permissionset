@@ -29,6 +29,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_Ctrl001DeepCloneSOW_CC_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_Ctrl001DeepCloneSOW_Test_CC</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -69,20 +73,32 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_Ctrl05SOWDetails_CC_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_Ctrl06SOWView_CC</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_Ctrl06SOWView_CC_Test</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_Ctrl07ProjectEdit_CC</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_Ctrl07ProjectEdit_CC_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_Ctrl07ProjectView_CC</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Oblix_Ctrl08CloneProject</apexClass>
-        <enabled>true</enabled>
+        <apexClass>Oblix_Ctrl07ProjectView_CC_Test</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_Ctrl09_nonCampaignEdit</apexClass>
@@ -158,6 +174,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_TR06SowMarketBrandPopulate_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_TestUtils</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -4300,6 +4320,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_Basics__c.Order__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Marketing_Basics__c.Other_Activities__c</field>
         <readable>true</readable>
@@ -4307,6 +4332,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Marketing_Basics__c.Role_Title__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Marketing_Basics__c.non_campaign_title__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4407,12 +4437,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Oblix_TotalCampaignAdjustment__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Marketing_SOW__c.Oblix_tec_Unique_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4427,7 +4457,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Total_Campaign_Fee__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4635,13 +4665,18 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Oblix_Project_Assets__c.Asset_Picklist__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_Project_Assets__c.Asset_Scoring_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Oblix_Project_Assets__c.Asset_Title__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4675,9 +4710,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Oblix_Project_Assets__c.Oblix_Quantity__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4700,9 +4735,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Oblix_SOW_Projects__c.BET_first_release__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4717,7 +4752,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Campaign_Fees_Total__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4725,24 +4760,24 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Campaign_Status__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Campaign_Total_Adjustment__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Campaign_Total_Fees__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Completed_Stage__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4755,9 +4790,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Final_release__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4790,14 +4825,14 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Live_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Live_date_Asset_delivery__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4847,7 +4882,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Percentage_of_Fee_for_Next_FY__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4860,9 +4895,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Preview_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4910,9 +4945,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Projected_Stage__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4925,9 +4960,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Start_of_TV_production__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4955,9 +4990,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Total_Project_Score__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -4967,7 +5002,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Value_to_be_paid_in_Current_FY__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -5432,7 +5467,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Oblix_Project_Assets__c.Admin</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Oblix_Project_Assets__c.Audio_Visual</recordType>

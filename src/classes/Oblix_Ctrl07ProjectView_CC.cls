@@ -28,20 +28,41 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
         public string itemToDelete {get;set;}
         public Oblix_Project_Assets__c  itemToEdit {get;set;}
         public boolean isEditItem {get;set;}
+        public map<string,string> mapStageIdCSS {get;set;}
+        public map<string,integer> feePercentages {get;set;}
+        public string lstIdCSSSelected {get;set;}
+        public Map<String, String> mapTurnoverToSize {get;set;}
+        
         
         public Oblix_Ctrl07ProjectView_CC (){
               IdsProject = '';
               isEditItem = false;
+              lstIdCSSSelected = '';
               lstStage = new list<string>();
               mapNumberItem = new map<string,integer>();
               itemToEdit = new Oblix_Project_Assets__c();
+              mapStageIdCSS = new map<string,string>();
+              feePercentages = new map<string,integer>();   
         }
               
         public void init(){
             setRecordType = new set<String>();
-            Id idUser = UserInfo.getUserId();  
+            Id idUser = UserInfo.getUserId();
+            mapTurnoverToSize = new Map<String, String>(); 
+            mapTurnoverToSize.put(Oblix_Constants.BrandLedGrowth_IncremTurnoverLess10, 'S');
+            mapTurnoverToSize.put(Oblix_Constants.BrandLedGrowth_IncremTurnover1020, 'S/M');
+            mapTurnoverToSize.put(Oblix_Constants.BrandLedGrowth_IncremTurnoverLess2030, 'M');
+            mapTurnoverToSize.put(Oblix_Constants.BrandLedGrowth_IncremTurnoverLess3040, 'M/L');
+            mapTurnoverToSize.put(Oblix_Constants.BrandLedGrowth_IncremTurnoverLessAbove40, 'L');
+            
+            mapTurnoverToSize.put(Oblix_Constants.BrandLedGrowth_Less100, 'S');
+            mapTurnoverToSize.put(Oblix_Constants.BrandLedGrowth_100_200, 'S/M');
+            mapTurnoverToSize.put(Oblix_Constants.BrandLedGrowth_IncremTurnover200_300, 'M');
+            mapTurnoverToSize.put(Oblix_Constants.BrandLedGrowth_IncremTurnoverLess300_400, 'M/L');
+            mapTurnoverToSize.put(Oblix_Constants.BrandLedGrowth_IncremTurnoverLessAbove400, 'L');
+            
             userConnected = [Select Name from User where Id =: idUser ];
-            SelectedProject = [Select o.Total_Fees_for_Project__c, o.Total_Digital_Fee__c,o.Value_to_be_paid_in_Current_FY__c ,o.Campaign_Status__c, o.Total_Adapt_Fees__c, o.Timescale_Notes__c, o.SystemModstamp, o.Stimulus_Requirements__c, 
+            SelectedProject = [Select o.Total_Fees_for_Project__c, o.Total_Digital_Fee__c,o.Value_to_be_paid_in_Current_FY__c ,o.Projected_Stage__c,o.Completed_Stage__c,o.Campaign_Status__c, o.Total_Adapt_Fees__c, o.Timescale_Notes__c, o.SystemModstamp, o.Stimulus_Requirements__c, 
                                  o.Should_legal_review_this_project__c, o.Region__c, o.Project_Start_Date__c, o.Project_Stage__c, o.Project_Scale_2__c, o.Project_Scale_1__c, o.Project_Priority__c, 
                                  o.Project_Finish_Date__c, o.Project_Completion_Date__c, o.ProjectTotalAssetscore__c, o.Production_Completion_Date__c, o.Platform__c, 
                                  o.Percentage_of_Fee_for_this_FY__c, o.Overall_Project_Complete__c, o.Other_Kinds_of_Research__c, o.Oblix_ProjectBoxNumber__c, o.OblixRegion__c, 
@@ -51,13 +72,14 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
                                  o.Description__c, o.Date_for_Assets_to_be_in_BET__c, o.CreatedDate, o.CreatedById, o.Campaign_Idea__c, o.Budget_Burnt_to_date__c, o.Brand_Led_Growth__c, 
                                  o.Agency_Percentage_of_Fees_to_this_FY__c,o.Financial_Year__r.currency__c,o.BET_first_release__c,o.Final_release__c,o.Start_of_TV_production__c,o.Live_date_Asset_delivery__c,o.Live_Date__c From Oblix_SOW_Projects__c o where id =:ApexPages.currentPage().getParameters().get('projectId')];
               if(SelectedProject.OblixCountries__c != null){
-                  SelectedProject.OblixCountries__c = SelectedProject.OblixCountries__c.replaceAll(',',' ,');
+                  SelectedProject.OblixCountries__c = SelectedProject.OblixCountries__c.replaceAll(',',', ');
               }    
+              lstIdCSSSelected = Oblix_Utils.getSelectedStageCheckbox(SelectedProject.Projected_Stage__c,SelectedProject.Completed_Stage__c);
               sowID =  SelectedProject.Financial_Year__c;                  
               IdsProject = IdsProject +'\''+SelectedProject.id+'\',';
               IdsProject = '['+IdsProject.removeEnd(',')+']';   
                               
-             lstProjectSplitHubs = [Select Id, Name, OblixCountry__c, Project_Splits__c, Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c =: SelectedProject.Id ];
+             lstProjectSplitHubs = [Select Id, Name, OblixCountry__r.name,OblixCountry__c, Project_Splits__c, Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c =: SelectedProject.Id ];
              
              lstAssets = [select Id,Agency_Projects__r.id,LastModifiedDate,Additional_Description__c,Target_Delivery_Date__c ,Actual_Delivery_Date__c, FULL_Description__r.Name, Channels__c,RecordType.Name,Name,RecordTypeId,Sub_Category__c,FULL_Description__c from Oblix_Project_Assets__c where Agency_Projects__c =:SelectedProject.Id];
              System.debug('###lstAssets : '+lstAssets );
@@ -70,19 +92,24 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
                           mapNumberItem.put(asset.RecordType.Name,mapNumberItem.get(asset.RecordType.Name)+1);
                       }
                   }
-                  
              } 
-             if(mapNumberItem.get('Audio Visual') == null) { mapNumberItem.put('Audio Visual',0);}
-             if(mapNumberItem.get('Digital') == null) { mapNumberItem.put('Digital',0);}
-             if(mapNumberItem.get('Experiential') == null) { mapNumberItem.put('Experiential',0);}
-             if(mapNumberItem.get('Static Imagery') == null) { mapNumberItem.put('Static Imagery',0);}
-             if(mapNumberItem.get('Stimulus Materials / Research requirements') == null) { mapNumberItem.put('Stimulus Materials / Research requirements',0);}    
+             if(mapNumberItem.get(Label.Oblix_Lbl_UIUX_AudioVisuel) == null) { mapNumberItem.put(Label.Oblix_Lbl_UIUX_AudioVisuel,0);}
+             if(mapNumberItem.get(Label.Oblix_Lbl_UIUX_Digital) == null) { mapNumberItem.put(Label.Oblix_Lbl_UIUX_Digital,0);}
+             if(mapNumberItem.get(Label.Oblix_Lbl_UIUX_Experiential) == null) { mapNumberItem.put(Label.Oblix_Lbl_UIUX_Experiential,0);}
+             if(mapNumberItem.get(Label.Oblix_Lbl_UIUX_Static_Img) == null) { mapNumberItem.put(Label.Oblix_Lbl_UIUX_Static_Img,0);}
+             if(mapNumberItem.get(Label.Oblix_Lbl_UIUX_Stimulus_Materials) == null) { mapNumberItem.put(Label.Oblix_Lbl_UIUX_Stimulus_Materials,0);}    
              System.debug('###setRecordType : '+setRecordType);
-             Schema.DescribeFieldResult lstProjectStage = Oblix_SOW_Projects__c.Project_Stage__c.getDescribe();
-             List<Schema.PicklistEntry> lstStageValues = lstProjectStage.getPicklistValues();
-             for (Schema.PicklistEntry a : lstStageValues){ 
-                 lstStage.add(a.getLabel()); 
-             }
+             
+             lstStage = Oblix_Utils.getStageList();
+             feePercentages.put(lstStage[0],10);
+             feePercentages.put(lstStage[1],20);
+             feePercentages.put(lstStage[2],30);
+             feePercentages.put(lstStage[3],25);
+             feePercentages.put(lstStage[4],15);
+             for(string stage:lstStage){
+                mapStageIdCSS.put(stage,stage.replaceAll(' & ','_').replaceAll(' ','_'));
+            } 
+            
               
          }
         /* Method used to redirect Back To Sow View
@@ -131,23 +158,33 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
          public void EditItemsAction(){
              isEditItem = true;
          }
-         public void DeleteItemsAction(){
-             
+          public void DeleteItemsAction(){
+             Oblix_Project_Assets__c assetToDelete = new Oblix_Project_Assets__c();
+             integer position = 0;
+             system.debug('###itemToDelete : '+itemToDelete);
              for(Integer i=0;i<lstAssets.size();i++){
                  if(lstAssets[i].Id == itemToDelete){
-                    delete lstAssets[i] ;
-                    lstAssets.remove(i);
+                    assetToDelete = lstAssets[i];
+                    position = i;
+                    //delete lstAssets[i] ;
+                   
                  }
              }
-            mapNumberItem.put('Digital', mapNumberItem.get('Digital')-1);
+             
+            mapNumberItem.put(assetToDelete.RecordType.Name, mapNumberItem.get(assetToDelete.RecordType.Name)-1);
+            delete assetToDelete;
+            if(position > 0) { lstAssets.remove(position); } 
              lstAssets = [select Id,Agency_Projects__r.id,LastModifiedDate,Additional_Description__c,Target_Delivery_Date__c ,Actual_Delivery_Date__c, FULL_Description__r.Name, Channels__c,RecordType.Name,Name,RecordTypeId,Sub_Category__c,FULL_Description__c from Oblix_Project_Assets__c where Agency_Projects__c =:SelectedProject.Id];
          }
          public void SaveItemsAction(){  
+             Oblix_Project_Assets__c assetToUpdate = new Oblix_Project_Assets__c();
              for(Oblix_Project_Assets__c  asset : lstAssets){
                  if(asset.Id == itemToDelete){
-                     update asset;
+                     assetToUpdate = asset;
+                     //update asset;
                  }
              }
+             update assetToUpdate;
              lstAssets = [select Id,Agency_Projects__r.id,LastModifiedDate,Additional_Description__c,Target_Delivery_Date__c ,Actual_Delivery_Date__c, FULL_Description__r.Name, Channels__c,RecordType.Name,Name,RecordTypeId,Sub_Category__c,FULL_Description__c from Oblix_Project_Assets__c where Agency_Projects__c =:SelectedProject.Id];
              isEditItem = false;
          }

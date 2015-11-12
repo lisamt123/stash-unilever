@@ -32,6 +32,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_Ctrl001DeepCloneSOW_CC_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_Ctrl001DeepCloneSOW_Test_CC</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -72,7 +76,15 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_Ctrl05SOWDetails_CC_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_Ctrl06SOWView_CC</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_Ctrl06SOWView_CC_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -80,11 +92,15 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_Ctrl07ProjectEdit_CC_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_Ctrl07ProjectView_CC</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Oblix_Ctrl08CloneProject</apexClass>
+        <apexClass>Oblix_Ctrl07ProjectView_CC_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -161,6 +177,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_TR06SowMarketBrandPopulate_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_TestUtils</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -4304,12 +4324,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_Basics__c.Order__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_Basics__c.Other_Activities__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Marketing_Basics__c.Role_Title__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Marketing_Basics__c.non_campaign_title__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -4646,6 +4676,11 @@
         <editable>false</editable>
         <field>Oblix_Project_Assets__c.Asset_Scoring_Number__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Oblix_Project_Assets__c.Asset_Title__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

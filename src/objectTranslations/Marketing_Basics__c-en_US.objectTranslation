@@ -12,12 +12,64 @@
         <label><!-- Activities --></label>
         <name>Activities__c</name>
         <picklistValues>
-            <masterLabel>Competitor Review</masterLabel>
-            <translation><!-- Competitor Review --></translation>
+            <masterLabel>Brand Book</masterLabel>
+            <translation><!-- Brand Book --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brand Communication Idea</masterLabel>
+            <translation><!-- Brand Communication Idea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brand Key Presentations</masterLabel>
+            <translation><!-- Brand Key Presentations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brand Leadership Meetings</masterLabel>
+            <translation><!-- Brand Leadership Meetings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brand Leadership Workshops</masterLabel>
+            <translation><!-- Brand Leadership Workshops --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brand Led Training for the agency</masterLabel>
+            <translation><!-- Brand Led Training for the agency --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brand Technical &amp;/or Infrastructure Reviews</masterLabel>
+            <translation><!-- Brand Technical &amp;/or Infrastructure Reviews --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brand equity development</masterLabel>
+            <translation><!-- Brand equity development --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Competitive Reviews</masterLabel>
+            <translation><!-- Competitive Reviews --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Global Status Meetings</masterLabel>
+            <translation><!-- Global Status Meetings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Network Co-ordination (other agencies)</masterLabel>
+            <translation><!-- Network Co-ordination (other agencies) --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Other</masterLabel>
             <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regtional Status Meetings</masterLabel>
+            <translation><!-- Regtional Status Meetings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Status Reports</masterLabel>
+            <translation><!-- Status Reports --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>USLP</masterLabel>
+            <translation><!-- USLP --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -143,6 +195,10 @@
         <label><!-- Marketing SOW --></label>
         <name>Oblix_SOWMarketing__c</name>
         <relationshipLabel><!-- SWOP Non Campaign Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>Order__c</name>
     </fields>
     <fields>
         <label><!-- Other Activities --></label>
@@ -643,6 +699,10 @@
             <masterLabel>Traffic Supervisor</masterLabel>
             <translation><!-- Traffic Supervisor --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- non campaign title --></label>
+        <name>non_campaign_title__c</name>
     </fields>
     <layouts>
         <layout>Activity</layout>

@@ -289,6 +289,10 @@
         <name>Asset_Scoring_Number__c</name>
     </fields>
     <fields>
+        <label><!-- Asset Title --></label>
+        <name>Asset_Title__c</name>
+    </fields>
+    <fields>
         <label><!-- Asset Total Score --></label>
         <name>Asset_Total_Score__c</name>
     </fields>

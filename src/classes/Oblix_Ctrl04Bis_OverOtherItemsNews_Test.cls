@@ -95,6 +95,9 @@ private class Oblix_Ctrl04Bis_OverOtherItemsNews_Test {
 	        	  		controller2.selectedAgencyDepartment = roleRate.Agency_Department__c;
 	        	  		controller2.reRenderRoleTitle();
 	        	  		controller2.save(); 
+	        	  		controller2.reRenderSOW();
+	        	  		List<SelectOption> countries = controller2.getCountry();
+	        	  	
         	  Test.stopTest();		
 	     }
 		        
