@@ -257,6 +257,7 @@ public with sharing class uw_BETDetailService {
                 if(ca != null){
                     file.URL_of_Asset__c = ca.downloadUrl;
                     file.thumbnail__c = ca.renditionUrl;
+                    file.File_Id__c = ca.Id;
                 }else{
                     throw new BetException('Can\'t find attachment for Feed');
                 } 

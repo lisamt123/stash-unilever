@@ -2868,6 +2868,9 @@ angular.module('unileverApp')
             };
 
             var searchBets = function(keyword, withFilters, resetPageNumber) {
+				
+				console.log('in searchBets : ' + keyword + ','+withFilters + ','+resetPageNumber);
+				
                 if ($scope.infiniteBusy) {
                     return;
                 }
@@ -2879,6 +2882,9 @@ angular.module('unileverApp')
                 } else {
                     $scope.infinitePage++;
                 }
+				
+				console.log('SearchService.searchBets : ' + keyword + ','+$scope.selectedBrand.value + ','+$scope.selectedCategory.value);
+				
                 SearchService.searchBets($scope.selectedBrand.value, $scope.selectedCategory.value, keyword, $scope.pageSize, $scope.infinitePage, withFilters, !$scope.state.reverse, $scope.state.field).then(parseData, handleError);
             };
 
@@ -2909,6 +2915,12 @@ angular.module('unileverApp')
                         value: ''
                     };
                     $scope.reloadFilters = 'Brands';
+					// filtering fix : reset actual results
+					$scope.res = {
+						betsActive: [],
+						betsArchived: []
+					};
+					//
                     searchBets($scope.searchKeyword, true, true);
                 }
                 $scope.showCategory = false;
@@ -2918,6 +2930,12 @@ angular.module('unileverApp')
             $scope.selectBrand = function(value) {
                 if ($scope.selectedBrand !== value) {
                     $scope.selectedBrand = value;
+					// filtering fix : reset actual results
+					$scope.res = {
+						betsActive: [],
+						betsArchived: []
+					};
+					//
                     searchBets($scope.searchKeyword, false, true);
                 }
                 $scope.showCategory = false;
