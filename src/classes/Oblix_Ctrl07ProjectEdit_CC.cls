@@ -284,7 +284,7 @@
              }*/
              system.debug('### ');
              if(projectId != null){
-                 ValueDriversProject(project.OblixCountries__c);
+                if(project.OblixCountries__c != null) ValueDriversProject(project.OblixCountries__c);
                 update project;
             }
         }

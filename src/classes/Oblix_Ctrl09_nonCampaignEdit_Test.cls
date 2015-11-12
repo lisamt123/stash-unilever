@@ -1,8 +1,7 @@
 @isTest 
 private class Oblix_Ctrl09_nonCampaignEdit_Test {
 
-
-        
+  
 
     private static  id createMaketingSow (){
       
@@ -42,6 +41,7 @@ private class Oblix_Ctrl09_nonCampaignEdit_Test {
             basicParent.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get('Resource');
             basicParent.OblixCountry__c = geographyCountry.Id;
             insert basicParent;
+            
       Marketing_Basics__c basicParent1 = new Marketing_Basics__c();
             basicParent1.Oblix_SOWMarketing__c = marketingSow.Id;
             basicParent1.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get('Resource');
@@ -62,7 +62,7 @@ private class Oblix_Ctrl09_nonCampaignEdit_Test {
             basicParentActivity1.OblixCountry__c = geographyCountry.Id;
             insert basicParentActivity1;
             
-            return marketingSow.id; 
+            return basicParent.id; 
         
     }
  
@@ -84,7 +84,7 @@ private class Oblix_Ctrl09_nonCampaignEdit_Test {
                 Test.startTest();
                     PageReference pageref = Page.Oblix_VF09_nonCampaignEdit; 
                        Test.setCurrentPage(pageref) ;
-                        pageRef.getParameters().put('MSid', createMaketingSow() );
+                        pageRef.getParameters().put('itm', createMaketingSow() );
                   Oblix_Ctrl09_nonCampaignEdit controller = new Oblix_Ctrl09_nonCampaignEdit();
                  //   System.assertEquals(controller.asset.Id, asset.Id); // assert that the controller take the ID from params
                  //controller.addnewItems();

@@ -3184,11 +3184,32 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Add Non Campaign</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Add_Non_Campaign_Items</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Add_Non_Campaign_Items</shortDescription>
+        <value>Add Non Campaign Items</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Adjust_Fee</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Adjust_Fee</shortDescription>
         <value>Adjust Fee</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Agency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Agency</shortDescription>
+        <value>Agency</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Agency_Department</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Agency_Department</shortDescription>
+        <value>Agency Department</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Agency_Hub_Split</fullName>
@@ -3238,6 +3259,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Back_to_SOW</shortDescription>
         <value>Back to Sow</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Business_Value_Drivers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Business_Value_Drivers</shortDescription>
+        <value>Business Value Drivers</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Cancel</fullName>
@@ -3303,6 +3331,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Confirm which stages of the project will be completed in the current year.</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Copy_Question</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Copy_Question</shortDescription>
+        <value>Are you sure you want to make a copy</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Cost</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -3315,6 +3350,20 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Cost_estimate</shortDescription>
         <value>Cost estimate requires Agency Hub Split and Value Drivers to be completed</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Countries</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Countries</shortDescription>
+        <value>Countries</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Country</shortDescription>
+        <value>Country</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Create_SOW</fullName>
@@ -3338,6 +3387,34 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Dates for Campaign Timeline</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Dedicate_Resource</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Dedicated_Resource</shortDescription>
+        <value>Dedicated Resource</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Delete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Delete_item</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Delete_item</shortDescription>
+        <value>Delete item</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Description</shortDescription>
+        <value>Description</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Edit</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -3352,6 +3429,20 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Edit / Add items</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Edit_Non_Campaign_Items</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Edit_Non_Campaign_Items</shortDescription>
+        <value>Edit Non Campaign items</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Estimation_Cost</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Estimation_Cost</shortDescription>
+        <value>Estimation Cost</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Fee</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -3359,11 +3450,25 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>% Fee</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Financials</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Financials</shortDescription>
+        <value>Financials</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Fixed_resource</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Fixed_resource</shortDescription>
         <value>Fixed resource</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Go</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Go</shortDescription>
+        <value>Go</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Go_back_to_the_edit_mode</fullName>
@@ -3380,11 +3485,32 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Hi</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Hourly_rate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Hourly_rate</shortDescription>
+        <value>Hourly rate</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_How_Many_Files</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_How_Many_Files</shortDescription>
         <value>How many files you want to upload?</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Information</shortDescription>
+        <value>Information</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Marketing_SOW_Campaign_Edit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Marketing_SOW_Campaign_Edit</shortDescription>
+        <value>Marketing SOW Campaign Edit</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Name</fullName>
@@ -3401,6 +3527,27 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>New Attachment</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Next_Stage_Is</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Next_Stage_Is</shortDescription>
+        <value>Next Stage is</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_No_Copies_Financial_Year</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_No_Copies_Financial_Year</shortDescription>
+        <value>No copies are left for this financial year</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_No_Permission_To_Clone_SW</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_No_Permission_To_Clone_SW</shortDescription>
+        <value>You don&apos;t have the permission to clone this Statement of work</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Non_Campaign_items</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -3413,6 +3560,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Online _Planner</shortDescription>
         <value>Online Planner</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Other_Items</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Other_Items</shortDescription>
+        <value>Other Items</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Parent_Name</fullName>
@@ -3457,11 +3611,25 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Resource</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Role_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Role_title</shortDescription>
+        <value>Role title</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_SWOP</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_SWOP</shortDescription>
         <value>SWOP</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_SWOP_Other_Items_Edit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_SWOP_Other_Items_Edit</shortDescription>
+        <value>SWOP Other Items Edit</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Save</fullName>
@@ -3492,6 +3660,20 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Scope of Work</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Search</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Search</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Sow_Campaign</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Sow_Campaign</shortDescription>
+        <value>Sow Campaign</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Stage</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -3499,11 +3681,25 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Stage</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_SubCategory</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_SubCategory</shortDescription>
+        <value>SubCategory</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_This_will_impact</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_This_will_impact</shortDescription>
         <value>This will impact the proportion of the fee that is paid in the current FY.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Time_Scales</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Time_Scales</shortDescription>
+        <value>Time Scales</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Updates</fullName>
@@ -3562,11 +3758,25 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>View as list</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_View_non</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_View_non</shortDescription>
+        <value>View Non</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_View_non_Campaign</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_View_non_Campaign</shortDescription>
         <value>View non Campaign</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_hours</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_hours</shortDescription>
+        <value>hours</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_items</fullName>
