@@ -9,7 +9,7 @@ History
 VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   m.bluj@polsource.com            13/08/2015      INITIAL DEVELOPMENT
 *******************************************************************************************************************************/
-/* Without sharing due to this is ITrigger implementation class  */
+/* Without sharing due to this it ITrigger implementation class  */
 public without sharing class BET_Team_MemberHandlerCls {
 
     public static final String BETMANAGERCONFIG = 'BETManageMembersConfig';
@@ -175,6 +175,17 @@ public without sharing class BET_Team_MemberHandlerCls {
             }
         }
 
+        addStandardUserPermissionSet(relatedUsersIds);
+    }
+
+    /************************************************************
+        Purpose: Method adds CB4L_Standard_User permission sets to new members in case they do not have any other BET permission set assigned
+        Parameters: Set<Id> relatedUsersIds
+        Returns: -
+        Throws: -
+    *************************************************************/
+    @Future
+    private static void addStandardUserPermissionSet(Set<Id> relatedUsersIds){
         if(!relatedUsersIds.isEmpty()) {
 
             Map<String,Id> permsetMap = BET_CommonService.getIdsOfBETsPermissionSets();
@@ -196,7 +207,6 @@ public without sharing class BET_Team_MemberHandlerCls {
 
             insert assignments;
         }
-
     }
 
 }
