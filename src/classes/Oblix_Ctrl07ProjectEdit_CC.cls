@@ -207,9 +207,10 @@
                     if(lstProjectSplitHubs.size() < 5 || lstProjectSplitHubs.isEmpty()){
                         Oblix_Marketing_SOW_Project_Splits__c FiveAgencySplitInstance = new Oblix_Marketing_SOW_Project_Splits__c();
                         FiveAgencySplitInstance.Project_Splits__c = projectId;
-                        if(agencySplitInstanceJS.Percentage__c == null) {
+                        //sonar empty if statement fix
+                        //if(agencySplitInstanceJS.Percentage__c == null) {
                             //FiveAgencySplitInstance.Percentage__c = 0;
-                        }
+                        //}
                         lstProjectSplitHubs.add(FiveAgencySplitInstance);
                     }
                 }
