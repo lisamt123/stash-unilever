@@ -13,7 +13,7 @@ private class Oblix_Ctrl07ProjectEdit_CC_Test {
 			Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
 
 			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
-
+			System.assert(project.Id != null,'project not null');
 			ApexPages.currentPage().getParameters().put('projectId', project.id);
 
 			Oblix_Ctrl07ProjectEdit_CC controller = new Oblix_Ctrl07ProjectEdit_CC();

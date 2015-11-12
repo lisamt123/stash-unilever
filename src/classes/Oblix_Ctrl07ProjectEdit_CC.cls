@@ -191,7 +191,7 @@
                 for(Oblix_Project_Assets__c asse:lstAsset){
                     if(asse.FULL_Description__c != null) 
                     asse.Asset_Title__c = asse.Quantity__c +' X '+mapAbreviation.get(''+asse.RecordType.Name)+'-'+mapAbreviation.get(''+asse.Sub_Category__c)+'-'+'0'+asse.FULL_Description__r.name.remove('Score ');
-                    asse.Asset_Title__c = asse.Asset_Title__c.replaceAll('null','');
+                    if(asse.Asset_Title__c != null) asse.Asset_Title__c = asse.Asset_Title__c.replaceAll('null','');
                 }
                 lstAssetsForCard.addAll(lstAsset);
                 lstProjectSplitHubs = [Select Id, Name, OblixCountry__c, Project_Splits__c,OblixCountry__r.name,Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c =: projectId];  

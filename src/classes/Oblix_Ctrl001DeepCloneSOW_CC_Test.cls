@@ -40,9 +40,6 @@ private class Oblix_Ctrl001DeepCloneSOW_CC_Test {
                 
                 insert marketingSow;
                 
-           
-                
-           
                 Test.startTest();
                     PageReference pageref = Page.Oblix_VF01DeepCloneSOW ; 
                        Test.setCurrentPage(pageref) ;
@@ -55,7 +52,7 @@ private class Oblix_Ctrl001DeepCloneSOW_CC_Test {
                   controller.nextStageTypeSow ='0';
                   controller.canClone =false;
     
-                 //   System.assertEquals(controller.asset.Id, asset.Id); // assert that the controller take the ID from params
+                  System.assertEquals(controller.canClone, false); // assert that the controller take the ID from params
                  
               //   controller.sowParent =  createMaketingSow ();
                  //controller.CloneSowParent();
