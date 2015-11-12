@@ -19951,6 +19951,10 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>BET_SingleAssetUpload</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>BET_UpdateExpectedAssets</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
