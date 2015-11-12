@@ -113,15 +113,15 @@
     
       .cnter {
     text-align: center;
-}
-.cnter > div, .cnter > table /* insert any other block-level elements here */ {
-    margin-left: auto;
-    margin-right: auto;
-}
+    }
+    .cnter > div, .cnter > table /* insert any other block-level elements here */ {
+        margin-left: auto;
+        margin-right: auto;
+    }
         .darkGreen{color: #44883E  ;}
         .mainGreen{color: #6BA539;}
-        h2{ font-size: 130%;}
-        h3{font-size: 14px;}
+        h2{ font-size: 120%;}
+        h3{font-size: 12px;}
 
         .Oblix_Container{
             background-image : url("{!URLFOR($Resource.assetUI,'bg_pattern_2.png')}");
@@ -282,7 +282,7 @@
             letter-spacing: 1px;
         }
         #tabs-centre h1{
-            font-size: 18px;
+            font-size: 16px;
             text-transform: uppercase;
             letter-spacing: 1px;
             background: transparent !important;
@@ -336,32 +336,33 @@
         }
         .Oblix_Dash{
                 display:{!if(seriesProject == '' || seriesProject == '[]','none','block')};
+               display: block;
                 padding: 9.5px;
                 margin: 0 58px 23px;
                 font-size: 13px;
                 line-height: 1.42857143;
-                color: #333;
-                word-break: break-all;
+                word-break: normal;
                 word-wrap: break-word;
-                background-color: #f5f5f5;
-                border: 1px solid #ccc;
-                border-radius: 4px;
+                background-color: #fff;
+                border: 2px solid;
+                border-color: rgba(107,165,57,0.5);
+                border-radius: 15px;
         }
         .topAlign tr{
             vertical-align: top;
         }
          .Oblix_table{
-                display:block;
-                padding: 9.5px;
-                margin: 0 58px 23px;
-                font-size: 13px;
-                line-height: 1.42857143;
-                color: #333;
-                word-break: break-all;
-                word-wrap: break-word;
-                background-color: #f5f5f5;
-                border: 1px solid #ccc;
-                border-radius: 4px;
+            display: block;
+            padding: 9.5px;
+            margin: 0 58px 23px;
+            font-size: 13px;
+            line-height: 1.42857143;
+            word-break: normal;
+            word-wrap: break-word;
+            background-color: #F5F5F5;
+            border: 2px solid;
+            border-color: rgba(107,165,57,0.5);
+            border-radius: 15px;
         }
   
         /**** Button CSS ****/
@@ -778,7 +779,7 @@
                     </td>
                  </tr>
             <tr>
-            <td width="45%">
+            <td width="50%">
             <section class="column1">
                <table width="100%" class="Oblix_tableDetails topAlign">
                    
@@ -1033,7 +1034,7 @@
          <apex:outputPanel id="projectButtonId">
                 <table width="100%" class="Oblix_TableTitle">
                     <tr>
-                        <td width="20%">
+                        <td width="50%">
                             
                         </td>
                         <td  width="15%">

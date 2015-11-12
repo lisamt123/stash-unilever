@@ -1814,6 +1814,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Total Turnover &gt;40M</value>
     </labels>
     <labels>
+        <fullName>Oblix_Lbl_Activity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Activity</shortDescription>
+        <value>Activity</value>
+    </labels>
+    <labels>
         <fullName>Oblix_Lbl_AssetScoring_PrefixObject</fullName>
         <categories>Asset Scoring Prefix</categories>
         <language>en_US</language>
@@ -1990,6 +1997,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>New – One channel</value>
     </labels>
     <labels>
+        <fullName>Oblix_Lbl_Marketing_Basics_c</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Marketing_Basics__c</shortDescription>
+        <value>Marketing_Basics__c</value>
+    </labels>
+    <labels>
         <fullName>Oblix_Lbl_Oblix_Lbl_Innovation_Projects_Market3</fullName>
         <categories>Oblix Calculator</categories>
         <language>en_US</language>
@@ -2012,6 +2026,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_Oblix_Lbl_Innovation_Projects_Market5</shortDescription>
         <value>Global campaign/s suitable for  &gt;15 number of markets</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Role</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Role</shortDescription>
+        <value>Role</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_SOWSTATUS_AWAITINGAPPROVAL</fullName>

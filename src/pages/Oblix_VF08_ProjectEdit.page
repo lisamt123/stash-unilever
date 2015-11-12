@@ -1336,7 +1336,7 @@
                                    <table width="100%"> 
                                        
                                        <tr>    
-                                          <td colspan="2"><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Platform__c.label}</strong><apex:inputField styleClass="input_init"   value="{!project.Platform__c}"/></td>
+                                          <td colspan="2"><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Platform__c.label}&nbsp;</strong><apex:inputField styleClass="input_init"   value="{!project.Platform__c}"/></td>
                                        </tr>
                                        <tr>
                                           <td>

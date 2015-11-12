@@ -2,7 +2,6 @@
 <apex:form id="myForm">
     <head>
    
-      <!--  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"/> -->
         <apex:stylesheet value="{!$Resource.bootstrapMinCss}" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>

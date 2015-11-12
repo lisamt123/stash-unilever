@@ -5,6 +5,35 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 	private static final String NULL_MESSAGE = 'Page Reference should be null';
 	private static final String NOT_NULL_MESSAGE = 'Page Reference should not be null';
 
+	@isTest static void saveSOWTest(){
+		User u = Oblix_TestUtils.createTestUser();
+		System.runAs(u) {
+			Test.startTest();
+
+			MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+
+			Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+
+			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
+
+			ApexPages.currentPage().getParameters().put('sowId', mSow.id);
+			ApexPages.currentPage().getParameters().put('projectId', project.id);
+
+			Oblix_Ctrl06SOWView_CC controller = new Oblix_Ctrl06SOWView_CC();
+
+			mSow.Financial_Year__c = '2015';
+        	mSow.BB_or_BD__c = 'test';
+
+			controller.selSow = mSow;
+
+			controller.saveSOW();
+
+			Test.stopTest();
+
+			System.assert(!controller.isEdit,'Edit flag should not be set');
+		}
+	}
+
 
 	@isTest static void ViewProjectTest(){
 		User u = Oblix_TestUtils.createTestUser();
