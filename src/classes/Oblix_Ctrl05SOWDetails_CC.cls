@@ -76,7 +76,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
         selectedFYear ='';
         selectedSmallCat ='';
         selectedBigCat ='';
-		parentSOWRTID  = Oblix_Utils.MapRecordType('Marketing_SOW__c').get('ParentSowMarketing');
+                parentSOWRTID  = Oblix_Utils.MapRecordType('Marketing_SOW__c').get('ParentSowMarketing');
         init();
     }
     

@@ -1,7 +1,7 @@
 public with sharing class Oblix_ProjectHandler implements ITrigger {
      public Oblix_ProjectHandler() {    
     }
-    
+    @testVisible
     boolean triggerShouldExecute = true;
     /**
      * bulkBefore

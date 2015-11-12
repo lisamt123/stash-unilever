@@ -2,13 +2,10 @@
 
   <apex:form id="jqueryId">
   
-    
-   
-   
    <div class="Oblix_Container">
     <div class="cnter">
    <div class="Oblix_header">
-<!-- 3 levels Oblix_header_activeArrow=inactive level user is on,  Oblix_header_Arrow=first button from the left, Oblix_header_previousArrow=second button-->
+   <!-- 3 levels Oblix_header_activeArrow=inactive level user is on,  Oblix_header_Arrow=first button from the left, Oblix_header_previousArrow=second button-->
        <div style="postion: relative; top:-200px; background: transparent;width: 95%;margin-left: auto;margin-right: auto;">
          <table width="95%" height="100%">
             <tr>
@@ -43,17 +40,19 @@
          <div class="Oblix_projects_container">   
          <table class="Oblix_projects_header" width="100%">
                 <tr>
-                    <td width="70%">
+                    <td width="60%">
                         <h1 style="color: #fff;">{!$Label.Oblix_lbl_UIUX_View_Campaign} : {!SelectedProject.name}</h1>
                     </td>
                    
                      <td width="10%" style="color: #fff; word-break: normal; padding-right:20px; text-align:right;">
                         <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Adjust_Fee}" styleClass="Oblix_projects_btn" action="{!SaveProject}" reRender="jqueryId"/>
                       </td>
-                     <td width="20%" style="text-align: right; word-break: normal;">
-                <h2> {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Fees_Total__c.label} &nbsp;:&nbsp; {!SelectedProject.Campaign_Fees_Total__c}&nbsp;{!SelectedProject.Financial_Year__r.currency__c}<br/>
+                     <td width="30%" style="text-align: right; word-break: normal;">
+                    <h2>
+                         {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Fees_Total__c.label} &nbsp;:&nbsp; {!SelectedProject.Campaign_Fees_Total__c}&nbsp;{!SelectedProject.Financial_Year__r.currency__c}<br/>
                         {!$ObjectType.Oblix_SOW_Projects__c.fields.Value_to_be_paid_in_Current_FY__c.label} &nbsp;:&nbsp; {!SelectedProject.Value_to_be_paid_in_Current_FY__c}&nbsp;{!SelectedProject.Financial_Year__r.currency__c}
-                        </h2>                                          </td>                                     
+                    </h2>
+                    </td>                                     
                 </tr>
             </table>
             
@@ -169,7 +168,7 @@
                                        </tr>
                                        <tr>
                                             <td> 
-                                            	<apex:outputText value="{!mapTurnoverToSize[SelectedProject.Brand_Led_Growth__c]}" rendered="{!SelectedProject.Brand_Led_Growth__c <> null}"></apex:outputText>
+                                                <apex:outputText value="{!mapTurnoverToSize[SelectedProject.Brand_Led_Growth__c]}" rendered="{!SelectedProject.Brand_Led_Growth__c <> null}"></apex:outputText>
                                            <!--  <apex:outputField value="{!SelectedProject.Brand_Led_Growth__c}" rendered="{!SelectedProject.Brand_Led_Growth__c <> null}"/> -->
                                             </td>
                                        </tr>
@@ -812,7 +811,7 @@
         
            .Oblix_header_arrowTitle{
             font-family: DIN, Arial;
-            font-size: 20px;
+            font-size: 18px;
             margin: 4px;   
             padding-top: 24px;
             text-align: center;
@@ -934,7 +933,7 @@
             height: 32px;
         }
         .Oblix_projects_container h1{
-            font-size: 16px;
+            font-size: 14px;
             color: white;
             letter-spacing: 1px;
         }
@@ -967,7 +966,7 @@
             background-color:#00573F !important;
         }
         table tr th h1{
-            font-size: 20px;
+            font-size: 18px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -1021,13 +1020,13 @@
         }
     
         .PrColumn5{
-            width: 50%; 
+            width: 40%; 
             float: left;
              word-break: normal;
             word-wrap: break-word;
         }
         .PrColumn4{
-            width: 50%; 
+            width: 60%; 
             word-break: normal;
             word-wrap: break-word;
             float: left;

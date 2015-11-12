@@ -591,6 +591,9 @@
             min-height:80px;
             font-size: 13px;
             height: 32px;
+            word-wrap: break-word;
+            word-break: normal;
+            white-space: normal;
         }
         .Oblix_input{
             transition: all .2s linear;
@@ -628,14 +631,11 @@
             cursor: pointer;
             -webkit-user-select: none;
         }
-         .Oblix_projects_btn{
-            color: #333;
-            background: #fff !important;
+        .Oblix_projects_btn{
             border: 1px solid #b5b5b5 !important;
             display: inline-block;
             padding: 4px 12px !important;
             width: 144px;
-            height: 42px;
             margin-bottom: 0;
             font-weight: normal;
             line-height: 1.42857143;
@@ -646,7 +646,29 @@
             touch-action: manipulation;
             cursor: pointer;
             -webkit-user-select: none;
-         } 
+         }    
+         <!-- green buttons -->
+        input.btn, button, .Oblix_large_btn, .Oblix_btn  {
+            background: #6BA539;
+            background-image: none;
+            color: #fff;
+            padding: 4px 10px 3px 10px  !important;
+            height: 30px;
+
+        }
+        input.btn:active, input.btn:hover, button:hover, .Oblix_large_btn:hover, .Oblix_btn:hover {
+             background: #44883E;
+             color: #fff;
+        }
+        
+         .disabled, .Oblix_projects_btn:disabled, input.btn:disabled, input.btn:disabled, button:disabled, .Oblix_large_btn:disabled, .Oblix_btn:disabled {
+             background: #6BA539;
+             opacity: 0.5;
+             color: #fff;
+
+        }
+
+         
           .Oblix_popup_btn{
             color: #333;
             background: #B0CC8F !important;
@@ -743,15 +765,15 @@
         float: left;
     }
     .PrColumn4 h2 {
-        font-size: 16px;
+        font-size: 14px;
         text-align:center;
     }
     .PrColumn1 {
-        width: 45%; 
+        width: 50%; 
         float: left;
     }
     .PrColumn2{
-        width: 45%;
+        width: 50%;
         float: left;
     }
 
@@ -761,27 +783,27 @@
     }
 
     .PrColumn5{
-        width: 45%; 
+        width: 40%; 
         float: left;
     }
     .PrColumn4{
-        width: 50%; 
+        width: 57%; 
         float: left;
     }
     
   
      .Oblix_table{
-            display:block;
-            padding: 9.5px;
-            margin: 0 58px 23px;
-            font-size: 13px;
-            line-height: 1.42857143;
-            color: #333;
-            word-break: break-all;
-            word-wrap: break-word;
-            background-color: #f5f5f5;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        display:block;
+        padding: 9.5px;
+        margin: 0 58px 23px;
+        font-size: 13px;
+        line-height: 1.42857143;
+        color: #333;
+        word-break: break-all;
+        word-wrap: break-word;
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        border-radius: 4px;
     }
    
     /* for 900px or less */
@@ -798,9 +820,7 @@
         color: white;
         font-size: 14px;
      }
-    .Oblix_table strong{
-        padding-right:20px;
-    }
+   
     .data table{
         background-color: #fff;
         padding:10px;
@@ -810,7 +830,7 @@
         background-color: #DFE4E0;
     }
     .Oblix_projects_container h1{
-        font-size: 16px;
+        font-size: 14px;
         color: white;
         letter-spacing: 1px;
     }
@@ -857,6 +877,9 @@
         padding :10px;
         max-height:520px;
         overflow-y:scroll;
+        word-wrap: break-word;
+        word-break: normal;
+        white-space: normal;
     }
     .Oblix_icon_right{
         float:right;
@@ -969,9 +992,7 @@
     }
     .ui-tabs.ui-tabs-vertical .ui-tabs-nav li a {
         display: block;
-        width: 98%;
-        padding: 0.6em 1em;
-        
+        padding: 0.6em 1em;      
     }
     .ui-tabs.ui-tabs-vertical .ui-tabs-nav li a:hover {
         cursor: pointer;
@@ -1020,7 +1041,9 @@
         position:absolute;  
         z-index:1000;
      }
-
+     .removeBreak{
+         word-wrap: break-word;word-break: normal;white-space: normal;
+      }   
     </style>
    
     <div class="Oblix_Container">
@@ -1195,7 +1218,7 @@
       <div id="dialogMoreDetails" title="Add more details (Optional) " style="display:none">  
       <center> 
       <br/>
-      <center><h1>Choose the specific countries from your list for this item</h1></center>
+      <center><h1>Add more details</h1></center>
       <br/>
       <table width="90%">
          <center>
@@ -1254,7 +1277,7 @@
             
              <table class="Oblix_projects_header" width="100%">
                 <tr>
-                    <td width="20%">
+                    <td width="50%">
                         <h1> View Campaign : {!project.name}</h1>
                     </td>
                     <td>
@@ -1441,7 +1464,7 @@
                                         <apex:repeat value="{!mapRTSUBCat[recordType]}" var="subCat">
                                         <div id="{!mapRTIdCSS[recordType]}_tabs-{!count2}">
                                             <p>
-                                               <div style="width:90%;word-wrap: break-word;word-break: normal;white-space: normal;"> {!mapSubCategOptionDefinition[subCat]}  </div>
+                                               <div style="width:90%;" class="removeBreak"> {!mapSubCategOptionDefinition[subCat]}  </div>
                                                <br/>
                                                 <div id="{!mapRTIdCSS[recordType]}_tabs{!count2}">
                                                    
@@ -1456,12 +1479,12 @@
                                                          <center>
                                                          
                                                          <apex:actionRegion >
-                                                        <table width="100%" class="AssetName">                                                    
+                                                         <table width="100%" class="AssetName">                                                    
                                                                <tr> 
-                                                                <td valign = "bottom"><apex:inputField value="{!mapAssetsPerSubCat[subCat].Sub_Category__c}" style="display:none" styleClass="{!subCat}" /><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label} </strong> </td><td><apex:inputField value="{!mapAssetsPerSubCat[subCat].Asset_Picklist__c}" style="padding: 5px 9px;width: 94%;"/></td>                                                           
+                                                                <td valign = "bottom" class="removeBreak"><apex:inputField value="{!mapAssetsPerSubCat[subCat].Sub_Category__c}" style="display:none" styleClass="{!subCat}" /><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label} </strong> </td><td><apex:inputField value="{!mapAssetsPerSubCat[subCat].Asset_Picklist__c}" style="padding: 5px 9px;width: 94%;"/></td>                                                           
                                                               </tr>
                                                               <tr>     
-                                                                <td valign = "bottom"><strong>Please describe of not exist </strong></td><td><apex:inputField styleClass="input_init"  value="{!mapAssetsPerSubCat[subCat].Location__c}" /></td>  
+                                                                <td valign = "bottom" class="removeBreak"><strong>Please describe of not exist </strong></td><td><apex:inputField styleClass="input_init"  value="{!mapAssetsPerSubCat[subCat].Location__c}" /></td>  
                                                               </tr>
                                                               <tr><td colspan="2">&nbsp;</td></tr>  
                                                               <tr> 
@@ -1471,7 +1494,7 @@
                                                               <tr>  
                                                                 <td colspan="2">
                                                                 <center>
-                                                                <strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Quantity__c.label} </strong><apex:inputField value="{!mapAssetsPerSubCat[subCat].Quantity__c}" styleClass="input_init" style="width: 40px;" /><span style="font-size:19px">&nbsp;x&nbsp;</span>
+                                                                <strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Quantity__c.label} &nbsp; </strong><apex:inputField value="{!mapAssetsPerSubCat[subCat].Quantity__c}" styleClass="input_init" style="width: 40px;" /><span style="font-size:19px">&nbsp;x&nbsp;</span>
                                                                 <apex:commandButton value="Add to project" action="{!AddToProjectAction}" onclick="blockme()" oncomplete="$.unblockUI()" reRender="campaignFeeId,estimateId,Oblix_card" styleClass="ui-button ui-state-default Oblix_addAsset_btn">
                                                                     <apex:param assignTo="{!recordType}" name="recordType" value="{!recordType}" />
                                                                     <apex:param assignTo="{!subCat}" name="subCat" value="{!subCat}" />

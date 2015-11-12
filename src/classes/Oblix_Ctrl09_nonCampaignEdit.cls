@@ -96,12 +96,13 @@
         
         public  id rtCountry {get;set;}
         
-        private String marKObjName= 'Marketing_Basics__c';
-        private String ActivityName= 'Activity';
-        private String noRole= 'Role';
+        private String marKObjName= System.Label.Oblix_Lbl_Marketing_Basics_c ;
+        private String ActivityName= System.Label.Oblix_Lbl_Activity;
+        
+        private String noRole= System.Label.Oblix_Lbl_Role;
         
        
-        private Decimal somme ;
+        public Decimal somme ;
         
         public boolean errMsg  {get;set;}
         public boolean myMessages {get;set;}
@@ -164,62 +165,11 @@
                
              
                 Marketing_Basics__c  editItem = [select id,name,non_campaign_title__c,FTE__c,recordTypeId,OblixOtherItemFee__c,Agency_Department__c,Role_Title__c,Activities__c,Other_Activities__c,No_of_Hours_Required__c,OblixCountry__c ,Oblix_SOWMarketing__c from Marketing_Basics__c where id = :EditId  ];
-                MDO_Geography__c g = [ select id, name from MDO_Geography__c where id =:editItem.OblixCountry__c ];
-                
- 
                 MSid= editItem.Oblix_SOWMarketing__c ;
                 reRenderSOW(); 
                 newItems.add(editItem);
                 fillData(editItem);
                 
-               /*  
-                
-                if (editItem.recordTypeId == rtActivity ) {
-                  agencyVisible =true;
-                  roleVisible =true;
-                  hoursVisible =true;
-                  //rateVisible =true;
-                  resultVisible =true;
-                  addVisible=true;
-                  hours=Integer.valueof(editItem.No_of_Hours_Required__c);
-                  elemToEdit=0 ;
-                  editItem();
-                  fillCountries();
-                  selectedCountryname = 'France';
-                  //selectedCountryname =  editItem.OblixCountry__c ;
-                  fillAgencyDepartment();
-                   selectedAgencyDepartment = editItem.Agency_Department__c;
-                 fillRoleTitle();
-                   selectedRoleTitle =  editItem.Role_Title__c ;      
-                  fillRate();
-                  
-                  selectedCountryname=  g.name.toUpperCase()  ;//'FRANCE' ;
-                  
-                  
-                }else{  
-                  selectResource = true;
-                  agencyVisible1 =true;
-                  roleVisible1 =true;
-                  prcentVisible1 =true;
-                  prcent=Integer.valueof(editItem.FTE__c);
-                  //rateVisible =true;
-                  resultVisible1 =true;
-                  addVisible1=true;
-                  elemToEdit=0 ;
-                  editItem();
-                  
-                  fillCountries();
-                  selectedCountryname1 = 'France';
-                  //selectedCountryname =  editItem.OblixCountry__c ;
-                  fillAgencyDepartment1();
-                   selectedAgencyDepartment1 = editItem.Agency_Department__c;
-                 fillRoleTitle1();
-                   selectedRoleTitle1 =  editItem.Role_Title__c ;      
-                  fillRate1();
-                  
-                  selectedCountryname1=  g.name.toUpperCase() ;//'FRANCE' ;
-                  
-                }*/
                  
             }
              
@@ -349,12 +299,14 @@ private void fillData(Marketing_Basics__c   eeditItem){
      public pagereference saveList(){
          try{
          
-             //upsert newItems;
+          /*   
              for (Marketing_Basics__c  itm : newItems){
                  if (itm.id == null ) {insert itm;}
                  else { update itm;}
                      
-             }
+             }*/
+             
+             upsert newItems;
              delete Xitems;
              myMessages=false;
              myMessages1=false;
@@ -383,40 +335,7 @@ private void fillData(Marketing_Basics__c   eeditItem){
      public void editItem(){
      
        fillData(newItems[elemToEdit]);
-     /*
-         
-         Id devRecordTypeId = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get(ActivityName).getRecordTypeId();
-         
-         if (newItems[elemToEdit].recordTypeId == devRecordTypeId){
-             newItem=newItems[elemToEdit]; 
-             name = newItems[elemToEdit].name;
-             lookupActivity.Activities__c = newItems[elemToEdit].Activities__c;
-             lookupActivity.Other_Activities__c= newItems[elemToEdit].Other_Activities__c;
-             
-             hours=Integer.valueof(newItems[elemToEdit].No_of_Hours_Required__c) ;
-             selectedCountry=newItems[elemToEdit].OblixCountry__c ;
-             selectedRoleTitle =newItems[elemToEdit].Role_Title__c ;
-             selectedAgencyDepartment = newItems[elemToEdit].Agency_Department__c ;
-             result = String.valueof(newItems[elemToEdit].OblixOtherItemFee__c) ;
-             edit1=true;
-         }else{
-             devRecordTypeId = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get('Dedicated Resource').getRecordTypeId();
-             if (newItems[elemToEdit].recordTypeId == devRecordTypeId){
-                 newItem=newItems[elemToEdit]; 
-                 name1 = newItems[elemToEdit].name;
-                 prcent=Integer.valueof(newItems[elemToEdit].FTE__c) ;
-                 selectedCountry1=newItems[elemToEdit].OblixCountry__c ;
-                 selectedRoleTitle1 =newItems[elemToEdit].Role_Title__c ;
-                 selectedAgencyDepartment1 = newItems[elemToEdit].Agency_Department__c ;
-                 result1 = String.valueof(newItems[elemToEdit].OblixOtherItemFee__c) ; 
-                 edit2=true;
-             }
-         }
-         
-         system.debug('===========newItems[elemToEdit].recordTypeId='+newItems[elemToEdit].recordTypeId);
-         system.debug('===========newItem1='+newItem1);
-         system.debug('===========newItem='+newItem);
-        */
+    
      }
         
      

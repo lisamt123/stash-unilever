@@ -40,6 +40,7 @@ private class Oblix_Ctrl09_nonCampaignEdit_Test {
             basicParent.Oblix_SOWMarketing__c = marketingSow.Id;
             basicParent.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get('Resource');
             basicParent.OblixCountry__c = geographyCountry.Id;
+            basicParent.OblixOtherItemFee__c  = 33;
             insert basicParent;
             
       Marketing_Basics__c basicParent1 = new Marketing_Basics__c();
@@ -47,6 +48,7 @@ private class Oblix_Ctrl09_nonCampaignEdit_Test {
             basicParent1.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get('Resource');
             basicParent1.FTE__c = 50;
             basicParent1.OblixCountry__c = geographyCountry.Id;
+            basicParent1.OblixOtherItemFee__c  = 33;
             insert basicParent1;
           
             

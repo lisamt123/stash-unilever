@@ -324,12 +324,11 @@
             float: left;
         }   
         .column5{
-            width: 40%; 
-            float: left;
-            vertical-align:center;
+            width: 46%; 
+            float: right;
         }
         .column4{
-            width: 55%; 
+            width: 38%; 
             float: left;
         }
         .column4 h1{
@@ -374,7 +373,7 @@
         }
         
      <!-- green buttons -->
-  input.btn, button, .Oblix_large_btn, .Oblix_btn  {
+      input.btn, button, .Oblix_large_btn, .Oblix_btn  {
             background: #6BA539;
             background-image: none;
             color: #fff;
@@ -629,6 +628,9 @@
         width: 137px;
         height: 23px;
     }
+     h3 {
+        font-size: 14px;
+    }
     </style>
     <script>
     function Popup(){
@@ -864,7 +866,7 @@
                    <tr><td colspan="2">&nbsp;</td></tr>    
 
                    <tr>
-                       <td colspan = "2" style="position: relative; top:-5px;"><h1><div class="cnter"><br/>{!selSow.SOW_Status__c}</div></h1></td>
+                       <td colspan = "2" style="position: relative; top:-5px;"><h3><div class="cnter"><br/>{!selSow.SOW_Status__c}</div></h3></td>
                    </tr>
               </table>
           </section>

@@ -705,7 +705,7 @@
                                         <apex:repeat value="{!activities}" var="asset">
                                             <table width="100%">
                                                  <tr>
-                                                       <td width="17%">{!asset.name}</td>
+                                                       <td width="17%">{!asset.name} {!asset.non_campaign_title__c}</td>
                                                     <!--   <td width="17%">{!asset.Activities__c}</td>   -->
                                                        <td width="15%">{!$Label.Oblix_lbl_UIUX_Activity}</td> 
                                                        <td width="15%">{!asset.Agency_Department__c}</td>
