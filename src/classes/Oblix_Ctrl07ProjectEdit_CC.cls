@@ -35,11 +35,7 @@
         public list<RecordType> recordTypes {get;set;}
         public list<string> lstRecordType {get;set;}
         public list<Decimal> lstAES {get;set;}
-        public Oblix_Project_Assets__c assetAudio {get;set;}
-        public Oblix_Project_Assets__c assetDigital {get;set;}
-        public Oblix_Project_Assets__c assetExperiential {get;set;}
-        public Oblix_Project_Assets__c assetStatic {get;set;}
-        public Oblix_Project_Assets__c assetStimulus {get;set;}
+
         public integer mynumber {get;set;}
         public list<string> lstStage {get;set;}
         public Map<String, set<String>> mapRelatedCntries {get;set;}       
@@ -116,13 +112,7 @@
             mapStageIdCSS = new map<string,string>();
             mapRTSUBCat = new map<string,list<string>>();
             asset = new Oblix_Project_Assets__c();    
-            assetInstance = new Oblix_Project_Assets__c();
-            
-            assetAudio = new Oblix_Project_Assets__c();
-            assetStimulus = new Oblix_Project_Assets__c();
-            assetDigital = new Oblix_Project_Assets__c();
-            assetExperiential  = new Oblix_Project_Assets__c();
-            assetStatic = new Oblix_Project_Assets__c();
+            assetInstance = new Oblix_Project_Assets__c();           
             mapAssetsPerSubCat = new map<string,Oblix_Project_Assets__c>();
             assetInstance.recordTypeId = Oblix_Utils.MapRecordType('Oblix_Project_Assets__c').get('Audio_Visual') ;
             //assetInstance.Sub_Category__c = 'Digital Adaptation';
@@ -186,7 +176,7 @@
             }else{
                 project = [Select Id,Name, Innovation_Projects__c ,ProjectTotalAssetscore__c,Jobs_to_be_Done__c ,Campaign_Fees_Total__c,Completed_Stage__c,Financial_Year__r.currency__c,Projected_Stage__c,Financial_Year__r.Financial_Year__c,BET_first_release__c,Value_to_be_paid_in_Current_FY__c,Campaign_Status__c,Preview_Date__c,Start_of_TV_production__c,Final_release__c,Live_Date__c,Live_date_Asset_delivery__c, Date_for_Assets_to_be_in_BET__c,Timescale_Notes__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c, Project_Finish_Date__c,Project_Stage__c,Platform__c,CreatedById, Project_Start_Date__c,CreatedDate,OblixRegion__c,Project_Priority__c,Project_Completion_Date__c,Description__c,OblixCountries__c,First_Air_Date__c,Production_Completion_Date__c, Financial_Year__c from Oblix_SOW_Projects__c where id=:projectId];               
                 estimateCost = project.Campaign_Fees_Total__c;
-                lstAssets = [select Id,Agency_Projects__r.id,Channels__c,RecordType.Name,Asset_Picklist__c,Name,RecordTypeId,Sub_Category__c,FULL_Description__c, Asset_Title__c  from Oblix_Project_Assets__c];               
+                //lstAssets = [select Id,Agency_Projects__r.id,Channels__c,RecordType.Name,Asset_Picklist__c,Name,RecordTypeId,Sub_Category__c,FULL_Description__c, Asset_Title__c  from Oblix_Project_Assets__c limit 1000];               
                 list<Oblix_Project_Assets__c> lstAsset = [select Id,Agency_Projects__r.id,Channels__c,RecordType.Name,Quantity__c ,Asset_Picklist__c, Asset_Title__c , Name,RecordTypeId,Sub_Category__c,FULL_Description__c,FULL_Description__r.name from Oblix_Project_Assets__c where Agency_Projects__r.id =:project.id  limit 1000];  
                 for(Oblix_Project_Assets__c asse:lstAsset){
                     if(asse.FULL_Description__c != null) 
@@ -194,11 +184,9 @@
                     if(asse.Asset_Title__c != null) asse.Asset_Title__c = asse.Asset_Title__c.replaceAll('null','');
                 }
                 lstAssetsForCard.addAll(lstAsset);
-                lstProjectSplitHubs = [Select Id, Name, OblixCountry__c, Project_Splits__c,OblixCountry__r.name,Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c =: projectId];  
-                                             
+                lstProjectSplitHubs = [Select Id, Name, OblixCountry__c, Project_Splits__c,OblixCountry__r.name,Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c =: projectId];                                              
                 getCountriesOptions();
-                if(lstProjectSplitHubs.size() < 5) {
-                    
+                if(lstProjectSplitHubs.size() < 5) {                   
                     counterAsset = 5;
                 }else{
                     counterAsset = lstProjectSplitHubs.size();
@@ -215,8 +203,17 @@
                     }
                 }
                 for(recordType rec:recordTypes){
-                    lstRecordType.add(rec.name);
+                        lstRecordType.add(rec.name);
+                        setRecordType.add(rec.Name); 
+                        //setIdCss.add((asset.RecordType.Name).replaceAll(' ',''));
+                        if(mapRTIdCSS.get(rec.Name) == null)
+                        mapRTIdCSS.put(rec.Name,(rec.Name).replaceAll(' ',''));
+                   
                 }
+                for(string x:setRecordType){
+                         setIdCss = setIdCss+'"'+x.replaceAll(' ','')+'",';
+                }     
+                setIdCss = '['+setIdCss.removeEnd(';')+']';  
                 if(project.OblixCountries__c != null){
                     lstSelectedRegion = project.OblixCountries__c.split(',');
                 }
@@ -232,18 +229,8 @@
                 lstIdCSSSelected = lstIdCSSSelected + Oblix_Utils.getSelectedStageCheckbox(project.Projected_Stage__c,project.Completed_Stage__c);
                 lstIdCSSSelected = lstIdCSSSelected.removeEnd(',');
                 system.debug('### lstIdCSSSelected :'+lstIdCSSSelected);
-                if(!lstAssets.isEmpty()){
-                    for(Oblix_Project_Assets__c asset:lstAssets){
-                        setRecordType.add(asset.RecordType.Name); 
-                        //setIdCss.add((asset.RecordType.Name).replaceAll(' ',''));
-                        if(mapRTIdCSS.get(asset.RecordType.Name) == null)
-                        mapRTIdCSS.put(asset.RecordType.Name,(asset.RecordType.Name).replaceAll(' ',''));
-                    }   
-                    for(string x:setRecordType){
-                         setIdCss = setIdCss+'"'+x.replaceAll(' ','')+'",';
-                    }     
-                    setIdCss = '['+setIdCss.removeEnd(';')+']';           
-                    for(Oblix_Project_Assets__c asset:lstAssets){
+                if(!lstAsset.isEmpty()){                             
+                    for(Oblix_Project_Assets__c asset:lstAsset){
                         if(!(mapRTAssets).containsKey(asset.RecordType.Name))mapRTAssets.put(asset.RecordType.Name,new list<Oblix_Project_Assets__c>());
                         mapRTAssets.get(asset.RecordType.Name).add(asset); 
                         mapRTforSubCat.put(asset.Sub_Category__c,asset.RecordTypeId);
@@ -301,7 +288,7 @@
                 update project;
             }
         }
-        public void ValueDriversUpdate(){}
+        public void ValueDriversUpdate(){System.debug('on ValueDriversUpdate');}
         
         /*
         *    Void Method Used for : Updating Project Scale One by the number of countries.
@@ -431,14 +418,14 @@
             }
             
         }
-        public pageReference InsertProjectAction(){
+        /*public pageReference InsertProjectAction(){
                try{
                     insert project;
                 }catch(Exception e){
                    System.debug('###Error Occured : '+e.getMessage());   
                 }
                 return new pageReference('/apex/Oblix_VF08_ProjectEdit?projectId='+project.Id);           
-        }
+        }*/
         public pageReference BackAction(){
            if(project.Id == null){
                return new pageReference('/apex/Oblix_VF06_SOWView?sowId='+project.Financial_Year__c);
