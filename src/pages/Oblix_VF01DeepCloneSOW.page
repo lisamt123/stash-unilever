@@ -104,16 +104,16 @@
         <div id="dialog-message" title="No Copies">
             <p>
                 <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
-                    No copies are left for this financial year
+                    {!$Label.Oblix_lbl_UIUX_No_Copies_Financial_Year}
             </p>
         </div>
         <div id="dialog-confirm" title="Confirm SOW Copy?">
-            <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Next Stage is {!nextStageTypeSow}. Are you sure you want to make a copy</p>
+            <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>{!$Label.Oblix_lbl_UIUX_Next_Stage_Is} {!nextStageTypeSow}. {!$Label.Oblix_lbl_UIUX_Copy_Question}</p>
         </div>
         <div id="dialog-message-NoClone" title="Can't Clone">
             <p>
                 <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
-                    You don't have the permission to clone this Statement of work
+                    {!$Label.Oblix_lbl_UIUX_No_Permission_To_Clone_SW}
             </p>
         </div>
         <apex:actionFunction name="CloneSOWParent" action="{!CloneSowParent}"></apex:actionFunction>

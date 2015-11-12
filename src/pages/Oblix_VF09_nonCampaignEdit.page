@@ -718,13 +718,13 @@
                 <apex:image value="{!$Resource.Unilever_logo}" width="60px" height="60px" />
                 </td>
                 <td class="Oblix_header_Arrow header_pos_1">
-                <div class="Oblix_header_title">SWOP</div><br/><span class="Oblix_header_desc">Scope of Work<br/>Online Planner</span>
+                <div class="Oblix_header_title">{!$Label.Oblix_lbl_UIUX_SWOP}</div><br/><span class="Oblix_header_desc">{!$Label.Oblix_lbl_UIUX_Scope_of_Work}<br/>{!$Label.Oblix_lbl_UIUX_Online_Planner}</span>
                 </td>
                 <td>
                 <div class="Oblix_header_activeArrow header_pos_2">
                 <div class="Oblix_header_arrowTitle" style="padding-top: 7px;">
-                    <apex:outputPanel rendered="{!MSid == null}" > Add Non Campaign Items <br/></apex:outputPanel>
-                    <apex:outputPanel rendered="{!MSid != null}" > Edit Non Campaign items<br/></apex:outputPanel>
+                    <apex:outputPanel rendered="{!MSid == null}" > {!$Label.Oblix_lbl_UIUX_Add_Non_Campaign_Items} <br/></apex:outputPanel>
+                    <apex:outputPanel rendered="{!MSid != null}" > {!$Label.Oblix_lbl_UIUX_Edit_Non_Campaign_Items}<br/></apex:outputPanel>
                 </div>
                 </div>
                 
@@ -733,7 +733,7 @@
                 </div>
                 </td>
                 <td>
-                <div style="float:right;"><p>Hi  {!userConnected.Name} !</p></div>
+                <div style="float:right;"><p>{!$Label.Oblix_lbl_UIUX_Hi}  {!userConnected.Name} !</p></div>
                 </td>
             </tr>
         </table></div>
@@ -748,15 +748,15 @@
                 <tr>
                     <td width="100%">
                     
-                        <h1 style="color: #fff;"><apex:outputText rendered="{!!TitleEdit}" >Add Non Campaign Items</apex:outputText> <apex:outputText rendered="{!TitleEdit}">Edit Non Campaign Items</apex:outputText></h1>
+                        <h1 style="color: #fff;"><apex:outputText rendered="{!!TitleEdit}" >{!$Label.Oblix_lbl_UIUX_Add_Non_Campaign_Items}</apex:outputText> <apex:outputText rendered="{!TitleEdit}">{!$Label.Oblix_lbl_UIUX_Edit_Non_Campaign_Items}</apex:outputText></h1>
                     </td>
                    
                      <td style="font-size: 20px; color: #fff; word-break: normal; padding-right:20px;">
                                               <apex:outputLabel value="{!saveStatus}" id="saveStatus"></apex:outputLabel>
                                           </td><td width="160px" style="text-align: right;">
-                                              <apex:commandButton value="Save" action="{!saveList}" rerender="saveStatus" onclick="blockme();" oncomplete="$.unblockUI()" styleClass="Oblix_projects_btn"/>
+                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Save}" action="{!saveList}" rerender="saveStatus" onclick="blockme();" oncomplete="$.unblockUI()" styleClass="Oblix_projects_btn"/>
                                           </td><td width="160px" style="text-align: right;">
-                                              <apex:commandButton value="Back" action="{!back}" styleClass="Oblix_projects_btn" reRender="Oblix_ItemsId"/><br/>       
+                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back}" action="{!back}" styleClass="Oblix_projects_btn" reRender="Oblix_ItemsId"/><br/>       
                                           </td>                                     
                 </tr>
             </table>
@@ -840,8 +840,8 @@
                                      
                                     <div id="tabs">
                                           <ul>
-                                            <li id="t1"><a href="#tabs-1">Activity</a></li>
-                                            <li id="t2"><a href="#tabs-2">Dedicated Resource</a></li>
+                                            <li id="t1"><a href="#tabs-1">{!$Label.Oblix_lbl_UIUX_Activity}</a></li>
+                                            <li id="t2"><a href="#tabs-2">{!$Label.Oblix_lbl_UIUX_Dedicate_Resource}</a></li>
                                           </ul>
                                      <div id="tabs-1">
                                 
@@ -921,7 +921,7 @@
                                            
                                            
                                            <td width="16%">
-                                           <span style="font-size:14px">   Hourly rate: </span>
+                                           <span style="font-size:14px">   {!$Label.Oblix_lbl_UIUX_Hourly_rate}: </span>
                                              <apex:outputLabel value="{!rate}" style="width:90%;font-size:17px" id="rate" styleclass="rateclass" >
                                              
                                              </apex:outputLabel>
@@ -931,7 +931,7 @@
                                            </td>
                                            <td width="16%">
                                                 <span style="font-size:14px">
-                                                 <span style="font-size:14px">hours = </span>
+                                                 <span style="font-size:14px">{!$Label.Oblix_lbl_UIUX_hours} = </span>
                                                      <apex:outputLabel value="{!result}"  style="width:90%;font-size:14px"   id="result" styleclass="rslt" >
                                                      {!MScurrency}
                                                      </apex:outputLabel>
@@ -1046,7 +1046,7 @@
                                 
                                 <apex:outputPanel id="Oblix_card">
                                 <div class="Oblix_card_title">
-                                    <div style="float:left">Estimation Cost : </div>
+                                    <div style="float:left">{!$Label.Oblix_lbl_UIUX_Estimation_Cost} : </div>
                                     <div style="float:right">{!somme} {!MScurrency}</div>
                                 </div>
                                 <br/>
@@ -1060,16 +1060,16 @@
                                                        
                                                        <span style="font-size:17px"> <apex:outputText value="{!asset.FTE__c}"/> </span>
                                                        <span style="font-size:17px"> <apex:outputText value="{!asset.No_of_Hours_Required__c }"/> </span>
-                                                       {!asset.OblixCountry__c }
+                                                       
                                                    </div>
                                                   
                                                    <div style="float: right;display:block;"> 
                                                        <span style="font-size:14px"> <apex:outputText value="{!asset.OblixOtherItemFee__c }"/> {!MScurrency} </span>
                                                       
-                                                    <apex:commandButton value="Delete" action="{!delElm}" rerender="Oblix_card" onclick="blockme();" oncomplete="$.unblockUI()" id="del">
+                                                    <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete}" action="{!delElm}" rerender="Oblix_card" onclick="blockme();" oncomplete="$.unblockUI()" id="del">
                                                         <apex:param name="param1" assignTo="{!ElemToDel  }" value="{!rowNum}" />
                                                     </apex:commandButton>
-                                                    <apex:commandButton value="Edit" action="{!editItem}" reRender="nameid,otherId,activityid,name1,dr,Oblix_card,country,AD, RT, rate, hours,result,Oblix_card,add,country1,AD1, RT1, rate1, prcent,result1,add1" onclick="{!IF(rtActivity==asset.recordTypeId,'showTab1();','showTab2();')}"  oncomplete="$.unblockUI()" id="edit">
+                                                    <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" action="{!editItem}" reRender="nameid,otherId,activityid,name1,dr,Oblix_card,country,AD, RT, rate, hours,result,Oblix_card,add,country1,AD1, RT1, rate1, prcent,result1,add1" onclick="{!IF(rtActivity==asset.recordTypeId,'showTab1();','showTab2();')}"  oncomplete="$.unblockUI()" id="edit">
                                                          <apex:param name="param2" assignTo="{!elemToEdit}" value="{!rowNum}" />
                                                     </apex:commandButton>
                                                    </div>

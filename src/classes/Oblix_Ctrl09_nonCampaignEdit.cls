@@ -37,6 +37,7 @@
         
         
         public String name {get;set;}
+        public id itemID{get;set;} 
         public Marketing_Basics__c lookupActivity{get;set;}
         public String selectedRoleTitle{get;set;}        
         public String selectedCountry{get;set;}
@@ -50,6 +51,7 @@
        // public Integer gethours(){if (hours == null) return 0; else return hours ;  }
         
         public String name1{get;set;}
+        public id itemID1 {get;set;}
         public String selectedRoleTitle1{get;set;}
         public String selectedCountry1{get;set;}
         public String selectedCountryname1{get;set;}
@@ -158,6 +160,7 @@
             id EditId =  ApexPAges.currentPage().getParameters().get('itm');
             if (EditId !=null){
                 TitleEdit =true;
+                  elemToEdit=0 ;
                
              
                 Marketing_Basics__c  editItem = [select id,name,non_campaign_title__c,FTE__c,recordTypeId,OblixOtherItemFee__c,Agency_Department__c,Role_Title__c,Activities__c,Other_Activities__c,No_of_Hours_Required__c,OblixCountry__c ,Oblix_SOWMarketing__c from Marketing_Basics__c where id = :EditId  ];
@@ -235,8 +238,7 @@ private void fillData(Marketing_Basics__c   eeditItem){
                   resultVisible =true;
                   addVisible=true;
                   hours=Integer.valueof(eeditItem.No_of_Hours_Required__c);
-                  elemToEdit=0 ;
-                 
+                  
                  
                   fillCountries();
                    g = [ select id, name from MDO_Geography__c where id =:eeditItem.OblixCountry__c ];
@@ -249,6 +251,7 @@ private void fillData(Marketing_Basics__c   eeditItem){
                    edit1=true;
                  
                   name=eeditItem.name;
+                  itemID =eeditItem.id;
                   lookupActivity.Activities__c = eeditItem.Activities__c ;
                   lookupActivity.Other_Activities__c= eeditItem.Other_Activities__c;
                   
@@ -262,9 +265,9 @@ private void fillData(Marketing_Basics__c   eeditItem){
                   //rateVisible =true;
                   resultVisible1 =true;
                   addVisible1=true;
-                  elemToEdit=0 ;
+                
                   name1=eeditItem.name;
-                 
+                  itemID1 = eeditItem.id;
                   
                  fillCountries();
                   g = [ select id, name from MDO_Geography__c where id =:eeditItem.OblixCountry__c ];
@@ -345,7 +348,13 @@ private void fillData(Marketing_Basics__c   eeditItem){
       */ 
      public pagereference saveList(){
          try{
-             upsert newItems;
+         
+             //upsert newItems;
+             for (Marketing_Basics__c  itm : newItems){
+                 if (itm.id == null ) {insert itm;}
+                 else { update itm;}
+                     
+             }
              delete Xitems;
              myMessages=false;
              myMessages1=false;
@@ -355,6 +364,8 @@ private void fillData(Marketing_Basics__c   eeditItem){
              myMessages=true;
              myMessages1=true;
          }
+         
+         
          Xitems=new List<Marketing_Basics__c >();
          saveStatus='Saved';
          return null;
@@ -425,8 +436,14 @@ private void fillData(Marketing_Basics__c   eeditItem){
          
         
          //recordtype
-         
-         newItem=new Marketing_Basics__c ();
+          if (edit1){ // c'est un update
+             
+              newItem=newItems[ElemToEdit] ; 
+              
+             
+             }else{  newItem=new Marketing_Basics__c ();
+              newItem.Oblix_SOWMarketing__c=Marketing_SOW.id;
+              }
          newItem.name=name;
         
              newItem.Activities__c= lookupActivity.Activities__c;
@@ -437,9 +454,9 @@ private void fillData(Marketing_Basics__c   eeditItem){
          if (abr == null) abr = '';
          newItem.non_campaign_title__c =  'ACT-'+abr;
          //lookupActivity.Activities__c
-         
+     //    newItem.id =itemID ;
          newItem.recordTypeId=  devRecordTypeId ;
-         newItem.Oblix_SOWMarketing__c=Marketing_SOW.id;
+        
          newItem.No_of_Hours_Required__c = hours;
          newItem.OblixCountry__c =selectedCountry;
          newItem.Role_Title__c =selectedRoleTitle;
@@ -455,7 +472,7 @@ private void fillData(Marketing_Basics__c   eeditItem){
              }else newItems.add(x);// cest un ajout
              
            
-         newItem=new Marketing_Basics__c ();
+        // newItem=new Marketing_Basics__c ();
          
          
        //  clear();
@@ -488,6 +505,7 @@ private void fillData(Marketing_Basics__c   eeditItem){
          newItem1.FTE__c= prcent;
          newItem1.OblixCountry__c =selectedCountry1;
          newItem1.Role_Title__c =selectedRoleTitle1;
+         newItem1.id= itemID1 ;
          newItem1.Agency_Department__c =selectedAgencyDepartment1;
          calculResult1();
          newItem1.OblixOtherItemFee__c = Decimal.valueof(result1).setScale(2);  // result =result.setScale(2)

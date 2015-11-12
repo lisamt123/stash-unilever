@@ -181,6 +181,7 @@
                      Save : function() {                            
                             var lstCompleted = '';
                             var lstProjected = '';
+                            
                             $("input:checkbox[name='checkbxProjected']:checked").each(function(){
                                 lstProjected = $(this).attr('value');
                                                               
@@ -189,12 +190,16 @@
                                 lstCompleted = $(this).attr('value');                                           
                             }); 
                             //alert('array lstCompleted:'+lstCompleted);
-                            //alert('array lstProjected :'+lstProjected );                           
-                            if(lstCompleted != '' && lstProjected != ''){
-                               blockme(); 
-                               setInfoStages(lstProjected,lstCompleted,lstCompleted.replace('Completed ',''));
+                            //alert('array lstProjected :'+lstProjected);                           
+                                 
+                               blockme();                        
+                               if(lstCompleted != ''){
+                                   setInfoStages(lstProjected,lstCompleted,lstCompleted.replace('Completed ',''));
+                               }else{
+                                   setInfoStages(lstProjected,lstCompleted,'');
+                               }    
                                console.dir('here');
-                            }  
+                            
                             $( this ).dialog( "close");   
                         },                                       
                     Close : function() {
@@ -326,7 +331,7 @@
       <apex:param name="otherInfo" assignTo="{!project.Project_Priority__c}" value="" />  
    </apex:actionFunction> 
    
-   <apex:actionFunction name="setInfoCountries" action="{!setInfoCountries}" oncomplete="location.reload()">  
+   <apex:actionFunction name="setInfoCountries" action="{!setInfoCountries}" oncomplete="{!if(projectId != null,'location.reload()','$.unblockUI()')}">  
       <apex:param name="region" assignTo="{!project.OblixRegion__c}" value="" />  
       <apex:param name="countries" assignTo="{!project.OblixCountries__c}" value="" />  
    </apex:actionFunction> 
@@ -350,7 +355,7 @@
         <apex:param name="descAsset" assignTo="{!assetInstance.Additional_Description__c}" value="" /> 
    </apex:actionFunction> 
    
-    <apex:actionFunction name="setAgencyHub" action="{!setInfoSplitHub}"  oncomplete="location.reload();" >  
+    <apex:actionFunction name="setAgencyHub" action="{!setInfoSplitHub}"  oncomplete="{!if(projectId != null,'location.reload()','$.unblockUI()')}" >  
         <apex:param name="splitId" assignTo="{!listItems}" value="" />   
 
    </apex:actionFunction>  
@@ -1257,7 +1262,7 @@
                     <td  width="15%">
                         <apex:commandButton value="Adjust Fee" styleClass="Oblix_projects_btn" reRender="jqueryId"/>
                     </td>  
-                    <td  width="20%">
+                    <td  width="30%">
                          <h2>
                         <apex:outputPanel id="campaignFeeId">
                             {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Fees_Total__c.label} &nbsp;:&nbsp; {!project.Campaign_Fees_Total__c}&nbsp;{!project.Financial_Year__r.currency__c}<br/>

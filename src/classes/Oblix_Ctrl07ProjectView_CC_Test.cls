@@ -2,21 +2,30 @@
 private class Oblix_Ctrl07ProjectView_CC_Test {
 
     private static final String NOT_NULL_MESSAGE = 'Page Reference should not be null';
+    private static final String PROJECTID_TXT = 'projectId';
     
+
+    private static Oblix_SOW_Projects__c createTestData(){
+
+        MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+
+        Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+
+        Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
+
+        return project;
+    }
+
     @isTest static void actionTest() {
         User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {
             Test.startTest();
 
-            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
-
-            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
-
-            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
+            Oblix_SOW_Projects__c project = createTestData();
 
             Oblix_TestUtils.createProjectAssets(project.id);
 
-            ApexPages.currentPage().getParameters().put('projectId', project.id);
+            ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
         
             Oblix_Ctrl07ProjectView_CC controller = new Oblix_Ctrl07ProjectView_CC();
 
@@ -38,15 +47,11 @@ private class Oblix_Ctrl07ProjectView_CC_Test {
         System.runAs(u) {
             Test.startTest();
 
-            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
-
-            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
-
-            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
+            Oblix_SOW_Projects__c project = createTestData();
 
             Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.id);
 
-            ApexPages.currentPage().getParameters().put('projectId', project.id);
+            ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
         
             Oblix_Ctrl07ProjectView_CC controller = new Oblix_Ctrl07ProjectView_CC();
 
@@ -69,15 +74,11 @@ private class Oblix_Ctrl07ProjectView_CC_Test {
         System.runAs(u) {
             Test.startTest();
 
-            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
-
-            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
-
-            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
+            Oblix_SOW_Projects__c project = createTestData();
 
             Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.id);
 
-            ApexPages.currentPage().getParameters().put('projectId', project.id);
+            ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
         
             Oblix_Ctrl07ProjectView_CC controller = new Oblix_Ctrl07ProjectView_CC();
 

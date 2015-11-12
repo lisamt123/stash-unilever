@@ -19,6 +19,7 @@
     public Integer nActivities {get;set;}
     public Integer nResources {get;set;}
     public id MSid {get;set;}
+    public String MScurrency {get;set;}
     
     public Integer total{get;set;}
     public String itemToUpdate {get;set;}
@@ -35,7 +36,8 @@
          activities= new List <Marketing_Basics__c>();
          resources= new List <Marketing_Basics__c>();
          total=0; 
-             
+          Marketing_SOW__c  Marketing_SOW  = [select id,Financial_Year__c,currency__c,Oblix_AgencyEstimate__c,Oblix_AgencyEstimate__r.Name from Marketing_SOW__c where id =: MSid];     
+          MScurrency = Marketing_SOW.currency__c ; 
          List <Marketing_Basics__c>  Marketing_Basics = [select name,Activities__c, Other_Activities__c , recordTypeId,FTE__c,No_of_Hours_Required__c, Oblix_SOWMarketing__c,OblixCountry__c,OblixCountry__r.name ,Role_Title__c,Agency_Department__c,OblixOtherItemFee__c from Marketing_Basics__c  where Oblix_SOWMarketing__c= :MSid ];
        for (Marketing_Basics__c  M :Marketing_Basics  ){
             if(m.OblixOtherItemFee__c!= null)   total+=Integer.valueof(m.OblixOtherItemFee__c ) ; 

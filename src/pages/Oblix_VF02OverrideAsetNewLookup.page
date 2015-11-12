@@ -40,10 +40,10 @@
     <!-- ADMIN RT  -->
     <apex:pageBlock title="Admin RT" rendered="{!asset.RecordTypeId == rt_Admin}">
         <apex:pageBlockButtons >
-            <apex:commandButton action="{!save}" value="Save"/>
+            <apex:commandButton action="{!save}" value="{!$Label.Oblix_lbl_UIUX_Save}"/>
             <apex:commandButton action="{!Cancel}" value="Cancel"/>
         </apex:pageBlockButtons>
-        <apex:pageBlockSection columns="2" title="Information">
+        <apex:pageBlockSection columns="2" title="{!$Label.Oblix_lbl_UIUX_Information}">
          <apex:inputField value="{!asset.Agency_Projects__c}"  />
          <apex:inputField value="{!asset.Additional_Description__c}"  />
          <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
@@ -53,13 +53,13 @@
       </apex:pageBlockSection>
     </apex:pageBlock>
     <!-- Audio Visual RT  -->
-    <apex:pageBlock id="PageBlockAV" title="Project Asset" rendered="{!asset.RecordTypeId == rt_AudioVisuel}">        
+    <apex:pageBlock id="PageBlockAV" title="{!$Label.Oblix_Lbl_VF02_Project_Asset}" rendered="{!asset.RecordTypeId == rt_AudioVisuel}">        
       <apex:pageBlockButtons >
-            <apex:commandButton action="{!save}" value="Save"/>
-            <apex:commandButton action="{!Cancel}" value="Cancel"/>
+            <apex:commandButton action="{!save}" value="{!$Label.Oblix_lbl_UIUX_Save}"/>
+            <apex:commandButton action="{!Cancel}" value="{!$Label.Oblix_lbl_UIUX_Cancel}"/>
         </apex:pageBlockButtons>
         
-     <apex:pageBlockSection columns="2" title="Information">
+     <apex:pageBlockSection columns="2" title="{!$Label.Oblix_lbl_UIUX_Information}">
          <apex:inputField value="{!asset.Agency_Projects__c}"  />
          <apex:inputField value="{!asset.Additional_Description__c}"  />
          <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
@@ -69,13 +69,13 @@
       </apex:pageBlockSection>
     </apex:PageBlock>
     <!-- Static Imagery RT -->
-     <apex:pageBlock id="PageBlockIm" title="Project Asset" rendered="{!asset.RecordTypeId == rt_StaticImagery}">        
+     <apex:pageBlock id="PageBlockIm" title="{!$Label.Oblix_Lbl_VF02_Project_Asset}" rendered="{!asset.RecordTypeId == rt_StaticImagery}">        
       <apex:pageBlockButtons >
-            <apex:commandButton action="{!save}" value="Save"/>
-            <apex:commandButton action="{!Cancel}" value="Cancel"/>
+            <apex:commandButton action="{!save}" value="{!$Label.Oblix_lbl_UIUX_Save}"/>
+            <apex:commandButton action="{!Cancel}" value="{!$Label.Oblix_lbl_UIUX_Cancel}"/>
         </apex:pageBlockButtons>
         
-      <apex:pageBlockSection columns="2" title="Information">
+      <apex:pageBlockSection columns="2" title="{!$Label.Oblix_lbl_UIUX_Information}">
          <apex:inputField value="{!asset.Agency_Projects__c}"  />
          <apex:inputField value="{!asset.Additional_Description__c}"  />
          <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
@@ -85,12 +85,12 @@
       </apex:pageBlockSection>
     </apex:PageBlock>
     <!-- Experiential -->
-     <apex:pageBlock id="PageBlockExp" title="Project Asset" rendered="{!asset.RecordTypeId == rt_Experiential}">        
+     <apex:pageBlock id="PageBlockExp" title="{!$Label.Oblix_Lbl_VF02_Project_Asset}" rendered="{!asset.RecordTypeId == rt_Experiential}">        
       <apex:pageBlockButtons >
-            <apex:commandButton action="{!save}" value="Save"/>
-            <apex:commandButton action="{!Cancel}" value="Cancel"/>
+            <apex:commandButton action="{!save}" value="{!$Label.Oblix_lbl_UIUX_Save}"/>
+            <apex:commandButton action="{!Cancel}" value="{!$Label.Oblix_lbl_UIUX_Cancel}"/>
         </apex:pageBlockButtons>
-      <apex:pageBlockSection columns="2" title="Information">
+      <apex:pageBlockSection columns="2" title="{!$Label.Oblix_lbl_UIUX_Information}">
          <apex:inputField value="{!asset.Agency_Projects__c}"  />
          <apex:inputField value="{!asset.Additional_Description__c}"  />
          <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
@@ -100,13 +100,13 @@
       </apex:pageBlockSection>
     </apex:PageBlock>
     <!-- Digital -->
-     <apex:pageBlock id="PageBlockDigital" title="Project Asset" rendered="{!asset.RecordTypeId == rt_Digital}">        
+     <apex:pageBlock id="PageBlockDigital" title="{!$Label.Oblix_Lbl_VF02_Project_Asset}" rendered="{!asset.RecordTypeId == rt_Digital}">        
       <apex:pageBlockButtons >
-            <apex:commandButton action="{!save}" value="Save"/>
-            <apex:commandButton action="{!Cancel}" value="Cancel"/>
+            <apex:commandButton action="{!save}" value="{!$Label.Oblix_lbl_UIUX_Save}"/>
+            <apex:commandButton action="{!Cancel}" value="{!$Label.Oblix_lbl_UIUX_Cancel}"/>
         </apex:pageBlockButtons>
         
-      <apex:pageBlockSection columns="2" title="Information">
+      <apex:pageBlockSection columns="2" title="{!$Label.Oblix_lbl_UIUX_Information}">
          <apex:inputField value="{!asset.Agency_Projects__c}"  />
          <apex:inputField value="{!asset.Additional_Description__c}"  />
          <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>
@@ -116,13 +116,13 @@
       </apex:pageBlockSection>
     </apex:PageBlock>
      <!-- Stimulus_Materials_Research_requirements -->
-     <apex:pageBlock id="PageBlockResearchReq" title="Project Asset" rendered="{!asset.RecordTypeId == rt_Stimulus_Materials_Research_requirements}">        
+     <apex:pageBlock id="PageBlockResearchReq" title="{!$Label.Oblix_Lbl_VF02_Project_Asset}" rendered="{!asset.RecordTypeId == rt_Stimulus_Materials_Research_requirements}">        
       <apex:pageBlockButtons >
-            <apex:commandButton action="{!save}" value="Save"/>
-            <apex:commandButton action="{!Cancel}" value="Cancel"/>
+            <apex:commandButton action="{!save}" value="{!$Label.Oblix_lbl_UIUX_Save}"/>
+            <apex:commandButton action="{!Cancel}" value="{!$Label.Oblix_lbl_UIUX_Cancel}"/>
         </apex:pageBlockButtons>
         
-      <apex:pageBlockSection columns="2" title="Information">
+      <apex:pageBlockSection columns="2" title="{!$Label.Oblix_lbl_UIUX_Information}">
          <apex:inputField value="{!asset.Agency_Projects__c}"  />
          <apex:inputField value="{!asset.Additional_Description__c}"  />
          <apex:inputField id="SubCategory" value="{!asset.Sub_Category__c}" onChange="changeType();"></apex:inputField>

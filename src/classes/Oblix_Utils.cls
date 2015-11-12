@@ -16,6 +16,8 @@
 */
 public with sharing class Oblix_Utils {
     
+    private static final String PROJECT_BRIEFFING = 'Projected_Briefing';
+    private static final String COMPLETED_BRIEFFING = 'Completed_Briefing';
     
 //Used to Wrap RecordType By Object
     public static Map<string,ID> MapRecordType(String ObjectName){
@@ -331,35 +333,35 @@ public with sharing class Oblix_Utils {
             string lstProjectedItems = '';
             string lstCompletedItems = '';
             if(projected == 'Projected Briefing'){
-                lstProjectedItems = 'Projected_Briefing';
+                lstProjectedItems = PROJECT_BRIEFFING;
             } 
             if(projected == 'Projected Strategy & Planning'){
-                lstProjectedItems = 'Projected_Briefing' + ',Projected_Strategy_Planning';
+                lstProjectedItems = PROJECT_BRIEFFING + ',Projected_Strategy_Planning';
             } 
             if(projected == 'Projected Creative Ideation'){
-                lstProjectedItems = 'Projected_Briefing' + ',Projected_Strategy_Planning'+',Projected_Creative_Ideation';
+                lstProjectedItems = PROJECT_BRIEFFING + ',Projected_Strategy_Planning'+',Projected_Creative_Ideation';
             } 
             if(projected == 'Projected Creative Execution'){
-                lstProjectedItems = 'Projected_Briefing' + ',Projected_Strategy_Planning'+',Projected_Creative_Ideation'+',Projected_Creative_Execution';
+                lstProjectedItems = PROJECT_BRIEFFING + ',Projected_Strategy_Planning'+',Projected_Creative_Ideation'+',Projected_Creative_Execution';
             }
             
             if(projected == 'Projected Production'){
-                lstProjectedItems = 'Projected_Briefing' + ',Projected_Strategy_Planning'+',Projected_Creative_Ideation'+',Projected_Creative_Execution'+',Projected_Production';
+                lstProjectedItems = PROJECT_BRIEFFING + ',Projected_Strategy_Planning'+',Projected_Creative_Ideation'+',Projected_Creative_Execution'+',Projected_Production';
             }           
             if(Completed == 'Completed Briefing'){
-                lstCompletedItems = 'Completed_Briefing' ;
+                lstCompletedItems = COMPLETED_BRIEFFING ;
             } 
             if(Completed == 'Completed Strategy & Planning'){
-                lstCompletedItems = 'Completed_Briefing' + ',Completed_Strategy_Planning';
+                lstCompletedItems = COMPLETED_BRIEFFING + ',Completed_Strategy_Planning';
             } 
             if(Completed == 'Completed Creative Ideation'){
-                lstCompletedItems = 'Completed_Briefing' + ',Completed_Strategy_Planning'+',Completed_Creative_Ideation';
+                lstCompletedItems = COMPLETED_BRIEFFING + ',Completed_Strategy_Planning'+',Completed_Creative_Ideation';
             } 
             if(Completed == 'Completed Creative Execution'){
-                lstCompletedItems = 'Completed_Briefing' + ',Completed_Strategy_Planning'+',Completed_Creative_Ideation'+',Completed_Creative_Execution';
+                lstCompletedItems = COMPLETED_BRIEFFING + ',Completed_Strategy_Planning'+',Completed_Creative_Ideation'+',Completed_Creative_Execution';
             }
             if(Completed == 'Completed Production'){
-                lstCompletedItems = 'Completed_Briefing' + ',Completed_Strategy_Planning'+',Completed_Creative_Ideation'+',Completed_Creative_Execution'+',Completed_Production';
+                lstCompletedItems = COMPLETED_BRIEFFING + ',Completed_Strategy_Planning'+',Completed_Creative_Ideation'+',Completed_Creative_Execution'+',Completed_Production';
             } 
             system.debug('###lst Stage :'+lstCompletedItems +','+lstProjectedItems); 
             if(lstProjectedItems != '' && lstCompletedItems != ''){

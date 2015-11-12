@@ -13,7 +13,7 @@ private class Oblix_Ctrl04OverrideProjectNew_Test {
 
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
 
-            Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.id);
+            Oblix_TestUtils.createProjectAssets(project.id);
 
             ApexPages.currentPage().getParameters().put('clone','1');
             ApexPages.currentPage().getParameters().put('retUrl',project.id);
@@ -73,18 +73,10 @@ private class Oblix_Ctrl04OverrideProjectNew_Test {
     }
 
     static testMethod void myUnitTest() {
-        // TO DO: implement unit test
-        Profile p=[Select Id from Profile where Name='System Administrator' or Name='Système Administrateur'];       
-     
-	     //Insert User 
-	     User u= new User(Alias = 'test123', Email='standarduser@unilever.com', 
-	      EmailEncodingKey='UTF-8', LastName='af test', LanguageLocaleKey='en_US', 
-	      LocaleSidKey='en_US', ProfileId = p.Id,firstname='sf test one', 
-	      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-	      UserName='testuser@test123321.com');//,AF_Brand__c='Test Brand1',AF_Category__c='Test Beverages1'
-	     insert u; 
+
+        User u = Oblix_TestUtils.createTestUser();
 	     
-	     System.runAs(u){
+	    System.runAs(u){
 	     	Marketing_SOW__c marketingSow = new Marketing_SOW__c();
         		marketingSow.Active__c = true;
         		marketingSow.Name = 'Marketinf Sow Approval Test';
@@ -128,6 +120,6 @@ private class Oblix_Ctrl04OverrideProjectNew_Test {
         	  	controller2.selectedCountries = null;
         	  	controller2.save();
         	Test.stopTest()	;
-	     }
+	    }
     }
 }
