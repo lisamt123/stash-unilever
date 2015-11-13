@@ -156,6 +156,7 @@
       <delete><fileset dir="${basedir}" includes="**/SocialPersona.workflow"/></delete>
       <delete><fileset dir="${basedir}" includes="**/Question.workflow"/></delete>
       <delete><fileset dir="${basedir}" includes="**/Reply.workflow"/></delete>
+      <delete><fileset dir="${basedir}" includes="**/ExternalEventMapping.workflow"/></delete>      
       <delete><fileset dir="${basedir}" includes="**/*.connectedApp"/></delete>
       <delete><fileset dir="${basedir}" includes="**/*.dataSource"/></delete>
       <delete><fileset dir="${basedir}" includes="**/*.network"/></delete>
