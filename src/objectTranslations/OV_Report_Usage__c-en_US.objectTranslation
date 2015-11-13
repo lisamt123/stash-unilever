@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>One View Report Usage</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>One View Report Usage</value>
+    </caseValues>
+    <fields>
+        <label><!-- Accessed Date --></label>
+        <name>Accessed_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Device Type --></label>
+        <name>Device_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- File Name By Version --></label>
+        <name>File_Name_By_Version__c</name>
+    </fields>
+    <fields>
+        <label><!-- File Version Upload Date --></label>
+        <name>File_Version_Upload_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- File Version Uploaded By Name --></label>
+        <name>File_Version_Uploaded_By_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- File Version Uploaded By --></label>
+        <name>File_Version_Uploaded_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- File Version --></label>
+        <name>File_Version__c</name>
+    </fields>
+    <fields>
+        <label><!-- OneView Report Details-Category --></label>
+        <name>OneView_Report_Details_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- OneView Report Details-Code --></label>
+        <name>OneView_Report_Details_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- OneView Report Details-Frequency --></label>
+        <name>OneView_Report_Details_Frequency__c</name>
+    </fields>
+    <fields>
+        <label><!-- OneView Report Details-Geography --></label>
+        <name>OneView_Report_Details_Geography__c</name>
+    </fields>
+    <fields>
+        <label><!-- OneView Report Details-Name --></label>
+        <name>OneView_Report_Details_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- OneView Report Details-Reporting Period --></label>
+        <name>OneView_Report_Details_Reporting_Period__c</name>
+    </fields>
+    <fields>
+        <label><!-- OneView Report Details-Unit Code --></label>
+        <name>OneView_Report_Details_Unit_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Operation --></label>
+        <name>Operation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shelf Code --></label>
+        <name>Shelf_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shelf Name --></label>
+        <name>Shelf_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shelf Tile Code --></label>
+        <name>Shelf_Tile_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shelf Tile Name --></label>
+        <name>Shelf_Tile_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source --></label>
+        <name>Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unit-Unit Name --></label>
+        <name>Unit_Unit_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unit-Unit Type --></label>
+        <name>Unit_Unit_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Id --></label>
+        <name>User_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Name --></label>
+        <name>User_Name__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

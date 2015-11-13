@@ -1,0 +1,6 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <!-- bind custom handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <!-- unbind custom handlers on component destroy -->
+    <aura:handler name="destroy" value="{!this}" action="{!c.handleDestroy}" />
+</aura:component>

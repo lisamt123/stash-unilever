@@ -1,0 +1,40 @@
+<!--
+
+   TODO - HEADER
+-->
+<apex:page showHeader="false" 
+	sidebar="false" 
+	standardController="OV_Report__c" 
+	extensions="OV_ReportContentPreviewController"
+	tabStyle="OV_Report__c"
+	title="Mobile Content Preview"
+	label="Mobile Content Preview" >
+    <script>
+        var imgsrc = '{!mobileUrl}'; var img = new Image(); var idImage = '{!$Component.mobileImageId}'; var image = document.getElementById(idImage);      
+        img.onerror = function (evt){
+            var idPreview = '{!$Component.mobilePreviewUnavailable}';
+            var preview = document.getElementById(idPreview);
+            var idImage = '{!$Component.mobileImageId}';
+            var image = document.getElementById(idImage);
+            preview.setAttribute('style', ''); image.setAttribute('style', 'display:none;');
+        }
+        img.onload = function (evt){
+            var idPreview = '{!$Component.mobilePreviewUnavailable}';
+            var preview = document.getElementById(idPreview);
+            var idImage = '{!$Component.mobileImageId}';
+            var image = document.getElementById(idImage);
+            image.setAttribute('style', ''); idPreview.setAttribute('style', 'display:none;');
+        }         
+        img.src = imgsrc;
+    </script>
+
+    <apex:image value="{!mobileUrl}" id="mobileImageId" style="display:none" rendered="{!!(mobileContentVersionId == null)}"/> 
+
+    <apex:outputPanel id="mobilePreviewUnavailable" style="display:none">
+        Preview unavailable
+    </apex:outputPanel>
+
+    <apex:outputPanel rendered="{!mobileContentVersionUrl != null}">
+        <apex:outputLabel value="Dynamic Report URL:" /> <apex:outputLink target="_blank" value="{!mobileContentVersionUrl}">{!mobileContentVersionUrl}</apex:outputLink>
+    </apex:outputPanel> 
+</apex:page>

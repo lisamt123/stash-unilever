@@ -187,7 +187,7 @@ public class CEC_CaseTriggerHelper{
         recordTypesList.addAll(recordTypesSet);
         System.debug('--------'+recordTypesList);
         System.debug('--------'+countryCodeSet);
-        List<cec_Case_QC_Mapping__c> caseQcMapping= [select Product__c,QC_Type__c,Reason_Code__c,Status__c,Verbatim__c,Country__c from cec_Case_QC_Mapping__c where QC_Type__c in : recordTypesList AND Country__c in : countryCodeSet];
+        List<cec_Case_QC_Mapping__c> caseQcMapping= [select Product__c,Product__r.Consumer_Product_Descriptor_Local_Lang__c,QC_Type__c,Reason_Code__c,Status__c,Verbatim__c,Country__c from cec_Case_QC_Mapping__c where QC_Type__c in : recordTypesList AND Country__c in : countryCodeSet];
 
         System.debug('caseQcMapping:: '+caseQcMapping);
                 
@@ -224,6 +224,7 @@ public class CEC_CaseTriggerHelper{
                             }
                             if(qc.Product__c !=null){
                                 newCaseMap.get(caseObject.Id).CEC_Product__c=qc.Product__c;
+                                newCaseMap.get(caseObject.Id).CEC_Product_Hierarchy__c = qc.Product__r.Consumer_Product_Descriptor_Local_Lang__c;
                             }
                         
                         }

@@ -2446,6 +2446,42 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>One_View_Users</fullName>
+        <booleanFilter>1 AND (2 and 3) or (4)</booleanFilter>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.EMAIL</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>User_License__c</columns>
+        <columns>CORE.USERS.DEPARTMENT</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.USERS.ACTIVE</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.LAST_NAME</field>
+            <operation>equals</operation>
+            <value>,Spitzer,Buruncuk,Luthra,Jhingran,Vries,Janssen,Svoronou,Arora</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.FIRST_NAME</field>
+            <operation>equals</operation>
+            <value>,Gulcin,Wendy,Sanjay,Rakhi,Rakhi(GA),Patrick,Wouter-de,Ewa,Deepak</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.LAST_NAME</field>
+            <operation>startsWith</operation>
+            <value>OV_</value>
+        </filters>
+        <label>One View Users</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>Ratings_and_Review_users</fullName>
         <booleanFilter>1 OR 2 OR 3  OR 4 OR 5 OR 6 OR 7 OR 8</booleanFilter>
         <columns>FULL_NAME</columns>
