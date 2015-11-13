@@ -146,6 +146,10 @@
         <label><!-- Bonus Measure --></label>
         <name>Bonus_Measure__c</name>
         <picklistValues>
+            <masterLabel>% GREEN CELLS</masterLabel>
+            <translation><!-- % GREEN CELLS --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>% of Turnover Gaining</masterLabel>
             <translation><!-- % of Turnover Gaining --></translation>
         </picklistValues>

@@ -20,11 +20,6 @@ global with sharing class HRO_HeadStart_CX {
 	public String selectTaskList{get;set;}
     public String selectedLeader{get;set;}
     public Boolean isAdmin{get;set;}
-    public String userPhase{get;set;}
-    public Id leaderId{get;set;}
-    public Id taskForUser{get;set;}
-    public String currentLeaderPhase{get;set;}
-    public Boolean managerMode{get;set;}
     public String switchToPhase{get;set;}
     public String selectedPhaseButton{get;set;}
     public static final String PREBOARDINGPHASE = 'Pre-Boarding';
@@ -246,8 +241,8 @@ global with sharing class HRO_HeadStart_CX {
         if(selectTaskList == 'My Task'){
             query += ' AND Onboarding_Task_Set__r.OwnerId =\'' + UserInfo.getUserId()+'\'';
         }
-        query += ' ORDER by Due_Date__c,CreatedDate asc Limit 50000'; 
-
+        query += ' ORDER by Due_Date__c,Name asc Limit 50000'; 
+	
         onboardingTasks = (List<HRO_Onboarding_Task__c>)Database.query(query);                                                        
 
         system.debug('*****HRO Exiting getOnboardingTasks returned:'+JSON.serialize(onboardingTasks));

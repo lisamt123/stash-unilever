@@ -25,6 +25,8 @@ public with sharing class HRO_UnitTestFactory {
     public static final String MANAGERTASKTYPE = 'Manager';
     public static final String NEWLEADERTASKTYPE = 'New Leader';
 	public static final String ENUS='en_US';
+    private static final String HRADMIN = 'HRO_HRAdmin';
+    private static final String HRMANAGER = 'HRO_HeadstartManager';
 
 	private HRO_UnitTestFactory(){}
     
@@ -168,7 +170,7 @@ public with sharing class HRO_UnitTestFactory {
         return u;	
 	}
 	
-     /*******************************************************************
+   /*******************************************************************
    Purpose:  Helper method for standard user                         
    Parameters: [String]
    Returns: [User]
@@ -185,5 +187,26 @@ public with sharing class HRO_UnitTestFactory {
         insert u;
    		system.debug('***HRO Exiting createUser'+u);
         return u;	
+	}
+    
+    /*******************************************************************
+   Purpose:  Helper method for adding permission sets for manager and HR Admin                         
+   Parameters: [User,Uset]
+   Returns: []
+   Throws [Exceptions]: []                                                          
+  ********************************************************************/
+	public static void addHROPermissions(User manager,User adminUser){
+        system.debug('***HRO Entring addHROPermissions @manager:'+manager+'@adminUser:'+adminUser);
+		List<PermissionSetAssignment> permissionsToAdd = new List<PermissionSetAssignment>();
+        
+        Id hroManager = [Select id From PermissionSet Where name =: HRMANAGER Limit 1].get(0).Id;
+        Id hroAdminId = [Select id From PermissionSet Where name =: HRADMIN Limit 1].get(0).Id;
+        PermissionSetAssignment permSetForAdmin = new PermissionSetAssignment(PermissionSetId = hroAdminId, AssigneeId = adminUser.id);
+        permissionsToAdd.add(permSetForAdmin);
+        PermissionSetAssignment permSetForManger = new PermissionSetAssignment(PermissionSetId = hroManager, AssigneeId = manager.id);
+        permissionsToAdd.add(permSetForManger);
+        insert permissionsToAdd;
+        
+   		system.debug('***HRO Exiting addHROPermissions');	
 	}
 }

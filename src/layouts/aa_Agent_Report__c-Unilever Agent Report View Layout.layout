@@ -79,7 +79,7 @@
                 <field>CreatedById</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
         </layoutColumns>
@@ -140,7 +140,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hc0000000Kbo9</masterLabel>
+        <masterLabel>00hE000000Nzz9y</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

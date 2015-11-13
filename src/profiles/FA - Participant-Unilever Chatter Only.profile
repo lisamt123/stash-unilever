@@ -506,6 +506,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AF_brandEstimatehandlerHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>AF_middlebonusmatrix</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -3205,6 +3209,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Agency_Estimate__c.AF_AgencyEntityId__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Agency_Estimate__c.AF_Agency_Category_Id__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -3246,6 +3255,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Agency_Estimate__c.AF_Bonus_Agency_Formula__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Agency_Estimate__c.AF_BrandEstimate_Active__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Agency_Estimate__c.AF_BrandIdunique__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3581,6 +3600,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Agency_Estimate__c.AF_Traditional__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Agency_Estimate__c.AF_UnileverCountryName__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -20012,14 +20036,14 @@
         <layout>aa_Agent_App_Category__c-Agent App Category Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>aa_Agent_App_Competitor_Brand__c-Agent App Brand Layout</layout>
+        <layout>aa_Agent_App_Competitor_Brand__c-Agent App Competitor Brand Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>aa_Agent_App_Competitor_Brand__c-Agent App Brand Layout</layout>
+        <layout>aa_Agent_App_Competitor_Brand__c-Agent App Competitor Brand Layout</layout>
         <recordType>aa_Agent_App_Competitor_Brand__c.Competitor_Brand</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>aa_Agent_App_Competitor_Brand__c-Agent App Brand Layout</layout>
+        <layout>aa_Agent_App_Competitor_Brand__c-Unilever Brand Layout</layout>
         <recordType>aa_Agent_App_Competitor_Brand__c.Unilever_Brand</recordType>
     </layoutAssignments>
     <layoutAssignments>
