@@ -1,6 +1,6 @@
 @isTest()
 public with sharing class Oblix_ProjectHandler_Test {
-
+	private static final String FINANCIAL_YEAR = 'Same Financial Year';
 	@isTest static void Oblix_ProjectHandler_Test(){
 		User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {
@@ -11,7 +11,7 @@ public with sharing class Oblix_ProjectHandler_Test {
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
 
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
-            
+            System.assertEquals(project.Financial_Year__c,mSow.id,FINANCIAL_YEAR);
             Oblix_ProjectHandler handler = new Oblix_ProjectHandler();
             handler.bulkBefore();
             handler.bulkAfter();

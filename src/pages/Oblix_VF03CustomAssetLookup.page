@@ -4,7 +4,13 @@
   sideBar="false" 
   tabStyle="Asset_Scoring__c" 
   id="pg">
+ <script>
+ 	function lookupCustom(var id, var name){
+ 		javascript:top.window.opener.lookupPick2('{!FormTag}','{!TextBox}_lkid','{!TextBox}',id,name, false);
+ 	}
  
+ 
+ </script>
   <apex:form >
   <apex:outputPanel id="page" layout="block" style="margin:5px;padding:10px;padding-top:2px;">
     <apex:tabPanel switchType="client" selectedTab="name1" id="tabbedPanel">
@@ -38,7 +44,7 @@
                   <apex:facet name="header">
                     <apex:outputPanel >{!$Label.Oblix_lbl_UIUX_Name}</apex:outputPanel>
                   </apex:facet>
-                   <apex:outputLink value="javascript:top.window.opener.lookupPick2('{!FormTag}','{!TextBox}_lkid','{!TextBox}','{!a.Id}','{!a.Name}', false)" rendered="{!NOT(ISNULL(a.Id))}">{!a.Name}</apex:outputLink>     
+                   <apex:outputLink onclick="lookupCustom({!a.Id},{!a.Name});" rendered="{!NOT(ISNULL(a.Id))}">{!a.Name}</apex:outputLink>     
                 </apex:column>
                
                 

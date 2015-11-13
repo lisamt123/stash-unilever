@@ -28,6 +28,166 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
     public static List<Oblix_SOW_Projects__c> retrieveProject(List<Oblix_SOW_Projects__c> lstProjTrig){
         return [Select o.Total_Value_Driver__c, o.ProjectTotalAssetScore__c, o.Innovation_Projects__c, o.Brand_Led_Growth__c, o.Total_Project_Score__c, o.Total_Fees_for_Project__c, o.Project_Stage__c, o.Project_Scale_2__c, o.Project_Scale_1__c, o.Oblix_ProjectBoxNumber__c, o.OblixCountries__c, o.Name, o.Id, o.Campaign_Total_Fees__c, o.Campaign_Total_Adjustment__c, o.Campaign_Status__c, o.Campaign_Idea__c, o.Campaign_Fees_Total__c From Oblix_SOW_Projects__c o  where id in :lstProjTrig];
     }
+    
+    
+    /*
+	*	@Description : Method used to get Innovation Score for project
+	*	@param  : project Id
+	*	@return : Decimalscore innovation
+	*/
+	private Decimal getScoreInnovation(Oblix_SOW_Projects__c project){
+		Decimal score_innonvationLoc = 0;
+		if(project.Innovation_Projects__c == Oblix_Constants.Innovation_Projects_Innovation){
+	                          System.debug('###Innovation : '+project.Innovation_Projects__c);
+	                        if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_IncremTurnoverLess10){
+	                            score_innonvationLoc = 0.150;
+	                        }else if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_IncremTurnover1020){
+	                            score_innonvationLoc = 0.250;
+	                        }else if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_IncremTurnoverLess2030){
+	                            score_innonvationLoc = 0.350;
+	                        }else if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_IncremTurnoverLess3040){
+	                            score_innonvationLoc = 0.450;
+	                        }else if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_IncremTurnoverLessAbove40){
+	                            score_innonvationLoc = 0.500;
+	                        }else {
+	                            score_innonvationLoc = 0;
+	                        }
+	                        System.debug('###score_innonvationLoc : '+score_innonvationLoc );
+	     }
+		 return score_innonvationLoc ;
+	}
+	
+	/*
+	*	@Description : Method used to get Brand Led Growth Score for project
+	*	@param  : project Id
+	*	@return : Decimalscore Brand Led Growth
+	*/
+	private Decimal getScoreBrandLedGrowth(Oblix_SOW_Projects__c project){
+		 Decimal score_brandLedGrowthLoc = 0;
+		 if(project.Innovation_Projects__c == Oblix_Constants.Innovation_Projects_BrandLedGrowth){
+	                        if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_Less100){
+	                            score_brandLedGrowthLoc = 0.150;
+	                        }else if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_100_200){
+	                            score_brandLedGrowthLoc = 0.250;
+	                        }else if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_IncremTurnover200_300){
+	                            score_brandLedGrowthLoc = 0.350;
+	                        }else if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_IncremTurnoverLess300_400){
+	                            score_brandLedGrowthLoc = 0.450;
+	                        }else if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_IncremTurnoverLessAbove400){
+	                            score_brandLedGrowthLoc = 0.500;
+	                        }else{
+	                            score_brandLedGrowthLoc =0;
+	                        }
+	                        System.debug('###project.Innovation_Projects__c: '+project.Innovation_Projects__c);
+	                        System.debug('###score_brandLedGrowthLoc : '+score_brandLedGrowthLoc);
+	     }
+		 return score_brandLedGrowthLoc;
+	}
+	
+	/*
+	*	@Description : Method used to get Market Score for project
+	*	@param  : project Id
+	*	@return : Decimalscore Market
+	*/
+	private Decimal getScoreMarket(Oblix_SOW_Projects__c project){
+		 Decimal score_marketLoc = 0;
+		 if(project.Project_Scale_1__c != null){
+	                    if(project.Project_Scale_1__c == Oblix_Constants.Innovation_Projects_Market1){
+	                    score_marketLoc = 0.150;
+	                    }else if(project.Project_Scale_1__c == Oblix_Constants.Innovation_Projects_Market2){
+	                        score_marketLoc = 0.250;
+	                    }else if(project.Project_Scale_1__c == Oblix_Constants.Innovation_Projects_Market3){
+	                        score_marketLoc = 0.350;
+	                    }else if(project.Project_Scale_1__c == Oblix_Constants.Innovation_Projects_Market4){
+	                        score_marketLoc = 0.450;
+	                    }else if(project.Project_Scale_1__c == Oblix_Constants.Innovation_Projects_Market5){
+	                        score_marketLoc = 0.500;
+	                    }else{
+	                        score_marketLoc = 0;
+	                    }   
+	     }
+		 return score_marketLoc;
+	}
+	
+	/*
+	*	@Description : Method used to get Hubs Score for project
+	*	@param  : project Id
+	*	@return : Decimalscore Market
+	*/
+	private Decimal getScoreHubs(Oblix_SOW_Projects__c project){
+		Decimal score_hubPartnerLoc = 0;
+		if(project.Project_Scale_2__c != null){
+	                    if(project.Project_Scale_2__c == Oblix_Constants.Innovation_Projects_HubsPartners1){
+	                    score_hubPartnerLoc = 0.100;
+	                    }else if(project.Project_Scale_2__c == Oblix_Constants.Innovation_Projects_HubsPartners2){
+	                        score_hubPartnerLoc = 0.150;
+	                    }else if(project.Project_Scale_2__c == Oblix_Constants.Innovation_Projects_HubsPartners3){
+	                        score_hubPartnerLoc = 0.200;
+	                    }else if(project.Project_Scale_2__c == Oblix_Constants.Innovation_Projects_HubsPartners4){
+	                        score_hubPartnerLoc = 0.250;
+	                    }else if(project.Project_Scale_2__c == Oblix_Constants.Innovation_Projects_HubsPartners5){
+	                        score_hubPartnerLoc = 0.300;
+	                    }else{
+	                        score_hubPartnerLoc = 0;
+	                    } 
+	    }
+		return score_hubPartnerLoc;
+	}
+	/*
+	*	@Description : Method used to get Hubs Score for project
+	*	@param  : project Id
+	*	@return : Decimalscore Campaign
+	*/
+	private Decimal getScoreCampaign(Oblix_SOW_Projects__c project){
+		Decimal score_campaignIdeaLoc =0;
+		if(project.Campaign_Idea__c != null){
+	                    if(project.Campaign_Idea__c == Oblix_Constants.Innovation_Projects_Existing){
+	                    score_campaignIdeaLoc = 0.600;
+	                    }else if(project.Campaign_Idea__c == Oblix_Constants.Innovation_Projects_NewOne){
+	                        score_campaignIdeaLoc = 1.000;
+	                    }else if(project.Campaign_Idea__c == Oblix_Constants.Innovation_Projects_NewMulti){
+	                        score_campaignIdeaLoc = 1.200;
+	                    }else{
+	                        score_campaignIdeaLoc = 0;
+	                    }
+	     }
+		 return score_campaignIdeaLoc;
+	}
+    
+	/*
+	*	@Description : Method used to get collection for each project a list of splits 
+	*	@param  : List<Oblix_Marketing_SOW_Project_Splits__c>
+	*	@return : Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>>
+	*/    
+	private Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>> getProjectToSplits(List<Oblix_Marketing_SOW_Project_Splits__c> lstProjectSplits_Loc){
+		Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>> MapProjectToSplits_Loc = new Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>>();
+		if(!lstProjectSplits_Loc.isEmpty()){
+	            for(Oblix_Marketing_SOW_Project_Splits__c projSplit : lstProjectSplits_Loc){
+	                if(!MapProjectToSplits_Loc.containsKey(projSplit.Project_Splits__c)){
+	                    MapProjectToSplits_Loc.put(projSplit.Project_Splits__c, new List<Oblix_Marketing_SOW_Project_Splits__c>());
+	                }
+	                MapProjectToSplits_Loc.get(projSplit.Project_Splits__c).add(projSplit);
+	            }
+	    }
+		return MapProjectToSplits_Loc;
+	}
+    
+    /*
+	*	@Description : Method used to get set of Countries 
+	*	@param  : List<Oblix_Marketing_SOW_Project_Splits__c>
+	*	@return : set<Id>
+	*/   
+    private set<String> getSetCountriesNames(List<Oblix_Marketing_SOW_Project_Splits__c> lstProjectSplits_Loc){
+    	set<String> setCountries_Loc = new set<String>();
+    	if(!lstProjectSplits_Loc.isEmpty()){
+	            for(Oblix_Marketing_SOW_Project_Splits__c projSplit : lstProjectSplits_Loc){
+	                setCountries_Loc.add(projSplit.OblixCountry__r.Name);
+	            }
+    	}
+    	return setCountries_Loc;
+    }
+    
+    
     /*
     *    @Description : This method is used to calculate : Total Calculated Fee in a campaign
     *    @Param : projectTrig, lstProjTrig from Trigger
@@ -35,6 +195,7 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
     */
     public static void updateProjectCalculatorFees(Oblix_SOW_Projects__c projectTrig, List<Oblix_SOW_Projects__c> lstProjectTrigger){
              //List of Oblix Calculator
+        Oblix_TR04ProjectBusinessDriverScore instanceTR04 = new Oblix_TR04ProjectBusinessDriverScore();
         List<Oblix_Calculator__c> lstCalculatorBoxRange = [Select Id, Name, Points_Low__c, Points_HigH__c, Box_Range__c, 
                      Box_9__c, Box_8__c, Box_7__c, Box_6__c, Box_5__c, Box_4__c, Box_3__c, Box_2__c, Box_20__c, Box_1__c, Box_19__c, Box_18__c, Box_17__c, Box_16__c, Box_15__c, Box_14__c, Box_13__c, Box_12__c, Box_11__c, Box_10__c 
                      from Oblix_Calculator__c where RecordTypeId =: Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Box_Range')];
@@ -48,23 +209,14 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
         }
         List<Oblix_Marketing_SOW_Project_Splits__c>  lstProjectSplits = [Select Id, Name, Project_Splits__c, OblixCountry__c, OblixCountry__r.Name, Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c in : setProjectIds and Project_Splits__c != null];
         Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>> MapProjectToSplits = new Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>>();
-         set<String> setCountries = new set<String>();
-        if(!lstProjectSplits.isEmpty()){
-            for(Oblix_Marketing_SOW_Project_Splits__c projSplit : lstProjectSplits){
-                setCountries.add(projSplit.OblixCountry__r.Name);
-                if(!MapProjectToSplits.containsKey(projSplit.Project_Splits__c)){
-                    MapProjectToSplits.put(projSplit.Project_Splits__c, new List<Oblix_Marketing_SOW_Project_Splits__c>());
-                }
-                MapProjectToSplits.get(projSplit.Project_Splits__c).add(projSplit);
-            }
-        }
+         set<String> setCountries= instanceTR04.getSetCountriesNames(lstProjectSplits);
+        	MapProjectToSplits = instanceTR04.getProjectToSplits(lstProjectSplits);
         
         system.Debug('###setCountries : '+setCountries);
         //List of Oblix Calculator with these Countries and RT  = Country_Box_Number // For very Calculator associate its related Split Project.
         List<Oblix_Calculator__c> lstCalculatorCountryRange = [Select Id, Name, Points_Low__c, Points_HigH__c, Box_Range__c,
                  Box_9__c, Box_8__c, Box_7__c, Box_6__c, Box_5__c, Box_4__c, Box_3__c, Box_2__c, Box_20__c, Box_1__c, Box_19__c, Box_18__c, Box_17__c, Box_16__c, Box_15__c, Box_14__c, Box_13__c, Box_12__c, Box_11__c, Box_10__c
          from Oblix_Calculator__c where RecordTypeId =: Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Country_Box_Number') and  Name in:setCountries];
-        
         
         //Loop Over Project for the Initial requirement : calculating Score
         for(Oblix_SOW_Projects__c project : lstProjectTrigger){
@@ -81,89 +233,18 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
                 String Calculator_BoxRange = '';
                 //Business Value Creation == INNOVATION
                 if(project.Innovation_Projects__c != null){
-                    if(project.Innovation_Projects__c == Oblix_Constants.Innovation_Projects_Innovation){
-                          System.debug('###Innovation : '+project.Innovation_Projects__c);
-                        if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_IncremTurnoverLess10){
-                            score_innonvation = 0.150;
-                        }else if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_IncremTurnover1020){
-                            score_innonvation = 0.250;
-                        }else if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_IncremTurnoverLess2030){
-                            score_innonvation = 0.350;
-                        }else if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_IncremTurnoverLess3040){
-                            score_innonvation = 0.450;
-                        }else if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_IncremTurnoverLessAbove40){
-                            score_innonvation = 0.500;
-                        }else {
-                            score_innonvation = 0;
-                        }
-                        System.debug('###score_innonvation : '+score_innonvation );
-                    }
+                    score_innonvation = instanceTR04.getScoreInnovation(project);
                 //Business Value Creation BrandLedGrowth
-                    if(project.Innovation_Projects__c == Oblix_Constants.Innovation_Projects_BrandLedGrowth){
-                        if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_Less100){
-                            score_brandLedGrowth = 0.150;
-                        }else if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_100_200){
-                            score_brandLedGrowth = 0.250;
-                        }else if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_IncremTurnover200_300){
-                            score_brandLedGrowth = 0.350;
-                        }else if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_IncremTurnoverLess300_400){
-                            score_brandLedGrowth = 0.450;
-                        }else if(project.Brand_Led_Growth__c == Oblix_Constants.BrandLedGrowth_IncremTurnoverLessAbove400){
-                            score_brandLedGrowth = 0.500;
-                        }else{
-                            score_brandLedGrowth =0;
-                        }
-                        System.debug('###project.Innovation_Projects__c: '+project.Innovation_Projects__c);
-                        System.debug('###score_brandLedGrowth : '+score_brandLedGrowth);
-                    }
-                    
+                    score_brandLedGrowth = instanceTR04.getScoreBrandLedGrowth(project);
                 }
                 //Business Value    Number of markets  
-                if(project.Project_Scale_1__c != null){
-                    if(project.Project_Scale_1__c == Oblix_Constants.Innovation_Projects_Market1){
-                    score_market = 0.150;
-                    }else if(project.Project_Scale_1__c == Oblix_Constants.Innovation_Projects_Market2){
-                        score_market = 0.250;
-                    }else if(project.Project_Scale_1__c == Oblix_Constants.Innovation_Projects_Market3){
-                        score_market = 0.350;
-                    }else if(project.Project_Scale_1__c == Oblix_Constants.Innovation_Projects_Market4){
-                        score_market = 0.450;
-                    }else if(project.Project_Scale_1__c == Oblix_Constants.Innovation_Projects_Market5){
-                        score_market = 0.500;
-                    }else{
-                        score_market = 0;
-                    }   
-                }
+               		score_market = instanceTR04.getScoreMarket(project);
                 System.debug('###score_market : '+score_market );
                 //Business Value Number of hubs or partners
-                if(project.Project_Scale_2__c != null){
-                    if(project.Project_Scale_2__c == Oblix_Constants.Innovation_Projects_HubsPartners1){
-                    score_hubPartner = 0.100;
-                    }else if(project.Project_Scale_2__c == Oblix_Constants.Innovation_Projects_HubsPartners2){
-                        score_hubPartner = 0.150;
-                    }else if(project.Project_Scale_2__c == Oblix_Constants.Innovation_Projects_HubsPartners3){
-                        score_hubPartner = 0.200;
-                    }else if(project.Project_Scale_2__c == Oblix_Constants.Innovation_Projects_HubsPartners4){
-                        score_hubPartner = 0.250;
-                    }else if(project.Project_Scale_2__c == Oblix_Constants.Innovation_Projects_HubsPartners5){
-                        score_hubPartner = 0.300;
-                    }else{
-                        score_hubPartner = 0;
-                    } 
-                }
+                	score_hubPartner = instanceTR04.getScoreHubs(project);
                 System.debug('###score_hubPartner : '+score_hubPartner);
                 //Business Value Campaign Idea
-                if(project.Campaign_Idea__c != null){
-                    if(project.Campaign_Idea__c == Oblix_Constants.Innovation_Projects_Existing){
-                    score_campaignIdea = 0.600;
-                    }else if(project.Campaign_Idea__c == Oblix_Constants.Innovation_Projects_NewOne){
-                        score_campaignIdea = 1.000;
-                    }else if(project.Campaign_Idea__c == Oblix_Constants.Innovation_Projects_NewMulti){
-                        score_campaignIdea = 1.200;
-                    }else{
-                        score_campaignIdea = 0;
-                    }
-                }
+                	score_campaignIdea = instanceTR04.getScoreCampaign(project);
                 System.debug('###score_campaignIdea : '+score_campaignIdea );
                 //Calculate TotalBusinessvaluedriverScore
                 TotalBusinessvaluedriverScore = score_innonvation+score_brandLedGrowth+score_market+score_hubPartner+score_campaignIdea+TotalBusinessvaluedriverScore;

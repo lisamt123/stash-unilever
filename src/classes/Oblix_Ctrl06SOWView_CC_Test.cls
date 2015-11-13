@@ -7,6 +7,7 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 	private static final String PROJECT_TXT = 'Project';
     private static final String PROJECTID_TXT = 'projectId';
     private static final String SOWID_TXT = 'sowId';
+    private static final String TEST_NAME = 'test';
 
 	@isTest static void saveSOWTest(){
 		User u = Oblix_TestUtils.createTestUser();
@@ -25,10 +26,10 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 			Oblix_Ctrl06SOWView_CC controller = new Oblix_Ctrl06SOWView_CC();
 
 			mSow.Financial_Year__c = '2015';
-        	mSow.BB_or_BD__c = 'test';
+        	mSow.BB_or_BD__c = TEST_NAME;
 
 
-        	controller.noteAsset = new Note(body = 'test');
+        	controller.noteAsset = new Note(body = TEST_NAME);
 
         	controller.selSow = new Marketing_SOW__c();
 
@@ -88,7 +89,7 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 
 			Oblix_Ctrl06SOWView_CC controller = new Oblix_Ctrl06SOWView_CC();
 
-			controller.attachment = new Attachment(name = 'Test',body = Blob.valueOf('Test'));
+			controller.attachment = new Attachment(name = TEST_NAME,body = Blob.valueOf(TEST_NAME));
 
 			controller.uploadeAttachment();
 
@@ -157,7 +158,7 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 	
 			PageReference changeCount = controller.ChangeCount();
 
-			controller.allFileList = new List<Attachment>{new Attachment(name = 'Test',body = Blob.valueOf('Test'))};
+			controller.allFileList = new List<Attachment>{new Attachment(name = TEST_NAME,body = Blob.valueOf(TEST_NAME))};
 
 			PageReference upploadAtt = controller.uploadAttachment();
 
