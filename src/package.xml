@@ -180,6 +180,7 @@
         <members>BET_AssetHandler</members>
         <members>BET_AssetHandlerCls</members>
         <members>BET_AssetHandlerClsTest</members>
+		<members>BET_AssetHandlerClsHelper</members>
         <members>BET_AssetService</members>
         <members>BET_AssetServiceTest</members>
         <members>BET_BETChangesLogger</members>
