@@ -13,6 +13,151 @@ public with sharing class BET_AssetHandlerCls {
 	private BET_AssetHandlerCls() {}
 
 	/************************************************************
+        Purpose: Method updates BET status when Assets is deleted
+        Parameters: List<uw_Asset__c> deletedAssets
+        Returns: -
+        Throws: -
+    *************************************************************/
+	public static void updateBETStatusAccordingly(List<uw_Asset__c> deletedAssets){
+		List<uw_Asset__c> deletedApprovedBrandPresentations = new List<uw_Asset__c>();
+		List<uw_Asset__c> deletedApprovedCreativeWorks = new List<uw_Asset__c>();
+		Set<Id> bpBetIds = new Set<Id>();
+		Set<Id> cwBetIds = new Set<Id>();
+		for(uw_Asset__c asset : deletedAssets){
+			if(asset.Studio_Asset_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_TYPE_BEP 
+				&& asset.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED ){
+				deletedApprovedBrandPresentations.add(asset);
+				bpBetIds.add(asset.uw_BET__c);
+			} else if (asset.Studio_Asset_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_TYPE_CW 
+						&& asset.Media_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW 
+						&& asset.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){
+				deletedApprovedCreativeWorks.add(asset);
+				cwBetIds.add(asset.uw_BET__c);
+			} 
+		}
+
+		updateBetStatus(deletedApprovedBrandPresentations,deletedApprovedCreativeWorks,bpBetIds,cwBetIds);
+
+	}
+
+	/************************************************************
+        Purpose: Method updates BET status when Assets changes
+        Parameters: List<uw_Asset__c> newAssets, Map<Id,uw_Asset__c> oldMap
+        Returns: -
+        Throws: -
+    *************************************************************/
+	public static void updateBETStatusAccordingly(List<uw_Asset__c> newAssets, Map<Id,uw_Asset__c> oldMap){
+		List<uw_Asset__c> modifiedApprovedBrandPresentations = new List<uw_Asset__c>();
+		List<uw_Asset__c> modifiedApprovedCreativeWorks = new List<uw_Asset__c>();
+		Set<Id> bpBetIds = new Set<Id>();
+		Set<Id> cwBetIds = new Set<Id>();
+		for(uw_Asset__c asset : newAssets){
+			if(asset.Studio_Asset_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_TYPE_BEP 
+				&& asset.Status__c != uw_CustomAssetUploadExtension.BET_ASSET_APPROVED 
+				&& oldMap.get(asset.id).Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED ){
+				modifiedApprovedBrandPresentations.add(asset);
+				bpBetIds.add(asset.uw_BET__c);
+			} else if (asset.Studio_Asset_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_TYPE_CW 
+						&& asset.Media_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW 
+						&& asset.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED
+						&& oldMap.get(asset.id).Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){
+				modifiedApprovedCreativeWorks.add(asset);
+				cwBetIds.add(asset.uw_BET__c);
+			} 
+		}
+
+		updateBetStatus(modifiedApprovedBrandPresentations,modifiedApprovedCreativeWorks,bpBetIds,cwBetIds);
+	}
+
+
+	private static void updateBetStatus(List<uw_Asset__c> approvedBrandPresentations, List<uw_Asset__c> approvedCreativeWorks, Set<Id> bpBetIds,Set<Id> cwBetIds){
+		if(!approvedBrandPresentations.isEmpty()){
+			List<uw_Asset__c> bpAssets = [select id, uw_BET__c from uw_Asset__c where 
+										uw_BET__c =: bpBetIds 
+										and Studio_Asset_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_TYPE_BEP 
+										and Status__c =: uw_CustomAssetUploadExtension.BET_ASSET_APPROVED
+										and id not in : approvedBrandPresentations];
+			bpBetIds.clear();
+			for(uw_Asset__c ass : bpAssets){
+				bpBetIds.add(ass.uw_BET__c);
+			}
+
+			List<uw_Asset__c> relevantApprovedBrandPresentations = new List<uw_Asset__c>();
+
+			for(uw_Asset__c ass : approvedBrandPresentations){
+				if(!bpBetIds.contains(ass.uw_BET__c)){
+					relevantApprovedBrandPresentations.add(ass); // single approved brand presentations for related bet;
+				}
+			}
+
+			if(!relevantApprovedBrandPresentations.isEmpty()){
+				proceedWithApprovedBrandPresentation(relevantApprovedBrandPresentations);
+			}
+
+		}
+
+		if(!approvedCreativeWorks.isEmpty()){
+			List<uw_Asset__c> cwAssets = [select id, uw_BET__c from uw_Asset__c where 
+										uw_BET__c =: cwBetIds 
+										and Studio_Asset_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_TYPE_CW 
+										and Status__c =: uw_CustomAssetUploadExtension.BET_ASSET_APPROVED
+										and Media_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW 
+										and id not in : approvedCreativeWorks];
+			cwBetIds.clear();
+			for(uw_Asset__c ass : cwAssets){
+				cwBetIds.add(ass.uw_BET__c);
+			}
+
+			List<uw_Asset__c> relevantApprovedCreativeWorks = new List<uw_Asset__c>();
+			Set<Id> betsCW = new Set<Id>();
+
+			for(uw_Asset__c ass : approvedCreativeWorks){
+				if(!cwBetIds.contains(ass.uw_BET__c)){
+					relevantApprovedCreativeWorks.add(ass); // single approved creative works for related bet;
+					betsCW.add(ass.uw_BET__c);
+				}
+			}
+
+			if(!relevantApprovedCreativeWorks.isEmpty()){
+				proceedWithApprovedCreativeWorks(relevantApprovedCreativeWorks,betsCW);
+			}
+
+		}
+	}
+
+	private static void proceedWithApprovedBrandPresentation(List<uw_Asset__c> relevantApprovedBrandPresentations){
+		List<uw_Bet__c> betsToUpdate = new List<uw_Bet__c>();
+		for(uw_Asset__c asset : relevantApprovedBrandPresentations) {
+			uw_Bet__c bet = new uw_Bet__c(FirstReleaseDate__c = null, FinalReleaseDate__c = null, Status__c = 'Unreleased', id = asset.uw_Bet__c);
+			betsToUpdate.add(bet);
+		}
+		update betsToUpdate;
+	}
+
+	private static void proceedWithApprovedCreativeWorks(List<uw_Asset__c> relevantApprovedCreativeWorks,Set<Id> betsCW){
+		List<uw_Asset__c> bpAssets = [select id, uw_BET__c from uw_Asset__c where 
+										uw_BET__c =: betsCW 
+										and Studio_Asset_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_TYPE_BEP 
+										and Status__c =: uw_CustomAssetUploadExtension.BET_ASSET_APPROVED];
+		Set<Id> betsWithBrandPresentation = new Set<Id>();
+		for(uw_Asset__c asset : bpAssets){
+			betsWithBrandPresentation.add(asset.uw_BET__c);
+		}
+
+		List<uw_Bet__c> betsToUpdate = new List<uw_Bet__c>();
+
+		for(uw_Asset__c asset : relevantApprovedCreativeWorks){
+			if(betsWithBrandPresentation.contains(asset.uw_BET__c)){
+				betsToUpdate.add(new uw_Bet__c(id = asset.uw_BET__c, Status__c = 'First release',FinalReleaseDate__c = null));
+			} else {
+				betsToUpdate.add(new uw_Bet__c(id = asset.uw_BET__c, Status__c = 'Unreleased',FirstReleaseDate__c = null, FinalReleaseDate__c = null));
+			}
+		}
+
+		update betsToUpdate;
+	}
+
+	/************************************************************
         Purpose: Method updated assets ordering
         Parameters: List<uw_Asset__c> newAssets
         Returns: -
