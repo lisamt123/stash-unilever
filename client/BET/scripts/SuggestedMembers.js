@@ -98,6 +98,12 @@ function clearSearchForm(){
 	clearExpandColapseAfterRender();
 }
 
+function clearSearchFormAfterSumbit(){
+	unlockUI();
+	clearExpandColapseAfterRender();
+}
+
+
 /************************************************************
 	Purpose: 
 *************************************************************/ 
