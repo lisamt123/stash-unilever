@@ -1,5 +1,4 @@
-/* Without sharing because this is helper class user by service class*/
-public class BET_AssetHandlerClsHelper {
+public with sharing class BET_AssetHandlerClsHelper {
 
 	private BET_AssetHandlerClsHelper() {}
 
