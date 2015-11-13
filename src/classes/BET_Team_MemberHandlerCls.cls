@@ -207,7 +207,9 @@ public without sharing class BET_Team_MemberHandlerCls {
 
             }
 
-            if(!Test.isRunningTest())insert assignments;
+            if(!Test.isRunningTest()) {
+                insert assignments;
+            }
         }
     }
 

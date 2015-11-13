@@ -128,7 +128,7 @@ public with sharing class BET_AssetHandlerCls {
 	private static void proceedWithApprovedBrandPresentation(List<uw_Asset__c> relevantApprovedBrandPresentations){
 		List<uw_Bet__c> betsToUpdate = new List<uw_Bet__c>();
 		for(uw_Asset__c asset : relevantApprovedBrandPresentations) {
-			uw_Bet__c bet = new uw_Bet__c(FirstReleaseDate__c = null, FinalReleaseDate__c = null, Status__c = 'Unreleased', id = asset.uw_Bet__c);
+			uw_Bet__c bet = new uw_Bet__c(Status__c = 'Unreleased', id = asset.uw_Bet__c);
 			betsToUpdate.add(bet);
 		}
 		update betsToUpdate;
@@ -148,9 +148,9 @@ public with sharing class BET_AssetHandlerCls {
 
 		for(uw_Asset__c asset : relevantApprovedCreativeWorks){
 			if(betsWithBrandPresentation.contains(asset.uw_BET__c)){
-				betsToUpdate.add(new uw_Bet__c(id = asset.uw_BET__c, Status__c = 'First release',FinalReleaseDate__c = null));
+				betsToUpdate.add(new uw_Bet__c(id = asset.uw_BET__c, Status__c = 'First release'));
 			} else {
-				betsToUpdate.add(new uw_Bet__c(id = asset.uw_BET__c, Status__c = 'Unreleased',FirstReleaseDate__c = null, FinalReleaseDate__c = null));
+				betsToUpdate.add(new uw_Bet__c(id = asset.uw_BET__c, Status__c = 'Unreleased'));
 			}
 		}
 
@@ -168,13 +168,15 @@ public with sharing class BET_AssetHandlerCls {
 		Set<Id> betsIds = new Set<Id>();
 		Map<Id,Integer> betNewAssetNo = new Map<Id,Integer>();
 		for(uw_Asset__c asset : newAssets){
-			if(betNewAssetNo.keySet().contains(asset.uw_BET__c)){
-				betNewAssetNo.put(asset.uw_BET__c,betNewAssetNo.get(asset.uw_BET__c)+1);
-			} else {
-				betNewAssetNo.put(asset.uw_BET__c,1);
+			if(asset.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){
+				if(betNewAssetNo.keySet().contains(asset.uw_BET__c)){
+					betNewAssetNo.put(asset.uw_BET__c,betNewAssetNo.get(asset.uw_BET__c)+1);
+				} else {
+					betNewAssetNo.put(asset.uw_BET__c,1);
+				}
+				asset.Order_Of_Display__c = betNewAssetNo.get(asset.uw_BET__c);
+				betsIds.add(asset.uw_BET__c);
 			}
-			asset.Order_Of_Display__c = betNewAssetNo.get(asset.uw_BET__c);
-			betsIds.add(asset.uw_BET__c);
 		}
 
 		List<uw_Asset__c> assets = new List<uw_Asset__c>();
