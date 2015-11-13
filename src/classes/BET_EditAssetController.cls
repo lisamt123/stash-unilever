@@ -52,6 +52,7 @@ public with sharing class BET_EditAssetController {
     ********************************************************************/
     private void pepareForm(){
         bet = [SELECT Presentation_Id__c, Status__c FROM uw_BET__c WHERE id =: file.uw_BET__c LIMIT 1];
+
         hasModifyAccess = BET_CommonService.canModify(bet.Id);
 
         if(hasModifyAccess){
@@ -99,6 +100,8 @@ public with sharing class BET_EditAssetController {
 
     private PageReference proceedAssetUpdate(){
         Boolean updateBet = false;  
+
+        bet = [SELECT Presentation_Id__c, Status__c FROM uw_BET__c WHERE id =: file.uw_BET__c LIMIT 1];
 
         if(file.Sub_Function__c == 'Brand Development' && file.Status__c == 'Approved'){
             if(file.Studio_Asset_Type__c == 'Brand Experience Presentation' && bet.Status__c != 'Final release' && bet.Status__c != 'First release'){
@@ -148,6 +151,9 @@ public with sharing class BET_EditAssetController {
                 isPresentationUploaded = true;
             }
         }
+
+        System.debug('updBet ' + updBet + ' updateBet ' + updateBet);
+
         return !updBet ? updateBet : updBet;
     }
 
