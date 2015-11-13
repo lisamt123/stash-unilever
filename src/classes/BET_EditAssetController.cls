@@ -115,7 +115,14 @@ public with sharing class BET_EditAssetController {
             //ConnectApi.FeedItem fi = ConnectApi.ChatterFeeds.getFeedItem(null, file.Related_Feed_Item__c);      
             //ConnectApi.ContentAttachment ca = (ConnectApi.ContentAttachment) fi.attachment;
             //caId = ca.Id;
-            caId = Id.valueOf(file.File_Id__c);
+            if(file.File_Id__c == null){
+                ConnectApi.FeedItem fi = ConnectApi.ChatterFeeds.getFeedItem(null, file.Related_Feed_Item__c);      
+                ConnectApi.ContentAttachment ca = (ConnectApi.ContentAttachment) fi.attachment;
+                caId = ca.Id;
+                file.File_Id__c = caId;
+            } else {
+                caId = Id.valueOf(file.File_Id__c);
+            }
         }
 
         updateBet = setPresentation(updateBet,caId);
