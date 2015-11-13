@@ -2877,6 +2877,8 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>Project Name Contains Brand Name Target Launch Date</shortDescription>
         <value>Project Name Should not Contain Brand Name and Target Launch Date</value>
+    </labels>
+    <labels>
         <fullName>PSAR_Chatter</fullName>
         <language>en_US</language>
         <protected>false</protected>
