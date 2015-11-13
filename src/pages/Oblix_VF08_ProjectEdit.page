@@ -397,7 +397,7 @@
         
            .Oblix_header_arrowTitle{
             font-family: DIN, Arial;
-            font-size: 17px;
+            font-size: 18px;
             margin: 4px;   
            /* padding-top: 7px; */  
             position:relative;
@@ -648,15 +648,14 @@
             -webkit-user-select: none;
          }    
          <!-- green buttons -->
-        input.btn, button, .Oblix_large_btn, .Oblix_btn  {
+        input.btn,.Oblix_large_btn, .Oblix_btn  {
             background: #6BA539;
             background-image: none;
             color: #fff;
             padding: 4px 10px 3px 10px  !important;
             height: 30px;
-
         }
-        input.btn:active, input.btn:hover, button:hover, .Oblix_large_btn:hover, .Oblix_btn:hover {
+         input.btn:hover, button:hover, .Oblix_large_btn:hover, .Oblix_btn:hover {
              background: #44883E;
              color: #fff;
         }

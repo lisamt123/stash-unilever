@@ -955,9 +955,9 @@
         <description>The Total Fees for the Campaign as calculated by the Oblix Calculator.</description>
         <externalId>false</externalId>
         <label>Campaign Calculated Total Fees</label>
-        <precision>18</precision>
+        <precision>16</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>0</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>

@@ -52,7 +52,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
      // Gantt chart variables 
      public string seriesProject {get;set;}
      public User userConnected {get;set;}
-     public map<id,decimal> mapApproved{get;set;}
+     public map<id,integer> mapApproved{get;set;}
      private String parentSOWRTID ='';
      //achraf
       public Attachment attachment {
@@ -68,7 +68,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
         Id idUser = UserInfo.getUserId();
         userConnected = [Select Name from User where Id =: idUser ];
         selSow = new Marketing_SOW__c();
-        mapApproved = new map<id,decimal>();
+        mapApproved = new map<id,integer>();
         lstAttachements = new List<Attachment>();
         lstProjects = new List<Oblix_SOW_Projects__c>();
         seriesProject = '';
@@ -86,7 +86,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
      */      
       
     public void init(){
-        WhereQuery = 'Select Id, Agency_Contact__c,OblixSOWOverallTotal__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c  where recordTypeId=\''+parentSOWRTID+'\'';
+        WhereQuery = 'Select Id, Agency_Contact__c,Oblix_AgencyEstimate__r.name,Oblix_AgencyEstimate__c ,OblixSOWOverallTotal__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c  where recordTypeId=\''+parentSOWRTID+'\'';
         runQuery();
     } 
     
@@ -231,7 +231,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
     public void applyFilters()
     {
         
-        WhereQuery = 'Select Id, Agency_Contact__c,OblixSOWOverallTotal__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c  where recordType.name = \'Parent Sow Marketing\'';
+        WhereQuery = 'Select Id, Agency_Contact__c,Oblix_AgencyEstimate__r.name , Oblix_AgencyEstimate__c,OblixSOWOverallTotal__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c  where recordType.name = \'Parent Sow Marketing\'';
         List<String> lstQueryWhere = buildQueryWhere();
         system.debug('###Sfdc lstQueryWhere :' + lstQueryWhere );
         if(lstQueryWhere.size() == 0){
@@ -347,12 +347,12 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
                 if(selSow != null && selSow.Id != null){
                     list<Marketing_SOW__c> childSow = new list<Marketing_SOW__c>();
                     System.debug('###selSow.id : '+selSow.id);
-                   childSow = [select id,OblixSOWOverallTotal__c from Marketing_SOW__c where MarketingSOWParent__c =:selSow.id  and Type_of_SOW__c = 'Baseline'  ];
+                    childSow = [select id,OblixSOWOverallTotal__c from Marketing_SOW__c where MarketingSOWParent__c =:selSow.id  and Type_of_SOW__c = 'Baseline'  ];
                     System.debug('###childSow : '+childSow );
                     if(childSow.size()>0){ 
-                       mapApproved.put(selSow.id,childSow[0].OblixSOWOverallTotal__c);
+                       mapApproved.put(selSow.id,(integer)childSow[0].OblixSOWOverallTotal__c);
                     }else{
-                        mapApproved.put(selSow.id,0.00);
+                        mapApproved.put(selSow.id,0);
                     }
                     lstAttachements = [Select Id, Name, Body, ParentId, Parent.Name from Attachment where ParentId =: selSow.Id];
                     lstProjects = [Select Id,Name, Project_Finish_Date__c, Project_Start_Date__c, Financial_Year__c,Production_Completion_Date__c,Project_Completion_Date__c,First_Air_Date__c from Oblix_SOW_Projects__c where Financial_Year__c =: selSow.Id];

@@ -4,6 +4,9 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 
 	private static final String NULL_MESSAGE = 'Page Reference should be null';
 	private static final String NOT_NULL_MESSAGE = 'Page Reference should not be null';
+	private static final String PROJECT_TXT = 'Project';
+    private static final String PROJECTID_TXT = 'projectId';
+    private static final String SOWID_TXT = 'sowId';
 
 	@isTest static void saveSOWTest(){
 		User u = Oblix_TestUtils.createTestUser();
@@ -14,15 +17,22 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 
 			Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
 
-			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
+			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
 
-			ApexPages.currentPage().getParameters().put('sowId', mSow.id);
-			ApexPages.currentPage().getParameters().put('projectId', project.id);
+			ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
+			ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
 
 			Oblix_Ctrl06SOWView_CC controller = new Oblix_Ctrl06SOWView_CC();
 
 			mSow.Financial_Year__c = '2015';
         	mSow.BB_or_BD__c = 'test';
+
+
+        	controller.noteAsset = new Note(body = 'test');
+
+        	controller.selSow = new Marketing_SOW__c();
+
+			controller.saveSOW();
 
 			controller.selSow = mSow;
 
@@ -44,12 +54,12 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 
 			Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
 
-			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
+			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
 
 			Marketing_Basics__c basics = Oblix_TestUtils.createMarketingBasics(mSow.id);
 
-			ApexPages.currentPage().getParameters().put('sowId', mSow.id);
-			ApexPages.currentPage().getParameters().put('projectId', project.id);
+			ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
+			ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
 
 			Oblix_Ctrl06SOWView_CC controller = new Oblix_Ctrl06SOWView_CC();
 		
@@ -71,10 +81,10 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 
 			Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
 
-			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
+			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
 
-			ApexPages.currentPage().getParameters().put('sowId', mSow.id);
-			ApexPages.currentPage().getParameters().put('projectId', project.id);
+			ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
+			ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
 
 			Oblix_Ctrl06SOWView_CC controller = new Oblix_Ctrl06SOWView_CC();
 
@@ -122,10 +132,10 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 
 			Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
 
-			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
+			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
 
-			ApexPages.currentPage().getParameters().put('sowId', mSow.id);
-			ApexPages.currentPage().getParameters().put('projectId', project.id);
+			ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
+			ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
 
 			Test.startTest();
 
@@ -153,7 +163,17 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 
 			PageReference saveAtt = controller.SaveAttachments();
 
+			boolean is = controller.isViewProject;
+			set<string> s = controller.setRecordType;
+			string r = controller.PrStage;
+			string p = controller.PrStatus;
+			list<Oblix_Project_Assets__c> l = controller.lstAssets;
+			string i = controller.IdsProject;
+			List<Attachment> a = controller.AttachementToAdd;
+			
 			controller.EditAction();
+
+			controller.Cancel();
 
 			Test.stopTest();
 

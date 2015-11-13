@@ -818,7 +818,7 @@
                              <apex:actionFunction action="{!fillRate1}" oncomplete="$.unblockUI()" name="Rateupdate1" reRender="rate1,prcent,result1,add1,errMsg1"/>
                              <apex:actionFunction action="{!calculResult1}" oncomplete="$.unblockUI()"  name="resultupdate1" reRender="result1,add1,errMsg1"/>
                               
-                             <apex:actionFunction action="{!delElm}" oncomplete="$.unblockUI()"  name="delelem" reRender="Oblix_card,errMsg"/>
+                             <apex:actionFunction action="{!delElm}" oncomplete="$.unblockUI()"  name="delelem" reRender="Oblix_card,errMsg,saveStatus"/>
                              <apex:actionFunction action="{!editItem}" oncomplete="$.unblockUI()"  name="delelemEdit" reRender="Oblix_card,country,AD, RT, rate, hours,result,errMsg1"/>
                 
                 <apex:outputPanel id="allInputs">              
@@ -927,7 +927,7 @@
                                              </apex:outputLabel>
                                            </td>
                                              <td width="5%">
-                                                 <apex:input type="number"  styleClass="hourss input_init"  html-min="0" value="{!hours}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(($(this).val()*parseInt($('.rateclass').text())).toFixed(2));}" disabled="{!IF(hoursVisible==false,false,false)}" id="hours" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);"/>
+                                                 <apex:input type="number"  styleClass="hourss input_init"  html-min="0" value="{!hours}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(($(this).val()*parseInt($('.rateclass').text())).toFixed(2)+' {!MScurrency}');}" disabled="{!IF(hoursVisible==false,false,false)}" id="hours" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);"/>
                                            </td>
                                            <td width="16%">
                                                 <span style="font-size:14px">
@@ -1066,7 +1066,7 @@
                                                    <div style="float: right;display:block;"> 
                                                        <span style="font-size:14px"> <apex:outputText value="{!asset.OblixOtherItemFee__c }"/> {!MScurrency} </span>
                                                       
-                                                    <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete}" action="{!delElm}" rerender="Oblix_card" onclick="blockme();" oncomplete="$.unblockUI()" id="del">
+                                                    <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete}" action="{!delElm}" rerender="Oblix_card,saveStatus " onclick="blockme();" oncomplete="$.unblockUI()" id="del">
                                                         <apex:param name="param1" assignTo="{!ElemToDel  }" value="{!rowNum}" />
                                                     </apex:commandButton>
                                                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" action="{!editItem}" reRender="nameid,otherId,activityid,name1,dr,Oblix_card,country,AD, RT, rate, hours,result,Oblix_card,add,country1,AD1, RT1, rate1, prcent,result1,add1" onclick="{!IF(rtActivity==asset.recordTypeId,'showTab1();','showTab2();')}"  oncomplete="$.unblockUI()" id="edit">

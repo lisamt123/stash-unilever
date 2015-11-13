@@ -9,7 +9,17 @@ private class Oblix_Ctrl07ProjectEdit_CC_Test {
         User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {
             Test.startTest();
-
+			MDO_Geography__c geographyRegion = new MDO_Geography__c();
+        		geographyRegion.Name = 'Europe';
+        		geographyRegion.geography_type__c = 'Region';
+        		insert geographyRegion;
+        	
+        	MDO_Geography__c geographyCountry = new MDO_Geography__c();
+        		geographyCountry.Name = 'France';
+        		geographyCountry.geography_type__c = 'Country Cluste';
+        		geographyCountry.parent_L5__c = geographyRegion.Id;
+        		insert geographyCountry;	
+        		
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
 
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
@@ -18,7 +28,17 @@ private class Oblix_Ctrl07ProjectEdit_CC_Test {
             System.assert(project.Id != null,'project not null');
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
 
+			Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
+
             Oblix_Ctrl07ProjectEdit_CC controller = new Oblix_Ctrl07ProjectEdit_CC();
+			Oblix_SOW_Projects__c projects = controller.pr;
+			string complexity = controller.complexity;
+			string idSplit = controller.idSplit;
+			Set<Oblix_Project_Assets__c> ClearList = controller.ClearList;
+			String selectedCountry = controller.selectedCountry;
+			controller.subCat = 'Adaptation';
+			controller.recordType = 'Experiential';
+			controller.AddToProjectAction();
 
             Test.stopTest();
             
@@ -128,7 +148,10 @@ private class Oblix_Ctrl07ProjectEdit_CC_Test {
             controller.setInfoSplitHub();
 
             System.assert(controller.agencySplitInstanceJS != null,'Object should not be null');
-
+			
+			controller.ValueDriversUpdate();
+			controller.getAssetRecordType();
+			
             Test.stopTest();
         }
     }
@@ -153,12 +176,46 @@ private class Oblix_Ctrl07ProjectEdit_CC_Test {
             controller.setInfoCountries();
             controller.setInfoTimeLine();
             controller.EditAction();
+            controller.setAgencyHubOnComplete();
+            controller.setMoreDetails();
+            controller.saveSubCatAsset();
+            controller.SaveProjectAction();
 
             Test.stopTest();
 
             System.assert(project != null,'Project should not be null');
             System.assert(controller.isEdit,'Edit flag should be set');
         }
+    }
+
+    static testMethod void ValueDriversProjectTest(){
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {
+            Test.startTest();
+
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
+
+            ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
+
+            Oblix_Ctrl07ProjectEdit_CC controller = new Oblix_Ctrl07ProjectEdit_CC();
+
+            controller.project = project;
+
+            controller.ValueDriversProject('c1,c2,c4,c4');
+            controller.ValueDriversProject('c1,c2,c4,c4,c5,c6');
+            controller.ValueDriversProject('c1,c2,c4,c4,c5,c6,c7,c8,c9,c10,c11');
+            controller.ValueDriversProject('c1,c2,c4,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15,c16');
+
+            Test.stopTest();
+
+            System.assertEquals(controller.project.Project_Scale_1__c ,Oblix_Constants.Innovation_Projects_Market5,'Field should not be empty');
+
+        }
+
     }
 
 }

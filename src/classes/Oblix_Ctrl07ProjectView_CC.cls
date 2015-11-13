@@ -62,7 +62,7 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
             mapTurnoverToSize.put(Oblix_Constants.BrandLedGrowth_IncremTurnoverLessAbove400, 'L');
             
             userConnected = [Select Name from User where Id =: idUser ];
-            SelectedProject = [Select o.Total_Fees_for_Project__c, o.Total_Digital_Fee__c,o.Value_to_be_paid_in_Current_FY__c ,o.Projected_Stage__c,o.Completed_Stage__c,o.Campaign_Status__c, o.Total_Adapt_Fees__c, o.Timescale_Notes__c, o.SystemModstamp, o.Stimulus_Requirements__c, 
+            SelectedProject = [Select o.Total_Fees_for_Project__c, o.Preview_Date__c ,o.Total_Digital_Fee__c,o.Value_to_be_paid_in_Current_FY__c ,o.Projected_Stage__c,o.Completed_Stage__c,o.Campaign_Status__c, o.Total_Adapt_Fees__c, o.Timescale_Notes__c, o.SystemModstamp, o.Stimulus_Requirements__c, 
                                  o.Should_legal_review_this_project__c, o.Region__c, o.Project_Start_Date__c, o.Project_Stage__c, o.Project_Scale_2__c, o.Project_Scale_1__c, o.Project_Priority__c, 
                                  o.Project_Finish_Date__c, o.Project_Completion_Date__c, o.ProjectTotalAssetscore__c, o.Production_Completion_Date__c, o.Platform__c, 
                                  o.Percentage_of_Fee_for_this_FY__c, o.Overall_Project_Complete__c, o.Other_Kinds_of_Research__c, o.Oblix_ProjectBoxNumber__c, o.OblixRegion__c, 
@@ -121,6 +121,7 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
         public pageReference CloneCampaign(){
 
            Oblix_SOW_Projects__c project = SelectedProject.clone();
+           project.name = SelectedProject.name +' Clone';
            insert project;
          //get assets of the parent
          List<Oblix_Project_Assets__c> lstAssetFromParent = [Select Target_Delivery_Date__c, Sub_Category__c,

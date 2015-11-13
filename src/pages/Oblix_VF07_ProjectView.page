@@ -112,6 +112,9 @@
                                        <tr>
                                             <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.BET_first_release__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.BET_first_release__c}" /></apex:outputText></td>
                                        </tr>
+                                       <tr>
+                                            <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Preview_Date__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Preview_Date__c}" /></apex:outputText></td>
+                                       </tr>
                                        
                                       <tr>
                                             <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Production_Completion_Date__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Production_Completion_Date__c}" /></apex:outputText></td>

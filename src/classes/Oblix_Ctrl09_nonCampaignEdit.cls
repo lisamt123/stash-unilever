@@ -204,6 +204,7 @@ private void fillData(Marketing_Basics__c   eeditItem){
                   itemID =eeditItem.id;
                   lookupActivity.Activities__c = eeditItem.Activities__c ;
                   lookupActivity.Other_Activities__c= eeditItem.Other_Activities__c;
+                  result = String.valueof( eeditItem.OblixOtherItemFee__c ) ;
                   
                   
                 }else{  
@@ -229,6 +230,7 @@ private void fillData(Marketing_Basics__c   eeditItem){
                    selectedRoleTitle1 =  eeditItem.Role_Title__c ;      
                   fillRate1();
                    edit2=true;
+                   result1 = String.valueof(eeditItem.OblixOtherItemFee__c)  ;
                  
                   
                 }
@@ -536,7 +538,9 @@ private void fillData(Marketing_Basics__c   eeditItem){
                    // if (selectedRoleTitle==null) selectedRoleTitle= temp; //remplir automatiquement par la premiere valeur
                     RoleTitles.add(new SelectOption(temp,RoleTitleNamesMap.get(temp)));
                 }
-            //else add error (there is no rt to select)
+              RoleTitles= selectOptionSortByLabel(RoleTitles);
+            selectedRoleTitle = '' ;
+             //else add error (there is no rt to select)
             }
     }
      public void fillRoleTitle1(){
@@ -565,6 +569,9 @@ private void fillData(Marketing_Basics__c   eeditItem){
                    // if (selectedRoleTitle==null) selectedRoleTitle= temp; //remplir automatiquement par la premiere valeur
                     RoleTitles1.add(new SelectOption(temp,RoleTitleNamesMap.get(temp)));
                 }
+                
+             RoleTitles1= selectOptionSortByLabel(RoleTitles1);
+             selectedRoleTitle1 = '' ;
             //else add error (there is no rt to select)
             }
     }
@@ -609,6 +616,7 @@ private void fillData(Marketing_Basics__c   eeditItem){
                     if (selectedAgencyDepartment==null) selectedAgencyDepartment= temp;
                     AgencyDepartments.add(new SelectOption(temp,Agency_DepartmentMap.get(temp)));
                 }
+             AgencyDepartments= selectOptionSortByLabel(AgencyDepartments);
             //else add error (there is no to select)
             } else{
             agencyVisible =false;
@@ -661,7 +669,7 @@ private void fillData(Marketing_Basics__c   eeditItem){
                     if (selectedAgencyDepartment==null) selectedAgencyDepartment= temp;
                     AgencyDepartments1.add(new SelectOption(temp,Agency_DepartmentMap.get(temp)));
                 }
-            
+            AgencyDepartments1= selectOptionSortByLabel(AgencyDepartments1);
             } //else add error (there is no to select) 
           //  fillRoleTitle();
     }
@@ -714,7 +722,36 @@ private void fillData(Marketing_Basics__c   eeditItem){
      public void fillCountries(){
            system.debug('============+=+=+=+=+=+=+=+=+= fillCountries =+=+=+=+=+=+=+=+=+============================');    
             countries=getCountry();
+            countries= selectOptionSortByLabel(countries);
      }
+     
+     public static list<selectOption> selectOptionSortByLabel(list<selectOption> selectOptionsToSort) { 
+        if(selectOptionsToSort == null || selectOptionsToSort.size() <= 1){
+            return selectOptionsToSort;
+        }
+        List<SelectOption> lessSelectOption = new List<SelectOption>();
+        List<SelectOption> greaterSelectOption = new List<SelectOption>();
+        integer pivot = selectOptionsToSort.size() / 2;
+        
+        //save the pivot and remove it from the selectOption list
+        SelectOption pivotValue = selectOptionsToSort[pivot];
+        selectOptionsToSort.remove(pivot);
+        for(selectOption SO : selectOptionsToSort){
+            if(SO.getLabel() <= pivotValue.getLabel()){
+                lessSelectOption.add(SO);
+            }else if(SO.getLabel() > pivotValue.getLabel()){
+                greaterSelectOption.add(SO);   
+            }
+        }
+        list<selectOption> sortedSelectOptions = new list<selectOption>(); 
+        sortedSelectOptions.addAll(selectOptionSortByLabel(lessSelectOption));
+        sortedSelectOptions.add(pivotValue);
+        sortedSelectOptions.addAll(selectOptionSortByLabel(greaterSelectOption));
+        return SortedSelectOptions;
+   
+       
+       }
+    
     
     
     

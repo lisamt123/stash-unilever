@@ -38,7 +38,7 @@
         public boolean isViewProject {get;set;}
         public List<Marketing_Basics__c> lstOtherItems  {get;set;}
         public string seriesProject {get;set;}
-        public map<id,decimal> mapApproved{get;set;}
+        public map<id,integer> mapApproved{get;set;}
         public List<CampaignNonCampaignItems> lstCampaignNonCampaign {get;set;}
         public note noteAsset {get;set;}
 
@@ -74,7 +74,7 @@
             lstAttachementsToAdd = new List<Attachment>();
             myDoc = new Attachment();
             seriesProject = '';
-            mapApproved = new map<id,decimal>();
+            mapApproved = new map<id,integer>();
             if(projectId == null) SelectedProject = new Oblix_SOW_Projects__c();
             pr = new Oblix_SOW_Projects__c ();
             isEdit = false;
@@ -120,9 +120,9 @@
                     childSow = [select id,OblixSOWOverallTotal__c from Marketing_SOW__c where MarketingSOWParent__c =:selSow.id  and Type_of_SOW__c = 'Baseline'  ];
                     System.debug('###childSow : '+childSow );
                     if(childSow.size()>0){ 
-                       mapApproved.put(selSow.id,childSow[0].OblixSOWOverallTotal__c);
+                       mapApproved.put(selSow.id,(integer)childSow[0].OblixSOWOverallTotal__c);
                     }else{
-                        mapApproved.put(selSow.id,0.00);
+                        mapApproved.put(selSow.id,0);
                     }
                     countOfUpdatesFeed = NumberOfSowChatterFeedItem(selSow.Id);
                     lstAttachements = [Select Id, Name, Body, ParentId, Parent.Name from Attachment where ParentId =: selSow.Id];
@@ -248,22 +248,23 @@
                              }
                              insert lstAttachementsToAdd;
                          }
-                         if(noteAsset.body != null){
+                         if(noteAsset.body != null && noteAsset.id == null){
                              noteAsset.parentId =  selSow.id;
                              noteAsset.title = 'NoteII';
                              noteAsset.isPrivate=false;  
                              insert noteAsset;
                              noteAsset = [select body from note where id =:noteAsset.id];
                              notes.add(noteAsset);
+                             noteAsset = new note();
                         }                   
                         list<Marketing_SOW__c> childSow = new list<Marketing_SOW__c>();
                         System.debug('###selSow.id : '+selSow.id);
                         childSow = [select id,OblixSOWOverallTotal__c from Marketing_SOW__c where MarketingSOWParent__c =:selSow.id  and Type_of_SOW__c = 'Baseline'];
                         System.debug('###childSow : '+childSow );
                         if(childSow.size()>0){ 
-                           mapApproved.put(selSow.id,childSow[0].OblixSOWOverallTotal__c);
+                           mapApproved.put(selSow.id,(integer)childSow[0].OblixSOWOverallTotal__c);
                         }else{
-                            mapApproved.put(selSow.id,0.00);
+                            mapApproved.put(selSow.id,0);
                         }
                     }
               } catch(DmlException le) {

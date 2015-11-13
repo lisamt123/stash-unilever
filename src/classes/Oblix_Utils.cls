@@ -16,8 +16,8 @@
 */
 public with sharing class Oblix_Utils {
     
-    private static final String PROJECT_BRIEFFING = 'Projected_Briefing';
-    private static final String COMPLETED_BRIEFFING = 'Completed_Briefing';
+    private static final String PROJECT_BRIEFFING = Label.Oblix_Lbl_UIUX_Utils_Projected_Briefing;
+    private static final String COMPLETED_BRIEFFING = Label.Oblix_Lbl_UIUX_Utils_Completed_Briefing;
     
 //Used to Wrap RecordType By Object
     public static Map<string,ID> MapRecordType(String ObjectName){
@@ -332,36 +332,39 @@ public with sharing class Oblix_Utils {
     public static string getSelectedStageCheckbox(string projected,string Completed){
             string lstProjectedItems = '';
             string lstCompletedItems = '';
-            if(projected == 'Projected Briefing'){
+            if(projected == Label.Oblix_Lbl_UIUX_Projected_Briefing){
                 lstProjectedItems = PROJECT_BRIEFFING;
             } 
-            if(projected == 'Projected Strategy & Planning'){
-                lstProjectedItems = PROJECT_BRIEFFING + ',Projected_Strategy_Planning';
+            else if(projected == Label.Oblix_Lbl_UIUX_Projected_Strategy_Planning){
+                lstProjectedItems = PROJECT_BRIEFFING + ','+Label.Oblix_Lbl_UIUX_Utils_Projected_Strategy_Planning;
             } 
-            if(projected == 'Projected Creative Ideation'){
-                lstProjectedItems = PROJECT_BRIEFFING + ',Projected_Strategy_Planning'+',Projected_Creative_Ideation';
+            else if(projected == Label.Oblix_Lbl_UIUX_Projected_Creative_Ideation){
+                lstProjectedItems = PROJECT_BRIEFFING + ','+Label.Oblix_Lbl_UIUX_Utils_Projected_Strategy_Planning+','+Label.Oblix_Lbl_UIUX_Utils_Projected_Creative_Ideation;
             } 
-            if(projected == 'Projected Creative Execution'){
-                lstProjectedItems = PROJECT_BRIEFFING + ',Projected_Strategy_Planning'+',Projected_Creative_Ideation'+',Projected_Creative_Execution';
+            else if(projected == Label.Oblix_Lbl_UIUX_Projected_Creative_Execution){
+                lstProjectedItems = PROJECT_BRIEFFING + ','+Label.Oblix_Lbl_UIUX_Utils_Projected_Strategy_Planning+','+Label.Oblix_Lbl_UIUX_Utils_Projected_Creative_Ideation
+                					+','+Label.Oblix_Lbl_UIUX_Utils_Projected_Creative_Execution;
             }
-            
-            if(projected == 'Projected Production'){
-                lstProjectedItems = PROJECT_BRIEFFING + ',Projected_Strategy_Planning'+',Projected_Creative_Ideation'+',Projected_Creative_Execution'+',Projected_Production';
+            else if(projected == Label.Oblix_Lbl_UIUX_Projected_Production){
+                lstProjectedItems = PROJECT_BRIEFFING + ','+Label.Oblix_Lbl_UIUX_Utils_Projected_Strategy_Planning+','+Label.Oblix_Lbl_UIUX_Utils_Projected_Creative_Ideation
+                					+','+Label.Oblix_Lbl_UIUX_Utils_Projected_Creative_Execution+','+Label.Oblix_Lbl_UIUX_Utils_Projected_Production;
             }           
-            if(Completed == 'Completed Briefing'){
+            if(Completed == Label.Oblix_Lbl_UIUX_Completed_Briefing){
                 lstCompletedItems = COMPLETED_BRIEFFING ;
             } 
-            if(Completed == 'Completed Strategy & Planning'){
-                lstCompletedItems = COMPLETED_BRIEFFING + ',Completed_Strategy_Planning';
+            else if(Completed == Label.Oblix_Lbl_UIUX_Completed_Strategy_Planning){
+                lstCompletedItems = COMPLETED_BRIEFFING + ','+Label.Oblix_Lbl_UIUX_Utils_Completed_Strategy_Planning;
             } 
-            if(Completed == 'Completed Creative Ideation'){
-                lstCompletedItems = COMPLETED_BRIEFFING + ',Completed_Strategy_Planning'+',Completed_Creative_Ideation';
+            else if(Completed == Label.Oblix_Lbl_UIUX_Completed_Creative_Ideation){
+                lstCompletedItems = COMPLETED_BRIEFFING + ','+Label.Oblix_Lbl_UIUX_Utils_Completed_Strategy_Planning+','+Label.Oblix_Lbl_UIUX_Utils_Completed_Creative_Ideation;
             } 
-            if(Completed == 'Completed Creative Execution'){
-                lstCompletedItems = COMPLETED_BRIEFFING + ',Completed_Strategy_Planning'+',Completed_Creative_Ideation'+',Completed_Creative_Execution';
+            else if(Completed == Label.Oblix_Lbl_UIUX_Completed_Creative_Execution){
+                lstCompletedItems = COMPLETED_BRIEFFING + ','+Label.Oblix_Lbl_UIUX_Utils_Completed_Strategy_Planning+','+Label.Oblix_Lbl_UIUX_Utils_Completed_Creative_Ideation
+                					+','+Label.Oblix_Lbl_UIUX_Utils_Completed_Creative_Execution;
             }
-            if(Completed == 'Completed Production'){
-                lstCompletedItems = COMPLETED_BRIEFFING + ',Completed_Strategy_Planning'+',Completed_Creative_Ideation'+',Completed_Creative_Execution'+',Completed_Production';
+            else if(Completed == Label.Oblix_Lbl_UIUX_Completed_Production){
+                lstCompletedItems = COMPLETED_BRIEFFING + ''+Label.Oblix_Lbl_UIUX_Utils_Completed_Strategy_Planning+','+Label.Oblix_Lbl_UIUX_Utils_Completed_Creative_Ideation
+                					+','+Label.Oblix_Lbl_UIUX_Utils_Completed_Creative_Execution+','+Label.Oblix_Lbl_UIUX_Utils_Completed_Production;
             } 
             system.debug('###lst Stage :'+lstCompletedItems +','+lstProjectedItems); 
             if(lstProjectedItems != '' && lstCompletedItems != ''){
@@ -401,21 +404,21 @@ public with sharing class Oblix_Utils {
             mapAbreviation.put(Label.Oblix_Lbl_UIUX_Static_Img,'SI');
             mapAbreviation.put(Label.Oblix_Lbl_UIUX_Stimulus_Materials,'SM');
             
-            mapAbreviation.put('Activity','ACT');
-            mapAbreviation.put('Brand Communication Idea','BCI');
-            mapAbreviation.put('USLP','USLP');
-            mapAbreviation.put('Brand equity development',' BED');
-            mapAbreviation.put('Brand Leadership Meetings','BLM');
-            mapAbreviation.put('Brand Leadership Workshops','BLW');
-            mapAbreviation.put('Brand Technical &/or Infrastructure','BTI');
-            mapAbreviation.put('Brand Key Presentations','BKP');
-            mapAbreviation.put('Status Reports','SR');
-            mapAbreviation.put('Global Status Meetings','GSM');
-            mapAbreviation.put('Regional Status Meetings','RSM');
-            mapAbreviation.put('Network Co-ordination (other agencies)','NC');
-            mapAbreviation.put('Competitive Reviews','CR');
-            mapAbreviation.put('Brand Led Training for the agency','BLT');
-            mapAbreviation.put('Brand Book','BBK');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Activity,'ACT');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Brand_Communication_Idea,'BCI');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_USLP,'USLP');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Brand_equity_development,' BED');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Brand_Leadership_Meetings,'BLM');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Brand_Leadership_Workshops,'BLW');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Brand_Technical_Infrastructure,'BTI');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Brand_Key_Presentations,'BKP');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Status_Reports,'SR');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Global_Status_Meetings,'GSM');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Regional_Status_Meetings,'RSM');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Network_Co_ordination_other_agencies,'NC');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Network_Competitive_Reviews,'CR');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Brand_Led_Training,'BLT');
+            mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Brand_Book,'BBK');
             
 
             return mapAbreviation;

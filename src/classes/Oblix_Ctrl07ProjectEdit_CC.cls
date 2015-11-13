@@ -38,7 +38,7 @@
 
         public integer mynumber {get;set;}
         public list<string> lstStage {get;set;}
-        public Map<String, set<String>> mapRelatedCntries {get;set;}       
+        public Map<String, list<String>> mapRelatedCntries {get;set;}       
         public Map<String,String> mapRegionCntries {get;set;}
         public Oblix_Project_Assets__c  assetInstance  {get;set;}
         public set<string> lstRegion {get;set;}
@@ -99,7 +99,7 @@
             agencySplitInstanceJS = new Oblix_Marketing_SOW_Project_Splits__c();
             feePercentages = new map<string,integer>();              
             mapIdCSSCountryRegion = new map<string,ID>();
-            mapRelatedCntries = new Map<String, set<String>>();
+            mapRelatedCntries = new Map<String, list<String>>();
             lstRecordType = new list<string>();
             lstAES = new list<Decimal>();
             lstAssetsForCard = new list<Oblix_Project_Assets__c>();          
@@ -129,14 +129,14 @@
             userConnected = [Select Name from User where Id =: idUser ];
             projectId = ApexPAges.currentPage().getParameters().get('projectId');
             lstCountries = [Select m.parent_L6__c, m.parent_L5__c, m.parent_L4__c, m.parent_L3__c, m.parent_L2__c, 
-                      m.parent_L1__c, m.geography_type__c, m.Name, m.Id, parent_L5__r.Name From MDO_Geography__c m where geography_type__c Like 'Country%'
+                      m.parent_L1__c, m.geography_type__c, m.Name, m.Id, parent_L5__r.Name From MDO_Geography__c m where geography_type__c Like 'Country%' order by name
                       ];
             for(MDO_Geography__c country : lstCountries){
                    lstRegion.add(country.parent_L5__r.Name);
                    mapIdCountries.put((country.name).toUpperCase(),country.id);
                    if(country.parent_L5__c != null){
                        if(!mapRelatedCntries.containsKey(country.parent_L5__r.Name)){
-                          mapRelatedCntries.put(country.parent_L5__r.Name,new set<string>());                         
+                          mapRelatedCntries.put(country.parent_L5__r.Name,new list<string>());                         
                        }else{
                           mapRelatedCntries.get(country.parent_L5__r.Name).add(country.Name);                         
                        } 
@@ -147,7 +147,8 @@
                             lstNameCountries.add(country.name);
                         }
                     }
-            }    
+            }
+           
             mapSubCategOption = Oblix_Utils.getMapSubCategOption();
             mapSubCategOptionDescription = Oblix_Utils.getMapSubCategOptionDescription();
             mapRecordTypeDescription.put(Label.Oblix_Lbl_UIUX_AudioVisuel,' - '+Label.Oblix_Lbl_UIUX_AudioVisuel_Description);
@@ -293,6 +294,7 @@
         /*
         *    Void Method Used for : Updating Project Scale One by the number of countries.
         */
+        @TestVisible
        private void ValueDriversProject(String selectedCountriesLoc){
                         List<String> lstCountriesString =  selectedCountriesLoc.split(',');
                         System.debug('###lsstCountriesString save : '+lstCountriesString);
@@ -447,7 +449,7 @@
          public List<SelectOption> getCountriesOptions() {           
             countryOptions = new List<SelectOption>();
             system.debug('###project.Financial_Year__r.Financial_Year__c : '+project.Financial_Year__r.Financial_Year__c);
-            List<Oblix_Calculator__c> calculator = [select Name,OblixCountry__c from Oblix_Calculator__c where recordType.Name ='Country Box Number' and Financial_Year__c =:project.Financial_Year__r.Financial_Year__c ];
+            List<Oblix_Calculator__c> calculator = [select Name,OblixCountry__c from Oblix_Calculator__c where recordType.Name ='Country Box Number' and Financial_Year__c =:project.Financial_Year__r.Financial_Year__c order by name];
             list<string> nameCountry = new list<string>();
             
             countryOptions.add(new SelectOption('','-None-'));
@@ -457,6 +459,7 @@
                    if(mapIdCountries.get(c.name)!= null)countryOptions.add(new SelectOption(mapIdCountries.get(c.name),c.Name));
                 }
             }
+            
             return countryOptions;
         }
         public void AddToProjectAction(){                 
@@ -470,6 +473,8 @@
             //assetInstance.Additional_Description__c = assetInstanceDescription;
             system.debug('### assetInstance.Additional_Description__c '+assetInstance.Additional_Description__c );
             system.debug('### assetInstance.Actual_Delivery_Date__c '+assetInstance.Actual_Delivery_Date__c);
+            system.debug('### subCatc '+subCat);
+            system.debug('### mapAssetsPerSubCat '+mapAssetsPerSubCat);
             mapAssetsPerSubCat.get(subCat).Actual_Delivery_Date__c = assetInstance.Actual_Delivery_Date__c;
             mapAssetsPerSubCat.get(subCat).Additional_Description__c = assetInstance.Additional_Description__c;
             
