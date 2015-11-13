@@ -14,7 +14,7 @@ private class BET_AssetHandlerClsTest {
 		BET_AssetHandlerCls.updateBETStatusAccordingly(new List<uw_Asset__c>{asset});
 		Test.stopTest();
 		bet = [select Status__c from uw_Bet__c where id =: bet.id];
-		System.assertEquals(bet.Status__c,'Unreleased');
+		System.assertEquals(bet.Status__c,'Unreleased','Status should be set to Unreleased');
 	}
 
 	@isTest static void updateBETStatusAccordinglyCWTest(){
@@ -28,7 +28,7 @@ private class BET_AssetHandlerClsTest {
 		BET_AssetHandlerCls.updateBETStatusAccordingly(new List<uw_Asset__c>{asset});
 		Test.stopTest();
 		bet = [select Status__c from uw_Bet__c where id =: bet.id];
-		System.assertEquals(bet.Status__c,'Unreleased');
+		System.assertEquals(bet.Status__c,'Unreleased','Status should be set to Unreleased');
 	}
 	
 	@isTest static void getExpectedAssetsForRelatedBetsTest() {
