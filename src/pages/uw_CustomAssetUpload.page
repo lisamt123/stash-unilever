@@ -5,7 +5,7 @@
     <apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />
     <apex:includeScript value="{!$Resource.BETApp}/js/jquery-ui.js" />
 
-	<style>
+    <style>
     /*BEGIN fit content into dialog box*/
     html, body {
       height: 100%;
@@ -503,6 +503,9 @@
         <div id="expectedAssetComp"  style="{!If(AND(file.Status__c = 'Approved',isBetOwnerOrManager),
                                     'position:absolute;top:10px;left:500px;',
                                     'position:absolute;top:10px;left:500px;display:none;')}">
+         <div style="font-family: Rockwell;font-size: 14px;padding-bottom:10px;">
+                {!$Label.BET_Tick_Info}
+          </div>
           <c:BET_ExpectedAssetsComponent betId="{!bet.id}" />
         </div>
 

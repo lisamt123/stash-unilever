@@ -25,9 +25,24 @@ public without sharing class BET_CommonService {
 
     public static final String BET_HUB_ADMIN_PERM_SET = 'CB4L_HUB_Admin';
     public static final String BET_OPERATION_ADMIN_PERM_SET = 'BET_Operation_Admin';
+    public static final String BET_STANDARD_PERM_SET = 'CB4L_Standard_User';
 
 
     public class BetException extends Exception {}
+
+    /*******************************************************************
+    Purpose: returns Ids of Bet related permission sets
+    Parameters: -
+    Returns: Map<String,Id>
+    ********************************************************************/
+    public static Map<String,Id> getIdsOfBETsPermissionSets(){
+        Map<String,Id> permsetIds = new Map<String,Id>();
+        for(PermissionSet betsPermissionSet : [select id,name from PermissionSet where name in : new List<String>{BET_HUB_ADMIN_PERM_SET,BET_OPERATION_ADMIN_PERM_SET,BET_STANDARD_PERM_SET}]){
+            permsetIds.put(betsPermissionSet.name,betsPermissionSet.id);
+        }
+        return permsetIds;
+    }
+
     
     /*******************************************************************
     Purpose: Method is reads in custom setting and checks if current user has read/write access on BET object
