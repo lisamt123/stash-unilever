@@ -59,7 +59,7 @@ public with sharing class BET_AssetHandlerCls {
 				bpBetIds.add(asset.uw_BET__c);
 			} else if (asset.Studio_Asset_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_TYPE_CW 
 						&& asset.Media_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW 
-						&& asset.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED
+						&& asset.Status__c != uw_CustomAssetUploadExtension.BET_ASSET_APPROVED
 						&& oldMap.get(asset.id).Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){
 				modifiedApprovedCreativeWorks.add(asset);
 				cwBetIds.add(asset.uw_BET__c);
