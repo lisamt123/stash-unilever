@@ -175,7 +175,9 @@ public without sharing class BET_Team_MemberHandlerCls {
             }
         }
 
-        addStandardUserPermissionSet(relatedUsersIds);
+        if(!relatedUsersIds.isEmpty()){
+            addStandardUserPermissionSet(relatedUsersIds);
+        }
     }
 
     /************************************************************
