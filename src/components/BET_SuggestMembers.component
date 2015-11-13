@@ -53,13 +53,14 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
         var qtipJQuery = $;
         // restore the newest version to $
         $ = quickFix;
-        qtipJQuery( document ).ready(function( jq ) {
-            qtipJQuery('.question-icon[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' } });
-            qtipJQuery('.question-icon-left[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' },position: { my: 'bottom right', at: 'top left' } });
-         }
-        );
+        function enableTooltip() {
+            qtipJQuery( document ).ready(function( jq ) {
+                qtipJQuery('.question-icon[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' } });
+                qtipJQuery('.question-icon-left[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' },position: { my: 'bottom right', at: 'top left' } });
+             }
+            );
+        }
         //fix overlay issue "dialog is on top overlay layer"
-        var $ = jQuery.noConflict();
         $.blockUI.defaults.css['z-index']        = 1601;
         $.blockUI.defaults.overlayCSS['z-index'] = 1600;
 	</script>
@@ -86,7 +87,6 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                          reRender="suggestedMembersContainer,suggestedMembersContainerbet">
         <apex:param name="newlyAddedUsers" value="" assignTo="{!newlyAddedUsers}"/>
     </apex:actionFunction>
-
 
 
     <p class="suggestedMembersInfo" style="{!IF(usedInPopup,'','display:none;')}">
@@ -119,6 +119,9 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                 <hr class="innerLine" width="96%"/>
 
                 <apex:outputPanel id="suggestedMembersContainerbet" >
+                <script type="text/javascript">
+                    enableTooltip();
+                </script>
 
                 <div class="note">
                 	<apex:outputText escape="false" value="{!$Label.BET_Note}"/> 

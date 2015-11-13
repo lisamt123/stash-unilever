@@ -9,7 +9,7 @@ History
 VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   m.bluj@polsource.com            13/08/2015      INITIAL DEVELOPMENT
 *******************************************************************************************************************************/
-/* Withour sharing due to this is ITrigger implementation class  */
+/* Without sharing due to this it ITrigger implementation class  */
 public without sharing class BET_Team_MemberHandlerCls {
 
     public static final String BETMANAGERCONFIG = 'BETManageMembersConfig';
@@ -34,6 +34,7 @@ public without sharing class BET_Team_MemberHandlerCls {
 		addSharings(newList);
 		addCollaborationGroups(newList);
 		addEntitySubscriptions(newList);
+        addStandardUserPermissionSet(newList);
 		System.debug('Exit runPostApprovalInsertTeamMemberOperations');
 	}
 
@@ -158,5 +159,58 @@ public without sharing class BET_Team_MemberHandlerCls {
 		BET_Team_MemberHandlerClsHelper.memberCollaborationGroupsUpdate(roleModifiedMembers);
 		BET_Team_MemberHandlerClsHelper.memberSharesUpdate(roleModifiedMembers);
 	}
+
+    /************************************************************
+        Purpose: Method adds CB4L_Standard_User permission sets to new members in case they do not have any other BET permission set assigned
+        Parameters: List<uw_BET_Team_Member__c> newTeamMembers
+        Returns: -
+        Throws: -
+    *************************************************************/
+    public static void addStandardUserPermissionSet(List<uw_BET_Team_Member__c> newTeamMembers){
+        Set<Id> relatedUsersIds = new Set<Id>();
+
+        for(uw_BET_Team_Member__c member : newTeamMembers){
+            if(member.Team_Member__c != null) {
+                relatedUsersIds.add(member.Team_Member__c);
+            }
+        }
+
+        if(!relatedUsersIds.isEmpty()){
+            addStandardUserPermissionSet(relatedUsersIds);
+        }
+    }
+
+    /************************************************************
+        Purpose: Method adds CB4L_Standard_User permission sets to new members in case they do not have any other BET permission set assigned
+        Parameters: Set<Id> relatedUsersIds
+        Returns: -
+        Throws: -
+    *************************************************************/
+    @Future
+    private static void addStandardUserPermissionSet(Set<Id> relatedUsersIds){
+        if(!relatedUsersIds.isEmpty()) {
+
+            Map<String,Id> permsetMap = BET_CommonService.getIdsOfBETsPermissionSets();
+            List<Id> betsPermissionSets = permsetMap.values();
+
+            Set<Id> usersWithBetPermissionSets = new Set<Id>();
+            for(PermissionSetAssignment assignment : [SELECT AssigneeId FROM PermissionSetAssignment WHERE AssigneeId in : relatedUsersIds and PermissionSetId in : betsPermissionSets order by AssigneeId]){
+                usersWithBetPermissionSets.add(assignment.AssigneeId);
+            }
+
+            relatedUsersIds.removeAll(usersWithBetPermissionSets);
+
+            List<PermissionSetAssignment> assignments = new List<PermissionSetAssignment>();
+            for(Id user : relatedUsersIds){
+                PermissionSetAssignment assignment = new PermissionSetAssignment(AssigneeId = user,PermissionSetId = permsetMap.get(BET_CommonService.BET_STANDARD_PERM_SET));
+                assignments.add(assignment);
+
+            }
+
+            if(!Test.isRunningTest()) {
+                insert assignments;
+            }
+        }
+    }
 
 }

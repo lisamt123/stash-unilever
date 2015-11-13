@@ -29,6 +29,10 @@
         <name>AF_Adjusted_estimate_2__c</name>
     </fields>
     <fields>
+        <label><!-- AgencyEntityId --></label>
+        <name>AF_AgencyEntityId__c</name>
+    </fields>
+    <fields>
         <label><!-- Agency Category Id --></label>
         <name>AF_Agency_Category_Id__c</name>
     </fields>
@@ -64,6 +68,14 @@
     <fields>
         <label><!-- Bonus Agency Formula --></label>
         <name>AF_Bonus_Agency_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- BrandEstimate Active --></label>
+        <name>AF_BrandEstimate_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- BrandIdunique --></label>
+        <name>AF_BrandIdunique__c</name>
     </fields>
     <fields>
         <label><!-- Brand Estimate Status --></label>
@@ -378,6 +390,10 @@
     <fields>
         <label><!-- Traditional --></label>
         <name>AF_Traditional__c</name>
+    </fields>
+    <fields>
+        <label><!-- UnileverCountryName --></label>
+        <name>AF_UnileverCountryName__c</name>
     </fields>
     <fields>
         <label><!-- Unilever Entity Column Name --></label>

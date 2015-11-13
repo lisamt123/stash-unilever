@@ -43,7 +43,7 @@
         <label>Fields</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Readonly</behavior>
                 <field>Report_Title__c</field>
             </layoutItems>
             <layoutItems>
@@ -51,7 +51,7 @@
                 <field>Report_Description__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Readonly</behavior>
                 <field>Source__c</field>
             </layoutItems>
             <layoutItems>
@@ -70,10 +70,6 @@
                 <behavior>Readonly</behavior>
                 <field>Retailer__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Approve_Reject__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -89,7 +85,7 @@
                 <field>Cluster_Name__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Readonly</behavior>
                 <field>Country__c</field>
             </layoutItems>
             <layoutItems>
@@ -101,7 +97,7 @@
                 <field>CreatedById</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
         </layoutColumns>
@@ -180,7 +176,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hc0000000Kbo5</masterLabel>
+        <masterLabel>00hc0000000Zcxu</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

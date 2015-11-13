@@ -52,6 +52,7 @@ public with sharing class BET_EditAssetController {
     ********************************************************************/
     private void pepareForm(){
         bet = [SELECT Presentation_Id__c, Status__c FROM uw_BET__c WHERE id =: file.uw_BET__c LIMIT 1];
+
         hasModifyAccess = BET_CommonService.canModify(bet.Id);
 
         if(hasModifyAccess){
@@ -100,6 +101,8 @@ public with sharing class BET_EditAssetController {
     private PageReference proceedAssetUpdate(){
         Boolean updateBet = false;  
 
+        bet = [SELECT Presentation_Id__c, Status__c FROM uw_BET__c WHERE id =: file.uw_BET__c LIMIT 1];
+
         if(file.Sub_Function__c == 'Brand Development' && file.Status__c == 'Approved'){
             if(file.Studio_Asset_Type__c == 'Brand Experience Presentation' && bet.Status__c != 'Final release' && bet.Status__c != 'First release'){
                 updateBet = brandExperiencePresentation();                       
@@ -115,7 +118,14 @@ public with sharing class BET_EditAssetController {
             //ConnectApi.FeedItem fi = ConnectApi.ChatterFeeds.getFeedItem(null, file.Related_Feed_Item__c);      
             //ConnectApi.ContentAttachment ca = (ConnectApi.ContentAttachment) fi.attachment;
             //caId = ca.Id;
-            caId = Id.valueOf(file.File_Id__c);
+            if(file.File_Id__c == null){
+                ConnectApi.FeedItem fi = ConnectApi.ChatterFeeds.getFeedItem(null, file.Related_Feed_Item__c);      
+                ConnectApi.ContentAttachment ca = (ConnectApi.ContentAttachment) fi.attachment;
+                caId = ca.Id;
+                file.File_Id__c = caId;
+            } else {
+                caId = Id.valueOf(file.File_Id__c);
+            }
         }
 
         updateBet = setPresentation(updateBet,caId);
@@ -141,6 +151,9 @@ public with sharing class BET_EditAssetController {
                 isPresentationUploaded = true;
             }
         }
+
+        System.debug('updBet ' + updBet + ' updateBet ' + updateBet);
+
         return !updBet ? updateBet : updBet;
     }
 

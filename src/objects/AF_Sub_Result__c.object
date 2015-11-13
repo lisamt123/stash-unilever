@@ -404,6 +404,10 @@ AF_Bonus_Threshold__r.Year__c &amp;&quot;|&quot;&amp;  TEXT(AF_Period__c)</formu
                 <fullName>Weighted Average</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>% GREEN CELLS</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackTrending>false</trackTrending>

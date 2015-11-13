@@ -9,8 +9,8 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 *************************************************************************************/
 global class BET_DataFixReleaseDate_Batch implements Database.Batchable<sObject> {
     
-    String query = 'Select First_Release_Due_Date__c, Final_Release_Due_Date__c, Launch_Date__c, (select URL_of_Asset__c, File_id__c from Assets__r where File_Id__c = null) from uw_BET__c';
-    String unitTestQuery = 'Select First_Release_Due_Date__c, Final_Release_Due_Date__c, Launch_Date__c, (select URL_of_Asset__c, File_id__c from Assets__r where File_Id__c = null) from uw_BET__c';
+    String query = 'Select First_Release_Due_Date__c, Final_Release_Due_Date__c, Launch_Date__c, (select URL_of_Asset__c, File_id__c,Related_Feed_Item__c from Assets__r where File_Id__c = null) from uw_BET__c';
+    String unitTestQuery = 'Select First_Release_Due_Date__c, Final_Release_Due_Date__c, Launch_Date__c, (select URL_of_Asset__c, File_id__c,Related_Feed_Item__c from Assets__r where File_Id__c = null) from uw_BET__c';
 
     global BET_DataFixReleaseDate_Batch() {}
     

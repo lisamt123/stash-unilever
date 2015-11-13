@@ -13,6 +13,60 @@ public with sharing class BET_AssetHandlerCls {
 	private BET_AssetHandlerCls() {}
 
 	/************************************************************
+        Purpose: Method updates BET status when Assets is deleted
+        Parameters: List<uw_Asset__c> deletedAssets
+        Returns: -
+        Throws: -
+    *************************************************************/
+	public static void updateBETStatusAccordingly(List<uw_Asset__c> deletedAssets){
+		List<uw_Asset__c> deletedApprovedBrandPresentations = new List<uw_Asset__c>();
+		List<uw_Asset__c> deletedApprovedCreativeWorks = new List<uw_Asset__c>();
+		Set<Id> bpBetIds = new Set<Id>();
+		Set<Id> cwBetIds = new Set<Id>();
+		for(uw_Asset__c asset : deletedAssets){
+			if(asset.Studio_Asset_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_TYPE_BEP 
+				&& asset.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED ){
+				deletedApprovedBrandPresentations.add(asset);
+				bpBetIds.add(asset.uw_BET__c);
+			} else if (asset.Studio_Asset_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_TYPE_CW 
+						&& asset.Media_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW 
+						&& asset.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){
+				deletedApprovedCreativeWorks.add(asset);
+				cwBetIds.add(asset.uw_BET__c);
+			} 
+		}
+		BET_AssetHandlerClsHelper.updateBetStatus(deletedApprovedBrandPresentations,deletedApprovedCreativeWorks,bpBetIds,cwBetIds);
+	}
+
+	/************************************************************
+        Purpose: Method updates BET status when Assets changes
+        Parameters: List<uw_Asset__c> newAssets, Map<Id,uw_Asset__c> oldMap
+        Returns: -
+        Throws: -
+    *************************************************************/
+	public static void updateBETStatusAccordingly(List<uw_Asset__c> newAssets, Map<Id,uw_Asset__c> oldMap){
+		List<uw_Asset__c> modifiedApprovedBrandPresentations = new List<uw_Asset__c>();
+		List<uw_Asset__c> modifiedApprovedCreativeWorks = new List<uw_Asset__c>();
+		Set<Id> bpBetIds = new Set<Id>();
+		Set<Id> cwBetIds = new Set<Id>();
+		for(uw_Asset__c asset : newAssets){
+			if(asset.Studio_Asset_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_TYPE_BEP 
+				&& asset.Status__c != uw_CustomAssetUploadExtension.BET_ASSET_APPROVED 
+				&& oldMap.get(asset.id).Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED ){
+				modifiedApprovedBrandPresentations.add(asset);
+				bpBetIds.add(asset.uw_BET__c);
+			} else if (asset.Studio_Asset_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_TYPE_CW 
+						&& asset.Media_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW 
+						&& asset.Status__c != uw_CustomAssetUploadExtension.BET_ASSET_APPROVED
+						&& oldMap.get(asset.id).Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){
+				modifiedApprovedCreativeWorks.add(asset);
+				cwBetIds.add(asset.uw_BET__c);
+			} 
+		}
+		BET_AssetHandlerClsHelper.updateBetStatus(modifiedApprovedBrandPresentations,modifiedApprovedCreativeWorks,bpBetIds,cwBetIds);
+	}
+
+	/************************************************************
         Purpose: Method updated assets ordering
         Parameters: List<uw_Asset__c> newAssets
         Returns: -
@@ -23,13 +77,15 @@ public with sharing class BET_AssetHandlerCls {
 		Set<Id> betsIds = new Set<Id>();
 		Map<Id,Integer> betNewAssetNo = new Map<Id,Integer>();
 		for(uw_Asset__c asset : newAssets){
-			if(betNewAssetNo.keySet().contains(asset.uw_BET__c)){
-				betNewAssetNo.put(asset.uw_BET__c,betNewAssetNo.get(asset.uw_BET__c)+1);
-			} else {
-				betNewAssetNo.put(asset.uw_BET__c,1);
+			if(asset.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){
+				if(betNewAssetNo.keySet().contains(asset.uw_BET__c)){
+					betNewAssetNo.put(asset.uw_BET__c,betNewAssetNo.get(asset.uw_BET__c)+1);
+				} else {
+					betNewAssetNo.put(asset.uw_BET__c,1);
+				}
+				asset.Order_Of_Display__c = betNewAssetNo.get(asset.uw_BET__c);
+				betsIds.add(asset.uw_BET__c);
 			}
-			asset.Order_Of_Display__c = betNewAssetNo.get(asset.uw_BET__c);
-			betsIds.add(asset.uw_BET__c);
 		}
 
 		List<uw_Asset__c> assets = new List<uw_Asset__c>();
