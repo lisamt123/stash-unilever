@@ -28,9 +28,11 @@ public with sharing class BET_AssetHandler implements ITrigger {
 		if(Trigger.isUpdate){
 			BET_AssetHandlerCls.handleOpenCloseAssetUpdates(Trigger.new,(Map<Id,uw_Asset__c>)Trigger.oldMap);
 			BET_AssetHandlerCls.updateActualAssetsNumber(Trigger.new,(Map<Id,uw_Asset__c>)Trigger.oldMap);
+			BET_AssetHandlerCls.updateBETStatusAccordingly(Trigger.new,(Map<Id,uw_Asset__c>)Trigger.oldMap);
 		}
 		if(Trigger.isDelete){
 			BET_AssetHandlerCls.updateActualAssetsNumberAfterDeletion(Trigger.old);
+			BET_AssetHandlerCls.updateBETStatusAccordingly(Trigger.old);
 		}
 	}
 

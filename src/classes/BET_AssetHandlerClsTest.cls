@@ -2,6 +2,34 @@
 private class BET_AssetHandlerClsTest {
 
 	private static final String MEDIA_TYPE = 'Test Media Type';
+
+	@isTest static void updateBETStatusAccordinglyTest(){
+		uw_Bet__c bet = BET_TestUtils.getTestBet();
+		bet.Status__c = 'First Release';
+		insert bet;
+		uw_Asset__c asset = new uw_Asset__c(uw_Bet__c = bet.id,Studio_Asset_Type__c = uw_CustomAssetUploadExtension.BET_ASSET_TYPE_BEP,Status__c = uw_CustomAssetUploadExtension.BET_ASSET_APPROVED);
+		bet = [select Status__c from uw_Bet__c where id =: bet.id];
+		System.assertEquals(bet.Status__c,'First release');
+		Test.startTest();
+		BET_AssetHandlerCls.updateBETStatusAccordingly(new List<uw_Asset__c>{asset});
+		Test.stopTest();
+		bet = [select Status__c from uw_Bet__c where id =: bet.id];
+		System.assertEquals(bet.Status__c,'Unreleased','Status should be set to Unreleased');
+	}
+
+	@isTest static void updateBETStatusAccordinglyCWTest(){
+		uw_Bet__c bet = BET_TestUtils.getTestBet();
+		bet.Status__c = 'First Release';
+		insert bet;
+		uw_Asset__c asset = new uw_Asset__c(uw_Bet__c = bet.id,Media_Type__c = uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW,Studio_Asset_Type__c = uw_CustomAssetUploadExtension.BET_ASSET_TYPE_CW,Status__c = uw_CustomAssetUploadExtension.BET_ASSET_APPROVED);
+		bet = [select Status__c from uw_Bet__c where id =: bet.id];
+		System.assertEquals(bet.Status__c,'First release');
+		Test.startTest();
+		BET_AssetHandlerCls.updateBETStatusAccordingly(new List<uw_Asset__c>{asset});
+		Test.stopTest();
+		bet = [select Status__c from uw_Bet__c where id =: bet.id];
+		System.assertEquals(bet.Status__c,'Unreleased','Status should be set to Unreleased');
+	}
 	
 	@isTest static void getExpectedAssetsForRelatedBetsTest() {
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
