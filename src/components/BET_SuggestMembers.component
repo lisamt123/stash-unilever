@@ -83,13 +83,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
             
     </apex:actionFunction>
         
-    <!--<apex:actionFunction action="{!addNewMembers}" name="addNewMembers" oncomplete="clearSearchForm();" 
-                         reRender="suggestedMembersContainer,suggestedMembersContainerbet">
-        <apex:param name="newlyAddedUsers" value="" assignTo="{!newlyAddedUsers}"/>
-    </apex:actionFunction> -->
-
-
-    <apex:actionFunction action="{!addNewMembers}" name="addNewMembers" oncomplete="clearSearchFormAfterSumbit();"
+    <apex:actionFunction action="{!addNewMembers}" name="addNewMembers" oncomplete="clearSearchForm();" 
                          reRender="suggestedMembersContainer,suggestedMembersContainerbet">
         <apex:param name="newlyAddedUsers" value="" assignTo="{!newlyAddedUsers}"/>
     </apex:actionFunction>
@@ -385,7 +379,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                     </div>
                     
                     <div class="searchModal" style="width: 50px;height: 33px;{!IF(usedInPopup,'padding-top:20px;','')}">
-                        <button type="button" onclick="searchUsersBtn();addAllNewMembers();" style="padding: 6px 4px;" class="bootstrap.min.btn bootstrap.min.btn-default lookupSearchIcon"/>
+                        <button type="button" onclick="searchUsersBtn();" style="padding: 6px 4px;" class="bootstrap.min.btn bootstrap.min.btn-default lookupSearchIcon"/>
                     </div>
                     
                     <apex:outputPanel styleClass="scroll" id="modalSearchResult" layout="block">

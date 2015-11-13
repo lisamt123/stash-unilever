@@ -132,9 +132,9 @@ function addAllNewMembers(){
 		if(selectedUsers.length>0){
 			selectedUsers = selectedUsers.substring(0, selectedUsers.length-1);
 		}
+		addNewMembers(selectedUsers);
 		lockUI();
 		clearSearchByNameField();
-		addNewMembers(selectedUsers);
 	}
 }
 

@@ -59,7 +59,7 @@ public with sharing class BET_AssetHandlerCls {
 				bpBetIds.add(asset.uw_BET__c);
 			} else if (asset.Studio_Asset_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_TYPE_CW 
 						&& asset.Media_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW 
-						&& asset.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED
+						&& asset.Status__c != uw_CustomAssetUploadExtension.BET_ASSET_APPROVED
 						&& oldMap.get(asset.id).Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){
 				modifiedApprovedCreativeWorks.add(asset);
 				cwBetIds.add(asset.uw_BET__c);
@@ -91,7 +91,12 @@ public with sharing class BET_AssetHandlerCls {
 			}
 
 			if(!relevantApprovedBrandPresentations.isEmpty()){
-				proceedWithApprovedBrandPresentation(relevantApprovedBrandPresentations);
+				List<uw_Bet__c> betsToUpdate = new List<uw_Bet__c>();
+				for(uw_Asset__c asset : relevantApprovedBrandPresentations) {
+					uw_Bet__c bet = new uw_Bet__c(Status__c = 'Unreleased', id = asset.uw_Bet__c);
+					betsToUpdate.add(bet);
+				}
+				update betsToUpdate;
 			}
 
 		}
@@ -119,42 +124,28 @@ public with sharing class BET_AssetHandlerCls {
 			}
 
 			if(!relevantApprovedCreativeWorks.isEmpty()){
-				proceedWithApprovedCreativeWorks(relevantApprovedCreativeWorks,betsCW);
-			}
-
-		}
-	}
-
-	private static void proceedWithApprovedBrandPresentation(List<uw_Asset__c> relevantApprovedBrandPresentations){
-		List<uw_Bet__c> betsToUpdate = new List<uw_Bet__c>();
-		for(uw_Asset__c asset : relevantApprovedBrandPresentations) {
-			uw_Bet__c bet = new uw_Bet__c(Status__c = 'Unreleased', id = asset.uw_Bet__c);
-			betsToUpdate.add(bet);
-		}
-		update betsToUpdate;
-	}
-
-	private static void proceedWithApprovedCreativeWorks(List<uw_Asset__c> relevantApprovedCreativeWorks,Set<Id> betsCW){
-		List<uw_Asset__c> bpAssets = [select id, uw_BET__c from uw_Asset__c where 
+				List<uw_Asset__c> bpAssets = [select id, uw_BET__c from uw_Asset__c where 
 										uw_BET__c =: betsCW 
 										and Studio_Asset_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_TYPE_BEP 
 										and Status__c =: uw_CustomAssetUploadExtension.BET_ASSET_APPROVED];
-		Set<Id> betsWithBrandPresentation = new Set<Id>();
-		for(uw_Asset__c asset : bpAssets){
-			betsWithBrandPresentation.add(asset.uw_BET__c);
-		}
+				Set<Id> betsWithBrandPresentation = new Set<Id>();
+				for(uw_Asset__c asset : bpAssets){
+					betsWithBrandPresentation.add(asset.uw_BET__c);
+				}
 
-		List<uw_Bet__c> betsToUpdate = new List<uw_Bet__c>();
+				List<uw_Bet__c> betsToUpdate = new List<uw_Bet__c>();
 
-		for(uw_Asset__c asset : relevantApprovedCreativeWorks){
-			if(betsWithBrandPresentation.contains(asset.uw_BET__c)){
-				betsToUpdate.add(new uw_Bet__c(id = asset.uw_BET__c, Status__c = 'First release'));
-			} else {
-				betsToUpdate.add(new uw_Bet__c(id = asset.uw_BET__c, Status__c = 'Unreleased'));
+				for(uw_Asset__c asset : relevantApprovedCreativeWorks){
+					if(betsWithBrandPresentation.contains(asset.uw_BET__c)){
+						betsToUpdate.add(new uw_Bet__c(id = asset.uw_BET__c, Status__c = 'First release'));
+					} else {
+						betsToUpdate.add(new uw_Bet__c(id = asset.uw_BET__c, Status__c = 'Unreleased'));
+					}
+				}
+
+				update betsToUpdate;
 			}
 		}
-
-		update betsToUpdate;
 	}
 
 	/************************************************************
