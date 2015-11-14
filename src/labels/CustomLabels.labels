@@ -2432,6 +2432,41 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Campaign</value>
     </labels>
     <labels>
+        <fullName>Oblix_Lbl_UIUX_Completed_Briefing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Completed_Briefing</shortDescription>
+        <value>Completed Briefing</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Completed_Creative_Execution</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Completed_Creative_Execution</shortDescription>
+        <value>Completed Creative Execution</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Completed_Creative_Ideation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Completed_Creative_Ideation</shortDescription>
+        <value>Completed Creative Ideation</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Completed_Production</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Completed_Production</shortDescription>
+        <value>Completed Production</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Completed_Strategy_Planning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Completed_Strategy_Planning</shortDescription>
+        <value>Completed Strategy &amp; Planning</value>
+    </labels>
+    <labels>
         <fullName>Oblix_Lbl_UIUX_Create_Sow_Plus</fullName>
         <categories>Oblix_VF05_SOWDetails</categories>
         <language>en_US</language>
@@ -2858,6 +2893,41 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Origination</value>
     </labels>
     <labels>
+        <fullName>Oblix_Lbl_UIUX_Projected_Briefing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Projected_Briefing</shortDescription>
+        <value>Projected Briefing</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Projected_Creative_Execution</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Projected_Creative_Execution</shortDescription>
+        <value>Projected Creative Execution</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Projected_Creative_Ideation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Projected_Creative_Ideation</shortDescription>
+        <value>Projected Creative Ideation</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Projected_Production</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Projected_Production</shortDescription>
+        <value>Projected Production</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Projected_Strategy_Planning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Projected_Strategy_Planning</shortDescription>
+        <value>Projected Strategy &amp; Planning</value>
+    </labels>
+    <labels>
         <fullName>Oblix_Lbl_UIUX_SOW_list</fullName>
         <categories>Oblix_VF05_SOWDetails</categories>
         <language>en_US</language>
@@ -3130,6 +3200,181 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Updated</value>
     </labels>
     <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Activity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Activity</shortDescription>
+        <value>Activity</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Brand_Book</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Brand_Book</shortDescription>
+        <value>Brand Book</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Brand_Communication_Idea</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Brand_Communication_Idea</shortDescription>
+        <value>Brand Communication Idea</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Brand_Key_Presentations</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Brand_Key_Presentations</shortDescription>
+        <value>Brand Key Presentations</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Brand_Leadership_Meetings</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Brand_Leadership_Meetings</shortDescription>
+        <value>Brand Leadership Meetings</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Brand_Leadership_Workshops</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Brand_Leadership_Workshops</shortDescription>
+        <value>Brand Leadership Workshops</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Brand_Led_Training</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Brand_Led_Training</shortDescription>
+        <value>Brand Led Training for the agency</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Brand_Technical_Infrastructure</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Brand_Technical_Infrastructure</shortDescription>
+        <value>Brand Technical &amp;/or Infrastructure</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Brand_equity_development</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Brand_equity_development</shortDescription>
+        <value>Brand equity development</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Completed_Briefing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Completed_Briefing</shortDescription>
+        <value>Completed_Briefing</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Completed_Creative_Execution</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Completed_Creative_Execution</shortDescription>
+        <value>Completed_Creative_Execution</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Completed_Creative_Ideation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Completed_Creative_Ideation</shortDescription>
+        <value>Completed_Creative_Ideation</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Completed_Production</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Completed_Production</shortDescription>
+        <value>Completed_Production</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Completed_Strategy_Planning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Completed_Strategy_Planning</shortDescription>
+        <value>Completed_Strategy_Planning</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Global_Status_Meetings</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Global_Status_Meetings</shortDescription>
+        <value>Global Status Meetings</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Network_Co_ordination_other_agencies</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Network_Co_ordination_other_agencies</shortDescription>
+        <value>Network Co-ordination (other agencies)</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Network_Competitive_Reviews</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Network_Competitive_Reviews</shortDescription>
+        <value>Competitive Reviews</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Projected_Briefing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Projected_Briefing</shortDescription>
+        <value>Projected_Briefing</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Projected_Creative_Execution</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Projected_Creative_Execution</shortDescription>
+        <value>Projected_Creative_Execution</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Projected_Creative_Ideation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Projected_Creative_Ideation</shortDescription>
+        <value>Projected_Creative_Ideation</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Projected_Production</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Projected_Production</shortDescription>
+        <value>Projected_Production</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Projected_Strategy_Planning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Projected_Strategy_Planning</shortDescription>
+        <value>Projected_Strategy_Planning</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Regional_Status_Meetings</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Regional_Status_Meetings</shortDescription>
+        <value>Regional Status Meetings</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Status_Reports</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Status_Reports</shortDescription>
+        <value>Status Reports</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_USLP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_USLP</shortDescription>
+        <value>USLP</value>
+    </labels>
+    <labels>
         <fullName>Oblix_Lbl_UIUX_View</fullName>
         <categories>Oblix_VF05_SOWDetails</categories>
         <language>en_US</language>
@@ -3210,6 +3455,34 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Add_Non_Campaign_Items</shortDescription>
         <value>Add Non Campaign Items</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Add_details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Add_details</shortDescription>
+        <value>Add more details</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Add_details_optional</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Add_details_optional</shortDescription>
+        <value>Add more details (Optional)</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Add_items</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Add_items</shortDescription>
+        <value>Add items</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Add_to_project</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Add_to_project</shortDescription>
+        <value>Add to project</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Adjust_Fee</fullName>
@@ -3324,6 +3597,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Choose Countries</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Choose_stages</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Choose_stages</shortDescription>
+        <value>Choose stages for this FY</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Clone_Campaign</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -3378,6 +3658,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Countries</shortDescription>
         <value>Countries</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Countries_Region</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_TimeLines</shortDescription>
+        <value>Countries and Region</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Country</fullName>
@@ -3436,6 +3723,20 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Description</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Determined_by_Agency_Hubs_Split_selector</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Determined_by_Agency_Hubs_Split_selector</shortDescription>
+        <value>Determined by Agency Hubs Split selector</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Determined_by_Countries_selector</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Determined_by_Countries_selector</shortDescription>
+        <value>Determined by Countries selector</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Edit</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -3448,6 +3749,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Edit_Add_Items</shortDescription>
         <value>Edit / Add items</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Edit_Campaign</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Edit_Campaign</shortDescription>
+        <value>Edit Campaign</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Edit_Non_Campaign_Items</fullName>
@@ -3469,6 +3777,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Fee</shortDescription>
         <value>% Fee</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Fill_date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Fill_date</shortDescription>
+        <value>Fill any Date would you like to see in Campaign Timeline</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Financials</fullName>
@@ -3520,11 +3835,39 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>How many files you want to upload?</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Identifying_priorities</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Identifying_priorities</shortDescription>
+        <value>Identifying priorities for the brand based on the total turnover the campaign is protecting ( Select this option, only if incremental turnover value is unavailable )</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Identifying_priorities2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Identifying_priorities2</shortDescription>
+        <value>Identifying priorities for the brand based on the incremental turnover the project drives</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Information</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Information</shortDescription>
         <value>Information</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Lead_Agency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Lead_Agency</shortDescription>
+        <value>Lead Agency</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_List_lead_agency_market</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_List_lead_agency_market</shortDescription>
+        <value>List lead agency market and any other supporting agency hub with %</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Marketing_SOW_Campaign_Edit</fullName>
@@ -3546,6 +3889,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_New_Attachment</shortDescription>
         <value>New Attachment</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_New_Campaign</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_New_Campaign</shortDescription>
+        <value>New Campaign</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Next_Stage_Is</fullName>
@@ -3583,6 +3933,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Online Planner</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Option</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Option</shortDescription>
+        <value>Option</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Other_Items</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -3602,6 +3959,20 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Platform</shortDescription>
         <value>Platform</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Please_Choose</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Please_Choose</shortDescription>
+        <value>Please Choose Innovation Projects or Brand Leg Growth</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Please_describe</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Please_describe</shortDescription>
+        <value>Please describe of not exist</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Project_Id</fullName>
@@ -3702,6 +4073,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Stage</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Stages</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Stages</shortDescription>
+        <value>Stages</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_SubCategory</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -3716,11 +4094,25 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>This will impact the proportion of the fee that is paid in the current FY.</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_TimeLines</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_TimeLines</shortDescription>
+        <value>TimeLines and Other info</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Time_Scales</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Time_Scales</shortDescription>
         <value>Time Scales</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Unsaved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Unsaved</shortDescription>
+        <value>Unsaved</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Updates</fullName>
@@ -3791,6 +4183,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_View_non_Campaign</shortDescription>
         <value>View non Campaign</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Visible_to_Unilever</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Visible_to_Unilever</shortDescription>
+        <value>Visible to Unilever only</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_hours</fullName>

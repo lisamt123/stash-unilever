@@ -52,6 +52,7 @@ public with sharing class Oblix_TR01SOWMarkingSharing {
                             marketingSowShare.ParentId = marketingSow.ID;
                             marketingSowShare.AccessLevel = (userSow.Level_of_Visibility__c !=null ? userSow.Level_of_Visibility__c : 'Read');
                             marketingSowShare.UserOrGroupId = userSow.User__c;
+                            marketingSowShare.RowCause = Schema.Marketing_SOW__Share.RowCause.SOW_sharing_by_brand__c;
                         lstMarketingShare.add(marketingSowShare);
                    }
                 }

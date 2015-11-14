@@ -280,6 +280,10 @@
         <label><!-- Parent Sow Marketing --></label>
         <name>ParentSowMarketing</name>
     </recordTypes>
+    <sharingReasons>
+        <label><!-- SOW sharing by brand --></label>
+        <name>SOW_sharing_by_brand</name>
+    </sharingReasons>
     <startsWith>Consonant</startsWith>
     <webLinks>
         <label><!-- SOW_Copy --></label>

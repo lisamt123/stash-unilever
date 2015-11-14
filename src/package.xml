@@ -65,6 +65,11 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>OblixSOWAssetToProjectCalculator</members>
+        <members>SOWAssetToProjectCalculatorV</members>
+        <members>SOWMarketingSharing</members>
+        <members>SOWProjectBusinessValueDriverScore</members>
+        <members>SOWSplitProjectAvoid</members>
         <members>SowAssetToProjectCalculator</members>
         <name>ApexTrigger</name>
     </types>

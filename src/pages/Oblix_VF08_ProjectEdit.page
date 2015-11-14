@@ -7,367 +7,27 @@
     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
     <script src="{!URLFOR($Resource.JQueryBlockUI)}" ></script>
-    
-      
+    <script src="{!URLFOR($Resource.Oblix_editProjectJS)}" ></script>
     <script>
-   $(document).ready(function(){
-   
-        $('#datePicker').addClass('ui-dialog');
-        // Select default checkbox values 
-        if('{!lstIdCSSSelected}' != ''){
-         var selectedId = ('{!lstIdCSSSelected}').split(',');
-         //alert(selectedId);
-         for (var i = 0; i < selectedId.length; i++) {
-                    $( "."+selectedId[i]).prop( "checked", true);
-         } 
-        }
-        
-        $('tr.data, tr.btt').show().find('td').wrapInner('<div />');
-        $('tr.data, tr.btt').find('td > div').hide();
-        $('table tr.Oblix_recordTypeth').click(function(){
-            //alert($(this show).find('span.recordTypeValue').text());            
-            var data = $(this).next('tr');
-            var btt = data.next('tr');
-            data.find('td > div').slideToggle('slow');
-            btt.find('td > div').slideToggle('slow');             
-            $(this).toggleClass('show');   
-            // getAssetRecordType($(this).find('span.recordTypeValue').text());
-        });
-        var setIdCss = {!setIdCss};   
-        for (var i=0; i<setIdCss.length;i++) {
-            $('#'+setIdCss[i]+'_tabs').tabs();
-            $('#'+setIdCss[i]+'_tabs1').tabs();
-            $('#'+setIdCss[i]+'_tabs2').tabs();
-            $('#'+setIdCss[i]+'_tabs3').tabs();
-            $('#'+setIdCss[i]+'_tabs4').tabs();
-            $('#'+setIdCss[i]+'_tabs5').tabs();
-            $('#'+setIdCss[i]+'_tabs');
-            $('#'+setIdCss[i]+'_tabs').addClass('tabs-sub');
-            $('#'+setIdCss[i]+'_tabs1').addClass('ui-tabs-vertical');
-            $('#'+setIdCss[i]+'_tabs2').addClass('ui-tabs-vertical');
-            $('#'+setIdCss[i]+'_tabs3').addClass('ui-tabs-vertical');
-            $('#'+setIdCss[i]+'_tabs4').addClass('ui-tabs-vertical');
-            $('#'+setIdCss[i]+'_tabs5').addClass('ui-tabs-vertical');
-            console.dir('#'+setIdCss[i]+'_tabs2');
-        }
-       $(function () {
-           $(".checkboxCountry").change(function () {
-                var selectedText = $(this).find("option:selected").text();
-                var selectedValue = $(this).val();
-                //alert("Selected Text: " + selectedText + " Value: " + selectedValue);
-            });
-    });
-    
-   });
-</script>  
-<script>     
-    function PopupValueDrivers(){           
-         $(function() {
-                $( "#dialogDrivers" ).dialog({
-                  modal: true,
-                  width: 900,
-                  zIndex: 9,
-                  buttons: {
-                    Save : function() { 
-                           addStyletoDependent();   
-                           //alert($(".projInnovation").val());  
-                          // alert($('select[id*="Growthhhhh"]').val());      
-                           brandLG= $('select[id*="Growthhhhh"]').val();
-                           Scale1= $(".projScale1").val();
-                           Scale2=  $(".projScale2").val();          
-                           Innovation = $(".projInnovation").val();
-                           CampaignIdea =  $(".projCampaignIdea").val();
-                           blockme(); 
-                           setInfoDrivers($(".projInnovation").val(),$('select[id*="Growthhhhh"]').val(),$(".projScale1").val(),$(".projScale2").val(),$(".projCampaignIdea").val());   
-                           $(this).dialog("close");  
-                   },                                      
-                    Close: function() {
-                      $( this ).dialog( "close" );
-                     
-                    }
-                  }
-                });
-              });           
-     }
-    
-    function  addStyletoDependent(){
-     //   alert('from the function');
-     //  alert('hola '+$(this).closest('select').val());
-       $('select[id*="Growthhhhh"]').addClass( "input_init xxl" );
-    //   var s= $(this).parent().parent().find('select');
-       
-     //alert ('s==='+s);
-    }
-   
-   
-    function  addStyletoDependent2(){
-    //    alert($('select[id*="Growthhhhh"]').val());
-       $(this).addClass( "input_init xxl" );
-        
-       
-    
-    }
-    
-      
-     function PopupdialogCountries(){
-        
-         $(function() {
-                           
-                $( "#dialogCountries" ).dialog({
-                  modal: true,
-                  width: 1200,                             
-                  height:450,
-                  buttons: {
-                     Save : function() {                            
-                            var lstRegion = '';
-                            var lstCountry = '';                                                   
-                            $("input:checkbox[name='checkboxRegion']:checked").each(function(){
-                                 lstRegion = lstRegion + $(this).attr('value')+',';
-                                //alert('lstRegion: '+$(this).attr('value'));                                
-                            }); 
-                            $("input:checkbox[name='checkboxCountry']:checked").each(function(){
-                                lstCountry = lstCountry + $(this).attr('value')+',';
-                                //alert('lstCountry : '+$(this).attr('value'));  
-                               //arr[i++] = $(this).attr('value');                                 
-                            });                        
-                            //alert(lstRegion);
-                            //alert(lstCountry);    
-                            blockme();                         
-                            setInfoCountries(lstRegion.substring(0, lstRegion.length-1),lstCountry.substring(0, lstCountry.length-1));
-                            console.dir('here');
-                            
-                            $( this ).dialog( "close");   
-                        },                                       
-                    Close : function() {
-                      $( this ).dialog( "close" );
-                      
-                    }                                                     
-                  }
-                });
-              });           
-     }
-     
-     function PopupTimeLine(){
-       
-         $(function() {
-                $( "#dialogTimeLine" ).dialog({
-                  modal: true,
-                  width: 1200,
-                  modal: true, 
-                  zIndex: 9,
-                  buttons: {
-                     Save : function() {                   
-                             //alert($(".dateProjCD").val());    
-                             blockme();      
-                             setInfoTimeLine($(".dateProjSD").val(),$(".dateProjBFR").val(),$(".dateProjFR").val(),$(".dateProjCD").val(),$(".dateProjABET").val(),$(".dateProjLD").val(),$(".dateFAD").val(),$(".dateProjPREV").val(),$(".dateProjAD").val(),$(".dateProdCD").val(),$(".dateProdSP").val(),$(".ProjTimescale").val(),$(".ProjPriority").val());              
-                             $(this).dialog("close");  
-                          },                                       
-                    Close : function() {
-                      $( this ).dialog( "close" );
-                      
-                    }                  
-                  }
-                });
-              });           
-     }
-      function PopupStages(){
-       
-         $(function() {
-                $( "#dialogStages" ).dialog({
-                  width: 600,
-                  modal: true, 
-                  zIndex: 9,
-                  buttons: {
-                     Save : function() {                            
-                            var lstCompleted = '';
-                            var lstProjected = '';
-                            
-                            $("input:checkbox[name='checkbxProjected']:checked").each(function(){
-                                lstProjected = $(this).attr('value');
-                                                              
-                            }); 
-                            $("input:checkbox[name='checkboxCompleted']:checked").each(function(){
-                                lstCompleted = $(this).attr('value');                                           
-                            }); 
-                            //alert('array lstCompleted:'+lstCompleted);
-                            //alert('array lstProjected :'+lstProjected);                           
-                                 
-                               blockme();                        
-                               if(lstCompleted != ''){
-                                   setInfoStages(lstProjected,lstCompleted,lstCompleted.replace('Completed ',''));
-                               }else{
-                                   setInfoStages(lstProjected,lstCompleted,'');
-                               }    
-                               console.dir('here');
-                            
-                            $( this ).dialog( "close");   
-                        },                                       
-                    Close : function() {
-                      $( this ).dialog( "close" );
-                    }                 
-                  }
-                });
-              });           
-     }
-     function PopupAgencyHub(){
-        
-        var counter = {!counterAsset};
-        $('.addAnotherBtn').click(function(event){            
-            event.preventDefault();   
-            counter = counter+1;                                        
-            var newRow = $('<tr><td></td><td><div class="idSplit_'+counter+'" style="display:none">{!split.id}</div></td><td></td><td><apex:inputField value="{!agencySplitInstanceJS.Percentage__c}" styleClass=" percentage pourcentageSplit_'+counter+'" style="width:30px"/> %</td><td></td></tr>');
-            $('table.agencyHubList').append(newRow);           
-           
-        });
-
-          $(function() {
-                $( "#agencyHub" ).dialog({
-                  width: 800,
-                  modal: true, 
-                  zIndex: 9,
-                  buttons: {
-                     Save : function() {                            
-                            var sum = 0;
-                            var listItems = '';
-                            var block = true;
-                            $(".percentage").each(function(){
-                                sum = sum + Number($(this).val());
-                                //alert(sum);
-                           });      
-                           //alert( $(".countrySplit_1").val()); 
-                           //alert( $(".dateProdCD").val());                
-                           if(sum != 100){
-                                alert('the values must be equal to 100');
-                            }else{
-                                for(var indice = 1;indice<counter+1;indice++){                               
-                                   // alert($(".idSplit_"+indice).text());
-                                    //alert($(".pourcentageSplit_"+indice).val());
-                                    var id = $(".idSplit_"+indice).text();
-                                    var country = $(".countrySplit_"+indice).val();
-                                    var percentage = $(".pourcentageSplit_"+indice).val();  
-                                    if($(".idSplit_"+indice).text().length == 0) id = ' '; 
-                                    if($(".countrySplit_"+indice).val().length == 0) country = ' ';
-                                    if($(".pourcentageSplit_"+indice).val().length == 0) percentage = 0;    
-                                    if(country == ' ' && (percentage != 0 || $(".pourcentageSplit_"+indice).val() != 0)){
-                                        alert('Country is required');
-                                        block = false;
-                                    }
-                                                                                                                  
-                                    listItems = listItems + id+'_'+country+'_'+percentage+',';
-                                   
-                                }       
-                                if(block){
-                                    //alert(listItems);  
-                                    blockme();                  
-                                    setAgencyHub(listItems);
-                                    listItems = '';
-                                    //setAgencyHubOnComplete();
-                                    $( this ).dialog( "close");   
-                                    
-                                }
-                            }
-                        },                                       
-                    Close : function() {
-                      $( this ).dialog( "close" );
-                    }                 
-                  }
-                });
-              });           
-     }
-     function PopupdialogMoreDetails(){
-       
-         $(function() {
-                $( "#dialogMoreDetails" ).dialog({
-                  width: 600,
-                  modal: true, 
-                  zIndex: 9,
-                  buttons: {
-                     Save : function() {          
-                            $( this ).dialog( "close");   
-                             //alert($(".itemDueDate").val()); 
-                             //alert($(".itemAdditionalNote").val());      
-                             blockme();     
-                              setMoreDetails($(".itemDueDate").val(),$(".itemAdditionalNote").val());     
-                              
-                        },   
-                    Close : function() {
-                       
-                      $( this ).dialog( "close" );
-                    }                 
-                  }
-                });
-              });           
-     }
-     function blockme() {
-       $.blockUI({ css: { 
-            border: 'none', 
-            padding: '15px', 
-            backgroundColor: '#000', 
-            '-webkit-border-radius': '10px', 
-            '-moz-border-radius': '10px', 
-            opacity: .5, 
-            color: '#fff' 
-        } }); 
-    }
-    function zebla(x){        
-         $( "."+x).prop( "checked", true);
-    }
-   
-   </script>
-   <!-- All action functions used in the VF  -->
-   <apex:actionFunction name="setInfoTimeLine" action="{!setInfoTimeLine}" oncomplete="$.unblockUI()">  
-      <apex:param name="projDate1" assignTo="{!project.Project_Start_Date__c}" value="" />  
-      <apex:param name="projDate5" assignTo="{!project.BET_first_release__c}" value="" />      
-      <apex:param name="projDate6" assignTo="{!project.Final_release__c}" value="" />  
-      <apex:param name="projDate2" assignTo="{!project.Project_Completion_Date__c}" value="" />
-      <apex:param name="projDate7" assignTo="{!project.Date_for_Assets_to_be_in_BET__c}" value="" />
-      <apex:param name="projDate8" assignTo="{!project.Live_Date__c}" value="" />         
-      <apex:param name="projDate3" assignTo="{!project.First_Air_Date__c}" value="" />  
-      <apex:param name="projDate9" assignTo="{!project.Preview_Date__c}" value="" />  
-      <apex:param name="projDate10" assignTo="{!project.Live_date_Asset_delivery__c}" value="" />  
-      <apex:param name="projDate4" assignTo="{!project.Production_Completion_Date__c}" value="" /> 
-      <apex:param name="projDate11" assignTo="{!project.Start_of_TV_production__c}" value="" />  
-      <apex:param name="notes" assignTo="{!project.Timescale_Notes__c}" value="" />  
-      <apex:param name="otherInfo" assignTo="{!project.Project_Priority__c}" value="" />  
-   </apex:actionFunction> 
-   
-   <apex:actionFunction name="setInfoCountries" action="{!setInfoCountries}" oncomplete="{!if(projectId != null,'location.reload()','$.unblockUI()')}">  
-      <apex:param name="region" assignTo="{!project.OblixRegion__c}" value="" />  
-      <apex:param name="countries" assignTo="{!project.OblixCountries__c}" value="" />  
-   </apex:actionFunction> 
-   
-   <apex:actionFunction name="setInfoStages" action="{!setInfoStages}" oncomplete="$.unblockUI()">  
-      <apex:param name="projected" assignTo="{!project.Projected_Stage__c}" value="" />  
-      <apex:param name="completed" assignTo="{!project.Completed_Stage__c}" value="" />
-      <apex:param name="stage" assignTo="{!project.Project_Stage__c}" value="" />  
-   </apex:actionFunction> 
-   
-   <apex:actionFunction name="setInfoDrivers" action="{!setInfoDrivers}" oncomplete="$.unblockUI()">  
-        <apex:param name="innovation" assignTo="{!project.Innovation_Projects__c}" value="" />  
-        <apex:param name="brandLG" assignTo="{!project.Brand_Led_Growth__c}" value="" /> 
-        <apex:param name="scale1" assignTo="{!project.Project_Scale_1__c}" value="" /> 
-        <apex:param name="scale2" assignTo="{!project.Project_Scale_2__c}" value="" /> 
-        <apex:param name="campaignIdea" assignTo="{!project.Campaign_Idea__c}" value="" />  
-   </apex:actionFunction>  
-       
-   <apex:actionFunction name="setMoreDetails" action="{!setMoreDetails}" oncomplete="$.unblockUI()" rendered="true">  <!-- rerender="accountTable, pageMessages" -->
-        <apex:param name="dateAsset" assignTo="{!assetInstance.Actual_Delivery_Date__c}" value="" />  
-        <apex:param name="descAsset" assignTo="{!assetInstance.Additional_Description__c}" value="" /> 
-   </apex:actionFunction> 
-   
-    <apex:actionFunction name="setAgencyHub" action="{!setInfoSplitHub}"  oncomplete="{!if(projectId != null,'location.reload()','$.unblockUI()')}" >  
-        <apex:param name="splitId" assignTo="{!listItems}" value="" />   
-
-   </apex:actionFunction>  
-      
-      
-
-   <apex:actionFunction action="{!NULL}" name="changeType" reRender="jqueryId" />
-   <!-- End action functions -->
-   
-   <style>
-       /**** Header and container CSS ****/
-        
+       // Variable to select the picklist fields related to the campaign using css class attribute 
+       var setIdCss = {!setIdCss};
+       // Variable for the add other button , disabled now 
+       var counter = {!counterAsset};
+       $(document).ready(function(){
+            // Select default checkbox values 
+            if('{!lstIdCSSSelected}' != ''){
+             var selectedId = ('{!lstIdCSSSelected}').split(',');
+             //alert(selectedId);
+             for (var i = 0; i < selectedId.length; i++) {
+                        $( "."+selectedId[i]).prop( "checked", true);
+             } 
+            }  
+       });
+    </script> 
+    <style>
+     @import url(font-awesome.min.css);
+ 
+ /**** Header and container CSS ****/   
         .darkGreen{color: #44883E  ;}
         .mainGreen{color: #6BA539;}
         h2{ font-size: 130%;}
@@ -1043,12 +703,81 @@
      .removeBreak{
          word-wrap: break-word;word-break: normal;white-space: normal;
       }   
+    </style> 
+    <script>     
+
+     function blockme() {
+       $.blockUI({ css: { 
+            border: 'none', 
+            padding: '15px', 
+            backgroundColor: '#000', 
+            '-webkit-border-radius': '10px', 
+            '-moz-border-radius': '10px', 
+            opacity: .5, 
+            color: '#fff' 
+        } }); 
+    }
+    
+   
+   </script>
+   <!-- All action functions used in the VF  -->
+   <apex:actionFunction name="setInfoTimeLine" action="{!setInfoTimeLine}" oncomplete="$.unblockUI()">  
+      <apex:param name="projDate1" assignTo="{!project.Project_Start_Date__c}" value="" />  
+      <apex:param name="projDate5" assignTo="{!project.BET_first_release__c}" value="" />      
+      <apex:param name="projDate6" assignTo="{!project.Final_release__c}" value="" />  
+      <apex:param name="projDate2" assignTo="{!project.Project_Completion_Date__c}" value="" />
+      <apex:param name="projDate7" assignTo="{!project.Date_for_Assets_to_be_in_BET__c}" value="" />
+      <apex:param name="projDate8" assignTo="{!project.Live_Date__c}" value="" />         
+      <apex:param name="projDate3" assignTo="{!project.First_Air_Date__c}" value="" />  
+      <apex:param name="projDate9" assignTo="{!project.Preview_Date__c}" value="" />  
+      <apex:param name="projDate10" assignTo="{!project.Live_date_Asset_delivery__c}" value="" />  
+      <apex:param name="projDate4" assignTo="{!project.Production_Completion_Date__c}" value="" /> 
+      <apex:param name="projDate11" assignTo="{!project.Start_of_TV_production__c}" value="" />  
+      <apex:param name="notes" assignTo="{!project.Timescale_Notes__c}" value="" />  
+      <apex:param name="otherInfo" assignTo="{!project.Project_Priority__c}" value="" />  
+   </apex:actionFunction> 
+   
+   <apex:actionFunction name="setInfoCountries" action="{!setInfoCountries}" oncomplete="{!if(projectId != null,'location.reload()','$.unblockUI()')}">  
+      <apex:param name="region" assignTo="{!project.OblixRegion__c}" value="" />  
+      <apex:param name="countries" assignTo="{!project.OblixCountries__c}" value="" />  
+   </apex:actionFunction> 
+   
+   <apex:actionFunction name="setInfoStages" action="{!setInfoStages}" oncomplete="$.unblockUI()">  
+      <apex:param name="projected" assignTo="{!project.Projected_Stage__c}" value="" />  
+      <apex:param name="completed" assignTo="{!project.Completed_Stage__c}" value="" />
+      <apex:param name="stage" assignTo="{!project.Project_Stage__c}" value="" />  
+   </apex:actionFunction> 
+   
+   <apex:actionFunction name="setInfoDrivers" action="{!setInfoDrivers}" oncomplete="$.unblockUI()">  
+        <apex:param name="innovation" assignTo="{!project.Innovation_Projects__c}" value="" />  
+        <apex:param name="brandLG" assignTo="{!project.Brand_Led_Growth__c}" value="" /> 
+        <apex:param name="scale1" assignTo="{!project.Project_Scale_1__c}" value="" /> 
+        <apex:param name="scale2" assignTo="{!project.Project_Scale_2__c}" value="" /> 
+        <apex:param name="campaignIdea" assignTo="{!project.Campaign_Idea__c}" value="" />  
+   </apex:actionFunction>  
+       
+   <apex:actionFunction name="setMoreDetails" action="{!setMoreDetails}" oncomplete="$.unblockUI()" rendered="true">  <!-- rerender="accountTable, pageMessages" -->
+        <apex:param name="dateAsset" assignTo="{!assetInstance.Actual_Delivery_Date__c}" value="" />  
+        <apex:param name="descAsset" assignTo="{!assetInstance.Additional_Description__c}" value="" /> 
+   </apex:actionFunction> 
+   
+    <apex:actionFunction name="setAgencyHub" action="{!setInfoSplitHub}"  oncomplete="{!if(projectId != null,'location.reload()','$.unblockUI()')}" >  
+        <apex:param name="splitId" assignTo="{!listItems}" value="" />   
+
+   </apex:actionFunction>  
+      
+   <apex:actionFunction action="{!NULL}" name="changeType" reRender="jqueryId" />
+   <!-- End action functions -->
+  
+   
+   <style>
+      
     </style>
    
     <div class="Oblix_Container">
     <!-- Countries popUp Start-->
     
-    <div id="dialogCountries" title="Choose Countries" style="display:none">   
+    <div id="dialogCountries" title="{!$Label.Oblix_lbl_UIUX_Choose_Countries}" style="display:none">   
     <center>
       <table width="90%">        
           <tr valign="top">
@@ -1057,7 +786,7 @@
                    <strong>
                    <input class="{!mapIdCSSCountryRegion[region]}" type="checkbox" name="checkboxRegion" value="{!region}" disabled="true">{!region}</input></strong>
                    <apex:repeat value="{!mapRelatedCntries[region]}" var="country">                      
-                        <br/><input class="{!mapIdCSSCountryRegion[country]}" type="checkbox" name="checkboxCountry" value="{!country}" id="{!mapIdCSSCountryRegion[region]}" onchange ="zebla($(this).attr('id'))">{!country}</input>
+                        <br/><input class="{!mapIdCSSCountryRegion[country]}" type="checkbox" name="checkboxCountry" value="{!country}" id="{!mapIdCSSCountryRegion[region]}" onchange ="CheckRegions($(this).attr('id'))">{!country}</input>
                    </apex:repeat> 
                </td>
            </apex:repeat>
@@ -1069,22 +798,22 @@
    <!-- ValueDrivers popUp Start-->
     <div id="dialogDrivers" class="dialogDrivers" title="Value Drivers" style="display:none">   
     <br/>
-     Visible to Unilever only<br/>
+     {!$Label.Oblix_lbl_UIUX_Visible_to_Unilever}<br/>
     <center>
     <br/>
-      <h1>Please Choose Innovation Projects or Brand Leg Growth</h1>
+      <h1>{!$Label.Oblix_lbl_UIUX_Please_Choose}</h1>
       <br/><br/>
       <table width="90%">
             
                <tr>
                   <td colspan="2" width="50%">
                       <apex:inputField value="{!project.Innovation_Projects__c}" style="width:90%" styleClass="input_init projInnovation" onchange="addStyletoDependent();" /><br/>
-                      <div style="width:80%;PADDING-TOP: 8px;">Identifying priorities for the brand based on the total turnover the campaign is protecting ( Select this option, only if incremental turnover value is unavailable )</div>
+                      <div style="width:80%;PADDING-TOP: 8px;">{!$Label.Oblix_lbl_UIUX_Identifying_priorities}</div>
                       
                   </td>
                    <td colspan="2" width="50%">
                       <apex:inputField value="{!project.Brand_Led_Growth__c}" style="width:90% !important;padding: 5px 9px;" styleClass="input_init xxl" id="Growthhhhh"   onchange="addStyletoDependent2();" /><br/>
-                      <div style="width:80%;PADDING-TOP: 8px;">Identifying priprities for the brand based on the incremental turnover the project drives </div>
+                      <div style="width:80%;PADDING-TOP: 8px;">{!$Label.Oblix_lbl_UIUX_Identifying_priorities2} </div>
                   </td>                
               </tr>                           
               <tr><td colspan="4">&nbsp;</td></tr>  
@@ -1095,11 +824,11 @@
               </tr>
                <tr>
                    <td>&nbsp;</td>
-                  <td colspan="3"><apex:inputField value="{!project.Project_Scale_2__c}" style="width:60%" styleClass="input_init projScale2"/>&nbsp;Determined by Countries selector</td>
+                  <td colspan="3"><apex:inputField value="{!project.Project_Scale_2__c}" style="width:60%" styleClass="input_init projScale2"/>&nbsp;{!$Label.Oblix_lbl_UIUX_Determined_by_Countries_selector}</td>
               </tr>
               <tr>
                   <td>&nbsp;</td>
-                  <td colspan="3"><apex:inputField value="{!project.Campaign_Idea__c}" style="width:60%" styleClass="input_init projCampaignIdea"/>&nbsp;Determined by Agency Hubs Split selector </td>
+                  <td colspan="3"><apex:inputField value="{!project.Campaign_Idea__c}" style="width:60%" styleClass="input_init projCampaignIdea"/>&nbsp;{!$Label.Oblix_lbl_UIUX_Determined_by_Agency_Hubs_Split_selector} </td>
               </tr>
       </table>
       </center>
@@ -1110,7 +839,7 @@
    
       <center>
      <br/>
-      <h1>List lead agency market and any other supporting agency hub with % </h1>
+      <h1>{!$Label.Oblix_lbl_UIUX_List_lead_agency_market} </h1>
       <br/><br/>
       <table width="70%" class="agencyHubList">
         
@@ -1118,7 +847,7 @@
                <apex:variable value="{!1}" var="display"/>
                <apex:repeat value="{!lstProjectSplitHubs}" var="split">
                     <tr>
-                        <td><strong><div style="display :{!if(display == 1,'block','none')}">&nbsp;Lead Agency</div></strong></td>
+                        <td><strong><div style="display :{!if(display == 1,'block','none')}">&nbsp;{!$Label.Oblix_lbl_UIUX_Lead_Agency}</div></strong></td>
                         <td><div class="idSplit_{!display}" style="display:none">{!split.id}</div></td>
                         <td><apex:selectList value="{!split.OblixCountry__c}" multiselect="false" size="1" styleClass="countrySplit_{!display}">
                                 <apex:selectOptions value="{!countryOptions}"/>
@@ -1144,21 +873,21 @@
   <!-- Agency hub PopUp End -->
   
    <!-- Stage popUp Start-->
-    <div id="dialogStages" title="Choose stages for this FY  " style="display:none">   
+    <div id="dialogStages" title="{!$Label.Oblix_lbl_UIUX_Choose_stages}  " style="display:none">   
        <center>
        <table width="80%">  
            <tr>    
-              <td colspan="3"><strong>Stages : </strong></td>                                       
+              <td colspan="3"><strong>{!$Label.Oblix_lbl_UIUX_Stages} : </strong></td>                                       
            </tr>
            <tr>    
-              <td colspan="4">Confirm which stages of the project will be completed in the current year. This will impact the proportion of the fee that is paid in the current FY. </td>                                       
+              <td colspan="4">{!$Label.Oblix_lbl_UIUX_Confirm_Stages} </td>                                       
            </tr> 
            <tr><td colspan="2">&nbsp;</td></tr>   
            <tr>
                <td>&nbsp;</td>
-               <td><strong>% Fee</strong></td>
-               <td><strong>Projected</strong></td>
-               <td><strong>Completed</strong></td>
+               <td><strong>{!$Label.Oblix_lbl_UIUX_Fee}</strong></td>
+               <td><strong>{!$Label.Oblix_lbl_UIUX_Projected}</strong></td>
+               <td><strong>{!$Label.Oblix_lbl_UIUX_Completed}</strong></td>
            </tr>
            <apex:repeat value="{!lstStage}" var="stage"> 
            <tr>
@@ -1173,10 +902,10 @@
    </div>
   <!-- Stage End -->
   <!-- TimeLines popUp Start-->
-      <div id="dialogTimeLine" title="TimeLines and Other info" style="display:none">  
+      <div id="dialogTimeLine" title="{!$Label.Oblix_lbl_UIUX_TimeLines}" style="display:none">  
       <center> 
       <br/>
-      <center><h1>Fill any Date would you like to see in Campaign Timeline</h1></center>
+      <center><h1>{!$Label.Oblix_lbl_UIUX_Fill_date}</h1></center>
       <br/>
       <table width="90%">
          <center>
@@ -1214,10 +943,10 @@
    <!-- TimeLines popUp End -->
    
      <!-- More Details Popup Start-->
-      <div id="dialogMoreDetails" title="Add more details (Optional) " style="display:none">  
+      <div id="dialogMoreDetails" title="{!$Label.Oblix_lbl_UIUX_Add_details_optional} " style="display:none">  
       <center> 
       <br/>
-      <center><h1>Add more details</h1></center>
+      <center><h1>{!$Label.Oblix_lbl_UIUX_Add_details}</h1></center>
       <br/>
       <table width="90%">
          <center>
@@ -1248,22 +977,22 @@
                 <apex:image value="{!$Resource.Unilever_logo}" width="60px" height="60px" />
                 </td>
                 <td class="Oblix_header_Arrow">
-                <div class="Oblix_header_title">SWOP</div><br/><span class="Oblix_header_desc">Scope of Work<br/>Online Planner</span>
+                <div class="Oblix_header_title">{!$Label.Oblix_lbl_UIUX_SWOP}</div><br/><span class="Oblix_header_desc">{!$Label.Oblix_lbl_UIUX_Scope_of_Work}<br/>{!$Label.Oblix_lbl_UIUX_Online_Planner}</span>
                 </td>
                 <td>
                 <div class="Oblix_header_previousArrow header_pos_2">
-                <div class="Oblix_header_arrowTitle">View SOW</div>
+                <div class="Oblix_header_arrowTitle">{!$Label.Oblix_lbl_UIUX_View_SOW}</div>
                 </div>
                 
                 <div class="Oblix_header_activeArrow header_pos_3">
                 <div class="Oblix_header_arrowTitle">
-                    <apex:outputPanel rendered="{!projectId != null}" ><span>Edit Campaign  </span><br/></apex:outputPanel>
-                    <apex:outputPanel rendered="{!projectId == null}" ><span> New Campaign  </span><br/></apex:outputPanel>
+                    <apex:outputPanel rendered="{!projectId != null}" ><span>{!$Label.Oblix_lbl_UIUX_Edit_Campaign}  </span><br/></apex:outputPanel>
+                    <apex:outputPanel rendered="{!projectId == null}" ><span> {!$Label.Oblix_lbl_UIUX_New_Campaign}  </span><br/></apex:outputPanel>
                 </div>
                 </div>
                 </td>
                 <td>
-                <div style="float:right; position:relative; top:-55px;"><p>Hi {!userConnected.Name} !</p></div>
+                <div style="float:right; position:relative; top:-55px;"><p>{!$Label.Oblix_lbl_UIUX_Hi} {!userConnected.Name} !</p></div>
                 </td>
             </tr>
         </table></div>
@@ -1277,12 +1006,12 @@
              <table class="Oblix_projects_header" width="100%">
                 <tr>
                     <td width="50%">
-                        <h1> View Campaign : {!project.name}</h1>
+                        <h1> {!$Label.Oblix_lbl_UIUX_View_Campaign} : {!project.name}</h1>
                     </td>
                     <td>
                     </td>
                     <td  width="15%">
-                        <apex:commandButton value="Adjust Fee" styleClass="Oblix_projects_btn" reRender="jqueryId"/>
+                        <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Adjust_Fee}" styleClass="Oblix_projects_btn" reRender="jqueryId"/>
                     </td>  
                     <td  width="30%">
                          <h2>
@@ -1345,7 +1074,7 @@
                                        </tr>
                                        <tr>
                                           <td>
-                                             <apex:commandButton value="TimeLines and Othes info" styleClass="Oblix_popup_btn" onclick="PopupTimeLine();return false"/>
+                                             <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_TimeLines}" styleClass="Oblix_popup_btn" onclick="PopupTimeLine();return false"/>
                                           </td>
                                        </tr>
                                        
@@ -1357,17 +1086,17 @@
                                    <table width="100%" class="topAlign">  
                                       <tr>
                                           <td>
-                                             <apex:commandButton value="* Contries and Region " styleClass="Oblix_popup_btn" onclick="PopupdialogCountries();return false"/>
+                                             <apex:commandButton value="* {!$Label.Oblix_lbl_UIUX_Countries_Region} " styleClass="Oblix_popup_btn" onclick="PopupdialogCountries();return false"/>
                                           </td>
                                        </tr>  
                                        <tr>
                                           <td>
-                                             <apex:commandButton value="* Agency Hub split " styleClass="Oblix_popup_btn" onclick="PopupAgencyHub();return false"/>
+                                             <apex:commandButton value="* {!$Label.Oblix_lbl_UIUX_Agency_Hub_Split} " styleClass="Oblix_popup_btn" onclick="PopupAgencyHub();return false"/>
                                           </td>
                                        </tr>  
                                        <tr>
                                           <td>
-                                             <apex:commandButton value="* Value Drivers" styleClass="Oblix_popup_btn"  onclick="PopupValueDrivers();return false" />
+                                             <apex:commandButton value="* {!$Label.Oblix_lbl_UIUX_Value_drivers}" styleClass="Oblix_popup_btn"  onclick="PopupValueDrivers();return false" />
                                             
                                           </td>
                                        </tr>  
@@ -1380,7 +1109,7 @@
                                <table width="100%">  
                                         <tr>
                                         <td colspan="2">
-                                             <apex:commandButton value="* Stage " styleClass="Oblix_popup_btn"  onclick="PopupStages();return false" />                                         
+                                             <apex:commandButton value="* {!$Label.Oblix_lbl_UIUX_Stage} " styleClass="Oblix_popup_btn"  onclick="PopupStages();return false" />                                         
                                        </td>
                                        </tr>
                                        <tr>
@@ -1390,15 +1119,15 @@
                                         </td>                                       
                                      </tr>    
                                    <tr><td><strong>&nbsp;</strong></td></tr>
-                                   <tr><td colspan="2"><h3><center>Unsaved</center></h3></td></tr>  
+                                   <tr><td colspan="2"><h3><center>{!$Label.Oblix_lbl_UIUX_Unsaved}</center></h3></td></tr>  
                               </table>
                               </section>
                              
                               <section class="PrColumn5">
                                  <center>
                                      <br/><br/>
-                                     <apex:commandButton value="Back " action="{!BackAction}" rerender="EditPanel" styleClass="Oblix_projects_btn"/><br/><br/>
-                                     <apex:commandButton value="Save Campaign" action="{!SaveProjectAction}" styleClass="Oblix_projects_btn" reRender="Oblix_ItemsId,myerror"/><br/>              
+                                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back} " action="{!BackAction}" rerender="EditPanel" styleClass="Oblix_projects_btn"/><br/><br/>
+                                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Save_Campaign}" action="{!SaveProjectAction}" styleClass="Oblix_projects_btn" reRender="Oblix_ItemsId,myerror"/><br/>              
                                  </center>  
                               </section>   
                               </td>
@@ -1418,10 +1147,10 @@
                               <tr class="Oblix_recordTypeth_title">
                                   <th>
                                    <div class="Oblix_div_left">
-                                         <div style="font-size:14px">  Add items </div>
+                                         <div style="font-size:14px">  {!$Label.Oblix_lbl_UIUX_Add_items} </div>
                                     </div>
                                     <div class="Oblix_icon_right" style="color:red;width:50%">
-                                         <div style="float:right">  Cost estimate requires Agency Hub Split and Value Drivers to be completed &nbsp;&nbsp;</div>
+                                         <div style="float:right">  {!$Label.Oblix_lbl_UIUX_Cost_estimate} &nbsp;&nbsp;</div>
                                    </div>
                                    </th>
                               </tr>
@@ -1469,7 +1198,7 @@
                                                    
                                                     <ul>
                                                         <apex:repeat value="{!mapSubCategOption[subCat]}" var="opt">
-                                                        <li><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}{!opt}"><strong> Option {!opt} : </strong> {!mapSubCategOptionDescription[subCat+opt]}   </a> </li>  
+                                                        <li><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}{!opt}"><strong> {!$Label.Oblix_lbl_UIUX_Option} {!opt} : </strong> {!mapSubCategOptionDescription[subCat+opt]}   </a> </li>  
                                                         </apex:repeat>
                                                     </ul>
                                                    
@@ -1483,18 +1212,18 @@
                                                                 <td valign = "bottom" class="removeBreak"><apex:inputField value="{!mapAssetsPerSubCat[subCat].Sub_Category__c}" style="display:none" styleClass="{!subCat}" /><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label} </strong> </td><td><apex:inputField value="{!mapAssetsPerSubCat[subCat].Asset_Picklist__c}" style="padding: 5px 9px;width: 94%;"/></td>                                                           
                                                               </tr>
                                                               <tr>     
-                                                                <td valign = "bottom" class="removeBreak"><strong>Please describe of not exist </strong></td><td><apex:inputField styleClass="input_init"  value="{!mapAssetsPerSubCat[subCat].Location__c}" /></td>  
+                                                                <td valign = "bottom" class="removeBreak"><strong>{!$Label.Oblix_lbl_UIUX_Please_describe} </strong></td><td><apex:inputField styleClass="input_init"  value="{!mapAssetsPerSubCat[subCat].Location__c}" /></td>  
                                                               </tr>
                                                               <tr><td colspan="2">&nbsp;</td></tr>  
                                                               <tr> 
-                                                                <td  colspan="2"><apex:commandButton value="Add more details (Optional) " styleClass="Oblix_popup_btn" onclick="PopupdialogMoreDetails();return false"/></td>
+                                                                <td  colspan="2"><apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Add_details_optional} " styleClass="Oblix_popup_btn" onclick="PopupdialogMoreDetails();return false"/></td>
                                                               </tr>
                                                               <tr><td colspan="2">&nbsp;</td></tr> 
                                                               <tr>  
                                                                 <td colspan="2">
                                                                 <center>
                                                                 <strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Quantity__c.label} &nbsp; </strong><apex:inputField value="{!mapAssetsPerSubCat[subCat].Quantity__c}" styleClass="input_init" style="width: 40px;" /><span style="font-size:19px">&nbsp;x&nbsp;</span>
-                                                                <apex:commandButton value="Add to project" action="{!AddToProjectAction}" onclick="blockme()" oncomplete="$.unblockUI()" reRender="campaignFeeId,estimateId,Oblix_card" styleClass="ui-button ui-state-default Oblix_addAsset_btn">
+                                                                <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Add_to_project}" action="{!AddToProjectAction}" onclick="blockme()" oncomplete="$.unblockUI()" reRender="campaignFeeId,estimateId,Oblix_card" styleClass="ui-button ui-state-default Oblix_addAsset_btn">
                                                                     <apex:param assignTo="{!recordType}" name="recordType" value="{!recordType}" />
                                                                     <apex:param assignTo="{!subCat}" name="subCat" value="{!subCat}" />
                                                                     <apex:param assignTo="{!complexity}" name="complexity" value="{!opt}" />
@@ -1526,7 +1255,7 @@
                            <!-- Card Content -->              
                             <div class="Oblix_card">
                                 <div class="Oblix_card_title">
-                                    <div style="float:left">Estimation Cost : </div>
+                                    <div style="float:left">{!$Label.Oblix_lbl_UIUX_Estimation_Cost} : </div>
                                     <div style="float:right">
                                        <apex:outputPanel id="estimateId">{!estimateCost} {!project.Financial_Year__r.Currency__c}</apex:outputPanel> 
                                     </div>

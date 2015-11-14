@@ -156,6 +156,7 @@
               rtCountry =  Schema.SObjectType.Oblix_Calculator__c.getRecordTypeInfosByName().get('Role Rate').getRecordTypeId();
               
               initialiseOptions();
+              initialiseOptions1();
               
               
             id EditId =  ApexPAges.currentPage().getParameters().get('itm');
@@ -241,11 +242,13 @@ private void fillData(Marketing_Basics__c   eeditItem){
       private void  initialiseOptions(){
          AgencyDepartments = new List<SelectOption>();         AgencyDepartments.add(new SelectOption('','Agency Department'));  
          RoleTitles =new  List<SelectOption>();           RoleTitles.add(new SelectOption('',noRole));  
-         AgencyDepartments1  =new  List<SelectOption>();           AgencyDepartments1.add(new SelectOption('','Agency Department'));  
-         RoleTitles1 =new List<SelectOption>();           RoleTitles1.add(new SelectOption('',noRole));  
                
       }
-      
+      private void  initialiseOptions1(){
+        AgencyDepartments1  =new  List<SelectOption>();           AgencyDepartments1.add(new SelectOption('','Agency Department'));  
+         RoleTitles1 =new List<SelectOption>();           RoleTitles1.add(new SelectOption('',noRole));  
+               
+      } 
       
         /* Void Method used to initialise Marketing_SOW  
          */    
@@ -268,26 +271,38 @@ private void fillData(Marketing_Basics__c   eeditItem){
       */ 
       
      public void clear(){
-     
+        initialiseOptions();
          lookupActivity.Activities__c= '';
          lookupActivity.Other_Activities__c='';
          hours= 0;
          selectedCountry = '';
+         selectedCountryname='';
          selectedRoleTitle='';
          selectedAgencyDepartment='';
          result='';
          rate = '';
+         name= '';
              agencyVisible =false;
              roleVisible =false;         
              hoursVisible =false;
              resultVisible =false;
              addVisible=false;
+            
      }
      
       /* Method used to clear form resource
          * @Void
       */ 
       public void clear1(){
+         initialiseOptions1();
+         prcent= 0;
+         selectedCountry1 = '';
+         selectedCountryname1='';
+         selectedRoleTitle1='';
+         selectedAgencyDepartment1='';
+         result1='';
+         rate1 = '';
+         name1= '';
              agencyVisible1 =false;
              roleVisible1 =false;         
              prcentVisible1 =false;
@@ -392,15 +407,7 @@ private void fillData(Marketing_Basics__c   eeditItem){
              
              }else newItems.add(x);// cest un ajout
              
-           
-        // newItem=new Marketing_Basics__c ();
-         
-         
-       //  clear();
-        // system.debug('============toto'+newItems);
-        
-        
-          
+        clear();
           
      }
      
@@ -436,9 +443,7 @@ private void fillData(Marketing_Basics__c   eeditItem){
              }else newItems.add(newItem1);
         
          newItem=new Marketing_Basics__c ();
-         system.debug('============toto'+newItems);
-         
-         
+        clear1(); 
         
         
           
