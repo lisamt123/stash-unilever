@@ -274,6 +274,14 @@
         <members>AjaxLoaderGif</members>
         <members>Header_back</members>
         <members>JQueryBlockUI</members>
+        <members>OblixUIUXVF07ProjViewCss</members>
+        <members>Oblix_HightChartJS</members>
+        <members>Oblix_SOWDetailsCSS</members>
+        <members>Oblix_SOWDetailsJS</members>
+        <members>Oblix_SowDeepCloneVF01JS</members>
+        <members>Oblix_SowDetailHomeCss</members>
+        <members>Oblix_editProjectCSS</members>
+        <members>Oblix_editProjectJS</members>
         <members>Oblix_uiTabsArrow</members>
         <members>Unilever_logo</members>
         <members>assetUI</members>
@@ -281,8 +289,8 @@
         <members>bootstrapMultiselectcss</members>
         <members>bootstrapMultiselectjs</members>
         <members>ganttChart</members>
+        <members>jqueryUiCss</members>
         <members>jquerydataTablescolumnFilter</members>
-        <members>multiselect</members>
         <members>select2</members>
         <name>StaticResource</name>
     </types>

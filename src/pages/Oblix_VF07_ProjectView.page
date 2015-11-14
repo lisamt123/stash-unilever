@@ -891,11 +891,11 @@
             btt.find('td > div').slideToggle('slow');
             $(this).toggleClass('show');
         });
-     
-        
    });
    
-    function Popup(){
+   </script>
+   <script>
+   function Popup(){
              $("#dialog").dialog({
              width: 600,
              modal:true,
