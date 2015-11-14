@@ -509,6 +509,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Qatar</fullName>
                 <default>false</default>
             </picklistValues>
@@ -1291,6 +1295,10 @@
             </values>
             <values>
                 <fullName>Portugal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
                 <default>false</default>
             </values>
             <values>

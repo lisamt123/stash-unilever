@@ -160,7 +160,7 @@
     <fields>
         <fullName>Brand__c</fullName>
         <externalId>false</externalId>
-        <label>Brand</label>
+        <label>Contact us Brand</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -316,8 +316,17 @@
     </fields>
     <fields>
         <fullName>Case_Brand__c</fullName>
+        <description>CEC: The case brand field will pull the brand from the product field if it is populated if not it will check the cec product brand field and the case market mapping brand field, it also checks the brand field on the case.</description>
         <externalId>false</externalId>
-        <formula>IF(CEC_Product__c != null,  CEC_Product__r.Brand__c,  Case_Brand_Mapping__r.Brand__c)</formula>
+        <formula>IF(CEC_Product__c != null, 
+CEC_Product__r.Brand__c 
+, 
+IF(Case_Brand_Mapping__r.Brand__c!= null, 
+Case_Brand_Mapping__r.Brand__c 
+, 
+Brand__c 
+) 
+)</formula>
         <label>Case Brand</label>
         <required>false</required>
         <trackHistory>false</trackHistory>

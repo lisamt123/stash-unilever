@@ -21,7 +21,7 @@
         <name>Brand_Reporting__c</name>
     </fields>
     <fields>
-        <label><!-- Brand --></label>
+        <label><!-- Contact us Brand --></label>
         <name>Brand__c</name>
     </fields>
     <fields>
