@@ -38,7 +38,6 @@ public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
         financialYear = ApexPages.currentPage().getParameters().get('fyear');
         //Parent Records for SOW Marketing
          canClone = false;
-         
          Id adminProfileId = [Select Id, Name from Profile where Name ='System Administrator'].Id;
         
         if(Userinfo.getProfileId() == adminProfileId){

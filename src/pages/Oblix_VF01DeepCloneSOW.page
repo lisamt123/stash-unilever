@@ -9,74 +9,21 @@
     <link rel="stylesheet" href="/resources/demos/style.css"/>
     <script language="JavaScript1.2" src="/js/functions.js"></script>
       <script src="{!URLFOR($Resource.JQueryBlockUI)}" ></script>
-    <script>
-        function dialogMessage(){
-            $(function() {
-                            $( "#dialog-message" ).dialog({
-                              modal: true,
-                              buttons: {
-                                Ok: function() {
-                                  $( this ).dialog( "close" );
-                                  blockme();
-                                  window.location.href = '/{!sowRecordID}';
-                                }
-                              }
-                            });
-            });
-        }
-    </script>
-    <script>
-        function dialogConfirm(){
-            $(function() {
-                $( "#dialog-confirm" ).dialog({
-                                  modal: true,
-                                  buttons: {
-                                    "Copy Items": function() {
-                                      $( this ).dialog( "close" );
-                                       blockme();
-                                       CloneSOWParent();
-                                    },
-                                    Cancel: function() {
-                                      $( this ).dialog( "close" );
-                                      window.location.href = '/{!sowRecordID}';
-                                    }
-                                  }
-                                });
-            });
-        }
-    
-    </script>
-    <script>
-        function dialogNonCopy(){
-            $(function() {
-                $( "#dialog-message-NoClone" ).dialog({
-                    modal: true,
-                    buttons: {
-                    Ok: function() {
-                        $( this ).dialog( "close" );
-                        blockme();
-                        window.location.href = '/{!sowRecordID}';
-                    }
-                    }
-                });
-            });
-        }
-        
-    </script>
+     <script src="{!URLFOR($Resource.Oblix_SowDeepCloneVF01JS)}" ></script>
     <script>
         $(window).load(function() {
              //First Check is to verify if there are any copies left to be created
              if({!canClone} == true ){
                     if({!isEnaughCopies} == true){ 
                         $.unblockUI();
-                        dialogMessage();
+                        dialogMessage('{!sowRecordID}');
                      }else{
                         $.unblockUI();
-                        dialogConfirm();
+                        dialogConfirm('{!sowRecordID}');
                      }
              }else{
                 $.unblockUI();
-                dialogNonCopy();        
+                dialogNonCopy('{!sowRecordID}');        
              }
              
         });
