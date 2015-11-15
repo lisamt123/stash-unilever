@@ -1,0 +1,92 @@
+<!--  
+*************************************************************************
+*@Description:This component is used to display Gate CMI responses in Gate Document Page
+*@Author: Cognizant
+*@Created Date: 14/01/2015
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
+<apex:component controller="IPM_CMIGateSectionPDFController" allowDML="false" >
+<apex:attribute name="secId" assignTo="{!projDocSecId}" type="Id" description="Contains CMI Section Id"/>
+<apex:attribute name="projId" assignTo="{!projectId}" type="Id" description="Contains Project Id"/>
+<apex:attribute name="gate" assignTo="{!gateType}" type="String" description="Contains Gate Type"/>
+<div class="row mainCmiTable">
+    <div class="table-responsive gateCMITable charterCmiTable">                         
+        <table with="100%" border="0" cellpadding="0" cellspacing="0" class="table table-bordered ipmTable cmiGateSectionTable">
+            <thead>
+                <tr class=" ">
+                    <th class="  " scope="col">
+                        {!$Label.IPM_ELEMENT}
+                    </th>
+                    <th class="   " scope="col"> 
+                        {!$Label.IPM_TEST}
+                    </th>
+                    <th class="cmiKpiHead" scope="col">
+                        {!$Label.IPM_KPI}
+                    </th>
+                    <th>    
+                        <table class="gateCmiInnerTable">
+                            <tr>
+                                <th class="cmiCountryHead" scope="col">{!$Label.IPM_COUNTRY}</th>
+                                <th class="cmiInputHead"> {!$Label.IPM_INPUT}</th>
+                                <th class="cmiTimingHead">{!$Label.IPM_RESULTS} {!$Label.IPM_TIMINGS}</th>
+                                <th class="cmiResultsHead"><apex:outputText value="{!$Label.IPM_RESULTS}"></apex:outputText>
+                                </th>
+                                <th class="cmiOverallHead"><div class="cmiNopadding"><apex:outputText value="{!$Label.IPM_RESULTS}"></apex:outputText></div><span class="ovrAllHeadText"> {!$Label.IPM_OVERALL}</span><div class="cmiNopadding">{!$Label.IPM_COLOR_CODING}</div>
+                                </th>
+                                <th class="cmiCommentsHead">{!$Label.IPM_COMMENTS}</th> 
+                            </tr>
+                        </table>
+                    </th>
+                </tr> 
+            </thead>
+            <tr class="fintleblubg">
+                <td colspan="10" class="textleft gateCmiTitle">    
+                    <span class="cmiColumnTitle">{!gateTypeCharter}</span>
+                </td>
+            </tr>
+            <tbody>
+                <apex:repeat value="{!gateCMICharterList}" var="cmi">
+                    <tr>
+                        <td rowspan="1" class="rSpan" >{!cmi.Element__c}</td>  
+                        <td rowspan="1" class="rSpan">{!cmi.Test__c}</td>
+                        <td rowspan="1" class="rSpan">{!cmi.KPI__c}</td>
+                        <td class="cmitdNopadding">
+                            <table class="gateCmiInnerTable">
+                                <tbody>
+                                     <tr>
+                                         <td>
+                                             <apex:repeat value="{!countryNames}" var="key">
+                                                 <tr>
+                                                     <td rowspan="{!inputCount[cmi.Test__c]+1}" class="cmiCountryHead"><apex:outputText value="{!displayCon[key].IPM_CMI_Country__c}" /></td>
+                                                     <apex:variable var="i" value="{!1}"/> 
+                                                     <apex:repeat value="{!secConCharterList}" var="con">
+                                                        <tr>
+                                                            <td class="cmiInputHead" rowspan="1"><apex:outputText Value="{!con.IPM_CMI_Input__c}" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,displayCon[key].IPM_CMI_Country__c=con.IPM_CMI_Country__c)}"/></td>
+                                                            <td class="cmiTimingHead" rowspan="{!inputCount[cmi.Test__c]}"><apex:outputField value="{!displayCon[key].IPM_CMI_Result_Timing__c}"  rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,displayCon[key].IPM_CMI_Country__c=con.IPM_CMI_Country__c,i=1)}"/></td>   
+                                                            
+                                                            <td class="cmiResfirst">
+                                                                <span class="pull-left"><apex:outputText value="{!con.IPM_CMI_Result__c}" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,displayCon[key].IPM_CMI_Country__c=con.IPM_CMI_Country__c)}"/></span>                                       
+                                                            </td>
+                                                            <td class="cmiRessecond">
+                                                                <span class="cmiCodingColumn {!If(con.IPM_CMI_Color_Score_Value__c!=null,'','cmiColorBox')}  {!con.IPM_CMI_Outcome_Color__c}"><apex:outputText value="{!con.IPM_CMI_Color_Score_Value__c}" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,displayCon[key].IPM_CMI_Country__c=con.IPM_CMI_Country__c)}"/></span>
+                                                            </td>
+                                                            <td class="cmiOverallHead " rowspan="{!inputCount[cmi.Test__c]}"><div class="bgcmiContainer"><span class="pull-left {!displayCon[key].IPM_CMI_Overall_Colour__c}"><apex:outputText value="{!displayCon[key].IPM_CMI_Overall_Score__c}" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,displayCon[key].IPM_CMI_Country__c=con.IPM_CMI_Country__c,i=1)}"/></span></div></td>
+                                                            <td class="cmiCommentsHead"><apex:outputText value="{!con.IPM_CMI_Comments__c}" rendered="{!AND(displayCon[key]!=null,displayCon[key].IPM_Gate_CMI__c=cmi.Id,displayCon[key].IPM_CMI_Country__c=con.IPM_CMI_Country__c)}"/> </td>
+                                                        </tr>  
+                                                        <apex:variable var="i" value="{!i+1}"/>    
+                                                    </apex:repeat>
+                                                </tr> 
+                                            </apex:repeat>
+                                        </td>        
+                                    </tr> 
+                                </tbody>
+                            </table>                                                             
+                        </td>                                  
+                    </tr>      
+                </apex:repeat>
+            </tbody> 
+        </table>              
+    </div>
+</div>
+</apex:component>

@@ -1,0 +1,305 @@
+<!-- 
+***********************************************
+*@Description: This page is used <…..>
+*@Author: Cognizant
+*@Created Date: 17/04/2015 
+*@Copyright © 2015  Unilever 
+************************************************
+-->
+
+
+<apex:page controller="IPM_ProjectsDownloadController_Report" readOnly="true" contenttype="application/x-excel#123.xls" action="{!reportspage}">
+        
+            <!--<apex:dataTable value="{!lstProjectWrap}" var="w">-->
+            <apex:pageblock >
+            <apex:pageblocktable value="{!lstProjectWrap}" var="w">
+                
+                <apex:column headervalue="Project Id">
+                    <apex:outputLabel value="{!w.proj.Project_External_ID__c}"/>
+                </apex:column>
+                <apex:column value="{!w.proj.name}" headervalue="Project Name"/>
+                <apex:column value="{!w.proj.IPM_Parent_Project__c}" headervalue="Parent Project"/>
+                <apex:column value="{!w.proj.IPM_Project_Leader__c}" headervalue="Project Leader"/>
+                <apex:column value="{!w.proj.Deputy_Project_Leader__c}" headervalue="Deputy Project Leader"/>
+                <apex:column value="{!w.proj.IPM_Finance_Member__c}" headervalue="Finance Member"/>
+                <apex:column value="{!w.proj.IPMProject_Span__c}" headervalue="Project Span"/>
+                <apex:column value="{!w.proj.IPMProject_Type__c}" headervalue="Project Type"/>
+                <apex:column value="{!w.proj.IPM_Company_Card__c}" headervalue="Company"/>
+                <apex:column value="{!w.geography}" headervalue="Geography"/>
+                <apex:column value="{!w.proj.IPM_No_of_Country_Rollouts__c}" headervalue="Number of Country Rollouts"/>
+                <apex:column value="{!w.proj.IPM_Strategic_Intent__c}" headervalue="Strategic Intent"/>
+                <apex:column value="{!w.proj.IPM_Brand_Positioning__c}" headervalue="Brand Positioning"/>
+                <apex:column value="{!w.proj.IPM_Threshold_Value__c}" headervalue="Exempt From Threshold"/>
+               <apex:column value="{!w.proj.IPMPlatform__c}" headervalue="Platform"/>
+                
+                
+                
+                <apex:column value="{!w.masterCluster}" headervalue="Market Cluster"/>
+                <apex:column value="{!w.proj.IPM_Rollout_Status__c}" headervalue="Status"/>
+                
+                <apex:column value="{!w.proj.IPM_Category_Text__c}" headervalue="Category"/>
+                <apex:column value="{!w.proj.IPM_Answer_of_Q1__c}" headervalue="Market Place Activity"/>
+                <apex:column value="{!w.proj.IPM_Answer_of_Q2__c}" headervalue="Consumer Value Perception"/>
+                <apex:column value="{!w.proj.IPM_Answer_of_Q3__c}" headervalue="Enabling Technology"/>
+                <apex:column value="{!w.proj.IPM_Project_Description__c}" headervalue="Project Description"/>
+                <apex:column headervalue="Project Start Date">
+                    <apex:outputText value="{0, date,dd-MMM-yyyy}">  
+                        <apex:param value="{!w.proj.createdDate}" /> 
+                    </apex:outputText>
+                </apex:column>
+                
+                <apex:column headervalue="Expected Charter Approval">
+                     <apex:outputText value="{0, date,dd-MMM-yyyy}">
+                        <apex:param value="{!w.charterDueDate}" /> 
+                    </apex:outputText>
+                </apex:column>
+                <apex:column headervalue="Charter Proposed">
+                    <!--<apex:outputText value="{0, date, dd MMMM',' YYYY}">-->
+                     <apex:outputText value="{0, date,dd-MMM-yyyy}">
+                        <apex:param value="{!w.charterProposedDate}" /> 
+                    </apex:outputText>
+                </apex:column>
+                <apex:column headervalue="Charter Approved">
+                    <apex:outputText value="{0, date,dd-MMM-yyyy}">  
+                        <apex:param value="{!w.chartercompletedDate}" /> 
+                    </apex:outputText>
+                </apex:column>
+                
+                <apex:column headervalue="Expected Contract Approval">
+                     <apex:outputText value="{0, date,dd-MMM-yyyy}">
+                        <apex:param value="{!w.contractDueDate}" /> 
+                    </apex:outputText>
+                </apex:column>
+                <apex:column headervalue="Contract Proposed">
+                     <apex:outputText value="{0, date,dd-MMM-yyyy}">
+                        <apex:param value="{!w.contractProposedDate}" /> 
+                    </apex:outputText>
+                </apex:column>
+                <apex:column headervalue="Contract Approved">
+                    <apex:outputText value="{0, date,dd-MMM-yyyy}"> 
+                        <apex:param value="{!w.contractcompletedDate}" /> 
+                    </apex:outputText>
+                </apex:column>
+                
+                <apex:column headervalue="Expected Market Ready Approval">
+                    <apex:outputText value="{0, date,dd-MMM-yyyy}">  
+                        <apex:param value="{!w.readyDueDate}" /> 
+                    </apex:outputText>
+                </apex:column>
+                <apex:column headervalue="Market Ready Proposed">
+                   <apex:outputText value="{0, date,dd-MMM-yyyy}">
+                        <apex:param value="{!w.readyProposedDate}" /> 
+                    </apex:outputText>
+                </apex:column>
+                <apex:column headervalue="Market Ready Approved">
+                     <apex:outputText value="{0, date,dd-MMM-yyyy}">
+                        <apex:param value="{!w.readycompletedDate}" /> 
+                    </apex:outputText>
+                </apex:column>
+                
+                <apex:column headervalue="Expected Market Deployment Approval">
+                    <apex:outputText value="{0, date,dd-MMM-yyyy}">  
+                        <apex:param value="{!w.deployDueDate}" /> 
+                    </apex:outputText>
+                </apex:column>
+                <apex:column headervalue=" Market Deployment Proposed">
+                    <apex:outputText value="{0, date,dd-MMM-yyyy}"> 
+                        <apex:param value="{!w.deployProposedDate}" /> 
+                    </apex:outputText>
+                </apex:column>
+                <apex:column headervalue=" Market Deployment Approved">
+                     <apex:outputText value="{0, date,dd-MMM-yyyy}"> 
+                        <apex:param value="{!w.deploycompletedDate}" /> 
+                    </apex:outputText>
+                </apex:column>
+                
+                <apex:column value="{!w.proj.IPM_Phase__c}" headerValue="Phase"/>
+                
+               <!-- <apex:column headerValue="Target Launch Year (BD)">
+                    <apex:outputText value="{!w.proj.IPM_Target_Launch_Year__c}"/>
+                </apex:column>
+                <apex:column headerValue="Target Launch Month (BD)">
+                    <apex:outputText value="{!w.proj.IPM_Target_Launch_Month__c}"/>
+                </apex:column> -->
+                
+                <apex:column headerValue="Target Launch Year (BB)"> 
+                   <apex:outputText value="{!If(w.proj.IPMProject_Span__c == 'Local',w.proj.IPM_Target_Launch_Year__c,'')}"/>
+               </apex:column>
+               <apex:column headerValue="Target Launch Month (BB)">
+                   <apex:outputText value="{!If(w.proj.IPMProject_Span__c == 'Local',w.proj.IPM_Target_Launch_Month__c,'')}"/>
+               </apex:column>
+               
+               <apex:column headerValue="Business Impact">
+                   <apex:outputText value="{!w.BusinessImpact}"/>
+               </apex:column>
+               
+               <apex:column headerValue="Threshold">
+                   <apex:outputText value="{!w.threshold}"/>
+               </apex:column>
+               
+               <apex:column headerValue="Auto-Aligned Fin & TLD">
+                   <apex:outputText value="{!w.misaligned}"/>
+               </apex:column>
+               
+               
+               
+                <apex:column headerValue="Target Launch Year (BD)">
+                    <!--<apex:outputText value="{!w.proj.IPM_Target_Launch_Year__c}"/>-->
+                    <apex:outputText value="{!w.shipToYear}"/>
+                </apex:column>
+                <apex:column headerValue="Target Launch Month (BD)">
+                    <!--<apex:outputText value="{!w.proj.IPM_Target_Launch_Month__c}"/>-->
+                    <apex:outputText value="{!w.shipToMonth}"/>
+                </apex:column>
+                
+                 <apex:column headerValue="Actual Target Launch Year">
+                    <!--<apex:outputText value="{!w.shipToYear}"/>-->
+                    <apex:outputText value="{!If(w.proj.IPMProject_Span__c == 'Local',w.proj.IPM_Actual_Launch_Year__c,'')}"/>
+                </apex:column>
+                <apex:column headerValue="Actual Target Launch Month">
+                    <apex:outputText value="{!If(w.proj.IPMProject_Span__c == 'Local',w.proj.IPM_Actual_Launch_Month__c,'')}"/>
+                </apex:column>
+                <apex:column headervalue=" Actual Launch Year">
+                    
+                       <apex:outputText value="{!If(w.proj.IPMProject_Span__c == 'Local',w.proj.IPM_Actual_Launch_Date__c,'')}"/>
+                    
+                </apex:column>
+                
+                
+                <apex:column headerValue="1st Full Year Gross TO (BD)">
+                    <apex:outputText value="{!w.turnover}"/>
+                </apex:column>
+                <apex:column headerValue="1st Full Year iTO (BD)">
+                    <apex:outputText value="{!w.turnover_ito}"/>
+                </apex:column>
+                <apex:column headerValue="1st Full Year iGP (BD)">
+                    <apex:outputText value="{!w.turnover_igp}"/>
+                </apex:column>
+                <apex:column headerValue="Gross TO 2012(BD)">
+                    <apex:outputText value="{!w.turnover_2012}"/>
+                </apex:column>
+                <apex:column headerValue="Gross TO 2013(BD)">
+                    <apex:outputText value="{!w.turnover_2013}"/>
+                </apex:column>
+                <apex:column headerValue="Gross TO 2014(BD)">
+                    <apex:outputText value="{!w.turnover_2014}"/>
+                </apex:column>
+                <apex:column headerValue="Gross TO 2015(BD)">
+                    <apex:outputText value="{!w.turnover_2015}"/>
+                </apex:column>
+                <apex:column headerValue="Gross TO 2016(BD)">
+                    <apex:outputText value="{!w.turnover_2016}"/>
+                </apex:column>
+                <apex:column headerValue="Gross TO 2017(BD)">
+                    <apex:outputText value="{!w.turnover_2017}"/>
+                </apex:column>
+                <apex:column headerValue="Gross TO 2018(BD)">
+                    <apex:outputText value="{!w.turnover_2018}"/>
+                </apex:column>
+                <apex:column headerValue="Gross TO 2019(BD)">
+                    <apex:outputText value="{!w.turnover_2019}"/>
+                </apex:column>
+                <apex:column headerValue="Gross TO 2020(BD)">
+                    <apex:outputText value="{!w.turnover_2020}"/>
+                </apex:column>
+                <apex:column headerValue="iTO 2012(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2012}"/>
+                </apex:column>
+                <apex:column headerValue="iTO 2013(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2013}"/>
+                </apex:column>
+                <apex:column headerValue="iTO 2014(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2014}"/>
+                </apex:column>
+                <apex:column headerValue="iTO 2015(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2015}"/>
+                </apex:column>
+                <apex:column headerValue="iTO 2016(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2016}"/>
+                </apex:column>
+                <apex:column headerValue="iTO 2017(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2017}"/>
+                </apex:column>
+                <apex:column headerValue="iTO 2018(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2018}"/>
+                </apex:column>
+                <apex:column headerValue="iTO 2019(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2019}"/>
+                </apex:column>
+                <apex:column headerValue="iTO 2020(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2020}"/>
+                </apex:column>
+                <!--<apex:column headerValue="iTO 2012(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2012}"/>
+                </apex:column>
+                <apex:column headerValue="iTO 2013(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2013}"/>
+                </apex:column>
+                <apex:column headerValue="iTO 2014(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2014}"/>
+                </apex:column>
+                <apex:column headerValue="iTO 2015(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2015}"/>
+                </apex:column>
+                <apex:column headerValue="iTO 2016(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2016}"/>
+                </apex:column>
+                <apex:column headerValue="iTO 2017(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2017}"/>
+                </apex:column>
+                <apex:column headerValue="iTO 2018(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2018}"/>
+                </apex:column>
+                <apex:column headerValue="iTO 2019(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2019}"/>
+                </apex:column>
+                <apex:column headerValue="iTO 2020(BD) ">
+                    <apex:outputText value="{!w.turnover_ITO2020}"/>
+                </apex:column>-->
+                 <apex:column headerValue="iGP 2012(BD) ">
+                    <apex:outputText value="{!w.turnover_IGO2012}"/>
+                </apex:column>
+                 <apex:column headerValue="iGP 2013(BD) ">
+                  <apex:outputText value="{!w.turnover_IGO2013}"/>
+                </apex:column>
+                
+                 <apex:column headerValue="iGP 2014(BD) ">
+                    <apex:outputText value="{!w.turnover_IGO2014}"/>
+                </apex:column>
+                 <apex:column headerValue="iGP 2015(BD) ">
+                    <apex:outputText value="{!w.turnover_IGO2015}"/>
+                </apex:column>
+                <apex:column headerValue="iGP 2016(BD) ">
+                    <apex:outputText value="{!w.turnover_IGO2016}"/>
+                </apex:column>
+                 <apex:column headerValue="iGP 2017(BD) ">
+                  <apex:outputText value="{!w.turnover_IGO2017}"/>
+                </apex:column>
+                
+                 <apex:column headerValue="iGP 2018(BD) ">
+                    <apex:outputText value="{!w.turnover_IGO2018}"/>
+                </apex:column>
+                 <apex:column headerValue="iGP 2019(BD) ">
+                    <apex:outputText value="{!w.turnover_IGO2019}"/>
+                </apex:column>
+                <apex:column headerValue="iGP 2020(BD) ">
+                    <apex:outputText value="{!w.turnover_IGO2020}"/>
+                </apex:column>
+               <!-- <apex:column headerValue="iA&P 2012(BD) ">
+                    <apex:outputText value="{!w.turnover_ap2012}"/>
+                </apex:column>-->
+                
+                 <apex:column headerValue="Y3 ITO(BD) ">
+                    <apex:outputText value="{!w.y3_ITO}"/>
+                </apex:column>
+                 <apex:column headerValue="Y3 GTO(BD) ">
+                    <apex:outputText value="{!w.y3_GTO }"/>
+                </apex:column>
+               
+                
+           <!-- </apex:dataTable>-->
+           </apex:pageblocktable>
+        </apex:pageblock>
+        
+
+</apex:page>

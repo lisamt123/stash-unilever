@@ -3,8 +3,8 @@
 * @date 13/04/2015
 * @description Generic Implementation of Test Data Creation factory
 */
-@isTest
-public class IPM_TestFactory {
+
+public without sharing class IPM_TestFactory {
     
     public static final String EMPTY_STRING = ''; 
     public static Integer REC_DML_COUNT = 5;
@@ -65,11 +65,13 @@ public class IPM_TestFactory {
             if(fieldAPIName !=null && !String.isEmpty(fieldAPIName) )
             {
                 lowerCasefieldName = fieldAPIName.toLowerCase();
-                if(lowerCasefieldName.compareTo(fieldAPIName) != 0)
+                List<Object> incomingValueList = fieldToValueMap.get(fieldAPIName);
+                if(!fieldToValueMap.containsKey(lowerCasefieldName) )
                 {
-                    fieldToValueMap.put(lowerCasefieldName,fieldToValueMap.get(fieldAPIName));
-                    fieldToValueMap.remove(fieldAPIName);
+                	fieldToValueMap.put(lowerCasefieldName,incomingValueList);
+                	fieldToValueMap.remove(fieldAPIName);
                 }
+                
             }
         }
     } 
@@ -193,7 +195,7 @@ public class IPM_TestFactory {
                         {
                             if( providedFieldValueList.get(counter-1) !=null)
                             {
-                                providedFieldValue = providedFieldValueList.get(counter-1);    
+                                providedFieldValue = providedFieldValueList.get(counter-1);  
                             }
                         }
                         catch(ListException ex)
@@ -220,6 +222,7 @@ public class IPM_TestFactory {
         
         return newSObjectList;
     }
+    
     
     
      /**************************************************************************************
@@ -385,15 +388,14 @@ public class IPM_TestFactory {
     
     private static void setFieldValue(SObject obj,String fieldApiName,Schema.DescribeFieldResult fieldDescObj,Object defaultValue,Object providedFieldValue) 
     {
-                       
         String fieldLabel = fieldDescObj.getLabel().replace(' ',EMPTY_STRING);
         Object finalValue = null;
         
-        if (!isExcludedField(fieldDescObj) && !isExcludedField(obj, fieldDescObj) && !fieldDescObj.isAutoNumber() && !fieldDescObj.isCalculated() && fieldDescObj.isUpdateable())
+        if (!isExcludedField(fieldDescObj) && !isExcludedField(obj, fieldDescObj) && !fieldDescObj.isAutoNumber() && !fieldDescObj.isCalculated() && (fieldDescObj.isCreateable() || fieldDescObj.isUpdateable()))
         {
             if(providedFieldValue != null)
             {
-                finalValue = providedFieldValue;
+            	finalValue = providedFieldValue;
             }
             else if(fieldDescObj.getType() != Schema.DisplayType.Reference)
             {
@@ -455,7 +457,14 @@ public class IPM_TestFactory {
             } 
             else if (fieldDescObj.getType() == Schema.DisplayType.MultiPicklist) 
             {
-                obj.put(fieldApiName, getDefaultPicklistValue(obj, fieldDescObj));
+            	if(finalValue != null)
+            	{
+                	obj.put(fieldApiName, String.valueOf(finalValue));    	
+            	}
+            	else
+            	{
+            		obj.put(fieldApiName, getDefaultPicklistValue(obj, fieldDescObj));
+            	}
             } 
             else if (fieldDescObj.getType() == Schema.DisplayType.Percent) 
             {
@@ -467,7 +476,14 @@ public class IPM_TestFactory {
             } 
             else if (fieldDescObj.getType() == Schema.DisplayType.Picklist) 
             {
-                obj.put(fieldApiName, getDefaultPicklistValue(obj, fieldDescObj));
+            	if(finalValue != null)
+            	{
+                	obj.put(fieldApiName, String.valueOf(finalValue));    	
+            	}
+            	else
+            	{
+            		obj.put(fieldApiName, getDefaultPicklistValue(obj, fieldDescObj)); 
+            	}
             } 
             else if (fieldDescObj.getName() == 'CommunityNickname' && fieldDescObj.getType() == Schema.DisplayType.String) 
             { 
@@ -484,11 +500,9 @@ public class IPM_TestFactory {
             else if (fieldDescObj.getType() == Schema.DisplayType.Reference) 
             {
                 String referenceObjectType = fieldDescObj.getReferenceTo()[0].getDescribe().getName();
-                
-                
+
                 if (fieldDescObj.getRelationshipName() == 'RecordType') 
-                {
-                    
+                {                   
                     setRecordType(obj,finalValue);
                 }
                 else if (referenceObjectType == 'Profile') 
@@ -516,10 +530,6 @@ public class IPM_TestFactory {
             {
                 obj.put(fieldApiName, 'http://test' + (String)finalValue + '.com'); 
             } 
-            else 
-            {
-                
-            }
         } 
     }
     

@@ -1,0 +1,187 @@
+<!--  
+    *************************************************************************************************************************************************************
+    *@Description:This page is for regional project leader where he can see the countries and local rollouts related to the regional rollout
+    *@Author: Cognizant
+    *@Created Date: 05/03/2015 
+    *@Copyright © 2015  Unilever  
+    *************************************************************************************************************************************************************
+    -->
+    <apex:page controller="IPM_RolloutPlansAddController" sidebar="false" standardStylesheets="false" extensions="IPM_GetHelpDoc">
+        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_DropDown.css')}"/> 
+        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_MilestonesAndTasks.css')}"/>    
+        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_RolloutPlansRegional.css')}"/>
+        <apex:composition template="IPM_TemplateRevamp">
+            <apex:define name="body">
+                <apex:form id="theForm">
+                    <apex:pageMessages />
+                    <div class="gradientbg">                        
+                        <c:IPM_ProjectDetails project="{!project}" activeItem="rolloutPlan"/>                        
+                    </div>
+                    <apex:outputPanel rendered="{!isError}">
+                        <div class="finGreyBG">
+                            <apex:outputText value="{!errorMessage}" />
+                        </div>
+                    </apex:outputPanel>
+                    
+                    <apex:outputPanel layout="block" rendered="{!NOT(isError)}">
+                        <div class="ipmContent">
+                            <div class="row finwrapper">
+                                <div class="col-sm-12">
+                                    <div class="panel-group pageHeadToolbar clearfix">
+                                        <div class="row">
+                                        
+                                        <!-- To place the help symbol in the top right hand corner of page -->
+                                        <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
+                                            <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
+                                        </apex:outputPanel> 
+                                        
+                                            <div class="col-sm-5 pull-left">
+                                                <h3 class="pageTitle">{!$Label.IPM_ADD_ROLLOUT}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="searchBox"><label class="greytext"></label> <apex:inputtext value="{!searchCountry}" html-data-placeholder="{!$Label.Search_MCO_Country_Name}" styleclass="placeholder" /><img alt="Search" class="srchImage" src="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}" onclick="callsearch();"/></div>
+                            </div>
+                            <apex:actionFunction action="{!searchRolloutCountry}" name="callsearch"/>
+                            <apex:outputText value="{!$Label.IPM_Rollout_Search_Message}" rendered="{!isNoResult}" styleclass="finGreyBG"/>
+                            <apex:outputPanel rendered="{!!isNoResult}">
+                                <div class="row">
+                                    
+                                    <div class="col-sm-12 mb20">            
+                                        <apex:outputPanel id="mcoPanel">
+                                            <div class="col-sm-3 mcobg">
+                                                <div class="subheader">{!$Label.IPM_MCO}</div>
+                                                <ul class="mcoFilter">
+                                                    <apex:repeat value="{!lstMCOWrappers}" var="mco">
+                                                        <li class="{!IF(mco.code == selectedMCO, 'isSelected', '')}">
+                                                            <a class="noDecoration changeMCOTab" id="{!mco.code}">
+                                                                {!mco.name}
+                                                                <span><i class="fa fa-chevron-right"></i></span>
+                                                                <apex:param name="p1" assignTo="{!selectedMCO}" value="{!mco.code}"/>
+                                                            </a>
+                                                        </li>
+                                                    </apex:repeat>
+                                                </ul>
+                                            </div>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel id="countryPanel">
+                                            <div class="col-sm-9 countrybg pl40 pr40">
+                                                <div class="subheader">{!$Label.IPM_COUNTRY}</div>
+                                                <div class="projectRadioButton">
+                                                    <table border="0" cellpadding="0" cellspacing="0" class="table regionaltable">    
+                                                        <thead>
+                                                            <tr>
+                                                                <th width="20%">
+                                                                    <div></div>
+                                                                </th>
+                                                                <th width="20%">
+                                                                    <div class="noborder">{!$Label.IPM_Rollout_AS} <div>{!$Label.IPM_PART_MCO}</div></div>
+                                                                </th>
+                                                                <th width="20%">
+                                                                    <div>{!$Label.IPM_Rollout_AS}<div>{!$Label.IPM_SEPERATE_COUNTRY}</div></div>
+                                                                </th>
+                                                                <th width="20%">
+                                                                    <div>{!$Label.IPM_NO_ROLLOUT}</div>
+                                                                </th>            
+                                                            </tr>
+                                                            <apex:repeat value="{!lstCountryWrappers}" var="country">
+                                                                <tr>
+                                                                    <td width="20%">
+                                                                        <div class="pl10 ml10">{!country.name}</div>
+                                                                    </td> 
+                                                                    
+                                                                    <td width="20%">
+                                                                        <div class="ml25">
+                                                                            <apex:outputPanel rendered="{!isEditable}">
+                                                                                <input type="radio" name="grp1{!country.code}" id="grp1{!country.code}" value="{!country.code}" class="{!IF((country.selected == true && country.rolloutStatus == 'With MCO'),'checked','')} {!IF(country.mcoDisabled == true,'disabled','')}"/>
+                                                                                <label for="grp1{!country.code}" > </label>
+                                                                            </apex:outputPanel>
+                                                                           <!-- <apex:outputPanel rendered="{!NOT(isEditable)}">
+                                                                                <input type="radio" disabled="true" name="grp1{!country.code}" id="grp1{!country.code}" value="{!country.code}" class="{!IF((country.selected == true && country.rolloutStatus == 'With MCO'),'checked','')}" />
+                                                                                <label for="grp1{!country.code}" > </label>
+                                                                            </apex:outputPanel>-->
+                                                                        </div>
+                                                                    </td>
+                                                                    <td width="20%">
+                                                                        <div class="ml25">
+                                                                            <apex:outputPanel rendered="{!isEditable}">
+                                                                                <input type="radio" name="grp1{!country.code}" id="grp2{!country.code}" value="{!country.code}" class="{!IF((country.selected == true && country.rolloutStatus == 'Seperate'),'checked','')} {!IF(country.countryDisabled == true,'disabled','')}"/>
+                                                                                <label for="grp2{!country.code}"> </label>
+                                                                            </apex:outputPanel>
+                                                                            <!-- <apex:outputPanel rendered="{!!isEditable}">
+                                                                                <input type="radio" disabled="true" name="grp1{!country.code}" id="grp2{!country.code}" value="{!country.code}" class="{!IF((country.selected == true && country.rolloutStatus == 'Seperate'),'checked','')}"/>
+                                                                                <label for="grp2{!country.code}"> </label>
+                                                                            </apex:outputPanel> -->
+                                                                        </div>
+                                                                    </td>
+                                                                    <td width="20%">
+                                                                        <div class="ml25">
+                                                                            <apex:outputPanel rendered="{!isEditable}">
+                                                                                <input type="radio" name="grp1{!country.code}" id="grp3{!country.code}" value="{!country.code}" class="{!IF((country.selected == true && country.rolloutStatus == 'No Rollout'),'checked','')} {!IF(country.noRolloutDisabled == true,'disabled','')}"/>
+                                                                                <label for="grp3{!country.code}"> </label>
+                                                                            </apex:outputPanel>
+                                                                           <!-- <apex:outputPanel rendered="{!!isEditable}">
+                                                                                <input type="radio" disabled="true" name="grp1{!country.code}" id="grp3{!country.code}" value="{!country.code}" class="{!IF((country.selected == true && country.rolloutStatus == 'No Rollout'),'checked','')}"/>
+                                                                                <label for="grp3{!country.code}"> </label>
+                                                                            </apex:outputPanel>-->
+                                                                        </div>
+                                                                    </td>     
+                                                                </tr>
+                                                            </apex:repeat>                                                       
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>  
+                                        </apex:outputPanel> 
+                                    </div>
+                                    
+                                    <div class="col-sm-12 text-right">
+                                        <apex:commandLink styleClass="ipmButton mr10" action="{!cancel}" value="{!$Label.IPM_CANCEL}" status="loadingStatus" rendered="{!isEditable}"/>
+                                        
+                                        <apex:commandButton styleClass="ipmButton primary generateRolloutBtn" reRender="none" onclick="invokeRolloutGeneration();"  value="{!$Label.IPM_GENERATE_ROLLOUTS}" rendered="{!isEditable}" />
+                                    </div>
+                                </div> 
+                            </apex:outputPanel>    
+                        </div>
+                    </apex:outputPanel> 
+                    <apex:actionFunction name="changeMCO" action="{!changeMCO}" reRender="mcoPanel,countryPanel,scriptPanel" status="loadingStatus" onComplete="regionalscriptpanel();">
+                        <apex:param name="p1" assignTo="{!regionalMco}" value=""/>
+                        <apex:param name="p2" assignTo="{!regionalUnselectedMco}" value=""/>
+                        <apex:param name="p3" assignTo="{!regionalCountry}" value=""/>
+                        <apex:param name="p4" assignTo="{!regionalUnselectedCountry}" value=""/>
+                        <apex:param name="p5" assignTo="{!regionalNoRoll}" value=""/>
+                        <apex:param name="p6" assignTo="{!regionalUnselectedNoRoll}" value=""/>
+                        <apex:param name="p7" assignTo="{!selectedMCO}" value=""/>
+                    </apex:actionFunction>
+                    <apex:actionFunction name="generateRollouts" action="{!generateRollouts}" reRender="mcoPanel,countryPanel,scriptPanel" status="loadingStatus" oncomplete="setRedirect();" >
+                        <apex:param name="p1" assignTo="{!regionalMco}" value=""/>
+                        <apex:param name="p2" assignTo="{!regionalUnselectedMco}" value=""/>
+                        <apex:param name="p3" assignTo="{!regionalCountry}" value=""/>
+                        <apex:param name="p4" assignTo="{!regionalUnselectedCountry}" value=""/>
+                        <apex:param name="p5" assignTo="{!regionalNoRoll}" value=""/>
+                        <apex:param name="p6" assignTo="{!regionalUnselectedNoRoll}" value=""/>
+                    </apex:actionFunction>                
+                    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript"></script>
+                    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_RolloutPlansRegional.js')}" type="text/javascript"></script>
+                    <apex:outputPanel id="scriptPanel">
+                        <script>
+                            alert('{!isCompleted}');
+                            alert('selectedMCOs-->>'+selectedMCOs);
+                            alert('unselectedMCOs -->>'+unselectedMCOs );
+                            alert('selectedCountries -->>'+selectedCountries );
+                            alert('unselectedCountries -->>'+unselectedCountries );
+                            alert('selectedNoRollouts -->>'+selectedNoRollouts );
+                            alert('unselectedNoRollouts -->>'+unselectedNoRollouts );
+                            
+                            
+                            var IPMregionalApp = {completed: '{!isCompleted}',url:'{!URLFOR($Page.IPM_RolloutPlans)}',proid:'{!projectId}'};
+                        </script>
+                    </apex:outputPanel>
+            </apex:form>
+        </apex:define>
+    </apex:composition>
+</apex:page>
