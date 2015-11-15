@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>IPM template to Notify Auto-Deletion of Bosscard after 6 months of inactivity1</name>
+    <style>none</style>
+    <subject>Auto-Deletion of Bosscard after 6 months no activity</subject>
+    <type>text</type>
+</EmailTemplate>

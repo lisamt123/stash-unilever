@@ -1,0 +1,72 @@
+<!--  
+*************************************************************************************************************************************************************
+*@Description:The page to initiate financial upload/download functionality
+*@Author: Cognizant
+*@Created Date: 28/05/2015 
+*@Copyright © 2015  Unilever  
+*************************************************************************************************************************************************************
+-->
+<apex:page controller="IPM_DownloadTemplateController" sidebar="false" standardStylesheets="false" >
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Modal1.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Header-new.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_downloadtemplate.css')}"/>
+    <apex:composition template="IPM_TemplateRevamp">
+        <apex:define name="body">
+            <apex:form >
+                <div class="gradientbg">
+                    <div class="row">
+                        <c:IPM_ProjectDetails />
+                    </div>
+                </div>
+                
+                <!-- Page Head & Toolbar -->
+                <div class="row finwrapper">
+                    <div class="col-sm-12">
+                        <div class="panel-group pageHeadToolbar clearfix">
+                            <div class="row">
+                                <div class="col-sm-5 pull-left">
+                                    <h2 class="pageTitle">Download Financial Template</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel-group pageContent clearfix">
+                            <apex:outputPanel rendered="{!isError}">
+                                <div class="finGreyBG">
+                                    <apex:outputText value="{!errorMessage}" />
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel id="downloadPanel" rendered="{!NOT(isError)}" >
+                                <apex:actionFunction name="receiveZip" action="{!receiveZipFile}" rerender="downloadPanel" status="myStatus">                               
+                                    <apex:param name="zipdata" assignTo="{!zipFileData}" value="0"/>
+                                </apex:actionFunction>
+                                <apex:outputPanel id="download">
+                                    <div class="finGreyBG">
+                                        <apex:actionStatus startText="The template has been generated and downloaded" id="myStatus">
+                                            <apex:facet name="stop">The template is being generated, please wait</apex:facet>
+                                        </apex:actionStatus>
+                                    </div>
+                                </apex:outputPanel>
+                                <c:IPM_FinancialZipFile name="someZipfile" state="{!fileId}" oncomplete="receiveZip(data);"
+                                                       getzipfileentry="{!$RemoteAction.IPM_DownloadTemplateController.getZipFileEntry}">
+                                    <apex:repeat value="{!paths}" var="path">
+                                       <c:IPM_FinancialZipEntry path="{!path}" base64="true"/> 
+                                    </apex:repeat>
+                                </c:IPM_FinancialZipFile>
+                                <script>
+                                // Start zip file generation
+                                someZipfileGenerate();
+                                </script>
+                            </apex:outputPanel>
+                        </div>
+                    </div>
+                </div>
+                
+            </apex:form>
+        </apex:define>
+    </apex:composition>
+</apex:page>

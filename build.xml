@@ -1,34 +1,70 @@
+<!--    *******************************************************************************************************************-->
+<!--    Build Script in Ant for Unilever Salesforce Projects - BEGIN		       			                               -->
+<!--    Author : Steve & Velumani Angappan - Salesforce & Cognizant    Last Modified Date : 14/11/2015                     -->
+<!--    *******************************************************************************************************************	-->
 <project name="salesforce" default="validate" basedir="." xmlns:sf="antlib:com.salesforce">
 
-    <taskdef uri="antlib:com.salesforce"
-        resource="com/salesforce/antlib.xml"
-        classpath="${basedir}/lib/ant-salesforce.jar"/>
-
-    <property file="${basedir}/build.properties"/>
-    <property environment="env"/>
-
-    <import file="${basedir}/lib/exec_anon.xml"/>
-    <import file="${basedir}/lib/deploy.xml"/>
-    <import file="${basedir}/lib/undeploy.xml"/>
-    <import file="${basedir}/lib/run_tests.xml"/>
-    <import file="${basedir}/lib/package_generator.xml"/>    
+    <!-- *************************************************************** -->
+    <!--   Properties for Salesforce ANT targets                         -->
+    <!-- *************************************************************** --> 
+			<property file="${basedir}/build.properties"/>
+			<property environment="env"/>
+			<!-- Properties for salesforce dataloader CLI for IPM NG-->
+			<property name="dataLoaderAPIVersion" value="35.0.0-uber" />
+	<!-- *************************************************************** -->
+    <!--   Set-Up of Salesforce Ant / CLI Jar Classpath for IPM NG       -->
+    <!-- *************************************************************** --> 
+			<!-- Define required jars for salesforce dataloder CLI-->
+			<path id="taskDependencies">
+				<pathelement location="${basedir}/lib/ant.jar"/>
+				<pathelement location="${basedir}/lib/antutils.jar"/>
+				<pathelement location="${basedir}/lib/commons-io-2.4.jar"/>
+				<pathelement location="${basedir}/lib/commons-lang-2.6.jar"/>
+				<pathelement location="${basedir}/lib/commons-logging-1.1.3.jar"/>
+				<pathelement location="${basedir}/lib/gson-2.2.4.jar"/>
+				<pathelement location="${basedir}/lib/httpclient-4.3.5.jar"/>
+				<pathelement location="${basedir}/lib/httpcore-4.3.2.jar"/>
+				<pathelement location="${basedir}/lib/json-20080701.jar"/>
+			</path>		
+			<!-- Define salesforce Ant Jar-->
+			<taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+				<classpath>
+					<pathelement location="${basedir}/lib/ant-salesforce.jar" />
+				</classpath>
+			</taskdef>			
+    <!-- ***************************************************************************** -->
+    <!-- ANT Import Files for invoking APEX inside ANT Scripts                         -->
+    <!-- ***************************************************************************** --> 
+		<import file="${basedir}/lib/exec_anon.xml"/>
+		<import file="${basedir}/lib/deploy.xml"/>
+		<import file="${basedir}/lib/undeploy.xml"/>
+		<import file="${basedir}/lib/run_tests.xml"/>
+		<import file="${basedir}/lib/package_generator.xml"/>    
+		
+	<!-- ***************************************************************************** -->
+    <!-- Recreate the deployment directory and retrieve  meta-data from your org     -->
+    <!-- ***************************************************************************** -->  
 
     <target name="retrieve" description="Recreate the deployment directory and retrieve all metadata from your org">
-        <echo level="info">Performing a retrieve</echo>     
-        <mkdir dir="${basedir}/${sfdc.retrieveTarget}"/>
-        <sf:retrieve username="${sf.username}"
-                     password="${sf.password}"
-                     serverurl="${sf.serverurl}"
-                     retrieveTarget="${basedir}/${sfdc.retrieveTarget}"
-                     unpackaged="src/package.xml"
-                     pollWaitMillis="${sfdc.pollWaitMillis}"
-                     maxPoll="${sfdc.maxPoll}"/>
-        <delete includeemptydirs="true">
-            <fileset dir="src" includes="**/*"/>
-        </delete>                     
-        <move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
+			<echo level="info">Performing a retrieve</echo>     
+			<mkdir dir="${basedir}/${sfdc.retrieveTarget}"/>
+			<sf:retrieve username="${sf.username}"
+						 password="${sf.password}"
+						 serverurl="${sf.serverurl}"
+						 retrieveTarget="${basedir}/${sfdc.retrieveTarget}"
+						 unpackaged="src/package.xml"
+						 pollWaitMillis="${sfdc.pollWaitMillis}"
+						 maxPoll="${sfdc.maxPoll}"/>
+			<delete includeemptydirs="true">
+				<fileset dir="src" includes="**/*"/>
+			</delete>                     
+			<move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
     </target>
 
+	<!-- ***************************************************************************** -->
+    <!-- Deploy the meta-data from code Repository to salesforce your org     -->
+    <!-- ***************************************************************************** --> 	
+	
     <target name="deploy"> 
       <echo level="info">Performing the deploy</echo>     
       <sf:deploy username="${sf.username}" 
@@ -44,24 +80,172 @@
         pollWaitMillis="${sfdc.pollWaitMillis}"
         maxPoll="${sfdc.maxPoll}"/>
     </target>
-
-    <target name="validate">
-      <echo level="info">Testing the deployment</echo>
+	
+	<!-- ***************************************************************************** -->
+    <!-- Deploy the meta-data from code Repository to salesforce your org     -->
+    <!-- ***************************************************************************** --> 	
+	
+    <target name="deployIPM"> 
+      <echo level="info">Performing the deployment of IPM NG </echo>     
+      <sf:deploy username="${sf.username}" 
+        password="${sf.password}" 
+        serverurl="${sf.serverurl}" 
+        runAllTests="false"
+        testLevel="NoTestRun"
+        logType="Detail"
+        allowMissingFiles="true"
+        autoUpdatePackage="true"
+        ignoreWarnings="true"
+        deployRoot="${basedir}/src"
+        pollWaitMillis="${sfdc.pollWaitMillis}"
+        maxPoll="${sfdc.maxPoll}"/>
+    </target>
+    <!-- ***************************************************************************** -->
+    <!-- Validate the  set of IPM NG meta-data before deployment without Test Classes  -->
+    <!-- ***************************************************************************** --> 	
+	  <target name="validateIPM">
+      <echo level="info">Validate the deployment of IPM NG with out test classes</echo>
       <sf:deploy username="${sf.username}" 
         password="${sf.password}" 
         serverurl="${sf.serverurl}" 
         checkOnly="true"
-        runAllTests="true"
         logType="Debugonly"
-        testLevel="RunLocalTests"
+        testLevel="RunSpecifiedTests"
         allowMissingFiles="true"
         autoUpdatePackage="true"
         ignoreWarnings="true"
         deployRoot="src"
         pollWaitMillis="${sfdc.pollWaitMillis}"
-        maxPoll="${sfdc.maxPoll}"/>
+        maxPoll="${sfdc.maxPoll}">                    
+	 </sf:deploy>
     </target>
+	<!-- ***************************************************************************** -->
+    <!-- Validate the  set of IPM NG meta-data before deployment with Test Classes      -->
+    <!-- ***************************************************************************** --> 	
+	  <target name="validateIPMTest">
+      <echo level="info">Testing the deployment of IPM NG</echo>
+      <sf:deploy username="${sf.username}" 
+        password="${sf.password}" 
+        serverurl="${sf.serverurl}" 
+        checkOnly="true"
+        logType="Debugonly"
+        testLevel="RunSpecifiedTests"
+        allowMissingFiles="true"
+        autoUpdatePackage="true"
+        ignoreWarnings="true"
+        deployRoot="src"
+        pollWaitMillis="${sfdc.pollWaitMillis}"
+        maxPoll="${sfdc.maxPoll}">
+					<runTest>IPM_Assumptions_Controller_Test</runTest>
+					<runTest>IPM_BETDueDateNotificationBatch_Test</runTest>
+					<runTest>IPM_ChangProjectDocStatusController_Test</runTest>
+					<runTest>IPM_ChatterFeedHelper_Test</runTest>
+					<runTest>IPM_ChatterUtilsTest</runTest>
+					<runTest>IPM_CMIGateSectionController_Test </runTest>
+					<runTest>IPM_Consumer_Evidence_Controller_Test </runTest>
+					<runTest>IPM_CreateIPMMilestones_Test</runTest>
+					<runTest>IPM_CreateLocalProjects_Test</runTest>
+					<runTest>IPM_CU_Complexity_Controller_Test </runTest>
+					<runTest>IPM_CustomerChannelController_Test </runTest>
+					<runTest>IPM_DownloadTemplateController_Test</runTest>
+					<runTest>IPM_DueDateNotificationBatch_Test</runTest>
+					<runTest>IPM_EcoDesignSection_Test</runTest>
+					<runTest>IPM_FinancialActionStandards_Test </runTest>
+					<runTest>IPM_FinGateController_Test </runTest>
+					<runTest>IPM_Gate_Milestones_Test </runTest>
+					<runTest>IPM_Gate_RollOuts_Controller_Test</runTest>
+					<runTest>IPM_GateCMIController_Test</runTest>
+					<runTest>IPM_GateDocumentController_Test</runTest>
+					<runTest>IPM_GateDocumentRiskManagement_Test</runTest>
+					<runTest>IPM_GatekeeperChecklist_Test</runTest>
+					<runTest>IPM_GateRiskSection_Test</runTest>
+					<runTest>IPM_MyList_Test</runTest>
+					<runTest>IPM_NewTask_Test</runTest>
+					<runTest>IPM_ObjHistoryComponentController_Test</runTest>
+					<runTest>IPM_PjtDocSectionHstryController_Test</runTest>
+					<runTest>IPM_ProcessFinancials_Test</runTest>
+					<runTest>IPM_ProcessFinancialUpload_Test</runTest>
+					<runTest>IPM_ProjDocSectionController_Test</runTest>
+					<runTest>IPM_ProjectResourceTriggerHandlerTest</runTest>
+					<runTest>IPM_ProjectsHandler_Test</runTest>
+					<runTest>IPM_Resource_Allocation_Test</runTest>
+					<runTest>IPM_RolloutPlansTableControllerTests</runTest>
+					<runTest>IPM_RollUpCountriesTest</runTest>
+					<runTest>IPM_Test_ProjectUtility</runTest>
+					<runTest>IPM_Update_MilestonesTest</runTest>
+					<runTest>IPM_Updateduedate_Trigger_Test</runTest>
+					<runTest>IPM_AddManageSection_Test</runTest>
+					<runTest>IPM_AssortmentStrategy_Test </runTest>
+					<runTest>IPM_AssortStrategy_Test</runTest>
+					<runTest>IPM_BCC_Consolidate_Controller_Test</runTest>
+					<runTest>IPM_BETNotificationBatchSchedule_Test</runTest>
+					<runTest>IPM_CommentsListController_Test</runTest>
+					<runTest>IPM_DueDateNotificationScheduler_Test</runTest>
+					<runTest>IPM_ExportBosscardPDFController_Test</runTest>
+					<runTest>IPM_FileUploadController_Test</runTest>
+					<runTest>IPM_FinancialController_Currency_Test</runTest>
+					<runTest>IPM_FinancialValueWrapper_Test</runTest>
+					<runTest>IPM_FinancialWrapper_Test</runTest>
+					<runTest>IPM_NotifyUsersRoleChanged_Test</runTest>
+					<runTest>IPM_OTIFstatusController_Test </runTest>
+					<runTest>IPM_RolloutPlansAddController_Test</runTest>
+					<runTest>IPM_RolloutPlansAddControllerTests</runTest>
+					<runTest>IPM_SampleTestProjShare</runTest>
+					<runTest>IPM_Team_Assignment_Controller_Test</runTest>
+					<runTest>IPM_TestCovHelper</runTest>
+					<runTest>IPM_UniqueProjectName_Test</runTest>
+					<runTest>IPM_UniqueUP_Test</runTest>
+					<runTest>IPM_UpdateMilestoneFromIPMProject_Test</runTest>
+					<runTest>IPM_Updatetasks_Test</runTest>				
+		</sf:deploy>
+    </target>
+	<!-- ***************************************************************************** -->
+    <!-- Data export / import Targets For IPM NG For Post Deployment Activities        -->
+    <!-- ***************************************************************************** --> 
+		   <target name="initDataDirectory" description="Removes and re-creates a blank data directory in orgs/${orgname}">
+				<delete dir="${basedir}/orgs/${orgname}/data"/>
+				<mkdir dir="${basedir}/orgs/${orgname}/data"/>
+		   </target>
+	       <!-- Export Data from given Salesforce Org --> 
+		   <target name="exportData" description="Export Salesforce objects">
+				<sfExport object="${object}" orgserver="${sf.orgserver}" basedir="${basedir}" orgname="${orgname}" username="${sf.username}" password="${sf.passwordencrypted}" soql="${soql}" />
+		   </target>
 	
+           <macrodef name="sfExport">
+				<attribute name="object"/>
+				<attribute name="basedir"/>
+				<attribute name="orgname"/>
+				<attribute name="username"/>
+				<attribute name="password"/>
+				<attribute name="orgserver"/>
+				<attribute name="soql"/>
+				<sequential>
+					<echo message="Exporting @{object}"/>
+					<mkdir dir="@{basedir}/orgs/@{orgname}/data"/>
+					<copy file="@{basedir}/datascripts/template-export-process-conf.xml" tofile="@{basedir}/orgs/@{orgname}/data/process-conf.xml" overwrite="true" failonerror="true"/>
+					<replace file="@{basedir}/orgs/@{orgname}/data/process-conf.xml">
+						<replacefilter token="_ORGSERVER_" value="@{orgserver}"/>
+						<replacefilter token="_USERNAME_" value="@{username}"/>
+						<replacefilter token="_ENCRYPTED_PASSWORD_" value="@{password}"/>
+						<replacefilter token="_ENCRYPTION_KEY_FILE_" value="@{basedir}/datascripts/dataloader_encryption_key.txt"/>
+						<replacefilter token="_DEBUG_MSG_FILE_" value="@{basedir}/orgs/@{orgname}/data/debug.log"/>
+						<replacefilter token="_OBJECT_" value="@{object}"/>
+						<replacefilter token="_DATA_FILENAME_" value="@{basedir}/orgs/@{orgname}/data/@{object}Export.csv"/>
+						<replacefilter token="_MAPPING_FILE_" value="@{basedir}/datascripts/mappingfiles/@{object}ExportMap.sdl"/>
+						<replacefilter token="_OUTPUT_SUCCESS_FILE_" value="@{basedir}/orgs/@{orgname}/data/@{object}Export_success.csv"/>
+						<replacefilter token="_OUTPUT_ERROR_FILE_" value="@{basedir}/orgs/@{orgname}/data/@{object}Export_error.csv"/>
+						<replacefilter token="_EXTRACTION_SOQL_" value="@{soql}"/>
+					</replace>
+					<java classname="com.salesforce.dataloader.process.ProcessRunner" classpath="@{basedir}/lib/dataloader-${dataLoaderAPIVersion}.jar" failonerror="true">
+						<sysproperty key="salesforce.config.dir" value="@{basedir}/orgs/@{orgname}/data"/>
+						<arg line="process.name=exportObject"/>
+					</java>
+				</sequential>
+            </macrodef>	
+	
+	<!-- ***************************************************************************** -->
+    <!-- Validate the  set of BET meta-data before deployment                          -->
+    <!-- ***************************************************************************** --> 	
 	
     <target name="validateBET">
       <echo level="info">Testing the deployment of BET</echo>
@@ -184,7 +368,8 @@
 					<runTest>BET_Triggers_Test</runTest>
 					<runTest>BET_UpdateBETSearchHandler</runTest>
 					<runTest>BET_UpsertBETController</runTest>
-					<runTest>BET_UpsertBETControllerTest</runTest><runTest>BET_AccessService</runTest>
+					<runTest>BET_UpsertBETControllerTest</runTest>
+					<runTest>BET_AccessService</runTest>
 					<runTest>BET_AccessServiceTest</runTest>
 					<runTest>BET_ApproveProjectsComponentContrTest</runTest>
 					<runTest>BET_ApproveProjectsComponentController</runTest>
@@ -295,7 +480,10 @@
 		</sf:deploy>
     </target>
 
-    <target name="deployRunAllTests"> 
+	<!-- ***************************************************************************** -->
+    <!-- Performing the tests and deploy of Meta-data                                  -->
+    <!-- ***************************************************************************** --> 
+	<target name="deployRunAllTests"> 
       <echo level="info">Performing the tests and deploy</echo>     
       <sf:deploy username="${sf.username}" 
         password="${sf.password}" 
@@ -311,8 +499,10 @@
         pollWaitMillis="${sfdc.pollWaitMillis}"
         maxPoll="${sfdc.maxPoll}"/>
     </target>  
-
-    <target name="undeploy">
+	<!-- *************************************************************************************** -->
+    <!-- Performing undeploy Salesforce components from Salesforce Org- DESTRUCTIVE CHANGE       -->
+    <!-- *************************************************************************************** --> 
+	<target name="undeploy">
       <echo level="info">Performing undeploy - DESTRUCTIVE CHANGE</echo>  
       <sf:deploy username="${sf.username}" 
         password="${sf.password}" 
@@ -322,8 +512,11 @@
         pollWaitMillis="${sfdc.pollWaitMillis}"
         maxPoll="${sfdc.maxPoll}"/>        
     </target>
-
-    <target name="sandbox-setup" depends="enable-deploy-user">
+	
+	<!-- *************************************************************************************** -->
+    <!-- CI Sandbox setup scripts to allow data dependent tests to pass                          -->
+    <!-- *************************************************************************************** --> 
+	<target name="sandbox-setup" depends="enable-deploy-user">
       <echo level="info">CI Sandbox setup scripts to allow data dependent tests to pass</echo>   
       <antcall target="ExecAnonScript">
         <param name="what" value="${basedir}/scripts/sandbox-setup.apex" />
@@ -331,8 +524,11 @@
         <param name="password" value="${sf.password}" />
         <param name="serverurl" value="${sf.serverurl}"/>
       </antcall>
-    </target>    
-    
+    </target>
+	
+    <!-- *************************************************************************************** -->
+    <!-- Enable CI deploy user which is used to run unit tests                                   -->
+    <!-- *************************************************************************************** --> 
     <target name="enable-deploy-user">
       <echo level="info">Enable CI deploy user which is used to run unit tests</echo>   
       <antcall target="ExecAnonScript">
@@ -341,9 +537,39 @@
         <param name="password" value="${sf.password}" />
         <param name="host" value="${sf.serverurl}"/>
       </antcall>
-    </target> 
-
-    <target name="retrieveAll" description="Recreate the deployment directory and retrieve all metadata from your org">
+    </target> 	
+	<!-- **************************************************************************************** -->
+    <!-- IPM NG Application Data Set-up Using APEX Anonymous Code For Post Deployment Activities  -->
+    <!-- **************************************************************************************** --> 			
+		  <!-- Script to Insert Account For Testing Purpose --> 
+		  <target name="LoadTest">
+				  <antcall target="ExecAnonScript">
+					<param name="what" value="scripts/IPM_CustomSettings.apex" />
+				  </antcall>
+	       </target>
+		   <!-- Script For Mapping Section to Task --> 
+		  <target name="MapSectionToTask">
+				  <antcall target="ExecAnonScript">
+					<param name="what" value="scripts/IPM_MapSectionToTask.apex" />
+				  </antcall>
+           </target>
+	       <!-- Script For Update Parent SectionID For The Sections  --> 
+		   <target name="UpateParentSectionID">
+				  <antcall target="ExecAnonScript">
+					<param name="what" value="scripts/IPM_UpdateParentSectionID.apex" />
+				  </antcall>
+	       </target>
+		   <!-- Invoke All the IPM NG Apex Scripts  --> 
+		   <target name="RunAllApexScripts">
+		         <echo level="info">Script For Mapping Section to Task</echo>  
+				 <antcall target="MapSectionToTask"/>
+				 <echo level="info">Script For Update Parent SectionID For The Sections</echo>  
+				 <antcall target="UpateParentSectionID"/>				 
+	       </target> 
+	<!-- *************************************************************************************** -->
+    <!-- Recreate the deployment directory and retrieve all meta-data from your org              -->
+    <!-- *************************************************************************************** --> 
+	<target name="retrieveAll" description="Recreate the deployment directory and retrieve all meta-data from your org">
         <echo level="info">Performing a retrieve</echo>     
         <mkdir dir="${basedir}/${sfdc.retrieveTarget}"/>
         <sf:retrieve username="${sf.username}"
@@ -358,7 +584,9 @@
         </delete>                     
         <move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
     </target>
-
+	<!-- *************************************************************************************** -->
+    <!-- Clean-up the unwanted salesforce components									         -->
+    <!-- *************************************************************************************** -->	
     <target name="cleanup">
       <replaceregexp byline="true" flags="g">
         <regexp pattern="&lt;icon&gt;.*&lt;/icon&gt;.*$"/>
@@ -381,8 +609,7 @@
           <include name="**/*.profile"/>
           <include name="**/*.permissionset"/>
         </fileset>
-      </replaceregexp>                  
-
+      </replaceregexp>
       <delete><fileset dir="${basedir}" includes="**/agf__ADM_Work__c.object"/></delete>
       <delete><fileset dir="${basedir}" includes="**/KnowledgeArticleVersion.object"/></delete>
       <delete><fileset dir="${basedir}" includes="**/SocialPost.workflow"/></delete>

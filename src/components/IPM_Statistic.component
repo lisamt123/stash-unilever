@@ -1,0 +1,29 @@
+<!-- 
+***********************************************
+*@Description: This component is used <…..>
+*@Author: Cognizant
+*@Created Date: 19/05/2015 
+*@Copyright © 2015  Unilever 
+************************************************
+--> 
+
+<apex:component layout="none">
+    <apex:attribute name="colorClass" type="String" required="true" description="TODO"/>
+    <apex:attribute name="iconClass" type="String" required="true" description="TODO"/>
+
+    <apex:attribute name="kpiValue" type="String" required="true" description="TODO"/>
+    <apex:attribute name="kpi" type="String" required="true" description="TODO"/>
+    
+    <div class="ipmStatistic">
+        <section class="panel">
+            <div class="symbol {!colorClass}">
+                <i class="fa {!iconClass}"></i>
+            </div>
+            <div class="value">
+                <div class="count">{!kpiValue}</div>
+                <span>{!kpi}</span>
+            </div>
+        </section>
+    </div>
+
+</apex:component>

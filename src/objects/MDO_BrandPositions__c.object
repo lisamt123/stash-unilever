@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Store brand positions details</description>
@@ -56,6 +55,37 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Brand_Position_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Brand Position Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Effective_from__c</fullName>
+        <description>Date upon which a particular Brand Position is considered to take effect</description>
+        <externalId>false</externalId>
+        <label>Effective_from</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Effective_to__c</fullName>
+        <description>Date until which a specific Brand Position was considered</description>
+        <externalId>false</externalId>
+        <label>Effective_to</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
     <fields>
         <fullName>brand_id__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -74,7 +104,7 @@
         <fullName>brand_mdm_id__c</fullName>
         <externalId>true</externalId>
         <label>Brand MDM Id</label>
-        <length>6</length>
+        <length>32</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -99,7 +129,7 @@
         <fullName>brandposition_mdm_id__c</fullName>
         <externalId>true</externalId>
         <label>BrandPosition MDM Id</label>
-        <length>18</length>
+        <length>32</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -123,7 +153,7 @@
         <fullName>geo_mdm_id__c</fullName>
         <externalId>true</externalId>
         <label>Geo MDM Id</label>
-        <length>6</length>
+        <length>32</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -160,7 +190,7 @@
         <fullName>product_category_mdm_id__c</fullName>
         <externalId>true</externalId>
         <label>Product Category MDM Id</label>
-        <length>6</length>
+        <length>32</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -188,6 +218,34 @@
         <type>Picklist</type>
     </fields>
     <label>BrandPositions</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>HHC_and_Laundry_Brand_Positions</fullName>
+        <columns>NAME</columns>
+        <columns>mdm_id__c</columns>
+        <columns>product_category_id__c</columns>
+        <columns>brand_id__c</columns>
+        <columns>brand_position_id__c</columns>
+        <columns>Brand_Position_Name__c</columns>
+        <columns>geo_id__c</columns>
+        <columns>status__c</columns>
+        <columns>brand_mdm_id__c</columns>
+        <columns>brandposition_mdm_id__c</columns>
+        <columns>geo_mdm_id__c</columns>
+        <columns>product_category_mdm_id__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>product_category_mdm_id__c</field>
+            <operation>contains</operation>
+            <value>CH1095,CH1096,CH1813,CH1814</value>
+        </filters>
+        <label>HHC and Laundry Brand Positions</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <displayFormat>BPS-{00000}</displayFormat>
         <label>Name</label>

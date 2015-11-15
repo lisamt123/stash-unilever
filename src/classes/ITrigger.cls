@@ -4,7 +4,7 @@
  ======================================================
 ======================================================
 Purpose: Interface containing methods Trigger Handlers must implement to enforce best practice
-and bulkification of triggers.                                                         
+and bulkification of triggers.                                                          
 -------                                                             
 ======================================================
 ======================================================

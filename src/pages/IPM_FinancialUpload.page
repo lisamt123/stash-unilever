@@ -1,0 +1,78 @@
+<!--  
+*************************************************************************************************************************************************************
+*@Description:To upload & download the financials associated with the IPM project
+*@Author: Cognizant
+*@Created Date: 26/02/2015 
+*@Copyright © 2015  Unilever  
+*************************************************************************************************************************************************************
+-->
+
+<apex:page controller="IPM_FinancialUploadController" sidebar="false" standardStylesheets="false" >   
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_FinancialRevampupload.css')}"/>
+    <apex:composition template="IPM_TemplateRevamp">
+        <apex:define name="body">
+            <apex:form id="financialUploadForm">
+                <div class="gradientbg">
+                    <div class="row">
+                        <c:IPM_ProjectDetails />
+                    </div>
+                </div>
+                
+                <!-- Page Head & Toolbar -->
+                <div class="row finwrapper">
+                    <div class="col-sm-12">
+                        <div class="panel-group pageHeadToolbar clearfix">
+                            <div class="row">
+                                <div class="col-sm-5 pull-left">
+                                    <h2 class="pageTitle">{!$Label.IPM_UPLOAD_DOWNLOAD_FIN_TEMP}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel-group pageContent clearfix">
+                            <apex:outputPanel rendered="{!isError}">
+                                <div class="finGreyBG">
+                                    <apex:outputText value="{!errorMessage}" />
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel id="controlPanel" rendered="{!NOT(isError)}">
+                                <div class="fintabbg">                                   
+                                        <br></br>
+                                    <apex:commandLink action="{!backToFinancial}" styleClass="icoclose" title="Back to Financials"/>
+                                    <div id="circle">
+                                        <apex:commandLink styleClass="icoexcel" action="{!generateTemplate}" status="loadingStatus" rendered="{!isEditable}"/>
+                                    </div>
+                                    <div class="finupldheader">
+                                        <apex:commandLink value="Download Template of Financial Business Case" action="{!generateTemplate}" rendered="{!isEditable}"/>
+                                    </div>
+                                    <hr class="bluehr"></hr>
+                                <p><strong>{!$Label.IPM_UPLOAD_FIN_BUSINESS_CARE}</strong></p>
+                                <div class="finGreyBG">
+                                    {!$Label.IPM_UPLOAD_WILL_START_AS_SOON_AS_FILE_IS_SELECTED}
+                                    
+                                </div>
+                                <br></br>
+                                <div class="finuploadbutton">
+                                    <apex:actionFunction name="unzipped" action="{!unzipped}" rerender="form">
+                                        <apex:param name="state" assignTo="{!unzippedState}" value=""/>
+                                    </apex:actionFunction>                                    
+                                    <div>
+                                        <c:IPM_FinancialUnzipFile name="somezipfile" oncomplete="unzipped(state);"                                        						
+                                                                 onreceive="{!$RemoteAction.IPM_FinancialUploadController.receiveZipFileEntry}" rendered="{!isEditable}" />
+                                    </div>                                         
+                                </div>
+                                <div class="finuploadcs"></div>                                          
+                                  
+                                </div>  
+                            </apex:outputPanel>                            
+                        </div>
+                    </div>
+                </div>   
+            </apex:form>
+        </apex:define>
+    </apex:composition>
+</apex:page>

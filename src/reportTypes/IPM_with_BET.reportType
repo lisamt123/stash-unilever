@@ -421,11 +421,6 @@
             <field>IPM_Trigger_Time_05__c</field>
             <table>IPM_Project__c</table>
         </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Update_BET__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
         <masterLabel>IPM Projects</masterLabel>
     </sections>
     <sections>
