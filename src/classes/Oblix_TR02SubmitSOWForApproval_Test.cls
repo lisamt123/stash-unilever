@@ -4,15 +4,19 @@ private class Oblix_TR02SubmitSOWForApproval_Test {
      static testMethod void testApprovalSuccess() {
 		
              Profile p=[Select Id from Profile where Name='System Administrator' or Name='Système Administrateur'];       
-     
-	     //Insert User 
-	     User u= new User(Alias = 'test123', Email='standarduser@unilever.com', 
+     	 //Insert User 
+	     User manager= new User(Alias = 'manTest', Email='manageUser@unilever.com', 
 	      EmailEncodingKey='UTF-8', LastName='af test', LanguageLocaleKey='en_US', 
-	      LocaleSidKey='en_US', ProfileId = p.Id,firstname='sf test one', 
+	      LocaleSidKey='en_US', ProfileId = p.Id,firstname='sf test manager', 
 	      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-	      UserName='testuser@test123321.com');//,AF_Brand__c='Test Brand1',AF_Category__c='Test Beverages1'
-	     insert u; 
-	     
+	      UserName='manager@test123321.com');//,AF_Brand__c='Test Brand1',AF_Category__c='Test Beverages1'
+	     insert manager;
+     	
+     		
+	     //Insert User 
+	     User u= Oblix_TestUtils.createTestUser();
+	     	u.ManagerId = manager.Id;
+	     	update u;
 	     System.runAs(u){
 	     	Test.startTest();
 		     	 Marketing_SOW__c marketingSow = new Marketing_SOW__c();

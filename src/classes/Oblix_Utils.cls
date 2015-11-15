@@ -432,5 +432,56 @@ public with sharing class Oblix_Utils {
             mapRecordTypeDescription.put(Label.Oblix_Lbl_UIUX_Static_Img,' - '+Label.Oblix_Lbl_UIUX_Static_Img_Description);
             mapRecordTypeDescription.put(Label.Oblix_Lbl_UIUX_Stimulus_Materials,'');
             return mapRecordTypeDescription;
-        }    
+        } 
+        //VF09 Non Campaign Items
+        public static id CountrryGetId(String Cname){
+        List <MDO_Geography__c> temp = null;
+        id x =null;
+       
+        temp=[select id from MDO_Geography__c where name =:Cname limit 1];
+        system.debug('===========Cname'+Cname);
+        system.debug('===========temp'+temp);
+        
+        
+        if (temp ==null) return temp[0].id;
+        else return null;
+    }
+            
+    public static set<String> CountriesByFYear(String fYear_loc){
+          List<Oblix_Calculator__c> lstCalculatorBoxNumber = [Select Name from Oblix_Calculator__c  where RecordTypeId =: Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Country_Box_Number') and Financial_Year__c =:fYear_loc];
+          set<String> setCountries = new set<String>();
+          if(!lstCalculatorBoxNumber.isEmpty()){
+            for(Oblix_Calculator__c calc : lstCalculatorBoxNumber){
+                 setCountries.add(calc.Name);
+            }
+         }    
+         return setCountries;
+     } 
+     
+     public static list<selectOption> selectOptionSortByLabel(list<selectOption> selectOptionsToSort) { 
+        if(selectOptionsToSort == null || selectOptionsToSort.size() <= 1){
+            return selectOptionsToSort;
+        }
+        List<SelectOption> lessSelectOption = new List<SelectOption>();
+        List<SelectOption> greaterSelectOption = new List<SelectOption>();
+        integer pivot = selectOptionsToSort.size() / 2;
+        
+        //save the pivot and remove it from the selectOption list
+        SelectOption pivotValue = selectOptionsToSort[pivot];
+        selectOptionsToSort.remove(pivot);
+        for(selectOption SO : selectOptionsToSort){
+            if(SO.getLabel() <= pivotValue.getLabel()){
+                lessSelectOption.add(SO);
+            }else if(SO.getLabel() > pivotValue.getLabel()){
+                greaterSelectOption.add(SO);   
+            }
+        }
+        list<selectOption> sortedSelectOptions = new list<selectOption>(); 
+        sortedSelectOptions.addAll(selectOptionSortByLabel(lessSelectOption));
+        sortedSelectOptions.add(pivotValue);
+        sortedSelectOptions.addAll(selectOptionSortByLabel(greaterSelectOption));
+        return SortedSelectOptions;
+   
+       
+       }  
 }

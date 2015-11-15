@@ -38,11 +38,9 @@ private class Oblix_TR03AssetPrScoreCalculator_Test {
 	        		asset.Agency_Projects__c = project.Id;
 	        		asset.FULL_Description__c = assetScoring.Id;
 	        		insert asset;
-	        		Oblix_Project_Assets__c assetRetrieve = [Select Id, Name, Asset_Scoring_Number__c from Oblix_Project_Assets__c where id =:asset.Id ];
+	        		Oblix_Project_Assets__c assetRetrieve = [Select Id, Name, Asset_Total_Score__c from Oblix_Project_Assets__c where id =:asset.Id ];
 	        		Oblix_SOW_Projects__c projectRetrieve = [Select Id, Name, ProjectTotalAssetScore__c from Oblix_SOW_Projects__c where Id =:project.Id];
-	        		System.debug('###assetRetrieve.Asset_Scoring_Number__c : '+assetRetrieve.Asset_Scoring_Number__c);
-	        		System.debug('###projectRetrieve.ProjectTotalAssetScore__c : '+projectRetrieve.ProjectTotalAssetScore__c);
-	        		System.assertequals(assetRetrieve.Asset_Scoring_Number__c, projectRetrieve.ProjectTotalAssetScore__c);
+	        		System.assertequals(assetRetrieve.Asset_Total_Score__c, projectRetrieve.ProjectTotalAssetScore__c);
 	        		 
 	        		asset.FULL_Description__c = assetScoring2.Id;
 	        		update asset;  
