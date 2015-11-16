@@ -68,8 +68,6 @@ public with sharing class IPM_ApproverList {
                 update bossupdate;
             }
             catch(Exception ex) {
-                ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_ApproverList_STR,
-                                                           saveApproverMethod,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null); 
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));              
             } 
         }

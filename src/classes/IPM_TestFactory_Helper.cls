@@ -119,7 +119,7 @@ public with sharing class IPM_TestFactory_Helper {
     public static List<PermissionSetAssignment> lstPermissionSetAssignment ;
     
     public static User createIPMPlatformProfileUser(String IPMRole) {
-    	lstPermissionSetAssignment = new List<PermissionSetAssignment>();
+        lstPermissionSetAssignment = new List<PermissionSetAssignment>();
         String uniqueUserEMailId = getUniqueUsername();
         IPMRole = String.isBlank(IPMRole) ? IPM_ConstantUtils.PROJECT_LEADER :  IPMRole;
         
@@ -132,23 +132,23 @@ public with sharing class IPM_TestFactory_Helper {
         
         insert u;
 
-		for(PermissionSet permissionSet : [SELECT Id from PermissionSet WHERE Name IN (:IPM_ConstantUtils.PERMISSION_PROJECT_LEADER,:IPM_ConstantUtils.PERMISSION_BASIC)]){
-			lstPermissionSetAssignment.add(new PermissionSetAssignment(AssigneeId = u.Id, PermissionSetId = permissionSet.Id));
-		}        
-		insert lstPermissionSetAssignment;
+        for(PermissionSet permissionSet : [SELECT Id from PermissionSet WHERE Name IN (:IPM_ConstantUtils.PERMISSION_PROJECT_LEADER,:IPM_ConstantUtils.PERMISSION_BASIC)]){
+            lstPermissionSetAssignment.add(new PermissionSetAssignment(AssigneeId = u.Id, PermissionSetId = permissionSet.Id));
+        }        
+        insert lstPermissionSetAssignment;
         return u;
     }
     
     public static User returnPlatformUser(){
-	    //Creation test user
-	    User platformUser;
+        //Creation test user
+        User platformUser;
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
             platformUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
             System.assertEquals('PLATFORM_USER', platformUser.LastName); 
-     	}
-		return platformUser;
-	}
-	
+        }
+        return platformUser;
+    }
+    
     public static Profile PAdmin = [SELECT Id FROM Profile WHERE Name='System Administrator']; //retrieve the profile of the user
     public static User createUserAdmin(Boolean doInsert) {
         String uniqueUserEMailId = getUniqueUsername();
@@ -166,31 +166,31 @@ public with sharing class IPM_TestFactory_Helper {
     }
     
     public static void makeUserInactive(User userToBeUpdated){
-		   	System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
-		   		userToBeUpdated.IsActive = false;
-		   	}
-	}
-	
-	public static User makeResourceInactive(List<IPM_Project__c> testProjList,User prjResourceUser){
-	System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)) {
-	 //Bulk insert of project resources and user
-			List<IPM_Project_Resource__c> ipmProjRescourceList = IPM_TestFactory_Helper.createIPMProjectResourceList(false, 3); 
-			for(Integer resourceCount = 0; resourceCount < ipmProjRescourceList.size(); resourceCount++){
-				for(Integer prjCount = 0; prjCount < testProjList.size(); prjCount++){
-					
-					ipmProjRescourceList[resourceCount ].IPM_Role_Type__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_BD;
-					ipmProjRescourceList[resourceCount ].IPM_User__c =prjResourceUser.Id;
-					ipmProjRescourceList[resourceCount ].IPM_Project__c = testProjList[prjCount].Id;
-				}
-			}
-			insert ipmProjRescourceList;
-			
-			prjResourceUser.IsActive = false;
-			update prjResourceUser;
-		 }
-		 return prjResourceUser;
-	}
-	
+            System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
+                userToBeUpdated.IsActive = false;
+            }
+    }
+    
+    public static User makeResourceInactive(List<IPM_Project__c> testProjList,User prjResourceUser){
+    System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)) {
+     //Bulk insert of project resources and user
+            List<IPM_Project_Resource__c> ipmProjRescourceList = IPM_TestFactory_Helper.createIPMProjectResourceList(false, 3); 
+            for(Integer resourceCount = 0; resourceCount < ipmProjRescourceList.size(); resourceCount++){
+                for(Integer prjCount = 0; prjCount < testProjList.size(); prjCount++){
+                    
+                    ipmProjRescourceList[resourceCount ].IPM_Role_Type__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_BD;
+                    ipmProjRescourceList[resourceCount ].IPM_User__c =prjResourceUser.Id;
+                    ipmProjRescourceList[resourceCount ].IPM_Project__c = testProjList[prjCount].Id;
+                }
+            }
+            insert ipmProjRescourceList;
+            
+            prjResourceUser.IsActive = false;
+            update prjResourceUser;
+         }
+         return prjResourceUser;
+    }
+    
     public static String getUniqueUsername() {
         String orgId = UserInfo.getOrganizationId();
         String dateString = String.valueof(Datetime.now()).replace(' ',EMPTY_STRING).replace(':',EMPTY_STRING).replace('-',EMPTY_STRING);
@@ -267,8 +267,8 @@ public with sharing class IPM_TestFactory_Helper {
         
         List<User> userList = new List<User>{globalUser,regionalUser,localUser};
         insert userList;
-    	
-    	// Create Company Card information 
+        
+        // Create Company Card information 
         IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
         IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
         IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
@@ -276,7 +276,7 @@ public with sharing class IPM_TestFactory_Helper {
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
         
-    	//  Create User profile Information
+        //  Create User profile Information
         Map<String,List<Object>> IPMUserProfileMap =  new Map<String,List<Object>>{
         'IPM_Business_Partner__c' => new List<Object>{false,false,false},
         'IPM_Category__c' => new List<Object>{HOUSEHOLDCARE,HOUSEHOLDCARE,HOUSEHOLDCARE},
@@ -346,83 +346,83 @@ public with sharing class IPM_TestFactory_Helper {
     
      public static List<IPM_Project__c> initiateProjectPhaseChange(List<Id> listprojectId,User userObj)
      {
- 		IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = false;
+        IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = false;
         System.runAs(userObj)
-    	{
-     		List<IPM_Project__c>  projectListRegional = [Select Id,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Id in:listprojectId for update];
+        {
+            List<IPM_Project__c>  projectListRegional = [Select Id,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Id in:listprojectId for update];
         
-	     	List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
-	     	for(IPM_Project__c project : projectListRegional)
-	        {
-	            project.IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
-	            
-	            for(IPM_Project_Rollout__c rollout : project.IPM_Project_Rollout__r)
-	            {
-	               if(rollout.recordTypeId == IPM_TestFactory_Helper.REGIONAL_ROLLOUT_RECTYPE)
-	               {
-	                   rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
-	                   rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;
-	                   projectRolloutList.add(rollout);
-	               }
-	            }
-	        }
+            List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
+            for(IPM_Project__c project : projectListRegional)
+            {
+                project.IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
+                
+                for(IPM_Project_Rollout__c rollout : project.IPM_Project_Rollout__r)
+                {
+                   if(rollout.recordTypeId == IPM_TestFactory_Helper.REGIONAL_ROLLOUT_RECTYPE)
+                   {
+                       rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
+                       rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;
+                       projectRolloutList.add(rollout);
+                   }
+                }
+            }
             
             update projectRolloutList;
             
             return projectListRegional;
         }
         
-  		return null;
-  	}
-  	
-  	// Method to initiate Phase change of Regional Original Project to generate the local roolouts
-  	public static List<IPM_Project__c> initiateRegionalProjectPhaseChange(List<Id> listprojectId,User userObj)
+        return null;
+    }
+    
+    // Method to initiate Phase change of Regional Original Project to generate the local roolouts
+    public static List<IPM_Project__c> initiateRegionalProjectPhaseChange(List<Id> listprojectId,User userObj)
      {
         System.runAs(userObj)
-    	{
-     		List<IPM_Project__c>  projectListRegional = [Select Id,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Id in:listprojectId for update];
+        {
+            List<IPM_Project__c>  projectListRegional = [Select Id,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Id in:listprojectId for update];
         
-	     	List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
-	     	for(IPM_Project__c project : projectListRegional)
-	        {
-	            project.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
-	            
-	            for(IPM_Project_Rollout__c rollout : project.IPM_Project_Rollout__r)
-	            {
-	               if(rollout.recordTypeId == IPM_TestFactory_Helper.LOCAL_ROLLOUT_RECTYPE)
-	               {
-	                   rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
-	                   rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;
-	                   projectRolloutList.add(rollout);
-	               }
-	            }
-	        }
+            List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
+            for(IPM_Project__c project : projectListRegional)
+            {
+                project.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
+                
+                for(IPM_Project_Rollout__c rollout : project.IPM_Project_Rollout__r)
+                {
+                   if(rollout.recordTypeId == IPM_TestFactory_Helper.LOCAL_ROLLOUT_RECTYPE)
+                   {
+                       rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
+                       rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;
+                       projectRolloutList.add(rollout);
+                   }
+                }
+            }
             
             update projectRolloutList;
             
             return projectListRegional;
         }
         
-  		return null;
-  	}
-  	
-  	
-  	public static Map<Id,List<IPM_Project__c>> getRegionalProjects(List<Id> listprojectId)
-  	{
-		Map<Id,List<IPM_Project__c>> parentToChildProjectMap = new Map<Id,List<IPM_Project__c>>(); 
-		Id regionalRecordType = IPM_TestFactory_Helper.REGIONAL_ROLLOUT_RECTYPE;
+        return null;
+    }
+    
+    
+    public static Map<Id,List<IPM_Project__c>> getRegionalProjects(List<Id> listprojectId)
+    {
+        Map<Id,List<IPM_Project__c>> parentToChildProjectMap = new Map<Id,List<IPM_Project__c>>(); 
+        Id regionalRecordType = IPM_TestFactory_Helper.REGIONAL_ROLLOUT_RECTYPE;
            
-    	Map<Id,IPM_Project__c> globalProjectMap = new Map<Id,IPM_Project__c>([Select Id,Name,IPM_Phase__c, IPM_GateKeeping_Model__c, (Select Id from Project_Documents__r),
+        Map<Id,IPM_Project__c> globalProjectMap = new Map<Id,IPM_Project__c>([Select Id,Name,IPM_Phase__c, IPM_GateKeeping_Model__c, (Select Id from Project_Documents__r),
             (Select Id,Name,IPM_Project__c from IPM_Project_Rollout__r where recordTypeId = :regionalRecordType ), 
             (Select Id,Name,IPM_Phase__c from IPM_Projects__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where Id in:listprojectId]);
             
-	    // Validate that project has moved to feasibility Phase.
-	    for(IPM_Project__c project : globalProjectMap.values())
-	    {
-	        // Regional Rollous should be converted to Regional Projects at this point.
-	        System.assertEquals(project.IPM_Project_Rollout__r.size(),project.IPM_Projects__r.size());
-	         
-	        System.assertEquals(project.IPM_Phase__c,IPM_ConstantUtils.PHASE_FEASIBILITY);
+        // Validate that project has moved to feasibility Phase.
+        for(IPM_Project__c project : globalProjectMap.values())
+        {
+            // Regional Rollous should be converted to Regional Projects at this point.
+            System.assertEquals(project.IPM_Project_Rollout__r.size(),project.IPM_Projects__r.size());
+             
+            System.assertEquals(project.IPM_Phase__c,IPM_ConstantUtils.PHASE_FEASIBILITY);
             // Document count should become 2. Charter and Contract.
             if(project.IPM_Gatekeeping_model__c == GCLT_RCLT)
             {
@@ -439,10 +439,10 @@ public with sharing class IPM_TestFactory_Helper {
                 System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.PHASE_FEASIBILITY);        
             }
             
-	        parentToChildProjectMap.put(project.Id,project.IPM_Projects__r); 
-	    }
-	    return parentToChildProjectMap;
-  	}
+            parentToChildProjectMap.put(project.Id,project.IPM_Projects__r); 
+        }
+        return parentToChildProjectMap;
+    }
     
     
    public static List<IPM_Financial__c> insertIPMFinancialList(Boolean DOinsert){ 
@@ -657,7 +657,7 @@ public with sharing class IPM_TestFactory_Helper {
             
             regionalRolloutMap.get(IPM_PROJECT).addAll(new List<Object>{pProjectList[counter].Id,pProjectList[counter].Id});
            
-			//regionalRolloutMap.get(SUSTAINABILITY_PERIOD).add('3');
+            //regionalRolloutMap.get(SUSTAINABILITY_PERIOD).add('3');
         }
         
         List<IPM_Project_Rollout__c> regionalRolloutList = (List<IPM_Project_Rollout__c>)IPM_TestFactory.createSObjectList('IPM_Project_Rollout__c',regionalRolloutMap,false);
@@ -1159,15 +1159,7 @@ public with sharing class IPM_TestFactory_Helper {
         return IPMQuestionnaireList;    
     }
     
-    public static IPM_Financial_File__c createIPMFinancialFile(Id projId, Boolean doInsert){
-        Map<String,Object> IPMFinancialFileMap =  new Map<String,Object>{NAME=>'ABCDEF.xlsx'};
-        if(projId != null) {IPMFinancialFileMap.put(IPM_PROJECT, projId);}
-        IPM_Financial_File__c IPMIPMFinancialFile  = (IPM_Financial_File__c)IPM_TestFactory.createSObject('IPM_Financial_File__c',IPMFinancialFileMap,false);   
-        if(doInsert) { 
-            insert IPMIPMFinancialFile;
-        }
-        return IPMIPMFinancialFile;
-    }
+   
     public static IPM_Gate_CMI__c createGateCMI(Id projId, Boolean doInsert){
         Map<String,Object> GateCMIMap =  new Map<String,Object>{'Test__c'=>'Test', 'KPI__c'=>'testkpi', 'Gate__c'=>CONTRACT};
         if(projId != null) {GateCMIMap.put(IPM_PROJECT, projId);}
@@ -1446,9 +1438,9 @@ public with sharing class IPM_TestFactory_Helper {
         
         // Create Master Project For sharing to work for master tasks and milestones.
         Map<String,Object> masterProjectMap =  new Map<String,Object>{IPM_PROJECT_NAME => 'IPM_MasterProject','IPM_Category_Group__c' => HOUSEHOLDCARE,'IPM_PM_Approach__c' => EXTERNAL,'IPM_IsCompleted__c' => true,'IPM_Fast_Track_Project__c' => false,'IPM_Market_Type__c' =>IPM_ConstantUtils.MARKETTYPE_DEVELOPING,IPM_TARGET_LAUNCH_DATES => System.today()+100,IPM_PROJECT_LEADER => UserInfo.getUserId(),'IPMProject_Span__c' => IPM_ConstantUtils.SpanGlobal};
-    	
-    	IPM_Project__c masterProjectObj = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,masterProjectMap,true);
-    	masterProjectObj.IPM_Company_Card__c=null;
+        
+        IPM_Project__c masterProjectObj = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,masterProjectMap,true);
+        masterProjectObj.IPM_Company_Card__c=null;
         insert   masterProjectObj;
         
         // validate whether project is successfully inserted.
@@ -1580,7 +1572,7 @@ public with sharing class IPM_TestFactory_Helper {
             'IPM_No_Of_Days_for_Developing_Emerging__c' => new List<String>{EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-120',EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-120',EMPTY_STRING},
             'IPM_No_Of_Days_for_Developing__c' => new List<String>{EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-180',EMPTY_STRING,EMPTY_STRING,EMPTY_STRING,'-180',EMPTY_STRING},
             'IPM_No_Of_Days__c' => new List<String>{' ',' ',' ','0',' ',' ',' ',' ',' '},
-        	IPM_PHASE=> new List<String>{IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT,IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY},
+            IPM_PHASE=> new List<String>{IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT,IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY},
             'IPM_Type_of_gate__c' => new List<String>{CHARTER,CONTRACT,MARKET_READY,MARKET_DEPLOYMENT,'',CHARTER,CONTRACT,MARKET_READY,''},
             'IPM_Type_of_Milestone__c' => new List<String>{STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD},
             'IPM_Project_Type__c' => new List<String>{ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE},

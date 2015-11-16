@@ -20,7 +20,7 @@ public class  IPM_ProcessFinancials_Test {
     public static Set<String> setSustainabilityPeriod=new Set<String>();
     public static Set<String> setTrimmedProjectIds=new Set<String>();
     public static IPM_Financial__c finDef=new IPM_Financial__c();
-    public static IPM_Financial_File__c finFile=new IPM_Financial_File__c();
+   
     
     /*******************************************************************************************************
     * @description  Test Method to initialize data for the other test methods
@@ -76,11 +76,6 @@ public class  IPM_ProcessFinancials_Test {
         insert finDef;
         system.assertNotEquals(finDef.Id, null);
         
-        String strRecordTypeId3=[Select Id From RecordType Where SobjectType='IPM_Financial_File__c' and Name='Default'].Id;
-        finFile = IPM_TestFactory_Helper.createIPMFinancialFile(project.Id,FALSE);
-        finFile.RecordTypeId=strRecordTypeId3;  
-        insert finFile; 
-        system.assertNotEquals(finFile.Id, null);
         test.stopTest();
     }
     

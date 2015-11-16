@@ -22,8 +22,6 @@ public with sharing class IPM_ProjectsDownloadController_Report{
         {
             ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject);
             ApexPages.addMessage(myMsg); 
-            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),CLASS_NAME,
-            				'downloadExcel',ex.getMessage(),ex, 'Error', null, null, null);
             return null;
         }
     }
@@ -558,8 +556,6 @@ public with sharing class IPM_ProjectsDownloadController_Report{
         {
             ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject);
             ApexPages.addMessage(myMsg); 
-            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),CLASS_NAME,
-            				'reportspage',ex.getMessage(),ex, 'Error', null, null, null);
             return null;
         }
     }

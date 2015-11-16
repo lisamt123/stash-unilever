@@ -6,8 +6,7 @@
 @isTest
 public class IPM_FinGateController_Test {
     
-    public static IPM_Project__c project;
-    public static IPM_Financial_File__c finFile;
+    public static IPM_Project__c project;    
     private static user testUser;
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     private static string projectId;
@@ -60,15 +59,15 @@ public class IPM_FinGateController_Test {
         financial.Financial_External_ID__c = projlList[0].IPM_Project_Name__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
         insert financial;*/
         projectList = IPM_TestFactory_Helper.insertIPMProjectList();
-        lstFinancial = IPM_TestFactory_Helper.insertIPMFinancialList();
+        //lstFinancial = IPM_TestFactory_Helper.insertIPMFinancialList();
         //for(integer i=0; i<lstFinancial.size(); i++){
-        	lstFinancial[0].Financial_External_ID__c = project.IPM_Project_Name__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
-        	update lstFinancial[0];
+            lstFinancial[0].Financial_External_ID__c = project.IPM_Project_Name__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+            update lstFinancial[0];
         //}
         lstFinancialYear = IPM_TestFactory_Helper.insertIPMFinancialYearList();
         
         for(integer i=0; i<lstFinancialYear.size(); i++){
-        	lstFinancialYear[i].year__c = string.valueOf(i);
+            lstFinancialYear[i].year__c = string.valueOf(i);
         }
         update lstFinancialYear;
         /*List<IPM_Project__Share>projectShareList=IPM_TestFactory_Helper.shareIPMProject(projectList,userList);

@@ -181,7 +181,7 @@ global with sharing class IPM_ProjectController extends IPM_ProjectIntermediateC
                 isTaskgenerated=true;
                 selectedCompany=project.IPM_Company_Card__c;
             }
-            listofProjectName=IPM_WithoutShareController.allProjectList(ProId);
+            //listofProjectName=IPM_WithoutShareController.allProjectList(ProId);
         }
         isNameMandatory=false; 
         ImageId=ApexPages.currentPage().getParameters().get('image');

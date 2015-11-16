@@ -60,9 +60,6 @@ public with sharing class IPM_TestCovHelper {
        ApexPages.currentPage().getParameters().put('id', projects.Id);
        IPM_List_Milestones constMain = new IPM_List_Milestones();
        constMain.projectId = projects.Id;
-       IPM_Milestones_Delete constr = new IPM_Milestones_Delete(constMain);
-       constr.milestoneId = ipmMilestones.Id;
-       constr.deleteMilestone();
        Test.stopTest();
         
     }
