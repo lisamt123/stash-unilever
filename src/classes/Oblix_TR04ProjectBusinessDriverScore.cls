@@ -287,7 +287,7 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
              system.debug('###lstCalculatorCountrRange : '+lstCalculatorCountrRange);
              for(Oblix_Marketing_SOW_Project_Splits__c projSplit : lstProjectSplitsTmp){
                     for(Oblix_Calculator__c calculatorCountry : lstCalculatorCountrRange){
-                        if( projsplit.OblixCountry__r.Name.toUpperCase().contains(calculatorCountry.Name) && Calculator_BoxRange.contains('Box_')){
+                        if( projsplit.OblixCountry__r.Name != null && projsplit.OblixCountry__r.Name.toUpperCase().contains(calculatorCountry.Name) && Calculator_BoxRange.contains('Box_')){
                             tmp_fee += (Decimal) (calculatorCountry.get(Calculator_BoxRange)!= null ? calculatorCountry.get(Calculator_BoxRange) : 0)* (projSplit.Percentage__c != null ? projSplit.Percentage__c/100 : 0);
                             System.debug('###tmp_fee : '+tmp_fee);
                         }

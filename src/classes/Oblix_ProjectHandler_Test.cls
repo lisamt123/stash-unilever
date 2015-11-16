@@ -1,4 +1,4 @@
-@isTest()
+@isTest
 public with sharing class Oblix_ProjectHandler_Test {
 	private static final String FINANCIAL_YEAR = 'Same Financial Year';
 	@isTest static void Oblix_ProjectHandler_Test(){

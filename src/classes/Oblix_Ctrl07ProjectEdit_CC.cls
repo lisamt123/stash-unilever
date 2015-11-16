@@ -29,7 +29,7 @@
         public string subCat {get;set;}
         public string complexity {get;set;}
         public list<Oblix_Project_Assets__c> lstAssetsForCard {get;set;}
-        public map<string,Oblix_Project_Assets__c> mapRTSUBCatAsset {get;set;}
+        //public map<string,Oblix_Project_Assets__c> mapRTSUBCatAsset {get;set;}
         public map<string,list<string>> mapRTSUBCat {get;set;}
         public list<RecordType> recordTypes {get;set;}
         public list<string> lstRecordType {get;set;}
@@ -73,6 +73,8 @@
         public map<string,string> mapAbreviation {get;set;}
         
         public Oblix_Ctrl07ProjectEdit_CC (){
+            Id idUser = UserInfo.getUserId();
+            userConnected = [Select Name from User where Id =: idUser ];
             lstStage = new list<string>();
             setRecordType  = new set<string>();
             mapRegionCntries = new Map<String,String>();
@@ -103,7 +105,7 @@
             lstAssetsForCard = new list<Oblix_Project_Assets__c>();          
             if(projectId == null) isEdit = false;      
             if(projectId != null) isEdit = true;  
-            mapRTSUBCatAsset = new map<string,Oblix_Project_Assets__c>(); 
+            //mapRTSUBCatAsset = new map<string,Oblix_Project_Assets__c>(); 
             lstAssets = new list<Oblix_Project_Assets__c>();
             mapRTAssets = new map<string,list<Oblix_Project_Assets__c>>();
             mapRTIdCSS = new map<string,string>();
@@ -112,16 +114,14 @@
             assetInstance = new Oblix_Project_Assets__c();           
             mapAssetsPerSubCat = new map<string,Oblix_Project_Assets__c>();
             mapRTforSubCat = new map<string,string>();
-            lstRegion = new set<string>();
-            
+            lstRegion = new set<string>();           
             mynumber = 6;   
             init();
         }
        
         public void init(){
         
-            Id idUser = UserInfo.getUserId();
-            userConnected = [Select Name from User where Id =: idUser ];
+            
             projectId = ApexPAges.currentPage().getParameters().get('projectId');
             getMapCountries();         
             mapSubCategOption = Oblix_Utils.getMapSubCategOption();
@@ -131,16 +131,13 @@
             
             // Stages part 
             lstStage = Oblix_Utils.getStageList();
-            feePercentages.put(lstStage[0],10);
-            feePercentages.put(lstStage[1],20);
-            feePercentages.put(lstStage[2],30);
-            feePercentages.put(lstStage[3],25);
-            feePercentages.put(lstStage[4],15);
+            feePercentages = Oblix_Utils.getFeePercentages(lstStage);
+            
             for(string stage:lstStage){
                 mapStageIdCSS.put(stage,stage.replaceAll(' & ','_').replaceAll(' ','_'));
             } 
             // end stage 
-            recordTypes = [SELECT Name FROM RecordType WHERE sObjectType = 'Oblix_Project_Assets__c' and name != 'Admin' Order by name];           
+                     
             if(projectId == null){
                  project = new Oblix_SOW_Projects__c ();
                  project.Financial_Year__c = ApexPAges.currentPage().getParameters().get('sowId');               
@@ -151,18 +148,7 @@
                 getAssetCampaign();
                 getCountriesOptions();
                 getAgencyHubFiveInsance();
-                for(recordType rec:recordTypes){
-                        lstRecordType.add(rec.name);
-                        setRecordType.add(rec.Name); 
-                        //setIdCss.add((asset.RecordType.Name).replaceAll(' ',''));
-                        if(mapRTIdCSS.get(rec.Name) == null)
-                        mapRTIdCSS.put(rec.Name,(rec.Name).replaceAll(' ',''));
-                   
-                }
-                for(string x:setRecordType){
-                         setIdCss = setIdCss+'"'+x.replaceAll(' ','')+'",';
-                }     
-                setIdCss = '['+setIdCss.removeEnd(';')+']';  
+                getRecordTypesInfo();
                 if(project.OblixCountries__c != null){
                     lstSelectedRegion = project.OblixCountries__c.split(',');
                 }
@@ -178,7 +164,7 @@
                 lstIdCSSSelected = lstIdCSSSelected + Oblix_Utils.getSelectedStageCheckbox(project.Projected_Stage__c,project.Completed_Stage__c);
                 lstIdCSSSelected = lstIdCSSSelected.removeEnd(',');
                 system.debug('### lstIdCSSSelected :'+lstIdCSSSelected);
-                
+               
                 for(string subCat:Oblix_Utils.getlstSubCat()){
                     lstSubCategory  = lstSubCategory  + subCat.replaceAll('/','_').replaceAll('-','__')+',';
                     mapAssetsPerSubCat.put(subCat,new Oblix_Project_Assets__c(Sub_Category__c=subCat, recordTypeId =mapRTforSubCat.get(subCat)));
@@ -189,16 +175,32 @@
                     if(mapRTAssets.get(rec) == null ) {mapRTAssets.put(rec,new list<Oblix_Project_Assets__c>());}
                     if(mapRTIdCSS.get(rec) == null ) {mapRTIdCSS.put(rec,(rec).replaceAll(' ',''));}
                     mapRTSUBCat.put(rec,Oblix_Utils.lstSubCatPerRecT(rec));
-                    for(string sub:Oblix_Utils.lstSubCatPerRecT(rec)){
+                    /*for(string sub:Oblix_Utils.lstSubCatPerRecT(rec)){
                         string x = rec+'_'+sub+'_1';
                         string x1 = rec+'_'+sub+'_2';
                         string x2 = rec+'_'+sub+'_3';
                         mapRTSUBCatAsset.put(x,new Oblix_Project_Assets__c());  
                         mapRTSUBCatAsset.put(x1,new Oblix_Project_Assets__c());  
                         mapRTSUBCatAsset.put(x2,new Oblix_Project_Assets__c());  
-                    }
+                    }*/
                 }
             }
+        }
+        
+        public void getRecordTypesInfo(){
+             recordTypes = [SELECT Name FROM RecordType WHERE sObjectType = 'Oblix_Project_Assets__c' and name != 'Admin' Order by name]; 
+                for(recordType rec:recordTypes){
+                        lstRecordType.add(rec.name);
+                        setRecordType.add(rec.Name); 
+                        //setIdCss.add((asset.RecordType.Name).replaceAll(' ',''));
+                        if(mapRTIdCSS.get(rec.Name) == null)
+                        mapRTIdCSS.put(rec.Name,(rec.Name).replaceAll(' ',''));
+                   
+                }
+                for(string x:setRecordType){
+                         setIdCss = setIdCss+'"'+x.replaceAll(' ','')+'",';
+                }
+                setIdCss = '['+setIdCss.removeEnd(';')+']';      
         }
         public void getAssetCampaign(){
              list<Oblix_Project_Assets__c> lstAsset = [select Id,Agency_Projects__r.id,Channels__c,RecordType.Name,Quantity__c ,Asset_Picklist__c, Asset_Title__c , Name,RecordTypeId,Sub_Category__c,FULL_Description__c,FULL_Description__r.name from Oblix_Project_Assets__c where Agency_Projects__r.id =:project.id  limit 1000];  
@@ -264,6 +266,8 @@
                         }
                     }
             }
+           
+                
         }  
         public void setInfoCountries(){
             // nothing juste saving the mapping values 

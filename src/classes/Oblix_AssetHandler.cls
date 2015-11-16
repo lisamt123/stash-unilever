@@ -1,7 +1,9 @@
 public with sharing class Oblix_AssetHandler implements ITrigger {
- public Oblix_AssetHandler() {     
-    }
-    boolean triggerShouldExecute = true;
+ 
+   public Oblix_AssetHandler() {}
+   
+   @testVisible
+   boolean triggerShouldExecute = true;
    List<Oblix_SOW_Projects__c> lstProjectAgencies = new List<Oblix_SOW_Projects__c>();
    List<Oblix_SOW_Projects__c> lstProjectAgenciesToUpdate = new List<Oblix_SOW_Projects__c>();
     /**

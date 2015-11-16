@@ -433,6 +433,16 @@ public with sharing class Oblix_Utils {
             mapRecordTypeDescription.put(Label.Oblix_Lbl_UIUX_Stimulus_Materials,'');
             return mapRecordTypeDescription;
         } 
+        
+        public static map<string,integer> getFeePercentages(list<string> lstStage){
+            map<string,integer> feePercentages = new map<string,integer>();
+            feePercentages.put(lstStage[0],10);
+            feePercentages.put(lstStage[1],20);
+            feePercentages.put(lstStage[2],30);
+            feePercentages.put(lstStage[3],25);
+            feePercentages.put(lstStage[4],15);
+            return feePercentages;       
+        }
         //VF09 Non Campaign Items
         public static id CountrryGetId(String Cname){
         List <MDO_Geography__c> temp = null;
@@ -480,8 +490,7 @@ public with sharing class Oblix_Utils {
         sortedSelectOptions.addAll(selectOptionSortByLabel(lessSelectOption));
         sortedSelectOptions.add(pivotValue);
         sortedSelectOptions.addAll(selectOptionSortByLabel(greaterSelectOption));
-        return SortedSelectOptions;
-   
-       
-       }  
+        return SortedSelectOptions;  
+       }
+         
 }
