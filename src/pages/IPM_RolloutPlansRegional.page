@@ -169,15 +169,6 @@
                     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_RolloutPlansRegional.js')}" type="text/javascript"></script>
                     <apex:outputPanel id="scriptPanel">
                         <script>
-                            alert('{!isCompleted}');
-                            alert('selectedMCOs-->>'+selectedMCOs);
-                            alert('unselectedMCOs -->>'+unselectedMCOs );
-                            alert('selectedCountries -->>'+selectedCountries );
-                            alert('unselectedCountries -->>'+unselectedCountries );
-                            alert('selectedNoRollouts -->>'+selectedNoRollouts );
-                            alert('unselectedNoRollouts -->>'+unselectedNoRollouts );
-                            
-                            
                             var IPMregionalApp = {completed: '{!isCompleted}',url:'{!URLFOR($Page.IPM_RolloutPlans)}',proid:'{!projectId}'};
                         </script>
                     </apex:outputPanel>

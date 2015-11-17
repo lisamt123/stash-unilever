@@ -56,6 +56,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     public String summary{get;set;}//capture summarey text
     public string docSectionAccess;
     public string tempDocSectionAccess;
+    public static final String Project_SubType_BLG = 'Brand Led Growth(BLG)';
     @TestVisible Private Set<String>bdSectionsSet=new Set<String>{};
     @TestVisible Private Set<String>cmiSectionsSet=new Set<String>{};
     @TestVisible Private Set<String>cdSectionsSet=new Set<String>{};
@@ -392,9 +393,9 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     private void getUserTypeSection(){
         integer ecoDesignUserCount=0;
         ecoDesignUserCount=[SELECT count() FROM IPM_Project_Resource__c WHERE IPM_User__c=:userinfo.getuserid() 
-        					 AND IPM_Project__c=:projectId AND IPM_Role_Type__c!=:IPM_ConstantUtils.IPM_ROLE_GUEST AND IPM_Role_Type__c!=Null LIMIT 1];
+                             AND IPM_Project__c=:projectId AND IPM_Role_Type__c!=:IPM_ConstantUtils.IPM_ROLE_GUEST AND IPM_Role_Type__c!=Null LIMIT 1];
         if(ecoDesignUserCount>0){
-        	isEcodesignEdit=true;
+            isEcodesignEdit=true;
         }
         integer CountProuser=[SELECT count() FROM IPM_Project_Resource__c 
                                 WHERE IPM_Project__c=:projectId and IPM_Role_Type__c=:Frole AND IPM_Project__r.Is_Archieved__c=false limit 1];
@@ -402,7 +403,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                                         FROM IPM_Project__c 
                                         WHERE id=:projectId AND Is_Archieved__c=false limit 1];
         if(!lstofuser.isEmpty()){
-        	if((lstofuser[0].IPM_Project_Leader__c!=null && lstofuser[0].IPM_Project_Leader__c==userinfo.getuserid()) || 
+            if((lstofuser[0].IPM_Project_Leader__c!=null && lstofuser[0].IPM_Project_Leader__c==userinfo.getuserid()) || 
                 (lstofuser[0].Deputy_Project_Leader__c!=null && lstofuser[0].Deputy_Project_Leader__c==userinfo.getuserid())){
                 if(plSectionsSet.contains(projDocSec.IPM_Section__r.External_ID__c) || ((projDocSec.IPM_Section__r.External_ID__c.Equals(IPM_ConstantUtils.IPM_ROLLOUT_PLANS) 
                 || projDocSec.IPM_Section__r.External_ID__c.Equals(IPM_ConstantUtils.IPM_MILESTONES_DOC)) &&  project.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_IDEAS)))
@@ -434,7 +435,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                 isEcodesignEdit=true;
             }
             else if(lstofuser[0].IPM_Project_Gatekeeper__c!=null && lstofuser[0].IPM_Project_Gatekeeper__c==userinfo.getuserid()){
-            	isEcodesignEdit=true;
+                isEcodesignEdit=true;
             }
         }
         
@@ -444,19 +445,21 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                 (lstofuser[0].Deputy_Project_Leader__c!=null && lstofuser[0].Deputy_Project_Leader__c==userinfo.getuserid())){
                 IsEditableSumm=true;
                 IsEditableOutC=false;
-            	
-            	if(CountProuser==0){
+                
+                if(CountProuser==0){
                     IsEditableOutC=true;
                     isEditGateCMI=true;
                     IsCRRTEditable=true;
                     isAssortEdit=true;
                     isEcodesignEdit=true;
                 }
+                
             }
             if((lstofuser[0].IPM_Technical_Project_Leader__c!=null && lstofuser[0].IPM_Technical_Project_Leader__c==userinfo.getuserid()) &&((lstofuser[0].IPM_Project_Leader__c!=null && lstofuser[0].IPM_Project_Leader__c!=lstofuser[0].IPM_Technical_Project_Leader__c) || 
                 (lstofuser[0].Deputy_Project_Leader__c!=null && lstofuser[0].Deputy_Project_Leader__c!=lstofuser[0].IPM_Technical_Project_Leader__c))){
                 IsEditableSumm=false;
                 IsEditableOutC=false;
+                
             }   
         }
         
@@ -713,13 +716,26 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
             currGate = IPM_Utils.phaseGateDocumentMap.get(currPhase);
         }
         
-        projectSectionsList=[SELECT Id,IPM_Section_Name__c, IPM_Section_Sequence__c, 
-            IPM_Project_Document__r.IPM_Project__c FROM IPM_Project_Document_Section__c 
-            WHERE IPM_Project_Document__r.IPM_Project__c = :String.escapeSingleQuotes(projectId) AND
-            IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER
-            AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER AND        
-            IPM_Project_Document__r.IPM_GateDocuments__c = :projDoc.IPM_GateDocuments__c AND IPM_Default_Section__c = true
-            ORDER BY IPM_Section_Sequence__c];
+        if(project.IPM_ProjectSubType__c == Project_SubType_BLG) {
+          projectSectionsList=[SELECT Id,IPM_Section_Name__c, IPM_Section_Sequence__c, 
+          IPM_Project_Document__r.IPM_Project__c FROM IPM_Project_Document_Section__c 
+          WHERE IPM_Project_Document__r.IPM_Project__c = :String.escapeSingleQuotes(projectId) AND
+          IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER
+          AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER AND        
+          IPM_Project_Document__r.IPM_GateDocuments__c = :projDoc.IPM_GateDocuments__c AND IPM_Default_Section__c = true
+          AND IPM_Master_Section_External_Id__c !=: IPM_ConstantUtils.IPM_ENVIRONMENTAL_IMPACT
+          ORDER BY IPM_Section_Sequence__c];
+        }
+        else {
+          projectSectionsList=[SELECT Id,IPM_Section_Name__c, IPM_Section_Sequence__c, 
+          IPM_Project_Document__r.IPM_Project__c FROM IPM_Project_Document_Section__c 
+          WHERE IPM_Project_Document__r.IPM_Project__c = :String.escapeSingleQuotes(projectId) AND
+          IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER
+          AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER AND        
+          IPM_Project_Document__r.IPM_GateDocuments__c = :projDoc.IPM_GateDocuments__c AND IPM_Default_Section__c = true
+          
+          ORDER BY IPM_Section_Sequence__c];
+        }
         
         for(IPM_Project_Document_Section__c eachProSection : projectSectionsList) {
                 projectSections.add(eachProSection);
@@ -814,7 +830,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         //For Making Section Filled-In
         for(IPM_Questionnaire__c ipmQuestionaire:ipmQuestionaires){
             if(ipmQuestionaire.IPM_GK_Answers__c<>IPM_ConstantUtils.GATEKEEPER_ANSWER && ipmQuestionaire.IPM_GK_Answers__c<> IPM_ConstantUtils.OPTION_NONE && ipmQuestionaire.IPM_GK_Answers__c<> null && ipmQuestionaire.IPM_GK_Answers__c<> ''){
-                if(projDocSec.IPM_Gate_Document_Summary__c!=null && projDocSec.IPM_Gate_Document_Summary__c!='' && summary.length()>=15 && !projDocSec.IPM_Negotiable__c && ((projDocSec.IPM_Master_Section_External_Id__c != EXTERNAL_ID_ENVIRONMENTAL_IMPACT) || (projDocSec.IPM_Master_Section_External_Id__c == EXTERNAL_ID_ENVIRONMENTAL_IMPACT && project.IPM_Exists_AtLeast_OneAssmntPerEICountry__c && IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(project)) || (projDocSec.IPM_Master_Section_External_Id__c == EXTERNAL_ID_ENVIRONMENTAL_IMPACT && !project.IPM_Exists_AtLeast_OneAssmntPerEICountry__c && !IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(project)) )){
+                if(projDocSec.IPM_Gate_Document_Summary__c!=null && projDocSec.IPM_Gate_Document_Summary__c!='' && summary.length()>=15 && !projDocSec.IPM_Negotiable__c && ((projDocSec.IPM_Master_Section_External_Id__c != EXTERNAL_ID_ENVIRONMENTAL_IMPACT) || (projDocSec.IPM_Master_Section_External_Id__c == EXTERNAL_ID_ENVIRONMENTAL_IMPACT && project.IPM_Exists_AtLeast_OneAssmntPerEICountry__c && IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(project)) || (projDocSec.IPM_Master_Section_External_Id__c == EXTERNAL_ID_ENVIRONMENTAL_IMPACT && project.IPM_Exists_AtLeast_OneAssmntPerEICountry__c && !IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(project)) )){
                     projDocSec.IPM_Section_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
                     showmsg=false;
                 }

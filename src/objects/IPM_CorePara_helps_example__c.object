@@ -51,7 +51,7 @@
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
-    <enableReports>false</enableReports>
+    <enableReports>true</enableReports>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -91,7 +91,7 @@
         <length>32768</length>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
-        <visibleLines>50</visibleLines>
+        <visibleLines>25</visibleLines>
     </fields>
     <fields>
         <fullName>IPM_Core_Parameter_example__c</fullName>
@@ -133,13 +133,6 @@
     <label>IPM CoreParameter helps</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>NAME</columns>
-        <columns>IPM_Core_Parameter_example__c</columns>
-        <columns>IPM_Core_Parameter_example_two__c</columns>
-        <columns>IMP_Core_Parameter_example_three__c</columns>
-        <columns>IPM_Core_Parameter_example_four__c</columns>
-        <columns>IPM_Core_Parameter_example_five__c</columns>
-        <columns>IPM_Answer__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>

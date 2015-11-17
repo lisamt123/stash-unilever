@@ -43,14 +43,14 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
         List<IPM_Questionnaire__c> rqsMasterQuestionList = new List<IPM_Questionnaire__c>();
         
         /* List to Store R&D Feasibility ,Supply Chain feasibility and Risk Master Question List*/
-        Map<String,List<IPM_Questionnaire__c>> rndFeasibilityQuestionMap = new Map<String,List<IPM_Questionnaire__c>>();
-        Map<String,List<IPM_Questionnaire__c>> scFeasibilityQuestionMap = new Map<String,List<IPM_Questionnaire__c>>();
-        Map<String,List<IPM_Questionnaire__c>> tradeMarkQuestionMap = new Map<String,List<IPM_Questionnaire__c>>();
+        Map<String,List<IPM_Questionnaire__c>> RnDFeasibilityQuestionMap = new Map<String,List<IPM_Questionnaire__c>>();
+        Map<String,List<IPM_Questionnaire__c>> SCFeasibilityQuestionMap = new Map<String,List<IPM_Questionnaire__c>>();
+        Map<String,List<IPM_Questionnaire__c>> TradeMarkQuestionMap = new Map<String,List<IPM_Questionnaire__c>>();
         
         /* List to Store Corporate Risk Master Question List*/
         List<IPM_Questionnaire__c> corporateRiskQuestionList = new List<IPM_Questionnaire__c>();
         
-        if(projectMap != null && !projectMap.isEmpty())
+        if(!projectMap.isEmpty())
         {
             for(IPM_Questionnaire__c questionnaireObj : IPM_ProjectHelper.masterQuestionnaireMap.values())
             {  
@@ -92,34 +92,34 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                 {
                     List<IPM_Questionnaire__c> rndFeasibilityList = new List<IPM_Questionnaire__c>();
                     
-                    if(rndFeasibilityQuestionMap.containsKey(gateType))
+                    if(RnDFeasibilityQuestionMap.containsKey(gateType))
                     {
-                        rndFeasibilityList = rndFeasibilityQuestionMap.get(gateType);
+                        rndFeasibilityList = RnDFeasibilityQuestionMap.get(gateType);
                     }
                     rndFeasibilityList.add(questionnaireObj);
-                    rndFeasibilityQuestionMap.put(gateType,rndFeasibilityList);
+                    RnDFeasibilityQuestionMap.put(gateType,rndFeasibilityList);
                 } 
                 else if(questionnaireObj.RecordTypeId == recTypeSCFeasibility)
                 {
                     List<IPM_Questionnaire__c> SCFeasibilityQuestionList = new List<IPM_Questionnaire__c>();
                     
-                    if(scFeasibilityQuestionMap.containsKey(gateType))
+                    if(SCFeasibilityQuestionMap.containsKey(gateType))
                     {
-                        SCFeasibilityQuestionList = scFeasibilityQuestionMap.get(gateType);
+                        SCFeasibilityQuestionList = SCFeasibilityQuestionMap.get(gateType);
                     }
                     SCFeasibilityQuestionList.add(questionnaireObj);
-                    scFeasibilityQuestionMap.put(gateType,SCFeasibilityQuestionList);
+                    SCFeasibilityQuestionMap.put(gateType,SCFeasibilityQuestionList);
                 } 
                  else if(questionnaireObj.RecordTypeId == recTypeTradeMark)
                 {
                     List<IPM_Questionnaire__c> TradeMarkQuestionList = new List<IPM_Questionnaire__c>();
                     
-                    if(tradeMarkQuestionMap.containsKey(gateType))
+                    if(TradeMarkQuestionMap.containsKey(gateType))
                     {
-                        TradeMarkQuestionList= tradeMarkQuestionMap.get(gateType);
+                        TradeMarkQuestionList= TradeMarkQuestionMap.get(gateType);
                     }
                     TradeMarkQuestionList.add(questionnaireObj);
-                    tradeMarkQuestionMap.put(gateType,TradeMarkQuestionList);
+                    TradeMarkQuestionMap.put(gateType,TradeMarkQuestionList);
                 } 
                 else if(questionnaireObj.RecordTypeId == recTypeIDCR){
                     corporateRiskQuestionList.add(questionnaireObj);
@@ -130,6 +130,7 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
             {
                 IPM_Project__c incomingProject = projectMap.get(associatedProjectID);
                 Id parentProjectId = incomingProject.IPM_Parent_Project__c;
+                IPM_Project__c parentProject = null;
                 IPM_Project_Type__c associatedProjectType =IPM_Utils.retrieveProjectType(incomingProject);
                 
                 if(associatedProjectType!=null)
@@ -137,19 +138,19 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                     String projectCurrentGate = associatedProjectType.IPM_Gate_Document__c;
                     List<IPM_Questionnaire__c> addedQuestionareAtParent = new List<IPM_Questionnaire__c>();
                     
-                    Boolean rndQuestionAlreadyExists = false;
-                    Boolean posQuestionAlreadyExists = false;
-                    Boolean rqsQuestionAlreadyExists = false;
-                    Boolean rndFeasibilityQuestionAlreadyExists = false;
-                    Boolean scFeasibilityQuestionAlreadyExists = false;
-                    Boolean tradeMarkQuestionAlreadyExists = false;
+                    Boolean RNDQuestionAlreadyExists = false;
+                    Boolean POSQuestionAlreadyExists = false;
+                    Boolean RQSQuestionAlreadyExists = false;
+                    Boolean RnDFeasibilityQuestionAlreadyExists = false;
+                    Boolean SCFeasibilityQuestionAlreadyExists = false;
+                    Boolean TradeMarkQuestionAlreadyExists = false;
                     Boolean corporateRiskQuestionAlreadyExists = false;
-                    Boolean gkCheckListAlreadyExists = false;
+                    Boolean GKCheckListAlreadyExists = false;
                     
                     /* Creating R&D Questionnaires for Project */
                     if(IPM_ProjectHelper.projectMasterMap.containsKey(associatedProjectID) && IPM_ProjectHelper.projectMasterMap.get(associatedProjectID) !=null)
                     {
-                        
+                        IPM_Project__c existingProject = IPM_ProjectHelper.projectMasterMap.get(associatedProjectID);
                         if( IPM_ProjectHelper.DBprojectSpecificQuestionareMap.containsKey(associatedProjectID) && 
                                 IPM_ProjectHelper.DBprojectSpecificQuestionareMap.get(associatedProjectID)!=null)
                         {
@@ -157,27 +158,27 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                             {
                                 if(existingQuestionare.RecordTypeId == recTypeRnD)
                                 {
-                                    rndQuestionAlreadyExists = true;
+                                    RNDQuestionAlreadyExists = true;
                                 }
                                 else if(existingQuestionare.RecordTypeId == recTypeIDPOS && existingQuestionare.IPM_RQS_Gate_Type__c == projectCurrentGate)
                                 {
-                                    posQuestionAlreadyExists = true;
+                                    POSQuestionAlreadyExists = true;
                                 }
                                 else if(existingQuestionare.RecordTypeId == recTypeIDRQS)
                                 {
-                                    rqsQuestionAlreadyExists = true;
+                                    RQSQuestionAlreadyExists = true;
                                 } // Gate Specific (Contract)
                                 else if(existingQuestionare.RecordTypeId == recTypeRnDFeasibility && existingQuestionare.IPM_RQS_Gate_Type__c == projectCurrentGate)
                                 {
-                                    rndFeasibilityQuestionAlreadyExists = true;
+                                    RnDFeasibilityQuestionAlreadyExists = true;
                                 } // Gate Specific (Contract)
                                 else if(existingQuestionare.RecordTypeId == recTypeSCFeasibility && existingQuestionare.IPM_RQS_Gate_Type__c == projectCurrentGate)
                                 {
-                                    scFeasibilityQuestionAlreadyExists = true;
+                                    SCFeasibilityQuestionAlreadyExists = true;
                                 } // Gate Specific (Contract)
                                 else if(existingQuestionare.RecordTypeId == recTypeGK && existingQuestionare.IPM_RQS_Gate_Type__c == projectCurrentGate)
                                 {
-                                    gkCheckListAlreadyExists = true;
+                                    GKCheckListAlreadyExists = true;
                                 } 
                                 else if(existingQuestionare.RecordTypeId == recTypeIDCR)
                                 {
@@ -185,7 +186,7 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                                 }
                                  else if(existingQuestionare.RecordTypeId == recTypeTradeMark && existingQuestionare.IPM_RQS_Gate_Type__c == projectCurrentGate)
                                 {
-                                tradeMarkQuestionAlreadyExists=true;
+                                TradeMarkQuestionAlreadyExists=true;
                                 }
                                 
                             }
@@ -194,7 +195,7 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                     
                     if(IPM_ProjectHelper.projectMasterMap.containsKey(parentProjectId) && IPM_ProjectHelper.projectMasterMap.get(parentProjectId) !=null)
                     {
-                        
+                        parentProject = IPM_ProjectHelper.projectMasterMap.get(parentProjectId);
                         if(IPM_ProjectHelper.DBprojectSpecificQuestionareMap.containsKey(parentProjectId) && 
                                 IPM_ProjectHelper.DBprojectSpecificQuestionareMap.get(parentProjectId)!=null)
                         {
@@ -218,23 +219,25 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                     }
                     
                     // Generate CheckList is based on Gate Level and should be present for every Gate once.
-                    if(!gkCheckListAlreadyExists && !gateToMasterCheckListMap.isEmpty())
+                    if(!GKCheckListAlreadyExists && !gateToMasterCheckListMap.isEmpty())
                     {                                                   
                         if(gateToMasterCheckListMap.containsKey(projectCurrentGate) && gateToMasterCheckListMap.get(projectCurrentGate)!=null)
                         {
-                            List<IPM_Questionnaire__c> gateKeeperCheckList = gateToMasterCheckListMap.get(projectCurrentGate);
-                            insertQuestionnaireList.addAll(manageGateKeeperCheckList(projectSectionList,projectDocumentList,incomingProject,gateKeeperCheckList,projectCurrentGate));
+                       List<IPM_Questionnaire__c> gateKeeperCheckList = gateToMasterCheckListMap.get(projectCurrentGate);
+                       insertQuestionnaireList.addAll(manageGateKeeperCheckList(projectSectionList,projectDocumentList,incomingProject,gateKeeperCheckList,projectCurrentGate));
+                       
+                       
                         }
                     }
                     
                     // RND Questionare is based on Project Level. Should be visible for Every project Just Once.(Includes Global,Regional,Local)
-                    if(!rndQuestionAlreadyExists)
+                    if(!RNDQuestionAlreadyExists)
                     {
                         insertQuestionnaireList.addAll(generateProjectQuestionnaire(rndMasterQuesList,recTypeRnD,incomingProject));
                     }
                     
                     //  POS Question is applicable at Gate Level(Applies only for Charter Gate)
-                    if(!posQuestionAlreadyExists && !gateToPOSMasterQuestionMap.isEmpty())
+                    if(!POSQuestionAlreadyExists && !gateToPOSMasterQuestionMap.isEmpty())
                     {
                         if(gateToPOSMasterQuestionMap.containsKey(projectCurrentGate) && gateToPOSMasterQuestionMap.get(projectCurrentGate)!=null)
                         {
@@ -242,8 +245,9 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                             insertQuestionnaireList.addAll(generateProjectQuestionnaire(posMasterQuestionList,recTypeIDPOS,incomingProject));
                         }   
                     }
- 
-                    if(!rqsQuestionAlreadyExists && !insertQuestionnaireList.isEmpty())
+                    
+                   
+                    if(!RQSQuestionAlreadyExists && !insertQuestionnaireList.isEmpty())
                     {
                         insertQuestionnaireList.addAll(generateProjectQuestionnaire(rqsMasterQuestionList,recTypeIDRQS,incomingProject));
                         if(!addedQuestionareAtParent.isEmpty())
@@ -252,30 +256,31 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                         }
                     }
                     
-                    if(!rndFeasibilityQuestionAlreadyExists && !rndFeasibilityQuestionMap.isEmpty())
+                    
+                    if(!RnDFeasibilityQuestionAlreadyExists && !RnDFeasibilityQuestionMap.isEmpty())
                     {
-                        if(rndFeasibilityQuestionMap.containsKey(projectCurrentGate) && rndFeasibilityQuestionMap.get(projectCurrentGate)!=null)
+                        if(RnDFeasibilityQuestionMap.containsKey(projectCurrentGate) && RnDFeasibilityQuestionMap.get(projectCurrentGate)!=null)
                         {
-                            List<IPM_Questionnaire__c> RnDFeasibilityQuestionList = rndFeasibilityQuestionMap.get(projectCurrentGate);
+                            List<IPM_Questionnaire__c> RnDFeasibilityQuestionList = RnDFeasibilityQuestionMap.get(projectCurrentGate);
                             insertQuestionnaireList.addAll(generateProjectQuestionnaire(RnDFeasibilityQuestionList,recTypeRnDFeasibility,incomingProject));
                         }
                     }
                     
-                    if(!scFeasibilityQuestionAlreadyExists && !scFeasibilityQuestionMap.isEmpty())
+                    if(!SCFeasibilityQuestionAlreadyExists && !SCFeasibilityQuestionMap.isEmpty())
                     {
-                        if(scFeasibilityQuestionMap.containsKey(projectCurrentGate) && scFeasibilityQuestionMap.get(projectCurrentGate)!=null)
+                        if(SCFeasibilityQuestionMap.containsKey(projectCurrentGate) && SCFeasibilityQuestionMap.get(projectCurrentGate)!=null)
                         {
-                            List<IPM_Questionnaire__c> SCFeasibilityQuestionList = scFeasibilityQuestionMap.get(projectCurrentGate);
+                            List<IPM_Questionnaire__c> SCFeasibilityQuestionList = SCFeasibilityQuestionMap.get(projectCurrentGate);
                             insertQuestionnaireList.addAll(generateProjectQuestionnaire(SCFeasibilityQuestionList,recTypeSCFeasibility,incomingProject));
                         }
                     }
                     
                     
-                    if(!tradeMarkQuestionAlreadyExists && !tradeMarkQuestionMap.isEmpty())
+                    if(!TradeMarkQuestionAlreadyExists&& !TradeMarkQuestionMap.isEmpty())
                     {
-                        if(tradeMarkQuestionMap.containsKey(projectCurrentGate) && tradeMarkQuestionMap.get(projectCurrentGate)!=null)
+                        if(TradeMarkQuestionMap.containsKey(projectCurrentGate) && TradeMarkQuestionMap.get(projectCurrentGate)!=null)
                         {
-                            List<IPM_Questionnaire__c> TradeMarkQuestionList = tradeMarkQuestionMap.get(projectCurrentGate);
+                            List<IPM_Questionnaire__c> TradeMarkQuestionList = TradeMarkQuestionMap.get(projectCurrentGate);
                             insertQuestionnaireList.addAll(generateProjectQuestionnaire(TradeMarkQuestionList,recTypeTradeMark,incomingProject));
                         }
                     }
@@ -286,9 +291,7 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                     }
                 }
             }   
-            
-            if(!insertQuestionnaireList.isEmpty())
-            {
+            if(!insertQuestionnaireList.isEmpty()){
                 insert insertQuestionnaireList;
             }
         }

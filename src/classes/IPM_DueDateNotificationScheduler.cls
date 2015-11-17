@@ -1,14 +1,10 @@
-/******************************************** 
-*@Author:Cognizant
-*@Date:September 2015
-*@Description : Scheduler class for batch class IPM_DueDateNotificationBatch
-* This class has been declared as Global as it implements Schedulable interface.
-*********************************************/
-global with sharing class IPM_DueDateNotificationScheduler implements Schedulable{
+global class IPM_DueDateNotificationScheduler implements Schedulable{
 	private final string apexJobType = 'BatchApex';
 	private final string processingStatus = 'Processing';
 	private final string preaparingStatus = 'Preparing';
+	private final string apexDateFormat = 's m H d M \'?\' yyyy';
 	private final string apaexJobName = 'MatrixRetry';
+	public static Boolean executeMoreThanFive = false;
 	
    global void execute(SchedulableContext sc) {
    	
@@ -16,11 +12,15 @@ global with sharing class IPM_DueDateNotificationScheduler implements Schedulabl
 		//In some cases, might need to add "Status='Queued' " to the criteria
 		if ([SELECT count() FROM AsyncApexJob WHERE JobType =:apexJobType AND (Status =: processingStatus OR Status =: preaparingStatus)] < 5)
 		{ 
-  			IPM_DueDateNotification_Batch b = new IPM_DueDateNotification_Batch();
-            database.executebatch(b,50);
+  			IPM_DueDateNotificationBatch b = new IPM_DueDateNotificationBatch();
+            database.executebatch(b);
 		}
 		 else {
-   				System.Schedule(apaexJobName+String.valueOf(Datetime.now()), IPM_ConstantUtils.IPM_NEXT_FIRE_TIME,new IPM_DueDateNotificationScheduler());
-			}
-   	 }
+   			//schedule this same schedulable class again in 30 mins
+   			IPM_DueDateNotificationScheduler scLater = new IPM_DueDateNotificationScheduler();
+   			Datetime dt = Datetime.now() + (0.024305); // i.e. 30 mins
+   			String timeForScheduler = dt.format(apexDateFormat);
+   			System.Schedule(apaexJobName+timeForScheduler,timeForScheduler,scLater);
+		}
+   }
 }

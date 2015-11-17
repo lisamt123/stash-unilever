@@ -70,21 +70,20 @@ public with sharing class IPM_ProjectResourceHandler implements ITrigger{
             handler.setSyncResourceAftUpdate(oldResourceMap,newResourceMap);
         }*/
         
-        
         //IPM EcoDesign Related Changes
         IPM_ProjectResourceTriggerHandler handler = new IPM_ProjectResourceTriggerHandler();
         if(Trigger.isDelete ){
-        	map<id,IPM_Project_Resource__c>oldResourceMap=(map<id,IPM_Project_Resource__c>)trigger.oldmap;
-        	handler.setSyncProjectAftInsertDelete(oldResourceMap.values());
+            map<id,IPM_Project_Resource__c>oldResourceMap=(map<id,IPM_Project_Resource__c>)trigger.oldmap;
+            handler.setSyncProjectAftInsertDelete(oldResourceMap.values());
         }
         else if(Trigger.isInsert){
-        	map<id,IPM_Project_Resource__c>newResourceMap=(map<id,IPM_Project_Resource__c>)trigger.newmap;
-        	handler.setSyncProjectAftInsertDelete(newResourceMap.values());
+            map<id,IPM_Project_Resource__c>newResourceMap=(map<id,IPM_Project_Resource__c>)trigger.newmap;
+            handler.setSyncProjectAftInsertDelete(newResourceMap.values());
         }
         else if(Trigger.isUpdate){
-        	map<id,IPM_Project_Resource__c>newResourceMap=(map<id,IPM_Project_Resource__c>)trigger.newmap;
+            map<id,IPM_Project_Resource__c>newResourceMap=(map<id,IPM_Project_Resource__c>)trigger.newmap;
             map<id,IPM_Project_Resource__c>oldResourceMap=(map<id,IPM_Project_Resource__c>)trigger.oldmap;            
-            
+            handler.OnAfterUpdate((List<IPM_Project_Resource__c>)Trigger.new, newResourceMap, oldResourceMap);
             handler.setSyncProjectAftUpdate(oldResourceMap,newResourceMap);
         }
         
@@ -115,17 +114,17 @@ public with sharing class IPM_ProjectResourceHandler implements ITrigger{
             handler.OnAfterDelete((List<IPM_Project_Resource__c>)Trigger.old);
        }
        //@@Data Sharing
-       /*if(Trigger.isUpdate){
-       		map<id,IPM_Project_Resource__c>newResourceMap=(map<id,IPM_Project_Resource__c>)trigger.newmap;
+       if(Trigger.isUpdate){
+            map<id,IPM_Project_Resource__c>newResourceMap=(map<id,IPM_Project_Resource__c>)trigger.newmap;
             map<id,IPM_Project_Resource__c>oldResourceMap=(map<id,IPM_Project_Resource__c>)trigger.oldmap;
-       		handler.OnAfterUpdate((List<IPM_Project_Resource__c>)Trigger.new, newResourceMap, oldResourceMap);	
-       }*/
+            handler.OnAfterUpdate((List<IPM_Project_Resource__c>)Trigger.new, newResourceMap, oldResourceMap);  
+       }
     }
     /**
     * @description:beforeInsert
     * This method is called iteratively for each record to be insert during a AFTER
     * trigger.
-    * @para:sobject record 
+    * @para:sobject record
     */
     public void beforeInsert(SObject so){
         //This method has been included as the class implements the ITrigger interface
@@ -203,7 +202,7 @@ public with sharing class IPM_ProjectResourceHandler implements ITrigger{
             IPM_TaskHelper.reAssignFunctionalWiseTasks(newPRListWithOwners);//reassign the tasks basing on the functional areas.
         }
         if(Trigger.isInsert && Trigger.isAfter) {
-            IPM_WithoutSharingHelper.autoFollowTeamMembers(Trigger.new); //also make the team member follow the project if they hasnt' before.
+            IPM_ChatterFeedHelper.autoFollowTeamMembers(Trigger.new); //also make the team member follow the project if they hasnt' before.
         }
         //Added by Devendra - call method to insert all exception logs got while excecution of trigger
        

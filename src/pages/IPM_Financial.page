@@ -98,7 +98,7 @@
                                                                         <li class="{!IF(financial.Status__c == $Label.IPM_SUBMITTED, $Label.IPM_SUBMIT_CODE, IF(financial.Status__c == $Label.IPM_IN_PROGRESS, $Label.IPM_PROGRESS_CODE, $Label.IPM_NOT_STARTED_CODE))} {!IF(currentFinancialId == financial.Id, $Label.IPM_Selected, '')} finRecord">
                                                                             <div class="incHeight" id="flagID">              
                                                                                 <span class="key wordwrap">
-                                                                                    <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!IF(AND(NOT(CONTAINS(financial.Financial_External_ID__c, '_NONKEY')),project.IPM_Phase__c == 'Ideas'), TRUE, FALSE)}"/>
+                                                                                    <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!IF(AND(NOT(CONTAINS(financial.Financial_External_ID__c, '_NONKEY')),currentTab == 'myview'), TRUE, FALSE)}"/>
                                                                                 </span>
                                                                             
                                                                             <apex:commandLink value="{!financial.Financial_External_ID__c}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel,flagID" status="loadingStatus" oncomplete="finScriptCallBack()">
@@ -162,10 +162,13 @@
                                                         <apex:outputText rendered="{!NOT(isError)}">
                                                             <div class="requiredInput">
                                                                 <div class="requiredBlock"></div>
-                                                                <apex:selectList styleClass="fieldFont drpfield" value="{!selectedDocumentSection}" multiselect="false" size="1">
-                                                                    <apex:selectOptions value="{!documentSections}" />
-                                                                    <apex:actionSupport event="onchange" action="{!goToSection}" status="loadingStatus"/>
-                                                                </apex:selectList>
+                                                                <apex:panelGrid columns="2" columnClasses="fincol1,fincol2" border="0" cellpadding="1" cellspacing="1">
+                                                                    <apex:commandButton action="{!loadCurrencyPage}" value="Local Currency View" styleClass="ipmButton primary currButton" alt="{!$Label.IPM_currency_button_hover}" title="{!$Label.IPM_currency_button_hover}"/>
+                                                                    <apex:selectList styleClass="fieldFont drpfield" value="{!selectedDocumentSection}" multiselect="false" size="1">
+                                                                        <apex:selectOptions value="{!documentSections}" />
+                                                                        <apex:actionSupport event="onchange" action="{!goToSection}" status="loadingStatus"/>
+                                                                    </apex:selectList>
+                                                                </apex:panelGrid>    
                                                             </div>    
                                                         </apex:outputText>
                                                     </div> 
@@ -372,129 +375,6 @@
     </apex:composition>
     
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript"></script>
-    <!--<script>
-        var jq = jQuery.noConflict();
-       
-        function finScriptCallBack(){ 
-                             
-            jq(".initAccordian").on("click", function(){
-                var $this = jq(this);
-                if($this.parent().nextUntil(".leftsidemenu").is(":hidden")){
-                   $this.parent().nextUntil(".leftsidemenu").show(); 
-                   $this.removeClass("fa-plus-square");
-                   $this.addClass("fa-minus-square");
-                }else{
-                   $this.parent().nextUntil(".leftsidemenu").hide(); 
-                   $this.removeClass("fa-minus-square");
-                   $this.addClass("fa-plus-square");
-                }
-            });
-            function loadCurrencyPage(){ 
-                window.location='/apex/IPM_Financial_Currency?id='+IPMFINAPP.projectid;
-            }
-            
-       
-            jq(document).on('click', '#ipmDeleteModal .confirmAction.refreshFromLocal', function(){
-                jq('#ipmDeleteModal').modal('hide');
-                refreshFromLocal();     
-            });
-            
-            jq(document).on('click', '#ipmDeleteModal .confirmAction.refreshFromRegional', function(){
-                jq('#ipmDeleteModal').modal('hide');
-                refreshFromRegional();
-            });
-        }
-        function defKeyPrev(){
-            if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)){ 
-                return false;
-            }
-        }
-        
-        jq(document).ready(function(){
-                      
-            jq('[data-toggle="tooltip"]').tooltip();
-            jq('.ipmFinancetable > tbody > tr').each(function(){
-            var $this = jq(this);
-            $this.find('td.iPLBorderGay:first').addClass('finTabletr');
-            }); 
-        
-            jq(document).on('click', '.finArrow', function(){
-            var $this = jq(this);
-            var finFilter = jq('.finFilter');
-            var finTable = jq('.finTableData');
-                if($this.children().hasClass('fa-angle-left')){
-                    finFilter.hide();
-                    finTable.removeClass('col-sm-10');
-                    finTable.addClass('col-sm-12');
-                    $this.children().removeClass('fa-angle-left');
-                    $this.children().addClass('fa-angle-right');
-                }else{
-                    finTable.removeClass('col-sm-12');
-                    finTable.addClass('col-sm-10');
-                    finFilter.show();
-                    $this.children().removeClass('fa-angle-right');
-                    $this.children().addClass('fa-angle-left');
-                }
-            });
-        });
-        
-        
-        function refreshFromLocalJs(title, confirmMsg){
-            modalFunc(title, confirmMsg);
-            var delModal = jq('#ipmDeleteModal .confirmAction');
-            delModal.removeClass('refreshFromRegional');
-            delModal.addClass('refreshFromLocal');
-            finScriptCallBack();
-        }
-        
-        
-        function refreshFromRegionalJs(title, confirmMsg){
-            modalFunc(title, confirmMsg);
-            var delModal = jq('#ipmDeleteModal .confirmAction');
-            delModal.removeClass('refreshFromLocal');
-            delModal.addClass('refreshFromRegional');
-            finScriptCallBack();
-        }
-        
-        
-        function modalFunc(title, confirmMsg){
-            jq('#ipmDeleteModal .modal-title').html(title);
-            jq('#ipmDeleteModal .confirmMsg').html(confirmMsg);
-        }
-        
-        function UpdateCheckbox(Country, check){
-            ActionUpdate(Country,check);
-        }
-        
-        
-        var dots;
-        function progressDots(){
-            var currSel = document.getElementById(IPMApp.compSlst).options[document.getElementById(IPMApp.compSlst).selectedIndex].text;
-            document.getElementById(IPMApp.compOtl).textContent = 'Currency: ' + currSel + ': exchange rate is being applied..';  
-            dots = window.setInterval( function() {
-            var wait = document.getElementById("wait");                
-            if ( wait.innerHTML.length > 3 ) 
-                wait.innerHTML = "";
-            else 
-                wait.innerHTML += ".";
-            }, 500);
-        }
-        function stopDots(){
-            window.clearInterval(dots);                                                    
-            document.getElementById("wait").innerHTML='';
-        }
-        
-        jq('#button').on('click',function() {
-            var div = jq('#newpost');
-            if (div.style.display !== 'none') {
-                div.style.display = 'none';
-                return false;
-            }
-            else {
-                div.style.display = 'block';
-                return false;
-            }
-        });
-    </script>-->
+   
    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Financial.js')}" type="text/javascript"></script>
 </apex:page>

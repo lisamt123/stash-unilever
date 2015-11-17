@@ -26,14 +26,14 @@ public class IPM_Test_ProjectUtility{
        mile2.recordTypeid = milerec.Id;
        mile2.name='Test Mile 2';
        mile2.IPM_Project__c = proj.Id;
-       mile2.IPM_Phase__c= IPM_ConstantUtils.FEASIBILITY_PHASE;
+       mile2.IPM_Phase__c='Feasibility';
        insert mile2; 
        
        IPM_Milestone__c mile3 = new IPM_Milestone__c();
        mile3.recordTypeid = milerec.Id;
        mile3.name='Test Mile 3';
        mile3.IPM_Project__c = proj.Id;
-       mile3.IPM_Phase__c=IPM_ConstantUtils.FEASIBILITY_PHASE;
+       mile3.IPM_Phase__c='Feasibility';
        insert mile3;  
        
        IPM_Milestone__c mile4 = new IPM_Milestone__c();
@@ -41,7 +41,7 @@ public class IPM_Test_ProjectUtility{
        mile4.name='Test Mile 4';
        mile4.IPM_Project__c = proj.Id;
        mile4.IPM_Milestone__c = mile3.Id;
-       mile4.IPM_Phase__c=IPM_ConstantUtils.FEASIBILITY_PHASE;
+       mile4.IPM_Phase__c='Feasibility';
        insert mile4;  
        
        IPM_Project__c projClone = new IPM_Project__c();
@@ -49,14 +49,11 @@ public class IPM_Test_ProjectUtility{
        projClone.name='test';
        projClone.IPMProject_Span__c = 'Regional';
        projClone.IPM_Parent_Project__c = proj.Id;
-       projClone.IPM_Phase__c=IPM_ConstantUtils.FEASIBILITY_PHASE;
+       projClone.IPM_Phase__c='Feasibility';
        insert projClone;
        
        projClone.IPM_Phase__c='Capability';
        update projClone;
-       
-       IPM_Project__c project = [Select Id, IPM_Phase__c from IPM_Project__c where Id =: projClone.Id];
-       System.assertEquals('Capability' , project.IPM_Phase__c);
     }
     
 }

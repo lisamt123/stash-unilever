@@ -6,7 +6,7 @@
    @Version: 1.0 
    @Reference: IPM_Global_Consolidated Component
 */
-public with sharing class IPM_Global_Consolidated_Controller{
+public without sharing class IPM_Global_Consolidated_Controller{
     public List<IPM_Project_Document_Section__c> summaryList{get;set;}
     public Id projectId{
         get {

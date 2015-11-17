@@ -6,7 +6,7 @@
 @Version: 1.0
 @Reference: Project Document Section Editor Page
 */
-public with sharing class IPM_Assumptions_Controller {
+public without sharing class IPM_Assumptions_Controller {
     //Initializing Variables
     public IPM_Project_Document_Section_Content__c assumption{get; set;} //For getting assumption record 
     public string gateDocType{get;set;}// used in corresponding component
@@ -24,7 +24,7 @@ public with sharing class IPM_Assumptions_Controller {
     }
     public Integer contentCount;//for updation
     //For try-catch
-    public string IPM_ASSUMPTIONS_CONTROLLER_NAME=IPM_Assumptions_Controller.class.getName();
+    public static final string IPM_ASSUMPTIONS_CONTROLLER='IPM_Assumptions_Controller';
     public static final string GET_ASSUMPTIONS='getAssumptions';
     public static final string SAVE_ASSUMPTIONS='saveAssumptions';
     
@@ -50,7 +50,7 @@ public with sharing class IPM_Assumptions_Controller {
         }
         
         catch(QueryException ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSUMPTIONS_CONTROLLER_NAME,
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSUMPTIONS_CONTROLLER,
                 GET_ASSUMPTIONS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
 
         }
@@ -100,11 +100,11 @@ public with sharing class IPM_Assumptions_Controller {
             }
         }
         catch(DMLException ex){
-             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSUMPTIONS_CONTROLLER_NAME,
+             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSUMPTIONS_CONTROLLER,
                     SAVE_ASSUMPTIONS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
         catch(Exception ex){
-             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSUMPTIONS_CONTROLLER_NAME,
+             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSUMPTIONS_CONTROLLER,
                     SAVE_ASSUMPTIONS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     }   

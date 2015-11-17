@@ -54,7 +54,7 @@ public without sharing class  IPM_ProjectShareJobQueue implements Queueable
         {
             Database.Rollback(phaseChangeSavePoint); 
             
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME ,'execute',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null); 
+            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),CLASS_NAME ,'execute',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null); 
         } 
     }
     

@@ -34,16 +34,8 @@
         <name>BET_Final_Release_Missed__c</name>
     </fields>
     <fields>
-        <label><!-- BET First Release Chatter Post --></label>
-        <name>BET_First_Release_Chatter_Post__c</name>
-    </fields>
-    <fields>
         <label><!-- BET First Release Missed --></label>
         <name>BET_First_Release_Missed__c</name>
-    </fields>
-    <fields>
-        <label><!-- BET First Release Previous Value --></label>
-        <name>BET_First_Release_Previous_Value__c</name>
     </fields>
     <fields>
         <label><!-- BET Link Requested --></label>
@@ -90,10 +82,6 @@
         <label><!-- Deputy Project Leader --></label>
         <name>Deputy_Project_Leader__c</name>
         <relationshipLabel><!-- IPM Projects (Deputy Project Leader) --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- EcoDesign Sync Eligible Timestamp --></label>
-        <name>EcoDesign_Sync_Eligible_Timestamp__c</name>
     </fields>
     <fields>
         <label><!-- EcoDesign Sync Error --></label>
@@ -164,7 +152,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Project Type (OLD) --></label>
+        <label><!-- Project Type --></label>
         <name>IPMProject_Type__c</name>
         <picklistValues>
             <masterLabel>Original</masterLabel>
@@ -192,15 +180,15 @@
         <name>IPM_Actual_Launch_Year__c</name>
     </fields>
     <fields>
-        <label><!-- Market Place Activity --></label>
+        <label><!-- Answer of Q1 --></label>
         <name>IPM_Answer_of_Q1__c</name>
     </fields>
     <fields>
-        <label><!-- Consumer Value Perception --></label>
+        <label><!-- Answer of Q2 --></label>
         <name>IPM_Answer_of_Q2__c</name>
     </fields>
     <fields>
-        <label><!-- Enabling Technology --></label>
+        <label><!-- Answer of Q3 --></label>
         <name>IPM_Answer_of_Q3__c</name>
     </fields>
     <fields>
@@ -244,10 +232,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- IPM Batch Initiate --></label>
-        <name>IPM_Batch_Initiate__c</name>
-    </fields>
-    <fields>
         <label><!-- Bosscard Status --></label>
         <name>IPM_Bosscard_Status__c</name>
     </fields>
@@ -263,10 +247,6 @@
     <fields>
         <label><!-- IPM_Brand --></label>
         <name>IPM_Brand__c</name>
-    </fields>
-    <fields>
-        <label><!-- Business Partner User Name --></label>
-        <name>IPM_Business_Partner_User_Name__c</name>
     </fields>
     <fields>
         <label><!-- CPP Change Reason --></label>
@@ -322,25 +302,21 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- IPM Child Fast Track Project --></label>
-        <name>IPM_Child_Fast_Track_Project__c</name>
-    </fields>
-    <fields>
         <label><!-- IPM Project Cluster --></label>
         <name>IPM_Cluster__c</name>
         <relationshipLabel><!-- IPM Projects --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Clustering --></label>
+        <label><!-- Clustring --></label>
         <name>IPM_Clustering__c</name>
-        <relationshipLabel><!-- IPM Projects (Clustering) --></relationshipLabel>
+        <relationshipLabel><!-- IPM Projects (Clustring) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- IPM Project Clusters --></label>
         <name>IPM_Clusters__c</name>
     </fields>
     <fields>
-        <label><!-- Source Company Card --></label>
+        <label><!-- Company Card Text --></label>
         <name>IPM_CompanyCardText__c</name>
     </fields>
     <fields>
@@ -359,14 +335,6 @@
             <masterLabel>Lite</masterLabel>
             <translation><!-- Lite --></translation>
         </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Confidential --></label>
-        <name>IPM_Confidential__c</name>
-    </fields>
-    <fields>
-        <label><!-- Target Launch Period --></label>
-        <name>IPM_Copy_Target_Launch_Period__c</name>
     </fields>
     <fields>
         <label><!-- Core Parameters --></label>
@@ -488,6 +456,10 @@
     <fields>
         <label><!-- IsSaved --></label>
         <name>IPM_IsSaved__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Is Finance Member Null --></label>
+        <name>IPM_Is_Finance_Member_Null__c</name>
     </fields>
     <fields>
         <label><!-- IPM Last Modified Date Time --></label>
@@ -708,14 +680,6 @@
         <name>IPM_Region_Shr__c</name>
     </fields>
     <fields>
-        <label><!-- Region --></label>
-        <name>IPM_Region__c</name>
-    </fields>
-    <fields>
-        <label><!-- IPM_Rollout_Added_at_Stage --></label>
-        <name>IPM_Rollout_Added_at_Stage__c</name>
-    </fields>
-    <fields>
         <label><!-- Rollout Status --></label>
         <name>IPM_Rollout_Status__c</name>
         <picklistValues>
@@ -781,7 +745,7 @@
         <relationshipLabel><!-- IPM Projects (Stopped By) --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- IPM Stopped Comments --></label>
+        <label><!-- Stopped Comments --></label>
         <name>IPM_Stopped_Comments__c</name>
     </fields>
     <fields>
@@ -827,10 +791,6 @@
     <fields>
         <label><!-- Target Launch Month --></label>
         <name>IPM_Target_Launch_Month__c</name>
-    </fields>
-    <fields>
-        <label><!-- Target Launch Period --></label>
-        <name>IPM_Target_Launch_Period__c</name>
     </fields>
     <fields>
         <label><!-- Target Launch Year --></label>
@@ -894,10 +854,6 @@
         <name>IPM_White_Space_Project__c</name>
     </fields>
     <fields>
-        <label><!-- IsFinanceMemberNull --></label>
-        <name>IsFinanceMemberNull__c</name>
-    </fields>
-    <fields>
         <label><!-- Is Archieved --></label>
         <name>Is_Archieved__c</name>
     </fields>
@@ -942,10 +898,6 @@
         <name>Regional_Project_Leader_Name__c</name>
     </fields>
     <fields>
-        <label><!-- Ship to Trade Milestone Due Date --></label>
-        <name>Ship_to_Trade_Milestone_Due_Date__c</name>
-    </fields>
-    <fields>
         <label><!-- Success Timestamp EcoDesign --></label>
         <name>Success_Timestamp_EcoDesign__c</name>
     </fields>
@@ -967,18 +919,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Sync Countries --></label>
-        <name>Sync_Countries__c</name>
-    </fields>
-    <fields>
-        <label><!-- Sync Members --></label>
-        <name>Sync_Members__c</name>
-    </fields>
-    <fields>
-        <label><!-- Sync Project --></label>
-        <name>Sync_Project__c</name>
-    </fields>
-    <fields>
         <label><!-- Synced From EcoDesign TimeStamp --></label>
         <name>Synced_From_EcoDesign_TimeStamp__c</name>
     </fields>
@@ -990,14 +930,6 @@
         <label><!-- Update BET --></label>
         <name>Update_BET__c</name>
     </fields>
-    <fields>
-        <label><!-- Exists At Least One Assmnt Per EICountry --></label>
-        <name>existsAtLeastOneAssmntPerEICountry__c</name>
-    </fields>
-    <fields>
-        <label><!-- update on change of ms first release dat --></label>
-        <name>update_on_change_of_ms_first_release_dat__c</name>
-    </fields>
     <layouts>
         <layout>IPM Project Layout</layout>
         <sections>
@@ -1005,43 +937,16 @@
             <section>Custom Links</section>
         </sections>
         <sections>
-            <label><!-- Minimum Required --></label>
-            <section>Minimum Required</section>
+            <label><!-- Project Attributes --></label>
+            <section>Project Attributes</section>
+        </sections>
+        <sections>
+            <label><!-- Project Document Section --></label>
+            <section>Project Document Section</section>
         </sections>
         <sections>
             <label><!-- Project Parameters --></label>
             <section>Project Parameters</section>
-        </sections>
-        <sections>
-            <label><!-- Status --></label>
-            <section>Status</section>
-        </sections>
-        <sections>
-            <label><!-- Team Members --></label>
-            <section>Team Members</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>IPM_Project_Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Minimum Required --></label>
-            <section>Minimum Required</section>
-        </sections>
-        <sections>
-            <label><!-- Others --></label>
-            <section>Others</section>
-        </sections>
-        <sections>
-            <label><!-- Project Parameters --></label>
-            <section>Project Parameters</section>
-        </sections>
-        <sections>
-            <label><!-- Project Process Params --></label>
-            <section>Project Process Params</section>
         </sections>
         <sections>
             <label><!-- Status --></label>
@@ -1056,10 +961,6 @@
         <label><!-- Clustering --></label>
         <name>Clustering</name>
     </recordTypes>
-    <recordTypes>
-        <label><!-- IPM Cluster Layout --></label>
-        <name>IPM_Cluster_Layout</name>
-    </recordTypes>
     <startsWith>Vowel</startsWith>
     <validationRules>
         <errorMessage><!-- IPM Project Cluster not allowed  to edit when Project type is Rollout --></errorMessage>
@@ -1068,9 +969,5 @@
     <validationRules>
         <errorMessage><!-- Operational Projects cannot be added to IPM Project Clusters --></errorMessage>
         <name>IPM_Cluster_not_allowed_for_Operational</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage><!-- Global Original Project must begin with Ideas Phase --></errorMessage>
-        <name>Ideas_create_Global_Original_Projects</name>
     </validationRules>
 </CustomObjectTranslation>

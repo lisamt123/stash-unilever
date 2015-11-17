@@ -49,7 +49,7 @@
         <name>IPM_Bosscard_Logo__c</name>
     </fields>
     <fields>
-        <label><!-- Bosscard Span Logo --></label>
+        <label><!-- IPM Bosscard Span Logo --></label>
         <name>IPM_Bosscard_Span_Logo__c</name>
     </fields>
     <fields>
@@ -98,6 +98,22 @@
         <relationshipLabel><!-- IPM Bosscard --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Company --></label>
+        <name>IPM_Company__c</name>
+        <picklistValues>
+            <masterLabel>Beiersdorf</masterLabel>
+            <translation><!-- Beiersdorf --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Church &amp; Dwight</masterLabel>
+            <translation><!-- Church &amp; Dwight --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coty</masterLabel>
+            <translation><!-- Coty --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Constraints --></label>
         <name>IPM_Constraints__c</name>
     </fields>
@@ -117,6 +133,14 @@
         <label><!-- Gate Keeper --></label>
         <name>IPM_Gate_Keeper__c</name>
         <relationshipLabel><!-- IPM Bosscard (Gate Keeper) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IsAutoSave --></label>
+        <name>IPM_IsAutoSave__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsCraeted --></label>
+        <name>IPM_IsCraeted__c</name>
     </fields>
     <fields>
         <label><!-- IsSaved --></label>
@@ -153,20 +177,12 @@
         <name>IPM_Region_Shr__c</name>
     </fields>
     <fields>
-        <label><!-- Region --></label>
-        <name>IPM_Region__c</name>
-    </fields>
-    <fields>
         <label><!-- Resources --></label>
         <name>IPM_Resources__c</name>
     </fields>
     <fields>
         <label><!-- Scope --></label>
         <name>IPM_Scope__c</name>
-    </fields>
-    <fields>
-        <label><!-- Small C --></label>
-        <name>IPM_Small_C_shr__c</name>
     </fields>
     <fields>
         <label><!-- Sustainability --></label>
@@ -179,35 +195,6 @@
     <fields>
         <label><!-- isBosscardSkipped --></label>
         <name>IPM_isBosscardSkipped__c</name>
-    </fields>
-    <fields>
-        <label><!-- Is Delete? --></label>
-        <name>Is_Delete__c</name>
-    </fields>
-    <fields>
-        <label><!-- ProjectTypeValue --></label>
-        <name>ProjectTypeValue__c</name>
-    </fields>
-    <fields>
-        <label><!-- To be Deleted? --></label>
-        <name>To_be_Deleted__c</name>
-    </fields>
-    <fields>
-        <help><!-- Value selected here will be default for Project creation --></help>
-        <label><!-- Type of Project --></label>
-        <name>Type_of_Project__c</name>
-        <picklistValues>
-            <masterLabel>Brand Led Growth(BLG)</masterLabel>
-            <translation><!-- Brand Led Growth(BLG) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Innovation/Renovation</masterLabel>
-            <translation><!-- Innovation/Renovation --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Operational</masterLabel>
-            <translation><!-- Operational --></translation>
-        </picklistValues>
     </fields>
     <fields>
         <label><!-- Used By Workflow 175 days --></label>

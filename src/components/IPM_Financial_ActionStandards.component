@@ -10,7 +10,7 @@
 <apex:attribute name="isEditable" type="boolean" assignTo="{!editTable}" description="Passing parameter to check is table editable or not"/>
 <apex:attribute name="secId" type="Id" required="false" assignTo="{!projDocSecId}" description="Passing Project Document Section Id"/>
 <apex:attribute name="projId" type="Id" required="true" assignTo="{!projectId}" description="Passing Project Id"/>
-   <apex:outputPanel styleClass="gatefinancialbg" layout="block" rendered="{!isEditable}">
+   <apex:outputPanel styleClass="gatefinancialbg" layout="block" rendered="{!editTable}">
        <a href="{!$Page.IPM_Financial}?id={!projectId}">{!$Label.IPM_Navigate_Financial}</a>
    </apex:outputPanel>
    <div class="gatefinTabContainer">
@@ -19,7 +19,7 @@
         <thead>
             <tr>
                 <th scope="col" width="30%">                    
-                    <span class="finproject"></span>
+                    <span class="finproject">&nbsp;</span>
                 </th>
                  <th scope="col">
                     <span class="finproject">{!$Label.IPM_ActionStandards}</span>
@@ -44,10 +44,10 @@
                     <div class="col-sm-5">%</div>
                 </td>
                 <td class="fintlewhitebg">
-                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!editTable)}">
                         <apex:param value="{!projDocSecCon.IPM_Innov_Value_Share_Action_Charter__c}" />
                     </apex:outputText>
-                    <apex:inputField value="{!projDocSecCon.IPM_Innov_Value_Share_Action_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','Innovation',this.value,'{!projDocSecCon.IPM_Inov_Value_Share_Action_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                    <apex:inputField value="{!projDocSecCon.IPM_Innov_Value_Share_Action_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','Innovation',this.value,'{!projDocSecCon.IPM_Inov_Value_Share_Action_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',editTable)}"/>
                 </td>
                 <apex:repeat value="{!innovationValueShareWrapper.lstGateValues}" var="value">
                     <td class="fintlewhitebg">
@@ -57,8 +57,8 @@
                     </td>
                 </apex:repeat>
                 <td class="fintlewhitebg">
-                    <apex:inputTextArea value="{!projDocSecCon.IPM_Inov_Value_Share_Action_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','Innovation','{!projDocSecCon.IPM_Innov_Value_Share_Action_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
-                    <apex:outputField value="{!projDocSecCon.IPM_Inov_Value_Share_Action_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
+                    <apex:inputTextArea value="{!projDocSecCon.IPM_Inov_Value_Share_Action_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','Innovation','{!projDocSecCon.IPM_Innov_Value_Share_Action_Charter__c}',this.value,true)" rendered="{!editTable}"/>
+                    <apex:outputField value="{!projDocSecCon.IPM_Inov_Value_Share_Action_Charter_Cmts__c}"  rendered="{!!editTable}"/>
                 </td>
             </tr>
             <tr>
@@ -67,10 +67,10 @@
                     <div class="col-sm-5">%</div>
                 </td>
                 <td class="fintlewhitebg">
-                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!editTable)}">
                         <apex:param value="{!projDocSecCon.IPM_Inc_Value_Share_Action_Charter__c}" />
                     </apex:outputText>
-                    <apex:inputField value="{!projDocSecCon.IPM_Inc_Value_Share_Action_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','Incremental',this.value,'{!projDocSecCon.IPM_Inc_Val_Share_Action_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                    <apex:inputField value="{!projDocSecCon.IPM_Inc_Value_Share_Action_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','Incremental',this.value,'{!projDocSecCon.IPM_Inc_Val_Share_Action_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',editTable)}"/>
                 </td>
                 <apex:repeat value="{!incrementalValueShareWrapper.lstGateValues}" var="value">
                     <td class="fintlewhitebg">
@@ -80,8 +80,8 @@
                     </td>
                 </apex:repeat>
                 <td class="fintlewhitebg">
-                    <apex:inputTextArea value="{!projDocSecCon.IPM_Inc_Val_Share_Action_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','Incremental','{!projDocSecCon.IPM_Inc_Value_Share_Action_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
-                    <apex:outputField value="{!projDocSecCon.IPM_Inc_Val_Share_Action_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
+                    <apex:inputTextArea value="{!projDocSecCon.IPM_Inc_Val_Share_Action_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','Incremental','{!projDocSecCon.IPM_Inc_Value_Share_Action_Charter__c}',this.value,true)" rendered="{!editTable}"/>
+                    <apex:outputField value="{!projDocSecCon.IPM_Inc_Val_Share_Action_Charter_Cmts__c}"  rendered="{!!editTable}"/>
                 </td>
             </tr>
             <tr>
@@ -90,10 +90,10 @@
                     <div class="col-sm-5">€ '000</div>
                 </td>
                 <td class="fintlewhitebg">
-                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!editTable)}">
                         <apex:param value="{!projDocSecCon.IPM_gTO_Action_Standard_Charter__c}" />
                     </apex:outputText>
-                    <apex:inputField value="{!projDocSecCon.IPM_gTO_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','gTO',this.value,'{!projDocSecCon.IPM_gTO_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                    <apex:inputField value="{!projDocSecCon.IPM_gTO_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','gTO',this.value,'{!projDocSecCon.IPM_gTO_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',editTable)}"/>
                 </td>
                 <apex:repeat value="{!gTOWrapper.lstGateValues}" var="value">
                     <td class="fintlewhitebg">
@@ -103,8 +103,8 @@
                     </td>
                 </apex:repeat>
                 <td class="fintlewhitebg">
-                    <apex:inputTextArea value="{!projDocSecCon.IPM_gTO_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','gTO','{!projDocSecCon.IPM_gTO_Action_Standard_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
-                    <apex:outputField value="{!projDocSecCon.IPM_gTO_Action_Standard_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
+                    <apex:inputTextArea value="{!projDocSecCon.IPM_gTO_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','gTO','{!projDocSecCon.IPM_gTO_Action_Standard_Charter__c}',this.value,true)" rendered="{!editTable}"/>
+                    <apex:outputField value="{!projDocSecCon.IPM_gTO_Action_Standard_Charter_Cmts__c}"  rendered="{!!editTable}"/>
                 </td>
             </tr>
             <tr>
@@ -113,10 +113,10 @@
                     <div class="col-sm-5">€ '000</div>
                 </td>
                 <td class="fintlewhitebg">
-                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!editTable)}">
                         <apex:param value="{!projDocSecCon.IPM_iTo_Action_Standard_Charter__c}" />
                     </apex:outputText>
-                    <apex:inputField value="{!projDocSecCon.IPM_iTo_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','iTO',this.value,'{!projDocSecCon.IPM_iTo_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                    <apex:inputField value="{!projDocSecCon.IPM_iTo_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','iTO',this.value,'{!projDocSecCon.IPM_iTo_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',editTable)}"/>
                 </td>
                 <apex:repeat value="{!iTOWrapper.lstGateValues}" var="value">
                     <td class="fintlewhitebg">
@@ -126,8 +126,8 @@
                     </td>
                 </apex:repeat>
                 <td class="fintlewhitebg">
-                    <apex:inputTextArea value="{!projDocSecCon.IPM_iTo_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','iTO','{!projDocSecCon.IPM_iTo_Action_Standard_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
-                    <apex:outputField value="{!projDocSecCon.IPM_iTo_Action_Standard_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
+                    <apex:inputTextArea value="{!projDocSecCon.IPM_iTo_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','iTO','{!projDocSecCon.IPM_iTo_Action_Standard_Charter__c}',this.value,true)" rendered="{!editTable}"/>
+                    <apex:outputField value="{!projDocSecCon.IPM_iTo_Action_Standard_Charter_Cmts__c}"  rendered="{!!editTable}"/>
                 </td>
             </tr>
             <tr>
@@ -136,10 +136,10 @@
                     <div class="col-sm-5">%</div>
                 </td>
                 <td class="fintlewhitebg">
-                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!editTable)}">
                         <apex:param value="{!projDocSecCon.IPM_GM_Action_Standards_Charter__c}" />
                     </apex:outputText> 
-                    <apex:inputField value="{!projDocSecCon.IPM_GM_Action_Standards_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','GM',this.value,'{!projDocSecCon.IPM_GM_Action_Standards_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                    <apex:inputField value="{!projDocSecCon.IPM_GM_Action_Standards_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','GM',this.value,'{!projDocSecCon.IPM_GM_Action_Standards_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',editTable)}"/>
                 </td>
                 <apex:repeat value="{!GMWrapper.lstGateValues}" var="value">
                     <td class="fintlewhitebg">
@@ -149,12 +149,12 @@
                     </td>
                 </apex:repeat>
                 <td class="fintlewhitebg">
-                    <apex:inputTextArea value="{!projDocSecCon.IPM_GM_Action_Standards_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','GM','{!projDocSecCon.IPM_GM_Action_Standards_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
-                    <apex:outputField value="{!projDocSecCon.IPM_GM_Action_Standards_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
+                    <apex:inputTextArea value="{!projDocSecCon.IPM_GM_Action_Standards_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','GM','{!projDocSecCon.IPM_GM_Action_Standards_Charter__c}',this.value,true)" rendered="{!editTable}"/>
+                    <apex:outputField value="{!projDocSecCon.IPM_GM_Action_Standards_Charter_Cmts__c}"  rendered="{!!editTable}"/>
                 </td>
             </tr>
             <tr class="fintleblubg">
-                <td colspan="{!colSpan}" class="fleft pl15 fintleblubg"><div>{!$Label.IPM_Fin_Business}</div></td>                
+                <td colspan="{!colSpan}" class="fleft pl15 fintleblubg"><div>BUSINESS CASE:</div></td>                
             </tr>
             <tr>
                 <td class="fintleblubg fleft pl10">
@@ -162,10 +162,10 @@
                     <div class="col-sm-5">€ 000</div>
                 </td>
                 <td class="fintlewhitebg">
-                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!editTable)}">
                         <apex:param value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter__c}" />
                     </apex:outputText>
-                    <apex:inputField value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','NPV',this.value,'{!projDocSecCon.IPM_NPV_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                    <apex:inputField value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','NPV',this.value,'{!projDocSecCon.IPM_NPV_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',editTable)}"/>
                 </td>
                 <apex:repeat value="{!NPVWrapper.lstGateValues}" var="value">
                     <td class="fintlewhitebg">
@@ -175,8 +175,8 @@
                     </td>
                 </apex:repeat>
                 <td class="fintlewhitebg">
-                    <apex:inputTextArea value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','NPV','{!projDocSecCon.IPM_NPV_Action_Standard_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
-                    <apex:outputField value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
+                    <apex:inputTextArea value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','NPV','{!projDocSecCon.IPM_NPV_Action_Standard_Charter__c}',this.value,true)" rendered="{!editTable}"/>
+                    <apex:outputField value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter_Cmts__c}"  rendered="{!!editTable}"/>
                 </td>
             </tr>
             <tr>
@@ -185,10 +185,10 @@
                     <div class="col-sm-5">%</div>
                 </td>
                 <td class="fintlewhitebg">
-                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!editTable)}">
                         <apex:param value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter__c}" />
                     </apex:outputText>
-                    <apex:inputField value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','IRR',this.value,'{!projDocSecCon.IPM_IRR_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                    <apex:inputField value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','IRR',this.value,'{!projDocSecCon.IPM_IRR_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',editTable)}"/>
                 </td>
                 <apex:repeat value="{!IRRWrapper.lstGateValues}" var="value">
                     <td class="fintlewhitebg">
@@ -198,20 +198,20 @@
                     </td>
                 </apex:repeat>
                 <td class="fintlewhitebg">
-                    <apex:inputTextArea value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','IRR','{!projDocSecCon.IPM_IRR_Action_Standard_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
-                    <apex:outputField value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
+                    <apex:inputTextArea value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','IRR','{!projDocSecCon.IPM_IRR_Action_Standard_Charter__c}',this.value,true)" rendered="{!editTable}"/>
+                    <apex:outputField value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter_Cmts__c}"  rendered="{!!editTable}"/>
                 </td>
             </tr>
             <tr>
                 <td class="fintleblubg fleft pl10">
                     <div class="col-sm-7">{!$Label.ipmFinSummaryPayback}</div>
-                    <div class="col-sm-5">{!$Label.IPM_Fin_Years}</div>
+                    <div class="col-sm-5">years</div>
                 </td>
                 <td class="fintlewhitebg">
-                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!editTable)}">
                         <apex:param value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter__c}" />
                     </apex:outputText> 
-                    <apex:inputField value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','PayBack',this.value,'{!projDocSecCon.IPM_Payback_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                    <apex:inputField value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','PayBack',this.value,'{!projDocSecCon.IPM_Payback_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',editTable)}"/>
                 </td>
                 <apex:repeat value="{!PaybackWrapper.lstGateValues}" var="value">
                     <td class="fintlewhitebg">
@@ -221,8 +221,8 @@
                     </td>
                 </apex:repeat>
                 <td class="fintlewhitebg">
-                    <apex:inputTextArea value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','PayBack','{!projDocSecCon.IPM_Payback_Action_Standard_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
-                    <apex:outputField value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
+                    <apex:inputTextArea value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','PayBack','{!projDocSecCon.IPM_Payback_Action_Standard_Charter__c}',this.value,true)" rendered="{!editTable}"/>
+                    <apex:outputField value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter_Cmts__c}"  rendered="{!!editTable}"/>
                 </td>
             </tr>
         </tbody>

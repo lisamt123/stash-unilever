@@ -62,6 +62,7 @@ public virtual class IPM_ProjectIntermediateController {
             {
                 queryStr += ' '+fieldAPIName+',';
             }
+            
             /* Check if it is a Reference field, If yes, get asociated Data */
             if(fieldDescribe.getType() == Schema.DisplayType.Reference && fieldDescribe.isCustom())
             {
@@ -98,5 +99,5 @@ public virtual class IPM_ProjectIntermediateController {
         {
             project = projectList[0]; 
         }
-    } 
+    }
 }

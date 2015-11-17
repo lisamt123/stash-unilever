@@ -6,7 +6,7 @@
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>IPM Project Initiation</value>
+        <value>IPM Project MetaData</value>
     </caseValues>
     <fields>
         <label><!-- BET --></label>

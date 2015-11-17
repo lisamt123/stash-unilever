@@ -4,7 +4,7 @@
 * @Description Trigger Handler for the IPM_Assessment__c SObject. This class implements the ITrigger
                interface to help ensure the trigger code is bulkified and all in one place.
                */
-public with sharing class IPM_AssesmentHandler implements ITrigger{   
+public without sharing class IPM_AssesmentHandler implements ITrigger{   
     // Constructor
     public IPM_AssesmentHandler(){
         ExceptionLoggingHelper.initializeExceptionLog();

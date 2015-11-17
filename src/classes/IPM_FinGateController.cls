@@ -37,25 +37,36 @@ public with sharing class IPM_FinGateController {
     public String volumeUnit {get; set;} //Volume Unit
     public String fieldSuffix {get; set;} //Used to dynamically change the field suffix based on the current view. (Accepted values are - Global,Regional.Local,Charter,Contract,MR,MD)
 
+    private static final String CLASS_NAME = 'IPM_FinGateController'; //Class Name for Exception Logging
+
     /*******************************************************************************************************
     * @description  Constructor
     * @param        NONE
     * @return       NONE
     */
     public void showFinancials() {
-        if (projectId == null)
-            projectId = ApexPages.currentPage().getParameters().get('id');
-        
-        if (projectId != NULL){
-            project = [SELECT Id, IPM_Project_Name__c, Sustainability_Period__c, IPMProject_Span__c, Market_Cluster__c, Market_Cluster_Name__c, IPM_Parent_Project__c, 
-                              IPM_Project_Type__c, IPM_Phase__c 
-                        FROM IPM_Project__C 
-                        WHERE Id=:projectId];
-            getSustainabilityPeriod();
-            getFieldSuffix();
-            getFinancials();
-            getFinancialsForSummary();
-        }
+        //try {
+            if (projectId == null)
+                projectId = ApexPages.currentPage().getParameters().get('id');
+            
+            if (projectId != NULL){
+                project = [SELECT Id, IPM_Project_Name__c, Sustainability_Period__c, IPMProject_Span__c, Market_Cluster__c, Market_Cluster_Name__c, IPM_Parent_Project__c, 
+                                  IPM_Project_Type__c, IPM_Phase__c 
+                            FROM IPM_Project__C 
+                            WHERE Id=:projectId];
+                getSustainabilityPeriod();
+                getFieldSuffix();
+                getFinancials();
+                getFinancialsForSummary();
+            }
+             
+      //  } catch (Exception ex) {
+        //	ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME, 
+         //      'showFinancials',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+         //   if(ApexPages.currentPage() != null){  
+         //       ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, ex.getMessage() + '\n' + ex.getStackTraceString()));
+          //  }
+       // }
     }
     
     /*******************************************************************************************************
@@ -85,6 +96,8 @@ public with sharing class IPM_FinGateController {
 
         else
             fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+
+       // fieldSuffix = getGateFieldSuffix(fieldSuffix);
     }
 
     /*******************************************************************************************************
@@ -99,25 +112,39 @@ public with sharing class IPM_FinGateController {
         if(printDoc  == IPM_ConstantUtils.CHARTER_GATE){
        		 renderGate = true;
         }
+        
+        
+        //if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) {
+            //DO NOTHING - DO NOT REMOVE CONDITION
+        //} 
         //Charter gate document is accessed in any other phase
         if (printDoc == IPM_ConstantUtils.CHARTER_GATE && currentFinancial.Charter_Approved__c){
             localFieldSufx = IPM_ConstantUtils.FIELD_SUFFIX_CHARTER;
         } 
+        //else if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY){
+            //DO NOTHING - DO NOT REMOVE CONDITION
+        // }
         //Contract gate document is accessed in any other phase
         else if (printDoc == IPM_ConstantUtils.CONTRACT_GATE && currentFinancial.Contract_Approved__c){
             localFieldSufx = IPM_ConstantUtils.FIELD_SUFFIX_CONTRACT;
         }
+        //else if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY){
+            //DO NOTHING - DO NOT REMOVE CONDITION
+        //} 
         //Market Ready gate document is accessed in any other phase
         else if (printDoc == IPM_ConstantUtils.MARKET_READY_GATE && currentFinancial.MR_Approved__c){
             localFieldSufx = IPM_ConstantUtils.FIELD_SUFFIX_MARKET_READY;
         }
+        //else if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY){
+            //DO NOTHING - DO NOT REMOVE CONDITION
+        //} 
         //Market Ready gate document is accessed in any other phase
         else if (printDoc == IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE && currentFinancial.MD_Approved__c){
             localFieldSufx = IPM_ConstantUtils.FIELD_SUFFIX_MARKET_DEPLOYMENT;
-        }
-        else{
+        }else{
             localFieldSuffix = fieldSuffix ;
         }
+        
         return localFieldSufx;
     }       
   
@@ -127,11 +154,12 @@ public with sharing class IPM_FinGateController {
     * @return       NONE
     */
     private void getFinancials(){
-        String ExternalId; // NO SONAR. variable used in Dyanamic SOQL
+        String ExternalId;
         if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL || (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))
             ExternalId = project.IPM_Project_Name__c;
         else
             ExternalId = project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+        
         String queryString = 'SELECT ';
         //IPM Financial
         For (String field : Schema.SObjectType.IPM_Financial__c.fields.getMap().KeySet())

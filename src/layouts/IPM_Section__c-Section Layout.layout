@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
@@ -24,40 +23,12 @@
                 <field>IPM_Section_Type__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IPM_Document_Template__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Required</behavior>
                 <field>IPM_Section_Sequence__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_Section_Help_Text__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IPM_Section_Label_Type__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IPM_FunctionalRole__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IPM_Negotiable__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>External_ID__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>ProjectSpan__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Is_IPM_Global_Consolidated__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -120,19 +91,10 @@
         <fields>NAME</fields>
         <fields>IPM_Section_Name__c</fields>
         <fields>IPM_Section_Type__c</fields>
-        <fields>IPM_Section_Sequence__c</fields>
         <relatedList>IPM_Section__c.IPM_Parent_Section__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>IPM_Section_Name__c</fields>
-        <fields>IPM_Version_Number__c</fields>
-        <relatedList>IPM_Project_Document_Section__c.IPM_Section__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>IPM_Task_Name__c</fields>
-        <fields>IPM_Task_Complexity__c</fields>
         <relatedList>IPM_Task__c.IPM_Section__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -141,7 +103,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hM0000000QRm2</masterLabel>
+        <masterLabel>00hL0000000GInH</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

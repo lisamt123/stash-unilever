@@ -650,18 +650,10 @@
     </fieldUpdates>
     <fieldUpdates>
         <fullName>IPM_Set_Misaligned_Date</fullName>
+        <description>Update the Misaligned Date when the financial is misaligned</description>
         <field>Misaligned_Date__c</field>
         <formula>TODAY()</formula>
         <name>IPM_Set Misaligned Date</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>MisalignmentDateTime</fullName>
-        <field>MisalignmentDateTime__c</field>
-        <formula>now()</formula>
-        <name>MisalignmentDateTime</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -1160,22 +1152,9 @@
             <name>IPM_Set_Misaligned_Date</name>
             <type>FieldUpdate</type>
         </actions>
-        <actions>
-            <name>MisalignmentDateTime</name>
-            <type>FieldUpdate</type>
-        </actions>
         <active>true</active>
-        <formula>IF(AND( Misaligned__c,  ISCHANGED( Misaligned__c )),  true, false)</formula>
+        <description>Calculate the financial&apos;s Misaligned Date</description>
+        <formula>IF(AND( Misaligned__c, ISCHANGED( Misaligned__c )), true, false)</formula>
         <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Misalignment</fullName>
-        <active>false</active>
-        <criteriaItems>
-            <field>IPM_Financial__c.Misaligned__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

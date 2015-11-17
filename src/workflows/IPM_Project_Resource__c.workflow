@@ -9,7 +9,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_section_notification2</template>
+        <template>unfiled$public/IPM_section_notification</template>
     </alerts>
     <fieldUpdates>
         <fullName>IPM_Insert_user_email</fullName>
@@ -52,21 +52,6 @@
         <active>true</active>
         <description>send an email to all members associated with functional role and section</description>
         <formula>IPM_send_an_email__c=true</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>ipm_updatefinancemember</fullName>
-        <active>false</active>
-        <criteriaItems>
-            <field>IPM_Project_Resource__c.IPM_Project_Role_Owner__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>IPM_Project_Resource__c.IPM_Role_Type__c</field>
-            <operation>equals</operation>
-            <value>Finance</value>
-        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

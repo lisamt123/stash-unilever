@@ -1,11 +1,3 @@
-<!--  
-***********************************************************************************
-*@Description:This component is used to display relevant section in Landing page
-*@Author: Cognizant
-*@Created Date: 06/01/2015 
-*@Copyright © 2015  Unilever  
-***********************************************************************************
--->
 <apex:component controller="IPM_ProjectOverviewCtrl">
     <div class="col-sm-3">
         <div class="topheader">My Sections in {!milesTone.IPM_Type_of_gate__c}</div>

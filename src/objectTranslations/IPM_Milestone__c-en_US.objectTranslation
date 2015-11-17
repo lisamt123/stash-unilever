@@ -305,46 +305,24 @@
             <masterLabel>Market Ready</masterLabel>
             <translation><!-- Market Ready --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>PLE/Learnings</masterLabel>
+            <translation><!-- PLE/Learnings --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Preferred Date Violated? --></label>
         <name>IPM_Violate_Preferred_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- is Master --></label>
+        <name>IPM_is_Master__c</name>
     </fields>
     <layouts>
         <layout>IPM Milestone</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>IPM Milestone Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- History --></label>
-            <section>History</section>
-        </sections>
-        <sections>
-            <label><!-- Key Milestone Details --></label>
-            <section>Key Milestone Details</section>
-        </sections>
-        <sections>
-            <label><!-- New Section --></label>
-            <section>New Section</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>IPM Project Milestone</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Snapshot --></label>
-            <section>Snapshot</section>
         </sections>
     </layouts>
     <recordTypes>

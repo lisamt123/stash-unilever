@@ -13,7 +13,7 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>IPM_Managed_Category__c</field>
             </layoutItems>
         </layoutColumns>
@@ -24,6 +24,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>IPM_Geographical_Scope__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>RecordTypeId</field>
             </layoutItems>
         </layoutColumns>
@@ -36,7 +40,7 @@
         <label>Geographical Data</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>IPM_TxtGeographical_Scope__c</field>
             </layoutItems>
         </layoutColumns>
@@ -54,10 +58,6 @@
         <editHeading>true</editHeading>
         <label>Financials Data</label>
         <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IPM_Geographical_Region__c</field>
-            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IPM_Company_Turnover__c</field>
@@ -78,7 +78,7 @@
         <label>Contacts Data</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>IPM_Business_Partner__c</field>
             </layoutItems>
         </layoutColumns>
@@ -116,25 +116,15 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>IPM_User__c</fields>
         <fields>IPM_User_Function__c</fields>
-        <fields>IPM_Job_title__c</fields>
         <fields>IPM_User_Role__c</fields>
-        <fields>IPM_User_Category__c</fields>
-        <fields>WL__c</fields>
+        <fields>IPM_Job_title__c</fields>
+        <fields>IPM_HoldCategory__c</fields>
         <relatedList>IPM_User_Profile__c.IPM_Company_Card__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>IPM_Project__c.IPM_Company_Card__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>IPM_Bosscard__c.IPM_Company_Card__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>IPM_Project_Rollout__c.IPM_Company_Card__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
@@ -142,7 +132,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hM0000000VHZY</masterLabel>
+        <masterLabel>00h8A000000Idz0</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

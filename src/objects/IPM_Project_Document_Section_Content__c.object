@@ -626,29 +626,20 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Parity</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Loss</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Win</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -778,29 +769,20 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Parity</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Loss</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Win</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1717,6 +1699,16 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Input_Gate_CMI__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Input Gate CMI</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_NPV_Action_Standard_Charter_Cmts__c</fullName>

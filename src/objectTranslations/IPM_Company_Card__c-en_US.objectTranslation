@@ -26,22 +26,6 @@
         <name>IPM_Category_Count__c</name>
     </fields>
     <fields>
-        <label><!-- Company Type --></label>
-        <name>IPM_CompanyCard_Type__c</name>
-        <picklistValues>
-            <masterLabel>Global</masterLabel>
-            <translation><!-- Global --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Local</masterLabel>
-            <translation><!-- Local --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Regional</masterLabel>
-            <translation><!-- Regional --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- Company H.Q (Country) --></label>
         <name>IPM_Company_HQ_Country__c</name>
         <picklistValues>
@@ -63,7 +47,7 @@
         <relationshipLabel><!-- IPM Company Card (Company IPM Champion) --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Company Turnover --></label>
+        <label><!-- Company Turnover(€) --></label>
         <name>IPM_Company_Turnover__c</name>
     </fields>
     <fields>
@@ -2627,46 +2611,6 @@
         <name>IPM_IC__c</name>
     </fields>
     <fields>
-        <label><!-- Inoplan Region --></label>
-        <name>IPM_Inoplan_Region__c</name>
-        <picklistValues>
-            <masterLabel>Asia/AMET Foods</masterLabel>
-            <translation><!-- Asia/AMET Foods --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Asia/AMET HPC</masterLabel>
-            <translation><!-- Asia/AMET HPC --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Europe Foods</masterLabel>
-            <translation><!-- Europe Foods --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Europe HPC</masterLabel>
-            <translation><!-- Europe HPC --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>HPCLA</masterLabel>
-            <translation><!-- HPCLA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>HPCNA</masterLabel>
-            <translation><!-- HPCNA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>UFLA</masterLabel>
-            <translation><!-- UFLA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>UFNA</masterLabel>
-            <translation><!-- UFNA --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Unilever Foodsolutions</masterLabel>
-            <translation><!-- Unilever Foodsolutions --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- MCO --></label>
         <name>IPM_MCO__c</name>
         <picklistValues>
@@ -2818,52 +2762,52 @@
         <label><!-- Managed Category --></label>
         <name>IPM_Managed_Category__c</name>
         <picklistValues>
-            <masterLabel>BEVERAGES</masterLabel>
-            <translation><!-- BEVERAGES --></translation>
+            <masterLabel>Beverages</masterLabel>
+            <translation><!-- Beverages --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>DEODARANTS</masterLabel>
-            <translation><!-- DEODARANTS --></translation>
+            <masterLabel>Deodarants</masterLabel>
+            <translation><!-- Deodarants --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>DRESSINGS</masterLabel>
-            <translation><!-- DRESSINGS --></translation>
+            <masterLabel>Dressings</masterLabel>
+            <translation><!-- Dressings --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>HAIR</masterLabel>
-            <translation><!-- HAIR --></translation>
+            <masterLabel>Hair</masterLabel>
+            <translation><!-- Hair --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Household Care</masterLabel>
             <translation><!-- Household Care --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>ICE CREAM</masterLabel>
-            <translation><!-- ICE CREAM --></translation>
+            <masterLabel>Ice Cream</masterLabel>
+            <translation><!-- Ice Cream --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Laundry</masterLabel>
             <translation><!-- Laundry --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>ORAL CARE</masterLabel>
-            <translation><!-- ORAL CARE --></translation>
+            <masterLabel>Oral Care</masterLabel>
+            <translation><!-- Oral Care --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>SAVORY</masterLabel>
-            <translation><!-- SAVORY --></translation>
+            <masterLabel>Savoury</masterLabel>
+            <translation><!-- Savoury --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>SKIN CARE</masterLabel>
-            <translation><!-- SKIN CARE --></translation>
+            <masterLabel>Skin Care</masterLabel>
+            <translation><!-- Skin Care --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>SKIN CLEANSING</masterLabel>
-            <translation><!-- SKIN CLEANSING --></translation>
+            <masterLabel>Skin Cleansing</masterLabel>
+            <translation><!-- Skin Cleansing --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>SPREADS</masterLabel>
-            <translation><!-- SPREADS --></translation>
+            <masterLabel>Spreads</masterLabel>
+            <translation><!-- Spreads --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -2903,11 +2847,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Project Name Suffix --></label>
-        <name>IPM_Project_Name_Suffix__c</name>
-    </fields>
-    <fields>
-        <label><!-- Total OpCo Turnover --></label>
+        <label><!-- Total OpCo Turnover(&apos;000s Euros) --></label>
         <name>IPM_Total_OpCo_Turnover__c</name>
     </fields>
     <fields>
@@ -2919,20 +2859,8 @@
         <name>IPM_Unique_Company_Card_Name__c</name>
     </fields>
     <fields>
-        <label><!-- Company Type --></label>
-        <name>IPP_Company_Type__c</name>
-        <picklistValues>
-            <masterLabel>Global</masterLabel>
-            <translation><!-- Global --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Local</masterLabel>
-            <translation><!-- Local --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Regional</masterLabel>
-            <translation><!-- Regional --></translation>
-        </picklistValues>
+        <label><!-- Project Name Suffix --></label>
+        <name>Project_Name_Suffix__c</name>
     </fields>
     <layouts>
         <layout>IPM Company Card Layout</layout>
@@ -2978,15 +2906,15 @@
     </recordTypes>
     <recordTypes>
         <label><!-- Local Company Card --></label>
-        <name>IPM_Local_Company_Card</name>
+        <name>Local_Company_Card</name>
     </recordTypes>
     <recordTypes>
         <label><!-- Regional Company Card --></label>
-        <name>IPM_Regional_Company_Card</name>
+        <name>Regional_Company_Card</name>
     </recordTypes>
     <startsWith>Consonant</startsWith>
     <validationRules>
-        <errorMessage><!-- You have selected more than one category --></errorMessage>
+        <errorMessage><!-- You have selected more than one Managed Category --></errorMessage>
         <name>IPM_EditCompanyCategory</name>
     </validationRules>
     <validationRules>
@@ -2994,11 +2922,7 @@
         <name>IPM_EditGeographicalScope</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- Only system admin can change the record type --></errorMessage>
-        <name>IPM_EditRecordType</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage><!-- Geographical Scopeis required field --></errorMessage>
+        <errorMessage><!-- Geographical Scope is required field --></errorMessage>
         <name>IPM_GeoScopeValidation</name>
     </validationRules>
     <validationRules>

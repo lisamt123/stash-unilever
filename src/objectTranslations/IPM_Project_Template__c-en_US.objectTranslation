@@ -9,7 +9,6 @@
         <value>IPM Project Templates</value>
     </caseValues>
     <fields>
-        <help><!-- To hold the Categories --></help>
         <label><!-- Category --></label>
         <name>IPM_Category__c</name>
         <picklistValues>

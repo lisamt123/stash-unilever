@@ -6,7 +6,7 @@
    @Version: 1.0
    @Reference: IPM_ChannelImageUpload Page
 */
-public with sharing class IPM_ChannelImageController {
+public without sharing class IPM_ChannelImageController {
     public Id parentId{get; set;} //used to fetch ParentContentId of the current page
     public Id projectId{get; set;} //used to fetch current projectId
     public Id projDocSectId{get; set;} //used to fetch projDocSecId of the current page
@@ -112,7 +112,7 @@ public with sharing class IPM_ChannelImageController {
                         }   
                         update content;
                         isImageLoaded=true;
-                        ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO,system.label.IPM_Image_uploaded_successfully));
+                        ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO,system.label.Image_Uploaded_Successfully));
                 }
                 else{
                     ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,system.label.IPM_Upload_Valid_Image));

@@ -115,8 +115,6 @@
                                                 </span>
                                             </div>
                                         </th> 
-                                        <th scope="col" width="60px" colspan="1">
-                                        </th>
                                         <th scope="col" width="190px" colspan="1">
                                             <div class="incHeight">
                                                 <apex:outputField value="{!localProject.IPM_Target_Launch_Dates__c}"/>
@@ -198,10 +196,11 @@
                                             </div>
                                         </th>
                                         <th scope="col" width="60px" colspan="1">
-                                            <div>
-                                                <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!AND(localRollout.KeyMCO__c,localRollout.Local_Project__c == null)}"/>
-                                            </div>
-                                        </th>
+					                        <div>
+					                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            	<apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!AND(localRollout.KeyMCO__c,localRollout.Local_Project__c == null)}"/>
+					                        </div>
+					                    </th>
                                         <th scope="col" width="190px" colspan="1">
                                             <div class="incHeight">
                                                 <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>

@@ -17,7 +17,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Due_Date_in_the_past2</template>
+        <template>unfiled$public/IPM_Due_Date_in_the_past</template>
     </alerts>
     <fieldUpdates>
         <fullName>Due_Date</fullName>
@@ -40,7 +40,7 @@
     <fieldUpdates>
         <fullName>Update_Milestone_Name</fullName>
         <field>Name</field>
-        <formula>LEFT(IPM_Project__r.IPM_Project_Name__c + &apos;-&apos; + TEXT( IPM_Project_Type__c ) +&apos;-&apos; + IPM_Name__c, 78)</formula>
+        <formula>LEFT(IPM_Project__r.IPM_Project_Name__c + &apos;-&apos; + IPM_Name__c, 78)</formula>
         <name>Update Milestone Name</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -53,7 +53,7 @@
             <type>FieldUpdate</type>
         </actions>
         <active>false</active>
-        <formula>NOT(AND( ISPICKVAL(IPM_Project__r.IPM_Project_Type__c, &quot;Operational&quot;), ( ISPICKVAL( IPM_Type_of_gate__c  ,&quot;Market Ready&quot;) ),ISPICKVAL( IPM_Type_of_Milestone__c ,&quot;BET&quot;)))</formula>
+        <formula>NOT(AND( ISPICKVAL(IPM_Project__r.IPM_Project_Type__c, &quot;Operational&quot;), ( ISPICKVAL( IPM_Type_of_gate__c  ,&quot;Market Ready&quot;) )))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

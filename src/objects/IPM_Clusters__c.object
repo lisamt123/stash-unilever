@@ -55,14 +55,14 @@
     <enableReports>true</enableReports>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>IPM_Cluster_Name__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>to store the name of cluster</description>
         <externalId>false</externalId>
         <inlineHelpText>User can&apos;t enter more than 14 charactes for Name</inlineHelpText>
-        <label>Project Cluster Name</label>
+        <label>IPM Project Cluster Name</label>
         <length>14</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -72,24 +72,27 @@
     <label>IPM Project Clusters</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>OWNER.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
     <nameField>
-        <label>IPM Project Clsuters</label>
+        <label>IPM Project Clusters</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>IPM Project Clusters</pluralLabel>
     <searchLayouts>
         <searchFilterFields>NAME</searchFilterFields>
     </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
     <validationRules>
-        <fullName>IPM_Project_Cluster_Name_length</fullName>
+        <fullName>IPM_Cluster_Name_length</fullName>
         <active>true</active>
-        <description>Project Cluster name should not more than 14 characters</description>
+        <description>Cluster name should not more than 14 characters</description>
         <errorConditionFormula>if( LEN(Name)&gt;14,TRUE,FALSE )</errorConditionFormula>
-        <errorMessage>Project Cluster Name can not be more the 14 characters</errorMessage>
+        <errorMessage>IPM Project Cluster Name can not be more the 14 characters</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>IPM_Special_Characters_not_allowed</fullName>
@@ -99,5 +102,12 @@ system should allow spaces in the name.
 system should not allow underscores.</description>
         <errorConditionFormula>NOT(REGEX(Name,&apos;([A-Z, ]+)&apos;))</errorConditionFormula>
         <errorMessage>Special characters are not allowed/Project Cluster name should always be captured in Capitals</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>IPM_Unique_Cluster_Name</fullName>
+        <active>false</active>
+        <description>Only Unique cluster name is allowed in the system</description>
+        <errorConditionFormula>AND(CONTAINS(VLOOKUP( $ObjectType.IPM_Clusters__c.Fields.Name , $ObjectType.IPM_Clusters__c.Fields.Name, Name), Name), OR(ISNEW(), ISCHANGED(Name)) )</errorConditionFormula>
+        <errorMessage>Project Cluster Name already exist. Please create a Project Cluster with different Name</errorMessage>
     </validationRules>
 </CustomObject>

@@ -708,7 +708,7 @@
     </listViews>
     <nameField>
         <label>Assessment Name</label>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>IPM_Assessments</pluralLabel>

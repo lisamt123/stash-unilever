@@ -14,7 +14,7 @@
   <!-- Begin Default Content REMOVE THIS --> 
   <apex:outputPanel layout="block" rendered="{!!noRolloutSubmittedYet}">   
         <div class="altBGcolor clearfix">
-            <p class="mb20 {!if(displayOnlyTables==true,'ecotabHide','ecoTabshow')}" >
+            <p class="mb20" style="display:{!if(displayOnlyTables==true,'none','block')}">
                 <apex:outputtext escape="false" value="{!$Label.IPM_EcoDesign_Section_Text}" rendered="{!(isEditable && firstSyncToEcoDesign)}"/>
             </p>
             <apex:outputPanel layout="block" styleClass="col-sm-12" rendered="{!!(displayOnlyTables)}">
@@ -77,7 +77,7 @@
                                                                     <div class="OuterBorderRight">
                                                                         <div class="colProject">
                                                                             <span><label>{!$Label.IPM_EcoDesign_Environmental_metric}</label>
-                                                                            <label class="normalfont">{!$Label.IPM_Consumer_Use}</label>
+                                                                            <label class="normalfont">(per consumer use)</label>
                                                                             </span>
                                                                          
                                                                         </div>
@@ -133,7 +133,7 @@
                                                                     <div class="inputField inline">                                
                                                                     
                                                                     <apex:outputText value="{!countryEle.IPM_Comparison_Rep_GTU_Waste_PCU__c}" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
-                                                                    <apex:outputText value="{!countryEle.IPM_Country_Category_Avg_Waste_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
+                                                                    <apex:outputText value="{!countryEle.IPM_Country_Category_Avg_Waste_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>&nbsp;
                                                                     </div>
                                                                     <div class="inputField inline">                                
                                                                        <apex:outputText value="{!countryEle.IPM_Assessment_Waste_PCU__c}"/> 
@@ -157,7 +157,7 @@
                                                                 <td>
                                                                     <div class="inputField inline">                                
                                                                      <apex:outputText value="{!countryEle.IPM_Comparison_Rep_GTU_Water_PCU__c}" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
-                                                                     <apex:outputText value="{!countryEle.IPM_Country_Category_Avg_Water_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
+                                                                     <apex:outputText value="{!countryEle.IPM_Country_Category_Avg_Water_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>&nbsp;
                                                                     </div>
                                                                     <div class="inputField inline">                                
                                                                      <apex:outputText value="{!countryEle.IPM_Assessment_Water_PCU__c}" />
@@ -180,7 +180,7 @@
                                                                 <td>
                                                                     <div class="inputField inline">                                
                                                                      <apex:outputtext value="{!countryEle.IPM_Comparison_Rep_GTU_GHG_PCU__c}" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
-                                                                     <apex:outputtext value="{!countryEle.IPM_Country_Category_Avg_GHG_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
+                                                                     <apex:outputtext value="{!countryEle.IPM_Country_Category_Avg_GHG_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>&nbsp;
                                                                     </div>
                                                                     <div class="inputField inline">                                
                                                                      <apex:outputtext value="{!countryEle.IPM_Assessment_GHG_PCU__c}"/>
@@ -267,7 +267,7 @@
                                                                     <div class="OuterBorderRight">
                                                                         <div class="colProject">
                                                                             <span><label>{!$Label.IPM_EcoDesign_Environmental_metric}</label>
-                                                                            <label class="normalfont">{!$Label.IPM_Consumer_Use}</label>
+                                                                            <label class="normalfont">(per consumer use)</label>
                                                                             </span>
                                                                          
                                                                         </div>
@@ -319,7 +319,7 @@
                                                                 <td>
                                                                     <div class="inputField inline">                                
                                                                         <apex:outputText value="{!countryEle.IPM_Comparison_Rep_GTU_Waste_PCU__c}" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
-                                                                        <apex:outputText value="{!countryEle.IPM_Country_Category_Avg_Waste_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
+                                                                        <apex:outputText value="{!countryEle.IPM_Country_Category_Avg_Waste_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>&nbsp;
                                                                     </div>
                                                                     <div class="inputField inline">                                
                                                                        <apex:outputText value="{!countryEle.IPM_Assessment_Waste_PCU__c}"/> 
@@ -343,7 +343,7 @@
                                                                 <td>
                                                                     <div class="inputField inline">                                
                                                                         <apex:outputText value="{!countryEle.IPM_Comparison_Rep_GTU_Water_PCU__c}" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
-                                                                        <apex:outputText value="{!countryEle.IPM_Country_Category_Avg_Water_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
+                                                                        <apex:outputText value="{!countryEle.IPM_Country_Category_Avg_Water_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>&nbsp;
                                                                     </div>
                                                                     <div class="inputField inline">                                
                                                                      <apex:outputText value="{!countryEle.IPM_Assessment_Water_PCU__c}" />
@@ -366,7 +366,7 @@
                                                                 <td>
                                                                     <div class="inputField inline">                                
                                                                         <apex:outputtext value="{!countryEle.IPM_Comparison_Rep_GTU_GHG_PCU__c}" rendered="{!IF(!countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
-                                                                        <apex:outputtext value="{!countryEle.IPM_Country_Category_Avg_GHG_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>
+                                                                        <apex:outputtext value="{!countryEle.IPM_Country_Category_Avg_GHG_PCU__c}" rendered="{!IF(countryEle.IPM_Is_Category_Avg_Based__c,true,false)}"/>&nbsp;
                                                                     </div>
                                                                     <div class="inputField inline">                                
                                                                      <apex:outputtext value="{!countryEle.IPM_Assessment_GHG_PCU__c}"/>

@@ -1,19 +1,11 @@
-/*********************************************************************************************************
-    @Description: A Trigger handler class for the IPM_PRoject_Resource__c object. 
-    THIS IS WITHOUT SHARING by purpose. Since the sharing is an async process and team members doesnt immediately get access to team member. 
+/**
+    @Description: A Trigger handler class for the IPM_PRoject_Resource__c object. THIS IS WITHOUT SHARING by purpose
     @Author: Cognizant Technology
     @Date: Oct 2014
 **/
-
-public with sharing class IPM_ProjectResourceTriggerHandler 
-{ 
-    List<ProjectResourceHistoryWrapper> lstPrjResourceHisWrapper;
+public without sharing class IPM_ProjectResourceTriggerHandler { 
+  List<ProjectResourceHistoryWrapper> lstPrjResourceHisWrapper;
     private transient static final String CLASS_NAME = IPM_ProjectResourceTriggerHandler.class.getName();
-    private transient static final String METHOD_NAME = 'trackProjectResourceAuditHistory';
-    private transient static final String USER = ' User : ';
-    private transient static final String NEW_ROLE = ' New Role : ';
-    private transient static final String OPTION_ALL = 'All'; 
-    
     
     public IPM_ProjectResourceTriggerHandler(){ //constructor
     }
@@ -64,13 +56,14 @@ public with sharing class IPM_ProjectResourceTriggerHandler
         if(IPM_CheckRecursive.runOnce() && newPRList!= null && !newPRList.isEmpty()) { // run only once and when newPRLIst is more than 0
             IPM_TaskHelper.reAssignFunctionalWiseTasks(newPRList);
         }
+        //IPM_ChatterFeedHelper.autoFollowTeamMembers(newProjectResources); //also make the team member follow the project if he hasnt' before.
         
         trackProjectResourceAuditHistory(lstPrjResourceHisWrapper, IPM_ConstantUtils.HISTORY_INSERTED);
 
         //@@Design Review - Data Sharing Code for assigning project resource to queue.
         if(!system.isBatch() && !system.isFuture()){ 
           map<id,IPM_Project_Resource__c>oldProjectResourcesmap = new map<id,IPM_Project_Resource__c>();
-          updateGroupMember(newProjectResources,oldProjectResourcesmap);
+          UpdategroupMember(newProjectResources,oldProjectResourcesmap);
       }
     }
     
@@ -82,7 +75,25 @@ public with sharing class IPM_ProjectResourceTriggerHandler
     */
     public void OnAfterUpdate(IPM_Project_Resource__c[] newProjectResources, Map<Id, IPM_Project_Resource__c> newProjectResourcesMap, 
                                 Map<Id, IPM_Project_Resource__c> oldProjectResources) {
-        // Used for on after update Purposes.
+        
+        /*//Select list which should contain only the owners in the team and has changed
+        list<IPM_Project_Resource__c> newPRList = new list<IPM_Project_Resource__c>(); 
+        for(IPM_Project_Resource__c eachPResource : newProjectResources) {
+            IPM_Project_Resource__c oldPR = oldProjectResources.get(eachPResource.Id);//old sobject details
+            if(eachPResource.IPM_Project_Role_Owner__c && 
+                (eachPResource.IPM_User__c != oldPR.IPM_User__c || eachPResource.IPM_Project_Role_Owner__c != oldPR.IPM_Project_Role_Owner__c)) {
+                //check if owner is changed then add it
+                newPRList.add(eachPResource);
+            }
+        }
+        if(newPRList != null && !newPRList.isEmpty()) {
+            IPM_TaskHelper.reAssignFunctionalWiseTasks(newPRList);//reassign the tasks basing on the functional areas.
+        }*/ // @@ Data sharing
+        
+        //@@Design Review - Data Sharing - Code for assigning project resource to queue.
+        if(!system.isBatch() && !system.isFuture()){ 
+           UpdategroupMember(newProjectResources,oldProjectResources);
+    }
     }
     
     /*******************************************************************************************************
@@ -94,7 +105,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
         
         IPM_Project_Resource__c[] pResourceList = [SELECT IPM_Project__c, IPM_Role__c, IPM_User__c 
                                                        FROM IPM_Project_Resource__c
-                                                       WHERE IPM_User__c IN :userIds Limit 1000]; //retrieve details basing on the userids
+                                                       WHERE IPM_User__c IN :userIds]; //retrieve details basing on the userids
         memberChangingRole(pResourceList);
     }
     
@@ -117,17 +128,13 @@ public with sharing class IPM_ProjectResourceTriggerHandler
             }
             userIds.add(eachPResource.IPM_User__c);
         }
-        
         Map<Id, IPM_Project__c> projectMap = IPM_Utils.getProjectDetails(pResourceRoleChangedMap.keySet());//Ext variable to store project map
         Map<Id, User> userDetailsMap = IPM_Utils.getUserDetailsMap(userIds); //Ext Variable to store user details in a map
         Map<Id, String> pResourceDetailsMap = new Map<Id, String>(); //team details map to store dynamic message to be posted.
-        
-        for(Id eachProject : pResourceRoleChangedMap.keySet()) 
-        {
+        for(Id eachProject : pResourceRoleChangedMap.keySet()) {
             Set<String> contextMsgList = new Set<String>();
-            for(IPM_Project_Resource__c eachPResource : pResourceRoleChangedMap.get(eachProject)) 
-            {
-                String str = USER + userDetailsMap.get(eachPResource.IPM_User__c).Name + NEW_ROLE + eachPResource.IPM_Role__c;
+            for(IPM_Project_Resource__c eachPResource : pResourceRoleChangedMap.get(eachProject)) {
+                String str = ' User : ' + userDetailsMap.get(eachPResource.IPM_User__c).Name + ' New Role : ' + eachPResource.IPM_Role__c;
                 contextMsgList.add(str);
             }
             pResourceDetailsMap.put(eachProject, IPM_Utils.convertSetToString(contextMsgList));
@@ -139,22 +146,21 @@ public with sharing class IPM_ProjectResourceTriggerHandler
     * @description: After Un Delete context of the trigger
     * @param1 - newProjectResources: The new list of the IPM_Project_Resource__c object
     */
-    public void onAfterUnDelete(IPM_Project_Resource__c[] newProjectResources) 
-    {
-        IPM_WithoutSharingHelper.autoFollowTeamMembers(newProjectResources);//auto subscribe back them to the project
+    public void onAfterUnDelete(IPM_Project_Resource__c[] newProjectResources) {
+        IPM_ChatterFeedHelper.autoFollowTeamMembers(newProjectResources);//auto subscribe back them to the project
     }
     
     /*******************************************************************************************************
     * @description: After Delete context of the trigger
     * @param1 - newProjectResources: The old list of the IPM_Project_Resource__c object
     */
-    public void OnAfterDelete(IPM_Project_Resource__c[] oldProjectResources) 
-    {
+    public void OnAfterDelete(IPM_Project_Resource__c[] oldProjectResources) {
+        //IPM_ChatterFeedHelper.autoUnFollowTeamMembers(oldProjectResources);//auto un subscribe the users @Data Sharing
+        
         //@@Desing Review - Data sharing update group members
-        if(!system.isBatch() && !system.isFuture())
-        {
-            map<id,IPM_Project_Resource__c>oldProjectResourcesmap = new map<id,IPM_Project_Resource__c>();
-            updateGroupMember(oldProjectResources,oldProjectResourcesmap);
+        if(!system.isBatch() && !system.isFuture()){
+          map<id,IPM_Project_Resource__c>oldProjectResourcesmap = new map<id,IPM_Project_Resource__c>();
+          UpdategroupMember(oldProjectResources,oldProjectResourcesmap);
         }
     }
     
@@ -163,61 +169,54 @@ public with sharing class IPM_ProjectResourceTriggerHandler
     * @description: After Update context of the trigger. If concerned fields of the IPM_Resource are modified then make the project ready for sync to ecodesign.
     * @param1 - oldProjectResources: The old list of the IPM_Project_Resource__c object
     ***********************************************************************************************************/
-    public void setSyncProjectAftUpdate(Map<Id, IPM_Project_Resource__c> oldResourceMap,Map<Id, IPM_Project_Resource__c> newResourceMap) 
-    {
-        List<IPM_Project__c> toUpdateProjList = new List<IPM_Project__c>();
-        List<IPM_Project__c> prevSyncedProjList = new List<IPM_Project__c>();
+    public void setSyncProjectAftUpdate(Map<Id, IPM_Project_Resource__c> oldResourceMap,Map<Id, IPM_Project_Resource__c> newResourceMap) {
+    List<IPM_Project__c> toUpdateProjList = new List<IPM_Project__c>();
+    List<IPM_Project__c> prevSyncedProjList = new List<IPM_Project__c>();
         Set<Id> projIdsSet = new Set<id>();
         Map<Id,List<IPM_Project_Resource__c>> projMembersMap =  new Map<Id,List<IPM_Project_Resource__c>>(); //Map of Project Id and Project Members
     
-    for(IPM_Project_Resource__c projResource : newResourceMap.values())
-    {
-        if(projResource.IPM_Project__c != null)
-        {
-            for(FieldSetMember fsm : Schema.SObjectType.IPM_Project_Resource__c.fieldSets.IPM_Project_Resource_Field_Set_EcoDesign.getFields())
-	        {
-		        if (projResource.get(fsm.getFieldPath())!= null && oldResourceMap.get(projResource.id) != null 
-		        && oldResourceMap.get(projResource.id).get(fsm.getFieldPath()) != null && projResource.get(fsm.getFieldPath()) != oldResourceMap.get(projResource.id).get(fsm.getFieldPath())) 
-	            {
-	                projIdsSet.add(projResource.IPM_Project__c);
-	              
-	                //to sync old project as well
-	                if(fsm.getFieldPath() == IPM_ConstantUtils.IPM_PROJECTOBJECT && oldResourceMap.get(projResource.id) != null && oldResourceMap.get(projResource.id).IPM_Project__c != null )
-	                {
-	                    projIdsSet.add(oldResourceMap.get(projResource.id).IPM_Project__c);//to Sync the previous project as well
-	                }  
-	            }
-	        }
+    for(IPM_Project_Resource__c projResource : newResourceMap.values()){
+      if(projResource.IPM_Project__c != null){
+        for(FieldSetMember fsm : Schema.SObjectType.IPM_Project_Resource__c.fieldSets.IPM_Project_Resource_Field_Set_EcoDesign.getFields()){
+                    if (projResource.get(fsm.getFieldPath())!= null && oldResourceMap.get(projResource.id) != null && oldResourceMap.get(projResource.id).get(fsm.getFieldPath()) != null && projResource.get(fsm.getFieldPath()) != oldResourceMap.get(projResource.id).get(fsm.getFieldPath())) {
+              projIdsSet.add(projResource.IPM_Project__c);
+              
+              //to sync old project as well
+              if(fsm.getFieldPath() == 'IPM_Project__c' && oldResourceMap.get(projResource.id) != null && oldResourceMap.get(projResource.id).IPM_Project__c != null ){
+                projIdsSet.add(oldResourceMap.get(projResource.id).IPM_Project__c);//to Sync the previous project as well
+              }  
+          }
         }
+      }
     }
   
     //List of all Project records which have been previously synced to EcoDesign
-    prevSyncedProjList = [SELECT Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,
-                             IPM_Phase__c,IPM_Answer_of_Q1__c,IPM_CompanyCardText__c FROM IPM_Project__c WHERE Id IN :projIdsSet 
-                             AND First_Sync_To_EcoDesign__c = TRUE LIMIT 50000];
+        prevSyncedProjList = [Select Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_Answer_of_Q1__c,IPM_CompanyCardText__c from IPM_Project__c where Id IN :projIdsSet AND First_Sync_To_EcoDesign__c = TRUE LIMIT 50000];
     
-    projMembersMap = IPM_ProjectCountryDetails.getProjectIdMembersListMap(projIdsSet,OPTION_ALL);
+    //fetch the maps
+
+
+        projMembersMap = IPM_ProjectCountryDetails.getProjectIdMembersListMap(projIdsSet,'All');
     
-    If(prevSyncedProjList!=null && !prevSyncedProjList.isEmpty())
-    {
-        for(IPM_Project__c prevSyncedProject : prevSyncedProjList )
-        {
-            if(IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(prevSyncedProject))
-            {
-                prevSyncedProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
-                if(projMembersMap != null && !projMembersMap.isEmpty() && projMembersMap.get(prevSyncedProject.id) != null && !projMembersMap.get(prevSyncedProject.id).isEmpty())
-                {
-                    prevSyncedProject.Project_Members__c = IPM_ProjectCountryDetails.getProjectMembersNames(projMembersMap.get(prevSyncedProject.id));
-                }
-                toUpdateProjList.add(prevSyncedProject);
-            } 
+    If(prevSyncedProjList!=null && !prevSyncedProjList.isEmpty()){
+      for(IPM_Project__c prevSyncedProject : prevSyncedProjList ){
+                if(IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(prevSyncedProject)){
+
+
+                    prevSyncedProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
+                    if(projMembersMap != null && !projMembersMap.isEmpty() && projMembersMap.get(prevSyncedProject.id) != null && !projMembersMap.get(prevSyncedProject.id).isEmpty()){
+                        prevSyncedProject.Project_Members__c = IPM_ProjectCountryDetails.getProjectMembersNames(projMembersMap.get(prevSyncedProject.id));
+                    }
+
+          toUpdateProjList.add(prevSyncedProject);
         }
+        
+      }
     }
   
     //Update The List
-    if(!toUpdateProjList.isEmpty())
-    {
-        update toUpdateProjList; // Not including try , catch as when the transaction is failed roll back is handled at other class
+    if(toUpdateProjList!=null && !toUpdateProjList.isEmpty()){
+        update toUpdateProjList;
       }
 
   }
@@ -226,45 +225,41 @@ public with sharing class IPM_ProjectResourceTriggerHandler
     * @description: After Insert Or Delete context of the trigger. If concerned fields of the IPM_Resource are modified then set status value on the parent Project as ready.
     * @param1 - ProjectResources: The old list OR New list of the IPM_Project_Resource__c object
     ***********************************************************************************************************/
-    public void setSyncProjectAftInsertDelete(IPM_Project_Resource__c[] projectResources) 
-    {
-        List<IPM_Project__c> toUpdateProjList = new List<IPM_Project__c>();
-        List<IPM_Project__c> prevSyncedProjList = new List<IPM_Project__c>();
+    public void setSyncProjectAftInsertDelete(IPM_Project_Resource__c[] projectResources) {
+    List<IPM_Project__c> toUpdateProjList = new List<IPM_Project__c>();
+    List<IPM_Project__c> prevSyncedProjList = new List<IPM_Project__c>();
         Set<Id> projIdsSet = new Set<Id>();
         Map<Id,List<IPM_Project_Resource__c>> projMembersMap =  new Map<Id,List<IPM_Project_Resource__c>>(); //Map of Project Id and semicolon seperated Project Members
     
-        for(IPM_Project_Resource__c projResource : ProjectResources)
-        {
-            projIdsSet.add(projResource.IPM_Project__c);
-        }
-        prevSyncedProjList = [SELECT Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,
-                             IPM_Phase__c,IPM_Answer_of_Q1__c,IPM_CompanyCardText__c FROM IPM_Project__c WHERE Id IN :projIdsSet 
-                             AND First_Sync_To_EcoDesign__c = TRUE LIMIT 50000];
+    for(IPM_Project_Resource__c projResource : ProjectResources){
+      projIdsSet.add(projResource.IPM_Project__c);
+    }
+        prevSyncedProjList = [Select Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_Answer_of_Q1__c,IPM_CompanyCardText__c from IPM_Project__c where Id IN :projIdsSet AND First_Sync_To_EcoDesign__c = TRUE LIMIT 50000];
     
-        projMembersMap = IPM_ProjectCountryDetails.getProjectIdMembersListMap(projIdsSet,OPTION_ALL);
+        projMembersMap = IPM_ProjectCountryDetails.getProjectIdMembersListMap(projIdsSet,'All');
     
-        if(prevSyncedProjList!=null && !prevSyncedProjList.isEmpty())
-        {
-            for(IPM_Project__c prevSyncedProject : prevSyncedProjList )
-            {
-                if(IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(prevSyncedProject))
-                {
+    If(prevSyncedProjList!=null && !prevSyncedProjList.isEmpty()){
+      for(IPM_Project__c prevSyncedProject : prevSyncedProjList ){
+                if(IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(prevSyncedProject)){
+
+
                     prevSyncedProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
-                    if(projMembersMap!=null && !projMembersMap.isEmpty() && projMembersMap.get(prevSyncedProject.id)!=null && !projMembersMap.get(prevSyncedProject.id).isEmpty())
-                    {
+                    if(projMembersMap!=null && !projMembersMap.isEmpty() && projMembersMap.get(prevSyncedProject.id)!=null && !projMembersMap.get(prevSyncedProject.id).isEmpty()){
                         prevSyncedProject.Project_Members__c = IPM_ProjectCountryDetails.getProjectMembersNames(projMembersMap.get(prevSyncedProject.id));
                     }
-                    toUpdateProjList.add(prevSyncedProject);    
-                } 
-            }
+
+          toUpdateProjList.add(prevSyncedProject);
         }
+        
+      }
+    }
     
-        //Update The List
-        if(!toUpdateProjList.isEmpty())
-        {
-            update toUpdateProjList; // Not including try , catch as when the transaction is failed roll back is handled at other class  
-        }
-    }     
+    //Update The List
+    if(toUpdateProjList!=null && !toUpdateProjList.isEmpty()){
+        update toUpdateProjList;
+    }
+
+  }
   /*******************************************************************************************************
     * @description: method to update group members
     * @param1 - listProjectResources: The new/old list of the IPM_Project_Resource__c records
@@ -279,28 +274,24 @@ public with sharing class IPM_ProjectResourceTriggerHandler
                       
        for(IPM_Project_Resource__c projres:ProjectResources){
          if(system.trigger.isInsert || system.trigger.isDelete){
-             projidset.add(projres.IPM_Project__c);
+         projidset.add(projres.IPM_Project__c);
          }
          else if(system.trigger.isupdate && projres.IPM_User__c != oldProjectResourcesmap.get(projres.id).IPM_User__c){
              projidset.add(projres.IPM_Project__c);
            }
        } //FOR END       
        if(projidset != null && projidset.size()>0){
-         projectmap = new Map<id,IPM_Project__c>([SELECT id,IPM_Global_Project_Id__c,IPM_Parent_Project__c FROM IPM_Project__c WHERE id IN:projidset or IPM_Parent_Project__c IN:projidset LIMIT 1000]);
+         projectmap = new Map<id,IPM_Project__c>([select id, IPM_Global_ProjectId__c from IPM_Project__c where id IN: projidset]);
          if(projectmap != null && projectmap.size()>0){ 
            for(IPM_Project__c proj:projectmap.values()){
-             projglobalidset.add(proj.IPM_Global_Project_Id__c); 
-			 projglobalidset.add(proj.id);
-			 if(proj.IPM_Parent_Project__c!=null){
-				projglobalidset.add(proj.IPM_Parent_Project__c);
-			 }
+             projglobalidset.add(proj.IPM_Global_ProjectId__c);             
            }
            if(projglobalidset != null && projglobalidset.size()>0){
-             projectGlobalmap = new Map<id,IPM_Project__c>([select id from IPM_Project__c where id IN: projglobalidset]);  
+             projectGlobalmap = new Map<id,IPM_Project__c>([select id from IPM_Project__c where IPM_Global_ProjectId__c IN: projglobalidset]);  
            }      
          }
          if(projectGlobalmap != null && projectGlobalmap.size()>0){  
-              IPM_GroupManagement.groupmemberupdate(projectGlobalmap.keySet());  
+              IPM_GroupManagement.groupmemberupdate(projectGlobalmap.keyset());  
          }
         }        
     }  
@@ -310,25 +301,25 @@ public with sharing class IPM_ProjectResourceTriggerHandler
     @param lstPrjResourceHisWrapper:- List of Wrapper class to hold various attributes of Resource history to insert
     @sType:- Type of team member history. Either Inserted/Updated/Deleted.
     **/
-    public static void trackProjectResourceAuditHistory(List<ProjectResourceHistoryWrapper> lstPrjResourceHisWrapper, String sType)
-    {
-      
-        List<IPM_Project_Resource_History__c> lstPrjResourceHistoryToInsert = new List<IPM_Project_Resource_History__c>();
-        IPM_Project_Resource_History__c prjResourceHistory;
-     
-        for(ProjectResourceHistoryWrapper resourceHistoryWrapper : lstPrjResourceHisWrapper)
-        {
-	       prjResourceHistory = new IPM_Project_Resource_History__c();
-	       prjResourceHistory.IPM_Project__c = resourceHistoryWrapper.projectId;
-	       prjResourceHistory.Old_User__c = resourceHistoryWrapper.oldUserId;
-	       prjResourceHistory.New_User__c = resourceHistoryWrapper.newUserId;
-	       prjResourceHistory.User_Role__c = resourceHistoryWrapper.sUserRole;
-	       prjResourceHistory.Change_Date__c = System.now();
-	       prjResourceHistory.Changed_By__c = UserInfo.getUserId();
-	       prjResourceHistory.Type__c = sType;
-	       lstPrjResourceHistoryToInsert.add(prjResourceHistory);
+    public static void trackProjectResourceAuditHistory(List<ProjectResourceHistoryWrapper> lstPrjResourceHisWrapper, String sType){
+      List<IPM_Project_Resource_History__c> lstPrjResourceHistoryToInsert = new List<IPM_Project_Resource_History__c>();
+      IPM_Project_Resource_History__c prjResourceHistory;
+      try{
+        for(ProjectResourceHistoryWrapper resourceHistoryWrapper : lstPrjResourceHisWrapper){
+          prjResourceHistory = new IPM_Project_Resource_History__c();
+          prjResourceHistory.IPM_Project__c = resourceHistoryWrapper.projectId;
+          prjResourceHistory.Old_User__c = resourceHistoryWrapper.oldUserId;
+          prjResourceHistory.New_User__c = resourceHistoryWrapper.newUserId;
+          prjResourceHistory.User_Role__c = resourceHistoryWrapper.sUserRole;
+          prjResourceHistory.Change_Date__c = System.now();
+          prjResourceHistory.Changed_By__c = UserInfo.getUserId();
+          prjResourceHistory.Type__c = sType;
+          lstPrjResourceHistoryToInsert.add(prjResourceHistory);
         }
         insert lstPrjResourceHistoryToInsert;
+      }catch(Exception ex){
+        ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,'trackProjectResourceAuditHistory',ex.getMessage(),null, ex.getMessage(), null, null, null,null);
+      }
     }
 
     

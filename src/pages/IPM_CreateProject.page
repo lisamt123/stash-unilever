@@ -19,7 +19,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12 noPadleft noPadright custMarginTop newProjectOption">
-                    <apex:outputPanel rendered="{!isBoosEdtable='true'}">                    
+                    <apex:outputPanel rendered="{!isBoosEdtable='true'}">
                         <div class="col-xs-6 noPadleft radioButton">
                             <div class="bosscardbutton-grey bosscardbutton-blue radioIcon"></div>
                             <div class="selectradioButton">
@@ -32,16 +32,15 @@
                             </div>
                         </div>
                         </apex:outputPanel>
-                        <apex:outputPanel rendered="{!isProEditable='true'}">                        
+                        <apex:outputPanel rendered="{!isProEditable='true'}">
                         <div class="col-xs-6 radioButton">
-                        
-                            <!-- To place the help symbol in the top right hand corner of page -->
+                        	<!-- To place the help symbol in the top right hand corner of page -->
                             <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
                                 <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
                             </apex:outputPanel>
-                        
                             <div class="projectbutton-grey radioIcon">
                             </div>
+                               
                             <div class="selectradioButton">
                                 <input id="projectbutton" class="rbutton" type="radio"  name="bosscard" value="/apex/IPM_ProjectSetupView"></input>  
                                 <label for="projectbutton"></label>
@@ -53,7 +52,6 @@
                             <apex:actionFunction name="callprojectcreate" status="Loading" action="{!CreateProjectId}" reRender="ipmproject, projIdScript"/> 
                         </div>
                         </apex:outputPanel>
-                        
                     </div>
                 </div>
                 <div class="row buttonMtop buttonMbottom">

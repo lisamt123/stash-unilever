@@ -1,5 +1,5 @@
 /**
-* @author       Cognizant
+* @author       Cognizant (Vipul)
 * @date         27/04/2015
 * @description  Wrapper class used to display financials on the ipmFinancial Page and in the Gate Documents
 */

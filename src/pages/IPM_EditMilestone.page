@@ -61,18 +61,17 @@
                             </div> 
                         </div>
                     </apex:outputPanel>
-                    
-                     <!-- To place the help symbol in the top right hand corner of page -->
+                    <!-- To place the help symbol in the top right hand corner of page -->
                      <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
                         <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
                      </apex:outputPanel> 
-                    
+                                         
                     <div class="buttonMarginRight ipmButtonGroup pull-right">   
                         <div class="pull-right">    
                                                        
                             <apex:commandLink value="{!$Label.IPM_CANCEL}" styleClass="ipmButton buttonMarginRight" immediate="true" onClick="pageclose();"/>
-                            <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton green" action="{!saveMilestones}" reRender="form,displaymessage"  rendered="{!AND( OR(adhocmilestoneFlag, miniMilestoneFlag),milestoneFlag)}" oncomplete="{!if(validateSuccess,'pageclose();','')}"  />
-                            <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton green" action="{!promptForTaskUpdate}" reRender="form,displaymessage"  rendered="{!AND(stndMilestoneFlag, milestoneFlag)}" oncomplete="{!if(validateSuccess,'pageclose();','')}"  />
+                            <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton green" action="{!saveMilestones}" reRender="form,displaymessage"  rendered="{!if(AND( OR(milestoneObj.IPM_Type_of_Milestone__c == 'Adhoc',milestoneObj.IPM_Type_of_Milestone__c == 'Mini'),milestoneId != null),true,false)}" oncomplete="{!if(validateSuccess,'pageclose();','')}"  />
+                            <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton green" action="{!promptForTaskUpdate}" reRender="form,displaymessage"  rendered="{!if(AND( milestoneObj.IPM_Type_of_Milestone__c == 'Standard',milestoneId != null),true,false)}" oncomplete="{!if(validateSuccess,'pageclose();','')}"  />
                         </div>
                     </div>
                 </div> 

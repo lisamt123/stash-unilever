@@ -6,7 +6,7 @@
    @Version: 1.0 
    @Reference: IPM_Consumer_Evidence Component
 */
-public with sharing class IPM_ConsumerImageUploadController {
+public without sharing class IPM_ConsumerImageUploadController {
     
     public String projId {get; set;} //Used to store project id
     public String projDocSecId {get; set;} //Used to store Project Document Section id

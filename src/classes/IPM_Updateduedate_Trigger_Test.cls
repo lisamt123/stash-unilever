@@ -30,8 +30,6 @@ Test.startTest();
 initializeData();
 PageReference pRef = new PageReference('apex/IPM_Updateduedate?id='+task.ID);    
 Test.setCurrentPage(pRef);
-System.assert(projects.Id != NULL);
-System.assert(task.Id != NULL);
 Test.stopTest();
 
 

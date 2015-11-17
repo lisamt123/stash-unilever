@@ -6,7 +6,7 @@
 @Version: 1.0
 @Reference: IPM_ProjectDocumentSectionEditor Page
 */
-public with sharing class IPM_FileUploadController {
+public without sharing class IPM_FileUploadController {
     //For exception handler
     private static final String IPM_FILEUPLOADCONTROLLER_STR = IPM_FileUploadController.class.getName();
     private static final String SAVEDOC_STR='Savedoc';
@@ -15,15 +15,9 @@ public with sharing class IPM_FileUploadController {
     public string fileType{get; set;} //Used to store section type
     public transient Attachment myfile;//Used to attachment
     public Boolean isUpload{get; set;}
-    public Attachment myfiles{ //Getter for the attachment
-        get {
-            if (myfiles== null)
-                myfiles= new Attachment ();
-            
-            return myfiles;
-        }
-        set;
-        
+    public Attachment getmyfile(){ //Getter for the attachment
+        myfile = new Attachment();
+        return myfile;
     }
     
     /************************************************************************************************************************
@@ -45,15 +39,15 @@ public with sharing class IPM_FileUploadController {
     *  @return PageReference
     *  @throws dml exception
     */
-    public PageReference saveDoc(){
+    public PageReference Savedoc(){
         if(Schema.sObjectType.Attachment.isCreateable()){
-            Attachment docAttachment = new Attachment();
+            Attachment a = new Attachment();
             try{
-                docAttachment.parentId = parentId;
-                docAttachment.name=myfiles.name;
-                docAttachment.body = myfiles.body;
-                docAttachment.Description=fileType; 
-                insert docAttachment;
+                a.parentId = parentId;
+                a.name=myfile.name;
+                a.body = myfile.body;
+                a.Description=fileType; 
+                insert a;
                 ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO,system.label.IPM_File_Uploaded_Successfully));
                 isUpload=true;
                 return null;
@@ -69,8 +63,8 @@ public with sharing class IPM_FileUploadController {
                     SAVEDOC_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
             }
             finally {          
-                docAttachment.body = null;       
-                docAttachment= new Attachment();        
+                a.body = null;       
+                a= new Attachment();        
             }        
         } 
         return null;

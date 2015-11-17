@@ -33,6 +33,12 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
         if(Trigger.isInsert || Trigger.isUpdate)
         {
             List<IPM_Milestone__c> incomingMilestoneList = (List<IPM_Milestone__c>)Trigger.new;
+            Map<Id,IPM_Milestone__c> oldMilestoneMap = null; 
+            
+            if(Trigger.isUpdate)
+            {
+                oldMilestoneMap = (Map<Id,IPM_Milestone__c>)Trigger.oldMap;
+            }
             
             for (IPM_Milestone__c recentUpsertedMilestone : incomingMilestoneList) 
             {
@@ -58,7 +64,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
                 }
                 
                 if(!lstbosscardIds.isEmpty()){
-                    ipmBosscards=new Map<Id,IPM_Bosscard__c>([SELECT Id,IPM_Bosscord_Approval_Date__c FROM IPM_Bosscard__c WHERE id IN : lstbosscardIds LIMIT 50000]);
+                    ipmBosscards=new Map<Id,IPM_Bosscard__c>([SELECT Id,IPM_Bosscord_Approval_Date__c FROM IPM_Bosscard__c WHERE id IN : lstbosscardIds]);
                 }
             }
             
@@ -106,6 +112,11 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
     */
     public void bulkAfter(){
        
+        if(Trigger.isInsert)
+        {
+            //IPM_ShareMilestone.insertMilesShare((List<IPM_Milestone__c>)Trigger.new);  
+        }
+        
         if(Trigger.isInsert || Trigger.isUpdate)
         {
             List<IPM_Milestone__c> incomingMilestoneList = (List<IPM_Milestone__c>)Trigger.new;
@@ -176,7 +187,8 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
         {
           IPM_Project__c associatedProject = ipmProjects.get(newMilestone.IPM_Project__c);
           newMilestone.ExternalField__c = associatedProject.IPM_Project_Name__c + IPM_ConstantUtils.HYPHEN_DELIMITER + newMilestone.IPM_Name__c + IPM_ConstantUtils.HYPHEN_DELIMITER + newMilestone.IPM_Phase__c + '-'+ newMilestone.IPM_Project_Type__c;
-          
+          System.debug(LoggingLevel.ERROR,'ExternalField__c-->>'+newMilestone.ExternalField__c);
+             
           if(newMilestone.IPM_Planned_Date__c !=null)
           {
               newMilestone.IPM_Due_Date__c = newMilestone.IPM_Planned_Date__c;
@@ -193,6 +205,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
     public void beforeUpdate(SObject oldSo, SObject so)
     {   
         IPM_Milestone__c newMilestone = (IPM_Milestone__c)so;
+        IPM_Milestone__c oldMilestone = (IPM_Milestone__c)oldSo;
         IPM_MilestoneHelper.prepareCustomMilestoneName(newMilestone,ipmProjects);
         if(newMilestone.IPM_Project__c !=null && ipmProjects.containsKey(newMilestone.IPM_Project__c) && newMilestone.IPM_type_of_Milestone__c != null && newMilestone.IPM_type_of_Milestone__c == IPM_ConstantUtils.STANDARD)
         {
@@ -201,7 +214,6 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
           
           newMilestone.IPM_Due_Date__c = newMilestone.IPM_Planned_Date__c;          
         } 
-        
     }
     
     /**

@@ -459,6 +459,20 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Gate_CMI__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>IPM Gate CMI</label>
+        <referenceTo>IPM_Gate_CMI__c</referenceTo>
+        <relationshipLabel>IPM Project Document Sections</relationshipLabel>
+        <relationshipName>IPM_Project_Document_Sections</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>IPM_Gate_Document_Summary__c</fullName>
         <externalId>false</externalId>
         <label>Gate Document Summary</label>
@@ -879,6 +893,18 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Input_Gate_CMI__c</fullName>
+        <externalId>false</externalId>
+        <label>Input Gate CMI</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Input__c</fullName>
         <externalId>false</externalId>
         <label>Input</label>
@@ -966,6 +992,7 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
     </fields>
     <fields>
         <fullName>Project_Doc_Section_Ext_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
         <externalId>true</externalId>
         <label>Project Doc Section Ext Id</label>
         <length>100</length>
@@ -974,7 +1001,7 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>Results__c</fullName>

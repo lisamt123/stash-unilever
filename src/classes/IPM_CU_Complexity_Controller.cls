@@ -3,7 +3,7 @@
 @Created Date:07/08/2015
 @Author: Cognizant
 ******************************************************************/
-public with sharing class IPM_CU_Complexity_Controller {
+public class IPM_CU_Complexity_Controller {
     
     //For try-catch
     private static final string SAVE_CUCOUNT='saveCuCount';

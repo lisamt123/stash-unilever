@@ -760,9 +760,6 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             }    
             
             //DEF2450
-            //
-			//public list<IPM_Financial__c> tmpss2 {get; set;}
-
             if(project.IPMProject_Span__c=='Regional'){
                list<IPM_Financial__c> liFinParentReg = [select Business_Impact_Global__c from IPM_Financial__c where (Parent_Project__c=:project.IPM_Parent_Project__c OR global_project_id__c=:project.IPM_Parent_Project__c) and parent_project__r.IPMProject_Span__c='Global' limit 1];
                if (liFinParentReg!=null && liFinParentReg.size()>0){

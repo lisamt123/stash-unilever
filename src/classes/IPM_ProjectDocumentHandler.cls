@@ -1,8 +1,9 @@
-/***************************************************************************************************
+/**
     * Class IPM_ProjectDocumentHandler
+    *
     * Trigger Handler for the IPM_Project_Document__c SObject. This class implements the ITrigger
     * interface to help ensure the trigger code is bulkified and all in one place.
-****************************************************************************************************/
+    */
 public with sharing class IPM_ProjectDocumentHandler implements ITrigger{   
     
     // Constructor
@@ -20,156 +21,139 @@ public with sharing class IPM_ProjectDocumentHandler implements ITrigger{
         //This method has been included as the class implements the ITrigger interface      
     }
     
-    public void bulkAfter()
-    {    
-        if(trigger.isUpdate)
-        {
+    public void bulkAfter(){
+        //For Project Document Sharing
+        if(Trigger.isInsert){
+            //IPM_ProDocShare.insertProjecrDocumentshare((List<IPM_Project_Document__c>)Trigger.new);
+        }
+        
+        if(trigger.isUpdate){
+            System.debug('Step 1:'+(List<IPM_Project_Document__c>)trigger.new);
+            //IPM_ProjectDocumentTriggerHandler.processAfterUpdate((List<IPM_Project_Document__c>)trigger.new);
+            
             // To chatter when document status is changed
             IPM_ChatterFeedHelper.postChatterIfDocumentStatusChanged((List<IPM_Project_Document__c>)Trigger.new,(List<IPM_Project_Document__c>)Trigger.old);
         }
-        
-        String[] fieldNames = new String[] {IPM_Utils.IPM_Approval_Date};
-        List<IPM_Milestone__c>  updatedMilestone = new List<IPM_Milestone__c>();
-        IPM_Project_Document__c oldIpmProjectDocument = new IPM_Project_Document__c();  
-        List<Id> lstProjectId=new List<Id>();    
-        for (IPM_Project_Document__c recentIpmProjectDocument : (List<IPM_Project_Document__c>)Trigger.new) 
-        {
-            if(recentIpmProjectDocument!= null)
-            {
-                if(recentIpmProjectDocument.Id!= null)
-                {
-                    if(Trigger.old!=null)
-                    {
-                        if(Trigger.oldMap.get(recentIpmProjectDocument.Id)!= null)
-                        {
-                            oldIpmProjectDocument = (IPM_Project_Document__c)Trigger.oldMap.get(recentIpmProjectDocument.Id);
+            String[] fieldNames = new String[] {IPM_Utils.IPM_Approval_Date};
+            List<IPM_Milestone__c>  updatedMilestone = new List<IPM_Milestone__c>();
+            IPM_Project_Document__c oldIpmProjectDocument = new IPM_Project_Document__c();  
+            List<Id> lstProjectId=new List<Id>();    
+            for (IPM_Project_Document__c recentIpmProjectDocument : (List<IPM_Project_Document__c>)Trigger.new) {
+                if(recentIpmProjectDocument!= null){
+                    if(recentIpmProjectDocument.Id!= null){
+                        if(Trigger.old!=null){
+                            if(Trigger.oldMap.get(recentIpmProjectDocument.Id)!= null){
+                                oldIpmProjectDocument = (IPM_Project_Document__c)Trigger.oldMap.get(recentIpmProjectDocument.Id);
+                            }
+                        }
+                    }
+                }
+                for (String ipmApprovalDate : fieldNames) {
+                    if (recentIpmProjectDocument.get(ipmApprovalDate) != oldIpmProjectDocument.get(ipmApprovalDate)) {
+                        if(recentIpmProjectDocument.get(IPM_Utils.IPM_Project)!= null){
+                            lstProjectId.add(recentIpmProjectDocument.IPM_Project__c);
                         }
                     }
                 }
             }
-            for (String ipmApprovalDate : fieldNames) 
-            {
-                if (recentIpmProjectDocument.get(ipmApprovalDate) != oldIpmProjectDocument.get(ipmApprovalDate)) 
-                {
-                    if(recentIpmProjectDocument.get(IPM_Utils.IPM_Project)!= null)
-                    {
-                        lstProjectId.add(recentIpmProjectDocument.IPM_Project__c);
-                    }
-                }
-            }
-        }
             
-        if(!lstProjectId.isEmpty())
-        {
-            List<IPM_Milestone__c> milestones = [SELECT Id,IPM_Project__c,IPM_Completed_On__c 
-                                                    FROM IPM_Milestone__c WHERE IPM_Project__c IN : lstProjectId 
-                                                    AND IPM_Type_of_gate__c =: IPM_ConstantUtils.FIELD_SUFFIX_CHARTER LIMIT 50000];
-            for(IPM_Project_Document__c rIpmPDocument : (List<IPM_Project_Document__c>)Trigger.new)
-            {
-                if(rIpmPDocument.IPM_Project__c != null)
-                {
-                    for(IPM_Milestone__c milestone:milestones)
-                    {
-                        if(milestone.IPM_Project__c == rIpmPDocument.IPM_Project__c)
-                        {
-                            milestone.IPM_Completed_On__c = rIpmPDocument.IPM_Approval_Date__c;
-                            milestone.IPM_Completed__c = true;
-                            updatedMilestone.add(milestone);
+            if(!lstProjectId.isEmpty()){
+                List<IPM_Milestone__c> milestones = [SELECT Id,IPM_Project__c,IPM_Completed_On__c FROM IPM_Milestone__c WHERE IPM_Project__c IN : lstProjectId and IPM_Type_of_gate__c =: IPM_ConstantUtils.FIELD_SUFFIX_CHARTER];
+                for(IPM_Project_Document__c rIpmPDocument : (List<IPM_Project_Document__c>)Trigger.new){
+                    if(rIpmPDocument.IPM_Project__c != null){
+                        for(IPM_Milestone__c milestone:milestones){
+                            if(milestone.IPM_Project__c == rIpmPDocument.IPM_Project__c){
+                                milestone.IPM_Completed_On__c = rIpmPDocument.IPM_Approval_Date__c;
+                                milestone.IPM_Completed__c = true;
+                                updatedMilestone.add(milestone);
+                            }
                         }
                     }
                 }
+            }     
+            if(updatedMilestone != null && !updatedMilestone.isEmpty()){
+            update updatedMilestone;
             }
-        }     
         
-        if(!updatedMilestone.isEmpty())
+    set<id> projset = new set<id>();
+    set<id> projset_pro= new set<id>();
+    map<id,date> docmap = new map<id,date>();
+    map<id,date> docmap_pro = new map<id,date>();
+    map<id,string> IpmGate_map = new map<id,string>();
+    map<id,string> IpmGate_pro_map = new map<id,string>();
+    for(IPM_Project_Document__c ipd : (List<IPM_Project_Document__c>)trigger.new)
+    {
+       if(ipd.IPM_GateDocuments__c != null && ipd.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED && ipd.IPM_Project__c != null)
+       {
+           projset.add(ipd.IPM_Project__c);
+           IpmGate_map.put(ipd.IPM_Project__c,ipd.IPM_GateDocuments__c );
+       }
+       if(ipd.IPM_Project__c != null && ipd.IPM_Approval_Date__c != null)
+           docmap.put(ipd.IPM_Project__c ,ipd.IPM_Approval_Date__c);
+       // Proposed
+       if(ipd.IPM_GateDocuments__c != null && ipd.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED && ipd.IPM_Project__c != null)
+       {
+           projset_pro.add(ipd.IPM_Project__c);
+           IpmGate_pro_map.put(ipd.IPM_Project__c,ipd.IPM_GateDocuments__c );
+       }
+       if(ipd.IPM_Project__c != null && ipd.IPM_Proposed_Date__c!= null)
+           docmap_pro.put(ipd.IPM_Project__c ,ipd.IPM_Proposed_Date__c);
+    }
+    map<id,IPM_Milestone__c> miles_Map = new map<id,IPM_Milestone__c>([select id,IPM_Type_of_Milestone__c,IPM_Type_of_gate__c,IPM_Completed_On__c,IPM_Project__c from IPM_Milestone__c where IPM_Project__c in : projset and IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD]);
+    map<id,IPM_Milestone__c > UpdateMileMap = new map<id,IPM_Milestone__c >();
+    for(IPM_Milestone__c M : miles_Map.values())
+    {
+        if(M.IPM_Project__c != null && IpmGate_map.containskey(M.IPM_Project__c) && M.IPM_Type_of_gate__c == IpmGate_map.get(M.IPM_Project__c) && docmap.containskey(M.IPM_Project__c ) && docmap.get(M.IPM_Project__c ) != null)
         {
-            update updatedMilestone; // Not including try , catch as when the transaction is failed roll back is handled at other class  
+            M.IPM_Completed_On__c = docmap.get(M.IPM_Project__c );
+            UpdateMileMap.put(M.id,M);
         }
-        
-	    set<id> projset = new set<id>();
-	    set<id> projset_pro= new set<id>();
-	    map<id,date> docmap = new map<id,date>();
-	    map<id,date> docmap_pro = new map<id,date>();
-	    map<id,string> IpmGate_map = new map<id,string>();
-	    map<id,string> IpmGate_pro_map = new map<id,string>();
-	    
-        for(IPM_Project_Document__c ipd : (List<IPM_Project_Document__c>)trigger.new)
-	    {
-	       if(ipd.IPM_GateDocuments__c != null && ipd.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED && ipd.IPM_Project__c != null)
-	       {
-	           projset.add(ipd.IPM_Project__c);
-	           IpmGate_map.put(ipd.IPM_Project__c,ipd.IPM_GateDocuments__c );
-	       }
-	       if(ipd.IPM_Project__c != null && ipd.IPM_Approval_Date__c != null)
-	       {
-	           docmap.put(ipd.IPM_Project__c ,ipd.IPM_Approval_Date__c);
-	           
-	       }// Proposed
-	       if(ipd.IPM_GateDocuments__c != null && ipd.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED && ipd.IPM_Project__c != null)
-	       {
-	           projset_pro.add(ipd.IPM_Project__c);
-	           IpmGate_pro_map.put(ipd.IPM_Project__c,ipd.IPM_GateDocuments__c );
-	       }
-	       if(ipd.IPM_Project__c != null && ipd.IPM_Proposed_Date__c!= null)
-	       {
-	           docmap_pro.put(ipd.IPM_Project__c ,ipd.IPM_Proposed_Date__c);
-	       }
-	    }
-	    
-        map<id,IPM_Milestone__c> miles_Map = new map<id,IPM_Milestone__c>([SELECT id,IPM_Type_of_Milestone__c,IPM_Type_of_gate__c,IPM_Completed_On__c,
-                                                                      IPM_Project__c FROM IPM_Milestone__c WHERE IPM_Project__c in : projset 
-                                                                      AND IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD LIMIT 50000]);
-                                                                      
-        map<id,IPM_Milestone__c > UpdateMileMap = new map<id,IPM_Milestone__c >();
-	    
-	    for(IPM_Milestone__c M : miles_Map.values())
-	    {
-	        if(M.IPM_Project__c != null && IpmGate_map.containskey(M.IPM_Project__c) && M.IPM_Type_of_gate__c == IpmGate_map.get(M.IPM_Project__c)
-	        && docmap.containskey(M.IPM_Project__c ) && docmap.get(M.IPM_Project__c ) != null)
-	        {
-	            M.IPM_Completed_On__c = docmap.get(M.IPM_Project__c );
-	            UpdateMileMap.put(M.id,M);
-	        }
-	    }
-    
-        // Proposed
-        map<id,IPM_Milestone__c> miles_Pro_Map = new map<id,IPM_Milestone__c>([SELECT id,IPM_Type_of_Milestone__c,IPM_Type_of_gate__c,IPM_Completed_On__c,
-                                                                          IPM_Project__c FROM IPM_Milestone__c WHERE IPM_Project__c in : projset_pro 
-                                                                          AND IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD LIMIT 50000]);
-    
-        for(IPM_Milestone__c M : miles_Pro_Map.values())
-	    {
-	        if(M.IPM_Project__c != null && IpmGate_pro_map.containskey(M.IPM_Project__c) && M.IPM_Type_of_gate__c == IpmGate_pro_map.get(M.IPM_Project__c)
-	        && docmap_pro.containskey(M.IPM_Project__c ) && docmap_pro.get(M.IPM_Project__c ) != null)
-	        {
-	            M.IPM_Proposed_Date__c = docmap_pro.get(M.IPM_Project__c );
-	            UpdateMileMap.put(M.id,M);
-	        }
-	    }
-	    
-        if(UpdateMileMap != null && !UpdateMileMap.isEmpty())
+    }
+    //@amruta :(DEF0940)mark task as completed after gate doc is approved
+    /*map<id,IPM_Task__c> taskMap = new map<id,IPM_Task__c>([select id,IPM_Completed__c,IPM_Completed_Date__c,IPM_Type_of_Gate__c,IPM_Project__c from IPM_Task__c where IPM_Project__c in : projset ]);
+    map<id,IPM_Task__c > updateTaskMap = new map<id,IPM_Task__c >();
+    for(IPM_Task__c task : taskMap.values())
+    {
+        if(task.IPM_Project__c != null && IpmGate_map.containskey(task.IPM_Project__c) && task.IPM_Type_of_gate__c == IpmGate_map.get(task.IPM_Project__c))
         {
-            update UpdateMileMap.values(); // Not including try , catch as when the transaction is failed roll back is handled at other class
-        }  
+            task.IPM_Completed__c = true;
+            updateTaskMap.put(task.id,task);
+        }
+    }*/
+    // Proposed
+    map<id,IPM_Milestone__c> miles_Pro_Map = new map<id,IPM_Milestone__c>([select id,IPM_Type_of_Milestone__c,IPM_Type_of_gate__c,IPM_Completed_On__c,IPM_Project__c from IPM_Milestone__c where IPM_Project__c in : projset_pro and IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD]);
+    
+    for(IPM_Milestone__c M : miles_Pro_Map.values())
+    {
+        if(M.IPM_Project__c != null && IpmGate_pro_map.containskey(M.IPM_Project__c) && M.IPM_Type_of_gate__c == IpmGate_pro_map.get(M.IPM_Project__c) && docmap_pro.containskey(M.IPM_Project__c ) && docmap_pro.get(M.IPM_Project__c ) != null)
+        {
+            M.IPM_Proposed_Date__c = docmap_pro.get(M.IPM_Project__c );
+            UpdateMileMap.put(M.id,M);
+        }
+    }
+    if(UpdateMileMap != null && !UpdateMileMap.isEmpty())
+        update UpdateMileMap.values();
+        
+    /*if(updateTaskMap != null && !updateTaskMap.isEmpty()){
+        update updateTaskMap.values();
+    }    */
     }
     
-    public void beforeInsert(SObject so)
-    {
+    public void beforeInsert(SObject so){
         //This method has been included as the class implements the ITrigger interface
         IPM_Project_Document__c newProjectDocument =  (IPM_Project_Document__c)so;
+        System.debug('-------------newProjectDocument.IPM_GateDocuments__c-------->>'+newProjectDocument.IPM_GateDocuments__c);
         if( !String.isBlank(newProjectDocument.IPM_GateDocuments__c) )
         {
-            newProjectDocument.IPM_Project_Document_External_Id__c = newProjectDocument.IPM_Project__c + newProjectDocument.IPM_GateDocuments__c;
-            if(!String.isBlank(newProjectDocument.IPM_Project_External_Id__c)){
-            	string projectExtID=newProjectDocument.IPM_Project_External_Id__c.substring(0,newProjectDocument.IPM_Project_External_Id__c.length()-1);
-            	newProjectDocument.External_Id__c= projectExtID+newProjectDocument.IPM_Document_Order__c;
-            }
+            newProjectDocument.IPM_Project_Document_External_Id__c = newProjectDocument.IPM_Project__c + newProjectDocument.IPM_GateDocuments__c;  
         }
         else
         {
-            newProjectDocument.addError(system.label.IPM_DocumentNotAssociated);       
+            newProjectDocument.addError('Document is not associated with any Gate');       
         }
-    }
+  System.debug('-------------newProjectDocument.IPM_GateDocuments__c-------->>'+newProjectDocument.IPM_GateDocuments__c);
+
+  }
     
     public void beforeUpdate(SObject oldSo, SObject so){   
         //This method has been included as the class implements the ITrigger interface

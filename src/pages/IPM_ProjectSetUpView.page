@@ -147,11 +147,10 @@
                                                     </div>
                                                     <div class="col-sm-10">
                                                         <!-- To place the help symbol in the top right hand corner of page -->
-                                                            <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
+                                                        <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
                                                             <apex:outputLink value="{!URL}" id="Link" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
-                                                            </apex:outputPanel>
+                                                        </apex:outputPanel>
                                                         <div class="col-sm-10 noPadleft">
-                                                             
                                                             <apex:outputPanel id="ProjectNamePanel" styleClass="inputField oneCol">
                                                                 <apex:outputPanel layout="block"  styleClass="required proNameContainer">
                                                                     <apex:outputLabel value="{!$Label.IPM_PROJECT_NAME}" styleClass="bsFieldLabel" />
@@ -378,8 +377,14 @@
                                                                                 <apex:outputPanel id="whiteSpacePanel" styleClass="whiteSpaceBox" rendered="{!projectMetadata.IPM_WhiteSpaceApplicable__c}" >
                                                                                     <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_White_Space_Project__c}" disabled="{!!isEditable}"/>
                                                                                     <span class="projectraLabel">{!$Label.IPM_White_Space}</span>
+                                                                                     <apex:actionSupport event="onchange" reRender="WhiteSpaceHelpTextpanel"  />
                                                                                 </apex:outputPanel>
                                                                             </div>
+                                                                            <apex:outputPanel id="WhiteSpaceHelpTextpanel">
+                                                                                <apex:outputPanel styleClass="col-sm-12 yellowBox" layout="block" rendered="{!AND(project.IPM_White_Space_Project__c,isEditable)}" >
+                                                                                    <apex:outputText value="{!$Label.IPM_WhiteSpace_HelpText}" />
+                                                                                </apex:outputPanel>
+                                                                            </apex:outputPanel>
                                                                         </apex:outputPanel>
                                                                     </apex:outputPanel>
                                                                 </div>

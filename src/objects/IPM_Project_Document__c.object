@@ -56,26 +56,13 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
-        <fullName>External_Id__c</fullName>
-        <caseSensitive>false</caseSensitive>
-        <externalId>true</externalId>
-        <label>External Id</label>
-        <length>100</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
-    <fields>
         <fullName>IPM_Approval_Date__c</fullName>
         <description>This will capture the Approval date for Gate doc</description>
         <externalId>false</externalId>
         <label>IPM Approval Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -85,18 +72,7 @@
         <label>IPM Approved Comments</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
-    </fields>
-    <fields>
-        <fullName>IPM_Comments__c</fullName>
-        <externalId>false</externalId>
-        <label>IPM Comments</label>
-        <length>32768</length>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
@@ -134,20 +110,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>IPM_Document_Order__c</fullName>
-        <description>To store the order of the document in a project based on the Document Template</description>
-        <externalId>false</externalId>
-        <label>IPM Project Document Order</label>
-        <precision>2</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>IPM_Document_Status__c</fullName>
         <description>This is the average values of the project sections associated with it.</description>
         <externalId>false</externalId>
@@ -175,10 +137,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Postponed</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Approved with Edits</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -226,7 +184,7 @@
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>true</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -247,13 +205,13 @@
         <label>IPM Postponement Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>IPM_Project_Complexity__c</fullName>
-        <description>To hold the complexity of the project</description>
+        <description>To capture the Complexity</description>
         <externalId>false</externalId>
         <formula>TEXT(IPM_Project__r.IPM_Complexity__c)</formula>
         <label>IPM Project Complexity</label>
@@ -277,19 +235,6 @@
         <unique>true</unique>
     </fields>
     <fields>
-        <fullName>IPM_Project_External_Id__c</fullName>
-        <description>To store the External Id from the related Project</description>
-        <externalId>false</externalId>
-        <label>IPM Project External Id</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>IPM_Project_Span__c</fullName>
         <externalId>false</externalId>
         <formula>TEXT(IPM_Project__r.IPMProject_Span__c)</formula>
@@ -301,16 +246,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>IPM_Project_Stopped__c</fullName>
-        <description>Set it to True based on Projects Archived Button</description>
-        <externalId>false</externalId>
-        <formula>IPM_Project__r.Is_Archieved__c</formula>
-        <label>Project Stopped</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>IPM_Project_Template__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -320,7 +255,7 @@
         <relationshipName>IPM_Project_Documents</relationshipName>
         <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -335,7 +270,7 @@
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackFeedHistory>true</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
@@ -374,7 +309,7 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
         <label>IPM Stopped Comments</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
@@ -385,14 +320,14 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
         <label>IPM Stopped Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>IPM_Updated_User_By__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>This field is to record the Document Update status user</description>
+        <description>To store the Document Approved By</description>
         <externalId>false</externalId>
         <label>Updated User By</label>
         <referenceTo>User</referenceTo>
@@ -406,21 +341,18 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
     <label>IPM Project Document</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>External_Id__c</columns>
-        <columns>IPM_Project__c</columns>
+        <columns>NAME</columns>
+        <columns>IPM_Project_Template__c</columns>
         <columns>IPM_GateDocuments__c</columns>
         <columns>IPM_Approval_Date__c</columns>
-        <columns>IPM_Approved_Comments__c</columns>
         <columns>IPM_Document_Status__c</columns>
-        <columns>IPM_Contract_GateKeeper_Model__c</columns>
-        <columns>UPDATEDBY_USER.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>External_Id__c</field>
-            <operation>notEqual</operation>
+            <field>IPM_Document_Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
         </filters>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Project Document Id</label>
@@ -429,5 +361,6 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
         <type>Text</type>
     </nameField>
     <pluralLabel>IPM Project Documents</pluralLabel>
+    <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

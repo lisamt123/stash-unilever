@@ -8,7 +8,7 @@ public with sharing class IPM_ChatterUtils {
     /* The constant variables which helps in contextual messagings of the chatter message.
      * The names are pretty much self-explanatory, needs no further elucidations.
     */
-/*  public static String ASSIGNMENT_USER_TEXT = 'You have been assigned as a team member for this project ';
+	public static String ASSIGNMENT_USER_TEXT = 'You have been assigned as a team member for this project ';
     public static String ASSIGNMENT_PROJECT_TEXT = 'Following team member(s) added to the project : ';
     public static String INACTIVE_USERS_TEXT = ' is no longer an active user in IPM Navigator. You may need to find another person to fill this role on your project.';
     public static String TASK_COMPLETION_TEXT = ' Task is completed!';
@@ -17,7 +17,7 @@ public with sharing class IPM_ChatterUtils {
     public static String PROJECT_SECTION_TEXT = ' Section is updated.';
     public static String PROJECT_TLD_CHANGE_TEXT = '\'s Target Launch Period is changed.';
     public static String TASK_ASSIGN_TEXT1 = '- You have been assigned some tasks for ';
-    public static String TASK_ASSIGN_TEXT2 ='. Please go have a look. '; */
+    public static String TASK_ASSIGN_TEXT2 ='. Please go have a look. ';
     
     /*******************************************************************************************************
     * @description: Makes a simple chatter text post to the specified record from the running user 
@@ -31,8 +31,8 @@ public with sharing class IPM_ChatterUtils {
     
         ConnectApi.MessageBodyInput messageInput = new ConnectApi.MessageBodyInput();
         messageInput.messageSegments = new List<connectapi.messagesegmentinput>();
-        
-         // add the mention
+    	
+    	 // add the mention
         for(Id eachUser : userMentionIds) {
            ConnectApi.MentionSegmentInput mentionSegment = new ConnectApi.MentionSegmentInput();
            mentionSegment.id = eachUser;
@@ -91,24 +91,24 @@ public with sharing class IPM_ChatterUtils {
         ConnectApi.MessageBodyInput messageInput = new ConnectApi.MessageBodyInput();
         messageInput.messageSegments = new List<connectapi.messagesegmentinput>();
 
-        for(Id recordId : recordIdListPostText.keySet()) {
-            List<String> postTextList = recordIdListPostText.get(recordId); 
-            for(String postText : postTextList) {
-                    
-                // add the text segment
-                ConnectApi.TextSegmentInput textSegment = new ConnectApi.TextSegmentInput();
-                textSegment.text = postText;
-                messageInput.messageSegments.add(textSegment);
-                ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput();
-                feedItemInput.body = messageInput;
-            
-                // post it
-                if(!Test.isRunningTest() && !isNotificationDisabled()) {
-                    ConnectApi.ChatterFeeds.postFeedItem(null, feedType, recordId, feedItemInput, null);  
-                }
-                textSegment.text = '';
-            }
-        }
+		for(Id recordId : recordIdListPostText.keySet()) {
+			List<String> postTextList = recordIdListPostText.get(recordId);	
+			for(String postText : postTextList) {
+				    
+        		// add the text segment
+        		ConnectApi.TextSegmentInput textSegment = new ConnectApi.TextSegmentInput();
+				textSegment.text = postText;
+				messageInput.messageSegments.add(textSegment);
+				ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput();
+				feedItemInput.body = messageInput;
+			
+				// post it
+				if(!Test.isRunningTest() && !isNotificationDisabled()) {
+					ConnectApi.ChatterFeeds.postFeedItem(null, feedType, recordId, feedItemInput, null);  
+				}
+				textSegment.text = '';
+			}
+		}
     }
     
     /*******************************************************************************************************

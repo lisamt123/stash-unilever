@@ -114,7 +114,7 @@ public with sharing class IPM_ProjectHelper
     // Create a Map of project To List of Documents and Sections.
     public static Map<Id,Map<String,IPM_Project_Document__c>> projectToDocumentMap = new Map<Id,Map<String,IPM_Project_Document__c>>();
     public static  Map<Id,List<IPM_Project_Document_Section__c>> projectDocumentToSecMap = new Map<Id,List<IPM_Project_Document_Section__c>>();
-    
+    public static Set<IPM_Project__c> projectDeleteSet = new Set<IPM_Project__c>();
      /**************************************************************
     * @description: Used for Resetting Cache in case Project Handler is invoked again. 
     */
@@ -1443,29 +1443,34 @@ public with sharing class IPM_ProjectHelper
     }
     
     public static void deleteProj(List<IPM_Project__c>projLst){
-        
-        Set<id> projectIdSetToBeDeleted = new Set<Id>(); // Project Id set to be deleted 
+     
+
         for(IPM_Project__c project : projLst)
         {
-            if(project.Created_in_error__c)
+            if(project.Created_in_error__c==true)
             {
-                projectIdSetToBeDeleted.add(project.Id); 
+                projectDeleteSet.add(project); 
             }
         }
-        if(!projectIdSetToBeDeleted.isEmpty())
-        {
-            List<IPM_Financial__c> projFinList=[Select Id From IPM_Financial__c where Parent_Project__c in:projectIdSetToBeDeleted Limit 5000];
-            if(projFinList != null && !projFinList.isEmpty())
-                delete projFinList;
-            
-            List<IPM_Project_Rollout__c> projRolloutList=[Select Id From IPM_Project_Rollout__c where IPM_Project__c in:projectIdSetToBeDeleted Limit 5000];
-            if(projRolloutList != null && !projRolloutList.isEmpty())
-                delete projRolloutList;
-            
-            List<IPM_Project__c> projList=[Select Id From IPM_Project__c where Id in:projectIdSetToBeDeleted Limit 5000];
-            if(projList != null && !projList.isEmpty())
-                delete projList;
-        }
+        if(!projectDeleteSet.isEmpty())
+    {
+        List<IPM_Financial__c> projFinList=[Select Id From IPM_Financial__c where Parent_Project__c in:projectDeleteSet Limit 5000];
+        if(!projFinList.isEmpty() || projFinList!=null)
+        delete projFinList;
+        
+        
+        List<IPM_Project_Rollout__c> projRolloutList=[Select Id From IPM_Project_Rollout__c where IPM_Project__c in:projectDeleteSet Limit 5000];
+        if(!projRolloutList.isEmpty() || projRolloutList!=null)
+         delete projRolloutList;
+        
+        
+        List<IPM_Project__c> projList=[Select Id From IPM_Project__c where Id in:projectDeleteSet Limit 5000];
+        if(!projList.isEmpty() || projList!=null)
+        delete projList;
+
+        
+    
     }
+  }
 
 }

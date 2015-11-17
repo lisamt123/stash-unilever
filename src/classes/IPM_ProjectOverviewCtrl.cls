@@ -267,7 +267,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                                 IPM_Category_Icon__c,IPM_Target_Launch_Date__c,IPM_Parent_Project__c,IPM_Parent_Project__r.name, IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, 
                                 Deputy_Project_Leader__c, IPM_Finance_Member__c, IPM_Project_Gatekeeper__c,BET_MS_Final_Release_Date__c,BET_MS_First_Release_Date__c,BET_TLD_Final_Release_Date__c,BET_TLD_First_Release_Date__c,
                                 IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_SourceProjectType__c,
-                                IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, 
+                                IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c,
                               (SELECT IPM_Task_Name__c, IPM_Due_Date1__c, IPM_Task_Type__c, IPM_Project_Document_Section__r.IPM_Section_Sequence__c,
                                     IPM_Project_Document_Section__r.IPM_Section_Name__c, IPM_Completed__c, IPM_Completed_Date__c,IPM_Project_Document_Section__c,
                                     IPM_Project__c
@@ -280,7 +280,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                                     LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c
                                     From Project_Documents__r limit 10000),
                             (SELECT IPM_Phase__c,IPM_Project__c, IPM_Type_of_gate__c,IPM_Due_Date__c,IPM_Type_of_Milestone__c FROM IPM_Milestones__r limit 10000)
-                            ,(SELECT Global_External_Id__c ,Year_3_iTO_Global__c,Business_Impact_Global__c,Business_Impact_Regional__c, Regional_External_Id__c FROM IPM_Financials_Consolidated__r WHERE (Global_External_Id__c=:lstofuser[0].Name) limit 10000)
+                            ,(SELECT Global_External_Id__c ,Year_3_iTO_Global__c,Business_Impact_Global__c,Business_Impact_Regional__c, Regional_External_Id__c FROM IPM_Financials_Consolidated__r WHERE (Global_External_Id__c=:lstofuser[0].Name OR Regional_External_Id__c=:lstofuser[0].Name) limit 10000)
 
                             ,(SELECT Id,IPM_Target_Launch_Dates__c,IPM_Project_Name__c,IPM_Temporary_Phase__c  from IPM_Projects__r),
                             (SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_Role__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
@@ -351,7 +351,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         //get financial details
         globalyearDec=0.0;
         globalbusinessImpactStr=BLANK_STR;
-        //regionalORlocalBusinessImpactStr = BLANK_STR;
+        regionalORlocalBusinessImpactStr = BLANK_STR;
         Map<Id,Decimal> projIdiTOMap =  new Map<Id,Decimal>();
         
         // Get project it and iTO value map
@@ -373,22 +373,21 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
             globalbusinessImpactStr = fin.Business_Impact_Global__c;
             break;
           } 
-            
     }
-           //DEF2301 - Copy Global Business Impact for Regional and Local projects from Global Project
-           if(project.IPMProject_Span__c=='Regional'){
-               list<IPM_Financial__c> liFinParentReg = [select Business_Impact_Global__c from IPM_Financial__c where (Parent_Project__c=:project.IPM_Parent_Project__c OR global_project_id__c=:project.IPM_Parent_Project__c) and parent_project__r.IPMProject_Span__c='Global' limit 1];
-               if (liFinParentReg!=null && liFinParentReg.size()>0){
-                   globalbusinessImpactStr += liFinParentReg[0].Business_Impact_Global__c;
+           //DEF2301
+           list<IPM_Financial__c> liFinRegional = [select Regional_Project__r.IPMProject_Span__c,Business_Impact_Regional__c,Business_Impact_Local__c from IPM_Financial__c where Regional_Project__r.IPMProject_Span__c in ('Regional','Local') and (Regional_Project__c=:projectid or Local_Project__c=:projectid)];    
+           //list<IPM_Financial__c> liFinRegional = [select Regional_Project__r.IPMProject_Span__c,Business_Impact_Regional__c from IPM_Financial__c where Regional_Project__r.IPMProject_Span__c ='Regional' and Regional_Project__c=:projectid];    
+           //list<IPM_Financial__c> liFinLocal = [select Regional_Project__r.IPMProject_Span__c,Business_Impact_Local__c from IPM_Financial__c where Local_Project__r.IPMProject_Span__c ='Local' and Local_Project__c=:projectid];    
+           for (IPM_Financial__c finreg: liFinRegional){
+               if (project.IPMProject_Span__c=='Regional' && finreg.Business_Impact_Regional__c!=''){
+                   regionalORlocalBusinessImpactStr=finreg.Business_Impact_Regional__c;
+                   break;
+               }else if(project.IPMProject_Span__c=='Local' && finreg.Business_Impact_Local__c!=''){
+                   regionalORlocalBusinessImpactStr=finreg.Business_Impact_Local__c;
+                   break;
                }
            }
-           else if(project.IPMProject_Span__c=='Local'){
-               list<IPM_Financial__c> liFinParentLoc = [select Business_Impact_Global__c from IPM_Financial__c where global_project_id__c=:project.IPM_Global_Project_Id__c and parent_Project__c=:project.IPM_Global_Project_Id__c limit 1];
-               if (liFinParentLoc!=null && liFinParentLoc.size()>0){
-                   globalbusinessImpactStr += liFinParentLoc[0].Business_Impact_Global__c;
-               }
-           }
-           
+               
          BusinessCaseMessageMap = new Map<String, String>();
         List<IPM_Financial__c> financialList = [Select Id, RecordTypeId, Global_Project_Id__c,Regional_Project__c,Local_Project__c, Financial_External_ID__c, Display_Name__c,
                                                  Parent_Project__r.Name,
@@ -539,8 +538,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
                                                                                 IPM_Section_Status__c != :IPM_ConstantUtils.STATUS_EXCLUDED AND
                                                                                 IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
-                                                                                (IPM_FunctionalRole__c =: IPM_Utils.roleForProjectLeader OR 
-                                                                                IPM_Master_Section_External_Id__c =: ENVIRONMENTAL_IMPACT) AND  
+                                                                                IPM_FunctionalRole__c =: IPM_Utils.roleForProjectLeader  AND  
                                                                                 IPM_Default_Section__c = true
                                                                         ORDER BY IPM_Section_Sequence__c limit 50000] ;
         } else if(project.IPM_Project_Leader__c != UserInfo.getUserId() && userRole != null ) {
@@ -550,8 +548,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
                                                                                 IPM_Section_Status__c != :IPM_ConstantUtils.STATUS_EXCLUDED AND
                                                                                 IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
-                                                                                (IPM_FunctionalRole__c =: userRole OR 
-                                                                                IPM_Master_Section_External_Id__c =: ENVIRONMENTAL_IMPACT) AND
+                                                                                IPM_FunctionalRole__c =: userRole AND
                                                                                 IPM_Default_Section__c = true
                                                                         ORDER BY IPM_Section_Sequence__c limit 50000];
         }
@@ -595,14 +592,20 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
        if(isOriginal && projMetadata!= null && projMetadata.BET__c && !isRollout){
             projectWithBET = projectId;
             setBETDetails(project.IPM_BET_Toolkit__c,project.BET_Link_Requested__c,project.BET__c);
-             isLinkDenied = String.isNotBlank(project.BET_Denied_BET_Link__c);
+            if(project.BET_Link_Requested__c==null && project.BET__c==null){
+                isLinkDenied = String.isNotBlank(project.BET_Denied_BET_Link__c);
+            }
         }else if(isRollout && String.isNotBlank(project.IPM_Parent_Project__r.IPM_Parent_Project__c)){
             projectWithBET = project.IPM_Parent_Project__r.IPM_Parent_Project__c;
-            isLinkDenied = String.isNotBlank(project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c);
+            if(project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c==null && project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c==null){
+                isLinkDenied = String.isNotBlank(project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c);
+            }
             setBETDetails(project.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_BET_Toolkit__c,project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c ,project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c);
         }else if(isRollout && String.isNotBlank(project.IPM_Parent_Project__c)){
             projectWithBET = project.IPM_Parent_Project__c;
-            isLinkDenied = String.isNotBlank(project.IPM_Parent_Project__r.BET_Denied_BET_Link__c);
+            if(project.IPM_Parent_Project__r.BET_Link_Requested__c==null  && project.IPM_Parent_Project__r.BET__c==null){
+                isLinkDenied = String.isNotBlank(project.IPM_Parent_Project__r.BET_Denied_BET_Link__c);
+            }
             setBETDetails(project.IPM_Parent_Project__r.IPM_BET_Toolkit__c,project.IPM_Parent_Project__r.BET_Link_Requested__c,project.IPM_Parent_Project__r.BET__c);
         }
         if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS && (project.IPM_Temporary_Phase__c == null || project.IPM_Temporary_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)){
@@ -629,7 +632,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                 }
             }else if(toolkitOption == IPM_ConstantUtils.LINK_EXISTING_BET && String.isBlank(BETId)){
             betInformationMessage = (isLinkDenied ? (isProjLeader ? System.Label.IPM_BETLinkRejectMsgPL : System.label.IPM_BETDeniedMsgFunctional) :
-                                        (String.isNotBlank(requestedBETId)&& isProjLeader ? String.format(System.label.IPM_LinkBETPLMsg,new string[]{betWrapper.betName}) : String.format(System.label.IPM_BETReqPendingMsgFunctional,new string[]{betWrapper.betName})));                                           
+                                        (String.isNotBlank(requestedBETId)?( isProjLeader ? String.format(System.label.IPM_LinkBETPLMsg,new string[]{betWrapper.betName}) : String.format(System.label.IPM_BETReqPendingMsgFunctional,new string[]{betWrapper.betName})):(isProjLeader ? System.label.IPM_BET_LinkExist_NoBET :' ')));                                           
                 if(isProjLeader && String.isBlank(requestedBETId)){
                     additionalAlertMessages.add(String.format(System.label.IPM_BETChangeSelectionAlert,new String[]{projectId}));
                     alertscount += 1 ;      
@@ -638,7 +641,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                 betInformationMessage = (isProjLeader ?  System.label.IPM_NoBETMsgPLOther :  System.label.IPM_NoBETMsgFunctional);
             }
         }else if(isRollout && String.isBlank(BETId)){
-            betInformationMessage = (toolkitOption != IPM_ConstantUtils.NO_BET) ? (isProjLeader ? System.label.IPM_BETMsgRegionalLocalPL : System.label.IPM_BETMsgRegionalLocal) : System.label.IPM_NoBETRegionalLocal;
+            betInformationMessage = (toolkitOption != IPM_ConstantUtils.NO_BET) ? (isLinkDenied ? System.label.IPM_BETDeniedMsgFunctional:(isProjLeader ? System.label.IPM_BETMsgRegionalLocalPL : System.label.IPM_BETMsgRegionalLocal)) : System.label.IPM_NoBETRegionalLocal;
         }
         //Validate and if available then add members for BET Suggested members request
         if(isOriginal && ((toolkitOption != IPM_ConstantUtils.NO_BET && String.isNotBlank(BETId)) ||(toolkitOption == IPM_ConstantUtils.LINK_EXISTING_BET && String.isNotBlank(requestedBETId)) )&& isProjLeader  && !project.Bulk_BET_Member_Request__c){

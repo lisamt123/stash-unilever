@@ -33,6 +33,8 @@ public with sharing class  IPM_ProjectJob_Queue implements Queueable
             // Start Context for Queueable interface
             IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = true;
             
+            System.debug('--->>>'+IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED);
+            
             if(projectsIdsToBeProcessed!=null && !projectsIdsToBeProcessed.isEmpty())
             { 
                 // Get Project Specific information for Phase change and Project Rollout  Creation 
@@ -66,42 +68,42 @@ public with sharing class  IPM_ProjectJob_Queue implements Queueable
                         else
                         {
                             List<IPM_Project__c>projectShrList=[SELECT ID,IPM_Global_Project_Id__c FROM IPM_Project__c WHERE ID IN:projectsIdsToBeProcessed LIMIT 1000];
-			                // At this point we need to start working on Projects.
-			                if(projectShrList !=null && !projectShrList.isEmpty())
-			                {
-			                    
-			                    //@@ Data Sharing Change - Update the queue Name & update the Owner id of the project to Queue in batch process 
-			                    
-			                    Set<id> projideset = new Set<id>();
-			                    String projectidstr;
-			                    Set<id> projidesets = new Set<id>();
-			                    
-			                    for(IPM_Project__c project:projectShrList){
-			                        projectidstr = project.Id;
-			                        if(projectidstr.Substring(0,15) == project.IPM_Global_Project_Id__c){
-			                            projideset.add(project.Id);
-			                        }
-			                        projidesets.add(project.IPM_Global_Project_Id__c);
-			                        
-			                        
-			                    }
-			                    
-			                    if(projideset != null && projideset.size()>0){
-			                        IPM_GroupManagement.groupNameUpdate(projideset);
-			                    
-			                    }
-			                    
-			                    if ([SELECT count() FROM AsyncApexJob WHERE JobType=:IPM_ConstantUtils.IPM_BATCHAPEX AND (Status =:IPM_ConstantUtils.IPM_PROCESSING OR Status =:IPM_ConstantUtils.IPM_PREPARE OR Status = :IPM_ConstantUtils.IPM_QUEUED)] < IPM_ConstantUtils.IPM_BATCHLIMIT)
-			                    {  
-			                        Database.executeBatch(new IPM_ProjectOwnerUpdate(projidesets));
-			                    } 
-			                    else 
-			                    {                    
-			                        IPM_ProjectOwnerUpdatescheduler s = new IPM_ProjectOwnerUpdatescheduler(projidesets);  
-			                        System.schedule(IPM_ConstantUtils.IPM_JOBSTATED_AT + String.valueOf(Datetime.now()), IPM_ConstantUtils.IPM_NEXT_FIRE_TIME, s); 
-			                    }
-			               
-			               }
+                            // At this point we need to start working on Projects.
+                            if(projectShrList !=null && !projectShrList.isEmpty())
+                            {
+                                
+                                //@@ Data Sharing Change - Update the queue Name & update the Owner id of the project to Queue in batch process 
+                                
+                                Set<id> projideset = new Set<id>();
+                                String projectidstr;
+                                Set<id> projidesets = new Set<id>();
+                                
+                                for(IPM_Project__c project:projectShrList){
+                                    projectidstr = project.Id;
+                                    if(projectidstr.Substring(0,15) == project.IPM_Global_Project_Id__c){
+                                        projideset.add(project.Id);
+                                    }
+                                    projidesets.add(project.IPM_Global_Project_Id__c);
+                                    
+                                    
+                                }
+                                
+                                if(projideset != null && projideset.size()>0){
+                                    IPM_GroupManagement.groupNameUpdate(projideset);
+                                
+                                }
+                                
+                                if ([SELECT count() FROM AsyncApexJob WHERE JobType=:IPM_ConstantUtils.IPM_BATCHAPEX AND (Status =:IPM_ConstantUtils.IPM_PROCESSING OR Status =:IPM_ConstantUtils.IPM_PREPARE OR Status = :IPM_ConstantUtils.IPM_QUEUED)] < IPM_ConstantUtils.IPM_BATCHLIMIT)
+                                {  
+                                    Database.executeBatch(new IPM_ProjectOwnerUpdate(projidesets));
+                                } 
+                                else 
+                                {                    
+                                    IPM_ProjectOwnerUpdatescheduler s = new IPM_ProjectOwnerUpdatescheduler(projidesets);  
+                                    System.schedule(IPM_ConstantUtils.IPM_JOBSTATED_AT + String.valueOf(Datetime.now()), IPM_ConstantUtils.IPM_NEXT_FIRE_TIME, s); 
+                                }
+                           
+                           }
                         }
                     }
                 

@@ -109,7 +109,7 @@ public without sharing class IPM_ProjectTriggerHandler {
     **/
     //public void onBeforeUpdate(IPM_Project__c[] newProjects, Map<Id, IPM_Project__c> oldProjectsMap) {
     public void onBeforeUpdate(IPM_Project__c[] newProjects) {
-    	//@@Design Review - Data Sharing Change - Update group members
+        //@@Design Review - Data Sharing Change - Update group members
         try {
                 Set<string> projideset = new Set<string>();
                 Map<id,IPM_Project__c> projectmap;
@@ -117,12 +117,14 @@ public without sharing class IPM_ProjectTriggerHandler {
                             
                 for(IPM_Project__c proj:newProjects){
                      
-                      projectidstr = proj.IPM_Global_ProjectId__c;
+                        
+                      projectidstr = proj.IPM_Global_Project_Id__c;
+                      
                       projideset.add(projectidstr);
                       projideset.add(proj.id);  
                      
                 }
-               
+                
                     
                 if(projideset != null && projideset.size()>0){
                     projectmap = new Map<id,IPM_Project__c>([select id from IPM_Project__c where Id IN: projideset]);
@@ -169,10 +171,10 @@ public without sharing class IPM_ProjectTriggerHandler {
             /*
             //for rollout projects only
             if(proj.IPM_Project_Type__c!=null && (proj.IPMProject_Span__c.Equals('Regional')||proj.IPMProject_Span__c.Equals('Local'))){
-         		Map<id,IPM_Project__c> projmap = new Map<id,IPM_Project__c>([select id from IPM_Project__c where IPM_Global_ProjectId__c IN: projideset]);
+                Map<id,IPM_Project__c> projmap = new Map<id,IPM_Project__c>([select id from IPM_Project__c where IPM_Global_ProjectId__c IN: projideset]);
                 if(projmap != null && projmap.size()>0){  
                    if(!system.isBatch()){
-                   	if ([SELECT count() FROM AsyncApexJob WHERE JobType='BatchApex' AND (Status = 'Processing' OR Status = 'Preparing' OR Status = 'Queued')] < 5){ 
+                    if ([SELECT count() FROM AsyncApexJob WHERE JobType='BatchApex' AND (Status = 'Processing' OR Status = 'Preparing' OR Status = 'Queued')] < 5){ 
                         Database.executeBatch(new IPM_ProjectOwnerUpdate(projmap.keyset()));
                     } else {                    
                         String hour = String.valueOf(Datetime.now().hour());
@@ -182,11 +184,11 @@ public without sharing class IPM_ProjectTriggerHandler {
         
                         IPM_ProjectOwnerUpdatescheduler s = new IPM_ProjectOwnerUpdatescheduler(projmap.keyset()); 
                         System.schedule('Job Started At ' + String.valueOf(Datetime.now()), nextFireTime, s); 
-                	} 
+                    } 
                    }  
                 } 
-         	}// end of rollout project records */
-         	 
+            }// end of rollout project records */
+             
         }
         
        
@@ -206,7 +208,7 @@ public without sharing class IPM_ProjectTriggerHandler {
         
         Map<Id, Set<Id>> projectUsersToFollowMap = getProjectUsersMap(newProjects, null, true); //variable which stores ppl to subscribe
         system.debug('** projectUsersToFollowMap : ' + projectUsersToFollowMap);
-        IPM_WithoutSharingHelper.autoFollowProjectMembers(projectUsersToFollowMap);
+        IPM_ChatterFeedHelper.autoFollowProjectMembers(projectUsersToFollowMap);
         
         /** follow/unfollow fnctionality ends **/
         
@@ -246,13 +248,13 @@ public without sharing class IPM_ProjectTriggerHandler {
                 Date d = eachproject.IPM_Target_Launch_Dates__c;
                 
                 DateTime dt = datetime.newInstance(d.year(), d.month(),d.day());
-              //  String txt = eachproject.Name + IPM_ChatterUtils.PROJECT_TLD_CHANGE_TEXT + ' New Date : ' + dt.format('dd-MMM-yyyy') + ' ';
+                String txt = eachproject.Name + IPM_ChatterUtils.PROJECT_TLD_CHANGE_TEXT + ' New Date : ' + dt.format('dd-MMM-yyyy') + ' ';
                 if(!projectMap.containsKey(eachproject.Id)) {
                     Set<String> tmpStr = new Set<String>();
-                 //   tmpStr.add(txt);
+                    tmpStr.add(txt);
                     projectMap.put(eachproject.Id, tmpStr);
                }else {
-               //    projectMap.get(eachproject.Id).add(txt);
+                   projectMap.get(eachproject.Id).add(txt);
                }
             }
             
@@ -359,20 +361,20 @@ public without sharing class IPM_ProjectTriggerHandler {
                     if(projmap != null && projmap.size()>0){  
                        system.debug('initiating future method');
                       // if(!system.isBatch()){
-                       IPM_GroupManagement.groupmemberupdate(projmap.keyset()); 	                   
-	                        system.debug('initiating batch method');
-		                   if ([SELECT count() FROM AsyncApexJob WHERE JobType='BatchApex' AND (Status = 'Processing' OR Status = 'Preparing' OR Status = 'Queued')] < 5){ 
-		                        Database.executeBatch(new IPM_ProjectOwnerUpdate(projmap.keyset()));
-		                    } else {                    
-		                        String hour = String.valueOf(Datetime.now().hour());
-		                        String min = String.valueOf(Datetime.now().minute() + 10); String ss = String.valueOf(Datetime.now().second());
-		                        //parse to cron expression
-		                        String nextFireTime = ss + ' ' + min + ' ' + hour + ' * * ?';
-		        
-		                        IPM_ProjectOwnerUpdatescheduler s = new IPM_ProjectOwnerUpdatescheduler(projmap.keyset()); 
-		                        System.schedule('Job Started At ' + String.valueOf(Datetime.now()), nextFireTime, s); 
-		                	} 
-	                   //}  
+                       IPM_GroupManagement.groupmemberupdate(projmap.keyset());                        
+                            system.debug('initiating batch method');
+                           if ([SELECT count() FROM AsyncApexJob WHERE JobType='BatchApex' AND (Status = 'Processing' OR Status = 'Preparing' OR Status = 'Queued')] < 5){ 
+                                Database.executeBatch(new IPM_ProjectOwnerUpdate(projmap.keyset()));
+                            } else {                    
+                                String hour = String.valueOf(Datetime.now().hour());
+                                String min = String.valueOf(Datetime.now().minute() + 10); String ss = String.valueOf(Datetime.now().second());
+                                //parse to cron expression
+                                String nextFireTime = ss + ' ' + min + ' ' + hour + ' * * ?';
+                
+                                IPM_ProjectOwnerUpdatescheduler s = new IPM_ProjectOwnerUpdatescheduler(projmap.keyset()); 
+                                System.schedule('Job Started At ' + String.valueOf(Datetime.now()), nextFireTime, s); 
+                            } 
+                       //}  
                 } 
     } */
     }   

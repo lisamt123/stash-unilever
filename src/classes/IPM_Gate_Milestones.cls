@@ -6,7 +6,7 @@
 @Version: 1.0
 @Reference: IPM_MilestoneList_PDF component
 */
-public with sharing class IPM_Gate_Milestones {
+public without sharing class IPM_Gate_Milestones {
     //For exception handler
     private static final String IPM_GATE_MILESTONES_STR = IPM_Gate_Milestones.class.getName();
     private static final String SHOW_MILESTONES_STR='showMilestones';
@@ -38,9 +38,14 @@ public with sharing class IPM_Gate_Milestones {
                 soql += 'WHERE IPM_Project__c = \'' + projectId + '\'';
                 soql += ' AND recordtypeId=\'' + IPM_Utils.getMilestoneRecordType(IPM_ConstantUtils.MILESTONES_RECORDTYPE) + '\'';
                 soql += ' AND IPM_Active__c=true';
-                soql += ' ORDER BY IPM_Due_Date__c asc LIMIT 1000';
+                soql += ' ORDER BY IPM_Due_Date__c asc';
                 projectMilestones = Database.query(soql);
             }
+        }
+        catch(QueryException ex){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATE_MILESTONES_STR,
+                SHOW_MILESTONES_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));

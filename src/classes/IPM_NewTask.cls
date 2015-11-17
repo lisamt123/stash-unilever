@@ -41,7 +41,7 @@ public with sharing class IPM_NewTask {
             IPM_IECompatible.ieFix();
             ProjectWizard=ApexPages.currentPage().getParameters().get(IPM_Utils.projectWizard);
             tasks = (IPM_Task__c)controller.getRecord();
-           
+            
             if(String.IsNotBlank(ApexPages.currentPage().getParameters().get(IPM_Utils.projDocSecId)))
             {
                 redirectToGateDocument = true;  
@@ -179,18 +179,16 @@ public with sharing class IPM_NewTask {
     
     public void upsertTask(List<IPM_Task__c> task)
     {
-        
-    	List<Database.UpsertResult> taskResult = Database.upsert(task, false);
+    	system.debug('******task'+task);
+        List<Database.UpsertResult> taskResult = Database.upsert(task, false);
         String sErrorMessage;
         for(Database.UpsertResult upsertResult : taskResult){
-            
             if(!upsertResult.isSuccess()){
                 for(Database.error errorResult : upsertResult.getErrors()){
                         sErrorMessage += errorResult.getMessage();
                 }
             }
         }
-        
         if(sErrorMessage != NULL){
             ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject);
             ApexPages.addMessage(myMsg); 
@@ -207,11 +205,11 @@ public with sharing class IPM_NewTask {
     
     public pageReference doSaveTasks(){
         try{
-            
             displayError = false;
             validate = true;
             if(String.isBlank(tasks.IPM_Task_Name__c))
             {
+                displayError = true;
                 return null;
             }   
             if(tasks.IPM_Project__c == null)
@@ -262,8 +260,7 @@ public with sharing class IPM_NewTask {
                 if(displayError)
                 {
                     ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, system.label.IPM_TaskDueDateErrorMsg));
-                }
-                if(!displayError && !String.isBlank(tasks.IPM_Task_Name__c) && !String.isBlank(tasks.IPM_Function__c))
+                }else
                 {
                     upsertTask(new List<IPM_Task__c>{tasks});
                 }

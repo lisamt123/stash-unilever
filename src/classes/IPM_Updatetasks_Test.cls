@@ -6,28 +6,29 @@
 @isTest
 public class IPM_Updatetasks_Test {
     public static IPM_Project__c project;
-    public static IPM_Project_Document__c proDoc; //=new IPM_Project_Document__c();
+    public static IPM_Project_Document__c proDoc=new IPM_Project_Document__c();
     public static Map<Id, IPM_Project_Document__c> newPDocumentsMap=new Map<Id, IPM_Project_Document__c>();
     
     /**************************************************************
     *@Description :create a project and project document
     */
     static testMethod void initializeData(){
-        //project=new IPM_Project__c();
-        project = IPM_TestFactory_Helper.createIPMProject(false);
+        project=new IPM_Project__c();
+        project.Name='TestComments';
+        project.IPM_Phase__c='Ideas';
+        project.IPM_Complexity__c='Full';
         project.IPM_GateKeeping_Model__c='Both'; 
         insert project;
         system.assertNotEquals(project.id, null);
         
-        proDoc = IPM_TestFactory_Helper.createIPMProjectDocument(false);
-        proDoc.IPM_GateDocuments__c= IPM_ConstantUtils.CHARTER_GATE; 
+        proDoc.IPM_GateDocuments__c='Charter'; 
         proDoc.IPM_Project__c=project.ID;
-        insert proDoc;
-            
+        
+        insert proDoc;    
         system.assertNotEquals(proDoc.id, null);
-        system.assertEquals(proDoc.IPM_GateDocuments__c,  IPM_ConstantUtils.CHARTER_GATE);
+        system.assertEquals(proDoc.IPM_GateDocuments__c, 'Charter');
         newPDocumentsMap.put(proDoc.Id,proDoc);
-        system.assert(newPDocumentsMap != null && !newPDocumentsMap.isEmpty(), 'newPDocumentsMap map should contain atleast 1 item.');
+        system.assert(newPDocumentsMap.size()>0, 'newPDocumentsMap map should contain atleast 1 item.');
     }
     
     /**************************************************************

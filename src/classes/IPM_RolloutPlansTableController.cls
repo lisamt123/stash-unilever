@@ -61,9 +61,9 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
      
     
     /*******************************************************************************************************
-	* @description  Constructor
-	* @param        NONE
-	* @return       NONE
+    * @description  Constructor
+    * @param        NONE
+    * @return       NONE
     */
     public IPM_RolloutPlansTableController()
     {
@@ -107,10 +107,10 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     }
     
     /*******************************************************************************************************
-	* @description  Method to initialise data points to be displayed on the page
-	* @param        NONE
-	* @return       NONE
-	*/
+    * @description  Method to initialise data points to be displayed on the page
+    * @param        NONE
+    * @return       NONE
+    */
     private void initialise()
     {
         try
@@ -118,91 +118,91 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             String editMode='';
             projectId = ApexPages.currentPage().getParameters().get(ID_PARAMETER);
             if (projectId != null)
-	        {
-	            List<IPM_Project__c> projectList  = [SELECT Id, IPM_CompanyCardText__c,IPM_White_Space_Project__c, IPM_Child_Complexity__c, Deputy_Project_Leader__c, 
-	                       IPMCompany__c, IPM_Clustering__c, IPMPlatform__c, IPMProject_Span__c, IPMProject_Type__c, IPMRegion__c, IPM_Answer_of_Q1__c, 
-	                       IPM_Answer_of_Q2__c, IPM_Answer_of_Q3__c, IPM_Approver_of_Charter__c, IPM_Approver_of_Contract_Market_Ready__c, 
-	                       IPM_Bosscard_Status__c, IPM_Bosscard__c, IPM_Brand_Positioning__c, IPM_Brand__c, IPM_Category_Group__c,IPM_SourceProjectType__c, 
-	                       IPM_Category_Icon__c,IPM_Category_Text__c,IPM_Category__c,IPM_Company_Card__c,IPM_Complexity__c,IPM_Core_Parameters__c,
-	                       IPM_CPP_Change_Reason__c,IPM_CPP__c,IPM_Fast_Track_Project__c,IPM_FilledIn_Percentage__c,IPM_Finance_Member__c,
-	                       IPM_GateKeeping_Model__c,IPM_Gate_Keeping_Module__c,IPM_IsCompleted__c,IPM_Market_Type__c,IPM_Market__c,
-	                       IPM_Parent_Project__c,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_Phase__c,IPM_PM_Approach__c,IPM_Project_Description__c,
-	                       IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPM_Project_Logo_Id__c,IPM_Project_Logo__c,IPM_Project_Name__c,
-	                       IPM_Project_Type__c,IPM_Sector__c,IPM_Strategic_Intent__c,IPM_Sub_Category__c,IPM_Sub_sector__c,IPM_Target_Launch_Dates__c,
-	                       IPM_Target_Launch_Date__c,IPM_Technical_Project_Leader__c,IPM_UserCategory__c,Is_Archieved__c,Name,Sustainability_Period__c,IPM_ProjectSubType__c, 
-	                       (SELECT Id, IPM_Project_Name__c FROM IPM_Projects__r),
-	                       (SELECT Id, IPM_Document_Status__c, IPM_GateDocuments__c, IPM_Project__c, IPM_Project_Template__c, IPM_Contract_GateKeeper_Model__c, IPM_Project__r.IPMProject_Span__c, IPM_Project__r.IPM_Project_Name__c FROM Project_Documents__r)
-	                       FROM IPM_Project__c 
-	                       WHERE Id=:projectId LIMIT 1];
-	            
-	            if(!projectList.isEmpty())
-	            {
-	                project = projectList[0];
-	            }
-	            
-	            isEditable = IPM_Utils.getIPMRollOutUser(projectId);
-	            
-	            if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
-	            {
-	                isSpanGlobal = true;
-	            }
-	            else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
-	            {
-	                isSpanRegional = true;
-	            }
-	            
-	            getProjectRollouts();
-	            
-	            getUserList(); 
-	            
-	            editMode=ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.EDITMODE);
-	            
-	            if(IPM_ConstantUtils.EDITMODE_TRUE.equalsIgnoreCase(editMode)) 
-	            {
-	                isEditMode = true;
-	            }
-	            else
-	            {
-	                isEditMode = false;
-	            }
-	            
-	            Id currLoggedinUserId = UserInfo.getUserId();
-	            
-	            List<IPM_User_Profile__c> lstIPMCurrentUserProfile = [SELECT IPM_User__c, IPM_User__r.Name, IPM_User__r.UserRole.Name, ipm_user__r.smallphotourl, ipm_user__r.Email, IPM_User_Function__c,IPM_User_Role__c, IPM_Region__c, IPM_Company_Card__c 
-	                                                        FROM IPM_User_Profile__c 
-	                                                        WHERE IPM_User__c =: currLoggedinUserId AND IPM_User__r.IsActive = true AND IPM_User_Role__c =: IPM_ConstantUtils.PROJECT_LEADER LIMIT 1];
-	                                           
-	            if(lstIPMCurrentUserProfile != NULL && !lstIPMCurrentUserProfile.isEmpty() && isEditMode )
-	            {
-	                isEligibleToAddRollout = true;
-	            }
-	            else
-	            {
-	                isEligibleToAddRollout = false;
-	            }
-	            
-	            rolloutCount = 0;
-	            
-	            projectType = IPM_Utils.retrieveProjectType(project);
-	            
-	            //check for isRolloutEditable
-	            if(!isEditMode && isEditable)
-	            {
-	                isRolloutEditable = true;     
-	            }
-	            else
-	            {
-	                isRolloutEditable = false; 
-	            }
-	            if(isPLAllocated && isEditMode)
-	            {
-	                doShowPLName = true;     
-	            }
-	            if(isFLAllocated && isEditMode)
-	            {
-	                doShowFLName = true;   
-	            }
-	        }
+            {
+                List<IPM_Project__c> projectList  = [SELECT Id, IPM_CompanyCardText__c,IPM_White_Space_Project__c, IPM_Child_Complexity__c, Deputy_Project_Leader__c, 
+                           IPMCompany__c, IPM_Clustering__c, IPMPlatform__c, IPMProject_Span__c, IPMProject_Type__c, IPMRegion__c, IPM_Answer_of_Q1__c, 
+                           IPM_Answer_of_Q2__c, IPM_Answer_of_Q3__c, IPM_Approver_of_Charter__c, IPM_Approver_of_Contract_Market_Ready__c, 
+                           IPM_Bosscard_Status__c, IPM_Bosscard__c, IPM_Brand_Positioning__c, IPM_Brand__c, IPM_Category_Group__c,IPM_SourceProjectType__c, 
+                           IPM_Category_Icon__c,IPM_Category_Text__c,IPM_Category__c,IPM_Company_Card__c,IPM_Complexity__c,IPM_Core_Parameters__c,
+                           IPM_CPP_Change_Reason__c,IPM_CPP__c,IPM_Fast_Track_Project__c,IPM_FilledIn_Percentage__c,IPM_Finance_Member__c,
+                           IPM_GateKeeping_Model__c,IPM_Gate_Keeping_Module__c,IPM_IsCompleted__c,IPM_Market_Type__c,IPM_Market__c,
+                           IPM_Parent_Project__c,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_Phase__c,IPM_PM_Approach__c,IPM_Project_Description__c,
+                           IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPM_Project_Logo_Id__c,IPM_Project_Logo__c,IPM_Project_Name__c,
+                           IPM_Project_Type__c,IPM_Sector__c,IPM_Strategic_Intent__c,IPM_Sub_Category__c,IPM_Sub_sector__c,IPM_Target_Launch_Dates__c,
+                           IPM_Target_Launch_Date__c,IPM_Technical_Project_Leader__c,IPM_UserCategory__c,Is_Archieved__c,Name,Sustainability_Period__c,IPM_ProjectSubType__c, 
+                           (SELECT Id, IPM_Project_Name__c FROM IPM_Projects__r),
+                           (SELECT Id, IPM_Document_Status__c, IPM_GateDocuments__c, IPM_Project__c, IPM_Project_Template__c, IPM_Contract_GateKeeper_Model__c, IPM_Project__r.IPMProject_Span__c, IPM_Project__r.IPM_Project_Name__c FROM Project_Documents__r)
+                           FROM IPM_Project__c 
+                           WHERE Id=:projectId LIMIT 1];
+                
+                if(!projectList.isEmpty())
+                {
+                    project = projectList[0];
+                }
+                
+                isEditable = IPM_Utils.getIPMRollOutUser(projectId);
+                
+                if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+                {
+                    isSpanGlobal = true;
+                }
+                else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+                {
+                    isSpanRegional = true;
+                }
+                
+                getProjectRollouts();
+                
+                getUserList(); 
+                
+                editMode=ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.EDITMODE);
+                
+                if(IPM_ConstantUtils.EDITMODE_TRUE.equalsIgnoreCase(editMode)) 
+                {
+                    isEditMode = true;
+                }
+                else
+                {
+                    isEditMode = false;
+                }
+                
+                Id currLoggedinUserId = UserInfo.getUserId();
+                
+                List<IPM_User_Profile__c> lstIPMCurrentUserProfile = [SELECT IPM_User__c, IPM_User__r.Name, IPM_User__r.UserRole.Name, ipm_user__r.smallphotourl, ipm_user__r.Email, IPM_User_Function__c,IPM_User_Role__c, IPM_Region__c, IPM_Company_Card__c 
+                                                            FROM IPM_User_Profile__c 
+                                                            WHERE IPM_User__c =: currLoggedinUserId AND IPM_User__r.IsActive = true AND IPM_User_Role__c =: IPM_ConstantUtils.PROJECT_LEADER LIMIT 1];
+                                               
+                if(lstIPMCurrentUserProfile != NULL && !lstIPMCurrentUserProfile.isEmpty() && isEditMode )
+                {
+                    isEligibleToAddRollout = true;
+                }
+                else
+                {
+                    isEligibleToAddRollout = false;
+                }
+                
+                rolloutCount = 0;
+                
+                projectType = IPM_Utils.retrieveProjectType(project);
+                
+                //check for isRolloutEditable
+                if(!isEditMode && isEditable)
+                {
+                    isRolloutEditable = true;     
+                }
+                else
+                {
+                    isRolloutEditable = false; 
+                }
+                if(isPLAllocated && isEditMode)
+                {
+                    doShowPLName = true;     
+                }
+                if(isFLAllocated && isEditMode)
+                {
+                    doShowFLName = true;   
+                }
+            }
         } 
         catch (Exception ex) 
         {
@@ -212,14 +212,14 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     }           
     
     /*******************************************************************************************************
-	* @description  Method to get the list of users to be used when assigning Project Leaders and 
-	*               Finance Members
-	* @param        NONE
-	* @return       NONE
-	*/
+    * @description  Method to get the list of users to be used when assigning Project Leaders and 
+    *               Finance Members
+    * @param        NONE
+    * @return       NONE
+    */
     private void getUserList()
     {
-   		Map<Id,String> marketClusterRolloutMap = new Map<Id,String>();
+        Map<Id,String> marketClusterRolloutMap = new Map<Id,String>();
         //Logic to create map(rolloutCountryNamesMap) of regional rollout and the list of countries to associate Company card of the matching geographical scope, when PL is assigned for the rollout             
         List<String> lstRolloutCountries;
         Set<id> regionalRolloutId =  rolloutTolocalRolloutToCountryMap.keySet();
@@ -648,25 +648,25 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         try
         {
             PageReference addRollouts;
-            if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
+            if(project!= null &&  IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
             {
                 addRollouts = Page.IPM_RolloutPlansAdd;
                 addRollouts.getParameters().put(ID_PARAMETER, projectId);                
                 addRollouts.setRedirect(true);
             }
-            else if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
+            else if(project!= null && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
             {   //For Regional Original Updated
                 addRollouts = Page.IPM_RolloutPlansRegional;
                 addRollouts.getParameters().put(ID_PARAMETER, projectId);                
                 addRollouts.setRedirect(true);
             }
-            else if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS )
+            else if( project!= null && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS )
             {   //For Regional Original Updated
                 addRollouts = Page.IPM_RolloutPlansAdd;
                 addRollouts.getParameters().put(ID_PARAMETER, projectId);                
                 addRollouts.setRedirect(true);
             }
-            else if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS)
+            else if(project!= null && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS)
             {   //For Regional Original Updated
                 addRollouts = Page.IPM_RolloutPlansRegional;
                 addRollouts.getParameters().put(ID_PARAMETER, projectId);                
@@ -685,10 +685,10 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     }
     
     /*******************************************************************************************************
-	* @description  Method to edit Rollouts
-	* @param        NONE
-	* @return       NONE
-	*/
+    * @description  Method to edit Rollouts
+    * @param        NONE
+    * @return       NONE
+    */
     public PageReference editRollout()
     {
         //Method invoked in IPM_LocalRolloutPlansTable component PageReference
@@ -703,10 +703,10 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         
     
     /*******************************************************************************************************
-	* @description  Method to save the rollouts
-	* @param        NONE
-	* @return       NONE
-	*/
+    * @description  Method to save the rollouts
+    * @param        NONE
+    * @return       NONE
+    */
     public PageReference saveRollout()
     {
         try

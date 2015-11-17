@@ -89,7 +89,7 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
         projectObj = new IPM_Project__c();
         
         if(String.isNotBlank(projectId)){
-            string query = IPM_Utils.prepareSOQLQuery('IPM_Project__c' ,false,null)+' where id =:projectId ';
+            string query = IPM_Utils.prepareSOQLQuery('IPM_Project__c' ,false,null)+' where id =\''+ projectId + '\'';
             list<IPM_Project__c> projList = Database.query(query);
             projectObj  = projList[0];
         }

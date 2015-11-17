@@ -57,6 +57,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Gate --></label>
         <name>Gate__c</name>
         <picklistValues>

@@ -79,8 +79,9 @@ public without sharing class  IPM_ProjectOwnerChangeQueue implements Queueable
         }
         catch(Exception ex)
         {
-            Database.Rollback(phaseChangeSavePoint);
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,'execute',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null);			 
+            Database.Rollback(phaseChangeSavePoint); 
+            
+            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),CLASS_NAME ,'execute',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null); 
         } 
     }
     

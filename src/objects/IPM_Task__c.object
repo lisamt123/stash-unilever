@@ -71,7 +71,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Active</label>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -128,7 +128,7 @@
         <externalId>false</externalId>
         <label>Milestone Due Date</label>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -280,7 +280,7 @@
         <referenceTo>IPM_Project_Template__c</referenceTo>
         <relationshipName>Tasks</relationshipName>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -304,7 +304,7 @@
         <label>Section Number</label>
         <length>10</length>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -344,7 +344,7 @@
         <fullName>IPM_Task_Name__c</fullName>
         <externalId>false</externalId>
         <label>Task Name</label>
-        <length>225</length>
+        <length>255</length>
         <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -403,10 +403,6 @@
                 <fullName>Market Deployment Gate</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>PLE/Learnings</fullName>
-                <default>false</default>
-            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>true</trackHistory>
@@ -437,43 +433,48 @@
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
+        <columns>IPM_Is_Master__c</columns>
         <columns>IPM_Task_Name__c</columns>
+        <columns>IPM_Section_Number__c</columns>
         <columns>IPM_Section__c</columns>
-        <columns>IPM_Project__c</columns>
-        <columns>IPM_Project_Template__c</columns>
-        <columns>IPM_Task_Type__c</columns>
-        <columns>IPM_Assignee__c</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>IPM_Phase__c</columns>
+        <columns>IsSystemGenerated__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Master_Tasks</fullName>
         <columns>NAME</columns>
+        <columns>IPM_Active__c</columns>
         <columns>ExternalField__c</columns>
+        <columns>IPM_Function__c</columns>
         <columns>IPM_Section__c</columns>
-        <columns>IPM_Section_Number__c</columns>
-        <columns>IPM_Phase__c</columns>
-        <columns>IPM_Task_Name__c</columns>
-        <columns>IPM_Is_Master__c</columns>
+        <columns>IPM_Project_Document_Section__c</columns>
+        <columns>IPM_Project_Template__c</columns>
         <columns>IPM_Master_Section_Name__c</columns>
         <columns>IPM_Master_Section_Sequence__c</columns>
         <columns>IPM_Master_Task__c</columns>
-        <columns>IPM_Type_of_Gate__c</columns>
+        <columns>IPM_Phase__c</columns>
+        <columns>IPM_Section_Number__c</columns>
         <columns>IPM_Task_Type__c</columns>
+        <columns>IPM_Type_of_Gate__c</columns>
+        <columns>IPM_Is_Master__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>IPM_Task__c.IPM_Tasks</value>
+        </filters>
         <filters>
             <field>IPM_Is_Master__c</field>
             <operation>equals</operation>
             <value>1</value>
         </filters>
         <label>Master Tasks</label>
-        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Task ID</label>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>IPM Tasks</pluralLabel>
@@ -502,10 +503,6 @@
             </values>
             <values>
                 <fullName>Finance</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PL</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -582,10 +579,6 @@
             </values>
             <values>
                 <fullName>Market Ready Gate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PLE%2FLearnings</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -695,10 +688,6 @@
             </values>
             <values>
                 <fullName>Market Ready Gate</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PLE%2FLearnings</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

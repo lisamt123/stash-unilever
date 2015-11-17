@@ -56,30 +56,10 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
-        <fullName>IPM_Effective_from__c</fullName>
-        <description>Date upon which a particular Brand is considered to take effect</description>
-        <externalId>false</externalId>
-        <label>Effective_from</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>DateTime</type>
-    </fields>
-    <fields>
-        <fullName>IPM_Effective_to__c</fullName>
-        <description>Date until which a specific Brand was considered</description>
-        <externalId>false</externalId>
-        <label>Effective_to</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>DateTime</type>
-    </fields>
-    <fields>
         <fullName>mdm_id__c</fullName>
         <externalId>true</externalId>
         <label>MDM ID</label>
-        <length>6</length>
+        <length>32</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -93,11 +73,11 @@
         <label>Status</label>
         <picklist>
             <picklistValues>
-                <fullName>active</fullName>
-                <default>false</default>
+                <fullName>Active</fullName>
+                <default>true</default>
             </picklistValues>
             <picklistValues>
-                <fullName>inactive</fullName>
+                <fullName>Inactive</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>

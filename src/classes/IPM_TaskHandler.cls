@@ -231,7 +231,7 @@ public with sharing class IPM_TaskHandler implements ITrigger{
         if(Trigger.isAfter && Trigger.isUpdate) {
             //Chatter that tasks are now COMPLETE!
             for(Id eachProject : projectTasksMap.keySet()) {
-           String postText = IPM_Utils.convertSetToString(projectTasksMap.get(eachProject)) + Label.IPM_Task_Completion_Text;
+           String postText = IPM_Utils.convertSetToString(projectTasksMap.get(eachProject)) + IPM_ChatterUtils.TASK_COMPLETION_TEXT;
            subjectIdMessageMap.put(eachProject,postText);
           }
           ChatterUtils.postChatterFeedWithMention(projectTasksMap.keySet(),subjectIdMessageMap,null);

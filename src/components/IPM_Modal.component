@@ -1,24 +1,19 @@
-<!--  
-*************************************************************************************************************************************************************
-*@Description:Used in displaying the Modals throughout the application
-*@Author: Cognizant
-*@Created Date: 26/12/2014 
-*@Copyright © 2015  Unilever  
-*************************************************************************************************************************************************************
--->
 <apex:component id="ipmModal">
-    <apex:attribute name="modalTitle" default="" type="string" description=""/>    
-    <div id="ipmModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <div class="modal-title">{!modalTitle}</div>
-                </div>
-                <div class="modal-body">
-                    
-                </div>
-            </div>
-        </div>
-    </div> 
+    <style>
+        .htmlDetailElementTable img {width:100%; max-width:100%;}
+        #ipmModal .modal-content{height:100%;}
+        #ipmModal .modal-body{height:100%;padding:0px;}
+        #ipmModal .modal-header{border-bottom:none;}
+    </style>
+ <div class="modal fade" id="ipmModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <!--<div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <label class="modal-title teal ipmPanelHeading" id="modalLabel">Core Parameters</label>
+        </div>-->
+      <div class="modal-body"></div>
+    </div>
+  </div>
+</div> 
 </apex:component>

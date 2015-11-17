@@ -118,17 +118,17 @@ public with sharing class IPM_RolloutTriggerHandler
                         
                         if(regionalRollout.IPM_Project__r.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) 
                         { // If it is a Key MCO and stage is ideas, delete the corresponding financial.
-	                        if(localRollout.KeyMCO__c)
-	                        {
-	                            if(setCurrentRolloutIds.contains(localRollout.Id)) 
-	                            {
-	                                setFinancialExternalIds.add(localRollout.IPM_Rollout_Project__c);
-	                            }
-	                        } 
-	                        else
-	                        {   // If it is not a key Rollout,then add it to non key to get composite list of non keys.
-	                            setNonKeyRolloutIds.add(localRollout.Id);
-	                        }
+                            if(localRollout.KeyMCO__c)
+                            {
+                                if(setCurrentRolloutIds.contains(localRollout.Id)) 
+                                {
+                                    setFinancialExternalIds.add(localRollout.IPM_Rollout_Project__c);
+                                }
+                            } 
+                            else
+                            {   // If it is not a key Rollout,then add it to non key to get composite list of non keys.
+                                setNonKeyRolloutIds.add(localRollout.Id);
+                            }
                         }
                         else
                         {
@@ -170,16 +170,16 @@ public with sharing class IPM_RolloutTriggerHandler
                     if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) 
                     {
                         if(localRollout.KeyMCO__c)
-	                    {
-	                        if(setCurrentRolloutIds.contains(localRollout.Id) )
-	                        {
-	                            setFinancialExternalIds.add(localRollout.IPM_Rollout_Project__c);
-	                        }   
-	                    }
-	                    else
-	                    {
+                        {
+                            if(setCurrentRolloutIds.contains(localRollout.Id) )
+                            {
+                                setFinancialExternalIds.add(localRollout.IPM_Rollout_Project__c);
+                            }   
+                        }
+                        else
+                        {
                             setNonKeyRolloutIds.add(localRollout.Id);         
-	                    }    
+                        }    
                     }
                     else
                     { // If the phase is after ideas dont delete non key rollouts.
@@ -255,7 +255,7 @@ public with sharing class IPM_RolloutTriggerHandler
                 rolloutQuery += ' '+fieldAPIName+',';
             }
         }
-        rolloutQuery = rolloutQuery +' Regional_Project__r.IPM_Parent_Project__c,Name,RecordTypeId,Id FROM IPM_Project_Rollout__c ';
+        rolloutQuery = rolloutQuery +' Regional_Project__r.IPM_Parent_Project__c,Name,Id FROM IPM_Project_Rollout__c ';
         String rolloutWhereClause = ' WHERE Id in :lstProjectRollouts LIMIT 50000';
         rolloutQuery = rolloutQuery + rolloutWhereClause;
         
@@ -605,7 +605,7 @@ public with sharing class IPM_RolloutTriggerHandler
                 IPM_ProcessRolloutStatusAndDates.execute(setGlobalProjectIds, setRegionalOriginalProjectIds);
             }
             
-            // EPIC172 implementation start 
+            /* EPIC172 implementation start .. Commented by Sumit for now. Causing Exceptions and blocking flow. 
             IPM_CustomPermission cpr = new IPM_CustomPermission();
             Boolean syncTLD = cpr.hasPermission(IPM_ConstantUtils.IPM_SYNC_TLD);
             
@@ -622,7 +622,7 @@ public with sharing class IPM_RolloutTriggerHandler
                     syncFinanceTableTLD.syncProjectRolloutFinancialTLD(updatedRollouts);
                 }
             }
-          //  EPIC172 implementation end 
+            EPIC172 implementation end */ 
        
     }
             

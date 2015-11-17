@@ -12,7 +12,8 @@
     <apex:attribute name="validationErrorMessage" type="string" description="Error message to be shown when there is validation error for financial values"/>
     <apex:attribute name="isy0GrossProfitInvalid" type="Boolean" description="Flag to check if there is validation error for y0GrossProfit value"/>
     <apex:attribute name="isy0ProfitInvalid" type="Boolean" description="Flag to check if there is validation error for Y0Profit value"/>
-     <!-- Validation Message -->
+    
+    <!-- Validation Message -->
     <apex:outputPanel id="errorPanel" rendered="{!AND(isValidationError, isInnovation)}">
         <div class="finAlertBox">
             <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
@@ -20,7 +21,8 @@
                 <p><apex:outputText value="{!validationErrorMessage}"/></p>                        
             </div> 
         </div>
-    </apex:outputPanel>   
+    </apex:outputPanel>
+    
     <!-- Heading -->
     <div class="ipmfinHeading2">{!IF(isInnovation, 'Innovation', 'Calendar')} Years</div>
     
@@ -39,11 +41,11 @@
         <thead>
             <tr>
                 <th class="blueBorder" scope="col" colspan="3" width="35%">
-                    <span class="finproject finspace">{!ipmFinancial.Display_Name__c}</span>
+                    <span class="finproject">&nbsp;{!ipmFinancial.Display_Name__c}</span>
                 </th>
                 <th class="" scope="col" colspan="{!colSpan}" width="65%">
-                    <span class="finproject">{!IF(isInnovation, 'Innovation', 'Calendar')} {!$Label.IPM_Fin_Year}</span>
-                    <span class="fintotal finspace">{!sustainabilityPeriod}</span>
+                    <span class="finproject">{!IF(isInnovation, 'Innovation', 'Calendar')} Years:</span>
+                    <span class="fintotal">&nbsp;{!sustainabilityPeriod}</span>
                 </th>
             </tr>
         </thead>
@@ -54,8 +56,8 @@
             <tr class="fintleblubg">
                 <td colspan="3" rowspan="2" class="blueBorder btmBleBorder"></td>
                 <td class="y0BorderGay"></td>
-                <td class="finproject" colspan="{!sustainabilityPeriod}">{!$Label.IPM_Fin_Gross}</td>
-                <td class="iPLBorderGay finproject" colspan="{!sustainabilityPeriod}">{!$Label.IPM_Fin_Incremental}</td>
+                <td class="finproject" colspan="{!sustainabilityPeriod}">Gross P &amp; L</td>
+                <td class="iPLBorderGay finproject" colspan="{!sustainabilityPeriod}">Incremental P &amp; L</td>
             </tr>
             <tr class="fintleblubg btmBleBorder finproject">
                 <!--<td colspan="3"></td>-->
@@ -77,39 +79,39 @@
                 <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(showMisalignment, (finWrapper.y0ValueMarketShareDifference != NULL), finWrapper.y0ValueMarketShareDifference > 0), 'misaligned', '')}">
                     <apex:outputText rendered="{!isInnovation}">
                         <apex:outputText rendered="{!AND(showMisalignment, (finWrapper.y0ValueMarketShareDifference != NULL), finWrapper.y0ValueMarketShareDifference>0, NOT(isEditMode))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0ValueMarketShareRegional}%
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0ValueMarketShareRegional}%<br/>
                                                                      {!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0ValueMarketShareLocal}%"> 
                                 {!finWrapper.y0ValueMarketShare}
                             </a>
                         </apex:outputText>
                         <apex:outputText value="{!IF(isInnovation, finWrapper.y0ValueMarketShare, '')}" rendered="{!AND(OR(NOT(showMisalignment), finWrapper.y0ValueMarketShareDifference==0), NOT(isEditMode))}"/>
-                        <apex:inputText value="{!finWrapper.y0ValueMarketShare}" size="3" rendered="{!isEditMode}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!finWrapper.y0ValueMarketShare}" size="3" rendered="{!isEditMode}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </apex:outputText>
                 </td>
                 <!-- GROSS -->
                 <apex:repeat value="{!finWrapper.lstGrossPLValueMarketShare}" var="valueWrapper">
                     <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference>0, NOT(isEditMode))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}%
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}%<br/>
                                                                      {!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}%">
                                 {!valueWrapper.value}
                             </a>
                         </apex:outputText>
                         <apex:outputText value="{!valueWrapper.value}" rendered="{!AND(OR(NOT(showMisalignment), valueWrapper.difference==0), NOT(isEditMode))}"/>
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!isEditMode}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!isEditMode}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </td>
                 </apex:repeat>
                 <!-- INCREMENTAL -->
                 <apex:repeat value="{!finWrapper.lstIncrementalPLValueMarketShare}" var="valueWrapper">
                     <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference>0, NOT(isEditMode))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}%
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}%<br/>
                                                                      {!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}%">
                                 {!valueWrapper.value}
                             </a>
                         </apex:outputText>
                         <apex:outputText value="{!valueWrapper.value}" rendered="{!AND(OR(NOT(showMisalignment), valueWrapper.difference==0), NOT(isEditMode))}"/>
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!isEditMode}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!isEditMode}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </td>
                 </apex:repeat>
                 <apex:variable value="{!rowCount + 1}" var="rowCount"/>
@@ -154,7 +156,7 @@
                         </apex:outputPanel>
                     </apex:outputText>
                     <apex:outputText rendered="{!isConsolidated}">
-                        {!$Label.IPM_Fin_Units}
+                        Total '000 Units
                     </apex:outputText>
                 </td>
                 <td class="fintleblubg blueBorder"></td>
@@ -162,7 +164,7 @@
                 <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(showMisalignment, (finWrapper.y0VolumeDifference!= NULL), finWrapper.y0VolumeDifference > 0), 'misaligned', '')}">
                     <apex:outputText rendered="{!isInnovation}">
                         <apex:outputText rendered="{!AND(showMisalignment, (finWrapper.y0VolumeDifference != NULL), finWrapper.y0VolumeDifference>0, NOT(isEditMode))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0VolumeRegional}
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0VolumeRegional}<br/>
                                                                      {!$Label.IPM_VOLUME} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0VolumeLocal}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!finWrapper.y0Volume}" />
@@ -172,14 +174,14 @@
                         <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), finWrapper.y0VolumeDifference==0), OR(NOT(isEditMode), isConsolidated))}">
                             <apex:param value="{!finWrapper.y0Volume}" />
                         </apex:outputText>
-                        <apex:inputText value="{!finWrapper.y0Volume}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!finWrapper.y0Volume}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </apex:outputText>
                 </td>
                 <!-- GROSS -->
                 <apex:repeat value="{!finWrapper.lstGrossPLVolume}" var="valueWrapper">
                     <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, NOT(isEditMode))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}<br/>
                                                                      {!$Label.IPM_VOLUME} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
@@ -189,14 +191,14 @@
                         <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), valueWrapper.difference==0), OR(NOT(isEditMode), isConsolidated))}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </td>
                 </apex:repeat>
                 <!-- INCREMENTAL -->
                 <apex:repeat value="{!finWrapper.lstIncrementalPLVolume}" var="valueWrapper">
                     <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, NOT(isEditMode))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}<br/>
                                                                      {!$Label.IPM_VOLUME} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
@@ -206,7 +208,7 @@
                         <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), valueWrapper.difference==0), OR(NOT(isEditMode), isConsolidated))}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </td>
                 </apex:repeat>
                 <apex:variable value="{!rowCount + 1}" var="rowCount"/>
@@ -217,14 +219,14 @@
                 <tr>
                     <td class="fintleblubg finproject">{!$Label.ipmFinTableVolume}</td>
                     <td class="fintleblubg {!IF(isInnovation, IF(AND(showMisalignment, (ipmFinancial.Volume_Unit_Difference__c!= NULL), ipmFinancial.Volume_Unit_Difference__c > 0), 'misaligned', ''), '')}">
-                        {!$Label.IPM_Fin_Tons}
+                        Total Tons
                     </td>
                     <td class="fintleblubg blueBorder"></td>
                     <!-- Y0 -->
                     <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(showMisalignment, (ipmFinancial.Volume_Unit_Difference__c!= NULL), finWrapper.y0VolumeTonsDifference > 0), 'misaligned', '')}">
                         <apex:outputText rendered="{!isInnovation}">
                             <apex:outputText rendered="{!AND(showMisalignment, (finWrapper.y0VolumeTonsDifference!= NULL), finWrapper.y0VolumeTonsDifference>0, OR(NOT(isEditMode), isConsolidated))}">
-                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0VolumeTonsRegional}
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0VolumeTonsRegional}<br/>
                                                                          {!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0VolumeTonsLocal}">
                                     <apex:outputText value="{0, number, ###,###,###.##}">
                                         <apex:param value="{!finWrapper.y0VolumeTons}" />
@@ -234,14 +236,14 @@
                             <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), finWrapper.y0VolumeTonsDifference==0), OR(NOT(isEditMode), isConsolidated))}">
                                 <apex:param value="{!finWrapper.y0VolumeTons}" />
                             </apex:outputText>
-                            <apex:inputText value="{!finWrapper.y0VolumeTons}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                            <apex:inputText value="{!finWrapper.y0VolumeTons}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                         </apex:outputText>
                     </td>
                     <!-- GROSS -->
                     <apex:repeat value="{!finWrapper.lstGrossPLVolumeTons}" var="valueWrapper">
                         <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0), 'misaligned', '')}">
                             <apex:outputText rendered="{!AND(showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
-                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}<br/>
                                                                          {!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
                                     <apex:outputText value="{0, number, ###,###,###.##}">
                                         <apex:param value="{!valueWrapper.value}" />
@@ -251,14 +253,14 @@
                             <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), valueWrapper.difference==0), OR(NOT(isEditMode), isConsolidated))}">
                                 <apex:param value="{!valueWrapper.value}" />
                             </apex:outputText>
-                            <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                            <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                         </td>
                     </apex:repeat>
                     <!-- INCREMENTAL -->
                     <apex:repeat value="{!finWrapper.lstIncrementalPLVolumeTons}" var="valueWrapper">
                         <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0), 'misaligned', '')}">
                             <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
-                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                                <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}<br/>
                                                                          {!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
                                     <apex:outputText value="{0, number, ###,###,###.##}">
                                         <apex:param value="{!valueWrapper.value}" />
@@ -268,7 +270,7 @@
                             <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), valueWrapper.difference==0), OR(NOT(isEditMode), isConsolidated))}">
                                 <apex:param value="{!valueWrapper.value}" />
                             </apex:outputText>
-                            <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                            <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                         </td>
                     </apex:repeat>
                     <apex:variable value="{!rowCount + 1}" var="rowCount"/>
@@ -284,7 +286,7 @@
                 <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(AND(isy0TurnoverInvalid,isInnovation), AND(isInnovation, showMisalignment, (finWrapper.y0TurnoverDifference != NULL), finWrapper.y0TurnoverDifference > 0)), 'misaligned', '')}">
                     <apex:outputText rendered="{!isInnovation}">
                         <apex:outputText rendered="{!AND(showMisalignment, (finWrapper.y0TurnoverDifference != NULL), finWrapper.y0TurnoverDifference>0, OR(NOT(isEditMode), isConsolidated))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0TurnoverRegional}
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0TurnoverRegional}<br/>
                                                                      {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0TurnoverLocal}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!finWrapper.y0Turnover}" />
@@ -295,14 +297,14 @@
                         <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(isy0TurnoverInvalid), OR(NOT(showMisalignment), finWrapper.y0TurnoverDifference==0), OR(NOT(isEditMode), isConsolidated))}">
                             <apex:param value="{!finWrapper.y0Turnover}" />
                         </apex:outputText>
-                        <apex:inputText value="{!finWrapper.y0Turnover}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!finWrapper.y0Turnover}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </apex:outputText>
                 </td>
                 <!-- GROSS -->
                 <apex:repeat value="{!finWrapper.lstGrossPLTurnover}" var="valueWrapper">
                     <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid, AND(showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0)), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}<br/>
                                                                      {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
@@ -312,14 +314,14 @@
                         <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(valueWrapper.isValueInvalid), OR(NOT(showMisalignment), valueWrapper.difference==0), OR(NOT(isEditMode), isConsolidated))}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </td>
                 </apex:repeat>
                 <!-- INCREMENTAL -->
                 <apex:repeat value="{!finWrapper.lstIncrementalPLTurnover}" var="valueWrapper">
                     <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid,AND(showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0)), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}<br/>
                                                                      {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
@@ -329,7 +331,7 @@
                         <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(valueWrapper.isValueInvalid), OR(NOT(showMisalignment), valueWrapper.difference==0), OR(NOT(isEditMode), isConsolidated))}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </td>
                 </apex:repeat>
                 <apex:variable value="{!rowCount + 1}" var="rowCount"/>
@@ -344,7 +346,7 @@
                 <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(AND(isy0GrossProfitInvalid, isInnovation), AND(showMisalignment, (finWrapper.y0GrossProfitDifference!= NULL), finWrapper.y0GrossProfitDifference > 0)), 'misaligned', '')}">
                     <apex:outputText rendered="{!isInnovation}">
                         <apex:outputText rendered="{!AND(showMisalignment, (finWrapper.y0GrossProfitDifference != NULL), finWrapper.y0GrossProfitDifference>0, OR(NOT(isEditMode), isConsolidated))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0GrossProfitRegional}
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0GrossProfitRegional}<br/>
                                                                      {!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0GrossProfitLocal}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!finWrapper.y0GrossProfit}" />
@@ -354,14 +356,14 @@
                         <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(isy0GrossProfitInvalid), OR(NOT(showMisalignment),finWrapper.y0GrossProfitDifference==0), OR(NOT(isEditMode), isConsolidated))}">
                             <apex:param value="{!finWrapper.y0GrossProfit}" />
                         </apex:outputText>
-                        <apex:inputText value="{!finWrapper.y0GrossProfit}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!finWrapper.y0GrossProfit}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </apex:outputText>
                 </td>
                 <!-- GROSS -->
                 <apex:repeat value="{!finWrapper.lstGrossPLGrossProfit}" var="valueWrapper">
                     <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid, AND(showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0)), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}<br/>
                                                                      {!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
@@ -371,14 +373,14 @@
                         <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(valueWrapper.isValueInvalid), OR(NOT(showMisalignment), valueWrapper.difference==0), OR(NOT(isEditMode), isConsolidated))}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </td>
                 </apex:repeat>
                 <!-- INCREMENTAL -->
                 <apex:repeat value="{!finWrapper.lstIncrementalPLGrossProfit}" var="valueWrapper">
                     <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid, AND(showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0)), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}<br/>
                                                                      {!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
@@ -388,7 +390,7 @@
                         <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), valueWrapper.difference==0), OR(NOT(isEditMode), isConsolidated))}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </td>
                 </apex:repeat>
                 <apex:variable value="{!rowCount + 1}" var="rowCount"/>
@@ -403,7 +405,7 @@
                 <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(showMisalignment, (finWrapper.y0AdvertisingDifference!= NULL),  finWrapper.y0AdvertisingDifference > 0), 'misaligned', '')}">
                     <apex:outputText rendered="{!isInnovation}">
                         <apex:outputText rendered="{!AND(showMisalignment, (finWrapper.y0AdvertisingDifference != NULL), finWrapper.y0AdvertisingDifference>0, OR(NOT(isEditMode), isConsolidated))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0AdvertisingRegional}
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0AdvertisingRegional}<br/>
                                                                       {!$Label.IPM_BMI} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0AdvertisingLocal}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!finWrapper.y0Advertising}" />
@@ -413,14 +415,14 @@
                         <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), finWrapper.y0AdvertisingDifference==0), OR(NOT(isEditMode), isConsolidated))}">
                             <apex:param value="{!finWrapper.y0Advertising}" />
                         </apex:outputText>
-                        <apex:inputText value="{!finWrapper.y0Advertising}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!finWrapper.y0Advertising}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </apex:outputText>
                 </td>
                 <!-- GROSS -->
                 <apex:repeat value="{!finWrapper.lstGrossPLAdvertising}" var="valueWrapper">
                     <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}<br/>
                                                                      {!$Label.IPM_BMI} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
@@ -430,14 +432,14 @@
                         <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), valueWrapper.difference==0), OR(NOT(isEditMode), isConsolidated))}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </td>
                 </apex:repeat>
                 <!-- INCREMENTAL -->
                 <apex:repeat value="{!finWrapper.lstIncrementalPLAdvertising}" var="valueWrapper">
                     <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}<br/>
                                                                      {!$Label.IPM_BMI} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
@@ -447,7 +449,7 @@
                         <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), valueWrapper.difference==0), OR(NOT(isEditMode), isConsolidated))}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </td>
                 </apex:repeat>
                 <apex:variable value="{!rowCount + 1}" var="rowCount"/>
@@ -462,7 +464,7 @@
                 <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(AND(isy0ProfitInvalid, isInnovation), AND(isInnovation, showMisalignment, (finWrapper.y0ProfitDifference != NULL), finWrapper.y0ProfitDifference > 0)), 'misaligned', '')}">
                     <apex:outputText rendered="{!isInnovation}">
                         <apex:outputText rendered="{!AND(showMisalignment, (finWrapper.y0ProfitDifference != NULL), finWrapper.y0ProfitDifference>0, OR(NOT(isEditMode), isConsolidated))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0ProfitRegional}
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0ProfitRegional}<br/>
                                                                      {!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0ProfitLocal}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!finWrapper.y0Profit}" />
@@ -472,14 +474,14 @@
                         <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(isy0ProfitInvalid), OR(NOT(showMisalignment), finWrapper.y0ProfitDifference==0), OR(NOT(isEditMode), isConsolidated))}">
                             <apex:param value="{!finWrapper.y0Profit}" />
                         </apex:outputText>
-                        <apex:inputText value="{!finWrapper.y0Profit}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!finWrapper.y0Profit}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </apex:outputText>
                 </td>
                 <!-- GROSS -->
                 <apex:repeat value="{!finWrapper.lstGrossPLProfit}" var="valueWrapper">
                     <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid, AND(isInnovation, showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0)), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}<br/>
                                                                      {!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
@@ -489,14 +491,14 @@
                         <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(valueWrapper.isValueInvalid), OR(NOT(showMisalignment), valueWrapper.difference==0), OR(NOT(isEditMode), isConsolidated))}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </td>
                 </apex:repeat>
                 <!-- INCREMENTAL -->
                 <apex:repeat value="{!finWrapper.lstIncrementalPLProfit}" var="valueWrapper">
                     <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid, AND(showMisalignment, (valueWrapper.difference != NULL),  valueWrapper.difference > 0)), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
-                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                            <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}<br/>
                                                                      {!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
                                 <apex:outputText value="{0, number, ###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
@@ -506,7 +508,7 @@
                         <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(valueWrapper.isValueInvalid), OR(NOT(showMisalignment), valueWrapper.difference==0), OR(NOT(isEditMode), isConsolidated))}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="defKeyPrev()"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                     </td>
                 </apex:repeat>
                 <apex:variable value="{!rowCount + 1}" var="rowCount"/>

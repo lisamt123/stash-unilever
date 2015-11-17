@@ -7,7 +7,7 @@
 *************************************************************************
 -->
 
-<apex:component Controller="IPM_CU_Complexity_Consolidated" allowDML="false">
+<apex:component Controller="IPM_CU_Complexity_Consolidated" allowDML="true">
 
     <apex:attribute name="getProjId" description="projectId" type="String" assignTo="{!projectId}"/>
     <apex:attribute name="getGateType" description="gateType" type="String" assignTo="{!gateType}"/>

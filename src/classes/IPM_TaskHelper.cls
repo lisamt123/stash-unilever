@@ -19,9 +19,9 @@ public with sharing class IPM_TaskHelper {
     
     public static void prepareCustomTaskName(IPM_Task__c newtaskObj,Map<Id,IPM_Project__c> projectDetailMap) 
     {
-    	Id recordTypeIdValue = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPM_STANDARD_TASKS).getRecordTypeId();
-    	
-    	if(newTaskObj.IPM_Project__c !=null && projectDetailMap.containsKey(newTaskObj.IPM_Project__c) )
+        Id recordTypeIdValue = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPM_STANDARD_TASKS).getRecordTypeId();
+        
+        if(newTaskObj.IPM_Project__c !=null && projectDetailMap.containsKey(newTaskObj.IPM_Project__c) )
         {
           IPM_Project__c associatedProject = projectDetailMap.get(newTaskObj.IPM_Project__c);   
           String projectName = IPM_ConstantUtils.BLANK;
@@ -33,17 +33,17 @@ public with sharing class IPM_TaskHelper {
           {
             projectName = associatedProject.Name;
           }
-          //system.debug('projectName'+projectName);
+          system.debug('projectName'+projectName);
           String taskName = IPM_ConstantUtils.BLANK;
           if(newTaskObj.RecordTypeId == recordTypeIdValue)
           {
-          	taskName = '-' + newTaskObj.IPM_Task_Name__c;
+            taskName = '-' + newTaskObj.IPM_Task_Name__c;
           }
           else
           {
-          	taskName = projectName + '-' + newTaskObj.IPM_Task_Name__c;
+            taskName = projectName + '-' + newTaskObj.IPM_Task_Name__c;
           }
-          //system.debug('taskName'+taskName);
+          system.debug('taskName'+taskName);
           if(!String.isBlank(taskName) && taskName.length() >= 80)
           {
                 newTaskObj.Name = taskName.substring(0,79);
@@ -52,13 +52,13 @@ public with sharing class IPM_TaskHelper {
           {
                 newTaskObj.Name = taskName;
           }
-          //system.debug('newTaskObj.Name'+newTaskObj.Name);
+          system.debug('newTaskObj.Name'+newTaskObj.Name);
         }   
     }
     
     public static void updateTaskDueDateBasedOnMS(List<IPM_Task__c> taskList)
     {
-    	
+        
         if(taskList!= null && !taskList.isEmpty())
         {   
            Set<Id> projectIdSet = new Set<Id>();
@@ -68,7 +68,7 @@ public with sharing class IPM_TaskHelper {
            }
                
            List<IPM_Milestone__c> milestoneList = [SELECT Id,IPM_Due_Date__c,IPM_Phase__c,IPM_Project__c FROM IPM_Milestone__c WHERE IPM_Project__c IN : projectIdSet AND IPM_Due_Date__c != null AND IPM_Type_of_Milestone__c=: IPM_Utils.Standard];
-		   
+           
            if(milestoneList != null && !milestoneList.isEmpty()){  
                for(IPM_Task__c task : taskList){
                    //updating the due date only for task which are not completed
@@ -158,11 +158,11 @@ public with sharing class IPM_TaskHelper {
     * @param1 inActiveUsrsList : The list of users ids which are deactiveated or deleted
     */
    // @InvocableMethod 
-    public static void reAssignTasksForInActiveUsrs(list<User> inActiveUsrsList) {
-        system.debug('******inside reAssignTasksForInActiveUsrs');
+    public static void reAssignTasksForInActiveUsrs(list<Id> inActiveUsrsIdList) {
+        
        Set<Id> usersId = new Set<Id>();
-       for(User eachUser : inActiveUsrsList) {
-            usersId.add(eachUser.id);
+       for(Id eachUser : inActiveUsrsIdList) {
+            usersId.add(eachUser);
        }
       reAssign(usersId);//reuse the future handler now
        //reAssignTaskToActiveUsers(usersId);
@@ -238,7 +238,7 @@ public with sharing class IPM_TaskHelper {
                 IPM_Project_Resource__c prObj = eachPR;
                 IPM_Project_Resource__c oldPR = oldProjectResourcesMap.get(eachPR.Id);
                 prObj.IPM_User__c = usersToReplaceMap.get(oldPR.IPM_User__c);
-                //prObj.IPM_Project__c = eachPR.IPM_Project__c;
+                prObj.IPM_Project__c = eachPR.IPM_Project__c;
                 projectResourcesToUpdate.add(prObj);
                 usersId.add(prObj.IPM_User__c);
                 usersId.add(oldPR.IPM_User__c);
@@ -406,14 +406,13 @@ public with sharing class IPM_TaskHelper {
                                     
                                     for(IPM_Project_Document_Section__c projectDocumentSection : targetProjectDocSectionList)
                                     {
-                                    	 if(masterTask.IPM_Section__c!= null &&
+                                         if(masterTask.IPM_Section__c!= null &&
                                             masterTask.IPM_Master_Section_Name__c.equalsIgnoreCase(projectDocumentSection.IPM_Section_Name__c) && 
                                             masterTask.IPM_Master_Section_Sequence__c.equalsIgnoreCase(projectDocumentSection.IPM_Section_Sequence_Number__c))      
                                         {
                                             newTask.IPM_Project_Document_Section__c = projectDocumentSection.Id;        
                                         }
                                     }
-                                    
                                     newTask.IPM_Project__c = projectDetail.Id;
                                     
                                     newTask.RecordTypeId = IPM_ProjectHelper.taskProjectRecordType;
@@ -434,11 +433,11 @@ public with sharing class IPM_TaskHelper {
                                     {
                                         newTask.IPM_Assignee__c = projectDetail.IPM_Project_Leader__c;
                                     }
-                                    //system.debug('*****newTask.IPM_Project_Document_Section__c'+newTask.IPM_Project_Document_Section__c);
+                                    
                                     if((newTask.IPM_Section__c != null && newTask.IPM_Project_Document_Section__c != null) ||
-                                    	(newTask.IPM_Section__c == null && newTask.IPM_Project_Document_Section__c == null))
+                                        (newTask.IPM_Section__c == null && newTask.IPM_Project_Document_Section__c == null))
                                     {
-                                    	newTaskList.add(newTask);
+                                        newTaskList.add(newTask);
                                     }
                                 }
                             }

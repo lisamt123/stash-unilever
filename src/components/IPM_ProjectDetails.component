@@ -23,10 +23,10 @@
                             <span class="ipmpanel-heading"><apex:outputText value="{!project.IPM_Project_Name__c}" /></span>
                         </div>             
                         <div class="secNameHeader SecButtonSet">
-                             <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Original'}">
+                             <apex:outputPanel rendered="{!project.IPMProject_Span__c='Global'}">
                                  <span class="headerglb"></span>
                              </apex:outputPanel>
-                             <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Rollout'}">
+                             <apex:outputPanel rendered="{!OR(project.IPMProject_Span__c='Regional',project.IPMProject_Span__c='Local')}">
                                  <span class="headerlocal"></span>
                              </apex:outputPanel>
                              <span class="grentxt">{!project.IPMProject_Span__c} {!project.IPM_Project_Type__c}</span> 
@@ -38,9 +38,9 @@
                             <div class="pull-left">
                                 <span class="headBrand">{!project.IPM_Category_Text__c}</span>
                             </div>
-                             <apex:outputpanel layout="block" styleClass="pull-left list-style" rendered="{! if(AND(project.IPM_Project_Type__c=='Rollout',OR(project.IPMProject_Span__c=='Local',project.IPMProject_Span__c=='Regional')),'true','false')}">
-                                <span>{!project.IPMProject_Span__c} {!$Label.IPM_CHILD_PROJECT_OF} </span>
-                                <apex:outputLink target="_new" value="{!$Page.IPM_ProjectOverview}?id={!project.IPM_Parent_Project__c}">{!project.IPM_Parent_Project__r.IPM_Project_Name__c}</apex:outputLink>
+                             <apex:outputpanel layout="block" styleClass="pull-left list-style" rendered="{! if(OR(project.IPMProject_Span__c=='Local',project.IPMProject_Span__c=='Regional'),'true','false')}">
+                                <span>{!project.IPMProject_Span__c} Project of </span>
+                                <apex:outputLink target="_new" value="/apex/IPM_ProjectOverview?id={!project.IPM_Parent_Project__c}">{!project.IPM_Parent_Project__r.IPM_Project_Name__c}</apex:outputLink>
                                 </apex:outputpanel> 
                             <div class="pull-left list-style">
                                 <i class="fa fa-circle "></i>                                

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>List</customSettingsType>
+    <customSettingsVisibility>Public</customSettingsVisibility>
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>BET__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>Indicates if BET is applicable for the project type</description>
         <externalId>false</externalId>
         <label>BET</label>
         <trackTrending>false</trackTrending>

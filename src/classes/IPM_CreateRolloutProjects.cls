@@ -27,10 +27,14 @@ public with sharing class IPM_CreateRolloutProjects
     public static List<IPM_Project__c> processRollouts(IPM_Project__c ipmProject, List<IPM_Project_Rollout__c> lstRollouts)
     {
         try{
+            //String ROLLOUT_RECORDTYPE = '';
             List<IPM_Project__c> lstProjects = new List<IPM_Project__c>();
             
             // Get Project Type
             IPM_Project_Type__c projectType = IPM_Utils.retrieveProjectType(ipmProject);
+            
+            System.debug(LoggingLevel.ERROR,'currentProjectType--->>'+projectType.IPM_LocalProjectDefaultPhase__c);
+            
             
             for(IPM_Project_Rollout__c rollout : lstRollouts)
             {
@@ -38,6 +42,7 @@ public with sharing class IPM_CreateRolloutProjects
                    rollout.IPM_Regional_PL__c != null)
                 {
                     IPM_Project__c newIpmProject = new IPM_Project__c(
+                        
                         IPM_Project_Name__c = rollout.IPM_Rollout_Project__c,
                         Market_Cluster__c = rollout.Market_Cluster__c,
                         IPM_Target_Launch_Dates__c = rollout.Target_Launch_Date__c,
@@ -86,7 +91,7 @@ public with sharing class IPM_CreateRolloutProjects
                         IPM_Clustering__c= ipmProject.IPM_Clustering__c,
                         IPM_IsSaved__c = ipmProject.IPM_IsSaved__c,
                         IPM_White_Space_Project__c=ipmProject.IPM_White_Space_Project__c,
-                        Project_External_ID__c=rollout.External_Id__c
+                        Project_External_ID__c = rollout.External_Id__c
                     );
                     
                     if( projectType.IPM_CreateRegionalProjects__c  && 
@@ -108,8 +113,8 @@ public with sharing class IPM_CreateRolloutProjects
             return lstProjects;
         }catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-                                                       PROCESS_ROLLOUTS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),CLASS_NAME,
+                                                       PROCESS_ROLLOUTS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
             return null;                                                            
         }    
     }

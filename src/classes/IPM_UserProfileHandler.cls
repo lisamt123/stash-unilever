@@ -8,7 +8,7 @@ public with sharing class IPM_UserProfileHandler implements ITrigger{
     
     //@description:Constructor
     public IPM_UserProfileHandler(){
-        //This method has been included as the class implements the ITrigger interface  
+        System.debug('IPMUserProfileHandler constructor executed.');
     }
     
     /**
@@ -17,7 +17,11 @@ public with sharing class IPM_UserProfileHandler implements ITrigger{
     * any data required into maps prior execution of the trigger.
     */
     public void bulkBefore(){
-        //This method has been included as the class implements the ITrigger interface     
+         
+        if (Trigger.isInsert || Trigger.isUpdate) {
+            IPM_ShareWithWorkLevel.CategoryValidation((List<IPM_User_Profile__c>)trigger.new);
+        } 
+        
        
     }
     /**
@@ -28,7 +32,8 @@ public with sharing class IPM_UserProfileHandler implements ITrigger{
     public void bulkAfter(){
         
         if (Trigger.isInsert || Trigger.isUpdate) {
-          IPM_ShareWithWorkLevel.CategoryValidation((List<IPM_User_Profile__c>)trigger.new);
+          //  IPM_ShareWithWorkLevel.ShareRecords((List<IPM_User_Profile__c>)trigger.new);
+           //IPM_ShareWithWorkLevel.CategoryValidation((List<IPM_User_Profile__c>)trigger.new);
         } 
     }
     /**
@@ -38,7 +43,7 @@ public with sharing class IPM_UserProfileHandler implements ITrigger{
     * @para:sobject record
     */      
     public void beforeInsert(SObject so){
-        //This method has been included as the class implements the ITrigger interface  
+        System.debug('Before Insert: ' + so);
     }
     /**
     * @description:beforeUpdate
@@ -48,7 +53,8 @@ public with sharing class IPM_UserProfileHandler implements ITrigger{
     * @para:new sobject record
     */
     public void beforeUpdate(SObject oldSo, SObject so){
-        //This method has been included as the class implements the ITrigger interface  
+        System.debug('Before Update Old: ' + oldSo);
+        System.debug('Before Update New: ' + so);
     }
     /**
     * @description:beforeDelete
@@ -56,7 +62,7 @@ public with sharing class IPM_UserProfileHandler implements ITrigger{
     * trigger.
     */
     public void beforeDelete(SObject so){   
-        //This method has been included as the class implements the ITrigger interface  
+        System.debug('Before Delete: ' + so);
     }
     /**
     * @description:afterInsert
@@ -65,7 +71,7 @@ public with sharing class IPM_UserProfileHandler implements ITrigger{
     * @para:sobject record
     */
     public void afterInsert(SObject so){
-        //This method has been included as the class implements the ITrigger interface  
+        System.debug('After Insert: ' + so);
     }
     /**
     * @description:afterUpdate
@@ -75,7 +81,8 @@ public with sharing class IPM_UserProfileHandler implements ITrigger{
     * @para:new sobject record
     */
     public void afterUpdate(SObject oldSo, SObject so){
-        //This method has been included as the class implements the ITrigger interface  
+        System.debug('After Update Old:' + oldSo);
+        System.debug('After Update New: ' + so);
     }
     /**
     * @description:afterDelete
@@ -84,7 +91,7 @@ public with sharing class IPM_UserProfileHandler implements ITrigger{
     * @para:sobject record
     */
     public void afterDelete(SObject so){
-       //This method has been included as the class implements the ITrigger interface   
+        System.debug('After Delete: ' + so);
     }
     
     /**
@@ -93,7 +100,7 @@ public with sharing class IPM_UserProfileHandler implements ITrigger{
     * method to accomplish any final operations such as creation or updates of other records.
     */
     public void andFinally(){
-       //This method has been included as the class implements the ITrigger interface   
+        System.debug('IPMUserProfile Trigger finally block executed.');
     }
     
 }

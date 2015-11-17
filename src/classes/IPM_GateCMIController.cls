@@ -6,7 +6,7 @@
 @Version: 1.0
 @Reference: Project Document Section Editor Page
 */
-public with sharing class IPM_GateCMIController{   
+public without sharing class IPM_GateCMIController{   
     public static final String IPM_GATECMICONTORLLER_STR = 'ipm_gatecmicontorller';
     public static final String COPY_CMI_SECTIONS = 'copyCMISections';
     public static final String GET_COUNTRIES_STR='getCountries';
@@ -232,8 +232,8 @@ public with sharing class IPM_GateCMIController{
             }
         }
         catch(Exception ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
-                            'getSectionCMIList',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
+                            'getSectionCMIList',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
         }
     }  
     
@@ -248,6 +248,7 @@ public with sharing class IPM_GateCMIController{
             charterCount=0;
             contractCount=0;
             marketReadyCount=0;
+            String selTestConcepts='';
             //Getting Gate Types
             gateTypes=getPicklistValues(ipmCMIGate ,IPM_ConstantUtils.GATE_FIELD); 
             
@@ -341,8 +342,8 @@ public with sharing class IPM_GateCMIController{
             }    
         }
         catch(Exception ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
-                            'showList',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
+                            'showList',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
         }   
     }
 
@@ -394,8 +395,8 @@ public with sharing class IPM_GateCMIController{
                 Update projDocSec;
             }
             catch(Exception ex){
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
-                            'createCMISections',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+                ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
+                            'createCMISections',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
             }
         }   
         //Getting Gate CMI and CMI Contents List
@@ -485,8 +486,8 @@ public with sharing class IPM_GateCMIController{
             update gateCMI;
         }
         catch(Exception ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
-                            'createCountryCMI',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
+                            'createCountryCMI',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
         }
         
         //Getting Gate CMI and CMI Contents List
@@ -519,6 +520,7 @@ public with sharing class IPM_GateCMIController{
                     }
                     else{
                         if(colorMapping!=null && !String.isBlank(colorMapping.get(resultCMI).IPM_CMI_Color__c)){
+                            System.debug(gateType+'***gateType***');
                             if(gateType==IPM_ConstantUtils.CHARTER_GATE || !isEditActionStandard){
                                 secCon.IPM_CMI_Outcome_Color__c=colorMapping.get(resultCMI).IPM_CMI_Color__c;
                             }
@@ -547,8 +549,8 @@ public with sharing class IPM_GateCMIController{
             }
         }
         catch(DMLException ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
-                            'updateCMI',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
+                            'updateCMI',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
         }
         
         //Getting Gate CMI and CMI Contents List
@@ -632,8 +634,8 @@ public with sharing class IPM_GateCMIController{
             }
         }       
         catch(Exception ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
-                            'deleteCMI',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
+                            'deleteCMI',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
         }
         
         //Getting Gate CMI and CMI Contents List
@@ -685,8 +687,8 @@ public with sharing class IPM_GateCMIController{
             }
         }       
         catch(Exception ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
-                            'deleteCountry',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
+                            'deleteCountry',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
         }
         
         //Getting Gate CMI and CMI Contents List
@@ -733,8 +735,8 @@ public with sharing class IPM_GateCMIController{
             }    
         }       
         catch(Exception ex){ 
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,'skipTest',ex.getMessage(),
-                ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
+            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,'skipTest',ex.getMessage(),
+                ex, IPM_ConstantUtils.ERROR, null, null, null); 
         }
     }
     
@@ -751,8 +753,8 @@ public with sharing class IPM_GateCMIController{
             }
         }       
         catch(Exception ex){ 
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
-                            'updateSkipTestReason',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
+                            'updateSkipTestReason',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
         }
     }
     
@@ -777,8 +779,8 @@ public with sharing class IPM_GateCMIController{
             }
         }       
         catch(Exception ex){ 
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
-                            'updateResultTiming',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
+                            'updateResultTiming',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
         }
     }
     
@@ -824,8 +826,8 @@ public with sharing class IPM_GateCMIController{
             }
         }       
         catch(Exception ex){ 
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
-                            'updateResultTiming',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
+                            'updateResultTiming',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
         }
     } 
 }

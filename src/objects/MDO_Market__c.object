@@ -101,6 +101,11 @@
         <unique>false</unique>
     </fields>
     <label>Market</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>MK-{0000000}</displayFormat>
         <label>Name</label>

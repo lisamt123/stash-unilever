@@ -234,7 +234,7 @@ public with sharing class IPM_ProjectCountryDetails{
                         if(IPM_ConstantUtils.MARKETTYPE_DEVELOPED.equalsIgnoreCase(tempMarket.Type__c)){
                             IsDevelopedPresentMap.put(proj.Id, true);  
                         }                    
-                        if(system.Label.IPM_Emerging.equalsIgnoreCase(tempMarket.Type__c)){
+                        if('Emerging'.equalsIgnoreCase(tempMarket.Type__c)){
                             IsDevelopingPresentMap.put(proj.Id, true);  
                         }
                     }
@@ -333,9 +333,11 @@ public with sharing class IPM_ProjectCountryDetails{
                 for(String gpId : globalProjectIds ){
                     if(projectIdToSyncMap.get(gpId)){
                         if(projMembersMap != null && !projMembersMap.isEmpty()  && projMembersMap.get(gpId)!= null && !projMembersMap.get(gpId).isEmpty()){
+                            //toUpdateProjList.add( new IPM_Project__c(Id = gpId, First_Sync_To_EcoDesign__c = TRUE, Sync_Project__c = TRUE, Sync_Countries__c = TRUE, Sync_Members__c = TRUE, Project_Countries__c =  projCountryCodesMap.get(gpId), Project_Members__c = getProjectMembersNames(projMembersMap.get(gpId)) ));
                             toUpdateProjList.add( new IPM_Project__c(Id = gpId, EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY, Project_Countries__c =  projCountryCodesMap.get(gpId), Project_Members__c = getProjectMembersNames(projMembersMap.get(gpId)) ));
                         }
                         else{
+                            //toUpdateProjList.add( new IPM_Project__c(Id = gpId, First_Sync_To_EcoDesign__c = TRUE, Sync_Project__c = TRUE, Sync_Countries__c = TRUE, Sync_Members__c = TRUE, Project_Countries__c =  projCountryCodesMap.get(gpId) ));
                             toUpdateProjList.add( new IPM_Project__c(Id = gpId, EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY, Project_Countries__c =  projCountryCodesMap.get(gpId) ));
                         }
                         
@@ -349,9 +351,11 @@ public with sharing class IPM_ProjectCountryDetails{
                 for(String rlpId : regionalOrLocalProjectIds ){
                     if(projectIdToSyncMap.get(rlpId) && projCountryCodesMap!=null && !projCountryCodesMap.isEmpty() && projCountryCodesMap.get(rlpId) != null ){
                         if(projMembersMap!=null && !projMembersMap.isEmpty()  && projMembersMap.get(rlpId) != null && !projMembersMap.get(rlpId).isEmpty()){
+                            //toUpdateProjList.add( new IPM_Project__c(Id = rlpId, First_Sync_To_EcoDesign__c = TRUE, Sync_Project__c = TRUE, Sync_Countries__c = TRUE, Sync_Members__c = TRUE, Project_Countries__c =  projCountryCodesMap.get(rlpId), Project_Members__c = getProjectMembersNames(projMembersMap.get(rlpId)) ));
                             toUpdateProjList.add( new IPM_Project__c(Id = rlpId, EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY, Project_Countries__c =  projCountryCodesMap.get(rlpId), Project_Members__c = getProjectMembersNames(projMembersMap.get(rlpId)) ));
                         }
                         else{
+                            //toUpdateProjList.add( new IPM_Project__c(Id = rlpId, First_Sync_To_EcoDesign__c = TRUE, Sync_Project__c = TRUE, Sync_Countries__c = TRUE, Sync_Members__c = TRUE, Project_Countries__c =  projCountryCodesMap.get(rlpId) ));
                             toUpdateProjList.add( new IPM_Project__c(Id = rlpId, EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY, Project_Countries__c =  projCountryCodesMap.get(rlpId) ));
                         }
                         
@@ -424,9 +428,11 @@ public with sharing class IPM_ProjectCountryDetails{
                 for(String gpId : globalProjectIds ){
                     if(projectIdToSyncMap.get(gpId) && projCountryCodesMap != null && String.isNotBlank(projCountryCodesMap.get(gpId))){
                         if(projMembersMap != NULL && !projMembersMap.isEmpty()){
+                            //toUpdateProjList.add( new IPM_Project__c(Id = gpId, First_Sync_To_EcoDesign__c = TRUE, Sync_Project__c = TRUE, Sync_Countries__c = TRUE, Sync_Members__c = TRUE, Project_Countries__c =  projCountryCodesMap.get(gpId), Project_Members__c = getProjectMembersNames(projMembersMap.get(gpId)) ));
                             toUpdateProjList.add( new IPM_Project__c(Id = gpId, EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY, Project_Countries__c =  projCountryCodesMap.get(gpId), Project_Members__c = getProjectMembersNames(projMembersMap.get(gpId)) ));
                         }
                         else{
+                            //toUpdateProjList.add( new IPM_Project__c(Id = gpId, First_Sync_To_EcoDesign__c = TRUE, Sync_Project__c = TRUE, Sync_Countries__c = TRUE, Sync_Members__c = TRUE, Project_Countries__c =  projCountryCodesMap.get(gpId) ));
                             toUpdateProjList.add( new IPM_Project__c(Id = gpId, EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY, Project_Countries__c =  projCountryCodesMap.get(gpId) ));
                         }
                     }                    
@@ -438,9 +444,11 @@ public with sharing class IPM_ProjectCountryDetails{
                 for(String rlpId : regionalOrLocalProjectIds ){
                     if(projectIdToSyncMap.get(rlpId) && projCountryCodesMap != null && !projCountryCodesMap.isEmpty() && projCountryCodesMap.get(rlpId)!=null){
                         if(projMembersMap != NULL && !projMembersMap.isEMpty()){
+                            //toUpdateProjList.add( new IPM_Project__c(Id = rlpId, First_Sync_To_EcoDesign__c = TRUE, Sync_Project__c = TRUE, Sync_Countries__c = TRUE, Sync_Members__c = TRUE, Project_Countries__c =  projCountryCodesMap.get(rlpId), Project_Members__c = getProjectMembersNames(projMembersMap.get(rlpId))  ));
                             toUpdateProjList.add( new IPM_Project__c(Id = rlpId, EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY, Project_Countries__c =  projCountryCodesMap.get(rlpId), Project_Members__c = getProjectMembersNames(projMembersMap.get(rlpId))  ));
                         }
                         else{
+                            //toUpdateProjList.add( new IPM_Project__c(Id = rlpId, First_Sync_To_EcoDesign__c = TRUE, Sync_Project__c = TRUE, Sync_Countries__c = TRUE, Sync_Members__c = TRUE, Project_Countries__c =  projCountryCodesMap.get(rlpId)  ));
                             toUpdateProjList.add( new IPM_Project__c(Id = rlpId, EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY, Project_Countries__c =  projCountryCodesMap.get(rlpId)  ));
                         }
                     }                    
@@ -550,7 +558,7 @@ public with sharing class IPM_ProjectCountryDetails{
     
             //fetch map of the Project Id and the chatter message for the project to be posted
             if(projIdAffectedCountriesMap != null && !projIdAffectedCountriesMap.isEmpty()){
-                projIdchatterMessageMap = IPM_ChatterUtilsHelper.getprojIdchatterMessageMap(projIdAffectedCountriesMap,projIdAffectedProjMap, operation);
+                projIdchatterMessageMap = IPM_ChatterUtilsHelper.getprojIdchatterMessageMap(projIdAffectedCountriesMap, operation);
             }
             
             //call method to post the chatter Message
@@ -592,7 +600,7 @@ public with sharing class IPM_ProjectCountryDetails{
     @Params projIdSet:   the set of IDs of the projects which need to be updated with IPM_Exists_AtLeast_OneAssmntPerEICountry__c flag.
     *****************************************************************************/
     
-    public static void checkAtLeastOneAssmntPerEICountry(Set<Id> projIdSet ){    	
+    public static void checkAtLeastOneAssmntPerEICountry(Set<Id> projIdSet ){
         List<IPM_Project__c> projList  = [Select Id,IPM_Phase__c, IPM_Exists_AtLeast_OneAssmntPerEICountry__c, (Select Id, Name, Country_Name__c,IS_EI_Country__c from IPM_Countries__r Where IS_EI_Country__c = TRUE),  (Select Id, Name,IPM_Country__c,IPM_Country__r.IS_EI_Country__c,IPM_Country__r.Country_Name__c,Project_Phase__c from IPM_Assessments__r Where IPM_Country__c != null ) from IPM_Project__c Where Id IN:projIdSet LIMIT 50000];
         
         Set<String> EICountriesForTheProject = new Set<String>();
@@ -690,7 +698,8 @@ public with sharing class IPM_ProjectCountryDetails{
     @Params projIdSet:   the set of IDs of the projects which need to be updated with sync flag.
     *****************************************************************************/    
    public static Map<Id,List<IPM_Country__c>> getProjectIdCountryListMap(Set<Id> projIdSet){
-
+         
+        
         Map<Id,List<IPM_Country__c>> projCountryListMap = new Map<Id,List<IPM_Country__c>>();
        
         for(IPM_Country__c country : [select id, IPM_Project__c,IPM_Regional_Project__c, IPM_Local_Project__c,Country_Name__c,Country_Code__c from IPM_Country__c 
@@ -898,14 +907,15 @@ public with sharing class IPM_ProjectCountryDetails{
         
         
         if(projIdsSet != null && !projIdsSet.isEmpty()){
-            return new Map<Id,IPM_Project__c>([Select Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeepingModel__c,IPMProject_Span__c,IPM_Phase__c,IPM_Answer_of_Q1__c, IPM_Project_Name__c, IPM_Project_Leader__r.Name from IPM_Project__c where Id IN :projIdsSet LIMIT 50000]);
+            return new Map<Id,IPM_Project__c>([Select Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeepingModel__c,IPMProject_Span__c,IPM_Phase__c,IPM_Answer_of_Q1__c from IPM_Project__c where Id IN :projIdsSet LIMIT 50000]);
         }
         else{
             return null;
         }
         
      }
-
+    
+    
     /****************************************************************************
     @Description : Update countries in Financial
     @Params insertedCountries:  The list of countries upserted or deleted through trigger  
@@ -954,13 +964,13 @@ public with sharing class IPM_ProjectCountryDetails{
     *****************************************************************************/
     public static void setProjAssociationTimestamp(List<IPM_Country__c> incomingCountries, Map<Id,IPM_Country__c> oldCountriesMap, String TriggerEvent){
         for(IPM_Country__c country : incomingCountries){
-            if(system.label.IPM_Insert.equalsIgnoreCase(TriggerEvent)){
+            if('Insert'.equalsIgnoreCase(TriggerEvent)){
                 if(country.IPM_Regional_Project__c != null){
                     country.IPM_Regional_Proj_Association_Timestamp__c = System.Now();
                 }
             }
             
-            if(system.label.IPM_Update.equalsIgnoreCase(TriggerEvent)){
+            if('Update'.equalsIgnoreCase(TriggerEvent)){
                 if(oldCountriesMap != null && !oldCountriesMap.isEmpty()){
                     if(oldCountriesMap.get(country.id).IPM_Regional_Project__c != country.IPM_Regional_Project__c){
                         country.IPM_Regional_Proj_Association_Timestamp__c = System.Now();
@@ -975,14 +985,13 @@ public with sharing class IPM_ProjectCountryDetails{
         }
         
     }
-
+    
      
     /****************************************************************************
     @Description : check if all the EI Countries of a project have at least one assessment for them
     @Params projIdSet:   the set of IDs of the projects which need to be updated with IPM_Exists_AtLeast_OneAssmntPerEICountry__c flag.
     *****************************************************************************/
     public static void checkAtLeastOneAssmntPerEICountryNew(List<IPM_Country__c> triggeredCountries){
-    	
         Set<Id> countryListIds=new Set<Id>(); //Country Id's
         Set<Id> projectIdSet =new Set<Id>(); //Project Id's
         Set<String> EICountriesForTheProject = new Set<String>();
@@ -1052,6 +1061,4 @@ public with sharing class IPM_ProjectCountryDetails{
             Update toUpdateProjList;
         }
     }
-
-    
 }

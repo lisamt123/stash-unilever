@@ -133,6 +133,7 @@ public without sharing class IPM_TestFactory {
                 
             }
         }
+        system.debug(logginglevel.error, 'newSobj--> ' + newSobj);
         return newSobj;
     }
     
@@ -150,6 +151,7 @@ public without sharing class IPM_TestFactory {
          
         List<sObject> newSObjectList = new List<sObject>(); 
         sObjectAPIName = sObjectAPIName.toLowerCase();
+        System.debug('Before Bulk -->>'+fieldToValueMap);
         transformMapBulk(fieldToValueMap);
         // get SObject Describe and instantiate the sObject
         Schema.DescribeSObjectResult sObjectdescibeObj = retrieveObjectDescibe(sObjectAPIName);
@@ -188,14 +190,19 @@ public without sharing class IPM_TestFactory {
                     Object defaultValue = staticCounter;
                     Object providedFieldValue = null;
                     
+                    System.debug('fieldAPIName-->>'+fieldAPIName);
+                    System.debug('fieldToValueMap-->>'+fieldToValueMap);
+                    
                     if(fieldToValueMap.containsKey(fieldAPIName) && fieldToValueMap.get(fieldAPIName) !=null)
                     {
                         List<Object> providedFieldValueList = fieldToValueMap.get(fieldAPIName);
+                        System.debug('providedFieldValueList-->>'+providedFieldValueList);
                         try
                         {
                             if( providedFieldValueList.get(counter-1) !=null)
                             {
                                 providedFieldValue = providedFieldValueList.get(counter-1);  
+                                System.debug('providedFieldValue-->>'+providedFieldValue);  
                             }
                         }
                         catch(ListException ex)
@@ -222,7 +229,6 @@ public without sharing class IPM_TestFactory {
         
         return newSObjectList;
     }
-    
     
     
      /**************************************************************************************

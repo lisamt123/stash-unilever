@@ -1,7 +1,7 @@
 /*******************************************************
 * @Description: Test class for CustomerChannelController
 * @Author:Cognizant
-* @Date:05/11/2015
+* @Date:05/11/2015  
 * *****************************************************/
 
 @isTest
@@ -9,15 +9,13 @@ public class IPM_ProjectResourceTriggerHandlerTest {
     
     public static List<User> userList = new  List<User>();
     public static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
-    public static List<IPM_Project__c> ipmProjectList= new List<IPM_Project__c>();
     public static List<IPM_Project_Document__c> projectDocList = new List<IPM_Project_Document__c>();
     public static List<IPM_Project_Document_Section__c> projectDocSectionList  = new List<IPM_Project_Document_Section__c>();
     public static List<IPM_Project_Resource__c> projectResourceList  = new List<IPM_Project_Resource__c>();
     public static List<IPM_Task__c> taskList  = new List<IPM_Task__c>();
-    private static String RESOURCE_HISTORY_INSERTED = 'Project Resource History Inserted'; 
+	private static String RESOURCE_HISTORY_INSERTED = 'Project Resource History Inserted'; 
     private static String RESOURCE_HISTORY_UPDATED = 'Project Resource History Updated'; 
-
-
+    
     
     
     /***********************************
@@ -27,131 +25,104 @@ public class IPM_ProjectResourceTriggerHandlerTest {
     private static void createTestData()
     {
         Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator' limit 3]; 
-
-
-
-
-
-        User projectLeader = IPM_TestFactory_Helper.createUser(false);
-        projectLeader.ProfileId = p.id;                           
+        User projectLeader = new User(Alias = 'standus1', Email='standarduser@testorg4.com', EmailEncodingKey='UTF-8', LastName='Testing1', LanguageLocaleKey='en_US', 
+                                      LocaleSidKey='en_US', ProfileId = p.Id, TimeZoneSidKey='America/Los_Angeles', UserName='standarduser1_ipm@testorg.com', 
+                                      IPM_Category__c = 'test4', IPM_Brand_Positioning__c= 'test4', IPM_Brand_Name__c ='test1', IPM_Role__c='Gate Keeper',
+                                      IPM_Sub_Category__c='test',isActive =true
+                                     );
         
-
-
-
-
-
-        User projectResource1 =IPM_TestFactory_Helper.createUser(false);
-        projectResource1.ProfileId = p.id;
+        User projectResource1 = new User(Alias = 'standus2', Email='standarduser@testorg5.com', EmailEncodingKey='UTF-8', LastName='Testing2', LanguageLocaleKey='en_US', 
+                                         LocaleSidKey='en_US', ProfileId = p.Id, TimeZoneSidKey='America/Los_Angeles', UserName='standarduser2_ipm@testorg.com', 
+                                         IPM_Category__c = 'test4', IPM_Brand_Positioning__c= 'test4', IPM_Brand_Name__c ='test1', IPM_Role__c='Gate Keeper',
+                                         IPM_Sub_Category__c='test',isActive =true
+                                        );
         
-
-
-
-
-
-
-
-
-
-
-        User projectResource2 = IPM_TestFactory_Helper.createUser(false);
-        projectResource2.ProfileId = p.id;      
-                                 
-
-
-
-
-
-        User projectResource3 = IPM_TestFactory_Helper.createUser(false);
-        projectResource3.ProfileId = p.id;
+        User projectResource2 = new User(Alias = 'standus3', Email='standarduser@testorg6.com', EmailEncodingKey='UTF-8', LastName='Testing3', LanguageLocaleKey='en_US', 
+                                         LocaleSidKey='en_US', ProfileId = p.Id, TimeZoneSidKey='America/Los_Angeles', UserName='standarduser3_ipm@testorg.com', 
+                                         IPM_Category__c = 'test4', IPM_Brand_Positioning__c= 'test4', IPM_Brand_Name__c ='test1', IPM_Role__c='Gate Keeper',
+                                         IPM_Sub_Category__c='test',isActive =true
+                                        );
+        User projectResource3 = new User(Alias = 'standus4', Email='standarduser@testorg7.com', EmailEncodingKey='UTF-8', LastName='Testing3', LanguageLocaleKey='en_US', 
+                                         LocaleSidKey='en_US', ProfileId = p.Id, TimeZoneSidKey='America/Los_Angeles', UserName='standarduser4_ipm@testorg.com', 
+                                         IPM_Category__c = 'test4', IPM_Brand_Positioning__c= 'test4', IPM_Brand_Name__c ='test1', IPM_Role__c='Gate Keeper',
+                                         IPM_Sub_Category__c='test',isActive =true
+                                        );
         
-
-
-
-
-
-        User projectResource4 = IPM_TestFactory_Helper.createUser(false);                                                  
-        projectResource4.ProfileId = p.id;
+        User projectResource4 = new User(Alias = 'standus5', Email='standarduser@testorg8.com', EmailEncodingKey='UTF-8', LastName='Testing3', LanguageLocaleKey='en_US', 
+                                         LocaleSidKey='en_US', ProfileId = p.Id, TimeZoneSidKey='America/Los_Angeles', UserName='standarduser5_ipm@testorg.com', 
+                                         IPM_Category__c = 'test4', IPM_Brand_Positioning__c= 'test4', IPM_Brand_Name__c ='test1', IPM_Role__c='Gate Keeper',
+                                         IPM_Sub_Category__c='test',isActive =true
+                                        );                                                                      
         
-        User projectResource5 = IPM_TestFactory_Helper.createUser(false);                                                  
-        projectResource5.ProfileId = p.id;
-        
+		User projectResource5 = new User(Alias = 'standus6', Email='standarduser@testorg8.com', EmailEncodingKey='UTF-8', LastName='Testing3', LanguageLocaleKey='en_US', 
+                                         LocaleSidKey='en_US', ProfileId = p.Id, TimeZoneSidKey='America/Los_Angeles', UserName='standarduser6_ipm@testorg.com', 
+                                         IPM_Category__c = 'test4', IPM_Brand_Positioning__c= 'test4', IPM_Brand_Name__c ='test1', IPM_Role__c='Gate Keeper',
+                                         IPM_Sub_Category__c='test',isActive =true
+                                        );      
+										
         userList.add(projectLeader);
         userList.add(projectResource1);
         userList.add(projectResource2);
         userList.add(projectResource3);
         userList.add(projectResource4);
-        userList.add(projectResource5);
+		userList.add(projectResource5);
         insert userList;
         
         //creating Project Template
-        IPM_Project_Template__c projTemplate = IPM_TestFactory_Helper.createIPMProjectTemplate(true);
-
-
+        IPM_Project_Template__c projTemplate=new IPM_Project_Template__c();
+        projTemplate.IPM_Template_Complexity__c='Full';
+        insert projTemplate;
         
         //Creating Document Template
-        IPM_Document_Template__c ipdoctem = IPM_TestFactory_Helper.creteIPMDocumentTemplate(false);
+        IPM_Document_Template__c ipdoctem=new IPM_Document_Template__c();
         ipdoctem.IPM_Project_Template__c=projTemplate.ID;
-        ipdoctem.IPM_Document_Type__c=IPM_ConstantUtils.CHARTER_GATE;
-
+        ipdoctem.IPM_Document_Template_Name__c='Charter Gate Full';
+        ipdoctem.IPM_Document_Type__c='Charter';
         insert ipdoctem;
-
-        //Creating master Section
-        IPM_Section__c secMast = IPM_TestFactory_Helper.createIPMSection(false);
-        secMast.IPM_Document_Template__c=ipdoctem.ID;
-
-		IPM_Project__c project1 = IPM_TestFactory_Helper.createIPMProject(false);
-        project1.IPM_PM_Approach__c = IPM_Utils.Internal;
-        project1.IPM_Project_Leader__c = projectLeader.Id;
-        project1.IPM_GateKeeping_Model__c='Both';
         
-        projectList.add(project1);
-        insert projectList;
-
+        //Creating master Section
+        IPM_Section__c secMast=new IPM_Section__c();
+        secMast.IPM_Document_Template__c=ipdoctem.ID;
+        secMast.IPM_Section_Sequence__c='1.1';
+        secMast.IPM_Section_Name__c='Idea / Graphic';
+        secMast.IPM_Negotiable__c=false;
         insert secMast;
         
-        IPM_Task__c taskAsociatedRD = new IPM_Task__c(IPM_Type_of_Gate__c = IPM_ConstantUtils.CHARTER_GATE,IPM_Phase__c = 'Ideas',
-                                                      IPM_Task_Complexity__c = IPM_ConstantUtils.COMPLEXITY_FULL,Name= '-Identify top 3 strategic channels',
+        IPM_Task__c taskAsociatedRD = new IPM_Task__c(IPM_Type_of_Gate__c = 'Charter',IPM_Phase__c = 'Ideas',
+                                                      IPM_Task_Complexity__c = 'Full',Name= '-Identify top 3 strategic channels',
                                                       IPM_Function__c = 'R&D',IPM_Task_Name__c ='Develop and lock Concept1',
-                                                      IPM_Project_Template__c = projTemplate.Id,IPM_Section__c = secMast.Id,IPM_Project__c = project1.Id
+                                                      IPM_Project_Template__c = projTemplate.Id,IPM_Section__c = secMast.Id
                                                      );
         
-        IPM_Task__c taskAsociatedFinance = new IPM_Task__c(IPM_Type_of_Gate__c = IPM_ConstantUtils.CHARTER_GATE,IPM_Phase__c = 'Ideas',
-                                                           IPM_Task_Complexity__c = IPM_ConstantUtils.COMPLEXITY_FULL,Name= 'Identify Finance',
+        IPM_Task__c taskAsociatedFinance = new IPM_Task__c(IPM_Type_of_Gate__c = 'Charter',IPM_Phase__c = 'Ideas',
+                                                           IPM_Task_Complexity__c = 'Full',Name= 'Identify Finance',
                                                            IPM_Function__c = 'Finance',IPM_Task_Name__c ='Develop and lock Concept2',
-                                                           IPM_Project_Template__c = projTemplate.Id,IPM_Section__c = secMast.Id, IPM_Project__c = project1.Id
+                                                           IPM_Project_Template__c = projTemplate.Id,IPM_Section__c = secMast.Id
                                                           );
         
         taskList.add(taskAsociatedRD);
         taskList.add(taskAsociatedFinance);
         insert taskList;
         
-
-
-
+        IPM_Project__c project1 = new IPM_Project__c(Name='TestComments1',IPM_PM_Approach__c= IPM_Utils.Internal,IPM_Project_Leader__c = projectLeader.Id,
+                                                     IPM_Phase__c='Ideas',IPM_Complexity__c='Full',IPM_GateKeeping_Model__c='Both');
         
         
-
-
-
-
-        IPM_Project_Document__c projectDocList1 = IPM_TestFactory_Helper.createIPMProjectDocument(false);
-        projectDocList1.Name='TESTAPPROVERCL-Charter1';
-        projectDocList1.IPM_Project__c=projectList[0].Id;
-        projectDocList1.IPM_Project_Template__c= projTemplate.Id;
-        projectDocList1.IPM_Approval_Date__c=System.today();
-        projectDocList1.IPM_Approved_Comments__c='Approved';
-
+        projectList.add(project1);
+        insert projectList;
+        
+        IPM_Project_Document__c projectDocList1 = new IPM_Project_Document__c(Name='TESTAPPROVERCL-Charter1',IPM_Project__c=projectList[0].Id,
+                                                                              IPM_Project_Template__c= projTemplate.Id,IPM_GateDocuments__c='Charter',
+                                                                              IPM_Approval_Date__c=System.today(),IPM_Approved_Comments__c='Approved'
+                                                                             );
         projectDocList.add(projectDocList1);
         insert projectDocList;
 
         // Creationg Project Document Sections
-        IPM_Project_Document_Section__c pojDocSection0 = IPM_TestFactory_Helper.createIPMProjectDocumentSection(false);
-
-
-
-        pojDocSection0.IPM_Project_Document__c = projectDocList[0].Id;
-        pojDocSection0.IPM_Section__c=secMast.Id;
-        
+        IPM_Project_Document_Section__c pojDocSection0 = new IPM_Project_Document_Section__c(IPM_Project_Document__c=projectDocList[0].Id,
+                                                                                             IPM_Section_Name__c='Idea / Graphic',
+                                                                                             IPM_Section__c=secMast.Id,
+                                                                                             IPM_Default_Section__c=true);
         projectDocSectionList.add(pojDocSection0);
         insert projectDocSectionList;
     } 
@@ -165,22 +136,14 @@ public class IPM_ProjectResourceTriggerHandlerTest {
         createTestData();
         Test.stopTest();
         // Add Resources to Project to create Tasks for resources.
-
-
-
-
-
+        IPM_Project_Resource__c ipmProjectResource1 = new IPM_Project_Resource__c(IPM_Role_Type__c = 'Finance',IPM_Project__c = projectList[0].Id,
+                                                                                  IPM_User__c = userList[1].Id,IPM_Project_Role_Owner__c = true);
         
-        IPM_Project_Resource__c ipmProjectResource1 = IPM_TestFactory_Helper.createIPMProjectResource(projectList[0].Id, false);
-        ipmProjectResource1.IPM_User__c = userList[1].Id;
-        ipmProjectResource1.IPM_Role_Type__c = 'Finance';
+        IPM_Project_Resource__c ipmProjectResource2 = new IPM_Project_Resource__c(IPM_Role_Type__c = 'R&D',IPM_Project__c = projectList[0].Id,
+                                                                                  IPM_User__c = userList[2].Id,IPM_Project_Role_Owner__c = true);
+        
         projectResourceList.add(ipmProjectResource1);
-        
-        IPM_Project_Resource__c ipmProjectResource2 = IPM_TestFactory_Helper.createIPMProjectResource(projectList[0].Id, false);
-        ipmProjectResource2.IPM_User__c = userList[2].Id;
-        ipmProjectResource2.IPM_Role_Type__c = 'R&D';
         projectResourceList.add(ipmProjectResource2);
-        
         insert projectResourceList;
         
         System.runAs(userList[0]){
@@ -205,7 +168,7 @@ public class IPM_ProjectResourceTriggerHandlerTest {
         }
     }
 
-    //Testmethod to test IPM Project Resource History for Bulk insertion of project resources
+//Testmethod to test IPM Project Resource History for Bulk insertion of project resources
     static testMethod void testProjectResourceHistoryForBulkInsertion(){
         //Initialize test data
         createTestData();
@@ -293,117 +256,4 @@ public class IPM_ProjectResourceTriggerHandlerTest {
         System.assertEquals(5, updateCount, RESOURCE_HISTORY_UPDATED);
         Test.stopTest();
     }
-    
-    /***********************************
-    * @Description: validate Resource DML Operation and change in project sync status
-    * *********************************/
-    public static testmethod void testResourceInsertionUpdationDeletion(){
-        // Current running in Sharing mode with old sharing logic. Using System admin profile for time being.
-        User globalUser = IPM_TestFactory_Helper.createUserAdmin(false);
-        globalUser.email = 'globalUser@unilever.test.com';
-         
-        User regionalUser = IPM_TestFactory_Helper.createUserAdmin(false);
-        regionalUser.email = 'regionalUser@unilever.test.com';
-        
-        User localUser = IPM_TestFactory_Helper.createUserAdmin(false);
-        localUser.email = 'localUser@unilever.test.com';
-        
-        userList = new List<User>{globalUser,regionalUser,localUser};
-        insert userList;    
-        List<IPM_Assessment__c> finalAssessmentList = new List<IPM_Assessment__c>();
-        List<IPM_Company_Card__c> companyCardList ;
-        
-        
-        System.runAs(userList[0]) {
-        // Create Company Card information 
-        IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
-        globalCompanyCard.IPM_TxtGeographical_Scope__c = 'TEST123';
-        globalCompanyCard.IPM_Business_Partner__c = NULL;
-        IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
-        regionalCompanyCard.IPM_TxtGeographical_Scope__c = 'TEST123';
-        regionalCompanyCard.IPM_Business_Partner__c = NULL;
-        IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
-        localCompanyCard.IPM_TxtGeographical_Scope__c = 'TEST123';
-        localCompanyCard.IPM_Business_Partner__c = NULL;
-        
-        companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
-        insert companyCardList;
-        }
-        Test.startTest();
-        System.runAs(userList[0]) {
-        //  Create User profile Information
-        Map<String,List<Object>> IPMUserProfileMap =  new Map<String,List<Object>>{
-        'IPM_Business_Partner__c' => new List<Object>{false,false,false},
-        'IPM_Category__c' => new List<Object>{'','',''},
-        'IPM_Central_Team__c' => new List<Object>{false,false,false},
-        'IPM_Finance_Member__c' => new List<Object>{false,false,false},
-        'IPM_GateKeeper__c' => new List<Object>{false,false,false},
-        'IPM_Project_Leader__c' => new List<Object>{false,false,false},
-        'IPM_User_Category__c' => new List<Object>{'HHC','HHC','HHC'},
-        'IPM_User_Function__c' => new List<Object>{'Project Leader','Project Leader','Project Leader'},
-        'IPM_User_Role__c' => new List<Object>{'MO','MO','MO'},
-        'IPM_Work_Level__c' => new List<Object>{'WL1','WL2','WL3'},
-        'IPM_Company_Card__c' => new List<Object>{companyCardList[0].Id,companyCardList[1].Id,companyCardList[2].Id},
-        'IPM_User__c' => new List<Object>{userList[0].Id,userList[1].Id,userList[2].Id}
-        };
-
-        List<IPM_User_Profile__c> userProfileList = (List<IPM_User_Profile__c>)IPM_TestFactory.createSObjectList('IPM_User_Profile__c',IPMUserProfileMap,true);
-        List<String> projectNames = new List<String>();
-        
-            // Get master data for the project including Templates,Documents,Section,Tasks and Milestones.
-            IPM_TestFactory_Helper.getProjectMasterData();
-            
-            // Create project for assignment.
-            ipmProjectList = IPM_TestFactory_Helper.createOriginalProjectList(false, 10);
-            for(IPM_Project__c project : ipmProjectList) {
-                project.IPM_Company_Card__c = companyCardList[0].Id;
-                project.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
-                project.IPM_Project_Leader__c = userList[0].Id;
-                project.Success_Timestamp_EcoDesign__c = System.now().addMinutes(15);
-                project.IPM_SourceProjectType__c = 'Original';
-                project.First_Sync_To_EcoDesign__c = true;
-                projectNames.add(project.IPM_Project_Name__c); 
-            }
-        
-            insert ipmProjectList;
-            
-            IPM_Project_Resource__c ipmProjectResource1 = IPM_TestFactory_Helper.createIPMProjectResource(ipmProjectList[1].Id, false);
-            ipmProjectResource1.IPM_User__c = userList[1].Id;
-            ipmProjectResource1.IPM_Role_Type__c = 'Finance';
-            ipmProjectResource1.IPM_Member_Email__c = 'abc@gmail.com';
-            projectResourceList.add(ipmProjectResource1);
-            insert ipmProjectResource1;
-            
-            IPM_Project_Resource__c ipmProjectResource2 = IPM_TestFactory_Helper.createIPMProjectResource(ipmProjectList[1].Id, false);
-            ipmProjectResource2.IPM_User__c = userList[2].Id;
-            ipmProjectResource2.IPM_Role_Type__c = 'R&D';
-            ipmProjectResource2.IPM_Member_Email__c = 'xyz@gmail.com';
-            projectResourceList.add(ipmProjectResource2);
-            insert ipmProjectResource2;
-            List <IPM_Project__c> projList1 = [Select id,EcoDesign_Sync_Status__c from IPM_Project__c where Id =: ipmProjectList[1].Id];
-            System.assertEquals('Ready', projList1[0].EcoDesign_Sync_Status__c);
-            
-            List<IPM_Project_Resource__c> ipmProjectResourceList = [Select id,IPM_User__c,IPM_Role_Type__c,IPM_Member_Email__c from IPM_Project_Resource__c];
-            for(IPM_Project_Resource__c projRes : ipmProjectResourceList){
-                projRes.IPM_Member_Email__c = 'newemail@gmail.com';
-            }
-
-            Update ipmProjectResourceList;
-            List <IPM_Project__c> projList2 = [Select id,EcoDesign_Sync_Status__c from IPM_Project__c where Id =: ipmProjectList[1].Id];
-            System.assertEquals('Ready', projList2[0].EcoDesign_Sync_Status__c);
-            
-            delete ipmProjectResourceList[0];
-            List <IPM_Project__c> projList3 = [Select id,EcoDesign_Sync_Status__c from IPM_Project__c where Id =: ipmProjectList[1].Id];
-            System.assertEquals('Ready', projList3[0].EcoDesign_Sync_Status__c);
-            }
-        
-        
-        
-        Test.stopTest();
-        
-        
-        
-    }
-    
-    
 }

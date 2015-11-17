@@ -270,6 +270,11 @@
         <name>IPM_GateHistory__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Gate CMI --></label>
+        <name>IPM_Gate_CMI__c</name>
+        <relationshipLabel><!-- IPM Project Document Sections --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Gate Document Summary --></label>
         <name>IPM_Gate_Document_Summary__c</name>
     </fields>
@@ -442,6 +447,10 @@
         <name>IPM_Version_Number__c</name>
     </fields>
     <fields>
+        <label><!-- Input Gate CMI --></label>
+        <name>Input_Gate_CMI__c</name>
+    </fields>
+    <fields>
         <label><!-- Input --></label>
         <name>Input__c</name>
         <picklistValues>
@@ -589,19 +598,5 @@
             <translation><!-- Win --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>IPM Project Document Section Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Section Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

@@ -22,7 +22,7 @@
         <name>Country_Code__c</name>
     </fields>
     <fields>
-        <help><!-- Old - - &gt; MDO_Geography__r.Name   New Formula - - &gt;  Geography__r.ISO_Country_Dependency_Name__c --></help>
+        <help><!-- Old - - &gt; Geography__r.ISO_Country_Dependency_Name__c   New Formula - - &gt; MDO_Geography__r.Name --></help>
         <label><!-- Country Name --></label>
         <name>Country_Name__c</name>
     </fields>
@@ -42,11 +42,6 @@
     <fields>
         <label><!-- Country Name --></label>
         <name>IPM_Country_Name__c</name>
-    </fields>
-    <fields>
-        <label><!-- IPM Financial --></label>
-        <name>IPM_Financial__c</name>
-        <relationshipLabel><!-- IPM Countries --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- ISO Code --></label>
@@ -137,7 +132,7 @@
         <name>MCO_Name__c</name>
     </fields>
     <fields>
-        <label><!-- MDO_Geography --></label>
+        <label><!-- Geography --></label>
         <name>MDO_Geography__c</name>
         <relationshipLabel><!-- IPM Countries --></relationshipLabel>
     </fields>
@@ -154,10 +149,6 @@
     <fields>
         <label><!-- Project Country --></label>
         <name>Project_Country__c</name>
-    </fields>
-    <fields>
-        <label><!-- Test Financial --></label>
-        <name>Test_Financial__c</name>
     </fields>
     <layouts>
         <layout>IPM Country Layout</layout>

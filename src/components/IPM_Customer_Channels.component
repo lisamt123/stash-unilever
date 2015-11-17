@@ -6,7 +6,7 @@
 *@Copyright © 2015  Unilever   
 *************************************************************************
 -->
-<apex:component controller="IPM_CustomerChannelController" allowDML="true" >
+<apex:component controller="IPM_CustomerChannelContorller" allowDML="true" >
     <apex:attribute name="getProjectId" description="Passing Project Id" type="Id" required="true"  assignTo="{!projectId}" />
     <apex:attribute name="getSecid" description="Pass the project document section id" type="Id" required="true" assignTo="{!projDocSecId}" />
     <apex:attribute name="CCEdit" description="This is used for security" type="Boolean"  assignTo="{!isEditable}" />
@@ -85,7 +85,7 @@
                             <apex:outputPanel rendered="{!isEditable}" >
                                 <li class="filterActionscc">
                                     <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">
-                                        <a value="Done" id="customerChannelListDone" class="ipmDropbuttonscc" onClick="fchannelM();">{!$Label.IPM_Done}</a>
+                                        <a value="Done" id="customerChannelListDone" class="ipmDropbuttonscc" onClick="fchannelM();">Done</a>
                                     </div>
                                     <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">   
                                         <a value="Reset" class="ipmDropresetcc">{!$Label.IPM_Reset}</a>
@@ -466,7 +466,7 @@
                                     <div class="container-fluid">
                                         <div class="row">    
                                             <div class="col-sm-12">
-                                                <span class="skipDesc">{!$Label.IPM_Remove_CMI}</span>
+                                                <span class="skipDesc">{!$Label.IPM_Remove_Channel}</span>
                                                 <span>{!$Label.IPM_CMI_NOTE}</span>
                                             </div>
                                             <div class="deleteButtoncontainer txtAlignright pull-right"> 

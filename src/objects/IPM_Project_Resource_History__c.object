@@ -140,6 +140,11 @@
         <unique>false</unique>
     </fields>
     <label>IPM Project Resource History</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>IPM Project Resource History Name</label>
         <type>Text</type>

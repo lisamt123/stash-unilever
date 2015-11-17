@@ -9,18 +9,19 @@
 
 global with sharing class IPM_CommentsListController {
         
-    public String parentID {get;set;}//used to store current page id
-    public FeedItem commentRecord {get;set;}//used to store feedItem's comment record
+    public String ParentID {get;set;}//used to store current page id
+    public FeedItem CommentRecord {get;set;}//used to store feedItem's comment record
     public List<FeedItem> comments{get;set;}//used to store feedItem's comment
-    public List<FeedItem> listComments;//used to store list of feed items comment
+    public List<FeedItem> Listcomments;//used to store list of feed items comment
     public List<FeedItem> innerComments = new List<FeedItem>();//used to store feed item's inner comment list
-    public Id commentsID{get;set;}//used to store commments id
+    public Id CommentsID{get;set;}//used to store commments id
     public integer offsetVal=0;//used to store offset value
     public List<WrapperFeedItemPhoto> wrapperComments{get;set;}//used to store wrapper comments list from WrapperFeedItemPhoto class 
     public integer countOfComments {get;set;}//used to store count of comments
     public IPM_Project_Document_Section__c projDocSec{get; set;}//used to store query result from IPM_Project_Document_Section__c object
     public boolean isMoreThanFive;//boolean variable
-    private static final String CLASS_NAME = IPM_CommentsListController.class.getName(); //Class Name for Exception Logging
+    
+    private static final string IPM_COMMENTSLISTCONTROLLER = 'IPM_CommentsListController';
     private static final string ADD_COMMENT = 'AddComment';
     
     /*****************************************************************
@@ -32,16 +33,15 @@ global with sharing class IPM_CommentsListController {
          
     public IPM_CommentsListController (){
         isMoreThanFive=false;// this is used in the IPMCommentsPage VF page to handle UI requirements
-        commentRecord = new FeedItem();
+        CommentRecord = new FeedItem();
         comments = new List<FeedItem>();
         //To read the project document section Id from the URL
-        if(ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.SF_ID) != null){ 
-            parentID = ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.SF_ID);          
-        	onLoadComments();
+        if(ApexPages.currentPage().getParameters().get('Id') != null){
+            ParentID = ApexPages.currentPage().getParameters().get('Id');          
         }
-        
-        if(parentID!=null && IPM_ConstantUtils.EMPTY_STRING_INITIAL != parentID)
-                countOfComments=[Select Count() from FeedItem where ParentId =: parentID and type =:IPM_ConstantUtils.COMMENT_TYPE];
+        onLoadComments();
+        if(ParentID!=null && ParentID!='')
+                countOfComments=[Select Count() from FeedItem where ParentId =: ParentID and type =:IPM_ConstantUtils.COMMENT_TYPE];
      }
     /*****************************************************************
     @Description :Add a new feedItem as a comment to the project document section
@@ -52,11 +52,11 @@ global with sharing class IPM_CommentsListController {
         
     public void AddComment(){
         
-        if(commentRecord.Body.length() > 0){
-            List<FeedItem> insertCommentsList=new List<FeedItem>();
+        if(CommentRecord.Body.length() > 0){
+                List<FeedItem> insertCommentsList=new List<FeedItem>();
             FeedItem insertComments = new FeedItem();
-            insertComments.Body= commentRecord.Body;
-            insertComments.ParentId= parentID;
+            insertComments.Body= CommentRecord.Body;
+            insertComments.ParentId= ParentID;
             insertCommentsList.add(insertComments);
             try{
                 if((insertComments.Body).length()>5000){
@@ -70,28 +70,34 @@ global with sharing class IPM_CommentsListController {
                 getCommentsWrapper();
             }
             catch(Exception ex){
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-            				ADD_COMMENT,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null);
+                ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_COMMENTSLISTCONTROLLER,
+            				ADD_COMMENT,ex.getMessage(),ex, 'Error', null, null, null);
                 string msg=ex.getmessage(); 
                 if(msg.contains(System.Label.IPM_Data_Value_Too_Large)){           
                     Apexpages.addmessage(new apexpages.message(apexpages.severity.info,System.Label.IPM_Data_Value_Too_Large));
                 }
             }
+                Listcomments =[SELECT id, body,CreatedBy.name,CreatedDate,
+                                      ParentId,InsertedById 
+                               FROM FeedItem 
+                               WHERE ParentId =: ParentID and type =:IPM_ConstantUtils.COMMENT_TYPE
+                               ORDER BY CreatedDate DESC limit 5 OFFSET :offsetVal];
                                
-                countOfComments=[SELECT Count() FROM FeedItem WHERE ParentId =: parentID and type =:IPM_ConstantUtils.COMMENT_TYPE];
-                projDocSec=[SELECT Id,IPM_Count_of_Comments__c FROM IPM_Project_Document_Section__c WHERE Id=:parentID];
+                countOfComments=[SELECT Count() FROM FeedItem WHERE ParentId =: ParentID and type =:IPM_ConstantUtils.COMMENT_TYPE];
+                projDocSec=[SELECT Id,IPM_Count_of_Comments__c FROM IPM_Project_Document_Section__c WHERE Id=:ParentID];
                 projDocSec.IPM_Count_of_Comments__c=countOfComments;
                 
-                try{
+                 try{
                         update projDocSec;// update the project documetn section record for the counts of commens
                  }
                  catch(Exception ex){
                          string msg=ex.getmessage(); 
 	                 Apexpages.addmessage(new apexpages.message(apexpages.severity.error,msg));
 	                 
-	                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-            				ADD_COMMENT,ex.getMessage(),ex, 'Error', null, null, null,null);
+	                 ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_COMMENTSLISTCONTROLLER,
+            				ADD_COMMENT,ex.getMessage(),ex, 'Error', null, null, null);
                  }
+         
         } 
     }
     
@@ -104,16 +110,14 @@ global with sharing class IPM_CommentsListController {
     ******************************************************************/   
           
     public void onLoadComments(){     
-        listComments = new List<FeedItem>();
-        listComments =[SELECT id, body,CreatedBy.name,CreatedDate,ParentId,InsertedById 
-        						  FROM FeedItem 
-        						  WHERE ParentId =: parentID 
-        						  AND type =:IPM_ConstantUtils.COMMENT_TYPE 
-                       			  ORDER BY CreatedDate DESC 
-                       			  LIMIT 5 OFFSET :offsetVal];
-        countOfComments=listComments.size();
-        for(integer i=0; i<listComments.size(); i++){
-            innerComments.add(listComments.get(i));
+        Listcomments = new List<FeedItem>();
+        Listcomments =[SELECT id, body,CreatedBy.name,CreatedDate,
+                              ParentId,InsertedById from FeedItem 
+                       WHERE ParentId =: ParentID and type =:IPM_ConstantUtils.COMMENT_TYPE 
+                       ORDER BY CreatedDate DESC LIMIT 5 OFFSET :offsetVal];
+        countOfComments=Listcomments.size();
+        for(integer i=0; i<Listcomments.size(); i++){
+            innerComments.add(Listcomments.get(i));
         }
         comments=innerComments;
         offsetVal =offsetVal +5; 
@@ -129,20 +133,24 @@ global with sharing class IPM_CommentsListController {
 
     public void doDelete(){
         List<FeedItem> DelComment = new List<FeedItem>();
-        if(commentsID != null){
-            DelComment =[Select id from FeedItem where id=:commentsID limit 1];            
+        if(CommentsID != null){
+            DelComment =[Select id from FeedItem where id=:CommentsID limit 1];            
             if(DelComment != null && !DelComment.isEmpty()){
                 try{
                     delete DelComment;
-                    countOfComments=[SELECT Count() FROM FeedItem WHERE ParentId =: parentID and type =:IPM_ConstantUtils.COMMENT_TYPE];
-                    projDocSec=[SELECT Id,IPM_Count_of_Comments__c FROM IPM_Project_Document_Section__c WHERE Id=:parentID];
+                    Listcomments =[SELECT id, body,CreatedBy.name,CreatedDate,
+                                          ParentId,InsertedById from FeedItem
+                                   WHERE ParentId =: ParentID and type =:IPM_ConstantUtils.COMMENT_TYPE 
+                                   ORDER BY CreatedDate DESC LIMIT 5 OFFSET :offsetVal];
+                    countOfComments=[SELECT Count() FROM FeedItem WHERE ParentId =: ParentID and type =:IPM_ConstantUtils.COMMENT_TYPE];
+                    projDocSec=[SELECT Id,IPM_Count_of_Comments__c FROM IPM_Project_Document_Section__c WHERE Id=:ParentID];
                     projDocSec.IPM_Count_of_Comments__c=countOfComments;
                     update projDocSec;
                 }
                 catch (Exception ex){
-                    ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.IPM_Generic_ErrorMessage )); 
-                    ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-            				'doDelete',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
+                    string msg=ex.getmessage(); 
+                    ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_COMMENTSLISTCONTROLLER,
+            				'doDelete',ex.getMessage(),ex, 'Error', null, null, null); 
                 }
            }
         }
@@ -160,7 +168,7 @@ global with sharing class IPM_CommentsListController {
 
     public List<WrapperFeedItemPhoto> getCommentsWrapper(){
         
-        String smallphotoUrl=null;
+        String smallphotoUrl;
         wrapperComments = new List<WrapperFeedItemPhoto>();
         Set<Id> setUserId = new Set<Id>();
         for(FeedItem feed:comments){

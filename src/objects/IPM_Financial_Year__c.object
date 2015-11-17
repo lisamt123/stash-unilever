@@ -510,7 +510,7 @@
         <externalId>false</externalId>
         <label>Copy Global to Local</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -530,7 +530,7 @@
         <externalId>false</externalId>
         <label>Copy Local to Regional</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -540,7 +540,7 @@
         <externalId>false</externalId>
         <label>Copy Regional to Local</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -1791,15 +1791,30 @@
         <fullName>All1</fullName>
         <columns>NAME</columns>
         <columns>External_Id__c</columns>
+        <columns>Financial_External_Id__c</columns>
         <columns>IPM_Financial__c</columns>
+        <columns>PL_Type__c</columns>
+        <columns>Year__c</columns>
+        <columns>Year_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Finder</fullName>
+        <columns>NAME</columns>
+        <columns>IPM_Financial__c</columns>
+        <columns>PL_Type__c</columns>
+        <columns>Year__c</columns>
+        <columns>Year_Type__c</columns>
+        <columns>GM_of_TO_MD__c</columns>
+        <columns>GM_of_TO_MR__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>GM_of_TO_Charter__c</field>
-            <operation>greaterThan</operation>
-            <value>0</value>
+            <field>IPM_Financial__c</field>
+            <operation>equals</operation>
+            <value>FIN-30744</value>
         </filters>
-        <label>All</label>
-        <language>en_US</language>
+        <label>Finder</label>
     </listViews>
     <nameField>
         <label>Name</label>

@@ -93,7 +93,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Active</label>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -152,7 +152,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>BET</label>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -161,7 +161,7 @@
         <externalId>false</externalId>
         <label>Bosscord Approval Date</label>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -207,7 +207,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Completed</label>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -367,7 +367,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -390,7 +390,7 @@
         <relationshipLabel>IPM Milestones</relationshipLabel>
         <relationshipName>IPM_Milestones</relationshipName>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -400,7 +400,7 @@
         <label>Milestone Name</label>
         <length>200</length>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -431,7 +431,7 @@
         <fullName>IPM_No_of_Days__c</fullName>
         <externalId>false</externalId>
         <label>No of Days</label>
-        <length>255</length>
+        <length>80</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -498,7 +498,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -507,7 +507,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
         <externalId>false</externalId>
         <label>Suggested Planned Date</label>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -557,7 +557,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
         <externalId>false</externalId>
         <label>Project Started Date</label>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -571,11 +571,11 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Operational</fullName>
+                <fullName>Rollout</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Rollout</fullName>
+                <fullName>Operational</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -593,7 +593,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
         <relationshipName>IPM_Milestones</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>false</reparentableMasterDetail>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
@@ -603,7 +603,7 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
         <externalId>false</externalId>
         <label>Proposed Date</label>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -703,10 +703,6 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Mini</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>BET</fullName>
                 <default>false</default>
             </picklistValues>
@@ -714,9 +710,13 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
                 <fullName>Adhoc</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Mini</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -741,6 +741,10 @@ IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
                 <fullName>Market Deployment</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>PLE/Learnings</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
@@ -759,29 +763,68 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+    <fields>
+        <fullName>IPM_is_Master__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>is Master</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <label>IPM Milestone</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>RECORDTYPE</columns>
-        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
         <columns>IPM_Project__c</columns>
+        <columns>IPM_Phase__c</columns>
+        <columns>IPM_Milestone__c</columns>
+        <columns>IPM_Name__c</columns>
+        <columns>IPM_Type_of_Milestone__c</columns>
+        <columns>IPM_Type_of_gate__c</columns>
+        <columns>IPM_Target_Launch_Date_Charter__c</columns>
+        <columns>IPM_Contract_Gate_Approval_Contract_Gate__c</columns>
+        <columns>IPM_Market_Gate_Approval_Contract_Gate__c</columns>
+        <columns>IPM_Market_Depl_Gate_Approval_Contract__c</columns>
+        <columns>IPM_Market_Ready_Approval_Market_Gate__c</columns>
+        <columns>IPM_Market_Depl_Gate_Approval_MR__c</columns>
+        <columns>IPM_Market_Depl_Gate_Approval_MD__c</columns>
+        <columns>RECORDTYPE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
     </listViews>
     <listViews>
-        <fullName>Mini_Milestones</fullName>
+        <fullName>Master</fullName>
+        <columns>IPM_Project__c</columns>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>IPM_Active__c</columns>
+        <columns>IPM_Due_Date__c</columns>
+        <columns>IPM_Category__c</columns>
+        <columns>IPM_Milestone__c</columns>
+        <columns>IPM_Name__c</columns>
+        <columns>IPM_Phase__c</columns>
+        <columns>IPM_Type_of_gate__c</columns>
+        <columns>IPM_Type_of_Milestone__c</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>IPM_Milestone__c.IPM_Milestones</value>
+        </filters>
+        <label>Master</label>
+    </listViews>
+    <listViews>
+        <fullName>Mini_MileStone</fullName>
         <columns>NAME</columns>
         <columns>IPM_Name__c</columns>
-        <columns>IPM_Type_of_Milestone__c</columns>
-        <columns>IPM_Project_Type__c</columns>
-        <columns>IPM_Project__c</columns>
-        <columns>IPM_Phase_Order__c</columns>
-        <columns>IPM_Milestone__c</columns>
-        <columns>IPM_Active__c</columns>
-        <columns>IPM_Market_Type__c</columns>
-        <columns>RECORDTYPE</columns>
         <columns>IPM_Type_of_gate__c</columns>
+        <columns>IPM_Project_Type__c</columns>
+        <columns>IPM_Type_of_Milestone__c</columns>
+        <columns>IPM_Phase__c</columns>
+        <columns>RECORDTYPE</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
@@ -793,20 +836,25 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
             <operation>equals</operation>
             <value>Mini</value>
         </filters>
-        <label>Mini Milestones</label>
-        <language>en_US</language>
+        <label>Mini MileStone</label>
     </listViews>
     <listViews>
         <fullName>Standard_MileStones</fullName>
         <columns>NAME</columns>
-        <columns>IPM_Name__c</columns>
-        <columns>IPM_Type_of_gate__c</columns>
-        <columns>IPM_Type_of_Milestone__c</columns>
+        <columns>IPM_Milestone__c</columns>
+        <columns>IPM_Phase_Order__c</columns>
+        <columns>IPM_Active__c</columns>
         <columns>IPM_Phase__c</columns>
-        <columns>RECORDTYPE</columns>
+        <columns>IPM_Name__c</columns>
         <columns>IPM_Project_Type__c</columns>
+        <columns>IPM_Type_of_gate__c</columns>
+        <columns>IPM_is_Master__c</columns>
+        <columns>IPM_Category__c</columns>
+        <columns>IPM_Proposed_Date__c</columns>
+        <columns>IPM_Planned_Date__c</columns>
+        <columns>IPM_Type_of_Milestone__c</columns>
         <columns>IPM_Market_Type__c</columns>
-        <columns>IPM_No_of_Days__c</columns>
+        <columns>ExternalField__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
@@ -819,11 +867,10 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
             <value>Standard</value>
         </filters>
         <label>Standard MileStones</label>
-        <language>en_US</language>
     </listViews>
     <nameField>
         <label>IPM Milestone Name</label>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>IPM Milestones</pluralLabel>
@@ -934,6 +981,10 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
                 <fullName>Market Ready</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>PLE%2FLearnings</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -1042,6 +1093,10 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
                 <fullName>Market Ready</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>PLE%2FLearnings</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -1111,14 +1166,6 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
         <picklistValues>
             <picklist>IPM_Type_of_Milestone__c</picklist>
             <values>
-                <fullName>Adhoc</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mini</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Standard</fullName>
                 <default>false</default>
             </values>
@@ -1139,6 +1186,10 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
             </values>
             <values>
                 <fullName>Market Ready</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PLE%2FLearnings</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

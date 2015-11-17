@@ -6,7 +6,7 @@
    @Version: 1.0
    @Reference: IPM_OTIFSectionStatus,IPM_OTIFStatusTable,IPM_OTIFStatusTableVIew component
 */
-public with sharing class IPM_OTIFStatusController{
+public without sharing class IPM_OTIFStatusController{
     public Id projDocSecId{ 
         get {
             return projDocSecId; //Getting Project Document Section Id from OTIF Component

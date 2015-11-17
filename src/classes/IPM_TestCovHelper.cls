@@ -1,6 +1,6 @@
 @IsTest
 public with sharing class IPM_TestCovHelper {
-    
+     
     @isTest static void verifyMilestoneDelete() {
         
         Test.startTest();
@@ -17,17 +17,15 @@ public with sharing class IPM_TestCovHelper {
         projects.IPM_Target_Launch_Dates__c=System.today()+10;
         projects.IPM_Project_Leader__c=UserInfo.getUserId();
         insert projects;
-        List<IPM_Project__c>projList=[select Id,IPM_Complexity__c from IPM_Project__c where Id=:projects.Id];
-        System.assertEquals(projList[0].IPM_Complexity__c,'Lite','project is not created successfully');
 
         String postText = 'Test';
         Set<Id> userMentionIds = new Set<Id>{UserInfo.getUserId()};
 
         //Added to remove exception when recordId was passed
-       // IPM_ChatterUtils.postRecordFeed(UserInfo.getUserId(), postText);
-      //  IPM_ChatterUtils.postRecordFeedWithMention(UserInfo.getUserId(), postText, userMentionIds);
+        IPM_ChatterUtils.postRecordFeed(UserInfo.getUserId(), postText);
+        IPM_ChatterUtils.postRecordFeedWithMention(UserInfo.getUserId(), postText, userMentionIds);
         
-     //   IPM_ChatterUtils.postUserFeedWithMention(UserInfo.getUserId(), UserInfo.getUserId(), postText);
+        IPM_ChatterUtils.postUserFeedWithMention(UserInfo.getUserId(), UserInfo.getUserId(), postText);
         
          
        User u2 = new User(); 
@@ -57,7 +55,6 @@ public with sharing class IPM_TestCovHelper {
        
        IPM_Milestone__c ipmMilestones = new IPM_Milestone__c(Name = 'Test Milestone', IPM_Project__c=projects.Id);
        insert ipmMilestones;
-       ApexPages.currentPage().getParameters().put('id', projects.Id);
        IPM_List_Milestones constMain = new IPM_List_Milestones();
        constMain.projectId = projects.Id;
        Test.stopTest();

@@ -58,7 +58,6 @@
     <fields>
         <fullName>IPM_Category__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>To hold the Categories</inlineHelpText>
         <label>Category</label>
         <picklist>
             <picklistValues>
@@ -78,7 +77,7 @@
     </fields>
     <fields>
         <fullName>IPM_Project_Type__c</fullName>
-        <description>To store the type of the project</description>
+        <description>To Hold the type of project</description>
         <externalId>false</externalId>
         <label>Project Type</label>
         <picklist>
@@ -144,13 +143,13 @@
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
-        <columns>IPM_Project_Type__c</columns>
-        <columns>IPM_Category__c</columns>
         <columns>IPM_Template_Complexity__c</columns>
-        <columns>IPM_Project__c</columns>
         <columns>IPM_Template_Name__c</columns>
+        <columns>IPM_Category__c</columns>
+        <columns>IPM_Project_Type__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>PT-{0000}</displayFormat>
@@ -161,7 +160,6 @@
     <pluralLabel>IPM Project Templates</pluralLabel>
     <searchLayouts>
         <searchResultsAdditionalFields>IPM_Template_Name__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>IPM_Project__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>IPM_Template_Complexity__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>IPM_Category__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>LAST_UPDATE</searchResultsAdditionalFields>

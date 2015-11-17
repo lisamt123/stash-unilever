@@ -111,6 +111,14 @@
         <unique>false</unique>
     </fields>
     <label>MarketGeographys</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Geography_ID__c</columns>
+        <columns>Market_ID__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>MG-{0000000}</displayFormat>
         <label>MarketGeographys Name</label>

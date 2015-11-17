@@ -95,7 +95,6 @@ public with sharing class IPM_MilestoneHelper
                 {
                     for(IPM_Milestone__c existingProjectMilestone : IPM_ProjectHelper.DBprojectSpecificMileStoneMap.get(project.Id))
                     {
-                    	
                         if(String.isNotBlank(existingProjectMilestone.IPM_Category__c) && existingProjectMilestone.IPM_Category__c.contains(project.IPM_Category_Group__c ))
                         {
                             if(existingProjectMilestone.IPM_Project_Launch_Date__c == project.IPM_Target_Launch_Dates__c)

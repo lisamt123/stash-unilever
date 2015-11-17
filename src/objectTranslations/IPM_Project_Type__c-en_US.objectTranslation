@@ -6,8 +6,16 @@
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>Project Type</value>
+        <value>IPM Project Type</value>
     </caseValues>
+    <fields>
+        <label><!-- Document Name --></label>
+        <name>Document_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- EcoDesign Sync Wait Time --></label>
+        <name>EcoDesign_Sync_Wait_Time__c</name>
+    </fields>
     <fields>
         <label><!-- Associated Company Card --></label>
         <name>IPM_CompanyCard__c</name>
@@ -59,6 +67,10 @@
     <fields>
         <label><!-- Create Regional Projects --></label>
         <name>IPM_CreateRegionalProjects__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dont Set Sync Flags --></label>
+        <name>IPM_Dont_Set_Sync_Flags__c</name>
     </fields>
     <fields>
         <label><!-- IPM Dont Sync Proj To EcoDesign --></label>
@@ -168,6 +180,10 @@
     <fields>
         <label><!-- Source Project Type --></label>
         <name>Source_Project_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sync To Eco Design --></label>
+        <name>Sync_To_Eco_Design__c</name>
     </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -7,7 +7,7 @@
     * @Referenced: IPM_AssesmentHandler
 ******************************************************************************/
 
-public with sharing class IPM_AssesmentHandler_Helper {
+public without sharing class IPM_AssesmentHandler_Helper {
     
     /****************************************************************************
     @Description : Delete existing assessments for the project and the country (Overloaded method)
@@ -65,8 +65,9 @@ public with sharing class IPM_AssesmentHandler_Helper {
         
         //check if all the assessments for all the respective projects have the same phase
         for(IPM_Assessment__c assessment: incomingAssessments ){
+            
             if(String.isNotBlank(assessment.Assessment_Batch_ID__c)){
-                AssmntBatchIdSet.add(assessment.Assessment_Batch_ID__c);
+            	AssmntBatchIdSet.add(assessment.Assessment_Batch_ID__c);
             }
             
             if(!projIdPhaseMapIncoming.containsKey(assessment.IPM_Project__c)){
@@ -143,6 +144,7 @@ public with sharing class IPM_AssesmentHandler_Helper {
         }
         
         else{
+            
             //before inserting delete the old assessments for the same phase, same project and same country
             deleteAssociatedAssesments(projIdPhaseMapIncoming,AssmntBatchIdSet);
             

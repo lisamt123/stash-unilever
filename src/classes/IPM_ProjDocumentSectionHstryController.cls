@@ -161,8 +161,8 @@ public with sharing class IPM_ProjDocumentSectionHstryController extends IPM_Pro
         }
         catch(Exception ex){
             Database.rollback(sp);
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'IPM_ProjDocumentSectionHstryController',
-                'moveToNextDocument',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);                
+            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),'IPM_ProjDocumentSectionHstryController',
+                                        'moveToNextDocument',ex.getMessage(),ex, 'Error', null, null, null);     
         }
     }
     

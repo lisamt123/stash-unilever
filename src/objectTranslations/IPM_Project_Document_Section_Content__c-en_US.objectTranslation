@@ -924,6 +924,10 @@
         <name>IPM_Inov_Value_Share_Action_Charter_Cmts__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Input Gate CMI --></label>
+        <name>IPM_Input_Gate_CMI__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM NPV Action Standard Charter Cmts --></label>
         <name>IPM_NPV_Action_Standard_Charter_Cmts__c</name>
     </fields>
@@ -1204,44 +1208,5 @@
         <label><!-- Section Content Ext Id --></label>
         <name>Section_Content_Ext_Id__c</name>
     </fields>
-    <layouts>
-        <layout>IPM Section Content Layout</layout>
-        <sections>
-            <label><!-- Assortment Strategy --></label>
-            <section>Assortment Strategy</section>
-        </sections>
-        <sections>
-            <label><!-- Assumptions --></label>
-            <section>Assumptions</section>
-        </sections>
-        <sections>
-            <label><!-- CRRT --></label>
-            <section>CRRT</section>
-        </sections>
-        <sections>
-            <label><!-- Consumer Evidence --></label>
-            <section>Consumer Evidence</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Customer Channel --></label>
-            <section>Customer Channel</section>
-        </sections>
-        <sections>
-            <label><!-- IPM Financial Details --></label>
-            <section>IPM Financial Details</section>
-        </sections>
-        <sections>
-            <label><!-- Mix --></label>
-            <section>Mix</section>
-        </sections>
-        <sections>
-            <label><!-- OTIF Section Details --></label>
-            <section>OTIF Section Details</section>
-        </sections>
-    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

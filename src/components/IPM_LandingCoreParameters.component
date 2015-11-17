@@ -238,7 +238,7 @@
                     <span class="coreParamTitle">{!$Label.IPM_Additional_Parameters}</span>
                     <apex:outputPanel rendered="{!isAdditionalPara}">
                     <div class="SecButtonSet coreDelete editcoreparam" value="{!$Page.IPM_CoreparameterPage}?id={!ProjectID}&AddCoreParameter=add" data-toggle="modal" data-target="#ipmEditCoreparameters" data-keyboard="false" data-backdrop="static" >
-                        <a class="icoButton edit1 editadditionalparam" data-toggle="modal" id="editAddtnlParam" data-target="#ipmEditAdditionalParameters" data-keyboard="false" data-backdrop="static" title="{!$Label.IPM_Edit}"  ></a>
+                        <a class="icoButton edit1 editadditionalparam" data-toggle="modal" id="editAddtnlParam" data-target="#ipmEditAdditionalParameters" data-keyboard="false" data-backdrop="static" title="{!$Label.IPM_Edit}" ></a>
                     </div>
                     </apex:outputPanel>
                     

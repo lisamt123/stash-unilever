@@ -8,6 +8,21 @@
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Actual_Launch_Date__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Actual_Launch_Month__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Actual_Launch_Year__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>IPM_Answer_of_Q1__c</field>
             <table>IPM_Project__c</table>
         </columns>
@@ -38,12 +53,62 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>BET_Archived_BET__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BET_Archived_BET_Text__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BET_Archived_Date__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BET_Archive_Status__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BET_Denied_BET_Link__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BET_Final_Release_Missed__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BET_First_Release_Missed__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>BET_Link_Requested__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>BET_Link_Requested_on_Date__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BET_TLD_Final_Release_Date__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BET_TLD_First_Release_Date__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>BET_Update__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
@@ -59,6 +124,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>IPM_Brand_Positioning__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Bulk_BET_Member_Request__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
@@ -79,6 +149,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>IPMCompany__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_CompanyCardText__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
@@ -113,7 +188,37 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Created_in_error__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Current_Document_Status__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Deputy_Project_Leader__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Document_Update_Comments__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Document_Update_Date__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EcoDesign_Sync_Error__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>EcoDesign_Sync_Status__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
@@ -123,7 +228,22 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Exists_AtLeast_OneAssmntPerEICountry__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Fetch_Timestamp_Mulesoft__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>IPM_Finance_Member__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>First_Sync_To_EcoDesign__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
@@ -153,17 +273,27 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>IPM_Category_Icon__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>IPM_Category_Text__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Category_Icon__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Child_Complexity__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>IPM_Company_Card__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Current_Gate_Name__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
@@ -178,7 +308,27 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>IPM_GateKeepingModel__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>IPM_GateKeeping_Model__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Global_ProjectId__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Global_Project_Id__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Golbal_Project_OwnerId__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
@@ -189,6 +339,16 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>IPM_Parent_Project__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Cluster__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Clusters__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
@@ -208,6 +368,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Project_Rollout__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>IPM_Strategic_Intent__c</field>
             <table>IPM_Project__c</table>
         </columns>
@@ -218,12 +383,22 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>IPM_White_Space_Project__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Is_Archieved__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>IPM_IsCompleted__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_IsSaved__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
@@ -278,7 +453,17 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>IPM_No_of_Country_Rollouts__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Owner</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_PhaseChangeQueueJobId__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
@@ -293,6 +478,16 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Previous_Target_Launch_Date__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Project_Countries__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>IPM_Project_Description__c</field>
             <table>IPM_Project__c</table>
         </columns>
@@ -303,7 +498,22 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Project_Gate__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>IPM_Project_Gatekeeper__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Project_Job_Status__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_ProjectJobType__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
@@ -318,12 +528,32 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Project_Members__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>IPM_Project_Name__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Project_Navigate__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>IPMProject_Span__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Project_Stopped_By__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_ProjectSubType__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
@@ -343,12 +573,42 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>RecordType</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>IPMRegion__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Region_Shr__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Regional_Project_Leader_Name__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Rollout_Status__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>IPM_Sector__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Selected_Project_Type__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_SourceProjectType__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
@@ -388,12 +648,22 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Success_Timestamp_EcoDesign__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Sustainability_Period__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Sustainability_Period_Changed__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Synced_From_EcoDesign_TimeStamp__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
@@ -418,135 +688,27 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Temporary_Phase__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Threshold_Value__c</field>
+            <table>IPM_Project__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>IPM_Trigger_Time_05__c</field>
             <table>IPM_Project__c</table>
         </columns>
-        <masterLabel>IPM Projects</masterLabel>
-    </sections>
-    <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Total_assets__c</field>
+            <field>Upcoming_Milestone_Due_Date__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Sharing__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Sub_Category__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Category_Level_3__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Group__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.CreatedBy</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Category_Group__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Product_Category__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Total_Number_of_Members__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Banner_1_Location__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Border_Colour__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.uw_Brand__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Brand__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Brand_Position_Keyword_Search__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Banner_Colour__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Product_Brand__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Banner_2_Location__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.CollaborationGroupId__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Background_Colour__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Final_Release_Due_Date__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Project_ID__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Category_Group_Keyword_Search__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Brand_Keyword_Search__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Brand_Position__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Id</field>
+            <field>Update_BET__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>
@@ -554,211 +716,6 @@
             <field>BET__c.Name</field>
             <table>IPM_Project__c</table>
         </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.CreatedDate</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.First_Release_Due_Date__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Collaboration_Group__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.FirstReleaseDate__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.StylePalette__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.FinalReleaseDate__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Category_Level_2__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Category__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.First_release_date__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Date_Published__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Final_release_date__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Category_Keyword_Search__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Studio__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Product_Category_Sub_Division__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Description__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Font_Colour__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Scope__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Inherit_Branding__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Studio_Chatter_Group__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Region__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Inoplan_Project_Keyword_Search__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Region_Keyword_Search__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Icon_Location__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Component_Colour__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Status__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Owner</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Project__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Presentation_Id__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Owner_Keyword_Search__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.LastActivityDate</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Max_of_Order_Of_Display__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Market_Clusters__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.No_Of_Asset_Items__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.LastModifiedBy</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Launch_Date__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.LastModifiedDate</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.IPM_Project__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Inoplan_Project__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Is_Archived__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Is_Fabric_Conditioners__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>BET__c.Market_Cluster__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <masterLabel>BET</masterLabel>
+        <masterLabel>IPM Projects</masterLabel>
     </sections>
 </ReportType>

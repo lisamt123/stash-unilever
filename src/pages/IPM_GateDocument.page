@@ -546,10 +546,10 @@
                                                                     <c:IPM_Financial_ActionStandards isEditable="false" projId="{!projectId}" secId="{!sub.Id}" rendered="{!AND(sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',project.IPM_Project_Type__c != 'Operational')}" > </c:IPM_Financial_ActionStandards>
                                                                     <c:IPM_FinGate projId="{!projectId}" rendered="{!OR(sub.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',sub.IPM_Master_Section_External_Id__c='Country_Business_Case')}" ></c:IPM_FinGate>
                                                                     <c:IPM_GateKeeperListView setEdit="false" getDocType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!sub.IPM_Master_Section_External_Id__c='Gate_Keeper_Checklist'}"></c:IPM_GateKeeperListView>
-                                                                    <c:IPM_OTIFStatusTableView otfType="Table" getSectionId="{!sub.Id}" rendered="{!sub.IPM_Master_Section_External_Id__c='OTIF_Status'}"></c:IPM_OTIFStatusTableView>
+                                                                    <c:IPM_OTIFStatusTableVIew otfType="Table" getSectionId="{!sub.Id}" rendered="{!sub.IPM_Master_Section_External_Id__c='OTIF_Status'}"></c:IPM_OTIFStatusTableVIew>
                                                                     <c:IPM_RND_QuestionsView rendered="{!if(OR(sub.IPM_Master_Section_External_Id__c=='R&D_Initial_Outline_Product_Pack',sub.IPM_Master_Section_External_Id__c=='R&D_Technical_Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}" RNDEdit="False"></c:IPM_RND_QuestionsView>
                                                                     <c:IPM_SC_Feasibility_QuestionsView rendered="{!if(OR(sub.IPM_Master_Section_External_Id__c=='Supply_Chain_Feasibility',sub.IPM_Master_Section_External_Id__c=='Supply_Chain_Technical_Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}"></c:IPM_SC_Feasibility_QuestionsView>
-                                                                    <c:IPM_RND_Feasibility_QuestionsView rendered="{!if(sub.IPM_Master_Section_External_Id__c=='R&D_Feasibility',true,false)}" RNDEdit="False" gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_RND_Feasibility_QuestionsView>    
+                                                                    <c:IPM_RND_FEASIBILITY_QuestionsView rendered="{!if(sub.IPM_Master_Section_External_Id__c=='R&D_Feasibility',true,false)}" RNDEdit="False" gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_RND_FEASIBILITY_QuestionsView>    
                                                                    
                                                                     <apex:outputField value="{!sub.IPM_Gate_Document_Summary__c }" rendered="{!IF(AND(sub.IPM_Section__r.IPM_Section_Type__c!='Header',sub.IPM_Section__r.IPM_Section_Type__c!='Sub Header'),True,False)}"/>
                                                                      
@@ -660,7 +660,7 @@
                         <!--   MOve to Next Phase Modal Pop-up Section ends here --------->
                         
                         <div id="ipmModalDiv">
-                        <c:IPM_Modal />
+                        <c:IPM_ModalRevamp />
                     </div>
                     <apex:outputPanel id="filterBlock">
                         <script>

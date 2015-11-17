@@ -56,26 +56,6 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
-        <fullName>IPM_Effective_from__c</fullName>
-        <description>Date upon which a particular Geography is considered to take effect</description>
-        <externalId>false</externalId>
-        <label>Effective_from</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>DateTime</type>
-    </fields>
-    <fields>
-        <fullName>IPM_Effective_to__c</fullName>
-        <description>date until which a specific Geography was considered</description>
-        <externalId>false</externalId>
-        <label>Effective_to</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>DateTime</type>
-    </fields>
-    <fields>
         <fullName>ISO_3166_1_alpha__c</fullName>
         <externalId>false</externalId>
         <label>ISO 3166-1 Alpha</label>
@@ -116,7 +96,7 @@
         <picklist>
             <picklistValues>
                 <fullName>Active</fullName>
-                <default>false</default>
+                <default>true</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Inactive</fullName>
@@ -527,31 +507,119 @@
     </fields>
     <label>Geography</label>
     <listViews>
-        <fullName>All1</fullName>
-        <columns>geography_type__c</columns>
+        <fullName>All</fullName>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
         <columns>NAME</columns>
-        <columns>parent_id__c</columns>
-        <columns>parent_L2__c</columns>
-        <columns>parent_mdm_Id__c</columns>
+        <columns>geography_type__c</columns>
         <columns>Status__c</columns>
+        <columns>parent_id__c</columns>
+        <columns>parent_L1__c</columns>
+        <columns>parent_L2__c</columns>
+        <columns>parent_L3__c</columns>
+        <columns>parent_L4__c</columns>
+        <columns>parent_L5__c</columns>
+        <columns>parent_L6__c</columns>
+        <columns>parent_L7__c</columns>
+        <columns>parent_L8__c</columns>
+        <columns>parent_L10__c</columns>
+        <columns>mdm_id__c</columns>
+        <columns>parent_mdm_Id__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>geography_type__c</field>
+            <operation>equals</operation>
+            <value>Unilever Cluster</value>
+        </filters>
+        <filters>
+            <field>geography_type__c</field>
+            <operation>equals</operation>
+            <value>Country</value>
+        </filters>
+        <filters>
+            <field>geography_type__c</field>
+            <operation>equals</operation>
+            <value>Country Group</value>
+        </filters>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Countries</fullName>
         <columns>NAME</columns>
+        <columns>mdm_id__c</columns>
         <columns>geography_type__c</columns>
+        <columns>parent_L1__c</columns>
+        <columns>parent_mdm_Id__c</columns>
         <columns>parent_L2__c</columns>
+        <columns>parent_L3__c</columns>
+        <columns>parent_L4__c</columns>
+        <columns>parent_L5__c</columns>
+        <columns>parent_L6__c</columns>
+        <columns>ISO_3166_1_alpha__c</columns>
+        <columns>ISO_3166_1_code__c</columns>
+        <columns>name_ISO_short__c</columns>
+        <columns>ISO_3166_1_numeric__c</columns>
         <columns>Status__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>geography_type__c</field>
             <operation>equals</operation>
-            <value>Country/Dependency</value>
+            <value>Country</value>
         </filters>
         <label>Countries</label>
-        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MCO</fullName>
+        <columns>NAME</columns>
+        <columns>mdm_id__c</columns>
+        <columns>geography_type__c</columns>
+        <columns>parent_L1__c</columns>
+        <columns>parent_mdm_Id__c</columns>
+        <columns>parent_L2__c</columns>
+        <columns>parent_id__c</columns>
+        <columns>parent_L3__c</columns>
+        <columns>parent_L4__c</columns>
+        <columns>parent_L5__c</columns>
+        <columns>parent_L6__c</columns>
+        <columns>ISO_3166_1_code__c</columns>
+        <columns>name_ISO__c</columns>
+        <columns>name_ISO_short__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>geography_type__c</field>
+            <operation>equals</operation>
+            <value>Country Group</value>
+        </filters>
+        <label>MCO</label>
+    </listViews>
+    <listViews>
+        <fullName>Unilever_Clusters</fullName>
+        <columns>NAME</columns>
+        <columns>mdm_id__c</columns>
+        <columns>geography_type__c</columns>
+        <columns>parent_L1__c</columns>
+        <columns>parent_mdm_Id__c</columns>
+        <columns>parent_L2__c</columns>
+        <columns>parent_L3__c</columns>
+        <columns>parent_L4__c</columns>
+        <columns>parent_L5__c</columns>
+        <columns>ISO_3166_1_alpha__c</columns>
+        <columns>ISO_3166_1_code__c</columns>
+        <columns>ISO_3166_1_numeric__c</columns>
+        <columns>name_ISO__c</columns>
+        <columns>name_ISO_medium__c</columns>
+        <columns>name_ISO_short__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>geography_type__c</field>
+            <operation>equals</operation>
+            <value>Unilever Cluster</value>
+        </filters>
+        <label>Unilever Clusters</label>
     </listViews>
     <nameField>
         <label>Name</label>

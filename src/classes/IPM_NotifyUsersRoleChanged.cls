@@ -12,7 +12,9 @@ public with sharing class IPM_NotifyUsersRoleChanged {
     private static Map<Id, String> subjectIdMessageMap = new Map<Id, String>();
     private static String posttext;
     private static final String CLASS_NAME = IPM_NotifyUsersRoleChanged.class.getName();
+    public static String testExceptionString;
     private static final String EXECUTE_METHOD = 'notifyIfUserRoleChanged';
+    public static final String GENERALIZED_EXCEPTION = 'GeneralizedException';
     private static final String ERROR_STR = 'Error';
     public static String excpMsg;
     
@@ -72,10 +74,12 @@ public with sharing class IPM_NotifyUsersRoleChanged {
         
         ChatterUtils.postChatterFeedWithMention(projectIds,subjectIdMessageMap,subjectIdMentionIdSetMap);
         
-       }catch(System.Exception ex){ // Generalized exception
+       if(Test.isRunningTest() && testExceptionString == GENERALIZED_EXCEPTION)
+            throw new IPMSystemException ();
+                        
+        }catch(System.Exception ex){ // Generalized exception
             excpMsg = ex.getMessage();
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,EXECUTE_METHOD,excpMsg,ex, ERROR_STR, null, null, null,null);
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));         
         }     
     }
     
@@ -97,5 +101,7 @@ public with sharing class IPM_NotifyUsersRoleChanged {
         posttext = null;
         
     }
-	
+
+    class IPMSystemException extends Exception{
+    }
 }
