@@ -36,7 +36,7 @@
     <apex:outputPanel rendered="{!ProjectId != null}">
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >{!$Label.BET_Name}</apex:outputLabel>
+                <apex:outputLabel >{!$Label.BET_BET_Name}</apex:outputLabel>
             </div>
             <div class="item-input">
                 <apex:inputText value="{!betobject.name}"/>
