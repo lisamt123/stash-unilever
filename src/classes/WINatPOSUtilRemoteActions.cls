@@ -35,7 +35,7 @@ public without sharing class WINatPOSUtilRemoteActions {
             if(category.Category_Logo__c != null){
                 Matcher logoMatcher=logoPattern.matcher(category.Category_Logo__c);
                 if(logoMatcher.matches() && logoMatcher.groupCount() == 1){
-                    urlToCategoryLogo=logoMatcher.group(1);
+                    urlToCategoryLogo = logoMatcher.group(1);
                 }
             }
             categoryLineItems.add(new WINatPOSRemoteActionWrapper.MenuLineItemWrapper(category.Name,String.valueOf(category.Id),urlToCategoryLogo,category.Parent_Category_Name__c));
