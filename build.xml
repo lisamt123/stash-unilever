@@ -150,14 +150,13 @@
         </fileset>
       </replaceregexp>        
       <replaceregexp byline="false" flags="gm">
-        <regexp pattern="[\s].*layoutAssignments.*[\s].*[\s].*(SocialPersona-Social).*[\s].*"/>
-        <substitution expression="&lt;/layoutAssignments&gt;"/>
+        <regexp pattern="[\s].*layoutAssignments.*[\s].*[\s].*(SocialPost-Social|SocialPersona-Social).*[\s]"/>
+        <substitution expression=""/>
         <fileset dir="${basedir}">
           <include name="**/*.profile"/>
           <include name="**/*.permissionset"/>
-        </fileset>
-      </replaceregexp>       
-
+        </fileset>      
+      </replaceregexp>  
       <delete><fileset dir="${basedir}" includes="**/agf__ADM_Work__c.object"/></delete>
       <delete><fileset dir="${basedir}" includes="**/KnowledgeArticleVersion.object"/></delete>
       <delete><fileset dir="${basedir}" includes="**/SocialPost.workflow"/></delete>
