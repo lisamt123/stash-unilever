@@ -148,12 +148,26 @@
           <include name="**/*.profile"/>
           <include name="**/*.permissionset"/>
         </fileset>
-      </replaceregexp>                  
+      </replaceregexp>        
+      <replaceregexp byline="false" flags="gm">
+        <regexp pattern="[\s].*layoutAssignments.*[\s].*[\s].*(SocialPersona-Social).*[\s].*"/>
+        <substitution expression=""/>
+        <fileset dir="${basedir}">
+          <include name="**/*.profile"/>
+          <include name="**/*.permissionset"/>
+        </fileset>
+      </replaceregexp>       
 
       <delete><fileset dir="${basedir}" includes="**/agf__ADM_Work__c.object"/></delete>
       <delete><fileset dir="${basedir}" includes="**/KnowledgeArticleVersion.object"/></delete>
       <delete><fileset dir="${basedir}" includes="**/SocialPost.workflow"/></delete>
       <delete><fileset dir="${basedir}" includes="**/SocialPersona.workflow"/></delete>
+      <delete>
+        <fileset dir="${basedir}">
+          <include name="**/SocialPersona-Social Persona Layout.layout"/>
+          <include name="**/SocialPost-Social Post Layout.layout"/>
+        </fileset>
+      </delete>   
       <delete><fileset dir="${basedir}" includes="**/Question.workflow"/></delete>
       <delete><fileset dir="${basedir}" includes="**/Reply.workflow"/></delete>
       <delete><fileset dir="${basedir}" includes="**/*.connectedApp"/></delete>
