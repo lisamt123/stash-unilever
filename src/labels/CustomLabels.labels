@@ -1110,6 +1110,14 @@ Are you sure you wish to proceed?</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>BET_Name</shortDescription>
+        <value>Name</value>
+    </labels>
+	<labels>
+        <fullName>BET_BET_Name</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BET_Name</shortDescription>
         <value>BET Name</value>
     </labels>
     <labels>

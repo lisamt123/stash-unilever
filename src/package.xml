@@ -1899,6 +1899,7 @@
         <members>BET_ArchiveConfirmation</members>
         <members>BET_Archiving</members>
         <members>BET_AssetType</members>
+		<members>BET_BET_Name</members>
         <members>BET_BetBrandPositionMandatory</members>
         <members>BET_BetCategoryGroupMandatory</members>
         <members>BET_BetCategoryMandatory</members>
