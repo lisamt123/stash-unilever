@@ -197,6 +197,10 @@
             <masterLabel>Market Ready Gate</masterLabel>
             <translation><!-- Market Ready Gate --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>PLE/Learnings</masterLabel>
+            <translation><!-- PLE/Learnings --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Version Number --></label>

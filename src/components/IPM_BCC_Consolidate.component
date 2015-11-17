@@ -35,7 +35,7 @@
                             <apex:outputText value="{!finance.Local_Project__r.name}"/>
                             </td>
                             <td>
-                              <apex:outputText value="{!IF(AND(finance.IPM_Business_Case_Confirmed__c=false,finance.Misaligned__c=false),'Unconfirmed',IF(finance.Misaligned__c=True,'Misaligned',IF(finance.IPM_Business_Case_Confirmed__c=True,'Confirmed','Aligned')))}"></apex:outputText>
+                              <apex:outputText value="{!IF(finance.IPM_Business_Case_Confirmed__c,'Confirmed','Unconfirmed')}"></apex:outputText>
                             </td>
                             <td>
                               <apex:outputText value="{!IF(finance.Misaligned__c,'Misaligned','Aligned')}"></apex:outputText>

@@ -12,15 +12,15 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'assets/font-awesome/css/font-awesome.min.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_EditTask.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/datepicker.css')}"/>
-    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_HomePage.css')}"/> 
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_HomePage.css')}"/>  
     
     <div class="container-fluid">
         <div class="row" id="EditTask">
             <apex:pageMessages id="messages"/> 
             <apex:form id="form">
-            	<apex:outputPanel id="errMassage" styleClass="errorBlock" layout="block" rendered="{!displayError}">
-			        	<span ><apex:pagemessages id="pagemessages"></apex:pagemessages></span>
-			    </apex:outputPanel> 
+                <apex:outputPanel id="errMassage" styleClass="errorBlock" layout="block" rendered="{!displayError}">
+                        <span ><apex:pagemessages id="pagemessages"></apex:pagemessages></span>
+                </apex:outputPanel> 
                 <div class="row inlineEdit">
                     <div class="col-xs-3">
                         <div class="inputField">
@@ -47,7 +47,6 @@
                             <div class="inputField">                                                   
                                 <apex:outputField value="{!tasks.IPM_Function__c}" styleClass="fieldFont tFuncEdit" id="functionOutput"/>
                             </div>
-                            
                             <div class="inputField">                            
                                 <apex:outputText value="{!userIdName[tasks.IPM_Assignee__c]}" id="assigneeID"></apex:outputText>
                             </div>
@@ -57,6 +56,7 @@
                         <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
                             <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
                         </apex:outputPanel>
+                        
                         <div class="col-xs-2">
                             <div class="inputField">
                                 <apex:inputField value="{!tasks.IPM_Due_Date1__c}" styleClass="dateInputBox calendar" id="dueDate">

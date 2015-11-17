@@ -2,7 +2,7 @@
 *@Author:Cognizant
 *@Date:October 2014
 *@Description : To update approver user 
-*Referring in page ipm_approver_Liset page 
+*Referring in page ipm_approverList page 
 *********************************************/
 public with sharing class IPM_ApproverList {
     //*@Description:string value to search approver
@@ -17,16 +17,16 @@ public with sharing class IPM_ApproverList {
     public Boolean displayApproveBtn{get;set;}
     //*@Description:hold bosscard id
     public string bosscardId{get;set;}
-    
-    public string IPM_ApproverList_STR='IPM_ApproverList';
+    private string saveApproverMethod='saveApprover';//saveApprover method
+    private string IPM_ApproverList_STR=IPM_ApproverList.class.getName();//get class name
     //*@Description:constructor
     public IPM_ApproverList(){
         // call utility class to save having to do this multiple times in multiple places
         IPM_IECompatible.ieFix();
         noResultfound_Bool=false;
         displayApproveBtn=false;  
-        searchapprover_STR='';
-        bosscardId=apexpages.currentPage().getparameters().get('Id');
+        searchapprover_STR=IPM_ConstantUtils.BLANK;
+        bosscardId=apexpages.currentPage().getparameters().get(IPM_ConstantUtils.SF_ID);
         loadUserList();           
     }
     /********************************************************************************
@@ -68,9 +68,7 @@ public with sharing class IPM_ApproverList {
                 update bossupdate;
             }
             catch(Exception ex) {
-                ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_ApproverList_STR,
-                                                       'saveApprover',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null); 
-                               
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));              
             } 
         }
     }
@@ -83,7 +81,7 @@ public with sharing class IPM_ApproverList {
         String per_Str='%';
         String UQuery='SELECT IPM_User__c,IPM_User__r.name,IPM_User__r.smallphotourl,IPM_User__r.email ';
         UQuery+=' FROM IPM_User_Profile__c WHERE  IPM_User__r.IsActive=True AND (IPM_User__r.name Like \'' + String.escapeSingleQuotes(searchapprover_STR) + per_Str + '\' ';
-        UQuery+=' OR IPM_User__r.email Like \'' + per_Str + String.escapeSingleQuotes(searchapprover_STR) + per_Str + '\')';                            
+        UQuery+=' OR IPM_User__r.email Like \'' + per_Str + String.escapeSingleQuotes(searchapprover_STR) + per_Str + '\') LIMIT 50000';                            
         approverList=database.query(UQuery);
         for(IPM_User_Profile__c up:approverList){
             if(!avoidDupUsemap.containskey(up.IPM_User__c)){
@@ -93,6 +91,6 @@ public with sharing class IPM_ApproverList {
         }
         approverList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.name,IPM_User__r.email,
                       IPM_User__r.SmallPhotoUrl FROM IPM_user_profile__c WHERE id IN:avoidDupUsemap.values() ORDER BY IPM_User__r.name limit 50000];
-            
+        
     }
 }

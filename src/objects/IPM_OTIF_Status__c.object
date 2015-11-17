@@ -119,6 +119,7 @@
     </fields>
     <fields>
         <fullName>OTIF_Sequence_Number__c</fullName>
+        <description>TO capture the sequence number for the OTIF</description>
         <externalId>false</externalId>
         <label>OTIF Sequence Number</label>
         <precision>3</precision>

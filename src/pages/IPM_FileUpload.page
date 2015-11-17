@@ -7,7 +7,7 @@
 *************************************************************************
 -->
 
-<apex:page id="IPM_FileUpload" controller="IPM_FileUploadController"  sidebar="false" showHeader="false" standardStyleSheets="false" >
+<apex:page controller="IPM_FileUploadController"  sidebar="false" showHeader="false" id="IPM_FileUpload" standardStylesheets="false" extensions="IPM_GetHelpDoc">
 <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/bootstrap.min.css')}"/>    
     
     
@@ -27,13 +27,13 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/progress.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_FileUpload.css')}"/>
     <div class="container-fluid">
-        <apex:form >            
+        <apex:form >          
             <div class="col-xs-12 infoMsgDiv"><apex:pageMessages id="pgsmg" /></div>
             <div class="marginTop pull-left">
                 <div class="uploadField">
                     <apex:outputLabel for="file"/>
                        <apex:actionRegion >
-                        <apex:inputFile value="{!myfile.body}"  filename="{!myfile.name}" id="file" />
+                        <apex:inputFile value="{!myfiles.body}"  filename="{!myfiles.name}" id="file" />
                     </apex:actionRegion>
                 </div>        
                 <div class="uploadButton ipmButtonGroup ipmFromAction">  

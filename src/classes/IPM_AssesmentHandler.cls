@@ -4,7 +4,7 @@
 * @Description Trigger Handler for the IPM_Assessment__c SObject. This class implements the ITrigger
                interface to help ensure the trigger code is bulkified and all in one place.
                */
-public without sharing class IPM_AssesmentHandler implements ITrigger{   
+public with sharing class IPM_AssesmentHandler implements ITrigger{   
     // Constructor
     public IPM_AssesmentHandler(){
         ExceptionLoggingHelper.initializeExceptionLog();
@@ -31,6 +31,10 @@ public without sharing class IPM_AssesmentHandler implements ITrigger{
     	If(Trigger.isInsert){
         	//check if at least one Assessment exists for each EI Country for their respective projects
         	IPM_AssesmentHandler_Helper.checkAtLeastOneAssmntPerEICountry( (List<IPM_Assessment__c>) Trigger.New);        	
+        }
+        If(Trigger.isDelete){
+        	//check if at least one Assessment exists for each EI Country for their respective projects
+        	IPM_AssesmentHandler_Helper.checkAtLeastOneAssmntPerEICountry( (List<IPM_Assessment__c>) Trigger.old);        	
         }
         
     }

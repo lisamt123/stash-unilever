@@ -46,7 +46,6 @@
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>This is an error Log object with API Name &apos;Exception_Log__c &apos;</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -251,26 +250,15 @@
     <label>Application Log</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>CREATED_DATE</columns>
-        <columns>NAME</columns>
+        <columns>Running_User__c</columns>
         <columns>OWNER.FIRST_NAME</columns>
-        <columns>OWNER.LAST_NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>LogCode__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
-    </listViews>
-    <listViews>
-        <fullName>All1</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
-    <listViews>
-        <fullName>IPM_Exceptions</fullName>
-        <columns>NAME</columns>
-        <columns>Application_Name__c</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>OWNER.FIRST_NAME</columns>
-        <filterScope>Everything</filterScope>
-        <label>IPM Exceptions</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>EXL-{000000000}</displayFormat>

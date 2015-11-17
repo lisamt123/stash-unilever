@@ -15,15 +15,11 @@ private class IPM_Consumer_Evidence_Controller_Test {
     public static IPM_Consumer_Evidence_Controller ipmConsumerEvidencon;
     public static User stdUserForConsumerEvid;
     public static IPM_Project_Document_Section_Content__c projDocSecCon;
-    public static final List<IPM_Country__c> countryList=new List<IPM_Country__c>();
     private static string COMMENTS_STR='comments';
-    private static string LOCAL_STR='Local';
-    private static string REGIONAL_STR='Regional';
     private static final string TEST_COMMENTS_STR='TestComments1';
     private static final string PROJECT_DOC_CREATED_STR='Project Document created';
     public static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
-    public static MDO_Geography__c mdo;
-    public static String geoExternalId = '';
+    private static final String CONSUMER_COUYNTRY='IND';
     /*************************************************************************
     *@Description : to Intialize(insert) the data for Project, Project Document
                     project Document section, project Document section content
@@ -58,63 +54,7 @@ private class IPM_Consumer_Evidence_Controller_Test {
              List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
             System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project inserted');//positive test
             
-            List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForConsumerEvid,stdUserForConsumerEvid,stdUserForConsumerEvid});
-            insert regionalRolloutList;
-            List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:regionalRolloutList[0].ID LIMIT 1];
-            System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout created');//positive test
-            
-            Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
-            for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
-            {
-                List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
-                if(projectToRolloutMap.containsKey(projectRollout.IPM_Project__c))
-                {
-                    projectRolloutList = projectToRolloutMap.get(projectRollout.IPM_Project__c);
-                }
-                projectRolloutList.add(projectRollout);
-                projectToRolloutMap.put(projectRollout.IPM_Project__c,projectRolloutList);
-                
-            }
-            
-            // Create local Rollouts for Created regional Rollouts.
-            List<IPM_Project_Rollout__c> localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>{stdUserForConsumerEvid});  
-            
-            insert localRolloutList; 
-            
-            List<IPM_Project_Rollout__c> proLocListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:localRolloutList[0].ID LIMIT 1];
-            System.assertEquals(proLocListObj[0].IPM_Rollout_Span__c,LOCAL_STR,'local rollout created');//positive test
-            
-            // Create Country specific information.
-             mdo = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId);
-                
-            insert mdo;
-            List<MDO_Geography__c>mdoList=[select Id from MDO_Geography__c where id=:mdo.Id limit 1];
-            system.assertNotEquals(mdoList[0].Id,null,'mdo created');
            
-            for(IPM_Project_Rollout__c localRolloutObj : localRolloutList)
-            {
-                
-                if(localRolloutObj.IPM_Rollout_Project__c.contains('AFR'))
-                {
-                    geoExternalId = 'AG';
-                }
-                else if(localRolloutObj.IPM_Rollout_Project__c.contains('LA'))
-                {
-                    geoExternalId = 'BR';
-                }
-                
-                IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo.id,
-                IPM_Project__c = localRolloutObj.IPM_Project__c,local_Rollout__c = localRolloutObj.Id,IPM_Rollout_Status__c = 'With MCO');    
-                countryList.add(tempCountry);
-            }
-            
-            
-            
-            
-            insert countryList;
-            
-            List<IPM_Country__c>counList=[select Id,IPM_Rollout_Status__c from IPM_Country__c where Id=:countryList[0].Id limit 1];
-            system.assertEquals(counList[0].IPM_Rollout_Status__c,'With MCO','country inserted');
         }
     }
     
@@ -146,7 +86,7 @@ private class IPM_Consumer_Evidence_Controller_Test {
             projDocSecCon = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(false);
             projDocSecCon.IPM_Project_Document_Section__c = projectDocSecListObj[0].ID;
             projDocSecCon.IPM_Consumer_Evidence_Logo_Id__c=IPM_ConstantUtils.BLANK;
-           projDocSecCon.IPM_Consumer_Evidence_Country__c='country name';
+           projDocSecCon.IPM_Consumer_Evidence_Country__c=CONSUMER_COUYNTRY;
             projDocSecCon.IPM_Consumer_Evidence_Concept_Name__c=IPM_ConstantUtils.CONCEPT_TEST_TWO;
             projDocSecCon.IPM_Consumer_Evidence_Comments__c=COMMENTS_STR;
             projDocSecCon.IPM_Content_Type__c = IPM_ConstantUtils.EVIDENCE_CONTENT_TYPE;
@@ -181,7 +121,7 @@ private class IPM_Consumer_Evidence_Controller_Test {
             ipmConsumerEvidencon.countryName='abc';
             ipmConsumerEvidencon.showCountryList();
             List<IPM_Project_Document_Section_Content__c>conList=[select Id,IPM_Consumer_Evidence_Country__c from IPM_Project_Document_Section_Content__c where IPM_Project_Document_Section__c=:ipmConsumerEvidencon.projDocSec.Id];
-            System.assertEquals(conList[0].IPM_Consumer_Evidence_Country__c,'country name','show country list called');
+            System.assertEquals(conList[0].IPM_Consumer_Evidence_Country__c,CONSUMER_COUYNTRY,'show country list called');
         }
         test.stopTest();
     }
@@ -268,7 +208,7 @@ private class IPM_Consumer_Evidence_Controller_Test {
             ipmConsumerEvidencon.deleteConcept();
             ipmConsumerEvidencon.projDocSecId=projectDocSecListObj[0].ID;
             ipmConsumerEvidencon.projDocSecConId=projDocSecCon.Id;
-            //ipmConsumerEvidencon.deleteCountry=countryList[0].Id;
+            ipmConsumerEvidencon.deleteCountry=CONSUMER_COUYNTRY;
             ipmConsumerEvidencon.deleteConcept();
             
             List<IPM_Project_Document_Section_Content__c>conList=[select Id,IPM_Content_Type__c from IPM_Project_Document_Section_Content__c where Id=:ipmConsumerEvidencon.projDocSecConId];
@@ -309,7 +249,7 @@ private class IPM_Consumer_Evidence_Controller_Test {
             ipmConsumerEvidencon.deleteCountry ='';
             ipmConsumerEvidencon.projDocSecId=projectDocSecListObj[0].ID;
             ipmConsumerEvidencon.deleteSelectedCountry();
-            //ipmConsumerEvidencon.deleteCountry =countryList[0].Id;
+            ipmConsumerEvidencon.deleteCountry =CONSUMER_COUYNTRY;
             ipmConsumerEvidencon.deleteSelectedCountry();
             List<IPM_Project_Document_Section_Content__c>conList=new List<IPM_Project_Document_Section_Content__c>();
             conList=[select Id,IPM_Consumer_Evidence_Country__c from IPM_Project_Document_Section_Content__c where Id=:ipmConsumerEvidencon.projDocSecConId];

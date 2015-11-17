@@ -1,3 +1,11 @@
+<!--  
+*************************************************************************
+*@Description:Component to store the links and URLs for resources used in other components and pages
+*@Author: Cognizant
+*@Created Date: 27/04/2015
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
 <apex:component >
 
 

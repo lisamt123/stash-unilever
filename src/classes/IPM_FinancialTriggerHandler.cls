@@ -3,8 +3,8 @@
 * @date         27/04/2015
 * @description  This class is used for managing the trigger methods for IPM_Financial__c object 
 */
-public without sharing class IPM_FinancialTriggerHandler{
-
+public with sharing class IPM_FinancialTriggerHandler
+{
     private static String DEFAULT_FINANCIAL_RECORDTYPE; //Recordtype Id for Default on IPM_Financial__c object
     private static String CONSOLIDATED_FINANCIAL_RECORDTYPE; //Recordtype Id for Consolidated on IPM_Financial__c object
 
@@ -21,8 +21,7 @@ public without sharing class IPM_FinancialTriggerHandler{
     
     private static final String Y_LABEL = 'Y'; //Innovation Year Label Prefix
     
-    private static final String CLASS_NAME = 'IPM_FinancialTriggerHandler'; //Class Name for Exception Logging
-
+    
     /*******************************************************************************************************
     * @description          Method to handle after insert Trigger context for IPM_Financial__c object
     * @param newFinancials  List of Trigger.new records
@@ -53,25 +52,31 @@ public without sharing class IPM_FinancialTriggerHandler{
     {
         //@@Design Review - Data Sharing - To update the ownerid of financial to project owner id
         Set<Id> projectIdset=new Set<Id>(); 
-        Map<Id,IPM_Project__c>projectMap; 
-          
+        Map<Id,IPM_Project__c>projectMap = new Map<Id,IPM_Project__c>(); 
+        
         for(IPM_Financial__c finance:newFinancials)
         {
             if(finance.Parent_Project__c != null)
             {
                 projectIdset.add(finance.Parent_Project__c);                       
-            }else if(finance.Regional_Project__c!= null){
+            }
+            else if(finance.Regional_Project__c!= null)
+            {
                 projectIdset.add(finance.Regional_Project__c);  
                 
-            }else if(finance.Local_Project__c!= null){
+            }
+            else if(finance.Local_Project__c!= null)
+            {
                 projectIdset.add(finance.Local_Project__c);    
             }
-        }
+            //system.debug(logginglevel.Error,'finance inside for &&&&&&: '+finance); 
         
+        }
         
         if(projectIdset != null && projectIdset.size() >0)
         {
-            projectMap = new Map<Id,IPM_Project__c>([Select id, ownerid, IPM_Category_Text__c from IPM_Project__c where id IN:projectIdset]);
+            projectMap = new Map<Id,IPM_Project__c>([Select id, ownerid,IPM_Category_Text__c from IPM_Project__c where id IN:projectIdset]);
+             
         }
         
         if(projectMap != null && projectMap.keyset().size() >0)
@@ -110,6 +115,7 @@ public without sharing class IPM_FinancialTriggerHandler{
         lstInsertFinancialYears.add(processFinancialYear(externalId, IPM_ConstantUtils.Y0_LABEL, IPM_ConstantUtils.Y0_YEARINDEX, IPM_ConstantUtils.YEAR_TYPE_CALENDAR, NULL));
         
         //Rest of the Years
+        //system.debug(LoggingLevel.Error,'ipmFinancial.Project_Sustainability_Period__c-->'+ipmFinancial.Project_Sustainability_Period__c);
         For(integer i=1; i<=Integer.valueOf(ipmFinancial.Project_Sustainability_Period__c); i++)
         {
             lstInsertFinancialYears.add(processFinancialYear(externalId, Y_LABEL+i, ''+i, IPM_ConstantUtils.YEAR_TYPE_INNOVATION, IPM_ConstantUtils.PL_TYPE_GROSS));
@@ -166,7 +172,7 @@ public without sharing class IPM_FinancialTriggerHandler{
         initialiseConsolidation(null, mapOldFinancials);
         
         //Write logic to process child record deletion - Salsforce Bug (https://success.salesforce.com/ideaView?id=08730000000BqSJ)
-        Set<Id> setFinancialIds = mapOldFinancials.keySet();
+        Set<Id> setFinancialIds = mapOldFinancials.keySet(); // NO SONAR. variable used in Dyanamic SOQL 
         String queryString = 'SELECT ';
         For (String field : Schema.SObjectType.IPM_Financial_Year__c.fields.getMap().KeySet()){
             if (field != 'Id')
@@ -200,6 +206,7 @@ public without sharing class IPM_FinancialTriggerHandler{
                 if(financial.Local_Project__c != null &&  financial.Misaligned__c){
                     updatedProjects.add(financial.Regional_Project__r);
                     updatedProjects.add(financial.Local_Project__r);
+                    //system.debug(logginglevel.Error,'updatedProjects$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'+updatedProjects);
                     IPM_ChatterFeedHelper.postChatterIfLocalRegionalMisaligned(updatedProjects);
                 }
             }else{
@@ -296,6 +303,7 @@ public without sharing class IPM_FinancialTriggerHandler{
         }
             
         initialiseConsolidation(mapNewFinancials, mapOldFinancials);
+        IPM_ChatterFeedHelper.postChatterIfBusinessCaseSaved((List<IPM_Financial__c>)Trigger.New);
     }
 
     /*******************************************************************************************************
@@ -342,10 +350,13 @@ public without sharing class IPM_FinancialTriggerHandler{
     private void initialiseConsolidation(Map<Id, IPM_Financial__c> mapNewFinancials, Map<Id, IPM_Financial__c> mapOldFinancials){
         DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
         CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
-
+        
+            
         //Consolidate Financials
         getConsolidatedFinancials(setFinancialExternalIds);
         mapUpsertConsolidatedFinancials = new Map<String, IPM_Financial__c>();
+        //System.debug(LoggingLevel.Error,'mapAllConsolidatedFinancials-->>>'+mapAllConsolidatedFinancials);
+        //System.debug(LoggingLevel.Error,'mapNewFinancials-->>>'+mapNewFinancials);
         
         if(mapNewFinancials != null)
         {
@@ -356,9 +367,10 @@ public without sharing class IPM_FinancialTriggerHandler{
                     //Consolidate Global Financials for Global Original Projects only
                     if(newFinancial.Global_External_Id__c != null && newFinancial.Global_External_Id__c != '')
                     {
+                        //System.debug(LoggingLevel.Error,'Global_External_Id__c-->>>'+newFinancial.Global_External_Id__c);
                         consolidateFinancials(newFinancial, mapOldFinancials.get(newFinancial.Id), IPM_ConstantUtils.PROJECT_SPAN_GLOBAL);
                     }
-                    
+                    //System.debug(LoggingLevel.Error,'mapOldFinancials-->>>'+mapOldFinancials);
                     consolidateFinancials(newFinancial, mapOldFinancials.get(newFinancial.Id), IPM_ConstantUtils.PROJECT_SPAN_REGIONAL);
                 }
             }
@@ -386,7 +398,7 @@ public without sharing class IPM_FinancialTriggerHandler{
         if (lstUpdateFinancialYears!=null && !lstUpdateFinancialYears.isEmpty())
             Database.update(lstUpdateFinancialYears);
 
-        if (lstInsertFinancialYears!=null && !lstInsertFinancialYears.isEmpty())
+       if (lstInsertFinancialYears!=null && !lstInsertFinancialYears.isEmpty())
             Database.insert(lstInsertFinancialYears);
     }
     
@@ -456,8 +468,8 @@ public without sharing class IPM_FinancialTriggerHandler{
     * @return                   NONE
     */
     private void consolidateFinancials(IPM_Financial__c newFinancial, IPM_Financial__c oldFinancial, String consolidationType){
-        String newConsolidatedFinExtId;
-        String oldConsolidatedFinExtId;
+        String newConsolidatedFinExtId = '';
+        String oldConsolidatedFinExtId = '';
         if(consolidationType == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
         {
             if(newFinancial != null)
@@ -535,6 +547,12 @@ public without sharing class IPM_FinancialTriggerHandler{
         Set<String> fieldSufixes = new Set<String>{IPM_ConstantUtils.PROJECT_SPAN_GLOBAL, IPM_ConstantUtils.PROJECT_SPAN_REGIONAL, IPM_ConstantUtils.PROJECT_SPAN_LOCAL};
         Decimal value;
         
+        //System.debug(LoggingLevel.ERROR,'newFinancial-->>'+newFinancial);
+        System.debug(LoggingLevel.ERROR,'newConsolidatedFinancial-->>'+newConsolidatedFinancial);
+        //System.debug(LoggingLevel.ERROR,'oldFinancial-->>'+oldFinancial);
+        System.debug(LoggingLevel.ERROR,'oldConsolidatedFinancial-->>'+oldConsolidatedFinancial);
+        //System.debug(LoggingLevel.ERROR,'fieldName-->>'+fieldName);
+        
         For(String suffix : fieldSufixes)
         {
             if(newFinancial != null && newConsFinancial !=null)
@@ -546,6 +564,8 @@ public without sharing class IPM_FinancialTriggerHandler{
                 }
                 
                 Object newValueObject = newConsFinancial.get(fieldname + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
+                
+                //System.debug(LoggingLevel.ERROR,'newValueObject-->>>'+newValueObject);
                 
                 if(newValueObject == null)
                 {

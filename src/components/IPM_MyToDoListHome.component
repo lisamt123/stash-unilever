@@ -52,22 +52,21 @@
                                          <apex:outputfield value="{!p.IPM_Task_Name__c}" />
                                      </span>
                                      <span class="captions1 blockDisplay dueMarginBottom">
-                                        <apex:outputField value="{!p.IPM_Due_Date1__c}" /> <!-- | {!p.IPM_Project__r.IPM_Category_Text__c} | {!p.IPM_Phase__c} --></span>
+                                        <apex:outputField value="{!p.IPM_Due_Date1__c}" /> </span>
                                          <span class="captions1 blockDisplay"> 
                                            <apex:outputPanel >
-                                                <a href="/apex/IPM_ProjectDocumentSectionEditor?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}"
+                                                <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}"
                                                 target="_blank"> 
-                                                <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}" />&nbsp;
+                                                <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}" />
                                                 <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}" />
                                                 <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel>
-                                                </a>&nbsp;
+                                                </a>
                                         </apex:outputPanel>
                                     </span>
-                            <!--<apex:outputText value="IN {!p.IPM_Project__r.Name}"></apex:outputText>-->
                                 <span class="blockDisplay">
                                     <apex:outputPanel >
                                         <span class="listIn">{!$Label.IPM_IN} </span>
-                                        <a href="/apex/IPM_ProjectOverview?id={!p.IPM_Project__c}">
+                                        <a href="{!$Page.IPM_ProjectOverview}?id={!p.IPM_Project__c}">
                                             <apex:outputText value="{!p.IPM_Project__r.Name}" />
                                         </a>
                                     </apex:outputPanel>
@@ -144,23 +143,22 @@
                                         <apex:outputfield value="{!p.IPM_Task_Name__c}" />
                                     </span> 
                                     <span class="captions1 blockDisplay">
-                                    <apex:outputField value="{!p.IPM_Due_Date1__c}" /> <!-- - {!p.IPM_Project__r.IPM_Category_Text__c} - {!p.IPM_Phase__c} -->
+                                    <apex:outputField value="{!p.IPM_Due_Date1__c}" /> 
                                     </span>
                                     <span class="captions1 blockDisplay">
                                         <apex:outputPanel >
-                                            <a href="/apex/IPM_ProjectDocumentSectionEditor?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}"
+                                            <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}"
                                             target="_blank"> 
-                                                <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}" />&nbsp;
+                                                <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}" />
                                                 <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}" />
                                                 <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel>
-                                            </a>&nbsp;
+                                            </a>
                                         </apex:outputPanel>                         
                                     </span>
-                        <!--<apex:outputText value="IN {!p.IPM_Project__r.Name}"></apex:outputText>-->
                                 <span class="blockDisplay">
                                 <apex:outputPanel >
                                 <span class="listIn">{!$Label.IPM_IN}</span>
-                                <a href="/apex/IPM_ProjectOverview?id={!p.IPM_Project__c}"> 
+                                <a href="{!$Page.IPM_ProjectOverview}?id={!p.IPM_Project__c}"> 
                                 <apex:outputText value="{!p.IPM_Project__r.Name}" /></a>
                                 </apex:outputPanel>
                                 </span>
@@ -231,21 +229,21 @@
                                 <div class="col-sm-10">
                                     <span class="captions1 blockDisplay"><apex:outputPanel rendered="{!p.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel>
                                         <apex:outputfield value="{!p.IPM_Task_Name__c}" /></span> <span
-                                        class="captions1 blockDisplay"><apex:outputField value="{!p.IPM_Due_Date1__c}" /> <!-- | {!p.IPM_Project__r.IPM_Category_Text__c} | {!p.IPM_Phase__c} --></span>
+                                        class="captions1 blockDisplay"><apex:outputField value="{!p.IPM_Due_Date1__c}" /> </span>
                                     <span class="captions1 blockDisplay">
                                         <apex:outputPanel >
-                                            <a href="/apex/IPM_ProjectDocumentSectionEditor?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}"
+                                            <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}"
                                                 target="_blank"> 
-                                               <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}" />&nbsp;
+                                               <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}" />
                                                <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}" />
                                                <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel>
-                                            </a>&nbsp;
+                                            </a>
                                          </apex:outputPanel>
                                     </span>
                                     <span class="blockDisplay">
                                         <apex:outputPanel >
                                         <span class="listIn">{!$Label.IPM_IN} </span>
-                                        <a href="/apex/IPM_ProjectOverview?id={!p.IPM_Project__c}"> 
+                                        <a href="{!$Page.IPM_ProjectOverview}?id={!p.IPM_Project__c}"> 
                                         <apex:outputText value="{!p.IPM_Project__r.Name}"></apex:outputText>
                                         </a>
                                         </apex:outputPanel>
@@ -297,15 +295,4 @@
             <apex:param name="isChecked" assignTo="{!isChecked}" value="" />
         </apex:actionFunction>
     </apex:form>
-    <script>
-         accrdn();
-         function myAssignedTasks(taskId, isChecked) {
-                    if(isChecked != true) {     
-                        jq('.taskCheck input[type=checkbox]#'+taskId).closest(".recordBox").removeClass("selected");
-                    }else {
-                        jq('.taskCheck input[type=checkbox]#'+taskId).closest(".recordBox").addClass("selected");
-                    }
-                    markComplete(taskId, isChecked);
-                }
-    </script>
 </apex:component>

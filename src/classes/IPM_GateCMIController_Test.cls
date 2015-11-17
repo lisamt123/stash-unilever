@@ -33,24 +33,24 @@ public class IPM_GateCMIController_Test{
     private static final string RESULT_STR='result';
     private static final string NAME_STR='cmi color';
     private static final string NAME_OVERALL_STR='cmi color overall';
-     public static mdo_Geography__c mdoGeo=new mdo_Geography__c();
+    public static mdo_Geography__c mdoGeo=new mdo_Geography__c();
     private static final string INDIA_STR='IND';
     public static List<IPM_Country__c>countryList=new List<IPM_Country__c>();
-   
+
     /*************************************************************************************************************************
     * @description Test Data
     */
     @testSetup static void initializeData(){
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
-      {
-          // user has to be created as system admin 
+        {
+            // user has to be created as system admin 
             stdUserForGateCMI= IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
         }       
-       
+        
         List<User>userLists=[SELECT id FROM user WHERE id=:stdUserForGateCMI.id LIMIT 1];
         System.AssertEquals(userLists[0].id, stdUserForGateCMI.id,'user id is:'+userLists[0].id);//positive test
-       
-           // Create Company Card information 
+        
+        // Create Company Card information 
         IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
         IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
         IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
@@ -64,18 +64,18 @@ public class IPM_GateCMIController_Test{
         projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForGateCMI);
         System.runAs(stdUserForGateCMI) {
             insert projectList;
-        
-        project=projectList[0];
-        project.Name='ProChgStatus';
-        List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
-        System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name');//positive test
-        
-        List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForGateCMI,stdUserForGateCMI,stdUserForGateCMI});
+            
+            project=projectList[0];
+            project.Name='ProChgStatus';
+            List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
+            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name');//positive test
+            
+            List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForGateCMI,stdUserForGateCMI,stdUserForGateCMI});
             insert regionalRolloutList;
             List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:regionalRolloutList[0].ID LIMIT 1];
             System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout created');//positive test
-           
-           Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
+            
+            Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
             for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
             {
                 List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
@@ -85,15 +85,15 @@ public class IPM_GateCMIController_Test{
                 }
                 projectRolloutList.add(projectRollout);
                 projectToRolloutMap.put(projectRollout.IPM_Project__c,projectRolloutList);
-               
+                
             }
             
-           // Create local Rollouts for Created regional Rollouts.
+            // Create local Rollouts for Created regional Rollouts.
             List<IPM_Project_Rollout__c> localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>{stdUserForGateCMI});  
             
             insert localRolloutList; 
-           
-           List<IPM_Project_Rollout__c> proLocListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:localRolloutList[0].ID LIMIT 1];
+            
+            List<IPM_Project_Rollout__c> proLocListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:localRolloutList[0].ID LIMIT 1];
             System.assertEquals(proLocListObj[0].IPM_Rollout_Span__c,LOCAL_STR,'local rollout created');//positive test
             
             // Create Country specific information.
@@ -109,13 +109,13 @@ public class IPM_GateCMIController_Test{
                 {
                     geoExternalId = 'BR';
                 }
-            
-             MDO_Geography__c mdo = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId);
-                 
+                
+                MDO_Geography__c mdo = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId);
+                
                 insert mdo;
                 List<MDO_Geography__c>mdoList=[select Id from MDO_Geography__c where id=:mdo.Id limit 1];
                 system.assertNotEquals(mdoList[0].Id,null,'mdo created');
-       
+                
                 IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo.id,
                 IPM_Project__c = localRolloutObj.IPM_Project__c,local_Rollout__c = localRolloutObj.Id,IPM_Rollout_Status__c = 'With MCO');    
                 countryList.add(tempCountry);
@@ -123,9 +123,9 @@ public class IPM_GateCMIController_Test{
             
             insert countryList;
             
-           List<IPM_Country__c>counList=[select Id,IPM_Rollout_Status__c from IPM_Country__c where Id=:countryList[0].Id limit 1];
+            List<IPM_Country__c>counList=[select Id,IPM_Rollout_Status__c from IPM_Country__c where Id=:countryList[0].Id limit 1];
             system.assertEquals(counList[0].IPM_Rollout_Status__c,'With MCO','country inserted');
-    }
+        }
     }
     
     /*************************************************************************************************************************
@@ -147,15 +147,15 @@ public class IPM_GateCMIController_Test{
                 
                 System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
             }
-           
+            
             projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
             where IPM_Project_Document__c=:projDocList[0].Id];
             system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id);
             projectDocSecListObj[0].IPM_CMI_Selected_Test_Concepts__c='concept';
             projectDocSecListObj[0].IPM_CMI_Selected_Countries__c=INDIA_STR;
             update projectDocSecListObj[0];
-             
-             document=projDocList[0];
+            
+            document=projDocList[0];
             docSec=projectDocSecListObj[0];
             
             
@@ -187,13 +187,12 @@ public class IPM_GateCMIController_Test{
             List<IPM_CMI_Overall_Color_Mapping__c>colorList=[select Id,Name from IPM_CMI_Overall_Color_Mapping__c where Id=:overallColor.Id];
             System.assertEquals(colorList[0].Name,NAME_OVERALL_STR,'color mapping created');
             
-        
+            
             
             projectDocSecConListObj = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(false);
             projectDocSecConListObj.IPM_Project_Document_Section__c = docSec.ID;
             projectDocSecConListObj.IPM_Gate_Type__c='Charter';
             projectDocSecConListObj.IPM_Gate_CMI__c=gateCMICountry.Id; 
-            projectDocSecConListObj.IPM_CMI_Country__c = INDIA_STR;
             projectDocSecConListObj.IPM_CMI_Is_Free_Text__c=true;
             projectDocSecConListObj.IPM_CMI_Result__c=RESULT_STR;
             projectDocSecConListObj.IPM_CMI_Results_Acheived__c='achieved';
@@ -217,11 +216,7 @@ public class IPM_GateCMIController_Test{
             List<IPM_Project_Document_Section_Content__c>contentList=[select Id,IPM_CMI_Result__c from IPM_Project_Document_Section_Content__c where Id=:projectDocSecConObj.Id];
             System.assertEquals(contentList[0].IPM_CMI_Result__c,RESULT_STR,'content created');
             
-              
             
-            pRef = Page.IPM_CMIGateView;
-            pRef.getParameters().put(IPM_ConstantUtils.SF_ID, projectListObj[0].Id);
-            Test.setCurrentPage(pRef);
             ipmCmiControl=new IPM_GateCMIController();
             
         }
@@ -235,7 +230,7 @@ public class IPM_GateCMIController_Test{
         initializeTestMethodData();
         system.RunAs(globalUser){
             test.startTest();
-             
+            
             ipmCmiControl.isEditable=true;
             ipmCmiControl.resultTiming=system.today();
             ipmCmiControl.overallColorMethod='color method';
@@ -258,8 +253,8 @@ public class IPM_GateCMIController_Test{
             ipmCmiControl.gateType=IPM_ConstantUtils.CONTRACT_GATE;
             ipmCmiControl.getCountries();
             
-          List<IPM_Project_Document_Section__c>secList=[select Id,IPM_Project_Document__r.IPM_GateDocuments__c from IPM_Project_Document_Section__c where Id=:ipmCmiControl.projDocSecId];
-           System.assertEquals(secList[0].IPM_Project_Document__r.IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,'gate value');
+            List<IPM_Project_Document_Section__c>secList=[select Id,IPM_Project_Document__r.IPM_GateDocuments__c from IPM_Project_Document_Section__c where Id=:ipmCmiControl.projDocSecId];
+            System.assertEquals(secList[0].IPM_Project_Document__r.IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,'gate value');
             Test.stopTest();
         }
     }
@@ -308,7 +303,7 @@ public class IPM_GateCMIController_Test{
             ipmCmiControl.projDocSecId=docSec.Id;
             ipmCmiControl.createCMISections();
             List<IPM_Project_Document_Section__c>secList=[SELECT Id,IPM_CMI_Selected_Countries__c,IPM_CMI_Selected_Test_Concepts__c,IPM_Project_Document__c,IPM_Project_Document__r.IPM_GateDocuments__c 
-                    FROM IPM_Project_Document_Section__c WHERE Id=:projectDocSecListObj[0].Id];
+            FROM IPM_Project_Document_Section__c WHERE Id=:projectDocSecListObj[0].Id];
             System.assertEquals(secList[0].IPM_Project_Document__c,document.Id,'cmi section value');
             Test.stopTest();
         }
@@ -332,7 +327,7 @@ public class IPM_GateCMIController_Test{
             
             ipmCmiControl.createCountryCMI();
             List<IPM_Gate_CMI__c>cmiListData=[SELECT id,Gate__c,Country__c,Element__c,Test__c,KPI__c,Input__c,Results__c,IPM_CMI_Overall_Colour_Score_Method__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c 
-                 FROM IPM_Gate_CMI__c WHERE Id=:ipmCmiControl.gateCMIId];
+            FROM IPM_Gate_CMI__c WHERE Id=:ipmCmiControl.gateCMIId];
             System.assertEquals(cmiListData[0].Country__c,'IND;abc','country value');
             gateCMICountry.Country__c='abc';
             update gateCMICountry;
@@ -378,7 +373,7 @@ public class IPM_GateCMIController_Test{
             ipmCmiControl.countryName = INDIA_STR;
             ipmCmiControl.createCountryCMI();
             List<IPM_Gate_CMI__c>cmiListData=[SELECT id,Gate__c,Country__c,Element__c,Test__c,KPI__c,Input__c,Results__c,IPM_CMI_Overall_Colour_Score_Method__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c 
-                 FROM IPM_Gate_CMI__c WHERE Id=:ipmCmiControl.gateCMIId];
+            FROM IPM_Gate_CMI__c WHERE Id=:ipmCmiControl.gateCMIId];
             System.assertEquals(cmiListData[0].Country__c,INDIA_STR,'update cmi');
             Test.stopTest();
         }
@@ -400,7 +395,7 @@ public class IPM_GateCMIController_Test{
             ipmCmiControl.skipTest();
             ipmCmiControl.updateSkipTestReason();
             List<IPM_Gate_CMI__c>cmiListData=[SELECT id,Gate__c,Country__c,Element__c,Test__c,KPI__c,Input__c,Results__c,IPM_CMI_Overall_Colour_Score_Method__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c 
-                 FROM IPM_Gate_CMI__c WHERE Id=:ipmCmiControl.gateCMIId];
+            FROM IPM_Gate_CMI__c WHERE Id=:ipmCmiControl.gateCMIId];
             System.assertEquals(cmiListData[0].IPM_Skip_Test_Reason__c,'reason','skip test');
             test.stopTest();
         }
@@ -424,7 +419,7 @@ public class IPM_GateCMIController_Test{
             ipmCmiControl.overallColorMapping=overallColorMap;
             ipmCmiControl.gateType=IPM_ConstantUtils.CONTRACT_GATE;
             ipmCmiControl.isEditActionStandard=true;
-           
+            
             ipmCmiControl.overallScoreColor(COUNTRY_NAME_STR,string.valueOf(gateCMICountry.Id),true);
             ipmCmiControl.isEditActionStandard=false;
             ipmCmiControl.overallScoreColor(COUNTRY_NAME_STR,string.valueOf(gateCMICountry.Id),true);
@@ -433,31 +428,15 @@ public class IPM_GateCMIController_Test{
             ipmCmiControl.overallScoreColor(COUNTRY_NAME_STR,string.valueOf(gateCMICountry.Id),true);
             ipmCmiControl.isEditActionStandard=false;
             ipmCmiControl.overallScoreColor(COUNTRY_NAME_STR,string.valueOf(gateCMICountry.Id),true);
-             List<IPM_Project_Document_Section_Content__c>secColorList=[SELECT Id,IPM_CMI_Overall_Colour_Achieved__c,IPM_CMI_Color_Score_Value_Achieved__c,IPM_CMI_Color_Score_Value__c,IPM_CMI_Overall_Color_Score_Achieved__c,IPM_CMI_Overall_Score_Achieved__c,IPM_CMI_Overall_Score_Label__c,IPM_CMI_Result__c,IPM_CMI_Country__c,IPM_CMI_Results_Acheived__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Gate_Test__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c 
-                      FROM IPM_Project_Document_Section_Content__c 
-                      WHERE IPM_Gate_CMI__c=:ipmCmiControl.gateCMIId];
+            List<IPM_Project_Document_Section_Content__c>secColorList=[SELECT Id,IPM_CMI_Overall_Colour_Achieved__c,IPM_CMI_Color_Score_Value_Achieved__c,IPM_CMI_Color_Score_Value__c,IPM_CMI_Overall_Color_Score_Achieved__c,IPM_CMI_Overall_Score_Achieved__c,IPM_CMI_Overall_Score_Label__c,IPM_CMI_Result__c,IPM_CMI_Country__c,IPM_CMI_Results_Acheived__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Gate_Test__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c 
+            FROM IPM_Project_Document_Section_Content__c 
+            WHERE IPM_Gate_CMI__c=:ipmCmiControl.gateCMIId];
             System.assertEquals(secColorList[0].IPM_CMI_Country__c,COUNTRY_NAME_STR,'overall score test');
             test.stopTest();
         }
     }
     
-    /*************************************************************************************************************************
-    * @description Running Test Script
-    */
-    static testmethod void testupdateResultTiming(){
-        initializeTestMethodData();
-        system.RunAs(globalUser){
-            test.startTest();
-            ipmCmiControl.projDocSecId=docSec.Id;
-            ipmCmiControl.secConId=projectDocSecConListObj.Id;
-            ipmCmiControl.projectId=project.Id;
-            ipmCmiControl.isSkip = true;
-            ipmCmiControl.gateCMIId=gateCMICountry.Id;
-            ipmCmiControl.updateResultTiming();
-            test.stopTest();
-        }
-    }
-    
+
     /*************************************************************************************************************************
     * @description Running Test Script
     */
@@ -469,12 +448,13 @@ public class IPM_GateCMIController_Test{
             ipmCmiControl.secConId=projectDocSecConListObj.Id;
             ipmCmiControl.projectId=project.Id;
             ipmCmiControl.isSkip = true;
-            ipmCmiControl.gateCMIId=gateCMICountry.Id;
             ipmCmiControl.countryNameStr=COUNTRY_NAME_STR;
+            ipmCmiControl.gateCMIId=gateCMICountry.Id;
+            ipmCmiControl.updateResultTiming();
             ipmCmiControl.isEditActionStandard=false;
             ipmCmiControl.updateOverallScore();
             List<IPM_Project_Document_Section_Content__c>secColorList=[SELECT id,IPM_CMI_Country__c,IPM_CMI_Overall_Colour_Achieved__c,IPM_CMI_Color_Score_Value_Achieved__c,IPM_CMI_Color_Score_Value__c,IPM_CMI_Overall_Score_Achieved__c,IPM_CMI_Overall_Color_Score_Achieved__c,IPM_CMI_Overall_Score_Label__c,IPM_CMI_Result_Timing__c,IPM_Gate_CMI__c,IPM_CMI_Overall_Comments__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c FROM IPM_Project_Document_Section_Content__c 
-                                        WHERE IPM_Gate_CMI__c=:ipmCmiControl.gateCMIId];
+            WHERE IPM_Gate_CMI__c=:ipmCmiControl.gateCMIId];
             System.assertEquals(secColorList[0].IPM_CMI_Country__c,COUNTRY_NAME_STR,'overall score test');
             test.stopTest();
         }
@@ -494,8 +474,8 @@ public class IPM_GateCMIController_Test{
             ipmCmiControl.countryNameStr=COUNTRY_NAME_STR;
             ipmCmiControl.deleteCountry();
             List<IPM_Project_Document_Section_Content__c>secColorList=[SELECT Id FROM IPM_Project_Document_Section_Content__c
-                            WHERE IPM_Gate_CMI__c=:ipmCmiControl.gateCMIId];
-             System.assertEquals(secColorList.size(),0,'country deleted');
+            WHERE IPM_Gate_CMI__c=:ipmCmiControl.gateCMIId];
+            System.assertEquals(secColorList.size(),0,'country deleted');
             Test.stopTest();
         }
     }           
@@ -513,8 +493,8 @@ public class IPM_GateCMIController_Test{
             ipmCmiControl.gateCMIId=gateCMI.Id;         
             ipmCmiControl.deleteCMI();
             List<IPM_Project_Document_Section_Content__c>secColorList=[SELECT Id FROM IPM_Project_Document_Section_Content__c
-                            WHERE IPM_Gate_CMI__c=:ipmCmiControl.gateCMIId];
-             System.assertEquals(secColorList.size(),0,'country deleted');
+            WHERE IPM_Gate_CMI__c=:ipmCmiControl.gateCMIId];
+            System.assertEquals(secColorList.size(),0,'country deleted');
             Test.stopTest();
         }
     }

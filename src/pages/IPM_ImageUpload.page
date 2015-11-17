@@ -7,7 +7,7 @@
 *************************************************************************
 -->
 
-<apex:page controller="IPM_ImageUploadController" sidebar="false" showHeader="false">
+<apex:page controller="IPM_ImageUploadController" sidebar="false" showHeader="false" extensions="IPM_GetHelpDoc" standardStylesheets="false" id="IPM_ImageUpload">
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Buttons.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/bootstrap.min.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_imageupload.css')}"/>
@@ -34,7 +34,7 @@
                 <input id="errorval" value="{!isError}" hidden="hidden"></input> 
                 <div class="uploadButton">  
                     <apex:actionRegion >   
-                        <apex:commandButton action="{!upload}" value="Upload Image" styleClass="uploadbuttonPadding ipmButton primary" />            
+                        <apex:commandButton action="{!upload}" value="{!$Label.IPM_UPLOAD_IMAGE}" styleClass="uploadbuttonPadding ipmButton primary" />            
                     </apex:actionRegion>
                 </div> 
             </div>   

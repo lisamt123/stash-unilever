@@ -540,18 +540,19 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             projSubSectionList=Database.query(Query);
             proSubSectionParentsSequenceList = new Set<String>();
             for(IPM_Project_Document_Section__c temp : projSubSectionList){
+            	system.debug('temp.IPM_Section__r.IPM_Section_Type__c--> '  +temp.IPM_Section__r.IPM_Section_Type__c);
                 if(temp.IPM_Section__r.IPM_Parent_Section__c != null){
                     if(!proSectionParentsSequenceList.contains(temp.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c)){
                         proSubSectionParentsSequenceList.add(temp.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c);
                     }
                 }
             }
-            
+            system.debug('projSubSectionList--> '  +projSubSectionList.size());
             for(String tempStr : proSubSectionParentsSequenceList){
                 proSubSectionParentsSequences += ' ' + tempStr;  
             }
             secFilterList=Database.query(secFilterQuery+filterValue);
-            
+            system.debug('secFilterList--> '  +secFilterList.size());
             //DEF1474 - logic to show subheaders on applying filter
             proSubSectionParentsSequenceList1 = new Set<String>();
             for(IPM_Project_Document_Section__c tempProDocSection : projSubSectionList){

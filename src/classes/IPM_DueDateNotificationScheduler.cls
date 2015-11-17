@@ -1,26 +1,26 @@
-global class IPM_DueDateNotificationScheduler implements Schedulable{
-	private final string apexJobType = 'BatchApex';
-	private final string processingStatus = 'Processing';
-	private final string preaparingStatus = 'Preparing';
-	private final string apexDateFormat = 's m H d M \'?\' yyyy';
-	private final string apaexJobName = 'MatrixRetry';
-	public static Boolean executeMoreThanFive = false;
+/******************************************** 
+*@Author:Cognizant
+*@Date:September 2015
+*@Description : Scheduler class for batch class IPM_DueDateNotificationBatch
+* This class has been declared as Global as it implements Schedulable interface.
+*********************************************/
+global with sharing class IPM_DueDateNotificationScheduler implements Schedulable{
+	private final string APEXJOBTYPE = 'BatchApex';
+	private final string PROCESSINGSTATUS = 'Processing';
+	private final string PREPARINGSTATUS  = 'Preparing';
+	private final string APEXJOBNAME  = 'MatrixRetry';
 	
    global void execute(SchedulableContext sc) {
    	
    		//check if there are 5 active batch jobs
 		//In some cases, might need to add "Status='Queued' " to the criteria
-		if ([SELECT count() FROM AsyncApexJob WHERE JobType =:apexJobType AND (Status =: processingStatus OR Status =: preaparingStatus)] < 5)
+		if ([SELECT count() FROM AsyncApexJob WHERE JobType =:APEXJOBTYPE AND (Status =: APEXJOBTYPE OR Status =: PREPARINGSTATUS)] < 5)
 		{ 
-  			IPM_DueDateNotificationBatch b = new IPM_DueDateNotificationBatch();
-            database.executebatch(b);
+  			IPM_DueDateNotification_Batch b = new IPM_DueDateNotification_Batch();
+            database.executebatch(b,50);
 		}
 		 else {
-   			//schedule this same schedulable class again in 30 mins
-   			IPM_DueDateNotificationScheduler scLater = new IPM_DueDateNotificationScheduler();
-   			Datetime dt = Datetime.now() + (0.024305); // i.e. 30 mins
-   			String timeForScheduler = dt.format(apexDateFormat);
-   			System.Schedule(apaexJobName+timeForScheduler,timeForScheduler,scLater);
-		}
-   }
+   				System.Schedule(APEXJOBNAME+String.valueOf(Datetime.now()), IPM_ConstantUtils.IPM_NEXT_FIRE_TIME,new IPM_DueDateNotificationScheduler());
+			}
+   	 }
 }

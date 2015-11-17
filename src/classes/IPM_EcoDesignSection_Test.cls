@@ -13,10 +13,10 @@ public class IPM_EcoDesignSection_Test{
     public static final String HHC = 'HHC';
     public static final String TESTNAME = 'Test123';
     public static final String PROJECT_LEADER = 'Project Leader';
-	public static final String MO = 'MO';
-	public static final String REGIONAL_COMPANY_CARD = 'Regional Company Card';
-	public static final String PROJ_DOC_SEC_Id = 'ProjDocSecId';
-	public static final String ID = 'Id';
+    public static final String MO = 'MO';
+    public static final String REGIONAL_COMPANY_CARD = 'Regional Company Card';
+    public static final String PROJ_DOC_SEC_Id = 'ProjDocSecId';
+    public static final String ID = 'Id';
     /***********************************
      * @Description: validate EcoDesign functionality for Global Original Project
      * *********************************/
@@ -122,8 +122,8 @@ public class IPM_EcoDesignSection_Test{
         Test.setCurrentPage(ecoDesignRef);
         //Instantiating the IPM_EcoDesignSection class and checking the list size
         IPM_EcoDesignSection ecoDesignHandler = new IPM_EcoDesignSection();
-        System.assertEquals(ecoDesignHandler.countryAssessmentWrapListEICountries.size(),7);        
-        System.assertEquals(ecoDesignHandler.countryAssessmentWrapListNonEICountries.size(),3);
+        System.assertEquals(ecoDesignHandler.countryAssessmentWrapListEICountries.size(),7, 'EIcountry size not matched');        
+        System.assertEquals(ecoDesignHandler.countryAssessmentWrapListNonEICountries.size(),3, 'NonEICountries size not matched');
     }  
     
         /***********************************
@@ -236,6 +236,6 @@ public class IPM_EcoDesignSection_Test{
         //Instantiating the IPM_EcoDesignSection class and checking the list size
         IPM_EcoDesignSection ecoDesignHandler = new IPM_EcoDesignSection();
         System.assertNotEquals(ecoDesignHandler.countryAssessmentWrapListEICountries.size(),0);        
-        //System.assertEquals(ecoDesignHandler.countryAssessmentWrapListNonEICountries.size(),3);
+        System.assertEquals(ecoDesignHandler.countryAssessmentWrapListNonEICountries.size(),3);
     }  
 }

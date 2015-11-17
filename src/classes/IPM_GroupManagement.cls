@@ -5,7 +5,8 @@
     @Referenced: IPM_GroupManagement
 **********************************************************************************************************/
 //considering API enable features
-global class IPM_GroupManagement {
+//class should be run without sharing because we are creating/updating queue 
+global without sharing class  IPM_GroupManagement {
     
    public static List<Group> grpList;//list of group 
    public static string className=IPM_GroupManagement.class.getname();//Get class name
@@ -24,6 +25,8 @@ global class IPM_GroupManagement {
             if(projList != null & !projList.isEmpty()){
                 for(IPM_Project__c p:projList){
                     projidstr = p.id;
+                    //we tried with 18 digits id to add as queue name but it was failing.so we have queue name as combination of "IPM_" and project id with 15 digits. 
+                    //while updating project name we are changing queue name as well                    
                     Group grp = new Group(Name=IPM_ConstantUtils.IPM_IPMNNAME+projidstr.Substring(0,15), Type = IPM_ConstantUtils.IPM_QUEUE);  
                     grpList.add(grp);
                 } 
@@ -34,7 +37,8 @@ global class IPM_GroupManagement {
                 insert grpList;
                 }catch(Exception ex){
                     ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
-                                                       IPM_ConstantUtils.IPM_QUEUE_CRNT_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,'IPM');   
+                                                       IPM_ConstantUtils.IPM_QUEUE_CRNT_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM);   
+                    ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));                                  
                 }
                 Set<id> grpidSet = new Set<id>();
                 for(Group grp:grpList){
@@ -91,7 +95,7 @@ global class IPM_GroupManagement {
           list<QueueSobject>queueList=new List<QueueSobject>();
           list<GroupMember> memberList = new List<GroupMember>();
           grpList=[SELECT Id,Name FROM Group WHERE id IN: Setgrpid LIMIT 50000];
-          if(grpList != null & grpList.size()>0){
+          if(grpList != null & !grpList.isEmpty()){
               for(Group grp:grpList){
                     
                     QueueSobject mappingObject_Project = new QueueSobject(QueueId = grp.Id, SobjectType = IPM_ConstantUtils.IPM_PROJECTOBJECT);
@@ -127,9 +131,9 @@ global class IPM_GroupManagement {
                 // in non-test code insert normally
                 try{
                     insert queueList;
-                 }catch(Exception ex){
+                 }catch(Exception ex){//running in future method, so we are not displaying any error in UI but create a log so system admin can track it
                     ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
-                                                       IPM_ConstantUtils.IPM_QUEUE_UPDATE_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,'IPM'); 
+                                                       IPM_ConstantUtils.IPM_QUEUE_UPDATE_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM); 
                 }
           }
          }
@@ -144,9 +148,9 @@ global class IPM_GroupManagement {
                 // in non-test code insert normally
                 try{
                     insert memberList;
-                }catch(Exception ex){
+                }catch(Exception ex){//running in future method, so we are not displaying any error in UI but create a log so system admin can track it
                     ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
-                                                       IPM_ConstantUtils.IPM_QUEUE_UPDATE_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,'IPM'); 
+                                                       IPM_ConstantUtils.IPM_QUEUE_UPDATE_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM); 
                 }
           }
          }
@@ -191,9 +195,9 @@ global class IPM_GroupManagement {
                 // in non-test code insert normally
                 try{
                     update grpList;
-                }catch(Exception ex){
+                }catch(Exception ex){//running in future method, so we are not displaying any error in UI but create a log so system admin can track it
                     ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
-                                                       IPM_ConstantUtils.IPM_QUEUE_UPDATENAME_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,'IPM'); 
+                                                       IPM_ConstantUtils.IPM_QUEUE_UPDATENAME_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM); 
                 }
             }
           }
@@ -209,9 +213,11 @@ global class IPM_GroupManagement {
         Set<id>grpidset = new Set<id>();
         Map<String,Set<string>> QueueMemberIdMap = new Map<String,Set<string>>(); 
         Set<string> QueueMemberSet;
-        string projectidstr;
-        
-        List<IPM_Project__c> projList=new List<IPM_Project__c>([SELECT Id,IPM_Project_Name__c, IPMProject_Span__c, OwnerId,IPM_Global_Project_Id__c, IPM_Golbal_Project_OwnerId__c, IPM_Technical_Project_Leader__r.id, IPM_Project_Gatekeeper__r.id, IPM_Project_Leader__r.id, Deputy_Project_Leader__r.id, (Select name, id, IPM_User__r.id from IPM_Project_Resources__r ) FROM IPM_Project__c WHERE id in:projidset]);
+                
+        List<IPM_Project__c> projList=new List<IPM_Project__c>([SELECT Id,IPM_Project_Name__c, IPMProject_Span__c, OwnerId,IPM_Global_Project_Id__c, IPM_Golbal_Project_OwnerId__c, IPM_Technical_Project_Leader__r.id, 
+                                            IPM_Project_Gatekeeper__r.id, IPM_Project_Leader__r.id, Deputy_Project_Leader__r.id, 
+                                            (Select name, id, IPM_User__r.id from IPM_Project_Resources__r ) FROM 
+                                            IPM_Project__c WHERE id in:projidset LIMIT 50000]);
             
             if(projList!=null && !projList.isEmpty()){  
                 for(IPM_Project__c p:projList){
@@ -277,12 +283,12 @@ global class IPM_GroupManagement {
         Map<id, Group> grpmap = new Map<id,Group>([SELECT Id,Name FROM Group WHERE id IN: grpidset LIMIT 50000]);
         
         if(grpmap != null && !grpmap.isEmpty()){
-            if(memberdeleteList!=null && memberdeleteList.size()>0){
+            if(memberdeleteList!=null && !memberdeleteList.isEmpty()){
                 try{
                     delete memberdeleteList;
                 }catch(Exception ex){
                     ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
-                                                       IPM_ConstantUtils.IPM_GRP_MEM_UPDATE_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,'IPM'); 
+                                                       IPM_ConstantUtils.IPM_GRP_MEM_UPDATE_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM); 
                 }  
             }
                   
@@ -318,9 +324,9 @@ global class IPM_GroupManagement {
                     try{
                         insert memberList;
                         
-                    }catch(Exception ex){
+                    }catch(Exception ex){//running in future method, so we are not displaying any error in UI but create a log so system admin can track it
                     ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
-                                                       IPM_ConstantUtils.IPM_GRP_MEM_UPDATE_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,'IPM'); 
+                                                       IPM_ConstantUtils.IPM_GRP_MEM_UPDATE_METHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM); 
                 }   
               }
 

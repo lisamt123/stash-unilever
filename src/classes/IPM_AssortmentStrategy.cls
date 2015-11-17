@@ -90,6 +90,7 @@ public with sharing class IPM_AssortmentStrategy {
     private static  final String CREATEASSORTSTRATEGY='createAssortStrategy';
     private static  final String DLTALLASSORT='DltAllAssort';
     private static  final String UPDATEASSORTS='updateAssortS';
+    private static  final String ERROR='Error';
     /****************************************************************************************************
     * @description:get project document section details
     * @param:project document section id
@@ -208,6 +209,7 @@ public with sharing class IPM_AssortmentStrategy {
             setselectedCUsNames.add(CusName[i]);
         }  
         System.debug(setselectedCUsNames+'setselectedCUsNames**********');  
+        System.debug(setchannelName+'setchannelName**********');  
         
         if(setselectedCUsNames!=null && setselectedCUsNames.size()>0&& setchannelName!=null && setchannelName.size()>0){
             for(string cu:setselectedCUsNames){
@@ -237,7 +239,7 @@ public with sharing class IPM_AssortmentStrategy {
             try{
                 
                 if(lstProDocContent!=null && lstProDocContent.size()>0)
-                upsert lstProDocContent;
+                insert lstProDocContent;
                 
             }
             catch(DmlException ex){
@@ -248,7 +250,7 @@ public with sharing class IPM_AssortmentStrategy {
             catch(exception eX){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSORTMENTSTRATEGY_STR,
-                CREATEASSORTSTRATEGY,ex.getMessage(),ex, 'Error', null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
+                CREATEASSORTSTRATEGY,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
             }
             getAssortStrategy();
         }
@@ -307,7 +309,8 @@ public with sharing class IPM_AssortmentStrategy {
     * @return:
     */
     public void DltAllAssort(){
-        list<IPM_Project_Document_Section_Content__c> dltAllAssortS=[Select id From IPM_Project_Document_Section_Content__c Where
+        System.debug(selecteAssortName+'*****selecteAssortName*******');
+        list<IPM_Project_Document_Section_Content__c> dltAllAssortS=[Select id,IPM_Assortment_CU_Priority__c From IPM_Project_Document_Section_Content__c Where
         IPM_Incumbent_CUs__c=:selecteAssortName and IPM_Project_Document_Section__c=:ProdocSecId limit 50000];
         try{
             if(dltAllAssortS!=null && dltAllAssortS.size()>0){
@@ -323,7 +326,7 @@ public with sharing class IPM_AssortmentStrategy {
         catch(exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSORTMENTSTRATEGY_STR,
-            DLTALLASSORT,ex.getMessage(),ex, 'Error', null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
+            DLTALLASSORT,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
         }
         updatePriority(deletedPriority);
         getAssortStrategy();
@@ -354,7 +357,7 @@ public with sharing class IPM_AssortmentStrategy {
         catch(exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSORTMENTSTRATEGY_STR,
-            UPDATEASSORTS,ex.getMessage(),ex, 'Error', null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
+            UPDATEASSORTS,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
         }
         getAssortStrategy();    
     }
@@ -406,24 +409,27 @@ public with sharing class IPM_AssortmentStrategy {
         catch (Exception ex) {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSORTMENTSTRATEGY_STR,
-            UPDATEASSORTS,ex.getMessage(),ex, 'Error', null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+            UPDATEASSORTS,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     }
     
     public void updatePriority(Integer delPriority){
         try{
+            System.debug(delPriority+'*******delPriority******');
             List<IPM_Project_Document_Section_Content__c> newPriorityList=new List<IPM_Project_Document_Section_Content__c>();
             newPriorityList=[SELECT Id,IPM_Incumbent_CUs__c,IPM_Assortment_CU_Priority__c FROM IPM_Project_Document_Section_Content__c 
                              WHERE IPM_Project_Document_Section__c=:ProdocSecId AND IPM_Assortment_CU_Priority__c>:delPriority];
             for(IPM_Project_Document_Section_Content__c newPriority:newPriorityList){
+                System.debug(newPriority.IPM_Assortment_CU_Priority__c+'*******newPriority.IPM_Assortment_CU_Priority__c******');
                newPriority.IPM_Assortment_CU_Priority__c=(Integer)newPriority.IPM_Assortment_CU_Priority__c-1;
+               System.debug(newPriority.IPM_Assortment_CU_Priority__c+'*******newPriority.IPM_Assortment_CU_Priority__c******');
             }  
             update newPriorityList;     
         }
         catch (DMLException ex) {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSORTMENTSTRATEGY_STR,
-            UPDATEASSORTS,ex.getMessage(),ex, 'Error', null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+            UPDATEASSORTS,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
         }   
     }
     

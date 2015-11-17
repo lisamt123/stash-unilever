@@ -10,11 +10,11 @@
 	<apex:repeat value="{!financeList}" var="finFeed">
 		<div class="feedbackContainer">
 			<div class="countryProName">
-				<apex:outputlabel value="Local Project:"/>
+				<apex:outputlabel value="{!$Label.IPM_LOCAL_PROJECT}"/>
 				<apex:outputfield value="{!finFeed.Local_Project__r.name}"/>
 			</div>
 			<div class="bbComments">
-				<apex:outputlabel value="BB Comments:"/>
+				<apex:outputlabel value="{!$Label.IPM_BB_COMMENTS}"/>
 				<apex:outputfield value=" {!finFeed.IPM_Country_Feedback__c}" />
 			</div>	
 		</div>		

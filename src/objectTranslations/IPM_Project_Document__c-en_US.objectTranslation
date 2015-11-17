@@ -9,12 +9,20 @@
         <value>IPM Project Documents</value>
     </caseValues>
     <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Approval Date --></label>
         <name>IPM_Approval_Date__c</name>
     </fields>
     <fields>
         <label><!-- IPM Approved Comments --></label>
         <name>IPM_Approved_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Comments --></label>
+        <name>IPM_Comments__c</name>
     </fields>
     <fields>
         <label><!-- IPM Contract GateKeeper Model --></label>
@@ -33,11 +41,19 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- IPM Project Document Order --></label>
+        <name>IPM_Document_Order__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Document Status --></label>
         <name>IPM_Document_Status__c</name>
         <picklistValues>
             <masterLabel>Approved</masterLabel>
             <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved with Edits</masterLabel>
+            <translation><!-- Approved with Edits --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>In Progress</masterLabel>
@@ -102,8 +118,16 @@
         <name>IPM_Project_Document_External_Id__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Project External Id --></label>
+        <name>IPM_Project_External_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Project Span --></label>
         <name>IPM_Project_Span__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Stopped --></label>
+        <name>IPM_Project_Stopped__c</name>
     </fields>
     <fields>
         <label><!-- IPM Project Template --></label>
@@ -138,13 +162,6 @@
     </fields>
     <layouts>
         <layout>IPM Project Document Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Project Document Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>

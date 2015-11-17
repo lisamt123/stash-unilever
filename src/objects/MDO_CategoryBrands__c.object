@@ -83,7 +83,7 @@
         <fullName>mdm_id__c</fullName>
         <externalId>true</externalId>
         <label>MDM ID</label>
-        <length>12</length>
+        <length>32</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -108,7 +108,7 @@
         <fullName>product_category_mdm_id__c</fullName>
         <externalId>true</externalId>
         <label>Product Category MDM Id</label>
-        <length>6</length>
+        <length>32</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -125,7 +125,7 @@
                 <default>true</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Inactive</fullName>
+                <fullName>InActive</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>

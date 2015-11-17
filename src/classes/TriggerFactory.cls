@@ -167,9 +167,6 @@ public with sharing class TriggerFactory
         if (soType == IPM_Project__c.sObjectType){
             return new IPM_ProjectHandler();
         }
-        if (soType == IPM_Project_Document_Section__c.sObjectType){
-            return new IPM_ProjectDocSectionHandler();
-        }
         if (soType == IPM_Financial__c.sObjectType){
             return new IPM_FinancialHandler();
         }

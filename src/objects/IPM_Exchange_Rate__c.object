@@ -53,7 +53,7 @@
     <enableReports>false</enableReports>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Currency_Code__c</fullName>
         <caseSensitive>false</caseSensitive>
@@ -92,5 +92,5 @@
     </nameField>
     <pluralLabel>IPM Exchange Rate</pluralLabel>
     <searchLayouts/>
-    <sharingModel>Private</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

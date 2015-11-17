@@ -137,7 +137,7 @@
                                                 </apex:outputPanel>
                                                 <apex:outputPanel id="deltImg">
                                                     <apex:outputPanel rendered="{!!isBosscardEdit}"> 
-                                                        <div value="{!$Page.IPM_ImageUpload}?id={!BossCUrl_ID}" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" class="uploadImage upImageContainer" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
+                                                        <div value="{!$Page.IPM_ImageUpload}?id={!BossCUrl_ID}&isProject=false" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" class="uploadImage upImageContainer" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                                                             <apex:image styleClass="ipmImage" value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" rendered="{!isClickToUpload}" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"/>
                                                             <apex:outputfield value="{!bosscard.IPM_Bosscard_Logo__c}" rendered="{!!isClickToUpload}"/>                                                   
                                                             
@@ -145,7 +145,7 @@
                                                         <apex:outputPanel layout="block" rendered="{!!isClickToUpload}">
                                                             <div class="imgHoverContainer">
                                                                 <div class="imgHbuttonContainer">
-                                                                   <span value="{!$Page.IPM_ImageUpload}?id={!BossCUrl_ID}" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" class="uploadImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
+                                                                   <span value="{!$Page.IPM_ImageUpload}?id={!BossCUrl_ID}&isProject=false" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" class="uploadImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                                                                        <apex:commandLink value="{!$Label.IPM_Update}" styleClass="imgUpdateButton" action="{!save}" reRender="none" rendered="{!!isClickToUpload}">
                                                                             
                                                                        </apex:commandLink>

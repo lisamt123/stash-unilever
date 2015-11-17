@@ -24,7 +24,7 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
     //*@Description: Specifies complexity type
     public string complexityType{get;set;}
     private final String IPM_TASKVIEW_STR = IPM_Taskview.class.getName();
-    private final String ERROR_STR = 'Error';
+    private static final String ERROR_STR = 'Error';
     public boolean isCreateTask{get;set;}
     
     /****************************************************************************
@@ -57,19 +57,12 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
             
             if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_PLE)
             {
-                isMilestoneEditable = false;
-                isTaskeditable = false;
-                isupdateDates = false;
+                isMilestoneEditable = isTaskeditable = isupdateDates = false;
             }   
 
             projectType = IPM_Utils.retrieveProjectType(project);
                      
-        } 
-        catch(Exception eX)
-        {
-            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
-            ApexPages.addMessage(myMsg); 
-        }
+        }catch(Exception eX){ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);ApexPages.addMessage(myMsg); }
     }
     
     
@@ -83,7 +76,9 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
         try
         {
             Id loggedInUser = userinfo.getuserid();
-            
+            System.debug('resources===>'+[Select Id,IPM_Role_Type__c,IPM_User__c from IPM_Project_Resource__c limit 1000]);
+            System.debug('logged-in user===>'+userinfo.getuserid());
+            System.debug('lprojectId===>'+projectId);
             // To query the Team Members on project Resource object
             list<IPM_Project_Resource__c> projectResourceList = [select Id,IPM_Role_Type__c,IPM_User__c,IPM_Project_Role_Owner__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Project__r.Deputy_Project_Leader__c,IPM_Project__r.IPM_Technical_Project_Leader__c 
                                                                  from IPM_Project_Resource__c where 
@@ -91,7 +86,7 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
             
             if(projectResourceList != null && !projectResourceList.isEmpty()){
                 IPM_Project_Resource__c projectResource = projectResourceList[0];
-                
+                system.debug(' projectResource.IPM_Role_Type__c==>'+ projectResource.IPM_Role_Type__c);
                 if( projectResource.IPM_Role_Type__c != IPM_Utils.Guest ){
                 
                     isMilestoneEditable = false;
@@ -126,19 +121,18 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
                     isMilestoneEditable=true;
                     
                 }
-               if(loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c 
-                        || loggedInUser == project.IPM_Technical_Project_Leader__c)
+                System.debug('loggedInUser==>'+loggedInUser );
+                System.debug('project.IPM_Technical_Project_Leader__c==>'+project.IPM_Technical_Project_Leader__c);
+               if(loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c || loggedInUser == project.IPM_Technical_Project_Leader__c)
                {
                         isTaskeditable =true;
                         isCreateTask=true;
                         isAllTask=true;
                         
-                        if(loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c 
-                        	|| (loggedInUser == project.IPM_Technical_Project_Leader__c && 
-                        	(project.IPM_Technical_Project_Leader__c == project.IPM_Project_Leader__c || project.IPM_Technical_Project_Leader__c == project.Deputy_Project_Leader__c))){
-                        	
-                        	updateApproach =true;
-                        	updateComplexity = true;
+                        if(loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c || (loggedInUser == project.IPM_Technical_Project_Leader__c && (project.IPM_Technical_Project_Leader__c == project.IPM_Project_Leader__c || project.IPM_Technical_Project_Leader__c == project.Deputy_Project_Leader__c))){
+                            
+                            updateApproach =true;
+                            updateComplexity = true;
                         }
                }
             }
@@ -158,11 +152,7 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
                 } 
             
             
-        }catch(Exception eX){
-            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_TASKVIEW_STR,
-                            'getIpmuserType',ex.getMessage(),ex, ERROR_STR, null, null, null,null); 
-        }       
+        }catch(Exception eX){ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage)); ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_TASKVIEW_STR,'getIpmuserType',ex.getMessage(),ex, ERROR_STR, null, null, null,null); }       
     }    
     /****************************************************************************
     @Description : save complexity type
@@ -184,9 +174,6 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
                 update projectUpdateList;
             }
         }
-        catch(Exception ex) {
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_TASKVIEW_STR,
-                            'SaveComplexityType',ex.getMessage(),ex, ERROR_STR, null, null, null,null); 
-        }
+        catch(Exception ex) {ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_TASKVIEW_STR,'SaveComplexityType',ex.getMessage(),ex, ERROR_STR, null, null, null,null); }
     }  
 }

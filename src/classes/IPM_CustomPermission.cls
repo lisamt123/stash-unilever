@@ -7,52 +7,50 @@
 
 public with sharing class IPM_CustomPermission {
 
-	private SObjectType managedObject;
+    private Set<String> customPermissionNames;
 
-	private Set<String> customPermissionNames;
+    private Set<String> customPermissionsForCurrentUser;
 
-	private Set<String> customPermissionsForCurrentUser;
+    
+    public Boolean hasPermission(String customPermissionName) {
+        // Demand load the custom permissions from the database     
+        if(customPermissionNames==null){
+            init();
+        }
+            
+        // Has this user been assigned this custom permission?
+        return customPermissionsForCurrentUser.contains(customPermissionName);
+    }
 
-	
-	public Boolean hasPermission(String customPermissionName) {
-		// Demand load the custom permissions from the database		
-		if(customPermissionNames==null){
-			init();
-		}
-			
-		// Has this user been assigned this custom permission?
-		return customPermissionsForCurrentUser.contains(customPermissionName);
-	}
+    /*
+    *@Description:Loads Custom Permissions sets
+     
+    */
+    private void init() {
 
-	/*
-	*@Description:Loads Custom Permissions sets
-	 
-	*/
-	private void init() {
+        customPermissionNames = new Set<String>();
+        customPermissionsForCurrentUser = new Set<String>();
+        
+        // Query the full set of Custom Permissions for the given namespace
+        Map<Id, String> customPermissionNamesById = new Map<Id, String>();
+        List<CustomPermission> customPermissions = 
+            [SELECT Id, DeveloperName FROM CustomPermission LIMIT 50000];
+        for(CustomPermission customPermission : customPermissions) {
+            customPermissionNames.add(customPermission.DeveloperName);
+            customPermissionNamesById.put(customPermission.Id, customPermission.DeveloperName);
+        }
 
-		customPermissionNames = new Set<String>();
-		customPermissionsForCurrentUser = new Set<String>();
-		
-		// Query the full set of Custom Permissions for the given namespace
-		Map<Id, String> customPermissionNamesById = new Map<Id, String>();
-		List<CustomPermission> customPermissions = 
-			[SELECT Id, DeveloperName FROM CustomPermission LIMIT 50000];
-		for(CustomPermission customPermission : customPermissions) {
-			customPermissionNames.add(customPermission.DeveloperName);
-			customPermissionNamesById.put(customPermission.Id, customPermission.DeveloperName);
-		}
-
-		// Query to determine which of these custome settings are assigned to this user
-		List<SetupEntityAccess> setupEntities = 
-			[SELECT SetupEntityId
-				FROM SetupEntityAccess
-				WHERE SetupEntityId in :customPermissionNamesById.keySet() AND
-					  ParentId
-						IN (SELECT PermissionSetId 
-   							FROM PermissionSetAssignment
-   							WHERE AssigneeId = :UserInfo.getUserId()) LIMIT 1000];	
-		for(SetupEntityAccess setupEntity : setupEntities)
-			customPermissionsForCurrentUser.add(customPermissionNamesById.get(setupEntity.SetupEntityId));	
-	}
+        // Query to determine which of these custome settings are assigned to this user
+        List<SetupEntityAccess> setupEntities = 
+            [SELECT SetupEntityId
+                FROM SetupEntityAccess
+                WHERE SetupEntityId in :customPermissionNamesById.keySet() AND
+                      ParentId
+                        IN (SELECT PermissionSetId 
+                            FROM PermissionSetAssignment
+                            WHERE AssigneeId = :UserInfo.getUserId()) LIMIT 1000];  
+        for(SetupEntityAccess setupEntity : setupEntities)
+            customPermissionsForCurrentUser.add(customPermissionNamesById.get(setupEntity.SetupEntityId));  
+    }
 
 }

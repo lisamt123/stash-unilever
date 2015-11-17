@@ -21,7 +21,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_Project_Type__c</field>
+                <field>IPM_Project__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_Category__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -31,11 +35,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_Category__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IPM_Project__c</field>
+                <field>IPM_Project_Type__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -71,18 +71,26 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <relatedList>IPM_Project_Document__c.IPM_Project_Template__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>IPM_Document_Template_Name__c</fields>
         <fields>IPM_Document_Order__c</fields>
-        <fields>IPM_Document_Type__c</fields>
         <relatedList>IPM_Document_Template__c.IPM_Project_Template__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>IPM_Task_Name__c</fields>
+        <fields>IPM_Task_Complexity__c</fields>
         <fields>IPM_Phase__c</fields>
+        <relatedList>IPM_Task__c.IPM_Project_Template__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
         <fields>IPM_Function__c</fields>
         <fields>IPM_Section__c</fields>
-        <fields>IPM_Master_Section_Name__c</fields>
-        <relatedList>IPM_Task__c.IPM_Project_Template__c</relatedList>
+        <relatedList>IPM_SectionTask__c.IPM_Project_Template__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
@@ -90,7 +98,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hL0000000GIfO</masterLabel>
+        <masterLabel>00hc0000000KW9B</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

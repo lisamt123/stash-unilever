@@ -19,17 +19,19 @@ private class IPM_SampleTestProjShare {
         User userobj = IPM_TestFactory_Helper.createUser(false);
         userobj.email = 'globalUser@unilever.test.com';
         insert userobj;
-        system.AssertEquals(1,[SELECT id FROM User where id =:userobj.Id].size(),'User creation failed' );
+        system.AssertEquals(userobj.Id,[SELECT id FROM User where id =:userobj.Id].id,'User creation failed' );
         
         projectList = IPM_TestFactory_Helper.createIPMProjectList(false,3);
-        
+                
         System.runAs(userobj) 
         {
             for(IPM_Project__c p:projectList){
                 p.IPM_Project_Leader__c = userobj.Id;
             }
-            insert projectList; 
-            system.AssertEquals(3,[SELECT id, name FROM IPM_Project__c where id IN:projectList].size(),'Project creation failed' );                   
+            insert projectList;  
+            
+            List<IPM_Project__c> insertedProjectList =  new List<IPM_Project__c>([SELECT id, Name FROM IPM_Project__c where id IN:projectList]);            
+			system.AssertEquals(3,insertedProjectList.size(),'Project creation failed');   			            
         }                  
      }
      
@@ -41,12 +43,15 @@ private class IPM_SampleTestProjShare {
         IPM_Project__c ProjectRec;
         
         System.runAs(userobj){
+            Test.startTest();
             
             updatedprojectList = [Select Id,owner.type,ownerid,IPM_Project_Leader__c,IPM_Phase__c,Name,IPM_Complexity__c from IPM_Project__c where Name in:projectNameSet];
             system.AssertNOTEquals(0,updatedprojectList.size());
 
             ProjectRec = updatedprojectList[0];        
             System.AssertEquals('Queue', ProjectRec.owner.type,'Project owner is not updated to Queue');
+            
+            Test.stopTest();
         }
         
         boolean memexists=false;

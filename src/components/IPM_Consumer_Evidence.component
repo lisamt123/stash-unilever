@@ -68,7 +68,7 @@
                                         </apex:outputPanel>
                                         <apex:outputPanel rendered="{!isEditable}">
                                         <div class="conceptLink pull-right" onClick="addCon('{!evidenceCountry}','{!projDocSecId}');" >
-                                            <span >Add Concept test</span>
+                                            <span >{!$Label.IPM_Add_Concept}</span>
                                         </div>
                                         </apex:outputPanel>
                                     </div>

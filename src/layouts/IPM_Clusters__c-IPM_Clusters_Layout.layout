@@ -43,11 +43,11 @@
         <fields>NAME</fields>
         <fields>IPM_Project_Name__c</fields>
         <fields>IPM_Project_Leader__c</fields>
-        <fields>IPM_Project_Type__c</fields>
         <fields>IPM_Phase__c</fields>
+        <fields>IPM_Clusters__c</fields>
         <fields>IPM_Category_Text__c</fields>
         <fields>IPM_Brand_Positioning__c</fields>
-        <fields>IPM_Target_Launch_Dates__c</fields>
+        <fields>IPM_Target_Launch_Date__c</fields>
         <relatedList>IPM_Project__c.IPM_Cluster__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -56,7 +56,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hL0000000dfPe</masterLabel>
+        <masterLabel>00hM0000000KQg1</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

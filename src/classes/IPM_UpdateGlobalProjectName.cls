@@ -68,10 +68,10 @@ public with sharing class IPM_UpdateGlobalProjectName {
             rollUpdate.id=roll.id;//assign rollout id to be update
             String rollName_STR='';
             if(roll.IPM_Project__c!=null){
-                rollName_STR=roll.name.replace(oldprojectnameMap.get(roll.IPM_Project__c),updatedProNameMap.get(roll.IPM_Project__c));//get rollout name after '-' as string
+            	rollName_STR=roll.name.replace(oldprojectnameMap.get(roll.IPM_Project__c),updatedProNameMap.get(roll.IPM_Project__c));//get rollout name after '-' as string
             }
             else if(roll.Regional_Project__c!=null){
-                rollName_STR=roll.name.replace(oldprojectnameMap.get(roll.Regional_Project__c),updatedProNameMap.get(roll.Regional_Project__c));//get rollout name after '-' as string
+            	rollName_STR=roll.name.replace(oldprojectnameMap.get(roll.Regional_Project__c),updatedProNameMap.get(roll.Regional_Project__c));//get rollout name after '-' as string
             }
             rollUpdate.name=rollName_STR;//update rollout name with updated project name
             rollUpdate.IPM_Rollout_Project__c=rollName_STR;

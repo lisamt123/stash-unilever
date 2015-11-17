@@ -193,6 +193,7 @@
                                             jq(document).on('click','.generateRolloutBtn', function(){
                                                 var previousMcoCode = IPMRollOutAdd.SelectedMCO;
                                                 var keyMCO = jq('#keyMCO').is(":checked");
+                                                alert('keyMCO-->>'+keyMCO);
                                                 jq('.countryFilter .countryList input:checkbox').each(function(){
                                                     var cntryInput = jq(this);
                                                     if(cntryInput.is(":checked")){
@@ -259,10 +260,15 @@
                                           return false;        
                                           }
                                      });                  
-                            }
-                              
+                            }  
+                           alert('globalCountries--->>{!globalCountries}');
+                           alert('globalUnselectedCountries--->>{!globalUnselectedCountries }');
+                           alert('selectedCluster--->>{!selectedCluster}');
+                           alert('previouselectedMCO--->>{!previouselectedMCO}');
+                           alert('selectedKey--->>{!selectedKey}');
                            function setRedirect()
                            {
+                               alert('{!isCompleted}');
                                if({!isCompleted})
                                {
                                    window.top.location = '{!URLFOR($Page.IPM_RolloutPlans)}?Id={!projectId}&EditMode=false';

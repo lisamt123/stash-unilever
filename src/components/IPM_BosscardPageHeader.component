@@ -1,3 +1,11 @@
+<!--  
+*************************************************************************
+*@Description:This component is used in the Bosscard page
+*@Author: Cognizant
+*@Created Date: 22/01/2015 
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
 <apex:component >
     
     <apex:attribute name="count" type="String" description="this is the count"/>

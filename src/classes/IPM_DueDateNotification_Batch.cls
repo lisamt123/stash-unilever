@@ -142,7 +142,7 @@ global without sharing class IPM_DueDateNotification_Batch implements Database.B
         try
         {
            update milestonesUpdated; 
-           ChatterUtils.postChatterFeedWithMention(projIdNewProjectsSet, projIdchatterMessageMap, subjectIdMentionIdSetMap );
+           IPM_ChatterUtils.postChatterFeedWithMention(projIdNewProjectsSet, projIdchatterMessageMap, subjectIdMentionIdSetMap );
            response = IPM_ConstantUtils.MAIL_SENT_RESPONSE;
           }catch(System.Exception ex){ // Generalized exception
                     response = ex.getMessage();

@@ -114,7 +114,7 @@ public with sharing class IPM_ProjectHelper
     // Create a Map of project To List of Documents and Sections.
     public static Map<Id,Map<String,IPM_Project_Document__c>> projectToDocumentMap = new Map<Id,Map<String,IPM_Project_Document__c>>();
     public static  Map<Id,List<IPM_Project_Document_Section__c>> projectDocumentToSecMap = new Map<Id,List<IPM_Project_Document_Section__c>>();
-    public static Set<IPM_Project__c> projectDeleteSet = new Set<IPM_Project__c>();
+    
      /**************************************************************
     * @description: Used for Resetting Cache in case Project Handler is invoked again. 
     */
@@ -409,7 +409,7 @@ public with sharing class IPM_ProjectHelper
             // Get project document specific Information
             
             String projectDocumentQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Document__c',false,null);
-            String projectDocumentWhereClause = ' WHERE IPM_Project__c in :resultantProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+            String projectDocumentWhereClause = ' WHERE IPM_Project__c in :resultantProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR; // NO SONAR QUBE string literal used in dynamic SOQL 
             projectDocumentQuery = projectDocumentQuery + projectDocumentWhereClause;
             projectDocumentMap = new Map<Id,IPM_Project_Document__c>( (List<IPM_Project_Document__c>) database.query(projectDocumentQuery) );
              
@@ -555,7 +555,7 @@ public with sharing class IPM_ProjectHelper
             
             // Get References for Child rollouts for parent Rollouts. we have 2 types of Rollouts. Regional and Local. 
             // Local dont have any childs, so only Regional Rollout in Where Clause
-            String projectRolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null);
+            String projectRolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null); // NO SONAR QUBE 'ipm_project_rollout__c' used in dyanmic SOQL
             String projectRolloutWhereClause = ' WHERE Id in:projectSourceRolloutSet OR (Regional_Rollout__c in :projectSourceRolloutSet AND recordTypeId = :LOCAL_ROLLOUT_RECORDTYPE ) '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
             projectRolloutQuery = projectRolloutQuery + projectRolloutWhereClause;
             Map<Id,IPM_Project_Rollout__c> projectsSourceRolloutsMap = new Map<Id,IPM_Project_Rollout__c>( (List<IPM_Project_Rollout__c>) database.query(projectRolloutQuery) );
@@ -1443,34 +1443,29 @@ public with sharing class IPM_ProjectHelper
     }
     
     public static void deleteProj(List<IPM_Project__c>projLst){
-     
-
+        
+        Set<id> projectIdSetToBeDeleted = new Set<Id>(); // Project Id set to be deleted 
         for(IPM_Project__c project : projLst)
         {
-            if(project.Created_in_error__c==true)
+            if(project.Created_in_error__c)
             {
-                projectDeleteSet.add(project); 
+                projectIdSetToBeDeleted.add(project.Id); 
             }
         }
-        if(!projectDeleteSet.isEmpty())
-    {
-        List<IPM_Financial__c> projFinList=[Select Id From IPM_Financial__c where Parent_Project__c in:projectDeleteSet Limit 5000];
-        if(!projFinList.isEmpty() || projFinList!=null)
-        delete projFinList;
-        
-        
-        List<IPM_Project_Rollout__c> projRolloutList=[Select Id From IPM_Project_Rollout__c where IPM_Project__c in:projectDeleteSet Limit 5000];
-        if(!projRolloutList.isEmpty() || projRolloutList!=null)
-         delete projRolloutList;
-        
-        
-        List<IPM_Project__c> projList=[Select Id From IPM_Project__c where Id in:projectDeleteSet Limit 5000];
-        if(!projList.isEmpty() || projList!=null)
-        delete projList;
-
-        
-    
+        if(!projectIdSetToBeDeleted.isEmpty())
+        {
+            List<IPM_Financial__c> projFinList=[Select Id From IPM_Financial__c where Parent_Project__c in:projectIdSetToBeDeleted Limit 5000];
+            if(projFinList != null && !projFinList.isEmpty())
+                delete projFinList;
+            
+            List<IPM_Project_Rollout__c> projRolloutList=[Select Id From IPM_Project_Rollout__c where IPM_Project__c in:projectIdSetToBeDeleted Limit 5000];
+            if(projRolloutList != null && !projRolloutList.isEmpty())
+                delete projRolloutList;
+            
+            List<IPM_Project__c> projList=[Select Id From IPM_Project__c where Id in:projectIdSetToBeDeleted Limit 5000];
+            if(projList != null && !projList.isEmpty())
+                delete projList;
+        }
     }
-  }
 
 }

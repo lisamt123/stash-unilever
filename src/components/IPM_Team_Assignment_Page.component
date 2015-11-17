@@ -30,8 +30,8 @@
                                 </apex:outputPanel>
                                 </apex:outputPanel>
                         </div>
-                        <apex:actionFunction name="refreshTeam" action="{!ShowEditTeam}" reRender="frm,gotomiles" status="Refresh"/>
-                        <apex:actionStatus id="Refresh" startText="Refreshing">
+                        <apex:actionFunction name="refreshTeam" action="{!ShowEditTeam}" reRender="frm,gotomiles" status="Refresh" onComplete="renderaccrdn2();"/>
+                        <apex:actionStatus id="Refresh" startStyleClass="proInit">
                         </apex:actionStatus>
                         <apex:outputPanel rendered="{!isCoreParameter}">
                             <div class="col-sm-12 noPadleft topFourContainer">
@@ -146,7 +146,7 @@
                                 <div class="col-sm-4 pull-right expandMarginTop expandTool noPadright">
                                     <span class="expandAll">{!$Label.IPM_EXPAND_ALL}</span> | <span class="collapseAll">{!$Label.IPM_COLLAPSE_ALL}</span>
                                 </div>
-                                <apex:actionfunction name="DeleteMember" action="{!DeleteAssignedmembers}" status="teamDelete" reRender="frm,gotomiles">
+                                <apex:actionfunction name="DeleteMember" action="{!DeleteAssignedmembers}" status="teamDelete" reRender="frm,gotomiles" onComplete="renderaccrdn2();">
                                     <apex:param assignTo="{!IPMResourceId}" value="" name="Resourceid"/>
                                 </apex:actionfunction>
                                 <div class="ipmAccordion">

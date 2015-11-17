@@ -33,7 +33,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     public boolean isEditGateCMI{get;set;} //To Check Gate CMI Project Document Section Editable or Not
     public boolean isAssortEdit{get;set;} //To Check Assortment Strategy Project Document Section Editable or Not
     public boolean isEcodesignEdit{get;set;} //To Check EcoDesign Project Document Section Editable or Not
-    public final String IPM_PROJECT_DOCUMENT_SECTION_CONTROLLER = 'ipm_projectdocumentsectioncontroller';
+    public static final String IPM_PROJECT_DOCUMENT_SECTION_CONTROLLER = 'ipm_projectdocumentsectioncontroller';
     public List<IPM_Project_Document_Section__c> projectSections {get;set;}//list of assigned project sections
     public String gateDocument{get; set;}//for storing gate document name
     public String currGate{get;set;}//current gate of the project
@@ -56,7 +56,6 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     public String summary{get;set;}//capture summarey text
     public string docSectionAccess;
     public string tempDocSectionAccess;
-    public static final String Project_SubType_BLG = 'Brand Led Growth(BLG)';
     @TestVisible Private Set<String>bdSectionsSet=new Set<String>{};
     @TestVisible Private Set<String>cmiSectionsSet=new Set<String>{};
     @TestVisible Private Set<String>cdSectionsSet=new Set<String>{};
@@ -453,13 +452,11 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                     isAssortEdit=true;
                     isEcodesignEdit=true;
                 }
-                
             }
             if((lstofuser[0].IPM_Technical_Project_Leader__c!=null && lstofuser[0].IPM_Technical_Project_Leader__c==userinfo.getuserid()) &&((lstofuser[0].IPM_Project_Leader__c!=null && lstofuser[0].IPM_Project_Leader__c!=lstofuser[0].IPM_Technical_Project_Leader__c) || 
                 (lstofuser[0].Deputy_Project_Leader__c!=null && lstofuser[0].Deputy_Project_Leader__c!=lstofuser[0].IPM_Technical_Project_Leader__c))){
                 IsEditableSumm=false;
                 IsEditableOutC=false;
-                
             }   
         }
         
@@ -699,7 +696,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 */
     public pagereference pagination(){
         projectSections = new List<IPM_Project_Document_Section__c>();
-        Id secId;//for storing section id
+        Id secId = Null;//for storing section id
         Integer i=0;
         List<IPM_Project_Document_Section__c> projectSectionsList =new List<IPM_Project_Document_Section__c>();
         try{
@@ -716,26 +713,13 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
             currGate = IPM_Utils.phaseGateDocumentMap.get(currPhase);
         }
         
-        if(project.IPM_ProjectSubType__c == Project_SubType_BLG) {
-          projectSectionsList=[SELECT Id,IPM_Section_Name__c, IPM_Section_Sequence__c, 
-          IPM_Project_Document__r.IPM_Project__c FROM IPM_Project_Document_Section__c 
-          WHERE IPM_Project_Document__r.IPM_Project__c = :String.escapeSingleQuotes(projectId) AND
-          IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER
-          AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER AND        
-          IPM_Project_Document__r.IPM_GateDocuments__c = :projDoc.IPM_GateDocuments__c AND IPM_Default_Section__c = true
-          AND IPM_Master_Section_External_Id__c !=: IPM_ConstantUtils.IPM_ENVIRONMENTAL_IMPACT
-          ORDER BY IPM_Section_Sequence__c];
-        }
-        else {
-          projectSectionsList=[SELECT Id,IPM_Section_Name__c, IPM_Section_Sequence__c, 
-          IPM_Project_Document__r.IPM_Project__c FROM IPM_Project_Document_Section__c 
-          WHERE IPM_Project_Document__r.IPM_Project__c = :String.escapeSingleQuotes(projectId) AND
-          IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER
-          AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER AND        
-          IPM_Project_Document__r.IPM_GateDocuments__c = :projDoc.IPM_GateDocuments__c AND IPM_Default_Section__c = true
-          
-          ORDER BY IPM_Section_Sequence__c];
-        }
+        projectSectionsList=[SELECT Id,IPM_Section_Name__c, IPM_Section_Sequence__c, 
+            IPM_Project_Document__r.IPM_Project__c FROM IPM_Project_Document_Section__c 
+            WHERE IPM_Project_Document__r.IPM_Project__c = :String.escapeSingleQuotes(projectId) AND
+            IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER
+            AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER AND        
+            IPM_Project_Document__r.IPM_GateDocuments__c = :projDoc.IPM_GateDocuments__c AND IPM_Default_Section__c = true
+            ORDER BY IPM_Section_Sequence__c];
         
         for(IPM_Project_Document_Section__c eachProSection : projectSectionsList) {
                 projectSections.add(eachProSection);

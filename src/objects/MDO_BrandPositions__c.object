@@ -67,6 +67,26 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Effective_from__c</fullName>
+        <description>Date upon which a particular Brand Position is considered to take effect</description>
+        <externalId>false</externalId>
+        <label>Effective_from</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Effective_to__c</fullName>
+        <description>Date until which a specific Brand Position was considered</description>
+        <externalId>false</externalId>
+        <label>Effective_to</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>brand_id__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>lookup to brand</description>
@@ -184,11 +204,11 @@
         <label>Status</label>
         <picklist>
             <picklistValues>
-                <fullName>Active</fullName>
-                <default>true</default>
+                <fullName>active</fullName>
+                <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Inactive</fullName>
+                <fullName>inactive</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -200,51 +220,28 @@
     <label>BrandPositions</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>NAME</columns>
-        <columns>Brand_Position_Name__c</columns>
-        <columns>mdm_id__c</columns>
-        <columns>product_category_id__c</columns>
-        <columns>brand_position_id__c</columns>
-        <columns>geo_id__c</columns>
-        <columns>brand_id__c</columns>
-        <columns>status__c</columns>
-        <columns>product_category_mdm_id__c</columns>
-        <columns>geo_mdm_id__c</columns>
-        <columns>brandposition_mdm_id__c</columns>
-        <columns>brand_mdm_id__c</columns>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>All1</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
     <listViews>
         <fullName>HHC_and_Laundry_Brand_Positions</fullName>
         <columns>NAME</columns>
-        <columns>Brand_Position_Name__c</columns>
+        <columns>mdm_id__c</columns>
         <columns>product_category_id__c</columns>
-        <columns>brand_position_id__c</columns>
         <columns>brand_id__c</columns>
+        <columns>brand_position_id__c</columns>
+        <columns>Brand_Position_Name__c</columns>
         <columns>geo_id__c</columns>
         <columns>status__c</columns>
-        <columns>brandposition_mdm_id__c</columns>
         <columns>brand_mdm_id__c</columns>
+        <columns>brandposition_mdm_id__c</columns>
         <columns>geo_mdm_id__c</columns>
         <columns>product_category_mdm_id__c</columns>
-        <columns>mdm_id__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>brandposition_mdm_id__c</field>
-            <operation>equals</operation>
-            <value>LB014</value>
-        </filters>
-        <filters>
             <field>product_category_mdm_id__c</field>
-            <operation>equals</operation>
-            <value>CH1814</value>
+            <operation>contains</operation>
+            <value>CH1095,CH1096,CH1813,CH1814</value>
         </filters>
         <label>HHC and Laundry Brand Positions</label>
         <language>en_US</language>

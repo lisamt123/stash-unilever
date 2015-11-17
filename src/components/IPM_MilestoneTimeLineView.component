@@ -1,3 +1,11 @@
+<!--  
+*************************************************************************
+*@Description:This component is used for the Time line view for the Milestones
+*@Author: Cognizant
+*@Created Date: 19/05/2015 
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
 <apex:component controller="IPM_List_Milestones">
     <apex:attribute name="pId" type="String" AssignTo="{!projectId}" description="this is the project id"/>
     <apex:outputPanel id="tml">

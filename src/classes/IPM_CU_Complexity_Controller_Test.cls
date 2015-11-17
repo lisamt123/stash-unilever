@@ -149,13 +149,13 @@ public class IPM_CU_Complexity_Controller_Test {
             System.assertEquals(control.projDocSecCon.IPM_Content_Type__c, IPM_ConstantUtils.CU_COMPLEXITY, PROJECTEFFECT_NOT_INSERTED);
 
             control.getProjEffect();
-            System.assertEquals(control.getProjEffect().size(), 3); 
+            System.assertEquals(control.getProjEffect().size(), 3,control.getProjEffect().size()); 
 
             IPM_CU_Complexity_Consolidated testConsolidated = new  IPM_CU_Complexity_Consolidated();
             testConsolidated.projectId = projectListObj[0].id;
             testConsolidated.gateType = CHARTER; 
             testConsolidated.getSectionContent();
-            System.assert(testConsolidated.secContentList!= null); 
+            System.assert(testConsolidated.secContentList!= null,'list is null'); 
         }
         Test.stopTest();
         

@@ -8,7 +8,8 @@ public with sharing class IPM_UserTriggerHandler {
     private boolean m_isExecuting = false;
     
     //constructor
-    public IPM_UserTriggerHandler(boolean isExecuting){
+    public IPM_UserTriggerHandler(boolean isExecuting)
+    {
         m_isExecuting = isExecuting;
     }
     
@@ -17,21 +18,25 @@ public with sharing class IPM_UserTriggerHandler {
     * @param1 newUsers : The list of new users in the trigger context
     * @param2 oldUsersMap : old Users map
     */
-    public void OnAfterUpdate(User[] newUsers, Map<Id, User> oldUsersMap) {
-        
+    public void OnAfterUpdate(User[] newUsers, Map<Id, User> oldUsersMap) 
+    {    
         User[] newUsrs = new list<User>();//list of new users
         Set<Id> changeRoleIds = new Set<Id>();//id of those whose role is changed at user level
-        for(User eachUser : newUsers) {
+        for(User eachUser : newUsers) 
+        {
             User oldUsers = oldUsersMap.get(eachUser.Id); 
-            if(!eachUser.IsActive && oldUsers.IsActive != eachUser.IsActive) {
+            if(!eachUser.IsActive && oldUsers.IsActive != eachUser.IsActive) 
+            {
                 newUsrs.add(eachUser);
             }
-            if(eachUser.IPM_Role__c != null && oldUsers.IPM_Role__c != eachUser.IPM_Role__c) {
+            
+            if(eachUser.IPM_Role__c != null && oldUsers.IPM_Role__c != eachUser.IPM_Role__c) 
+            {
                 changeRoleIds.add(eachUser.Id);
             }
         }
-      //  IPM_TaskHelper.reAssignTasksForInActiveUsrs(newUsrs);//reassign their current tasks
-        IPM_ProjectResourceTriggerHandler.notifyRoleChangeToPLs(changeRoleIds);//Chatter about the change!
+        IPM_TaskHelper.reAssignTasksForInActiveUsrs(newUsrs);//reassign their current tasks
+        IPM_ProjectResourceTriggerHandler.notifyRoleChangeToPLs(changeRoleIds);
         IPM_ChatterFeedHelper.postChatterIfUserInactive(newUsrs);
         IPM_ChatterFeedHelper.postChatterIfResourceInactive(newUsrs);
     }
@@ -41,7 +46,6 @@ public with sharing class IPM_UserTriggerHandler {
     * @param1 newUsers : The list of old users in the trigger context
     */
     public void OnAfterDelete(User[] oldUsers) {
-        
-      //  IPM_TaskHelper.reAssignTasksForInActiveUsrs(oldUsers);//chatter about the user deletion
+        // Used for future usage of After delete functionality.
     }
 }

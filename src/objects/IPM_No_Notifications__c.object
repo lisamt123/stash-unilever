@@ -2,7 +2,6 @@
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>Hierarchy</customSettingsType>
     <customSettingsVisibility>Public</customSettingsVisibility>
-    <description>Add a user or a profile to which you DONT want notifications to be fired from chatter or emails.</description>
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>Disabled__c</fullName>

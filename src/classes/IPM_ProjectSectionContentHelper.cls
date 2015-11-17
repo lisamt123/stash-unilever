@@ -626,12 +626,10 @@ public with sharing class IPM_ProjectSectionContentHelper
                     previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);
                 }
                 
-                String projectcurrentPhase = null; 
                 String projectcurrentGate = null; 
                 IPM_Project_Document__c targetProjectDocument = null;
                 IPM_Project_Document_Section__c targetProjectDocumentSection = null; 
                 
-                String sourceProjectPhase = null;
                 String sourceProjectGate = null;
                 IPM_Project_Document__c sourceProjectDocument = null;
                 IPM_Project_Document_Section__c sourceProjectDocSection = null;
@@ -639,13 +637,11 @@ public with sharing class IPM_ProjectSectionContentHelper
                 
                 if(associatedProjectType!=null)
                 {
-                    projectcurrentPhase = associatedProjectType.IPM_Phase__c;
                     projectcurrentGate = associatedProjectType.IPM_Gate_Document__c;
                 }
                 
                 if(previousProjectType!=null)
                 {
-                    sourceProjectPhase = previousProjectType.IPM_Phase__c;
                     sourceProjectGate = previousProjectType.IPM_Gate_Document__c;
                 }
                     
@@ -836,12 +832,10 @@ public with sharing class IPM_ProjectSectionContentHelper
                     previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);   
                 }
                 
-                String projectcurrentPhase = null; 
                 String projectcurrentGate = null; 
                 IPM_Project_Document__c targetProjectDocument = null;
                 IPM_Project_Document_Section__c targetProjectDocumentSection = null;
                 
-                String sourceProjectPhase = null;
                 String sourceProjectGate = null;
                 IPM_Project_Document__c sourceProjectDocument = null;
                 IPM_Project_Document_Section__c sourceProjectDocSection = null;
@@ -849,13 +843,11 @@ public with sharing class IPM_ProjectSectionContentHelper
                 
                 if(associatedProjectType!=null)
                 {
-                    projectcurrentPhase = associatedProjectType.IPM_Phase__c;
                     projectcurrentGate = associatedProjectType.IPM_Gate_Document__c;
                 }
                 
                 if(previousProjectType!=null)
                 {
-                    sourceProjectPhase = previousProjectType.IPM_Phase__c;
                     sourceProjectGate = previousProjectType.IPM_Gate_Document__c;
                 }
                 
@@ -1028,12 +1020,10 @@ public with sharing class IPM_ProjectSectionContentHelper
                     previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);   
                 }
                 
-                String projectcurrentPhase = null; 
                 String projectcurrentGate = null; 
                 IPM_Project_Document__c targetProjectDocument = null;
                 IPM_Project_Document_Section__c targetProjectDocumentSection = null;
                 
-                String sourceProjectPhase = null;
                 String sourceProjectGate = null;
                 IPM_Project_Document__c sourceProjectDocument = null;
                 IPM_Project_Document_Section__c sourceProjectDocSection = null;
@@ -1041,13 +1031,11 @@ public with sharing class IPM_ProjectSectionContentHelper
                 
                 if(associatedProjectType!=null)
                 {
-                    projectcurrentPhase = associatedProjectType.IPM_Phase__c;
                     projectcurrentGate = associatedProjectType.IPM_Gate_Document__c;
                 }
                 
                 if(previousProjectType!=null)
                 {
-                    sourceProjectPhase = previousProjectType.IPM_Phase__c;
                     sourceProjectGate = previousProjectType.IPM_Gate_Document__c;
                 }
                 
@@ -1215,12 +1203,10 @@ public with sharing class IPM_ProjectSectionContentHelper
                     previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);   
                 }
                 
-                String projectcurrentPhase = null; 
                 String projectcurrentGate = null; 
                 IPM_Project_Document__c targetProjectDocument = null;
                 IPM_Project_Document_Section__c targetProjectDocumentSection = null;
                 
-                String sourceProjectPhase = null;
                 String sourceProjectGate = null;
                 IPM_Project_Document__c sourceProjectDocument = null;
                 IPM_Project_Document_Section__c sourceProjectDocSection = null;
@@ -1228,13 +1214,11 @@ public with sharing class IPM_ProjectSectionContentHelper
                 
                 if(associatedProjectType!=null)
                 {
-                    projectcurrentPhase = associatedProjectType.IPM_Phase__c;
                     projectcurrentGate = associatedProjectType.IPM_Gate_Document__c;
                 }
                 
                 if(previousProjectType!=null)
                 {
-                    sourceProjectPhase = previousProjectType.IPM_Phase__c;
                     sourceProjectGate = previousProjectType.IPM_Gate_Document__c;
                 }
                 
@@ -1389,27 +1373,23 @@ public with sharing class IPM_ProjectSectionContentHelper
                     previousProjectType = IPM_Utils.getPreviousPhase(associatedProjectType,true);   
                 }
                 
-                String projectcurrentPhase = null; 
                 String projectcurrentGate = null; 
                 IPM_Project_Document__c targetProjectDocument = null;
                 IPM_Project_Document_Section__c targetProjectDocumentSection = null;
                 
-                String sourceProjectPhase = null;
-                String sourceProjectGate = null;
+               String sourceProjectGate = null;
                 IPM_Project_Document__c sourceProjectDocument = null;
                 IPM_Project_Document_Section__c sourceProjectDocSection = null;
                     
                 
                 if(associatedProjectType!=null)
                 {
-                    projectcurrentPhase = associatedProjectType.IPM_Phase__c;
                     projectcurrentGate = associatedProjectType.IPM_Gate_Document__c;
                 }
                 
                 if(previousProjectType!=null)
                 {
-                    sourceProjectPhase = previousProjectType.IPM_Phase__c;
-                    sourceProjectGate = previousProjectType.IPM_Gate_Document__c;
+                   sourceProjectGate = previousProjectType.IPM_Gate_Document__c;
                 }
                 
                 if(projectcurrentGate!=null && projectcurrentGate==IPM_ConstantUtils.MARKET_READY_GATE)

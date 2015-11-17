@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>Bosscard_deleted</fullName>
+        <description>Bosscard deleted</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>unfiled$public/IPM_BOSSCARD_Deletion_Alert</template>
+    </alerts>
+    <alerts>
         <fullName>IPM_BOSSCARD_Archival_Mail_Alert</fullName>
         <description>IPM BOSSCARD Archival Mail Alert</description>
         <protected>false</protected>
@@ -19,6 +29,16 @@
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/IPM_template_to_Notify_Auto_Deletion_of_Bosscard_after_6_months_of_inactivity2</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_Email_to_Notify_Bosscard_In_Activity_for_30_Day</fullName>
+        <description>IPM Email to Notify Bosscard In-Activity for 30 Day</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/IPM_Email_template_to_Notify_Bosscard_In_Activity_for_30_Day</template>
     </alerts>
     <fieldUpdates>
         <fullName>IPM_BOSSCARD_Archival_Update</fullName>
@@ -59,8 +79,24 @@
         <protected>false</protected>
     </fieldUpdates>
     <rules>
-        <fullName>IPM BOSSCARD Archival On Inactive</fullName>
+        <fullName>Auto Deletion Bosscard</fullName>
         <active>true</active>
+        <description>AUto delete a bosscard after 6 months of no activity</description>
+        <formula>TRUE</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Bosscard_deleted</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>IPM_Bosscard__c.IPM_Bosscard_Last_Modified_Date_Time__c</offsetFromField>
+            <timeLength>183</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>IPM BOSSCARD Archival On Inactive</fullName>
+        <active>false</active>
         <criteriaItems>
             <field>IPM_Bosscard__c.IPM_Is_Archived__c</field>
             <operation>equals</operation>
@@ -77,8 +113,17 @@
                 <name>IPM_BOSSCARD_Archival_Update</name>
                 <type>FieldUpdate</type>
             </actions>
-            <offsetFromField>IPM_Bosscard__c.LastModifiedDate</offsetFromField>
-            <timeLength>120</timeLength>
+            <offsetFromField>IPM_Bosscard__c.CreatedDate</offsetFromField>
+            <timeLength>28</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>IPM_BOSSCARD_Archival_Mail_Alert</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>IPM_Bosscard__c.CreatedDate</offsetFromField>
+            <timeLength>21</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
     </rules>

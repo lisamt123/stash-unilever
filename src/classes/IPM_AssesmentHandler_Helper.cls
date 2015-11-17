@@ -7,7 +7,7 @@
     * @Referenced: IPM_AssesmentHandler
 ******************************************************************************/
 
-public without sharing class IPM_AssesmentHandler_Helper {
+public with sharing class IPM_AssesmentHandler_Helper {
     
     /****************************************************************************
     @Description : Delete existing assessments for the project and the country (Overloaded method)
@@ -65,9 +65,8 @@ public without sharing class IPM_AssesmentHandler_Helper {
         
         //check if all the assessments for all the respective projects have the same phase
         for(IPM_Assessment__c assessment: incomingAssessments ){
-            
             if(String.isNotBlank(assessment.Assessment_Batch_ID__c)){
-            	AssmntBatchIdSet.add(assessment.Assessment_Batch_ID__c);
+                AssmntBatchIdSet.add(assessment.Assessment_Batch_ID__c);
             }
             
             if(!projIdPhaseMapIncoming.containsKey(assessment.IPM_Project__c)){
@@ -144,7 +143,6 @@ public without sharing class IPM_AssesmentHandler_Helper {
         }
         
         else{
-            
             //before inserting delete the old assessments for the same phase, same project and same country
             deleteAssociatedAssesments(projIdPhaseMapIncoming,AssmntBatchIdSet);
             
@@ -247,9 +245,9 @@ public without sharing class IPM_AssesmentHandler_Helper {
     @Description : Sanitize the records to be inserted. (Fetch country Id from country name...more actions to be added as and when the class is updated)
     @Params assessments:  List of assessment records to be sanitized
     *****************************************************************************/
-    public static void checkAtLeastOneAssmntPerEICountry(List<IPM_Assessment__c> assessmentsInserted){
+    public static void checkAtLeastOneAssmntPerEICountry(List<IPM_Assessment__c> assessmentsInsertedDeleted){
         Set<Id> projIdSet = new Set<Id>();
-        for(IPM_Assessment__c assmnt : assessmentsInserted){
+        for(IPM_Assessment__c assmnt : assessmentsInsertedDeleted){
             projIdSet.add(assmnt.IPM_Project__c);
         }
         if(projIdSet != null && !projIdSet.isEmpty()){

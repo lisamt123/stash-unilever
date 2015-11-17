@@ -1,3 +1,11 @@
+<!--  
+***********************************************************************************************
+*@Description:This component is used for the local sections to be displayed in gate document
+*@Author: Cognizant
+*@Created Date: 14/04/2015 
+*@Copyright © 2015  Unilever  
+***********************************************************************************************
+-->
 <apex:component controller="IPM_BBSectionData">
   <apex:repeat value="{!lstcountryFeedback}" var="Cfeed">
       <apex:outputText value="{!Cfeed.Display_Name__c}"/><br/>

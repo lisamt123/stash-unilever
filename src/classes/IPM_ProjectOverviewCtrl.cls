@@ -48,7 +48,8 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
     public string gateDueDateMessage{get;set;}
     public boolean isProjLeader{get;set;}
     public List<IPM_Project_Rollout__c> lstprojectRollout{get;set;}
-    private static final String dateFormat='dd MMMM yyyy';
+    private static final String DATEFORMAT='dd MMMM yyyy';
+
     /****************************************************************************************************************************
     * internal set variables for all the associated project documents, sections, tasks & milestones ids
     */
@@ -76,21 +77,23 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
     public static final String BLANK_STR = '';
     public static final String TASK_SOBJECTNAME = 'IPM_Task__History';
     public static final String DOCUMENT_SEC_HISTORY_SOBJECTNAME = 'IPM_Project_Document_Section__History';
-    public static final String sDocHistoryObjName = 'IPM_Project_Document__History';
-    public static final String sMilestoneHistoryObjName = 'IPM_Milestone__History';
+    public static final String SDOC_HISTORY_OBJNAME  = 'IPM_Project_Document__History';
+    public static final String SMILESTONE_HISTORY_OBJNAME  = 'IPM_Milestone__History';
     private static final String PLANNED_STR= 'The planned ';
+    public static final String KEY_FINANCE_STR = 'Key Financial Data is missing. Please update your business case: ';
+
     public String projectDocStatusStyleClass{get;set;}
 
     public Map<String, String> objectFldMap = new Map<String, String>{
                                               TASK_SOBJECTNAME => 'IPM_Completed__c,IPM_Task_Name__c,IPM_Task_Complexity__c,IPM_Assignee__c,IPM_Task_Type__c',
                                               DOCUMENT_SEC_HISTORY_SOBJECTNAME => 'IPM_Section_Name__c,IPM_Section_Owner__c,IPM_Section_Status__c',
-                                              sDocHistoryObjName => 'IPM_Document_Status__c,IPM_Approval_Date__c',
-                                              sMilestoneHistoryObjName => BLANK_STR};//internal map to store the objects with fields to capture activity history
+                                              SDOC_HISTORY_OBJNAME => 'IPM_Document_Status__c,IPM_Approval_Date__c',
+                                              SMILESTONE_HISTORY_OBJNAME => BLANK_STR};//internal map to store the objects with fields to capture activity history
     public Map<String, String> objectAddtnlFldsMap = new Map<String, String>{
                                               TASK_SOBJECTNAME => 'Parent.IPM_Task_Name__c',
                                               DOCUMENT_SEC_HISTORY_SOBJECTNAME => 'Parent.IPM_Project_Section__c',
-                                              sDocHistoryObjName => 'Parent.IPM_GateDocuments__c',
-                                              sMilestoneHistoryObjName => 'Parent.IPM_Name__c'
+                                              SDOC_HISTORY_OBJNAME => 'Parent.IPM_GateDocuments__c',
+                                              SMILESTONE_HISTORY_OBJNAME => 'Parent.IPM_Name__c'
                                                                      };//additional fields if any per object mentioned
     
     public static final String STR_PARENTID = 'ParentId';
@@ -170,7 +173,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         lstprojecthistory=[SELECT ParentId,Parent.Name,Parent.IPM_Fast_Track_Project__c 
                            FROM IPM_Project__History 
                            WHERE Field =:IPM_ConstantUtils.FAST_TRACK_FIELD AND ParentId=:projectId AND 
-                                 CreatedDate >=: System.today()-7 limit 10000];
+                                 CreatedDate >=: System.today()-IPM_ConstantUtils.CONST_7 limit 10000];
 
         if(!lstprojecthistory.isEmpty()){
             for(IPM_Project__History history:lstprojecthistory){
@@ -258,7 +261,6 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         /*
          * retreiving the selective project details with all its associated related lists like PD, PS, Tasks & Milestones
         */
-        System.debug('Inside init()==>');
          project = [SELECT name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_Project_Stopped_By__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
                                 IPM_PM_Approach__c,IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name, IPM_Project_Description__c, IPM_Stopped_Phase__c,Is_Archieved__c, IPM_BET_Toolkit__c,BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,IPM_Parent_Project__r.BET_Denied_BET_Link__c,
                                 IPM_Project_Leader__r.SmallPhotoUrl, IPM_Project_Gatekeeper__r.SmallPhotoUrl,IPM_Brand__c,IPM_Stopped_By__c,IPM_Phase__c,IPM_Fast_Track_Project__c,BET_Link_Requested__c,IPM_CompanyCardText__c ,IPM_ProjectSubType__c,IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,BET_Denied_BET_Link__c,
@@ -267,7 +269,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                                 IPM_Category_Icon__c,IPM_Target_Launch_Date__c,IPM_Parent_Project__c,IPM_Parent_Project__r.name, IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, 
                                 Deputy_Project_Leader__c, IPM_Finance_Member__c, IPM_Project_Gatekeeper__c,BET_MS_Final_Release_Date__c,BET_MS_First_Release_Date__c,BET_TLD_Final_Release_Date__c,BET_TLD_First_Release_Date__c,
                                 IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_SourceProjectType__c,
-                                IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c,
+                                IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, 
                               (SELECT IPM_Task_Name__c, IPM_Due_Date1__c, IPM_Task_Type__c, IPM_Project_Document_Section__r.IPM_Section_Sequence__c,
                                     IPM_Project_Document_Section__r.IPM_Section_Name__c, IPM_Completed__c, IPM_Completed_Date__c,IPM_Project_Document_Section__c,
                                     IPM_Project__c
@@ -280,7 +282,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                                     LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c
                                     From Project_Documents__r limit 10000),
                             (SELECT IPM_Phase__c,IPM_Project__c, IPM_Type_of_gate__c,IPM_Due_Date__c,IPM_Type_of_Milestone__c FROM IPM_Milestones__r limit 10000)
-                            ,(SELECT Global_External_Id__c ,Year_3_iTO_Global__c,Business_Impact_Global__c,Business_Impact_Regional__c, Regional_External_Id__c FROM IPM_Financials_Consolidated__r WHERE (Global_External_Id__c=:lstofuser[0].Name OR Regional_External_Id__c=:lstofuser[0].Name) limit 10000)
+                            ,(SELECT Global_External_Id__c ,Year_3_iTO_Global__c,Business_Impact_Global__c,Business_Impact_Regional__c, Regional_External_Id__c FROM IPM_Financials_Consolidated__r WHERE (Global_External_Id__c=:lstofuser[0].Name) limit 10000)
 
                             ,(SELECT Id,IPM_Target_Launch_Dates__c,IPM_Project_Name__c,IPM_Temporary_Phase__c  from IPM_Projects__r),
                             (SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_Role__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
@@ -332,11 +334,11 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                 projectDoc = eachDoc;
             }
         }
-  /*      projectDocStatusStyleClass = projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.STATUS_NOT_STARTED ?  'greyFont'  
+      projectDocStatusStyleClass = projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.STATUS_NOT_STARTED ?  'greyFont'  
                                                         : projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED ?  IPM_ConstantUtils.IPM_BOSS_CSS_STOPPED 
                                                         : (projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.STATUS_IN_PROGRESS || projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED || projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED) ? IPM_ConstantUtils.IPM_BOSS_CSS_STATUS 
                                                         : (projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED || projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS ) ? IPM_ConstantUtils.IPM_BOSS_CSS_COMPLETED
-                                                        : IPM_ConstantUtils.BLANK;*/
+                                                        : IPM_ConstantUtils.BLANK;
         //process for milestone RL
         for(IPM_Milestone__c eachMS : project.IPM_Milestones__r) {
           ProjDueDateMap.put(eachMS.IPM_Project__c,eachMS.IPM_Due_Date__c);
@@ -351,16 +353,13 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         //get financial details
         globalyearDec=0.0;
         globalbusinessImpactStr=BLANK_STR;
-        regionalORlocalBusinessImpactStr = BLANK_STR;
+        //regionalORlocalBusinessImpactStr = BLANK_STR;
         Map<Id,Decimal> projIdiTOMap =  new Map<Id,Decimal>();
         
         // Get project it and iTO value map
-        System.debug('before calling util==>');
         projIdiTOMap = IPM_Utils.createProjectITOValueMap();
-        System.debug('===>in ctrl==>'+projIdiTOMap);
         if(projIdiTOMap != null && !projIdiTOMap.isEmpty() && projIdiTOMap.containsKey(project.id)){
         globalyearDec = projIdiTOMap.get(project.id);
-        System.debug('globalyearDec==>'+globalyearDec);
         }
 
         if((((IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(project.IPM_Project_Type__c))) || (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(project.IPM_Project_Type__c))) || (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equalsIgnoreCase(project.IPM_Project_Type__c)))) && (project.Exempt_from_Threshold__c))){
@@ -373,21 +372,22 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
             globalbusinessImpactStr = fin.Business_Impact_Global__c;
             break;
           } 
+            
     }
-           //DEF2301
-           list<IPM_Financial__c> liFinRegional = [select Regional_Project__r.IPMProject_Span__c,Business_Impact_Regional__c,Business_Impact_Local__c from IPM_Financial__c where Regional_Project__r.IPMProject_Span__c in ('Regional','Local') and (Regional_Project__c=:projectid or Local_Project__c=:projectid)];    
-           //list<IPM_Financial__c> liFinRegional = [select Regional_Project__r.IPMProject_Span__c,Business_Impact_Regional__c from IPM_Financial__c where Regional_Project__r.IPMProject_Span__c ='Regional' and Regional_Project__c=:projectid];    
-           //list<IPM_Financial__c> liFinLocal = [select Regional_Project__r.IPMProject_Span__c,Business_Impact_Local__c from IPM_Financial__c where Local_Project__r.IPMProject_Span__c ='Local' and Local_Project__c=:projectid];    
-           for (IPM_Financial__c finreg: liFinRegional){
-               if (project.IPMProject_Span__c=='Regional' && finreg.Business_Impact_Regional__c!=''){
-                   regionalORlocalBusinessImpactStr=finreg.Business_Impact_Regional__c;
-                   break;
-               }else if(project.IPMProject_Span__c=='Local' && finreg.Business_Impact_Local__c!=''){
-                   regionalORlocalBusinessImpactStr=finreg.Business_Impact_Local__c;
-                   break;
+           //DEF2103 - Copy Global Business Impact for Regional and Local projects from Global Project
+           if(project.IPMProject_Span__c=='Regional'){
+               list<IPM_Financial__c> liFinParentReg = [select Business_Impact_Global__c from IPM_Financial__c where (Parent_Project__c=:project.IPM_Parent_Project__c OR global_project_id__c=:project.IPM_Parent_Project__c) and parent_project__r.IPMProject_Span__c='Global' limit 1];
+               if (liFinParentReg!=null && liFinParentReg.size()>0){
+                   globalbusinessImpactStr += liFinParentReg[0].Business_Impact_Global__c;
                }
            }
-               
+           else if(project.IPMProject_Span__c=='Local'){
+               list<IPM_Financial__c> liFinParentLoc = [select Business_Impact_Global__c from IPM_Financial__c where global_project_id__c=:project.IPM_Global_Project_Id__c and parent_Project__c=:project.IPM_Global_Project_Id__c limit 1];
+               if (liFinParentLoc!=null && liFinParentLoc.size()>0){
+                   globalbusinessImpactStr += liFinParentLoc[0].Business_Impact_Global__c;
+               }
+           }
+           
          BusinessCaseMessageMap = new Map<String, String>();
         List<IPM_Financial__c> financialList = [Select Id, RecordTypeId, Global_Project_Id__c,Regional_Project__c,Local_Project__c, Financial_External_ID__c, Display_Name__c,
                                                  Parent_Project__r.Name,
@@ -396,24 +396,23 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                             Gross_Profit_Global__c, Gross_Profit_Local__c, Gross_Profit_Regional__c FROM IPM_Financial_Years__r where
                             (Year__c =: '1' or Year__c =: '2' or Year__c =:'3') and Year_Type__c = 'Calendar' ) FROM
                             IPM_Financial__c where (Regional_Project__c = : project.Id or Global_Project_Id__c = : project.Id 
-                            or Local_Project__c = : project.Id) and recordtype.Name =: 'Default' Limit: IPM_ConstantUtils.MaxLimit];
-                            system.debug(LoggingLevel.ERROR,'£££££££££££££££'+financialList);  
+                            or Local_Project__c = : project.Id) and recordtype.Name =: 'Default' Limit: IPM_ConstantUtils.MaxLimit];  
        for(IPM_Financial__c fin : financialList ){
         for(IPM_Financial_Year__c FinYear: fin.IPM_Financial_Years__r){
           if(FinYear.Turnover_Global__c ==0 || FinYear.Turnover_Local__c == 0 || FinYear.Turnover_Regional__c == 0 || FinYear.Profit_Before_Overheads_Global__c == 0 ||
             FinYear.Profit_Before_Overheads_Local__c == 0 || FinYear.Profit_Before_Overheads_Regional__c == 0 || FinYear.Gross_Profit_Global__c == 0 || 
             FinYear.Gross_Profit_Local__c == 0 || FinYear.Gross_Profit_Regional__c == 0){
-            if(ProjDueDateMap.get(fin.Global_Project_Id__c) < system.today().addDays(14) || ProjDueDateMap.get(fin.Regional_Project__c) < system.today().addDays(14) || ProjDueDateMap.get(fin.Local_Project__c) < system.today().addDays(14)){
+            if(ProjDueDateMap.get(fin.Global_Project_Id__c) < system.today().addDays(IPM_ConstantUtils.col_fourteen) || ProjDueDateMap.get(fin.Regional_Project__c) < system.today().addDays(IPM_ConstantUtils.col_fourteen) || ProjDueDateMap.get(fin.Local_Project__c) < system.today().addDays(IPM_ConstantUtils.col_fourteen)){
               if(fin.Global_Project_Id__c != null){
-                BusinessCaseMessageMap.put(fin.Global_Project_Id__c,'Key Financial Data is missing. Please update your business case: '+fin.Display_Name__c);
+                BusinessCaseMessageMap.put(fin.Global_Project_Id__c,KEY_FINANCE_STR+fin.Display_Name__c);
                 ++noOfNotifications;
               }
               if(fin.Regional_Project__c != null){
-                BusinessCaseMessageMap.put(fin.Regional_Project__c,'Key Financial Data is missing. Please update your business case: '+fin.Display_Name__c);
+                BusinessCaseMessageMap.put(fin.Regional_Project__c,KEY_FINANCE_STR+fin.Display_Name__c);
                 ++noOfNotifications;
               }
               if(fin.Local_Project__c != null){
-                BusinessCaseMessageMap.put(fin.Local_Project__c,'Key Financial Data is missing. Please update your business case: '+fin.Display_Name__c);
+                BusinessCaseMessageMap.put(fin.Local_Project__c,KEY_FINANCE_STR+fin.Display_Name__c);
                 ++noOfNotifications;
               }
             }
@@ -474,26 +473,10 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         }
         // Identify the due date for the Gate document for the project
         allIncompleteTasks = tasksList.size();
-        System.debug('milesTone==>'+milesTone);
-        if(milesTone != null && 
-                        milesTone.IPM_Due_Date__c != null) {
-            remainingDays = system.today().daysBetween(milesTone.IPM_Due_Date__c);
-        }
-        System.debug('remainingDays==>'+remainingDays);
-        if(remainingDays > 0) {
-            gateDateAlert = milesTone.IPM_Type_of_gate__c + SPACE + Label.ApprovalDueIn + SPACE + remainingDays + SPACE + Label.days + SPACE;
-        }else if(remainingDays < 0) {
-            gateDateAlert =  SPACE + Label.YouMissedYour + SPACE + milesTone.IPM_Type_of_gate__c +  SPACE + Label.ApprovalOn + SPACE + math.abs(remainingDays) +  SPACE + Label.daysAgo + SPACE;
-        }else if(remainingDays == 0) {
-            gateDateAlert = SPACE + Label.Your + SPACE + milesTone.IPM_Type_of_gate__c + SPACE + Label.ApprovalDueToday + SPACE;
-        }
         
-        if(remainingDays != null) {
-            noOfNotifications++;
-        }
         if(project.Is_Archieved__c != null && project.Is_Archieved__c) {
-            stoppedMsg = SPACE + Label.ProjectStoppedBy + SPACE + project.IPM_Stopped_By__r.Name + SPACE + Label.At + SPACE;
-            stoppedMsg += project.IPM_Stopped_Date_Time__c.Date() + SPACE + Label.During + SPACE + project.IPM_Phase__c +  SPACE + Label.PhaseLabel + SPACE;
+            stoppedMsg = SPACE + Label.IPM_Project_Stopped_By + SPACE + project.IPM_Stopped_By__r.Name + SPACE + Label.IPM_At + SPACE;
+            stoppedMsg += project.IPM_Stopped_Date_Time__c.Date() + SPACE + Label.IPM_During + SPACE + project.IPM_Phase__c +  SPACE + Label.IPM_Phase_Label + SPACE;
         }
         
         //Alert for BET First Release is due on X
@@ -505,7 +488,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
              {
                 
                 Datetime betFirstReleaseDate=datetime.newInstance(project.BET_MS_First_Release_Date__c.year(),project.BET_MS_First_Release_Date__c.month(),project.BET_MS_First_Release_Date__c.day());
-                betMsgFirstReleaseDueDate = project.IPM_Project_Name__c +IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(dateFormat) + IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR2+ betFirstReleaseDate.format(dateFormat); 
+                betMsgFirstReleaseDueDate = project.IPM_Project_Name__c +IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(DATEFORMAT) + IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR2+ betFirstReleaseDate.format(DATEFORMAT); 
                 ++noOfNotifications;
              }
          } 
@@ -517,7 +500,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
             if(betFinalReleaseDueDate<=15 && betFinalReleaseDueDate!=0 && betFinalReleaseDueDate>0) 
             {
                 Datetime betFinalReleaseDate=datetime.newInstance(project.BET_MS_Final_Release_Date__c.year(),project.BET_MS_Final_Release_Date__c.month(),project.BET_MS_Final_Release_Date__c.day());
-                betMsgFinalReleaseDueDate =project.IPM_Project_Name__c +IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(dateFormat) + IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR2+ betFinalReleaseDate.format(dateFormat); 
+                betMsgFinalReleaseDueDate =project.IPM_Project_Name__c +IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(DATEFORMAT) + IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR2+ betFinalReleaseDate.format(DATEFORMAT); 
                 ++noOfNotifications;
             }       
         } 
@@ -538,7 +521,8 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
                                                                                 IPM_Section_Status__c != :IPM_ConstantUtils.STATUS_EXCLUDED AND
                                                                                 IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
-                                                                                IPM_FunctionalRole__c =: IPM_Utils.roleForProjectLeader  AND  
+                                                                                (IPM_FunctionalRole__c =: IPM_Utils.roleForProjectLeader OR 
+                                                                                IPM_Master_Section_External_Id__c =: ENVIRONMENTAL_IMPACT) AND  
                                                                                 IPM_Default_Section__c = true
                                                                         ORDER BY IPM_Section_Sequence__c limit 50000] ;
         } else if(project.IPM_Project_Leader__c != UserInfo.getUserId() && userRole != null ) {
@@ -548,7 +532,8 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
                                                                                 IPM_Section_Status__c != :IPM_ConstantUtils.STATUS_EXCLUDED AND
                                                                                 IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
-                                                                                IPM_FunctionalRole__c =: userRole AND
+                                                                                (IPM_FunctionalRole__c =: userRole OR 
+                                                                                IPM_Master_Section_External_Id__c =: ENVIRONMENTAL_IMPACT) AND
                                                                                 IPM_Default_Section__c = true
                                                                         ORDER BY IPM_Section_Sequence__c limit 50000];
         }
@@ -577,10 +562,9 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         //Now everything is done with retrieving the data, now get the history of the activities done.
         if(!projectMSSet.isEmpty()) 
           getMSDetail(projectMSSet);
-          System.debug('**Processing***');
           
         loadObjectHistory();
-        System.debug('**stillProcessing***');
+
         /*BET processing*/
         if(ApexPages.currentPage().getParameters().containsKey('showMembers')){
             memberCallFromURL = true;
@@ -592,20 +576,14 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
        if(isOriginal && projMetadata!= null && projMetadata.BET__c && !isRollout){
             projectWithBET = projectId;
             setBETDetails(project.IPM_BET_Toolkit__c,project.BET_Link_Requested__c,project.BET__c);
-            if(project.BET_Link_Requested__c==null && project.BET__c==null){
-                isLinkDenied = String.isNotBlank(project.BET_Denied_BET_Link__c);
-            }
+             isLinkDenied = String.isNotBlank(project.BET_Denied_BET_Link__c);
         }else if(isRollout && String.isNotBlank(project.IPM_Parent_Project__r.IPM_Parent_Project__c)){
             projectWithBET = project.IPM_Parent_Project__r.IPM_Parent_Project__c;
-            if(project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c==null && project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c==null){
-                isLinkDenied = String.isNotBlank(project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c);
-            }
+            isLinkDenied = String.isNotBlank(project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c);
             setBETDetails(project.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_BET_Toolkit__c,project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c ,project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c);
         }else if(isRollout && String.isNotBlank(project.IPM_Parent_Project__c)){
             projectWithBET = project.IPM_Parent_Project__c;
-            if(project.IPM_Parent_Project__r.BET_Link_Requested__c==null  && project.IPM_Parent_Project__r.BET__c==null){
-                isLinkDenied = String.isNotBlank(project.IPM_Parent_Project__r.BET_Denied_BET_Link__c);
-            }
+            isLinkDenied = String.isNotBlank(project.IPM_Parent_Project__r.BET_Denied_BET_Link__c);
             setBETDetails(project.IPM_Parent_Project__r.IPM_BET_Toolkit__c,project.IPM_Parent_Project__r.BET_Link_Requested__c,project.IPM_Parent_Project__r.BET__c);
         }
         if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS && (project.IPM_Temporary_Phase__c == null || project.IPM_Temporary_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)){
@@ -632,7 +610,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                 }
             }else if(toolkitOption == IPM_ConstantUtils.LINK_EXISTING_BET && String.isBlank(BETId)){
             betInformationMessage = (isLinkDenied ? (isProjLeader ? System.Label.IPM_BETLinkRejectMsgPL : System.label.IPM_BETDeniedMsgFunctional) :
-                                        (String.isNotBlank(requestedBETId)?( isProjLeader ? String.format(System.label.IPM_LinkBETPLMsg,new string[]{betWrapper.betName}) : String.format(System.label.IPM_BETReqPendingMsgFunctional,new string[]{betWrapper.betName})):(isProjLeader ? System.label.IPM_BET_LinkExist_NoBET :' ')));                                           
+                                        (String.isNotBlank(requestedBETId)?( isProjLeader ? String.format(System.label.IPM_LinkBETPLMsg,new string[]{betWrapper.betName}) : String.format(System.label.IPM_BETReqPendingMsgFunctional,new string[]{betWrapper.betName})):(isProjLeader ? System.label.IPM_BET_LinkExist_NoBET :' ')));
                 if(isProjLeader && String.isBlank(requestedBETId)){
                     additionalAlertMessages.add(String.format(System.label.IPM_BETChangeSelectionAlert,new String[]{projectId}));
                     alertscount += 1 ;      
@@ -641,7 +619,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                 betInformationMessage = (isProjLeader ?  System.label.IPM_NoBETMsgPLOther :  System.label.IPM_NoBETMsgFunctional);
             }
         }else if(isRollout && String.isBlank(BETId)){
-            betInformationMessage = (toolkitOption != IPM_ConstantUtils.NO_BET) ? (isLinkDenied ? System.label.IPM_BETDeniedMsgFunctional:(isProjLeader ? System.label.IPM_BETMsgRegionalLocalPL : System.label.IPM_BETMsgRegionalLocal)) : System.label.IPM_NoBETRegionalLocal;
+            betInformationMessage = (toolkitOption != IPM_ConstantUtils.NO_BET) ? (isProjLeader ? System.label.IPM_BETMsgRegionalLocalPL : System.label.IPM_BETMsgRegionalLocal) : System.label.IPM_NoBETRegionalLocal;
         }
         //Validate and if available then add members for BET Suggested members request
         if(isOriginal && ((toolkitOption != IPM_ConstantUtils.NO_BET && String.isNotBlank(BETId)) ||(toolkitOption == IPM_ConstantUtils.LINK_EXISTING_BET && String.isNotBlank(requestedBETId)) )&& isProjLeader  && !project.Bulk_BET_Member_Request__c){
@@ -694,7 +672,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         if(project!=null && (project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY || project.IPM_Phase__c==IPM_ConstantUtils.PHASE_CAPABILITY) && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
             childProjectsIncomplete=[SELECT Count() FROM IPM_Project_Document__c WHERE IPM_Project__r.IPM_Parent_Project__c=:project.Id AND (IPM_Document_Status__c!=:IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED OR IPM_Document_Status__c!=:IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED) AND IPM_Project__r.IPM_Phase__c=:project.IPM_Phase__c];
         }
-        String currentGate;
+        String currentGate = '';
         if(childProjectsIncomplete>0){
             ++noOfNotifications; 
             if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY){
@@ -730,51 +708,6 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         BETId = projbetId;
     }
 
-    /*******************************************************************
-    * @description: Get the sobject details of the tasks basing on the ids
-    * @param1 - tasksId : set id of the tasks
-    * @return : sobject details task wise.
-    */
-    /*private Map<String, IPM_Task__c> getTaskDetail(Set<String> tasksId) {
-        
-        Map<String, IPM_Task__c> mapToReturn = new Map<String, IPM_Task__c>();
-        list<IPM_Task__c> lst = [SELECT IPM_Task_Name__c FROM IPM_Task__c WHERE Id IN :tasksId limit 50000];
-        for(IPM_Task__c eachRec : lst) {
-            mapToReturn.put(eachRec.Id, eachRec);
-        }
-        return mapToReturn;
-    }*/
-    
-    /*******************************************************************
-    * @description: Get the sobject details of the Pro Sections basing on the ids
-    * @param1 - tasksId : set id of the project sections
-    * @return : sobject details project doc sections wise.
-    */
-    /*private Map<String, IPM_Project_Document_Section__c> getPSDetail(Set<String> psId) {
-        
-        Map<String, IPM_Project_Document_Section__c> mapToReturn = new Map<String, IPM_Project_Document_Section__c>();
-        list<IPM_Project_Document_Section__c> lst = [SELECT IPM_Project_Section__c FROM IPM_Project_Document_Section__c WHERE Id IN :psId limit 50000];
-        for(IPM_Project_Document_Section__c eachRec : lst) {
-            mapToReturn.put(eachRec.Id, eachRec);
-        }
-        return mapToReturn;
-    }*/
-    
-    /*******************************************************************
-    * @description: Get the sobject details of the Pro Document basing on the ids
-    * @param1 - pdId : set id of the project document
-    * @return : sobject details project doc wise.
-    */
-    /*private Map<String, IPM_Project_Document__c> getPDDetail(Set<String> pdId) {
-        
-        Map<String, IPM_Project_Document__c> mapToReturn = new Map<String, IPM_Project_Document__c>();
-        list<IPM_Project_Document__c> lst = [SELECT IPM_GateDocuments__c,LastModifiedBy.Name FROM IPM_Project_Document__c WHERE Id IN :pdId limit 50000];
-        for(IPM_Project_Document__c eachRec : lst) {
-            mapToReturn.put(eachRec.Id, eachRec);
-        }
-        return mapToReturn;
-    }*/
-    
     /*******************************************************************
     * @description: Get the sobject details of the milestone basing on the ids
     * @param1 - pdId : set id of the milestone
@@ -812,7 +745,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
 
 
                      }
-                    if(DateValue<=21 && DateValue!=0 && DateValue >0){
+                    if(DateValue<=IPM_ConstantUtils.CONST_21 && DateValue!=0 && DateValue >0){
 
                            alertMessage.put(eachRec.IPM_Project__r.IPM_Project_Name__c+SPACE+eachRec.IPM_Name__c+SPACE+System.Label.IPM_DUE_IN,DateValue+SPACE+System.Label.IPM_DAY);
                            alertscount++;
@@ -866,64 +799,11 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
     public void loadObjectHistory() {
         
         activityHistory = new List<objectHistoryWrapper>();//initialise the wrapped list now
-        //list<sObject> objectHistoryRecords = new list<sObject>();//history records of objects.
-        //Map<String, sObject> objectHistoryRecordsMap = new Map<String, sObject>();//history records of objects map wise
-        /*
-         * Internal variables used for various combinations of data being filtered out 
+        
+         /* Internal variables used for various combinations of data being filtered out 
          */
-        //Set<String> tasksIds = new Set<String>();
-        //Set<String> psIds = new Set<String>();
-        //Set<String> pdIds = new Set<String>();
-        //Set<String> msIds = new Set<String>();
         Set<String> usrIds = new Set<String>();
-
-        //Now initialise all those objects & add them from all the objects mentioned from the objectFldMap
-        /*for(String eachObject : objectFldMap.keySet()) {
-            Set<String> parentStr = new Set<String>();
-            if(eachObject == sTaskHistoryObjName) {
-                parentStr.addAll(projectTasksSet);
-            } /*else if(eachObject == sDocSectionHistoryObjName) {
-                parentStr.addAll(projectSectionsSet);
-            } else if(eachObject == sDocHistoryObjName) {
-                parentStr.addAll(projectDocsSet);
-            } else if(eachObject == sMilestoneHistoryObjName) {
-                parentStr.addAll(projectMSSet);
-            }
-            if(parentStr!=null && !parentStr.isEmpty()) {
-                //This method is calling a SOQL but this was given deliberately coz we know how many iterations will it be (4X)
-                objectHistoryRecords.addAll(getHistoryRecords(eachObject, objectFldMap.get(eachObject), objectAddtnlFldsMap.get(eachObject), parentStr));
-            }
-        }
-        //fill all the objects with relevant internal sets to extract their sobject details
-        for(sObject eachObjHistory : objectHistoryRecords) {
-            String parentId = String.valueOf(eachObjHistory.get(STR_PARENTID));
-            if(parentId.startsWith(IPM_Task__c.sObjectType.getDescribe().getKeyPrefix())) {
-                tasksIds.add(String.valueOf( eachObjHistory.get(STR_PARENTID) ));
-            } else if(parentId.startsWith(IPM_Project_Document_Section__c.sObjectType.getDescribe().getKeyPrefix())) {
-                psIds.add(String.valueOf( eachObjHistory.get(STR_PARENTID) ));
-            } else if(parentId.startsWith(IPM_Project_Document__c.sObjectType.getDescribe().getKeyPrefix())) {
-                pdIds.add(String.valueOf(eachObjHistory.get(STR_PARENTID)));
-            } else if(parentId.startsWith(IPM_Milestone__c.sObjectType.getDescribe().getKeyPrefix())) {
-                msIds.add(String.valueOf(eachObjHistory.get(STR_PARENTID)));
-            }
-            if(String.valueOf(eachObjHistory.get(STR_OLDVALUE)) != null && String.valueOf(eachObjHistory.get(STR_OLDVALUE)).startsWith('005')) {
-                usrIds.add(String.valueOf( eachObjHistory.get(STR_OLDVALUE)));
-            }
-            if(String.valueOf(eachObjHistory.get(STR_NEWVALUE)) != null && String.valueOf(eachObjHistory.get(STR_NEWVALUE)).startsWith('005')) {
-                usrIds.add(String.valueOf( eachObjHistory.get(STR_OLDVALUE)));
-            }
-            usrIds.add(String.valueOf( eachObjHistory.get(STR_CREATEDBY)));
-        }*/
-        
-        /*
-         * now fill in their methods per objectwise in various maps, we may need them below
-        */
-        //Map<String, IPM_Task__c> taskDetailsMap = tasksIds != NULL && !tasksIds.isEmpty() ? getTaskDetail(tasksIds) : null;
-        /*if(!psIds.isEmpty()) 
-          getPSDetail(psIds);*/
-        //Map<String, IPM_Project_Document__c> projectDocumentMap = pdIds != NULL && !pdIds.isEmpty() ? getPDDetail(pdIds) : null;
-        
-        
+ 
         //Now get the chatter feed for the project, this is the universal chatter feed that we have notified, its time to show them all!
         List<IPM_Project__Feed> projectFeed = [SELECT Body,ParentId,CreatedDate,CreatedById FROM IPM_Project__Feed WHERE ParentId = :projectId ORDER BY CreatedDate DESC limit 50000];
         for(IPM_Project__Feed eachObjHistory : projectFeed) {
@@ -944,94 +824,8 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
             objWrap.action = eachObjHistory.Body;
             activityHistory.add(objWrap);
         }
-        //Now fill all the history activities (Audit Trials)
-        /*for(sObject eachObjHistory : objectHistoryRecords) {
-            if(!objectHistoryRecordsMap.containsKey(String.valueOf( eachObjHistory.get('CreatedDate') ))) {
-                objectHistoryWrapper objWrap = new objectHistoryWrapper();
-                DateTime dT = (DateTime)eachObjHistory.get('CreatedDate');
-                if(Test.isRunningTest()){
-                    dT = System.today();
-                }
-                objWrap.theDate = dT.format();
-
-                objWrap.user = userDetailMap.get(String.valueOf( eachObjHistory.get(STR_CREATEDBY) )).Name;
-
-
-                objWrap.recordLink = String.valueOf( eachObjHistory.get(STR_PARENTID) ) != null ? String.valueOf( eachObjHistory.get(STR_PARENTID) ) : BLANK_STR;
-                objWrap.fromValue = String.valueOf( eachObjHistory.get(STR_OLDVALUE) ) != null ? String.valueOf( eachObjHistory.get(STR_OLDVALUE) ) : BLANK_STR;
-                objWrap.toValue = String.valueOf( eachObjHistory.get(STR_NEWVALUE) ) != null ? String.valueOf( eachObjHistory.get(STR_NEWVALUE) ) : BLANK_STR;
-                objWrap.whoImage = userDetailMap.get(String.valueOf(eachObjHistory.get(STR_CREATEDBY))).SmallPhotoUrl;
-                objWrap.actionType = SPACE + Label.ChangeActionType + SPACE;
-                //String frm = String.valueOf( eachObjHistory.get(STR_OLDVALUE));
-                //String to = String.valueOf( eachObjHistory.get(STR_NEWVALUE));
-
-                objWrap.actionType = SPACE + Label.ChangeActionType + SPACE;
-
-                if(String.valueOf(eachObjHistory.get(STR_PARENTID)).startsWith(IPM_Task__c.sObjectType.getDescribe().getKeyPrefix()) && 
-                            taskDetailsMap.get(String.valueOf(eachObjHistory.get(STR_PARENTID))).IPM_Task_Name__c != null && String.valueOf(eachObjHistory.get(STR_FIELD)) == 'IPM_Assignee__c' ) { // when a task is changed
-                            objWrap.actionType = SPACE + Label.OwnerActionType + SPACE;
-                            objWrap.action = SPACE + Label.ChangedTaskOwner + SPACE;
-                            objWrap.action +=  taskDetailsMap.get(String.valueOf(eachObjHistory.get(STR_PARENTID))).IPM_Task_Name__c;
-                }
-
-                objectHistoryRecordsMap.put(String.valueOf(eachObjHistory.get('CreatedDate')), eachObjHistory);
-                
-                if(objWrap.action != null) {
-                    activityHistory.add(objWrap);
-                } 
-            }
-        }*/
-
-    }
     
-    /*******************************************************************
-    * @description: dynamic SOQL Method which retreives the <object>History
-    * @param1 - objectNameHistory : object name
-    * @param2 - flds : Fields per objectwise
-    * @param3 - addtionalFlds :Additional fields if any, objectwise again 
-    * @param4 - parentIds : all the parent records for the history
-    * @return: sObject list from the DB
-    */
-    /*private list<sObject> getHistoryRecords(String objectNameHistory, String flds, String addtionalFlds, Set<String> parentIds) {
-        
-        String pIds = IPM_Utils.convertStrToSoqlList(IPM_Utils.convertSetToString(parentIds));
-        String sQuery  = 'SELECT ParentId, OldValue, NewValue, Field, CreatedById, CreatedDate';
-               sQuery = addtionalFlds != null ? sQuery + ',' + addtionalFlds : sQuery;
-               sQuery += ' FROM ' + objectNameHistory;
-               sQuery += ' WHERE ParentId IN ' + pIds;
-               if(IPM_Utils.convertStrToSoqlList(flds) != null && pIds != null) {
-                  sQuery += ' AND Field IN '+ IPM_Utils.convertStrToSoqlList(flds);
-               }
-               sQuery += ' ORDER BY CreatedDate DESC LIMIT 100';
-
-        if(Test.isRunningTest()){
-            List<sObject> lstTaskHistory = new List<sObject>();
-            //List<sObject> lstProjDocSecHistory = new IPM_Project_Document_Section__History();
-            //List<sObject> lstProjDocHistory = new IPM_Project_Document__History();
-            //List<sObject> lstMileHistory = new IPM_Milestone__History();
-            
-            for(String Id : parentIds){
-                if(objectNameHistory == sTaskHistoryObjName){
-                    lstTaskHistory.add(new IPM_Task__History(ParentId = Id, Field = 'IPM_Completed__c'));
-                    lstTaskHistory.add(new IPM_Task__History(ParentId = Id, Field = 'IPM_Task_Name__c'));
-                    lstTaskHistory.add(new IPM_Task__History(ParentId = Id, Field = 'IPM_Task_Complexity__c'));
-                    lstTaskHistory.add(new IPM_Task__History(ParentId = Id, Field = 'IPM_Assignee__c'));
-                    lstTaskHistory.add(new IPM_Task__History(ParentId = Id, Field = 'IPM_Task_Type__c'));
-                }else if(objectNameHistory == sDocSectionHistoryObjName){
-                    lstTaskHistory.add(new IPM_Project_Document_Section__History(ParentId = Id, Field = 'IPM_Section_Name__c'));
-                    lstTaskHistory.add(new IPM_Project_Document_Section__History(ParentId = Id, Field = 'IPM_Section_Owner__c'));
-                    lstTaskHistory.add(new IPM_Project_Document_Section__History(ParentId = Id, Field = 'IPM_Section_Status__c'));
-                }else if(objectNameHistory == sDocHistoryObjName){
-                    lstTaskHistory.add(new IPM_Project_Document__History(ParentId = Id, Field = 'IPM_Document_Status__c'));
-                    lstTaskHistory.add(new IPM_Project_Document__History(ParentId = Id, Field = 'IPM_Approval_Date__c'));
-                }else if(objectNameHistory == sMilestoneHistoryObjName){
-                    lstTaskHistory.add(new IPM_Milestone__History(ParentId = Id, Field = objectFldMap.get(sMilestoneHistoryObjName)));
-                }
-            }
-            return lstTaskHistory;
-        }else
-            return Database.query(sQuery);
-    }*/
+    }
     
     /*******************************************************************
     * @description: Mark the task as complete
@@ -1043,10 +837,11 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
             tObj[0].IPM_Completed_Date__c = isChecked == 'true' ? system.today() : null;
             update tObj[0];
         }
-        catch (DmlException ex){
+        catch (DmlException ex)
+        {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
                'markComplete',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-        
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));   
         }       
         if(!Test.isRunningTest())
            init();
@@ -1084,6 +879,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         catch (DmlException ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
                'moveToPLE',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));   
  
         }
      }

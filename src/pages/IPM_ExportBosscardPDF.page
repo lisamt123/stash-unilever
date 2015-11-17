@@ -1,12 +1,12 @@
 <!--  
 *******************************************************************************************
-*@Description:Used for generating the Gate Document page in PDF format
+*@Description:Used for generating the bosscard page in PDF format with all details
 *@Author: Cognizant
 *@Created Date: 26/12/2014 
 *@Copyright © 2015  Unilever  
 *******************************************************************************************
 -->
-<apex:page standardController="IPM_Bosscard__c" id="IPM_BosscardPDF" extensions="IPM_BosscardController" renderAs="pdf" applyHtmlTag="false" showHeader="false" applyBodyTag="false">
+<apex:page standardController="IPM_Bosscard__c" id="IPM_BosscardPDF" standardStylesheets="false" extensions="IPM_BosscardController" renderAs="pdf" applyHtmlTag="false" showHeader="false" applyBodyTag="false">
    <html>
         <head>   
             <style type="text/css" media="print"> 
@@ -215,7 +215,7 @@
                         </div>
                         <apex:outputField value="{!Bosscard.IPM_Consumer_Need__c}" />
                     </div>
-                    <div class="bdText"> 
+                    <div class="bdText">
                         <div class="label">
                             <u>{!$Label.IPM_POTENTIAL_BUSINESS_OPPOR}</u>
                         </div>

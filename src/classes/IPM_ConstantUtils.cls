@@ -108,6 +108,8 @@ public class IPM_ConstantUtils {
     public static final String UNDERSCORE='_';
     public static final String BLANK='';
     public static final String SLASH='/';
+    public static final String YES='/';
+    public static final String NO='/';
     //Gate Document variables ends
     
     //Bosscard variables starts
@@ -422,8 +424,9 @@ public class IPM_ConstantUtils {
     public static final String CORE_PARAMETER_STRATEGIC_TEXT ='IPM CoreParameter Strategic text';
 
     //used in IPM_CoreparemetersRevampTestClass 
-    public static final String IPM_CORE_PARAMETER_HELPS ='Does it better meet the consumer needs or meet more needs?';
-     
+    public static final String IPM_CORE_PARAMETER_HELPS ='Does iCONST_14t better meet the consumer needs or meet more needs?';
+    public static final integer CONST_7 = 7;
+    public static final integer CONST_21 = 21;
      //Financial Field Literals
      public static final String FIELD_LITERAL_VOLUME_UNIT = 'Volume_Unit_';
      public static final String FIELD_LITERAL_NPV = 'NPV_';
@@ -910,6 +913,7 @@ public class IPM_ConstantUtils {
    public static final String ClassCopyPaste = IPM_FinancialCopyPasteGrid.Class.getName();
    public static final String NullString = null;
    public static final Integer fileSize = 25000000;
+   public static final String FINANCIAL_CONTROLLER_STR = '/apex/IPM_FinancialCopyPasteGrid?id=';
    
    // Phase Change Job Status 
     public static final String JOB_STATUS_NA = 'Not Applicable';
@@ -1156,5 +1160,6 @@ public class IPM_ConstantUtils {
    public static final String TLD_UPDATED_FROM_NONE ='None';
    public static final String TLD_UPDATED_FROM_ROLLOUT ='Rollout';
    public static final String TLD_UPDATED_FROM_PROJECT ='Project';
+   
    
 }

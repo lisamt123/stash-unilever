@@ -10,7 +10,7 @@
 <apex:attribute name="gateType" description="For Getting Gate Type" required="true" type="String" assignTo="{!gateDocType}"/>
 <apex:attribute name="getSectionId" description="For Getting Project Document Section" required="true" type="Id" assignTo="{!projDocSecId}"/> 
 <apex:attribute name="isEditable" description="For Edit or Read-Only mode" type="Boolean"/>
-<apex:attribute name="projId" description="Getting Project Id" type="Id" />
+<apex:attribute name="projId" description="Getting Project Id" type="Id"/>
     <apex:outputPanel styleClass="gatefinancialbg" layout="block" rendered="{!isEditable}">
        <a href="{!$Page.IPM_Financial}?id={!projId}">{!$Label.IPM_Navigate_Financial}</a>
    </apex:outputPanel>

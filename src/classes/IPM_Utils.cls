@@ -199,7 +199,7 @@ public without sharing class IPM_Utils {
     */
     public static String convertSetToString(Set<String> setStr) {
         
-        String strToReturn = '';
+        String strToReturn = null;
         for(String eachStr : setStr) {
             if(strToReturn == null) {
                 strToReturn = eachStr;
@@ -218,7 +218,7 @@ public without sharing class IPM_Utils {
     */
     public static String convertStrToSoqlList(String str) {
         
-        String strToReturn = '';
+        String strToReturn = null;
         if(!String.isBlank(str)) {
             for(String eachStr : str.split(',')) {
                 if(strToReturn == null) {

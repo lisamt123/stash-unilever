@@ -54,7 +54,7 @@
     <enableReports>true</enableReports>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>IPM_1st_Full_Year_Gross_TO_BD__c</fullName>
         <description>1st Full Year Gross TO (BD)</description>
@@ -984,5 +984,5 @@
     </nameField>
     <pluralLabel>IPM Analytics</pluralLabel>
     <searchLayouts/>
-    <sharingModel>Private</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

@@ -232,6 +232,7 @@ public with sharing class IPM_Team_Assignment_Controller {
     * @description: checking whether current logged in user has edit permission to team assigned page.
     */
     public boolean isShowEditmode{get;set;}
+   
     /*******************************************************************************************************
     * @Description: This is IPM_Resource_Allocation_FinalRevamp constructor and Initialise all variables.Get Project id FROM url parameter
     * @return:
@@ -251,6 +252,7 @@ public with sharing class IPM_Team_Assignment_Controller {
         isGateKShow=false;
         isDPLeader=false;
         isPLeader=false;
+        
         PLName=IPM_ConstantUtils.BLANK;
         GKImage=IPM_ConstantUtils.BLANK;
         GateKeeperName=IPM_ConstantUtils.BLANK;
@@ -420,14 +422,19 @@ public with sharing class IPM_Team_Assignment_Controller {
     * @Description:Get all assigned team members list of current project   
     */ 
     public void GetAssignedMember(){
+    CountProjectMembers();
         listofAssignedMem=new list<IPM_Project_Resource__c>();
+        
         listofAssignedMem=[SELECT id,IPM_User__c,IPM_User__r.name,IPM_User__r.SmallPhotoUrl,
         IPM_Project_Role_Owner__c,IPM_Role__c,
         IPM_Role_Type__c FROM IPM_Project_Resource__c WHERE 
         IPM_Project__r.id=:projectID 
         ORDER BY IPM_Project_Role_Owner__c DESC LIMIT 50000];
         
-    }
+       
+        }
+        
+       
     /*******************************************************************************************************
     * @Description:Save team members   
     * @return:null
@@ -448,13 +455,13 @@ public with sharing class IPM_Team_Assignment_Controller {
             }
             catch(DmlException ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-                ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
-                SAVE_TEAM_MEMBERS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
+                SAVE_TEAM_MEMBERS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
             }
             catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-                ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
-                SAVE_TEAM_MEMBERS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
+                SAVE_TEAM_MEMBERS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
             }
             isTeamMemberSave=true;
         }
@@ -473,6 +480,8 @@ public with sharing class IPM_Team_Assignment_Controller {
         AND IPM_Project_Role_Owner__c=true LIMIT 50000];
         if(lstassignedowner != NULL && !lstassignedowner.isEmpty()){
             IPM_Project_Resource__c changeFunctionOwner=new IPM_Project_Resource__c(id=lstassignedowner[0].id);
+           
+            
             changeFunctionOwner.IPM_Project_Role_Owner__c=false;
             changeFunctionWonerList.add(changeFunctionOwner);
             try{
@@ -480,8 +489,8 @@ public with sharing class IPM_Team_Assignment_Controller {
             }
             catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-                ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
-                HOLDING_SELECTE_OWNER_ID,ex.getMessage(),ex, 'Error', null, null, null);
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
+                HOLDING_SELECTE_OWNER_ID,ex.getMessage(),ex, 'Error', null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
             }           
         }
         IPM_Project_Resource__c functionOwner=new IPM_Project_Resource__c(id=SelectedRecordId);
@@ -492,13 +501,13 @@ public with sharing class IPM_Team_Assignment_Controller {
         }
         catch(DmlException ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
-            HOLDING_SELECTE_OWNER_ID,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
+            HOLDING_SELECTE_OWNER_ID,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
-            HOLDING_SELECTE_OWNER_ID,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
+            HOLDING_SELECTE_OWNER_ID,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
         }       
         if(SelectedRoleType.equalsIgnoreCase(IPM_ConstantUtils.FUNCTIONAL_ROLE_RD)){
             initialise();
@@ -522,13 +531,13 @@ public with sharing class IPM_Team_Assignment_Controller {
             }
             catch(DmlException ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-                ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
-                SAVE_CORE_MEMBERS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
+                SAVE_CORE_MEMBERS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
             }
             catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-                ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
-                SAVE_CORE_MEMBERS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
+                SAVE_CORE_MEMBERS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
             }
             isGateKShow=false;
             isTPLShow=false;
@@ -553,13 +562,13 @@ public with sharing class IPM_Team_Assignment_Controller {
         }
         catch(DmlException ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
-            DELETE_ASSIGNED_MEM,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
+            DELETE_ASSIGNED_MEM,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
-            DELETE_ASSIGNED_MEM,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCE_ALLOCATION_FINALREVAMP_STR,
+            DELETE_ASSIGNED_MEM,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
         getAssignedMember();
         countProjectMembers();

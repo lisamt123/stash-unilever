@@ -1,3 +1,8 @@
+/**
+    Purpose: Helper class for all the mandatory without sharing business logic, purposely kept without sharing
+    Author: Cognizant Technology
+    @Date: Nov 2015
+**/
 public without sharing class IPM_WithoutSharingHelper {
 	
 	private static final String AS_STR= ' as a ';
@@ -41,7 +46,7 @@ public without sharing class IPM_WithoutSharingHelper {
             }   
         }
         //Also post to the project chatter about the user being added.
-        ChatterUtils.postChatterFeedWithMention(projectIds, subjectIdMessageMap,subjectIdMentionIdMap);
+        IPM_ChatterUtils.postChatterFeedWithMention(projectIds, subjectIdMessageMap,subjectIdMentionIdMap);
         IPM_ChatterFeedHelper.clearData();
         
         Map<Id, Set<Id>> projectUserMap = IPM_ChatterFeedHelper.getProjectUserMap(newProjectResources); //output of the method

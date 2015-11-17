@@ -247,8 +247,9 @@
                                     &euro;{!globalyearDec}mn
                                 </div>
                             </div>
+                            
                             <apex:outputPanel layout="block" styleClass="" rendered="{!isExemptFromThresholdITO}">
-                                <div class="greyborder"></div>
+                            <div class="greyborder"></div>
                                 <div class="row">
                                     <div class="col-sm-12 pr0">
                                         <div class="keycontent">{!$Label.IPM_Exempt_from_Threshold}</div>
@@ -256,6 +257,8 @@
 
 
                                 </div>
+
+                                
                             </apex:outputPanel>
                             
                             <apex:outputpanel >
@@ -265,12 +268,12 @@
                                     <div class="keycontent">{!$Label.IPM_BusinessImpact}</div>
                                 </div>
                                 <div class="col-sm-3 pl0">
-                                    &euro;{!IF(project.IPMProject_Span__c=='Global',globalbusinessImpactStr,regionalORlocalBusinessImpactStr)}
+                                    &euro;{!globalbusinessImpactStr}<!--{!IF(project.IPMProject_Span__c=='Global',globalbusinessImpactStr,regionalORlocalBusinessImpactStr)}-->
                                 </div>
                             </div>
                             <div class="greyborder"></div>
                             </apex:outputpanel>
-
+                            
                             <div class="row mt20">
                                 <div class="col-sm-2">                        
                                     <img class="cirimg" alt="Project Leader" src="{!project.IPM_Project_Leader__r.SmallPhotoUrl}"/>
@@ -369,12 +372,7 @@
                     <apex:outputPanel rendered="{!project.IPM_Phase__c!='PLE'}">                    
                         <apex:outputPanel rendered="{!if(project.Is_Archieved__c==true,false,true)}" >
                             <div class="col-sm-3">
-                           <apex:outputPanel rendered="{!OR(project.IPM_Project_Type__c=='Origional',project.IPM_Project_Type__c=='Rollout',AND(project.IPM_Project_Type__c=='Operational',project.IPM_Phase__c!='Market Ready'))}">                   
                                 <div class="topheader">{!$Label.IPM_MY_SECTIONS_IN} {!currGateToDisplay}</div>
-                                </apex:outputPanel>
-                                <apex:outputPanel rendered="{!AND(project.IPM_Project_Type__c=='Operational',project.IPM_Phase__c=='Market Ready')}">                    
-                                <div class="topheader">{!$Label.IPM_MY_SECTIONS_IN} {!$Label.IPM_NA}</div>
-                                </apex:outputPanel>
                                 <div class="greyborder"></div>
                                 <apex:outputPanel layout="block" styleClass="overviewGreyBg" rendered="{!projectSections != NULL && projectSections.size ==  0 }" >
                                     {!$Label.IPM_NoGateDocSecMesg}
@@ -416,12 +414,9 @@
                         <apex:outputPanel rendered="{!if(project.Is_Archieved__c==true,false,true)}" >
                             <div class="col-sm-3">
                                 <apex:outputPanel id="headPnl">
-                                   <apex:outputPanel rendered="{!OR(project.IPM_Project_Type__c=='Origional',project.IPM_Project_Type__c=='Rollout',AND(project.IPM_Project_Type__c=='Operational',project.IPM_Phase__c!='Market Ready'))}"> 
+                                    
                                         <div class="topheader">{!$Label.IPM_MY_TO_DOs_IN} {!currGateToDisplay}<span class="mlr5px greytxt">|</span>{! If(project.IPM_PM_Approach__c='Internal',allIncompleteTasks,'')}</div>
-                                     </apex:outputPanel> 
-                                     <apex:outputPanel rendered="{!AND(project.IPM_Project_Type__c=='Operational',project.IPM_Phase__c=='Market Ready')}">
-                                        <div class="topheader">{!$Label.IPM_MY_TO_DOs_IN} {!$Label.IPM_NA}</div>
-                                     </apex:outputPanel>
+                                    
                                 </apex:outputPanel>    
                                 <div class="greyborder"></div>
                                 <div class="">

@@ -4,7 +4,7 @@
 * @description  This class is used for displaying Financial Action Stndards 
 *               in the gate document
 */
-public without sharing class IPM_FinancialActionStandards {
+public with sharing class IPM_FinancialActionStandards {
 
     public IPM_Project__c project {get; set;} //The project record for which the financial business cases are being viewed
     public Id projDocSecId{get; set;}
@@ -57,7 +57,15 @@ public without sharing class IPM_FinancialActionStandards {
     public ipmFinancialActionStandardWrapper PaybackWrapper {get; set;} //Payback Wrapper
 
     public static final String CLASS_NAME = IPM_FinancialActionStandards.Class.getName(); //Class Name for Exception Logging
-
+	@TestVisible private static string COMMENT_INNOVATION = 'Innovation';
+	@TestVisible private static string COMMENT_INCREMENTAL = 'Incremental';
+	@TestVisible private static string COMMENT_GTO = 'gTO';
+	@TestVisible private static string COMMENT_ITO = 'iTO';
+	@TestVisible private static string COMMENT_GM = 'GM';
+	@TestVisible private static string COMMENT_NPV = 'NPV';
+	@TestVisible private static string COMMENT_IRR = 'IRR';
+	@TestVisible private static string COMMENT_PAYBACK = 'PayBack';
+	
     /*******************************************************************************************************
     * @description  Action Method to show Action Standards
     * @param        NONE
@@ -78,7 +86,7 @@ public without sharing class IPM_FinancialActionStandards {
                'showFinancialActionStandards',ex.getMessage(),ex, IPM_ConstantUtils.ERROR,
                 null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
             if(ApexPages.currentPage() != null){  
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, ex.getMessage() + '\n' + ex.getStackTraceString()));
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage ) );
             }
         }
     }
@@ -131,12 +139,12 @@ public without sharing class IPM_FinancialActionStandards {
                             FROM IPM_Financial_Years__r)
                     FROM IPM_Financial__c 
                     WHERE Financial_External_Id__c =: financialExternalId Limit 1];
-        System.debug(financial +'****financial ****');            
-        System.debug(financial.IPM_Financial_Years__r+'****financial.IPM_Financial_Years__r****');
+                    
+        
         mapFinancialYears = new Map<String, IPM_Financial_Year__c>();
         For(IPM_Financial_Year__c finYear : financial.IPM_Financial_Years__r)
             mapFinancialYears.put(finYear.External_Id__c, finYear);
-        System.debug(mapFinancialYears+'***mapFinancialYears***');
+        
         
         String firstFullYearGrossExtId = financialExternalId + '_' + IPM_ConstantUtils.Y1_LABEL + '_' + IPM_ConstantUtils.YEAR_TYPE_INNOVATION + '_' + IPM_ConstantUtils.PL_TYPE_GROSS;
         if (mapFinancialYears.containsKey(firstFullYearGrossExtId))
@@ -146,7 +154,7 @@ public without sharing class IPM_FinancialActionStandards {
         
         if (mapFinancialYears.containsKey(firstFullYearIncrementalExtId))
             firstFullYearIncremental = mapFinancialYears.get(firstFullYearIncrementalExtId);
-        System.debug(firstFullYearGross +'***firstFullYearGross ***'+firstFullYearIncremental +'***firstFullYearIncremental ****');
+        
         if ((firstFullYearGross != null) && (firstFullYearIncremental != null)){
             //Generate Wrappers
             printDoc = ApexPages.currentPage().getParameters().get('printDoc');
@@ -156,7 +164,7 @@ public without sharing class IPM_FinancialActionStandards {
                 actionsStandardsFieldSuffix = fieldSuffix;
             else
                 actionsStandardsFieldSuffix = IPM_ConstantUtils.FIELD_SUFFIX_CHARTER;
-            System.debug(IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX+'**********');
+            
             innovationValueShareWrapper.actionStandardValue = ((Decimal) firstFullYearGross.get(IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(1);
            
             incrementalValueShareWrapper.actionStandardValue = ((Decimal) firstFullYearIncremental.get(IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(1);
@@ -174,7 +182,7 @@ public without sharing class IPM_FinancialActionStandards {
             else
                 processWrapperListGateValues(IPM_ConstantUtils.FIELD_SUFFIX_CHARTER);
     
-            System.debug(lstGateNames+'***lstGateNames***');
+            
             //Contract - Only Process if Project phase is not Ideas && Gate Not Charter 
             if((project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS) 
                     && (printDoc != IPM_ConstantUtils.CHARTER_GATE)){
@@ -244,7 +252,7 @@ public without sharing class IPM_FinancialActionStandards {
                                   IPM_IRR_Action_Standard_Charter__c,IPM_IRR_Action_Standard_Charter_Cmts__c,IPM_iTo_Action_Standard_Charter__c,IPM_iTo_Action_Standard_Charter_Cmts__c,IPM_NPV_Action_Standard_Charter__c,
                                   IPM_NPV_Action_Standard_Charter_Cmts__c,IPM_Payback_Action_Standard_Charter__c,IPM_Payback_Action_Standard_Charter_Cmts__c,IPM_Project_Document_Section__c,IPM_Content_Type__c 
                            FROM IPM_Project_Document_Section_Content__c 
-                           WHERE IPM_Project_Document_Section__c=:projDocSecId and IPM_Content_Type__c='Financial Action Standards'];
+                           WHERE IPM_Project_Document_Section__c=:projDocSecId and IPM_Content_Type__c=:IPM_ConstantUtils.FINANCIAL_ACTION_STANDARDS];
         }
     }
     
@@ -253,7 +261,7 @@ public without sharing class IPM_FinancialActionStandards {
             if(String.isNotBlank(conId)){
                 projDocSecCon=new IPM_Project_Document_Section_Content__c();
                 projDocSecCon.Id=conId;
-                if(commentField=='Innovation'){
+                if(commentField == COMMENT_INNOVATION){
                     if(isComment){
                         projDocSecCon.IPM_Inov_Value_Share_Action_Charter_Cmts__c=comments;
                     }
@@ -261,7 +269,7 @@ public without sharing class IPM_FinancialActionStandards {
                         projDocSecCon.IPM_Innov_Value_Share_Action_Charter__c=numvalue;
                     }
                 }
-                else if(commentField=='Incremental'){
+                else if(commentField == COMMENT_INCREMENTAL){
                     if(isComment){
                         projDocSecCon.IPM_Inc_Val_Share_Action_Charter_Cmts__c=comments;
                     }
@@ -269,7 +277,7 @@ public without sharing class IPM_FinancialActionStandards {
                         projDocSecCon.IPM_Inc_Value_Share_Action_Charter__c=numvalue;
                     }   
                 }
-                else if(commentField=='gTO'){
+                else if(commentField == COMMENT_GTO){
                     if(isComment){
                         projDocSecCon.IPM_gTO_Action_Standard_Charter_Cmts__c=comments;
                     }
@@ -277,7 +285,7 @@ public without sharing class IPM_FinancialActionStandards {
                         projDocSecCon.IPM_gTO_Action_Standard_Charter__c=numvalue;
                     }   
                 }
-                else if(commentField=='iTO'){
+                else if(commentField == COMMENT_ITO){
                     if(isComment){
                         projDocSecCon.IPM_iTo_Action_Standard_Charter_Cmts__c=comments;
                     }
@@ -285,7 +293,7 @@ public without sharing class IPM_FinancialActionStandards {
                         projDocSecCon.IPM_iTo_Action_Standard_Charter__c=numvalue;
                     }   
                 }
-                else if(commentField=='GM'){
+                else if(commentField == COMMENT_GM){
                     if(isComment){
                         projDocSecCon.IPM_GM_Action_Standards_Charter_Cmts__c=comments;
                     }
@@ -293,7 +301,7 @@ public without sharing class IPM_FinancialActionStandards {
                         projDocSecCon.IPM_GM_Action_Standards_Charter__c=numvalue;
                     }
                 }
-                else if(commentField=='NPV'){
+                else if(commentField == COMMENT_NPV){
                     if(isComment){
                         projDocSecCon.IPM_NPV_Action_Standard_Charter_Cmts__c=comments;
                     }
@@ -301,7 +309,7 @@ public without sharing class IPM_FinancialActionStandards {
                         projDocSecCon.IPM_NPV_Action_Standard_Charter__c=numvalue;
                     }   
                 }
-                else if(commentField=='IRR'){
+                else if(commentField == COMMENT_IRR){
                     if(isComment){
                         projDocSecCon.IPM_IRR_Action_Standard_Charter_Cmts__c=comments;
                     }
@@ -309,7 +317,7 @@ public without sharing class IPM_FinancialActionStandards {
                         projDocSecCon.IPM_IRR_Action_Standard_Charter__c=numvalue;
                     }   
                 }
-                else if(commentField=='PayBack'){
+                else if(commentField == COMMENT_PAYBACK){
                     if(isComment){
                         projDocSecCon.IPM_Payback_Action_Standard_Charter_Cmts__c=comments;
                     }
@@ -320,13 +328,13 @@ public without sharing class IPM_FinancialActionStandards {
                 update projDocSecCon;
             }
         }
-        catch(DMLException ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'IPM_FinancialActionStandards',
-                    'updateActionStandards',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
-        }
         catch(Exception ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'IPM_FinancialActionStandards',
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
                     'updateActionStandards',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
+            
+            if(ApexPages.currentPage() != null){  
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage ) );
+            }
         }  
     }
     

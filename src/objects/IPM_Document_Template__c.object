@@ -121,12 +121,10 @@
     <label>IPM Document Template</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>IPM_Document_Order__c</columns>
-        <columns>IPM_Document_Type__c</columns>
-        <columns>IPM_Document_Template_Name__c</columns>
-        <columns>IPM_Project_Template__c</columns>
-        <columns>NAME</columns>
         <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>IPM_Document_Template_Name__c</columns>
+        <columns>IPM_Document_Type__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>

@@ -15,7 +15,6 @@ public with sharing class IPM_BCCController extends IPM_ProjectIntermediateContr
     public Boolean tldAlignment{get; set;} //true if we want to aligned output text
     public Boolean isEditable{get;set;}//used for security 
     public Boolean isPDFDownload{get;set;}//used for security 
-    private static final string CLASS_NAME = 'IPM_BCCController';
 
     /************************************************************************
     @Description : This is the constructor for the class
@@ -24,11 +23,7 @@ public with sharing class IPM_BCCController extends IPM_ProjectIntermediateContr
     public IPM_BCCController(){
         projectId= ApexPages.currentPage().getParameters().get('Id');
         isEditable=false;
-        if (projectId != NULL){
-          /*  project = [SELECT Id,IPM_Project_Name__c,IPMProject_Span__c,IPM_Phase__c,IPM_Target_Launch_Dates__c,
-                              IPM_Parent_Project__c,IPM_Parent_Project__r.IPM_Target_Launch_Dates__c 
-                       FROM IPM_Project__c 
-                       WHERE Id=:projectId];*/
+        if (projectId != NULL){          
             if(project.IPM_Target_Launch_Dates__c==project.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c){
                 tldAlignment=true;
             }
@@ -68,9 +63,11 @@ public with sharing class IPM_BCCController extends IPM_ProjectIntermediateContr
             saveMsg=true;
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,System.Label.IPM_BCC_SAVED_SUCCESFULLY));
         }
-        catch (DmlException ex) {
-            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),CLASS_NAME,
-                            'save',ex.getMessage(),ex, 'Error', null, null, null);
+        catch (Exception ex) {
+        	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
+        	ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BCCController.class.getName(),
+            'save',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+        	
         }
     }
 
@@ -88,9 +85,12 @@ public with sharing class IPM_BCCController extends IPM_ProjectIntermediateContr
             }
                  
         }
-        catch (DmlException ex) {
-            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),CLASS_NAME,
-                            'changeStatus',ex.getMessage(),ex, 'Error', null, null, null);
+        catch (Exception ex) {  
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));
+            
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BCCController.class.getName(),
+            'changeStatus',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+        
         }
        
     }

@@ -246,10 +246,6 @@
         <name>IPM_Business_Case_Confirmed__c</name>
     </fields>
     <fields>
-        <label><!-- IPM Business Impact --></label>
-        <name>IPM_Business_Impact__c</name>
-    </fields>
-    <fields>
         <label><!-- IPM CPP Local --></label>
         <name>IPM_CPP_Local__c</name>
     </fields>
@@ -258,105 +254,12 @@
         <name>IPM_Category__c</name>
     </fields>
     <fields>
-        <label><!-- IPM Company Project Priority --></label>
-        <name>IPM_Company_Project_Priority__c</name>
-    </fields>
-    <fields>
         <label><!-- Country Feedback --></label>
         <name>IPM_Country_Feedback__c</name>
     </fields>
     <fields>
-        <label><!-- IPM Financial Edit Phase --></label>
-        <name>IPM_Financial_Edit_Phase__c</name>
-    </fields>
-    <fields>
-        <label><!-- Gross Project A&amp;P --></label>
-        <name>IPM_Gross_Project_A_P__c</name>
-    </fields>
-    <fields>
-        <label><!-- Gross Project GP --></label>
-        <name>IPM_Gross_Project_GP__c</name>
-    </fields>
-    <fields>
-        <label><!-- Gross Project Turnover --></label>
-        <name>IPM_Gross_Project_Turnover__c</name>
-    </fields>
-    <fields>
-        <label><!-- Incremental Turnover --></label>
-        <name>IPM_Incremental_Turnover__c</name>
-    </fields>
-    <fields>
-        <label><!-- IsAggregate --></label>
-        <name>IPM_IsAggregate__c</name>
-    </fields>
-    <fields>
-        <label><!-- Market Description --></label>
-        <name>IPM_Market_Description__c</name>
-        <picklistValues>
-            <masterLabel>A&amp;P (-)</masterLabel>
-            <translation><!-- A&amp;P (-) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>A&amp;P%</masterLabel>
-            <translation><!-- A&amp;P% --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Capex (-)</masterLabel>
-            <translation><!-- Capex (-) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>GM%</masterLabel>
-            <translation><!-- GM% --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>GP</masterLabel>
-            <translation><!-- GP --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>PBO</masterLabel>
-            <translation><!-- PBO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>PBO%</masterLabel>
-            <translation><!-- PBO% --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Project BIC (-)</masterLabel>
-            <translation><!-- Project BIC (-) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Turnover</masterLabel>
-            <translation><!-- Turnover --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>i A&amp;P (-)</masterLabel>
-            <translation><!-- i A&amp;P (-) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>i GP</masterLabel>
-            <translation><!-- i GP --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>i PBO</masterLabel>
-            <translation><!-- i PBO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>i TO</masterLabel>
-            <translation><!-- i TO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>iGM%</masterLabel>
-            <translation><!-- iGM% --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- Regional Rollout --></label>
         <name>IPM_Project_Rollout__c</name>
-        <relationshipLabel><!-- IPM Financials --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- IPM Project --></label>
-        <name>IPM_Project__c</name>
         <relationshipLabel><!-- IPM Financials --></relationshipLabel>
     </fields>
     <fields>
@@ -520,6 +423,10 @@
         <name>NPV_Regional__c</name>
     </fields>
     <fields>
+        <label><!-- OpCo --></label>
+        <name>OpCo__c</name>
+    </fields>
+    <fields>
         <label><!-- PBO Y1 bps vs DNDS Charter --></label>
         <name>PBO_Y1_bps_vs_DNDS_Charter__c</name>
     </fields>
@@ -623,6 +530,22 @@
         <picklistValues>
             <masterLabel>Submitted</masterLabel>
             <translation><!-- Submitted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Target Launch Date Updated From --></label>
+        <name>Target_Launch_Date_Updated_From__c</name>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Project</masterLabel>
+            <translation><!-- Project --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rollout</masterLabel>
+            <translation><!-- Rollout --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -772,20 +695,8 @@
             <section>Charter</section>
         </sections>
         <sections>
-            <label><!-- Contract --></label>
-            <section>Contract</section>
-        </sections>
-        <sections>
-            <label><!-- Current? --></label>
-            <section>Current?</section>
-        </sections>
-        <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Difference --></label>
-            <section>Difference</section>
         </sections>
         <sections>
             <label><!-- Global --></label>
@@ -794,14 +705,6 @@
         <sections>
             <label><!-- Local --></label>
             <section>Local</section>
-        </sections>
-        <sections>
-            <label><!-- Market Deployment --></label>
-            <section>Market Deployment</section>
-        </sections>
-        <sections>
-            <label><!-- Market Ready --></label>
-            <section>Market Ready</section>
         </sections>
         <sections>
             <label><!-- New Section --></label>

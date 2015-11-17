@@ -6,6 +6,7 @@
     <fields>
         <fullName>BET__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Indicates if BET is applicable for the project type</description>
         <externalId>false</externalId>
         <label>BET</label>
         <trackTrending>false</trackTrending>

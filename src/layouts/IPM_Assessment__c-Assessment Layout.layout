@@ -25,96 +25,72 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>IPM_New_SKU_Waste__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_New_SKU_Water__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_New_SKU_Greenhouse__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_New_SKU_Sourcing__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>IPM_Comparison_SKU__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_Is_Food_Division__c</field>
+                <field>IPM_Comparison_SKU_Waste__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_EcoDesign_Assessment_Id__c</field>
+                <field>IPM_Comparison_SKU_Water__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_SKU_Name__c</field>
+                <field>IPM_Comparison_SKU_Greenhouse__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_Country_Code__c</field>
+                <field>IPM_Comparison_SKU_Sourcing__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_Country_Name__c</field>
+                <field>IPM_Expected_Change_Waste__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_Is_Lead_Assessment__c</field>
+                <field>IPM_Expected_Change_Water__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_Is_Category_Avg_Based__c</field>
+                <field>IPM_Expected_Change_Greenhouse__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_Category_Name__c</field>
+                <field>IPM_Expected_Change_Sourcing__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_Health_Hygiene__c</field>
+                <field>IPM_Current_Global_Average_Waste__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_Nutrition__c</field>
+                <field>IPM_Current_Global_Average_Water__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IPM_Sustainable_Sourcing__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>IPM_Project__c</field>
+                <field>IPM_Current_Global_Average_Greenhouse__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Project_Phase__c</field>
+                <field>IPM_Current_Global_Average_Sourcing__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IPM_Is_Water_Metric_Relevant__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IPM_Environmental_Impact_Country_Codes__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Assessment_Batch_ID__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns/>
-        <style>TwoColumnsTopToBottom</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Comparison SKU</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IPM_Comparison_Rep_GTU_Water_PCU__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IPM_Comparison_Rep_GTU_Name__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IPM_Comparison_Rep_GTU_GHG_PCU__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IPM_Comparison_Rep_GTU_Waste_PCU__c</field>
@@ -123,15 +99,18 @@
                 <behavior>Edit</behavior>
                 <field>IPM_Comparison_Rep_GTU_Code__c</field>
             </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Country SKU</label>
-        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_Comparison_Rep_GTU_Water_PCU__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_Comparison_Rep_GTU_GHG_PCU__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_Comparison_Rep_GTU_Name__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IPM_Country_Category_Avg_Waste_PCU__c</field>
@@ -140,83 +119,61 @@
                 <behavior>Edit</behavior>
                 <field>IPM_Country_Category_Avg_GHG_PCU__c</field>
             </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IPM_Country_Category_Avg_Water_PCU__c</field>
             </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Assessment</label>
-        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_Is_Category_Avg_Based__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>IPM_Assessment_Waste_PCU__c</field>
+                <field>IPM_Project__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>IPM_Assessment_GHG_PCU_Percentage__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>IPM_Assessment_GHG_PCU__c</field>
             </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>IPM_Assessment_Water_PCU__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Assessment Percentage</label>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>IPM_Assessment_Waste_PCU_Percentage__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>IPM_Assessment_GHG_PCU_Percentage__c</field>
+                <field>IPM_Assessment_Waste_PCU__c</field>
             </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>IPM_Assessment_Water_PCU_Percentage__c</field>
             </layoutItems>
-        </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Global Category</label>
-        <layoutColumns>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>IPM_Assessment_Water_PCU__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>IPM_Global_Category_Average_View_GHG__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>IPM_Global_Category_Average_View_Waste__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>IPM_Global_Category_Average_View_GHG__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Required</behavior>
                 <field>IPM_Global_Category_Average_View_Water__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Project_Phase__c</field>
+            </layoutItems>
         </layoutColumns>
-        <style>TwoColumnsLeftToRight</style>
+        <layoutColumns/>
+        <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -275,7 +232,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hL0000000NXUp</masterLabel>
+        <masterLabel>00hc0000000KW8p</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

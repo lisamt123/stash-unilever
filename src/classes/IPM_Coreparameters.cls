@@ -76,7 +76,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     public boolean isOperational{get;set;}//check for operational project
     public boolean isOriginal{get;set;}//check for original project
     public final String IPM_COREPARAMETERREVAMP_STR = IPM_ProjectIntermediateController.IPM_Coreparameters.class.getName();
-    public final string UPDATECOREPRAMETER='updateCoreParameter';
+    public static final string UPDATECOREPRAMETER='updateCoreParameter';
     @TestVisible private string coretickMark;
     @TestVisible private string selCat;
     public boolean isShowFastTOrWhiteS{get;set;}//check for display fasttrack or whitespace

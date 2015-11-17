@@ -292,6 +292,7 @@
     </fields>
     <fields>
         <fullName>ProjectSpan__c</fullName>
+        <description>To Store the Phase for which the section is applicable</description>
         <externalId>false</externalId>
         <label>ProjectSpan</label>
         <picklist>
@@ -312,21 +313,22 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
-        <visibleLines>4</visibleLines>
+        <visibleLines>3</visibleLines>
     </fields>
     <label>IPM Section</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>External_ID__c</columns>
+        <columns>OBJECT_ID</columns>
         <columns>NAME</columns>
-        <columns>IPM_Section_Sequence__c</columns>
-        <columns>IPM_DocSecSuffix__c</columns>
-        <columns>IPM_FunctionalRole__c</columns>
         <columns>IPM_Section_Name__c</columns>
+        <columns>IPM_DocSecSuffix__c</columns>
+        <columns>IPM_Section_Sequence__c</columns>
+        <columns>External_ID__c</columns>
+        <columns>IPM_Section_Label_Type__c</columns>
         <columns>IPM_Section_Type__c</columns>
-        <columns>IPM_Negotiable__c</columns>
         <columns>IPM_Document_Template__c</columns>
-        <columns>IPM_Section_Help_Text__c</columns>
+        <columns>IPM_FunctionalRole__c</columns>
+        <columns>IPM_Parent_Section__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>

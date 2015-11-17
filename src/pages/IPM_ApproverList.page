@@ -6,7 +6,7 @@
 *@Copyright Â© 2015  Unilever  
 *************************************************************************
 -->
-<apex:page controller="IPM_ApproverList" sidebar="false" showHeader="false"> 
+<apex:page controller="IPM_ApproverList" sidebar="false" showHeader="false" id="IPM_ApproverList" standardStylesheets="false"> 
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/jquery-ui.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/bootstrap.min.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Buttons.css')}"/>
@@ -16,6 +16,7 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_RadioButton.css')}"/> 
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_ApproverList.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'assets/font-awesome/css/font-awesome.min.css')}"/>    
+    <apex:pagemessages />
     <apex:form id="frm">
         <div class="apprListContainer">
             <div class="col-sm-12 apprsearchContainer noPadleft">
@@ -49,15 +50,15 @@
                 
             </apex:outputpanel>
             <apex:outputpanel id="noResults">
-                <apex:outputlabel styleClass="noApprList" value="Results not found" rendered="{!noResultfound_Bool}"/>
+                <apex:outputlabel styleClass="noApprList" value="{!$Label.IPM_Results_not_found}" rendered="{!noResultfound_Bool}"/>
             </apex:outputpanel>
             
             <div class="apprButtonsContainer pull-right">
-                <a class="buttonmarRight apprCancel ipmButton pull-left" onclick="closepopup();">Cancel</a>
+                <a class="buttonmarRight apprCancel ipmButton pull-left" onclick="closepopup();">{!$Label.IPM_CANCEL}</a>
                 <apex:outputPanel layout="block" styleClass="pull-left" id="btnRefresh">
-                    <apex:commandButton action="{!saveApprover}" styleClass="buttonmarRight ipmButton primary" oncomplete="closepopup();" value="Update Approver" rendered="{!displayApproveBtn}"/>
+                    <apex:commandButton action="{!saveApprover}" styleClass="buttonmarRight ipmButton primary" oncomplete="closepopup();" value="{!$Label.IPM_Update_Approver}" rendered="{!displayApproveBtn}"/>
                     <apex:outputPanel layout="block" styleClass="addButtonContainer editbContainer pull-right" rendered="{!!displayApproveBtn}">
-                        <span class="buttonmarRight apprDisable">Update Approver</span>
+                        <span class="buttonmarRight apprDisable">{!$Label.IPM_Update_Approver}</span>
                     </apex:outputPanel>
                 </apex:outputPanel> 
             </div>   
@@ -70,6 +71,9 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.clearsearch.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ApproverList.js')}" type="text/javascript"></script>
     <script>
-        var IPMApproverApp = {bossurl:'{!URLFOR($Page.IPM_Bosscard)}',bosscardId:'{!bosscardId}'};
+        var bossurl='{!URLFOR($Page.IPM_Bosscard)}';
+        function closepopup(){
+            window.top.location.href=bossurl+'?id={!bosscardId}';
+        }
     </script>
 </apex:page>

@@ -23,10 +23,12 @@
             <div class="ipmContent">
                 <div class="heading2 ipmHeading blue">
                     <div class="row">
-                    <!-- To place the help symbol in the top right hand corner of page -->      
-                    <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >      
-                        <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>     
+                    
+                    <!-- To place the help symbol in the top right hand corner of page -->
+                    <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
+                        <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
                     </apex:outputPanel>
+                    
                         <div class="col-sm-6">
                             {!$Label.IPM_MilestoneToDos}
                         </div>
@@ -77,7 +79,7 @@
                 </div>
             </div> 
             <div id="ipmDeleteModalDiv">
-                <c:IPM_ConfirmModalRevamp />
+                <c:IPM_ConfirmModal />
             </div>
             <apex:form >
                    <apex:actionFunction name="SaveComplexity" action="{!saveComplexityType}" reRender="none" status="loader"  oncomplete="location.reload();" >

@@ -31,7 +31,11 @@
         </div>
         </apex:outputPanel>  
         <div class="mstoneInfo {!if(isWarningRequired,'mstoneTabshow','mstoneTabhide')}">
-            <apex:outputText styleClass="mstoneInfotext" value="{!marketReadyWarningMessage}" rendered="{!isWarningRequired}"/>
+            <apex:outputPanel rendered="{!isWarningRequired}" >
+                <apex:repeat var="message" value="{!warningMessages}">
+                    <apex:outputText styleClass="mstoneInfoTxt" value="{!message}"/>
+                </apex:repeat>
+            </apex:outputPanel>
         </div>      
         <div class="row ipmMileRow" id="milestoneList">         
             <div class="table-responsive" id="ipmTableDiv">

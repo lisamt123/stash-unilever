@@ -21,10 +21,7 @@ public with sharing class IPM_RolloutTriggerHandler
     private List<IPM_Financial__c> lstDeleteFinancials;
     private List<IPM_Project_Rollout__c> lstDeleteRollouts;
     
-    private static final string CLASS_NAME = IPM_RolloutTriggerHandler.class.getName();
-    private static final string PROCESS_DELETE = 'processDelete';
-    private static final string PROCESS_INSERT = 'processInsert';
-    private static final string PROCESS_UPDATE = 'processUpdate';
+    
     
     /*****************************************************************************************************************************
     * @description      Constructor
@@ -255,7 +252,7 @@ public with sharing class IPM_RolloutTriggerHandler
                 rolloutQuery += ' '+fieldAPIName+',';
             }
         }
-        rolloutQuery = rolloutQuery +' Regional_Project__r.IPM_Parent_Project__c,Name,Id FROM IPM_Project_Rollout__c ';
+        rolloutQuery = rolloutQuery +' Regional_Project__r.IPM_Parent_Project__c,Name,RecordTypeId,Id FROM IPM_Project_Rollout__c ';
         String rolloutWhereClause = ' WHERE Id in :lstProjectRollouts LIMIT 50000';
         rolloutQuery = rolloutQuery + rolloutWhereClause;
         
@@ -605,7 +602,7 @@ public with sharing class IPM_RolloutTriggerHandler
                 IPM_ProcessRolloutStatusAndDates.execute(setGlobalProjectIds, setRegionalOriginalProjectIds);
             }
             
-            /* EPIC172 implementation start .. Commented by Sumit for now. Causing Exceptions and blocking flow. 
+            // EPIC172 implementation start 
             IPM_CustomPermission cpr = new IPM_CustomPermission();
             Boolean syncTLD = cpr.hasPermission(IPM_ConstantUtils.IPM_SYNC_TLD);
             
@@ -622,7 +619,7 @@ public with sharing class IPM_RolloutTriggerHandler
                     syncFinanceTableTLD.syncProjectRolloutFinancialTLD(updatedRollouts);
                 }
             }
-            EPIC172 implementation end */ 
+          //  EPIC172 implementation end 
        
     }
             

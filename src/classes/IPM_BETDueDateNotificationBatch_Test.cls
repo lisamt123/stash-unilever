@@ -53,6 +53,7 @@ public class IPM_BETDueDateNotificationBatch_Test{
             project.Deputy_Project_Leader__c = UserInfo.getUserId();
             project.IPM_Project_Leader__c = UserInfo.getUserId();
             project.IPM_Finance_Member__c = UserInfo.getUserId();
+            project.IPM_Target_Launch_Dates__c = System.today()+400;
             project.IPM_Company_Card__c = ipmCompanyCard.id;
             
             lstProjects.add(project);

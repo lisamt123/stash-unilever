@@ -33,6 +33,7 @@ public class IPM_FinancialController_Currency_Test {
     /*******************************************************************************************************
     * @description  Test Method to initialize data for the other test methods
     */
+    /*
     static testMethod void initializeData(){
         test.startTest();
 
@@ -108,6 +109,7 @@ public class IPM_FinancialController_Currency_Test {
     /*******************************************************************************************************
     * @description  Test Method to test the changeTabs functionality
     */
+    /*
     static testMethod void testChangeTabs(){
         initializeData();
         PageReference pRef = new PageReference(FINANCIAL_CONTROLLER_STR+project.Id);
@@ -130,10 +132,11 @@ public class IPM_FinancialController_Currency_Test {
         system.assert(ipmFinCon.isEditMode != null && !ipmFinCon.isEditMode, 'Edit mode is true');
         
     }   
-    
+    */
     /*******************************************************************************************************
     * @description  Test Method to test the editFinancials functionality
     */
+    /*
     static testMethod void testEditFinancials(){
         initializeData();
         PageReference pRef = new PageReference(FINANCIAL_CONTROLLER_STR+project.Id);
@@ -156,12 +159,13 @@ public class IPM_FinancialController_Currency_Test {
         ipmFinCon2.editFinancials();
         system.assert(ipmFinCon2.isEditMode != null && ipmFinCon2.isEditMode, 'Edit mode is false');
     }
-    
+    */
     
     
     /*******************************************************************************************************
     * @description  Test Method to test the refreshFromLocal functionality
     */
+    /*
     static testMethod void testRefreshFromLocal(){
         initializeData();
         PageReference pRef = new PageReference(FINANCIAL_CONTROLLER_STR+project.Id);
@@ -184,10 +188,11 @@ public class IPM_FinancialController_Currency_Test {
         ipmFinCon6.refreshFromLocal(); 
         system.assert(ipmFinCon6.currentFinancial.Copy_Local_to_Regional__c!= null && !ipmFinCon6.currentFinancial.Copy_Local_to_Regional__c, 'currentFinancial Copy_Local_to_Regional__c is true');
     }
-    
+    */
     /*******************************************************************************************************
     * @description  Test Method to test the refreshFromRegional functionality
     */
+    /*
     static testMethod void testRefreshFromRegional(){
         initializeData();
         PageReference pRef = new PageReference(FINANCIAL_CONTROLLER_STR+project.Id);
@@ -210,10 +215,11 @@ public class IPM_FinancialController_Currency_Test {
         ipmFinCon7.refreshFromRegional();  
         system.assert(ipmFinCon7.currentFinancial.Copy_Regional_to_Local__c != null && !ipmFinCon7.currentFinancial.Copy_Regional_to_Local__c, 'currentFinancial Copy_Regional_to_Local__c is true');
     }
-    
+    */
      /*******************************************************************************************************
     * @description  Test Method to test the checkSustainabilityPeriodChanged functionality
     */
+    /*
     static testMethod void testcheckSustainabilityPeriodChanged(){
         initializeData();
         PageReference pRef = new PageReference(FINANCIAL_CONTROLLER_STR+project.Id);
@@ -236,8 +242,8 @@ public class IPM_FinancialController_Currency_Test {
         ipmFinCon8.checkSustainabilityPeriodChanged();  
         system.assertEquals(ipmFinCon8.sustainabilityPeriod,3,'Sustainability Period Change');
     }
-    
-    
+	*/    
+    /*
         static testMethod void testCoverVariableNotInitilazed(){
          initializeData();
          PageReference pRef = new PageReference(FINANCIAL_CONTROLLER_STR+project.Id);
@@ -286,7 +292,8 @@ public class IPM_FinancialController_Currency_Test {
            
           
           test.stopTest();
-    }
+    }*/
+    /*
     static testMethod void testCoverVariableNotInitilazed1(){
          initializeDataTemp();
          PageReference pRef = new PageReference(FINANCIAL_CONTROLLER_STR+project1.Id);
@@ -301,6 +308,7 @@ public class IPM_FinancialController_Currency_Test {
         ipmFinCon10.changeTabs();
 
     }
+    
       static testMethod void initializeDataTemp1(){
         test.startTest();
 
@@ -326,7 +334,8 @@ public class IPM_FinancialController_Currency_Test {
           
           test.stopTest();
     }
-    
+    */
+    /*
     static testMethod void testCoverVariableNotInitilazed2(){
          initializeDataTemp1();
          PageReference pRef = new PageReference(FINANCIAL_CONTROLLER_STR+project2.Id);
@@ -341,8 +350,8 @@ public class IPM_FinancialController_Currency_Test {
         ipmFinCon11.changeTabs();
 
     }
-    
-    
+    */
+    /*
           static testMethod void initializeDataTemp2(){
         test.startTest();
 
@@ -368,7 +377,8 @@ public class IPM_FinancialController_Currency_Test {
           
           test.stopTest();
     }
-    
+    */
+    /*
     static testMethod void testCoverVariableNotInitilazed3(){
          initializeDataTemp2();
          PageReference pRef = new PageReference(FINANCIAL_CONTROLLER_STR+project3.Id);
@@ -381,7 +391,7 @@ public class IPM_FinancialController_Currency_Test {
         ipmFinCon12.changeTabs();
        
 
-    }
+    }*/
     
     
     static testMethod void initializeDataTemp3(){
@@ -409,7 +419,7 @@ public class IPM_FinancialController_Currency_Test {
           
           test.stopTest();
     }
-    
+    /*
     static testMethod void testCoverVariableNotInitilazed4(){
          initializeDataTemp3();
          PageReference pRef = new PageReference(FINANCIAL_CONTROLLER_STR+project4.Id);
@@ -419,7 +429,7 @@ public class IPM_FinancialController_Currency_Test {
          ipmFinCon13.currentTab = IPM_ConstantUtils.TAB_MYVIEW_NAME;
         ipmFinCon13.changeTabs();
       
-    }
+    }*/
     /*
 	Created by - Sanjay Singh
 	Purpose - Currency related implementation

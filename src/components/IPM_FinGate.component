@@ -26,11 +26,11 @@
         <thead>
             <tr>
                 <th class="blueBorder" scope="col" colspan="3" width="38%">
-                    <span class="finproject">&nbsp;{!currentFinancial.Display_Name__c}</span>
+                    <span class="finproject"> {!currentFinancial.Display_Name__c}</span>
                 </th>
                 <th class="" scope="col" colspan="{!colSpan}" width="62%">
                     <span class="finproject">{!$Label.IPM_Innovation_Years}:</span>
-                    <span class="fintotal">&nbsp;{!sustainabilityPeriod}</span>
+                    <span class="fintotal"> {!sustainabilityPeriod}</span>
                 </th>
             </tr>
         </thead>
@@ -380,7 +380,7 @@
                 </tr>
                 <tr>
                     <td width="40%" class="finproject fintleblubg">{!$Label.ipmFinSummaryPayback}</td>
-                    <td width="30%" class="fintleblubg">Years</td>
+                    <td width="30%" class="fintleblubg">{!$Label.IPM_Fin_Years}</td>
                     <td width="30%" class="blueBorder">
                         <!-- Global Values -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
@@ -521,7 +521,7 @@
     </div>
     
     <!-- Heading -->
-    <div class="ipmfinHeading2">Calendar Years</div>
+    <div class="ipmfinHeading2">{!$Label.IPM_Fin_Calendar_Years}</div>
 
     <!-- Financial Table -->
     <div class="table-responsive">
@@ -529,11 +529,11 @@
         <thead>
             <tr>
                 <th class="blueBorder" scope="col" colspan="3" width="35%">
-                    <span class="finproject">&nbsp;{!currentFinancial.Display_Name__c}</span>
+                    <span class="finproject"> {!currentFinancial.Display_Name__c}</span>
                 </th>
                 <th class="" scope="col" colspan="{!colSpan}" width="65%">
-                    <span class="finproject">Calendar Years:</span>
-                    <span class="fintotal">&nbsp;{!sustainabilityPeriod}</span>
+                    <span class="finproject">{!$Label.IPM_Fin_Calendar}</span>
+                    <span class="fintotal"> {!sustainabilityPeriod}</span>
                 </th>
             </tr>
         </thead>

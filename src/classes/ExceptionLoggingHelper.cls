@@ -76,15 +76,6 @@ global without sharing class ExceptionLoggingHelper {
         return null;
     }
      
-     //To be deleted---------------
-    public static void createErrorLogofIPM(String runninguserId, String className,String methodName,String exMsg, Exception exceptionOccured, 
-                                            String debugLevel, String integrationPayload, String referenceInfo, Integer timer){
-        
-        processExceptionLog(runninguserId,className,methodName,exMsg,exceptionOccured,debugLevel,integrationPayload,referenceInfo,timer,null);       
-    } 
-    //----------------------------------
-    
-    
     public static void createErrorLog(String runninguserId, String className,String methodName,String exMsg, Exception exceptionOccured, 
                                             String debugLevel, String integrationPayload, String referenceInfo, Integer timer, String applicationName){
         

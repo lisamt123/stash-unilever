@@ -9,10 +9,6 @@
         <value>IPM CMI Color Mapping</value>
     </caseValues>
     <fields>
-        <label><!-- IPM CMI Color Value --></label>
-        <name>IPM_CMI_Color_Value__c</name>
-    </fields>
-    <fields>
         <label><!-- IPM CMI Color --></label>
         <name>IPM_CMI_Color__c</name>
     </fields>

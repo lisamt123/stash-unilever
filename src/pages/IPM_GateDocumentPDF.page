@@ -689,13 +689,13 @@
                 <c:IPM_FinGate projId="{!projectId}" rendered="{!pds.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity'}" ></c:IPM_FinGate>
                 <c:IPM_RND_QuestionsView rendered="{!if(OR(pds.IPM_Section_Name__c=='R&D Initial Outline (Product/Pack)',pds.IPM_Section_Name__c=='R&D Technical Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}" RNDEdit="False"></c:IPM_RND_QuestionsView>
                 <c:IPM_SC_Feasibility_QuestionsView rendered="{!if(OR(pds.IPM_Section_Name__c=='Supply Chain Feasibility',pds.IPM_Section_Name__c=='Supply Chain Technical Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}"></c:IPM_SC_Feasibility_QuestionsView>
-                <c:IPM_RND_FEASIBILITY_QuestionsView rendered="{!if(pds.IPM_Section_Name__c=='R&D Feasibility',true,false)}" RNDEdit="False" gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_RND_FEASIBILITY_QuestionsView>    
+                <c:IPM_RND_Feasibility_QuestionsView rendered="{!if(pds.IPM_Section_Name__c=='R&D Feasibility',true,false)}" RNDEdit="False" gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_RND_Feasibility_QuestionsView>    
                <c:IPM_CU_Complexity gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!pds.Id}" proModel="{project.IPM_GateKeeping_Model__c}" ProSpan="{project.IPMProject_Span__c}" phaseName="{!project.IPM_Phase__c}"  isEdit="false" rendered="{!AND(pds.IPM_Master_Section_External_Id__c='CU_And_Complexity',OR(project.IPMProject_Span__c='Regional',project.IPMProject_Span__c='Local',project.IPM_Phase__c='Ideas'))}"></c:IPM_CU_Complexity>
                <c:IPM_CU_Complexity_Consolidated getGateType="{!projectDoc.IPM_GateDocuments__c}" isGateDoc="true" getProjId="{!project.Id}" rendered="{!AND(project.IPMProject_Span__c='Global',pds.IPM_Master_Section_External_Id__c='CU_And_Complexity')}" /> 
                                                                              
                 
                 <c:IPM_TradeMark_QuestionsView rendered="{!if(pds.IPM_Master_Section_External_Id__c=='Trademarks',true,false)}"  gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_TradeMark_QuestionsView>    
-                <c:IPM_OTIFStatusTableVIew otfType="Table" isEdtable="false" getSectionId="{!pds.Id}" rendered="{!IF(pds.IPM_Master_Section_External_Id__c=='OTIF_Status',true,false)}"></c:IPM_OTIFStatusTableVIew>
+                <c:IPM_OTIFStatusTableView otfType="Table" isEdtable="false" getSectionId="{!pds.Id}" rendered="{!IF(pds.IPM_Master_Section_External_Id__c=='OTIF_Status',true,false)}"></c:IPM_OTIFStatusTableView>
                 <c:IPM_GateKeeperListView setEdit="false" getDocType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!IF(pds.IPM_Master_Section_External_Id__c=='Gate_Keeper_Checklist',true,false)}"></c:IPM_GateKeeperListView> 
            
            

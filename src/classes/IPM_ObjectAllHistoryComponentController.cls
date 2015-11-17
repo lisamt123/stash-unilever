@@ -54,7 +54,7 @@ public with sharing class IPM_ObjectAllHistoryComponentController {
             historyFieldPicklistValues = objectHistoryFieldField.getPickListValues();
         }
         list<objectHistoryLine> objectHistory = new list<objectHistoryLine>();
-        String prevDate = '';
+        
         String recordLabel='';
         String recordSequence='';
         String recordID='';
@@ -85,7 +85,7 @@ public with sharing class IPM_ObjectAllHistoryComponentController {
                 tempHistory.theDate = Date.valueOf(historyLine.get(IPM_ConstantUtils.HISTORY_CREATED_DATE)).format();
                 tempHistory.userId = String.valueOf(historyLine.get(IPM_ConstantUtils.HISTORY_CREATED_BY_ID));
                 tempHistory.who = String.valueOf(historyLine.get(IPM_ConstantUtils.HISTORY_CREATED_BY_ID));
-                prevDate = String.valueOf(historyLine.get(IPM_ConstantUtils.HISTORY_CREATED_DATE));
+               
                 // Get the field label
                 String fieldLabel = IPM_ObjectAllHistoryComponentController.returnFieldLabel(String.valueOf(historyLine.get(IPM_ConstantUtils.FIELD)));
                 

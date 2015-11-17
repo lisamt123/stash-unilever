@@ -233,28 +233,8 @@
     <layouts>
         <layout>Assessment Layout</layout>
         <sections>
-            <label><!-- Assessment --></label>
-            <section>Assessment</section>
-        </sections>
-        <sections>
-            <label><!-- Assessment Percentage --></label>
-            <section>Assessment Percentage</section>
-        </sections>
-        <sections>
-            <label><!-- Comparison SKU --></label>
-            <section>Comparison SKU</section>
-        </sections>
-        <sections>
-            <label><!-- Country SKU --></label>
-            <section>Country SKU</section>
-        </sections>
-        <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Global Category --></label>
-            <section>Global Category</section>
         </sections>
     </layouts>
     <startsWith>Consonant</startsWith>

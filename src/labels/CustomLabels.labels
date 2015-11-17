@@ -687,6 +687,13 @@
         <value>Yr 1 Trade Promotion</value>
     </labels>
     <labels>
+        <fullName>IPM_At</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM At</shortDescription>
+        <value>At</value>
+    </labels>
+    <labels>
         <fullName>IPM_BACK</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -2833,6 +2840,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>Please enter unique company card name</value>
     </labels>
     <labels>
+        <fullName>IPM_During</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM During</shortDescription>
+        <value>During</value>
+    </labels>
+    <labels>
         <fullName>IPM_EDIT</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -3210,6 +3224,14 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM_EcoDesign_Water(litres)</shortDescription>
         <value>Water(litres)</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Ecodesign_Countries_Added_To_Or_Removed_From_Rollout_Message</fullName>
+        <categories>Ecodesign</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Ecodesign Countries Added To Or Removed From Rollout Message</shortDescription>
+        <value>Your Project Leader [Project_Leader_Name] has [Operation] [Country_Names] [Operation_Preposition] the rollout plan for [Project_Name]</value>
     </labels>
     <labels>
         <fullName>IPM_Edit_Company_Card_Name</fullName>
@@ -4400,6 +4422,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM Image format</shortDescription>
         <value>Please select image with format like &quot;.jpg,.gif,.png,.bmp,.psd,.psp,.thm,.tif,.yuv,.jpeg&quot;.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Image_uploaded_successfully</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>used whenever image is uploaded successfully</shortDescription>
+        <value>Image uploaded successfully</value>
     </labels>
     <labels>
         <fullName>IPM_Improvement</fullName>
@@ -5898,6 +5927,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>2. Project Parameters</value>
     </labels>
     <labels>
+        <fullName>IPM_PROJECT_PHASE_VALIDATION</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Next Project Phase Validation Error</shortDescription>
+        <value>Next Project Phase should be {0}, However recieved Project Phase is {1}</value>
+    </labels>
+    <labels>
         <fullName>IPM_PROJECT_PRIORITY</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -6064,6 +6100,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM_Phase_Change</shortDescription>
         <value>Confirmation: Project Phase Change Request</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Phase_Label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Phase Label</shortDescription>
+        <value>phase.</value>
     </labels>
     <labels>
         <fullName>IPM_Planned_Next_Gate</fullName>
@@ -6337,6 +6380,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM Project Span Local</shortDescription>
         <value>Local</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Project_Stopped_By</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Project Stopped By</shortDescription>
+        <value>This project is stopped by</value>
     </labels>
     <labels>
         <fullName>IPM_Project_Task_Name</fullName>
@@ -7919,6 +7969,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM ToDosLabel</shortDescription>
         <value>To-do&apos;s</value>
+    </labels>
+    <labels>
+        <fullName>IPM_To_Label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM To Label</shortDescription>
+        <value>to</value>
     </labels>
     <labels>
         <fullName>IPM_Today</fullName>

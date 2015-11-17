@@ -7,7 +7,7 @@
 *************************************************************************
 -->
  
-<apex:page controller="IPM_ChannelImageController" sidebar="false" showHeader="false">
+<apex:page controller="IPM_ChannelImageController" standardStylesheets="false" sidebar="false" showHeader="false" extensions="IPM_GetHelpDoc">
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/bootstrap.min.css')}"/>
     <!-- External Reference -->
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'assets/font-awesome/css/font-awesome.min.css')}"/>
@@ -17,7 +17,7 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Buttons.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_ProjectComponent.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_ChannelImageUpload.css')}"/>   
-    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_imageupload.css')}"/>    
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_imageupload.css')}"/>  
     <div class="container-fluid">
         <apex:form >            
             <div class="col-xs-12 infoMsgDiv"><apex:pageMessages id="pgsmg"/></div>

@@ -48,7 +48,7 @@ public class IPM_CommentsListController_Test {
         projDocSec.IPM_Project_Document__c=projDoc.ID;
         insert projDocSec;
         System.assert(projDocSec!=null);
-        System.assertEquals(projDocSec.IPM_Project_Document__c, projDoc.Id);
+        System.assertEquals(projDocSec.IPM_Project_Document__c, projDoc.Id, 'Record Mismatch');
         
         insertFeed=new FeedItem();
         insertFeed.Body=TEST_DATA;
@@ -73,7 +73,7 @@ public class IPM_CommentsListController_Test {
                                   WHERE ParentId =: ipmComments.parentID 
                                   AND type =:IPM_ConstantUtils.COMMENT_TYPE 
                                   LIMIT 5 OFFSET :0];
-        system.assertEquals(ipmComments.listComments.size(),testComments.size());
+        system.assertEquals(ipmComments.listComments.size(),testComments.size(),'Records Size not Matching');
         test.stopTest();
     }
     
@@ -95,7 +95,7 @@ public class IPM_CommentsListController_Test {
         System.assert(countOfCommnts>0,COUNT_COMMENTS);
         
         projectDocumentSection=[SELECT Id,IPM_Count_of_Comments__c FROM IPM_Project_Document_Section__c WHERE Id=:ipmComments.parentID];
-        system.assertEquals(projectDocumentSection.IPM_Count_of_Comments__c,countOfCommnts);
+        system.assertEquals(projectDocumentSection.IPM_Count_of_Comments__c,countOfCommnts, 'Counts Not Matched');
         test.stopTest(); 
     }
     
@@ -138,7 +138,7 @@ public class IPM_CommentsListController_Test {
         ipmComments.CommentRecord.Type=IPM_ConstantUtils.TEST_STR;
         ipmComments.AddComment();
         for(ApexPages.Message msg : ApexPages.getMessages()) {
-        System.assertEquals(msg.getSummary(), System.Label.IPM_Data_Value_Too_Large);
+        System.assertEquals(msg.getSummary(), System.Label.IPM_Data_Value_Too_Large, 'Summary Mismatch');
         }
         test.stopTest();
      

@@ -245,7 +245,7 @@
         <relationshipLabel>ProductCategory (Parent L2)</relationshipLabel>
         <relationshipName>ProductCategoryL2</relationshipName>
         <required>false</required>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -395,7 +395,7 @@
         <label>Status</label>
         <length>10</length>
         <required>false</required>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -410,18 +410,13 @@
         <columns>NAME</columns>
         <columns>status__c</columns>
         <columns>parent_mdm_id_tree__c</columns>
-        <columns>parent_id__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>category_type__c</field>
-            <operation>equals</operation>
-            <value>Category</value>
-        </filters>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Name</label>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>ProductCategory</pluralLabel>

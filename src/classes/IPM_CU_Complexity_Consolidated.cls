@@ -3,7 +3,7 @@
 @Created Date:22/10/2015
 @Author: Cognizant
 ******************************************************************/
-public class IPM_CU_Complexity_Consolidated {
+public with sharing class IPM_CU_Complexity_Consolidated {
      public List<IPM_Project_Document_Section_Content__c> secContentList{get;set;}
      public String gateType{get;set;}
      public Boolean isGateDocument{get;set;}

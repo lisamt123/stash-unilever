@@ -10,7 +10,7 @@
     </caseValues>
     <fields>
         <help><!-- User can&apos;t enter more than 14 charactes for Name --></help>
-        <label><!-- IPM Project Cluster Name --></label>
+        <label><!-- Project Cluster Name --></label>
         <name>IPM_Cluster_Name__c</name>
     </fields>
     <layouts>
@@ -22,15 +22,11 @@
     </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
-        <errorMessage><!-- IPM Project Cluster Name can not be more the 14 characters --></errorMessage>
-        <name>IPM_Cluster_Name_length</name>
+        <errorMessage><!-- Project Cluster Name can not be more the 14 characters --></errorMessage>
+        <name>IPM_Project_Cluster_Name_length</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Special characters are not allowed/Project Cluster name should always be captured in Capitals --></errorMessage>
         <name>IPM_Special_Characters_not_allowed</name>
-    </validationRules>
-    <validationRules>
-        <errorMessage><!-- Project Cluster Name already exist. Please create a Project Cluster with different Name --></errorMessage>
-        <name>IPM_Unique_Cluster_Name</name>
     </validationRules>
 </CustomObjectTranslation>

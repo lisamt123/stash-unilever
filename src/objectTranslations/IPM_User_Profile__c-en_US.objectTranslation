@@ -70,22 +70,6 @@
         <label><!-- Category --></label>
         <name>IPM_User_Category__c</name>
         <picklistValues>
-            <masterLabel>Beverages</masterLabel>
-            <translation><!-- Beverages --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Deodarants</masterLabel>
-            <translation><!-- Deodarants --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Dressings</masterLabel>
-            <translation><!-- Dressings --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Hair</masterLabel>
-            <translation><!-- Hair --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Household Care</masterLabel>
             <translation><!-- Household Care --></translation>
         </picklistValues>
@@ -96,26 +80,6 @@
         <picklistValues>
             <masterLabel>Laundry</masterLabel>
             <translation><!-- Laundry --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Oral Care</masterLabel>
-            <translation><!-- Oral Care --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Savoury</masterLabel>
-            <translation><!-- Savoury --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Skin Care</masterLabel>
-            <translation><!-- Skin Care --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Skin Cleansing</masterLabel>
-            <translation><!-- Skin Cleansing --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Spreads</masterLabel>
-            <translation><!-- Spreads --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -203,11 +167,39 @@
         <label><!-- Unique User Company Card --></label>
         <name>Unique_User_Company_Card__c</name>
     </fields>
+    <fields>
+        <label><!-- WL --></label>
+        <name>WL__c</name>
+        <picklistValues>
+            <masterLabel>WL1</masterLabel>
+            <translation><!-- WL1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WL2</masterLabel>
+            <translation><!-- WL2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WL3</masterLabel>
+            <translation><!-- WL3 --></translation>
+        </picklistValues>
+    </fields>
     <layouts>
         <layout>User Profile Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- IPM Information --></label>
+            <section>IPM Information</section>
+        </sections>
+        <sections>
+            <label><!-- Reporting --></label>
+            <section>Reporting</section>
+        </sections>
+        <sections>
+            <label><!-- User Role --></label>
+            <section>User Role</section>
         </sections>
     </layouts>
     <startsWith>Consonant</startsWith>

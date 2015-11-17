@@ -6,7 +6,7 @@
 @Version: 1.0
 @Reference: Project Document Section Editor Page
 */
-public without sharing class IPM_GateCMI_Consolidated{   
+public with sharing class IPM_GateCMI_Consolidated{   
     public static final String IPM_GATECMI_CONSOLIDATED_STR = IPM_GateCMI_Consolidated.class.getName();
     public static final String GET_COUNTRIES_STR='getCountries';
     public static final String GET_SECTION_CMI_LIST_STR='getSectionCMIList';

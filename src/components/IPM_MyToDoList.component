@@ -8,6 +8,7 @@
 -->
 
 <apex:component controller="IPM_MyList" allowDML="true">
+<apex:form >
 <div class="pagemessageBoxDiv">
         
             <apex:outputLabel rendered="{!if(lstExtProj.size > 0 ,true,false)}">
@@ -15,17 +16,15 @@
                     <div class="SecButtonSet">
                         <a class="icoButton info smallinfo" title="info"></a>
                         <span class="listmsgTxt">
-                            {!$Label.IPM_ExternallyManagedProjListMessage} &nbsp;
+                            {!$Label.IPM_ExternallyManagedProjListMessage} 
                         </span> 
                          <span class="listProname">
-                                <apex:form >
                                     <apex:variable value="{!1}" var="iterationCounter"/>
                                     <apex:repeat value="{!lstExtProj}" var="externalProj">
-                                        <apex:commandLink action="/apex/IPM_ProjectOverview?id={!externalProj.Id}" value="{!externalProj.IPM_Project_Name__c}" target="_blank"/>
+                                        <apex:commandLink action="{!$Page.IPM_ProjectOverview}?id={!externalProj.Id}" value="{!externalProj.IPM_Project_Name__c}" target="_blank"/>
                                         <apex:outputText rendered="{! IF(iterationCounter == lstExtProj.size, false,true)}" value=","/>
                                     <apex:variable value="{!iterationCounter + 1}" var="iterationCounter"/>
                                     </apex:repeat>
-                                </apex:form>
                         </span>
                         
                     </div>
@@ -44,7 +43,6 @@
                 <span>* </span>{!$Label.IPM_NON_NEGOTIABLE_TO_DOs}
             </div>
         </div>
-        <apex:form >
             <apex:outputPanel id="tskPanel"> 
                 <apex:actionStatus startText="updating..." id="myStatus">
                     <apex:facet name="start">
@@ -217,7 +215,6 @@
                                 <div class="toDoContainer">
                                     <div class="colPhase incHeight">
                                         <span>{!$Label.IPM_PhaseLabel}</span>
-                                        <!-- <span id="sortPhases" class="fa {!IF(currentSort['thisFld'] = 'IPM_Project__r.IPM_Phase__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>-->
                                         <div class="keep-open  btn-group">
                                             <div class="dropdown phaseFilter ipmDropDown">
                                                 <div class="dropdown-toggle" data-toggle="dropdown">
@@ -252,7 +249,6 @@
                                 <div class="toDoContainer">
                                     <div class="colTasks incHeight">
                                         <span>{!$Label.IPM_TaskLabel}</span> 
-                                        <!--<span id="sortTasks" class="fa {!IF(currentSort['thisFld'] = 'IPM_Task_Name__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>-->
                                     </div>
                                 </div>
                             </th>
@@ -260,7 +256,6 @@
                                 <div class="toDoContainer">
                                     <div class="colSection incHeight">
                                         <span>{!$Label.IPM_SECTION}</span>
-                                        <!--<span id="sortSections" class="fa {!IF(currentSort['thisFld'] = 'IPM_Project_Document_Section__r.IPM_Section_Sequence__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>-->
                                     </div>  
                                 </div>
                                 
@@ -269,7 +264,6 @@
                                 <div class="toDoContainer">
                                     <div class="colDuedate incHeight">
                                         <span>{!$Label.IPM_DUE_DATE}</span>
-                                        <!--<span class="fa fa-angle-up sortIcon fa-angle-down" id="sortCompletion"></span>-->
                                         <span id="sortDueDate" class="fa {!IF(currentSort['thisFld'] = 'IPM_Due_Date1__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span>
                                     </div>   
                                 </div>
@@ -305,8 +299,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="colProname">
-                                                    <!--<a href="#"></a> -->
-                                                    <apex:commandLink action="/apex/IPM_ProjectOverview?id={!p.IPM_Project__c}" styleClass="mylistTitle" value="{!p.IPM_Project__r.Name}" target="_blank"/>
+                                                    <apex:commandLink action="{!$Page.IPM_ProjectOverview}?id={!p.IPM_Project__c}" styleClass="mylistTitle" value="{!p.IPM_Project__r.Name}" target="_blank"/>
                                                     <apex:outputPanel layout="block" styleClass="pull-left" rendered="{!p.IPM_Project__r.IPM_Project_Type__c='Original'}">
                                                         <span class="orgIcon"></span>
                                                     </apex:outputPanel>
@@ -339,10 +332,10 @@
     
     
                                                     
-                                                        <a href="/apex/IPM_ProjectDocumentSectionEditor?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}" target="_blank">
-                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>&nbsp;
-                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/>&nbsp;
-                                                            <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel></a>&nbsp;
+                                                        <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}" target="_blank">
+                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>
+                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/>
+                                                            <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel></a>
                                                     </apex:outputPanel>
     
     
@@ -363,7 +356,6 @@
                                             <tr class="paginationRow">
                                                 <td colspan="9" class="paginationCol">
                                                     <div class="pull-right">
-                                                        <!-- <apex:form > -->
                                                         <apex:panelGrid columns="7">
                                                             <apex:commandLink status="oTasksStatus" reRender="overDue" value="Show all" action="{!showAllOverDue}" styleClass="showallbutton" title="Last Page"/>
                                                             <apex:commandButton status="oTasksStatus" reRender="overDue" value="<<" action="{!setCon.first}" disabled="{!!setCon.hasPrevious}" title="First Page" styleClass="paginationLink"/>
@@ -375,7 +367,6 @@
                                                                 <apex:actionStatus id="oTasksStatus" startText="Fetching..." stopText=""/>
                                                             </apex:outputPanel>
                                                         </apex:panelGrid>
-                                                        <!--  </apex:form> -->
                                                     </div>
                                                 </td>
                                             </tr>
@@ -408,8 +399,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="colProname">
-                                                    <!-- <a class="mylistTitle" href="#">{!p.IPM_Project__r.Name}</a> -->
-                                                    <apex:commandLink action="/apex/IPM_ProjectOverview?id={!p.IPM_Project__c}" styleClass="mylistTitle" value="{!p.IPM_Project__r.Name}" target="_blank"/>
+                                                    <apex:commandLink action="{!$Page.IPM_ProjectOverview}?id={!p.IPM_Project__c}" styleClass="mylistTitle" value="{!p.IPM_Project__r.Name}" target="_blank"/>
                                                     <apex:outputPanel layout="block" styleClass="pull-left" rendered="{!p.IPM_Project__r.IPM_Project_Type__c='Original'}">
                                                         <span class="orgIcon"></span>
                                                     </apex:outputPanel>
@@ -438,10 +428,10 @@
                                                 </td>
                                                 <td class="colSectionName">
                                                     <apex:outPutPanel >
-                                                        <a href="/apex/IPM_ProjectDocumentSectionEditor?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}" target="_blank">
-                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>&nbsp;
-                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/>&nbsp;
-                                                            <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel></a>&nbsp;
+                                                        <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}" target="_blank">
+                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>
+                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/>
+                                                            <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel></a>
                                                     </apex:outputPanel>
     
     
@@ -460,7 +450,6 @@
                                             <tr class="paginationRow">
                                                 <td colspan="9" class="paginationCol">
                                                     <div class="pull-right">
-                                                        <!--    <apex:form > -->
                                                         <apex:panelGrid columns="7">
                                                             <apex:commandLink status="tTasksStatus" reRender="todaytasks" value="Show all" action="{!todayTasksize}" styleClass="showallbutton" title="Last Page"/>
                                                             <apex:commandButton status="tTasksStatus" reRender="todaytasks" value="<<" action="{!setControl.first}" disabled="{!!setControl.hasPrevious}" title="First Page" styleClass="paginationLink"/>
@@ -472,7 +461,6 @@
                                                                 <apex:actionStatus id="tTasksStatus" startText="Fetching..." stopText=""/>
                                                             </apex:outputPanel>
                                                         </apex:panelGrid>
-                                                        <!--   </apex:form> -->
                                                     </div>
                                                 </td>
                                             </tr>
@@ -505,7 +493,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="colProname">
-                                                    <apex:commandLink action="/apex/IPM_ProjectOverview?id={!p.IPM_Project__c}" styleClass="mylistTitle" value="{!p.IPM_Project__r.Name}" target="_blank"/>
+                                                    <apex:commandLink action="{!$Page.IPM_ProjectOverview}?id={!p.IPM_Project__c}" styleClass="mylistTitle" value="{!p.IPM_Project__r.Name}" target="_blank"/>
                                                     <apex:outputPanel layout="block" styleClass="pull-left" rendered="{!p.IPM_Project__r.IPM_Project_Type__c='Original'}">
                                                         <span class="orgIcon"></span>
                                                     </apex:outputPanel>
@@ -534,10 +522,10 @@
                                                 </td>
                                                 <td class="colSectionName">
                                                     <apex:outPutPanel >
-                                                        <a href="/apex/IPM_ProjectDocumentSectionEditor?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}" target="_blank">
-                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>&nbsp;
-                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/>&nbsp;
-                                                            <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel></a>&nbsp;
+                                                        <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}" target="_blank">
+                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>
+                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/>
+                                                            <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel></a>
                                                     </apex:outputPanel>
     
     
@@ -556,7 +544,6 @@
                                             <tr class="paginationRow">
                                                 <td colspan="9" class="paginationCol">
                                                     <div class="pull-right">
-                                                        <!--   <apex:form > -->
                                                         <apex:panelGrid columns="7">
                                                             <apex:commandLink status="nsTasksStatus" reRender="nextSevendays" value="Show all" action="{!showAllNextSevenDays}" styleClass="showallbutton" title="Last Page"/>
                                                             <apex:commandButton status="nsTasksStatus" reRender="nextSevendays" value="<<" action="{!setCont.first}" disabled="{!!setCont.hasPrevious}" title="First Page" styleClass="paginationLink"/>
@@ -568,7 +555,6 @@
                                                                 <apex:actionStatus id="nsTasksStatus" startText="Fetching..." stopText=""/>
                                                             </apex:outputPanel>
                                                         </apex:panelGrid>
-                                                        <!--   </apex:form> -->
                                                     </div>
                                                 </td>
                                             </tr>
@@ -601,8 +587,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="colProname">
-                                                    <!-- <a class="mylistTitle" href="#">{!p.IPM_Project__r.Name}</a> -->
-                                                    <apex:commandLink action="/apex/IPM_ProjectOverview?id={!p.IPM_Project__c}" styleClass="mylistTitle" value="{!p.IPM_Project__r.Name}" target="_blank"/>
+                                                    <apex:commandLink action="{!$Page.IPM_ProjectOverview}?id={!p.IPM_Project__c}" styleClass="mylistTitle" value="{!p.IPM_Project__r.Name}" target="_blank"/>
                                                         <apex:outputPanel layout="block" styleClass="pull-left" rendered="{!p.IPM_Project__r.IPM_Project_Type__c='Original'}">
                                                         <span class="orgIcon"></span>
                                                     </apex:outputPanel>
@@ -631,10 +616,10 @@
                                                 </td>
                                                 <td class="colSectionName">
                                                     <apex:outPutPanel >
-                                                        <a href="/apex/IPM_ProjectDocumentSectionEditor?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}" target="_blank">
-                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>&nbsp;
-                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/>&nbsp;
-                                                            <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel></a>&nbsp;
+                                                        <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}" target="_blank">
+                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>
+                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/>
+                                                            <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel></a>
                                                     </apex:outputPanel>
     
     
@@ -653,7 +638,6 @@
                                             <tr class="paginationRow">
                                                 <td colspan="9" class="paginationCol">
                                                     <div class="pull-right">
-                                                        <!--     <apex:form > -->
                                                         <apex:panelGrid columns="7">
                                                             <apex:commandLink status="lTasksStatus" reRender="laterTasks" value="Show all" action="{!showAllLaterTasks}" styleClass="showallbutton" title="Last Page"/>
                                                             <apex:commandButton status="lTasksStatus" reRender="laterTasks" value="<<" action="{!setContr.first}" disabled="{!!setContr.hasPrevious}" title="First Page" styleClass="paginationLink"/>
@@ -665,7 +649,6 @@
                                                                 <apex:actionStatus id="lTasksStatus" startText="Fetching..." stopText=""/>
                                                             </apex:outputPanel>
                                                         </apex:panelGrid>
-                                                        <!--  </apex:form> -->
                                                     </div>
                                                 </td>
                                             </tr>   
@@ -699,8 +682,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="colProname">
-                                                    <!-- <a class="mylistTitle" href="#">{!p.IPM_Project__r.Name}</a> -->
-                                                    <apex:commandLink action="/apex/IPM_ProjectOverview?id={!p.IPM_Project__c}" styleClass="mylistTitle" value="{!p.IPM_Project__r.Name}" target="_blank"/>
+                                                    <apex:commandLink action="{!$Page.IPM_ProjectOverview}?id={!p.IPM_Project__c}" styleClass="mylistTitle" value="{!p.IPM_Project__r.Name}" target="_blank"/>
                                                         <apex:outputPanel layout="block" styleClass="pull-left" rendered="{!p.IPM_Project__r.IPM_Project_Type__c='Original'}">
                                                         <span class="orgIcon"></span>
                                                     </apex:outputPanel>
@@ -733,10 +715,10 @@
                                                 </td>
                                                 <td class="colSectionName">
                                                     <apex:outPutPanel >
-                                                        <a href="/apex/IPM_ProjectDocumentSectionEditor?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}" target="_blank">
-                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>&nbsp;
-                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/>&nbsp;
-                                                            <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel></a>&nbsp;
+                                                        <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!p.IPM_Project__c}&projDocSecId={!p.IPM_Project_Document_Section__c}" target="_blank">
+                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Sequence__c}"/>
+                                                            <apex:outputfield value="{!p.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/>
+                                                            <apex:outputPanel rendered="{!p.IPM_Function__c != NULL}">[{!p.IPM_Function__c}]</apex:outputPanel></a>
                                                     </apex:outputPanel>
                                                     
     
@@ -757,7 +739,6 @@
                                             <tr class="paginationRow">
                                                 <td colspan="9" class="paginationCol">
                                                     <div class="pull-right">
-                                                        <!--   <apex:form > -->
                                                         <apex:panelGrid columns="7">
                                                             <apex:commandLink status="cTasksStatus" reRender="completedTasks" value="Show all" action="{!showCompletedTasks}" styleClass="showallbutton" title="Last Page"/>
                                                             <apex:commandButton status="cTasksStatus" reRender="completedTasks" value="<<" action="{!setController.first}" disabled="{!!setController.hasPrevious}" title="First Page" styleClass="paginationLink"/>
@@ -769,7 +750,6 @@
                                                                 <apex:actionStatus id="cTasksStatus" startText="Fetching..." stopText=""/>
                                                             </apex:outputPanel>
                                                         </apex:panelGrid> 
-                                                        <!--   </apex:form> -->
                                                     </div>
                                                 </td>
                                             </tr>
@@ -781,319 +761,50 @@
                     </div>
                 </div>
             </div>
-        </apex:form>
      </apex:outputPanel>
-    <apex:form >
-        <apex:actionFunction name="filteredProject" action="{!resetall}" rerender="proList, completedFilter,tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus">
+        <apex:actionFunction name="filteredProject" action="{!resetall}" rerender="proList, completedFilter,tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus" oncomplete="completedFilter()">
             <apex:param name="projectName" assignTo="{!projectName}" value="" />
-        </apex:actionFunction>
+        </apex:actionFunction> 
         
         <apex:actionFunction name="filteredProjectReset" action="{!filteredProjectReset}" rerender="proList"  status="myStatus">
-            <!-- <script>alert('Inside actionfunction');</script> -->
             <apex:param name="projectName" assignTo="{!projectName}" value="" />
         </apex:actionFunction>
         
         
-    </apex:form>
-    <apex:form >
-        <apex:actionFunction name="filteredBrand" action="{!resetall}" rerender="completedFilter,tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus">
+        <apex:actionFunction name="filteredBrand" action="{!resetall}" rerender="completedFilter,tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus" oncomplete="completedFilter()">
             <apex:param name="brandName" assignTo="{!brandName}" value="" />
         </apex:actionFunction>
-    </apex:form>
-    <apex:form >
-        <apex:actionFunction name="filteredCategory" action="{!resetall}" rerender="completedFilter,tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus">
+        <apex:actionFunction name="filteredCategory" action="{!resetall}" rerender="completedFilter,tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus" oncomplete="completedFilter()">
             <apex:param name="categoryName" assignTo="{!categoryName}" value="" />
         </apex:actionFunction>
-    </apex:form>
-    <apex:form >
-        <apex:actionFunction name="filteredPhase" action="{!resetall}" rerender="completedFilter,tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus">
+        <apex:actionFunction name="filteredPhase" action="{!resetall}" rerender="completedFilter,tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus" oncomplete="completedFilter()">
             <apex:param name="phase" assignTo="{!phase}" value="" />
         </apex:actionFunction>
-    </apex:form>
-    <apex:form >
         <apex:actionFunction name="toggleSortPhases" action="{!toggleSortPhases}" reRender="tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus"/>
-    </apex:form>
-    <apex:form >
         <apex:actionFunction name="toggleSortTasks" action="{!toggleSortTasks}" reRender="tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus"/>
-    </apex:form>
-    <apex:form >
         <apex:actionFunction name="toggleSortSections" action="{!toggleSortSections}" reRender="tskPanel,statsPanel,jsLoad,tmpPanel" status="myStatus"/>
-    </apex:form>
-    <apex:form >
         <apex:actionFunction name="toggleDueDate" action="{!toggleDueDate}" reRender="tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus"/>
-    </apex:form>
-    <apex:form >
         <apex:actionFunction name="markComplete" action="{!markComplete}" reRender="tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks,countpanel" status="myStatus">
             <apex:param name="tskId" assignTo="{!taskId}" value="" />
             <apex:param name="isChecked" assignTo="{!isChecked}" value="" />
         </apex:actionFunction>
-    </apex:form>
-    <apex:form >
-        <apex:actionFunction name="filterComplete" action="{!reset}" rerender="tskPanel, overDue,todaytasks,nextSevendays,laterTasks,completedTasks,completedFilter" status="myStatus">
+        <apex:actionFunction name="filterComplete" action="{!reset}" rerender="tskPanel, overDue,todaytasks,nextSevendays,laterTasks,completedTasks,completedFilter" status="myStatus" oncomplete="completedFilter()">
             <apex:param name="isCompleteTasks" assignTo="{!isCompleteTasks}" value="" />
         </apex:actionFunction>
         
-        <apex:actionFunction name="filterCompleteReset" action="{!filterCompleteTasksReset}" rerender="completedFilter">
+        <apex:actionFunction name="filterCompleteReset" action="{!filterCompleteTasksReset}" rerender="completedFilter" oncomplete="completedFilter()">
             <apex:param name="isCompleteTasks" assignTo="{!isCompleteTasks}" value="" />
         </apex:actionFunction>
         
-    </apex:form>
-    <apex:form >
         <apex:actionFunction name="sProjects" action="{!resetall}" reRender="tskPanel,overDue,todaytasks,nextSevendays,laterTasks,completedTasks" status="myStatus">
             <apex:param name="searchValue" assignTo="{!searchValue}" value="" />
         </apex:actionFunction>
-    </apex:form>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.clearsearch.js')}" type="text/javascript"></script>
   <apex:outputPanel id="completedFilter">  
     <script>
-    jq('.mytoProSearch').clearSearch();
-    var project=[];
-    var brand=[];
-    var category=[];
-    var phase= [];
-    var complete=[];    
-    
-    function fProject() {
-        jq(".project input:checkbox:checked").each(function() {
-               project.push(jq(this).val());
-        });   
-        var pStr = project.toString();
-        filteredProject(pStr);     
-    }
-    
-    function fProjectreset(){
-        jq(".project input:checkbox").each(function() {
-            jq(this).prop('checked', false);
-            jq(this).next('label').removeClass('selected');
-        });
-        jq('input[id*=srchTxt]').val('');
-        filteredProjectReset('');
-    }
-    
-    function myAssignedTasks(taskId, isChecked) {
-        if(isChecked != 'true') {
-            jq('.taskCheck input[type=checkbox]#'+taskId).closest("tr").removeClass("selected");
-        }else {
-            jq('.taskCheck input[type=checkbox]#'+taskId).closest("tr").addClass("selected");
-            jq('.taskCheck input[type=checkbox]#'+taskId).next().addClass("selected");
-        }
-        
-        markComplete(taskId, isChecked);
-    }
-    
-    function fBrand() {
-        jq(".brand input:checkbox:checked").each(function() {
-            brand.push(jq(this).val());
-        });
-        var pStr = brand.toString();
-        filteredBrand(pStr);
-    }
-    
-    function fCategory() {
-        jq(".category input:checkbox:checked").each(function() {
-            category.push(jq(this).val());
-        });
-        var pStr = category.toString();
-        filteredCategory(pStr);
-    }
-    
-    function fPhase() {
-        jq(".phase input:checkbox:checked").each(function() {
-            phase.push(jq(this).val());
-        });
-        var pStr = phase.toString();
-        filteredPhase(pStr);
-    }
-    
-    jq(document).on('click', '#sortPhases', function(){
-        toggleSortPhases();
-    });
-    
-    jq(document).on('click','#sortTasks', function(){
-        toggleSortTasks();
-    });
-    
-    jq(document).on('click', '#sortSections', function(){
-        toggleSortSections();
-    });
-    
-    jq(document).on('click', '#sortDueDate',function(){
-        jq('.ipmTable td.dueDateCol').css('background', '#DDEEF5');
-        toggleDueDate();
-    });
-    
-    jq('#srchTxt').keypress(function (e) {
-        if (e.which == 13) {
-            sProjects(srchTxt.value);
-            return false;
-        }
-    });
-    
-    function fComplete(){
-        jq(".complete input:checkbox:checked").each(function() {
-            complete.push(jq(this).val());
-        });
-        var pStr = complete.toString();
-        filterComplete(pStr);
-    }
-        
-    function fcompletereset(){
-        jq(".complete input:checkbox").each(function() {
-            jq(this).prop('checked', false);
-            jq(this).next('label').removeClass('selected');
-        });
-        filterCompleteReset('');
-    }
-    
-    function searchProjects(){
-        var searchValue=document.getElementById("srchTxt").value;
-        sProjects(searchValue);
-    }
-    
-    jq(document).on('show.bs.dropdown', '.completedFilter', function(){
-            var selectedValues = '{!isCompleteTasks}';
-            var selectedValuesArr = selectedValues.split(',');
-            jq('.completedFilter .dropdown-toggle .icoButton').removeClass('filter');
-             jq('.completedFilter .dropdown-toggle .icoButton').addClass('filter-selected');
-             
-              jq('.completedFilter .dropdown-menu input[type="checkbox"]').each(function () {
-                       jq(this).prop('checked', false);   
-                       jq(this).next('label').removeClass('selected');
-                });
-            
-            if(selectedValuesArr != '' && selectedValuesArr.length != 0){
-                jq('.completedFilter .dropdown-menu input[type="checkbox"]').each(function () {
-                    var val = jq(this).attr('value');
-                    if(jq.inArray(val, selectedValuesArr) != -1){
-                       jq(this).prop('checked', true);   
-                       jq(this).next().addClass('selected');                    
-                    }else{jq(this).prop('checked', false);}
-                });
-            }else{
-                jq('.completedFilter .dropdown-menu input[type="checkbox"]').each(function () {
-                       jq(this).prop('checked', false);   
-                       jq(this).next('label').removeClass('selected');
-                });
-            }
-        });
-        
-        jq(document).on('hide.bs.dropdown', '.projectFilter', function(){
-            jq('input[id*=srchTxt]').val('');
-            jq('.projectFilter .dropdown-toggle .icoButton').removeClass('filter-selected');
-            filteredProjectReset('');
-        });
-        
-        jq(document).on('show.bs.dropdown', '.projectFilter', function(){
-            setProjectFilter(true);
-        });
-        
-        function setProjectFilter(bSearchTextBlank){
-            var selectedValues = '{!projectName}';
-            var selectedValuesArr = selectedValues.split(',');
-            jq('.projectFilter .dropdown-toggle .icoButton').removeClass('filter');
-             jq('.projectFilter .dropdown-toggle .icoButton').addClass('filter-selected');
-            
-            
-            if(selectedValuesArr != '' && selectedValuesArr.length != 0){
-                jq('.projectFilter .dropdown-menu input[type="checkbox"]').each(function () {
-                    var val = jq(this).attr('value');
-                    if(jq.inArray(val, selectedValuesArr) != -1){
-                       jq(this).prop('checked', true);   
-                       jq(this).next().addClass('selected');                    
-                    }else{jq(this).prop('checked', false);}
-                });
-            }
-            else{
-                if(bSearchTextBlank)
-                    jq('input[id*=srchTxt]').val('');
-                
-                jq('.projectFilter .dropdown-menu input[type="checkbox"]').each(function () {
-                       jq(this).prop('checked', false);   
-                       jq(this).next('label').removeClass('selected');
-                });
-            }
-        }
-         jq(document).on('show.bs.dropdown', '.brandFilter', function(){
-            var selectedValues = '{!brandName}';
-            var selectedValuesArr = selectedValues.split(',');
-            jq('.brandFilter .dropdown-toggle .icoButton').removeClass('filter');
-             jq('.brandFilter .dropdown-toggle .icoButton').addClass('filter-selected');
-            
-            jq('.brandFilter .dropdown-menu input[type="checkbox"]').each(function () {
-                       jq(this).prop('checked', false);   
-                       jq(this).next('label').removeClass('selected');
-                });
-                
-            if(selectedValuesArr != '' && selectedValuesArr.length != 0){
-                jq('.brandFilter .dropdown-menu input[type="checkbox"]').each(function () {
-                    var val = jq(this).attr('value');
-                    if(jq.inArray(val, selectedValuesArr) != -1){
-                       jq(this).prop('checked', true);   
-                       jq(this).next().addClass('selected');                    
-                    }else{jq(this).prop('checked', false);}
-                });
-            }
-            else{
-                jq('.brandFilter .dropdown-menu input[type="checkbox"]').each(function () {
-                       jq(this).prop('checked', false);   
-                       jq(this).next('label').removeClass('selected');
-                });
-            }
-        });
-        
-        jq(document).on('show.bs.dropdown', '.categoryFilter', function(){
-            var selectedValues = '{!categoryName}';
-            var selectedValuesArr = selectedValues.split(',');
-            jq('.categoryFilter .dropdown-toggle .icoButton').removeClass('filter');
-             jq('.categoryFilter .dropdown-toggle .icoButton').addClass('filter-selected');
-            
-              jq('.categoryFilter .dropdown-menu input[type="checkbox"]').each(function () {
-                       jq(this).prop('checked', false);   
-                       jq(this).next('label').removeClass('selected');
-                });
-                
-            if(selectedValuesArr != '' && selectedValuesArr.length != 0){
-                jq('.categoryFilter .dropdown-menu input[type="checkbox"]').each(function () {
-                    var val = jq(this).attr('value');
-                    if(jq.inArray(val, selectedValuesArr) != -1){
-                       jq(this).prop('checked', true);   
-                       jq(this).next().addClass('selected');                    
-                    }else{jq(this).prop('checked', false);}
-                });
-            }else{
-                jq('.categoryFilter .dropdown-menu input[type="checkbox"]').each(function () {
-                       jq(this).prop('checked', false);   
-                       jq(this).next('label').removeClass('selected');
-                });
-            }
-        });
-        
-          jq(document).on('show.bs.dropdown', '.phaseFilter', function(){
-            var selectedValues = '{!phase}';
-            var selectedValuesArr = selectedValues.split(',');
-            jq('.phaseFilter .dropdown-toggle .icoButton').removeClass('filter');
-             jq('.phaseFilter .dropdown-toggle .icoButton').addClass('filter-selected');
-            
-             jq('.phaseFilter .dropdown-menu input[type="checkbox"]').each(function () {
-                       jq(this).prop('checked', false);   
-                       jq(this).next('label').removeClass('selected');
-                });
-                
-            if(selectedValuesArr != '' && selectedValuesArr.length != 0){
-                jq('.phaseFilter .dropdown-menu input[type="checkbox"]').each(function () {
-                    var val = jq(this).attr('value');
-                    if(jq.inArray(val, selectedValuesArr) != -1){
-                       jq(this).prop('checked', true);   
-                       jq(this).next().addClass('selected');                    
-                    }else{jq(this).prop('checked', false);}
-                });
-            }else{
-                jq('.phaseFilter .dropdown-menu input[type="checkbox"]').each(function () {
-                       jq(this).prop('checked', false);   
-                       jq(this).next('label').removeClass('selected');
-                });
-            }
-        });
+        var IPMAppTD = {isCompleteTasks:'{!isCompleteTasks}', brandName:'{!brandName}', categoryName:'{!categoryName}', phase:'{!phase}', projectName:'{!projectName}'};
     </script>
 </apex:outputPanel>
+<script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_MyToDoList.js')}" type="text/javascript" />
+</apex:form>
 </apex:component>

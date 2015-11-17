@@ -4,6 +4,7 @@
 *@Description : PL,BP and Central team members can change the bosscard status
 *Bosscard status can be changed to Approved, Rejected, Archived and In progress.
 *Referring in page ipmBosscardStatus
+* This class has been declared as Gloabl as it contains RemoteAction method.
 *********************************************/
 global with sharing class IPM_BosscardStatusController{
     /*******************************************************************************
@@ -11,27 +12,14 @@ global with sharing class IPM_BosscardStatusController{
     *populate the same in Project
     ********************************************************************************/
     public IPM_Bosscard__c bosscard{get; set;}
-    /*******************************************************************************
-    *@Description:To query the existing project details , Need to optimize the same.
-    *********************************************************************************/
-        public IPM_Project__c project{get; set;}
     /********************************************************************************
     *@Description:To get the current BOSSCARD ID via Page parameters
     *********************************************************************************/
     public string bosscardId{get; set;}
-    /********************************************************************************
-    *@Description:To get the status of the BOSSCARD and render the comments field on 
-    *the page if Approved
-    *********************************************************************************/
-        public boolean isApproved{get;set;}
     /*******************************************************************************
     *@Description:To hold the BOSSCARD status at run time to hold the status 
     ********************************************************************************/
     public string Statusvalue{get;set;}
-    /*******************************************************************************
-    *@Description:get list of all project leader associated with company card
-    ********************************************************************************/
-    public list<selectoption>projectleadelist{get;set;}
     /*******************************************************************************
     *@Description:get list of all project leader associated with company card
     ********************************************************************************/
@@ -65,19 +53,38 @@ global with sharing class IPM_BosscardStatusController{
     *@Description:show the PL search panel
     ********************************************************************************/
     public Boolean searchPL_Bool {get;set;}
+    public string inProgress_STR{get;set;}//hold in progress value
+    public string approved_STR{get;set;}//hold approved value
+    public string notApproved_STR{get;set;}//hold not approved value
+    public string discard_STR{get;set;}//hold discard value
+    public string bosscardStatus_STR{get;set;}//hold bosscard status value
+    public boolean isNotApproved{get;set;}//checking for not approved
+    public boolean isApprovedOtherPLSelected{get;set;}//checking for approved with select other user as PL
+    public boolean isApprovedWithPLSelected{get;set;}//checking for approved with  PL
+    public boolean isApprovedButNoPLSelected{get;set;}//checking for approved with select non PL
     /***************************************************************
     *@Description :Constructor to fetch the details of the Bosscard
     ****************************************************************/
-    private static final string CREATE_PROJECT = 'createProject';
-    private static final string BOSSCARD_CTRL = 'IPM_BosscardController';
+   
+    private static string className=IPM_BosscardStatusController.class.getName();
     public IPM_BosscardStatusController(){
         // call utility class to save having to do this multiple times in multiple places
         IPM_IECompatible.ieFix();
+        inProgress_STR=IPM_ConstantUtils.IPM_BOSS_INPROGRESS;
+        approved_STR=IPM_ConstantUtils.IPM_BOSS_APPROVED;
+        notApproved_STR=IPM_ConstantUtils.IPM_BOSS_NOT_APPROVED;
+        discard_STR=IPM_ConstantUtils.IPM_BOSS_DISCARD;
+        bosscardStatus_STR=IPM_ConstantUtils.IPM_BOSS_CHANGE_BOSS_STATUS;
+        holdPL_STR=IPM_ConstantUtils.BLANK;
+        isApprovedOtherPLSelected=false;
+        isApprovedWithPLSelected=false;
+        isApprovedButNoPLSelected=false;
         isPLSelected_Booln=false;
         companycard_Str=null;
         plcount_INT=0;
         searchPL_Bool=true;
-        bosscardId = ApexPages.currentPage().getParameters().get('Id');
+        isNotApproved=true;
+        bosscardId = ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.SF_ID);
         List<IPM_Bosscard__c> lstbosscard=new List<IPM_Bosscard__c>();
         List<IPM_User_Profile__c>validplList=new List<IPM_User_Profile__c>();
         try{
@@ -91,8 +98,8 @@ global with sharing class IPM_BosscardStatusController{
                 companycard_Str=lstbosscard[0].IPM_Company_Card__c; 
                 Statusvalue=lstbosscard[0].IPM_Bosscard_Status__c;     
             }
-            string query_str='';
-            string strCoreMem='';
+            string query_str=IPM_ConstantUtils.BLANK;
+            string strCoreMem=IPM_ConstantUtils.BLANK;
             strCoreMem=IPM_ConstantUtils.TEAM_PROJECT_LEADER;
             query_str='Select ID,IPM_User__c,IPM_User_Role__c FROM IPM_User_Profile__c WHERE';
             if(companycard_Str!=null){
@@ -110,8 +117,8 @@ global with sharing class IPM_BosscardStatusController{
             
         }
         catch(Exception ex){
-            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_BosscardController.class.getName(),
-                                                       BOSSCARD_CTRL,ex.getMessage(),ex, 'Error', null, null, null); 
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
+                IPM_ConstantUtils.IPM_BOSS_BOSSCARD_CTRL,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     }
     
@@ -154,8 +161,8 @@ global with sharing class IPM_BosscardStatusController{
                 
         }
          try{
-            update BOSSCARD_Record;
             insert NewProject ;
+            update BOSSCARD_Record;
             IPM_Project__c updateProject=new IPM_Project__c();
             updateProject.id=NewProject.id;
             updateProject.IPM_Project_Leader__c=PLId;
@@ -163,10 +170,12 @@ global with sharing class IPM_BosscardStatusController{
             
         }
         catch(Exception ex){
-            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_BosscardController.class.getName(),
-                                                       CREATE_PROJECT,ex.getMessage(),ex, 'Error', null, null, null); 
             // Rollback to the previous  values
             Database.rollback(sp);
+                        ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
+                IPM_ConstantUtils.IPM_BOSS_CREATE_PROJECT,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+
+            
         }
         return NewProject.id;
     }
@@ -180,7 +189,7 @@ global with sharing class IPM_BosscardStatusController{
         Schema.sObjectType sobject_type = IPM_Bosscard__c.getSObjectType();
         Schema.DescribeSObjectResult sobject_describe = sobject_type.getDescribe();
         Map<String, Schema.SObjectField> field_map = sobject_describe.fields.getMap();
-        List<Schema.PicklistEntry> pick_list_values = field_map.get('IPM_Bosscard_Status__c').getDescribe().getPickListValues();
+        List<Schema.PicklistEntry> pick_list_values = field_map.get(IPM_ConstantUtils.IPM_BOSS_STATUS).getDescribe().getPickListValues();
         List<selectOption> options = new List<selectOption>();
         for (Schema.PicklistEntry a : pick_list_values) {
             options.add(new selectOption(a.getLabel(), a.getValue()));
@@ -197,10 +206,10 @@ global with sharing class IPM_BosscardStatusController{
     
     public void updateStatus(){
         
-        if(Statusvalue==IPM_ConstantUtils.STATUS_IN_PROGRESS || Statusvalue==IPM_ConstantUtils.STATUS_NOT_APPROVED ){
+        if(Statusvalue.equals(IPM_ConstantUtils.STATUS_IN_PROGRESS) || Statusvalue.equals(IPM_ConstantUtils.STATUS_NOT_APPROVED)){
                 bosscard.IPM_Bosscard_Status__c=Statusvalue; 
         }     
-        else if(Statusvalue==IPM_ConstantUtils.STATUS_DISCARD ){
+        else if(Statusvalue.equals(IPM_ConstantUtils.STATUS_DISCARD)){
                 bosscard.IPM_Is_Draft__c = false;
                 bosscard.IPM_Is_Accepted__c=false;
                 bosscard.IPM_Is_Archived__c=true;   
@@ -209,8 +218,9 @@ global with sharing class IPM_BosscardStatusController{
                 update bosscard;
         }
         catch(Exception ex){
-                ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),IPM_BosscardController.class.getName(),
-                                                           'updateStatus',ex.getMessage(),ex, 'Error', null, null, null); 
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
+                IPM_ConstantUtils.IPM_BOSS_BOSSCARDUPDATE,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+
        }
     }
     
@@ -222,6 +232,28 @@ global with sharing class IPM_BosscardStatusController{
     
     public void setStatus(){
         bosscard.IPM_Bosscard_Status__c=Statusvalue;
+        renderedConditions();
+    }
+    /********************************************************************************
+    *@Description :check rendered conditions
+    *@Param: NA
+    *@return:Void.
+    *********************************************************************************/
+    
+    public void renderedConditions(){
+        
+        if(Statusvalue.equals(approved_STR)){
+            isNotApproved=false;
+        }
+        if(!isPLSelected_Booln && Statusvalue.equals(approved_STR) && searchPL_Bool){
+            isApprovedOtherPLSelected=true;
+        }
+        if(isPLSelected_Booln && Statusvalue.equals(approved_STR) && searchPL_Bool){
+            isApprovedWithPLSelected=true;  
+        }
+        if(Statusvalue.equals(approved_STR) && !searchPL_Bool){
+            isApprovedButNoPLSelected=true;
+        }
     }
     
     /********************************************************************************
@@ -235,14 +267,14 @@ global with sharing class IPM_BosscardStatusController{
         isPLSelected_Booln=false;
         String likePerStr='%';
         plcount_INT=0;
-        string strCoreMem='';
+        string strCoreMem=IPM_ConstantUtils.BLANK;
         strCoreMem=IPM_ConstantUtils.TEAM_PROJECT_LEADER;
         
         //Get a list of all IPM Project leader
         String queryString = 'SELECT ';
         //user profile fileds
         For (String field : Schema.SObjectType.IPM_User_Profile__c.fields.getMap().KeySet()){
-            if (field != 'Id')
+            if (field.equals(IPM_ConstantUtils.SF_ID))
                 queryString+= field + ', ';
         }
         queryString+= 'Id,IPM_User__r.name,IPM_User__r.id,IPM_User__r.SmallPhotoUrl,IPM_User__r.email FROM IPM_User_Profile__c WHERE (IPM_User__r.name like \''+ likePerStr + String.escapeSingleQuotes(selectedPL) + likePerStr + '\' OR IPM_User__r.email Like \'' + likePerStr + String.escapeSingleQuotes(selectedPL) + likePerStr + '\')';
@@ -270,6 +302,7 @@ global with sharing class IPM_BosscardStatusController{
             
             IsNoMatchfound=false;
         }
+        renderedConditions();
     }
     /********************************************************************************
     *@Description :after selection of project leader show the change button
@@ -278,5 +311,6 @@ global with sharing class IPM_BosscardStatusController{
     *********************************************************************************/
     public void holdPLUserId(){
         isPLSelected_Booln=true;
+        renderedConditions();
     }
 }

@@ -11,6 +11,8 @@ public class IPM_FinancialWrapper_Test {
     */ 
     static testMethod void testIPM_FinancialWrapper()
     {
+    	Test.startTest();
+    	
         IPM_FinancialWrapper ipmfinwrp=new IPM_FinancialWrapper(); 
         system.assert(ipmfinwrp.y0ValueMarketShare ==0, 'y0ValueMarketShare is initialized as 0');
         system.assert(ipmfinwrp.y0Volume ==0, 'y0Volume is initialized as 0');
@@ -22,5 +24,7 @@ public class IPM_FinancialWrapper_Test {
         system.assert(ipmfinwrp.y0GM ==0, 'y0GM is initialized as 0');
         system.assert(ipmfinwrp.y0AP ==0, 'y0AP is initialized as 0');
         system.assert(ipmfinwrp.y0PBO ==0, 'y0PBO is initialized as 0');
+        
+        Test.stopTest();
     }
 }

@@ -1,21 +1,13 @@
-<!--  
-*************************************************************************
-*@Description:This page is used to project details in home page
-*@Author: Cognizant
-*@Created Date: 06/01/2015
-*@Copyright © 2015  Unilever  
-*************************************************************************
--->
-
 <apex:component controller="IPM_MyProjects" allowDML="true" >
     
     <div class="myActiveProjects">
         <div class="row borderBottom">
-            <div class="col-sm-5 heading3 blue width4 noPadleft">My Active Projects</div>
+            <div class="col-sm-5 heading3 blue width4 noPadleft">{!$Label.IPM_ActiveProject} </div>
+            
             <div class="col-sm-2 blue heading3 padTop1 projectsListHeading  width1">{!projectcount}</div>
         </div>
 
-        
+        <apex:form >
         <apex:repeat var="p" value="{!Projects}" >
             <div class="row singleProject">
                 <div class="col-sm-3 noPadleft">                  
@@ -26,14 +18,13 @@
                 </div>
                     
                 <div class="col-sm-7">                  
-                      <apex:form >
-                      <apex:outputPanel rendered="{!!p.projectObj.IPM_IsSaved__c}">
-                        <apex:commandLink styleClass="pull-left bcName" value="{!if((p.bosscardObj.IPM_BosscardName__c != null ),p.bosscardObj.IPM_BosscardName__c,p.projectObj.IPM_Project_Name__c)}" action="{!if((p.bosscardObj.IPM_BosscardName__c != null ),'/apex/IPM_Bosscard?id='+p.bosscardObj.id,'/apex/IPM_ProjectSetupView?Pid='+p.projectObj.Id)}"/>
+                      
+                      <apex:outputPanel rendered="{!AND(!p.projectObj.IPM_IsSaved__c,p.projectObj.IPM_Project_Job_Status__c='Not Applicable')}">
+                        <apex:commandLink styleClass="pull-left bcName" value="{!if((p.bosscardObj.IPM_BosscardName__c != null ),p.bosscardObj.IPM_BosscardName__c,p.projectObj.IPM_Project_Name__c)}" action="{!if((p.bosscardObj.IPM_BosscardName__c != null ),$Page.IPM_Bosscard+'?id='+p.bosscardObj.id,$Page.IPM_ProjectSetupView+'?Pid='+p.projectObj.Id)}"/>
                       </apex:outputPanel>
                       <apex:outputPanel rendered="{!p.projectObj.IPM_IsSaved__c}">
-                        <apex:commandLink styleClass="pull-left bcName" value="{!if((p.bosscardObj.IPM_BosscardName__c != null ),p.bosscardObj.IPM_BosscardName__c,p.projectObj.IPM_Project_Name__c)}" action="{!if((p.bosscardObj.IPM_BosscardName__c != null ),'/apex/IPM_Bosscard?id='+p.bosscardObj.id,'/apex/IPM_ProjectOverview?id='+p.projectObj.Id)}"/>
-                      </apex:outputPanel>   
-                        
+                        <apex:commandLink styleClass="pull-left bcName" value="{!if((p.bosscardObj.IPM_BosscardName__c != null ),p.bosscardObj.IPM_BosscardName__c,p.projectObj.IPM_Project_Name__c)}" action="{!if((p.bosscardObj.IPM_BosscardName__c != null ),$Page.IPM_Bosscard+'?id='+p.bosscardObj.id,$Page.IPM_ProjectOverview+'?id='+p.projectObj.Id)}"/>
+                      </apex:outputPanel> 
                        <apex:outputPanel layout="block" styleClass="pull-left" rendered="{!p.projectObj.IPM_Project_Type__c='Original'}">
                             <span class="orgIcon"></span>
                        </apex:outputPanel>
@@ -46,7 +37,7 @@
                             <span class="oprtnIcon"></span>
                        </apex:outputPanel>
                        
-                    </apex:form> 
+                    
                     <span class="captions brandPosHome">
                     {!if(p.projectObj.IPM_Brand_Positioning__c!= null,p.projectObj.IPM_Brand_Positioning__c,p.bosscardObj.IPM_Brand_Positioning__c)}
                     </span>
@@ -58,24 +49,19 @@
                     {!if(p.bosscardObj.IPM_BosscardName__c!=null,'Bosscard is pending','')} 
                     </span>
                     
-                    
-                    
-                    
-                    
-                    <apex:form >
-                   
-                                               
-                    <span class="homeActiveText">Current status <strong class="percentage">
-                    <apex:commandLink value="{!if(p.projectObj.IPM_Target_Launch_Dates__c = null,if(p.bosscardObj.IPM_Filled_In_Percent__c!=null,p.bosscardObj.IPM_Filled_In_Percent__c,0),if(p.projectObj.IPM_FilledIn_Percentage__c != null,p.projectObj.IPM_FilledIn_Percentage__c,0))}" action="{!if(p.projectObj.IPM_Target_Launch_Dates__c!= null,'/apex/IPM_GateDocument?id='+p.projectObj.Id,'/apex/IPM_Bosscard?id='+p.bosscardObj.id)}"/>% </strong>  Filled in</span>
-                   
+                   <apex:param id="wrapperVal" assignTo="{!prjId}" value="{!if(p.projectObj!=null,p.projectObj.Id,p.bosscardObj.Id)}" />  
+                   <span class="homeActiveText"> {!$Label.IPM_CurrentStatus} <strong class="percentage">
+                   <!--<apex:commandLink value="{!if(p.projectObj.IPM_Target_Launch_Dates__c = null,if(p.bosscardObj.IPM_Filled_In_Percent__c!=null,p.bosscardObj.IPM_Filled_In_Percent__c,0),if(p.projectObj.IPM_FilledIn_Percentage__c != null,p.projectObj.IPM_FilledIn_Percentage__c,0))}" action="{!if(p.projectObj.IPM_Target_Launch_Dates__c!= null,'/apex/IPM_GateDocument?id='+p.projectObj.Id,'/apex/IPM_Bosscard?id='+p.bosscardObj.id)}"/>%  </strong>{!FilledString}</span>-->
 
-                    </apex:form>
-                    
+                  <apex:commandLink value="{!if(p.projectObj.IPM_Target_Launch_Dates__c = null,if(p.bosscardObj.IPM_Filled_In_Percent__c!=null,p.bosscardObj.IPM_Filled_In_Percent__c,0),if(p.projectObj.IPM_FilledIn_Percentage__c != null,p.projectObj.IPM_FilledIn_Percentage__c,0))}" action="{!if(p.projectObj.IPM_Target_Launch_Dates__c!= null,$Page.IPM_GateDocument+'?id='+p.projectObj.Id,$Page.IPM_Bosscard+'?id='+p.bosscardObj.id)}">
+                  </apex:commandLink>
+                   % </strong>{!FilledString}</span>
+
                 </div>
                    
                 <div class="col-sm-2">
                     <div class="col-sm-12 SecButtonSet pull-right">
-                        <a href="{!if((p.bosscardObj.Name != null ),'/apex/IPM_Bosscard?id='+p.bosscardObj.Id,'/apex/IPM_ProjectOverview?id='+p.projectObj.Id)}" class="icoButton details" title="Details"></a>
+                        <a href="{!if((p.bosscardObj.Name != null ),$Page.IPM_Bosscard+'?id='+p.bosscardObj.Id,$Page.IPM_ProjectOverview+'?id='+p.projectObj.Id)}" class="icoButton details" title="Details"></a>
                     </div>
                 </div>
             </div>
@@ -86,5 +72,6 @@
                         {!$Label.IPM_Not_ProjectMember}
            </div>
        </apex:outputPanel>
+       </apex:form> 
     </div>
 </apex:component>

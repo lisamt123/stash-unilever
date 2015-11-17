@@ -40,9 +40,10 @@ public with sharing class IPM_HomePageController
     public String ProjectId{get;set;}
     public Map<String,String> ProjectIdMap{get;set;}
     public String taskcountValue;
-    
+    private static final Integer DAY_VALUE_SEVEN = 7;
+    private static final Integer DAY_VALUE_Fourteen = 14;
     private static final String PLANNED_STR='The planned ';
-    private static final String dateFormat='dd MMMM yyyy';
+    private static final String DATEFORMAT ='dd MMMM yyyy';
     
     /***************************************************************
 *@Description :Constructor to fetch the details of the Project
@@ -60,19 +61,19 @@ public with sharing class IPM_HomePageController
         alertMessageDueDatePast = new Map<String, String>();
         alertMessageDueDateApproaching = new Map<String, String>();
         alertMessageDueDateToday = new Map<String, String>();
-        betMsgFirstReleaseDueDate = new List<String>();
-        betMsgFinalReleaseDueDate = new List<String>();
         ProjectIdMap = new Map<String, String>();
         documentAlertMessageMap = new Map<String, String>();
+        betMsgFirstReleaseDueDate = new List<String>();
+        betMsgFinalReleaseDueDate = new List<String>();
         getusertype();
         
         // To check the Count for Overdue Tasks
         
-        overduetaskscount =[SELECT count() FROM IPM_Task__c WHERE IPM_Assignee__c =: UserInfo.getUserId() AND  IPM_Due_Date1__c <:System.today() And IPM_Completed__c = false limit 1000];
+        overduetaskscount =[SELECT count() FROM IPM_Task__c WHERE IPM_Assignee__c =: UserInfo.getUserId() AND  IPM_Due_Date1__c <:System.today() And IPM_Completed__c = false LIMIT 50000];
             
 
         // To check the history of the Project field
-        lstprojecthistory=[SELECT ParentId,Parent.IPM_Project_Name__c,Parent.Name,Parent.IPM_Fast_Track_Project__c FROM IPM_Project__History WHERE Field =: IPM_Utils.IPM_Fast_Track_Project AND CreatedDate >=: System.today()-7 limit 1000];
+        lstprojecthistory=[SELECT ParentId,Parent.IPM_Project_Name__c,Parent.Name,Parent.IPM_Fast_Track_Project__c FROM IPM_Project__History WHERE Field =: IPM_Utils.IPM_Fast_Track_Project AND CreatedDate >=: System.today()-DAY_VALUE_SEVEN LIMIT 50000];
         mapphistory=new Map<Id,IPM_Project__History>();
         for(IPM_Project__History ph:lstprojecthistory){
             if(!mapphistory.containsKey(ph.ParentId)){
@@ -127,19 +128,19 @@ public with sharing class IPM_HomePageController
                     ProjDueDateMap.put(ipmmiles.IPM_Project__c,ipmmiles.IPM_Due_Date__c);
                     if(ipmmiles.IPM_Project__r.IPM_Phase__c == ipmmiles.IPM_Phase__c && String.IsNotBlank(String.valueOf(ipmmiles.IPM_Due_Date__c)) && !ipmmiles.IPM_Completed__c){
                     DateValue=Date.valueOf(System.today()).daysBetween(Date.valueOf(ipmmiles.IPM_Due_Date__c));
-                            if(DateValue<0){ 
-                                 alertMessageDueDatePast.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,System.Label.IPM_DUE_DATE_FOR +IPM_ConstantUtils.IPM_SPACE+ipmmiles.IPM_Type_of_gate__c +IPM_ConstantUtils.IPM_SPACE+IPM_Utils.off+IPM_ConstantUtils.IPM_SPACE+ipmmiles.IPM_Project__r.IPM_Project_Name__c);
+                            if(DateValue<0){
+                                  alertMessageDueDatePast.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,System.Label.IPM_DUE_DATE_FOR +IPM_ConstantUtils.IPM_SPACE+ipmmiles.IPM_Type_of_gate__c +IPM_ConstantUtils.IPM_SPACE+IPM_Utils.off+IPM_ConstantUtils.IPM_SPACE+ipmmiles.IPM_Project__r.IPM_Project_Name__c);
                                  ProjectIdMap.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.Id);
                             }
                             if(DateValue<=21 && DateValue!=0 && DateValue >0){
-                                alertMessageDueDateApproaching.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.IPM_SPACE+ipmmiles.IPM_Name__c+IPM_ConstantUtils.IPM_SPACE+IPM_Utils.dueIN +IPM_ConstantUtils.IPM_SPACE+ DateValue);
-                                ProjectIdMap.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.Id);
+                               alertMessageDueDateApproaching.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.IPM_SPACE+ipmmiles.IPM_Name__c+IPM_ConstantUtils.IPM_SPACE+IPM_Utils.dueIN +IPM_ConstantUtils.IPM_SPACE+ DateValue);
+                               ProjectIdMap.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.Id);
                                }
                           if(DateValue== 0){
                                alertMessageDueDateToday.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,PLANNED_STR+ipmmiles.IPM_Type_of_gate__c+IPM_ConstantUtils.IPM_SPACE+IPM_ConstantUtils.GATE);
                                ProjectIdMap.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.Id);
                                }
-                      } 
+                      }
                              
                 }
         }
@@ -148,12 +149,12 @@ public with sharing class IPM_HomePageController
         LstFinTLDMisalignedMessageMap = new Map<String,String>();
         LstLocalFinTLDMisalignedMessageMap = new Map<String,String>();
         // Final local Misalignment
-        List<IPM_Financial__c> RegionalFins = new List<IPM_Financial__c>();
+        List<IPM_Financial__c> regionalFins = new List<IPM_Financial__c>();
         Set<Id> ProjIds = new Map<Id,IPM_Project__c>(lstProjects).keySet();
-        RegionalFins = [Select Id, Name, Misaligned__c,MisalignmentDateTime__c,Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c from IPM_Financial__c 
+        regionalFins = [Select Id, Name, Misaligned__c,MisalignmentDateTime__c,Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c from IPM_Financial__c 
         where (Regional_Project__c IN : ProjIds or Global_Project_Id__c IN : ProjIds 
-                                                or Local_Project__c IN : ProjIds) and recordtype.Name =: 'Default' and Misaligned__c = true Limit 1000];
-        for(IPM_Financial__c fin: RegionalFins ){  
+                                                or Local_Project__c IN : ProjIds) and recordtype.Name =: IPM_ConstantUtils.DEFAULT_FINANCIAL_RT and Misaligned__c = true Limit: IPM_ConstantUtils.MaxLimit];
+        for(IPM_Financial__c fin: regionalFins ){  
              if(fin.Regional_Project__c != NULL && fin.Local_Project__c != NULL && fin.Misaligned__c && fin.Misaligned_Date__c < system.today().addDays(1)){
                  LstFinMisalignedMessage.add(IPM_ConstantUtils.FIN_MISALIGNED_ALERT1 +fin.Regional_Project__r.Name+ IPM_ConstantUtils.FIN_MISALIGNED_ALERT2 +fin.Local_Project__r.Name+IPM_ConstantUtils.FIN_MISALIGNED_ALERT3); //The financials for project {Regional.Project Name} and {Local.Project Name} are  misaligned.
                 ProjectId=fin.Regional_Project__r.Id;
@@ -166,16 +167,16 @@ public with sharing class IPM_HomePageController
                                                 (SELECT Id, Turnover_Global__c, Turnover_Local__c,Turnover_Regional__c, Profit_Before_Overheads_Global__c,
                                                 Profit_Before_Overheads_Local__c, Profit_Before_Overheads_Regional__c,
                                                 Gross_Profit_Global__c, Gross_Profit_Local__c, Gross_Profit_Regional__c FROM IPM_Financial_Years__r where
-                                                (Year__c =: '1' or Year__c =: '2' or Year__c =:'3') and Year_Type__c = 'Calendar' ) FROM
+                                                (Year__c =: IPM_ConstantUtils.Y1_YEARINDEX or Year__c =: IPM_ConstantUtils.Y2_YEARINDEX or Year__c =:IPM_ConstantUtils.Y3_YEARINDEX) and Year_Type__c =: IPM_ConstantUtils.YEAR_TYPE_CALENDAR ) FROM
                                                 IPM_Financial__c where (Regional_Project__c IN : ProjIds or Global_Project_Id__c IN : ProjIds 
-                                                or Local_Project__c IN : ProjIds) and recordtype.Name =: 'Default' Limit 1000];
+                                                or Local_Project__c IN : ProjIds) and recordtype.Name =: IPM_ConstantUtils.DEFAULT_FINANCIAL_RT Limit: IPM_ConstantUtils.MaxLimit];
                                                     
        for(IPM_Financial__c fin : financialList ){
         for(IPM_Financial_Year__c FinYear: fin.IPM_Financial_Years__r){
             if(FinYear.Turnover_Global__c ==0 || FinYear.Turnover_Local__c == 0 || FinYear.Turnover_Regional__c == 0 || FinYear.Profit_Before_Overheads_Global__c == 0 ||
               FinYear.Profit_Before_Overheads_Local__c == 0 || FinYear.Profit_Before_Overheads_Regional__c == 0 || FinYear.Gross_Profit_Global__c == 0 || 
               FinYear.Gross_Profit_Local__c == 0 || FinYear.Gross_Profit_Regional__c == 0){
-                if(ProjDueDateMap.get(fin.Global_Project_Id__c) < system.today().addDays(14) || ProjDueDateMap.get(fin.Regional_Project__c) < system.today().addDays(14) || ProjDueDateMap.get(fin.Local_Project__c) < system.today().addDays(14)){
+                if(ProjDueDateMap.get(fin.Global_Project_Id__c) < system.today().addDays(DAY_VALUE_Fourteen) || ProjDueDateMap.get(fin.Regional_Project__c) < system.today().addDays(DAY_VALUE_Fourteen) || ProjDueDateMap.get(fin.Local_Project__c) < system.today().addDays(DAY_VALUE_Fourteen)){
                     if(fin.Global_Project_Id__c != null){
                         BusinessCaseMessageMap.put(fin.Global_Project_Id__c,Label.IPM_BusinessCaseAlert+fin.Display_Name__c);
                         ProjectIdMap.put(fin.Global_Project_Id__c+fin.Display_Name__c,fin.Global_Project_Id__c);
@@ -197,13 +198,12 @@ public with sharing class IPM_HomePageController
         }
                                     
         
-      //Adding alert for TLD misalignment
+        //Adding alert for TLD misalignment
       List<IPM_Project_Rollout__c>projectRolloutList = [SELECT IPM_Project__c,Id,Target_Launch_Date__c,RecordTypeId,Regional_Project__c,Regional_Project__r.IPM_Target_Launch_Dates__c,
                         Regional_Project__r.IPM_Project_Name__c,Local_Project__c,Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.IPM_Project_Name__c
                         FROM IPM_Project_Rollout__c
                         WHERE (IPM_Project__c IN: ProjIds) OR (Regional_Project__c IN: ProjIds) OR (Local_Project__c IN: ProjIds)
                         LIMIT:IPM_ConstantUtils.MaxLimit];
-     Id regionalRollout = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId();
      Id localRollout = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
      
      for(IPM_Project_Rollout__c projRollout : projectRolloutList)
@@ -218,12 +218,12 @@ public with sharing class IPM_HomePageController
                 ProjectIdMap.put(projRollout.Regional_Project__c+projRollout.Regional_Project__r.IPM_Project_Name__c,projRollout.Regional_Project__c);
             }
      }
-     
+
         
         // Adding Alert for Local Project leader is blank for rollout Projects
       RolloutProjectAlertMessageMap = new map<Id, String>();
       Set<Id> newProjIds = new Map<Id,IPM_Project__c>(lstProjects).keySet();
-      lstprojectRollout = [SELECT ID,Name,IPM_Regional_PL__c,Regional_Project__c,Regional_Project__r.Name FROM IPM_Project_Rollout__c where Regional_Project__c in : newProjIds LIMIT 50000];
+      lstprojectRollout = [SELECT ID,Name,IPM_Regional_PL__c,Regional_Project__c,Regional_Project__r.Name FROM IPM_Project_Rollout__c where Regional_Project__c in : newProjIds];
       for(IPM_Project__c proj : lstProjects){
        
        if(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equalsIgnoreCase(proj.IPM_Project_Type__c) && IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL.equalsIgnoreCase(proj.IPMProject_Span__c))
@@ -238,7 +238,7 @@ public with sharing class IPM_HomePageController
              
         } 
         //Alert for displaying Approved with Edits status
-        for(IPM_Project_Document__c eachDoc:[SELECT IPM_GateDocuments__c,IPM_Project__c,IPM_Document_Status__c,IPM_Project__r.IPM_Project_Name__c FROM IPM_Project_Document__c where IPM_Project__c IN :lstProjects limit 1000])
+        for(IPM_Project_Document__c eachDoc:[SELECT IPM_GateDocuments__c,IPM_Project__c,IPM_Document_Status__c,IPM_Project__r.IPM_Project_Name__c FROM IPM_Project_Document__c where IPM_Project__c IN :lstProjects limit 50000])
            {
             if(IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS.equalsIgnoreCase(eachDoc.IPM_Document_Status__c) && (System.Label.IPM_CHARTER.equalsIgnoreCase(eachDoc.IPM_GateDocuments__c) || IPM_ConstantUtils.CONTRACT_GATE.equalsIgnoreCase(eachDoc.IPM_GateDocuments__c)))
             {
@@ -255,7 +255,7 @@ public with sharing class IPM_HomePageController
            {
              Datetime targetLaunchDate=datetime.newInstance(eachProject.IPM_Target_Launch_Dates__c.year(),eachProject.IPM_Target_Launch_Dates__c.month(),eachProject.IPM_Target_Launch_Dates__c.day());
              Datetime betFirstReleaseDate=datetime.newInstance(eachProject.BET_MS_First_Release_Date__c.year(),eachProject.BET_MS_First_Release_Date__c.month(),eachProject.BET_MS_First_Release_Date__c.day());
-             betMsgFirstReleaseDueDate.add(eachProject.IPM_Project_Name__c +IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(dateFormat) + IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR2+ betFirstReleaseDate.format(dateFormat)); 
+             betMsgFirstReleaseDueDate.add(eachProject.IPM_Project_Name__c +IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(DATEFORMAT) + IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR2+ betFirstReleaseDate.format(DATEFORMAT)); 
              ProjectId=eachProject.id;
            }
          } 
@@ -267,19 +267,20 @@ public with sharing class IPM_HomePageController
           {
             Datetime targetLaunchDate=datetime.newInstance(eachProject.IPM_Target_Launch_Dates__c.year(),eachProject.IPM_Target_Launch_Dates__c.month(),eachProject.IPM_Target_Launch_Dates__c.day());
             Datetime betFinalReleaseDate=datetime.newInstance(eachProject.BET_MS_Final_Release_Date__c.year(),eachProject.BET_MS_Final_Release_Date__c.month(),eachProject.BET_MS_Final_Release_Date__c.day());
-            betMsgFinalReleaseDueDate.add(eachProject.IPM_Project_Name__c +IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(dateFormat) + IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR2+ betFinalReleaseDate.format(dateFormat)); 
+            betMsgFinalReleaseDueDate.add(eachProject.IPM_Project_Name__c +IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(DATEFORMAT) + IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR2+ betFinalReleaseDate.format(DATEFORMAT)); 
             ProjectId=eachProject.id;
           }      
-        
+
         }
       }
       alertscount = fastTrackCount+alertMessageDueDatePast.size()+alertMessageDueDateApproaching.size()+alertMessageDueDateToday.size()+LstFinMisalignedMessage.size()+
-        BusinessCaseMessageMap.size()+LstFinTLDMisalignedMessageMap.size()+LstLocalFinTLDMisalignedMessageMap.size()+RolloutProjectAlertMessageMap.size()+documentAlertMessageMap.size()
-        + betMsgFirstReleaseDueDate.size()+betMsgFinalReleaseDueDate.size();
+      BusinessCaseMessageMap.size()+LstFinTLDMisalignedMessageMap.size()+LstLocalFinTLDMisalignedMessageMap.size()+RolloutProjectAlertMessageMap.size()+documentAlertMessageMap.size()
+      + betMsgFirstReleaseDueDate.size()+betMsgFinalReleaseDueDate.size();
+
    }    
     
     public String getTaskcountValue(){
-        Integer taskcount =[SELECT count() FROM IPM_Task__c WHERE IPM_Assignee__c =: UserInfo.getUserId() AND IPM_Project__r.Is_Archieved__c = false AND IPM_Project__r.IPM_PM_Approach__c =: IPM_ConstantUtils.IPM_APPROACH_INTERNAL AND IPM_Completed__c = false limit 1000];
+        Integer taskcount =[SELECT count() FROM IPM_Task__c WHERE IPM_Assignee__c =: UserInfo.getUserId() AND IPM_Project__r.Is_Archieved__c = false AND IPM_Project__r.IPM_PM_Approach__c =: IPM_ConstantUtils.IPM_APPROACH_INTERNAL AND IPM_Completed__c = false LIMIT 50000];
         String taskcountValue =String.valueOf(taskcount);
         return taskcountValue;
     }
@@ -302,7 +303,7 @@ public with sharing class IPM_HomePageController
         
         list<IPM_User_Profile__c>lstuserprofile=[SELECT IPM_User_Role__c,IPM_User_Function__c,Export_Porfolio_Data__c 
                                                  FROM IPM_User_Profile__c 
-                                                 WHERE IPM_User__c=:userinfo.getuserid() AND (IPM_User_Role__c!=null or IPM_User_Function__c!=null) limit 1000];
+                                                 WHERE IPM_User__c=:userinfo.getuserid() AND (IPM_User_Role__c!=null or IPM_User_Function__c!=null) LIMIT 50000];
         
         if(lstuserprofile != null && !lstuserprofile.isEmpty()){
             for(IPM_User_Profile__c up:lstuserprofile){
@@ -315,7 +316,7 @@ public with sharing class IPM_HomePageController
                                 isBossCardEditable=true;
                         } 
                 }
-               
+                
                 if(up.IPM_User_Function__c==IPM_ConstantUtils.TEAM_PROJECT_LEADER || up.IPM_User_Function__c==IPM_ConstantUtils.TEAM_DEPUTY_PROJECT_LEADER){
                     isProjectEditable=true;
                     isBossCardEditable=true;
@@ -334,11 +335,6 @@ public with sharing class IPM_HomePageController
             isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
             isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
             if(isCentralTeam || isBPUser){
-
-
-
-
-
                 isProjectEditable=true;
                 isBossCardEditable=true;
             }     

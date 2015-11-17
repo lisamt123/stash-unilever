@@ -32,7 +32,8 @@ public with sharing class IPM_ImageUploadController {
     public Boolean hideInfoMsg{get;set;}
     //*@Description:Used to store image id
     public String imgid{get;set;} 
-    
+    //*@Description:Used to store class name
+    private static final string IMAGE_UPLOADCLASS=IPM_ImageUploadController.class.getname();
     
         
     /****************************************************************************
@@ -42,16 +43,19 @@ public with sharing class IPM_ImageUploadController {
     public IPM_ImageUploadController(){
         IPM_IECompatible.ieFix();
         hideInfoMsg=false;
-        imgid='';
+        imgid=IPM_ConstantUtils.BLANK;
         isError=false;
         isInserted = false;
         bosscard=new IPM_Bosscard__c ();
         projects=new IPM_Project__c();
         imgurl=IPM_ConstantUtils.IMAGE_URL;
-        project =ApexPages.currentPage().getParameters().get('isProject');
-        projectId =ApexPages.currentPage().getParameters().get('id');
-        isFromEditPage =ApexPages.currentPage().getParameters().get('isEdit');
-        system.debug('isFromEditPage>>>***'+isFromEditPage );
+        project=IPM_ConstantUtils.BLANK;
+        projectId=IPM_ConstantUtils.BLANK;
+        isFromEditPage=IPM_ConstantUtils.BLANK;
+        project =ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.IPM_IMGUPLOAD_ISPROJECT);
+        projectId =ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.SF_ID);
+        isFromEditPage =ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.IPM_IMGUPLOAD_ISEDIT);
+        
         
     } 
     
@@ -85,9 +89,9 @@ public with sharing class IPM_ImageUploadController {
                 insert document;
                  
                 imgid=document.Id;
-                if(project=='true'){
+                if(project.Equals(IPM_ConstantUtils.IPM_IMGUPLOAD_TRUE)){
                     projects.id=projectId;
-                    projects.IPM_Project_Logo__c='<img src='+imgurl + IPM_ConstantUtils.SERVLET_URL +document.Id+'>';
+                    projects.IPM_Project_Logo__c=IPM_ConstantUtils.IPM_IMGUPLOAD_IMGSRC+imgurl + IPM_ConstantUtils.SERVLET_URL +document.Id+IPM_ConstantUtils.IPM_IMGUPLOAD_CLOSE;
                     projects.IPM_Project_Logo_Id__c=imgid;
                     update projects;
                     isInserted = true;
@@ -95,7 +99,7 @@ public with sharing class IPM_ImageUploadController {
                 }
                 else{
                     bosscard.id=projectId;
-                    bosscard.IPM_Bosscard_Logo__c='<img src='+imgurl + IPM_ConstantUtils.SERVLET_URL +document.Id+'>';
+                    bosscard.IPM_Bosscard_Logo__c=IPM_ConstantUtils.IPM_IMGUPLOAD_IMGSRC+imgurl + IPM_ConstantUtils.SERVLET_URL +document.Id+IPM_ConstantUtils.IPM_IMGUPLOAD_CLOSE;
                     bosscard.IPM_Bosscard_Logo_Id__c=imgid;
                     update bosscard;
                     isInserted = true;
@@ -107,8 +111,8 @@ public with sharing class IPM_ImageUploadController {
        
         catch (Exception ex) {
             isError=false;
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'IPM_ImageUploadController',
-                        'upload',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IMAGE_UPLOADCLASS,
+                        IPM_ConstantUtils.IPM_IMGUPLOAD_UPLOADMETHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
             
             // Rollback to the previous  values
             Database.rollback(sp);
@@ -136,7 +140,7 @@ public with sharing class IPM_ImageUploadController {
                    ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,system.label.IPM_ImageFormat));
                }
         }
-        List<ApexPages.Message> msgList = ApexPages.getMessages();
+        
         for(ApexPages.Message msg :  ApexPages.getMessages()) {
              if(String.Valueof(msg).Contains(IPM_ConstantUtils.FILESIZE_LIMIT)){
                  fileError=true;

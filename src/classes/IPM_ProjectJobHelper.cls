@@ -25,7 +25,8 @@ public without sharing class IPM_ProjectJobHelper
     public static void processProjects(Map<Id,IPM_Project__c> incomingProjectMap,QueueableContext qContext)
     {           
         Set<Id> incomingProjectIds = new Set<Id>(); 
-    
+        processingProjectMap.clear();
+        
         Map<Id,IPM_Project__c> masterProjectDetailMap = new Map<Id,IPM_Project__c>();
         
         Map<Id,IPM_Project__c> projectToParentMapping = new Map<Id,IPM_Project__c>();        
@@ -374,6 +375,7 @@ public without sharing class IPM_ProjectJobHelper
     public static void processRollouts(Map<Id,IPM_Project__c> incomingProjectMap,QueueableContext qContext)
     {
         Set<Id> incomingProjectIds = incomingProjectMap.keySet();
+        processingRolloutMap.clear();
         
         List<IPM_Project__c> rolloutProjects = new List<IPM_Project__c>();
         
@@ -596,7 +598,7 @@ public without sharing class IPM_ProjectJobHelper
         }
         catch(Exception ex)
         {
-            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),CLASS_NAME,'markProjectAsFailed',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,'markProjectAsFailed',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     }
 

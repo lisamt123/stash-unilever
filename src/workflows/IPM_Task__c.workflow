@@ -34,7 +34,7 @@
             <name>Set_milestone_Due_Date_to_task_due_date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <description>This workflow will update the due date for task corresponding to milestone due date.</description>
         <formula>IF(OR(ISBLANK(IPM_Due_Date1__c),       ISNULL(IPM_Due_Date1__c),       ISCHANGED(IPM_Due_Date__c )       ),true,false )</formula>
         <triggerType>onAllChanges</triggerType>

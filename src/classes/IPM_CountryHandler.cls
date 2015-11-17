@@ -16,7 +16,6 @@ public with sharing class IPM_CountryHandler implements ITrigger{
     public IPM_CountryHandler() {       
         ExceptionLoggingHelper.initializeExceptionLog(); 
     }
-    
     /***********************************************************************************************************************************
     * bulkBefore
     *
@@ -26,61 +25,46 @@ public with sharing class IPM_CountryHandler implements ITrigger{
     public void bulkBefore(){
         if(trigger.isDelete){
             
-            
-            List<IPM_Country__c> deleteCountryList=new List<IPM_Country__c>(); //List of Deleted Countries
-            for(IPM_Country__c c:(List<IPM_Country__c>)Trigger.Old){
-                deleteCountryList.add(c);
-            }
-            if(!deleteCountryList.isEmpty())
-            {
-                //For Updating the MarketType field of project from Countries
-                IPM_ProjectCountryDetails.updateProjectMarketType(deleteCountryList, true);
-            }
-            
+            //For Updating the MarketType field of project from Countries
+            IPM_ProjectCountryDetails.updateProjectMarketType((List<IPM_Country__c>) trigger.old, true);
             
              //Delete the assessments for the deleted countries
             IPM_AssesmentHandler_Helper.deleteAssociatedAssesments((List<IPM_Country__c>) trigger.old);
-           
-        
         }
-         //@@ Design Review - Data Sharing - Updating the Ownerid to Project Ownerid (Queue)
-            if(system.trigger.isInsert){
-                map<id,id>ownerProjectIdMap=new map<id,id>();
-                map<id,string>projectCategoryMap=new map<id,string>();
-                for(IPM_Country__c c:(List<IPM_Country__c>)Trigger.New){
-                    if(c.IPM_Project__c != null){
-                        ownerProjectIdMap.put(c.IPM_Project__c,c.IPM_Project__r.ownerid);
-                        projectCategoryMap.put(c.IPM_Project__c,c.IPM_Project__r.IPM_Category_Text__c);
-                    }
-                    else if(c.IPM_Regional_Project__c != null){
-                        ownerProjectIdMap.put(c.IPM_Regional_Project__c,c.IPM_Regional_Project__r.ownerid);
-                        projectCategoryMap.put(c.IPM_Regional_Project__c,c.IPM_Regional_Project__r.IPM_Category_Text__c);
-                    }
-                    else if(c.IPM_Local_Project__c != null){
-                        ownerProjectIdMap.put(c.IPM_Local_Project__c,c.IPM_Local_Project__r.ownerid);
-                        projectCategoryMap.put(c.IPM_Local_Project__c,c.IPM_Local_Project__r.IPM_Category_Text__c);
-                    }
-                }
-                
-                if(ownerProjectIdMap != null && ownerProjectIdMap.size()>0){
-                     for(IPM_Project__c proj: [SELECT id, ownerid, IPM_Category_Text__c FROM IPM_Project__c WHERE id IN:ownerProjectIdMap.Keyset()])
-                     {
-                        for(IPM_Country__c c:(List<IPM_Country__c>)Trigger.New){
-                            if((c.IPM_Project__c!=null && c.IPM_Project__c==proj.id) || 
-                                (c.IPM_Regional_Project__c!=null && c.IPM_Regional_Project__c==proj.id) || 
-                                (c.IPM_Local_Project__c!=null && c.IPM_Local_Project__c==proj.id)){
-                                c.ownerid = proj.ownerid;
-                                c.IPM_Small_C_shr__c = proj.IPM_Category_Text__c; 
-                            }
-                            
-                        }
-                     }    
-                }         
-                
-            }
         
-        
+        //@@ Design Review - Data Sharing - Updating the Ownerid to Project Ownerid (Queue)
         if(trigger.isInsert){
+            map<id,id>ownerProjectIdMap=new map<id,id>();
+            map<id,string>projectCategoryMap=new map<id,string>();
+            for(IPM_Country__c c:(List<IPM_Country__c>)Trigger.New){
+            	
+                if(c.IPM_Project__c != null){
+                    ownerProjectIdMap.put(c.IPM_Project__c,c.IPM_Project__r.ownerid);
+                    projectCategoryMap.put(c.IPM_Project__c,c.IPM_Project__r.IPM_Category_Text__c);
+                }else if(c.IPM_Regional_Project__c != null){
+                	ownerProjectIdMap.put(c.IPM_Regional_Project__c,c.IPM_Regional_Project__r.ownerid);
+                	projectCategoryMap.put(c.IPM_Regional_Project__c,c.IPM_Regional_Project__r.IPM_Category_Text__c);
+                }
+                else if(c.IPM_Local_Project__c != null){
+                	ownerProjectIdMap.put(c.IPM_Local_Project__c,c.IPM_Local_Project__r.ownerid);
+                	projectCategoryMap.put(c.IPM_Local_Project__c,c.IPM_Local_Project__r.IPM_Category_Text__c);
+                }
+            }
+            if(ownerProjectIdMap != null && ownerProjectIdMap.size()>0){
+                     for(IPM_Project__c proj: [SELECT id, ownerid, IPM_Category_Text__c FROM IPM_Project__c WHERE id IN:ownerProjectIdMap.Keyset()])
+            		 {
+	                    for(IPM_Country__c c:(List<IPM_Country__c>)Trigger.New){
+	                        if((c.IPM_Project__c!=null && c.IPM_Project__c==proj.id) || 
+	                        	(c.IPM_Regional_Project__c!=null && c.IPM_Regional_Project__c==proj.id) || 
+	                        	(c.IPM_Local_Project__c!=null && c.IPM_Local_Project__c==proj.id)){
+	                            c.ownerid = proj.ownerid;
+	                            c.IPM_Small_C_shr__c = proj.IPM_Category_Text__c; 
+	                        }
+	                        
+	                    }
+            		 }    
+            }           
+            
             //check if the inserted country is an EI country by refering the master sata stored in custom setting IPM_USLP_Countries
             IPM_ProjectCountryDetails.checkIsEICountry((List<IPM_Country__c>) trigger.New);
             
@@ -138,33 +122,39 @@ public with sharing class IPM_CountryHandler implements ITrigger{
 
             }
             
-            //If the code is running in future context then call the methods
-            //else call the future method
-
             //Update the sync flag on global projects populated on the country records.
             //When countries get created only the global project field gets populated on them.
             IPM_ProjectCountryDetails.setSyncProjAftInsert((List<IPM_Country__c>)Trigger.New);
-            
+                
             //notify project Lead R&D resource as to what countries have been inserted for the project
             IPM_ProjectCountryDetails.notifyLeadRnD((List<IPM_Country__c>) Trigger.New,INSERT_EVENT);
             
+
             //check if there is atleast one assessment per EI country of the project and check the flag existsAtLeastOneAssmntPerEICountry if yes
             if(projectIdSet != null && !projectIdSet.isEmpty()){
                 IPM_ProjectCountryDetails.checkAtLeastOneAssmntPerEICountry(projectIdSet);
             }
 
-            
-        }
+           
+       }
         
         if(trigger.isUpdate)
         {
             countryListIds=new Set<Id>();
-            
-            for(Sobject co:Trigger.New)
+            projectIdSet.clear();
+            for(IPM_Country__c coun:(List<IPM_Country__c>)Trigger.New)
             {
-                IPM_Country__c coun=(IPM_Country__c)Trigger.newMap.get(co.Id);
                 if(!String.isBlank(coun.IPM_Regional_Project__c)){
                     countryListIds.add(coun.Id);
+                }
+                if(coun.IPM_Project__c != null){
+                    projectIdSet.add(coun.IPM_Project__c);
+                }
+                if(coun.IPM_Regional_Project__c != null){
+                    projectIdSet.add(coun.IPM_Regional_Project__c);
+                }
+                if(coun.IPM_Local_Project__c != null){
+                    projectIdSet.add(coun.IPM_Local_Project__c);
                 }
             }
             
@@ -190,24 +180,28 @@ public with sharing class IPM_CountryHandler implements ITrigger{
             //Update the sync flag on regional/Local projects populated on the country records.
             //When countries get Updated, Normally Regional & Local field should get populated on them.
             IPM_ProjectCountryDetails.setSyncProjAftUpdate((Map<Id,IPM_Country__c>)Trigger.oldMap,(List<IPM_Country__c>)Trigger.New); 
-            
-            if(countryListIds != null && !countryListIds.isEmpty()){
-                IPM_ProjectCountryDetails.checkAtLeastOneAssmntPerEICountryNew((List<IPM_Country__c>)Trigger.New);
+			//check if there is atleast one assessment per EI country of the project and check the flag existsAtLeastOneAssmntPerEICountry if yes
+            if(projectIdSet != null && !projectIdSet.isEmpty()){
+                IPM_ProjectCountryDetails.checkAtLeastOneAssmntPerEICountry(projectIdSet);
             }
         }
         
         if(trigger.isDelete)
         {
             //find the project Ids of all the deleted countries
-            for(IPM_Country__c cntry:(List<IPM_Country__c>)Trigger.old){
-                if(cntry.IPM_Project__c != null){
-                    if(cntry.IPM_Project__c != null){
-                        projectIdSet.add(cntry.IPM_Project__c);
-                    }
-                    if(cntry.IPM_Regional_Project__c != null){
+            for(IPM_Country__c cntry:(List<IPM_Country__c>)Trigger.old)
+            {
+                if(cntry.IPM_Project__c != null)
+                {
+                    projectIdSet.add(cntry.IPM_Project__c);
+
+                    if(cntry.IPM_Regional_Project__c != null)
+                    {
                         projectIdSet.add(cntry.IPM_Regional_Project__c);
                     }
-                    if(cntry.IPM_Local_Project__c != null){
+                    
+                    if(cntry.IPM_Local_Project__c != null)
+                    {
                         projectIdSet.add(cntry.IPM_Local_Project__c);
                     }
                 }

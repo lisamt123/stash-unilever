@@ -4,13 +4,16 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>IPM Send notification to members</name>
     <style>none</style>
-    <subject>Updation of the Gate Section:{!IPM_Project_Resource__c.IPM_Section_Name__c} of project {!IPM_Project_Resource__c.IPM_Project_Name__c}</subject>
-    <textOnly>Hi,  
+    <subject>Updation of the Gate Section:{!01IE0000000lVME.00NE0000005URL5} of project {!01IE0000000lVME.00NE0000005URKz}</subject>
+    <textOnly>Hi,
 
-{!IPM_Project_Resource__c.LastModifiedBy} has updated the Additional information of the Section-{!IPM_Project_Resource__c.IPM_Sequence_Number__c} of project: {!IPM_Project_Resource__c.IPM_Project_Name__c} on {!IPM_Project_Resource__c.LastModifiedDate}  
+{!01IE0000000lVME.LastModifiedBy} has updated the Additional information of the Section-{!01IE0000000lVME.00NE0000005URL6} of project: {!01IE0000000lVME.00NE0000005URKz} on {!01IE0000000lVME.LastModifiedDate}
 
-Direct link to the section is as below: Hyperlink- {!$Label.IPM_CurrentInstanceURL}/apex/ipmProjectDocumentSectionEditorV1?id={!IPM_Project_Resource__c.IPM_ProjectId__c}&amp;projDocSecId={!IPM_Project_Resource__c.IPM_Project_Document_SectionId__c}    
+Direct link to the section is as below:
+Hyperlink- https://unilever--cogstagin--c.cs8.visual.force.com/apex/ipmProjectDocumentSectionEditorV1?id={!01IE0000000lVME.00NE0000005URL1.Id}&amp;projDocSecId={!01IE0000000lVME.00NE0000005URL4}
 
-Warm Regards, {!IPM_Project_Resource__c.LastModifiedBy}</textOnly>
+
+
+Warm Regards,</textOnly>
     <type>custom</type>
 </EmailTemplate>

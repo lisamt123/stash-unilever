@@ -718,7 +718,7 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_CountExt.js')}" type="text/javascript"></script>
      <apex:outPutPanel id="hilightTaskScript">
         <script>
-         var IPMApp = {projectId:'{!projectId}', projDocSecId:'{!projDocSecId}', SectionEditorPageRef:'{!$Page.IPM_ProjectDocumentSectionEditor}', deleteTaskMsg:'{!$Label.delete_task_msg}', RemoveTask:'{!$Label.IPM_RemoveTask}', CountTitle:'{!$Label.IPM_CHAR_COUNT_ALERT_TITLE}', CountMessage:'{!$Label.IPM_CHAR_COUNT_EXCEED}', charRemaining:'{!$Label.IPM_CHAR_REMAINING}', exLimitBtmMsg:'{!$Label.IPM_ExcLimitBtmMsg}'};          
+         var IPMApp = {projectId:'{!projectId}', projDocSecId:'{!projDocSecId}', SectionEditorPageRef:'{!$Page.IPM_ProjectDocumentSectionEditor}', deleteTaskMsg:'{!$Label.IPM_Delete_task_msg}', RemoveTask:'{!$Label.IPM_RemoveTask}', CountTitle:'{!$Label.IPM_CHAR_COUNT_ALERT_TITLE}', CountMessage:'{!$Label.IPM_CHAR_COUNT_EXCEED}', charRemaining:'{!$Label.IPM_CHAR_REMAINING}', exLimitBtmMsg:'{!$Label.IPM_ExcLimitBtmMsg}'};          
         </script>
     </apex:outPutPanel> 
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_SecEditor.js')}" type="text/javascript"></script>   

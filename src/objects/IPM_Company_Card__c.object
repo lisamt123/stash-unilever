@@ -110,6 +110,30 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_CompanyCard_Type__c</fullName>
+        <description>store company type</description>
+        <externalId>false</externalId>
+        <label>Company Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>IPM_Company_HQ_Country__c</fullName>
         <externalId>false</externalId>
         <label>Company H.Q (Country)</label>
@@ -148,7 +172,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
     <fields>
         <fullName>IPM_Company_Turnover__c</fullName>
         <externalId>false</externalId>
-        <label>Company Turnover(€)</label>
+        <label>Company Turnover</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
@@ -181,11 +205,15 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <label>Currency</label>
         <picklist>
             <picklistValues>
-                <fullName>ZWN</fullName>
+                <fullName>AED</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>DZD</fullName>
+                <fullName>ANG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AOA</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -197,7 +225,19 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>EUR</fullName>
+                <fullName>AZN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BAM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BDT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BGN</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -205,19 +245,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>THB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PAB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>BMD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>VEF</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -229,11 +257,11 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>BGN</fullName>
+                <fullName>BWP</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>KHR</fullName>
+                <fullName>BYR</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -241,19 +269,19 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>GHC</fullName>
+                <fullName>CDF</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>XOF</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>XAF</fullName>
+                <fullName>CHF</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>CLP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CNY</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -262,10 +290,6 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
             </picklistValues>
             <picklistValues>
                 <fullName>CRC</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>HRK</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -285,7 +309,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>VND</fullName>
+                <fullName>DZD</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -293,7 +317,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>USD</fullName>
+                <fullName>EEK</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -301,11 +325,11 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SVC</fullName>
+                <fullName>ETB</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>ETB</fullName>
+                <fullName>EUR</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -313,11 +337,11 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>HUF</fullName>
+                <fullName>GBP</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>CDF</fullName>
+                <fullName>GHC</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -325,11 +349,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>NIO</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PYG</fullName>
+                <fullName>GTQ</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -337,11 +357,23 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>UAH</fullName>
+                <fullName>HNL</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>ISK</fullName>
+                <fullName>HRK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HUF</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IDR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ILS</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -353,6 +385,10 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>ISK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>JMD</fullName>
                 <default>false</default>
             </picklistValues>
@@ -361,7 +397,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>KZT</fullName>
+                <fullName>JPY</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -369,7 +405,11 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>EEK</fullName>
+                <fullName>KHR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KRW</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -377,23 +417,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>ZMK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MWK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>AOA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MMK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>LVL</fullName>
+                <fullName>KZT</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -401,11 +425,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>HNL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TRL</fullName>
+                <fullName>LKR</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -413,23 +433,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>MYR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>AZN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BAM</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MZN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MXN</fullName>
+                <fullName>LVL</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -437,11 +441,27 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>MMK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MWK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MXN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MYR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>MZM</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>NGN</fullName>
+                <fullName>MZN</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -449,35 +469,11 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>NPR</fullName>
+                <fullName>NGN</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>ANG</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ILS</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ZMW</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>RON</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TWD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TRY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NZD</fullName>
+                <fullName>NIO</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -485,39 +481,11 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>PEN</fullName>
+                <fullName>NPR</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>PKR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>UYU</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PHP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>GBP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BWP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>QAR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>GTQ</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>ZAR</fullName>
+                <fullName>NZD</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -525,15 +493,43 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>PAB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PEN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PHP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PKR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PLN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PYG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>QAR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>ROL</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>BYR</fullName>
+                <fullName>RON</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>IDR</fullName>
+                <fullName>RSD</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -549,7 +545,11 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>RSD</fullName>
+                <fullName>SBD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SEK</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -561,31 +561,11 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SBD</fullName>
+                <fullName>SVC</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>LKR</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>SEK</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CHF</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BDT</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TZS</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TTD</fullName>
+                <fullName>THB</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -593,7 +573,27 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>AED</fullName>
+                <fullName>TRL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TRY</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TTD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TWD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TZS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UAH</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -601,19 +601,43 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UYU</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>VEB</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>KRW</fullName>
+                <fullName>VEF</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>JPY</fullName>
+                <fullName>VND</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>CNY</fullName>
+                <fullName>XAF</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>XOF</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZAR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZMK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ZMW</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -621,7 +645,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>PLN</fullName>
+                <fullName>ZWN</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -636,11 +660,11 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <label>Geographical Region</label>
         <picklist>
             <picklistValues>
-                <fullName>Asia</fullName>
+                <fullName>Europe</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Europe</fullName>
+                <fullName>Asia</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2764,6 +2788,53 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IPM_Inoplan_Region__c</fullName>
+        <externalId>false</externalId>
+        <label>Inoplan Region</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Asia/AMET Foods</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Asia/AMET HPC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Europe Foods</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Europe HPC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HPCLA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HPCNA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UFLA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UFNA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unilever Foodsolutions</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>IPM_MCO__c</fullName>
         <externalId>false</externalId>
         <label>MCO</label>
@@ -2924,7 +2995,11 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <label>Managed Category</label>
         <picklist>
             <picklistValues>
-                <fullName>Household Care</fullName>
+                <fullName>SAVORY</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ICE CREAM</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -2932,43 +3007,39 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Savoury</fullName>
+                <fullName>SKIN CLEANSING</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Ice Cream</fullName>
+                <fullName>SPREADS</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Skin Cleansing</fullName>
+                <fullName>BEVERAGES</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Spreads</fullName>
+                <fullName>Household Care</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Beverages</fullName>
+                <fullName>SKIN CARE</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Skin Care</fullName>
+                <fullName>DRESSINGS</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Dressings</fullName>
+                <fullName>HAIR</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Hair</fullName>
+                <fullName>ORAL CARE</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Oral Care</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Deodarants</fullName>
+                <fullName>DEODARANTS</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -3022,12 +3093,23 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Project_Name_Suffix__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Name Suffix</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Total_OpCo_Turnover__c</fullName>
         <externalId>false</externalId>
-        <label>Total OpCo Turnover(&apos;000s Euros)</label>
+        <label>Total OpCo Turnover (&apos;000s Euros)</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -3054,29 +3136,41 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <unique>true</unique>
     </fields>
     <fields>
-        <fullName>Project_Name_Suffix__c</fullName>
+        <fullName>IPP_Company_Type__c</fullName>
+        <description>store company type</description>
         <externalId>false</externalId>
-        <label>Project Name Suffix</label>
-        <length>10</length>
-        <required>false</required>
+        <label>Company Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Picklist</type>
     </fields>
     <label>IPM Company Card</label>
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
-        <columns>RECORDTYPE</columns>
+        <columns>IPM_TxtGeographical_Scope__c</columns>
         <columns>IPM_Managed_Category__c</columns>
         <columns>IPM_Market_Cluster__c</columns>
         <columns>IPM_MCO__c</columns>
-        <columns>IPM_TxtGeographical_Scope__c</columns>
         <columns>IPM_Company_Turnover__c</columns>
         <columns>IPM_Total_OpCo_Turnover__c</columns>
+        <columns>RECORDTYPE</columns>
         <columns>IPM_Currency__c</columns>
-        <columns>IPM_Business_Partner__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
@@ -3100,6 +3194,21 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>IPM_CompanyCard_Type__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_Company_HQ_Country__c</picklist>
             <values>
                 <fullName>India</fullName>
@@ -3575,18 +3684,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <picklistValues>
             <picklist>IPM_Geographical_Region__c</picklist>
             <values>
-                <fullName>Global</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Geographical_Scope__c</picklist>
-            <values>
                 <fullName>Afghanistan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Africa</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3635,6 +3733,10 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
             </values>
             <values>
                 <fullName>Aruba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asia</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4214,10 +4316,6 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>NAMET %26 RUB</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Namibia</fullName>
                 <default>false</default>
             </values>
@@ -4267,10 +4365,6 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
             </values>
             <values>
                 <fullName>North America</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>North Asia</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4358,10 +4452,6 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Saint Barthelemy</fullName>
                 <default>false</default>
             </values>
@@ -4443,10 +4533,6 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
             </values>
             <values>
                 <fullName>South Africa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>South Asia</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4627,6 +4713,13 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>IPM_Geographical_Scope__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_IC_Type__c</picklist>
             <values>
                 <fullName>GIC</fullName>
@@ -4634,6 +4727,45 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
             </values>
             <values>
                 <fullName>IC</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Inoplan_Region__c</picklist>
+            <values>
+                <fullName>Asia%2FAMET Foods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asia%2FAMET HPC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe Foods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe HPC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HPCLA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HPCNA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UFLA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UFNA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Foodsolutions</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4787,19 +4919,19 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <picklistValues>
             <picklist>IPM_Managed_Category__c</picklist>
             <values>
-                <fullName>Beverages</fullName>
+                <fullName>BEVERAGES</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Deodarants</fullName>
+                <fullName>DEODARANTS</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Dressings</fullName>
+                <fullName>DRESSINGS</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Hair</fullName>
+                <fullName>HAIR</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4807,7 +4939,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Ice Cream</fullName>
+                <fullName>ICE CREAM</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4815,23 +4947,23 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Oral Care</fullName>
+                <fullName>ORAL CARE</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Savoury</fullName>
+                <fullName>SAVORY</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Skin Care</fullName>
+                <fullName>SKIN CARE</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Skin Cleansing</fullName>
+                <fullName>SKIN CLEANSING</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Spreads</fullName>
+                <fullName>SPREADS</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4870,9 +5002,24 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
         </picklistValues>
+        <picklistValues>
+            <picklist>IPP_Company_Type__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>Local_Company_Card</fullName>
+        <fullName>IPM_Local_Company_Card</fullName>
         <active>true</active>
         <label>Local Company Card</label>
         <picklistValues>
@@ -4883,6 +5030,21 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>IPM_CompanyCard_Type__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_Company_HQ_Country__c</picklist>
             <values>
                 <fullName>India</fullName>
@@ -5358,18 +5520,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <picklistValues>
             <picklist>IPM_Geographical_Region__c</picklist>
             <values>
-                <fullName>Global</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Geographical_Scope__c</picklist>
-            <values>
                 <fullName>Afghanistan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Africa</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5418,6 +5569,10 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
             </values>
             <values>
                 <fullName>Aruba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asia</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5997,10 +6152,6 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>NAMET %26 RUB</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Namibia</fullName>
                 <default>false</default>
             </values>
@@ -6050,10 +6201,6 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
             </values>
             <values>
                 <fullName>North America</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>North Asia</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6141,10 +6288,6 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Saint Barthelemy</fullName>
                 <default>false</default>
             </values>
@@ -6229,7 +6372,1014 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>South Asia</fullName>
+                <fullName>South Sudan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sri Lanka</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>St Vincent and the Grenadines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sth Georgia %26 Sth Sandwich Is</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sudan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suriname</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Svalbard and Jan Mayen</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Swaziland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Syrian Arab Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tajikistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tanzania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timor-Leste</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Togo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tokelau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tonga</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trinidad and Tobago</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tunisia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkmenistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turks and Caicos Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tuvalu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US Minor Outlying Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uganda</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ukraine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United Arab Emirates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United Kingdom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United States</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uruguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uzbekistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vanuatu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Venezuela</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vietnam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virgin Islands%2C British</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virgin Islands%2C U%2ES%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wallis and Futuna</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Western Sahara</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yemen</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Zambia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Zimbabwe</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Geographical_Scope__c</picklist>
+            <values>
+                <fullName>Afghanistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aland Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Albania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Algeria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>American Samoa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Andorra</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Angola</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Anguilla</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Antarctica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Antigua and Barbuda</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Argentina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Armenia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aruba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Austria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Azerbaijan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bahamas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bahrain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bangladesh</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barbados</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belarus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belize</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Benin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bermuda</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bhutan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bolivia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bonaire%2C Sint Eustatius %26 Saba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bosnia and Herzegovina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Botswana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bouvet Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>British Indian Ocean Territory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brunei Darussalam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgaria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Burkina Faso</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Burundi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cabo Verde</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cambodia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cameroon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cayman Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Central African Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chad</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>China</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Christmas Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cocos %28Keeling%29 Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Comoros</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Congo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Congo%2C The Democratic Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cook Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Costa Rica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Croatia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cuba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Curacao</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cyprus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Côte D%27Ivoire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Djibouti</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dominica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dominican Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ecuador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Egypt</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>El Salvador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Equatorial Guinea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Eritrea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Estonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ethiopia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Falkland Islands %28Malvinas%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Faroe Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fiji</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French Guiana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French Polynesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French Southern Territories</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gabon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gambia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Georgia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ghana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gibraltar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greenland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grenada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guadeloupe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guatemala</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guernsey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guinea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guinea-Bissau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guyana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Haiti</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Heard and McDonald Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Holy See %28Vatican City State%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honduras</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iceland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iran</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iraq</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Isle of Man</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Israel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jamaica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jersey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jordan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kazakhstan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kenya</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kiribati</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korea%2C Democratic People%27s Rep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korea%2C Republic of</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kosovo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kuwait</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kyrgyzstan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lao</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latvia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lebanon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lesotho</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Liberia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Libya</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Liechtenstein</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lithuania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Luxembourg</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Macao</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Macedonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Madagascar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malawi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malaysia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maldives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mali</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malta</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marshall Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Martinique</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mauritania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mauritius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mayotte</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Micronesia%2C Federated States</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moldova</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monaco</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mongolia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Montenegro</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Montserrat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Morocco</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mozambique</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Myanmar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Namibia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nauru</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nepal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands Antilles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Caledonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nicaragua</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Niger</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nigeria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Niue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norfolk Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Northern Mariana Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Country</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pakistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Palau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Palestine State Of</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Panama</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Papua New Guinea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paraguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Peru</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philippines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pitcairn</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qatar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Russian Federation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rwanda</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Réunion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saint Barthelemy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saint Helena</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saint Kitts and Nevis</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saint Lucia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saint Martin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saint Pierre and Miquelon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Samoa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>San Marino</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sao Tome and Principe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saudi Arabia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senegal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Serbia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seychelles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sierra Leone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Singapore</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sint Maarten</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovakia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovenia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Solomon Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Somalia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Africa</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6421,6 +7571,45 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>IPM_Inoplan_Region__c</picklist>
+            <values>
+                <fullName>Asia%2FAMET Foods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asia%2FAMET HPC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe Foods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe HPC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HPCLA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HPCNA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UFLA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UFNA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Foodsolutions</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_MCO__c</picklist>
             <values>
                 <fullName>ANZ</fullName>
@@ -6570,19 +7759,19 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <picklistValues>
             <picklist>IPM_Managed_Category__c</picklist>
             <values>
-                <fullName>Beverages</fullName>
+                <fullName>BEVERAGES</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Deodarants</fullName>
+                <fullName>DEODARANTS</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Dressings</fullName>
+                <fullName>DRESSINGS</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Hair</fullName>
+                <fullName>HAIR</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6590,7 +7779,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Ice Cream</fullName>
+                <fullName>ICE CREAM</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6598,23 +7787,23 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Oral Care</fullName>
+                <fullName>ORAL CARE</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Savoury</fullName>
+                <fullName>SAVORY</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Skin Care</fullName>
+                <fullName>SKIN CARE</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Skin Cleansing</fullName>
+                <fullName>SKIN CLEANSING</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Spreads</fullName>
+                <fullName>SPREADS</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6653,9 +7842,24 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
         </picklistValues>
+        <picklistValues>
+            <picklist>IPP_Company_Type__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>Regional_Company_Card</fullName>
+        <fullName>IPM_Regional_Company_Card</fullName>
         <active>true</active>
         <label>Regional Company Card</label>
         <picklistValues>
@@ -6666,6 +7870,21 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>IPM_CompanyCard_Type__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_Company_HQ_Country__c</picklist>
             <values>
                 <fullName>India</fullName>
@@ -7141,18 +8360,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <picklistValues>
             <picklist>IPM_Geographical_Region__c</picklist>
             <values>
-                <fullName>Global</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>IPM_Geographical_Scope__c</picklist>
-            <values>
                 <fullName>Afghanistan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Africa</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7201,6 +8409,10 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
             </values>
             <values>
                 <fullName>Aruba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asia</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7780,10 +8992,6 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>NAMET %26 RUB</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Namibia</fullName>
                 <default>false</default>
             </values>
@@ -7833,10 +9041,6 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
             </values>
             <values>
                 <fullName>North America</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>North Asia</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7924,10 +9128,6 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Saint Barthelemy</fullName>
                 <default>false</default>
             </values>
@@ -8009,10 +9209,6 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
             </values>
             <values>
                 <fullName>South Africa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>South Asia</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8193,6 +9389,41 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>IPM_Geographical_Scope__c</picklist>
+            <values>
+                <fullName>Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latin America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NAMET %26 RUB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North Asia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SEAA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Asia</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_IC_Type__c</picklist>
             <values>
                 <fullName>GIC</fullName>
@@ -8200,6 +9431,45 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
             </values>
             <values>
                 <fullName>IC</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Inoplan_Region__c</picklist>
+            <values>
+                <fullName>Asia%2FAMET Foods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asia%2FAMET HPC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe Foods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe HPC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HPCLA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HPCNA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UFLA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UFNA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Foodsolutions</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -8353,19 +9623,19 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <picklistValues>
             <picklist>IPM_Managed_Category__c</picklist>
             <values>
-                <fullName>Beverages</fullName>
+                <fullName>BEVERAGES</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Deodarants</fullName>
+                <fullName>DEODARANTS</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Dressings</fullName>
+                <fullName>DRESSINGS</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Hair</fullName>
+                <fullName>HAIR</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8373,7 +9643,7 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Ice Cream</fullName>
+                <fullName>ICE CREAM</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8381,23 +9651,23 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Oral Care</fullName>
+                <fullName>ORAL CARE</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Savoury</fullName>
+                <fullName>SAVORY</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Skin Care</fullName>
+                <fullName>SKIN CARE</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Skin Cleansing</fullName>
+                <fullName>SKIN CLEANSING</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Spreads</fullName>
+                <fullName>SPREADS</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -8436,15 +9706,33 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
                 <default>false</default>
             </values>
         </picklistValues>
+        <picklistValues>
+            <picklist>IPP_Company_Type__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <listViewButtons>New_Company_Card</listViewButtons>
+    </searchLayouts>
     <sharingModel>Private</sharingModel>
     <validationRules>
         <fullName>IPM_EditCompanyCategory</fullName>
         <active>true</active>
         <errorConditionFormula>AND((CONTAINS(RecordType.Name, &apos;Global&apos;) || CONTAINS(RecordType.Name, &apos;Regional&apos;)) &amp;&amp; IPM_Category_Count__c &gt;1)</errorConditionFormula>
         <errorDisplayField>IPM_Managed_Category__c</errorDisplayField>
-        <errorMessage>You have selected more than one Managed Category</errorMessage>
+        <errorMessage>You have selected more than one category</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>IPM_EditGeographicalScope</fullName>
@@ -8454,11 +9742,17 @@ If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
         <errorMessage>Please enter valid geographical scope for global or regional company card</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>IPM_EditRecordType</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND($Profile.Name  !=&apos;System Administrator&apos; &amp;&amp;  (ISCHANGED(RecordTypeId)))</errorConditionFormula>
+        <errorMessage>Only system admin can change the record type</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>IPM_GeoScopeValidation</fullName>
         <active>true</active>
         <errorConditionFormula>AND( OR(Contains(RecordType.Name,&apos;Regional&apos;),Contains(RecordType.Name,&apos;Global&apos;)), ISBLANK(IPM_TxtGeographical_Scope__c))</errorConditionFormula>
         <errorDisplayField>IPM_TxtGeographical_Scope__c</errorDisplayField>
-        <errorMessage>Geographical Scope is required field</errorMessage>
+        <errorMessage>Geographical Scopeis required field</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>IPM_LocalCompanyCard</fullName>

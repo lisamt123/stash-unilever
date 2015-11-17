@@ -221,7 +221,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     {
         Map<Id,String> marketClusterRolloutMap = new Map<Id,String>();
         //Logic to create map(rolloutCountryNamesMap) of regional rollout and the list of countries to associate Company card of the matching geographical scope, when PL is assigned for the rollout             
-        List<String> lstRolloutCountries;
         Set<id> regionalRolloutId =  rolloutTolocalRolloutToCountryMap.keySet();
         
         Map<Id, List<IPM_Country__c>> rolloutCountryNamesMap = new Map<Id, List<IPM_Country__c>>();
@@ -648,25 +647,25 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         try
         {
             PageReference addRollouts;
-            if(project!= null &&  IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
+            if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
             {
                 addRollouts = Page.IPM_RolloutPlansAdd;
                 addRollouts.getParameters().put(ID_PARAMETER, projectId);                
                 addRollouts.setRedirect(true);
             }
-            else if(project!= null && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
+            else if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
             {   //For Regional Original Updated
                 addRollouts = Page.IPM_RolloutPlansRegional;
                 addRollouts.getParameters().put(ID_PARAMETER, projectId);                
                 addRollouts.setRedirect(true);
             }
-            else if( project!= null && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS )
+            else if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS )
             {   //For Regional Original Updated
                 addRollouts = Page.IPM_RolloutPlansAdd;
                 addRollouts.getParameters().put(ID_PARAMETER, projectId);                
                 addRollouts.setRedirect(true);
             }
-            else if(project!= null && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS)
+            else if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS)
             {   //For Regional Original Updated
                 addRollouts = Page.IPM_RolloutPlansRegional;
                 addRollouts.getParameters().put(ID_PARAMETER, projectId);                

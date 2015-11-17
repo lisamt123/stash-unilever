@@ -12,27 +12,27 @@ public with sharing class IPM_ChatterUtilsHelper {
 	private static final string INSERT_EVENT = 'Insert';
 	private static final string DELETE_EVENT = 'Delete';
 	private static final string IPM_ROLE_TYPE_RD = IPM_ConstantUtils.IPM_ROLE_RD;
+	private static final string COUNTRIES_ADDED_MSG = 'Your Project Leader [Project_Leader_Name] has [Operation] [Country_Names] [Operation_Preposition] the rollout plan for [Project_Name]';
 	
 	/****************************************************************************
     @Description : create map of the project Id and the chatter message to be posted about countries added/deleted from the project
     @Params insertedCountries:  The list of countries upserted or deleted through trigger  
     @Params operation:   To distinguish if the operation is delete from trigger      
     *****************************************************************************/
-	public static Map<Id,String> getprojIdchatterMessageMap(Map<String,String> projIdAffectedCountriesMap, String operation) {
+	public static Map<Id,String> getprojIdchatterMessageMap(Map<String,String> projIdAffectedCountriesMap,Map<Id,IPM_Project__c> projIdAffectedProjMap, String operation) {
 		Map<Id,String> projIdchatterMessageMap = new Map<Id,String>();
+		String actualMessage = '';
 		for(Id projectId: projIdAffectedCountriesMap.keySet()){
-			if( INSERT_EVENT.equalsIgnoreCase(operation) && projIdAffectedCountriesMap.get(projectId).containsNone(';')){
-				projIdchatterMessageMap.put( projectId, ' '+label.IPM_EcoDesign_Country_Added+' '+projIdAffectedCountriesMap.get(projectId)); 
+			
+			if( INSERT_EVENT.equalsIgnoreCase(operation)){
+				actualMessage = label.IPM_Ecodesign_Countries_Added_To_Or_Removed_From_Rollout_Message.replace('[Project_Leader_Name]',projIdAffectedProjMap.get(projectId).IPM_Project_Leader__r.Name).replace('[Operation]','added').replace('[Country_Names]',projIdAffectedCountriesMap.get(projectId)).replace('[Operation_Preposition]','to').replace('[Project_Name]',projIdAffectedProjMap.get(projectId).IPM_Project_Name__c);
+				projIdchatterMessageMap.put( projectId, ': '+actualMessage); 
 			}
-			else if( INSERT_EVENT.equalsIgnoreCase(operation) && projIdAffectedCountriesMap.get(projectId).contains(';')){
-				projIdchatterMessageMap.put( projectId, ' '+label.IPM_EcoDesign_Countries_Added+' '+projIdAffectedCountriesMap.get(projectId));
+			else if( DELETE_EVENT.equalsIgnoreCase(operation)){
+				actualMessage = Label.IPM_Ecodesign_Countries_Added_To_Or_Removed_From_Rollout_Message.replace('[Project_Leader_Name]',projIdAffectedProjMap.get(projectId).IPM_Project_Leader__r.Name).replace('[Operation]','removed').replace('[Country_Names]',projIdAffectedCountriesMap.get(projectId)).replace('[Operation_Preposition]','from').replace('[Project_Name]',projIdAffectedProjMap.get(projectId).IPM_Project_Name__c);
+				projIdchatterMessageMap.put( projectId, ': '+actualMessage);
 			}
-			else if( DELETE_EVENT.equalsIgnoreCase(operation) && projIdAffectedCountriesMap.get(projectId).containsNone(';')){
-				projIdchatterMessageMap.put( projectId, ' '+label.IPM_EcoDesign_Country_Deleted+' '+projIdAffectedCountriesMap.get(projectId));
-			}
-			else if( DELETE_EVENT.equalsIgnoreCase(operation) && projIdAffectedCountriesMap.get(projectId).contains(';')){
-				projIdchatterMessageMap.put( projectId, ' '+label.IPM_EcoDesign_Countries_Deleted+' '+projIdAffectedCountriesMap.get(projectId));
-			}
+
 		}
 
 		if(projIdchatterMessageMap!=null && !projIdchatterMessageMap.isEmpty()){

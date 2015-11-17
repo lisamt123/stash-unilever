@@ -311,6 +311,12 @@
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>String</stringValue>
@@ -318,12 +324,6 @@
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>inputDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
                     </value>

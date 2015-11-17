@@ -3,7 +3,12 @@
 * @date         27/04/2015
 * @description  This class is used for updating the rollout status and dates
 */
-public class IPM_ProcessRolloutStatusAndDates {
+
+/* This class is being used to Set First and Follower on a rollout/Project , 
+    which needs access to all Rollout and Projects associated with a project
+*/
+
+public without sharing class  IPM_ProcessRolloutStatusAndDates {
     
     private static final string PROCESS_REGIONAL_PROJECTS = 'processRegionalProjects';
     private static final string CLASS_NAME = IPM_ProcessRolloutStatusAndDates.class.getName();
@@ -26,7 +31,6 @@ public class IPM_ProcessRolloutStatusAndDates {
     * @return                               NONE
     */
     public static void execute(Set<Id> setGlobalProjectIds, Set<Id> setRegionalOriginalProjectIds, Set<String> setDeleteRolloutIds){
-        system.debug('@@@ inside execute of status and date ');
         String LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
         
         Map<String, Date> mapEarliestGlobalLaunchDate = new Map<String,Date>();
@@ -84,7 +88,6 @@ public class IPM_ProcessRolloutStatusAndDates {
     }
     
     public static void processRegionalProjects(Set<Id> setRegionalProjectIds, List<IPM_Project__c> lstGlobalProjects, Map<String, Date> mapEarliestGlobalLaunchDate, Map<String, Date> mapEarliestRegionalRolloutLaunchDate){
-        system.debug('@@@ process regional project');
         List<IPM_Project_Rollout__c> lstUpdateProjectRollouts = new List<IPM_Project_Rollout__c>();
         List<IPM_Project__c> lstUpdateProjects = new List<IPM_Project__c>();
         Set<Id> updateRolloutListSet = new Set<Id>();
@@ -136,12 +139,11 @@ public class IPM_ProcessRolloutStatusAndDates {
                     Date earliestDate = mapEarliestGlobalLaunchDate.get(globalProject.Id);
                     if(earliestDate == localRollout.Target_Launch_Date__c){
                         if(localRollout.IPM_Status__c == IPM_ConstantUtils.ROLLOUT_LEADER){
-                        	isLeaderFound = true;
-                        	system.debug('@@@ isLeaderFound 140 '+isLeaderFound);
+                            isLeaderFound = true;
                         }else if(!isLeaderFound ){
                             localRollout.IPM_Status__c  = IPM_ConstantUtils.ROLLOUT_LEADER;
                             isLeaderFound = true;
-                            system.debug('@@@ isLeaderFound 144'+isLeaderFound);
+                            
                             if(!updateRolloutListSet.contains(localRollout.Id)){
                                 lstUpdateProjectRollouts.add(localRollout);
                                 updateRolloutListSet.add(localRollout.Id);
@@ -251,8 +253,8 @@ public class IPM_ProcessRolloutStatusAndDates {
             }
         }catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLogofIPM(UserInfo.getUserId(),CLASS_NAME,
-                                                       PROCESS_REGIONAL_PROJECTS ,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null);                                                        
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                                                       PROCESS_REGIONAL_PROJECTS ,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null);                                                        
         }    
     }
 }

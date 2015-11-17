@@ -1,19 +1,17 @@
+<!--  
+*************************************************************************************************************************************************************
+*@Description:To display the chatter notifications in overview page
+*@Author: Cognizant
+*@Created Date: 07/01/2015 
+*@Copyright © 2015  Unilever  
+*************************************************************************************************************************************************************
+-->
 <apex:component controller="IPM_ProjectOverviewCtrl">
     
     <!-- Attribute Definition -->
     <div class="col-sm-3">
         <div class="topheader">Recent Activities</div>
         <div class="greyborder"></div>
-        <!-- <div class="chatter mb20" onclick="showDiv()">         
-<a href="" id="chatterblock"><span><img src="{!URLFOR($Resource.ipmResourceRevamp, 'images/chatter_retina.png')}"/>
-Follow on Chatter</span></a>
-</div>
-
-<div id="followchatter" class="mb20 followingchatter" style="display:none;">
-<span>
-<img src="{!URLFOR($Resource.ipmResourceRevamp, 'images/chatter_retina.png')}"/>
-Following on Chatter</span>
-<div> </div> </div>-->
         <chatter:follow entityId="{!projectId}" />
         <div class="col-xs-12 secUsersHistory contentscroll">
             <div class="tlCircle"></div>
@@ -21,7 +19,7 @@ Following on Chatter</span>
                 <div class="panel-group">
                     <apex:repeat value="{!activityHistory}" var="History">
                         <div class="row">
-                            <div class="col-xs-2"><img src="{!History.whoImage}" class="circularimg"/> 
+                            <div class="col-xs-2"><img alt="History" src="{!History.whoImage}" class="circularimg"/> 
                             </div>
                             <div class="col-xs-9 {!CASE(History.actionType, 'Change', 'listHistory-ltgreen', 'Complete', 'listHistory-blue', 'Owner', 'listHistory-green','listHistory-blue')}">
                                 <div class="col-xs-12">

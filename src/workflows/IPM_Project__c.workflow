@@ -8,7 +8,7 @@
             <field>IPM_Project_Leader__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>Workflow_Emails/IPM_BET_ET_Archived</template>
     </alerts>
     <alerts>
@@ -19,7 +19,7 @@
             <field>IPM_Project_Leader__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>Workflow_Emails/IPM_BET_ET_LinkDenied</template>
     </alerts>
     <alerts>
@@ -82,8 +82,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderAddress>marketing@unilever.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/IPM_Project_Archival_Mail_Alert</template>
     </alerts>
     <alerts>
@@ -118,6 +117,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>FD_BET_First_Release_Date_Due_Part_1</fullName>
+        <field>BET_First_Release_Previous_Value__c</field>
+        <formula>PRIORVALUE( BET_MS_First_Release_Date__c )</formula>
+        <name>FD BET First Release Date Due Part 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>IPM_Archive_Project</fullName>
         <description>Archive Project arter 4 Months</description>
         <field>Is_Archieved__c</field>
@@ -132,6 +141,15 @@
         <field>BET_Update__c</field>
         <literalValue>1</literalValue>
         <name>IPM BET FU Ready to Update BET</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>IPM_Batch_Initiate</fullName>
+        <field>IPM_Batch_Initiate__c</field>
+        <literalValue>1</literalValue>
+        <name>IPM Batch Initiate</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -164,12 +182,50 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>IPM_Update_Global_Project_Id</fullName>
+        <description>To populate global project Id</description>
+        <field>IPM_Global_ProjectId__c</field>
+        <formula>IPM_Global_Project_Id__c</formula>
+        <name>IPM Update Global Project Id</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Phase</fullName>
+        <field>IPM_Phase__c</field>
+        <literalValue>Feasibility</literalValue>
+        <name>Phase</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Threshold_Value</fullName>
+        <field>IPM_Threshold_Value__c</field>
+        <literalValue>Yes</literalValue>
+        <name>Threshold Value</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Update</fullName>
         <field>ManualCheck__c</field>
         <literalValue>1</literalValue>
         <name>Update</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_BET_First_Release_Chatter_Post</fullName>
+        <field>BET_First_Release_Chatter_Post__c</field>
+        <formula>&apos;BET First Release Due&apos;</formula>
+        <name>Update BET First Release Chatter Post</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -182,6 +238,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Update_Threshold_Value</fullName>
+        <field>IPM_Threshold_Value__c</field>
+        <literalValue>No</literalValue>
+        <name>Update Threshold Value</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>update_phase</fullName>
         <field>IPM_Phase__c</field>
         <literalValue>Ideas</literalValue>
@@ -190,6 +255,31 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <rules>
+        <fullName>BET First Release Date Due</fullName>
+        <active>true</active>
+        <formula>BET_First_Release_Previous_Value__c  &lt;&gt;  BET_MS_First_Release_Date__c</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Update_BET_First_Release_Chatter_Post</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>IPM_Project__c.BET_MS_First_Release_Date__c</offsetFromField>
+            <timeLength>-2</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>BET First Release Date Due Part 1</fullName>
+        <actions>
+            <name>FD_BET_First_Release_Date_Due_Part_1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>ISCHANGED( BET_MS_First_Release_Date__c )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
     <rules>
         <fullName>Bosscard Status</fullName>
         <actions>
@@ -211,8 +301,23 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>IPM Project Archival On Inactive</fullName>
+        <fullName>IPM Global Project Populate</fullName>
+        <actions>
+            <name>IPM_Update_Global_Project_Id</name>
+            <type>FieldUpdate</type>
+        </actions>
         <active>false</active>
+        <criteriaItems>
+            <field>IPM_Project__c.IPM_Global_Project_Id__c</field>
+            <operation>notEqual</operation>
+            <value>null</value>
+        </criteriaItems>
+        <description>Populate Global Project Id</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>IPM Project Archival On Inactive</fullName>
+        <active>true</active>
         <criteriaItems>
             <field>IPM_Project__c.Is_Archieved__c</field>
             <operation>equals</operation>
@@ -226,11 +331,20 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
-                <name>IPM_IsArchived</name>
+                <name>IPM_Archive_Project</name>
                 <type>FieldUpdate</type>
             </actions>
             <offsetFromField>IPM_Project__c.LastModifiedDate</offsetFromField>
-            <timeLength>120</timeLength>
+            <timeLength>28</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>IPM_Project_Archival_Email_Alert</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>IPM_Project__c.LastModifiedDate</offsetFromField>
+            <timeLength>21</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
     </rules>
@@ -295,7 +409,7 @@
             <name>IPM_BET_EA_Archived</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>AND(NOT(ISNULL(BET_Archived_BET_Text__c)), ISCHANGED(BET_Archived_BET_Text__c))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
@@ -321,7 +435,7 @@
             <name>IPM_BET_EA_LinkDenied</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>AND(NOT(ISNULL(BET_Denied_BET_Link__c)) ,ISCHANGED(BET_Denied_BET_Link__c))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
@@ -333,6 +447,25 @@
         </actions>
         <active>true</active>
         <formula>Or((And(IPM_Answer_of_Q1__c!=null, IPM_Answer_of_Q2__c!=null, IPM_Answer_of_Q3__c!=null,text( IPM_ProjectSubType__c )==&apos;Innovation/Renovation&apos; )),(And(IPM_Answer_of_Q1__c!=null, IPM_Answer_of_Q2__c!=null,  text( IPM_ProjectSubType__c )  ==&apos;Brand Led Growth(BLG)&apos;)),(And(IPM_Answer_of_Q1__c!=null, IPM_Answer_of_Q3__c!=null,text( IPM_ProjectSubType__c ) ==&apos;Operational&apos;)))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Status check</fullName>
+        <actions>
+            <name>Dummyflow</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>IPM_Project__c.IPMProject_Span__c</field>
+            <operation>equals</operation>
+            <value>Regional</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>IPM_Project__c.IPM_Phase__c</field>
+            <operation>equals</operation>
+            <value>Feasibility</value>
+        </criteriaItems>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -368,5 +501,39 @@
             <timeLength>1</timeLength>
             <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Threshold Value</fullName>
+        <actions>
+            <name>Threshold_Value</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>IPM_Project__c.Exempt_from_Threshold__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Threshold Value Update</fullName>
+        <actions>
+            <name>Update_Threshold_Value</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>IPM_Project__c.Exempt_from_Threshold__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update field on change of ms release field</fullName>
+        <active>false</active>
+        <formula>ISCHANGED( BET_MS_First_Release_Date__c )</formula>
+        <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

@@ -4,27 +4,6 @@
     <customSettingsVisibility>Public</customSettingsVisibility>
     <enableFeeds>false</enableFeeds>
     <fields>
-        <fullName>Document_Name__c</fullName>
-        <externalId>false</externalId>
-        <label>Document Name</label>
-        <length>50</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>EcoDesign_Sync_Wait_Time__c</fullName>
-        <externalId>false</externalId>
-        <label>EcoDesign Sync Wait Time</label>
-        <precision>2</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>IPM_CompanyCard__c</fullName>
         <externalId>false</externalId>
         <label>Associated Company Card</label>
@@ -130,15 +109,6 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Create Regional Projects</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>IPM_Dont_Set_Sync_Flags__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Do Not Set Sync Project/Country/Members flags on the Project Record.</description>
-        <externalId>false</externalId>
-        <label>Dont Set Sync Flags</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -403,15 +373,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Sync_To_Eco_Design__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Depending upon Project Type, Span and Phase this flag will determine whether Project data will sync with Eco Design system</description>
-        <externalId>false</externalId>
-        <label>Sync To Eco Design</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <label>IPM Project Type</label>
 </CustomObject>

@@ -7,20 +7,21 @@
 @reference Project Document/Document Section 
 */
 
-public with sharing class IPM_ProjectDocumentHelper 
+public with sharing class IPM_ProjectDocumentHelper   
 {
-    
+    private transient static final String BOSSCARD = 'Bosscard'; 
+    private transient static final String SECTION_SEQUENCE ='7.2.'; 
     public static final Map<String,String> DOC_COMMENT_FIELDMAPPING = new Map<String,String>{
-        'Approved' => 'IPM_Approved_Comments__c',
-        'Postponed' => 'IPM_Postponed_Comments__c',
-        'Stopped' => 'IPM_Stopped_Comments__c'
+        IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED => 'IPM_Approved_Comments__c',
+        IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED  => 'IPM_Postponed_Comments__c',
+        IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED => 'IPM_Stopped_Comments__c'
     };
     
     public static final Map<String,String> DOC_DATE_FIELDMAPPING = new Map<String,String>
     {
-        'Approved' => 'IPM_Approval_Date__c',
-        'Postponed' => 'IPM_Postponement_Date__c',
-        'Stopped' => 'IPM_Stopped_Date__c'
+        IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED => 'IPM_Approval_Date__c',
+        IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED => 'IPM_Postponement_Date__c',
+        IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED => 'IPM_Stopped_Date__c'
     };
     
     
@@ -36,13 +37,13 @@ public with sharing class IPM_ProjectDocumentHelper
         {
             // Get incoming projects complexity
             String projectComplexity = project.IPM_Complexity__c;
-            String projectType = project.IPM_SourceProjectType__c;
+            String projectType = project.IPM_SourceProjectType__c; 
             String projectCategory = project.IPM_Category_Text__c;
             
             // Get Project Type Setting From Custom Settings 
             IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(project);
             
-            if(associatedProjectType!=null)
+            if(associatedProjectType!=null) 
             {
                 String projectGate = associatedProjectType.IPM_Gate_Document__c;
                 
@@ -68,10 +69,11 @@ public with sharing class IPM_ProjectDocumentHelper
                                         projDoc.IPM_Project__c = project.Id;
                                         projDoc.IPM_Project_Template__c = docTemplate.IPM_Project_Template__c;
                                         projDoc.IPM_Document_Template__c = docTemplate.ID; 
-                                        projDoc.IPM_GateDocuments__c = docTemplate.IPM_Document_Type__c;
-                                        projDoc.IPM_Document_Complexity__c = project.IPM_Complexity__c; 
+                                        projDoc.IPM_GateDocuments__c = docTemplate.IPM_Document_Type__c; 
+                                        projDoc.IPM_Document_Complexity__c = project.IPM_Complexity__c;                                         
                                         projDoc.IPM_Contract_GateKeeper_Model__c = associatedProjectType.IPM_GateKeeping_Model__c;
-                                        
+                                        projDoc.IPM_Document_Order__c=docTemplate.IPM_Document_Order__c; 
+                                        projDoc.IPM_Project_External_Id__c=project.Project_External_ID__c;
                                         /* if there is already a document attached to Project for incoming Gate, update project document */    
                                         if(IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(project.Id) && IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(project.Id)!=null)
                                         {
@@ -167,6 +169,7 @@ public with sharing class IPM_ProjectDocumentHelper
                                     String dateFieldAPIName = DOC_DATE_FIELDMAPPING.get(projectDoc.IPM_Document_Status__c);
                                     projectDoc.put(dateFieldAPIName,project.IPM_Document_Update_Date__c);   
                                }
+                               projectDoc.IPM_Updated_User_By__c=UserInfo.getUserId();// Added to resolve data Migration Approvers Issue
                                updateProjectDocumentList.add(projectDoc);
                                break;
                             }
@@ -178,7 +181,7 @@ public with sharing class IPM_ProjectDocumentHelper
         
         if(updateProjectDocumentList !=null && !updateProjectDocumentList.isEmpty())
         {
-            update updateProjectDocumentList;
+            update updateProjectDocumentList; // Not including try , catch as when the transaction is failed roll back is handled at other class
         }    
     }
     
@@ -300,7 +303,6 @@ public with sharing class IPM_ProjectDocumentHelper
                                         {
                                             projDocSect.IPM_Default_Section__c= !section.IPM_Negotiable__c; 
                                         }
-                                        System.debug(projDocSect.IPM_Default_Section__c+'***projDocSect.IPM_Default_Section__c***'+projDocSect.IPM_Section_Name__c);
                                         initiateCopyOverLogic(associatedGate,projDocSect,section.External_ID__c,currentProject,parentProject);
                                         String summary=projDocSect.IPM_Gate_Document_Summary__c;
                                         if(String.isNotBlank(summary)){
@@ -373,21 +375,21 @@ public with sharing class IPM_ProjectDocumentHelper
                 String sourceFieldAPINames = targetMappingObj.IPM_SourceFieldAPIName__c;
                 if(sourceFieldAPINames!=null && !String.isBlank(sourceFieldAPINames))
                 {
-                    sourceFieldAPIList = sourceFieldAPINames.split(',');
+                    sourceFieldAPIList = sourceFieldAPINames.split(IPM_ConstantUtils.COMMA_DELIMITER);
                 }
                 
                 String targetFieldAPINames = targetMappingObj.IPM_TargetFieldAPIName__c;
                 if(targetFieldAPINames!=null && !String.isBlank(targetFieldAPINames))
                 {
-                    targetFieldAPIList = targetFieldAPINames.split(',');
+                    targetFieldAPIList = targetFieldAPINames.split(IPM_ConstantUtils.COMMA_DELIMITER);
                 
                 }
                     
                 IPM_Project_Document__c targetProjectDocument = null;
                 
                 if(copyFromGate!=null && !String.isBlank(copyFromGate) && !sourceFieldAPIList.isEmpty())
-                {
-                    if(copyFromGate != 'Bosscard' )
+                {   
+                    if(!copyFromGate.equals(BOSSCARD) )
                     {
                         if( IPM_ProjectHelper.DBprojectSpecificDocumentMap.containsKey(currentProject.Id) && 
                             IPM_ProjectHelper.DBprojectSpecificDocumentMap.get(currentProject.Id)!=null )
@@ -433,14 +435,12 @@ public with sharing class IPM_ProjectDocumentHelper
                     }
                     else
                     {
-                        System.debug('******associatedBosscard*******'+associatedBosscard);
                         if( IPM_ProjectHelper.bossCardMap.containsKey(associatedBosscard) && IPM_ProjectHelper.bossCardMap.get(associatedBosscard)!=null )
                         {
                             sourceObject = IPM_ProjectHelper.bossCardMap.get(associatedBosscard);
                         }
                     } 
                 } 
-                System.debug('******sourceObject*******'+sourceObject);
                 if(sourceObject!=null)
                 {
                     for(Integer counter =0;counter<sourceFieldAPIList.size();counter++)
@@ -450,7 +450,6 @@ public with sharing class IPM_ProjectDocumentHelper
                         String targetField = targetFieldAPIList.get(counter);
                         if(sourceField!=null && !String.isBlank(sourceField) && targetField !=null && !String.isBlank(targetField) && (incomingSection.get(targetField) == null || incomingSection.get(targetField) == false))
                         {
-                            System.debug('******currentSectionExternalId*******'+currentSectionExternalId);
                             if(currentSectionExternalId != IPM_ConstantUtils.FEEDBACK_FROM_LAST_GATE)
                             {
                                 incomingSection.put(targetField,sourceObject.get(sourceField));    
@@ -461,7 +460,6 @@ public with sharing class IPM_ProjectDocumentHelper
                                     incomingSection.put(targetField,targetProjectDocument.IPM_Approved_Comments__c);
                                 }  
                             }
-                            System.debug('******incomingSection*******'+incomingSection);
                         }
                     }
                 }
@@ -474,7 +472,7 @@ public with sharing class IPM_ProjectDocumentHelper
     {
         List<IPM_Project_Document_Section__c> upsertParentSections = new List<IPM_Project_Document_Section__c>();
         Set<Id> globalProjectIdsSet = new Set<Id>();
-        String DYNAMIC_SECTION_SEQUENCE='7.2.'; //Country Feedback Section Sequence Number
+        String DYNAMIC_SECTION_SEQUENCE=Section_Sequence; //Country Feedback Section Sequence Number
         
         Map<Id,List<Id>> parentToChildProjects = new Map<Id,List<Id>>();
         
@@ -548,7 +546,7 @@ public with sharing class IPM_ProjectDocumentHelper
                                     if(docSection.IPM_Section_Sequence_Number__c.startsWith(DYNAMIC_SECTION_SEQUENCE))
                                     {
                                         // Find the last Dot and prepare largest index based on that.  
-                                        Integer startIndex = docSection.IPM_Section_Sequence_Number__c.lastIndexOf('.');
+                                        Integer startIndex = docSection.IPM_Section_Sequence_Number__c.lastIndexOf(IPM_ConstantUtils.DOT_DELIMITER);
                                         Integer endIndex = docSection.IPM_Section_Sequence_Number__c.length();
                                         String sequenceNumber = docSection.IPM_Section_Sequence_Number__c.substring(startIndex+1,endIndex);
                                         Integer sequenceInteger = Integer.valueOf(sequenceNumber);  
@@ -629,7 +627,7 @@ public with sharing class IPM_ProjectDocumentHelper
                                         if(docSection.IPM_Section_Sequence_Number__c.startsWith(DYNAMIC_SECTION_SEQUENCE))
                                         {
                                             // Find the last Dot and prepare largest index based on that.   
-                                            Integer startIndex = docSection.IPM_Section_Sequence_Number__c.lastIndexOf('.');
+                                            Integer startIndex = docSection.IPM_Section_Sequence_Number__c.lastIndexOf(IPM_ConstantUtils.DOT_DELIMITER);
                                             Integer endIndex = docSection.IPM_Section_Sequence_Number__c.length()+1; 
                                             String sequenceNumber = docSection.IPM_Section_Sequence_Number__c.substring(startIndex,endIndex);
                                             Integer sequenceInteger = Integer.valueOf(sequenceNumber);  
@@ -681,7 +679,7 @@ public with sharing class IPM_ProjectDocumentHelper
         
         if(upsertParentSections!=null && !upsertParentSections.isEmpty())
         {
-            insert upsertParentSections; 
+            insert upsertParentSections; // Not including try , catch as when the transaction is failed roll back is handled at other class  
         }         
     }
 }

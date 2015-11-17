@@ -101,7 +101,7 @@ private class IPM_Team_Assignment_Controller_Test{
     static testMethod  void testIpm_Resource_Allocation_FinalRevamp_TestConstructor(){
         initializedData();
         User cUser = IPM_TestFactory_Helper.createUser(true);
-        system.assert(cUser.id!=null);//positive test
+        system.assert(cUser.id!=null, 'User Id Is NUll');//positive test
         system.RunAs(cUser){
             Test.startTest();
             PageReference pRef = Page.IPM_ProjectSetupView;
@@ -128,7 +128,7 @@ private class IPM_Team_Assignment_Controller_Test{
         initializedData();
         User sUser = IPM_TestFactory_Helper.createUserAdmin(true);
         //User sUser = IPM_TestFactory_Helper.createUser(true);
-        System.Assert(sUser.Id != null);//positive test
+        System.Assert(sUser.Id != null, 'User Id is Null');//positive test
         
         ipmProjectResource4 = IPM_TestFactory_Helper.createIPMProjectResource(project.id,FALSE);
         ipmProjectResource4.IPM_Role_Type__c = 'Finance';
@@ -166,7 +166,7 @@ private class IPM_Team_Assignment_Controller_Test{
             sic.DPL_ids= sUser.Id;
             sic.TPL_ids = sUser.Id;
             sic.SaveTeamMembers(); //save team members
-            system.assert(sic.isTeamMemberSave);//positive test
+            system.assert(sic.isTeamMemberSave, 'Team Members Not Updated');//positive test
             
             sic.projectID=project.id;
             sic.SelectedRoleType=IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE;

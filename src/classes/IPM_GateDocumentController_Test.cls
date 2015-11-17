@@ -28,16 +28,16 @@ public class IPM_GateDocumentController_Test{
     * @description Test Data
     */
     @testSetup static void initializeData(){
-         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
-          {
-          // user has to be created as system admin 
+          System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
+        {
+            // user has to be created as system admin 
             stdUserForGateDocument= IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
         }       
-       
+        
         List<User>userLists=[SELECT id FROM user WHERE id=:stdUserForGateDocument.id LIMIT 1];
         System.AssertEquals(userLists[0].id, stdUserForGateDocument.id,'user id is:'+userLists[0].id);//positive test
-       
-           // Create Company Card information 
+        
+        // Create Company Card information 
         IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
         IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
         IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
@@ -51,11 +51,11 @@ public class IPM_GateDocumentController_Test{
         projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForGateDocument);
         System.runAs(stdUserForGateDocument) {
             insert projectList;
-        
-        project=projectList[0];
-        List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
-        System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name');//positive test
-    }
+            
+            project=projectList[0];
+            List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
+            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name');//positive test
+        }
     }
     
     /*************************************************************************************************************************
@@ -305,7 +305,7 @@ public class IPM_GateDocumentController_Test{
       docSec.IPM_Has_Appendix__c=true;
       docSec.IPM_Default_Section__c=true;
       update docSec;
-      system.assertEquals(docSec.IPM_Project_Document__c,projDocList[0].Id);
+      system.assertEquals(docSec.IPM_Project_Document__c,projDocList[0].Id, 'Record Not Same');
      
       ipmGateDocContrl=new IPM_GateDocumentController ();
       ipmGateDocContrl.projectDoc.Id=document.Id;

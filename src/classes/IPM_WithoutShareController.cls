@@ -4,6 +4,10 @@
 *@Description : To create a BOSSCARD 
 *Referring in page ipm_Bosscard page 
 *********************************************/
+
+/*
+    IPM_WithoutShareController is being used to search across the org for duplicates and needs access to complete data. So Without sharing is needed.
+*/
 public without sharing class IPM_WithoutShareController {
     /********************************************************************************
     *@Description :get all bosscard name list

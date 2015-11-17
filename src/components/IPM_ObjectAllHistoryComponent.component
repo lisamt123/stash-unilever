@@ -44,11 +44,11 @@
     <div class="col-xs-12">
      <div class="row action">
      <apex:outputPanel rendered="{!if(sectionId==NULL,True,False)}">
-      <a href="/apex/ipmProjectDocumentSectionEditorV1?Id={!projectId}&projDocSecId={!History.recordLink}" target="_top">  
-      <apex:outputText value="{!History.action}" Escape="FALSE"/></a>&nbsp;<apex:outputText value="{!History.actionType}"/>&nbsp;<apex:outputText value="{!History.who}" />
+      <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!projectId}&projDocSecId={!History.recordLink}" target="_top">  
+      <apex:outputText value="{!History.action}" Escape="FALSE"/></a>  <apex:outputText value="{!History.actionType}"/>  <apex:outputText value="{!History.who}" />
      </apex:outputPanel>
      <apex:outputPanel rendered="{!!if(sectionId==NULL,True,False)}">
-       <apex:outputText value="{!History.action}" Escape="FALSE"/>&nbsp;<apex:outputText value="{!History.actionType}"/>&nbsp;<apex:outputText value="{!History.who}" />
+       <apex:outputText value="{!History.action}" Escape="FALSE"/>  <apex:outputText value="{!History.actionType}"/>  <apex:outputText value="{!History.who}" />
      </apex:outputPanel>
      </div>
     </div>

@@ -11,7 +11,6 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
     
     public String isChecked{get;set;}//Page property which sends back marked milestones for completion
     public String projectId{get;set;}//project Id from the query string
-    public String marketReadyWarningMessage{get; set;} // Warning message to be displayed for Market ready Milestone on Milestone section
     public List<string> warningMessages{get;set;}//List of all the warning messages related to BET and market ready date
     public String isCompleteMilestones{get;set;}//to identify if the milestone is complete or not
     public String paginationUIDisplay ;
@@ -93,6 +92,7 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         phaseMsList.sort();//customised sort
         //Code to add BET related messages
         if((projectObj.BET_TLD_First_Release_Date__c > projectObj.BET_MS_First_Release_Date__c) || (projectObj.BET_TLD_Final_Release_Date__c > projectObj.BET_MS_Final_Release_Date__c)){
+            System.debug('---BET MESSAGE---->'+warningMessages);
             isWarningRequired = true;   
             warningMessages.add(system.label.IPM_BETMilestoneDateMismatch);
         }
@@ -155,19 +155,12 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
                 1. Standard Milestone of previous phase should be read only
                 2. Independent projects will be editable and Rest of the projects will be read only :: It is identified with the help of IPM Project Type custom setting 
              */ 
-              
             if(eachMilestone.IPM_Type_of_Milestone__c == IPM_ConstantUtils.STANDARD){
                 if(!previousPhases.isEmpty() && previousPhases.contains(eachMilestone.IPM_Phase__c)){ // check if milestone phase is previous phase 
                     isEditable = false;
                 }else if(associatedProjectType != null && !associatedProjectType.Independent_Project__c){ // check if it is independent project
                     isEditable = false;
                 }
-                /*if(eachMilestone.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT) && projectObj.IPMProject_Span__c.Equals(IPM_ConstantUtils.PROJECT_SPAN_LOCAL)){
-                    isEditable = true;
-                }
-                if(eachMilestone.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT) && !projectObj.IPMProject_Span__c.Equals(IPM_ConstantUtils.PROJECT_SPAN_LOCAL)){
-                    isEditable = false;
-                }*/
             } 
             
             if(eachMilestone.IPM_Completed__c) {
@@ -233,7 +226,6 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         phaseMsList = new List<String>();
         Set<String> phaseMsSet = new Set<String>();
         String strQuery = getQuery();
-        
         sourcesObjectList = database.query(strQuery);
         if(sourcesObjectList!=null && !sourcesObjectList.isEmpty())
         {
@@ -389,22 +381,19 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
     
     public void checkForOTIFWarning (){
         
-        Date msDate;
         for(IPM_Milestone__c milestone : (List<IPM_Milestone__c>)sourcesObjectList){
             
             if(milestone.IPM_Violate_Preferred_Date__c)
             {
                 if(projectObj.IPM_Market_Type__c == IPM_Utils.DevelopingIPM_Market_Type)
                 {
-                     isWarningRequired = true;
-                     //marketReadyWarningMessage = string.format(System.Label.IPM_MilestoneMarketReadyWarning, new string[] {IPM_ConstantUtils.MARKETREADYWARNINGMONTHS_FIRST, IPM_ConstantUtils.MARKETREADYWARNINGDAYS_FIRST});
-                    warningMessages.add(string.format(System.Label.IPM_MilestoneMarketReadyWarning, new string[] {'6','180'}));
+                    isWarningRequired = true;
+                    warningMessages.add(string.format(System.Label.IPM_MilestoneMarketReadyWarning, new string[] {IPM_ConstantUtils.MARKETREADYWARNINGMONTHS_FIRST, IPM_ConstantUtils.MARKETREADYWARNINGDAYS_FIRST}));
                 }
                 else if(projectObj.IPM_Market_Type__c == IPM_Utils.EmergingIPM_Market_Type)
                 {
-                     isWarningRequired = true;
-                     //marketReadyWarningMessage = string.format(System.Label.IPM_MilestoneMarketReadyWarning, new string[] {IPM_ConstantUtils.MARKETREADYWARNINGMONTHS_SECOND , IPM_ConstantUtils.MARKETREADYWARNINGDAYS_SECOND});
-                    warningMessages.add(string.format(System.Label.IPM_MilestoneMarketReadyWarning, new string[] {'4','120'}));
+                    isWarningRequired = true;
+                    warningMessages.add(string.format(System.Label.IPM_MilestoneMarketReadyWarning, new string[] {IPM_ConstantUtils.MARKETREADYWARNINGMONTHS_SECOND,IPM_ConstantUtils.MARKETREADYWARNINGDAYS_SECOND}));
                 }
                 break;
             }

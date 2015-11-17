@@ -193,7 +193,7 @@
                                                                                     <div class="rContainer">
                                                                                         <div class="cmiContractInputContainer">
                                                                                             <apex:outputPanel rendered="{!AND(isEditable,OR(gateType='Contract',gateType='Market Ready'))}">
-                                                                                                <apex:inputField id="inputSelectList" styleClass="cmiSelectBox" html-disabled="disabled" value="{!sec.IPM_CMI_Input__c}"  rendered="{!!sec.IPM_CMI_Is_Free_Text__c}"/>
+																								<apex:inputField id="inputSelectList" styleClass="cmiSelectBox" html-disabled="disabled" value="{!sec.IPM_CMI_Input__c}"  rendered="{!!sec.IPM_CMI_Is_Free_Text__c}"/>
                                                                                                 <apex:inputField value="{!sec.IPM_CMI_Free_Text__c}" rendered="{!sec.IPM_CMI_Is_Free_Text__c}" onchange="updateCMIContent('{!sec.Id}',this.value,'{!sec.IPM_CMI_Comments__c}',false);"/>
                                                                                             </apex:outputPanel>   
                                                                                             <apex:outputPanel rendered="{!OR(!isEditable,!OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}">
