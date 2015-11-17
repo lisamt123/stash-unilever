@@ -151,7 +151,7 @@
       </replaceregexp>        
       <replaceregexp byline="false" flags="gm">
         <regexp pattern="[\s].*layoutAssignments.*[\s].*[\s].*(SocialPersona-Social).*[\s].*"/>
-        <substitution expression=""/>
+        <substitution expression="&lt;/layoutAssignments&gt;"/>
         <fileset dir="${basedir}">
           <include name="**/*.profile"/>
           <include name="**/*.permissionset"/>
