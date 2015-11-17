@@ -110,7 +110,7 @@
     </apex:outputPanel>
 
     <apex:outputPanel id="betMembers">
-        <c:BET_SuggestMembers_Michal BetID="{!bet.id}" 
+        <c:BET_SuggestMembers BetID="{!bet.id}" 
                             ProjectId="{!IF(bet.IPM_Project__c == null,bet.Inoplan_Project__c,bet.IPM_Project__c)}" 
                             Callback="/{!bet.id}" 
                             rendered="{!goToMemberSelection}"
