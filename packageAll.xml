@@ -278,6 +278,7 @@
         <members>Core_IC_IdeationApp</members>
         <members>HROResources</members>
         <members>LoadImage</members>
+        <members>PSARViewTableauDashboard</members>
         <name>StaticResource</name>
     </types>    
     <types>
