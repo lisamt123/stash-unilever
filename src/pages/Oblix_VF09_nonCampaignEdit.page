@@ -106,31 +106,28 @@
             top: 5px;              
         }
 
-        
-           .Oblix_header_arrowTitle{
+       .Oblix_header_arrowTitle{
             font-family: DIN, Arial;
-            font-size: 20px;
+            font-size: 18px;
             margin: 4px;   
             padding-top: 24px;
             text-align: center;
         }
         
         .Oblix_header_activeArrow{ 
-        background-color: transparent;      
+             background-color: transparent;      
             background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow_down.png')}");
             background-repeat: no-repeat;
              font-family: DIN, Arial;
             color:white;
             padding-left: 10px;
             width:160px;
-           height: 90px;
+            height: 90px;
             text-align: center;
-            position: absolute;
-           
-
+            position: absolute;     
         }
-          .Oblix_header_Arrow_none{ 
-          background-color: transparent;      
+       .Oblix_header_Arrow_none{ 
+            background-color: transparent;      
             background: initial;
             background-repeat: no-repeat;
             font-family: DIN, Arial;
@@ -141,8 +138,8 @@
             text-align: center;
             position: absolute;
         }
-          .Oblix_header_Arrow{ 
-          background-color: transparent;      
+       .Oblix_header_Arrow{ 
+           background-color: transparent;      
             background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow.png')}");
             background-repeat: no-repeat;
             font-family: DIN, Arial;
@@ -152,18 +149,15 @@
             height: 90px;
             text-align: center;
             position: absolute;
-          
-
-
+        
         }
           .Oblix_header_Arrow:active, .Oblix_header_Arrow:hover {
-          background-color: transparent;
+            background-color: transparent;
             background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
             background-repeat: no-repeat;
-
           }
-           .Oblix_header_previousArrow{ 
-           background-color: transparent;      
+         .Oblix_header_previousArrow{ 
+            background-color: transparent;      
             background-image : url("{!URLFOR($Resource.assetUI,'previouslevel_arrow.png')}");
             background-repeat: no-repeat;
             font-family: DIN, Arial;
@@ -193,6 +187,17 @@
             top: 2px;
             left:427px;
                        }
+       .Oblix_header a{
+            text-decoration:none;
+            cursor:pointer; 
+            color:white;            
+        }
+        .Oblix_header a:hover{
+            text-decoration:none;
+            cursor:pointer; 
+            color:white;          
+        }
+                       
         .Oblix_header{
             background-image : url("{!URLFOR($Resource.assetUI,'header_panel.png')}");
             background-size: 100% 100%;
@@ -658,12 +663,7 @@
     .ui-tabs .ui-tabs-nav li {
         border-bottom-width: 1px;
     }  
-    textarea,select,input {
-        vertical-align: top;
-    }
-    
-    
-    
+   
     .tabs-min { 
         background: transparent; 
         border: none; 
@@ -730,7 +730,7 @@
                 <apex:image value="{!$Resource.Unilever_logo}" width="60px" height="60px" />
                 </td>
                 <td class="Oblix_header_Arrow header_pos_1">
-                <div class="Oblix_header_title">{!$Label.Oblix_lbl_UIUX_SWOP}</div><br/><span class="Oblix_header_desc">{!$Label.Oblix_lbl_UIUX_Scope_of_Work}<br/>{!$Label.Oblix_lbl_UIUX_Online_Planner}</span>
+                 <a href="/apex/Oblix_VF05_SOWDetails"> <div class="Oblix_header_title">{!$Label.Oblix_lbl_UIUX_SWOP}</div></a><br/><span class="Oblix_header_desc">{!$Label.Oblix_lbl_UIUX_Scope_of_Work}<br/>{!$Label.Oblix_lbl_UIUX_Online_Planner}</span>
                 </td>
                 <td>
                 <div class="Oblix_header_activeArrow header_pos_2">
@@ -764,12 +764,12 @@
                     </td>
                    
                      <td style="font-size: 20px; color: #fff; word-break: normal; padding-right:20px;">
-                                              <apex:outputLabel value="{!saveStatus}" id="saveStatus"></apex:outputLabel>
-                                          </td><td width="160px" style="text-align: right;">
-                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Save}" action="{!saveList}" rerender="saveStatus" onclick="blockme();" oncomplete="$.unblockUI()" styleClass="Oblix_projects_btn"/>
-                                          </td><td width="160px" style="text-align: right;">
-                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back}" action="{!back}" styleClass="Oblix_projects_btn" reRender="Oblix_ItemsId"/><br/>       
-                                          </td>                                     
+                          <apex:outputLabel value="{!saveStatus}" id="saveStatus"></apex:outputLabel>
+                      </td><td width="160px" style="text-align: right;">
+                          <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Save}" action="{!saveList}" rerender="saveStatus" onclick="blockme();" oncomplete="$.unblockUI()" styleClass="Oblix_projects_btn"/>
+                      </td><td width="160px" style="text-align: right;">
+                          <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back}" action="{!back}" styleClass="Oblix_projects_btn" reRender="Oblix_ItemsId"/><br/>       
+                      </td>                                     
                 </tr>
             </table>
             <table width="100%" class="topAlign">
@@ -871,40 +871,36 @@
                                    </apex:outputPanel>         
                               </apex:outputPanel>
                              
-                                <table width="100%">
-                            <tr>
-                             
-                            <td width="100%">
+                               
                                <section class="PrColumn1">
+                                </section>
                                    <table width="100%" >
                                   
-                                     <tr>
-                                          <td>  <apex:inputtext styleClass="input_init"  value="{!name}" style="width:200px ;" html-placeholder="Activity name" id="nameid"  />
+                                     <tr height="50">
+                                          <td width="20%">  <apex:inputtext styleClass="input_init"  value="{!myAct.name}" style="width:90%;" html-placeholder="Activity name" id="nameid"  />
                                           </td>
-                                          <td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%"></td> 
+                                          <td  width="5%"></td>
+                                          <td  width="20%"></td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
                                           <!--   <input type="radio" name="activity" value="{!pick}"  />
                                           <!--  <input type="radio" name="activity" value="{!pick}" onclick="changeValue(this,'{!$Component.RadioButtonValue}');" /> -->
                                           </td>
+                                    </tr>
+                                    <tr height="50">
                                            <td>
-                                            <apex:inputField value="{!lookupActivity.Activities__c}"  style="min-width:90%; min-height:30px;" id="activityid"  onchange="if ($(this).val()=='Other'){ $('.otherr').prop('disabled', false);}else{ $('.otherr').prop('disabled', true);}"  />
+                                            <apex:inputField value="{!myAct.lookupActivity.Activities__c}"  style="min-width:90%; min-height:30px;" id="activityid"  onchange="if ($(this).val()=='Other'){ $('.otherr').prop('disabled', false);}else{ $('.otherr').prop('disabled', true);}"  />
                                           </td>
                                             <td>
                                          <!--    <input type="radio" name="activity" value="{!nopick}" /> -->
                                           </td>
-                                          <td>
-                                            <apex:inputText value="{!lookupActivity.Other_Activities__c}" styleClass="input_init otherr"  id="otherId"   html-placeholder="please describe if not listed" disabled="{!IF(lookupActivity.Activities__c=='Other',false,true)}"/>
+                                          <td >
+                                            <apex:inputText style="width:300px;" value="{!myAct.lookupActivity.Other_Activities__c}" styleClass="input_init otherr"  id="otherId"   html-placeholder="please describe if not listed" disabled="{!IF(myAct.lookupActivity.Activities__c=='Other',false,true)}"/>
                                           </td>
                                      </tr>
-                                    
-                                   </table>
-                               </section>
-                           </td>
-                          <td>
-                          </td>
-                           </tr>
-                           </table> 
-                             <table width="100%" class="topAlign">  
-                                      <tr>
+                                     <tr height="50">
                                           
                                           <!-- <td width="20%">
                                             <apex:inputField value="{!newItem.OblixCountry__c}" styleclass="picklist_init" onchange="adupdate();blockme();" id="country"   style="min-width:60%;"/>
@@ -912,49 +908,61 @@
                                           
                                          -->
                                           <td>
-                                               <apex:selectList size="1" value="{!selectedCountryname}" onchange="adupdate();blockme();" styleclass="picklist_init"   style="min-width:98%;" id="country">
+                                               <apex:selectList size="1" value="{!myAct.selectedCountryname}" onchange="adupdate();blockme();" styleclass="picklist_init"   style="min-width:100%;" id="country">
                                                    <apex:selectOptions value="{!countries }"/>
                                                </apex:selectList>
                                           </td>
                                        
-                                                                     
+                                          <td></td>                           
             
-                                            <td width="20%">
-                                              <apex:selectList size="1" value="{!selectedAgencyDepartment}" styleclass="picklist_init" id="AD" onchange="RTupdate();blockme();" disabled="{!IF(agencyVisible==false,true,false)}"  style="min-width:98%;">
+                                            <td >
+                                              <apex:selectList size="1" value="{!myAct.selectedAgencyDepartment}" styleclass="picklist_init" id="AD" onchange="RTupdate();blockme();" disabled="{!IF(myAct.agencyVisible==false,true,false)}"  style="min-width:100%;">
                                                <apex:selectOptions value="{!AgencyDepartments}"/>
                                               </apex:selectList>
                                            </td>
-                                         
-                                           <td width="20%">
-                                              <apex:selectList size="1" value="{!selectedRoleTitle}" id="RT"  styleclass="picklist_init" style="min-width:98%;" disabled="{!IF(roleVisible==false,true,false)}" onchange="Rateupdate();blockme();">
+                                          
+                                          
+                                          <td></td>
+                                          
+                                          
+                                           <td >
+                                              <apex:selectList size="1" value="{!myAct.selectedRoleTitle}" id="RT"  styleclass="picklist_init" style="min-width:100%;" disabled="{!IF(myAct.roleVisible==false,true,false)}" onchange="Rateupdate();blockme();">
                                                <apex:selectOptions value="{!RoleTitles}"/>
                                               </apex:selectList>
                                            </td>
                                            
+                                   </tr>
+                                   
+                                     <tr height="50">
+                                          <td width="20%">   
+                                             <span style="font-size:14px">   {!$Label.Oblix_lbl_UIUX_Hourly_rate}: </span>
+                                             <apex:outputLabel value="{!myAct.Rate}" style="font-size:14px" id="rate" styleclass="rateclass" >
+                                             </apex:outputLabel> 
+                                          </td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%"> 
+                                              <apex:input type="number"  styleClass="hourss input_init"   html-min="0" value="{!myAct.val}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(($(this).val()*parseInt($('.rateclass').text()))+' {!MScurrency}');}" disabled="{!IF(myAct.valVisible==false,false,false)}" id="hours" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);"/><!-- .toFixed(2) -->
+                                              <span style="font-size:14px">{!$Label.Oblix_lbl_UIUX_hours}  </span>
+                                          </td> 
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
+                                              <span style="font-size:14px">
+                                              <apex:outputLabel value="{!myAct.result}"  style="width:90%;font-size:14px"   id="result" styleclass="rslt" >
+                                              {!MScurrency}
+                                              </apex:outputLabel>
+                                              </span>
+                                          </td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
+                                          <apex:commandButton value="{!IF(edit1,'Update','Add')}" action="{!addToNew}" styleclass="btn ui-button ui-state-default largBtn" onclick="blockme();" oncomplete="$.unblockUI()" rerender="nameid,otherId,activityid,name,country,AD, RT, rate, hours,result,Oblix_card,myMessages,saveStatus,Oblix_card,add" disabled="{!IF(myAct.addVisible==false,true,false)}" id="add"/>
                                            
-                                           <td width="16%">
-                                           <span style="font-size:14px">   {!$Label.Oblix_lbl_UIUX_Hourly_rate}: </span>
-                                             <apex:outputLabel value="{!rate}" style="width:90%;font-size:17px" id="rate" styleclass="rateclass" >
-                                             
-                                             </apex:outputLabel>
-                                           </td>
-                                             <td width="5%">
-                                                 <apex:input type="number"  styleClass="hourss input_init"   html-min="0" value="{!hours}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(($(this).val()*parseInt($('.rateclass').text())).toFixed(2)+' {!MScurrency}');}" disabled="{!IF(hoursVisible==false,false,false)}" id="hours" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);"/>
-                                           </td>
-                                           <td width="16%">
-                                                <span style="font-size:14px">
-                                                 <span style="font-size:14px">{!$Label.Oblix_lbl_UIUX_hours} = </span>
-                                                     <apex:outputLabel value="{!result}"  style="width:90%;font-size:14px"   id="result" styleclass="rslt" >
-                                                     {!MScurrency}
-                                                     </apex:outputLabel>
-                                                 </span>
-                                           </td>
-                                           <td width="8%">
-                                           <apex:commandButton value="{!IF(edit1,'update','Add')}" action="{!addToNew}" styleclass="btn ui-button ui-state-default largBtn" onclick="blockme();" oncomplete="$.unblockUI()" rerender="nameid,otherId,activityid,name,country,AD, RT, rate, hours,result,Oblix_card,myMessages,saveStatus,Oblix_card,add" disabled="{!IF(addVisible==false,true,false)}" id="add"/>
-                                           <!-- nameid,otherId,activityid,name1,dr,Oblix_card,add,country1,AD1, RT1, rate1, prcent,result1,add1 -->
-                                           </td>
-                                      </tr>
-                                  </table>
+                                          </td>
+                                    </tr>
+                                    
+                                   </table>
+                              
+                          
+                           
                            
                            
                            
@@ -976,69 +984,75 @@
                               </apex:outputPanel>
                              
                              <table width="100%">
-                                <tr>
-                                 <td>  <apex:inputtext styleClass="input_init"  value="{!name1}" style="width:200px ;" html-placeholder="Resource Name" id="nameid1"   />
+                                    <tr height="50">
+                                          <td width="20%"> <apex:inputtext styleClass="input_init"  value="{!myRes.name}" style="width:110%;" html-placeholder="Resource Name" id="nameid1"   /></td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%"></td> 
+                                          <td  width="5%"></td>
+                                          <td  width="20%"></td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
+                                          <!--   <input type="radio" name="activity" value="{!pick}"  />
+                                          <!--  <input type="radio" name="activity" value="{!pick}" onclick="changeValue(this,'{!$Component.RadioButtonValue}');" /> -->
                                           </td>
-                                          
-                                                
-                               </tr>
-                             </table> 
-                             <table width="100%" class="topAlign">  
-                                      <tr>
-                                          <!--  <td width="20%">
-                                            <apex:inputField value="{!newItem1.OblixCountry__c}" styleclass="picklist_init" onchange="adupdate1();blockme();"  id="country1"  style="min-width:60%;"/>
-                                          </td>
-                                          -->
-                                         <td>
-                                               <apex:selectList size="1" value="{!selectedCountryname1}" onchange="adupdate1();blockme();" styleclass="picklist_init" style="min-width:90%;">
+                                    </tr>
+                                     <tr height="50">
+                                          <td width="20%">
+                                           <apex:selectList size="1" value="{!myRes.selectedCountryname}" onchange="adupdate1();blockme();" styleclass="picklist_init" style="width:110%;" id="country1">
                                                    <apex:selectOptions value="{!countries }"/>
                                                </apex:selectList>
                                           </td>
-                                      
-                                                                     
-          
-                                            <td width="20%">
-                                              <apex:selectList size="1" value="{!selectedAgencyDepartment1}" styleclass="picklist_init" id="AD1" onchange="RTupdate1();blockme();" disabled="{!IF(agencyVisible1==false,true,false)}"   style="min-width:98%;">
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
+                                           <apex:selectList size="1" value="{!myRes.selectedAgencyDepartment}" styleclass="picklist_init" id="AD1" onchange="RTupdate1();blockme();" disabled="{!IF(myRes.agencyVisible==false,true,false)}"   style="width:110%;">
                                                <apex:selectOptions value="{!AgencyDepartments1}"/>
                                               </apex:selectList>
-                                           </td>
-                                         
-                                           <td width="20%">
-                                              <apex:selectList size="1" value="{!selectedRoleTitle1}" id="RT1"  styleclass="picklist_init" style="min-width:98%;" disabled="{!IF(roleVisible1==false,true,false)}" onchange="Rateupdate1();blockme();">
+                                          </td> 
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
+                                           <apex:selectList size="1" value="{!myRes.selectedRoleTitle}" id="RT1"  styleclass="picklist_init" style="min-width:110%;" disabled="{!IF(myRes.roleVisible==false,true,false)}" onchange="Rateupdate1();blockme();">
                                                <apex:selectOptions value="{!RoleTitles1}"/>
                                               </apex:selectList>
-                                           </td>
-                                             
                                           
-                                           <td width="15%x">
-                                           <span style="font-size:17px"> 
+                                          </td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
+                                          <!--   <input type="radio" name="activity" value="{!pick}"  />
+                                          <!--  <input type="radio" name="activity" value="{!pick}" onclick="changeValue(this,'{!$Component.RadioButtonValue}');" /> -->
+                                          </td>
+                                    </tr>
+                                     <tr height="50">
+                                          <td width="20%">
+                                            <span style="font-size:14px"> 
                                             <span style="font-size:14px">FTE:  </span>
-                                             <apex:outputLabel value="{!rate1}" style="width:90%;" id="rate1" styleClass="rateclass1">
+                                             <apex:outputLabel value="{!myRes.Rate}" style="width:90%;" id="rate1" styleClass="rateclass1">
                                             
                                              </apex:outputLabel>
                                               </span>
-                                           </td>
-                                            
-                                            <td width="5%">
-                                                 <apex:input type="number" styleclass="prcentt input_init" html-min="0" value="{!prcent}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass1').text()))){ $('.rslt1').text(($(this).val()/100*parseInt($('.rateclass1').text())).toFixed(2));}" disabled="{!IF(prcentVisible1 ==false,false,false)}" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " />
-                                            </td>
-                                             <!-- if($(this).val()==0){  $(this).val(1);alert('Error 0 : you can not divide by zero !') ;}-->
-                                           <td width="15%">
-                                           <span style="font-size:14px">% = </span>
-                                             <apex:outputLabel value="{!result1}"   style="width:90%;font-size:17px;"   id="result1"  styleClass="rslt1">
-                                             {!MScurrency}
-                                             </apex:outputLabel>
-                                           </td>
-                                           <td width="10px">
-                                           <apex:commandButton value="{!IF(edit2,'update','Add')}" action="{!addToNew1}" styleclass="btn ui-button ui-state-default" onclick="blockme();" oncomplete="$.unblockUI()" rerender="Oblix_card,nameid1,result1, myMessages1,saveStatus,country1,AD1, RT1, rate1, prcent,add1" disabled="{!IF(addVisible1==false,true,false)}" id="add1"/>
-                                            <!--name1,country1, rate1, prcent,result1,add1 -->
                                           
                                            </td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
+                                           <apex:input type="number" styleclass="prcentt input_init" html-min="0" value="{!myRes.val}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass1').text()))){ $('.rslt1').text(($(this).val()/100*parseInt($('.rateclass1').text())));}" disabled="{!IF(myRes.valVisible==false,false,false)}" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " />
+                                          </td> 
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
+                                          <span style="font-size:14px">%  </span>
+                                              {!MScurrency}
+                                             <apex:outputLabel value="{!myRes.result}"   style="width:90%;font-size:17px;"   id="result1"  styleClass="rslt1">
+                                            
+                                             </apex:outputLabel>
+                                          
+                                          </td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
+                                           <apex:commandButton value="{!IF(edit2,'Update','Add')}" action="{!addToNew1}" styleclass="btn ui-button ui-state-default" onclick="blockme();" oncomplete="$.unblockUI()" rerender="Oblix_card,nameid1,result1, myMessages1,saveStatus,country1,AD1, RT1, rate1, prcent,add1" disabled="{!IF(myRes.addVisible==false,true,false)}" id="add1"/>
                                            
-                                           
-                                         <!--   -->
-                                      </tr>
-                                  </table>
+                                           </td>
+                                    </tr>
+                                          
+                             </table> 
+                          
                            
                                    </div>
                                    
@@ -1060,7 +1074,7 @@
                                 <apex:outputPanel id="Oblix_card">
                                 <div class="Oblix_card_title">
                                     <div style="float:left">{!$Label.Oblix_lbl_UIUX_Estimation_Cost} : </div>
-                                    <div style="float:right">{!somme} {!MScurrency}</div>
+                                    <div style="float:right">  {!MScurrency} {!somme} </div>
                                 </div>
                                 <br/>
                                     
@@ -1071,22 +1085,24 @@
                                                    <div style="float: left;display:block;">                                                   
                                                        <apex:outputText value="{!asset.non_campaign_title__c}" style="width:60px;"/> &nbsp;&nbsp;
                                                        
-                                                       <span style="font-size:17px"> <apex:outputText value="{!asset.FTE__c}"/> </span>
-                                                       <span style="font-size:17px"> <apex:outputText value="{!asset.No_of_Hours_Required__c }"/> </span>
+                                                       <span style="font-size:14px"> <apex:outputText value="{!asset.FTE__c}"/> {!if(asset.FTE__c!=null,'%','')} </span>
+                                                       <span style="font-size:14px"> <apex:outputText value="{!asset.No_of_Hours_Required__c }"/> {!if(asset.No_of_Hours_Required__c !=null,$Label.Oblix_lbl_UIUX_hours,'')}</span>
+                                                    <!--   <apex:outputText value="{!asset.OblixCountry__c}" id="countryId2"/>            -->
+                                                       
                                                        
                                                    </div>
                                                   
                                                    <div style="float: right;display:block;"> 
-                                                       <span style="font-size:14px"> <apex:outputText value="{!asset.OblixOtherItemFee__c }"/> {!MScurrency} </span>
+                                                       <span style="font-size:14px">{!MScurrency} <apex:outputText value="{!asset.OblixOtherItemFee__c }"/>  </span>
                                                       
-                                                    <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete}" action="{!delElm}" rerender="Oblix_card,saveStatus "  onclick="blockme();" oncomplete="$.unblockUI()" id="del" rendered="{!not(edit1 && edit1 )}">
+                                                    <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete}" action="{!delElm}" rerender="Oblix_card,saveStatus "  onclick="blockme();" oncomplete="$.unblockUI()" id="del" rendered="{!not(edit1 || edit2 )}">
                                                         <apex:param name="param1" assignTo="{!ElemToDel  }" value="{!rowNum}" />
                                                     </apex:commandButton>
-                                                    <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" action="{!editItem}" reRender="nameid,otherId,activityid,name1,dr,Oblix_card,country,AD, RT, rate, hours,result,Oblix_card,add,country1,AD1, RT1, rate1, prcent,result1,add1" onclick="{!IF(rtActivity==asset.recordTypeId,'showTab1();','showTab2();')}"  oncomplete="$.unblockUI()" id="edit">
+                                                    <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" action="{!editItem}" reRender="countryId2,nameid,nameid1,otherId,activityid,name1,dr,Oblix_card,country,AD, RT, rate, hours,result,Oblix_card,add,country1,AD1, RT1, rate1, prcent,result1,add1" onclick="{!IF(rtActivity==asset.recordTypeId,'showTab1();','showTab2();')}"  oncomplete="$.unblockUI()" id="edit"  ><!-- rendered="{!not(edit1 || edit2 )}" -->
                                                          <apex:param name="param2" assignTo="{!elemToEdit}" value="{!rowNum}" />
                                                     </apex:commandButton>
                                                    </div>
-                                                  
+                                                  <!--style="{!IF((edit1 || edit2) && (elemToEdit == rownum) ,'background-color:#FBFBFB;','') }"-->
                                                      
                                           
     
