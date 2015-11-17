@@ -25,8 +25,6 @@
 		<members>BET_SoslFieldsBatch_Test</members>
 		<members>BET_PresentationBatch</members>
 		<members>BET_PresentationBatch_Test</members>
-		<members>BET_UpdateBrandKeywordSearch</members>
-		<members>BET_UpdateCategoryKeywordSearch</members>
         <name>ApexClass</name>
     </types>
 	<types>
