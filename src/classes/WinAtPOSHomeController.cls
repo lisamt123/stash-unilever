@@ -67,6 +67,12 @@ public with sharing  class WinAtPOSHomeController {
         return null;
         
     }
+
+    public String winAtPOSUrlJson {
+        get {
+            return JSON.serializePretty(WinAtPOS_URLS__c.getAll().values());
+        }
+    }
     
     /*******************************************************************
 	Purpose: Method add or update record for application usage porpouse  

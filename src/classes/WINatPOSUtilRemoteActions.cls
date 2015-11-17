@@ -35,7 +35,7 @@ public without sharing class WINatPOSUtilRemoteActions {
             if(category.Category_Logo__c != null){
                 Matcher logoMatcher=logoPattern.matcher(category.Category_Logo__c);
                 if(logoMatcher.matches() && logoMatcher.groupCount() == 1){
-                    urlToCategoryLogo = logoMatcher.group(1);
+                    urlToCategoryLogo=logoMatcher.group(1);
                 }
             }
             categoryLineItems.add(new WINatPOSRemoteActionWrapper.MenuLineItemWrapper(category.Name,String.valueOf(category.Id),urlToCategoryLogo,category.Parent_Category_Name__c));
@@ -50,6 +50,12 @@ public without sharing class WINatPOSUtilRemoteActions {
                 if(logoMatcher.matches() && logoMatcher.groupCount() == 1){
                     urlToBrandLogo=logoMatcher.group(1);
                 }
+            }
+            
+            // for community users we have to add /WinPOS/ prefix to URL
+            //for internal users it have to be like it was oryginally 
+            if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+            	urlToBrandLogo = urlToBrandLogo.replace('/resource/', '/WinPOS/resource/');
             }
             brandLineItems.add(new WINatPOSRemoteActionWrapper.MenuLineItemWrapper(brand.Name,String.valueOf(brand.Id),urlToBrandLogo,null));
         }
@@ -77,11 +83,19 @@ public without sharing class WINatPOSUtilRemoteActions {
         List<File__c> filesWithoutThumbnailUrl=new List<File__c>();
         Set<String> uniqueTopics=new Set<String>();
         List<WINatPOSRemoteActionWrapper.AssetCaruselWrapper> caruselResults= new List<WINatPOSRemoteActionWrapper.AssetCaruselWrapper>();
-        for(Asset__c asetItem :      [select id,Name,POS_Asset_Type__c,Description__c,LastModifiedDate,
+        List<Asset__c> assetsList;
+        if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+        	assetsList = WINatPOSUtil.getAssetsForHomePage();
+        }else{
+        	assetsList = [select id,Name,POS_Asset_Type__c,Description__c,LastModifiedDate,
                                      (Select Feed_Thumbnail_URL__c,Feed_Id__c from Files__r where Is_Primary_Image__c=true),
                                      (select CommentCount, LikeCount,id from Feeds)
                                      From Asset__c where Carousel_Published__c=true
-                                     ]){
+                                     ];
+        }
+        
+        for(Asset__c asetItem : assetsList){
+                                     	
             
             List<String> relatedFiles=new List<String>();                             
             if(asetItem.Files__r != null && !asetItem.Files__r.isEmpty()){
@@ -96,16 +110,22 @@ public without sharing class WINatPOSUtilRemoteActions {
             Integer likeCount=0;
             Integer commentCount=0;
             uniqueTopics=new Set<String>();
-            //Agregate likes and comments for each asset                             
+            //Agregate likes and comments for each asset  
+                                      
             for(Asset__Feed item: asetItem.Feeds){
                 if(item != null){
                     likeCount += item.LikeCount;
                     commentCount += item.CommentCount;
                     
-                    ConnectApi.TopicPage topicPage=ConnectApi.Topics.getTopics(null, item.id);
-                    for(ConnectApi.Topic topic: topicPage.topics){
-                        uniqueTopics.add(topic.name);
+                    try{
+                    	ConnectApi.TopicPage topicPage = ConnectApi.Topics.getTopics(null, item.id);
+                    	for(ConnectApi.Topic topic: topicPage.topics){
+	                        uniqueTopics.add(topic.name);
+	                    }
+                    }catch(Exception ex){
+                    	System.debug('Probelm with Chatter files: ' + ex.getMessage());
                     }
+                    
                     
                 }
             }
@@ -1021,7 +1041,13 @@ public without sharing class WINatPOSUtilRemoteActions {
             system.debug('*** WINatPOS gatherResultsForSearch method final soql query call: '+finalSoslQuery);
             //end of creating dynamic query call
             
-            List<List<SObject>>searchList=search.query(finalSoslQuery);
+            List<List<SObject>>searchList;
+            
+            if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+            	searchList = WINatPOSUtil.searchForCommunityUsers(finalSoslQuery);
+            }else{
+            	searchList = search.query(finalSoslQuery);
+            }
             
             if(!searchList.isEmpty()){
                 system.debug('*** WINatPOS gatherResultsForSearch method check searchList '+searchList);
@@ -1033,13 +1059,21 @@ public without sharing class WINatPOSUtilRemoteActions {
                     system.debug('*** WINatPOS gatherResultsForSearch method check searchList for asset group '+searchList.get(1));
                 }
             }
-            assetSeatchByTouchpoint=Database.query(finalSoqlQueryWithTouchPoint);
+            if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+            	assetSeatchByTouchpoint = WINatPOSUtil.retrieveAssetsForCommunityUsers(finalSoqlQueryWithTouchPoint);
+            }else{
+            	assetSeatchByTouchpoint = Database.query(finalSoqlQueryWithTouchPoint);
+            }
             //combine keyword search from sosl and soql for TouchPoint
             assetSearchList=WinAtPosUtil.combineAssetsLists(assetSearchList,assetSeatchByTouchpoint);
             
             
         }else{
-            assetSearchList=Database.query(finalSoqlQuery);
+        	if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+        		assetSearchList = WINatPOSUtil.retrieveAssetsForCommunityUsers(finalSoqlQuery);
+        	}else{
+            	assetSearchList = Database.query(finalSoqlQuery);
+        	}
             system.debug('*** WINatPOS gatherResultsForSearch method final soql query call for Assets: '+finalSoqlQuery);
             if((assetChannel != null  && assetChannel != '') || (assetPlacment != null  && assetPlacment != '' || (country != null  && country != ''))){
                 system.debug('*** WINatPOS search method channel or placment or country filter is selected do not search in asset group');
@@ -1385,25 +1419,45 @@ public without sharing class WINatPOSUtilRemoteActions {
         
         if(searchType == WINatPOSUtil.brandSearch && brandId != null && brandId != ''){
             system.debug('*** WINatPOS getCaruselForBrandOrCategory inside brandSearch');
-            List<Brand_Master__c> brandForCarusel=[select name,Brand_Logo__c,id,
+            List<Brand_Master__c> brandForCarusel;
+            
+            if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+            	brandForCarusel = WINatPOSUtil.getBrandForCarusel(brandId);
+            }else{
+            	brandForCarusel=[select name,Brand_Logo__c,id,
                                                 (select ParentId, SubscriberId from FeedSubscriptionsForEntity where SubscriberId =: UserInfo.getUserId()),
                                                 (Select Feed_URL__c, Name,Feed_ID__c,id From Files__r order by Name asc)
                                                  from Brand_Master__c where id =: brandId];
+            }
+            
+                                                 
             caruselList = getCaruselsForCategoryOrBrand(null,brandForCarusel,caruselList,WINatPOSUtil.brandSearch);
         }else if(searchType == WINatPOSUtil.categorySearch && categoryId != null && categoryId != ''){
             system.debug('*** WINatPOS getCaruselForBrandOrCategory inside categorySearch');
             
-            List<Category__c> catForCarusel=    [select name,Category_Logo__c,id,
+            List<Category__c> catForCarusel;
+            if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+            	catForCarusel = WINatPOSUtil.getCatForCarusel(categoryId);
+            }else{
+            	catForCarusel = [select name,Category_Logo__c,id,
                                                 (select ParentId, SubscriberId from FeedSubscriptionsForEntity where SubscriberId =: UserInfo.getUserId()),
                                                 (select Feed_URL__c, Name,Feed_ID__c,id From CategoryUploads__r order by Name asc) 
                                                  from Category__c where id =: categoryId];
+            }
+                                                 
             caruselList = getCaruselsForCategoryOrBrand(catForCarusel,null,caruselList,WINatPOSUtil.categorySearch);
             
         }else if(searchType == WINatPOSUtil.keywordSearch && keyWord != null && keyWord != ''){
             //keyWord = keyWord.replace('?','\\?').replace('&','\\&').replace('!','\\!').replace('{','\\{').replace('}','\\}').replace('[','\\[').replace('(','\\(').replace(')','\\)').replace('^','\\^').replace('~','\\~').replace(':','\\:').replace('\\','\\\\').replace('"','\\"').replace('\'','\\\'').replace('+','\\+').replace('-','\\\\-');
             String soslQuery='Find \''+keyWord+'\' IN Name FIELDS RETURNING Brand_Master__c(Name,id order by Name asc),Category__c(Name,id order by name asc)';
             
-            List<List<SObject>>searchList=search.query(soslQuery);
+            List<List<SObject>> searchList;//=search.query(soslQuery);
+            
+            if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+            	searchList = WINatPOSUtil.searchForCommunityUsers(soslQuery);
+            }else{
+            	searchList = search.query(soslQuery);
+            }
             List<Brand_Master__c> brands = (List<Brand_Master__c>)searchList.get(0);
             List<Category__c> categories = (List<Category__c>)searchList.get(1);
             WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper caruselWrap=null;
@@ -1412,6 +1466,7 @@ public without sharing class WINatPOSUtilRemoteActions {
                                                 (select ParentId, SubscriberId from FeedSubscriptionsForEntity where SubscriberId =: UserInfo.getUserId()),
                                                 (Select Feed_URL__c, Name,Feed_ID__c,id From Files__r order by Name asc)
                                                  from Brand_Master__c where id in : brands order by name];
+                                                 
                caruselList=getCaruselsForCategoryOrBrand(null,brandForCarusel,caruselList,WINatPOSUtil.brandSearch);    
             }
             WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper caruselWrap1=null;
@@ -1421,6 +1476,7 @@ public without sharing class WINatPOSUtilRemoteActions {
                                                 (select ParentId, SubscriberId from FeedSubscriptionsForEntity where SubscriberId =: UserInfo.getUserId()),
                                                 (Select Feed_URL__c, Name,Feed_ID__c,id From CategoryUploads__r order by Name asc)
                                                  from Category__c where id in : categories order by name];
+                                                 
                caruselList=getCaruselsForCategoryOrBrand(catForCarusel,null,caruselList,WINatPOSUtil.categorySearch);
                 
             }
@@ -1456,6 +1512,9 @@ public without sharing class WINatPOSUtilRemoteActions {
                         if(logoMatcher.matches() && logoMatcher.groupCount() == 1){
                             //retrive logo for category
                             urlToLogo=logoMatcher.group(1);
+                            if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+                            	urlToLogo = urlToLogo.replace('/resource/', '/WinPOS/resource/');
+                            }
                         }
                 }
                 WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper caruselWrap=new WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper(cat.Name,urlToLogo,null,cat.id,isUserFollowCategory);
@@ -1486,7 +1545,11 @@ public without sharing class WINatPOSUtilRemoteActions {
                         Matcher logoMatcher=logoPattern.matcher(brand.Brand_Logo__c);
                         if(logoMatcher.matches() && logoMatcher.groupCount() == 1){
                             //retrive logo for brand
-                            urlToLogo=logoMatcher.group(1);
+                            urlToLogo = logoMatcher.group(1);
+                            if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+                            	urlToLogo = urlToLogo.replace('/resource/', '/WinPOS/resource/');
+                            }
+                            
                         }
                 }
                 WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper caruselWrap=new WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper(brand.Name,urlToLogo,null,brand.id,isUserFollowBrand);
@@ -1515,4 +1578,5 @@ public without sharing class WINatPOSUtilRemoteActions {
     public static void getNumberOfContentDocument(){
         system.debug([SELECT Id FROM ContentVersion].size());
     }
+    
 }

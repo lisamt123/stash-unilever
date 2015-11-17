@@ -45,11 +45,18 @@
     
     <script src="{!$Resource.winatposapp}/scripts/vendor.a2a2d2cd.js"></script>
     <script type="text/javascript">
+    var winAtPOSUrlArray = {!winAtPOSUrlJson};
+    var winAtPOSUrlMap = {};
+    for (var i = 0; i < winAtPOSUrlArray.length; i++) {
+        winAtPOSUrlMap[winAtPOSUrlArray[i].Name] = winAtPOSUrlArray[i];
+    }
+
     //here are some variables for application init on  salsforce 
     var appConfig = angular.module('appConfig', []).constant('resourceBasePath', '{!URLFOR($Resource.winatposapp, '')}' + '/')    
                                                    .constant('environment', 'SF')
                                                    .constant('userGroupName', '{!winAtPosGroupName}')
-                                                   .constant('userGroupId', '{!winAtPosGroupId}');
+                                                   .constant('userGroupId', '{!winAtPosGroupId}')
+                                                   .constant('customUrls', winAtPOSUrlMap);
     //hide global search
     $(document).ready(function() { 
         $(".searchCell").hide(); 
