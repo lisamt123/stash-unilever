@@ -23,10 +23,12 @@ public with sharing class WINatPOSUtil {
     public static final String categorySearch='categorySearch';
     public static final String brandSearch='brandSearch';
     public static final String innovationSearch='innovationSearch';
-    public static final String instoreSearch='instoreSearch';
+    //public static final String instoreSearch='instoreSearch';
     public static final String repetableSearch='repetableSearch';
     public static final String keywordSearch='keywordSearch';
-    public static final String assetTypeForInstoreSearch='In Store Execution';
+    public static final String bestPracticesSearch = 'bestPracticesSearch';
+    //public static final String assetTypeForInstoreSearch='In Store Execution';
+    public static final String assetTypeForBestPractisesSearch = 'Best Practices';
     public static final String assetTypeForInnovationSearch='Innovation';
     public static final String assetTypeForRepetableSearch='Repeatable Model';
     
@@ -44,7 +46,8 @@ public with sharing class WINatPOSUtil {
         keywordSearch    => new List<String>{'Categories','Asset Types','Channels','Clusters','Placement'},
         categorySearch   => new List<String>{'Brands','Asset Types','Channels','Clusters','Placement'},
         brandSearch      => new List<String>{'Categories','Asset Types','Channels','Clusters','Placement'},
-        instoreSearch    => new List<String>{'Categories','Brands','Clusters','Countries'},
+        //instoreSearch    => new List<String>{'Categories','Brands','Clusters','Countries'},
+        bestPracticesSearch		=> new List<String>{'Categories','Brands','Clusters','Countries'},
         innovationSearch => new List<String>{'Categories','Brands'},
         repetableSearch  => new List<String>{}
     };
@@ -53,7 +56,8 @@ public with sharing class WINatPOSUtil {
     public static final Map<String,String> assetTypeTranslationFromDbToUI = new Map<String,String>{
 		'Masterbrand' => 'Brand Guideline',
         'Innovation'  => 'Innovation Guidelines',
-        'In Store Execution' => 'Instore Executions', 
+        //'In Store Execution' => 'Instore Executions', 
+        'Best Practices' => 'Best Practices',
         'Repeatable Model' =>'Repeatable Models'   
     };
         
@@ -61,7 +65,8 @@ public with sharing class WINatPOSUtil {
     public static final Map<String,String> assetTypeTranslationFromUIToDb = new Map<String,String>{
 		'Brand Guideline' => 'Masterbrand',
         'Innovation Guidelines' => 'Innovation',
-        'Instore Executions' => 'In Store Execution',
+        //'Instore Executions' => 'In Store Execution',
+        'Best Practices' => 'Best Practices',
         'Repeatable Models' => 'Repeatable Model'    
     };
     
@@ -76,7 +81,7 @@ public with sharing class WINatPOSUtil {
         
         List<WINatPOSRemoteActionWrapper.FilterLineItemWrapper> filterInfoList=new List<WINatPOSRemoteActionWrapper.FilterLineItemWrapper>();
         
-        if(WINatPOSUtil.keywordSearch == searchType || WINatPOSUtil.brandSearch == searchType || WINatPOSUtil.instoreSearch == searchType || WINatPOSUtil.innovationSearch == searchType){
+        if(WINatPOSUtil.keywordSearch == searchType || WINatPOSUtil.brandSearch == searchType || WINatPOSUtil.bestPracticesSearch == searchType || WINatPOSUtil.innovationSearch == searchType){
             List<WINatPOSRemoteActionWrapper.FilterOptions> categoryFilterOptions=new List<WINatPOSRemoteActionWrapper.FilterOptions>();
             categoryFilterOptions.add(new WINatPOSRemoteActionWrapper.FilterOptions('','All Categories',null));
             system.debug('*** WINatPOS getFiltersForAsset creating category filter');
@@ -100,13 +105,13 @@ public with sharing class WINatPOSUtil {
         }
         
         
-        if(WINatPOSUtil.categorySearch == searchType || WINatPOSUtil.instoreSearch == searchType || WINatPOSUtil.innovationSearch == searchType || WINatPOSUtil.keywordSearch == searchType){
+        if(WINatPOSUtil.categorySearch == searchType || WINatPOSUtil.bestPracticesSearch == searchType || WINatPOSUtil.innovationSearch == searchType || WINatPOSUtil.keywordSearch == searchType){
             List<WINatPOSRemoteActionWrapper.FilterOptions> brandFilterOptions=new List<WINatPOSRemoteActionWrapper.FilterOptions>();
-            Boolean instoreSearchWithCategory=false;
-            if(WINatPOSUtil.instoreSearch == searchType && categoryId != null){
-                instoreSearchWithCategory=true;
+            Boolean bestPractisesSearchWithCategory = false;
+            if(WINatPOSUtil.bestPracticesSearch == searchType && categoryId != null){
+                bestPractisesSearchWithCategory = true;
             }
-            if(instoreSearchWithCategory){
+            if(bestPractisesSearchWithCategory){
                 brandFilterOptions.add(new WINatPOSRemoteActionWrapper.FilterOptions('','All '+categoryName+' Brands',null));
             }else{
                 brandFilterOptions.add(new WINatPOSRemoteActionWrapper.FilterOptions('','All Brands',null));
@@ -158,7 +163,7 @@ public with sharing class WINatPOSUtil {
             filterInfoList.add(new WINatPOSRemoteActionWrapper.FilterLineItemWrapper('Channels', true,channelsFilterOptions,channelSelectedValue));
         }
 		
-		if(WINatPOSUtil.keywordSearch == searchType || WINatPOSUtil.categorySearch == searchType || WINatPOSUtil.brandSearch == searchType || WINatPOSUtil.instoreSearch == searchType){        
+		if(WINatPOSUtil.keywordSearch == searchType || WINatPOSUtil.categorySearch == searchType || WINatPOSUtil.brandSearch == searchType || WINatPOSUtil.bestPracticesSearch == searchType){        
             List<WINatPOSRemoteActionWrapper.FilterOptions> clustersFilterOptions=new List<WINatPOSRemoteActionWrapper.FilterOptions>();
             clustersFilterOptions.add(new WINatPOSRemoteActionWrapper.FilterOptions('','All Clusters',null));
             Schema.DescribeFieldResult fieldResultMarket = Asset__c.Market_Cluster__c.getDescribe();
@@ -180,7 +185,7 @@ public with sharing class WINatPOSUtil {
             filterInfoList.add(new WINatPOSRemoteActionWrapper.FilterLineItemWrapper('Placements', false,placementsFilterOptions,placmentsSelectedValue ));
         }
         
-        if(WINatPOSUtil.instoreSearch == searchType){
+        if(WINatPOSUtil.bestPracticesSearch == searchType){
             List<WINatPOSRemoteActionWrapper.FilterOptions> assetCountriesFilterOptions=new List<WINatPOSRemoteActionWrapper.FilterOptions>();
             assetCountriesFilterOptions.add(new WINatPOSRemoteActionWrapper.FilterOptions('','All Countries',null));
             Schema.DescribeFieldResult fieldResultCountry = Asset__c.Country__c.getDescribe();
@@ -323,7 +328,7 @@ public with sharing class WINatPOSUtil {
             return 3;
         }else if(type == 'Masterbrand'){
             return 2;
-        }else if(type == 'In Store Execution'){
+        }else if(type == 'Best Practices'){
             return 1;
         }
         return -2;//if value is not specified always will be displayed at the end of results
@@ -392,7 +397,7 @@ public with sharing class WINatPOSUtil {
 	Returns: [List<Asset__c>]
 	Throws [Exceptions]: [optional] 
 	********************************************************************/
-    public static List<Asset__c> retrieveAssetsForCommunityUsers(String query){
+    public static List<sObject> retrieveForCommunityUsers(String query){
     	return Database.query(query);
     }
     
@@ -420,6 +425,20 @@ public with sharing class WINatPOSUtil {
                                              from Brand_Master__c where id =: brandId];
 	}
     
+     /*******************************************************************
+	Purpose: Method is querying for Brands for Community user ( with sharing )
+	Parameters: [List<Brand_Master__c> brands]
+	Returns: [List<Brand_Master__c>]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
+    public static List<Brand_Master__c> getBrandForCaruselByList(List<Brand_Master__c> brands){
+    		
+		return [select name,Brand_Logo__c,id,
+                    (select ParentId, SubscriberId from FeedSubscriptionsForEntity where SubscriberId =: UserInfo.getUserId()),
+                    (Select Feed_URL__c, Name,Feed_ID__c,id From Files__r order by Name asc)
+                     from Brand_Master__c where id in : brands order by name];
+	}
+	
     /*******************************************************************
 	Purpose: Method is querying for Categories for Community user ( with sharing )
 	Parameters: [String categoryId]
@@ -432,6 +451,20 @@ public with sharing class WINatPOSUtil {
                                             (select ParentId, SubscriberId from FeedSubscriptionsForEntity where SubscriberId =: UserInfo.getUserId()),
                                             (select Feed_URL__c, Name,Feed_ID__c,id From CategoryUploads__r order by Name asc) 
                                              from Category__c where id =: categoryId];
+	}
+	
+	/*******************************************************************
+	Purpose: Method is querying for Categories for Community user ( with sharing )
+	Parameters: [List<Category__c> categories]
+	Returns: [List<Category__c>]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/	
+	public static List<Category__c> getCatForCaruselByList(List<Category__c> categories){
+		
+		return [SELECT name,Category_Logo__c,id,
+                    (SELECT ParentId, SubscriberId FROM FeedSubscriptionsForEntity WHERE SubscriberId =: UserInfo.getUserId()),
+                    (SELECT Feed_URL__c, Name,Feed_ID__c,id FROM CategoryUploads__r ORDER BY Name ASC)
+                     FROM Category__c WHERE Id IN : categories ORDER BY name];
 	}
 	
 	/*******************************************************************

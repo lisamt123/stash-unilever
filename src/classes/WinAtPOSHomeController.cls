@@ -68,10 +68,13 @@ public with sharing  class WinAtPOSHomeController {
         
     }
 
-    public String winAtPOSUrlJson {
-        get {
-            return JSON.serializePretty(WinAtPOS_URLS__c.getAll().values());
-        }
+    /*******************************************************************
+    Purpose: Method returns WinAtPOS_URLS__c custom setting list in JSON format
+    Parameters: [none]
+    Returns: String
+    ********************************************************************/
+    public String getWinAtPOSUrlJson(){
+        return JSON.serializePretty(WinAtPOS_URLS__c.getAll().values());
     }
     
     /*******************************************************************
