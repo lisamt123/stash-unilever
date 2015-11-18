@@ -1,0 +1,380 @@
+<!--  
+*******************************************************************************************
+*@Description:Used in landing page of core parameter to update additional details.
+*@Author: Cognizant
+*@Created Date: 19/02/2015 
+*@Copyright © 2015  Unilever  
+*******************************************************************************************
+-->
+<apex:component controller="IPM_CoreParameterRevamp" allowDML="true" id="IPM_AdditionalParameter">
+<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_DropDown.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_DropDown.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/bootstrap-datepicker.css')}"/> 
+<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Filter.css')}"/>            
+<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_AllProjects.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Table.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_RadioButton.css')}"/>
+<style>
+.wid100P
+{ 
+   width:100%;
+}
+.additionalParam table
+{
+   width:50%;
+}
+.padR0
+{
+   padding-right:0px;
+}
+.padL0
+{
+   padding-left:0px;
+}
+.padT15
+{
+  padding-top:15px;
+}
+.padTB10
+{
+   padding:10px 0px;
+}
+.questName span.coreTitle
+{
+   color:#007DBD;
+   font-weight:bold;
+}
+.toolkitContainer span div
+{
+   display: inline-block;
+}
+.marginR10
+{
+   margin-right:10px;
+}
+#projectSpan select
+{
+    padding:0px;
+}
+.borderBstyle
+{
+    border-bottom:1px solid #eeeeee;
+    padding:0px 0px 15px 0px; 
+    font-style: italic;
+}
+.borderBstrong
+{
+    border-bottom:1px solid #cccccc;
+    padding:5px 0px 5px 0px; 
+}
+.min-width25P
+{
+    min-width:25%;
+}
+.fontB
+{ 
+   font-weight:bold !important;
+}
+.fontN
+{
+   font-weight:normal !important;
+}
+.borderLite
+{
+       border: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+.srchImage
+{
+   right:4px;
+}
+.toolkitContainer span div
+{
+   display:block
+}
+.tdHeight tbody tr td
+{
+   height:40px !important
+}
+.active {
+    background-color: #cdcdcd;
+}
+</style>
+<apex:form id="theform">
+    <div class="item">
+        <div>
+            <div class="panel-body">
+                <div class="container-fluid">
+                    <div class="row"> 
+                        <div class="col-sm-12 noPadleft borderBstyle">
+                            <span class="coreParam">{!$Label.IPM_Almost_Done}</span><br/>
+                        </div>
+                        <div class="col-sm-12 noPadleft borderBstrong">
+                            <div class="questionNavigation">                                
+                                <div class="col-sm-11 noPadleft questName padTB10">
+                                    <span class="coreTitle">{!$Label.IPM_ProjectSpan}</span>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>  
+                </div> 
+                <div class="col-xs-12" id="projectSpan">                   
+                    <apex:outputPanel id="marketmain">
+                        <div class="row">
+                            <div class="col-sm-5 additionalParamTop noPadleft noBoxshadow wid100P padR0">
+                                <div class="basic">
+                                    <div>                                      
+                                         <apex:outputPanel rendered="{! if(OR(IPM_Coreparameter.IPM_Category_Text__c=='Laundry',IPM_Coreparameter.IPM_Category_Text__c=='LAUNDRY'),TRUE,FALSE)}">
+                                                        <div class="inputField">
+                                                            <div class="panel-label bsFieldLabel padT15"><apex:outputlabel styleClass="fontB" value="{!$Label.IPM_Market}"/> </div>                                                           
+                                                            <label class="ipmSelect min-width25P fontN">
+                                                                <apex:selectList size="1" styleClass="min-width" multiselect="false" disabled="{!!isEditable}" value="{!IPM_Coreparameter.IPM_Market__c}"> 
+                                                                    <apex:selectOptions value="{!lstsubsector}"/>
+                                                                </apex:selectList>                                                               
+                                                            </label>
+                                                             <apex:outputPanel id="marketMsg1">
+                                                                
+                                                             </apex:outputPanel>
+                                                        </div>
+                                                        </apex:outputPanel>                                                       
+                                                        <apex:outputPanel rendered="{!if( OR(IPM_Coreparameter.IPM_Category_Text__c=='HHC',IPM_Coreparameter.IPM_Category_Text__c=='Household Care',IPM_Coreparameter.IPM_Category_Text__c=='HOUSEHOLD CARE'),TRUE,FALSE)}">
+                                                        <div class="inputField">
+                                                            <div class="panel-label bsFieldLabel"><apex:outputlabel value="{!$Label.IPM_Sub_Sector}" /></div>
+                                                            <label class="ipmSelect">
+                                                                 <apex:selectList size="1" multiselect="false" disabled="{!!isEditable}" value="{!IPM_Coreparameter.IPM_Sub_sector__c}"> 
+                                                                    <apex:selectOptions value="{!lstsubsector}"/>
+                                                                </apex:selectList>
+                                                                
+                                                            </label>
+                                                        
+                                                        </div>
+                                                        </apex:outputPanel>  
+                                                                                             
+                                         <div class="col-sm-12 noPadleft radioButton padT15">
+                                            <apex:outputLabel value="{!$Label.IPM_BET_Message}" styleClass="bsFieldLabel" /><br/>
+                                            <apex:outputPanel id="renderme">
+                                                <div class="ipmRadioButton additionalParam wid100P"> 
+                                                    <apex:selectRadio value="{!IPM_Coreparameter.IPM_BET_Toolkit__c}" disabled="{!AND(projbetlink!=null,projbetlink!='')}" onchange="CallBET()" >
+                                                        <apex:selectOptions value="{!BETToolkit}">  
+                                                            <apex:actionFunction name="renderSelectRadio" reRender="BET"/>
+                                                        </apex:selectOptions>
+                                                    </apex:selectRadio>
+                                                </div>
+                                            </apex:outputPanel>
+                                        </div>         
+                                    </div>
+                                </div>
+                            </div>
+                            <apex:actionFunction name="searchBET" action="{!searchBET}" reRender="idToRerender">
+                                <apex:param name="searchTxt" assignTo="{!searchstring}" value="" />
+                            </apex:actionFunction>
+                            <apex:outputPanel id="abc">         
+                                <apex:outputPanel id="BET">    
+                                <apex:outputPanel rendered="{! if(or(IPM_Coreparameter.IPM_BET_Toolkit__c=='No BET'),true,false)}"  > 
+                                    <br></br><br></br> <br></br> <br></br>  <br></br> <br></br>    <br></br> <br></br>  <br></br> <br></br> <br></br> 
+                                    <span class="coreParam">  All projects require a Brand Experience Toolkit (BET) unless agreed otherwise with the Leadership Team. 
+                                    </span>
+                                </apex:outputPanel>
+                                    <apex:outputPanel rendered="{! if(or(IPM_Coreparameter.IPM_BET_Toolkit__c!='No BET'),true,false)}"  >
+                                    <div class="col-sm-12 toolkitContainer noPadleft">
+                                        <apex:outputPanel id="xyz"> 
+                                     <apex:outputPanel rendered="{!bLinkBET}">  
+                                       
+                                           
+                            <div class="col-sm-2 searchBox allProj-leftSide padL0" >
+                            <apex:inputText value="{!searchstring}"   html-placeholder="Search byBET name/owner" styleclass="inputsearch borderLite" onkeypress="noenter();"/> 
+                               <apex:image styleClass="srchImage" value="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}"   onclick="renderBetTable();"  />
+                                
+                               <apex:actionFunction name="renderBets" action="{!searchBET}" rerender="idToRerender" />
+                              </div>
+                           
+                           
+                                
+                                        <apex:outputPanel layout="block" id="idToRerender"  >
+                                        <apex:outputPanel layout="block"  rendered="{!searchresultBet.size>0}">
+                                   <br></br><br>   </br>  <apex:outputText rendered="{!searchresultBet.size>0}">{!$Label.IPM_BET_SEARCH_RESULT}</apex:outputText> <br></br>
+                                        <div >
+                     
+                                </div>   
+                                <apex:inputHidden value="{!betId}" id="RadioButtonValue" />
+                                <div class="ipmTaskRow">
+                                    <div class="ipmRadioButton" style="margin: 0; padding: 0; border-collapse: collapse; width: 101%; max-height: 200px; overflow: auto; margin-bottom:20px;">
+                                    <table class="ipmTable ipmMilestoneTable table table-bordered tdHeight" style="width: 100%;" >
+                                    <thead>
+                                    <tr>
+                                    <th>
+                                    <div>
+                                    <div>Select</div>
+                                    </div>
+                                    </th>
+
+                                    <apex:repeat value="{!columnLabels }"  var="be">
+                                    <th style="">
+                                    <div>
+                                    <div>{!be}</div>
+                                    </div>
+                                    </th>
+                                    </apex:repeat>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <apex:repeat value="{!searchresultBet}" var="bet">
+                                    <tr>
+                                    <td>
+                                    <input type="radio" name="chosen" id="{!bet.betId}" VALUE="{!bet.betId}" onclick="changeValue(this,'{!$Component.RadioButtonValue}');"/>
+                                    
+                                    <label for="{!bet.betId}" class="labelstyle">
+                                    </label>
+                                    </td>
+
+                                    <apex:repeat value="{!classProperties}"  var="be" >
+
+                                    <td>
+                                    <span>
+
+                                    {!if(classPropertiesMap[be]==FALSE,bet[be],'')}
+                                    <apex:outputText value="{0,date,dd/MM/yyyy }" rendered="{!classPropertiesMap[be]==TRUE}">
+                                                                        <apex:param value="{!bet[be]}"/>
+                                                                         </apex:outputText></span>
+
+                                    </td>
+
+                                    </apex:repeat> 
+                                    </tr>
+                                    </apex:repeat>
+                                    </tbody>
+                                    </table>
+                                    </div>
+                                    </div>
+                                   
+                             
+                                   </apex:outputPanel>
+                                   </apex:outputPanel> 
+                                   </apex:outputPanel>
+                                   </apex:outputPanel>
+                                   <apex:outputPanel rendered="{!!bLinkBET }"> 
+                                <apex:outputText value="{!PreSelectedBet.betName}" / >
+                                
+                     <!--this is trigger point of pop up --->
+                        <div    data-toggle="modal"    data-target="#basicModal">   <apex:commandLink value="Replace"  rerender="abc" onclick="document.getElementById('betname').innerHTML = '{!PreSelectedBet.betName}';" /> <!--to show betname from parent page-->  </div> 
+                            <apex:actionFunction action="{!Replace}" name="removeAll" rerender="abc,renderme" />
+                                </apex:outputPanel> 
+                                    </div>
+                                
+                               </apex:outputPanel>
+                            </apex:outputPanel>    
+                        </apex:outputPanel>
+                                    
+                        </div>
+                        <div class="row">
+                            <div class="skipButtoncontainer txtAlignright pull-right">
+                                <div class="successMsgDiv1">
+                                    <apex:outputPanel id="MarketMsg">
+                                        <apex:outputText value="{!$Label.IPM_Record_successfully_saved}" rendered="{!saveMarket}" styleClass="successMsg"/>
+                                    </apex:outputPanel> 
+                                </div>
+                                <div class="buttonmarRight ipmFromAction noPadleft pull-right noPadright">
+                                    <apex:outputPanel rendered="{!isEditable}">
+                                       <apex:commandLink action="{!ProjectSpan}" value="{!$Label.IPM_Update}" styleClass="teammembers ipmButton primary" oncomplete="closestepfour()" />
+                                        
+                                    </apex:outputPanel>
+                                </div>
+                                <div class="buttonmarRight pull-right marginR10">
+                                    <a href="#myCarousel" onClick="pagerefresh()" title="Previous" id="prevControl" class="ipmButton">{!$Label.IPM_Reset}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                </div> 
+                 
+            </div>
+        </div>
+    </div>
+</apex:form>
+<script>
+        function pagerefresh()
+            {
+                window.location.reload(true);    
+            }
+            function closestepfour(){
+                  window.location.reload(true);  
+            }
+        </script>
+        <!---***** LAKHAN'S ADDED SCRIPT BELOW ,THIS HELPS  TO  LINK BET ---->
+       
+         <script>
+        function changeValue(input, textid) {
+        document.getElementById(textid).value = input.value;
+         }   
+       </script>
+        
+        <!---*****  LAKHAN's comment:ALREADY PRESENT ,WHAT'S  THE USE ?LATEST ORGINAL VERSION OF THIS COMPONENT IN COGDEV HAS AN ACTION FUNCTION WITH NAME  CallBET. In Line# 289 I have  defined  callbet .Please see if no conflict will arise on merger , rerference lines here 289 , 250,73 ---->
+        <script>
+        function searchBET() {
+           CallBET(jq('#searchstring').val());
+          }
+         </script>
+       
+     <!---***** LAKHAN'S ADDED SCRIPT BELOW ,THIS WAS COPIED FROM THE ANOTHER PAGE HAVING SEARCH FUNCTIONALITY,NOW THIS SEARCH IS NO LONGER WORKING IN COG DEV,BUT WORKING IN IPM TRAIN,SO PLEASE SEE WHAT NOT TO TO TAKE FROM HERE TO AVOID REMOVAL OF ENTER+CROSS FUNCTIONALITY ---->
+   
+         <script>
+          jq(document).ready(function () {  
+             ipmModal('#createProject','Create Project','70%','62%', '10%');
+             jq('#srchTxt').clearSearch();
+             jq('.filterBrand').clearSearch();
+             jq('.inputsearch').clearSearch();
+                  
+          function searchProjects() {
+           loadProjects(jq('#srchTxt').val());
+          }
+          
+          //LAKHAN ADDED BELOW  LINES ONLY
+          function renderBetTable(){
+          renderBets();
+          
+          }
+          
+          jq( ".inputsearch" ).on( "keypress", function(event) {
+        if(event.which == 13) { 
+        renderBets();
+        return false; 
+        }
+     });   
+        </script>
+<!---***** LAKHAN'S ADDED SCRIPT BELOW ,ENTER KEY DETECTION,NOT WORKING IN COG DEV ,BUT IN TRAIN - -->
+      <script>
+  
+       <!--lakhan rerender script -->
+       function CallBET(){
+       renderSelectRadio();
+       }
+      </script>
+
+    <!---***** LAKHAN'S ADDED STYLE BELOW ---->
+     <style type="text/css">
+     body {background:#cfa;}
+     <!--table#header th {border-right:solid 1px #000}-->
+     table#header th#right-border {padding:0 4px 0 3px;border-right:none;}
+     table#tbl-content td {border-bottom:solid 1px #bbb;border-right:solid 1px #bbb;}
+     table#tbl-content tr#bottom td {border-bottom:none;}
+
+     </style>
+     
+     <!---***** LAKHAN MANY OF THESE RESOURCES ARE NOT INTEDED FOR OUR PAGE---->    
+     <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery-ui.min.js')}" type="text/javascript"></script>
+     <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.clearsearch.js')}" type="text/javascript"></script>
+     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ProjectOverview.js')}" type="text/javascript"></script>
+     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_CoreParameter.js')}" type="text/javascript"></script>
+     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_functions.js')}" type="text/javascript"></script>
+     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript"></script>
+     <script src="{!URLFOR($Resource.IPM_Resource, 'js/moment.js')}" type="text/javascript"></script>
+     <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap-datepicker1.js')}" type="text/javascript"></script>
+     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_initAllProjects.js')}" type="text/javascript"></script>
+     <!--<script>
+       jq(document).on('click', '.popupsmall', function(e) { 
+                    e.preventDefault ? e.preventDefault() : e.returnValue = false;  
+                    jq('#basicModal .modal-dialog').width('550px');
+                    jq('#basicModal .modal-dialog').height('200px');                        
+                    jq('#basicModal .modal-dialog').css({'margin-top':'2%','z-index':'999'});     
+            });
+    </script>-->
+</apex:component>

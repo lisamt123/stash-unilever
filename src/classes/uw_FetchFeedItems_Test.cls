@@ -13,11 +13,10 @@ public class uw_FetchFeedItems_Test{
 
     private static testmethod void testfetchBetFeeds() {
         Test.startTest();
-        uw_Brand__c brand = uw_UnitTestDataFactory.initBrand('brandName', true);
         uw_Inoplan_Project__c projectName = new uw_Inoplan_Project__c();
         projectName.Name = 'No Inoplan Project';
         insert projectName;
-        uw_BET__c bet = uw_UnitTestDataFactory.initBET('betName',brand,true,projectName);
+        uw_BET__c bet = uw_UnitTestDataFactory.initBET('betName',true,projectName);
         ContentVersion cv = uw_UnitTestDataFactory.initContentVersion();
         uw_Asset__c asset = uw_UnitTestDataFactory.initAsset('n', cv, bet);
         uw_TriggerHandler th = new uw_TriggerHandler();
@@ -34,12 +33,11 @@ public class uw_FetchFeedItems_Test{
     
     private static testmethod void testfetchChatterGroupFeeds() {
         Test.startTest();
-        uw_Brand__c brand = uw_UnitTestDataFactory.initBrand('brandName', true);
         uw_Inoplan_Project__c projectName = new uw_Inoplan_Project__c();
         projectName.Name = 'No Inoplan Project';
         insert projectName;
         Id cGroupId = uw_UnitTestDataFactory.getTestChatterGroupId();
-        uw_BET__c bet = uw_UnitTestDataFactory.initBET('betName',brand,true,projectName);
+        uw_BET__c bet = uw_UnitTestDataFactory.initBET('betName',true,projectName);
         ContentVersion cv = uw_UnitTestDataFactory.initContentVersion();
         FeedItem fi = new FeedItem(Type='LinkType',RelatedRecordId=cGroupId,ParentId=bet.Id);
         uw_FetchFeedItems.getFeedItemsOfChatterGroup(cGroupId);

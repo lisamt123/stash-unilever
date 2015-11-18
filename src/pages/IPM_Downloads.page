@@ -1,0 +1,73 @@
+<!--  
+*************************************************************************
+*@Description:This page is used to provide an option to download the IPM reports for the user
+*@Author: Cognizant
+*@Created Date: 27/03/2015
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
+<apex:page controller="IPM_ProjectsDownloadController">
+    <apex:form >
+    <apex:composition template="IPM_TemplateRevamp">
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_ObjectHistory.css')}" />
+        <apex:define name="body"> 
+                       <div class="ipmContent">
+                            <div class="ipmPageHeaderDiv"> 
+                              <div class="heading2 ipmHeading blue">
+                                 <div class="row ipmPageHeader">                                    
+                                    <div class="col-sm-3 noPadright width4">
+                                      <span class="pageTitle">IPM Downloads</span>
+                                    </div>
+                                    
+                                 </div>
+                              </div> 
+                              <div class="headerpbl"></div>  
+                            </div>
+                            <div class="row">
+                          
+                            <div class="col-sm-12 mb20">
+                            <div class="col-sm-4 clusterbg">
+                            <div class="text-center mb15">
+                            <img src="{!URLFOR($Resource.IPM_Resource, 'images/BBBDalignreport_nonretina.png')}" alt="BB Alignment Report" />                            
+                            </div>
+                            <div class="subheader text-center">BD BB Alignment Report</div>
+                            <hr></hr>
+                            <div class="context">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam. </div>
+                            <div class="text-center mt20">                                
+                                <apex:commandButton value="Download" styleClass="ipmButton mr10" action="{!downloadExcel}"/>
+                            </div>
+                            </div>
+                            <div class="col-sm-4 mcobg">
+                            <div class="text-center mb15">
+                            <img src="{!URLFOR($Resource.IPM_Resource, 'images/OTIFstatusncomments_nonretina.png')}" alt="OTIF Comments" />                            
+                            </div>
+                            <div class="subheader text-center">OTIF Status and comments</div>
+                            <hr></hr>
+                            <div class="context">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam. </div>
+                            <div class="text-center mt20">
+                                <a href="/apex/IPM_ProjectsOverview_XL" onclick="" class="ipmButton mr10" target="_top">Download</a>
+                            </div>
+                            </div>
+                            <div class="col-sm-4 clusterbg">
+                            <div class="text-center mb15">
+                            <img src="{!URLFOR($Resource.IPM_Resource, 'images/Envimpactreport_nonretina.png')}" alt="Impact Report" />                            
+                            </div>
+                            <div class="subheader text-center">
+                                Environmental Impact report    
+                            </div>
+                            <hr></hr>
+                            <div class="context">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam. </div>
+                            <div class="text-center mt20">
+                                <a href="#" onclick="" class="ipmButton mr10" target="_top">Download</a>
+                            </div>
+                            </div>                        
+                           
+                            </div>
+                </div>
+                </div>
+         
+           
+        </apex:define>
+    </apex:composition>
+    </apex:form>
+</apex:page>

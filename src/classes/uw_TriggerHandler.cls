@@ -1395,214 +1395,78 @@ private Boolean canDemoteAsset(String objId, uw_Asset__c asset, SObject so) {
     Returns:       Void
     History
     <Date>      <Authors Name>     <Brief Description of Change>           
-      -            -                Initial version of the code          
+      -            -                Initial version of the code     
+
     14-Jan-2014   Accenture      Added logic to check whether exception ie being thrown when a chatter
                     group is created is because of hitting chatterlimit,100,if so display the 
                     appropriate error message which is in customlabel
+
+    21-July-2015  m.bluj@polsource.com Modification related to BET object model changes (MDO tables) and refactoring
     --------------------------------------------------------------------------------------</T01>----------*/     
     
-    public void handleBetBeforeInserts(List<uw_BET__c> newBets)
-    {
-        // Need to create a collaboration group for each new BET and update the bet with the linked 
-        // Group Id - Studio -
-    
-        // uw_BET__c acc = new uw_BET__c( id = a.id, StylePalette__c = a.uw_Brand__r.Styleoutput__c ,Border_Colour__c = a.uw_Brand__r.Border_Colour__c, Banner_Colour__c = a.uw_Brand__r.Banner_Colour__c, Font_Colour__c = a.uw_Brand__r.Font_Colour__c, Banner_1_Location__c = a.uw_Brand__r.Banner_Location__c, Banner_2_Location__c = a.uw_Brand__r.Logo_Location__c, Background_Colour__c  =a.uw_Brand__r.Background_Colour__c);
-        
+    public void handleBetBeforeInserts(List<uw_BET__c> newBets){
         system.debug('handleBetBeforeInserts: '+newBets);
 
-        /* start new code (Wojtek 2014.12.10) */
-        //Set<Id> setOfParentBrandsIds = new Set<Id>();
-        Set<Id> setOfBrandsIds = new Set<Id>();
-        Set<Id> setOfCategoriesIds = new Set<Id>();
-        Map<Id, Set<Id>> categoryToBrandMap = new Map<Id, Set<Id>>();
-        Boolean checkBrandCategoryRelation = CHECK_BRAND_CATEGORY_RELATION && !uw_CustomSettingsManager.getCustomSettingBooleanVal(uw_CustomSettingsManager.BET_DISABLE_BRAND_CATEGORY_CHECK, false);
-        /* end new code (Wojtek 2014.12.10) */
-
         List<CollaborationGroup> collabGroups2Create = new List<CollaborationGroup>();  
-        
-        for (uw_BET__c bet: newBets)
-        { 
-             //T03 - Bug fix
-            if(bet.Inoplan_Project__c==NULL)
-            {
-                 bet.addError(System.label.uw_Inoplan_error_nullvalue);
-            }
-          //T02 -Bhavneesh :Removal of duplicate Inoplan Project logic :Start 
-          /*else
-           { 
-             List<uw_BET__c> existingRecords =new List<uw_BET__c>();
-             existingRecords = [Select id ,Name,Ownerid, owner.name, Sharing__c,Inoplan_Project__c , Inoplan_Project__r.name from uw_BET__c where Inoplan_Project__c =:bet.Inoplan_Project__c and Inoplan_Project__c!=:defaultValue and id!=:bet.id];
-             
-             if(existingRecords.size()!=0)
-             { 
-               String s = System.label.uw_Inoplan_error_duplicateValue;
-               String s1= s.replace('projectName' , existingRecords[0].Inoplan_Project__r.name).replace('BetName' , existingRecords[0].Name); 
-               bet.addError(s1);
-                  
-                } 
-             }*/     
-            //Bhavneesh :Removal of duplicate Inoplan Project logic:End
-                    
-            CollaborationGroup newGroup = new CollaborationGroup ();                                   
-            String sName = String.valueOf(bet.Name);
-             String GroupName;
-            if (sName.length() > 25 ) {
-                 GroupName= sName.substring(0, 26);
-            }
-            else {
-                GroupName=sName;
-            }
-           
-        
-            newGroup.Name = GroupName + GROUP_NAME_POSTFIX;
-            
-            //newGroup.Name = bet.Name + GROUP_NAME_POSTFIX;
-            newGroup.InformationTitle = 'Unilever Collaboration Studio';
-            newGroup.Description = bet.Description__c; 
-            newGroup.CollaborationType = 'Private';
-            newGroup.CanHaveGuests = true;
-            // START NEW CODE ADDED BY Istvan Szegedi January 6th, 2015
-            // This is to ensure that the BET Owner is the same as the Collaboration Group Owner.
-            newGroup.OwnerId = bet.OwnerId;
-            // END NEW CODE ADDED BY Istvan Szegedi January 6th, 2015
-            
-            // Photo Url Is Not Writeable - 
-            // newGroup.FullPhotoUrl = '/servlet/servlet.ImageServer?id=015c00000008yyO&oid=00Dc0000000DFvy';
-            collabGroups2Create.add(newGroup);
-            system.debug('handleBetBeforeInserts: add: '+bet.uw_Brand__c);
-            /* start new code (Wojtek 2014.12.10) */
-            //setOfParentBrandsIds.add(bet.uw_Brand__c);
-            setOfBrandsIds.add(bet.uw_Brand__c);
-            if (checkBrandCategoryRelation && bet.Sub_Category__c != null) {
-                setOfCategoriesIds.add(bet.Sub_Category__c);
-            }
-            /* end new code (Wojtek 2014.12.10) */
-        }
-        /* start new code (Wojtek 2014.12.10) */
-        //system.debug('setOfParentBrandsIds: '+setOfParentBrandsIds);
-        Map<Id,uw_Brand__c> mapOfBrands = new Map<Id,uw_Brand__c>([Select Id, Name, Stylepalette__c , Border_Colour__c, Banner_Colour__c, Font_Colour__c, Banner_Location__c, Logo_Location__c, Background_Colour__c from uw_Brand__c where Id in :setOfBrandsIds]);
-        if (checkBrandCategoryRelation && setOfCategoriesIds.size() > 0) {
-            List<BET_Category_Brands__c> listOfCategoryBrands = [
-                Select BET_Brand__c , BET_Category__c 
-                FROM BET_Category_Brands__c 
-                WHERE BET_Brand__c in :setOfBrandsIds AND BET_Category__c in :setOfCategoriesIds];
-            for (BET_Category_Brands__c categoryBrand : listOfCategoryBrands) {
-                if (categoryToBrandMap.containsKey(categoryBrand.BET_Category__c)) {
-                    categoryToBrandMap.get(categoryBrand.BET_Category__c).add(categoryBrand.BET_Brand__c);
-                } else {
-                    categoryToBrandMap.put(
-                        categoryBrand.BET_Category__c,
-                        new Set<Id>{categoryBrand.BET_Brand__c}
-                    );
-                }
-            }
-        }
-        /* end new code (Wojtek 2014.12.10) */
-        
+
         String DEFAULT_BANNER_LOCATION = '';
-        if (!Test.isRunningTest())
-        {
+        if (!Test.isRunningTest()){
             DEFAULT_BANNER_LOCATION = uw_CustomSettingsManager.getCustomSettingStringVal(uw_CustomSettingsManager.DEFAULT_BANNER_LOCATION); 
         }
-        
-        for (uw_BET__c bet: newBets)
-        {
-            /* start new code (Wojtek 2014.12.10) */
-            uw_Brand__c betBrand = mapOfBrands.get(bet.uw_Brand__c);
-            if (checkBrandCategoryRelation) {
-                if (bet.Sub_Category__c == null || bet.uw_Brand__c == null) {
-                    continue;
-                }
-                if (!categoryToBrandMap.containsKey(bet.Sub_Category__c)) {
-                    bet.uw_Brand__c.addError(System.label.BET_BrandCategoryNotRelated);
-                } else if (!categoryToBrandMap.get(bet.Sub_Category__c).contains(bet.uw_Brand__c)) {
-                    bet.uw_Brand__c.addError(System.label.BET_BrandCategoryNotRelated);
-                }
+
+        for (uw_BET__c bet: newBets){              
+            if(bet.Inherit_Branding__c == false){
+                bet.Banner_1_Location__c = DEFAULT_BANNER_LOCATION;
             }
-            /* end new code (Wojtek 2014.12.10) */
-            
-            if(bet.Inherit_Branding__c == true)
-            {
-               
-               // system.debug('MFBRAND' + bet.Inherit_Branding__c);
-                //if (uw_HelperMethods.valueIsNull(bet.StylePalette__c))
-                //{
-                //    bet.StylePalette__c = betBrand.Stylepalette__c;
-                //}
-                
-                //if (uw_HelperMethods.valueIsNull(bet.Border_Colour__c))
-                //{
-                //    bet.Border_Colour__c = betBrand.Border_Colour__c;
-                //}
-                
-                //if (uw_HelperMethods.valueIsNull(bet.Banner_Colour__c))
-                //{
-                //    bet.Banner_Colour__c = betBrand.Banner_Colour__c;
-                //}
-                
-                //if (uw_HelperMethods.valueIsNull(bet.Font_Colour__c))
-                //{ 
-                //    bet.Font_Colour__c = betBrand.Font_Colour__c;
-                //}
-                
-                //if (uw_HelperMethods.valueIsNull(bet.Banner_1_Location__c))
-                //{
-                //    bet.Banner_1_Location__c = betBrand.Banner_Location__c;
-                
-                //    if(uw_HelperMethods.valueIsNull(betBrand.Banner_Location__c))
-                //    {
-                //        bet.Banner_1_Location__c = DEFAULT_BANNER_LOCATION;
-                //    }
-                
-                //}
-            
-                //if (uw_HelperMethods.valueIsNull(bet.Banner_2_Location__c))
-                //{ 
-                //    bet.Banner_2_Location__c = betBrand.Logo_Location__c;
-                //}
-                
-                //if (uw_HelperMethods.valueIsNull(bet.Background_Colour__c))
-                //{
-                //    bet.Background_Colour__c  = betBrand.Background_Colour__c;
-                //}
-            } 
-            
-            else
-            {
-                    bet.Banner_1_Location__c = DEFAULT_BANNER_LOCATION;
-            }
-            }
+            CollaborationGroup newGroup = createBetRelatedCollaborationGroup(bet);
+            collabGroups2Create.add(newGroup);
+        }
         
         try{
-            
             Database.Saveresult[] results = Database.insert(collabGroups2Create, false);
-            
-            for (Integer i = 0; i < results.size(); i++)
-            {
-                if (!results[i].isSuccess())
-                {
+            for (Integer i = 0; i < results.size(); i++){
+                if (!results[i].isSuccess()){
                     System.Debug('ISTVAN. CHATTER INSERT: ' + results[i].getErrors()[0].getMessage());
                     //Check whether exception thrown is because of chatterlimit hitting 100 <T01>
                     //newBets[i].addError(System.Label.UW_ERR_DUPE_BET_NAME+' : '+results[i].getErrors()[0].getMessage());
-                    if ( results[i].getErrors()[0].getMessage().contains(System.label.uw_BET_standardchatterlimitmessage))
-                    {  //if so display the specific error message
+                    if ( results[i].getErrors()[0].getMessage().contains(System.label.uw_BET_standardchatterlimitmessage)){  //if so display the specific error message
                       newBets[i].addError(System.label.uw_BET_Chattergrouplimit);
-                    }
-                    else
-                    {   //else display the existing logic
+                    } else {   //else display the existing logic
                       newBets[i].addError(System.Label.UW_ERR_DUPE_BET_NAME+' : '+results[i].getErrors()[0].getMessage());
                     }//End of changes </T01>
                 }
-                else
-                {
+                else {
                     newBets[i].Studio_Chatter_Group__c = results[i].getId();
                 }
             }
 
-        } catch (Exception e)
-        {
+        } catch (Exception e){
             throw e;
         }
+    }
+
+    private CollaborationGroup createBetRelatedCollaborationGroup(uw_BET__c bet){
+        CollaborationGroup newGroup = new CollaborationGroup ();                                   
+        String sName = String.valueOf(bet.Name);
+        String GroupName;
+        if (sName.length() > 25 ) {
+             GroupName= sName.substring(0, 26);
+        } else {
+            GroupName=sName;
+        }
+        newGroup.Name = GroupName + GROUP_NAME_POSTFIX;
+        newGroup.InformationTitle = 'Unilever Collaboration Studio';
+        newGroup.Description = bet.Description__c; 
+        newGroup.CollaborationType = 'Private';
+        newGroup.CanHaveGuests = true;
+        newGroup.IsAutoArchiveDisabled = true;
+        // START NEW CODE ADDED BY Istvan Szegedi January 6th, 2015
+        // This is to ensure that the BET Owner is the same as the Collaboration Group Owner.
+        newGroup.OwnerId = bet.OwnerId;
+        // END NEW CODE ADDED BY Istvan Szegedi January 6th, 2015
+        // Photo Url Is Not Writeable - 
+        // newGroup.FullPhotoUrl = '/servlet/servlet.ImageServer?id=015c00000008yyO&oid=00Dc0000000DFvy';
+        return newGroup;
     }
     
     public void handleBetAfterInserts(List<uw_BET__c> newBets)
@@ -1671,7 +1535,7 @@ private Boolean canDemoteAsset(String objId, uw_Asset__c asset, SObject so) {
         insert newManagers;
         system.debug('addOwnerToBetTeamAsManager: exit');
     }
-     @TestVisible
+    @TestVisible
     private void handleAssetOpenUp(String query) {
         system.debug('handleAssetOpenUp: query: '+query);
         List<uw_Asset__c> assetListToOpenUp = Database.query(query);

@@ -1,0 +1,5 @@
+Dear {!BET_Member_Request__c.UserId__c},
+<br><br>
+Your request to join {!BET_Member_Request__c.Brand_Experience_Toolkit__c} has been denied.<br><br>
+Thanks<br>
+BET Team

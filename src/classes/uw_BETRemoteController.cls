@@ -40,6 +40,21 @@ public with sharing class uw_BETRemoteController {
      */
     public String BETTemplateLink {get; protected set;}
 
+    /**
+    *Boolean flag indicates if user is bet operation admin
+    */
+    public String betOperationAdmin {get; protected set;}
+
+    /**
+    * Home page ipm integration information
+    */
+    public String homeInfoText {get; protected set;}
+
+    /**
+    *Boolean flag indicates if expected assets are provided
+    */
+    public String expectedAssetsProvided {get; protected set;} 
+
     /*******************************************************************
     Purpose: class constructor
     ********************************************************************/
@@ -51,8 +66,8 @@ public with sharing class uw_BETRemoteController {
     Purpose: class constructor
     ********************************************************************/
     public uw_BETRemoteController(ApexPages.StandardController sc) {
-        init();
         newBetId = sc.getId();
+        init();
     }
     /*******************************************************************
     Purpose: initialize application variables
@@ -61,11 +76,19 @@ public with sharing class uw_BETRemoteController {
         betPrefix = uw_BET__c.SObjectType.getDescribe().getKeyPrefix();
         hasReadAll = BET_CommonService.hasAccess(true) ? 'true' : 'false';
         hasModifyAll = BET_CommonService.hasAccess(false) ? 'true' : 'false';
+
+        Boolean isHubAdmin = BET_CommonService.isHubAdmin();
+        Boolean isBetOwnerOrManager = BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(newBetId, UserInfo.getUserId());
+
+        betOperationAdmin = BET_CommonService.isBETOperationAdmin() && !isHubAdmin && !isBetOwnerOrManager ? 'true' : 'false';
+        expectedAssetsProvided = BET_AssetService.expectedAssetsSetForBet(newBetId) ? 'true' : 'false';
         if (newBetId == null) {
             newBetId = '';
         }
         BETTemplateLink = uw_CustomSettingsManager.getCustomSettingStringVal(uw_CustomSettingsManager.BET_TEMPALTE_DOWNLOAD_URL, '');
         helpLink = uw_CustomSettingsManager.getCustomSettingStringVal(uw_CustomSettingsManager.BET_HELP_URL, '');
+        String groupId = BET_Settings__c.getOrgDefaults().HelpChatterGroupId__c == null ? '' : (String)BET_Settings__c.getOrgDefaults().HelpChatterGroupId__c;
+        homeInfoText = String.format(Label.BET_Home_Page_Info,new List<String>{groupId,Label.BET_Help_Group_Name});
     }
     /*******************************************************************
     Purpose: Method returns list of BET Owned by current logged in user
@@ -91,6 +114,26 @@ public with sharing class uw_BETRemoteController {
             
             resultMap.put('bets', results.betSearchResult);
             resultMap.put('filters', results.searchFilters);
+        }catch(Exception ex){
+            return new uw_BETWrapper(ex.getMessage(), '-1', null,'');
+        }
+        return new uw_BETWrapper('Results', '0', resultMap,''); 
+    }
+
+    /*******************************************************************
+    Purpose: Search engine method resposible for returning applicable bets
+    Parameters: [String brandId, String categoryId, String keyWord, Integer pageSize,Integer pageNumber,Boolean withFilters, Boolean sortAsc]
+    Returns: uw_BETWrapper 
+    ********************************************************************/
+    @RemoteAction
+    public static uw_BETWrapper searchActiveAndArchived(String brandId, String categoryId, String keyWord, Integer pageSize,Integer pageNumber,Boolean withFilters, Boolean sortAsc, String sortField){
+        Map<String, Object> resultMap = new Map<String, Object>();
+        try{
+            uw_BETWrapper.SearchWrapper resultsActive = uw_BETSearchService.searchActive(brandId, categoryId, keyWord, pageSize, pageNumber, withFilters, sortAsc, sortField);
+            uw_BETWrapper.SearchWrapper resultsArchived = uw_BETSearchService.searchArchived(brandId, categoryId, keyWord, pageSize, pageNumber, withFilters, sortAsc, sortField);
+            resultMap.put('betsActive', resultsActive.betSearchResult);
+            resultMap.put('betsArchived', resultsArchived.betSearchResult);
+            resultMap.put('filters', resultsActive.searchFilters);
         }catch(Exception ex){
             return new uw_BETWrapper(ex.getMessage(), '-1', null,'');
         }
@@ -148,7 +191,24 @@ public with sharing class uw_BETRemoteController {
         Id currentUserId = UserInfo.getUserId();
         Map<String, Object> resultMap = new Map<String, Object>();
         try{
+
+            if(BET_CommonService.isBETOperationAdmin() || BET_CommonService.isHubAdmin()){
+                /*
+                    Future method is invoked for BET Operation admin to grant access to all BETs assets
+                */
+                BET_AssetService.grantAccessToBetsAssets(betId,currentUserId);
+            }
+
+            BET_AssetService.forceAssetReordering(betId);
+
             uw_BETWrapper.DetailWrapper results = uw_BETDetailService.getBETDetails(betId, currentUserId);
+            if(results.bet.betIPMProjectId != null) {
+                results.bet.currentUserHasAccessToIPM = IPM_BETUpdateService.UserAccess((Id)betId, results.bet.betIPMProjectId,currentUserId);
+            }
+
+            results.bet.expectedAssetsProvided = BET_AssetService.expectedAssetsSetForBet(betId);
+
+            System.debug('results.bet.expectedAssetsProvided ' + results.bet.expectedAssetsProvided);
 
             resultMap.put('bet', results.bet);
             resultMap.put('members', results.memberSetting);

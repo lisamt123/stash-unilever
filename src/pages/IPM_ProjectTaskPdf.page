@@ -1,0 +1,115 @@
+<!--  
+*************************************************************************
+*@Description:This page is used <…..>
+*@Author: Cognizant
+*@Created Date: 26/12/2014 
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
+
+<apex:page controller="IPM_ProjectTaskController" sidebar="false" standardStylesheets="false" renderAs="pdf" >
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Task Details</h1> 
+
+    <!--
+    <apex:pageBlock >
+    
+    <apex:pageBlockSection >
+    -->
+        <apex:repeat value="{!ipmProjectTasks}" var="c">
+          <!--  <apex:pageBlockSectionItem >-->
+                {!c.IPM_Assignee__c}
+                {!c.IPM_Completed__c}
+                {!c.IPM_Function__c}
+                <!--
+                {!c.IPM_Project__c}
+                {!c.IPM_Project_Document_Section__c}
+                {!c.IPM_Project_Template__c}
+                {!c.IPM_Section__c}
+                
+                -->
+                {!c.IPM_Phase__c}
+                {!c.IPM_Section_Number__c}
+                {!c.IPM_Task_Complexity__c}
+                {!c.IPM_Task_Name__c}
+                {!c.IPM_Task_Type__c}
+                {!c.IPM_Type_of_Gate__c}
+                {!c.IPM_Version_Number__c}
+           <!-- </apex:pageBlockSectionItem>-->
+            
+        </apex:repeat>
+        
+        <!--
+        </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+        -->
+        
+        <h1>Project Templates</h1>  
+        
+        <!--
+        <apex:pageBlock >
+       <apex:pageBlockSection >
+       
+       -->
+         <apex:repeat value="{!ipmProjectTemplates}" var="c">
+         
+         <!--   <apex:pageBlockSectionItem >-->
+                
+                {!c.IPM_Category__c}
+                {!c.IPM_Template_Complexity__c}
+                <!--{!c.IPM_Project__c}-->
+                {!c.IPM_Template_Name__c}
+                
+           <!-- </apex:pageBlockSectionItem>-->
+           
+        </apex:repeat>
+       <!-- 
+       </apex:pageBlockSection>
+     </apex:pageBlock> 
+        -->
+        
+     
+     <h1>Project document sections</h1>     
+     
+     
+     <!--
+     <apex:pageBlock >
+     
+     
+            
+      <apex:pageBlockSection >  
+      
+      -->
+        <apex:repeat value="{!ipmProjectDocumentSections}" var="c">
+           
+           
+           <!-- <apex:pageBlockSectionItem >-->
+                {!c.IPM_Gate_Document_Summary__c}
+                {!c.IPM_Section_Status__c}
+                {!c.IPM_Project_Document__c}
+                {!c.IPM_Project_Section__c}
+                {!c.IPM_Section__c}
+                
+                <!--
+                {!c.IPM_Status_Icon__c}
+                <img id="theImage" src="{!c.IPM_Status_Icon__c}" width="220" height="55"/>
+                -->
+                
+                
+                {!c.IPM_Negotiable__c}
+                {!c.IPM_PDP_Document_Summary__c}
+                {!c.IPM_Section_Help_Text_Long__c}
+                {!c.IPM_Section_Name__c}
+                {!c.IPM_Section_Owner__c}
+                {!c.IPM_Section_Type__c}
+            <!--</apex:pageBlockSectionItem>-->
+        </apex:repeat>
+        
+        <!--
+        
+    </apex:pageBlockSection>
+</apex:pageBlock>
+    -->
+    
+</apex:page>
