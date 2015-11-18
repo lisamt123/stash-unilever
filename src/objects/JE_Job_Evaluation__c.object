@@ -3115,6 +3115,10 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(Number_of_Direct_Reports__
         <label>Revised Grade</label>
         <picklist>
             <picklistValues>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>WL1</fullName>
                 <default>false</default>
             </picklistValues>
@@ -11002,7 +11006,7 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL1</fullName>
+                <fullName>Test</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

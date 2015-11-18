@@ -1717,6 +1717,10 @@
             <translation><!-- 4B --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Test</masterLabel>
+            <translation><!-- Test --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>WL1</masterLabel>
             <translation><!-- WL1 --></translation>
         </picklistValues>
