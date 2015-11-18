@@ -27,10 +27,12 @@ public with sharing class WINatPOSUtil {
     public static final String repetableSearch='repetableSearch';
     public static final String keywordSearch='keywordSearch';
     public static final String bestPracticesSearch = 'bestPracticesSearch';
+    public static final String ctaSearch = 'ctaSearch';
     //public static final String assetTypeForInstoreSearch='In Store Execution';
     public static final String assetTypeForBestPractisesSearch = 'Best Practices';
     public static final String assetTypeForInnovationSearch='Innovation';
     public static final String assetTypeForRepetableSearch='Repeatable Model';
+    public static final String assetTypeForCTISearch='Call To Action';
     
     public static final String APPROVED = 'Approved';
     public static final String HIDDEN = 'hidden';
@@ -49,7 +51,8 @@ public with sharing class WINatPOSUtil {
         //instoreSearch    => new List<String>{'Categories','Brands','Clusters','Countries'},
         bestPracticesSearch		=> new List<String>{'Categories','Brands','Clusters','Countries'},
         innovationSearch => new List<String>{'Categories','Brands'},
-        repetableSearch  => new List<String>{}
+        repetableSearch  => new List<String>{},
+        ctaSearch => new List<String>{'Categories','Brands','Channels','Clusters','Placement'}    
     };
         
     //asset type translations from data model values to UI designe names      
@@ -58,7 +61,8 @@ public with sharing class WINatPOSUtil {
         'Innovation'  => 'Innovation Guidelines',
         //'In Store Execution' => 'Instore Executions', 
         'Best Practices' => 'Best Practices',
-        'Repeatable Model' =>'Repeatable Models'   
+        'Repeatable Model' =>'Repeatable Models',
+        'Call To Action' => 'Call To Action'    
     };
         
     //asset type translations from UI designe names to dat model values   
@@ -67,7 +71,8 @@ public with sharing class WINatPOSUtil {
         'Innovation Guidelines' => 'Innovation',
         //'Instore Executions' => 'In Store Execution',
         'Best Practices' => 'Best Practices',
-        'Repeatable Models' => 'Repeatable Model'    
+        'Repeatable Models' => 'Repeatable Model',
+        'Call To Action' => 'Call To Action'    
     };
     
 	 /*******************************************************************
@@ -81,7 +86,7 @@ public with sharing class WINatPOSUtil {
         
         List<WINatPOSRemoteActionWrapper.FilterLineItemWrapper> filterInfoList=new List<WINatPOSRemoteActionWrapper.FilterLineItemWrapper>();
         
-        if(WINatPOSUtil.keywordSearch == searchType || WINatPOSUtil.brandSearch == searchType || WINatPOSUtil.bestPracticesSearch == searchType || WINatPOSUtil.innovationSearch == searchType){
+        if(WINatPOSUtil.keywordSearch == searchType || WINatPOSUtil.brandSearch == searchType || WINatPOSUtil.bestPracticesSearch == searchType || WINatPOSUtil.innovationSearch == searchType || WINatPOSUtil.ctaSearch == searchType){
             List<WINatPOSRemoteActionWrapper.FilterOptions> categoryFilterOptions=new List<WINatPOSRemoteActionWrapper.FilterOptions>();
             categoryFilterOptions.add(new WINatPOSRemoteActionWrapper.FilterOptions('','All Categories',null));
             system.debug('*** WINatPOS getFiltersForAsset creating category filter');
@@ -105,10 +110,10 @@ public with sharing class WINatPOSUtil {
         }
         
         
-        if(WINatPOSUtil.categorySearch == searchType || WINatPOSUtil.bestPracticesSearch == searchType || WINatPOSUtil.innovationSearch == searchType || WINatPOSUtil.keywordSearch == searchType){
+        if(WINatPOSUtil.categorySearch == searchType || WINatPOSUtil.bestPracticesSearch == searchType || WINatPOSUtil.innovationSearch == searchType || WINatPOSUtil.keywordSearch == searchType || WINatPOSUtil.ctaSearch == searchType){
             List<WINatPOSRemoteActionWrapper.FilterOptions> brandFilterOptions=new List<WINatPOSRemoteActionWrapper.FilterOptions>();
             Boolean bestPractisesSearchWithCategory = false;
-            if(WINatPOSUtil.bestPracticesSearch == searchType && categoryId != null){
+            if((WINatPOSUtil.bestPracticesSearch == searchType || WINatPOSUtil.ctaSearch == searchType) && categoryId != null){
                 bestPractisesSearchWithCategory = true;
             }
             if(bestPractisesSearchWithCategory){
@@ -152,7 +157,7 @@ public with sharing class WINatPOSUtil {
             filterInfoList.add(new WINatPOSRemoteActionWrapper.FilterLineItemWrapper('Asset Types', false,assetTypesFilterOptions,assetTypeSelectedValue));
         }
         
-        if(WINatPOSUtil.keywordSearch == searchType || WINatPOSUtil.categorySearch == searchType || WINatPOSUtil.brandSearch == searchType){
+        if(WINatPOSUtil.keywordSearch == searchType || WINatPOSUtil.categorySearch == searchType || WINatPOSUtil.brandSearch == searchType || WINatPOSUtil.ctaSearch == searchType){
             List<WINatPOSRemoteActionWrapper.FilterOptions> channelsFilterOptions=new List<WINatPOSRemoteActionWrapper.FilterOptions>();
             channelsFilterOptions.add(new WINatPOSRemoteActionWrapper.FilterOptions('','All Channels',null));
             Schema.DescribeFieldResult fieldResultChannels = Asset__c.Channels__c.getDescribe();
@@ -163,7 +168,7 @@ public with sharing class WINatPOSUtil {
             filterInfoList.add(new WINatPOSRemoteActionWrapper.FilterLineItemWrapper('Channels', true,channelsFilterOptions,channelSelectedValue));
         }
 		
-		if(WINatPOSUtil.keywordSearch == searchType || WINatPOSUtil.categorySearch == searchType || WINatPOSUtil.brandSearch == searchType || WINatPOSUtil.bestPracticesSearch == searchType){        
+		if(WINatPOSUtil.keywordSearch == searchType || WINatPOSUtil.categorySearch == searchType || WINatPOSUtil.brandSearch == searchType || WINatPOSUtil.bestPracticesSearch == searchType || WINatPOSUtil.ctaSearch == searchType){        
             List<WINatPOSRemoteActionWrapper.FilterOptions> clustersFilterOptions=new List<WINatPOSRemoteActionWrapper.FilterOptions>();
             clustersFilterOptions.add(new WINatPOSRemoteActionWrapper.FilterOptions('','All Clusters',null));
             Schema.DescribeFieldResult fieldResultMarket = Asset__c.Market_Cluster__c.getDescribe();
@@ -174,7 +179,7 @@ public with sharing class WINatPOSUtil {
             filterInfoList.add(new WINatPOSRemoteActionWrapper.FilterLineItemWrapper('Clusters', false,clustersFilterOptions,clusterSelectedValue ));
         }
         
-        if( WINatPOSUtil.categorySearch == searchType || WINatPOSUtil.brandSearch == searchType){
+        if( WINatPOSUtil.categorySearch == searchType || WINatPOSUtil.brandSearch == searchType || WINatPOSUtil.ctaSearch == searchType){
             List<WINatPOSRemoteActionWrapper.FilterOptions> placementsFilterOptions=new List<WINatPOSRemoteActionWrapper.FilterOptions>();
             placementsFilterOptions.add(new WINatPOSRemoteActionWrapper.FilterOptions('','All Placements',null));
             Schema.DescribeFieldResult fieldResultPlacement = Asset__c.Placement__c.getDescribe();
@@ -330,6 +335,8 @@ public with sharing class WINatPOSUtil {
             return 2;
         }else if(type == 'Best Practices'){
             return 1;
+        }else if(type == WINatPOSUtil.assetTypeForCTISearch){
+            return 0;
         }
         return -2;//if value is not specified always will be displayed at the end of results
     }
