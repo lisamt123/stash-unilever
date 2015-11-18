@@ -23,6 +23,8 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     public Set<Id> phaseChangeProjects = new Set<Id>();
     public Set<Id>changeOwnerProjects=new Set<Id>();
     
+    private Map<Id,IPM_Project__c> rolloutTLDChangedProjList = new Map<Id,IPM_Project__c> {};
+    
     /***********************************************************************************************************************************
     * bulkBefore
     * This method is called prior to execution of a BEFORE trigger. Use this to cache
@@ -152,7 +154,9 @@ public with sharing class IPM_ProjectHandler implements ITrigger
            // Stores information for Country Feedback Updates.
            Map<Id,IPM_Project__c> countryFeedbackProjects = new Map<Id,IPM_Project__c>();
            
+           //EcoDesign
            List<IPM_Project__c> projectsWithPhaseChanged = new List<IPM_Project__c>();
+           List<IPM_Project__c> projectsWithChangedExistsAtLeastOneAssmntFlag = new List<IPM_Project__c>();
            
            Set<String> setProjectIds = new Set<String>();
            Set<String> setSustainabilityPeriod = new Set<String>();
@@ -301,9 +305,17 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                         masterProjectMap.put(incomingProject.Id,incomingProject);
                         processTasksMap.put(incomingProject.Id,incomingProject);
                     } 
-                      
+                    
+                    //Ecodesign Code
+                    //code to check if the Functional Input RTF is filled in in section 5.3 and if all EI countries have assessments and then make the section 5.3 filled in 
+                    if(incomingProject.IPM_Exists_AtLeast_OneAssmntPerEICountry__c != oldProject.IPM_Exists_AtLeast_OneAssmntPerEICountry__c){
+                        projectsWithChangedExistsAtLeastOneAssmntFlag.add(incomingProject);
+                        
+                    } 
                 }
-                               
+                if(!projectsWithChangedExistsAtLeastOneAssmntFlag.isEmpty()){
+                    IPM_ProjectCountryDetails.setEISectionStatus(projectsWithChangedExistsAtLeastOneAssmntFlag);
+                }               
            }
            
            
@@ -684,11 +696,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         {
             if(insertedProject.Exempt_from_Threshold__c)
             {
-                insertedProject.IPM_Threshold_Value__c = 'Yes';
+                insertedProject.IPM_Threshold_Value__c = IPM_ConstantUtils.YES;
             }
             else
             {
-                insertedProject.IPM_Threshold_Value__c = 'No';
+                insertedProject.IPM_Threshold_Value__c = IPM_ConstantUtils.NO;
             }
         }
     }
@@ -745,7 +757,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             }
             else
             {
-                incomingProject.addError('Next Project Phase should be '+nextPhaseProjectType.IPM_Phase__c +', However recieved Project Phase is '+incomingProject.IPM_Phase__c);
+                incomingProject.addError(string.format( Label.IPM_PROJECT_PHASE_VALIDATION,new String[]{nextPhaseProjectType.IPM_Phase__c,incomingProject.IPM_Phase__c}) );
             }       
         }
         
@@ -759,11 +771,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         {
             if(incomingProject.Exempt_from_Threshold__c)
             {
-                incomingProject.IPM_Threshold_Value__c = 'Yes';
+                incomingProject.IPM_Threshold_Value__c = IPM_ConstantUtils.YES;
             }
             else
             {
-                incomingProject.IPM_Threshold_Value__c = 'No';  
+                incomingProject.IPM_Threshold_Value__c = IPM_ConstantUtils.NO;  
             }
         }
         
@@ -783,6 +795,17 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         
         //process incoming project status
         IPM_ProjectHelper.handleEcoDesignSyncProcess(incomingProject,oldProject);
+        
+        //To update Rollout TLD date on Rollout Projet Object
+      /*  if(oldProject.Rollout_Plan_Target_Launch_Date__c != null && oldProject.Rollout_Plan_Target_Launch_Date__c!= incomingProject.Rollout_Plan_Target_Launch_Date__c)
+        {
+            rolloutTLDChangedProjList.put(incomingProject.IPM_Project_Rollout__c,incomingProject);
+            /*IPM_Project_Rollout__c rolloutProj = [Select Id, Target_Launch_Date__c from IPM_Project_Rollout__c where Id = :oldProject.IPM_Project_Rollout__c limit 1];
+            if(incomingProject.Rollout_Plan_Target_Launch_Date__c != rolloutProj.Target_Launch_Date__c){
+                rolloutProj.Target_Launch_Date__c = incomingProject.Rollout_Plan_Target_Launch_Date__c;
+                rolloutTLDChangedProjList.add(rolloutProj);
+            }
+        }    */    
     }
     
     /***********************************************************************************************************************************
@@ -822,6 +845,16 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         if((oldProject.IPM_Project_Name__c != null || String.IsNotBlank(oldProject.IPM_Project_Name__c)) && !oldProject.IPM_Project_Name__c.equals(newProject.IPM_Project_Name__c)){
             IPM_ChatterFeedHelper.notifyProjectNameChange((List<IPM_Project__c>)Trigger.New);
         }
+        //To update Rollout TLD date on Rollout Projet Object
+        if(oldProject.Rollout_Plan_Target_Launch_Date__c != null && oldProject.Rollout_Plan_Target_Launch_Date__c!= newProject.Rollout_Plan_Target_Launch_Date__c)
+        {
+            rolloutTLDChangedProjList.put(newProject.IPM_Project_Rollout__c,newProject);
+            /*IPM_Project_Rollout__c rolloutProj = [Select Id, Target_Launch_Date__c from IPM_Project_Rollout__c where Id = :oldProject.IPM_Project_Rollout__c limit 1];
+            if(incomingProject.Rollout_Plan_Target_Launch_Date__c != rolloutProj.Target_Launch_Date__c){
+                rolloutProj.Target_Launch_Date__c = incomingProject.Rollout_Plan_Target_Launch_Date__c;
+                rolloutTLDChangedProjList.add(rolloutProj);
+            }*/
+        }        
         
     }
     
@@ -843,10 +876,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 IPM_ProjectJob_Queue phaseChangeAsyncHandler = new IPM_ProjectJob_Queue(); 
                 phaseChangeAsyncHandler.initializeProjectData(phaseChangeProjects); 
                 System.enqueueJob(phaseChangeAsyncHandler);
-                  
-                       
-            }
-           
+            }           
         }
         
         if(!changeOwnerProjects.isEmpty() && phaseChangeProjects.isEmpty() && Trigger.isUpdate  && Trigger.isAfter) 
@@ -855,6 +885,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 changeOwnerHandler.initializeProjectData(changeOwnerProjects); 
                 System.enqueueJob(changeOwnerHandler);      
         }
+        
+        /*if(!rolloutTLDChangedProjList.isEmpty()){
+            IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
+            rolloutPlanTLDSync.syncTLDDates(rolloutTLDChangedProjList,null);
+        }*/
         ExceptionLoggingHelper.insertLogRecordList();
     }
 }

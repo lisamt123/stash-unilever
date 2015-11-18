@@ -70,7 +70,7 @@ public with sharing class IPM_NotifyUsersRoleChanged {
             }
         }//UserId for loop ends here    
         
-        ChatterUtils.postChatterFeedWithMention(projectIds,subjectIdMessageMap,subjectIdMentionIdSetMap);
+        IPM_ChatterUtils.postChatterFeedWithMention(projectIds,subjectIdMessageMap,subjectIdMentionIdSetMap);
         
        }catch(System.Exception ex){ // Generalized exception
             excpMsg = ex.getMessage();

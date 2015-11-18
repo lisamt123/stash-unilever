@@ -33,7 +33,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     public boolean isEditGateCMI{get;set;} //To Check Gate CMI Project Document Section Editable or Not
     public boolean isAssortEdit{get;set;} //To Check Assortment Strategy Project Document Section Editable or Not
     public boolean isEcodesignEdit{get;set;} //To Check EcoDesign Project Document Section Editable or Not
-    public final String IPM_PROJECT_DOCUMENT_SECTION_CONTROLLER = 'ipm_projectdocumentsectioncontroller';
+    public static final String IPM_PROJECT_DOCUMENT_SECTION_CONTROLLER = 'ipm_projectdocumentsectioncontroller';
     public List<IPM_Project_Document_Section__c> projectSections {get;set;}//list of assigned project sections
     public String gateDocument{get; set;}//for storing gate document name
     public String currGate{get;set;}//current gate of the project
@@ -392,9 +392,9 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     private void getUserTypeSection(){
         integer ecoDesignUserCount=0;
         ecoDesignUserCount=[SELECT count() FROM IPM_Project_Resource__c WHERE IPM_User__c=:userinfo.getuserid() 
-        					 AND IPM_Project__c=:projectId AND IPM_Role_Type__c!=:IPM_ConstantUtils.IPM_ROLE_GUEST AND IPM_Role_Type__c!=Null LIMIT 1];
+                             AND IPM_Project__c=:projectId AND IPM_Role_Type__c!=:IPM_ConstantUtils.IPM_ROLE_GUEST AND IPM_Role_Type__c!=Null LIMIT 1];
         if(ecoDesignUserCount>0){
-        	isEcodesignEdit=true;
+            isEcodesignEdit=true;
         }
         integer CountProuser=[SELECT count() FROM IPM_Project_Resource__c 
                                 WHERE IPM_Project__c=:projectId and IPM_Role_Type__c=:Frole AND IPM_Project__r.Is_Archieved__c=false limit 1];
@@ -402,7 +402,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                                         FROM IPM_Project__c 
                                         WHERE id=:projectId AND Is_Archieved__c=false limit 1];
         if(!lstofuser.isEmpty()){
-        	if((lstofuser[0].IPM_Project_Leader__c!=null && lstofuser[0].IPM_Project_Leader__c==userinfo.getuserid()) || 
+            if((lstofuser[0].IPM_Project_Leader__c!=null && lstofuser[0].IPM_Project_Leader__c==userinfo.getuserid()) || 
                 (lstofuser[0].Deputy_Project_Leader__c!=null && lstofuser[0].Deputy_Project_Leader__c==userinfo.getuserid())){
                 if(plSectionsSet.contains(projDocSec.IPM_Section__r.External_ID__c) || ((projDocSec.IPM_Section__r.External_ID__c.Equals(IPM_ConstantUtils.IPM_ROLLOUT_PLANS) 
                 || projDocSec.IPM_Section__r.External_ID__c.Equals(IPM_ConstantUtils.IPM_MILESTONES_DOC)) &&  project.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_IDEAS)))
@@ -434,7 +434,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                 isEcodesignEdit=true;
             }
             else if(lstofuser[0].IPM_Project_Gatekeeper__c!=null && lstofuser[0].IPM_Project_Gatekeeper__c==userinfo.getuserid()){
-            	isEcodesignEdit=true;
+                isEcodesignEdit=true;
             }
         }
         
@@ -444,8 +444,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                 (lstofuser[0].Deputy_Project_Leader__c!=null && lstofuser[0].Deputy_Project_Leader__c==userinfo.getuserid())){
                 IsEditableSumm=true;
                 IsEditableOutC=false;
-            	
-            	if(CountProuser==0){
+                
+                if(CountProuser==0){
                     IsEditableOutC=true;
                     isEditGateCMI=true;
                     IsCRRTEditable=true;
@@ -696,7 +696,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 */
     public pagereference pagination(){
         projectSections = new List<IPM_Project_Document_Section__c>();
-        Id secId;//for storing section id
+        Id secId = Null;//for storing section id
         Integer i=0;
         List<IPM_Project_Document_Section__c> projectSectionsList =new List<IPM_Project_Document_Section__c>();
         try{
@@ -814,7 +814,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         //For Making Section Filled-In
         for(IPM_Questionnaire__c ipmQuestionaire:ipmQuestionaires){
             if(ipmQuestionaire.IPM_GK_Answers__c<>IPM_ConstantUtils.GATEKEEPER_ANSWER && ipmQuestionaire.IPM_GK_Answers__c<> IPM_ConstantUtils.OPTION_NONE && ipmQuestionaire.IPM_GK_Answers__c<> null && ipmQuestionaire.IPM_GK_Answers__c<> ''){
-                if(projDocSec.IPM_Gate_Document_Summary__c!=null && projDocSec.IPM_Gate_Document_Summary__c!='' && summary.length()>=15 && !projDocSec.IPM_Negotiable__c && ((projDocSec.IPM_Master_Section_External_Id__c != EXTERNAL_ID_ENVIRONMENTAL_IMPACT) || (projDocSec.IPM_Master_Section_External_Id__c == EXTERNAL_ID_ENVIRONMENTAL_IMPACT && project.IPM_Exists_AtLeast_OneAssmntPerEICountry__c && IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(project)) || (projDocSec.IPM_Master_Section_External_Id__c == EXTERNAL_ID_ENVIRONMENTAL_IMPACT && !project.IPM_Exists_AtLeast_OneAssmntPerEICountry__c && !IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(project)) )){
+                if(projDocSec.IPM_Gate_Document_Summary__c!=null && projDocSec.IPM_Gate_Document_Summary__c!='' && summary.length()>=15 && !projDocSec.IPM_Negotiable__c && ((projDocSec.IPM_Master_Section_External_Id__c != EXTERNAL_ID_ENVIRONMENTAL_IMPACT) || (projDocSec.IPM_Master_Section_External_Id__c == EXTERNAL_ID_ENVIRONMENTAL_IMPACT && project.IPM_Exists_AtLeast_OneAssmntPerEICountry__c && IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(project)) || (projDocSec.IPM_Master_Section_External_Id__c == EXTERNAL_ID_ENVIRONMENTAL_IMPACT && project.IPM_Exists_AtLeast_OneAssmntPerEICountry__c && !IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(project)) )){
                     projDocSec.IPM_Section_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
                     showmsg=false;
                 }

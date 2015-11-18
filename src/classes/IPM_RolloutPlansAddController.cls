@@ -12,14 +12,14 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     // public IPM_Project__c project {get; set;} //The project record for which the rollouts are being viewed
     
     public Boolean isCompleted{get; set;}
-    private Set<String> setCountryCodesGlobal; //Set of selected Global Country codes generated from passed Visualforce sring
-    private Set<String> setCountryCodesGlobalUnselected; //Set of unselected Global Country codes generated from passed Visualforce sring
-    private Set<String> setCountryCodesMCOs; //Set of selected Regional MCO Country codes generated from passed Visualforce sring
-    private Set<String> setCountryCodesMCOsUnselected; //Set of unselected Regional MCO Country codes generated from passed Visualforce sring
-    private Set<String> setCountryCodes; //Set of selected Regional Country codes generated from passed Visualforce sring
-    private Set<String> setCountryCodesUnselected; //Set of unselected Regional Country codes generated from passed Visualforce sring
-    private Set<String> setCountryNoRolls; //Set of selected Regional No Rollouts Country codes generated from passed Visualforce sring
-    private Set<String> setCountryNoRollsUnselected; //Set of unselected Regional No Rollouts Country codes generated from passed Visualforce sring
+    @TestVisible private Set<String> setCountryCodesGlobal; //Set of selected Global Country codes generated from passed Visualforce sring
+    @TestVisible private Set<String> setCountryCodesGlobalUnselected; //Set of unselected Global Country codes generated from passed Visualforce sring
+    @TestVisible private Set<String> setCountryCodesMCOs; //Set of selected Regional MCO Country codes generated from passed Visualforce sring
+    @TestVisible private Set<String> setCountryCodesMCOsUnselected; //Set of unselected Regional MCO Country codes generated from passed Visualforce sring
+    @TestVisible private Set<String> setCountryCodes; //Set of selected Regional Country codes generated from passed Visualforce sring
+    @TestVisible private Set<String> setCountryCodesUnselected; //Set of unselected Regional Country codes generated from passed Visualforce sring
+    @TestVisible private Set<String> setCountryNoRolls; //Set of selected Regional No Rollouts Country codes generated from passed Visualforce sring
+    @TestVisible private Set<String> setCountryNoRollsUnselected; //Set of unselected Regional No Rollouts Country codes generated from passed Visualforce sring
     
     public String globalCountries{get; set;} //Collection of (comma seperated) selected global country codes passed from Visualforce
     public String globalUnselectedCountries{get; set;} //Collection of (comma seperated) unselected global country codes passed from Visualforce
@@ -30,12 +30,12 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     public String regionalNoRoll{get; set;} //Collection of (comma seperated) selected regional no rollouts country codes passed from Visualforce
     public String regionalUnselectedNoRoll{get; set;} //Collection of (comma seperated) unselected regional no rollouts country codes passed from Visualforce
     
-    private Map<String, MDO_Geography__c> mapUnileverCountries; //Map of Unilever Countries - generated from mdm_Geography__c object //change-1
+    @TestVisible private Map<String, MDO_Geography__c> mapUnileverCountries; //Map of Unilever Countries - generated from mdm_Geography__c object //change-1
     public Map<String, IPM_Country__c> mapIPMCountries{get;set;} //Map of counries that have already been added to this project
     
-    private Map<String, GeographyWrapper> mapClusterWrappers; //Map of Market Cluster Wrappers
+    @TestVisible private Map<String, GeographyWrapper> mapClusterWrappers; //Map of Market Cluster Wrappers
     public Map<String, GeographyWrapper> mapMCOWrappers {get; set;} //Map of MCO Wrappers
-    private Map<String, GeographyWrapper> mapCountryWrappers; //Map of Country Wrappers
+    @TestVisible private Map<String, GeographyWrapper> mapCountryWrappers; //Map of Country Wrappers
     
     public List<GeographyWrapper> lstClusterWrappers {get; set;} //List of Market Cluster Wrappers to be displayed
     public List<GeographyWrapper> lstMCOWrappers {get; set;} //List of MCO Wrappers to be displayed
@@ -53,41 +53,37 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     public Boolean isError {get; set;} //Boolean variable to indicate error on page
     public String errorMessage {get; set;} //Error Message to be displayed on the page
     
-    private Map<String,IPM_Project_Rollout__c> mapExistingRollouts; //Map of Existing Rollouts
-    private Map<String,IPM_Country__c> mapExistingCountries; //Map of existing counttries
-    private Set<String> setExistingCountriesRegionalProject; //Set of Existing countries for the regional project
+    @TestVisible private Map<String,IPM_Project_Rollout__c> mapExistingRollouts; //Map of Existing Rollouts
+    @TestVisible private Map<String,IPM_Country__c> mapExistingCountries; //Map of existing counttries
+    @TestVisible private Set<String> setExistingCountriesRegionalProject; //Set of Existing countries for the regional project
     
-    private Map<String, IPM_Project_Rollout__c> mapUpsertRegionalRollouts; //Map of Regional Rollouts that need to be upserted
-    private Map<String, IPM_Project_Rollout__c> mapUpsertRollouts; //Map of Local Rollouts that need to be upserted
-    private List<IPM_Country__c> lstUpsertCountries; //List of countries that need to be upserted
-    private Map<Id,IPM_Project_Rollout__c> deleteRolloutsMap; //List of Rollouts that need to be deleted
-    private Map<Id,IPM_Country__c> deleteCountriesMap; //List of countries that need o be deleted 
-    private static String REGIONAL_ROLLOUT_RECORDTYPE = IPM_ConstantUtils.EMPTY_STRING_INITIAL; //Recordtype Id for Regional Rollouts on IPM_Project_Rollout__c object
-    private static String LOCAL_ROLLOUT_RECORDTYPE = IPM_ConstantUtils.EMPTY_STRING_INITIAL; //Recordtype Id for Local Rollouts on IPM_Project_Rollout__c object
+    @TestVisible private Map<String, IPM_Project_Rollout__c> mapUpsertRegionalRollouts; //Map of Regional Rollouts that need to be upserted
+    @TestVisible private Map<String, IPM_Project_Rollout__c> mapUpsertRollouts; //Map of Local Rollouts that need to be upserted
+    @TestVisible private List<IPM_Country__c> lstUpsertCountries; //List of countries that need to be upserted
+    @TestVisible private Map<Id,IPM_Project_Rollout__c> deleteRolloutsMap; //List of Rollouts that need to be deleted
+    @TestVisible private Map<Id,IPM_Country__c> deleteCountriesMap; //List of countries that need o be deleted 
+    @TestVisible private static String REGIONAL_ROLLOUT_RECORDTYPE = IPM_ConstantUtils.EMPTY_STRING_INITIAL; //Recordtype Id for Regional Rollouts on IPM_Project_Rollout__c object
+    @TestVisible private static String LOCAL_ROLLOUT_RECORDTYPE = IPM_ConstantUtils.EMPTY_STRING_INITIAL; //Recordtype Id for Local Rollouts on IPM_Project_Rollout__c object
     
-    private static String NOT_ASSIGNED_CLUSTER_CODE = 'GEO0071'; //Cluster Code not to be used for display (Not Assigned values)
+    @TestVisible private static String NOT_ASSIGNED_CLUSTER_CODE = 'GEO0071'; //Cluster Code not to be used for display (Not Assigned values)
     
     //private static final String CLASS_NAME = 'IPM_RolloutPlansAddController'; //Class Name for Exception Logging
-    private static final String CLASS_NAME = IPM_RolloutPlansAddController.class.getName();
-    private static final String SEARCH_ROLLOUT_COUNTRY = 'searchRolloutCountry'; //Method Name for Exception Logging
-    private static final String CHANGE_CLUSTER = 'changeCluster'; //Method Name for Exception Logging
-    private static final String CHANGE_MCO = 'changeMCO'; //Method Name for Exception Logging
-    private static final String GENERATE_ROLLOUTS = 'generateRollouts'; //Method Name for Exception Logging
-    private static final String CANCEL = 'cancel'; //Method Name for Exception Logging    
-    private static final String PROCESS_ROLLOUTS = 'Process Rollouts'; //Transaction Name for Exception Logging
-    private static final String GET_UNILEVER_COUNTRIES = 'getUnileverCountries'; //Method Name for Exception Logging  
-    private static final String GENERATE_WRAPPERS = 'generateWrappers'; //Method Name for Exception Logging 
-    private static final String GENERATE_SUBWRAPPERS_FOR_SEARCH = 'generateSubWrappersForSearch'; //Method Name for Exception Logging
-    private static final String GENERATE_SUBWRAPPERS = 'generateSubWrappers'; //Method Name for Exception Logging 
-    private static final String PROCESS_COUNTRY_CODE_LISTS = 'processCountryCodeLists'; //Method Name for Exception Logging 
-    private static final String PROCESS_GLOBAL_MCO_ROLLOUTS = 'processGlobalMCORollouts'; //Method Name for Exception Logging
-    private static final String PROCESS_REGIONAL_MCO_ROLLOUTS = 'processRegionalMCORollouts'; //Method Name for Exception Logging
-    private static final String PROCESS_REGIONAL_COUNTRY_ROLLOUTS = 'processRegionalCountryRollouts'; //Method Name for Exception Logging
-    private static final String PROCESS_REGIONAL_NO_ROLLOUTS = 'processRegionalNoRollouts'; //Method Name for Exception Logging
-    private static final String GET_REGIONAL_ROLLOUT_NAME = 'getRegionalRolloutName'; //Method Name for Exception Logging
-    private static final String GET_KEY_MCO_ROLLOUT_NAME = 'getKeyMCORolloutName'; //Method Name for Exception Logging
-    private static final String SORT_WRAPPERS_BY_NAME = 'sortWrappersByName'; //Method Name for Exception Logging
-    private static final String SelectQueryString ='Id,parent_L2__r.name,parent_L2__r.mdm_id__c,parent_L2__r.geography_type__c,parent_L2__r.parent_L2__c,parent_L2__r.parent_L2__r.Name,parent_L2__r.parent_L2__r.mdm_id__c,parent_L2__r.parent_L2__r.geography_type__c FROM MDO_Geography__c';
+    @TestVisible private static final String CLASS_NAME = IPM_RolloutPlansAddController.class.getName();
+    @TestVisible private static final String SEARCH_ROLLOUT_COUNTRY = 'searchRolloutCountry'; //Method Name for Exception Logging
+    @TestVisible private static final String CHANGE_CLUSTER = 'changeCluster'; //Method Name for Exception Logging
+    @TestVisible private static final String CHANGE_MCO = 'changeMCO'; //Method Name for Exception Logging
+    @TestVisible private static final String GENERATE_ROLLOUTS = 'generateRollouts'; //Method Name for Exception Logging
+    @TestVisible private static final String CANCEL = 'cancel'; //Method Name for Exception Logging    
+    @TestVisible private static final String GET_UNILEVER_COUNTRIES = 'getUnileverCountries'; //Method Name for Exception Logging  
+    @TestVisible private static final String GENERATE_WRAPPERS = 'generateWrappers'; //Method Name for Exception Logging 
+    @TestVisible private static final String GENERATE_SUBWRAPPERS_FOR_SEARCH = 'generateSubWrappersForSearch'; //Method Name for Exception Logging
+    @TestVisible private static final String GENERATE_SUBWRAPPERS = 'generateSubWrappers'; //Method Name for Exception Logging 
+    @TestVisible private static final String PROCESS_COUNTRY_CODE_LISTS = 'processCountryCodeLists'; //Method Name for Exception Logging 
+    @TestVisible private static final String PROCESS_REGIONAL_NO_ROLLOUTS = 'processRegionalNoRollouts'; //Method Name for Exception Logging
+    @TestVisible private static final String GET_REGIONAL_ROLLOUT_NAME = 'getRegionalRolloutName'; //Method Name for Exception Logging
+    @TestVisible private static final String GET_KEY_MCO_ROLLOUT_NAME = 'getKeyMCORolloutName'; //Method Name for Exception Logging
+    @TestVisible private static final String SORT_WRAPPERS_BY_NAME = 'sortWrappersByName'; //Method Name for Exception Logging
+    @TestVisible private static final String SelectQueryString ='Id,parent_L2__r.name,parent_L2__r.mdm_id__c,parent_L2__r.geography_type__c,parent_L2__r.parent_L2__c,parent_L2__r.parent_L2__r.Name,parent_L2__r.parent_L2__r.mdm_id__c,parent_L2__r.parent_L2__r.geography_type__c FROM MDO_Geography__c';
     public String searchCountry{get;set;}// Hold country name to search
     public Boolean isNoResult{get;set;}//checking for rollout search
     
@@ -131,7 +127,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                
      }
      
-     System.debug(LoggingLevel.ERROR,'@@@ selectedMCO -->>'+selectedMCO);
+     //System.debug(LoggingLevel.ERROR,'@@@ selectedMCO -->>'+selectedMCO);
    
      
   }  
@@ -221,7 +217,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             
             mapUnileverCountries = new Map<String, MDO_Geography__c>(); //change-5
             
-            System.debug(LoggingLevel.ERROR,'queryString-->>'+queryString);
+            //System.debug(LoggingLevel.ERROR,'queryString-->>'+queryString);
             
             for(MDO_Geography__c geography : Database.query(queryString)) {
                  mapUnileverCountries.put(geography.ISO_3166_1_Code__c, geography);
@@ -250,7 +246,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     
     
         //GET A LIST OF ALL IPM COUNTRIES
-        try{
+       
             String queryString = 'SELECT ';
             //IPM Country
             For (String field : Schema.SObjectType.IPM_Country__c.fields.getMap().KeySet()){
@@ -267,7 +263,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
            
             
             mapIPMCountries = new Map<String, IPM_Country__c>();
-            System.debug(LoggingLevel.ERROR,'@@@ map ipm country from regional rollout '+queryString);
+            //System.debug(LoggingLevel.ERROR,'@@@ map ipm country from regional rollout '+queryString);
             
             For(IPM_Country__c ipmCountry : Database.query(queryString)){
                 mapIPMCountries.put(ipmCountry.Country_Code__c, ipmCountry);
@@ -346,10 +342,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 }
               }// null check    
             }
-            System.debug(LoggingLevel.ERROR,'@@@ mapClusterWrappers'+mapClusterWrappers);
-            System.debug(LoggingLevel.ERROR,'@@@ mapClusterWrappers'+mapMCOWrappers);
-            System.debug(LoggingLevel.ERROR,'@@@ mapClusterWrappers'+mapCountryWrappers);
-            
+            System.debug(LoggingLevel.ERROR,'@@@ mapClusterWrappers'+mapClusterWrappers+'@@@ mapClusterWrappers'+mapMCOWrappers+'@@@ mapClusterWrappers'+mapCountryWrappers);
+           
              
             For(GeographyWrapper clusterWrapper : mapClusterWrappers.values())
             {
@@ -359,7 +353,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     mapClusterWrappers.put(clusterWrapper.code, clusterWrapper);
                 }
             }
-            System.debug(LoggingLevel.ERROR,'@@@ mapClusterWrappers2'+mapClusterWrappers);
+            //System.debug(LoggingLevel.ERROR,'@@@ mapClusterWrappers2'+mapClusterWrappers);
             For(GeographyWrapper mcoWrapper : mapMCOWrappers.values())
             {
                 if(setDisabledClusterCodes.contains(mcoWrapper.parentCode))
@@ -369,7 +363,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     setDisabledMCOCodes.add(mcoWrapper.code);
                 }
             }
-            System.debug(LoggingLevel.ERROR,'@@@ mapMCOWrappers2'+mapMCOWrappers);
+            //System.debug(LoggingLevel.ERROR,'@@@ mapMCOWrappers2'+mapMCOWrappers);
             For (GeographyWrapper countryWrapper : mapCountryWrappers.values())
             {
                 if(setDisabledMCOCodes.contains(countryWrapper.parentCode))
@@ -378,7 +372,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     mapCountryWrappers.put(countryWrapper.code, countryWrapper);
                 }
             }
-            System.debug(LoggingLevel.ERROR,'@@@ mapCountryWrappers2'+mapCountryWrappers);
+            //System.debug(LoggingLevel.ERROR,'@@@ mapCountryWrappers2'+mapCountryWrappers);
             lstClusterWrappers = sortWrappersByName(mapClusterWrappers.values());
             
             //SELECT FIRST SELECTED CLUSTER
@@ -389,11 +383,11 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                                                           FROM IPM_Project_Rollout__c 
                                                           WHERE Regional_Project__c=:project.Id 
                                                           LIMIT 10000];
-                System.debug(LoggingLevel.ERROR,'@@@ inside if lstRegionalRollout '+lstRegionalRollout );
+                //System.debug(LoggingLevel.ERROR,'@@@ inside if lstRegionalRollout '+lstRegionalRollout );
                 if(lstRegionalRollout != null){   
                                                        
                     selectedCluster = lstRegionalRollout [0].Market_Cluster__c;
-                    System.debug(LoggingLevel.ERROR,'@@@ selectedCluster '+selectedCluster );
+                    //System.debug(LoggingLevel.ERROR,'@@@ selectedCluster '+selectedCluster );
                 }               
                 
             } else {
@@ -406,17 +400,9 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 if (((selectedCluster == NULL) || (IPM_ConstantUtils.EMPTY_STRING_INITIAL.equalsIgnoreCase(selectedCluster))) && (lstClusterWrappers!=null && !lstClusterWrappers.isEmpty() )){
                     selectedCluster = lstClusterWrappers[0].code;
                 }
-                System.debug(LoggingLevel.ERROR,'@@@ inside else selectedCluster '+selectedCluster );
+                //System.debug(LoggingLevel.ERROR,'@@@ inside else selectedCluster '+selectedCluster );
             }
-        }
-        catch(Exception ex)
-        {
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,GENERATE_WRAPPERS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);    
-            
-            System.debug(LoggingLevel.ERROR,'@@@ debug message -->>>'+ex.getMessage());
-            isError = TRUE;
-            errorMessage = ex.getMessage() + IPM_ConstantUtils.NEXT_LINE_STRING + ex.getStackTraceString();   
-        }       
+         
     }
     
     /**
@@ -427,7 +413,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     *  @throws Exception
     */
     private void generateSubWrappersForSearch(){
-        try{
+      
             lstMCOWrappers = new List<GeographyWrapper>();
             lstCountryWrappers = new List<GeographyWrapper>();
             
@@ -462,15 +448,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             selectedKey = mapMCOWrappers.get(selectedMCO).key;
             mapMCOWrappers.get(previouselectedMCO).key = selectedKey;  
             
-        }
-        catch(Exception ex)
-        {
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,GENERATE_SUBWRAPPERS_FOR_SEARCH,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
-            
-            System.debug(LoggingLevel.ERROR,'generateSubWrappersForSearch Exception -->'+ex.getMessage());
-            isError = TRUE;
-            errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-        }        
+           
     }
     
     /**
@@ -537,7 +515,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     *  @throws Exception
     */
     public void changeCluster(){
-        try{
+      
             if(project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
 
                 mapMCOWrappers.get(previouselectedMCO).key = selectedKey; 
@@ -549,14 +527,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             processCountryCodeLists();
             generateSubWrappers();
             
-        } 
-        catch (Exception ex) 
-        {
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,CHANGE_CLUSTER,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
-            
-            isError = TRUE;
-            errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR)); 
-        }
+        
     }
     
     /**
@@ -596,9 +567,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         System.SavePoint rollOutSavepoint = Database.setSavePoint();
         try 
         {
-            System.debug(LoggingLevel.ERROR,'previouselectedMCO-->>>'+previouselectedMCO);
-            System.debug(LoggingLevel.ERROR,'previouselectedMCO-->>>'+mapMCOWrappers.get(previouselectedMCO));
-            System.debug(LoggingLevel.ERROR,'selectedKey-->>>'+selectedKey);
+            System.debug(LoggingLevel.ERROR,'previouselectedMCO-->>>'+previouselectedMCO+'previouselectedMCO-->>>'+mapMCOWrappers.get(previouselectedMCO)+'selectedKey-->>>'+selectedKey);
+           
             
             if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL || (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c!='Rollout'))
             {   
@@ -630,7 +600,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     * @return       Page Reference
     */
     public PageReference redirectPage(){
-        System.debug(LoggingLevel.ERROR,'@@@redirectPage');
+        //System.debug(LoggingLevel.ERROR,'@@@redirectPage');
 
         try 
         {
@@ -688,9 +658,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     */
     private void processCountryCodeLists()
     {
-        try
-        {
-            //INITIALISE
+          //INITIALISE
             //Global
             
             if(setCountryCodesGlobal == null)
@@ -744,7 +712,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             {
                 List<String> lstTemp = regionalMco.split(IPM_ConstantUtils.COMMA);   
                 setCountryCodesMCOs.addAll(lstTemp); 
-                System.debug(LoggingLevel.ERROR,'@@@ setCountryCodesMCOs'+setCountryCodesMCOs); 
+                //System.debug(LoggingLevel.ERROR,'@@@ setCountryCodesMCOs'+setCountryCodesMCOs); 
             }
             
             // Get non selected MCO Country Codes  
@@ -788,14 +756,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             setCountryNoRolls.removeAll(setCountryNoRollsUnselected);
             setCountryNoRollsUnselected.clear();
             
-        }
-        catch (Exception ex) 
-        {
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),PROCESS_COUNTRY_CODE_LISTS,CANCEL,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
-
-            isError = TRUE;
-            errorMessage = Label.IPM_Generic_ErrorMessage;
-        }
+       
     }
     
     /**
@@ -869,28 +830,28 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 processRegionalNoRollouts();
         }
         
-        System.debug(LoggingLevel.ERROR,'@@@mapUpsertRegionalRollouts:'+mapUpsertRollouts);
+        //System.debug(LoggingLevel.ERROR,'@@@mapUpsertRegionalRollouts:'+mapUpsertRollouts);
         
         if(!mapUpsertRegionalRollouts.isEmpty())
         {
             upsert mapUpsertRegionalRollouts.values() IPM_Project_Rollout__c.IPM_Rollout_Project__c;
         }
         
-        System.debug(LoggingLevel.ERROR,'@@@mapUpsertRollouts:'+mapUpsertRollouts);
+        //System.debug(LoggingLevel.ERROR,'@@@mapUpsertRollouts:'+mapUpsertRollouts);
         
         if(!mapUpsertRollouts.isEmpty())
         {
             upsert mapUpsertRollouts.values() IPM_Project_Rollout__c.IPM_Rollout_Project__c;
         }
         
-        System.debug(LoggingLevel.ERROR,'@@@lstUpsertCountries:'+lstUpsertCountries);
+        //System.debug(LoggingLevel.ERROR,'@@@lstUpsertCountries:'+lstUpsertCountries);
         
         if(!lstUpsertCountries.isEmpty())
         {
             upsert lstUpsertCountries IPM_Country__c.Project_Country__c;
         }
         
-        System.debug(LoggingLevel.ERROR,'@@@deleteRolloutsMap:'+deleteRolloutsMap);
+        //System.debug(LoggingLevel.ERROR,'@@@deleteRolloutsMap:'+deleteRolloutsMap);
         if(!deleteRolloutsMap.isEmpty())
         {
             // Rollouts that might have deleted as part of Trigger Logic of updating Key Rollouts To Non Keys.
@@ -898,7 +859,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             delete rolloutListToDelete;
         }
         
-        System.debug(LoggingLevel.ERROR,'@@@deleteCountriesMap:'+deleteCountriesMap);
+        //System.debug(LoggingLevel.ERROR,'@@@deleteCountriesMap:'+deleteCountriesMap);
         if(!deleteCountriesMap.isEmpty())
         {   
             // Before deleting Query the Countries again to validate whether certain countries got deleted as part of Rollout Deletion.
@@ -924,7 +885,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         for (String countryCodeGlobal : setCountryCodesGlobal)
         {
             MDO_Geography__c geography = mapUnileverCountries.get(countryCodeGlobal);
-            System.debug(LoggingLevel.ERROR,'-->>>'+geography.parent_L2__r.mdm_id__c);
+            //System.debug(LoggingLevel.ERROR,'-->>>'+geography.parent_L2__r.mdm_id__c);
             
             String mcoRolloutName = getKeyMCORolloutName(countryCodeGlobal);
             String regionalRolloutName = getRegionalRolloutName(countryCodeGlobal);
@@ -1001,13 +962,13 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     mcoRollout.Regional_Project__c = project.Id;
                 }                    
                 mcoRollout.IPM_Rollout_Project__c = mcoRolloutName;
-                System.debug(LoggingLevel.ERROR,'-->>>'+mapMCOWrappers.get(geography.parent_L2__r.mdm_id__c));
+                //System.debug(LoggingLevel.ERROR,'-->>>'+mapMCOWrappers.get(geography.parent_L2__r.mdm_id__c));
                 System.debug(LoggingLevel.ERROR,'-->>>'+mapMCOWrappers.get(geography.parent_L2__r.mdm_id__c).key);
                 mcoRollout.KeyMCO__c = mapMCOWrappers.get(geography.parent_L2__r.mdm_id__c).key;
                 mapUpsertRollouts.put(mcoRolloutName, mcoRollout);
             }
             
-            System.debug(LoggingLevel.ERROR,'Rollout --->>>'+mcoRollout);
+            //System.debug(LoggingLevel.ERROR,'Rollout --->>>'+mcoRollout);
             
             if(mapExistingCountries.containsKey(countryCodeGlobal))
             {
@@ -1158,8 +1119,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             lstUpsertCountries.add(ipmCountry);
         }
         
-        System.debug(LoggingLevel.ERROR,'mapUpsertRollouts-->>>'+mapUpsertRollouts);
-        System.debug(LoggingLevel.ERROR,'lstUpsertCountries-->>>'+lstUpsertCountries);
+        System.debug(LoggingLevel.ERROR,'mapUpsertRollouts-->>>'+mapUpsertRollouts+'lstUpsertCountries-->>>'+lstUpsertCountries);
+        //System.debug(LoggingLevel.ERROR,'lstUpsertCountries-->>>'+lstUpsertCountries);
     }
     
     /**
@@ -1223,8 +1184,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             lstUpsertCountries.add(ipmCountry);
         }
         
-        System.debug(LoggingLevel.ERROR,'mapUpsertRollouts-->>>'+mapUpsertRollouts);
-        System.debug(LoggingLevel.ERROR,'lstUpsertCountries-->>>'+lstUpsertCountries);
+        //System.debug(LoggingLevel.ERROR,'mapUpsertRollouts-->>>'+mapUpsertRollouts);
+        //System.debug(LoggingLevel.ERROR,'lstUpsertCountries-->>>'+lstUpsertCountries);
                  
     }
     
@@ -1299,8 +1260,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 }
             }
             
-            System.debug(LoggingLevel.ERROR,'mapUpsertRollouts-->>>'+mapUpsertRollouts);
-            System.debug(LoggingLevel.ERROR,'lstUpsertCountries-->>>'+lstUpsertCountries);
+            //System.debug(LoggingLevel.ERROR,'mapUpsertRollouts-->>>'+mapUpsertRollouts);
+            //System.debug(LoggingLevel.ERROR,'lstUpsertCountries-->>>'+lstUpsertCountries);
         }
         catch (Exception ex) 
         {
@@ -1332,7 +1293,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             else
             {
                 String shortName = IPM_Market_Cluster_Short_Names__c.getValues(geography.parent_L2__r.parent_L2__r.mdm_id__c).Short_Name__c;                
-                System.debug(LoggingLevel.ERROR,'IPM_Market_Cluster_Short_Names__c short name -->'+shortName);
+                //System.debug(LoggingLevel.ERROR,'IPM_Market_Cluster_Short_Names__c short name -->'+shortName);
                 return project.IPM_Project_Name__c + IPM_ConstantUtils.UNDERSCORE + shortName;                
             }
         }
@@ -1392,7 +1353,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     *  @throws Exception
     */
     private List<GeographyWrapper> sortWrappersByName(List<GeographyWrapper> wrappersToSort) {
-        try{
+      
             if(wrappersToSort == null || wrappersToSort.size() <= 1){
                 return wrappersToSort;
             }
@@ -1420,16 +1381,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             sortedWrappers.addAll(sortWrappersByName(greaterWrappers));
             
             return sortedWrappers;
-        }
-        catch (Exception ex) 
-        {
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,SORT_WRAPPERS_BY_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
                 
-            System.debug(LoggingLevel.ERROR,'sortWrappersByName exception -->'+ex.getMessage());
-            isError = TRUE;
-            errorMessage = Label.IPM_Generic_ErrorMessage;  
-            return null;
-        }           
     }
     
     /** 

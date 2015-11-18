@@ -231,7 +231,7 @@
                                         <apex:repeat value="{!countryAssessmentWrapListNonEICountries}" var="countryAssessmentWrapEle"> <!--For Header-->
                                             <apex:outputPanel layout="block" styleClass="aHead {!if(countryAssessmentWrapEle.hasLeadSKU,'hasBG','noBG')}">
                                                 <span class='expico fa fa-minus'></span>
-                                                {!countryAssessmentWrapEle.counter}. {!countryAssessmentWrapEle.country} <strong> {!countryAssessmentWrapEle.eiCountryHasNoAssessment} </strong>
+                                                {!countryAssessmentWrapEle.counter}. {!countryAssessmentWrapEle.country}
                                                <span class="SecButtonSet pull-right {!if(countryAssessmentWrapEle.eiWithNoAssessment,'noAssessment','hasAssessment')}">
                                                 <a class="icoButton tick"></a> 
                                                 </span>     

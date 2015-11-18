@@ -1,8 +1,14 @@
 /**
-    @Description: Service to update all following IPMs with Bet changes
+    @Description: Service to update all following IPMs with BET changes
     @Author: Cognizant Technology
     @Date: 7/7/2015
 **/
+
+/*
+    This class has been defined as Without Sharing as its methods would be invoked via BET service methods which needs 
+    access to all related IPM and MDO data irrespective of sharing.
+*/
+    
 public without sharing class IPM_BETUpdateService{ 
     
     private static string BET_FIELD_STATUS = 'status';

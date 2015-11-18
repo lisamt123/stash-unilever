@@ -8,8 +8,6 @@
 public with sharing class IPM_ProjectResourceTriggerHandler 
 { 
     List<ProjectResourceHistoryWrapper> lstPrjResourceHisWrapper;
-    private transient static final String CLASS_NAME = IPM_ProjectResourceTriggerHandler.class.getName();
-    private transient static final String METHOD_NAME = 'trackProjectResourceAuditHistory';
     private transient static final String USER = ' User : ';
     private transient static final String NEW_ROLE = ' New Role : ';
     private transient static final String OPTION_ALL = 'All'; 
@@ -175,19 +173,19 @@ public with sharing class IPM_ProjectResourceTriggerHandler
         if(projResource.IPM_Project__c != null)
         {
             for(FieldSetMember fsm : Schema.SObjectType.IPM_Project_Resource__c.fieldSets.IPM_Project_Resource_Field_Set_EcoDesign.getFields())
-	        {
-		        if (projResource.get(fsm.getFieldPath())!= null && oldResourceMap.get(projResource.id) != null 
-		        && oldResourceMap.get(projResource.id).get(fsm.getFieldPath()) != null && projResource.get(fsm.getFieldPath()) != oldResourceMap.get(projResource.id).get(fsm.getFieldPath())) 
-	            {
-	                projIdsSet.add(projResource.IPM_Project__c);
-	              
-	                //to sync old project as well
-	                if(fsm.getFieldPath() == IPM_ConstantUtils.IPM_PROJECTOBJECT && oldResourceMap.get(projResource.id) != null && oldResourceMap.get(projResource.id).IPM_Project__c != null )
-	                {
-	                    projIdsSet.add(oldResourceMap.get(projResource.id).IPM_Project__c);//to Sync the previous project as well
-	                }  
-	            }
-	        }
+            {
+                if (projResource.get(fsm.getFieldPath())!= null && oldResourceMap.get(projResource.id) != null 
+                && oldResourceMap.get(projResource.id).get(fsm.getFieldPath()) != null && projResource.get(fsm.getFieldPath()) != oldResourceMap.get(projResource.id).get(fsm.getFieldPath())) 
+                {
+                    projIdsSet.add(projResource.IPM_Project__c);
+                  
+                    //to sync old project as well
+                    if(fsm.getFieldPath() == IPM_ConstantUtils.IPM_PROJECTOBJECT && oldResourceMap.get(projResource.id) != null && oldResourceMap.get(projResource.id).IPM_Project__c != null )
+                    {
+                        projIdsSet.add(oldResourceMap.get(projResource.id).IPM_Project__c);//to Sync the previous project as well
+                    }  
+                }
+            }
         }
     }
   
@@ -274,8 +272,8 @@ public with sharing class IPM_ProjectResourceTriggerHandler
           //@@Desing Review - Data sharing update group members
           set<id> projidset = new Set<id>();
           set<string> projglobalidset = new Set<string>();
-          Map<id,IPM_Project__c> projectmap;
-          Map<id,IPM_Project__c> projectGlobalmap;
+          Map<id,IPM_Project__c> projectmap =  new Map<id,IPM_Project__c>();
+          Map<id,IPM_Project__c> projectGlobalmap = new Map<id,IPM_Project__c>();
                       
        for(IPM_Project_Resource__c projres:ProjectResources){
          if(system.trigger.isInsert || system.trigger.isDelete){
@@ -286,14 +284,17 @@ public with sharing class IPM_ProjectResourceTriggerHandler
            }
        } //FOR END       
        if(projidset != null && projidset.size()>0){
-         projectmap = new Map<id,IPM_Project__c>([SELECT id,IPM_Global_Project_Id__c,IPM_Parent_Project__c FROM IPM_Project__c WHERE id IN:projidset or IPM_Parent_Project__c IN:projidset LIMIT 1000]);
+         projectmap = new Map<id,IPM_Project__c>([SELECT id,IPM_Parent_Project__r.IPM_Parent_Project__c,IPM_Global_Project_Id__c,IPM_Parent_Project__c FROM IPM_Project__c WHERE id IN:projidset or IPM_Parent_Project__c IN:projidset or IPM_Parent_Project__r.IPM_Parent_Project__c IN:projidset LIMIT 1000]);
          if(projectmap != null && projectmap.size()>0){ 
            for(IPM_Project__c proj:projectmap.values()){
              projglobalidset.add(proj.IPM_Global_Project_Id__c); 
-			 projglobalidset.add(proj.id);
-			 if(proj.IPM_Parent_Project__c!=null){
-				projglobalidset.add(proj.IPM_Parent_Project__c);
-			 }
+             projglobalidset.add(proj.id);
+             if(proj.IPM_Parent_Project__c!=null){
+                projglobalidset.add(proj.IPM_Parent_Project__c);
+             }
+             if(proj.IPM_Parent_Project__r.IPM_Parent_Project__c!=null){
+                projglobalidset.add(proj.IPM_Parent_Project__r.IPM_Parent_Project__c);   
+             }
            }
            if(projglobalidset != null && projglobalidset.size()>0){
              projectGlobalmap = new Map<id,IPM_Project__c>([select id from IPM_Project__c where id IN: projglobalidset]);  
@@ -318,15 +319,15 @@ public with sharing class IPM_ProjectResourceTriggerHandler
      
         for(ProjectResourceHistoryWrapper resourceHistoryWrapper : lstPrjResourceHisWrapper)
         {
-	       prjResourceHistory = new IPM_Project_Resource_History__c();
-	       prjResourceHistory.IPM_Project__c = resourceHistoryWrapper.projectId;
-	       prjResourceHistory.Old_User__c = resourceHistoryWrapper.oldUserId;
-	       prjResourceHistory.New_User__c = resourceHistoryWrapper.newUserId;
-	       prjResourceHistory.User_Role__c = resourceHistoryWrapper.sUserRole;
-	       prjResourceHistory.Change_Date__c = System.now();
-	       prjResourceHistory.Changed_By__c = UserInfo.getUserId();
-	       prjResourceHistory.Type__c = sType;
-	       lstPrjResourceHistoryToInsert.add(prjResourceHistory);
+           prjResourceHistory = new IPM_Project_Resource_History__c();
+           prjResourceHistory.IPM_Project__c = resourceHistoryWrapper.projectId;
+           prjResourceHistory.Old_User__c = resourceHistoryWrapper.oldUserId;
+           prjResourceHistory.New_User__c = resourceHistoryWrapper.newUserId;
+           prjResourceHistory.User_Role__c = resourceHistoryWrapper.sUserRole;
+           prjResourceHistory.Change_Date__c = System.now();
+           prjResourceHistory.Changed_By__c = UserInfo.getUserId();
+           prjResourceHistory.Type__c = sType;
+           lstPrjResourceHistoryToInsert.add(prjResourceHistory);
         }
         insert lstPrjResourceHistoryToInsert;
     }

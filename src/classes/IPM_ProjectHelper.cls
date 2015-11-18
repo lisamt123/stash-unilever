@@ -409,7 +409,7 @@ public with sharing class IPM_ProjectHelper
             // Get project document specific Information
             
             String projectDocumentQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Document__c',false,null);
-            String projectDocumentWhereClause = ' WHERE IPM_Project__c in :resultantProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+            String projectDocumentWhereClause = ' WHERE IPM_Project__c in :resultantProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR; // NO SONAR QUBE string literal used in dynamic SOQL 
             projectDocumentQuery = projectDocumentQuery + projectDocumentWhereClause;
             projectDocumentMap = new Map<Id,IPM_Project_Document__c>( (List<IPM_Project_Document__c>) database.query(projectDocumentQuery) );
              
@@ -555,7 +555,7 @@ public with sharing class IPM_ProjectHelper
             
             // Get References for Child rollouts for parent Rollouts. we have 2 types of Rollouts. Regional and Local. 
             // Local dont have any childs, so only Regional Rollout in Where Clause
-            String projectRolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null);
+            String projectRolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null); // NO SONAR QUBE 'ipm_project_rollout__c' used in dyanmic SOQL
             String projectRolloutWhereClause = ' WHERE Id in:projectSourceRolloutSet OR (Regional_Rollout__c in :projectSourceRolloutSet AND recordTypeId = :LOCAL_ROLLOUT_RECORDTYPE ) '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
             projectRolloutQuery = projectRolloutQuery + projectRolloutWhereClause;
             Map<Id,IPM_Project_Rollout__c> projectsSourceRolloutsMap = new Map<Id,IPM_Project_Rollout__c>( (List<IPM_Project_Rollout__c>) database.query(projectRolloutQuery) );

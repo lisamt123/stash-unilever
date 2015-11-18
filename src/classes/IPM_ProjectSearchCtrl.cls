@@ -729,7 +729,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     */
     public list<IPM_ClusterMCO> getclusterMCOWrapper() {
       list<IPM_MCO> mcoList;
-      for(MDO_Geography__c geography : [SELECT  Name, parent_L2__c, geography_type__c, parent_L2__r.Name,Status__c FROM MDO_Geography__c]){
+      for(MDO_Geography__c geography : [SELECT  Name, parent_L2__c, geography_type__c, parent_L2__r.Name,Status__c FROM MDO_Geography__c limit 1000]){
       }
       
       list<MDO_Geography__c> goegraphiesMCO = [SELECT  Name, parent_L2__r.Name

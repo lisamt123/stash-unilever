@@ -49,6 +49,9 @@ public with sharing class IPM_ImageUploadController {
         bosscard=new IPM_Bosscard__c ();
         projects=new IPM_Project__c();
         imgurl=IPM_ConstantUtils.IMAGE_URL;
+        project=IPM_ConstantUtils.BLANK;
+        projectId=IPM_ConstantUtils.BLANK;
+        isFromEditPage=IPM_ConstantUtils.BLANK;
         project =ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.IPM_IMGUPLOAD_ISPROJECT);
         projectId =ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.SF_ID);
         isFromEditPage =ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.IPM_IMGUPLOAD_ISEDIT);

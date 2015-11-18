@@ -40,10 +40,10 @@ public with sharing class IPM_HomePageController
     public String ProjectId{get;set;}
     public Map<String,String> ProjectIdMap{get;set;}
     public String taskcountValue;
-    private final Integer DAY_VALUE_SEVEN = 7;
-    private final Integer DAY_VALUE_Fourteen = 14;
+    private static final Integer DAY_VALUE_SEVEN = 7;
+    private static final Integer DAY_VALUE_Fourteen = 14;
     private static final String PLANNED_STR='The planned ';
-    private static final String dateFormat='dd MMMM yyyy';
+    private static final String DATEFORMAT ='dd MMMM yyyy';
     
     /***************************************************************
 *@Description :Constructor to fetch the details of the Project
@@ -127,7 +127,7 @@ public with sharing class IPM_HomePageController
                 for(IPM_Milestone__c ipmmiles:lstipmmilestones){
                     ProjDueDateMap.put(ipmmiles.IPM_Project__c,ipmmiles.IPM_Due_Date__c);
                     if(ipmmiles.IPM_Project__r.IPM_Phase__c == ipmmiles.IPM_Phase__c && String.IsNotBlank(String.valueOf(ipmmiles.IPM_Due_Date__c)) && !ipmmiles.IPM_Completed__c){
-              		DateValue=Date.valueOf(System.today()).daysBetween(Date.valueOf(ipmmiles.IPM_Due_Date__c));
+                    DateValue=Date.valueOf(System.today()).daysBetween(Date.valueOf(ipmmiles.IPM_Due_Date__c));
                             if(DateValue<0){
                                   alertMessageDueDatePast.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,System.Label.IPM_DUE_DATE_FOR +IPM_ConstantUtils.IPM_SPACE+ipmmiles.IPM_Type_of_gate__c +IPM_ConstantUtils.IPM_SPACE+IPM_Utils.off+IPM_ConstantUtils.IPM_SPACE+ipmmiles.IPM_Project__r.IPM_Project_Name__c);
                                  ProjectIdMap.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.Id);
@@ -172,11 +172,11 @@ public with sharing class IPM_HomePageController
                                                 or Local_Project__c IN : ProjIds) and recordtype.Name =: IPM_ConstantUtils.DEFAULT_FINANCIAL_RT Limit: IPM_ConstantUtils.MaxLimit];
                                                     
        for(IPM_Financial__c fin : financialList ){
-       	for(IPM_Financial_Year__c FinYear: fin.IPM_Financial_Years__r){
+        for(IPM_Financial_Year__c FinYear: fin.IPM_Financial_Years__r){
             if(FinYear.Turnover_Global__c ==0 || FinYear.Turnover_Local__c == 0 || FinYear.Turnover_Regional__c == 0 || FinYear.Profit_Before_Overheads_Global__c == 0 ||
               FinYear.Profit_Before_Overheads_Local__c == 0 || FinYear.Profit_Before_Overheads_Regional__c == 0 || FinYear.Gross_Profit_Global__c == 0 || 
               FinYear.Gross_Profit_Local__c == 0 || FinYear.Gross_Profit_Regional__c == 0){
-              	if(ProjDueDateMap.get(fin.Global_Project_Id__c) < system.today().addDays(DAY_VALUE_Fourteen) || ProjDueDateMap.get(fin.Regional_Project__c) < system.today().addDays(DAY_VALUE_Fourteen) || ProjDueDateMap.get(fin.Local_Project__c) < system.today().addDays(DAY_VALUE_Fourteen)){
+                if(ProjDueDateMap.get(fin.Global_Project_Id__c) < system.today().addDays(DAY_VALUE_Fourteen) || ProjDueDateMap.get(fin.Regional_Project__c) < system.today().addDays(DAY_VALUE_Fourteen) || ProjDueDateMap.get(fin.Local_Project__c) < system.today().addDays(DAY_VALUE_Fourteen)){
                     if(fin.Global_Project_Id__c != null){
                         BusinessCaseMessageMap.put(fin.Global_Project_Id__c,Label.IPM_BusinessCaseAlert+fin.Display_Name__c);
                         ProjectIdMap.put(fin.Global_Project_Id__c+fin.Display_Name__c,fin.Global_Project_Id__c);
@@ -200,50 +200,25 @@ public with sharing class IPM_HomePageController
         
         //Adding alert for TLD misalignment
       List<IPM_Project_Rollout__c>projectRolloutList = [SELECT IPM_Project__c,Id,Target_Launch_Date__c,RecordTypeId,Regional_Project__c,Regional_Project__r.IPM_Target_Launch_Dates__c,
-						Regional_Project__r.IPM_Project_Name__c,Local_Project__c,Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.IPM_Project_Name__c
-						FROM IPM_Project_Rollout__c
-						WHERE (IPM_Project__c IN: ProjIds) OR (Regional_Project__c IN: ProjIds) OR (Local_Project__c IN: ProjIds)
-						LIMIT:IPM_ConstantUtils.MaxLimit];
-	 Id regionalRollout = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId();
+                        Regional_Project__r.IPM_Project_Name__c,Local_Project__c,Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.IPM_Project_Name__c
+                        FROM IPM_Project_Rollout__c
+                        WHERE (IPM_Project__c IN: ProjIds) OR (Regional_Project__c IN: ProjIds) OR (Local_Project__c IN: ProjIds)
+                        LIMIT:IPM_ConstantUtils.MaxLimit];
      Id localRollout = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
      
-	 for(IPM_Project_Rollout__c projRollout : projectRolloutList)
+     for(IPM_Project_Rollout__c projRollout : projectRolloutList)
      {
-	 if(projRollout.RecordTypeId == localRollout && projRollout.Local_Project__c != null && projRollout.Target_Launch_Date__c != null && projRollout.Local_Project__r.IPM_Target_Launch_Dates__c != null &&
-     		projRollout.Target_Launch_Date__c != projRollout.Local_Project__r.IPM_Target_Launch_Dates__c && projRollout.Regional_Project__c != null)
-     		{
-     			LstLocalFinTLDMisalignedMessageMap.put(projRollout.Local_Project__c+projRollout.Local_Project__r.IPM_Project_Name__c,IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + projRollout.Local_Project__r.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + projRollout.Regional_Project__r.IPM_Project_Name__c);
-            	ProjectIdMap.put(projRollout.Local_Project__c+projRollout.Local_Project__r.IPM_Project_Name__c,projRollout.Local_Project__c);
-            	
-            	LstFinTLDMisalignedMessageMap.put(projRollout.Regional_Project__c+projRollout.Regional_Project__r.IPM_Project_Name__c,IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + projRollout.Local_Project__r.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + projRollout.Regional_Project__r.IPM_Project_Name__c);
-            	ProjectIdMap.put(projRollout.Regional_Project__c+projRollout.Regional_Project__r.IPM_Project_Name__c,projRollout.Regional_Project__c);
-     		}
-     }
-/*    for(IPM_Project__c eachProject:lstProjects)  
-     {
-    if(eachProject.id != null && IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL.equalsIgnoreCase(eachProject.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equalsIgnoreCase(eachProject.IPM_Project_Type__c))
-    {
-      for(IPM_Project__c localproj:eachProject.IPM_Projects__r)
-      {
-        if(localproj.IPM_Target_Launch_Dates__c != eachProject.IPM_Target_Launch_Dates__c)
-        {
-            LstFinTLDMisalignedMessageMap.put(eachProject.id+localproj.IPM_Project_Name__c,IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + localproj.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + eachProject.IPM_Project_Name__c);
-            ProjectIdMap.put(eachProject.id+localproj.IPM_Project_Name__c,eachProject.id);
+     if(projRollout.RecordTypeId == localRollout && projRollout.Local_Project__c != null && projRollout.Target_Launch_Date__c != null && projRollout.Local_Project__r.IPM_Target_Launch_Dates__c != null &&
+            projRollout.Target_Launch_Date__c != projRollout.Local_Project__r.IPM_Target_Launch_Dates__c && projRollout.Regional_Project__c != null)
+            {
+                LstLocalFinTLDMisalignedMessageMap.put(projRollout.Local_Project__c+projRollout.Local_Project__r.IPM_Project_Name__c,IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + projRollout.Local_Project__r.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + projRollout.Regional_Project__r.IPM_Project_Name__c);
+                ProjectIdMap.put(projRollout.Local_Project__c+projRollout.Local_Project__r.IPM_Project_Name__c,projRollout.Local_Project__c);
+                
+                LstFinTLDMisalignedMessageMap.put(projRollout.Regional_Project__c+projRollout.Regional_Project__r.IPM_Project_Name__c,IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + projRollout.Local_Project__r.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + projRollout.Regional_Project__r.IPM_Project_Name__c);
+                ProjectIdMap.put(projRollout.Regional_Project__c+projRollout.Regional_Project__r.IPM_Project_Name__c,projRollout.Regional_Project__c);
             }
-         }
-    }
-    
-     if(eachProject.id != null && System.Label.IPM_Project_Span_Local.equalsIgnoreCase(eachProject.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equalsIgnoreCase(eachProject.IPM_Project_Type__c))
-     {
-
-      if(eachProject.IPM_Target_Launch_Dates__c != eachProject.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c)
-      {
-        LstLocalFinTLDMisalignedMessageMap.put(eachProject.id+eachProject.IPM_Project_Name__c,IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + eachProject.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + eachProject.IPM_Parent_Project__r.IPM_Project_Name__c);
-        ProjectIdMap.put(eachProject.id+eachProject.IPM_Project_Name__c,eachProject.id);
-        }    
      }
-    } 
-     */
+
         
         // Adding Alert for Local Project leader is blank for rollout Projects
       RolloutProjectAlertMessageMap = new map<Id, String>();
@@ -279,8 +254,8 @@ public with sharing class IPM_HomePageController
           if(betFirstReleaseDueDate<=15 && betFirstReleaseDueDate!=0 && betFirstReleaseDueDate >0) 
            {
              Datetime targetLaunchDate=datetime.newInstance(eachProject.IPM_Target_Launch_Dates__c.year(),eachProject.IPM_Target_Launch_Dates__c.month(),eachProject.IPM_Target_Launch_Dates__c.day());
-           	 Datetime betFirstReleaseDate=datetime.newInstance(eachProject.BET_MS_First_Release_Date__c.year(),eachProject.BET_MS_First_Release_Date__c.month(),eachProject.BET_MS_First_Release_Date__c.day());
-             betMsgFirstReleaseDueDate.add(eachProject.IPM_Project_Name__c +IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(dateFormat) + IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR2+ betFirstReleaseDate.format(dateFormat)); 
+             Datetime betFirstReleaseDate=datetime.newInstance(eachProject.BET_MS_First_Release_Date__c.year(),eachProject.BET_MS_First_Release_Date__c.month(),eachProject.BET_MS_First_Release_Date__c.day());
+             betMsgFirstReleaseDueDate.add(eachProject.IPM_Project_Name__c +IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(DATEFORMAT) + IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR2+ betFirstReleaseDate.format(DATEFORMAT)); 
              ProjectId=eachProject.id;
            }
          } 
@@ -290,9 +265,9 @@ public with sharing class IPM_HomePageController
            betFinalReleaseDueDate = system.today().daysBetween(eachProject.BET_MS_Final_Release_Date__c);
            if(betFinalReleaseDueDate<=15 && betFinalReleaseDueDate!=0 && betFirstReleaseDueDate >0) 
           {
-        	Datetime targetLaunchDate=datetime.newInstance(eachProject.IPM_Target_Launch_Dates__c.year(),eachProject.IPM_Target_Launch_Dates__c.month(),eachProject.IPM_Target_Launch_Dates__c.day());
-          	Datetime betFinalReleaseDate=datetime.newInstance(eachProject.BET_MS_Final_Release_Date__c.year(),eachProject.BET_MS_Final_Release_Date__c.month(),eachProject.BET_MS_Final_Release_Date__c.day());
-            betMsgFinalReleaseDueDate.add(eachProject.IPM_Project_Name__c +IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(dateFormat) + IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR2+ betFinalReleaseDate.format(dateFormat)); 
+            Datetime targetLaunchDate=datetime.newInstance(eachProject.IPM_Target_Launch_Dates__c.year(),eachProject.IPM_Target_Launch_Dates__c.month(),eachProject.IPM_Target_Launch_Dates__c.day());
+            Datetime betFinalReleaseDate=datetime.newInstance(eachProject.BET_MS_Final_Release_Date__c.year(),eachProject.BET_MS_Final_Release_Date__c.month(),eachProject.BET_MS_Final_Release_Date__c.day());
+            betMsgFinalReleaseDueDate.add(eachProject.IPM_Project_Name__c +IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(DATEFORMAT) + IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR2+ betFinalReleaseDate.format(DATEFORMAT)); 
             ProjectId=eachProject.id;
           }      
 
@@ -360,7 +335,7 @@ public with sharing class IPM_HomePageController
             isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
             isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
             if(isCentralTeam || isBPUser){
-				isProjectEditable=true;
+                isProjectEditable=true;
                 isBossCardEditable=true;
             }     
         }   

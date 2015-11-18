@@ -21,10 +21,7 @@ public with sharing class IPM_RolloutTriggerHandler
     private List<IPM_Financial__c> lstDeleteFinancials;
     private List<IPM_Project_Rollout__c> lstDeleteRollouts;
     
-    private static final string CLASS_NAME = IPM_RolloutTriggerHandler.class.getName();
-    private static final string PROCESS_DELETE = 'processDelete';
-    private static final string PROCESS_INSERT = 'processInsert';
-    private static final string PROCESS_UPDATE = 'processUpdate';
+    
     
     /*****************************************************************************************************************************
     * @description      Constructor
@@ -118,17 +115,17 @@ public with sharing class IPM_RolloutTriggerHandler
                         
                         if(regionalRollout.IPM_Project__r.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) 
                         { // If it is a Key MCO and stage is ideas, delete the corresponding financial.
-	                        if(localRollout.KeyMCO__c)
-	                        {
-	                            if(setCurrentRolloutIds.contains(localRollout.Id)) 
-	                            {
-	                                setFinancialExternalIds.add(localRollout.IPM_Rollout_Project__c);
-	                            }
-	                        } 
-	                        else
-	                        {   // If it is not a key Rollout,then add it to non key to get composite list of non keys.
-	                            setNonKeyRolloutIds.add(localRollout.Id);
-	                        }
+                            if(localRollout.KeyMCO__c)
+                            {
+                                if(setCurrentRolloutIds.contains(localRollout.Id)) 
+                                {
+                                    setFinancialExternalIds.add(localRollout.IPM_Rollout_Project__c);
+                                }
+                            } 
+                            else
+                            {   // If it is not a key Rollout,then add it to non key to get composite list of non keys.
+                                setNonKeyRolloutIds.add(localRollout.Id);
+                            }
                         }
                         else
                         {
@@ -170,16 +167,16 @@ public with sharing class IPM_RolloutTriggerHandler
                     if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) 
                     {
                         if(localRollout.KeyMCO__c)
-	                    {
-	                        if(setCurrentRolloutIds.contains(localRollout.Id) )
-	                        {
-	                            setFinancialExternalIds.add(localRollout.IPM_Rollout_Project__c);
-	                        }   
-	                    }
-	                    else
-	                    {
+                        {
+                            if(setCurrentRolloutIds.contains(localRollout.Id) )
+                            {
+                                setFinancialExternalIds.add(localRollout.IPM_Rollout_Project__c);
+                            }   
+                        }
+                        else
+                        {
                             setNonKeyRolloutIds.add(localRollout.Id);         
-	                    }    
+                        }    
                     }
                     else
                     { // If the phase is after ideas dont delete non key rollouts.

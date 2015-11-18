@@ -107,101 +107,6 @@
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/IPM_SucessPhaseChangeTemplate</template>
     </alerts>
-    <alerts>
-        <fullName>Notify_leaders_the_TLD_changed</fullName>
-        <description>Notify leaders the TLD changed after Contract</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Deputy_Project_Leader__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>IPM_Finance_Member__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>IPM_Project_Gatekeeper__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>IPM_Project_Leader__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Notify_Leads_TLD_is_changed</template>
-    </alerts>
-    <alerts>
-        <fullName>Notify_leaders_the_TLD_changed_PL_DPL_Same</fullName>
-        <description>Notify leaders the TLD changed PL DPL Same</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Deputy_Project_Leader__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>IPM_Finance_Member__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>IPM_Project_Leader__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Notify_Leads_TLD_changed_PL_DPL_Same</template>
-    </alerts>
-    <alerts>
-        <fullName>Notify_leaders_the_TLD_changed_during_Charter_doc</fullName>
-        <description>Notify leaders the TLD changed during Charter doc</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Deputy_Project_Leader__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>IPM_Finance_Member__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>IPM_Project_Leader__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Notify_Leads_TLD_is_changed</template>
-    </alerts>
-    <alerts>
-        <fullName>Notify_the_Local_Project_leader_when_local_project_created</fullName>
-        <description>Notify the Local Project leader when local project created</description>
-        <protected>false</protected>
-        <recipients>
-            <field>IPM_Project_Leader__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Notify_Local_Leader_when_local_project_created</template>
-    </alerts>
-    <alerts>
-        <fullName>Send_mail_when_TLD_is_changed_after_Contract_gate</fullName>
-        <description>Send mail when TLD is changed after Contract gate</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Deputy_Project_Leader__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>IPM_Finance_Member__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>IPM_Project_Gatekeeper__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>IPM_Project_Leader__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Notify_Leads_TLD_changed</template>
-    </alerts>
     <fieldUpdates>
         <fullName>Bosscard_Status</fullName>
         <field>IPM_Bosscard_Status__c</field>
@@ -339,15 +244,6 @@
         <name>Update Threshold Value</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_field_Previous_Target_Launch_Date</fullName>
-        <field>Previous_Target_Launch_Date__c</field>
-        <formula>PRIORVALUE(IPM_Target_Launch_Dates__c)</formula>
-        <name>Update field Previous_Target_Launch_Date</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -554,25 +450,6 @@
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
-        <fullName>Status check</fullName>
-        <actions>
-            <name>Dummyflow</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>IPM_Project__c.IPMProject_Span__c</field>
-            <operation>equals</operation>
-            <value>Regional</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>IPM_Project__c.IPM_Phase__c</field>
-            <operation>equals</operation>
-            <value>Feasibility</value>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
         <fullName>Successful Project Phase</fullName>
         <actions>
             <name>IPM_Send_Success_Phase_Change_Notification</name>
@@ -638,17 +515,6 @@
         <fullName>Update field on change of ms release field</fullName>
         <active>false</active>
         <formula>ISCHANGED( BET_MS_First_Release_Date__c )</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Update the previous TLD value</fullName>
-        <actions>
-            <name>Update_field_Previous_Target_Launch_Date</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <description>Update the previous TLD value in Previous_Target_Launch_Date__c field</description>
-        <formula>ISCHANGED(IPM_Target_Launch_Dates__c)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

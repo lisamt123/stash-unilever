@@ -1,21 +1,23 @@
-public class IPM_GetHelpDoc {
+public with sharing class IPM_GetHelpDoc {
+
     public string helpDocName{get;set;}
     public string strDocUrl{get;set;}
     public IPM_Milestone__c milestoneObj{get;set;}
     
-   // public String nickName {get; set;}
-   
     public IPM_GetHelpDoc()
     {
         String strurl = ApexPages.currentPage().getUrl();
         strurl = strurl.split('apex/')[1];
         strurl = strurl.split('\\?')[0];
-        //system.debug('//ss' + strurl) ;
-       // system.debug('//ss' + nickName) ;
+
         helpDocName = strurl;
     }
     
     public IPM_GetHelpDoc(ApexPages.StandardController stdController){
+        this();
+    }
+    
+    public IPM_GetHelpDoc(IPM_Team_Assignment_Controller teamAssignCtrl) {
         this();
     }
     
@@ -120,23 +122,5 @@ public class IPM_GetHelpDoc {
             return null;
         }
     }
-    
-    
-  /*  public String getURL()
-    {
-        List<Document> lstDocument = [Select Id from Document where Name =: helpDocName  limit 1];
-                strDocUrl = '/servlet/servlet.FileDownload?file='+lstDocument[0].Id;
-        return strDocUrl;
-    }*/
-    
-   /* public string getPg1(){
-        string p1 = System.currentPageReference().getParameters().get('p1');
-        system.debug('//ss' + p1);
-        return p1;
-    }
-    
-    public string getPg2(){
-        //return System.currentPageReference().getParameters().get('p2');
-        return nickname;
-    }*/
+  
 }

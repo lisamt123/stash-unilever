@@ -81,8 +81,6 @@ public class IPM_GatekeeperChecklist_Test{
             projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
             where IPM_Project_Document__c=:projDocList[0].Id];
             system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id);
-            pRef = Page.IPM_RiskQuestionnaireView;
-            pRef.getParameters().put(IPM_ConstantUtils.SF_ID, projectListObj[0].Id);
             ipmGK=new IPM_GatekeeperChecklist();
             
         }

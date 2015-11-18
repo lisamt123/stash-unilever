@@ -40,7 +40,7 @@ public class IPM_MyList_Test{
          {
            insert projectList;
          }  
-         system.assertEquals(8 , [Select id from IPM_Project__c].size(),'Projects are created');
+         system.assertEquals(9 , [Select id from IPM_Project__c limit 1000].size(),'Projects are created');
       }
       
       
@@ -50,7 +50,7 @@ public class IPM_MyList_Test{
         projIdSet =  new Set<Id>();
         projResourceList = new list<IPM_Project_Resource__c>();
         BDUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser('BD');
-        //System.runAs(platformUser){
+        
 	        Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3','TestComments4','TestComments5','TestComments6','TestComments7','TestComments8','TestComments9','TestComments10'};
 	        projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_PM_Approach__c,IPM_Complexity__c,(Select Id from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
 	                (Select Id,Name,IPM_Assignee__c,IPM_Due_Date1__c,IPM_Completed__c,IPM_Project__r.Is_Archieved__c,IPM_Task_Complexity__c,IPM_Project__c,IPM_Project_Document_Section__c,IPM_Function__c,IPM_Section__c from Tasks__r),(Select Id,Name from IPM_Milestones__r)
@@ -70,14 +70,14 @@ public class IPM_MyList_Test{
 	            }
 	            
 	             IPM_Project_Resource__c projRes = IPM_TestFactory_Helper.createIPMProjectResource(project.Id,false); 
- 	             //projRes.IPM_User__c = BDUser.id;
+ 	             
 	            projRes.IPM_Role_Type__c ='BD';
 	            projResourceList.add(projRes);
 	        }
 	        insert projResourceList;
-	        //list<IPM_Task__c> taskList = [select id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Due_Date1__c,IPM_Completed__c from IPM_Task__c where IPM_Project__c in:projIdSet];
-	        system.assertEquals(8, [Select Id from IPM_Task__c].size(),'task created');
-        //}
+	        
+	        system.assertEquals(8, [Select Id from IPM_Task__c limit 1000].size(),'task created');
+        
         return taskList;
      }
     /*
@@ -298,9 +298,9 @@ public class IPM_MyList_Test{
                 List<Apexpages.Message> msgs = ApexPages.getMessages();
                 boolean b = false;
                 for(Apexpages.Message msg : msgs){
-                    //if(msg.contains(projList[0].Name)){
+                    
                         b = true;
-                    //}
+                    
                 }
                 system.assertEquals(b,true,'page messages are added');
              }

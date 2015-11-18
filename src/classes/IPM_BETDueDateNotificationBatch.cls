@@ -16,7 +16,7 @@ global without sharing class IPM_BETDueDateNotificationBatch implements Database
     private Set<Id> projIdNewProjectsSet ;// set of project ids
     private map<Id,Set<Id>> subjectIdMentionIdSetMap ;//project id as key and respective PL's id set as value
     private Set<Id> projLeadSet ;//project leaders id set 
-    private static final String dateFormat='dd MMMM yyyy';
+    private static final String DATEFORMAT='dd MMMM yyyy';
     
     global Database.QueryLocator start(Database.BatchableContext bC) {
         Date dueInFifteeneDays = system.today().addDays(15); // Milestones approaching due date in next 15 days. // variable used in query below NO SONAR
@@ -44,13 +44,13 @@ global without sharing class IPM_BETDueDateNotificationBatch implements Database
                 if(String.IsNotBlank(String.valueOf(eachProject.BET_MS_First_Release_Date__c)))
                 {
                 	Datetime betFirstReleaseDate=datetime.newInstance(eachProject.BET_MS_First_Release_Date__c.year(),eachProject.BET_MS_First_Release_Date__c.month(),eachProject.BET_MS_First_Release_Date__c.day());
-                    chatterFeedForBETRelease(eachProject,eachProject.BET_MS_First_Release_Date__c,IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(dateFormat) + IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR2+betFirstReleaseDate.format(dateFormat));
+                    chatterFeedForBETRelease(eachProject,eachProject.BET_MS_First_Release_Date__c,IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(DATEFORMAT) + IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR2+betFirstReleaseDate.format(DATEFORMAT));
                 }
                 //post chatter feed for BET Final release
                 if(String.IsNotBlank(String.valueOf(eachProject.BET_MS_Final_Release_Date__c)))
                 {
                 	Datetime betFinalReleaseDate=datetime.newInstance(eachProject.BET_MS_Final_Release_Date__c.year(),eachProject.BET_MS_Final_Release_Date__c.month(),eachProject.BET_MS_Final_Release_Date__c.day());
-                    chatterFeedForBETRelease(eachProject,eachProject.BET_MS_Final_Release_Date__c,IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(dateFormat) + IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR2+betFinalReleaseDate.format(dateFormat));
+                    chatterFeedForBETRelease(eachProject,eachProject.BET_MS_Final_Release_Date__c,IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1 + targetLaunchDate.format(DATEFORMAT) + IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR2+betFinalReleaseDate.format(DATEFORMAT));
                 }
             } 
         }        
@@ -87,7 +87,7 @@ global without sharing class IPM_BETDueDateNotificationBatch implements Database
                 projIdNewProjectsSet.add(eachProject.id);
                 subjectIdMentionIdSetMap.put(eachProject.id,projLeadSet);
                 projIdchatterMessageMap.put(eachProject.id,IPM_ConstantUtils.COMMA+ eachProject.IPM_Project_Name__c +BETMessage);
-                ChatterUtils.postChatterFeedWithMention(projIdNewProjectsSet, projIdchatterMessageMap, subjectIdMentionIdSetMap );
+                IPM_ChatterUtils.postChatterFeedWithMention(projIdNewProjectsSet, projIdchatterMessageMap, subjectIdMentionIdSetMap );
                 projLeadSet.clear();  
             }
         }

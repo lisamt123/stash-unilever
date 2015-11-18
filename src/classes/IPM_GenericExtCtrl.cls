@@ -18,7 +18,7 @@ public with sharing class IPM_GenericExtCtrl {
     */
     public PageReference red() {
         
-        PageReference pageRef;
+        PageReference pageRef = null;
         if(urlId != Null && urlId.startsWith(IPM_Utils.getsObjPrefix('IPM_Project_Document__c'))) {
             IPM_Project_Document__c sObj = [SELECT IPM_Project__c FROM IPM_Project_Document__c WHERE Id = :urlId];
             urlId = sObj.IPM_Project__c;

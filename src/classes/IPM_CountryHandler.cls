@@ -12,6 +12,10 @@ public with sharing class IPM_CountryHandler implements ITrigger{
     private static final String DELETE_EVENT = 'Delete';
     private static final String UPDATE_EVENT = 'Update';   
     
+    // Constructor
+    public IPM_CountryHandler() {       
+        ExceptionLoggingHelper.initializeExceptionLog(); 
+    }
     /***********************************************************************************************************************************
     * bulkBefore
     *
@@ -137,11 +141,20 @@ public with sharing class IPM_CountryHandler implements ITrigger{
         if(trigger.isUpdate)
         {
             countryListIds=new Set<Id>();
-            
+            projectIdSet.clear();
             for(IPM_Country__c coun:(List<IPM_Country__c>)Trigger.New)
             {
                 if(!String.isBlank(coun.IPM_Regional_Project__c)){
                     countryListIds.add(coun.Id);
+                }
+                if(coun.IPM_Project__c != null){
+                    projectIdSet.add(coun.IPM_Project__c);
+                }
+                if(coun.IPM_Regional_Project__c != null){
+                    projectIdSet.add(coun.IPM_Regional_Project__c);
+                }
+                if(coun.IPM_Local_Project__c != null){
+                    projectIdSet.add(coun.IPM_Local_Project__c);
                 }
             }
             

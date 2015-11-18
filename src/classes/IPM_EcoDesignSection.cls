@@ -23,6 +23,7 @@ public with sharing class IPM_EcoDesignSection {
     public List<CountryAssessmentWrap> countryAssessmentWrapListNonEICountries {get;set;}
     public final Map<String,List<IPM_Assessment__c>> countryAssessmentMap ;
     public final Map<String, IPM_Country__c> countryMap ;
+	public final Set<String> nonEICountryWithIdeasPhase ;
     public final IPM_Project_Type__c projectType ;
     public integer noOfEICountries {get;set;}
     public integer noOfNonEICountries {get;set;}
@@ -32,6 +33,10 @@ public with sharing class IPM_EcoDesignSection {
     public static final String GKM2 = 'GKM2';
     public static final String GKM4 = 'GKM4';
     public static final String ROLLOUT = 'Rollout';
+    public Id ProjDocumentSecId;
+    public String projDocName;
+    public IPM_Project_Document_Section__c projDocSec;
+    public String projPhaseForCurrentDoc;
     /*******************************************************************************************************
     * @description:initialise variables and get eco design data based on project document section id
     * @param:
@@ -40,8 +45,32 @@ public with sharing class IPM_EcoDesignSection {
     */ 
     public IPM_EcoDesignSection() {
         projId=Apexpages.currentpage().getparameters().get('Id');
+        ProjDocumentSecId=Apexpages.currentpage().getparameters().get('projDocSecId');
+        projDocName = Apexpages.currentpage().getparameters().get('printDoc');
+		if(projDocName == null && ProjDocumentSecId != null){
+        	projDocSec = [Select id,IPM_Gate_Document__c from IPM_Project_Document_Section__c WHERE Id =:ProjDocumentSecId Limit 1][0];
+        	projDocName = projDocSec.IPM_Gate_Document__c;
+        }
+        if(projDocName != null){
+        	if(IPM_ConstantUtils.CHARTER_GATE.equalsIgnoreCase(projDocName)){
+	        	projPhaseForCurrentDoc = IPM_ConstantUtils.PHASE_IDEAS;
+	        }
+	        else if(IPM_ConstantUtils.CONTRACT_GATE.equalsIgnoreCase(projDocName)){
+	        	projPhaseForCurrentDoc = IPM_ConstantUtils.PHASE_FEASIBILITY;
+	        }
+	        else if(IPM_ConstantUtils.MARKET_READY_GATE.equalsIgnoreCase(projDocName)){
+	        	projPhaseForCurrentDoc = IPM_ConstantUtils.PHASE_CAPABILITY;
+	        }
+	        else if(IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE.equalsIgnoreCase(projDocName)){
+	        	projPhaseForCurrentDoc = IPM_ConstantUtils.PHASE_MARKET_READY;
+	        }
+        }
+        else{
+        	projPhaseForCurrentDoc = project.IPM_Phase__c;
+        }
         countryAssessmentMap = new Map<String,List<IPM_Assessment__c>>();
         countryMap = new Map<String, IPM_Country__c>();
+		nonEICountryWithIdeasPhase = new Set<String>();
         noOfEICountries = 0;
         noOfNonEICountries = 0;
         Boolean hasLeadSKU = false;
@@ -77,8 +106,14 @@ public with sharing class IPM_EcoDesignSection {
                                                     IPM_Is_Lead_Assessment__c ,IPM_Country_Category_Avg_Waste_PCU__c,IPM_Country_Category_Avg_Water_PCU__c,
                                                     IPM_Country_Category_Avg_GHG_PCU__c,Project_Phase__c,IPM_Is_Category_Avg_Based__c,IPM_SKU_Name__c,
                                                     IPM_Comparison_Rep_GTU_Name__c From IPM_Assessment__c 
-                                                    Where IPM_Country__c IN:countriesList and Project_Phase__c =:project.IPM_Phase__c Order by IPM_SKU_Type__c asc LIMIT 50000]) {
+                                                    Where IPM_Country__c IN:countriesList and Project_Phase__c =:projPhaseForCurrentDoc Order by IPM_SKU_Type__c asc LIMIT 50000]) {
                 countryAssessmentMap.get(assessmentEle.IPM_Country__r.Country_Name__c).add(assessmentEle);                                          
+            }
+            if(project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE){
+            	for(IPM_Assessment__c assessmentEle : [Select Id,IPM_SKU_Type__c,IPM_Country__r.Country_Name__c From IPM_Assessment__c 
+                                                       Where IPM_Country__c IN:countriesList and Project_Phase__c =:IPM_ConstantUtils.PHASE_IDEAS Order by IPM_SKU_Type__c asc LIMIT 50000]) {
+				    nonEICountryWithIdeasPhase.add(assessmentEle.IPM_Country__r.Country_Name__c);
+	            }
             }
         }
         if(projectType != null) { 
@@ -109,6 +144,10 @@ public with sharing class IPM_EcoDesignSection {
                         }
                         countryAssessmentWrapListNonEICountries.add(new CountryAssessmentWrap(countryName,countryAssessmentMap.get(countryName),false,++noOfNonEICountries,hasLeadSKU));
                     }
+					else if(countryAssessmentMap.get(countryName).isEmpty() && project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE && !nonEICountryWithIdeasPhase.isEmpty()) {
+						if( nonEICountryWithIdeasPhase.contains(countryName))
+						countryAssessmentWrapListNonEICountries.add(new CountryAssessmentWrap(countryName,countryAssessmentMap.get(countryName),true,++noOfNonEICountries,hasLeadSKU));
+                    }
                 } 
             }
         }
@@ -132,7 +171,6 @@ public with sharing class IPM_EcoDesignSection {
         public String country {get;set;}
         public List<IPM_Assessment__c> assessmentList{get;set;}
         public boolean eiWithNoAssessment {get;set;}
-        public String eiCountryHasNoAssessment {get;set;}
         public Integer counter { get; set; }
         public boolean hasLeadSKU {get;set;}
         public CountryAssessmentWrap(String con, List<IPM_Assessment__c> assessmentLst,boolean noAssessment, Integer countr, Boolean LeadSKU) {
@@ -140,11 +178,7 @@ public with sharing class IPM_EcoDesignSection {
             counter = countr;
             country = con;
             assessmentList = assessmentLst;
-            eiWithNoAssessment = noAssessment;
-            eiCountryHasNoAssessment = '';  
-            if(noAssessment) {
-                eiCountryHasNoAssessment = Label.EI_With_No_Assessment; 
-            }
+            eiWithNoAssessment = noAssessment; 
         }
     }
 }

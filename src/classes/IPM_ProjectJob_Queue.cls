@@ -4,6 +4,12 @@
     @Author: Cognizant Technology
     @Date: Sep 2014
 */
+
+/*  
+    This class would initially run in System mode to make sure that it can view all project specific data and associations.
+    However internal invocations for Helpers are 'With sharing'. 
+*/
+
 public with sharing class  IPM_ProjectJob_Queue implements Queueable  
 {
     
@@ -65,43 +71,7 @@ public with sharing class  IPM_ProjectJob_Queue implements Queueable
                         }
                         else
                         {
-                            List<IPM_Project__c>projectShrList=[SELECT ID,IPM_Global_Project_Id__c FROM IPM_Project__c WHERE ID IN:projectsIdsToBeProcessed LIMIT 1000];
-			                // At this point we need to start working on Projects.
-			                if(projectShrList !=null && !projectShrList.isEmpty())
-			                {
-			                    
-			                    //@@ Data Sharing Change - Update the queue Name & update the Owner id of the project to Queue in batch process 
-			                    
-			                    Set<id> projideset = new Set<id>();
-			                    String projectidstr;
-			                    Set<id> projidesets = new Set<id>();
-			                    
-			                    for(IPM_Project__c project:projectShrList){
-			                        projectidstr = project.Id;
-			                        if(projectidstr.Substring(0,15) == project.IPM_Global_Project_Id__c){
-			                            projideset.add(project.Id);
-			                        }
-			                        projidesets.add(project.IPM_Global_Project_Id__c);
-			                        
-			                        
-			                    }
-			                    
-			                    if(projideset != null && projideset.size()>0){
-			                        IPM_GroupManagement.groupNameUpdate(projideset);
-			                    
-			                    }
-			                    
-			                    if ([SELECT count() FROM AsyncApexJob WHERE JobType=:IPM_ConstantUtils.IPM_BATCHAPEX AND (Status =:IPM_ConstantUtils.IPM_PROCESSING OR Status =:IPM_ConstantUtils.IPM_PREPARE OR Status = :IPM_ConstantUtils.IPM_QUEUED)] < IPM_ConstantUtils.IPM_BATCHLIMIT)
-			                    {  
-			                        Database.executeBatch(new IPM_ProjectOwnerUpdate(projidesets));
-			                    } 
-			                    else 
-			                    {                    
-			                        IPM_ProjectOwnerUpdatescheduler s = new IPM_ProjectOwnerUpdatescheduler(projidesets);  
-			                        System.schedule(IPM_ConstantUtils.IPM_JOBSTATED_AT + String.valueOf(Datetime.now()), IPM_ConstantUtils.IPM_NEXT_FIRE_TIME, s); 
-			                    }
-			               
-			               }
+                            IPM_ProjectOwnerChangeQueue.processProjectSharing(projectMap.keyset()); 
                         }
                     }
                 
@@ -113,7 +83,7 @@ public with sharing class  IPM_ProjectJob_Queue implements Queueable
             Database.Rollback(phaseChangeSavePoint); 
             // Mark the Project Job status as Failed on Failure.
             IPM_ProjectJobHelper.markProjectAsFailed(projectsIdsToBeProcessed);
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'IPM_ProcessPhaseChangeQueue','execute',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,'execute',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
         } 
     }
     

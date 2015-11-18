@@ -24,7 +24,7 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
     //*@Description: Specifies complexity type
     public string complexityType{get;set;}
     private final String IPM_TASKVIEW_STR = IPM_Taskview.class.getName();
-    private final String ERROR_STR = 'Error';
+    private static final String ERROR_STR = 'Error';
     public boolean isCreateTask{get;set;}
     
     /****************************************************************************
@@ -76,7 +76,7 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
         try
         {
             Id loggedInUser = userinfo.getuserid();
-            System.debug('resources===>'+[Select Id,IPM_Role_Type__c,IPM_User__c from IPM_Project_Resource__c]);
+            System.debug('resources===>'+[Select Id,IPM_Role_Type__c,IPM_User__c from IPM_Project_Resource__c limit 1000]);
             System.debug('logged-in user===>'+userinfo.getuserid());
             System.debug('lprojectId===>'+projectId);
             // To query the Team Members on project Resource object

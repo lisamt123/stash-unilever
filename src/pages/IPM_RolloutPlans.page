@@ -21,11 +21,7 @@
          <div class="gradientbg"> 
               <c:IPM_ProjectDetails project="{!project}" activeItem="rolloutPlan"/>                    
                 </div>                
-                
-              <apex:outputPanel id="validationErrorMsg">
-               <!-- <apex:outputText styleClass="rolloutErrorBox" value="{!validationError}" rendered="{!NOT(ISBLANK(validationError))}"/>-->
-            </apex:outputPanel>
-                
+  
                 <div class="ipmContent">
                     <div class="row finwrapper">
                         <div class="col-sm-12">

@@ -3,7 +3,12 @@
     @Author: Cognizant Technology
     @Date: 7/7/2015
 **/
-public class IPM_BETWrapper{  
+
+/*
+    This class has been declared withoput sharing as this is used in BET integartion which requires access 
+        to all related IPM and MDO data.
+*/    
+public without sharing class IPM_BETWrapper{  
     
     //Map containing variable to field mapping
     public Map<String,String> wrapperFieldMap = new Map<String,String>{

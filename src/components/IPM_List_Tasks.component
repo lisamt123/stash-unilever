@@ -22,10 +22,10 @@
                             <div class="pull-left heading3 toDoborder blue ipmPanelHeading">{!$Label.IPM_ToDosLabel}</div>
                             <apex:outputPanel rendered="{!projectObj.IPM_PM_Approach__c='Internal'}"> 
                             <div class="pull-left ipmStatistics">
-                                <c:IPM_StatisticRevamp colorClass="green" kpiValue="{!closedTasks}" kpi="Completed" />
+                                <c:IPM_Statistic colorClass="green" kpiValue="{!closedTasks}" kpi="Completed" />
                             </div>
                             <div class="pull-left ipmStatistics last">
-                                <c:IPM_StatisticRevamp colorClass="gray" kpiValue="{!openTasks}" kpi="Open" />
+                                <c:IPM_Statistic colorClass="gray" kpiValue="{!openTasks}" kpi="Open" />
                             </div>
                             </apex:outputPanel>    
                         </div>
@@ -362,7 +362,7 @@
              </apex:form>                  
              <apex:outputPanel id="jsLoad">         
              <script>
-             var IPMAppComp = {errMsg:'{!$Label.delete_task_msg}', removeToDo:'{!$Label.IPM_REMOVE_TODO}', assignee:'{!JSENCODE(user)}', selectedValues:'{!JSENCODE(phase)}', isCompleteTasks:'{!JSENCODE(isCompleteTasks)}'};   
+             var IPMAppComp = {errMsg:'{!$Label.IPM_Delete_task_msg}', removeToDo:'{!$Label.IPM_REMOVE_TODO}', assignee:'{!JSENCODE(user)}', selectedValues:'{!JSENCODE(phase)}', isCompleteTasks:'{!JSENCODE(isCompleteTasks)}'};   
                  
              </script>           
              </apex:outputPanel> 

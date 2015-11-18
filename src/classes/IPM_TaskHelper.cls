@@ -19,7 +19,7 @@ public with sharing class IPM_TaskHelper {
     
     public static void prepareCustomTaskName(IPM_Task__c newtaskObj,Map<Id,IPM_Project__c> projectDetailMap) 
     {
-    	Id recordTypeIdValue = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPM_STANDARD_TASKS).getRecordTypeId();
+    	Id recordTypeIdValue = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
     	
     	if(newTaskObj.IPM_Project__c !=null && projectDetailMap.containsKey(newTaskObj.IPM_Project__c) )
         {
@@ -33,29 +33,27 @@ public with sharing class IPM_TaskHelper {
           {
             projectName = associatedProject.Name;
           }
-          //system.debug('projectName'+projectName);
+          
           String taskName = IPM_ConstantUtils.BLANK;
           if(newTaskObj.RecordTypeId == recordTypeIdValue)
           {
-          	taskName = '-' + newTaskObj.IPM_Task_Name__c;
+          	  taskName = projectName + '-' + newTaskObj.IPM_Task_Name__c;
+	          
+	          if(!String.isBlank(taskName) && taskName.length() >= 80)
+	          {
+	                newTaskObj.Name = taskName.substring(0,79);
+	          }
+	          else
+	          {
+	                newTaskObj.Name = taskName;
+	          }
           }
-          else
-          {
-          	taskName = projectName + '-' + newTaskObj.IPM_Task_Name__c;
-          }
-          //system.debug('taskName'+taskName);
-          if(!String.isBlank(taskName) && taskName.length() >= 80)
-          {
-                newTaskObj.Name = taskName.substring(0,79);
-          }
-          else
-          {
-                newTaskObj.Name = taskName;
-          }
-          //system.debug('newTaskObj.Name'+newTaskObj.Name);
         }   
     }
-    
+     /**************************************************************
+    * @description: Assigne due date for task depending upon milestone due date  
+    * @param1 newtaskObj : incoming Task Obj
+    */
     public static void updateTaskDueDateBasedOnMS(List<IPM_Task__c> taskList)
     {
     	
@@ -159,7 +157,6 @@ public with sharing class IPM_TaskHelper {
     */
    // @InvocableMethod 
     public static void reAssignTasksForInActiveUsrs(list<User> inActiveUsrsList) {
-        system.debug('******inside reAssignTasksForInActiveUsrs');
        Set<Id> usersId = new Set<Id>();
        for(User eachUser : inActiveUsrsList) {
             usersId.add(eachUser.id);
@@ -238,7 +235,6 @@ public with sharing class IPM_TaskHelper {
                 IPM_Project_Resource__c prObj = eachPR;
                 IPM_Project_Resource__c oldPR = oldProjectResourcesMap.get(eachPR.Id);
                 prObj.IPM_User__c = usersToReplaceMap.get(oldPR.IPM_User__c);
-                //prObj.IPM_Project__c = eachPR.IPM_Project__c;
                 projectResourcesToUpdate.add(prObj);
                 usersId.add(prObj.IPM_User__c);
                 usersId.add(oldPR.IPM_User__c);
@@ -434,7 +430,6 @@ public with sharing class IPM_TaskHelper {
                                     {
                                         newTask.IPM_Assignee__c = projectDetail.IPM_Project_Leader__c;
                                     }
-                                    //system.debug('*****newTask.IPM_Project_Document_Section__c'+newTask.IPM_Project_Document_Section__c);
                                     if((newTask.IPM_Section__c != null && newTask.IPM_Project_Document_Section__c != null) ||
                                     	(newTask.IPM_Section__c == null && newTask.IPM_Project_Document_Section__c == null))
                                     {
@@ -650,7 +645,6 @@ public with sharing class IPM_TaskHelper {
         map<String,Id> funcAssigneeIdMap  = new map<String,Id> ();
         funcAssigneeIdMap = createFunctionalRoleUserMapping(projectId);
         list<IPM_Task__c> tasksToUpdate = new list<IPM_Task__c>();
-        
         if(!funcAssigneeIdMap.isEmpty())
         {
             // query all the task belonging to thhe project 

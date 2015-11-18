@@ -19,6 +19,8 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     public static String LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId(); 
     public Set<Id> phaseChangeProjects = new Set<Id>();
     
+    private Map<Id,IPM_Project_Rollout__c> rolloutProjectTLDChanged = new Map<Id,IPM_Project_Rollout__c> {};
+    
     /**
     * @description:bulkBefore
     * This method is called prior to execution of a BEFORE trigger. Use this to cache
@@ -92,7 +94,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     * @para:new sobject record
     */
     public void beforeUpdate(SObject oldSo, SObject so){   
-        //This method has been included as the class implements the ITrigger interface
+        //This method has been included as the class implements the ITrigger interface         
     }
     
     /**
@@ -154,6 +156,10 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
                 phaseChangeProjects.add(newRollout.Regional_Project__c);
             }
         }
+        if( oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c ){
+            rolloutProjectTLDChanged.put(oldRollout.Id,newRollout);
+        }        
+
     }
     /**
     * @description:afterDelete
@@ -181,6 +187,11 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
                 System.enqueueJob(phaseChangeAsyncHandler);      
             }
         }
+        
+        /*if(!rolloutProjectTLDChanged.isEmpty()){
+            IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
+            rolloutPlanTLDSync.syncTLDDates(null,rolloutProjectTLDChanged);         
+        }*/
         ExceptionLoggingHelper.insertLogRecordList();
     }
 }

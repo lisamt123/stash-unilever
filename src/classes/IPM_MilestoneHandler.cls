@@ -26,7 +26,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
     */
     public void bulkBefore()
     {
-        Map<Id,IPM_Bosscard__c> ipmBosscards;
+        Map<Id,IPM_Bosscard__c> ipmBosscards = new Map<Id,IPM_Bosscard__c>();
         
         List<Id> lstbosscardIds=new List<Id>();
         

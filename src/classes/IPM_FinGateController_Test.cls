@@ -5,228 +5,160 @@
 */
 @isTest
 public class IPM_FinGateController_Test {
-    
-    public static IPM_Project__c project;
-    public static IPM_Financial_File__c finFile;
-    private static user testUser;
+    public static IPM_Project__c project;    
+    public static User stdUserForFinGate;
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
-    private static string projectId;
-    private static List<user>userList=new List<user>();
-    public static IPM_Financial__c financial;
-    
-    
-    //public static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
-    public static List<IPM_Financial__c> lstFinancial=new List<IPM_Financial__c>();
-    public static List<IPM_Financial_Year__c> lstFinancialYear=new List<IPM_Financial_Year__c>();
-    
-    private static string RECORD_TYPE_ID = 'RecordTypeId';
-    private static string IPM_ROLLOUT_PROJECT = 'IPM_Rollout_Project__c';
-    private static string IPM_PROJECT = 'IPM_Project__c';
-    private static string IPM_REGIONAL_PL = 'IPM_Regional_PL__c';
-    private static string MARKET_CLUSTER_NAME = 'Market_Cluster_Name__c';
-    private static string MARKET_CLUSTER = 'Market_Cluster__c';
-    private static string TARGET_LAUNCH_DATE = 'Target_Launch_Date__c';
-    /*******************************************************************************************************
-    * @description  Test Method to initialize data for test methods
+    private static string LOCAL_STR='Local';
+    private static string REGIONAL_STR='Regional';
+    public static List<IPM_Country__c>countryList=new List<IPM_Country__c>();
+    public static User globalUser;
+    public static IPM_FinGateController finGate;
+    public static PageReference  pRef;
+    private static final string TEST_COMMENTS_STR='TestComments1';
+    public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
+    public static List<MDO_Geography__c> mdoGeoList=new List<MDO_Geography__c>();
+    private static final string PROJECT_DOC_CREATED_STR='Project Document created';
+    /*************************************************************************************************************************
+    * @description Test Data
     */
-    public static void initializeData(){
-         //test.startTest(); 
-        Profile p = [SELECT Id FROM Profile WHERE Name='IPM NG Basic']; 
+    @testSetup static void initializeData(){
+        System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
+        {
+            // user has to be created as system admin 
+            stdUserForFinGate= IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+        }       
         
-        testUser=IPM_TestFactory_Helper.createUser(false);
-        testUser.profileId = p.id;
-        insert testUser;
-        userList.add(testUser);
-        List<User>userLists=[SELECT id FROM user WHERE id=:testUser.id LIMIT 1];
-        System.AssertEquals(userLists[0].id, testUser.id,'User not found');
-        system.runAs(testUser){
-        IPM_Project__c projectRecord = IPM_TestFactory_Helper.createIPMProject(FALSE);
-        projectRecord.Name = 'DEF1153BLOC';
-        projectRecord.IPM_Project_Name__c = 'DEF1153BLOC';
-        projectRecord.Sustainability_Period__c = '3';
-        projectRecord.IPMProject_Span__c = 'Global';
-        projectRecord.IPM_Project_Type__c = 'Original';
-        projectRecord.IPM_Target_Launch_Dates__c = Date.newInstance(2020, 04, 07);
-        projectRecord.IPM_Project_Leader__c = testUser.Id;
-        projectRecord.IPM_Phase__c = 'Ideas';
-        insert projectRecord;
-        projectList.add(projectRecord);
-        List<IPM_Project__c> projlList=[SELECT ID,Name,IPM_Phase__c,IPM_Project_Name__c,IPM_Complexity__c,IPM_GateKeeping_Model__c, IPM_SourceProjectType__c, IPM_Project_Type__c FROM IPM_Project__c WHERE ID=:projectRecord.ID LIMIT 1];
-        project=projlList[0];
-        projectId=projlList[0].Id;
-        System.assertEquals(projlList[0].id,projectRecord.id);//positive test
+        List<User>userLists=[SELECT id FROM user WHERE id=:stdUserForFinGate.id LIMIT 1];
+        System.AssertEquals(userLists[0].id, stdUserForFinGate.id,'user id is:'+userLists[0].id);//positive test
         
-        /*financial = IPM_TestFactory_Helper.createIPMFinancial(false);
-        financial.Financial_External_ID__c = projlList[0].IPM_Project_Name__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
-        insert financial;*/
-        projectList = IPM_TestFactory_Helper.insertIPMProjectList();
-        lstFinancial = IPM_TestFactory_Helper.insertIPMFinancialList();
-        //for(integer i=0; i<lstFinancial.size(); i++){
-        	lstFinancial[0].Financial_External_ID__c = project.IPM_Project_Name__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
-        	update lstFinancial[0];
-        //}
-        lstFinancialYear = IPM_TestFactory_Helper.insertIPMFinancialYearList();
+        // Create Company Card information 
+        IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
+        IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
+        IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
         
-        for(integer i=0; i<lstFinancialYear.size(); i++){
-        	lstFinancialYear[i].year__c = string.valueOf(i);
+        List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
+        insert companyCardList;
+        List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
+        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card inserted');
+        
+        IPM_TestFactory_Helper.getProjectMasterData();
+        projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForFinGate);
+        System.runAs(stdUserForFinGate) {
+            insert projectList;
+            
+            project=projectList[0];
+            project.Name='ProChgStatus';
+            List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
+            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name');//positive test
+            
+            List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForFinGate,stdUserForFinGate,stdUserForFinGate});
+            insert regionalRolloutList;
+            List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:regionalRolloutList[0].ID LIMIT 1];
+            System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout created');//positive test
+            
+            Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
+            for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
+            {
+                List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
+                if(projectToRolloutMap.containsKey(projectRollout.IPM_Project__c))
+                {
+                    projectRolloutList = projectToRolloutMap.get(projectRollout.IPM_Project__c);
+                }
+                projectRolloutList.add(projectRollout);
+                projectToRolloutMap.put(projectRollout.IPM_Project__c,projectRolloutList);
+                
+            }
+            
+            // Create local Rollouts for Created regional Rollouts.
+            List<IPM_Project_Rollout__c> localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>{stdUserForFinGate});  
+            
+            insert localRolloutList; 
+            
+            List<IPM_Project_Rollout__c> proLocListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:localRolloutList[0].ID LIMIT 1];
+            System.assertEquals(proLocListObj[0].IPM_Rollout_Span__c,LOCAL_STR,'local rollout created');//positive test
+            
+            
+            
+            // Create Country specific information.
+           String geoExternalId = '';
+            for(IPM_Project_Rollout__c localRolloutObj : localRolloutList)
+            {
+                
+                if(localRolloutObj.IPM_Rollout_Project__c.contains('AFR'))
+                {
+                    geoExternalId = 'AG';
+                }
+                else if(localRolloutObj.IPM_Rollout_Project__c.contains('LA'))
+                {
+                    geoExternalId = 'BR';
+                }
+                
+                MDO_Geography__c mdo = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId); 
+                mdoGeoList.add(mdo);    
+                IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo.id,
+                IPM_Project__c = localRolloutObj.IPM_Project__c,local_Rollout__c = localRolloutObj.Id,IPM_Rollout_Status__c = 'With MCO');    
+                countryList.add(tempCountry);
+            }
+            
+                    
+             insert mdoGeoList;
+             List<MDO_Geography__c>mdoList=[select Id from MDO_Geography__c where id=:mdoGeoList[0].Id limit 1];
+             system.assertNotEquals(mdoList[0].Id,null,'mdo created');   
+            
+             insert countryList;
+            
+            List<IPM_Country__c>counList=[select Id,IPM_Rollout_Status__c from IPM_Country__c where Id=:countryList[0].Id limit 1];
+            system.assertEquals(counList[0].IPM_Rollout_Status__c,'With MCO','country inserted');
         }
-        update lstFinancialYear;
-        /*List<IPM_Project__Share>projectShareList=IPM_TestFactory_Helper.shareIPMProject(projectList,userList);
-        insert projectShareList;
-        list<IPM_Project__Share>shareList=[SELECT ParentId,UserOrGroupId FROM IPM_Project__Share WHERE ParentId=:projectRecord.id AND UserOrGroupId=:testUser.id LIMIT 1];
-        system.assertEquals(shareList[0].UserOrGroupId,testUser.id,testUser.id+'User should have edit access to project');//positive test*/
-        
-        /*if(projectId.length() > 15)
-            projectId = projectId.subString(0,15);
-        IPM_ProcessFinancials.processProjectFinancials(new Set<String>{projectId}, new Set<String>{projectId + '_3_3'});*/
-        
-        //financial = IPM_TestFactory_Helper.createIPMFinancial(true);
-                                
-        String REGIONAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get('Regional Rollout').getRecordTypeId();
-        String LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get('Local Rollouts').getRecordTypeId();
-        
-        List<IPM_Project_Rollout__c> lstInsertRegionalRollouts = new List<IPM_Project_Rollout__c>();
-        List<IPM_Project_Rollout__c> lstInsertLocalRollouts = new List<IPM_Project_Rollout__c>();
-        
-        Map<String,List<Object>> InsertRegionalRolloutsMap =  new Map<String,List<Object>>{
-        RECORD_TYPE_ID => new List<Object>{REGIONAL_ROLLOUT_RECORDTYPE,REGIONAL_ROLLOUT_RECORDTYPE},
-        IPM_ROLLOUT_PROJECT => new List<Object>{'DEF1153BLOC_SEAA','DEF1153BLOC_EUR'},
-        IPM_PROJECT => new List<Object>{project.ID,project.ID},
-        IPM_REGIONAL_PL => new List<Object>{testUser.Id,testUser.Id},
-        MARKET_CLUSTER_NAME => new List<Object> {'SEAA','Europe'},
-        MARKET_CLUSTER => new List<Object>{'GEO0022','GEO0069'},
-        TARGET_LAUNCH_DATE => new List<Object>{Date.newInstance(2020, 04, 07),Date.newInstance(2020, 04, 07)}
-        };
-
-        lstInsertRegionalRollouts= (List<IPM_Project_Rollout__c>)IPM_TestFactory.createSObjectList('IPM_Project_Rollout__c',InsertRegionalRolloutsMap,true);
-        insert lstInsertRegionalRollouts;
-        
-        Map<String,List<Object>> InsertLocalRolloutsMap =  new Map<String,List<Object>>{
-        RECORD_TYPE_ID => new List<Object>{LOCAL_ROLLOUT_RECORDTYPE,LOCAL_ROLLOUT_RECORDTYPE},
-        IPM_ROLLOUT_PROJECT => new List<Object>{'DEF1153BLOC_SEAA_ANZ','DEF1153BLOC_EUR_DACH'},
-        'Regional_Rollout__r' => new List<Object>{new IPM_Project_Rollout__c(IPM_Rollout_Project__c = 'DEF1153BLOC_SEAA'),new IPM_Project_Rollout__c(IPM_Rollout_Project__c = 'DEF1153BLOC_EUR')},
-        IPM_PROJECT => new List<Object>{project.ID,project.ID},
-        'Type__c' => new List<Object>{'MCO','MCO'},
-        'KeyMCO__c' => new List<Object>{true,false},
-        MARKET_CLUSTER_NAME => new List<Object> {'SEAA','EUR'},
-        MARKET_CLUSTER => new List<Object> {'GEO0022','GEO0069'},
-        'MCO__c' => new List<Object>{'LV4_GEO0041','LV4_GEO0029'},
-        'MCO_Name__c' => new List<Object>{'ANZ','DACH'},
-        TARGET_LAUNCH_DATE => new List<Object>{Date.newInstance(2020, 04, 07),Date.newInstance(2020, 04, 07)}
-        };
-
-        lstInsertLocalRollouts= (List<IPM_Project_Rollout__c>)IPM_TestFactory.createSObjectList('IPM_Project_Rollout__c',InsertLocalRolloutsMap,true);
-        insert lstInsertLocalRollouts;
-        }
-        /*Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator']; 
-        User testUser = IPM_TestFactory_Helper.createUser(FALSE);
-        testUser.ProfileId = p.Id; 
-       
-        
-        project= IPM_TestFactory_Helper.createIPMProject(FALSE);
-        project.Name = 'DEF1153BLOC';
-        project.IPM_Project_Name__c = 'DEF1153BLOC';
-        project.Sustainability_Period__c = '3';
-        project.IPMProject_Span__c = 'Global';
-        project.IPM_Project_Type__c = 'Original';
-        project.IPM_Target_Launch_Dates__c = Date.newInstance(2020, 04, 07);
-        project.IPM_Project_Leader__c = testUser.Id;
-        project.IPM_Phase__c = 'Ideas';
-        insert project;
-        String projectId = project.Id;
-        if(projectId.length() > 15)
-            projectId = projectId.subString(0,15);
-        IPM_ProcessFinancials.processProjectFinancials(new Set<String>{projectId}, new Set<String>{projectId + '_3_3'});
-                                
-        String REGIONAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get('Regional Rollout').getRecordTypeId();
-        String LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get('Local Rollouts').getRecordTypeId();
-        
-        List<IPM_Project_Rollout__c> lstInsertRegionalRollouts = new List<IPM_Project_Rollout__c>();
-        List<IPM_Project_Rollout__c> lstInsertLocalRollouts = new List<IPM_Project_Rollout__c>();
-        
-        
-        Map<String,List<Object>> InsertRegionalRolloutsMap =  new Map<String,List<Object>>{
-        'RecordTypeId' => new List<Object>{REGIONAL_ROLLOUT_RECORDTYPE,REGIONAL_ROLLOUT_RECORDTYPE},
-        'IPM_Rollout_Project__c' => new List<Object>{'DEF1153BLOC_SEAA','DEF1153BLOC_EUR'},
-        'IPM_Project__c' => new List<Object>{project.ID,project.ID},
-        'IPM_Regional_PL__c' => new List<Object>{testUser.Id,testUser.Id},
-        'Market_Cluster_Name__c' => new List<Object> {'SEAA','Europe'},
-        'Market_Cluster__c' => new List<Object>{'GEO0022','GEO0069'},
-        'Target_Launch_Date__c' => new List<Object>{Date.newInstance(2020, 04, 07),Date.newInstance(2020, 04, 07)}
-        };
-
-        lstInsertRegionalRollouts= (List<IPM_Project_Rollout__c>)IPM_TestFactory.createSObjectList('IPM_Project_Rollout__c',InsertRegionalRolloutsMap,true);
-        
-        insert lstInsertRegionalRollouts;
-        
-        Map<String,List<Object>> InsertLocalRolloutsMap =  new Map<String,List<Object>>{
-        'RecordTypeId' => new List<Object>{LOCAL_ROLLOUT_RECORDTYPE,LOCAL_ROLLOUT_RECORDTYPE},
-        'IPM_Rollout_Project__c' => new List<Object>{'DEF1153BLOC_SEAA_ANZ','DEF1153BLOC_EUR_DACH'},
-        'Regional_Rollout__r' => new List<Object>{new IPM_Project_Rollout__c(IPM_Rollout_Project__c = 'DEF1153BLOC_SEAA'),new IPM_Project_Rollout__c(IPM_Rollout_Project__c = 'DEF1153BLOC_EUR')},
-        'IPM_Project__c' => new List<Object>{project.ID,project.ID},
-        'Type__c' => new List<Object>{'MCO','MCO'},
-        'KeyMCO__c' => new List<Object>{true,false},
-        'Market_Cluster_Name__c' => new List<Object> {'SEAA','EUR'},
-        'Market_Cluster__c' => new List<Object> {'GEO0022','GEO0069'},
-        'MCO__c' => new List<Object>{'LV4_GEO0041','LV4_GEO0029'},
-        'MCO_Name__c' => new List<Object>{'ANZ','DACH'},
-        'Target_Launch_Date__c' => new List<Object>{Date.newInstance(2020, 04, 07),Date.newInstance(2020, 04, 07)}
-        };
-
-        lstInsertLocalRollouts= (List<IPM_Project_Rollout__c>)IPM_TestFactory.createSObjectList('IPM_Project_Rollout__c',InsertLocalRolloutsMap,true);
-        
-        insert lstInsertLocalRollouts;*/
-        //test.stopTest(); 
-        
     }
+    
+    /*************************************************************************************************************************
+    * @description Test Data
+    */
+    @testSetup static void initializeTestMethodData(){
+        
+        Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
+        globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
+        system.runAs(globalUser){
+            List<IPM_Project__c>projectListObj = [Select Id, Name, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
+            (Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(select ID,IPM_Project__c from IPM_Questionnaires__r)
+            from IPM_Project__c where Name in:projectNameSet];
+            project=projectListObj[0];
+            List<IPM_Project__c>projlList=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:projectListObj[0].ID LIMIT 1];
+            System.assertEquals(projlList[0].Name,TEST_COMMENTS_STR,'project not created');//positive test
+            for(IPM_Project__c projectObj : projectListObj) {
+                projDocList = projectObj.Project_Documents__r;
+                
+                System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
+            }
+            finGate=new IPM_FinGateController();
+            pRef = Page.IPM_ProjectDocumentSectionEditor;
+            pRef.getParameters().put('id', projectListObj[0].Id);
+            pRef.getParameters().put('printDoc', IPM_ConstantUtils.CHARTER_GATE);
+            Test.setCurrentPage(pRef);
+        }
+    }
+
     /*******************************************************************************************************
     * @description  Test Method to test IPM_FinGateController methods
     */
     static testMethod void runFinGateTest(){
-        initializeData();
-        system.runAs(testUser){
-            IPM_FinGateController finGate=new IPM_FinGateController();
-            system.debug('project --> ' + project);
-            //finGate.project=project;
+        initializeTestMethodData();
+        system.runAs(globalUser){
+            test.startTest();
             finGate.projectId=project.ID;
-            
             finGate.financialsCalendar= new IPM_FinancialWrapper();
             finGate.financialsInnovation= new IPM_FinancialWrapper();
-            system.debug('project --> ' + project.Id);
             finGate.setprojectId(project.ID);
-            finGate.getprojectId();
-            system.assert(finGate.sustainabilityPeriod == 3, 'sustainabilityPeriod is set as wrong'); 
-            system.assert(finGate.colSpan == 7, 'colSpan is set as wrong');         
-            system.assert(finGate.fieldSuffix == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL, 'fieldSuffix is set as wrong');
-            List<IPM_Financial__c> lstConsolidatedFinancial = [SELECT Id FROM IPM_Financial__c WHERE Financial_External_Id__c = 'DEF1153BLOC_CONSOLIDATED' LIMIT 1];
-            System.assertEquals(lstConsolidatedFinancial.size(), 1, 'Financial not generated properly');
+            List<IPM_Project__c>projctList = [SELECT Id,Name,IPM_Project_Name__c, Sustainability_Period__c, IPMProject_Span__c, Market_Cluster__c, Market_Cluster_Name__c, IPM_Parent_Project__c, 
+                              IPM_Project_Type__c, IPM_Phase__c FROM IPM_Project__C  WHERE Id=:finGate.projectId];
+            System.assertEquals(projctList[0].Name,TEST_COMMENTS_STR,'showFinancials not called');
+            System.assertEquals(projctList[0].Sustainability_Period__c,String.valueOf(finGate.sustainabilityPeriod),'showFinancials not called');
+            System.assertEquals(projctList[0].IPMProject_Span__c,finGate.fieldSuffix,'showFinancials not called');
+            System.assertEquals(projctList[0].IPMProject_Span__c,finGate.fieldSuffix,'showFinancials not called');
+            test.stopTest();
         }
     }
     
-    static testMethod void runFinGateTest1(){
-        initializeData();
-        system.runAs(testUser){
-            IPM_FinGateController finGate=new IPM_FinGateController();
-            finGate.project=project;
-            finGate.projectId=project.ID;
-            
-            finGate.financialsCalendar= new IPM_FinancialWrapper();
-            finGate.financialsInnovation= new IPM_FinancialWrapper();
-            finGate.getprojectId();
-            ApexPages.currentPage().getParameters().put('printDoc', IPM_ConstantUtils.CHARTER_GATE);
-            finGate.setprojectId(project.ID);
-            system.assert(finGate.sustainabilityPeriod == 3, 'sustainabilityPeriod is set as wrong'); 
-            system.assert(finGate.colSpan == 7, 'colSpan is set as wrong');         
-            system.assert(finGate.fieldSuffix == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL, 'fieldSuffix is set as wrong');
-            List<IPM_Financial__c> lstConsolidatedFinancial = [SELECT Id FROM IPM_Financial__c WHERE Financial_External_Id__c = 'DEF1153BLOC_CONSOLIDATED' LIMIT 1];
-            System.assertEquals(lstConsolidatedFinancial.size(), 1, 'Financial not generated properly');
-            
-            //test IPM_FunnelController
-            
-            /*IPM_FunnelController funnelController = new IPM_FunnelController ();
-            funnelController.project = project;
-            List<string> a = funnelController.getAssociatedProjectPhases();
-            system.debug(logginglevel.error, 'a--> ' + a);*/
-        }
-    }
+    
 }

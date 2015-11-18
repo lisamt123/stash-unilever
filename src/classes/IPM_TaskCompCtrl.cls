@@ -12,7 +12,7 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
     private transient String taskId = IPM_ConstantUtils.BLANK;
     private String phase = IPM_ConstantUtils.BLANK;
     private String user = IPM_ConstantUtils.BLANK;
-    private final String ERROR_STR = 'Error';
+    private static final String ERROR_STR = 'Error';
     public String projectId{get;set;} //project id
     public Integer openTasks{get;set;} //number of open tasks being shown to the user
     public Integer closedTasks {get; set;}//number of open tasks being shown to the user
@@ -182,12 +182,11 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
     public override String getQuery(){
         
         String usrRole = IPM_Utils.userRole();
-        String soqlWHERE ;
+        String soqlWHERE = '' ;
         if(String.isNotBlank(usrRole)){
             soqlWHERE = usrRole == IPM_ConstantUtils.PROJECT_LEADER ? ' AND IPM_Function__c IN (\''+ usrRole +'\' , \'BD\')' : 
                                                                              ' AND IPM_Function__c = \'' + usrRole + '\'';
         }
-                                                                         
         String soql  =  'SELECT IPM_Task_Name__c, IPM_Phase__c,IPM_Master_Section_Name__c,IPM_Master_Section_Sequence__c,IPM_Project_Document_Section__r.IPM_Section_Name__c,IPM_Assignee__c,';
                soql += 'IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Project_Document__c,';
                soql += 'IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Document_Status__c,';
@@ -384,11 +383,11 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
         setPageNumber();
         if(string.isNotBlank(taskId))
         { 
-        	try{
+            try{
                 List<IPM_Task__c> tObj = [SELECT Id FROM IPM_Task__c WHERE Id =:taskId];
                 if(tObj!=null && !tObj.isEmpty() )
                 {
-                	delete tObj;
+                    delete tObj;
                 }
             }
             catch(Exception ex){

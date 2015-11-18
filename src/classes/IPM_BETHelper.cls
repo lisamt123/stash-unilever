@@ -3,6 +3,11 @@
     @Author: Cognizant Technology
     @Date: 12/9/2015
 **/
+
+/*
+    This class is defined as Without as the methods are invoked via BET Integartion service methods which needs to access
+    all related IPM and MDO data irrespective of sharing.
+*/
 public without sharing class IPM_BETHelper {
 
     // Method to Update BET Milestones DueDate after BET is associated/updated to IPM Project    

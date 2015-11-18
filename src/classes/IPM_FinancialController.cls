@@ -3,6 +3,7 @@
 * @date         27/04/2015
 * @description  This class is used for managing the ipmFinancial Page 
 *               and displaying Financial Business cases 
+* version: Samrat Removed uploadDownloadTemplate function not required
 */
 public with sharing class IPM_FinancialController extends IPM_ProjectIntermediateController  
 { 
@@ -283,7 +284,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * @return       NONE
     */
     private void getSectionList(){
-        String currentStage;
+        String currentStage = '';
         if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)
         {
             currentStage = IPM_ConstantUtils.CHARTER_GATE;
@@ -310,8 +311,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                             WHERE IPM_GateDocuments__c =: currentStage
                                                                 AND IPM_Project__c =: project.Id 
                                                             LIMIT 1];
-		if(project.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
-			lstCurrentDocuments = [SELECT Id, IPM_GateDocuments__c, 
+        if(project.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
+            lstCurrentDocuments = [SELECT Id, IPM_GateDocuments__c, 
                                                                 (SELECT Id, IPM_Section_Sequence__c, IPM_Section_Name__c
                                                                     FROM IPM_Project_Sections__r
                                                                     WHERE (NOT IPM_Section_Type__c LIKE: headerString)
@@ -321,7 +322,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                             WHERE IPM_GateDocuments__c =: currentStage
                                                                 AND IPM_Project__c =: project.Id 
                                                             LIMIT 1];
-		}
+        }
         documentSections = new List<SelectOption>();
         documentSections.add(new SelectOption(IPM_ConstantUtils.BLANK, Label.IPM_GO_TO_DOCUMENT_SECTION));
         if(lstCurrentDocuments!=null && !lstCurrentDocuments.isEmpty()){
@@ -488,7 +489,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 
         lstRolloutWrappers.add( new RolloutWrapper( project.Market_Cluster_Name__c, lstRegionalFinancials) );
         
-        String firstFinancialId;
+        String firstFinancialId = '';
         
         For (IPM_Financial__c financial : lstRegionalFinancials)
         {
@@ -533,7 +534,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private void getGlobalMyViewWrappers()
     {  
         //Rollout Wrappers
-        String firstFinancialId;
+        String firstFinancialId = '';
         List<IPM_Project_Rollout__c> lstRegionalRollout = new List<IPM_Project_Rollout__c>();
         
         lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c,KeyMCO__c,(SELECT Id, Name, Financial_External_ID__c, Status__c
@@ -606,7 +607,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     */
     private void getOperationalMyViewWrappers(){  
        
-       String firstFinancialId;
+       String firstFinancialId = '';
         
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
       
@@ -653,7 +654,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private void getGlobalRollupWrappers()
     {
         //Rollout Wrappers
-        String firstFinancialId;
+        String firstFinancialId = '';
         String nonKeyLike = IPM_ConstantUtils.PERCENTAGE + IPM_ConstantUtils.FINANCIAL_NONKEY;
         
         List<IPM_Project__c> lstRegionalProject = [SELECT Id, Market_Cluster_Name__c, (SELECT Id, Financial_External_Id__c, Status__c 
@@ -735,7 +736,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                        
         lstRolloutWrappers.add( new RolloutWrapper( project.Market_Cluster_Name__c, lstRegionalFinancials ) );
         
-        String firstFinancialId;
+        String firstFinancialId = '';
         For (IPM_Financial__c financial : lstRegionalFinancials)
         {
             if ((firstFinancialId == NULL) || (firstFinancialId == IPM_ConstantUtils.BLANK))
@@ -786,7 +787,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         lstRolloutWrappers.add( new RolloutWrapper( project.Market_Cluster_Name__c, lstRegionalFinancials) );
         
-        String firstFinancialId;
+        String firstFinancialId = '';
         
         for(IPM_Financial__c financial : lstRegionalFinancials) 
         {
@@ -843,7 +844,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 
         lstRolloutWrappers.add( new RolloutWrapper( regionalRollout.Market_Cluster_Name__c, regionalRollout.IPM_Financials__r) );
         
-        String firstFinancialId;
+        String firstFinancialId = '';
         
         for(IPM_Financial__c financial : regionalRollout.IPM_Financials__r)
         {
@@ -906,7 +907,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                      
         lstRolloutWrappers.add( new RolloutWrapper( project.Market_Cluster_Name__c, lstRegionalFinancials) );
 
-        String firstFinancialId;
+        String firstFinancialId = '';
         
         For (IPM_Financial__c financial : lstRegionalFinancials)
         {
@@ -974,7 +975,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             )
         );
 
-        String firstFinancialId;
+        String firstFinancialId = '';
         For (IPM_Financial__c financial : lstLocalFinancials){
             if ((firstFinancialId == NULL) || (firstFinancialId == IPM_ConstantUtils.BLANK))
                 firstFinancialId = financial.Id;
@@ -1195,27 +1196,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         }
     }
 
-    /*******************************************************************************************************
-    * @description  Used to redirect user to the download template page
-    * @param        NONE
-    * @return       NONE
-    */
-    public PageReference uploadDownloadTemplate(){
-        try {
-            PageReference templatePage = Page.IPM_FinancialUpload;
-            templatePage.getParameters().put(IPM_ConstantUtils.SF_ID, project.Id);
-            templatePage.setRedirect(true);
-            return templatePage;
-            
-        } catch (Exception eX){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-                    IPM_ConstantUtils.EXCEPTION_UPLOADDOWNLOADTEMPLATE,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
-            isError = true;
-            
-            errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            return null;
-        }
-    }
+    
     
     /*******************************************************************************************************
     * @description  Used to redirect user to the download template page

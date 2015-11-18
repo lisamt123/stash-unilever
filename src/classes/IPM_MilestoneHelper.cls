@@ -95,7 +95,7 @@ public with sharing class IPM_MilestoneHelper
                 {
                     for(IPM_Milestone__c existingProjectMilestone : IPM_ProjectHelper.DBprojectSpecificMileStoneMap.get(project.Id))
                     {
-                    	
+                        
                         if(String.isNotBlank(existingProjectMilestone.IPM_Category__c) && existingProjectMilestone.IPM_Category__c.contains(project.IPM_Category_Group__c ))
                         {
                             if(existingProjectMilestone.IPM_Project_Launch_Date__c == project.IPM_Target_Launch_Dates__c)
@@ -151,8 +151,8 @@ public with sharing class IPM_MilestoneHelper
                                 
                                 newprojectMilestone.Clone_Record_Id__c = existingProjectMilestone.Id;
                                 newprojectMilestone.IPM_Project__c = project.Id;
- 								newProjectMilestone.ExternalField__c = project.IPM_Project_Name__c + IPM_ConstantUtils.HYPHEN_DELIMITER + newProjectMilestone.IPM_Name__c + IPM_ConstantUtils.HYPHEN_DELIMITER + newProjectMilestone.IPM_Phase__c + '-'+ newProjectMilestone.IPM_Project_Type__c;
- 								
+                                newProjectMilestone.ExternalField__c = project.IPM_Project_Name__c + IPM_ConstantUtils.HYPHEN_DELIMITER + newProjectMilestone.IPM_Name__c + IPM_ConstantUtils.HYPHEN_DELIMITER + newProjectMilestone.IPM_Phase__c + '-'+ newProjectMilestone.IPM_Project_Type__c;
+                                
                                 // If parent Milestone Belongs to a next phase than Projects current Phase, mark milestone as incomplete.
                                 if(nextPhaseSet.contains(newprojectMilestone.IPM_Phase__c))
                                 {
@@ -188,32 +188,32 @@ public with sharing class IPM_MilestoneHelper
                                 newProjectMilestone.ExternalField__c = project.IPM_Project_Name__c + IPM_ConstantUtils.HYPHEN_DELIMITER + newProjectMilestone.IPM_Name__c + IPM_ConstantUtils.HYPHEN_DELIMITER + newProjectMilestone.IPM_Phase__c + '-'+ newProjectMilestone.IPM_Project_Type__c;
                                 
                                 Date myDate = date.newinstance(project.CreatedDate.year(), project.CreatedDate.month(), project.CreatedDate.day());
-                            	
-                            	if(newProjectMilestone.IPM_Type_of_gate__c == IPM_ConstantUtils.MARKET_READY_GATE){
-                            		if(project.IPM_Market_Type__c ==IPM_Utils.DevelopingIPM_Market_Type && !(project.IPM_Fast_Track_Project__c) && 
-	                                    String.isNotEmpty(masterMilestone.IPM_No_Of_Days_for_Developing__c))
-	                                {
-	                                    if(project.IPM_Target_Launch_Dates__c!=null &&  project.IPM_Target_Launch_Dates__c + Integer.valueOf(masterMilestone.IPM_No_Of_Days_for_Developing__c) > myDate)
-	                                    {
-	                                        newProjectMilestone.IPM_Planned_Date__c = project.IPM_Target_Launch_Dates__c + Integer.valueOf(masterMilestone.IPM_No_Of_Days_for_Developing__c);
-	                                    }   
-	                                }
-	                                else if(project.IPM_Market_Type__c == IPM_Utils.EmergingIPM_Market_Type && !(project.IPM_Fast_Track_Project__c) && 
-	                                        String.isNotEmpty(masterMilestone.IPM_No_Of_Days_for_Developing_Emerging__c))
-	                                {
-	                                    if(project.IPM_Target_Launch_Dates__c !=null && project.IPM_Target_Launch_Dates__c + Integer.valueOf(masterMilestone.IPM_No_Of_Days_for_Developing_Emerging__c) > myDate)
-	                                    {
-	                                        newProjectMilestone.IPM_Planned_Date__c = project.IPM_Target_Launch_Dates__c + Integer.valueOf(masterMilestone.IPM_No_Of_Days_for_Developing_Emerging__c);
-	                                    }
-	                                }
-                            	}else if(String.isNotEmpty(masterMilestone.IPM_No_of_Days__c)){
-                        			newProjectMilestone.IPM_Planned_Date__c = project.IPM_Target_Launch_Dates__c + Integer.valueOf(masterMilestone.IPM_No_of_Days__c);
-                            	}
+                                
+                                if(newProjectMilestone.IPM_Type_of_gate__c == IPM_ConstantUtils.MARKET_READY_GATE){
+                                    if(project.IPM_Market_Type__c ==IPM_Utils.DevelopingIPM_Market_Type && !(project.IPM_Fast_Track_Project__c) && 
+                                        String.isNotEmpty(masterMilestone.IPM_No_Of_Days_for_Developing__c))
+                                    {
+                                        if(project.IPM_Target_Launch_Dates__c!=null &&  project.IPM_Target_Launch_Dates__c + Integer.valueOf(masterMilestone.IPM_No_Of_Days_for_Developing__c) > myDate)
+                                        {
+                                            newProjectMilestone.IPM_Planned_Date__c = project.IPM_Target_Launch_Dates__c + Integer.valueOf(masterMilestone.IPM_No_Of_Days_for_Developing__c);
+                                        }   
+                                    }
+                                    else if(project.IPM_Market_Type__c == IPM_Utils.EmergingIPM_Market_Type && !(project.IPM_Fast_Track_Project__c) && 
+                                            String.isNotEmpty(masterMilestone.IPM_No_Of_Days_for_Developing_Emerging__c))
+                                    {
+                                        if(project.IPM_Target_Launch_Dates__c !=null && project.IPM_Target_Launch_Dates__c + Integer.valueOf(masterMilestone.IPM_No_Of_Days_for_Developing_Emerging__c) > myDate)
+                                        {
+                                            newProjectMilestone.IPM_Planned_Date__c = project.IPM_Target_Launch_Dates__c + Integer.valueOf(masterMilestone.IPM_No_Of_Days_for_Developing_Emerging__c);
+                                        }
+                                    }
+                                }else if(String.isNotEmpty(masterMilestone.IPM_No_of_Days__c)){
+                                    newProjectMilestone.IPM_Planned_Date__c = project.IPM_Target_Launch_Dates__c + Integer.valueOf(masterMilestone.IPM_No_of_Days__c);
+                                }
                                 
                                 
                                 // Milestone due date/Planeed should not be copied for Operational Market Ready Gate
                                 if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && newProjectMilestone.IPM_Type_of_gate__c == IPM_ConstantUtils.MARKET_READY_GATE ){
-                                	newProjectMilestone.IPM_Planned_Date__c = null;
+                                    newProjectMilestone.IPM_Planned_Date__c = null;
                                 }
                                 upsertedProjectMilestones.put(newProjectMilestone.ExternalField__c,newProjectMilestone);
                             }

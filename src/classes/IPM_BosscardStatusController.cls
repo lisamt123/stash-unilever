@@ -247,12 +247,18 @@ global with sharing class IPM_BosscardStatusController{
         }
         if(!isPLSelected_Booln && Statusvalue.equals(approved_STR) && searchPL_Bool){
             isApprovedOtherPLSelected=true;
+        }else{
+            isApprovedOtherPLSelected=false;    
         }
         if(isPLSelected_Booln && Statusvalue.equals(approved_STR) && searchPL_Bool){
             isApprovedWithPLSelected=true;  
+        }else{
+            isApprovedWithPLSelected=false;  
         }
         if(Statusvalue.equals(approved_STR) && !searchPL_Bool){
             isApprovedButNoPLSelected=true;
+        }else{
+            isApprovedButNoPLSelected=false;
         }
     }
     

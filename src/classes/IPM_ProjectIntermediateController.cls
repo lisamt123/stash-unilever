@@ -3,7 +3,7 @@
 * @date 23/01/2015
 * @description Handles Redirection to Core Parameters, Task Generation, Project Scope, Team Members Pages,Used in ipmNavMenuRevamp2 Visualforce Component
 */
-public virtual class IPM_ProjectIntermediateController {
+public virtual with sharing class IPM_ProjectIntermediateController {
     //Initializing Variables
     public IPM_Project__c project {get; set;} //Used for Getting Project Record
     public String projectId{get;set;} //For Getting Project Id from Page URL Parameters
@@ -33,7 +33,7 @@ public virtual class IPM_ProjectIntermediateController {
     public void getProjectInformation(Id projectId)
     {
         
-        String queryStr = ' Select ';
+        String queryStr = ' SELECT ';
         
         Map<String,Schema.SObjectField> fieldTypeMap = Schema.SObjectType.IPM_Project__c.fields.getMap();
         

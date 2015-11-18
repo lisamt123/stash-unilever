@@ -48,10 +48,12 @@ public with sharing class IPM_MyList{
     public integer totalpages{get;set;}
     public List<IPM_Project__c> lstExtProj{get;set;}
     public String searchValue{get;set;}
+    
+    public static final String BLANK_STR = '';
     /********************************************************************************
     *@Description: To describe the TaskId and set the Tasks on the page
     *********************************************************************************/
-    String BLANK_STR = '';
+    
     private String taskId = BLANK_STR;
     public void setTaskId(String n) {
         taskId = n;

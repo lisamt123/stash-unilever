@@ -45,7 +45,11 @@
         </apex:outputPanel>
         
         <div class="mstoneInfo" style="{!if(isWarningRequired,'display:block','display:none')};">
-                <apex:outputText styleClass="mstoneInfoTxt" value="{!marketReadyWarningMessage}" rendered="{!isWarningRequired}"/>
+                <apex:outputPanel rendered="{!isWarningRequired}" >
+                    <apex:repeat var="message" value="{!warningMessages}">
+                        <apex:outputText styleClass="mstoneInfoTxt" value="{!message}"/>
+                    </apex:repeat>
+                </apex:outputPanel>
         </div>
          
         <apex:outputPanel id="milestonesTimeLineView">
@@ -98,14 +102,14 @@
                                 </li> 
                             </apex:repeat>
                         </apex:outputPanel>
-		                    </apex:repeat>
-		                </ul>
-		            </div> 
-		        <div class="statusProgress">
-		        <span class="sImg open"></span><span>{!$Label.IPM_Open}</span>
-		        <span class="sImg upcoming"></span><span>{!$Label.IPM_Upcoming}</span>
-		        </div>           
-		    </div>
+                            </apex:repeat>
+                        </ul>
+                    </div> 
+                <div class="statusProgress">
+                <span class="sImg open"></span><span>{!$Label.IPM_Open}</span>
+                <span class="sImg upcoming"></span><span>{!$Label.IPM_Upcoming}</span>
+                </div>           
+            </div>
         </div>
         </apex:outputPanel>
         

@@ -242,7 +242,7 @@
                      
              <apex:outputPanel id="jsLoad">
              <script>
-               var IPMAppComp = {errMsg:'{!$Label.delete_task_msg}', removeToDo:'{!$Label.IPM_REMOVE_TODO}', selectedValues:'{!JSENCODE(phase)}', isCompleteTasks:'{!JSENCODE(isCompleteTasks)}'};
+               var IPMAppComp = {errMsg:'{!$Label.IPM_Delete_task_msg}', removeToDo:'{!$Label.IPM_REMOVE_TODO}', selectedValues:'{!JSENCODE(phase)}', isCompleteTasks:'{!JSENCODE(isCompleteTasks)}'};
              </script>
              </apex:outputPanel> 
              <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_List_Tasks.js')}" type="text/javascript"></script>            

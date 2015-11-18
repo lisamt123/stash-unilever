@@ -32,6 +32,10 @@ public with sharing class IPM_AssesmentHandler implements ITrigger{
         	//check if at least one Assessment exists for each EI Country for their respective projects
         	IPM_AssesmentHandler_Helper.checkAtLeastOneAssmntPerEICountry( (List<IPM_Assessment__c>) Trigger.New);        	
         }
+        If(Trigger.isDelete){
+        	//check if at least one Assessment exists for each EI Country for their respective projects
+        	IPM_AssesmentHandler_Helper.checkAtLeastOneAssmntPerEICountry( (List<IPM_Assessment__c>) Trigger.old);        	
+        }
         
     }
     

@@ -152,7 +152,6 @@ public with sharing class IPM_FinancialHandler implements ITrigger
     public void beforeUpdate(SObject oldSo, SObject so)
     {   
         //This method has been included as the class implements the ITrigger interface
-        //This method has been included as the class implements the ITrigger interface
         IPM_Financial__c newfinancial = (IPM_Financial__c)so;
         IPM_Financial__c oldfinancial = (IPM_Financial__c)oldSo;
         

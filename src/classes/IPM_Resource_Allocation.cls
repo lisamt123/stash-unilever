@@ -158,8 +158,6 @@ public with sharing class IPM_Resource_Allocation {
         
         
         
-        Map<Id,String> marketClusterRolloutMap = new Map<Id,String>();
-
         if(isInvokedFromRollouts!=null && isInvokedFromRollouts){
             leaderUsers = new list<IPM_User_Profile__c>();
             //RolloutCntlr = new IPM_RolloutPlansTableController();

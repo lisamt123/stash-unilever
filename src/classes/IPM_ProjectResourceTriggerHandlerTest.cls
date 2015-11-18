@@ -99,7 +99,7 @@ public class IPM_ProjectResourceTriggerHandlerTest {
         IPM_Section__c secMast = IPM_TestFactory_Helper.createIPMSection(false);
         secMast.IPM_Document_Template__c=ipdoctem.ID;
 
-		IPM_Project__c project1 = IPM_TestFactory_Helper.createIPMProject(false);
+        IPM_Project__c project1 = IPM_TestFactory_Helper.createIPMProject(false);
         project1.IPM_PM_Approach__c = IPM_Utils.Internal;
         project1.IPM_Project_Leader__c = projectLeader.Id;
         project1.IPM_GateKeeping_Model__c='Both';
@@ -198,7 +198,7 @@ public class IPM_ProjectResourceTriggerHandlerTest {
             for(IPM_Task__c task : tasksList ){
                 if(task.IPM_Function__c == 'Finance')
                 {
-                    System.assertEquals(task.IPM_Assignee__c,userList[3].Id);
+                    System.assertEquals(task.IPM_Assignee__c,userList[3].Id, 'IPM_Assignee__c Is Different');
                     System.assertNotEquals(task.IPM_Assignee__c,userList[1].Id);
                 }
             }
@@ -381,20 +381,20 @@ public class IPM_ProjectResourceTriggerHandlerTest {
             projectResourceList.add(ipmProjectResource2);
             insert ipmProjectResource2;
             List <IPM_Project__c> projList1 = [Select id,EcoDesign_Sync_Status__c from IPM_Project__c where Id =: ipmProjectList[1].Id];
-            System.assertEquals('Ready', projList1[0].EcoDesign_Sync_Status__c);
+            System.assertEquals('Ready', projList1[0].EcoDesign_Sync_Status__c, 'EcoDesign_Sync_Status__c Is Different');
             
-            List<IPM_Project_Resource__c> ipmProjectResourceList = [Select id,IPM_User__c,IPM_Role_Type__c,IPM_Member_Email__c from IPM_Project_Resource__c];
+            List<IPM_Project_Resource__c> ipmProjectResourceList = [Select id,IPM_User__c,IPM_Role_Type__c,IPM_Member_Email__c from IPM_Project_Resource__c limit 1000];
             for(IPM_Project_Resource__c projRes : ipmProjectResourceList){
                 projRes.IPM_Member_Email__c = 'newemail@gmail.com';
             }
 
             Update ipmProjectResourceList;
             List <IPM_Project__c> projList2 = [Select id,EcoDesign_Sync_Status__c from IPM_Project__c where Id =: ipmProjectList[1].Id];
-            System.assertEquals('Ready', projList2[0].EcoDesign_Sync_Status__c);
+            System.assertEquals('Ready', projList2[0].EcoDesign_Sync_Status__c, 'Status Is Different');
             
             delete ipmProjectResourceList[0];
             List <IPM_Project__c> projList3 = [Select id,EcoDesign_Sync_Status__c from IPM_Project__c where Id =: ipmProjectList[1].Id];
-            System.assertEquals('Ready', projList3[0].EcoDesign_Sync_Status__c);
+            System.assertEquals('Ready', projList3[0].EcoDesign_Sync_Status__c, 'Status Is Different');
             }
         
         

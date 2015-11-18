@@ -41,9 +41,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
         projectId = ApexPages.currentPage().getParameters().get('Id');// stores the project ID from the URL
         flag = false;//initializing the boolean value
         showdata = false;// initializing the boolean value
-        if(String.isNotBlank(projectId) && projectId.length() > IPM_ConstantUtils.fifteen){// handling the 18 digits ID for the Picklist.
-          projectId = projectId.subString(IPM_ConstantUtils.intialVal, projectId.length()-3);
-        }
+        
         if(String.isNotBlank(projectId)){
             isEditable=IPM_Utils.getIpmuserType(projectId, IPM_ConstantUtils.IPM_ROLE_FINANCE);
         }
@@ -363,7 +361,8 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                                                 fy.Profit_Before_Overheads_Local__c = setFieldValues(profitBeforeOverheads);
                                                 fy = assignVolumevaluesLocal(mapfields,fy,vol);
                                         }
-                                        UpdateFinancialyears.add(fy);                                        
+                                        UpdateFinancialyears.add(fy);  
+                                                                             
                                 }
                         }
                          if(!UpdateFinancialyears.isEmpty()){
@@ -372,11 +371,10 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                                 finStatus.Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
                                 update finStatus;
                          }
-                         
-                        /*if(Test.isRunningTest()) {
+                         if(Test.isRunningTest()) {
                           // Cause DMLException
                           update new IPM_Financial_Year__c();
-                        }*/
+                        }
         }catch(DmlException ex){
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ConstantUtils.ClassCopyPaste,
                'updateFinancialYear',ex.getMessage(),ex, IPM_ConstantUtils.ERROR,
@@ -423,7 +421,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
     ***************************************************************************************************************/
     
         public static IPM_Financial_Year__c AssignVolumeValuesGlobal(map<String,String> mapfields, IPM_Financial_Year__c fy, String vol){
-        	            if(mapfields.containskey(IPM_ConstantUtils.Volume)){
+                        if(mapfields.containskey(IPM_ConstantUtils.Volume)){
                                 fy.Volume_Unit_Global__c   = String.escapeSingleQuotes(mapfields.get(IPM_ConstantUtils.Volume));
                         }    
                         if(fy.Volume_Unit_Global__c == IPM_ConstantUtils.TotalTons){
@@ -445,7 +443,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
     ***************************************************************************************************************/
     
         public static IPM_Financial_Year__c AssignVolumeValuesRegional(map<String,String> mapfields, IPM_Financial_Year__c fy, String vol){
-        				if(mapfields.containskey(IPM_ConstantUtils.Volume)){
+                        if(mapfields.containskey(IPM_ConstantUtils.Volume)){
                                 fy.Volume_Unit_Regional__c   = String.escapeSingleQuotes(mapfields.get(IPM_ConstantUtils.Volume));
                         }
                         if(fy.Volume_Unit_Regional__c == IPM_ConstantUtils.TotalTons){
@@ -467,7 +465,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
     ***************************************************************************************************************/
     
         public static IPM_Financial_Year__c AssignVolumeValuesLocal(map<String,String> mapfields, IPM_Financial_Year__c fy, String vol){
-        				 if(mapfields.containskey(IPM_ConstantUtils.Volume)){
+                         if(mapfields.containskey(IPM_ConstantUtils.Volume)){
                                 fy.Volume_Unit_Local__c = String.escapeSingleQuotes(mapfields.get(IPM_ConstantUtils.Volume));
                         }
                         if(fy.Volume_Unit_Local__c == IPM_ConstantUtils.TotalTons){
@@ -517,11 +515,11 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                 PageReference templatePage = Page.IPM_Financial;
                 templatePage.getParameters().put('id', projectId);
                 templatePage.setRedirect(true);
-                /*if(Test.isRunningTest()) {
+                if(Test.isRunningTest()) {
                         // Cause Exception
                         IpmProject.Id = null;
-                        }*/
-                        return templatePage;
+                 }
+                return templatePage;
         }catch(Exception ex){
               ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ConstantUtils.ClassCopyPaste,
                'goBack',ex.getMessage(),ex, IPM_ConstantUtils.ERROR,

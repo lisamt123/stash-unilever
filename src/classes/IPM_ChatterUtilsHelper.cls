@@ -12,8 +12,7 @@ public with sharing class IPM_ChatterUtilsHelper {
 	private static final string INSERT_EVENT = 'Insert';
 	private static final string DELETE_EVENT = 'Delete';
 	private static final string IPM_ROLE_TYPE_RD = IPM_ConstantUtils.IPM_ROLE_RD;
-	private static final string COUNTRIES_ADDED_MSG = 'Your Project Leader [Project_Leader_Name] has [Operation] [Country_Names] [Operation_Preposition] the rollout plan for [Project_Name]';
-	
+
 	/****************************************************************************
     @Description : create map of the project Id and the chatter message to be posted about countries added/deleted from the project
     @Params insertedCountries:  The list of countries upserted or deleted through trigger  

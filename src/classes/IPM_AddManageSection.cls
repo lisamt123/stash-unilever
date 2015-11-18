@@ -14,7 +14,7 @@ public with sharing class IPM_AddManageSection extends IPM_ProjectIntermediateCo
     public Boolean IsModified{get;set;}//used in corresponding VF page
     public string GetDocType{get;set;}// used to store current document type    
     private static string className_STR=IPM_AddManageSection.class.getName();//get class name
-    private static string saveMethod='SaveAddManage';// method name
+    private static final string SAVEMETHOD ='SaveAddManage';// method name
     public string NonNogeotibale_STR{get;set;}
     /*****************************************************************
     @Description : This the constructor for the class
@@ -86,7 +86,7 @@ public with sharing class IPM_AddManageSection extends IPM_ProjectIntermediateCo
         }
         catch (DmlException ex){
            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className_STR,
-        saveMethod,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);                
+        SAVEMETHOD,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);                
  
            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));         
         }

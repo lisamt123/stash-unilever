@@ -2,6 +2,7 @@
 public class IPM_Test_ProjectUtility{
     
     public static testmethod void m1(){
+        Test.startTest();
         
        RecordType projrec = [Select id from RecordType where developerName='Clustering'];
        IPM_Project__c proj = new IPM_Project__c();
@@ -55,8 +56,10 @@ public class IPM_Test_ProjectUtility{
        projClone.IPM_Phase__c='Capability';
        update projClone;
        
+       Test.stopTest();
+       
        IPM_Project__c project = [Select Id, IPM_Phase__c from IPM_Project__c where Id =: projClone.Id];
-       System.assertEquals('Capability' , project.IPM_Phase__c);
+       System.assertEquals('Capability' , project.IPM_Phase__c,'IPM_Phase__c Not Matched');
     }
     
 }

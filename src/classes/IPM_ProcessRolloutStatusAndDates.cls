@@ -3,7 +3,12 @@
 * @date         27/04/2015
 * @description  This class is used for updating the rollout status and dates
 */
-public class IPM_ProcessRolloutStatusAndDates {
+
+/* This class is being used to Set First and Follower on a rollout/Project , 
+    which needs access to all Rollout and Projects associated with a project
+*/
+
+public without sharing class  IPM_ProcessRolloutStatusAndDates {
     
     private static final string PROCESS_REGIONAL_PROJECTS = 'processRegionalProjects';
     private static final string CLASS_NAME = IPM_ProcessRolloutStatusAndDates.class.getName();
@@ -134,7 +139,7 @@ public class IPM_ProcessRolloutStatusAndDates {
                     Date earliestDate = mapEarliestGlobalLaunchDate.get(globalProject.Id);
                     if(earliestDate == localRollout.Target_Launch_Date__c){
                         if(localRollout.IPM_Status__c == IPM_ConstantUtils.ROLLOUT_LEADER){
-                        	isLeaderFound = true;
+                            isLeaderFound = true;
                         }else if(!isLeaderFound ){
                             localRollout.IPM_Status__c  = IPM_ConstantUtils.ROLLOUT_LEADER;
                             isLeaderFound = true;

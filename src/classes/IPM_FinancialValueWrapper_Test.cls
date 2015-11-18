@@ -17,15 +17,15 @@ public class IPM_FinancialValueWrapper_Test {
         user plUser = IPM_TestFactory_Helper.createUser(false);
         insert plUser; 
         List<User>userList=[SELECT lastName FROM user WHERE id=:plUser.id LIMIT 1];
-    	System.AssertEquals(userList[0].lastName, plUser.lastName,'user lastName is:'+userList[0].lastName);//positive test
-    	
+        System.AssertEquals(userList[0].lastName, plUser.lastName,'user lastName is:'+userList[0].lastName);//positive test
+        
         test.startTest();
         system.runAs(plUser){
-			 IPM_FinancialValueWrapper  ifvw=new IPM_FinancialValueWrapper (2,2.0,2.0);
-			 system.assertEquals(ifvw.index,2);//positive test
-			
-			 new IPM_FinancialValueWrapper (2, 2.0, 0.0, 2); 
-			 system.assertEquals(ifvw.difference,2.0);//positive test
+             IPM_FinancialValueWrapper  ifvw=new IPM_FinancialValueWrapper (2,2.0,2.0);
+             system.assertEquals(ifvw.index,2, 'Index Mismatch');//positive test
+            
+             new IPM_FinancialValueWrapper (2, 2.0, 0.0, 2); 
+             system.assertEquals(ifvw.difference,2.0, 'Difference Mismatch');//positive test
         }
         test.stopTest();
      }

@@ -308,7 +308,7 @@
                                                     </apex:outputPanel>
                                                 </div>
                                                 <apex:outputPanel id="WhiteSpaceHelpTextpanel">
-                                                    <apex:outputPanel layout="block" rendered="{!AND(project.IPM_White_Space_Project__c,isEditable)}" >
+                                                    <apex:outputPanel styleClass="col-sm-12 yellowBox" layout="block" rendered="{!AND(project.IPM_White_Space_Project__c,isEditable)}" >
                                                         <apex:outputText value="{!$Label.IPM_WhiteSpace_HelpText}" />
                                                     </apex:outputPanel>
                                                 </apex:outputPanel>

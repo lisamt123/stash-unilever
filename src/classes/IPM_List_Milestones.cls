@@ -11,7 +11,6 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
     
     public String isChecked{get;set;}//Page property which sends back marked milestones for completion
     public String projectId{get;set;}//project Id from the query string
-    public String marketReadyWarningMessage{get; set;} // Warning message to be displayed for Market ready Milestone on Milestone section
     public List<string> warningMessages{get;set;}//List of all the warning messages related to BET and market ready date
     public String isCompleteMilestones{get;set;}//to identify if the milestone is complete or not
     public String paginationUIDisplay ;

@@ -67,7 +67,7 @@ public with sharing class IPM_TaskHandler implements ITrigger{
                 {
                     for (IPM_Task__c newTask : taskList) 
                     {   //get project ids in set
-                        if(newTask.IPM_Assignee__c == NULL && projectDetailMap.containsKey(newTask.IPM_Project__c) && projectDetailMap.get(newTask.IPM_Project__c)!=null)
+                        if(newTask.IPM_Assignee__c == NULL && projectDetailMap.containsKey(newTask.IPM_Project__c) && projectDetailMap.get(newTask.IPM_Project__c)!=null && projectTask == newTask.RecordTypeId)
                         {
                             newTask.IPM_Assignee__c = projectDetailMap.get(newTask.IPM_Project__c).IPM_Project_Leader__c;
                         }
@@ -101,7 +101,15 @@ public with sharing class IPM_TaskHandler implements ITrigger{
             }
         }
         if(Trigger.isInsert){
-             IPM_ChatterFeedHelper.notifyAssigneeTaskAssigned((List<IPM_Task__c>)Trigger.new);
+        	list<IPM_Task__c> taskList = new list<IPM_Task__c>();
+        	for(IPM_Task__c tsk :(List<IPM_Task__c>)Trigger.new)
+        	{
+        		if(projectTask == tsk.RecordTypeId)
+        		{
+        			taskList.add(tsk);
+        		}
+        	}
+            IPM_ChatterFeedHelper.notifyAssigneeTaskAssigned(taskList);
         }
     }
     /**
@@ -198,7 +206,7 @@ public with sharing class IPM_TaskHandler implements ITrigger{
         IPM_Task__c oldTask = (IPM_Task__c)oldSo;
         IPM_Task__c eachTask = (IPM_Task__c)so;
         if(eachTask.IPM_Project__c != null && eachTask.IPM_Completed__c && 
-                   eachTask.IPM_Completed__c != oldTask.IPM_Completed__c) {//if never done previously but now
+                   eachTask.IPM_Completed__c != oldTask.IPM_Completed__c && projectTask == eachTask.RecordTypeId) {//if never done previously but now
            if(!projectTasksMap.containsKey(eachTask.IPM_Project__c)) {
                 Set<String> tmpStr = new Set<String>();
                 tmpStr.add(eachTask.IPM_Task_Name__c);
@@ -234,7 +242,7 @@ public with sharing class IPM_TaskHandler implements ITrigger{
            String postText = IPM_Utils.convertSetToString(projectTasksMap.get(eachProject)) + Label.IPM_Task_Completion_Text;
            subjectIdMessageMap.put(eachProject,postText);
           }
-          ChatterUtils.postChatterFeedWithMention(projectTasksMap.keySet(),subjectIdMessageMap,null);
+          IPM_ChatterUtils.postChatterFeedWithMention(projectTasksMap.keySet(),subjectIdMessageMap,null); 
         }
         //Added by Devendra - call method to insert all exception logs got while excecution of trigger 
         ExceptionLoggingHelper.insertLogRecordList();

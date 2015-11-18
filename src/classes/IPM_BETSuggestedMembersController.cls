@@ -1,16 +1,16 @@
 /****************************************************************************************************************************
-    @Description: Controller class for IPM_BETSuggestedMembers Class
+    @Description: Controller class for IPM_BETSuggestedMembers Visualforce page.
     @Author: Cognizant Technology
     @Date: Jan 2015
 */
-public class IPM_BETSuggestedMembersController{
+public with sharing class IPM_BETSuggestedMembersController{
 
     public IPM_BETSuggestedMembersController(){
       //constructor
     }
     //Method to update bet on project
     public PageReference updateBETonProject(){
-        Id projectId;
+        Id projectId = Null;
         if(ApexPages.currentPage().getParameters().get('id')!=null){
             projectId = ApexPages.currentPage().getParameters().get('id');
         }
@@ -22,7 +22,8 @@ public class IPM_BETSuggestedMembersController{
                update project;
             }
         }catch(Exception ex){
-          ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'IPM_BETSuggestedMembersController','updateBETonProject',ex.getMessage(), Ex,IPM_ConstantUtils.ERROR, null, null, null, null) ;
+          ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+          ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BETSuggestedMembersController.class.getName(),'updateBETonProject',ex.getMessage(), Ex,IPM_ConstantUtils.ERROR, null, null, null, null) ;
             throw new IPM_CustomException(System.Label.IPM_BET_BETUpdate_failure_ErrMsg);  
         }
         return pageRef ;

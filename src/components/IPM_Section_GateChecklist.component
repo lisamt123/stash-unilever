@@ -23,7 +23,7 @@
                                 <th>{!$Label.IPM_GATEKEEPER_CHECKLIST}</th>
                             </tr>
                             <apex:repeat value="{!gkChecklist}" var="gk">
-                            <apex:outputPanel layout="block" rendered="{!if(projDocSec.IPM_Section_Sequence__c==gk.IPM_Section_Sequence_Number__c,true,false)}">
+                            <apex:outputPanel layout="block" rendered="{!if(projDocSec.IPM_Master_Section_External_Id__c==gk.IPM_Section_External_Id__c,true,false)}">
                             <tr>   
                                 <td>
                                     <apex:outputText value="{!gk.IPM_Question__c}"/>

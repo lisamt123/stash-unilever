@@ -1,14 +1,17 @@
 /******************************************************
 * @author Cognizant (Sumit)
 * @date 13/04/2015
-* @description Generic Implementation of Test Data Creation factory
+* @description Generic Implementation of Test Data Creation factory.
 */
 
+/*  
+    This class would be running in without sharing mode. 
+    The sharing and profile access has to be ensured by invoking class using System.RunAs
+*/
 public without sharing class IPM_TestFactory {
     
     public static final String EMPTY_STRING = ''; 
     public static Integer REC_DML_COUNT = 5;
-    
 
     public static Integer staticCounter = 1;
     public static Map<String, Schema.SObjectType> globalDescribe = Schema.getGlobalDescribe(); 
@@ -68,8 +71,8 @@ public without sharing class IPM_TestFactory {
                 List<Object> incomingValueList = fieldToValueMap.get(fieldAPIName);
                 if(!fieldToValueMap.containsKey(lowerCasefieldName) )
                 {
-                	fieldToValueMap.put(lowerCasefieldName,incomingValueList);
-                	fieldToValueMap.remove(fieldAPIName);
+                    fieldToValueMap.put(lowerCasefieldName,incomingValueList);
+                    fieldToValueMap.remove(fieldAPIName);
                 }
                 
             }
@@ -395,7 +398,7 @@ public without sharing class IPM_TestFactory {
         {
             if(providedFieldValue != null)
             {
-            	finalValue = providedFieldValue;
+                finalValue = providedFieldValue;
             }
             else if(fieldDescObj.getType() != Schema.DisplayType.Reference)
             {
@@ -457,14 +460,14 @@ public without sharing class IPM_TestFactory {
             } 
             else if (fieldDescObj.getType() == Schema.DisplayType.MultiPicklist) 
             {
-            	if(finalValue != null)
-            	{
-                	obj.put(fieldApiName, String.valueOf(finalValue));    	
-            	}
-            	else
-            	{
-            		obj.put(fieldApiName, getDefaultPicklistValue(obj, fieldDescObj));
-            	}
+                if(finalValue != null)
+                {
+                    obj.put(fieldApiName, String.valueOf(finalValue));      
+                }
+                else
+                {
+                    obj.put(fieldApiName, getDefaultPicklistValue(obj, fieldDescObj));
+                }
             } 
             else if (fieldDescObj.getType() == Schema.DisplayType.Percent) 
             {
@@ -476,14 +479,14 @@ public without sharing class IPM_TestFactory {
             } 
             else if (fieldDescObj.getType() == Schema.DisplayType.Picklist) 
             {
-            	if(finalValue != null)
-            	{
-                	obj.put(fieldApiName, String.valueOf(finalValue));    	
-            	}
-            	else
-            	{
-            		obj.put(fieldApiName, getDefaultPicklistValue(obj, fieldDescObj)); 
-            	}
+                if(finalValue != null)
+                {
+                    obj.put(fieldApiName, String.valueOf(finalValue));      
+                }
+                else
+                {
+                    obj.put(fieldApiName, getDefaultPicklistValue(obj, fieldDescObj)); 
+                }
             } 
             else if (fieldDescObj.getName() == 'CommunityNickname' && fieldDescObj.getType() == Schema.DisplayType.String) 
             { 
