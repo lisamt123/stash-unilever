@@ -27017,10 +27017,6 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>All_Projects</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
         <tab>Article__c</tab>
         <visibility>None</visibility>
     </tabSettings>
