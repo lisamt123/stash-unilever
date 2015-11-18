@@ -40,7 +40,7 @@
         <div class="form-item-wrapper">
             <div class="form-item">
                 <div class="item-label">
-                    <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_Name}</apex:outputLabel>
+                    <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_BET_Name}</apex:outputLabel>
                     <apex:outputPanel layout="inline" styleClass="question-icon" style="{!If(bet.id == null,'','display:none')}"
                                 rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Name.inlineHelpText)}"
                                 html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Name.inlineHelpText}" />
