@@ -48,8 +48,8 @@ public class IPM_NewTask_Test{
          projectList = IPM_TestFactory_Helper.projectSetUp(8,platformUser);
          
          System.runAs(platformUser)
-         {
-           insert projectList;
+         { 
+            insert projectList;
          }  
          system.assertEquals(projectList.size(),8,'Projects are not created');
          

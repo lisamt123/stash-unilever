@@ -1,4 +1,5 @@
-<apex:page standardController="AF_Category_Brand__c" 
+<apex:page > <!--
+standardController="AF_Category_Brand__c" 
 
 extensions="Category_Brands">
 <apex:sectionHeader title="Category/Brand Edit" subtitle="New Category/Brand"/>
@@ -21,10 +22,10 @@ extensions="Category_Brands">
                <!-- <apex:outputPanel >
                     <div class="requiredInput">
                         <div class="requiredBlock"></div>-->
-                <apex:inputText value="{!CategoryValue}"/>
+              <!--  <apex:inputText value="{!CategoryValue}"/>
                 <!--</div>
                 </apex:outputPanel>-->
-            </apex:pageBlockSectionItem>
+     <!--       </apex:pageBlockSectionItem>
             
             <apex:pageBlockSectionItem rendered="{!if(RecTypeValue=='Brand',true,false)}">
                 <apex:outputLabel >Brand</apex:outputLabel>
@@ -55,5 +56,5 @@ extensions="Category_Brands">
              <apex:commandButton value="cancel" action="{!cancel}"/>
         </apex:pageblockButtons>
         </apex:pageBlock>
-    </apex:form>
+    </apex:form> -->
 </apex:page>

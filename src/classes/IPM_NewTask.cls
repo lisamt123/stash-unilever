@@ -217,7 +217,7 @@ public with sharing class IPM_NewTask {
             if(tasks.IPM_Project__c == null)
             {
                 tasks.IPM_Project__c=apexpages.currentpage().getparameters().get(IPM_Utils.IPM_NewTaskprojectId);
-                IPM_Task__c tsk;
+                IPM_Task__c tsk = new IPM_Task__c();
                 
                 if(tsk != null)
                 {

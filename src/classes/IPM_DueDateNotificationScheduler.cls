@@ -6,7 +6,6 @@
 *********************************************/
 global with sharing class IPM_DueDateNotificationScheduler implements Schedulable{
 	private final string APEXJOBTYPE = 'BatchApex';
-	private final string PROCESSINGSTATUS = 'Processing';
 	private final string PREPARINGSTATUS  = 'Preparing';
 	private final string APEXJOBNAME  = 'MatrixRetry';
 	

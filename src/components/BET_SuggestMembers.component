@@ -100,7 +100,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
     </div>
 
 
-    <div class="{!If(NOT(usedInPopup),'frameTableWrapper','display:none;')}">
+    <div style="{!If(NOT(usedInPopup),'','display:none;')}" class="{!If(NOT(usedInPopup),'frameTableWrapper','')}">
         <table class="sMframeTable">
         <tr>
             <td>

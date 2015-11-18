@@ -78,8 +78,6 @@ public class  IPM_Resource_Allocation_Test {
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
         globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
         system.runAs(globalUser){
-            Test.startTest();
-            
             projectList = [Select Id, Name, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
             (Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(select ID,IPM_Project__c from IPM_Questionnaires__r)
             from IPM_Project__c where Name =:projectNameSet];
@@ -163,7 +161,7 @@ public class  IPM_Resource_Allocation_Test {
             pRef.getParameters().put(IPM_ConstantUtils.TEAM_ROLETYPE,IPM_ConstantUtils.TEAM_GUEST);
             ipmResAlloccation=new IPM_Resource_Allocation();
             
-            Test.stopTest();
+            
             
         }
     }

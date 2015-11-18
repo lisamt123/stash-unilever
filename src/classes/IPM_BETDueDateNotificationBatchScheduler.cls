@@ -8,7 +8,6 @@ global with sharing class IPM_BETDueDateNotificationBatchScheduler implements Sc
     private static final string APEXJOBTYPE = 'BatchApex';
     private static final string PROCESSINGSTATUS = 'Processing';
     private static final string PREPARINGSTATUS  = 'Preparing';
-    private static final string APEXJOBNAME = 'MatrixRetry';
     
    global void execute(SchedulableContext sc) {
     

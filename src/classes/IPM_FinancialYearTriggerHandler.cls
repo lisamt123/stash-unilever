@@ -282,11 +282,11 @@ public with sharing class IPM_FinancialYearTriggerHandler{
     private void processConsolidation(IPM_Financial_Year__c newFinancialYear, IPM_Financial_Year__c newConsolidatedFY, IPM_Financial_Year__c oldFinancialYear, IPM_Financial_Year__c oldConsolidatedFY, String fieldName){
         IPM_Financial_Year__c newConsFY = newConsolidatedFY;
         IPM_Financial_Year__c oldConsFY = oldConsolidatedFY;
-        Object newValueObject;
         Set<String> fieldSufixes = new Set<String>{IPM_ConstantUtils.PROJECT_SPAN_GLOBAL, IPM_ConstantUtils.PROJECT_SPAN_REGIONAL, IPM_ConstantUtils.PROJECT_SPAN_LOCAL};
         Decimal value;
         For(String suffix : fieldSufixes){
-            String newFieldName = fieldname + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX;
+            Object newValueObject = null;
+        	String newFieldName = fieldname + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX;
             //NEW Consolidated Financial Year
             if(newFinancialYear != null && newConsFY != null){
                 if(mapUpsertFY !=null && newConsFY != null && newFieldName != null && mapUpsertFY.containsKey(newConsFY.External_ID__c)) {

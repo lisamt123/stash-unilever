@@ -232,10 +232,6 @@
             <translation><!-- Differentiation --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Endurance</masterLabel>
-            <translation><!-- Endurance --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Expensiveness</masterLabel>
             <translation><!-- Expensiveness --></translation>
         </picklistValues>

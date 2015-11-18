@@ -646,7 +646,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     {
         try
         {
-            PageReference addRollouts;
+            PageReference addRollouts = null;
             if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
             {
                 addRollouts = Page.IPM_RolloutPlansAdd;

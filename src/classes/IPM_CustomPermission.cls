@@ -34,7 +34,7 @@ public with sharing class IPM_CustomPermission {
         // Query the full set of Custom Permissions for the given namespace
         Map<Id, String> customPermissionNamesById = new Map<Id, String>();
         List<CustomPermission> customPermissions = 
-            [SELECT Id, DeveloperName FROM CustomPermission LIMIT 50000];
+            [SELECT Id, DeveloperName FROM CustomPermission LIMIT 500];
         for(CustomPermission customPermission : customPermissions) {
             customPermissionNames.add(customPermission.DeveloperName);
             customPermissionNamesById.put(customPermission.Id, customPermission.DeveloperName);
@@ -48,7 +48,7 @@ public with sharing class IPM_CustomPermission {
                       ParentId
                         IN (SELECT PermissionSetId 
                             FROM PermissionSetAssignment
-                            WHERE AssigneeId = :UserInfo.getUserId()) LIMIT 1000];  
+                            WHERE AssigneeId = :UserInfo.getUserId()) LIMIT 10];  
         for(SetupEntityAccess setupEntity : setupEntities)
             customPermissionsForCurrentUser.add(customPermissionNamesById.get(setupEntity.SetupEntityId));  
     }

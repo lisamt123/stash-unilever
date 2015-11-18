@@ -2905,6 +2905,14 @@ angular.module('unileverApp')
                     $scope.state.field = field;
                     $scope.state.reverse = false;
                 }
+				
+				// filtering fix : reset actual results
+					$scope.res = {
+						betsActive: [],
+						betsArchived: []
+					};
+				//
+				
                 searchBets($scope.searchKeyword, false, true);
             };
 

@@ -23,7 +23,7 @@ public with sharing class IPM_CountryTriggerHandler {
     @Params newCountries: List of IPM_Country__c to be inserted
     *****************************************************************************/
     public void onBeforeInsert(IPM_Country__c[] newCountries) {
-        
+        // Interface Method
     }
     
     /****************************************************************************
@@ -32,7 +32,7 @@ public with sharing class IPM_CountryTriggerHandler {
     @Params oldCountryMap: List of old IPM_Country__c which are updated
     *****************************************************************************/
     public void onBeforeUpdate(IPM_Country__c[] newCountries, Map<Id, IPM_Country__c> oldCountryMap) {
-        
+    	// Interface Method
     }
     
     /****************************************************************************
@@ -40,7 +40,7 @@ public with sharing class IPM_CountryTriggerHandler {
     @Params newCountries: List of IPM_Country__c to be deleted
     *****************************************************************************/
     public void onBeforeDelete(IPM_Country__c[] newCountries) {
-        
+    	// Interface Method
     }
     
     /****************************************************************************
@@ -48,7 +48,7 @@ public with sharing class IPM_CountryTriggerHandler {
     @Params newCountries: List of IPM_Country__c to be inserted
     *****************************************************************************/
     public void onAfterInsert(IPM_Country__c[] newCountries) {
-        
+    	// Interface Method
     }
     
     /****************************************************************************
@@ -57,7 +57,7 @@ public with sharing class IPM_CountryTriggerHandler {
     @Params oldCountryMap: List of old IPM_Country__c which are updated
     *****************************************************************************/
     public void onAfterUpdate(IPM_Country__c[] newCountries, Map<Id, IPM_Country__c> oldCountryMap) {
-        
+    	// Interface Method
     }
     
     /****************************************************************************
@@ -65,7 +65,7 @@ public with sharing class IPM_CountryTriggerHandler {
     @Params newCountries: List of IPM_Country__c to be deleted
     *****************************************************************************/
     public void onAfterDelete(IPM_Country__c[] newCountries) {
-        
+    	// Interface Method
     }
     
     /****************************************************************************
@@ -73,6 +73,6 @@ public with sharing class IPM_CountryTriggerHandler {
     @Params newCountries: List of IPM_Country__c to be undeleted
     *****************************************************************************/
     public void onAfterUnDelete(IPM_Country__c[] newCountries) {
-        
+    	// Interface Method
     }
 }

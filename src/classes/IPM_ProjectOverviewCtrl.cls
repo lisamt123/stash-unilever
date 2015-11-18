@@ -197,17 +197,14 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                IsUpdateStatus=true; 
                isProjLeader = true;
             }
-
-
-
-        }
-           
-        if(lstofuser[0].IPM_Project_Leader__c != null){
-            suggestedManagerList.add(lstofuser[0].IPM_Project_Leader__c);
-        }
-        if(lstofuser[0].Deputy_Project_Leader__c != null && lstofuser[0].Deputy_Project_Leader__c != lstofuser[0].IPM_Project_Leader__c){
-            suggestedManagerList.add(lstofuser[0].Deputy_Project_Leader__c);
-        }
+			if(lstofuser[0].IPM_Project_Leader__c != null){
+            	suggestedManagerList.add(lstofuser[0].IPM_Project_Leader__c);
+        	}
+        	if(lstofuser[0].Deputy_Project_Leader__c != null && lstofuser[0].Deputy_Project_Leader__c != lstofuser[0].IPM_Project_Leader__c){
+            	suggestedManagerList.add(lstofuser[0].Deputy_Project_Leader__c);
+        	}
+		}
+        
         //security for central team and BP users
         IPM_CustomPermission cpr = new IPM_CustomPermission();
         boolean isCentralTeam=false;
@@ -334,11 +331,12 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                 projectDoc = eachDoc;
             }
         }
-      projectDocStatusStyleClass = projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.STATUS_NOT_STARTED ?  'greyFont'  
+      /*projectDocStatusStyleClass = projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.STATUS_NOT_STARTED ?  'greyFont'  
                                                         : projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED ?  IPM_ConstantUtils.IPM_BOSS_CSS_STOPPED 
                                                         : (projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.STATUS_IN_PROGRESS || projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED || projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED) ? IPM_ConstantUtils.IPM_BOSS_CSS_STATUS 
                                                         : (projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED || projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS ) ? IPM_ConstantUtils.IPM_BOSS_CSS_COMPLETED
                                                         : IPM_ConstantUtils.BLANK;
+        */  
         //process for milestone RL
         for(IPM_Milestone__c eachMS : project.IPM_Milestones__r) {
           ProjDueDateMap.put(eachMS.IPM_Project__c,eachMS.IPM_Due_Date__c);

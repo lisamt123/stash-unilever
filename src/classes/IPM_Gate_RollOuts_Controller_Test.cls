@@ -8,21 +8,10 @@
 public class IPM_Gate_RollOuts_Controller_Test{
 
 	private static User platformUser;
-	private static IPM_Project__c project;
 	private static List<IPM_Project__c> globalProjectList;
 	private static List<IPM_Project_Rollout__c> regionalRolloutList;
 	private static List<IPM_Project_Rollout__c> localRolloutList;
-	private static final String LOCAL_PROJECTNAME = 'Test Local';
-	private static final String REGIONAL_PROJECTNAME = 'Test Regional';
-	private static List<IPM_Project__c> lstRegionalProjects;
-	private static List<IPM_Project__c> lstLocalProjects;
-	private static List<IPM_Milestone__c> ipmMileStoneList;
-	private static List<IPM_Project_Document__c> currDocuments;
-	private static List<IPM_Project_Document__c> updatedDocument;
 	private static final String PROJ_CREATED='Projects are created';
-	private static final String PLANNED_STR='The planned';
-	private static final String PLATFORM_USER='PLATFORM_USER';
-	private static final String PRJ_NAME='TestComments1';
 	private static Set<Id> iDs ;
     public static list<IPM_Country__c> countryList;
     
@@ -132,17 +121,5 @@ public class IPM_Gate_RollOuts_Controller_Test{
         }
         
      } 
-   
-     /*public testmethod static void gateRolloutTest() 
-     {
-    	 
-            
-            List<IPM_Gate_RollOuts_Controller.LocalRolloutWrapper> lstLocalWrapper = new List<IPM_Gate_RollOuts_Controller.LocalRolloutWrapper>();
-            IPM_Gate_RollOuts_Controller.LocalRolloutWrapper localRolloutWrapper = new IPM_Gate_RollOuts_Controller.LocalRolloutWrapper(localRolloutList[0],countryList);
-            lstLocalWrapper.add(localRolloutWrapper);
-            IPM_Gate_RollOuts_Controller.RegionalRollOutWrapper regionalRolloutWrapper = new IPM_Gate_RollOuts_Controller.RegionalRollOutWrapper(regionalRolloutList[0].Name,lstLocalWrapper); // NO SONAR used to cover the test coverage of constructor  
-            IPM_Gate_RollOuts_Controller gateController = new IPM_Gate_RollOuts_Controller(); 
-      }
-       */
      
     }

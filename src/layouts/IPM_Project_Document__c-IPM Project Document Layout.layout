@@ -9,6 +9,10 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
+                <field>IPM_Project_Document_External_Id__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
@@ -79,10 +83,6 @@
                 <behavior>Edit</behavior>
                 <field>IPM_Project_External_Id__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>IPM_Project_Document_External_Id__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -137,12 +137,15 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
+    <miniLayout>
+        <fields>IPM_Project_Document_External_Id__c</fields>
+    </miniLayout>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>IPM_Section_Sequence_Number__c</fields>
-        <fields>Project_Doc_Section_Ext_Id__c</fields>
         <fields>IPM_Section_Name__c</fields>
+        <fields>IPM_Version_Number__c</fields>
         <fields>IPM_Default_Section__c</fields>
+        <fields>IPM_Negotiable__c</fields>
         <fields>IPM_Section_Type__c</fields>
         <fields>IPM_Section_Status__c</fields>
         <fields>IPM_FunctionalRole__c</fields>
@@ -161,7 +164,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hc0000000KW97</masterLabel>
+        <masterLabel>00hM0000000QRGw</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

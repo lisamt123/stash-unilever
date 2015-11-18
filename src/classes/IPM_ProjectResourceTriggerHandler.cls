@@ -284,13 +284,16 @@ public with sharing class IPM_ProjectResourceTriggerHandler
            }
        } //FOR END       
        if(projidset != null && projidset.size()>0){
-         projectmap = new Map<id,IPM_Project__c>([SELECT id,IPM_Global_Project_Id__c,IPM_Parent_Project__c FROM IPM_Project__c WHERE id IN:projidset or IPM_Parent_Project__c IN:projidset LIMIT 1000]);
+         projectmap = new Map<id,IPM_Project__c>([SELECT id,IPM_Parent_Project__r.IPM_Parent_Project__c,IPM_Global_Project_Id__c,IPM_Parent_Project__c FROM IPM_Project__c WHERE id IN:projidset or IPM_Parent_Project__c IN:projidset or IPM_Parent_Project__r.IPM_Parent_Project__c IN:projidset LIMIT 1000]);
          if(projectmap != null && projectmap.size()>0){ 
            for(IPM_Project__c proj:projectmap.values()){
              projglobalidset.add(proj.IPM_Global_Project_Id__c); 
              projglobalidset.add(proj.id);
              if(proj.IPM_Parent_Project__c!=null){
                 projglobalidset.add(proj.IPM_Parent_Project__c);
+             }
+             if(proj.IPM_Parent_Project__r.IPM_Parent_Project__c!=null){
+                projglobalidset.add(proj.IPM_Parent_Project__r.IPM_Parent_Project__c);   
              }
            }
            if(projglobalidset != null && projglobalidset.size()>0){

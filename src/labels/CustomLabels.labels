@@ -1,6 +1,3824 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+        <fullName>AF_Adjust_Quarters</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF Adjust Quarters</shortDescription>
+        <value>Select the Quarter(s) you wish to adjust and press continue</value>
+    </labels>
+    <labels>
+        <fullName>AF_AgencyEstimateSuccess</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_AgencyEstimateSuccess</shortDescription>
+        <value>Agency Estimate Successfully Saved</value>
+    </labels>
+    <labels>
+        <fullName>AF_AgencyEstimate_Entity_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_AgencyEstimate_Entity_Message</shortDescription>
+        <value>Sorry no combination exists. Please contact CMCO users</value>
+    </labels>
+    <labels>
+        <fullName>AF_AgencyUrlLink</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_AgencyUrlLink</shortDescription>
+        <value>https://unilever.force.com/AgencyFees</value>
+    </labels>
+    <labels>
+        <fullName>AF_Agency_Bonus_Access</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Agency Bonus Access</shortDescription>
+        <value>Date and Fiscal year should be provided every year so that this will be served as a reference date for the agency users to access the quaterly bonus</value>
+    </labels>
+    <labels>
+        <fullName>AF_AnnualBonus_Qual</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_AnnualBonus_Qual</shortDescription>
+        <value>This is used for calculate qualitative annual bonus.</value>
+    </labels>
+    <labels>
+        <fullName>AF_BonusQuarterly</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BonusQuarterly</shortDescription>
+        <value>Enter the date the Cat finance should enter the Bonus Quarterly results</value>
+    </labels>
+    <labels>
+        <fullName>AF_BonusSummaryId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BonusSummaryId</shortDescription>
+        <value>a3a</value>
+    </labels>
+    <labels>
+        <fullName>AF_Bonus_threshold_error_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Bonus threshold error message</shortDescription>
+        <value>Please add bonus thresholds,then save it.</value>
+    </labels>
+    <labels>
+        <fullName>AF_BrandEstimateDisplayText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BrandEstimateDisplayText</shortDescription>
+        <value>Please enter your brand targets for the financial year displayed. This data will not be visible to agency users.</value>
+    </labels>
+    <labels>
+        <fullName>AF_BrandEstimateId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BrandEstimateId</shortDescription>
+        <value>a3d</value>
+    </labels>
+    <labels>
+        <fullName>AF_BrandEstimate_TriggerDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_BrandEstimate_TriggerDate</shortDescription>
+        <value>This holds the Brand Estimate Trigger date</value>
+    </labels>
+    <labels>
+        <fullName>AF_Brandestimate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Brandestimate</shortDescription>
+        <value>Are you sure you wish to submit these Base Fee splits, the associated Agency will be notified to input their base fee estimates?</value>
+    </labels>
+    <labels>
+        <fullName>AF_CMCO_Rights</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_CMCO_Rights</shortDescription>
+        <value>This Specifies the CMCO user Rights</value>
+    </labels>
+    <labels>
+        <fullName>AF_CatFinanceThreshold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_CatFinanceThreshold</shortDescription>
+        <value>This custom setting is used to input the dates which the category Finance user should input the Bonus Threshold values</value>
+    </labels>
+    <labels>
+        <fullName>AF_Category</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Category</shortDescription>
+        <value>Please select another category. This category is already associated with this user</value>
+    </labels>
+    <labels>
+        <fullName>AF_Central_Billing_Hub</fullName>
+        <categories>Central billing hub</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Central Billing Hub</shortDescription>
+        <value>You have selected to raise a PO with Unilever&apos;s UK entity. You are required to provide further breakdown of the fee on the Country Breakdown tab.</value>
+    </labels>
+    <labels>
+        <fullName>AF_CommunityLink</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_CommunityLink</shortDescription>
+        <value>This holds the Community URL</value>
+    </labels>
+    <labels>
+        <fullName>AF_ControllerReview</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_ControllerReview</shortDescription>
+        <value>a2T</value>
+    </labels>
+    <labels>
+        <fullName>AF_Country_breakdown_percentage</fullName>
+        <categories>Country breakdown percentage should be equal to 100 percent.</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Country breakdown percentage</shortDescription>
+        <value>Country breakdown percentage should be equal to 100 percent.</value>
+    </labels>
+    <labels>
+        <fullName>AF_DocumentId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To store the document id for the help page for Agency Fee Application</shortDescription>
+        <value>015E0000005I1mE</value>
+    </labels>
+    <labels>
+        <fullName>AF_DummyUserID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_DummyUserID</shortDescription>
+        <value>This holds the Dummy user id for Approval process</value>
+    </labels>
+    <labels>
+        <fullName>AF_Dummy_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Dummy User</shortDescription>
+        <value>005E0000006K6h2</value>
+    </labels>
+    <labels>
+        <fullName>AF_Email_To_CatFinance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email To CatFinance</shortDescription>
+        <value>You are triggering the start of the Creative Agency Fees alignment process for the current financial year. An email will now be sent to all relevant Category Finance users asking them to enter their Brand Targets. 
+
+Are you sure you wish to proceed?</value>
+    </labels>
+    <labels>
+        <fullName>AF_EntityException</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_EntityException</shortDescription>
+        <value>Country Breakdown saved successfully</value>
+    </labels>
+    <labels>
+        <fullName>AF_LP_Base_Fee_Targets</fullName>
+        <categories>Landing Page,Unilever Base Fee Link,Hover / Tool tip</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_LP_Base_Fee_Targets</shortDescription>
+        <value>Click to enter base fee targets and bonus thresholds</value>
+    </labels>
+    <labels>
+        <fullName>AF_Lock</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Lock Records</shortDescription>
+        <value>You cannot update previous year records</value>
+    </labels>
+    <labels>
+        <fullName>AF_Mandatory_Fields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Mandatory Fields</shortDescription>
+        <value>Please complete all mandatory fields</value>
+    </labels>
+    <labels>
+        <fullName>AF_No_Bonus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF No Bonus</shortDescription>
+        <value>By ticking this option you are confirming that this brands agency fees will not be subject to a bonus</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPS_Approval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPS_Approval</shortDescription>
+        <value>You are approving this record. Are you sure you wish to proceed?</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPS_Reject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPS_Reject</shortDescription>
+        <value>You are rejecting this record. Are you sure you wish to proceed?</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPS_RejectWithComments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPS_RejectWithComments</shortDescription>
+        <value>You are rejecting this record. Please provide comments before proceeding.</value>
+    </labels>
+    <labels>
+        <fullName>AF_OOPS_Submit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OOPS_Submit</shortDescription>
+        <value>You are approving this record. Are you sure you wish to proceed?</value>
+    </labels>
+    <labels>
+        <fullName>AF_OopsPercentage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_OopsPercentage</shortDescription>
+        <value>This holds the oops percentage</value>
+    </labels>
+    <labels>
+        <fullName>AF_PiliotError_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PiliotError message</shortDescription>
+        <value>Approval process is not yet completed</value>
+    </labels>
+    <labels>
+        <fullName>AF_Pilot_Model_Instructions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Pilot Model Instructions</shortDescription>
+        <value>Please select the box if your brand is part of the pilot renumeration model</value>
+    </labels>
+    <labels>
+        <fullName>AF_QuarterlyBonus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_QuarterlyBonus</shortDescription>
+        <value>This holds the bonus values for calculations</value>
+    </labels>
+    <labels>
+        <fullName>AF_RaiseNewPOConfirmMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_RaiseNewPOConfirmMsg</shortDescription>
+        <value>Are you sure you want to raise a new PO for the Base Fees selected? This will result in the selected Base Fee names being automatically archived and a new copy of them being created for the selected quarters in this financial year. You will be notified by email when the process is finished</value>
+    </labels>
+    <labels>
+        <fullName>AF_Raise_New_PO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF Raise New PO</shortDescription>
+        <value>Select the Quarter you wish to Raise New PO &apos;s for and press continue</value>
+    </labels>
+    <labels>
+        <fullName>AF_Success</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_Success</shortDescription>
+        <value>Category and brand is updated successfully</value>
+    </labels>
+    <labels>
+        <fullName>AF_TriggerDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_TriggerDate</shortDescription>
+        <value>This setting is used to store the Trigger Date</value>
+    </labels>
+    <labels>
+        <fullName>AF_UBFLB_Type_of_Fees</fullName>
+        <categories>Unilever Base Fee Light Box,Bonus Threshold,Tool Tip</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_UBFLB-Type_of_Fees</shortDescription>
+        <value>Now select which type of fees will be included in the Bonus calculations</value>
+    </labels>
+    <labels>
+        <fullName>AF_UrlLink</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_UrlLink</shortDescription>
+        <value>https://unilever.content.force.com</value>
+    </labels>
+    <labels>
+        <fullName>AF_ViewAllHistory_AgencyEstimates</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ViewAllHistory_AgencyEstimates</shortDescription>
+        <value>a3V</value>
+    </labels>
+    <labels>
+        <fullName>AF_ViewAllHistory_BonusEstimate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ViewAllHistory_BonusEstimate</shortDescription>
+        <value>a3Y</value>
+    </labels>
+    <labels>
+        <fullName>AF_ViewAllHistory_oopEstimate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ViewAllHistory_oopEstimate</shortDescription>
+        <value>a3p</value>
+    </labels>
+    <labels>
+        <fullName>AF_Yes_Bonus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF Yes Bonus</shortDescription>
+        <value>By unticking this option you are confirming that this brands agency fees will be subject to a bonus</value>
+    </labels>
+    <labels>
+        <fullName>AF_brand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_brand</shortDescription>
+        <value>Please select another brand. This brand is already associated with this user</value>
+    </labels>
+    <labels>
+        <fullName>AF_isBonusLinkForAgency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_isBonusLinkForAgency</shortDescription>
+        <value>This will store date information whether to show Bonus link or not</value>
+    </labels>
+    <labels>
+        <fullName>AF_oopsActualId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_oopsActualId</shortDescription>
+        <value>a3o</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepEight</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepEight</shortDescription>
+        <value>Expertise</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepEleven</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepEleven</shortDescription>
+        <value>Rate Card</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepFive</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepFive</shortDescription>
+        <value>Geography</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepFour</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepFour</shortDescription>
+        <value>Business Breakdown</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepNine</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepNine</shortDescription>
+        <value>Experience</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepOne</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepOne</shortDescription>
+        <value>Supplier Code</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepSeven</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepSeven</shortDescription>
+        <value>Supplier Info</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepSix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepSix</shortDescription>
+        <value>Insurance</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepTen</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepTen</shortDescription>
+        <value>Agency Profile</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepThree</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepThree</shortDescription>
+        <value>Financials</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepTwelve</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepTwelve</shortDescription>
+        <value>Fixed Price Rate Card</value>
+    </labels>
+    <labels>
+        <fullName>AR_StepTwo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AR StepTwo</shortDescription>
+        <value>General Information</value>
+    </labels>
+    <labels>
+        <fullName>Agency_Email_Alerts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agency Email Alerts</shortDescription>
+        <value>This holds the each quarter date for OOps</value>
+    </labels>
+    <labels>
+        <fullName>Agency_Fee_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agency Fee Title</shortDescription>
+        <value>Agency Fees Online</value>
+    </labels>
+    <labels>
+        <fullName>BETManagerRole</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BETManagerRole</shortDescription>
+        <value>Manager</value>
+    </labels>
+    <labels>
+        <fullName>BETTeamMemberRequestApprovedStatus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BETTeamMemberRequestApprovedStatus</shortDescription>
+        <value>Approved</value>
+    </labels>
+    <labels>
+        <fullName>BETTeamMemberRequestNewStatus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BETTeamMemberRequestNewStatus</shortDescription>
+        <value>New</value>
+    </labels>
+    <labels>
+        <fullName>BET_Add_External_Agency_User</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Add_External_Agency_User</shortDescription>
+        <value>Add External Agency User</value>
+    </labels>
+    <labels>
+        <fullName>BET_Add_External_Agency_User_Tooltip</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Add_External_Agency_User_Tooltip</shortDescription>
+        <value>Please enter the full email address of your agency member here. They will receive an email with further information on joining the BET.</value>
+    </labels>
+    <labels>
+        <fullName>BET_Add_Internal_User</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Add_Internal_User</shortDescription>
+        <value>Add Internal User</value>
+    </labels>
+    <labels>
+        <fullName>BET_Add_Member</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Add_Member</shortDescription>
+        <value>Add Member</value>
+    </labels>
+    <labels>
+        <fullName>BET_Add_Members</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Add_Members</shortDescription>
+        <value>Add Members</value>
+    </labels>
+    <labels>
+        <fullName>BET_Add_Toolkit_Member</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Add_Toolkit_Member</shortDescription>
+        <value>Add Toolkit Member</value>
+    </labels>
+    <labels>
+        <fullName>BET_Approve</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Approve</shortDescription>
+        <value>Approve</value>
+    </labels>
+    <labels>
+        <fullName>BET_ApproveProjectsTabName</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_ApproveProjectsTabName</shortDescription>
+        <value>Approve IPM Links</value>
+    </labels>
+    <labels>
+        <fullName>BET_Approve_members</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Approve_members</shortDescription>
+        <value>Members to Approve</value>
+    </labels>
+    <labels>
+        <fullName>BET_Approve_selected</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Approve_selected</shortDescription>
+        <value>Approve selected</value>
+    </labels>
+    <labels>
+        <fullName>BET_ArchiveBET</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_ArchiveBET</shortDescription>
+        <value>Archive BET</value>
+    </labels>
+    <labels>
+        <fullName>BET_ArchiveConfirmation</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_ArchiveConfirmation</shortDescription>
+        <value>Are you sure you want to archive this BET?</value>
+    </labels>
+    <labels>
+        <fullName>BET_Archiving</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Archiving</shortDescription>
+        <value>Archiving...</value>
+    </labels>
+    <labels>
+        <fullName>BET_AssetType</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_AssetType</shortDescription>
+        <value>Asset Type</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Country</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Country_Mandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Country_Mandatory</shortDescription>
+        <value>Asset Country cannot be empty.</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Media_Type</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Media_Type</shortDescription>
+        <value>Media Type</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Media_Type_Mandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Media_Type_Mandatory</shortDescription>
+        <value>Asset Media Type cannot be empty.</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_MetaData</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_MetaData</shortDescription>
+        <value>Please provide metadata and select file to upload.</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Name</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Name</shortDescription>
+        <value>Asset Name</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Name_Mandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Name_Mandatory</shortDescription>
+        <value>Asset name is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_No_Files_Selected</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_No_Files_Selected</shortDescription>
+        <value>No files selected</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Not_Uploaded</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Not_Uploaded</shortDescription>
+        <value>Asset not uploaded</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Status</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Status</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Status_Mandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Status_Mandatory</shortDescription>
+        <value>Asset Status cannot be empty.</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Type</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Type</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>BET_Asset_Uploaded</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Asset_Uploaded</shortDescription>
+        <value>Asset uploaded succesfully</value>
+    </labels>
+    <labels>
+        <fullName>BET_BET_Delete_Question</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BET_Delete_Question</shortDescription>
+        <value>Are you sure you wish to proceed with deleting this BET?</value>
+    </labels>
+    <labels>
+        <fullName>BET_BET_Members</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BET_Members</shortDescription>
+        <value>BET Members</value>
+    </labels>
+    <labels>
+        <fullName>BET_BetBrandPositionMandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BetBrandPositionMandatory</shortDescription>
+        <value>Brand position is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_BetCategoryGroupMandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BetCategoryGroupMandatory</shortDescription>
+        <value>Category Name is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_BetCategoryMandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BetCategoryMandatory</shortDescription>
+        <value>Category is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_BetNameMandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BetNameMandatory</shortDescription>
+        <value>Bet Name is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_BetOwnerMandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BetOwnerMandatory</shortDescription>
+        <value>Owner field is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_BrandCategoryNotRelated</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Brand is not linked to Category</shortDescription>
+        <value>Selected brand is not linked to chosen category. Please change your selection</value>
+    </labels>
+    <labels>
+        <fullName>BET_BrandTip</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BrandTip</shortDescription>
+        <value>Please select a brand only if different to the brand positioning</value>
+    </labels>
+    <labels>
+        <fullName>BET_Browse_members</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Browse_members</shortDescription>
+        <value>Browse Members</value>
+    </labels>
+    <labels>
+        <fullName>BET_Cancel</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>BET_Canceling</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Canceling</shortDescription>
+        <value>Canceling ...</value>
+    </labels>
+    <labels>
+        <fullName>BET_CreateBetAddMembers</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_CreateBetAddMembers</shortDescription>
+        <value>Create new BET &amp; add members</value>
+    </labels>
+    <labels>
+        <fullName>BET_CreateNewBet</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_CreateNewBet</shortDescription>
+        <value>Create new BET</value>
+    </labels>
+    <labels>
+        <fullName>BET_Delete</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>BET_DeleteConfirmation</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_DeleteConfirmation</shortDescription>
+        <value>Deleting a Brand Experience Toolkit (BET) is permanent and cannot be reversed. This will remove the BET, it’s associated Chatter Group and all uploaded files from the system completely.</value>
+    </labels>
+    <labels>
+        <fullName>BET_Delete_BET</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Delete_BET</shortDescription>
+        <value>Delete BET</value>
+    </labels>
+    <labels>
+        <fullName>BET_Delete_BET_Linked</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Delete_BET_Linked</shortDescription>
+        <value>BETs linked to an IPM project cannot be deleted. Please go to IPM Navigator and unlink first.</value>
+    </labels>
+    <labels>
+        <fullName>BET_Delete_selected</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Delete_selected</shortDescription>
+        <value>Delete Selected</value>
+    </labels>
+    <labels>
+        <fullName>BET_Deleting</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Deleting</shortDescription>
+        <value>Deleting ...</value>
+    </labels>
+    <labels>
+        <fullName>BET_Deny</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Deny</shortDescription>
+        <value>Deny</value>
+    </labels>
+    <labels>
+        <fullName>BET_Deny_selected</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Deny_selected</shortDescription>
+        <value>Deny selected</value>
+    </labels>
+    <labels>
+        <fullName>BET_ExpectedAssets</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_ExpectedAssets</shortDescription>
+        <value>Expected Assets</value>
+    </labels>
+    <labels>
+        <fullName>BET_External_Agency_User</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_External_Agency_User</shortDescription>
+        <value>External Agency User</value>
+    </labels>
+    <labels>
+        <fullName>BET_External_Agency_Users</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_External_Agency_Users</shortDescription>
+        <value>External Agency Users</value>
+    </labels>
+    <labels>
+        <fullName>BET_File_Name</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_File_Name</shortDescription>
+        <value>File Name</value>
+    </labels>
+    <labels>
+        <fullName>BET_File_Upload</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_File_Upload</shortDescription>
+        <value>File Upload</value>
+    </labels>
+    <labels>
+        <fullName>BET_FollowBetArchivedMessage</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_FollowBetArchivedMessage</shortDescription>
+        <value>Bet with given id is archived</value>
+    </labels>
+    <labels>
+        <fullName>BET_FollowBetNotExistsMessage</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_FollowBetNotExistsMessage</shortDescription>
+        <value>Bet with given id does not exist</value>
+    </labels>
+    <labels>
+        <fullName>BET_FollowExceptionMessage</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_FollowExceptionMessage</shortDescription>
+        <value>Unable to follow</value>
+    </labels>
+    <labels>
+        <fullName>BET_FollowProjectNotExistsMessage</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_FollowProjectNotExistsMessage</shortDescription>
+        <value>Project with given id does not exist</value>
+    </labels>
+    <labels>
+        <fullName>BET_Header</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Header</shortDescription>
+        <value>Create a New Brand Experience Toolkit</value>
+    </labels>
+    <labels>
+        <fullName>BET_Help_Group_Name</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Help_Group_Name</shortDescription>
+        <value>BET – Help and Guidance chatter group</value>
+    </labels>
+    <labels>
+        <fullName>BET_Home_Page_Info</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Home_Page_Info</shortDescription>
+        <value>The BET system is currently being upgraded to integrate with IPM, whilst this is being rolled out to all Categories you may experience changes to functionality.&lt;br/&gt; Please direct all queries to the &lt;a href=&quot;/{0}&quot; target=&quot;_blank&quot;&gt;{1}&lt;/a&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BET_IPMProject</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_IPMProject</shortDescription>
+        <value>IPM Project</value>
+    </labels>
+    <labels>
+        <fullName>BET_InoplanProjectMandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_InoplanProjectMandatory</shortDescription>
+        <value>Inoplan Project is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_InoplanProjectName</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_InoplanProjectName</shortDescription>
+        <value>Inoplan Project Name</value>
+    </labels>
+    <labels>
+        <fullName>BET_LaunchDateMandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_LaunchDateMandatory</shortDescription>
+        <value>Target Launch Date is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_LeadProjectRequestNotification</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_LeadProjectRequestNotification</shortDescription>
+        <value>Project {0} has linked to your BET {1} and will become your leading project.
+&lt;br/&gt; As a reminder, the leading project controls these aspects of a BET:
+&lt;br/&gt;&lt;br/&gt;-  The target launch date (TLD)
+&lt;br/&gt;&lt;br/&gt;-  The BET 1st and Final Release due dates
+&lt;br/&gt;&lt;br/&gt;-  The category and brand position of a BET
+&lt;br/&gt;&lt;br/&gt; If this project has requested access to the BET for it’s members, membership will also be automatically granted with this link.
+&lt;br/&gt;&lt;br/&gt; To DENY this request for membership access and to lead your BET, click here &lt;a href=&quot;{2}&quot;&gt;{3}&lt;/a&gt; within 72 hours of this email.
+&lt;br/&gt;&lt;br/&gt; To manage membership to your BET please open the BET and click on Members &lt;a href=&quot;{4}&quot;&gt;{5}&lt;/a&gt;
+&lt;br/&gt;&lt;br/&gt; To change the lead project, please contact system admin by clicking &lt;a href=&quot;mailto:cb4l@unilever.com?subject=BET SYSTEM REQUEST for {6}&quot;&gt;here&lt;/a&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BET_LeadProjectRequestNotificationSubject</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_LeadProjectRequestNotificationSubject</shortDescription>
+        <value>Project {0} has linked to your BET {1} and will become your leading project.</value>
+    </labels>
+    <labels>
+        <fullName>BET_LinkBetToIPMProject</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_LinkBetToIPMProject</shortDescription>
+        <value>Please link your BET to a project from IPM Navigator.</value>
+    </labels>
+    <labels>
+        <fullName>BET_LinkedProjectHeaderOne</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_LinkedProjectHeaderOne</shortDescription>
+        <value>The lead project governs the release date of the toolkit.</value>
+    </labels>
+    <labels>
+        <fullName>BET_LinkedProjectHeaderTwo</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_LinkedProjectHeaderTwo</shortDescription>
+        <value>&lt;div&gt;To change the lead project please 
+&lt;a style=&quot;color:#E6007E;&quot; href=&quot;mailto:cb4l@unilever.com?subject=BET system help&quot;&gt;contact a system administrator.&lt;/a&gt;&lt;/div&gt;
+&lt;div&gt;To unlink an IPM project, please do so from IPM.&lt;/div&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BET_LinkedProjectsTabName</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_LinkedProjectsTabName</shortDescription>
+        <value>Linked Projects</value>
+    </labels>
+    <labels>
+        <fullName>BET_Manage_Members</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Manage_Members</shortDescription>
+        <value>You can manage, add or remove members at any time once the BET has been created</value>
+    </labels>
+    <labels>
+        <fullName>BET_MandatoryStar</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_MandatoryStar</shortDescription>
+        <value>*</value>
+    </labels>
+    <labels>
+        <fullName>BET_MarkedFieldsMandatory</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_MarkedFieldsMandatory</shortDescription>
+        <value>Marked fields are mandatory</value>
+    </labels>
+    <labels>
+        <fullName>BET_Member_Requests_Not_Marked</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Member_Requests_Not_Marked</shortDescription>
+        <value>Please select records to perform this action</value>
+    </labels>
+    <labels>
+        <fullName>BET_Multi_File_Upload</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Multi_File_Upload</shortDescription>
+        <value>Multi File Upload</value>
+    </labels>
+    <labels>
+        <fullName>BET_MultipleRequestNotification</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_MultipleRequestNotification</shortDescription>
+        <value>A member access request has been made to BET {0} from project {1}.
+&lt;br/&gt; Please open the BET and click on Members to Approve or Deny,
+&lt;a href=&quot;{2}&quot;&gt;{3}&lt;/a&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BET_MultipleRequestNotificationSubject</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_MultipleRequestNotificationSubject</shortDescription>
+        <value>A member access request has been made to BET {0}</value>
+    </labels>
+    <labels>
+        <fullName>BET_Name</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Name</shortDescription>
+        <value>Name</value>
+    </labels>
+	<labels>
+        <fullName>BET_BET_Name</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_BET_Name</shortDescription>
+        <value>BET Name</value>
+    </labels>
+    <labels>
+        <fullName>BET_NameExists</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_NameExists</shortDescription>
+        <value>BET with given name already exists in the system.</value>
+    </labels>
+    <labels>
+        <fullName>BET_NewIPMProjectIsLinking</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_NewIPMProjectIsLinking</shortDescription>
+        <value>A new IPM Project is linking to this BET</value>
+    </labels>
+    <labels>
+        <fullName>BET_NewLeadProjectNotification</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_NewLeadProjectNotification</shortDescription>
+        <value>Project {0} has become new lead project of BET {1}.
+&lt;br/&gt; As a reminder, the leading project controls these aspects of a BET:
+&lt;br/&gt;&lt;br/&gt;-  The target launch date (TLD)
+&lt;br/&gt;&lt;br/&gt;-  The BET 1st and Final Release due dates
+&lt;br/&gt;&lt;br/&gt;-  The category and brand position of a BET
+&lt;br/&gt;&lt;br/&gt; To change the lead project, please contact system admin by clicking &lt;a href=&quot;mailto:cb4l@unilever.com?subject=BET SYSTEM REQUEST for {2}&quot;&gt;here&lt;/a&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BET_NewLeadProjectNotificationSubject</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_NewLeadProjectNotificationSubject</shortDescription>
+        <value>Project {0} has become the new lead project of BET {1}.</value>
+    </labels>
+    <labels>
+        <fullName>BET_NoLinkedProjectsAvailable</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_NoLinkedProjectsAvailable</shortDescription>
+        <value>&lt;div&gt;There are no projects currently linked to this BET.&lt;/div&gt;
+&lt;div&gt;Please link your BET to a project from IPM Navigator.&lt;/div&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BET_Note</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Note</shortDescription>
+        <value>Please note : All added members will have &apos;member level&apos; access to the toolkit. &lt;br/&gt;
+This means that they will not have editing rights. You can manage member &lt;br/&gt; permissions from the toolkit settings once it has been created.</value>
+    </labels>
+    <labels>
+        <fullName>BET_Owner</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Owner</shortDescription>
+        <value>BET Owner</value>
+    </labels>
+    <labels>
+        <fullName>BET_Photo</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Photo</shortDescription>
+        <value>Photo</value>
+    </labels>
+    <labels>
+        <fullName>BET_Please_Drag_And_Drop</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Please_Drag_And_Drop</shortDescription>
+        <value>Please drag &amp; drop to change priority order</value>
+    </labels>
+    <labels>
+        <fullName>BET_Project</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Project</shortDescription>
+        <value>Project</value>
+    </labels>
+    <labels>
+        <fullName>BET_ProjectApproveRemainder</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_ProjectApproveRemainder</shortDescription>
+        <value>&lt;div&gt;Please action this request by {0}.&lt;/div&gt;
+&lt;div&gt;After this time, the link will be automatically approved.&lt;/div&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BET_ProjectLead</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_ProjectLead</shortDescription>
+        <value>Project Lead</value>
+    </labels>
+    <labels>
+        <fullName>BET_ProjectName</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_ProjectName</shortDescription>
+        <value>Project Name</value>
+    </labels>
+    <labels>
+        <fullName>BET_Save</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>BET_Save_And_Finish</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Save_And_Finish</shortDescription>
+        <value>Save &amp; Finish</value>
+    </labels>
+    <labels>
+        <fullName>BET_Saving</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Saving</shortDescription>
+        <value>Saving...</value>
+    </labels>
+    <labels>
+        <fullName>BET_Select_Files</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Select_Files</shortDescription>
+        <value>Select files to upload as a new Chatter File.</value>
+    </labels>
+    <labels>
+        <fullName>BET_SetAsLeadExceptionMessage</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_SetAsLeadExceptionMessage</shortDescription>
+        <value>Unable to set project as lead</value>
+    </labels>
+    <labels>
+        <fullName>BET_SkipForNow</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_SkipForNow</shortDescription>
+        <value>Skip for now</value>
+    </labels>
+    <labels>
+        <fullName>BET_Sub_Function</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Sub_Function</shortDescription>
+        <value>Sub Function</value>
+    </labels>
+    <labels>
+        <fullName>BET_Suggest_Member</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Suggest_Member</shortDescription>
+        <value>Suggest Member</value>
+    </labels>
+    <labels>
+        <fullName>BET_Suggest_Member_Message</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Suggest_Member_Message</shortDescription>
+        <value>Your suggestion has been sent to the BET owner for approval. Your suggested member will receive notification directly</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberAddOtherMember</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberAddOtherMember</shortDescription>
+        <value>Add Other Members</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberComponentAddMember</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberComponentAddMember</shortDescription>
+        <value>Add Bet members</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberComponentCollapse</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_SuggestedMemberComponentCollapse</shortDescription>
+        <value>Collapse all</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberComponentExpand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_SuggestedMemberComponentExpand</shortDescription>
+        <value>Expand all |</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberComponentSkipForNow</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberComponentSkipForNow</shortDescription>
+        <value>Skip for now</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberComponentWarn</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberComponentWarn</shortDescription>
+        <value>Now we just need to capture the details of any team members who need acess to the BET. If  you miss anyone here they can always request access later individually</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberDuplicateError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_SuggestedMemberDuplicateError</shortDescription>
+        <value>Member {0} is already defined</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberMembers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberMembers</shortDescription>
+        <value>members</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberModalAddSelected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberModalAddSelected</shortDescription>
+        <value>Add selected members</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberModalCancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberModalCancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberModalHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberModalHeader</shortDescription>
+        <value>Add Team Member</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberModalNoResults</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberModalNoResults</shortDescription>
+        <value>No Results</value>
+    </labels>
+    <labels>
+        <fullName>BET_SuggestedMemberOtherMembers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET SuggestedMemberOtherMembers</shortDescription>
+        <value>Other Members</value>
+    </labels>
+    <labels>
+        <fullName>BET_TargetLaunchDate</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_TargetLaunchDate</shortDescription>
+        <value>Target Launch Date</value>
+    </labels>
+    <labels>
+        <fullName>BET_Tick_Info</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Tick_Info</shortDescription>
+        <value>Please tick each type of the following assets you will be delivering</value>
+    </labels>
+    <labels>
+        <fullName>BET_Title</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Title</shortDescription>
+        <value>Title</value>
+    </labels>
+    <labels>
+        <fullName>BET_Toolkit_Owner</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Toolkit_Owner</shortDescription>
+        <value>Toolkit Owner</value>
+    </labels>
+    <labels>
+        <fullName>BET_UnArchiveBET</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UnArchiveBET</shortDescription>
+        <value>Unarchive BET</value>
+    </labels>
+    <labels>
+        <fullName>BET_UnArchiveConfirmation</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UnArchiveConfirmation</shortDescription>
+        <value>Are you sure you want to unarchive this BET?</value>
+    </labels>
+    <labels>
+        <fullName>BET_UnArchiving</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UnArchiving</shortDescription>
+        <value>Unarchiving...</value>
+    </labels>
+    <labels>
+        <fullName>BET_UnFollowExceptionMessage</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UnFollowExceptionMessage</shortDescription>
+        <value>Unable to unfollow</value>
+    </labels>
+    <labels>
+        <fullName>BET_UnfollowNotification</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UnfollowNotification</shortDescription>
+        <value>Project {0} has unlinked from your BET {1}.
+&lt;br/&gt; As there are now no projects linked to your BET, it has been automatically archived.
+&lt;br/&gt;  As a result, the associated Chatter Group will be deactivated and no further changes can be made to this BET.
+&lt;br/&gt;  To unarchive the BET and reactivate the group please open the BET and click on Settings &lt;a href=&quot;{2}&quot;&gt;{3}&lt;/a&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BET_UnfollowNotificationSubject</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UnfollowNotificationSubject</shortDescription>
+        <value>Project {0} has unlinked from your BET {1}.</value>
+    </labels>
+    <labels>
+        <fullName>BET_UnlinkedProjectNotification</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UnlinkedProjectNotification</shortDescription>
+        <value>Project {0} unlinked form your BET {1}.
+&lt;br/&gt; As a result, {2} is now your leading project, as it is the linked project with the earliest target launch date (TLD).
+&lt;br/&gt; As a reminder, the leading project controls these aspects of a BET:
+&lt;br/&gt;&lt;br/&gt;-  The target launch date (TLD)
+&lt;br/&gt;&lt;br/&gt;-  The BET 1st and Final Release due dates
+&lt;br/&gt;&lt;br/&gt;-  The category and brand position of a BET
+&lt;br/&gt;&lt;br/&gt; To change the lead project, please contact system admin by clicking &lt;a href=&quot;mailto:cb4l@unilever.com?subject=BET SYSTEM REQUEST for {3}&quot;&gt;here&lt;/a&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BET_UnlinkedProjectNotificationSubject</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UnlinkedProjectNotificationSubject</shortDescription>
+        <value>Project {0} has unlinked from your BET {1}.</value>
+    </labels>
+    <labels>
+        <fullName>BET_UpdateBetAddMembers</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_UpdateBetAddMembers</shortDescription>
+        <value>Update BET &amp; add members</value>
+    </labels>
+    <labels>
+        <fullName>BET_Upload_And_Save</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Upload_And_Save</shortDescription>
+        <value>Upload &amp; Save</value>
+    </labels>
+    <labels>
+        <fullName>BET_Upload_Files</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Upload_Files</shortDescription>
+        <value>Upload Files</value>
+    </labels>
+    <labels>
+        <fullName>BET_Upload_Status</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Upload_Status</shortDescription>
+        <value>Upload status</value>
+    </labels>
+    <labels>
+        <fullName>BetMemberRequestInvailidProjectIDError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BetMemberRequestInvailidProjectIDError</shortDescription>
+        <value>Field Project_Id__c under Bet Member Request record have invailid format should have at list 15 chars</value>
+    </labels>
+    <labels>
+        <fullName>BetServiceGetBetError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BetServiceGetBetError</shortDescription>
+        <value>Bet with following Id {0} was not found</value>
+    </labels>
+    <labels>
+        <fullName>BetTeamMemberRoleManager</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BetTeamMemberRoleManager</shortDescription>
+        <value>Manager</value>
+    </labels>
+    <labels>
+        <fullName>BetTeamMemberRoleMember</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BetTeamMemberRoleMember</shortDescription>
+        <value>Member</value>
+    </labels>
+    <labels>
+        <fullName>Bonus_Annual</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Bonus_Annual</shortDescription>
+        <value>Bonus Annual</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CaseAccountMissing</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CaseAccountMissing</shortDescription>
+        <value>The fulfilment cannot be created without an Account attached to the Case</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CaseAccountPersonDetailsError</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CaseAccountPersonDetailsError</shortDescription>
+        <value>One of the Account value MailingStreet/MailingCity/MailingState/MailingCountry/MailingPostalCode should be available for creating the Fulfilment.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CaseNumber</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CaseNumber</shortDescription>
+        <value>Case#</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Case_Factory_Survey_Reference</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Case_Factory_Survey_Reference</shortDescription>
+        <value>Factory Investigation Survey</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Case_TabNotOpened</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Primary tab cannot be opened</shortDescription>
+        <value>Error:Primary tab cannot be opened.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Category</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Category</shortDescription>
+        <value>Category</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Console_Message1</fullName>
+        <categories>VF page : CEC_NewAccountContact</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Primary tab not refresh</shortDescription>
+        <value>Please save changes to your case record before attempting to add a new consumer.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Console_Message2</fullName>
+        <categories>VF page : CEC_NewAccountContact</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Primary tab cannot be opened</shortDescription>
+        <value>Primary tab cannot be opened</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Console_Message3</fullName>
+        <categories>VF page : CEC_NewAccountContact</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error Occured</shortDescription>
+        <value>Error:An Error has Occured.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ConsumerCreateContactButtonDisplay</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ConsumerCreateContactButtonDisplay</shortDescription>
+        <value>Create a new contact</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ConsumerInfoDisplay</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ConsumerInfoDisplay</shortDescription>
+        <value>Info : Consumer already attached to the Case</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ConsumerNotFoundInfo</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ConsumerNotFoundInfo</shortDescription>
+        <value>Consumer not found?</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ConsumerResultsDisplay</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ConsumerResultsDisplay</shortDescription>
+        <value>Results</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ConsumerResultsTitleDisplay</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ConsumerResultsTitleDisplay</shortDescription>
+        <value>Your matching search results:</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ConsumerSearchDisplay</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ConsumerSearchDisplay</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Consumer_Duplicate_Error</fullName>
+        <categories>VF Page: CEC_NewAccountContact</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Consumer Duplicate Error</shortDescription>
+        <value>Consumer could not be created because duplicate consumer exists.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Consumer_Message1</fullName>
+        <categories>VF page : CEC_NewAccountContact</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To Display Click Ok to replace the existing Consumer or Cancel to return to the</shortDescription>
+        <value>Click Ok to replace the existing Consumer or Cancel to return to the Console Page .</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Consumer_Record_Update</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Update action cannot be performed.</shortDescription>
+        <value>Update action cannot be performed. Consumer record is already associated with the case record.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CreateContactDisplay</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CreateContactDisplay</shortDescription>
+        <value>Create Contact</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Create_Button</fullName>
+        <categories>Visualforce Page :CEC_NewAccountContact</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create_Button</shortDescription>
+        <value>Create</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Detail_Request_Info</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Detail_Request_Info</shortDescription>
+        <value>Please specify which details are known</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Display_Records</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>records are being displayed</shortDescription>
+        <value>records are being displayed</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Email</fullName>
+        <categories>VF page :CEC_NewAccountCase</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To display Email required message</shortDescription>
+        <value>Email: You must enter a value</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Email_Label</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Email_Label</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>CEC_FirstName</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_FirstName</shortDescription>
+        <value>First Name</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Fulfilment_PostOption_Complaints</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Fulfilment_PostOption_Complaints</shortDescription>
+        <value>Complaints</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Fulfilment_PostOption_otherwise</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Fulfilment_PostOption_otherwise</shortDescription>
+        <value>otherwise</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Label_Action</fullName>
+        <categories>VF page :CEC_CaseInline</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Label Action</shortDescription>
+        <value>Action</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Label_Knowledge_Articles</fullName>
+        <categories>VF page :CEC_CaseInline</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Label Knowledge Articles</shortDescription>
+        <value>Knowledge Articles</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Label_Subject</fullName>
+        <categories>VF page :CEC_CaseInline</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Label Subject</shortDescription>
+        <value>Subject</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Label_Type</fullName>
+        <categories>VF page :CEC_CaseInline</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Label Type</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Last_Name</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Last_Name</shortDescription>
+        <value>Last Name</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Lastname</fullName>
+        <categories>VF page :CEC_NewAccountCase</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To display Last Name required message</shortDescription>
+        <value>Last Name: You must enter a value</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Marketing_Opt_in</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Marketing_Opt_in</shortDescription>
+        <value>Marketing Opt in</value>
+    </labels>
+    <labels>
+        <fullName>CEC_MatchingResponse_AccountNotCreated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Consumer record could not be created</shortDescription>
+        <value>[ERR002] Consumer record could not be created.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_MatchingResponse_DuplicateAccount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>If Duplicate accounts found display this error message</shortDescription>
+        <value>[ERR001] Multiple consumer records exist with the same email, a manual update is required.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Missing_Information</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Missing_Information</shortDescription>
+        <value>Missing Information</value>
+    </labels>
+    <labels>
+        <fullName>CEC_NewCaseError</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Case Error Message</shortDescription>
+        <value>Error:Unable to create New Case</value>
+    </labels>
+    <labels>
+        <fullName>CEC_NewCaseError_BeforeAddNewArticle</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC NewCaseError BeforeAddNewArticle</shortDescription>
+        <value>Please save changes to your case record before attempting to add a new article.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_NewCaseError_BeforeAddNewConsumer</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save case record before add a new consumer.</shortDescription>
+        <value>Please save the pending changes to the case record first and then search the Consumer to link to the case. If a new Consumer creation is attempted in this transaction, then this Consumer can be found again by Search.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_No_Cases_are_available_based_on_the_skill</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC No Cases are available based on the skill</shortDescription>
+        <value>No Cases are available based on the skill</value>
+    </labels>
+    <labels>
+        <fullName>CEC_No_Matching_Consumer</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No matching consumers</shortDescription>
+        <value>No Matching Consumers.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Origin</fullName>
+        <categories>VF page :CEC_NewAccountCase</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To displayOrigin as required message</shortDescription>
+        <value>Origin: Validation Error: Value is required.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_OtherDetailsSection</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_OtherDetailsSection</shortDescription>
+        <value>Other Details</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ParentCaseNumber</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ParentCaseNumber</shortDescription>
+        <value>Parent Case#</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Phone</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Phone</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
+        <fullName>CEC_PhoneSearchValidationError</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_PhoneSearchValidationError</shortDescription>
+        <value>The Phone Search should be 6 Character length</value>
+    </labels>
+    <labels>
+        <fullName>CEC_PostCode</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_PostCode</shortDescription>
+        <value>Postcode</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Product</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Product</shortDescription>
+        <value>Product</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Product_Hierarchy</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Product_Hierarchy</shortDescription>
+        <value>Product Hierarchy</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Quick_Code_Change_Error</fullName>
+        <categories>VF:CEC_QuickCode</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Quick Code Change Error</shortDescription>
+        <value>Please Enter Country code before changing Quick Code!</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Reason</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Reason</shortDescription>
+        <value>Reason</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ReasonCode</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ReasonCode</shortDescription>
+        <value>Reason Code</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Reason_Hierarchy</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Reason_Hierarchy</shortDescription>
+        <value>Reason Hierarchy</value>
+    </labels>
+    <labels>
+        <fullName>CEC_RelatedCases</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_RelatedCases</shortDescription>
+        <value>Related Cases</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Search_Button</fullName>
+        <categories>Visualforce Page :CEC_NewAccountContact</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Search_Button</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Specify_Details_in_Missing_Info</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Specify Details in Missing Info</shortDescription>
+        <value>Please Specify which details are known</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Status</fullName>
+        <categories>VF page :CEC_NewAccountCase</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To display Case Status as required message</shortDescription>
+        <value>Status: Validation Error: Value is required.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Street</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Street</shortDescription>
+        <value>Street</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Title</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Title</shortDescription>
+        <value>Title</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ValidEmailTemplate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ValidEmailTemplate</shortDescription>
+        <value>Please enter a valid Email Template Name.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_isFormKnown</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_isFormKnown</shortDescription>
+        <value>Is Form Known?</value>
+    </labels>
+    <labels>
+        <fullName>CEC_isPacksizeKnown</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_isPacksizeKnown</shortDescription>
+        <value>Is Pack Size Known?</value>
+    </labels>
+    <labels>
+        <fullName>CEC_isVariantKnown</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_isVariantKnown</shortDescription>
+        <value>Is Variant Known?</value>
+    </labels>
+    <labels>
+        <fullName>Core_NT_App_Url</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Core NT App Url</shortDescription>
+        <value>https://unilever.my.salesforce.com/home/home.jsp?tsid=02uE00000001sfc</value>
+    </labels>
+    <labels>
+        <fullName>Core_NT_Import_File_Max_Size</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Core NT Import File Max Size</shortDescription>
+        <value>6000000</value>
+    </labels>
+    <labels>
+        <fullName>Core_NT_Network_Library_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Core NT Network Library Id</shortDescription>
+        <value>058E00000009Xk5IAE</value>
+    </labels>
+    <labels>
+        <fullName>ERROR_generic_request_failure</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Generic error message for request failures</shortDescription>
+        <value>Unable to process request.</value>
+    </labels>
+    <labels>
+        <fullName>Entity_RT_Agency</fullName>
+        <categories>Recordtype</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Entity RT Agency</shortDescription>
+        <value>Agency Entity</value>
+    </labels>
+    <labels>
+        <fullName>Entity_RT_Unilever</fullName>
+        <categories>Recordtype</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Entity RT Unilever</shortDescription>
+        <value>Unilever Entity</value>
+    </labels>
+    <labels>
+        <fullName>FAU_Invite_Accept_Problem</fullName>
+        <categories>FAU, Participant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU Invite Accept Problem</shortDescription>
+        <value>There was a problem accepting the invitation; please contact the Four Acres team.</value>
+    </labels>
+    <labels>
+        <fullName>FAU_Invite_Accepted</fullName>
+        <categories>FAU, Participant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU_Invite_Accepted</shortDescription>
+        <value>Thankyou for accepting the invite</value>
+    </labels>
+    <labels>
+        <fullName>FAU_Invite_Decline_Problem</fullName>
+        <categories>FAU, Four Acres, Participant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU Invite Decline Problem</shortDescription>
+        <value>There was a problem declining this invitation; please contact the Four Acres team.</value>
+    </labels>
+    <labels>
+        <fullName>FAU_Invite_Declined</fullName>
+        <categories>FAU, Participant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU Invite Declined</shortDescription>
+        <value>You have declined this invite, thank you for your response</value>
+    </labels>
+    <labels>
+        <fullName>FAU_Invite_Invited</fullName>
+        <categories>FAU, Participant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU Invite Invited</shortDescription>
+        <value>Please reply as soon as possible</value>
+    </labels>
+    <labels>
+        <fullName>FAU_Invite_Smallprint</fullName>
+        <categories>Participant, FAU</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU_Invite_Smallprint</shortDescription>
+        <value>Four Acres Unilever.</value>
+    </labels>
+    <labels>
+        <fullName>FAU_Invite_Title</fullName>
+        <categories>FAU, Participant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU Invite Title</shortDescription>
+        <value>Welcome to Four Acres.</value>
+    </labels>
+    <labels>
+        <fullName>FAU_PA_Will_Complete</fullName>
+        <categories>Participant, FAU</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU_PA_Will_Complete</shortDescription>
+        <value>Your P.A. will receive instructions to complete the registration</value>
+    </labels>
+    <labels>
+        <fullName>FAU_To_Defer_To_PA_error_message</fullName>
+        <categories>FAU</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU To Defer To PA error message</shortDescription>
+        <value>To defer to your personal assistant. Please enter your personal assistant&apos;s user or email address.</value>
+    </labels>
+    <labels>
+        <fullName>FAU_Webinar_Invitation_Template</fullName>
+        <categories>FAU, Participant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FAU Webinar Invitation Template</shortDescription>
+        <value>FAU_Webinar_Invitation</value>
+    </labels>
+    <labels>
+        <fullName>FA_Agile_LoginDetailImage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_Agile_LoginDetailImage</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E00000024IJy</value>
+    </labels>
+    <labels>
+        <fullName>FA_Agile_LoginImage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_Agile_LoginImage</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E00000024IJz</value>
+    </labels>
+    <labels>
+        <fullName>FA_Help_CalenderImage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Help Page : Calender Image</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E00000022gOM</value>
+    </labels>
+    <labels>
+        <fullName>FA_Help_CentreCollapsedImage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Help Page : Centre Collapsed Image</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E00000022gOW</value>
+    </labels>
+    <labels>
+        <fullName>FA_Help_CentreImage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Help Page : Centre Image</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E00000022gOb</value>
+    </labels>
+    <labels>
+        <fullName>FA_Help_ChatterGroupsImage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Help Page : ChatterGroups Image</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E00000022gOv</value>
+    </labels>
+    <labels>
+        <fullName>FA_Help_FBDetailimage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Help Page : FBDetail Image</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E00000024IQr</value>
+    </labels>
+    <labels>
+        <fullName>FA_Help_FeedbackImage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Help Page : Feedback Image</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E00000024IQh</value>
+    </labels>
+    <labels>
+        <fullName>FA_Help_GroupID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To store the help group ID</shortDescription>
+        <value>0F9E0000000JWt0</value>
+    </labels>
+    <labels>
+        <fullName>FA_Help_Image_View_Map</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Help Image : View Map</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E00000024IUa</value>
+    </labels>
+    <labels>
+        <fullName>FA_Help_ProgPrefImage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Help Page : ProgPrefImage</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E00000024IU1</value>
+    </labels>
+    <labels>
+        <fullName>FA_Help_ProgrammesImage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Help Page : Programmes Image</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E00000022gP5</value>
+    </labels>
+    <labels>
+        <fullName>FA_Loginpagefor_Desktop_Browsers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_Loginpagefor Desktop Browsers</shortDescription>
+        <value>https://unilever.my.salesforce.com</value>
+    </labels>
+    <labels>
+        <fullName>FA_Loginpagefor_iPad_Browsers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_Loginpagefor iPad Browsers</shortDescription>
+        <value>https://unilever.my.salesforce.com/?login&amp;startURL=%2Fapex%2FFa_Centres</value>
+    </labels>
+    <labels>
+        <fullName>FA_Logout_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_Logout_URL</shortDescription>
+        <value>https://unilever.my.salesforce.com</value>
+    </labels>
+    <labels>
+        <fullName>FA_Participant_Planner_Central_CB4L_Hybrid_User_PLATFORM</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA-Participant-Planner - Central CB4L Hybrid User PLATFORM</shortDescription>
+        <value>FA-Participant-Planner - Central CB4L Hybrid User PLATFORM</value>
+    </labels>
+    <labels>
+        <fullName>FA_Participant_Planner_Central_user_PLATFORM</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA-Participant-Planner-Central user PLATFORM</shortDescription>
+        <value>FA-Participant-Planner-Central user PLATFORM</value>
+    </labels>
+    <labels>
+        <fullName>FA_Participant_Planner_Market_CB4L_Hybrid_User_PLATFORM</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA-Participant-Planner - Market CB4L Hybrid User PLATFORM</shortDescription>
+        <value>FA-Participant-Planner - Market CB4L Hybrid User PLATFORM</value>
+    </labels>
+    <labels>
+        <fullName>FA_Participant_Planner_Market_User_PLATFORM</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA-Participant-Planner-Market User PLATFORM</shortDescription>
+        <value>FA-Participant-Planner-Market User PLATFORM</value>
+    </labels>
+    <labels>
+        <fullName>FA_Participant_RR_Brand_Manager</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA-Participant-RR Brand Manager</shortDescription>
+        <value>FA-Participant-RR Brand Manager</value>
+    </labels>
+    <labels>
+        <fullName>FA_Participant_RR_Brand_Moderator</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA-Participant-RR Brand Moderator</shortDescription>
+        <value>FA-Participant-RR Brand Moderator</value>
+    </labels>
+    <labels>
+        <fullName>FA_Participant_RR_Brand_Owner</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA-Participant-RR Brand Owner</shortDescription>
+        <value>FA-Participant-RR Brand Owner</value>
+    </labels>
+    <labels>
+        <fullName>FA_Participant_RR_Community_manager</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA-Participant-RR Community manager</shortDescription>
+        <value>FA-Participant-RR Community manager</value>
+    </labels>
+    <labels>
+        <fullName>FA_Participant_RR_Customer_service</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA-Participant-RR Customer service</shortDescription>
+        <value>FA-Participant-RR Customer service</value>
+    </labels>
+    <labels>
+        <fullName>FA_Participant_Unilever_Way_Marketing_Standard_Marketing_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA-Participant-Unilever Way - Marketing - Standard Marketing User</shortDescription>
+        <value>FA-Participant-Unilever Way - Marketing - Standard Marketing User</value>
+    </labels>
+    <labels>
+        <fullName>FA_SG_Axe_Room</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_SG_Axe Room</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E0000002OHxT</value>
+    </labels>
+    <labels>
+        <fullName>FA_SG_BEN_JERRY_S_Multi_Purpose_Hall</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_SG_BEN_JERRY_S_Multi_Purpose_Hall</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E0000002OHxU</value>
+    </labels>
+    <labels>
+        <fullName>FA_SG_CIF_Room</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_SG_CIF_Room</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E0000002OHxV</value>
+    </labels>
+    <labels>
+        <fullName>FA_SG_Dove_Amphitheatre</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_SG_Dove_Amphitheatre</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E0000002OHxW</value>
+    </labels>
+    <labels>
+        <fullName>FA_SG_Hellmann_s_Room</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_SG_Hellmann_s_Room</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E0000002OHxX</value>
+    </labels>
+    <labels>
+        <fullName>FA_SG_Knorr_Room</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_SG_Knorr_Room</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E0000002OHxY</value>
+    </labels>
+    <labels>
+        <fullName>FA_SG_Lifebuoy_Room</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_SG_Lifebuoy_Room</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E0000002OHxZ</value>
+    </labels>
+    <labels>
+        <fullName>FA_SG_Lipton_Room</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_SG_Lipton_Room</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E0000002OHxa</value>
+    </labels>
+    <labels>
+        <fullName>FA_SG_Lux_Room</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_SG_Lux_Room</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E0000002OHxb</value>
+    </labels>
+    <labels>
+        <fullName>FA_SG_Map</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA SG Map</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E00000025pWQ</value>
+    </labels>
+    <labels>
+        <fullName>FA_SG_Route_Map</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA SG Route Map</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E00000025pWV</value>
+    </labels>
+    <labels>
+        <fullName>FA_SG_Sunsilk_Open_Space</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_SG_Sunsilk_Open_Space</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E0000002OHxc</value>
+    </labels>
+    <labels>
+        <fullName>FA_SG_Surf_and_Flora_Room</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_SG_Surf_and_Flora_Room</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E0000002OHxd</value>
+    </labels>
+    <labels>
+        <fullName>FA_SG_Taste_Cafeteria</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_SG_Taste_Cafeteria</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E0000002OHxe</value>
+    </labels>
+    <labels>
+        <fullName>FA_SG_Wall_Room</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FA_SG_Wall_Room</shortDescription>
+        <value>/servlet/servlet.FileDownload?file=015E0000002OHxf</value>
+    </labels>
+    <labels>
+        <fullName>GoogleAPIKey</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GoogleAPIKey</shortDescription>
+        <value>Null</value>
+    </labels>
+    <labels>
+        <fullName>HROCapabilityLink</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROCapabilityLink</shortDescription>
+        <value>htttp://www.google.com</value>
+    </labels>
+    <labels>
+        <fullName>HROCultureLink</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROCultureLink</shortDescription>
+        <value>https://developer.salesforce.com</value>
+    </labels>
+    <labels>
+        <fullName>HRONetworkLink</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HRONetworkLink</shortDescription>
+        <value>https://www.yahoo.com/</value>
+    </labels>
+    <labels>
+        <fullName>HROOwnershipLink</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROOwnershipLink</shortDescription>
+        <value>http://www.salesforce.com</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoBeforeArrival</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoBeforeArrival</shortDescription>
+        <value>There are several things that you can do prior to your new leader starting, to ensure that their day one experience is a great one.</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoBeonBoard</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoBeonBoard</shortDescription>
+        <value>As the on-boarding journey for your new leader comes to an end, there are some simple things you can do as their manager, to ensure that their development remains a key priority for you both.</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoDay1</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoDay1</shortDescription>
+        <value>It is your new leader’s first day and first impressions really count, so make sure you think about the things that make all the difference. The tasks below will help get the on-boarding experience off to the right start.</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoMonth1</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoMonth1</shortDescription>
+        <value>A month in and your new leader has hopefully started to integrate and make an impact. That said, there will still be a lot for them to learn and navigate. The tasks below will ensure that their on-boarding journey continues to support them.</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoMonth2</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoMonth2</shortDescription>
+        <value>It is month two for your new leader. They are now embedded in the team and the organisation. But ongoing support is what will help accelerate their impact, and enable them to make the difference we hired them to make. The tasks below will help ensure that the on-boarding journey continues smoothly.</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoMonth3</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoMonth3</shortDescription>
+        <value>Your new leader has been part of Unilever, and your team for 3 months now. As they integrate fully, there are some simple things you can do to help elevate their position and demonstrate your investment in their development.</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoWeek1</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoWeek1</shortDescription>
+        <value>Your new leader has now been with us for a week. It has probably been a week full of information, so help them navigate their new role and their surroundings by continuing with their on-boarding journey. The tasks below will help.</value>
+    </labels>
+    <labels>
+        <fullName>HideTermsOfUseLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HideTermsOfUseLabel</shortDescription>
+        <value>I Accept</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BETApprovalLinkProcessing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BETApprovalLinkProcessing</shortDescription>
+        <value>Error in processing IPM BET link approval/rejection.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BETIdNullMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BETIdNullMsg</shortDescription>
+        <value>BET Id cannot be null.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Bosscard_Save_Before_Share</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Bosscard Save Before Share</shortDescription>
+        <value>Please Save BOSSCARD Before Sharing</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Bosscard_Shared_Chatter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Bosscard Shared Chatter</shortDescription>
+        <value>BOSSCARD Shared Via Chatter</value>
+    </labels>
+    <labels>
+        <fullName>IPM_CategoryNameNotNull</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_CategoryNameNotNull</shortDescription>
+        <value>Category name cannot be null.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Category_list</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Category list</shortDescription>
+        <value>HouseHold Cleaning;Laundry;Skin Cleansing;Skin Care;Hair;Oral Care;Savoury;HHC;NONHHC;Household Care</value>
+    </labels>
+    <labels>
+        <fullName>IPM_CoreParameters_validation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM CoreParameters validation</shortDescription>
+        <value>Please select mandatory fields before going to next screen.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Deployment_Char_Limit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Deployment Char Limit</shortDescription>
+        <value>0</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Description_Restricted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Description Restricted</shortDescription>
+        <value>Description Restricted to 255 Characters</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ErrorRetrievingCategories</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ErrorRetrievingCategories</shortDescription>
+        <value>Error in retrieving Categories.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_External_Char_Limit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM External Char Limit</shortDescription>
+        <value>2430</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Finance_Char_Limit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Finance Char Limit</shortDescription>
+        <value>4860</value>
+    </labels>
+    <labels>
+        <fullName>IPM_GateStatus_msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM GateStatus msg</shortDescription>
+        <value>Please provide reasons below for skipping these sections. these reasons would be added to the gate document.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_GenerateRollout</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_GenerateRollout</shortDescription>
+        <value>Please select cluster to Generate Rollout</value>
+    </labels>
+    <labels>
+        <fullName>IPM_GlobalOperationalProject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GlobalOperationalProject</shortDescription>
+        <value>Operational</value>
+    </labels>
+    <labels>
+        <fullName>IPM_GlobalProject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GlobalProject</shortDescription>
+        <value>Original</value>
+    </labels>
+    <labels>
+        <fullName>IPM_IdsApprovalNotNullMSg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_IdsApprovalNotNullMSg</shortDescription>
+        <value>IPM Project Id, BET Id or Approval Action cannot be null.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_IdsNotNullMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_IdsNotNullMsg</shortDescription>
+        <value>BET id, IPM Project ID or User ID cannot be null.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ImageLogo_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ImageLogo_URL</shortDescription>
+        <value>&apos;&lt;img src=&quot;https://unilever--cogstagin--c.cs8.content.force.com/servlet/servlet.FileDownload?file=&apos;</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Image_format</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Image format</shortDescription>
+        <value>Please select image with format like &quot;.jpg,.gif,.png,.bmp,.psd,.psp,.thm,.tif,.yuv,.jpeg&quot;.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Introduction_Char_Limit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Introduction Char Limit</shortDescription>
+        <value>2430</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Milestone_Due_Date_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Milestone Due Date Error</shortDescription>
+        <value>Due Date of this milestone should not exceed its Gate&apos;s Due Date.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Mix_Char_Limit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Mix Char Limit</shortDescription>
+        <value>4860</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Not_applicable</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Not applicable</shortDescription>
+        <value>The system considers this as section not completed(&apos;You have entered less than 15 character&apos;)</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ProjectManagement_Char_Limit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM ProjectManagement Char Limit</shortDescription>
+        <value>4860</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ProjectNotRetrieved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ProjectNotRetrieved</shortDescription>
+        <value>IPM Project could not be retrieved.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Project_Name_Exists</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Project Name Exists</shortDescription>
+        <value>Project Name Already Exists, Please Select Another Project Name</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Project_Name_Mandatory</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Project Name Mandatory</shortDescription>
+        <value>Please Enter Project Name</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Record_Insert_Success</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Record Insert Success</shortDescription>
+        <value>BOSSCARD saved successfully</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Record_Saved_Archives</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Record Saved Archives</shortDescription>
+        <value>Record Saved in Archives</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Skip_Bosscard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Skip_Bosscard</shortDescription>
+        <value>BOSSCARD is not created for this project yet, In future if you want to create a BOSSCARD for this project , you need to Archive the entire project</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Stopmsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Stopmsg</shortDescription>
+        <value>Please enter Postpone On Date, Comments and required actions from Gate Meeting</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Strategic_Intent_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Strategic Intent message</shortDescription>
+        <value>&apos;Global Operational’</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Technical_Char_Limit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Technical Char Limit</shortDescription>
+        <value>4860</value>
+    </labels>
+    <labels>
+        <fullName>IPM_UserAccessRetrivalMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_UserAccessRetrivalMsg</shortDescription>
+        <value>Error in retriving User access.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_backto_intermediate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM backto intermediate</shortDescription>
+        <value>You have not completed core parameter wizard.&quot;Click here to go back&quot;.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_image</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM image</shortDescription>
+        <value>&quot;https://unilever.my.salesforce.com</value>
+    </labels>
+    <labels>
+        <fullName>LAUNCH_PINNOVATE_CMD</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_LAUNCH_PINNOVATE_CMD</shortDescription>
+        <value>#launchthewall</value>
+    </labels>
+    <labels>
+        <fullName>MLST_OBJ_NAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MLST_OBJ_NAME</shortDescription>
+        <value>a4N</value>
+    </labels>
+    <labels>
+        <fullName>Matrix_Currency_Desc</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Matrix Currency Desc</shortDescription>
+        <value>All figures in thousands of Euro unless another currency is specified.</value>
+    </labels>
+    <labels>
+        <fullName>PD_OBJ_NAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PD_OBJ_NAME</shortDescription>
+        <value>a4S</value>
+    </labels>
+    <labels>
+        <fullName>PS_OBJ_NAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PS_OBJ_NAME</shortDescription>
+        <value>a4R</value>
+    </labels>
+    <labels>
+        <fullName>Project_Name_Contains_Brand_Name_Target_Launch_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Project Name Contains Brand Name Target Launch Date</shortDescription>
+        <value>Project Name Should not Contain Brand Name and Target Launch Date</value>
+    </labels>
+    <labels>
+        <fullName>PSAR_Chatter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PSAR_CollaborateOnChatter</shortDescription>
+        <value>Collaborate on PR Supply Chain Metrics</value>
+    </labels>
+    <labels>
+        <fullName>Rollout_No_Records_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rollout No Records Msg</shortDescription>
+        <value>No Rollouts exist for this project, Please select one from the above.</value>
+    </labels>
+    <labels>
+        <fullName>TASK_OBJ_NAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TASK_OBJ_NAME</shortDescription>
+        <value>a4a</value>
+    </labels>
+    <labels>
+        <fullName>TO_CaseIdentifier</fullName>
+        <categories>TO - Case Idenifier Constant</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TO_CaseIdentifier</shortDescription>
+        <value>George</value>
+    </labels>
+    <labels>
+        <fullName>TermsOfUseTitle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>TermsOfUseTitle</shortDescription>
+        <value>Terms Of Use</value>
+    </labels>
+    <labels>
+        <fullName>UW_ASSET_IN_TOOLKIT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_ASSET_IN_TOOLKIT</shortDescription>
+        <value>This file is viewable in the toolkit</value>
+    </labels>
+    <labels>
+        <fullName>UW_ASSET_NOT_IN_TOOLKIT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_ASSET_NOT_IN_TOOLKIT</shortDescription>
+        <value>This file is not viewable in the toolkit</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_AddMembers_Save_Success</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_AddMembers_Save_Success</shortDescription>
+        <value>Successfully added selected users to this BET</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_AddSelectedButton</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_AddSelectedButton</shortDescription>
+        <value>View Selected</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Add_Internal_Members</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Add_Internal_Members</shortDescription>
+        <value>Add Internal Members</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_BackButton</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_BackButton</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_ConfirmMembers_Button</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_ConfirmMembers_Button</shortDescription>
+        <value>Add Selected</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_External_Chatter_Profile_Name</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_External_Chatter_Profile_Name</shortDescription>
+        <value>Chatter External User</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_GoToPageCommandLink</fullName>
+        <categories>BET 2.0 - TabHomePage</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_GoToPageCommandLink</shortDescription>
+        <value>View Site</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Groups_Radio_Button</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Groups_Radio_Button</shortDescription>
+        <value>Groups</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_HelpAndGuide_Button</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_HelpAndGuide_Button</shortDescription>
+        <value>HELP &amp; GUIDANCE</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_HelpAndGuide_Id</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_HelpAndGuide_Id</shortDescription>
+        <value>a0CE0000002iLITMA2</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_HelpAndGuide_Text</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_HelpAndGuide_Text</shortDescription>
+        <value>&lt;br/&gt;&lt;br/&gt;
+This is the place where Marketers collaborate together to deliver exceptional brand experiences in market.  If you need some help to get you started, or to access templates and materials click in the box below.&lt;br/&gt;&lt;br/&gt;</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_HelpAndGuide_WelcomeText</fullName>
+        <categories>BET 2.0 - TabHomePage</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_HelpAndGuide_WelcomeText</shortDescription>
+        <value>Welcome to Brand Experience</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_MANAGER_REQUIRED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_MANAGER_REQUIRED</shortDescription>
+        <value>A BET Team must have at least one manager.</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_MembersAccesslevel_HelpText</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_MembersAccesslevel_HelpText</shortDescription>
+        <value>Full Brand Experience (Toolkit &amp; Studio) has access to both the toolkit and studio, Toolkit Experience (Toolkit only) has access to only the toolkit and External View (Chatter group only) has access to the Chatter Group only</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_MembersSelected_Count</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_MembersSelected_Count</shortDescription>
+        <value>Members selected:</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Members_Radio_Button</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Members_Radio_Button</shortDescription>
+        <value>Members</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Next_Page</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Next_Page</shortDescription>
+        <value>Next Page&gt;&gt;</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_NoAccess_HelpText</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_NoAccess_HelpText</shortDescription>
+        <value>Not all Chatter users have access to this Brand Experience App, if a member is already added they won&apos;t be displayed here</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Previous_Page</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Previous_Page</shortDescription>
+        <value>&lt;&lt;Previous Page</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_ReadMoreCommandLink</fullName>
+        <categories>BET 2.0 - TabHomePage</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_ReadMoreCommandLink</shortDescription>
+        <value>Read more...</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_SearchText_Error_MSG</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_SearchText_Error_MSG</shortDescription>
+        <value>Search term must contain at least 2 characters</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Search_NoResult_Message</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Search_NoResult_Message</shortDescription>
+        <value>No matching search results</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_TabHome_Heading</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_TabHome_Heading</shortDescription>
+        <value>BRAND &lt;span style=&quot;font:16px&quot;&gt;E&lt;/span&gt;XPERIENCE</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_Users_To_Show_In_List</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_Users_To_Show_In_List</shortDescription>
+        <value>20</value>
+    </labels>
+    <labels>
+        <fullName>UW_BET_membersRoleName_HelpText</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_BET_membersRoleName_HelpText</shortDescription>
+        <value>Manager: Has full control of the toolkit, able to add users to the studio/toolkit, label &amp; promote files from studio. Member: Able to view toolkit and contribute to the studio.</value>
+    </labels>
+    <labels>
+        <fullName>UW_CANNOT_LAUNCH_WALL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_CANNOT_LAUNCH_WALL</shortDescription>
+        <value>You must be group owner or System Admin to launch the wall!</value>
+    </labels>
+    <labels>
+        <fullName>UW_CANNOT_MODIFY_PREFS</fullName>
+        <categories>Pinnovate</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_CANNOT_MODIFY_PREFS</shortDescription>
+        <value>You are not authorised to modify preferences</value>
+    </labels>
+    <labels>
+        <fullName>UW_CANNOT_PIN</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_CANNOT_PIN</shortDescription>
+        <value>You must be the chatter post owner to pin a video to the wall</value>
+    </labels>
+    <labels>
+        <fullName>UW_ERR_DUPE_BET_NAME</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_ERR_DUPE_BET_NAME</shortDescription>
+        <value>BET Name already used and caused a  duplicate Studio Group Name!</value>
+    </labels>
+    <labels>
+        <fullName>UW_OPEN_STUDIO_FROM_GROUP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_OPEN_STUDIO_FROM_GROUP</shortDescription>
+        <value>This is the external view of the studio.
+For Unilever Internal users, use the links below to open the toolkit, brand &amp; studio.</value>
+    </labels>
+    <labels>
+        <fullName>UW_PINNOVATE_ALREADY_LAUNCHED</fullName>
+        <categories>Pinnovate</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_PINNOVATE_ALREADY_LAUNCHED</shortDescription>
+        <value>Pinnovate Wall already launched</value>
+    </labels>
+    <labels>
+        <fullName>UW_PINNOVATE_LAUNCHED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_PINNOVATE_LAUNCHED</shortDescription>
+        <value>has launched the pinnovate wall. See the Link in the information section.</value>
+    </labels>
+    <labels>
+        <fullName>UW_SET_BACKGROUND_CMD</fullName>
+        <categories>Pinnovate</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_SET_BACKGROUND_CMD</shortDescription>
+        <value>#setbackground</value>
+    </labels>
+    <labels>
+        <fullName>UW_SET_HEADER_CMD</fullName>
+        <categories>Pinnovate</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UW_SET_HEADER_CMD</shortDescription>
+        <value>#setheader</value>
+    </labels>
+    <labels>
+        <fullName>WINatPOS_Empty_Param</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WINatPOS Empty Param</shortDescription>
+        <value>Method get an empyt value please pass non null value.</value>
+    </labels>
+    <labels>
+        <fullName>WINatPOS_Salesforce_Base_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WINatPOS_Salesforce_Base_URL</shortDescription>
+        <value>https://unilever--c.na9.visual.force.com/</value>
+    </labels>
+    <labels>
+        <fullName>WP_Download_Item_Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Download Item Text</shortDescription>
+        <value>Download image of this item with description</value>
+    </labels>
+    <labels>
+        <fullName>WP_Download_Range_Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Download Range Text</shortDescription>
+        <value>Download image range with descriptions</value>
+    </labels>
+    <labels>
+        <fullName>WP_File_Type_Download</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP File Type Download</shortDescription>
+        <value>Download</value>
+    </labels>
+    <labels>
+        <fullName>WP_File_Type_Generated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP File Type Generated</shortDescription>
+        <value>Generated</value>
+    </labels>
+    <labels>
+        <fullName>WP_File_Type_Image</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP File Type Image</shortDescription>
+        <value>Image</value>
+    </labels>
+    <labels>
+        <fullName>WP_File_Type_Toolkit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP File Type Toolkit</shortDescription>
+        <value>Toolkit</value>
+    </labels>
+    <labels>
+        <fullName>WP_In_Store_Executions_Mode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP In Store Executions Mode</shortDescription>
+        <value>In Store Execution</value>
+    </labels>
+    <labels>
+        <fullName>WP_In_Store_Executions_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP In Store Executions Page</shortDescription>
+        <value>WINatPOS_InStoreExecutions</value>
+    </labels>
+    <labels>
+        <fullName>WP_Innovations_Mode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Innovations Mode</shortDescription>
+        <value>Innovation</value>
+    </labels>
+    <labels>
+        <fullName>WP_Innovations_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Innovations Page</shortDescription>
+        <value>WINatPOS_Innovations</value>
+    </labels>
+    <labels>
+        <fullName>WP_Masterbrand_Mode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Masterbrand Mode</shortDescription>
+        <value>Masterbrand</value>
+    </labels>
+    <labels>
+        <fullName>WP_Masterbrand_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Masterbrand Page</shortDescription>
+        <value>WINatPOS_Masterbrand</value>
+    </labels>
+    <labels>
+        <fullName>WP_No_File_Specified</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP No File Specified</shortDescription>
+        <value>No upload file was specified</value>
+    </labels>
+    <labels>
+        <fullName>WP_Repeatable_Models_Mode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Repeatable Models Mode</shortDescription>
+        <value>Repeatable Model</value>
+    </labels>
+    <labels>
+        <fullName>WP_Repeatable_Models_Page</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Repeatable Models Page</shortDescription>
+        <value>WINatPOS_RepeatableModels</value>
+    </labels>
+    <labels>
+        <fullName>WP_Search_String_Too_Short</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Search String Too Short</shortDescription>
+        <value>Search term must be longer than 2 characters. Please update and try again.</value>
+    </labels>
+    <labels>
+        <fullName>WP_Select_Brand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Select Brand</shortDescription>
+        <value>Select a Brand</value>
+    </labels>
+    <labels>
+        <fullName>WP_Select_Category</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP Select Category</shortDescription>
+        <value>Select a Category</value>
+    </labels>
+    <labels>
+        <fullName>WP_User_Admin_Error_Saving_Changes</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP User Admin Error Saving Changes</shortDescription>
+        <value>One or more errors occurred while applying these updates. Please refresh your search results and try again.</value>
+    </labels>
+    <labels>
+        <fullName>WP_User_Admin_Help_Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP User Admin Help Text</shortDescription>
+        <value>Search for active Salesforce Platform users and apply permission sets using the lower pane.</value>
+    </labels>
+    <labels>
+        <fullName>WP_User_Admin_Too_Many_Results_Part_1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP User Admin Too Many Results Part 1</shortDescription>
+        <value>Your search returned more than</value>
+    </labels>
+    <labels>
+        <fullName>WP_User_Admin_Too_Many_Results_Part_2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WP User Admin Too Many Results Part 2</shortDescription>
+        <value>results. Please refine your search criteria and try again.</value>
+    </labels>
+    <labels>
+        <fullName>WinAtPOS_AssetGroupName_help_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS AssetGroupName help text</shortDescription>
+        <value>The name of the asset group as it will be displayed to the user in the front-end</value>
+    </labels>
+    <labels>
+        <fullName>WinAtPOS_AssetName_help_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS AssetName help text</shortDescription>
+        <value>The name of the asset as it will be displayed to the user in the front-end.</value>
+    </labels>
+    <labels>
+        <fullName>WinAtPOS_Asset_Group_Info_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS Asset Group Info message</shortDescription>
+        <value>Please ensure that Category or Brand or both are selected</value>
+    </labels>
+    <labels>
+        <fullName>WinAtPOS_FileName_help_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS FileName help text</shortDescription>
+        <value>The name of the file as it will be displayed to the user in the front-end.</value>
+    </labels>
+    <labels>
+        <fullName>WinAtPOS_File_Upload_msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS File Upload msg</shortDescription>
+        <value>To upload your file – click on &apos;File&apos; and then select either &apos;Select a file from Salesforce&apos; or &apos;Upload a file from your Computer&apos;. After you have selected your file click on &apos;Share&apos;. Once the upload is finished click on &apos;Store&apos;.</value>
+    </labels>
+    <labels>
+        <fullName>WinAtPOS_Helper_link_tooltip</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinAtPOS Helper link tooltip</shortDescription>
+        <value>Click on the link to launch Help Manual</value>
+    </labels>
+    <labels>
+        <fullName>WinatPOS_Asset_Delete_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinatPOS Asset Delete Status</shortDescription>
+        <value>ToDelete</value>
+    </labels>
+    <labels>
+        <fullName>WinatPOS_File_Error_primary_image</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinatPOS File Error primary image</shortDescription>
+        <value>There is already another file existing for this asset which is classified as the primary image.</value>
+    </labels>
+    <labels>
+        <fullName>WinatPOS_File_empty_file_type</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinatPOS  File empty file type</shortDescription>
+        <value>File Type: You must enter a value</value>
+    </labels>
+    <labels>
+        <fullName>WinatPOS_Upload_Error_No_Chatter_File</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WinatPOS Upload Error No Chatter File</shortDescription>
+        <value>No File has been uploaded. Please ensure that you upload your file – click on &apos;File&apos; and then select either &apos;Select a file from Salesforce&apos; or &apos;Upload a file from your Computer&apos;. After you have selected your file click on &apos;Share&apos;. Once the upload is finished click on &apos;Store&apos;.</value>
+    </labels>
+    <labels>
+        <fullName>button_cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Button cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>close</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>close button</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>cp_DefaultSubmitWarning</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Default submit warning</shortDescription>
+        <value>Oops...
+Please action the following to continue:</value>
+    </labels>
+    <labels>
+        <fullName>cp_DeleteConfirm</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete confirm message</shortDescription>
+        <value>Your Planner event has been deleted.</value>
+    </labels>
+    <labels>
+        <fullName>cp_DeleteWarning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete warning message</shortDescription>
+        <value>Oops…&lt;br/&gt;
+You don&apos;t have permission to delete this event. Get in contact with the project lead.</value>
+    </labels>
+    <labels>
+        <fullName>cp_EditWarning</fullName>
+        <categories>Visualforce</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Edit warning message</shortDescription>
+        <value>Oops…&lt;br/&gt;
+You don&apos;t have permission to edit this event. Get in contact with the project lead.</value>
+    </labels>
+    <labels>
+        <fullName>cp_EventAlreadyActivatedWarning</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Event Already Activated Warning</shortDescription>
+        <value>Oops…&lt;br/&gt;
+This event has already been activated, no action required.</value>
+    </labels>
+    <labels>
+        <fullName>cp_EventTriggerHandler_General_Exception</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EventTriggerHandler_General_Exception</shortDescription>
+        <value>Exception occurred during creation of Event Participants. 
+Please contact with your Administrator.</value>
+    </labels>
+    <labels>
+        <fullName>cp_EventTriggerHandler_not_central_statuses</fullName>
+        <categories>Planner Code</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do not translate - code variable</shortDescription>
+        <value>Tier 1 - Big Moment,Tier 1 - External,Tier 1 - Internal,Enabler - Operational Activity,Enabler - Capability Building</value>
+    </labels>
+    <labels>
+        <fullName>cp_GlobalApprovalError</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Global Approval Error</shortDescription>
+        <value>Your local event does not require global approval. Exit this message and click the ‘LOCAL save and exit’ button.</value>
+    </labels>
+    <labels>
+        <fullName>cp_LocalSaveError</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Local Save Error</shortDescription>
+        <value>Your global event requires approval (re-approval is also required if you have updated the activation dates or event status). Exit this message and click the ‘GLOBAL save and submit’ button.</value>
+    </labels>
+    <labels>
+        <fullName>cp_NoPlannerSelected</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No planner selected</shortDescription>
+        <value>Who is activating this event? Please select the relevant Planners.
+
+If you are representing a Central team, don’t forget to select the respective Central Planners too.</value>
+    </labels>
+    <labels>
+        <fullName>cp_OptOutNoReason</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opt out no reason</shortDescription>
+        <value>Oops…&lt;br/&gt;
+Please leave a few words explaining why you are opting out of this Planner event.</value>
+    </labels>
+    <labels>
+        <fullName>cp_OptOutWarning</fullName>
+        <categories>Visualforce, Apex</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opt Out Warning Message</shortDescription>
+        <value>Oops…&lt;br/&gt;
+You can’t opt out of this event as your Planner has not been invited to activate.</value>
+    </labels>
+    <labels>
+        <fullName>cp_Planner_Code_AT_I_Approced_Statuses</fullName>
+        <categories>Planner Code</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do not translate - code variable</shortDescription>
+        <value>Tentative,Confirmed</value>
+    </labels>
+    <labels>
+        <fullName>cp_Planner_Code_AT_I_Global</fullName>
+        <categories>Planner Code</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do not translate - code variable</shortDescription>
+        <value>Global</value>
+    </labels>
+    <labels>
+        <fullName>cp_Planner_Code_AT_I_Statuses</fullName>
+        <categories>Planner Code</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do not translate - code variable</shortDescription>
+        <value>Tier 1 - Big Moment,Tier 1 - External,Tier 1 - Internal,Tier 2 - Integrated (external &amp; internal),Tier 2 - External,Tier 2 - Internal,Enabler - Operational Activity,Enabler - Capability Building</value>
+    </labels>
+    <labels>
+        <fullName>cp_UserPreferenceValidationMessage</fullName>
+        <categories>Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User Preference Validation Message</shortDescription>
+        <value>Oops…
+Which Communications team do you represent? You must be associated to one Planner.</value>
+    </labels>
+    <labels>
+        <fullName>delete_milestone_msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirmation messages displayed while deleting milestone</shortDescription>
+        <value>You are about to remove this milestone from the milestone list. It cannot be restored at a later time. Are you sure to continue</value>
+    </labels>
+    <labels>
+        <fullName>delete_task_msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirmation messages displayed while deleting task</shortDescription>
+        <value>You are about to remove this task from the task list. It cannot be restored at a later time. Are you sure to continue?</value>
+    </labels>
+    <labels>
+        <fullName>im_issueCreationDialogue_New</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_New</shortDescription>
+        <value>You must submit this issue before any further action is taken</value>
+    </labels>
+    <labels>
+        <fullName>im_issueCreationDialogue_NewTagline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_NewTagline</shortDescription>
+        <value>You may continue adding to and refining this issue if you are the owner. However once submitted you will have limited access to some areas of this issue.</value>
+    </labels>
+    <labels>
+        <fullName>im_issueCreationDialogue_Reviewed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_Reviewed</shortDescription>
+        <value>Issue Reviewed</value>
+    </labels>
+    <labels>
+        <fullName>im_issueCreationDialogue_ReviewedTagline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_ReviewedTagline</shortDescription>
+        <value>This issue is reviewed by CIMT</value>
+    </labels>
+    <labels>
+        <fullName>im_issueCreationDialogue_Submitted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_Submitted</shortDescription>
+        <value>Issue Submitted</value>
+    </labels>
+    <labels>
+        <fullName>im_issueCreationDialogue_SubmittedTagline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>im_issueCreationDialogue_SubmittedTagline</shortDescription>
+        <value>The issue has been submitted by the issue reporter</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_ClearAndFindMore</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_ClearAndFindMore</shortDescription>
+        <value>Clear and find more</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_FindMore</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_FindMore</shortDescription>
+        <value>Find More</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_First</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_First</shortDescription>
+        <value>First</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Last</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Last</shortDescription>
+        <value>Last</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Loading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Loading</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Next</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Next_Batch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Next_Batch</shortDescription>
+        <value>Next Batch</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Previous</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Previous</shortDescription>
+        <value>Previous</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_Previous_Batch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_Previous_Batch</shortDescription>
+        <value>Previous batch</value>
+    </labels>
+    <labels>
+        <fullName>isllBrain_StartOver</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isllBrain_StartOver</shortDescription>
+        <value>Start Over</value>
+    </labels>
+    <labels>
+        <fullName>isll_ChatterGroupMissingForEventMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isll_ChatterGroupMissingForEventMsg</shortDescription>
+        <value>Chatter Group is missed for current event. Please contact moderator to add Group to event.</value>
+    </labels>
+    <labels>
+        <fullName>isll_ContentMissingMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>isll_ContentMissingMsg</shortDescription>
+        <value>Edit link is not visible: please add content</value>
+    </labels>
+    <labels>
+        <fullName>modal_info_heading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Heading text for information dialogs</shortDescription>
+        <value>Information:</value>
+    </labels>
+    <labels>
+        <fullName>page_title_chatter_feed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Page title for the Chatter page</shortDescription>
+        <value>My Chatter</value>
+    </labels>
+    <labels>
+        <fullName>pull_to_refresh_loading_text</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Display text when loading data via pull to refresh</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>pull_to_refresh_release_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Display text for pull to refresh release state</shortDescription>
+        <value>Release to refresh...</value>
+    </labels>
+    <labels>
+        <fullName>pull_to_refresh_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Display text for pull to refresh</shortDescription>
+        <value>Pull down to refresh...</value>
+    </labels>
+    <labels>
+        <fullName>refresh</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Refresh</shortDescription>
+        <value>Refresh</value>
+    </labels>
+    <labels>
+        <fullName>toolbar_app_top_nav_lbl_title_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Text for the link in the upper left corner</shortDescription>
+        <value>My chatter app</value>
+    </labels>
+    <labels>
+        <fullName>uw_BET_Chattergrouparchived</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>uw_BET_Chattergrouparchived</shortDescription>
+        <value>This chatter group has been archived.Please contact your groupowner/manager for reactivation</value>
+    </labels>
+    <labels>
+        <fullName>uw_BET_Chattergrouplimit</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>uw_BET_Chattergrouplimit</shortDescription>
+        <value>Bet cannot be created because you are at the chatter group limit. To Join new group please leave/withdraw request from atleast 1 group</value>
+    </labels>
+    <labels>
+        <fullName>uw_BET_standardchatterlimitmessage</fullName>
+        <categories>BET 2.0</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>uw_BET_standardchatterlimitmessage</shortDescription>
+        <value>Maximum per user collaboration group limit reached.</value>
+    </labels>
+    <labels>
+        <fullName>uw_Inoplan_error_duplicateValue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User enters a project name which is already associated to another BET</shortDescription>
+        <value>Another BET is already linked to the Inoplan Project &apos;projectName&apos;. Every Inoplan project should have only one BET. The BET already associated to this project is &apos;BetName&apos;</value>
+    </labels>
+    <labels>
+        <fullName>uw_Inoplan_error_nullvalue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos;</shortDescription>
+        <value>Please enter your Inoplan project name. If you do not have an Inoplan project please select No Inoplan Project</value>
+    </labels>
+	  <labels>
         <fullName>IPM_000</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1906,6 +5724,13 @@ If approved your project will be linked after your Charter gate has been approve
         <protected>false</protected>
         <shortDescription>IPM_CONFIDENTIAL_INFO</shortDescription>
         <value>© UNILEVER HIGHLY CONFIDENTIAL AND PROPRIETARY INFORMATION - REPRODUCTION AND DISTRIBUTION IS PROHIBITED</value>
+    </labels>
+    <labels>
+        <fullName>IPM_CONFIRMED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_CONFIRMED</shortDescription>
+        <value>Confirmed</value>
     </labels>
     <labels>
         <fullName>IPM_CONFIRM_BUSINESS_CASE</fullName>
@@ -4610,14 +8435,14 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_LinkBETPLMsg</shortDescription>
-        <value>You have requested to link your project to this BET: &lt;b&gt;{0}&lt;/b&gt;. &lt;br/&gt;&lt;br/&gt; If this request is approved the BET will be linked within 72 hours of the link request.</value>
+        <value>You have requested to link your project to this BET: &lt;b&gt;{0}&lt;/b&gt;. &lt;br/&gt;&lt;br/&gt; If this request is approved the BET will be linked within 72 hours of link request.</value>
     </labels>
     <labels>
         <fullName>IPM_LinkBETPLMsgIdeas</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_LinkBETPLMsgIdeas</shortDescription>
-        <value>You have requested to link your project to this BET: &lt;b&gt;{0}&lt;/b&gt;. &lt;br/&gt;&lt;br/&gt; If this request is approved the BET will be linked within 72 hours of the link request.</value>
+        <value>You have requested to link your project to this BET: &lt;b&gt;{0}&lt;/b&gt;. &lt;br/&gt;&lt;br/&gt; If this request is approved the BET will be linked within 72 hours of link request.</value>
     </labels>
     <labels>
         <fullName>IPM_LoadCoreparameter</fullName>
@@ -8550,5 +12375,12 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>ipmFinTableVolume</shortDescription>
         <value>Volume</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Delete_task_msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Delete_task_msg</shortDescription>
+        <value>You are about to remove this task from the task list. It cannot be restored at a later time. Are you sure to continue?</value>
     </labels>
 </CustomLabels>

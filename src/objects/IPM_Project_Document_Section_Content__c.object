@@ -465,10 +465,6 @@
                 <fullName>CVM (Concept Viability Measure)</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>Endurance</fullName>
-                <default>false</default>
-            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackTrending>false</trackTrending>
@@ -630,20 +626,29 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Parity</fullName>
+                <controllingFieldValues>Differentiation</controllingFieldValues>
+                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
+                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Loss</fullName>
+                <controllingFieldValues>Differentiation</controllingFieldValues>
+                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
+                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Win</fullName>
+                <controllingFieldValues>Differentiation</controllingFieldValues>
+                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
+                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -773,20 +778,29 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Parity</fullName>
+                <controllingFieldValues>Differentiation</controllingFieldValues>
+                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
+                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Loss</fullName>
+                <controllingFieldValues>Differentiation</controllingFieldValues>
+                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
+                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Win</fullName>
+                <controllingFieldValues>Differentiation</controllingFieldValues>
+                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
+                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

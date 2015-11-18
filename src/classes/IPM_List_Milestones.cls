@@ -92,7 +92,6 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         phaseMsList.sort();//customised sort
         //Code to add BET related messages
         if((projectObj.BET_TLD_First_Release_Date__c > projectObj.BET_MS_First_Release_Date__c) || (projectObj.BET_TLD_Final_Release_Date__c > projectObj.BET_MS_Final_Release_Date__c)){
-            System.debug('---BET MESSAGE---->'+warningMessages);
             isWarningRequired = true;   
             warningMessages.add(system.label.IPM_BETMilestoneDateMismatch);
         }

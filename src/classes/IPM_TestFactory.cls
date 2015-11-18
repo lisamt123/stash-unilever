@@ -71,8 +71,8 @@ public without sharing class IPM_TestFactory {
                 List<Object> incomingValueList = fieldToValueMap.get(fieldAPIName);
                 if(!fieldToValueMap.containsKey(lowerCasefieldName) )
                 {
-                	fieldToValueMap.put(lowerCasefieldName,incomingValueList);
-                	fieldToValueMap.remove(fieldAPIName);
+                    fieldToValueMap.put(lowerCasefieldName,incomingValueList);
+                    fieldToValueMap.remove(fieldAPIName);
                 }
                 
             }
@@ -398,7 +398,7 @@ public without sharing class IPM_TestFactory {
         {
             if(providedFieldValue != null)
             {
-            	finalValue = providedFieldValue;
+                finalValue = providedFieldValue;
             }
             else if(fieldDescObj.getType() != Schema.DisplayType.Reference)
             {
@@ -460,14 +460,14 @@ public without sharing class IPM_TestFactory {
             } 
             else if (fieldDescObj.getType() == Schema.DisplayType.MultiPicklist) 
             {
-            	if(finalValue != null)
-            	{
-                	obj.put(fieldApiName, String.valueOf(finalValue));    	
-            	}
-            	else
-            	{
-            		obj.put(fieldApiName, getDefaultPicklistValue(obj, fieldDescObj));
-            	}
+                if(finalValue != null)
+                {
+                    obj.put(fieldApiName, String.valueOf(finalValue));      
+                }
+                else
+                {
+                    obj.put(fieldApiName, getDefaultPicklistValue(obj, fieldDescObj));
+                }
             } 
             else if (fieldDescObj.getType() == Schema.DisplayType.Percent) 
             {
@@ -479,14 +479,14 @@ public without sharing class IPM_TestFactory {
             } 
             else if (fieldDescObj.getType() == Schema.DisplayType.Picklist) 
             {
-            	if(finalValue != null)
-            	{
-                	obj.put(fieldApiName, String.valueOf(finalValue));    	
-            	}
-            	else
-            	{
-            		obj.put(fieldApiName, getDefaultPicklistValue(obj, fieldDescObj)); 
-            	}
+                if(finalValue != null)
+                {
+                    obj.put(fieldApiName, String.valueOf(finalValue));      
+                }
+                else
+                {
+                    obj.put(fieldApiName, getDefaultPicklistValue(obj, fieldDescObj)); 
+                }
             } 
             else if (fieldDescObj.getName() == 'CommunityNickname' && fieldDescObj.getType() == Schema.DisplayType.String) 
             { 

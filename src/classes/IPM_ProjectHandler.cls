@@ -23,7 +23,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     public Set<Id> phaseChangeProjects = new Set<Id>();
     public Set<Id>changeOwnerProjects=new Set<Id>();
     
-    private List<IPM_Project_Rollout__c> rolloutTLDChangedProjList = new List<IPM_Project_Rollout__c> {};
+    private Map<Id,IPM_Project__c> rolloutTLDChangedProjList = new Map<Id,IPM_Project__c> {};
     
     /***********************************************************************************************************************************
     * bulkBefore
@@ -797,14 +797,15 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         IPM_ProjectHelper.handleEcoDesignSyncProcess(incomingProject,oldProject);
         
         //To update Rollout TLD date on Rollout Projet Object
-        if(oldProject.Rollout_Plan_Target_Launch_Date__c != null && oldProject.Rollout_Plan_Target_Launch_Date__c!= incomingProject.Rollout_Plan_Target_Launch_Date__c)
+      /*  if(oldProject.Rollout_Plan_Target_Launch_Date__c != null && oldProject.Rollout_Plan_Target_Launch_Date__c!= incomingProject.Rollout_Plan_Target_Launch_Date__c)
         {
-            IPM_Project_Rollout__c rolloutProj = [Select Id, Target_Launch_Date__c from IPM_Project_Rollout__c where Id = :oldProject.IPM_Project_Rollout__c limit 1];
+            rolloutTLDChangedProjList.put(incomingProject.IPM_Project_Rollout__c,incomingProject);
+            /*IPM_Project_Rollout__c rolloutProj = [Select Id, Target_Launch_Date__c from IPM_Project_Rollout__c where Id = :oldProject.IPM_Project_Rollout__c limit 1];
             if(incomingProject.Rollout_Plan_Target_Launch_Date__c != rolloutProj.Target_Launch_Date__c){
                 rolloutProj.Target_Launch_Date__c = incomingProject.Rollout_Plan_Target_Launch_Date__c;
                 rolloutTLDChangedProjList.add(rolloutProj);
             }
-        }        
+        }    */    
     }
     
     /***********************************************************************************************************************************
@@ -844,6 +845,16 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         if((oldProject.IPM_Project_Name__c != null || String.IsNotBlank(oldProject.IPM_Project_Name__c)) && !oldProject.IPM_Project_Name__c.equals(newProject.IPM_Project_Name__c)){
             IPM_ChatterFeedHelper.notifyProjectNameChange((List<IPM_Project__c>)Trigger.New);
         }
+        //To update Rollout TLD date on Rollout Projet Object
+        if(oldProject.Rollout_Plan_Target_Launch_Date__c != null && oldProject.Rollout_Plan_Target_Launch_Date__c!= newProject.Rollout_Plan_Target_Launch_Date__c)
+        {
+            rolloutTLDChangedProjList.put(newProject.IPM_Project_Rollout__c,newProject);
+            /*IPM_Project_Rollout__c rolloutProj = [Select Id, Target_Launch_Date__c from IPM_Project_Rollout__c where Id = :oldProject.IPM_Project_Rollout__c limit 1];
+            if(incomingProject.Rollout_Plan_Target_Launch_Date__c != rolloutProj.Target_Launch_Date__c){
+                rolloutProj.Target_Launch_Date__c = incomingProject.Rollout_Plan_Target_Launch_Date__c;
+                rolloutTLDChangedProjList.add(rolloutProj);
+            }*/
+        }        
         
     }
     

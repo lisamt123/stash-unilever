@@ -71,10 +71,6 @@
                 <behavior>Edit</behavior>
                 <field>Target_Launch_Date_Updated_From__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>OpCo__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

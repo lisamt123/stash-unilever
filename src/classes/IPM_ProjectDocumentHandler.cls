@@ -86,51 +86,51 @@ public with sharing class IPM_ProjectDocumentHandler implements ITrigger{
             update updatedMilestone; // Not including try , catch as when the transaction is failed roll back is handled at other class  
         }
         
-	    set<id> projset = new set<id>();
-	    set<id> projset_pro= new set<id>();
-	    map<id,date> docmap = new map<id,date>();
-	    map<id,date> docmap_pro = new map<id,date>();
-	    map<id,string> IpmGate_map = new map<id,string>();
-	    map<id,string> IpmGate_pro_map = new map<id,string>();
-	    
+        set<id> projset = new set<id>();
+        set<id> projset_pro= new set<id>();
+        map<id,date> docmap = new map<id,date>();
+        map<id,date> docmap_pro = new map<id,date>();
+        map<id,string> IpmGate_map = new map<id,string>();
+        map<id,string> IpmGate_pro_map = new map<id,string>();
+        
         for(IPM_Project_Document__c ipd : (List<IPM_Project_Document__c>)trigger.new)
-	    {
-	       if(ipd.IPM_GateDocuments__c != null && ipd.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED && ipd.IPM_Project__c != null)
-	       {
-	           projset.add(ipd.IPM_Project__c);
-	           IpmGate_map.put(ipd.IPM_Project__c,ipd.IPM_GateDocuments__c );
-	       }
-	       if(ipd.IPM_Project__c != null && ipd.IPM_Approval_Date__c != null)
-	       {
-	           docmap.put(ipd.IPM_Project__c ,ipd.IPM_Approval_Date__c);
-	           
-	       }// Proposed
-	       if(ipd.IPM_GateDocuments__c != null && ipd.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED && ipd.IPM_Project__c != null)
-	       {
-	           projset_pro.add(ipd.IPM_Project__c);
-	           IpmGate_pro_map.put(ipd.IPM_Project__c,ipd.IPM_GateDocuments__c );
-	       }
-	       if(ipd.IPM_Project__c != null && ipd.IPM_Proposed_Date__c!= null)
-	       {
-	           docmap_pro.put(ipd.IPM_Project__c ,ipd.IPM_Proposed_Date__c);
-	       }
-	    }
-	    
+        {
+           if(ipd.IPM_GateDocuments__c != null && ipd.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED && ipd.IPM_Project__c != null)
+           {
+               projset.add(ipd.IPM_Project__c);
+               IpmGate_map.put(ipd.IPM_Project__c,ipd.IPM_GateDocuments__c );
+           }
+           if(ipd.IPM_Project__c != null && ipd.IPM_Approval_Date__c != null)
+           {
+               docmap.put(ipd.IPM_Project__c ,ipd.IPM_Approval_Date__c);
+               
+           }// Proposed
+           if(ipd.IPM_GateDocuments__c != null && ipd.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED && ipd.IPM_Project__c != null)
+           {
+               projset_pro.add(ipd.IPM_Project__c);
+               IpmGate_pro_map.put(ipd.IPM_Project__c,ipd.IPM_GateDocuments__c );
+           }
+           if(ipd.IPM_Project__c != null && ipd.IPM_Proposed_Date__c!= null)
+           {
+               docmap_pro.put(ipd.IPM_Project__c ,ipd.IPM_Proposed_Date__c);
+           }
+        }
+        
         map<id,IPM_Milestone__c> miles_Map = new map<id,IPM_Milestone__c>([SELECT id,IPM_Type_of_Milestone__c,IPM_Type_of_gate__c,IPM_Completed_On__c,
                                                                       IPM_Project__c FROM IPM_Milestone__c WHERE IPM_Project__c in : projset 
                                                                       AND IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD LIMIT 50000]);
                                                                       
         map<id,IPM_Milestone__c > UpdateMileMap = new map<id,IPM_Milestone__c >();
-	    
-	    for(IPM_Milestone__c M : miles_Map.values())
-	    {
-	        if(M.IPM_Project__c != null && IpmGate_map.containskey(M.IPM_Project__c) && M.IPM_Type_of_gate__c == IpmGate_map.get(M.IPM_Project__c)
-	        && docmap.containskey(M.IPM_Project__c ) && docmap.get(M.IPM_Project__c ) != null)
-	        {
-	            M.IPM_Completed_On__c = docmap.get(M.IPM_Project__c );
-	            UpdateMileMap.put(M.id,M);
-	        }
-	    }
+        
+        for(IPM_Milestone__c M : miles_Map.values())
+        {
+            if(M.IPM_Project__c != null && IpmGate_map.containskey(M.IPM_Project__c) && M.IPM_Type_of_gate__c == IpmGate_map.get(M.IPM_Project__c)
+            && docmap.containskey(M.IPM_Project__c ) && docmap.get(M.IPM_Project__c ) != null)
+            {
+                M.IPM_Completed_On__c = docmap.get(M.IPM_Project__c );
+                UpdateMileMap.put(M.id,M);
+            }
+        }
     
         // Proposed
         map<id,IPM_Milestone__c> miles_Pro_Map = new map<id,IPM_Milestone__c>([SELECT id,IPM_Type_of_Milestone__c,IPM_Type_of_gate__c,IPM_Completed_On__c,
@@ -138,15 +138,15 @@ public with sharing class IPM_ProjectDocumentHandler implements ITrigger{
                                                                           AND IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD LIMIT 50000]);
     
         for(IPM_Milestone__c M : miles_Pro_Map.values())
-	    {
-	        if(M.IPM_Project__c != null && IpmGate_pro_map.containskey(M.IPM_Project__c) && M.IPM_Type_of_gate__c == IpmGate_pro_map.get(M.IPM_Project__c)
-	        && docmap_pro.containskey(M.IPM_Project__c ) && docmap_pro.get(M.IPM_Project__c ) != null)
-	        {
-	            M.IPM_Proposed_Date__c = docmap_pro.get(M.IPM_Project__c );
-	            UpdateMileMap.put(M.id,M);
-	        }
-	    }
-	    
+        {
+            if(M.IPM_Project__c != null && IpmGate_pro_map.containskey(M.IPM_Project__c) && M.IPM_Type_of_gate__c == IpmGate_pro_map.get(M.IPM_Project__c)
+            && docmap_pro.containskey(M.IPM_Project__c ) && docmap_pro.get(M.IPM_Project__c ) != null)
+            {
+                M.IPM_Proposed_Date__c = docmap_pro.get(M.IPM_Project__c );
+                UpdateMileMap.put(M.id,M);
+            }
+        }
+        
         if(UpdateMileMap != null && !UpdateMileMap.isEmpty())
         {
             update UpdateMileMap.values(); // Not including try , catch as when the transaction is failed roll back is handled at other class
@@ -160,9 +160,9 @@ public with sharing class IPM_ProjectDocumentHandler implements ITrigger{
         if( !String.isBlank(newProjectDocument.IPM_GateDocuments__c) )
         {
             newProjectDocument.IPM_Project_Document_External_Id__c = newProjectDocument.IPM_Project__c + newProjectDocument.IPM_GateDocuments__c;
-            if(!String.isBlank(newProjectDocument.IPM_Project_External_Id__c)){
-            	string projectExtID=newProjectDocument.IPM_Project_External_Id__c.substring(0,newProjectDocument.IPM_Project_External_Id__c.length()-1);
-            	newProjectDocument.External_Id__c= projectExtID+newProjectDocument.IPM_Document_Order__c;
+            if(!Test.isRunningTest() && !String.isBlank(newProjectDocument.IPM_Project_External_Id__c)){
+                string projectExtID=newProjectDocument.IPM_Project_External_Id__c.substring(0,newProjectDocument.IPM_Project_External_Id__c.length()-1);
+                newProjectDocument.External_Id__c= projectExtID+newProjectDocument.IPM_Document_Order__c;
             }
         }
         else

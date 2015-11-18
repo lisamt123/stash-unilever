@@ -708,11 +708,11 @@ public with sharing class IPM_ChatterFeedHelper {
       @param1 newProjects : updated financials 
    */
     public static void postChatterIfBusinessCaseSaved(List<IPM_Financial__c> updatedFinancials){
-     
-     clearData();	
+     clearData();
+      if(updatedFinancials != null)	
       for(IPM_Financial__c eachFin:updatedFinancials)
       {
-    		projectIds.add(eachFin.Local_Project__c);
+      	    projectIds.add(eachFin.Local_Project__c);
     		projectIds.add(eachFin.Regional_Project__c);
     		projectIds.add(eachFin.Parent_Project__c);
     		projectIds.remove(null);

@@ -19,7 +19,6 @@ public class IPM_NotifyUsersRoleChanged_Test {
     private static final String  FEED_UPDATED_ASSERT = 'Feed Updated';
     private static final String PROJECTNAME = 'Acme';
     private static final String PROJECT_INSERTED_ASSERTION = 'Projects Inserted';
-    private static final String PROJECTRESOURCE_INSERTED_ASSERTION = 'Project Resources Inserted';
     private static User platformUser;
     /*  Description: create admin user
         @param ProfileName: profile name 

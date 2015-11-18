@@ -429,13 +429,5 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
         <type>Text</type>
     </nameField>
     <pluralLabel>IPM Project Documents</pluralLabel>
-    <searchLayouts>
-        <lookupDialogsAdditionalFields>IPM_GateDocuments__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>IPM_Project__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>IPM_Project_Complexity__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>IPM_Project_Template__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>IPM_Document_Status__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>OWNER.ALIAS</lookupDialogsAdditionalFields>
-    </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

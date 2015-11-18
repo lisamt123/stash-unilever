@@ -1,4 +1,5 @@
 public with sharing class IPM_GetHelpDoc {
+
     public string helpDocName{get;set;}
     public string strDocUrl{get;set;}
     public IPM_Milestone__c milestoneObj{get;set;}
@@ -13,6 +14,10 @@ public with sharing class IPM_GetHelpDoc {
     }
     
     public IPM_GetHelpDoc(ApexPages.StandardController stdController){
+        this();
+    }
+    
+    public IPM_GetHelpDoc(IPM_Team_Assignment_Controller teamAssignCtrl) {
         this();
     }
     

@@ -563,7 +563,6 @@
         <columns>Is_Master__c</columns>
         <columns>RECORDTYPE</columns>
         <columns>IPM_RQS_Question_Type__c</columns>
-        <columns>IPM_Section_External_Id__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Is_Master__c</field>
