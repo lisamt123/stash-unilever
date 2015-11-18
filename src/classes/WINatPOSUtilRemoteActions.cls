@@ -1325,6 +1325,15 @@ public without sharing class WINatPOSUtilRemoteActions {
             whereClauseForAssetGroup += whereClauseForAssetGroup == ''? 'where Type__c = \''+WINatPOSUtil.assetTypeForRepetableSearch+'\'' : ' and Type__c = \''+WINatPOSUtil.assetTypeForRepetableSearch+'\'';
         }
         
+        if(searchType == WINatPOSUtil.ctaSearch){
+            //if where clasue is empty and where phase else and
+            if(whereClauseForAsset.contains('POS_Asset_Type__c =')){
+               return new WINatPOSRemoteActionWrapper('search method failed','1',null,'Method search was called with wrong parametes assetTypes can not be used in Call To Action Search');
+            }
+            whereClauseForAsset += ' and POS_Asset_Type__c = \''+WINatPOSUtil.assetTypeForCTISearch+'\'';
+            whereClauseForAssetGroup += whereClauseForAssetGroup == ''? 'where Type__c = \''+WINatPOSUtil.assetTypeForCTISearch+'\'' : ' and Type__c = \''+WINatPOSUtil.assetTypeForCTISearch+'\'';
+        }
+        
         if(assetChannel != null  && assetChannel != ''){
             //if where clasue is empty and where phase else and
             whereClauseForAsset += ' and Channels__c includes (\''+assetChannel+'\')';
