@@ -769,7 +769,11 @@
                           <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Save}" action="{!saveList}" rerender="saveStatus" onclick="blockme();" oncomplete="$.unblockUI()" styleClass="Oblix_projects_btn"/>
                       </td><td width="160px" style="text-align: right;">
                           <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back}" action="{!back}" styleClass="Oblix_projects_btn" reRender="Oblix_ItemsId"/><br/>       
-                      </td>                                     
+                      </td>
+                       <td width="160px" style="text-align: right;">
+                          <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back_to_SOW}" action="{!backtoSow }" styleClass="Oblix_projects_btn" reRender="Oblix_ItemsId"/><br/>       
+                      </td>    
+                      
                 </tr>
             </table>
             <table width="100%" class="topAlign">
@@ -941,7 +945,7 @@
                                           </td>
                                           <td  width="5%"></td>
                                           <td  width="20%"> 
-                                              <apex:input type="number"  styleClass="hourss input_init"   html-min="0" value="{!myAct.val}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(($(this).val()*parseInt($('.rateclass').text()))+' {!MScurrency}');}" disabled="{!IF(myAct.valVisible==false,false,false)}" id="hours" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);"/><!-- .toFixed(2) -->
+                                              <apex:input type="number"  styleClass="hourss input_init"   html-min="0" value="{!myAct.val}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(($(this).val()*parseInt($('.rateclass').text())).toFixed(0)+' {!MScurrency}');}" disabled="{!IF(myAct.valVisible==false,false,false)}" id="hours" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);"/>
                                               <span style="font-size:14px">{!$Label.Oblix_lbl_UIUX_hours}  </span>
                                           </td> 
                                           <td  width="5%"></td>
@@ -985,7 +989,7 @@
                              
                              <table width="100%">
                                     <tr height="50">
-                                          <td width="20%"> <apex:inputtext styleClass="input_init"  value="{!myRes.name}" style="width:110%;" html-placeholder="Resource Name" id="nameid1"   /></td>
+                                          <td width="20%"> <apex:inputtext styleClass="input_init"  value="{!myRes.name}" style="width:100%;" html-placeholder="Resource Name" id="nameid1"   /></td>
                                           <td  width="5%"></td>
                                           <td  width="20%"></td> 
                                           <td  width="5%"></td>
@@ -1033,12 +1037,13 @@
                                            </td>
                                           <td  width="5%"></td>
                                           <td  width="20%">
-                                           <apex:input type="number" styleclass="prcentt input_init" html-min="0" value="{!myRes.val}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass1').text()))){ $('.rslt1').text(($(this).val()/100*parseInt($('.rateclass1').text())));}" disabled="{!IF(myRes.valVisible==false,false,false)}" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " />
+                                           <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" value="{!myRes.val}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass1').text()))){ $('.rslt1').text(($(this).val()/100*parseInt($('.rateclass1').text())).toFixed(0));}" disabled="{!IF(myRes.valVisible==false,false,false)}" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " />
+                                           <span style="font-size:14px">%  </span>
                                           </td> 
                                           <td  width="5%"></td>
                                           <td  width="20%">
-                                          <span style="font-size:14px">%  </span>
-                                              {!MScurrency}
+                                          
+                                              €
                                              <apex:outputLabel value="{!myRes.result}"   style="width:90%;font-size:17px;"   id="result1"  styleClass="rslt1">
                                             
                                              </apex:outputLabel>

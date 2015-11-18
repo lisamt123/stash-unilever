@@ -116,47 +116,47 @@ Changed to Campaign on 26/10/2015</description>
             <controllingField>Sub_Category__c</controllingField>
             <picklistValues>
                 <fullName>TV Master</fullName>
-                <controllingFieldValues>Origination</controllingFieldValues>
+                <controllingFieldValues>Origination Full</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Re-Shoot</fullName>
-                <controllingFieldValues>Origination</controllingFieldValues>
+                <controllingFieldValues>Origination Full</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Voice to Camera Shots</fullName>
-                <controllingFieldValues>Origination</controllingFieldValues>
+                <controllingFieldValues>Origination Full</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Branded Videos</fullName>
-                <controllingFieldValues>Origination</controllingFieldValues>
+                <controllingFieldValues>Origination Full</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Product Demos</fullName>
-                <controllingFieldValues>Origination</controllingFieldValues>
+                <controllingFieldValues>Origination Full</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Cinema Film</fullName>
-                <controllingFieldValues>Origination</controllingFieldValues>
+                <controllingFieldValues>Origination Full</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Campaign Teaser Video</fullName>
-                <controllingFieldValues>Origination</controllingFieldValues>
+                <controllingFieldValues>Origination Lite</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Behind the scenes footage</fullName>
-                <controllingFieldValues>Origination</controllingFieldValues>
+                <controllingFieldValues>Origination Lite</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Tactical Video</fullName>
-                <controllingFieldValues>Origination</controllingFieldValues>
+                <controllingFieldValues>Origination Lite</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -177,7 +177,6 @@ Changed to Campaign on 26/10/2015</description>
             </picklistValues>
             <picklistValues>
                 <fullName>Complex Re-Edit</fullName>
-                <controllingFieldValues>Adaptation</controllingFieldValues>
                 <controllingFieldValues>Adaptations and Reedits</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -264,42 +263,42 @@ Changed to Campaign on 26/10/2015</description>
             </picklistValues>
             <picklistValues>
                 <fullName>Key Visual</fullName>
-                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <controllingFieldValues>Origination</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Logo</fullName>
-                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <controllingFieldValues>Origination</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Bus Wraps</fullName>
-                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <controllingFieldValues>Origination</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Bus Shelters</fullName>
-                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <controllingFieldValues>Origination</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Billboards</fullName>
-                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <controllingFieldValues>Origination</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Street Banners</fullName>
-                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <controllingFieldValues>Origination</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Tactical Print</fullName>
-                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <controllingFieldValues>Origination</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Strategic Print</fullName>
-                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <controllingFieldValues>Origination</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -390,31 +389,26 @@ Changed to Campaign on 26/10/2015</description>
             <picklistValues>
                 <fullName>Banner Adaptations</fullName>
                 <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Landing Pages Adaptations</fullName>
                 <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Digital Strategy Adaptation</fullName>
                 <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>EDM Adaptation</fullName>
                 <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>eNewsletter Adaptation</fullName>
                 <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -429,12 +423,10 @@ Changed to Campaign on 26/10/2015</description>
             </picklistValues>
             <picklistValues>
                 <fullName>Experiential</fullName>
-                <controllingFieldValues>Origination</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Promotional</fullName>
-                <controllingFieldValues>Origination</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -621,19 +613,8 @@ Changed to Campaign on 26/10/2015</description>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Oblix_Quantity__c</fullName>
-        <externalId>false</externalId>
-        <label>Oblix Quantity</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Quantity__c</fullName>
+        <defaultValue>1</defaultValue>
         <externalId>false</externalId>
         <label>Quantity</label>
         <precision>18</precision>
@@ -692,6 +673,22 @@ Changed to Campaign on 26/10/2015</description>
             </picklistValues>
             <picklistValues>
                 <fullName>Audio</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Origination Lite</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Experiential - Promotional ideas ORIGINATION</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Experiential - Promotional ideas ADAPTATION</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Origination Full</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -1149,6 +1146,10 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Experiential</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Extended Stills</fullName>
                 <default>false</default>
             </values>
@@ -1226,6 +1227,10 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Product Demos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotional</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1362,7 +1367,11 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Origination</fullName>
+                <fullName>Origination Full</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Origination Lite</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1709,15 +1718,7 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Experiential</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Moderate Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Promotional</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1746,11 +1747,11 @@ Changed to Campaign on 26/10/2015</description>
         <picklistValues>
             <picklist>Sub_Category__c</picklist>
             <values>
-                <fullName>Adaptation</fullName>
+                <fullName>Experiential - Promotional ideas ADAPTATION</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Origination</fullName>
+                <fullName>Experiential - Promotional ideas ORIGINATION</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

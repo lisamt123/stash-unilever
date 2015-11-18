@@ -81,7 +81,18 @@ private class Oblix_Ctrl05SOWDetails_CC_Test {
 
     }
   }
-
+  @isTest static void removeAttachments_Test() {
+    System.runAs(Oblix_TestUtils.createTestUser()) {
+      Attachment attach = Oblix_TestUtils.createAttachment('Test', 'Test',
+                          Oblix_TestUtils.createTestMarketingSow('test', null,
+                                  Oblix_TestUtils.createBrand('Test', 'test').Id).Id);
+      System.assertEquals(1, [SELECT Id FROM Attachment].size());
+      Test.startTest();
+      Oblix_Ctrl05SOWDetails_CC.removeAttachments(new List<String> {attach.Id});
+      Test.stopTest();
+      System.assertEquals(0, [SELECT Id FROM Attachment].size());
+    }
+  }
   @isTest static void uploadeAttachmentTest(){
     User u = Oblix_TestUtils.createTestUser();
     System.runAs(u) {

@@ -165,7 +165,7 @@
         <label>Campaign Fees Total</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -532,6 +532,18 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Oblix_tec_Unique_Name_c__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>Unique Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>Other_Kinds_of_Research__c</fullName>
@@ -993,10 +1005,10 @@
         <externalId>false</externalId>
         <formula>Percentage_of_Fee_for_this_FY__c * Total_Fees_for_Project__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Value to be paid in Current FY</label>
+        <label>Fee to be paid in Current FY</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1013,7 +1025,7 @@
         <language>en_US</language>
     </listViews>
     <nameField>
-        <label>Campiagn Name</label>
+        <label>Campaign Name</label>
         <trackHistory>true</trackHistory>
         <type>Text</type>
     </nameField>

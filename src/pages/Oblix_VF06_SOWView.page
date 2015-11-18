@@ -14,7 +14,42 @@
     <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highstock/2.1.9/themes/sand-signika.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
-    
+    <script>
+   //$( document ).ready(function(){
+        var redirectToAttachment = function (attachmentId){
+        'use strict';
+        window.open('/servlet/servlet.FileDownload?file=' + attachmentId);
+    }
+
+    var removeAttachments = function (attachmentsId){
+        'use strict';
+        var attachmentsId = [];
+        $('#dialog').find('table > tbody').children().children().find('input:checkbox:checked').each(function (){
+            attachmentsId.push($(this).attr('data-attachment-id'));
+        })
+        if(attachmentsId.length !== 0){
+            $('#dialog').dialog('close');
+            removeService(attachmentsId).then(function (){
+                acceptRemoveAttachment();
+            }, function (err){
+                console.log(err);
+            });
+        }
+    }
+    var removeService = function (attachmentsIds){
+        'use strict';
+        var deferred = $.Deferred();
+        Oblix_Ctrl06SOWView_CC.removeAttachments(attachmentsIds, function (data, status){
+            deferred.resolve({data: data, status: status});
+        });
+        return deferred.promise();
+    }
+    var acceptRemoveAttachment = function (){
+        $('#dialog').dialog('close');
+        removeAttachmentsBack();
+    }
+   //});
+    </script>
    
     <script type="text/javascript">
     
@@ -108,7 +143,7 @@
      
      </script>
      
-     <apex:actionFunction name="SaveAttachments" action="{!SaveAttachments}" rerender="accountTable, pageMessages">      
+     <apex:actionFunction name="SaveAttachments" action="{!SaveAttachments}" rerender="accountTable, pageMessages">
          <apex:param value="{!allFileList}" assignTo="{!allFileList}" name="allFileList"/>
      </apex:actionFunction>
      <apex:actionFunction name="ViewProject" action="{!ViewProject}" rerender="accountTable, pageMessages">      
@@ -143,44 +178,54 @@
             top: -11px;
         }
         .Oblix_header_logo{
-        position:relative;
-        top:5px;
+            position:relative;
+            top:5px;
         }
         
         .Oblix_header_title{
             font-family: DIN, Arial;
             font-size: 30px;
-            margin: 4px;   
-           /* padding-top: 7px; */  
+            margin: 4px;           
             position: relative;
-            top: 5px;              
+            top: 5px;   
+            text-decoration:none;           
         }
-
+           
         
-           .Oblix_header_arrowTitle{
+       .Oblix_header_arrowTitle{
             font-family: DIN, Arial;
             font-size: 18px;
             margin: 4px;   
             padding-top: 24px;
             text-align: center;
+            
+            
+        }
+        .Oblix_header a{
+            text-decoration:none;
+            cursor:pointer; 
+            color:white;            
+        }
+        .Oblix_header a:hover{
+            text-decoration:none;
+            cursor:pointer; 
+            color:white;          
         }
         
         .Oblix_header_activeArrow{ 
-        background-color: transparent;      
+            background-color: transparent;      
             background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow_down.png')}");
             background-repeat: no-repeat;
              font-family: DIN, Arial;
             color:white;
             padding-left: 10px;
             width:160px;
-           height: 90px;
+            height: 90px;
             text-align: center;
-            position: absolute;
-           
-
+            position: absolute;          
         }
-          .Oblix_header_Arrow_none{ 
-          background-color: transparent;      
+       .Oblix_header_Arrow_none{ 
+            background-color: transparent;      
             background: initial;
             background-repeat: no-repeat;
             font-family: DIN, Arial;
@@ -191,8 +236,8 @@
             text-align: center;
             position: absolute;
         }
-          .Oblix_header_Arrow{ 
-          background-color: transparent;      
+       .Oblix_header_Arrow{ 
+            background-color: transparent;      
             background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow.png')}");
             background-repeat: no-repeat;
             font-family: DIN, Arial;
@@ -202,30 +247,25 @@
             height: 90px;
             text-align: center;
             position: absolute;
-          
-
-
         }
-          .Oblix_header_Arrow:active, .Oblix_header_Arrow:hover {
-          background-color: transparent;
+        .Oblix_header_Arrow:active, .Oblix_header_Arrow:hover {
+            background-color: transparent;
             background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
             background-repeat: no-repeat;
 
           }
-           .Oblix_header_previousArrow{ 
-           background-color: transparent;      
+        .Oblix_header_previousArrow{ 
+            background-color: transparent;      
             background-image : url("{!URLFOR($Resource.assetUI,'previouslevel_arrow.png')}");
             background-repeat: no-repeat;
             font-family: DIN, Arial;
             color:white;
             padding-left: 10px;
             width:160px;
-             height: 90px;
+            height: 90px;
             text-align: center;
             position: absolute;
-         
-
-        }
+       }
        .Oblix_header_previousArrow:active, .Oblix_header_previousArrow:hover {
             background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
             background-repeat: no-repeat;
@@ -440,7 +480,7 @@
         }
          .Oblix_large_btn{
             border-style:none;
-            width: 160px;
+            width: 180px !important;
             height: 30px;
             background-position: 0 0;
             border : 1px solid rgb(158, 145, 145);
@@ -457,7 +497,7 @@
         }
          .Oblix_btn{
             border-style:none;
-            width: 85px;
+            width: 90px !important;
             height: 30px;
             background-position: 0 0;
             border : 1px solid rgb(158, 145, 145);
@@ -649,7 +689,7 @@
     <script>
     function Popup(){
              $("#dialog").dialog({
-             width: 800,
+             width: 1000,
              modal:true,
              close: function(event,ui){
                  $("pop").dialog('destroy');          
@@ -701,6 +741,7 @@
                  <apex:commandButton action="{!uploadeAttachment}" value="{!$Label.Oblix_lbl_UIUX_Save}" immediate="true" />
                 </td>
                 <td>
+               
                 <!--   <input type="submit" value="Cancel" onclick="closeAtt();"/>  -->
                      <apex:commandButton action="{!cancel}"  value="{!$Label.Oblix_lbl_UIUX_Cancel}" onclick="closeAtt();"/>
                 </td>
@@ -712,7 +753,43 @@
    </apex:form>
    
   
-   
+   <!--<script>
+   //$( document ).ready(function(){
+        var redirectToAttachment = function (attachmentId){
+        'use strict';
+        window.open('/servlet/servlet.FileDownload?file=' + attachmentId);
+    }
+
+    var removeAttachments = function (attachmentsId){
+        'use strict';
+        var attachmentsId = [];
+        $('#dialog').find('table > tbody').children().children().find('input:checkbox:checked').each(function (){
+            attachmentsId.push($(this).attr('data-attachment-id'));
+        })
+        if(attachmentsId.length !== 0){
+            $('#dialog').dialog('close');
+            removeService(attachmentsId).then(function (){
+                acceptRemoveAttachment();
+            }, function (err){
+                console.log(err);
+            });
+        }
+    }
+    var removeService = function (attachmentsIds){
+        'use strict';
+        var deferred = $.Deferred();
+        Oblix_Ctrl06SOWView_CC.removeAttachments(attachmentsIds, function (data, status){
+            deferred.resolve({data: data, status: status});
+        });
+        return deferred.promise();
+    }
+    var acceptRemoveAttachment = function (){
+        $('#dialog').dialog('close');
+        removeAttachmentsBack();
+    }
+   //});
+    </script>-->
+
     <div class="Oblix_Container">
     <!-- Popup attachment -->
     <div id="PopupAddAttachmnt" title="{!$Label.Oblix_lbl_UIUX_Choose_Countries}" style="display:none">  
@@ -729,24 +806,42 @@
             </apex:repeat>
        </apex:form>     
    </div>
+   <apex:form >
+   <apex:actionFunction name="removeAttachmentsBack" action="{!init}">
+        <apex:param name="attachmentToRemove" value=""/>
+    </apex:actionFunction>
    <div id="dialog" title="{!$Label.Oblix_lbl_UIUX_Attachment_List}" style="display:none">   
       <apex:pageBlock >
        <apex:pageBlockTable value="{!lstAttachements}" var="attach">
            <apex:column headerValue="{!$Label.Oblix_lbl_UIUX_Name}">
-               
-               <apex:outputLink value="{!attach.Id}">{!attach.Name}</apex:outputLink>
+               <apex:outputText value="{!attach.Id}">{!attach.Name}</apex:outputText>
            </apex:column>
             <apex:column headerValue="{!$Label.Oblix_lbl_UIUX_Parent_Name}">
                  <apex:outputField value="{!attach.Parent.Name}"/>
            </apex:column>
+           <apex:column headerValue="Created By">
+                 <apex:outputField value="{!attach.CreatedBy.Name}"/>
+           </apex:column>
+           <apex:column headerValue="Created Date">
+                 <apex:outputField value="{!attach.CreatedDate}"/>
+           </apex:column>
+           <apex:column headerValue="View">
+                <apex:commandButton value="View" onclick="redirectToAttachment('{!attach.Id}')"/>     
+           </apex:column>
+           <apex:column headerValue="To Delete">
+                <input type="checkbox" data-attachment-id="{!attach.Id}" />
+           </apex:column>
        </apex:pageBlockTable>
+       <br/>
+       <apex:commandButton value="Delete" onclick="removeAttachments(); return false;"/>
      </apex:pageBlock>
    </div>
+   </apex:form>
    <!-- end Popup attachment -->
     <div class="cnter">
      
   <div class="Oblix_header">
-<!-- 3 levels Oblix_header_activeArrow=inactive level user is on,  Oblix_header_Arrow=first button from the left, Oblix_header_previousArrow=second button-->
+  <!-- 3 levels Oblix_header_activeArrow=inactive level user is on,  Oblix_header_Arrow=first button from the left, Oblix_header_previousArrow=second button-->
        <div style="postion: relative; top:-200px; background: transparent;width: 95%;margin-left: auto;margin-right: auto;">
          <table width="95%" height="100%">
             <tr>
@@ -754,7 +849,7 @@
                 <apex:image value="{!$Resource.Unilever_logo}" width="60px" height="60px" />
                 </td>
                 <td class="Oblix_header_Arrow header_pos_1">
-                <div class="Oblix_header_title">{!$Label.Oblix_lbl_UIUX_SWOP}</div><br/>
+                <a href="/apex/Oblix_VF05_SOWDetailsV"> <div class="Oblix_header_title">{!$Label.Oblix_lbl_UIUX_SWOP}</div></a><br/>
                 <span class="Oblix_header_desc">{!$Label.Oblix_lbl_UIUX_Scope_of_Work}<br/>
                 {!$Label.Oblix_lbl_UIUX_Online_Planner}</span>
                 </td>
@@ -842,11 +937,11 @@
                     <tr><td colspan="2">&nbsp;</td></tr>                      
                     <tr>
                      <td colspan="2"><h2 class="darkGreen">{!$Label.Oblix_lbl_UIUX_Approved} &nbsp;</h2> <strong>
-                     {!mapApproved[selSow.id]} {!selSow.Currency__c}</strong></td>
+                     {!mapApproved[selSow.id]} €</strong></td>
                    </tr>
                    <tr>
                      <td colspan="2"><h2 class="mainGreen">{!$Label.Oblix_lbl_UIUX_Current} &nbsp; &nbsp; &nbsp; </h2><strong>
-                      {!selSow.OblixSOWOverallTotal__c} {!selSow.Currency__c}</strong></td>
+                      {!selSow.OblixSOWOverallTotal__c} €</strong></td>
                    </tr>
                </table>
            </section> 
@@ -887,8 +982,8 @@
          
           <section class="column5">
              <div class="cnter">
-                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back_To_Dashboard}"  title="{!$Label.Oblix_lbl_UIUX_View_Campaign_details}"  action="{!backAction}" styleClass="Oblix_large_btn Oblix_view_btn"/><br/><br/>
-                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}"  title="{!$Label.Oblix_lbl_UIUX_Go_back_to_the_edit_mode}"  action="{!EditAction}" onclick="blockme()" oncomplete="$.unblockUI()" styleClass="Oblix_large_btn" reRender="showForm"/><br/><br/>
+                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back_To_Dashboard}"  title="{!$Label.Oblix_lbl_UIUX_Go_back_to_the_edit_mode}"  action="{!backAction}" styleClass="Oblix_large_btn Oblix_view_btn"/><br/><br/>
+                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}"  title="{!$Label.Oblix_lbl_UIUX_View_Campaign_details}"  action="{!EditAction}" onclick="blockme()" oncomplete="$.unblockUI()" styleClass="Oblix_large_btn" reRender="showForm"/><br/><br/>
                      <apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_Export}" onclick="" title="{!$Label.Oblix_lbl_UIUX_View_PDF_format}"  styleClass="Oblix_btn" disabled="true"/><apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Reporting}" onclick="" disabled="true" title="{!$Label.Oblix_lbl_UIUX_View_PDF_format}"  styleClass="Oblix_btn"/><br/><br/>
                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Approval}" title="{!$Label.Oblix_lbl_UIUX_Approval}"  onclick="" styleClass="Oblix_large_btn" disabled="true"/>
              </div>  
@@ -947,11 +1042,11 @@
                    </tr>                 
                    <tr>
                      <td colspan="2"><strong class="darkGreen">{!$Label.Oblix_lbl_UIUX_Approved} &nbsp;</strong> <strong>
-                     <apex:outputPanel rendered="{!selSow.id != null}"> {!mapApproved[selSow.id]} </apex:outputPanel> {!selSow.Currency__c} </strong></td>
+                     <apex:outputPanel rendered="{!selSow.id != null}"> {!mapApproved[selSow.id]} </apex:outputPanel> € </strong></td>
                    </tr>
                     <tr>
                      <td colspan="2"><strong class="mainGreen">{!$Label.Oblix_lbl_UIUX_Current} &nbsp; &nbsp; &nbsp; </strong><strong>
-                      {!selSow.OblixSOWOverallTotal__c} {!selSow.Currency__c} </strong></td>
+                      {!selSow.OblixSOWOverallTotal__c} € </strong></td>
                    </tr>
                    <tr>
                    </tr>
@@ -1104,7 +1199,7 @@
                                 <td>{!projOtherItem.objectDyn['Platform__c']}</td>
                                 <td>{!projOtherItem.objectDyn['Campaign_Status__c']}</td>
                                 <td>{!projOtherItem.objectDyn['Project_Stage__c']}</td>
-                                <td>{!projOtherItem.objectDyn['Total_Fees_for_Project__c']} EUR</td>
+                                <td>{!projOtherItem.objectDyn['Total_Fees_for_Project__c']} €</td>
                             </tr>
                         </apex:outputPanel>
                         <apex:outputPanel rendered="{!projOtherItem.objName == 'Non Campaign'}">

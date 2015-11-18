@@ -10,27 +10,52 @@
 		//alert($(this show).find('span.recordTypeValue').text());            
 		var data = $(this).next('tr');
 		var btt = data.next('tr');
+		var that = this;
+		$('table tr.Oblix_recordTypeth').each(function(){
+			if($(this).hasClass('show') && that !== this){
+				$(this).next('tr').find('td > div').slideToggle('slow');
+				$(this).next('tr').next('tr').find('td > div').slideToggle('slow');
+				$(this).toggleClass('show');
+			}
+		})
 		data.find('td > div').slideToggle('slow');
-		btt.find('td > div').slideToggle('slow');             
-		$(this).toggleClass('show');   
-		// getAssetRecordType($(this).find('span.recordTypeValue').text());
+		btt.find('td > div').slideToggle('slow');
+		$(this).toggleClass('show');
+		//$('tr.data, tr.btt').find('').hide();
     });
 	<!-- The JQuery tab() for all sub categories -->
-    for (var i=0; i<setIdCss.length;i++) {
-		$('#'+setIdCss[i]+'_tabs').tabs();
-		$('#'+setIdCss[i]+'_tabs1').tabs();
-		$('#'+setIdCss[i]+'_tabs2').tabs();
-		$('#'+setIdCss[i]+'_tabs3').tabs();
-		$('#'+setIdCss[i]+'_tabs4').tabs();
-		$('#'+setIdCss[i]+'_tabs5').tabs();
-		$('#'+setIdCss[i]+'_tabs');
-		$('#'+setIdCss[i]+'_tabs').addClass('tabs-sub');
-		$('#'+setIdCss[i]+'_tabs1').addClass('ui-tabs-vertical');
-		$('#'+setIdCss[i]+'_tabs2').addClass('ui-tabs-vertical');
-		$('#'+setIdCss[i]+'_tabs3').addClass('ui-tabs-vertical');
-		$('#'+setIdCss[i]+'_tabs4').addClass('ui-tabs-vertical');
-		$('#'+setIdCss[i]+'_tabs5').addClass('ui-tabs-vertical');
-		console.dir('#'+setIdCss[i]+'_tabs2');
+	if(setIdCss != '[]'){
+		for (var i=0; i<setIdCss.length;i++) {
+			$('#'+setIdCss[i]+'_tabs').tabs();
+			$('#'+setIdCss[i]+'_tabs1').tabs({
+					collapsible: true,
+					active: false
+				});
+			$('#'+setIdCss[i]+'_tabs2').tabs({
+					collapsible: true,
+					active: false
+				});
+			$('#'+setIdCss[i]+'_tabs3').tabs({
+					collapsible: true,
+					active: false
+				});
+			$('#'+setIdCss[i]+'_tabs4').tabs({
+					collapsible: true,
+					active: false
+				});
+			$('#'+setIdCss[i]+'_tabs5').tabs({
+					collapsible: true,
+					active: false
+				});
+			$('#'+setIdCss[i]+'_tabs');
+			$('#'+setIdCss[i]+'_tabs').addClass('tabs-sub');
+			$('#'+setIdCss[i]+'_tabs1').addClass('ui-tabs-vertical');
+			$('#'+setIdCss[i]+'_tabs2').addClass('ui-tabs-vertical');
+			$('#'+setIdCss[i]+'_tabs3').addClass('ui-tabs-vertical');
+			$('#'+setIdCss[i]+'_tabs4').addClass('ui-tabs-vertical');
+			$('#'+setIdCss[i]+'_tabs5').addClass('ui-tabs-vertical');
+			console.dir('#'+setIdCss[i]+'_tabs2');
+		}
 	}
 	$(function () {
 	   $(".checkboxCountry").change(function () {
@@ -77,7 +102,7 @@
         $(function() {
                 $( "#dialogDrivers" ).dialog({
                   modal: true,
-                  width: 900,
+                  width: 1100,
                   zIndex: 9,
                   buttons: {
                     Save : function() { 
@@ -90,7 +115,7 @@
                            Innovation = $(".projInnovation").val();
                            CampaignIdea =  $(".projCampaignIdea").val();
                            blockme(); 
-                           setInfoDrivers($(".projInnovation").val(),$('select[id*="Growthhhhh"]').val(),$(".projScale1").val(),$(".projScale2").val(),$(".projCampaignIdea").val());   
+                           setInfoDrivers($(".projInnovation").val(),$('select[id*="Growthhhhh"]').val(),$(".projCampaignIdea").val(),$(".projScale1").val(),$(".projScale2").val());   
                            $(this).dialog("close");  
                    },                                      
                     Close: function() {
@@ -176,16 +201,18 @@
                             $("input:checkbox[name='checkboxCompleted']:checked").each(function(){
                                 lstCompleted = $(this).attr('value');                                           
                             }); 
-                            //alert('array lstCompleted:'+lstCompleted);
-                            //alert('array lstProjected :'+lstProjected);                           
+                            console.dir('array lstCompleted:'+lstCompleted);
+                            console.dir('array lstProjected :'+lstProjected);                           
                                  
                                blockme();                        
                                if(lstCompleted != ''){
-                                   setInfoStages(lstProjected,lstCompleted,lstCompleted.replace('Completed ',''));
+								   console.dir('here');
+                                   setInfoStages(lstProjected,lstCompleted,lstCompleted.replace('Completed ',''));								   
                                }else{
-                                   setInfoStages(lstProjected,lstCompleted,'');
+								   console.dir('here 2');
+                                   setInfoStages(lstProjected,lstCompleted);
                                }    
-                               console.dir('here');
+                               
                             
                             $( this ).dialog( "close");   
                         },                                       
@@ -243,7 +270,8 @@
 							}       
 							if(block){
 								//alert(listItems);  
-								blockme();                  
+								blockme();  
+							    console.dir(listItems);
 								setAgencyHub(listItems);
 								listItems = '';
 								//setAgencyHubOnComplete();

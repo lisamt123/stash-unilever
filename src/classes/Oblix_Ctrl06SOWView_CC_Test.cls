@@ -1,22 +1,22 @@
 @isTest
 private class Oblix_Ctrl06SOWView_CC_Test {
-	
+
 
 	private static final String NULL_MESSAGE = 'Page Reference should be null';
 	private static final String NOT_NULL_MESSAGE = 'Page Reference should not be null';
 	private static final String PROJECT_TXT = 'Project';
-    private static final String PROJECTID_TXT = 'projectId';
-    private static final String SOWID_TXT = 'sowId';
-    private static final String TEST_NAME = 'test';
+	private static final String PROJECTID_TXT = 'projectId';
+	private static final String SOWID_TXT = 'sowId';
+	private static final String TEST_NAME = 'test';
 
-	@isTest static void saveSOWTest(){
+	@isTest static void saveSOWTest() {
 		User u = Oblix_TestUtils.createTestUser();
 		System.runAs(u) {
 			Test.startTest();
 
-			MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+			MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
 
-			Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+			Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
 
 			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
 
@@ -26,12 +26,12 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 			Oblix_Ctrl06SOWView_CC controller = new Oblix_Ctrl06SOWView_CC();
 
 			mSow.Financial_Year__c = '2015';
-        	mSow.BB_or_BD__c = TEST_NAME;
+			mSow.BB_or_BD__c = TEST_NAME;
 
 
-        	controller.noteAsset = new Note(body = TEST_NAME);
+			controller.noteAsset = new Note(body = TEST_NAME);
 
-        	controller.selSow = new Marketing_SOW__c();
+			controller.selSow = new Marketing_SOW__c();
 
 			controller.saveSOW();
 
@@ -41,19 +41,19 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 
 			Test.stopTest();
 
-			System.assert(!controller.isEdit,'Edit flag should not be set');
+			System.assert(!controller.isEdit, 'Edit flag should not be set');
 		}
 	}
 
 
-	@isTest static void ViewProjectTest(){
+	@isTest static void ViewProjectTest() {
 		User u = Oblix_TestUtils.createTestUser();
 		System.runAs(u) {
 			Test.startTest();
 
-			MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+			MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
 
-			Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+			Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
 
 			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
 
@@ -63,24 +63,24 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 			ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
 
 			Oblix_Ctrl06SOWView_CC controller = new Oblix_Ctrl06SOWView_CC();
-		
-			controller.selectedProjectId = ''+basics.id;
+
+			controller.selectedProjectId = '' + basics.id;
 
 			Test.stopTest();
 
-			System.assert(controller.ViewProject() == null,NULL_MESSAGE);
+			System.assert(controller.ViewProject() == null, NULL_MESSAGE);
 
 		}
 	}
 
-	@isTest static void uploadeAttachmentTest(){
+	@isTest static void uploadeAttachmentTest() {
 		User u = Oblix_TestUtils.createTestUser();
 		System.runAs(u) {
 			Test.startTest();
 
-			MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+			MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
 
-			Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+			Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
 
 			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
 
@@ -89,18 +89,18 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 
 			Oblix_Ctrl06SOWView_CC controller = new Oblix_Ctrl06SOWView_CC();
 
-			controller.attachment = new Attachment(name = TEST_NAME,body = Blob.valueOf(TEST_NAME));
+			controller.attachment = new Attachment(name = TEST_NAME, body = Blob.valueOf(TEST_NAME));
 
 			controller.uploadeAttachment();
 
 			Test.stopTest();
 
-			System.assert(!controller.lstAttachements.isEmpty() ,'Attachment should be uploaded');
+			System.assert(!controller.lstAttachements.isEmpty() , 'Attachment should be uploaded');
 		}
 	}
 
 
-	@isTest static void getthousandBlocksTest(){
+	@isTest static void getthousandBlocksTest() {
 
 		User u = Oblix_TestUtils.createTestUser();
 		System.runAs(u) {
@@ -110,10 +110,10 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 
 
 			List<Oblix_Ctrl06SOWView_CC.CampaignNonCampaignItems> lstCampaignNonCampaign = new List<Oblix_Ctrl06SOWView_CC.CampaignNonCampaignItems>();
-			for(Integer i = 0 ; i < 2000 ; i ++){
+			for (Integer i = 0 ; i < 2000 ; i ++) {
 				Oblix_Ctrl06SOWView_CC.CampaignNonCampaignItems item = new Oblix_Ctrl06SOWView_CC.CampaignNonCampaignItems();
 				item.objectDyn = new Marketing_SOW__c();
-				item.objName = 'name'+i;
+				item.objName = 'name' + i;
 				lstCampaignNonCampaign.add(item);
 			}
 
@@ -121,7 +121,20 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 
 			Test.stopTest();
 
-			System.assert(!wrapperlist.isEmpty(),'There should be elements in the list');
+			System.assert(!wrapperlist.isEmpty(), 'There should be elements in the list');
+		}
+	}
+
+	@isTest static void removeAttachments_Test() {
+		System.runAs(Oblix_TestUtils.createTestUser()) {
+			Attachment attach = Oblix_TestUtils.createAttachment('Test', 'Test',
+			                    Oblix_TestUtils.createTestMarketingSow('test', null,
+			                            Oblix_TestUtils.createBrand('Test', 'test').Id).Id);
+			System.assertEquals(1, [SELECT Id FROM Attachment].size());
+			Test.startTest();
+			Oblix_Ctrl06SOWView_CC.removeAttachments(new List<String> {attach.Id});
+			Test.stopTest();
+			System.assertEquals(0, [SELECT Id FROM Attachment].size());
 		}
 	}
 
@@ -129,9 +142,9 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 		User u = Oblix_TestUtils.createTestUser();
 		System.runAs(u) {
 
-			MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+			MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
 
-			Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME,Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+			Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
 
 			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
 
@@ -155,10 +168,10 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 			PageReference addProj = controller.AddProject();
 
 			controller.FileCount = '1';
-	
+
 			PageReference changeCount = controller.ChangeCount();
 
-			controller.allFileList = new List<Attachment>{new Attachment(name = TEST_NAME,body = Blob.valueOf(TEST_NAME))};
+			controller.allFileList = new List<Attachment> {new Attachment(name = TEST_NAME, body = Blob.valueOf(TEST_NAME))};
 
 			PageReference upploadAtt = controller.uploadAttachment();
 
@@ -171,25 +184,24 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 			list<Oblix_Project_Assets__c> l = controller.lstAssets;
 			string i = controller.IdsProject;
 			List<Attachment> a = controller.AttachementToAdd;
-			
+
 			controller.EditAction();
 
 			controller.Cancel();
 
 			Test.stopTest();
 
-			System.assert(back != null,NOT_NULL_MESSAGE);
-			System.assert(createProject != null,NOT_NULL_MESSAGE);
-			System.assert(saveProject != null,NOT_NULL_MESSAGE);
-			System.assert(detail != null,NOT_NULL_MESSAGE);
-			System.assert(nonCamp != null,NOT_NULL_MESSAGE);
-			System.assert(addProj != null,NOT_NULL_MESSAGE);
-			System.assert(changeCount == null,NULL_MESSAGE);
-			System.assert(upploadAtt == null,NULL_MESSAGE);
-			System.assert(saveAtt == null,NULL_MESSAGE);
-			System.assert(controller.isEdit,'Edit flag should be set');
+			System.assert(back != null, NOT_NULL_MESSAGE);
+			System.assert(createProject != null, NOT_NULL_MESSAGE);
+			System.assert(saveProject != null, NOT_NULL_MESSAGE);
+			System.assert(detail != null, NOT_NULL_MESSAGE);
+			System.assert(nonCamp != null, NOT_NULL_MESSAGE);
+			System.assert(addProj != null, NOT_NULL_MESSAGE);
+			System.assert(changeCount == null, NULL_MESSAGE);
+			System.assert(upploadAtt == null, NULL_MESSAGE);
+			System.assert(saveAtt == null, NULL_MESSAGE);
+			System.assert(controller.isEdit, 'Edit flag should be set');
 
 		}
 	}
-	
 }

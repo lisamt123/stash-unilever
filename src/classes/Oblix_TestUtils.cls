@@ -95,4 +95,13 @@ public with sharing class Oblix_TestUtils {
         return asset;
     }
 
+    public static Attachment createAttachment(String name, String body, Id parentId){
+        Attachment attach = new Attachment();
+        attach.Name = name;
+        attach.Body = Blob.valueOf(body);
+        attach.ParentId = parentId;
+        insert attach;
+        return attach; 
+    }
+
 }

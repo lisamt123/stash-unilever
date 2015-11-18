@@ -35,6 +35,10 @@
                 <behavior>Readonly</behavior>
                 <field>Percentage_of_Fee_for_Next_FY__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Oblix_tec_Unique_Name_c__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

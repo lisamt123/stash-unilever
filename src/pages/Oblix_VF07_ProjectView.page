@@ -45,12 +45,12 @@
                     </td>
                    
                      <td width="10%" style="color: #fff; word-break: normal; padding-right:20px; text-align:right;">
-                        <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Adjust_Fee}" styleClass="Oblix_projects_btn" action="{!SaveProject}" reRender="jqueryId"/>
+                       
                       </td>
                      <td width="30%" style="text-align: right; word-break: normal;">
                     <h2>
-                         {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Fees_Total__c.label} &nbsp;:&nbsp; {!SelectedProject.Campaign_Fees_Total__c}&nbsp;{!SelectedProject.Financial_Year__r.currency__c}<br/>
-                        {!$ObjectType.Oblix_SOW_Projects__c.fields.Value_to_be_paid_in_Current_FY__c.label} &nbsp;:&nbsp; {!SelectedProject.Value_to_be_paid_in_Current_FY__c}&nbsp;{!SelectedProject.Financial_Year__r.currency__c}
+                         {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Fees_Total__c.label} &nbsp;:&nbsp; {!SelectedProject.Campaign_Fees_Total__c}&nbsp;€<br/>
+                        {!$ObjectType.Oblix_SOW_Projects__c.fields.Value_to_be_paid_in_Current_FY__c.label} &nbsp;:&nbsp; {!SelectedProject.Value_to_be_paid_in_Current_FY__c}&nbsp;€
                     </h2>
                     </td>                                     
                 </tr>
@@ -76,7 +76,7 @@
                                      </tr>
                                      <tr><td colspan="2">&nbsp;</td></tr> 
                                      <tr>    
-                                         <td colspan="2"><strong>{!$Label.Oblix_lbl_UIUX_Platform} </strong><apex:outputField value="{!SelectedProject.Platform__c}"/></td>
+                                         <td colspan="2"><strong>{!$Label.Oblix_lbl_UIUX_Platform} : </strong><apex:outputField value="{!SelectedProject.Platform__c}"/></td>
                                      </tr>
                                      <tr><td colspan="2">&nbsp;</td></tr>                                 
                                      <tr>
@@ -96,40 +96,40 @@
                                    <table width="90%"> 
                                          <tr><td colspan="2"><strong>{!$Label.Oblix_lbl_UIUX_Dates_for_Campaign_Timeline} :</strong></td></tr>                                      
                                         <tr>    
-                                          <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Start_Date__c.label} </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Project_Start_Date__c}" /></apex:outputText></td>
+                                          <td><strong><apex:outputLabel value="{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Start_Date__c.label}" rendered="{!SelectedProject.Project_Start_Date__c <> null}"/> </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Project_Start_Date__c}" /></apex:outputText></td>
                                        </tr>
                                        <tr>    
-                                          <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Completion_Date__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Project_Completion_Date__c}" /></apex:outputText></td>
+                                          <td><strong><apex:outputLabel value="{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Completion_Date__c.label}" rendered="{!SelectedProject.Project_Completion_Date__c <> null}"/>  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Project_Completion_Date__c}" /></apex:outputText></td>
                                        </tr>
                                        <tr>
-                                          <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.First_Air_Date__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.First_Air_Date__c}" /></apex:outputText></td>
+                                          <td><strong><apex:outputLabel value="{!$ObjectType.Oblix_SOW_Projects__c.fields.First_Air_Date__c.label}" rendered="{!SelectedProject.First_Air_Date__c <> null}"/>  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.First_Air_Date__c}" /></apex:outputText></td>
                                        </tr>
                                        
                                        <tr>
-                                           <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Date_for_Assets_to_be_in_BET__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Date_for_Assets_to_be_in_BET__c}" /></apex:outputText></td>
+                                           <td><strong><apex:outputLabel value="{!$ObjectType.Oblix_SOW_Projects__c.fields.Date_for_Assets_to_be_in_BET__c.label}" rendered="{!SelectedProject.Date_for_Assets_to_be_in_BET__c <> null}"/>  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Date_for_Assets_to_be_in_BET__c}" /></apex:outputText></td>
                                        </tr>  
                                        
                                        <tr>
-                                            <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.BET_first_release__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.BET_first_release__c}" /></apex:outputText></td>
+                                            <td><strong><apex:outputLabel value="{!$ObjectType.Oblix_SOW_Projects__c.fields.BET_first_release__c.label}" rendered="{!SelectedProject.BET_first_release__c<> null}"/>  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.BET_first_release__c}" /></apex:outputText></td>
                                        </tr>
                                        <tr>
-                                            <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Preview_Date__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Preview_Date__c}" /></apex:outputText></td>
+                                            <td><strong><apex:outputLabel value="{!$ObjectType.Oblix_SOW_Projects__c.fields.Preview_Date__c.label}" rendered="{!SelectedProject.Preview_Date__c <> null}"/>  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Preview_Date__c}" /></apex:outputText></td>
                                        </tr>
                                        
                                       <tr>
-                                            <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Production_Completion_Date__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Production_Completion_Date__c}" /></apex:outputText></td>
+                                            <td><strong><apex:outputLabel value="{!$ObjectType.Oblix_SOW_Projects__c.fields.Production_Completion_Date__c.label}" rendered="{!SelectedProject.Production_Completion_Date__c <> null}"/>  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Production_Completion_Date__c}" /></apex:outputText></td>
                                        </tr>
                                         <tr>
-                                           <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Start_of_TV_production__c.label} </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Start_of_TV_production__c}" /></apex:outputText></td>
+                                           <td><strong><apex:outputLabel value="{!$ObjectType.Oblix_SOW_Projects__c.fields.Start_of_TV_production__c.label}" rendered="{!SelectedProject.Start_of_TV_production__c <> null}"/> </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Start_of_TV_production__c}" /></apex:outputText></td>
                                        </tr>  
                                        <tr>
-                                           <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Final_release__c.label} </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Final_release__c}" /></apex:outputText></td>
+                                           <td><strong><apex:outputLabel value="{!$ObjectType.Oblix_SOW_Projects__c.fields.Final_release__c.label}" rendered="{!SelectedProject.Final_release__c <> null}"/> </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Final_release__c}" /></apex:outputText></td>
                                        </tr>   
                                        <tr>
-                                            <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Live_Date__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Live_Date__c}" /></apex:outputText></td>
+                                            <td><strong><apex:outputLabel value="{!$ObjectType.Oblix_SOW_Projects__c.fields.Live_Date__c.label}" rendered="{!SelectedProject.Live_Date__c <> null}"/>  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Live_Date__c}" /></apex:outputText></td>
                                        </tr>
                                        <tr>
-                                            <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Live_date_Asset_delivery__c.label}  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Live_date_Asset_delivery__c}" /></apex:outputText></td>
+                                            <td><strong><apex:outputLabel value="{!$ObjectType.Oblix_SOW_Projects__c.fields.Live_date_Asset_delivery__c.label}" rendered="{!SelectedProject.Live_date_Asset_delivery__c <> null}"/>  </strong></td><td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.Live_date_Asset_delivery__c}" /></apex:outputText></td>
                                        </tr>
                                        <tr><td colspan="2">&nbsp;</td></tr> 
                                        
@@ -148,8 +148,8 @@
                                    <table width="100%"> 
                                        
                                        <tr>
-                                          <apex:outputPanel rendered="{!SelectedProject.OblixCountries__c != null}"> <td style="vertical-align: top;" ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixCountries__c.label} </strong><br/>{!SelectedProject.OblixCountries__c}</td></apex:outputPanel>
-                                          <apex:outputPanel rendered="{!SelectedProject.OblixCountries__c == null}"> <td style="vertical-align: top;" ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixRegion__c.label} </strong><br/>{!SelectedProject.OblixRegion__c}</td></apex:outputPanel>
+                                          <apex:outputPanel rendered="{!SelectedProject.OblixCountries__c != null}"> <td style="vertical-align: top;" ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixCountries__c.label} : </strong><br/>{!SelectedProject.OblixCountries__c}</td></apex:outputPanel>
+                                          <apex:outputPanel rendered="{!SelectedProject.OblixCountries__c == null}"> <td style="vertical-align: top;" ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixRegion__c.label} : </strong><br/>{!SelectedProject.OblixRegion__c}</td></apex:outputPanel>
                                        </tr>
                                        <tr><td colspan="2">&nbsp;</td></tr>
                                        <tr>
@@ -167,24 +167,19 @@
                                           <td colspan="2"><strong>{!$Label.Oblix_lbl_UIUX_Value_drivers}</strong></td>
                                        </tr>   
                                        <tr>
-                                            <td> <apex:outputField value="{!SelectedProject.Innovation_Projects__c}" rendered="{!SelectedProject.Innovation_Projects__c <> null}"/></td>
-                                       </tr>
-                                       <tr>
+                                            <td> <apex:outputField value="{!SelectedProject.Innovation_Projects__c}" rendered="{!SelectedProject.Innovation_Projects__c <> null}"/></td>                             
                                             <td> 
                                                 <apex:outputText value="{!mapTurnoverToSize[SelectedProject.Brand_Led_Growth__c]}" rendered="{!SelectedProject.Brand_Led_Growth__c <> null}"></apex:outputText>
                                            <!--  <apex:outputField value="{!SelectedProject.Brand_Led_Growth__c}" rendered="{!SelectedProject.Brand_Led_Growth__c <> null}"/> -->
                                             </td>
+                                       </tr>                                     
+                                        <tr>
+                                            <td colspan="2"> <apex:outputField value="{!SelectedProject.Project_Scale_1__c}" rendered="{!SelectedProject.Project_Scale_1__c <> null}"/></td>
                                        </tr>
                                         <tr>
-                                            <td> <apex:outputField value="{!SelectedProject.Campaign_Idea__c}" rendered="{!SelectedProject.Campaign_Idea__c <> null}"/></td>
+                                            <td colspan="2"> <apex:outputField value="{!SelectedProject.Project_Scale_2__c}" rendered="{!SelectedProject.Project_Scale_2__c<> null}"/></td>
                                        </tr>
-                                        <tr>
-                                            <td> <apex:outputField value="{!SelectedProject.Project_Scale_1__c}" rendered="{!SelectedProject.Project_Scale_1__c <> null}"/></td>
-                                       </tr>
-                                        <tr>
-                                            <td> <apex:outputField value="{!SelectedProject.Project_Scale_2__c}" rendered="{!SelectedProject.Project_Scale_2__c<> null}"/></td>
-                                       </tr>
-                                        <tr><td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Idea__c.label}</strong><br/> {!SelectedProject.Campaign_Idea__c}</td></tr> 
+                                        <tr><td colspan="2"><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Idea__c.label}</strong><br/> {!SelectedProject.Campaign_Idea__c}</td></tr> 
                                                       
                                    </table>
                                </section> 
@@ -194,11 +189,9 @@
                            <section class="PrColumn4">
                                <table width="100%">  
                                    <tr>    
-                                      <td colspan="3"><strong>{!$Label.Oblix_lbl_UIUX_Stage} </strong></td>                                       
+                                      <td colspan="3"><strong>{!$Label.Oblix_lbl_UIUX_Stage} : <br/></strong></td>                                       
                                    </tr>
-                                   <tr>    
-                                      <td colspan="4">{!$Label.Oblix_lbl_UIUX_Confirm_Stages} <br/>  {!$Label.Oblix_lbl_UIUX_This_will_impact} </td>                                       
-                                   </tr>   
+                                      
                                    <tr>
                                        <td>&nbsp;</td>
                                        <td width="15%"><strong>{!$Label.Oblix_lbl_UIUX_Fee}</strong></td>
@@ -245,7 +238,7 @@
                                <table width="100%" class="Oblix_accordiHeader">
                                    <tr>
                                        <td width="30%">{!$Label.Oblix_lbl_UIUX_items_big} </td>
-                                       <td width="40%"><span style="Color:grey">{!$Label.Oblix_lbl_UIUX_Cost_estimate}</span></td>
+                                       <td width="50%"><span style="Color:grey">{!$Label.Oblix_lbl_UIUX_Cost_estimate}</span></td>
                                        <td>{!$Label.Oblix_lbl_UIUX_Cost}</td>
                                        <td width="5%">{!SelectedProject.ProjectTotalAssetscore__c} </td><!-- {!SelectedProject.Financial_Year__r.currency__c} -->
                                    </tr>
@@ -261,7 +254,7 @@
                                     <th>
                                     <table width="100%">
                                        <tr>
-                                           <td width="70%"><strong>{!$Label.Oblix_Lbl_UIUX_AudioVisuel}</strong> - {!$Label.Oblix_Lbl_UIUX_AudioVisuel_Description}</td>
+                                           <td width="80%"><strong>{!$Label.Oblix_Lbl_UIUX_AudioVisuel}</strong> - {!$Label.Oblix_Lbl_UIUX_AudioVisuel_Description}</td>
                                            <td width="27%"> {!mapNumberItem['Audio Visual']} {!$Label.Oblix_lbl_UIUX_items}</td>
                                            <td>
                                            <div class=" Oblix_icon">
@@ -282,7 +275,7 @@
                                                     <th>  
                                                             <table width="100%">
                                                                <tr>
-                                                                   <td width="70%">{!asset.Name} </td>
+                                                                   <td width="80%">{!asset.Name} </td>
                                                                    <td width="28%"><apex:outputPanel id="assetDateLastApp"> {!$Label.Oblix_Lbl_UIUX_Last_updated} : &nbsp; <apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.LastModifiedDate}" /></apex:outputText></apex:outputPanel></td>
                                                                    <td>
                                                                     <div class="Oblix_icon">
@@ -311,7 +304,7 @@
                                                                                 
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
+                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -334,7 +327,7 @@
                                                                                  <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
+                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -362,7 +355,7 @@
                                     <th>
                                     <table width="100%">
                                        <tr>
-                                           <td width="70%"><strong>{!$Label.Oblix_Lbl_UIUX_Stimulus_Materials} </strong></td>
+                                           <td width="80%"><strong>{!$Label.Oblix_Lbl_UIUX_Stimulus_Materials} </strong></td>
                                            <td width="27%"> {!mapNumberItem['Stimulus Materials - Research requirements']} {!$Label.Oblix_lbl_UIUX_items}</td>
                                            <td>
                                            <div class=" Oblix_icon">
@@ -383,7 +376,7 @@
                                                     <th>  
                                                             <table width="100%">
                                                                <tr>
-                                                                   <td width="70%">{!asset.Name} </td>
+                                                                   <td width="80%">{!asset.Name} </td>
                                                                    <td width="28%"><apex:outputPanel id="assetDateLastApp"> {!$Label.Oblix_Lbl_UIUX_Last_updated} : &nbsp; <apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.LastModifiedDate}" /></apex:outputText></apex:outputPanel></td>
                                                                    <td>
                                                                     <div class="Oblix_icon">
@@ -411,7 +404,7 @@
                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" action="{!EditItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
+                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -434,7 +427,7 @@
                                                                                  <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
+                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -462,7 +455,7 @@
                                     <th>
                                     <table width="100%">
                                        <tr>
-                                           <td width="70%"><strong>{!$Label.Oblix_Lbl_UIUX_Static_Img}</strong> - {!$Label.Oblix_Lbl_UIUX_Static_Img_Description}</td>
+                                           <td width="80%"><strong>{!$Label.Oblix_Lbl_UIUX_Static_Img}</strong> - {!$Label.Oblix_Lbl_UIUX_Static_Img_Description}</td>
                                            <td width="27%"> {!mapNumberItem['Static Imagery']} {!$Label.Oblix_lbl_UIUX_items}</td>
                                            <td>
                                            <div class=" Oblix_icon">
@@ -483,7 +476,7 @@
                                                     <th>  
                                                             <table width="100%">
                                                                <tr>
-                                                                   <td width="70%">{!asset.Name} </td>
+                                                                   <td width="80%">{!asset.Name} </td>
                                                                    <td width="28%"><apex:outputPanel id="assetDateLastApp"> {!$Label.Oblix_Lbl_UIUX_Last_updated} : &nbsp; <apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.LastModifiedDate}" /></apex:outputText></apex:outputPanel></td>
                                                                    <td>
                                                                     <div class="Oblix_icon">
@@ -511,7 +504,7 @@
                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" action="{!EditItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
+                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -534,7 +527,7 @@
                                                                                  <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
+                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -562,7 +555,7 @@
                                     <th>
                                     <table width="100%">
                                        <tr>
-                                           <td width="70%"><strong>{!$Label.Oblix_Lbl_UIUX_Experiential}</strong> - {!$Label.Oblix_Lbl_UIUX_Experiential_Decription}</td>
+                                           <td width="80%"><strong>{!$Label.Oblix_Lbl_UIUX_Experiential}</strong> - {!$Label.Oblix_Lbl_UIUX_Experiential_Decription}</td>
                                            <td width="27%"> {!mapNumberItem['Experiential']} {!$Label.Oblix_Lbl_UIUX_items}</td>
                                            <td>
                                            <div class=" Oblix_icon">
@@ -583,7 +576,7 @@
                                                     <th>  
                                                             <table width="100%">
                                                                <tr>
-                                                                   <td width="70%">{!asset.Name} </td>
+                                                                   <td width="80%">{!asset.Name} </td>
                                                                    <td width="28%"><apex:outputPanel id="assetDateLastApp"> {!$Label.Oblix_Lbl_UIUX_Last_updated} : &nbsp; <apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.LastModifiedDate}" /></apex:outputText></apex:outputPanel></td>
                                                                    <td>
                                                                     <div class="Oblix_icon">
@@ -611,7 +604,7 @@
                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" action="{!EditItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
+                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -634,7 +627,7 @@
                                                                                  <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
+                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -662,7 +655,7 @@
                                     <th>
                                     <table width="100%">
                                        <tr>
-                                           <td width="70%"><strong>{!$Label.Oblix_Lbl_UIUX_Digital}</strong> - {!$Label.Oblix_Lbl_UIUX_Digital_Description}</td>
+                                           <td width="80%"><strong>{!$Label.Oblix_Lbl_UIUX_Digital}</strong> - {!$Label.Oblix_Lbl_UIUX_Digital_Description}</td>
                                            <td width="27%"> {!mapNumberItem['Digital']} {!$Label.Oblix_Lbl_UIUX_items}</td>
                                            <td>
                                            <div class=" Oblix_icon">
@@ -683,7 +676,7 @@
                                                     <th>  
                                                             <table width="100%">
                                                                <tr>
-                                                                   <td width="70%">{!asset.Name} </td>
+                                                                   <td width="80%">{!asset.Name} </td>
                                                                    <td width="28%"><apex:outputPanel id="assetDateLastApp"> {!$Label.Oblix_Lbl_UIUX_Last_updated} : &nbsp; <apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!SelectedProject.LastModifiedDate}" /></apex:outputText></apex:outputPanel></td>
                                                                    <td>
                                                                     <div class="Oblix_icon">
@@ -711,7 +704,7 @@
                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" action="{!EditItemsAction}" styleClass="Oblix_projects_btn" reRender="asset,assetDateLastApp">
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="Delete item{!$Label.Oblix_lbl_UIUX_Delete_item}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
+                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/> 
@@ -734,7 +727,7 @@
                                                                                  <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                                <br/><br/><!-- EditAction -->
-                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
+                                                                              <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();">
                                                                               <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                                              </apex:commandButton>
                                                                              <br/>
@@ -877,20 +870,39 @@
         }
         $('tr.data, tr.btt').show().find('td').wrapInner('<div />');
         $('tr.data, tr.btt').find('td > div').hide();
-        $('table tr.Oblix_heading').click(function(){
+        /*$('table tr.Oblix_heading').click(function(){
             var data = $(this).next('tr');
             var btt = data.next('tr');
             data.find('td > div').slideToggle('slow');
             btt.find('td > div').slideToggle('slow');
             $(this).toggleClass('show');
-        });
-         $('table tr.Oblix_recordTypeth').click(function(){
+        });*/
+         /*$('table tr.Oblix_recordTypeth.styleTH2').click(function(){
             var data = $(this).next('tr');
             var btt = data.next('tr');
             data.find('td > div').slideToggle('slow');
             btt.find('td > div').slideToggle('slow');
             $(this).toggleClass('show');
+        });*/
+         $('table tr.Oblix_recordTypeth.styleTH1').click(function(){
+            var data = $(this).next('tr');
+            var btt = data.next('tr');
+            //data.find('td > div').slideToggle('slow');
+            //btt.find('td > div').slideToggle('slow');
+            //$(this).toggleClass('show');
+            var that = this;
+            $('table tr.Oblix_recordTypeth.styleTH1').each(function(){
+              if($(this).hasClass('show') && that !== this){
+                $(this).next('tr').find('td > div').slideToggle('slow');
+                $(this).next('tr').next('tr').find('td > div').slideToggle('slow');
+                $(this).toggleClass('show');
+              }
+            })
+            data.find('td > div').slideToggle('slow');
+            btt.find('td > div').slideToggle('slow');
+            $(this).toggleClass('show');
         });
+        
    });
    
    </script>

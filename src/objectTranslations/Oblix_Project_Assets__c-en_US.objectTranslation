@@ -383,10 +383,6 @@
         <name>OblixClonedFromParentAsset__c</name>
     </fields>
     <fields>
-        <label><!-- Oblix Quantity --></label>
-        <name>Oblix_Quantity__c</name>
-    </fields>
-    <fields>
         <label><!-- Quantity --></label>
         <name>Quantity__c</name>
     </fields>
@@ -426,8 +422,24 @@
             <translation><!-- Digital Campaign Assets --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Experiential - Promotional ideas ADAPTATION</masterLabel>
+            <translation><!-- Experiential - Promotional ideas ADAPTATION --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Experiential - Promotional ideas ORIGINATION</masterLabel>
+            <translation><!-- Experiential - Promotional ideas ORIGINATION --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Origination</masterLabel>
             <translation><!-- Origination --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Origination Full</masterLabel>
+            <translation><!-- Origination Full --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Origination Lite</masterLabel>
+            <translation><!-- Origination Lite --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Specialist Digital</masterLabel>

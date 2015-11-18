@@ -9,6 +9,15 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Oblix_FUUniqueNameCampaign</fullName>
+        <field>Oblix_tec_Unique_Name_c__c</field>
+        <formula>Name</formula>
+        <name>Oblix_FUUniqueNameCampaign</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <rules>
         <fullName>Oblix_WF01PercentOfFee</fullName>
         <actions>
@@ -17,6 +26,17 @@
         </actions>
         <active>true</active>
         <formula>ISCHANGED( Project_Stage__c )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Oblix_WF02_UpdateNameUniqueCampaign</fullName>
+        <actions>
+            <name>Oblix_FUUniqueNameCampaign</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Used to Update Unique Field with Id of record, to avoid having duplicate records with the same name</description>
+        <formula>1=1</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

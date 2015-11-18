@@ -33,7 +33,7 @@ function openAtt(){
 	
 	}		
 $(document).ready(function(){     
-    $('.Oblix_large_btn,.Oblix_btn').tooltip({delay: { "show": 500},
+    $('.Oblix_large_btn,.Oblix_btn,Oblix_large_btn Oblix_attachment').tooltip({delay: { "show": 500},
 				position:  {
 					using: function( position, feedback ) {
 					$( this ).css( position );

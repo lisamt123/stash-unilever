@@ -15,7 +15,7 @@
     public with sharing class Oblix_Ctrl09_nonCampaignEdit{
     
     
-    
+    /*  // class wrapper
       public class NonCamp{  
       
         private String ActivityName= System.Label.Oblix_Lbl_Activity;
@@ -46,7 +46,8 @@
         }
         
         public void clear() {
-            lookupActivity = new Marketing_Basics__c ();
+             lookupActivity = new Marketing_Basics__c ();
+            lookupActivity.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get(ActivityName);
             lookupActivity.Activities__c = '';
             lookupActivity.Other_Activities__c = '';
             val = 0;
@@ -66,44 +67,33 @@
             }   
     }
     
-       public NonCamp myAct {get;set;} 
-       public NonCamp myRes {get;set;}
+   */
+    //////////////////////
+    
+    
+        public Oblix_wrapper_NonCamp myAct {get;set;} 
+        public Oblix_wrapper_NonCamp myRes {get;set;}
         
     
         public User userConnected {get;set;}
         
         public  id MSid  {get;set;}
-        public Marketing_SOW__c Marketing_SOW   {get;set;}
-    
-        public Marketing_Basics__c newItem  {get;set;}
-        
-        public List<Marketing_Basics__c > XItems  {get;set;}
-        
-        public Marketing_Basics__c newItem1  {get;set;}
         public List<Marketing_Basics__c> newItems  {get;set;}
+        public boolean errMsg  {get;set;}
+        public boolean myMessages {get;set;}
+        public boolean errMsg1  {get;set;}
+        public boolean myMessages1 {get;set;}
         
+        public boolean   selectResource {get;set;}    //true to render a js code who trigger  resource tab                
         
         public Boolean TitleEdit {get;set;}
-        
-        
-        public String fYear {get;set;}
-        public String agency {get;set;}
         public String MScurrency {get;set;}
-        
-        
-      
-        
         public String saveStatus {get;set;}
-        
-       
-        
-        
         Public Integer ElemToDel  {get;set;}     
         Public Integer ElemToEdit  {get;set;}
         Public boolean edit1{get;set;}
         Public boolean edit2{get;set;}
-        
-        public List<SelectOption> countries {get;set;}
+           public List<SelectOption> countries {get;set;}
         
         public List<SelectOption> AgencyDepartments{get;set;}
         public List<SelectOption> RoleTitles{get;set;}
@@ -113,9 +103,25 @@
         
         
         public  id rtActivity  {get;set;}
-        public  id rtResource  {get;set;}
+        private id rtResource ;
         
-        public  id rtCountry {get;set;}
+        private Marketing_SOW__c Marketing_SOW  ;
+        private Marketing_Basics__c newItem  ;
+        private  Marketing_Basics__c newItem1 ;
+        private List<Marketing_Basics__c > XItems ;
+        
+        
+        
+        
+        
+        private  String fYear ;
+        private String agency ;
+        
+      
+        
+     
+        
+        private id rtCountry ; 
         
         private String marKObjName= System.Label.Oblix_Lbl_Marketing_Basics_c ;
         private String ActivityName= System.Label.Oblix_Lbl_Activity;
@@ -125,18 +131,12 @@
        
         public Integer somme ;
         
-        public boolean errMsg  {get;set;}
-        public boolean myMessages {get;set;}
-        public boolean errMsg1  {get;set;}
-        public boolean myMessages1 {get;set;}
-        
-        public boolean   selectResource {get;set;}    //true to render a js code who trigger  resource tab                
         /* Constructor
          */
         public Oblix_Ctrl09_nonCampaignEdit() {
-            myAct = new nonCamp();
+            myAct = new Oblix_wrapper_NonCamp();
             myAct.clear();
-            myRes = new nonCamp();
+            myRes = new Oblix_wrapper_NonCamp();
             myRes.clear();
             selectResource = false;
             TitleEdit = false;
@@ -160,7 +160,7 @@
             reRenderSOW();
         
             saveStatus = '';
-            myAct = new nonCamp();
+            myAct = new Oblix_wrapper_NonCamp();
             myAct.agencyVisible = false;
             myAct.roleVisible = false;
             myAct.valVisible = false;
@@ -199,7 +199,7 @@
         *   @return: void
         */
         private void fillData(Marketing_Basics__c eeditItem) {
-            MDO_Geography__c g;
+           // MDO_Geography__c g;
             if (eeditItem.recordTypeId == rtActivity) {
                 myAct.agencyVisible = true;
                 myAct.roleVisible = true;
@@ -213,9 +213,9 @@
                 //g = [select id, name from MDO_Geography__c where id = : eeditItem.OblixCountry__c];
                 List<MDO_Geography__c> lstGeoTmp = [select id, name from MDO_Geography__c where id = : eeditItem.OblixCountry__c];
                 if(!lstGeoTmp.isEmpty()){
-                    g = lstGeoTmp[0];
+                     myAct.selectedCountryname = lstGeoTmp[0].name;
                 }
-                 myAct.selectedCountryname = g.name.toUpperCase(); //'FRANCE' ;
+                // myAct.selectedCountryname =  g.name ;   //.toUpperCase(); //'FRANCE' ;
                 fillAgencyDepartment();
                 myAct.selectedAgencyDepartment = eeditItem.Agency_Department__c;
                 fillRoleTitle();
@@ -237,7 +237,7 @@
                 //myAct.rateVisible =true;
                 myRes.resultVisible = true;
                 myRes.addVisible = true;
-                if(eeditItem.OblixCountry__c == null){
+                if(eeditItem.OblixCountry__c == null && myRes.selectedCountry != ''){
                     eeditItem.OblixCountry__c =  myRes.selectedCountry;
                 }
                 system.debug('### myRes.selectedCountry : '+ myRes.selectedCountry);
@@ -247,9 +247,9 @@
                // g = [select id, name from MDO_Geography__c where id = : eeditItem.OblixCountry__c];
                  List<MDO_Geography__c> lstGeoTmp1 = [select id, name from MDO_Geography__c where id = : eeditItem.OblixCountry__c];
                 if(!lstGeoTmp1.isEmpty()){
-                    g = lstGeoTmp1[0];
+                     myRes.selectedCountryname = lstGeoTmp1[0].name;
                 }
-                 myRes.selectedCountryname = g.name.toUpperCase(); //'FRANCE' ;
+              //   myRes.selectedCountryname =   g.name ; //.toUpperCase(); //'FRANCE' ;
                 fillAgencyDepartment1();
                 myRes.selectedAgencyDepartment = eeditItem.Agency_Department__c;
                 fillRoleTitle1();
@@ -271,7 +271,7 @@
         */
         private void initialiseOptions() {
             AgencyDepartments = new List < SelectOption > ();
-            AgencyDepartments.add(new SelectOption('', 'Agency Department'));
+            AgencyDepartments.add(new SelectOption('', '-Agency Department-'));
             RoleTitles = new List < SelectOption > ();
             RoleTitles.add(new SelectOption('', noRole));
         }
@@ -282,7 +282,7 @@
         */
         private void initialiseOptions1() {
             AgencyDepartments1 = new List < SelectOption > ();
-            AgencyDepartments1.add(new SelectOption('', 'Agency Department'));
+            AgencyDepartments1.add(new SelectOption('', '-Agency Department-'));
             RoleTitles1 = new List < SelectOption > ();
             RoleTitles1.add(new SelectOption('', noRole));
         
@@ -303,49 +303,7 @@
         
         
         }
-        /* Method used to clear form activity
-         * @Void
-         */
-        public void clear() {
-            initialiseOptions();
-            myAct = new nonCamp(); 
-            myAct.lookupActivity.Activities__c = '';
-            myAct.lookupActivity.Other_Activities__c = '';
-            myAct.val = 0;
-            myAct.selectedCountry = '';
-            myAct.selectedCountryname = '';
-            myAct.selectedRoleTitle = '';
-            myAct.selectedAgencyDepartment = '';
-            myAct.result = '';
-            myAct.Rate = '';
-            // name = '';
-            myAct.agencyVisible = false;
-            myAct.roleVisible = false;
-            myAct.valVisible = false;
-            myAct.resultVisible = false;
-            myAct.addVisible = false;
-        }
-        
-        /* Method used to clear form resource
-         * @Void
-         */
-        public void clear1() {
-            initialiseOptions1();
-            myRes.val = 0;
-            myRes.selectedCountry = '';
-            myRes.selectedCountryname = '';
-            myRes.selectedRoleTitle = '';
-            myRes.selectedAgencyDepartment = '';
-            myRes.result = '';
-            myRes.Rate = '';
-            myRes.name = '';
-            myRes.agencyVisible = false;
-            myRes.roleVisible = false;
-            myRes.valVisible = false;
-            myRes.resultVisible = false;
-            myRes.addVisible = false;
-        }
-        
+      
         /* Method used to save current List (upsert)
          * @Void 
          */
@@ -423,7 +381,8 @@
         
             } else newItems.add(x); // cest un ajout
         
-            clear();
+            myAct.clear();
+            myAct.name='';
         
         }
         
@@ -468,7 +427,7 @@
             } else newItems.add(newItem1);
         
             newItem1 = new Marketing_Basics__c();
-            clear1();
+            myRes.clear();
         }
         
         public void calculResult() {
@@ -496,13 +455,13 @@
                 myRes.valVisible = true;
                 myRes.resultVisible = true;
                 myRes.addVisible = true;
-                myRes.Rate = String.valueOf(Rates[0].FTE__c);
+                myRes.Rate = String.valueOf(Integer.valueOf(Rates[0].FTE__c));
                 errMsg1 = false;
             }
-            if (Rates.size() > 1) {
-             /*   ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Warning, 'There are duplicate records with the selected values'));
-                errMsg1 = true; */
-            }
+        /*    if (Rates.size() > 1) {
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Warning, 'There are duplicate records with the selected values'));
+                errMsg1 = true;
+            } */
             //else there is more than 1 or 0 => error 
         }
         public void fillRate() {
@@ -521,13 +480,13 @@
                 myAct.valVisible = true;
                 myAct.resultVisible = true;
                 myAct.addVisible = true;
-                myAct.Rate = String.valueOf(Rates[0].Role_Daily_Rate_EUR__c);
+                myAct.Rate = String.valueOf(Integer.valueOf(Rates[0].Role_Daily_Rate_EUR__c));
                 errMsg = false;
             }
-            if (Rates.size() > 1) {
-              /*  ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Warning, 'There are duplicate records with the selected values'));
-                errMsg = true;*/
-            }
+           /*  if (Rates.size() > 1) {
+               ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Warning, 'There are duplicate records with the selected values'));
+                errMsg = true;
+            } */
             //else there is more than 1 or 0 => error 
         }
         
@@ -549,7 +508,6 @@
                     RoleTitleNamesMap.put(c.Role_Title__c, c.Role_Title__c);
             }
             RoleTitles = new List < SelectOption > ();
-            RoleTitles.add(new SelectOption('', noRole));
             if (RoleTitleNamesMap.size() > 0) {
                 myAct.roleVisible = true;
                  myAct.selectedRoleTitle = null;
@@ -558,6 +516,8 @@
                     RoleTitles.add(new SelectOption(temp, RoleTitleNamesMap.get(temp)));
                 }
                 RoleTitles = Oblix_Utils.selectOptionSortByLabel(RoleTitles);
+                // RoleTitles.add(new SelectOption('', noRole));
+                RoleTitles= Oblix_Utils.setFirstValue(noRole, Oblix_Utils.selectOptionSortByLabel(RoleTitles));
                  myAct.selectedRoleTitle = '';
                 //else add error (there is no rt to select)
             }
@@ -580,7 +540,7 @@
                     RoleTitleNamesMap.put(c.Role_Title__c, c.Role_Title__c);
             }
             RoleTitles1 = new List < SelectOption > ();
-            RoleTitles1.add(new SelectOption('', noRole));
+         
             if (RoleTitleNamesMap.size() > 0) {
                 myRes.roleVisible = true;
                  myRes.selectedRoleTitle = null;
@@ -590,6 +550,9 @@
                 }
         
                 RoleTitles1 = Oblix_Utils.selectOptionSortByLabel(RoleTitles1);
+                 //  RoleTitles1.add(new SelectOption('', noRole));
+                RoleTitles1= Oblix_Utils.setFirstValue(noRole, Oblix_Utils.selectOptionSortByLabel(RoleTitles1));
+                 
                  myRes.selectedRoleTitle = '';
                 //else add error (there is no rt to select)
             }
@@ -600,7 +563,8 @@
             RoleTitles.add(new SelectOption('', noRole));
              myAct.selectedRoleTitle = '';
         
-             myAct.selectedCountry = Oblix_UTils.CountrryGetId( myAct.selectedCountryname);
+           // myAct.selectedCountry = Oblix_UTils.CountrryGetId( myAct.selectedCountryname);
+            myAct.selectedCountry =  myAct.selectedCountryname;            
             myAct.agencyVisible = false;
             myAct.roleVisible = false;
             myAct.rateVisible = false;
@@ -618,7 +582,7 @@
             if (Agency_DepartmentNames.size() > 0)
                  myAct.selectedCountry = Agency_DepartmentNames[0].OblixCountry__c;
             map < String, String > Agency_DepartmentMap = new map < String, String > ();
-            Agency_DepartmentMap.put('', 'Agency Department');
+           // Agency_DepartmentMap.put('', 'Agency Department');
             for (Oblix_Calculator__c c: Agency_DepartmentNames) {
                 Agency_DepartmentMap.put(c.Agency_Department__c, c.Agency_Department__c);
             }
@@ -631,6 +595,8 @@
                     AgencyDepartments.add(new SelectOption(temp, Agency_DepartmentMap.get(temp)));
                 }
                 AgencyDepartments = Oblix_Utils.selectOptionSortByLabel(AgencyDepartments);
+                AgencyDepartments = Oblix_Utils.setFirstValue('-Agency Department-', Oblix_Utils.selectOptionSortByLabel(AgencyDepartments ));
+                
                 //else add error (there is no to select)
             } else {
                 myAct.agencyVisible = false;
@@ -646,8 +612,9 @@
         public void fillAgencyDepartment1() {
             system.debug('============+=+=+=+=+=+=+=+=+= fillAgencyDepartment1=+=+=+=+=+=+=+=+=+============================');
         
-             myRes.selectedCountry = Oblix_UTils.CountrryGetId( myRes.selectedCountryname);
-            newItem1.OblixCountry__c =  myRes.selectedCountry;
+          //   myRes.selectedCountry = Oblix_UTils.CountrryGetId( myRes.selectedCountryname);
+            myRes.selectedCountry =  myRes.selectedCountryname;
+            newItem1.OblixCountry__c =  Oblix_UTils.CountrryGetId(myRes.selectedCountry);
             myRes.agencyVisible = false;
             myRes.roleVisible = false;
             myRes.valVisible = false;
@@ -663,7 +630,7 @@
             system.debug('============================zz=Agency_DepartmentNames' + Agency_DepartmentNames);
         
             map < String, String > Agency_DepartmentMap = new map < String, String > ();
-            Agency_DepartmentMap.put('', 'Agency Department');
+            //Agency_DepartmentMap.put('', 'Agency Department');
             for (Oblix_Calculator__c c: Agency_DepartmentNames) {
                 //    if (c.Agency_Department__c  !=null) //remplir automatiquement par la premiere valeur
                 Agency_DepartmentMap.put(c.Agency_Department__c, c.Agency_Department__c);
@@ -677,6 +644,8 @@
                     AgencyDepartments1.add(new SelectOption(temp, Agency_DepartmentMap.get(temp)));
                 }
                 AgencyDepartments1 = Oblix_Utils.selectOptionSortByLabel(AgencyDepartments1);
+                AgencyDepartments1 = Oblix_Utils.setFirstValue('-Agency Department-', Oblix_Utils.selectOptionSortByLabel(AgencyDepartments1 ));
+
             } //else add error (there is no to select) 
             //  fillRoleTitle();
         }
@@ -692,7 +661,7 @@
             set < String > setCountry = new Set < String > ();
             setCountry = Oblix_Utils.CountriesByFYear(fYear);
             List < SelectOption > options = new List < SelectOption > ();
-            options.add(new SelectOption('', 'Country'));
+         //   options.add(new SelectOption('', 'Country'));
             if (setCountry != null && !setCountry.isEmpty()) {
                 for (String country: setCountry) {
                     if (country != null) {
@@ -709,11 +678,39 @@
          *  @reference : getCountry(), Oblix_Utils.selectOptionSortByLabel(countries)
          * @return void
          */
-        public void fillCountries() {
+        public void fillCountries() {/*
             system.debug('============+=+=+=+=+=+=+=+=+= fillCountries =+=+=+=+=+=+=+=+=+============================');
             countries = getCountry();
             countries = Oblix_Utils.selectOptionSortByLabel(countries);
+            countries = Oblix_Utils.setFirstValue('-Country-', Oblix_Utils.selectOptionSortByLabel(countries ));
+
             system.debug('###countries : '+countries);
+            */
+                    
+            List <Oblix_Calculator__c> countriesNames = new List <Oblix_Calculator__c>();
+            countriesNames =[select Financial_Year__c,Oblix_Agency__c, OblixCountry__c, OblixCountry__r.name from Oblix_Calculator__c where Financial_Year__c=:fYear and  Oblix_Agency__c =:agency ];
+            map<String,String>  countriesMap =new map<String,String> () ;
+            for (Oblix_Calculator__c c: countriesNames ){
+                if (c.OblixCountry__c !=null)
+                    countriesMAp.put(c.OblixCountry__r.name ,c.OblixCountry__r.name );
+            }
+            countries = new List<SelectOption>();
+           
+            if( countriesMap.size()>0){
+                for (String cID: countriesMap.keySet()){
+                    //if (selectedCountry ==null) {       selectedCountry = cid;  //fill the selectOption  //remplir automatiquement par la premiere valeur
+                    //        newItem.OblixCountry__c = cid;  } //fill the lookup
+                                               
+                    countries.add(new SelectOption(cID,countriesMap.get(cID)));
+                }
+            //else add error (there is no country to select)
+                
+            }
+          countries = Oblix_Utils.selectOptionSortByLabel(countries);
+          countries = Oblix_Utils.setFirstValue('-Country-', Oblix_Utils.selectOptionSortByLabel(countries ));
+  
+            
+            
         }
         
         /*
@@ -741,4 +738,10 @@
             return page;
             return null;
         } 
+        public pagereference backtoSow(){
+         PageReference  page = new PageReference('/apex/Oblix_VF06_SOWView?sowId='+MSid);
+           page.setRedirect(True);
+           return page;
+        
+        }
     }

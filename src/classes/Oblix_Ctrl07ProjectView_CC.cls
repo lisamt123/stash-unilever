@@ -32,7 +32,7 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
         public map<string,integer> feePercentages {get;set;}
         public string lstIdCSSSelected {get;set;}
         public Map<String, String> mapTurnoverToSize {get;set;}
-        
+        public Boolean canDelete {get;set;}
         
         public Oblix_Ctrl07ProjectView_CC (){
               IdsProject = '';
@@ -44,8 +44,31 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
               mapStageIdCSS = new map<string,string>();
               feePercentages = new map<string,integer>();   
         }
+        
+        /*
+        *	@Description : this method allows only UL1, SuperUser, Sys Admin, to adjust Fees and view the Adjust Fee Button.
+        */
+        public void isAllowedToDeleteAsset(){
+        	Id adminProfileId = [Select Id, Name from Profile where Name ='System Administrator'].Id;
+        	List<PermissionSetAssignment> lstperrmissions = [Select Id, AssigneeId, PermissionSetId, PermissionSet.Name from PermissionSetAssignment where AssigneeId =: Userinfo.getUserId()];
+            system.debug('##lstperrmissions :'+lstperrmissions);
+            if(Userinfo.getProfileId() == adminProfileId){
+            	canDelete = true;
+            }
+            if(!lstperrmissions.isEmpty()){
+                for(PermissionSetAssignment permission : lstperrmissions){
+                    system.debug('##permission Name :'+permission.PermissionSet.Name);
+                    if(permission.PermissionSet.Name == 'Oblix_SWOP_UL_1_V1' || permission.PermissionSet.Name == 'Oblix_SWOP_UL_2_V1' || permission.PermissionSet.Name == 'Oblix_SWOP_Super_User_V1'){
+                        canDelete = true;
+                        break;
+                    }
+                }
+            }
+        }
               
         public void init(){
+        	isAllowedToDeleteAsset();
+        	
             setRecordType = new set<String>();
             Id idUser = UserInfo.getUserId();
             mapTurnoverToSize = new Map<String, String>(); 
@@ -122,8 +145,28 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
 
            Oblix_SOW_Projects__c project = SelectedProject.clone();
            project.name = SelectedProject.name +' Clone';
-           insert project;
-         //get assets of the parent
+           
+           try{
+           	   insert project;
+           	   insertRelatedCloneRecords(project, SelectedProject);
+           }catch(DMLException le){
+             String duplicateValue ='';
+              if(le.getMessage().contains('DUPLICATE_VALUE')){
+                      duplicateValue = '1';
+               }
+				project.Name = project.Name + Math.round(Math.random() * (10 - 1)) + 1;  
+				insert project;
+				insertRelatedCloneRecords(project, SelectedProject);
+				 System.debug('###Error Occured : '+le.getMessage());   
+                 return new PageReference('/apex/Oblix_VF08_ProjectEdit?duplicateValue=1&isClone=1&projectId='+project.Id);
+            }
+         	
+           // id clonedProjId = Oblix_Utils.CloneProject(project.id);
+            return new PageReference('/apex/Oblix_VF08_ProjectEdit?isClone=1&projectId='+project.Id);
+        }
+        
+        private static void insertRelatedCloneRecords(Oblix_SOW_Projects__c project, Oblix_SOW_Projects__c SelectedProject){
+        	//get assets of the parent
          List<Oblix_Project_Assets__c> lstAssetFromParent = [Select Target_Delivery_Date__c, Sub_Category__c,
                                              RecordTypeId, Quantity__c, OblixClonedFromParentAsset__c, Name, 
                                              Location__c, Id, FULL_Description__c, CreatedDate, Channels__c, 
@@ -150,8 +193,6 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
                         }
                         insert lstSplitClone;
                     }
-           // id clonedProjId = Oblix_Utils.CloneProject(project.id);
-            return new PageReference('/apex/Oblix_VF08_ProjectEdit?projectId='+project.Id);
         }
         /* 
         Function related to the asset record 

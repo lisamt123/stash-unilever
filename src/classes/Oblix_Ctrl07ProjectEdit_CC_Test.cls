@@ -31,7 +31,6 @@ private class Oblix_Ctrl07ProjectEdit_CC_Test {
 			Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
 
             Oblix_Ctrl07ProjectEdit_CC controller = new Oblix_Ctrl07ProjectEdit_CC();
-			Oblix_SOW_Projects__c projects = controller.pr;
 			string complexity = controller.complexity;
 			string idSplit = controller.idSplit;
 			Set<Oblix_Project_Assets__c> ClearList = controller.ClearList;

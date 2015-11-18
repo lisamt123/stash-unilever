@@ -42,7 +42,16 @@
             position: relative;
             top: 5px;              
         }
-
+         .Oblix_header a{
+            text-decoration:none;
+            cursor:pointer; 
+            color:white;            
+        }
+        .Oblix_header a:hover{
+            text-decoration:none;
+            cursor:pointer; 
+            color:white;          
+        }
         
            .Oblix_header_arrowTitle{
             font-family: DIN, Arial;
@@ -559,7 +568,7 @@
    <div class="Oblix_Container">
     <div class="cnter">
      <div class="Oblix_header">
-<!-- 3 levels Oblix_header_activeArrow=inactive level user is on,  Oblix_header_Arrow=first button from the left, Oblix_header_previousArrow=second button-->
+     <!-- 3 levels Oblix_header_activeArrow=inactive level user is on,  Oblix_header_Arrow=first button from the left, Oblix_header_previousArrow=second button-->
        <div style="postion: relative; top:-200px; background: transparent;width: 95%;margin-left: auto;margin-right: auto;">
          <table width="95%" height="100%">
             <tr>
@@ -567,12 +576,12 @@
                 <apex:image value="{!$Resource.Unilever_logo}" width="60px" height="60px" />
                 </td>
                 <td class="Oblix_header_Arrow header_pos_1">
-                <div class="Oblix_header_title">{!$Label.Oblix_lbl_UIUX_SWOP}</div><br/><span class="Oblix_header_desc">{!$Label.Oblix_lbl_UIUX_Scope_of_Work}<br/>{!$Label.Oblix_lbl_UIUX_Online_Planner}</span>
+                 <a href="/apex/Oblix_VF05_SOWDetails"> <div class="Oblix_header_title">{!$Label.Oblix_lbl_UIUX_SWOP}</div></a><br/><span class="Oblix_header_desc">{!$Label.Oblix_lbl_UIUX_Scope_of_Work}<br/>{!$Label.Oblix_lbl_UIUX_Online_Planner}</span>
                 </td>
                 <td>
                 <div class="Oblix_header_previousArrow header_pos_2">
                 <div class="Oblix_header_arrowTitle">
-                  {!$Label.Oblix_lbl_UIUX_View_SOW} <br/>
+                  <a href="/apex/Oblix_VF06_SOWView?sowId={!MSid}"> {!$Label.Oblix_lbl_UIUX_View_SOW} </a><br/>
                 </div>
                 </div>
                 
@@ -605,7 +614,7 @@
                        <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit_Add_Items}"  action="{!addnewItems}" styleClass="Oblix_projects_btn"/><!-- EditAction -->
                        </td><td width="160px" style="text-align: right;">
                        <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back_to_SOW} " action="{!back}" styleClass="Oblix_projects_btn"/>
-                                          </td>                                     
+                     </td>                                     
                 </tr>
             </table>
             
@@ -672,9 +681,9 @@
                                        <td width="40%"><span style="Color:grey"></span></td>
                                        <td width="10%"></td>
                                        <td></td>
-                                       <td>Cost</td>
+                                       <td>Fee</td>
                                        <td></td>
-                                       <td width="5%">  {!total} {!MScurrency} </td>
+                                       <td width="5%"> € {!total}  </td>
                                    </tr>
                                </table>
                            </apex:outputPanel>  
@@ -705,14 +714,14 @@
                                         <apex:repeat value="{!activities}" var="asset">
                                             <table width="100%">
                                                  <tr>
-                                                       <td width="17%">{!asset.name} {!asset.non_campaign_title__c}</td>
-                                                    <!--   <td width="17%">{!asset.Activities__c}</td>   -->
-                                                       <td width="15%">{!$Label.Oblix_lbl_UIUX_Activity}</td> 
+                                                       <td width="15%">{!asset.name} {!asset.non_campaign_title__c}</td>
+                                                       <td width="17%">{!asset.Activities__c}</td>   
+                                                    <!--    <td width="15%">{!$Label.Oblix_lbl_UIUX_Activity}</td>  -->
                                                        <td width="15%">{!asset.Agency_Department__c}</td>
                                                        <td width="15%">{!asset.Role_Title__c}</td>
                                                        <td width="10%">{!asset.OblixCountry__r.name }</td>
-                                                       <td width="17%">{!asset.No_of_Hours_Required__c}Hrs &nbsp; &nbsp;  &euro; {!asset.OblixOtherItemFee__c } </td>
-                                                       <td width="13%">{!asset.Other_Activities__c}</td>
+                                                       <td width="10%">{!asset.No_of_Hours_Required__c}Hrs &nbsp; &nbsp;  &euro; {!asset.OblixOtherItemFee__c } </td>
+                                                       <td width="20%">{!asset.Other_Activities__c}</td>
                                                        <td>
                                                        <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" action="{!goToEditItem}" reRender="true" styleClass="Oblix_btn">
                                                            <apex:param name="itemToUpdate" assignTo="{!itemToUpdate}" value="{!asset.Id}"/>
@@ -734,7 +743,7 @@
                                     <table width="100%">
                                        <tr>
                                            <td width="70%"><strong>{!$Label.Oblix_lbl_UIUX_Fixed_resource}</strong> </td>
-                                           <td width="27%"> {!nResources} {!$Label.Oblix_lbl_UIUX_Activity}</td>
+                                           <td width="27%"> {!nResources} {!$Label.Oblix_lbl_UIUX_items}</td>
                                            <td>
                                            <div class=" Oblix_icon">
                                                 <i class="fa fa-2x fa-sort-desc"></i>
@@ -751,13 +760,14 @@
                                             <apex:repeat value="{!resources}" var="asset">
                                              <table width="100%">
                                                  <tr>
-                                                      <td width="17%">{!asset.name}</td>
+                                                      <td width="15%">{!asset.name}</td>
                                                        <!--   <td width="17%">{!asset.Activities__c}</td>   -->
-                                                       <td width="15%">{!$Label.Oblix_lbl_UIUX_Resource}</td> 
+                                                       <td width="17%">{!$Label.Oblix_lbl_UIUX_Resource}</td> 
                                                        <td width="15%">{!asset.Agency_Department__c}</td>
                                                        <td width="15%">{!asset.Role_Title__c}</td>
                                                        <td width="10%">{!asset.OblixCountry__r.name }</td>
-                                                       <td width="17%">{!asset.FTE__c}% &nbsp; &nbsp;  &euro; {!asset.OblixOtherItemFee__c } </td>
+                                                       <td width="10%">{!asset.FTE__c}% &nbsp; &nbsp;  &euro; {!asset.OblixOtherItemFee__c } </td>
+                                                       <td width="20%"> </td>
                                                        <td>
                                                            <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" action="{!goToEditItem}" reRender="true" styleClass="Oblix_btn">
                                                                <apex:param name="itemToUpdate" assignTo="{!itemToUpdate}" value="{!asset.Id}"/>

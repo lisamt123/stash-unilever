@@ -1,7 +1,7 @@
 <apex:page sidebar="false" controller="Oblix_Ctrl05SOWDetails_CC" docType="html-5.0">
 
   <apex:form id="jqueryId">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="{!URLFOR($Resource.jquerydataTablescolumnFilter)}"></script>
@@ -15,23 +15,23 @@
      
   
     <script type="text/javascript">    
-    $(document).ready(function() {
-           $.unblockUI();
-    });
-    $j = jQuery.noConflict();           
-    function blockme() { 
-       $.blockUI({ css: {  
-            border: 'none', 
-            padding: '15px', 
-            backgroundColor: '#000', 
-            '-webkit-border-radius': '10px', 
-            '-moz-border-radius': '10px', 
-            opacity: .5, 
-            color: '#fff' 
-        } }); 
-    } 
-</script>  
-<script>
+        $(document).ready(function() {
+            $.unblockUI();
+        });
+        $j = jQuery.noConflict();           
+        function blockme() { 
+           $.blockUI({ css: {  
+                border: 'none', 
+                padding: '15px', 
+                backgroundColor: '#000', 
+                '-webkit-border-radius': '10px', 
+                '-moz-border-radius': '10px', 
+                opacity: .5, 
+                color: '#fff' 
+            } }); 
+        } 
+    </script>  
+    <script>
      $ = jQuery.noConflict(); 
            $(document).ready(function(){
            $('#example').dataTable({})
@@ -54,60 +54,58 @@
                         .addClass( feedback.horizontal )
                         .appendTo( this );
                     }
-                  }});
+              }});
          });   
  </script>     
  <script>
      function Popup(){
             // lstAttachementsView();
-             $("#dialog").dialog({width: 600,modal:true,
+             $("#dialog").dialog({width: 1000,modal:true,
                  close: function(event,ui){
                      $("pop").dialog('destroy');          
                         }
                  });           
             }
- </script> 
+</script> 
 <style>
-.Oblix_header{
-            background-image : url("{!URLFOR($Resource.assetUI,'header_panel.png')}");
-            background-size: 100% 100%;
-            background-position: center bottom;
-            background-repeat: no-repeat;
-            height: 90px;
-            position: relative;
-            /* line-height: 65%; */
-            width:95%;
-            letter-spacing: 1px;
-            margin-left: auto;
-            margin-right: auto;         
-        }
-.Oblix_header_previousArrow:active, .Oblix_header_previousArrow:hover {
-            background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
-            background-repeat: no-repeat;
+    h2{ font-size: 120%;}
+    h3{font-size: 12px;}
+    .Oblix_header{
+        background-image : url("{!URLFOR($Resource.assetUI,'header_panel.png')}");
+        background-size: 100% 100%;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        height: 90px;
+        position: relative;
+        /* line-height: 65%; */
+        width:95%;
+        letter-spacing: 1px;
+        margin-left: auto;
+        margin-right: auto;         
+    }
+    .Oblix_header_previousArrow:active, .Oblix_header_previousArrow:hover {
+        background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
+        background-repeat: no-repeat;
 
-          }
+      }
   .Oblix_header_Arrow{ 
-          background-color: transparent;      
-            background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow.png')}");
-            background-repeat: no-repeat;
-            font-family: DIN, Arial;
-            color:white;
-            padding-left: 10px;
-            width:160px;
-            height: 90px;
-            text-align: center;
-            position: absolute;
-          
-
-
-        }
-          .Oblix_header_Arrow:active, .Oblix_header_Arrow:hover {
-          background-color: transparent;
-            background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
-            background-repeat: no-repeat;
-
-          }
-           .Oblix_header_previousArrow{ 
+      background-color: transparent;      
+        background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow.png')}");
+        background-repeat: no-repeat;
+        font-family: DIN, Arial;
+        color:white;
+        padding-left: 10px;
+        width:160px;
+        height: 90px;
+        text-align: center;
+        position: absolute;
+    }
+    .Oblix_header_Arrow:active, .Oblix_header_Arrow:hover {
+        background-color: transparent;
+        background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
+        background-repeat: no-repeat;
+     }
+     .Oblix_header_previousArrow{ 
            background-color: transparent;      
             background-image : url("{!URLFOR($Resource.assetUI,'previouslevel_arrow.png')}");
             background-repeat: no-repeat;
@@ -118,32 +116,30 @@
              height: 90px;
             text-align: center;
             position: absolute;
-         
-
-        }
-.Oblix_header_activeArrow{ 
+      }
+    .Oblix_header_activeArrow{ 
         background-color: transparent;      
-            background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow_down.png')}");
-            background-repeat: no-repeat;
-             font-family: DIN, Arial;
-            color:white;
-            padding-left: 10px;
-            width:160px;
-           height: 90px;
-            text-align: center;
-            position: absolute;
-        }
-.Oblix_Container{
+        background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow_down.png')}");
+        background-repeat: no-repeat;
+        font-family: DIN, Arial;
+        color:white;
+        padding-left: 10px;
+        width:160px;
+        height: 90px;
+        text-align: center;
+        position: absolute;
+    }
+    .Oblix_Container{
             background-image : url("{!URLFOR($Resource.assetUI,'bg_pattern_2.png')}");
             background-repeat: no-repeat;
             position:relative;
             top: -11px;
         }
              
-.cnter > div, .center > table /* insert any other block-level elements here */ {
-    margin-left: auto;
-    margin-right: auto;
-}
+    .cnter > div, .center > table /* insert any other block-level elements here */ {
+        margin-left: auto;
+        margin-right: auto;
+    }
 
     /* for 900px or less */
     @media screen and (max-width: 1200px) {
@@ -152,6 +148,7 @@
             width: 100%;
         }
     }
+
 </style>
     
 <script>
@@ -187,12 +184,47 @@
                 </td>
            </tr>
          </table></div>
-           
+           <script>
+    var redirectToAttachment = function (attachmentId){
+        'use strict';
+        window.open('/servlet/servlet.FileDownload?file=' + attachmentId);
+    }
+
+    var removeAttachments = function (attachmentsId){
+        'use strict';
+        var attachmentsId = [];
+        $('#dialog').find('table > tbody').children().children().find('input:checkbox:checked').each(function (){
+            attachmentsId.push($(this).attr('data-attachment-id'));
+        })
+        if(attachmentsId.length !== 0){
+            $('#dialog').dialog('close');
+            removeService(attachmentsId).then(function (){
+                acceptRemoveAttachment();
+            }, function (err){
+                console.log(err);
+            });
+        }
+    }
+    var removeService = function (attachmentsIds){
+        'use strict';
+        var deferred = $.Deferred();
+        Visualforce.remoting.Manager.invokeAction('Oblix_Ctrl05SOWDetails_CC.removeAttachments', attachmentsIds, function (data, status){
+            deferred.resolve({data: data, status: status});
+        });
+        return deferred.promise();
+    }
+    var acceptRemoveAttachment = function (){
+        $('#dialog').dialog('close');
+        removeAttachmentsBack();
+    }
+    </script>
    </div>
    <!-- Jamal -->
    </apex:form>
     <apex:form id="jqueryId2">
-   
+    <apex:actionFunction name="removeAttachmentsBack" action="{!RerenderSelectedSow}">
+      <apex:param name="attachmentToRemove" value=""/>
+    </apex:actionFunction>
    <div class="Oblix_Container">
     <div id="dialog" title="{!$Label.Oblix_Lbl_UIUX_Attachment_list}" style="display:none">   
       <apex:pageBlock >
@@ -204,7 +236,20 @@
             <apex:column headerValue="{!$Label.Oblix_lbl_UIUX_Parent_Name}">
                  <apex:outputField value="{!attach.Parent.Name}"/>
            </apex:column>
+           <apex:column headerValue="Created By">
+                 <apex:outputField value="{!attach.CreatedBy.Name}"/>
+           </apex:column>
+           <apex:column headerValue="Created Date">
+                 <apex:outputField value="{!attach.CreatedDate}"/>
+           </apex:column>
+           <apex:column headerValue="View">
+                <apex:commandButton value="View" onclick="redirectToAttachment('{!attach.Id}')"/>     
+           </apex:column>
+           <apex:column headerValue="To Delete">
+                <input type="checkbox" data-attachment-id="{!attach.Id}" />
+           </apex:column>
        </apex:pageBlockTable>
+       <apex:commandButton value="Delete" onclick="removeAttachments(); return false;"/>
      </apex:pageBlock>
    </div>
    
@@ -311,11 +356,11 @@
                    <tr><td colspan="2">&nbsp;</td></tr>                      
                    <tr>
                      <td colspan="2"><h2 class="darkGreen">Approved: &nbsp;</h2> <strong>
-                     {!mapApproved[selSow.id]} {!selSow.Currency__c}</strong></td>
+                     {!mapApproved[selSow.id]} €</strong></td>
                    </tr>
                    <tr>
                      <td colspan="2"><h2 class="mainGreen">Current: &nbsp; &nbsp; &nbsp; </h2><strong>
-                      {!selSow.OblixSOWOverallTotal__c} {!selSow.Currency__c}</strong></td>
+                      {!selSow.OblixSOWOverallTotal__c} €</strong></td>
                    </tr>
                </table>
            </section> 
@@ -347,7 +392,7 @@
                    <tr><td colspan="2">&nbsp;</td></tr>    
 
                    <tr>
-                       <td colspan = "2" style="position: relative; top:-10px;"><h1><div class="cntr"><br/>{!selSow.SOW_Status__c}</div></h1></td>
+                       <td colspan = "2" style="position: relative; top:-10px;"><h3><div class="cntr"><br/>{!selSow.SOW_Status__c}</div></h3></td>
                    </tr>
               </table>
           </section>
@@ -391,7 +436,7 @@
                         <td width="15%">{!sow.Marketing_Agency__c}</td>
                         <td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!sow.LastModifiedDate}" /></apex:outputText></td>
                         <td>{!sow.SOW_Status__c}</td>
-                        <td>{!sow.OblixSOWOverallTotal__c} {!sow.Currency__c}</td>
+                        <td>{!sow.OblixSOWOverallTotal__c} €</td>
                      </tr>
                 </apex:repeat>
               </apex:repeat>

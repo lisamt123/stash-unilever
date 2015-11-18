@@ -259,6 +259,9 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
                         
                         if(TotalProjectScore >= calculatorRange.Points_Low__c && TotalProjectScore <= calculatorRange.Points_HigH__c){
                             //Create Field Project Box Number
+                           System.debug('###TotalProjectScore : '+TotalProjectScore);
+                           System.debug('###calculatorRange.Points_Low__c : '+calculatorRange.Points_Low__c);
+                           System.debug('###calculatorRange.Points_HigH__c : '+calculatorRange.Points_HigH__c);
                             Calculator_BoxRange =  calculatorRange.Box_Range__c;
                             project.Oblix_ProjectBoxNumber__c = calculatorRange.Box_Range__c;
                             
@@ -275,7 +278,9 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
                    tmp_projectFee = TotalCalculatedFee(Calculator_BoxRange,MapProjectToSplits.get(project.Id),lstCalculatorCountryRange);
                    System.debug('###tmp_projectFee : '+tmp_projectFee);
                 }
-                project.Total_Fees_for_Project__c = tmp_projectFee;
+                if(tmp_projectFee != 0){
+                	project.Total_Fees_for_Project__c = tmp_projectFee;	
+                }
             }
             
          }

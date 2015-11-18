@@ -262,6 +262,10 @@
         <name>Oblix_ProjectBoxNumber__c</name>
     </fields>
     <fields>
+        <label><!-- Unique Name --></label>
+        <name>Oblix_tec_Unique_Name_c__c</name>
+    </fields>
+    <fields>
         <help><!-- Type in any other types of research to be used --></help>
         <label><!-- Other Kinds of Research --></label>
         <name>Other_Kinds_of_Research__c</name>
@@ -525,7 +529,7 @@
         <name>Total_Value_Driver__c</name>
     </fields>
     <fields>
-        <label><!-- Value to be paid in Current FY --></label>
+        <label><!-- Fee to be paid in Current FY --></label>
         <name>Value_to_be_paid_in_Current_FY__c</name>
     </fields>
     <layouts>
