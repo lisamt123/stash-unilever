@@ -266,6 +266,13 @@
         <members>*</members>
         <name>Report</name>
     </types>
+      <types>
+        <members>PSAR_Dashboards</members>
+        <members>PSAR_Dashboards/Predictive_Service_Alert_Planner_View</members>
+        <members>PSAR_Dashboards/Predictive_Service_Alerts_Director_View</members>
+        <members>PSAR_Dashboards/Predictive_Service_Alerts_Planning_Lead_View</members>
+        <name>Dashboard</name>
+    </types>
     <types>
         <members>*</members>
         <name>ReportType</name>
@@ -284,14 +291,18 @@
         <members>Core_IC_IdeationApp</members>
         <members>HROResources</members>
         <members>LoadImage</members>
-		<members>EcoDesignJS</members>
+	<members>EcoDesignJS</members>
         <members>IPM_BET_Logo</members>
         <members>IPM_FinancialGrid</members>
         <members>IPM_Financial_Upload_Test</members>
         <members>IPM_ProjectType</members>
         <members>IPM_Resource</members>
+	<members>PSARViewTableauDashboard</members>
         <name>StaticResource</name>
-    </types>    
+    </types>
+    
+    
+        
     <types>
         <members>*</members>
         <name>SharingReason</name>
