@@ -264,6 +264,21 @@
     </types>
     <types>
         <members>*</members>
+        <members>PSAR_Reports</members>
+        <members>PSAR_Reports/Alerts_by_Load_Date_Planner</members>
+        <members>PSAR_Reports/Alerts_by_Location_Director</members>
+        <members>PSAR_Reports/Alerts_by_Location_Planner</members>
+        <members>PSAR_Reports/Alerts_by_Location_Planning_Lead</members>
+        <members>PSAR_Reports/All_Team_Alerts</members>
+        <members>PSAR_Reports/Categories_with_Alerts_Director</members>
+        <members>PSAR_Reports/Categories_with_Alerts_Planner</members>
+        <members>PSAR_Reports/Categories_with_Alerts_Planning_Lead</members>
+        <members>PSAR_Reports/MyTeamAlerts_Director</members>
+        <members>PSAR_Reports/MyTeamAlerts_Planning_Lead</members>
+        <members>PSAR_Reports/My_Alerts</members>
+        <members>PSAR_Reports/PSAR_Alerts_with_Details_Director</members>
+        <members>PSAR_Reports/PSAR_Alerts_with_Details_Planner</members>
+        <members>PSAR_Reports/PSAR_Alerts_with_Details_Planning_Lead</members>
         <name>Report</name>
     </types>
       <types>
