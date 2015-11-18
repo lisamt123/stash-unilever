@@ -91,22 +91,21 @@ private class Oblix_Ctrl09_nonCampaignEdit_Test {
                  //   System.assertEquals(controller.asset.Id, asset.Id); // assert that the controller take the ID from params
                  //controller.addnewItems();
                  controller.back();
-                 controller.clear();
-                 controller.clear1();
+                 controller.backtoSow();
                  controller.getsomme();
                  controller.saveList();
                  
                  //test insert activity
-        controller.lookupActivity.Other_Activities__c = 'test';  
-        controller.name='istest';
-        controller.selectedCountryname ='France' ;
+        controller.myAct.lookupActivity.Other_Activities__c = 'test';  
+        controller.myAct.name='istest';
+        controller.myAct.selectedCountryname ='France' ;
         controller.fillAgencyDepartment();
-        controller.selectedAgencyDepartment= 'Account Management';
+        controller.myAct.selectedAgencyDepartment= 'Account Management';
         controller.fillRoleTitle();
-        controller.selectedRoleTitle  = 'Global Account Head'  ; 
+        controller.myAct.selectedRoleTitle  = 'Global Account Head'  ; 
         controller.fillRate();
-        controller.Rate = '10';       
-        controller.hours =2;
+        controller.myAct.Rate = '10';       
+        controller.myAct.val =2;
         controller.calculResult();
         
         controller.addToNew();
@@ -114,18 +113,31 @@ private class Oblix_Ctrl09_nonCampaignEdit_Test {
                
                  //test insert ressource
         
-        controller.name1='istest';
-        controller.selectedCountryname1 ='France' ;
+      
+        controller.myRes.selectedCountryname ='France' ;
         controller.fillAgencyDepartment1();
-        controller.selectedAgencyDepartment1= 'Account Management';
+        controller.myRes.selectedAgencyDepartment= 'Account Management';
         controller.fillRoleTitle1();
-        controller.selectedRoleTitle1  = 'Global Account Head'  ; 
+        controller.myRes.selectedRoleTitle  = 'Global Account Head'  ; 
         controller.fillRate1();
-        controller.Rate = '10';       
-        controller.prcent=2;
+        controller.myRes.Rate = '10';       
+        controller.myRes.val=2;
         controller.calculResult1();
         
-        controller.addToNew1();  
+        controller.addToNew1();
+        
+        
+         controller.myRes.name='istest';
+        controller.myRes.selectedCountryname ='France' ;
+        controller.fillAgencyDepartment1();
+        controller.myRes.selectedAgencyDepartment= 'Account Management';
+        controller.fillRoleTitle1();
+        controller.myRes.selectedRoleTitle  = 'Global Account Head'  ; 
+        controller.fillRate1();
+        controller.myRes.Rate = '10';       
+        controller.myRes.val=2;
+        controller.calculResult1();  
+        controller.addToNew1();
                  
                  
             controller.ElemToEdit  =0;
@@ -136,7 +148,7 @@ private class Oblix_Ctrl09_nonCampaignEdit_Test {
             
             controller.ElemToDel = 0; 
             controller.delElm();    
-            System.assertEquals(controller.newItems.size(),1);
+            System.assertEquals(controller.newItems.size(),2);
             
             
             Test.stopTest();

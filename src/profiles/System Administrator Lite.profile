@@ -24,6 +24,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_AssetHandler_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_Constants</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -136,6 +140,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_SplitHandler_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_TR01SOWMarkingSharing</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -189,6 +197,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_Utils</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_wrapper_NonCamp</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -4717,11 +4729,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Oblix_Project_Assets__c.Oblix_Quantity__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_Project_Assets__c.Quantity__c</field>
         <readable>false</readable>
@@ -4874,6 +4881,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Oblix_ProjectBoxNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Oblix_SOW_Projects__c.Oblix_tec_Unique_Name_c__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

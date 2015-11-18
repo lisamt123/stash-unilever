@@ -2032,7 +2032,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_Role</shortDescription>
-        <value>Role</value>
+        <value>-Role-</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_SOWSTATUS_AWAITINGAPPROVAL</fullName>
@@ -2432,6 +2432,14 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Campaign</value>
     </labels>
     <labels>
+        <fullName>Oblix_Lbl_UIUX_ClearFilters</fullName>
+        <categories>Oblix_VF05_SOWDetails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Show All</shortDescription>
+        <value>Show All</value>
+    </labels>
+    <labels>
         <fullName>Oblix_Lbl_UIUX_Completed_Briefing</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -2794,7 +2802,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Experiential / Promotional ideas ADAPTATION</shortDescription>
-        <value>Adaptation</value>
+        <value>Experiential - Promotional ideas ADAPTATION</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Definition</fullName>
@@ -2850,7 +2858,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Experiential / Promotional ideas ORIGINATION</shortDescription>
-        <value>Origination Lite</value>
+        <value>Experiential - Promotional ideas ORIGINATION</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Export</fullName>
@@ -3482,7 +3490,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Add_to_project</shortDescription>
-        <value>Add to project</value>
+        <value>Add</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Adjust_Fee</fullName>
@@ -3748,7 +3756,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Edit_Add_Items</shortDescription>
-        <value>Edit / Add items</value>
+        <value>Add / Edit items</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Edit_Campaign</fullName>
@@ -3769,7 +3777,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Estimation_Cost</shortDescription>
-        <value>Estimation Cost</value>
+        <value>Estimated Fee</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Fee</fullName>
@@ -3797,7 +3805,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Fixed_resource</shortDescription>
-        <value>Fixed resource</value>
+        <value>Dedicated resource</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Go</fullName>
@@ -3825,7 +3833,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Hourly_rate</shortDescription>
-        <value>Hourly rate</value>
+        <value>Hourly Rate</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_How_Many_Files</fullName>
@@ -3972,7 +3980,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Please_describe</shortDescription>
-        <value>Please describe of not exist</value>
+        <value>Please describe if not listed</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Project_Id</fullName>
@@ -4196,7 +4204,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_hours</shortDescription>
-        <value>hours</value>
+        <value>hrs</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_items</fullName>

@@ -197,7 +197,10 @@
                 lstIdCSSSelected = '';
                 for(string slctedRegionOrCountry :lstSelectedRegion){
                      lstIdCSSSelected = lstIdCSSSelected + mapIdCSSCountryRegion.get(slctedRegionOrCountry)+',';
-                }                
+                }   
+                if(project.Innovation_Projects__c != null){
+                    lstIdCSSSelected = lstIdCSSSelected+project.Innovation_Projects__c.replaceAll(' ','_')+',';  
+                 }        
                 // add the stage checkbox 
                 lstIdCSSSelected = lstIdCSSSelected + Oblix_Utils.getSelectedStageCheckbox(project.Projected_Stage__c,project.Completed_Stage__c);
                 lstIdCSSSelected = lstIdCSSSelected.removeEnd(',');
@@ -356,6 +359,7 @@
        
         public void setInfoDrivers(){
              if(projectId != null){
+                //project.Brand_Led_Growth__c = project.Brand_Led_Growth__c;
                 update project;
             }
         }
@@ -596,6 +600,11 @@
            estimateCost =  project.Campaign_Fees_Total__c;
            assetInstance = new Oblix_Project_Assets__c ();
            assetInstance.clear();
+           mapAssetsPerSubCat.put(subCat, new Oblix_Project_Assets__c(Sub_Category__c=subCat, recordTypeId = mapRTforSubCat.get(subCat)));
+        }
+        
+        public void ReInitializeInstance(){
+            mapAssetsPerSubCat.put(subCat, new Oblix_Project_Assets__c(Sub_Category__c=subCat, recordTypeId = mapRTforSubCat.get(subCat)));
         }
         
         public class assetWrapper {

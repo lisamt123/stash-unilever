@@ -179,12 +179,15 @@
         }
         .Oblix_icon {
             cursor:pointer;
+            /*display: block !important;*/
         }
         .Oblix_recordType{
             float:left;
             width:100%;
         }
-        
+        /*tr.always-show > td > div{
+            display: block !important;
+        }*/
         .Oblix_icon_right{
             float:right;
             width: 3%;

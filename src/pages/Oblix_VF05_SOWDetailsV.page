@@ -306,7 +306,7 @@
                     </td>
                  </tr>
             <tr>
-            <td width="50%">
+            <td width="25%">
             <section class="column1">
                <table width="100%" class="Oblix_tableDetails topAlign ">
                  
@@ -336,34 +336,35 @@
                  </tr>
                </table>
            </section>
-           
-           <section class="column2">
-               <table width="100%" class="topAlign"> 
-                   <tr>    
-                      <td width="50%"><strong>{!$ObjectType.Marketing_SOW__c.fields.Agency_Contact__c.label} </strong></td>
-                      <td width="50%" align="left">{!selSow.Agency_Contact__r.name}</td>
-                   </tr>
-                   <tr><td colspan="2">&nbsp;</td></tr>   
-                   <tr>
-                      <td><strong>{!$ObjectType.Marketing_SOW__c.fields.Unilever_Lead__c.label}</strong></td>
-                      <td>{!selSow.Unilever_Lead__r.name}</td>
-                   </tr>
-                   <tr><td colspan="2">&nbsp;</td></tr>   
-                   <tr>
-                     <td><strong>{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label}</strong></td>
-                     <td>{!selSow.Financial_Year__c}</td>
-                   </tr>
-                   <tr><td colspan="2">&nbsp;</td></tr>                      
-                   <tr>
-                     <td colspan="2"><h2 class="darkGreen">Approved: &nbsp;</h2> <strong>
-                     {!mapApproved[selSow.id]} €</strong></td>
-                   </tr>
-                   <tr>
-                     <td colspan="2"><h2 class="mainGreen">Current: &nbsp; &nbsp; &nbsp; </h2><strong>
-                      {!selSow.OblixSOWOverallTotal__c} €</strong></td>
-                   </tr>
-               </table>
-           </section> 
+           </td>
+           <td width="25%">
+             <section class="column2">
+                 <table width="100%" class="topAlign"> 
+                     <tr>    
+                        <td width="50%"><strong>{!$ObjectType.Marketing_SOW__c.fields.Agency_Contact__c.label} </strong></td>
+                        <td width="50%" align="left">{!selSow.Agency_Contact__r.name}</td>
+                     </tr>
+                     <tr><td colspan="2">&nbsp;</td></tr>   
+                     <tr>
+                        <td><strong>{!$ObjectType.Marketing_SOW__c.fields.Unilever_Lead__c.label}</strong></td>
+                        <td>{!selSow.Unilever_Lead__r.name}</td>
+                     </tr>
+                     <tr><td colspan="2">&nbsp;</td></tr>   
+                     <tr>
+                       <td><strong>{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label}</strong></td>
+                       <td>{!selSow.Financial_Year__c}</td>
+                     </tr>
+                     <tr><td colspan="2">&nbsp;</td></tr>                      
+                     <tr>
+                       <td colspan="2"><h2 class="darkGreen">Approved: &nbsp;</h2> <strong>
+                       € {!mapApproved[selSow.id]} </strong></td>
+                     </tr>
+                     <tr>
+                       <td colspan="2"><h2 class="mainGreen">Current: &nbsp; &nbsp; &nbsp; </h2><strong>
+                        € {!selSow.OblixSOWOverallTotal__c} </strong></td>
+                     </tr>
+                 </table>
+             </section> 
            </td>
            <td width="20%">
            <section class="column3">   
@@ -436,7 +437,7 @@
                         <td width="15%">{!sow.Marketing_Agency__c}</td>
                         <td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!sow.LastModifiedDate}" /></apex:outputText></td>
                         <td>{!sow.SOW_Status__c}</td>
-                        <td>{!sow.OblixSOWOverallTotal__c} €</td>
+                        <td>€ {!sow.OblixSOWOverallTotal__c} </td>
                      </tr>
                 </apex:repeat>
               </apex:repeat>
@@ -468,12 +469,14 @@
                     </th>
                      <th>
                         <apex:selectList title="{!$Label.Oblix_Lbl_UIUX_Big_Cat}" styleClass="search_init select_filter form-control" value="{!selectedSmallCat}" size="1" >
-                                <apex:selectoptions value="{!SmallCategory}"></apex:selectoptions> 
+                                <apex:selectoptions value="{!SmallCategory}"></apex:selectoptions>
                         </apex:selectList>
                         
                     </th>
                    
-                    <th  colspan="2"><apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_Filter}" action="{!applyFilters}" onclick="blockme()" oncomplete="$.unblockUI()" styleClass="Oblix_filter_btn" reRender="jqueryId,jqueryId2"/><br/> </th><!-- -->
+                    <th><apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_Filter}" action="{!applyFilters}" onclick="blockme()" oncomplete="$.unblockUI()" styleClass="Oblix_filter_btn" reRender="jqueryId,jqueryId2"/><br/> </th><!-- -->
+
+                    <th><apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_ClearFilters}" action="{!clearFilters}" onclick="blockme()" oncomplete="$.unblockUI()" styleClass="Oblix_filter_btn" reRender="jqueryId,jqueryId2"/><br/> </th>
                     
                 </tr>
             </tfoot>

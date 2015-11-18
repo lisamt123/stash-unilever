@@ -382,7 +382,7 @@
             } else newItems.add(x); // cest un ajout
         
             myAct.clear();
-            myAct.name='';
+           
         
         }
         
@@ -428,6 +428,7 @@
         
             newItem1 = new Marketing_Basics__c();
             myRes.clear();
+            myRes.name='';
         }
         
         public void calculResult() {
@@ -656,7 +657,7 @@
          * @PAram : None
          *  @reference : CountriesByFYear(Fyea)
          * @return SelectOption of Countries
-         */
+         
         public List < SelectOption > getCountry() {
             set < String > setCountry = new Set < String > ();
             setCountry = Oblix_Utils.CountriesByFYear(fYear);
@@ -672,6 +673,7 @@
         
             return options;
         }
+        */
         /*
          * @Name : fillCountries
          * @Param : None

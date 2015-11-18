@@ -231,6 +231,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
                               Name, SmallProductCategory__c, OblixBrand__c, Marketing_Agency__c, LastModifiedDate, CreatedDate,
                               SOW_Status__c, BB_or_BD__c   from Marketing_SOW__c where Id = : selSow.Id
                              ];
+                     
                 } else {
                     update selSow;
                     sowId = selSow.Id;
@@ -242,6 +243,15 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
                              ];
                 }
                 sowId = selSow.Id;
+                list<Marketing_SOW__c> childSow = new list<Marketing_SOW__c>();
+                        System.debug('###selSow.id : ' + selSow.id);
+                        childSow = [select id, OblixSOWOverallTotal__c from Marketing_SOW__c where MarketingSOWParent__c = :selSow.id  and Type_of_SOW__c = 'Baseline'];
+                        System.debug('###childSow : ' + childSow );
+                        if (childSow.size() > 0) {
+                            mapApproved.put(selSow.id, (integer)childSow[0].OblixSOWOverallTotal__c);
+                        } else {
+                            mapApproved.put(selSow.id, 0);
+                        }
                 if (!LstAttachementsToAdd.isEmpty()) {
                     for (Attachment att : lstAttachementsToAdd) {
                         att.parentId = selSow.id;
@@ -260,15 +270,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
                 } else if (noteAsset.body != null && noteAsset.id == null) {
                     throw new Oblix_Utils.CustomException('TOO_LONG_NOTE');
                 }
-                list<Marketing_SOW__c> childSow = new list<Marketing_SOW__c>();
-                System.debug('###selSow.id : ' + selSow.id);
-                childSow = [select id, OblixSOWOverallTotal__c from Marketing_SOW__c where MarketingSOWParent__c = :selSow.id  and Type_of_SOW__c = 'Baseline'];
-                System.debug('###childSow : ' + childSow );
-                if (childSow.size() > 0) {
-                    mapApproved.put(selSow.id, (integer)childSow[0].OblixSOWOverallTotal__c);
-                } else {
-                    mapApproved.put(selSow.id, 0);
-                }
+                
             }
         } catch (Exception le) {
 

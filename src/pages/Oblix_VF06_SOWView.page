@@ -937,11 +937,11 @@
                     <tr><td colspan="2">&nbsp;</td></tr>                      
                     <tr>
                      <td colspan="2"><h2 class="darkGreen">{!$Label.Oblix_lbl_UIUX_Approved} &nbsp;</h2> <strong>
-                     {!mapApproved[selSow.id]} €</strong></td>
+                     <apex:outputLabel id="mapApprovedId" value="€ {!mapApproved[selSow.id]}"/></strong></td>
                    </tr>
                    <tr>
                      <td colspan="2"><h2 class="mainGreen">{!$Label.Oblix_lbl_UIUX_Current} &nbsp; &nbsp; &nbsp; </h2><strong>
-                      {!selSow.OblixSOWOverallTotal__c} €</strong></td>
+                      € {!selSow.OblixSOWOverallTotal__c} </strong></td>
                    </tr>
                </table>
            </section> 
@@ -1042,11 +1042,11 @@
                    </tr>                 
                    <tr>
                      <td colspan="2"><strong class="darkGreen">{!$Label.Oblix_lbl_UIUX_Approved} &nbsp;</strong> <strong>
-                     <apex:outputPanel rendered="{!selSow.id != null}"> {!mapApproved[selSow.id]} </apex:outputPanel> € </strong></td>
+                     <apex:outputPanel rendered="{!selSow.id != null}">€ {!mapApproved[selSow.id]} </apex:outputPanel>  </strong></td>
                    </tr>
                     <tr>
                      <td colspan="2"><strong class="mainGreen">{!$Label.Oblix_lbl_UIUX_Current} &nbsp; &nbsp; &nbsp; </strong><strong>
-                      {!selSow.OblixSOWOverallTotal__c} € </strong></td>
+                      € {!selSow.OblixSOWOverallTotal__c}  </strong></td>
                    </tr>
                    <tr>
                    </tr>
@@ -1086,7 +1086,7 @@
                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back}" immediate="true" action="{!backAction}"  title="{!$Label.Oblix_lbl_UIUX_Back_to_SOW}" styleClass="Oblix_large_btn"/><br/><br/>
                  </apex:actionRegion>
                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Approval}" onclick="" disabled="true" title="{!$Label.Oblix_lbl_UIUX_Comming_Soon}"  styleClass="Oblix_large_btn"/><br/><br/>
-                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Save}"   action="{!SaveSOW}" title="{!$Label.Oblix_lbl_UIUX_Save_Sow}" reRender="showForm,projectButtonId" styleClass="Oblix_large_btn"/><br/><br/>
+                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Save}"   action="{!SaveSOW}" title="{!$Label.Oblix_lbl_UIUX_Save_Sow}" reRender="showForm,projectButtonId,mapApprovedId" styleClass="Oblix_large_btn"/><br/><br/>
                  
              </div>  
           </section>   
@@ -1199,7 +1199,7 @@
                                 <td>{!projOtherItem.objectDyn['Platform__c']}</td>
                                 <td>{!projOtherItem.objectDyn['Campaign_Status__c']}</td>
                                 <td>{!projOtherItem.objectDyn['Project_Stage__c']}</td>
-                                <td>{!projOtherItem.objectDyn['Total_Fees_for_Project__c']} €</td>
+                                <td>€ {!projOtherItem.objectDyn['Total_Fees_for_Project__c']} </td>
                             </tr>
                         </apex:outputPanel>
                         <apex:outputPanel rendered="{!projOtherItem.objName == 'Non Campaign'}">

@@ -220,6 +220,20 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
     }
 
     /**
+    *   When user clicks on Show All:
+    *   @return [Rerender table with filtered results.]
+    */
+    public void clearFilters(){
+
+        selectedSmallCat = '';
+        selectedBigCat = '';
+        selectedBrand = '';
+        selectedFYear = '';
+
+        applyFilters();
+    }
+
+    /**
     * When user clicked on Apply Filters:
     * @return [Rerender table with filtered results.]
     */

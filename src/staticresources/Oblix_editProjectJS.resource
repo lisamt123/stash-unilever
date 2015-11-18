@@ -98,6 +98,7 @@
 				});
 			  });           
     }
+	var brandLG ;
 	function PopupValueDrivers(){           
         $(function() {
                 $( "#dialogDrivers" ).dialog({
@@ -109,14 +110,25 @@
                            addStyletoDependent();   
                            //alert($(".projInnovation").val());  
                           // alert($('select[id*="Growthhhhh"]').val());      
-                           brandLG= $('select[id*="Growthhhhh"]').val();
-                           Scale1= $(".projScale1").val();
-                           Scale2=  $(".projScale2").val();          
-                           Innovation = $(".projInnovation").val();
-                           CampaignIdea =  $(".projCampaignIdea").val();
-                           blockme(); 
-                           setInfoDrivers($(".projInnovation").val(),$('select[id*="Growthhhhh"]').val(),$(".projCampaignIdea").val(),$(".projScale1").val(),$(".projScale2").val());   
-                           $(this).dialog("close");  
+                           //brandLG= $('select[id*="Growthhhhh"]').val();
+                          // Scale1= $(".projScale1").val();
+                           //Scale2=  $(".projScale2").val();                                  
+                           //CampaignIdea =  $(".projCampaignIdea").val();
+						    var innovation = $('input[name="innovation"]:checked').val();	
+						    console.dir(innovation);
+							if(innovation == "Innovation"){
+								blockme(); 							
+								console.dir($(".projBrandInnov").val());
+                                brandLG = $(".projBrandInnov").val();								
+								setInfoDrivers(innovation,$(".projBrandInnov").val(),$(".projCampaignIdea").val(),$(".projScale1").val(),$(".projScale2").val());      
+							}else{
+								blockme();
+							    console.dir($(".projBrandBrand").val());	
+								brandLG = $(".projBrandBrand").val();
+								setInfoDrivers(innovation,$(".projBrandBrand").val(),$(".projCampaignIdea").val(),$(".projScale1").val(),$(".projScale2").val());      
+							}
+													                          
+                            $(this).dialog("close");  
                    },                                      
                     Close: function() {
                       $( this ).dialog( "close" );

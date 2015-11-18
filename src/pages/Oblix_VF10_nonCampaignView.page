@@ -541,9 +541,14 @@
         });
          $('table tr.Oblix_recordTypeth').click(function(){
             var data = $(this).next('tr');
-            var btt = data.next('tr');
+            var that = this;
+            $('table tr.Oblix_recordTypeth').each(function(){
+              if($(this).hasClass('show') && that !== this){
+                $(this).next('tr').find('td > div').slideToggle('slow');
+                $(this).toggleClass('show');
+              }
+            })
             data.find('td > div').slideToggle('slow');
-            btt.find('td > div').slideToggle('slow');
             $(this).toggleClass('show');
         });
        

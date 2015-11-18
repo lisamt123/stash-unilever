@@ -945,14 +945,14 @@
                                           </td>
                                           <td  width="5%"></td>
                                           <td  width="20%"> 
-                                              <apex:input type="number"  styleClass="hourss input_init"   html-min="0" value="{!myAct.val}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(($(this).val()*parseInt($('.rateclass').text())).toFixed(0)+' {!MScurrency}');}" disabled="{!IF(myAct.valVisible==false,false,false)}" id="hours" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);"/>
+                                              <apex:input type="number"  styleClass="hourss input_init"   html-min="0" value="{!myAct.val}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(' '+($(this).val()*parseInt($('.rateclass').text())).toFixed(0)+' ');}" disabled="{!IF(myAct.valVisible==false,false,false)}" id="hours" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);"/>
                                               <span style="font-size:14px">{!$Label.Oblix_lbl_UIUX_hours}  </span>
                                           </td> 
                                           <td  width="5%"></td>
                                           <td  width="20%">
                                               <span style="font-size:14px">
-                                              <apex:outputLabel value="{!myAct.result}"  style="width:90%;font-size:14px"   id="result" styleclass="rslt" >
                                               {!MScurrency}
+                                              <apex:outputLabel value="{!myAct.result}"  style="width:90%;font-size:14px"   id="result" styleclass="rslt" >
                                               </apex:outputLabel>
                                               </span>
                                           </td>
