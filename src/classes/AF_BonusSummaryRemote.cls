@@ -11,6 +11,7 @@ global with sharing class AF_BonusSummaryRemote {
         Set<String> rowsSet = new Set<String>();
         Map<String, String> ulbonusMatrixMap  = new Map<String, String>();
         Integer colTotal = 0, colLocalTotal=0, rowTotal = 0, rowLocalTotal=0, rowTotalA = 0, colTotalA = 0;
+        
         Map<String, AF_Bonus_Matrix__c> bonusULRelationMap  = new Map<String, AF_Bonus_Matrix__c>();
         List<AF_Bonus_Matrix__c> bonusEstimates  = [SELECT  AF_Agency_Entity__c, AF_Unilever_Entity__c, AF_Agency_Entity__r.AF_Country__c,AF_Unilever_Entity__r.Name,
                                                                 AF_Bonus_Summary__c, AF_Value__c, AF_BonusMatrixCode__c, AF_IsCrossBorderImage__c,
@@ -56,20 +57,23 @@ global with sharing class AF_BonusSummaryRemote {
             for(String eachRow : orderedRow) {
                 String keyMatch = eachCol+'-'+eachRow; //column Vs row
                 if(bonusULRelationMap .containsKey(keyMatch)) {
-                    colTotal += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Value__c/1000);
-                    system.debug('bonusULRelationMap .get(keyMatch).AF_Value__c/1000...'+bonusULRelationMap .get(keyMatch).AF_Value__c/1000);
-                    system.debug('colTotal...'+colTotal);
+                    /* commented for incident No:INC000097270556 */
+                    //colTotal += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Value__c/1000);
+                    /* commented for incident No:INC000097270556 */
                     colTotalA += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Value__c);
+                    
                 }
             }
-            
+            /* Added for incident No:INC000097270556 */
+            colTotal = AF_BrandEstimateRemote.truncateDecimal(Decimal.valueOf(colTotalA)/1000);
+            /* Added for incident No:INC000097270556 */
             String dispColTotal = colTotal > 0 ? 'EUR ' + AF_BrandEstimateRemote.currencyFormatted(colTotal) : '';
-            system.debug('dispColTotal...'+dispColTotal);
             String dispColTotalA = (colTotal > 0) ? 'EUR ' + AF_BrandEstimateRemote.currencyFormatted(colTotalA) : '';
             rowDetail += '<td align=\"center\" title=\"\" class=\"totalCell details-control';
             rowDetail += '\" t=\"' + dispColTotalA + '\" d=\"tot\" a=\"ob\">';
             rowDetail += '<a l e=\"' + dispColTotal + '\">' + strongStrt + dispColTotal + strongEnd + '</a>' + tdCloseTag;
         }
+        
         rowDetail += trCloseTag;
         Integer i=2;
         //Display the distinct Columns from the agency estimates.
@@ -94,13 +98,18 @@ global with sharing class AF_BonusSummaryRemote {
             for(String eachCol : orderedColumn) { //Actual Agency Estimate Record's totals goes here..
                 String keyMatch = eachCol+'-'+eachRow; //column Vs row
                 if(bonusULRelationMap .containsKey(keyMatch)) {
-                    rowTotal += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Value__c/1000);
+                    /* commented for incident No:INC000097270556 */
+                    //rowTotal += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Value__c/1000);
+                    /* commented for incident No:INC000097270556 */
                     rowLocalTotal += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Bonus_Local_Value__c/1000);
                     rowTotalA += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Value__c);
                 }
             }
             String dispArchiveImg = rowTotalA > 0 ?  '' : archiveImg;
             rowDetail += '<td align=\"center\" class=\"headRow">'+ strongStrt +  eachRow + dispArchiveImg + strongEnd + tdCloseTag;
+            /* Added for incident No:INC000097270556 */
+            rowTotal = AF_BrandEstimateRemote.truncateDecimal(Decimal.valueOf(rowTotalA)/1000);
+            /* Added for incident No:INC000097270556 */
             String dispRowTotal = (rowTotal > 0) ? 'EUR ' + AF_BrandEstimateRemote.currencyFormatted(rowTotal) : '';
             String dispRowTotalA = (rowTotalA > 0) ? 'EUR ' + AF_BrandEstimateRemote.currencyFormatted(rowTotalA) : '';
             rowDetail += '<td title=\"\" class=\"totalCell details-control';

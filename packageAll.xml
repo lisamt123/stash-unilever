@@ -139,10 +139,6 @@
     </types>
     <types>
         <members>*</members>
-        <name>Dashboard</name>
-    </types>
-    <types>
-        <members>*</members>
         <name>DataCategoryGroup</name>
     </types>
     <types>
@@ -263,7 +259,6 @@
         <name>RemoteSiteSetting</name>
     </types>
     <types>
-        <members>*</members>
         <members>PSAR_Reports</members>
         <members>PSAR_Reports/Alerts_by_Load_Date_Planner</members>
         <members>PSAR_Reports/Alerts_by_Location_Director</members>
@@ -306,18 +301,15 @@
         <members>Core_IC_IdeationApp</members>
         <members>HROResources</members>
         <members>LoadImage</members>
-	<members>EcoDesignJS</members>
+	    <members>EcoDesignJS</members>
         <members>IPM_BET_Logo</members>
         <members>IPM_FinancialGrid</members>
         <members>IPM_Financial_Upload_Test</members>
         <members>IPM_ProjectType</members>
         <members>IPM_Resource</members>
-	<members>PSARViewTableauDashboard</members>
+	    <members>PSARViewTableauDashboard</members>
         <name>StaticResource</name>
-    </types>
-    
-    
-        
+    </types> 
     <types>
         <members>*</members>
         <name>SharingReason</name>
