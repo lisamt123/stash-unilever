@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Fired on delete KPI from my view">
+	<aura:attribute name="KPIElementId" type="String" />
+</aura:event>
