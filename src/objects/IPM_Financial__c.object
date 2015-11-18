@@ -948,13 +948,15 @@
     <fields>
         <fullName>IPM_CPP_Local__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( AND(Year_1_iTO_Local__c!=0,Year_1_iTO_Local__c &gt;= (Gross_Y1_Turnover_Local__c *0.05) ),
+        <formula>IF( OR(ISBLANK(OpCo__c), OpCo__c=0),&quot;NA&quot;,
+IF(AND(Year_1_iTO_Local__c!=0,Year_1_iTO_Local__c &gt;= (OpCo__c *0.005) ),
 &quot;Gold&quot;,
-IF(AND(Year_1_iTO_Local__c!=0,Year_1_iTO_Local__c &gt;= (Gross_Y1_Turnover_Local__c *0.01), Year_1_iTO_Local__c &lt; (Gross_Y1_Turnover_Local__c *0.05) ),
+IF(AND(Year_1_iTO_Local__c!=0,Year_1_iTO_Local__c &gt;= (OpCo__c *0.001), OpCo__c &lt; (Gross_Y1_Turnover_Local__c *0.005) ),
 &quot;Silver&quot;,
-IF(AND(Year_1_iTO_Local__c &lt; (Gross_Y1_Turnover_Local__c *0.01)),
+IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
 &quot;Bronze&quot;,
 &quot;NA&quot;
+)
 )
 )
 )</formula>
@@ -1624,6 +1626,20 @@ IF(AND(Year_1_iTO_Local__c &lt; (Gross_Y1_Turnover_Local__c *0.01)),
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>OpCo__c</fullName>
+        <externalId>false</externalId>
+        <formula>Local_Project__r.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>OpCo</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_Charter__c</fullName>

@@ -1344,6 +1344,16 @@ OwnerId))</formula>
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IPM_Is_Finance_Member_Null__c</fullName>
+        <externalId>false</externalId>
+        <formula>ISNULL(IPM_Finance_Member__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Is Finance Member Null</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_Last_Modified_Date_Time__c</fullName>
         <description>To capture Last modified date to be used further for Project Archiving Workflow</description>
         <externalId>false</externalId>
@@ -2313,6 +2323,17 @@ OwnerId))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Rollout_Plan_Target_Launch_Date__c</fullName>
+        <description>To store rollout plan target launch date</description>
+        <externalId>false</externalId>
+        <label>Rollout Plan Target Launch Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Ship_to_Trade_Milestone_Due_Date__c</fullName>
         <externalId>false</externalId>
         <label>Ship to Trade Milestone Due Date</label>
@@ -2490,17 +2511,18 @@ OwnerId))</formula>
         <columns>IPM_Project_Description__c</columns>
         <columns>Project_External_ID__c</columns>
         <columns>IPM_Project_Name__c</columns>
+        <columns>IPM_Phase__c</columns>
         <columns>Sustainability_Period__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>IPM_Project_Leader__c</field>
-            <operation>contains</operation>
-            <value>Samrat</value>
+            <field>IPM_Phase__c</field>
+            <operation>equals</operation>
+            <value>Feasibility,Ideas</value>
         </filters>
         <filters>
             <field>IPMProject_Span__c</field>
             <operation>equals</operation>
-            <value>Local</value>
+            <value>Global</value>
         </filters>
         <label>Finder</label>
         <language>en_US</language>
@@ -3532,9 +3554,9 @@ OwnerId))</formula>
     </validationRules>
     <validationRules>
         <fullName>Ideas_create_Global_Original_Projects</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Global Original Project can only be created in Ideas Phase</description>
-        <errorConditionFormula>AND( $Profile.Name != &apos;IPM Data Migration&apos;,ISPICKVAL( IPM_Project_Type__c,&apos;Original&apos; ),ISNEW(),ISPICKVAL ( IPMProject_Span__c,&apos;Global&apos;),NOT(ISPICKVAL(IPM_Temporary_Phase__c,&apos;Ideas&apos;)))</errorConditionFormula>
+        <errorConditionFormula>AND($Profile.Name != &apos;IPM Data Migration&apos;,ISPICKVAL( IPM_Project_Type__c,&apos;Original&apos; ),ISNEW(),ISPICKVAL ( IPMProject_Span__c,&apos;Global&apos;),NOT(ISPICKVAL(IPM_Temporary_Phase__c,&apos;Ideas&apos;)))</errorConditionFormula>
         <errorMessage>Global Original Project must begin with Ideas Phase</errorMessage>
     </validationRules>
 </CustomObject>

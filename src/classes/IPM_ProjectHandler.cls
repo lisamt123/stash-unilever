@@ -886,10 +886,10 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 System.enqueueJob(changeOwnerHandler);      
         }
         
-        if(!rolloutTLDChangedProjList.isEmpty()){
+        /*if(!rolloutTLDChangedProjList.isEmpty()){
             IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
             rolloutPlanTLDSync.syncTLDDates(rolloutTLDChangedProjList,null);
-        }
+        }*/
         ExceptionLoggingHelper.insertLogRecordList();
     }
 }

@@ -450,25 +450,6 @@
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
-        <fullName>Status check</fullName>
-        <actions>
-            <name>Dummyflow</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>IPM_Project__c.IPMProject_Span__c</field>
-            <operation>equals</operation>
-            <value>Regional</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>IPM_Project__c.IPM_Phase__c</field>
-            <operation>equals</operation>
-            <value>Feasibility</value>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
         <fullName>Successful Project Phase</fullName>
         <actions>
             <name>IPM_Send_Success_Phase_Change_Notification</name>
