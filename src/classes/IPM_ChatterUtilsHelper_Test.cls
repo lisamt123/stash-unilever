@@ -16,8 +16,6 @@ public with sharing class IPM_ChatterUtilsHelper_Test {
     public static List<IPM_Project__c> projectList;
     public static List<IPM_Project_Resource__c> ipmProjectResourceList;
     public static List<IPM_Country__c> ipmCountryList;
-    private static final String operation_Insert ='Insert';
-    private static final String operation_Delete ='Delete';
     public static User standardUser = IPM_TestFactory_Helper.createUser(true);
     public static User platformUser;
     

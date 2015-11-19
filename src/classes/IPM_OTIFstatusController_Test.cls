@@ -17,22 +17,20 @@ public class IPM_OTIFstatusController_Test {
     public static User otifUser;
     public static final string IDEA_STR = 'Idea';
     
-    /*
-    * @Description Initialises the data needed for creating OTIF situation
+    /*Name: initializeData
+    * @Description: Initialises the data needed for creating OTIF situation
     */
     static void initializeData() { 
         otifUser = IPM_TestFactory_Helper.createUser(true);
         system.assert(otifUser.id!=null);//positive test
         system.RunAs(otifUser){
-           project = IPM_TestFactory_Helper.createIPMProject(FALSE);
+            project = IPM_TestFactory_Helper.createIPMProject(FALSE);
             project.Sustainability_Period__c='3';
             project.IPM_Target_Launch_Dates__c=system.today();
             project.IPM_IsCompleted__c=true; 
             insert project;
-             IPM_Project__c projectObj=[select IPM_IsCompleted__c from IPM_Project__c where id=:project.Id];
+            IPM_Project__c projectObj=[select IPM_IsCompleted__c from IPM_Project__c where id=:project.Id];
             system.assert(projectObj.IPM_IsCompleted__c,System.Label.IPM_Record_successfully_saved);
-            
-           
             
             projDoc = IPM_TestFactory_Helper.createIPMProjectDocument(false);
             projDoc.IPM_Project__c=project.ID;
@@ -42,14 +40,13 @@ public class IPM_OTIFstatusController_Test {
             IPM_Project_Document__c projectDocObj=[select IPM_Project__c from IPM_Project_Document__c where id=:projDoc.Id];
             system.assertEquals(projectDocObj.IPM_Project__c,project.ID,System.Label.IPM_Record_successfully_saved);
             
-            
             projDocList=new List<IPM_Project_Document__c>();
             projDocList.add(projDoc);
-            
             
             projDocSec = IPM_TestFactory_Helper.createIPMProjectDocumentSection(false);
             projDocSec.IPM_Project_Document__c=projDoc.ID;
             insert projDocSec;
+            
             IPM_Project_Document_Section__c projectDocSecObj=[select IPM_Project_Document__c from IPM_Project_Document_Section__c where id=:projDocSec.Id];
             system.assertEquals(projectDocSecObj.IPM_Project_Document__c,projDoc.ID,System.Label.IPM_Record_successfully_saved);
             
@@ -69,14 +66,14 @@ public class IPM_OTIFstatusController_Test {
             projDocSecCon.IPM_Section_Name__c='Customer Channel';
             projDocSecCon.IPM_Section_type__c='Checklist';
             insert projDocSecCon;
+            
             IPM_Project_Document_Section_Content__c projectDocSecConObj=[select IPM_Project_Document_Section__c from IPM_Project_Document_Section_Content__c where id=:projDocSecCon.Id];
             system.assertEquals(projectDocSecConObj.IPM_Project_Document_Section__c,projDocSec.ID,System.Label.IPM_Record_successfully_saved);
-            
         }
     }
     
-    /*
-    * @Description Tests actual content
+    /*Name: testShowContent
+    * @Description: Tests actual content
     */
     static testMethod void testShowContent() {
         initializeData();

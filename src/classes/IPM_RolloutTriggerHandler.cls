@@ -97,7 +97,7 @@ public with sharing class IPM_RolloutTriggerHandler
                     }
     
                     //Add All Regional Financials for deletion 
-                    For(IPM_Financial__c ipmFinancial : regionalRollout.IPM_Financials__r)
+                    for(IPM_Financial__c ipmFinancial : regionalRollout.IPM_Financials__r)
                     {
                         lstDeleteFinancials.add(ipmFinancial);
                     }                
@@ -321,7 +321,8 @@ public with sharing class IPM_RolloutTriggerHandler
                     setGlobalProjectIds.add(projectRollout.Regional_Project__r.IPM_Parent_Project__c);
                 }
                 
-                else if (projectRollout.Regional_Project__c != null){
+                else if (projectRollout.Regional_Project__c != null)
+                {
                     setRegionalOriginalProjectIds.add(projectRollout.Regional_Project__c);
                 }
                 
@@ -608,16 +609,19 @@ public with sharing class IPM_RolloutTriggerHandler
             
             if(syncTLD) {
                 Map<ID,IPM_Project_Rollout__c> updatedRollouts = new Map<ID,IPM_Project_Rollout__c>();
-                for(IPM_Project_Rollout__c rollout: mapNewProjectRollouts.values()) {
-                    if ( rollout.Target_Launch_Date__c != mapOldProjectRollouts.get(rollout.Id).Target_Launch_Date__c ) {
+                for(IPM_Project_Rollout__c rollout: mapNewProjectRollouts.values()) 
+                {
+                    if ( rollout.Target_Launch_Date__c != mapOldProjectRollouts.get(rollout.Id).Target_Launch_Date__c ) 
+                    {
                         updatedRollouts.put(rollout.Id,rollout);
                     }
                 }
                
-                if(updatedRollouts.size()>0) {
+               /* if(updatedRollouts.size()>0) 
+                {
                     IPM_SyncFinanceTableTLD syncFinanceTableTLD = new IPM_SyncFinanceTableTLD();
                     syncFinanceTableTLD.syncProjectRolloutFinancialTLD(updatedRollouts);
-                }
+                }*/
             }
           //  EPIC172 implementation end 
        

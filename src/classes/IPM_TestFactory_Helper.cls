@@ -32,6 +32,7 @@ public with sharing class IPM_TestFactory_Helper {
     public static final string PROJECT_LEADER = 'project leader';
     public static final string TESTMANAGEDCATEGORY = 'testmanagedcategory'; 
     public static final string INDIA = 'India';
+    public static final String IPM_DOCUMENT_TEMPLATE = 'IPM_Document_Template__c';
     
     public static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
     public static List<IPM_Financial__c> finList = new List<IPM_Financial__c>();
@@ -83,7 +84,7 @@ public with sharing class IPM_TestFactory_Helper {
         List<IPM_Document_Template__c> documentTemlateList = new List<IPM_Document_Template__c>();
         for(IPM_Project_Template__c projTempl : projTemplateList) {      
             Map<String,Object> docTemMap =  new Map<String,Object>{IPM_PROJECT_TEMPLATE => projTempl.ID,IPM_DOCUMENT_TEMPLATE_NAME =>CHARTER_GATE_FULL, 'IPM_Document_Type__c' => IPM_ConstantUtils.FIELD_SUFFIX_CHARTER};
-            IPM_Document_Template__c docTempl = (IPM_Document_Template__c)IPM_TestFactory.createSObject('IPM_Document_Template__c',docTemMap,false); // NO SONAR QUBE string literal used in dynamic SOQL 
+            IPM_Document_Template__c docTempl = (IPM_Document_Template__c)IPM_TestFactory.createSObject(IPM_DOCUMENT_TEMPLATE,docTemMap,false); // NO SONAR QUBE string literal used in dynamic SOQL 
             documentTemlateList.add(docTempl);
         }
         insert documentTemlateList;
@@ -216,7 +217,7 @@ public with sharing class IPM_TestFactory_Helper {
     
     public static IPM_Document_Template__c creteIPMDocumentTemplate(Boolean doInsert) {
         Map<String,Object> docTemMap =  new Map<String,Object>{IPM_DOCUMENT_TEMPLATE_NAME=> CHARTER_GATE_FULL, 'IPM_Document_Type__c' => IPM_ConstantUtils.FIELD_SUFFIX_CHARTER};
-        IPM_Document_Template__c ipdoctem = (IPM_Document_Template__c)IPM_TestFactory.createSObject('IPM_Document_Template__c',docTemMap,FALSE);
+        IPM_Document_Template__c ipdoctem = (IPM_Document_Template__c)IPM_TestFactory.createSObject(IPM_DOCUMENT_TEMPLATE,docTemMap,FALSE);
         if(doInsert) { 
             insert ipdoctem;
         }
@@ -466,12 +467,18 @@ public with sharing class IPM_TestFactory_Helper {
                     IPM_PROJECT_NAME => new List<Object>{'test1','test2', 'test3'},
                     RECORD_TYPE_ID => new List<Object>{strRecordTypeId,strRecordTypeConId, strRecordTypeId},
                     'Parent_Project__c' => new List<Object>{projectList[0].Id,projectList[1].Id, projectList[2].Id},
-                    TARGET_LAUNCH_DATE => new List<Object>{System.today()+10,System.today()+5, System.today()+3},
+                    TARGET_LAUNCH_DATE => new List<Object>{System.today()+100000,System.today()+500000, System.today()+300000},
                     'Financial_External_ID__c' => new List<Object>{'globalMCOName','RegionalMCOName','localMCOName'},
                     'Project_Sustainability_Period__c' =>new List<Object>{projectList[0].Sustainability_Period__c,projectList[1].Sustainability_Period__c,projectList[2].Sustainability_Period__c}
                  };
            
         finList = (List<IPM_Financial__c>)IPM_TestFactory.createSObjectList('IPM_Financial__c',IPMProjectMap,true); 
+        finList[0].Target_Launch_Date__c = System.today()+100000;
+        finList[1].Target_Launch_Date__c = System.today()+100000;
+        finList[2].Target_Launch_Date__c = System.today()+100000;
+        finList[0].Financial_External_ID__c = 'globalMCOName';
+        finList[1].Financial_External_ID__c = 'RegionalMCOName';
+        finList[2].Financial_External_ID__c = 'LocalalMCOName';
         insert finList;
         return finList;
     }
@@ -519,7 +526,7 @@ public with sharing class IPM_TestFactory_Helper {
                                         IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6), IPM_PROJECT_LEADER => UserInfo.getUserId(), IPM_PHASE=> IPM_ConstantUtils.PHASE_IDEAS};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
             testIPMProjList.add(projectRecord);
-            system.debug('Nitin '+ String.valueOf(i) + ':::'+testIPMProjList);
+            
             
         }
         
@@ -540,7 +547,7 @@ public with sharing class IPM_TestFactory_Helper {
                                         IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6), IPM_PROJECT_LEADER => UserInfo.getUserId(), IPM_PHASE=> IPM_ConstantUtils.PHASE_IDEAS};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
             testIPMProjList.add(projectRecord);
-            system.debug('Nitin '+ String.valueOf(i) + ':::'+testIPMProjList);
+          
             
         }
         
@@ -1451,7 +1458,7 @@ public with sharing class IPM_TestFactory_Helper {
           IPM_PROJECT_TEMPLATE => new List<Id>{projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[0].Id,projectTemplateList[1].Id,projectTemplateList[1].Id,projectTemplateList[1].Id,projectTemplateList[1].Id}  
         };
         
-        documentTemplateList = (List<IPM_Document_Template__c>)IPM_TestFactory.createSObjectList('IPM_Document_Template__c',documentTemplateMap,false);
+        documentTemplateList = (List<IPM_Document_Template__c>)IPM_TestFactory.createSObjectList(IPM_DOCUMENT_TEMPLATE,documentTemplateMap,false);
         
         insert documentTemplateList; 
         
@@ -1539,7 +1546,7 @@ public with sharing class IPM_TestFactory_Helper {
         Map<String,String> sectionSpanMap = new Map<String,String>{STRINGVALUE_1=>SECTION_SPAN,STRINGVALUE_1_1=>SECTION_SPAN,STRINGVALUE_1_2=>SECTION_SPAN,STRINGVALUE_1_2=>SECTION_SPAN,STRINGVALUE_1_3=>SECTION_SPAN,STRINGVALUE_1_3=>SECTION_SPAN,STRINGVALUE_1_3=>SECTION_SPAN,STRINGVALUE_1_3=>SECTION_SPAN,STRINGVALUE_1_4=>SECTION_SPAN,STRINGVALUE_2=>SECTION_SPAN,STRINGVALUE_2_1=>SECTION_SPAN,STRINGVALUE_2_1=>SECTION_SPAN,STRINGVALUE_2_2=>SECTION_SPAN,STRINGVALUE_2_2=>SECTION_SPAN,THREE=>SECTION_SPAN,STRINGVALUE_3_1=>SECTION_SPAN,STRINGVALUE_3_2=>SECTION_SPAN,STRINGVALUE_3_2=>SECTION_SPAN,STRINGVALUE_3_2=>SECTION_SPAN,STRINGVALUE_3_3=>SECTION_SPAN,STRINGVALUE_3_3=>SECTION_SPAN,STRINGVALUE_3_4=>SECTION_SPAN,STRINGVALUE_3_4=>SECTION_SPAN,STRINGVALUE_3_5=>SECTION_SPAN,STRINGVALUE_4=>SECTION_SPAN,STRINGVALUE_4_1=>SECTION_SPAN,STRINGVALUE_4_2=>SECTION_SPAN,STRINGVALUE_4_2=>SECTION_SPAN,STRINGVALUE_5=>SECTION_SPAN,STRINGVALUE_5=>SECTION_SPAN,STRINGVALUE_5_1=>SECTION_SPAN,STRINGVALUE_5_1=>SECTION_SPAN,STRINGVALUE_5_1=>SECTION_SPAN,STRINGVALUE_5_2=>SECTION_SPAN,STRINGVALUE_5_2=>SECTION_SPAN,STRINGVALUE_5_2=>SECTION_SPAN,STRINGVALUE_5_3=>SECTION_SPAN,STRINGVALUE_6=>SECTION_SPAN,STRINGVALUE_6_1=>SECTION_SPAN,STRINGVALUE_6_2=>SECTION_SPAN,STRINGVALUE_6_2=>SECTION_SPAN,STRINGVALUE_6_2=>SECTION_SPAN,STRINGVALUE_6_3=>SECTION_SPAN,STRINGVALUE_6_3=>SECTION_SPAN,STRINGVALUE_7=>SECTION_SPAN,STRINGVALUE_7_1=>SECTION_SPAN,STRINGVALUE_7_1=>SECTION_SPAN,STRINGVALUE_7_2=>SECTION_SPAN,STRINGVALUE_7_2=>SECTION_SPAN,STRINGVALUE_7_3=>SECTION_SPAN,STRINGVALUE_7_3=>SECTION_SPAN,STRINGVALUE_7_3=>SECTION_SPAN,STRINGVALUE_7_4=>SECTION_SPAN,STRINGVALUE_8=>SECTION_SPAN,STRINGVALUE_8_1=>SECTION_SPAN,STRINGVALUE_8_1=>SECTION_SPAN,STRINGVALUE_8_1=>SECTION_SPAN,STRINGVALUE_8_1=>SECTION_SPAN,STRINGVALUE_8_2=>SECTION_SPAN,STRINGVALUE_8_2=>SECTION_SPAN,STRINGVALUE_8_2=>SECTION_SPAN,STRINGVALUE_8_3=>SECTION_SPAN,STRINGVALUE_8_4=>SECTION_SPAN,STRINGVALUE_8_5=>SECTION_SPAN,STRINGVALUE_8_6=>SECTION_SPAN,STRINGVALUE_8_6=>SECTION_SPAN,STRINGVALUE_8_7=>SECTION_SPAN,STRINGVALUE_8_7=>SECTION_SPAN,STRINGVALUE_1_2_1=>SECTION_SPAN,STRINGVALUE_1_2_1=>SECTION_SPAN,STRINGVALUE_1_2_2=>SECTION_SPAN,STRINGVALUE_1_2_2=>SECTION_SPAN,STRINGVALUE_2_2_2=>SECTION_SPAN,STRINGVALUE_3_1_1=>SECTION_SPAN,STRINGVALUE_3_1_2=>SECTION_SPAN,STRINGVALUE_3_1_3=>SECTION_SPAN,STRINGVALUE_3_1_3=>SECTION_SPAN,STRINGVALUE_3_1_5=>SECTION_SPAN,STRINGVALUE_3_1_5=>SECTION_SPAN,STRINGVALUE_3_2_1=>SECTION_SPAN,STRINGVALUE_3_2_2=>SECTION_SPAN,STRINGVALUE_3_3_2=>SECTION_SPAN,STRINGVALUE_3_4_1=>SECTION_SPAN,STRINGVALUE_3_4_2=>SECTION_SPAN,STRINGVALUE_3_4_2=>SECTION_SPAN,STRINGVALUE_4_2_1=>SECTION_SPAN,STRINGVALUE_4_2_2=>SECTION_SPAN,STRINGVALUE_4_2_3=>SECTION_SPAN,STRINGVALUE_6_2_1=>SECTION_SPAN,STRINGVALUE_6_2_2=>SECTION_SPAN};
         
         Map<String,List<Object>> sectionMasterMap = new Map<String,List<Object>>{
-            'External_ID__c' => new List<Object>(),'IPM_Document_Template__c' => new List<Object>(),'IPM_FunctionalRole__c' => new List<Object>(),
+            'External_ID__c' => new List<Object>(),IPM_DOCUMENT_TEMPLATE => new List<Object>(),'IPM_FunctionalRole__c' => new List<Object>(),
             'IPM_Negotiable__c' => new List<Object>(),IPM_SECTION_Name => new List<Object>(),IPM_SECTION_SEQUENCE=>new List<Object>(),
             'IPM_Section_Type__c' => new List<Object>(),'ProjectSpan__c' => new List<Object>() };
         
@@ -1586,7 +1593,7 @@ public with sharing class IPM_TestFactory_Helper {
                 	sectionMasterMap.get(IPM_SECTION_SEQUENCE).add(counter+'.1');
                 }
                 
-                sectionMasterMap.get('IPM_Document_Template__c').add(tempDoc.Id);
+                sectionMasterMap.get(IPM_DOCUMENT_TEMPLATE).add(tempDoc.Id);
             }
         }
         
@@ -1611,10 +1618,10 @@ public with sharing class IPM_TestFactory_Helper {
         
         milestoneTemplateList = (List<IPM_Milestone__c>)IPM_TestFactory.createSObjectList('IPM_Milestone__c',milestoneTemplateMap,false);
         
-        System.debug('-------milestoneTemplateList----------'+milestoneTemplateList);
+        
         insert milestoneTemplateList;
         
-        System.debug('-------milestoneTemplateList---11-------'+milestoneTemplateList);
+        
         List<Id> recordIdList = new List<Id>{recTypeRnD,recTypeIDPOS,recTypeIDRQS,recTypeIDCR,recTypeRnDFeasibility,recTypeSCFeasibility,recTypeRisk};
          
         Map<String,List<Object>> questionnaireMap = new Map<String,List<Object>>{RECORD_TYPE_ID => new List<Id>(),

@@ -1,17 +1,12 @@
 @isTest
 public class IPM_RolloutPlansAddController_Test{
     public static IPM_Project__c project;
-    //public static IPM_Project__c project1;
-    //public static IPM_Project_Rollout__c proRoll;
+    
     public static List<IPM_Project_Rollout__c> regionalRolloutList;
     public static List<IPM_Project_Rollout__c> localRolloutList;
-    public static  mdm_Geography__c mdmGeography = new mdm_Geography__c();
+  
     public static  String projectId;
-    //public static  List<String> lstTemp = new  List<String>();
-    //public static  IPM_Country__c ipmCountry = new IPM_Country__c();
-    //public static  IPM_MCO_Short_Names__c mco = new  IPM_MCO_Short_Names__c();
-    //public static IPM_Country__c con = new IPM_Country__c();
-    //public static MDO_Geography__c mdo = new MDO_Geography__c(); 
+   
     public static MDO_Geography__c geo; 
     public static MDO_Geography__c goegraphiesCluster;
     public static MDO_Geography__c goegraphiesMCO;
@@ -124,7 +119,12 @@ public class IPM_RolloutPlansAddController_Test{
 	        goegraphiesCountry.Status__c = 'Active';
 	        insert goegraphiesCountry;
 	        system.assertNotEquals(null, goegraphiesCountry.id);
-	            
+	        
+			
+			
+		
+			
+			
             
             // Create Country specific information.
             List<IPM_Country__c> countryList= new List<IPM_Country__c>();
@@ -141,9 +141,8 @@ public class IPM_RolloutPlansAddController_Test{
                     geoExternalId = 'BRA';
                 }
                 
-                IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
-                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO');    
-                
+               IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = 'IND').Id,
+               IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO');    
                 countryList.add(tempCountry);
             }
             
@@ -153,7 +152,7 @@ public class IPM_RolloutPlansAddController_Test{
         
         ApexPages.currentPage().getParameters().put('id',projectList[0].Id);
         projectId = ApexPages.currentPage().getParameters().get('id');
-        //system.debug('@@@ project id -->>'+projectId);
+        
         IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
         irp.project=projectList[0];
         irp.globalCountries='abc,abc';
@@ -172,7 +171,7 @@ public class IPM_RolloutPlansAddController_Test{
 	    geoWrp.mcoDisabled=true;
 	    geoWrp.countryDisabled =true;
 	    geoWrp.noRolloutDisabled=true;
-	    //system.debug('@@@ geowrapper -->>'+geoWrp);
+	    
 	    
 	    irp.lstClusterWrappers.add(geoWrp);
         PageReference pRef = new PageReference('apex/ipmrolloutplansadd?id='+regionalRolloutList[0].Id);

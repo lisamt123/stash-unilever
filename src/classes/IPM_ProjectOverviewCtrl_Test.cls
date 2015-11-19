@@ -30,7 +30,7 @@ public class IPM_ProjectOverviewCtrl_Test
         ipdt.IPM_Project_Template__c=projTempl.ID;
         ipdt.IPM_Document_Template_Name__c='Charter Full 1';
         ipdt.IPM_Document_Order__c=10;
-        system.debug('******ipdt'+ipdt.IPM_Document_Order__c);
+        
         insert ipdt;
         
         //Create IPM Section
@@ -43,7 +43,8 @@ public class IPM_ProjectOverviewCtrl_Test
             secMstList.add(secMst);
         }
         insert secMstList;
-        
+        List<IPM_Section__c>sectionList=[SELECT ID FROM IPM_Section__c LIMIT 20];
+        System.assertEquals(sectionList.size(), 20, 'section records created');
         //Create IPM Project
         project=IPM_TestFactory_Helper.createIPMProject(false);
         project.Name=sProjectName;
@@ -63,7 +64,8 @@ public class IPM_ProjectOverviewCtrl_Test
         project.IPM_ProjectSubType__c='Innovation/Rennovation';
         project.IPM_Category_Text__c='Household Care';
         insert project;
-        
+        List<IPM_Project__c>projectLists=[SELECT IPM_Project_Leader__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
+        System.assertEquals(projectLists[0].IPM_Project_Leader__c, userinfo.getuserid(), 'project leader is:'+projectLists[0].IPM_Project_Leader__c);
         //Create Project Document
         projDoc = IPM_TestFactory_Helper.createIPMProjectDocument(false);
         projDoc.IPM_Project__c=project.ID;
@@ -204,7 +206,9 @@ public class IPM_ProjectOverviewCtrl_Test
             rProjectList.add(rProject);
         }
         insert rProjectList;
-        
+        List<IPM_Project__c>projectLists=[SELECT id FROM IPM_Project__c LIMIT 20];
+        System.assertEquals(projectLists.size(), 20, 'project records created');
+       
        
         
         //Create local project
@@ -386,7 +390,9 @@ public class IPM_ProjectOverviewCtrl_Test
         testIPMFinancialConsolidated.Financial_External_ID__c = project.Id + String.valueOf(System.now());
         testIPMFinancialConsolidated.Project_Sustainability_Period__c = '3';
         insert testIPMFinancialConsolidated;
-        
+        List<IPM_Financial__c>financialLists=[SELECT Parent_Project__c FROM IPM_Financial__c WHERE ID=:testIPMFinancialConsolidated.ID LIMIT 1];
+        System.assertEquals(financialLists[0].Parent_Project__c, project.Id, 'parent project is:'+financialLists[0].Parent_Project__c);
+       
         //Create Financial Year
         IPM_Financial_Year__c testFinancialYear = IPM_TestFactory_Helper.createIPMFinancialYear(false);
         testFinancialYear.Year__c = '3';
@@ -426,7 +432,8 @@ public class IPM_ProjectOverviewCtrl_Test
             rProjectList.add(rProject);
          }
         insert rProjectList;
-        
+        List<IPM_Project__c>projectLists=[SELECT id FROM IPM_Project__c LIMIT 20];
+        System.assertEquals(projectLists.size(), 20, 'Regional project records created');
         //Create local project
         for(Integer i=0 ; i<20 ; i++ ){
             IPM_Project__c lProject = IPM_TestFactory_Helper.createIPMProject(false);
@@ -506,7 +513,8 @@ public class IPM_ProjectOverviewCtrl_Test
             lProjectList.add(lProject);
         }
         insert lProjectList;
-        
+        List<IPM_Project__c>projectLists=[SELECT id FROM IPM_Project__c LIMIT 20];
+        System.assertEquals(projectLists.size(), 20, 'Local project records created');
         
         
         //Create Local Financial
@@ -575,7 +583,8 @@ public class IPM_ProjectOverviewCtrl_Test
         country.IPM_Project__c = project.Id;
         country.Geography__c = geography.Id;
         insert country;
-        
+        list<IPM_Country__c>countryList=[SELECT IPM_Project__c FROM IPM_Country__c WHERE ID=:country.ID LIMIT 1];
+        System.assertEquals(countryList[0].IPM_Project__c, project.Id, 'Country project is:'+countryList[0].IPM_Project__c);
         lstIPMMilestone = [Select Id from IPM_Milestone__c where IPM_Project__c =: project.id];
         
         Test.startTest();
@@ -628,6 +637,9 @@ public class IPM_ProjectOverviewCtrl_Test
         bdUser.IPM_Project__c = projectId;
         bdUser.IPM_User__c = runningUser.id;
         insert bdUser;
+        list<IPM_Project_Resource__c>userResourceList=[SELECT IPM_Project__c FROM IPM_Project_Resource__c WHERE ID=:bdUser.ID LIMIT 1];
+        System.assertEquals(userResourceList[0].IPM_Project__c, projectId, 'Resource project is:'+userResourceList[0].IPM_Project__c);
+       
 
     }
     

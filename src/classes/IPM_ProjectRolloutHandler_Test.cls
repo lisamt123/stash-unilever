@@ -33,10 +33,10 @@ public class IPM_ProjectRolloutHandler_Test
          	insert projectList;
          	Test.stopTest();
          	
-         	//system.debug('@@@ projectList -->>'+projectList);
+         	
          	List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForRollout,stdUserForRollout});
             insert regionalRolloutList; // this will give me all regional rollout
-            //system.debug('@@@ regional rollout -->>'+regionalRolloutList);
+            
             
             Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
             for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)

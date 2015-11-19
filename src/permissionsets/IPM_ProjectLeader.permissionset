@@ -235,11 +235,7 @@
     <classAccesses>
         <apexClass>IPM_Consumer_Evidence_Controller_Test</apexClass>
         <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_CopyFinanceMember</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+    </classAccesses>   
     <classAccesses>
         <apexClass>IPM_Coreparameters</apexClass>
         <enabled>false</enabled>
@@ -326,10 +322,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_FinancialController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_FinancialController_Currency_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -469,15 +461,7 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>IPM_LandingPgCtrl</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>IPM_List_Milestones</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_LogUtils</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -606,10 +590,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_ProjectJob_Queue</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_ProjectMarketCluster</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -774,18 +754,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_UpdateGlobalProjectName_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_Update_MilestonesTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_Updateduedate_Trigger_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_Updatetasks_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -7146,10 +7114,6 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>IPM_ProjectStandardPage</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>IPM_ProjectsOverview_Report</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>

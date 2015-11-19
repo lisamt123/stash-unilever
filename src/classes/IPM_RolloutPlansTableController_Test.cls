@@ -14,17 +14,17 @@ public class IPM_RolloutPlansTableController_Test{
     public static List<IPM_Project__c > projectList;
     public static List<IPM_Project_Rollout__c> localRolloutList;
     public static Map<Id, IPM_Project_Rollout__c> mapNewProjectRollouts=new Map<Id, IPM_Project_Rollout__c>();
-    public static Map<Id, IPM_Project_Rollout__c> mapOldProjectRollouts=new Map<Id, IPM_Project_Rollout__c>();
-    public static User platformUser;
+    //public static Map<Id, IPM_Project_Rollout__c> mapOldProjectRollouts=new Map<Id, IPM_Project_Rollout__c>();
+  
     public static List<IPM_Project_Rollout__c> regionalRolloutList;
     
     public static final String CANCEL_REDIRECT ='cancelRedirect' ;
     public static final String TESTPROJECT = 'TestComments1';
-    public static String cancelRedirect;    
-    public static String editMode='';
+    //public static String cancelRedirect;    
+    //public static String editMode='';
     public static List<IPM_Project__c> globalProjectList;
     public static List<IPM_Project__c> lstRegionalProjects;
-    public static List<IPM_Project__c> projectListObj = new List<IPM_Project__c>();
+    
     private static List<IPM_Project_Document__c> currDocuments;
     private static List<IPM_Project_Document__c> updatedDocument;
     
@@ -54,10 +54,10 @@ public class IPM_RolloutPlansTableController_Test{
            insert projectList;
            
            
-           //system.debug('@@@ projectList -->>'+projectList);
+           
            regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForRollout,stdUserForRollout});
             insert regionalRolloutList; // this will give me all regional rollout
-            //system.debug('@@@ regional rollout -->>'+regionalRolloutList);
+            
             
             Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
             for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
@@ -145,6 +145,7 @@ public class IPM_RolloutPlansTableController_Test{
            
             globalProjectList = [Select Id,IPM_Company_Card__c,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet limit 2];
             
+            system.assertEquals(globalProjectList.size(),1);
             List<Id> globalProjectIdList = new List<Id>();
             
             for(IPM_Project__c projecttemp : globalProjectList)

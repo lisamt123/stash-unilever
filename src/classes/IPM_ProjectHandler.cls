@@ -657,10 +657,10 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                     }
                 }
                
-                if(updatedProjects.size()>0) {
+              /*  if(updatedProjects.size()>0) {
                     IPM_SyncFinanceTableTLD syncFinanceTableTLD = new IPM_SyncFinanceTableTLD();
                     syncFinanceTableTLD.syncProjectFinancialTLD(updatedProjects);
-                }
+                }*/
             }
             // EPIC172 implementation end
     }

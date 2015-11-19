@@ -9,10 +9,13 @@ public class IPM_FinancialController_Test {
     @testSetup static void financialSetUp() 
      {
          List<User> userList = IPM_TestFactory_Helper.createUserList();
+         system.assertNotEquals(userList[0],null);
          
          IPM_TestFactory_Helper.getProjectMasterData();
          
          List<IPM_Project__c> globalProjectList = IPM_TestFactory_Helper.projectSetUp(1,userList[0]);
+         system.assertNotEquals(globalProjectList,null);
+         
          System.runAs(userList[0])
          {
             insert globalProjectList;
@@ -32,7 +35,7 @@ public class IPM_FinancialController_Test {
                 {
                     projectRolloutList = projectToRolloutMap.get(projectRollout.IPM_Project__c);
                 }
-                projectRolloutList.add(projectRollout);
+                projectRolloutList.add(projectRollout); 
                 projectToRolloutMap.put(projectRollout.IPM_Project__c,projectRolloutList);
             }
             
@@ -71,7 +74,6 @@ public class IPM_FinancialController_Test {
         System.runAs(userList[1])
         {
             insert regionalProjectList;
-            System.debug('---regionalProjectList------>>'+regionalProjectList);
         }
      }
     
@@ -80,14 +82,16 @@ public class IPM_FinancialController_Test {
         Set<String> projectNameSet = new Set<String>{'TestComments1'};
 
         User globalUser = [Select Id from User where Email ='globalUser@unilever.test.com' limit 1]; 
+        system.assertNotEquals(globalUser,null);
+        
         System.runAs(globalUser)
         { 
             Test.startTest();
             
             List<IPM_Project__c>  projectList = [Select Id,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet];
+            system.assert(projectList.size()>0);
             
             PageReference pageRef = new PageReference('/apex/IPM_Financial?Id='+projectList[0].Id);
-            system.debug('///'+projectList[0].Id);
             Test.setCurrentPageReference(pageRef); 
         
             IPM_FinancialController ipmFinCon = new IPM_FinancialController();
@@ -96,9 +100,27 @@ public class IPM_FinancialController_Test {
             ipmFinCon.changeSustainabilityPeriod();
             ipmFinCon.checkSustainabilityPeriodChanged();
             ipmFinCon.refreshFinancials();
+            ipmFinCon.editFinancials();
+            ipmFinCon.saveFinancials();
             
             ipmFinCon.currentTab = 'rollup';
             ipmFinCon.changeTabs();
+            system.assertEquals(ipmFinCon.currentTab,'rollup');
+            
+            ipmFinCon.currentTab = 'topdown';
+            ipmFinCon.changeTabs();
+            system.assertEquals(ipmFinCon.currentTab,'topdown');
+            
+            ipmFinCon.currentTab = 'myview';
+            ipmFinCon.changeTabs();
+            system.assertEquals(ipmFinCon.currentTab,'myview');
+            
+            ipmFinCon.CopyPasteTemplate();
+            ipmFinCon.gotoSection();
+            ipmFinCon.changeTabs();
+            
+            
+            
             List<IPM_Project__c>lstLocalProjects = [Select Id,IPM_Parent_Project__r.Name from IPM_Project__c WHERE IPM_Parent_Project__c = :projectList[0].Id AND IPMProject_Span__c = :IPM_ConstantUtils.PROJECT_SPAN_LOCAL LIMIT 1];     
             //System.assertEquals(lstLocalProjects[0].IPM_Parent_Project__r.Name,'TestComments1','function not call properly');
             List<Id> globalProjectIdList = new List<Id>();
@@ -110,6 +132,7 @@ public class IPM_FinancialController_Test {
             
             
             List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalUser); 
+            system.assertNotEquals(projectListPhaseChange,null);
             
             update projectListPhaseChange;
             
@@ -123,12 +146,18 @@ public class IPM_FinancialController_Test {
             // Validate that project has moved to feasibility Phase.
             for(Id globalProjectId : globalToRegionalMap.keySet())
             {
-                List<IPM_Project__c> regionalProjects = globalToRegionalMap.get(globalProjectId); 
+                List<IPM_Project__c> regionalProjects = globalToRegionalMap.get(globalProjectId);
+                system.assert(regionalProjects.size() > 0); 
                 
                 pageRef = new PageReference('/apex/IPM_Financial?Id='+regionalProjects[0].Id); 
                 Test.setCurrentPageReference(pageRef); 
                     
                 ipmFinCon = new IPM_FinancialController();
+	            ipmFinCon.editFinancials();
+	            ipmFinCon.saveFinancials();
+	            
+	            ipmFinCon.CopyPasteTemplate();
+            	ipmFinCon.gotoSection();
                 
                 ipmFinCon.currentTab = 'topdown';
                 ipmFinCon.changeTabs();
@@ -138,22 +167,29 @@ public class IPM_FinancialController_Test {
                 
                 ipmFinCon.currentTab = 'myview';
             	ipmFinCon.changeTabs();
+            	
+            	ipmFinCon.CopyPasteTemplate();
+            	ipmFinCon.gotoSection();
             
+            	ipmFinCon.refreshFromRegional();
+            	
                 break;
             }
         }
     } 
     
-    /*
+    
     static testMethod void financialRegionalOrignalTest()
     {       
         Set<String> projectNameSet = new Set<String>{'TestRegionalComments1'};
             
-        List<User> userList = [Select Id from User where Email ='regionalUser@unilever.test.com' limit 1]; 
+        List<User> userList = [Select Id from User where Email ='regionalUser@unilever.test.com' limit 1];
+        system.assert(userList.size() > 0); 
         
         System.runAs(userList[0])
         {
             List<IPM_Project__c>  projectList = [Select Id, Name, IPM_Phase__c, (Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet];
+            system.assert(projectList.size() > 0);
             
             for(IPM_Project__c ipmProj : projectList){
                 ipmProj.IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
@@ -170,7 +206,7 @@ public class IPM_FinancialController_Test {
             ///
             List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateRegionalProjectPhaseChange(regionalProjectIdList,userList[0]);///
             ///
-            //update projectListPhaseChange; 
+            ///update projectListPhaseChange; 
             
             PageReference pageRef = new PageReference('/apex/IPM_Financial?Id='+projectList[0].Id);
             Test.setCurrentPageReference(pageRef); 
@@ -183,9 +219,73 @@ public class IPM_FinancialController_Test {
             ipmFinCon.changeTabs();
             ipmFinCon.currentTab = 'topdown';
             ipmFinCon.changeTabs();
+            ipmFinCon.editFinancials();
+            ipmFinCon.saveFinancials();
             
+            ipmFinCon.CopyPasteTemplate();
+            ipmFinCon.gotoSection();
             
         }
     } 
-    */
+    
+    //Below is to cover currency methods in FinancialController
+    public static IPM_Project__c project4;
+    public static final String FINANCIAL_CONTROLLER_STR = '/apex/IPM_Financial?id=';
+    
+    static testMethod void initializeDataTemp3(){
+        
+        test.startTest();
+
+		project4=IPM_TestFactory_Helper.createIPMProject(FALSE);
+        
+           project4.Sustainability_Period__c='3';
+           project4.IPM_Target_Launch_Dates__c=system.today().addYears(3); 
+           project4.IPM_IsCompleted__c=true; 
+		   project4.IPM_Project_Type__c='Original';
+		   project4.IPM_Project_Name__c='ProjectName';
+		   project4.IPM_Phase__c='Ideas';
+           project4.IPM_Brand_Positioning__c='Dirt Is Good';
+           project4.IPM_GateKeeping_Model__c='RCLT';
+           project4.IPM_ProjectSubType__c='Innovation/Rennovation';
+           project4.IPM_Category_Text__c='Household Care';
+           project4.IPM_SourceProjectType__c = IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL;
+           insert project4;
+        
+        IPM_Project__c Queryproject = [Select Id from IPM_Project__c where id=:project4.Id];
+        system.assertNotEquals(Queryproject.Id, null);
+           
+          
+          test.stopTest();
+    }
+    /*
+	Created by - Sanjay Singh
+	Purpose - Currency related implementation
+	Note: Below method covers new code written for currency related changes but whole class does not cover 75% as its clonned from IPM_Financial test class
+	*/
+    static testMethod void testCurrency(){
+        //set up exchange rate object data
+        initializeDataTemp3(); 
+            list<IPM_Exchange_Rate__c> liEX = new list<IPM_Exchange_Rate__c>();
+            liEX.add(new IPM_Exchange_Rate__c(Name='EUR', Currency_Code__c='EUR',Exchange_Rate__c=1));
+            liEX.add(new IPM_Exchange_Rate__c(Name='GBP', Currency_Code__c='GBP',Exchange_Rate__c=0.8)); 
+            liEX.add(new IPM_Exchange_Rate__c(Name='USD', Currency_Code__c='USD',Exchange_Rate__c=1.3));         
+        insert liEX;          
+        PageReference pRef = new PageReference(FINANCIAL_CONTROLLER_STR+project4.Id);
+        Test.setCurrentPage(pRef); 
+        IPM_FinancialController ipmCurr=new IPM_FinancialController();
+        ipmCurr.getItems();
+        ipmCurr.selectedCurrency = 'GBP';
+        ipmCurr.applyRate();
+        //verify if exchange rate is applied as per selected country
+        system.assertEquals(ipmCurr.exRate,0.8);
+        
+        ipmCurr.selectedCurrency = 'EUR';
+        ipmCurr.applyRate();
+        //verify if exchange rate is applied when go back to default currency
+        system.assertEquals(ipmCurr.exRate,1);
+        
+        
+    }
+    
+    
 }

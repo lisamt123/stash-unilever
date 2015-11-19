@@ -184,9 +184,7 @@ public class IPM_TaskHelper_Test{
     public static TestMethod void reassignProjectLeaderTest(){
         User projectLeader1 = [Select Id,LastName from User where LastName=:USER_NAME AND IPM_Role__c=:IPM_ConstantUtils.PROJECT_LEADER limit 1];
         User projectLeader2 = [Select Id,LastName,IsActive from User where LastName=:USER_NAME AND IPM_Role__c=:IPM_ConstantUtils.TEAM_DEPUTY_PROJECT_LEADER limit 1];
-        system.debug('********projectLeader1'+projectLeader1);   
-        system.debug('********projectLeader2'+projectLeader2);
-        system.debug('********projectLeader3'+userinfo.getuserid());
+        
       Test.startTest();  
         system.runAs(projectLeader1)
         {

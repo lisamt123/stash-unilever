@@ -5,8 +5,10 @@
 */
 @isTest
 public class IPM_FinancialTriggerHandler_Test {    
+    private static String TESTPROJECT = 'TestProject001_REG'; 
+    private static String TESTPROJECT_LOC = 'TestProject001_REG_LOC1';
     static void initializeData(){
- 	    Test.startTest();
+        Test.startTest();
         Date targetLaunchDate = System.today().addYears(3);
         //Creation test user
         User globalUser = IPM_TestFactory_Helper.createUserAdmin(false);
@@ -22,9 +24,9 @@ public class IPM_FinancialTriggerHandler_Test {
         localUser.IPM_Role__c = IPM_ConstantUtils.IPM_ROLE_FINANCE;
         localUser.ManagerId = UserInfo.getUserId();
         
-		List<User> userList = new List<User>{globalUser,regionalUser,localUser};
+        List<User> userList = new List<User>{globalUser,regionalUser,localUser};
         
-        system.debug('******userList'+userList);
+        
         insert userList;
  
         IPM_Project__c project = IPM_TestFactory_Helper.createIPMProject(false);
@@ -37,30 +39,30 @@ public class IPM_FinancialTriggerHandler_Test {
         project.IPM_Phase__c=IPM_ConstantUtils.PHASE_IDEAS;
         project.IPM_CompanyCardText__c='Global Company Card';
         project.IPM_Temporary_Phase__c='';
-		project.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
-		project.IPM_Target_Launch_Dates__c = System.today().addYears(3);
+        project.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
+        project.IPM_Target_Launch_Dates__c = System.today().addYears(3);
         project.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
-		project.IPM_ProjectJobType__c=IPM_ConstantUtils.JOBTYPE_PHASECHANGE;
-		insert project; 
-				
-		String rolloutRegionlaRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Project_Rollout__c' and Name=:IPM_ConstantUtils.REGIONAL_ROLLOUT_RT].Id;
+        project.IPM_ProjectJobType__c=IPM_ConstantUtils.JOBTYPE_PHASECHANGE;
+        insert project; 
+                
+        String rolloutRegionlaRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Project_Rollout__c' and Name=:IPM_ConstantUtils.REGIONAL_ROLLOUT_RT].Id;
         IPM_Project_Rollout__c regionalProjectRollout=IPM_TestFactory_Helper.createIPMProjectRollout(FALSE);
-        regionalProjectRollout.Name='TestProject001_REG';
-		regionalProjectRollout.IPM_Rollout_Project__c = 'TestProject001_REG';
+        regionalProjectRollout.Name=TESTPROJECT;
+        regionalProjectRollout.IPM_Rollout_Project__c = TESTPROJECT;
         regionalProjectRollout.IPM_Project__c=project.ID;
         regionalProjectRollout.Market_Cluster__c='GEO0060';
         regionalProjectRollout.IPM_Rollout_Span__c='Regional';
         regionalProjectRollout.Target_Launch_Date__c = System.today().addYears(3);
-		regionalProjectRollout.External_Id__c='TestProject001_REG';
+        regionalProjectRollout.External_Id__c=TESTPROJECT;
         regionalProjectRollout.RecordTypeId = rolloutRegionlaRecordTypeId;
-		regionalProjectRollout.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
- 		regionalProjectRollout.IPM_RolloutJobType__c=IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;
-		regionalProjectRollout.IPM_Rollout_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
+        regionalProjectRollout.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
+        regionalProjectRollout.IPM_RolloutJobType__c=IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;
+        regionalProjectRollout.IPM_Rollout_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
         regionalProjectRollout.IPM_Regional_PL__c=regionalUser.id;
-		insert regionalProjectRollout;
+        insert regionalProjectRollout;
 
-		IPM_Project__c rolloutProject = IPM_TestFactory_Helper.createIPMProject(false);
-        rolloutProject.Name='TestProject001_REG';
+        IPM_Project__c rolloutProject = IPM_TestFactory_Helper.createIPMProject(false);
+        rolloutProject.Name=TESTPROJECT;
         rolloutProject.Sustainability_Period__c='3';
         rolloutProject.IPM_Project_Leader__c=regionalUser.id;
         rolloutProject.IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
@@ -69,18 +71,18 @@ public class IPM_FinancialTriggerHandler_Test {
         rolloutProject.IPM_Phase__c=IPM_ConstantUtils.PHASE_IDEAS;
         rolloutProject.IPM_CompanyCardText__c='Global Company Card';
         rolloutProject.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
-		rolloutProject.IPM_Target_Launch_Dates__c = System.today().addYears(3);
-		rolloutProject.IPM_Project_Name__c='TestProject001_REG';
-		rolloutProject.IPM_Parent_Project__c=project.ID;
-		rolloutProject.IPM_ProjectJobType__c='Project Creation';
-		rolloutProject.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
-		insert rolloutProject; 
-		
-		List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
-  		String rolloutLocalRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Project_Rollout__c' and Name=:IPM_ConstantUtils.LOCAL_ROLLOUT_RT].Id;
+        rolloutProject.IPM_Target_Launch_Dates__c = System.today().addYears(3);
+        rolloutProject.IPM_Project_Name__c=TESTPROJECT;
+        rolloutProject.IPM_Parent_Project__c=project.ID;
+        rolloutProject.IPM_ProjectJobType__c='Project Creation';
+        rolloutProject.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
+        insert rolloutProject; 
+        
+        List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
+        String rolloutLocalRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Project_Rollout__c' and Name=:IPM_ConstantUtils.LOCAL_ROLLOUT_RT].Id;
         IPM_Project_Rollout__c localNonkeyProjectRollout1 =IPM_TestFactory_Helper.createIPMProjectRollout(FALSE);
-        localNonkeyProjectRollout1.Name='TestProject001_REG_LOC1';
-        localNonkeyProjectRollout1.IPM_Rollout_Project__c = 'TestProject001_REG_LOC1';
+        localNonkeyProjectRollout1.Name=TESTPROJECT_LOC;
+        localNonkeyProjectRollout1.IPM_Rollout_Project__c = TESTPROJECT_LOC;
         localNonkeyProjectRollout1.IPM_Project__c=project.ID;
         localNonkeyProjectRollout1.Regional_Rollout__c=regionalProjectRollout.id;
         localNonkeyProjectRollout1.Market_Cluster__c='GEO0060';
@@ -88,14 +90,14 @@ public class IPM_FinancialTriggerHandler_Test {
         localNonkeyProjectRollout1.Target_Launch_Date__c = targetLaunchDate;
         localNonkeyProjectRollout1.RecordTypeId = rolloutLocalRecordTypeId;
         localNonkeyProjectRollout1.KeyMCO__c = false;
-        localNonkeyProjectRollout1.External_Id__c='TestProject001_REG_LOC1';
-		localNonkeyProjectRollout1.Regional_Project__c=rolloutProject.id;
-		localNonkeyProjectRollout1.IPM_RolloutJobType__c=IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC;
-		localNonkeyProjectRollout1.IPM_Rollout_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
+        localNonkeyProjectRollout1.External_Id__c=TESTPROJECT_LOC;
+        localNonkeyProjectRollout1.Regional_Project__c=rolloutProject.id;
+        localNonkeyProjectRollout1.IPM_RolloutJobType__c=IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC;
+        localNonkeyProjectRollout1.IPM_Rollout_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
         localNonkeyProjectRollout1.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
- 		rollouts.add(localNonkeyProjectRollout1);
+        rollouts.add(localNonkeyProjectRollout1);
 
-		IPM_Project_Rollout__c localNonkeyProjectRollout2 =IPM_TestFactory_Helper.createIPMProjectRollout(FALSE);
+        IPM_Project_Rollout__c localNonkeyProjectRollout2 =IPM_TestFactory_Helper.createIPMProjectRollout(FALSE);
         localNonkeyProjectRollout2.Name='TestProject001_REG_LOC2';
         localNonkeyProjectRollout2.IPM_Rollout_Project__c = 'TestProject001_REG_LOC2';
         localNonkeyProjectRollout2.IPM_Project__c=project.ID;
@@ -106,16 +108,16 @@ public class IPM_FinancialTriggerHandler_Test {
         localNonkeyProjectRollout2.RecordTypeId = rolloutLocalRecordTypeId;
         localNonkeyProjectRollout2.KeyMCO__c = false;
         localNonkeyProjectRollout2.External_Id__c='TestProject001_REG_LOC2';
-		localNonkeyProjectRollout2.Regional_Project__c=rolloutProject.id;
-		localNonkeyProjectRollout2.IPM_RolloutJobType__c=IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC;
-		localNonkeyProjectRollout2.IPM_Rollout_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
+        localNonkeyProjectRollout2.Regional_Project__c=rolloutProject.id;
+        localNonkeyProjectRollout2.IPM_RolloutJobType__c=IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC;
+        localNonkeyProjectRollout2.IPM_Rollout_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
         localNonkeyProjectRollout2.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
- 		rollouts.add(localNonkeyProjectRollout2);
+        rollouts.add(localNonkeyProjectRollout2);
 
-		insert rollouts;
+        insert rollouts;
 
-		IPM_Project__c localProject = IPM_TestFactory_Helper.createIPMProject(false);
-        localProject.Name='TestProject001_REG_LOC1';
+        IPM_Project__c localProject = IPM_TestFactory_Helper.createIPMProject(false);
+        localProject.Name=TESTPROJECT_LOC;
         localProject.Sustainability_Period__c='3';
         localProject.IPM_Project_Leader__c=localUser.id;
         localProject.IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
@@ -124,65 +126,65 @@ public class IPM_FinancialTriggerHandler_Test {
         localProject.IPM_Phase__c=IPM_ConstantUtils.PHASE_IDEAS;
         localProject.IPM_CompanyCardText__c='Global Company Card';
         localProject.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
-		localProject.IPM_Target_Launch_Dates__c = System.today().addYears(3);
-		localProject.IPM_Project_Name__c='TestProject001_REG_LOC1';
-		localProject.IPM_Parent_Project__c=rolloutProject.ID;
-		localProject.IPM_Project_Rollout__c = regionalProjectRollout.id;
-		localProject.IPM_ProjectJobType__c='Project Creation';
-		localProject.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
-		insert localProject; 
+        localProject.IPM_Target_Launch_Dates__c = System.today().addYears(3);
+        localProject.IPM_Project_Name__c=TESTPROJECT_LOC;
+        localProject.IPM_Parent_Project__c=rolloutProject.ID;
+        localProject.IPM_Project_Rollout__c = regionalProjectRollout.id;
+        localProject.IPM_ProjectJobType__c='Project Creation';
+        localProject.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
+        insert localProject; 
 
-		List<IPM_Financial__c> financials = new List<IPM_Financial__c>();
-		IPM_Financial__c fin1=new IPM_Financial__c();
-		String defaultRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Default'].Id;
+        List<IPM_Financial__c> financials = new List<IPM_Financial__c>();
+        IPM_Financial__c fin1=new IPM_Financial__c();
+        String defaultRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Default'].Id;
         fin1.RecordTypeId=defaultRecordTypeId;
-        fin1.Financial_External_ID__c='TestProject001_REG_LOC1';
+        fin1.Financial_External_ID__c=TESTPROJECT_LOC;
         fin1.Regional_Project__c=rolloutProject.id;
-		fin1.Local_Project__c=localProject.id;
-		fin1.Volume_Unit__c=IPM_ConstantUtils.VOLUME_UNIT_TONS;
+        fin1.Local_Project__c=localProject.id;
+        fin1.Volume_Unit__c=IPM_ConstantUtils.VOLUME_UNIT_TONS;
         fin1.Status__c=IPM_ConstantUtils.STATUS_IN_PROGRESS;
         fin1.Project_Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;//YEAR_5
         fin1.Target_Launch_Date__c = targetLaunchDate;
         financials.add(fin1);
 
         IPM_Financial__c fin3=new IPM_Financial__c();
-		String consolidatedRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Consolidated'].Id;
+        String consolidatedRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Consolidated'].Id;
         fin3.RecordTypeId=consolidatedRecordTypeId;
         fin3.Financial_External_ID__c='TestProject001_CONSOLIDATED';
         fin3.Parent_Project__c=project.id;
-		fin3.Volume_Unit__c=IPM_ConstantUtils.VOLUME_UNIT_TONS;
+        fin3.Volume_Unit__c=IPM_ConstantUtils.VOLUME_UNIT_TONS;
         fin3.Status__c='Not Started';
         fin3.Project_Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;//YEAR_5
         fin3.Target_Launch_Date__c = targetLaunchDate;
         financials.add(fin3);
-		insert financials;
+        insert financials;
         Test.stopTest();
    }
     
     static testMethod void testFinancialsConsolidation() {
-    	initializeData();
-		
-		List<IPM_Financial__c> financials = new List<IPM_Financial__c>();
-		
-		List<IPM_Project__c> projList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c, IPM_Target_Launch_Dates__c, IPM_ProjectJobType__c, IPMProject_Span__c, IPM_Project_Type__c,IPM_Parent_Project__c, (Select id, name, Financial_External_ID__c, Target_Launch_Date__c From IPM_Financials_Regional__r)   FROM IPM_Project__c WHERE name='TestProject001_REG' limit 2];
-       	System.assert(projList.size()>0);
-       	
-       	IPM_Financial__c ipmFinancials1 = [select id from IPM_Financial__c where Financial_External_ID__c='TestProject001_REG_CONSOLIDATED' limit 1];
-		ipmFinancials1.Regional_Project__c = projList[0].id;
-		System.assert(ipmFinancials1.id!=null);
-		financials.add(ipmFinancials1);
-		
-		List<IPM_Project_Rollout__c>  projRolloutList=[SELECT Name, Target_Launch_Date__c, IPM_Project_Job_Status__c, IPM_RolloutJobType__c, IPM_Rollout_Span__c, IPM_Rollout_Type__c,IPM_Project__c, RecordTypeId, (Select Name, Financial_External_ID__c, Target_Launch_Date__c From IPM_Financials__r)   FROM IPM_Project_Rollout__c WHERE name='TestProject001_REG' limit 2];
+        initializeData();
+        
+        List<IPM_Financial__c> financials = new List<IPM_Financial__c>();
+        
+        List<IPM_Project__c> projList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c, IPM_Target_Launch_Dates__c, IPM_ProjectJobType__c, IPMProject_Span__c, IPM_Project_Type__c,IPM_Parent_Project__c, (Select id, name, Financial_External_ID__c, Target_Launch_Date__c From IPM_Financials_Regional__r)   FROM IPM_Project__c WHERE name=:TESTPROJECT limit 2];
+        System.assert(projList.size()>0);
+        
+        IPM_Financial__c ipmFinancials1 = [select id from IPM_Financial__c where Financial_External_ID__c='TestProject001_REG_CONSOLIDATED' limit 1];
+        ipmFinancials1.Regional_Project__c = projList[0].id;
+        System.assert(ipmFinancials1.id!=null);
+        financials.add(ipmFinancials1);
+        
+        List<IPM_Project_Rollout__c>  projRolloutList=[SELECT Name, Target_Launch_Date__c, IPM_Project_Job_Status__c, IPM_RolloutJobType__c, IPM_Rollout_Span__c, IPM_Rollout_Type__c,IPM_Project__c, RecordTypeId, (Select Name, Financial_External_ID__c, Target_Launch_Date__c From IPM_Financials__r)   FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT limit 2];
         System.assert(projRolloutList.size()>0);
-       	
-       	IPM_Financial__c ipmFinancials2 = [select id from IPM_Financial__c where Financial_External_ID__c='TestProject001_REG_NONKEY' limit 1];
-		System.assert(ipmFinancials2.id!=null);
-		ipmFinancials2.Regional_Project__c = projList[0].id;
-		ipmFinancials2.IPM_Project_Rollout__c = projRolloutList[0].id;
-		
-		IPM_Financial__c ipmFinancials3 = [select id from IPM_Financial__c where Financial_External_ID__c='TestProject001_REG_LOC1' limit 1];
-		System.assert(ipmFinancials3.id!=null);
-		ipmFinancials3.Charter_Approved__c=true;       
+        
+        IPM_Financial__c ipmFinancials2 = [select id from IPM_Financial__c where Financial_External_ID__c='TestProject001_REG_NONKEY' limit 1];
+        System.assert(ipmFinancials2.id!=null);
+        ipmFinancials2.Regional_Project__c = projList[0].id;
+        ipmFinancials2.IPM_Project_Rollout__c = projRolloutList[0].id;
+        
+        IPM_Financial__c ipmFinancials3 = [select id from IPM_Financial__c where Financial_External_ID__c=:TESTPROJECT_LOC limit 1];
+        System.assert(ipmFinancials3.id!=null);
+        ipmFinancials3.Charter_Approved__c=true;       
         ipmFinancials3.Contract_Approved__c=true;       
         ipmFinancials3.MR_Approved__c=true;       
         ipmFinancials3.MD_Approved__c=true;       
@@ -194,20 +196,20 @@ public class IPM_FinancialTriggerHandler_Test {
         ipmFinancials3.Volume_Unit_Regional__c='Total \'000 Units';       
         ipmFinancials3.Volume_Unit_Local__c='Total \'000 Units';      
         financials.add(ipmFinancials3);
-		
-		update financials;
+        
+        update financials;
     }
     static testMethod void testOnBeforeDelete() {
-    	initializeData();
-    	IPM_Financial__c ipmFinancials3 = [select id from IPM_Financial__c where Financial_External_ID__c='TestProject001_REG_LOC1' limit 1];
-		System.assert(ipmFinancials3.id!=null);
-		delete ipmFinancials3;
-		try {
-			ipmFinancials3 = [select id from IPM_Financial__c where Financial_External_ID__c='TestProject001_REG_LOC1' limit 1];
-			System.assert(false);
-		} catch( QueryException qe ){
-			System.assert(true);
-		}
-		
+        initializeData();
+        IPM_Financial__c ipmFinancials3 = [select id from IPM_Financial__c where Financial_External_ID__c=:TESTPROJECT_LOC limit 1];
+        System.assert(ipmFinancials3.id!=null);
+        delete ipmFinancials3;
+        try {
+            ipmFinancials3 = [select id from IPM_Financial__c where Financial_External_ID__c=:TESTPROJECT_LOC limit 1];
+            System.assert(false);
+        } catch( QueryException qe ){
+            System.assert(true);
+        }
+        
     }
 }

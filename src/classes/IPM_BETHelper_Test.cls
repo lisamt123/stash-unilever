@@ -12,7 +12,7 @@ class IPM_BETHelper_Test {
     static IPM_Project__c projectList[8]  = IPM_TestFactory_Helper.createIPMProject(false);
     static IPM_Project__c projectList[9] = IPM_TestFactory_Helper.createIPMProject(false);
     static IPM_Project__c projectList[10] = IPM_TestFactory_Helper.createIPMProject(false); **/
-    public static list<IPM_Project__c> projectList;
+    public static list<IPM_Project__c> projectList=IPM_TestFactory_Helper.createIPMProjectList(false,11);
     static User runningUser = IPM_TestFactory_Helper.createUser(false);
     
     static uw_BET__c betRecord  = BET_TestUtils.getTestBet();
@@ -52,8 +52,7 @@ class IPM_BETHelper_Test {
         
          IPM_TestFactory_Helper.getProjectMasterData();
          
-         projectList = IPM_TestFactory_Helper.projectSetUp(11,stdUserForBET );
-         System.debug('projectList >>>>'+projectList );
+         //projectList = IPM_TestFactory_Helper.projectSetUp(11,stdUserForBET );
          
          /**System.runAs(platformUser)
          { 
@@ -211,9 +210,7 @@ class IPM_BETHelper_Test {
         insert new List < uw_BET__c > {
             betRecord1, betRecord2
         };
-         System.debug('projectList >>>>'+projectList );
         system.runAs(testRunningUser){
-         System.debug('projectList >>>>'+projectList );
             projectList[0].BET__c = betRecord1.Id;
             projectList[0].IPM_Project_Name__c = 'Original-Global-RCLT-Market Read';
             projectList[0].IPM_Project_Type__c = Rollout;
