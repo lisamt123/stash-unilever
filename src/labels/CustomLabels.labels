@@ -1850,6 +1850,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Results</value>
     </labels>
     <labels>
+        <fullName>CEC_ConsumerResultsNoMatchTitle</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ConsumerResultsNoMatchTitle</shortDescription>
+        <value>No Match Found</value>
+    </labels>
+    <labels>
         <fullName>CEC_ConsumerResultsTitleDisplay</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
@@ -2179,6 +2187,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>CEC_RelatedCases</shortDescription>
         <value>Related Cases</value>
+    </labels>
+    <labels>
+        <fullName>CEC_SearchValidationError</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SearchValidationError</shortDescription>
+        <value>Validation Error : Please fill at least one field in the search form</value>
     </labels>
     <labels>
         <fullName>CEC_Search_Button</fullName>
@@ -3375,6 +3391,20 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <protected>false</protected>
         <shortDescription>WinatPOS Upload Error No Chatter File</shortDescription>
         <value>No File has been uploaded. Please ensure that you upload your file – click on &apos;File&apos; and then select either &apos;Select a file from Salesforce&apos; or &apos;Upload a file from your Computer&apos;. After you have selected your file click on &apos;Share&apos;. Once the upload is finished click on &apos;Store&apos;.</value>
+    </labels>
+    <labels>
+        <fullName>af_lp_AgencyFeeTarget</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>af_lp_AgencyFeeTarget</shortDescription>
+        <value>This is the sum of the latest base fee matrix for the category</value>
+    </labels>
+    <labels>
+        <fullName>af_lp_UnileverBaseFee</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>af_lp_UnileverBaseFee</shortDescription>
+        <value>This is the sum of annual base fee targets for the category</value>
     </labels>
     <labels>
         <fullName>button_cancel</fullName>
