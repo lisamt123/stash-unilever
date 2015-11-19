@@ -491,7 +491,12 @@ public without sharing class WINatPOSUtilRemoteActions {
                 // Try to set the primary image for the asset
                 //if ((f.Type__c != null) && (f.Type__c.equals(Label.WP_File_Type_Image))) {
                 if (f.Is_Primary_Image__c) {
-                    primaryImageURL = f.Feed_Thumbnail_URL__c;
+                	if( f.Feed_Thumbnail_URL__c != null && !WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+                    	//convertedThumbnail = convertedThumbnail.replace('/WinPOS', '');
+                    	primaryImageURL = f.Feed_Thumbnail_URL__c.replace('/WinPOS', '');
+                    }else{
+                    	primaryImageURL = f.Feed_Thumbnail_URL__c;
+                	}
                     primaryImageFeedId = f.Feed_ID__c;
                     primaryFileId=f.id;
                     downloadURL=f.Feed_URL__c;
@@ -1186,8 +1191,12 @@ public without sharing class WINatPOSUtilRemoteActions {
                         WINatPOSUtil.cacheFeedURL(f);
                         filesWithoutThumbnailUrl.add(f);
                     }
-                    String convertedThumbnail=f.Feed_Thumbnail_URL__c;
+                    String convertedThumbnail = f.Feed_Thumbnail_URL__c;
+                    
                     convertedThumbnail=convertedThumbnail != null ? convertedThumbnail.replace('THUMB720BY480','THUMB120BY90') : null;
+                    if( convertedThumbnail != null && !WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+                    	convertedThumbnail = convertedThumbnail.replace('/WinPOS', '');
+                    }
                     //fileMapsForAsset.put(f.Asset__c,new List<String>{f.Feed_Thumbnail_URL__c});
                     fileMapsForAsset.put(f.Asset__c,new List<String>{convertedThumbnail});     
                 }    
@@ -1204,6 +1213,9 @@ public without sharing class WINatPOSUtilRemoteActions {
                         }
                         String convertedThumbnail=f.Feed_Thumbnail_URL__c;
                     	convertedThumbnail=convertedThumbnail != null ? convertedThumbnail.replace('THUMB720BY480','THUMB120BY90') : null;
+                    	if( convertedThumbnail != null && !WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+	                    	convertedThumbnail = convertedThumbnail.replace('/WinPOS', '');
+	                    }
                         if(fileMapsForAssetGroup.containsKey(a.Asset_Group__c)){
                             List<String> tmpList=fileMapsForAssetGroup.get(a.Asset_Group__c);
                             //tmpList.add(f.Feed_Thumbnail_URL__c);
