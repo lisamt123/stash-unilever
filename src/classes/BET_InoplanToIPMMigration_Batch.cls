@@ -12,7 +12,6 @@ History
 VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   piotr.czechumski@gmail.com      04/09/2015      INITIAL DEVELOPMENT
 *******************************************************************************************************************************/
-/*Batch class with sharing is not needed*/
 global class BET_InoplanToIPMMigration_Batch implements Database.Batchable<sObject> {
 	
 	private final String catName;
@@ -75,7 +74,7 @@ global class BET_InoplanToIPMMigration_Batch implements Database.Batchable<sObje
 				'BET_InoplanToIPMMigration_Batch',
 				'execute',
 				'Error: IPM project not found for BET = ' + bet,
-				new BET_CustomBETException('Error: IPM project not found for BET = ' + bet),null,null,null,
+				new BET_CustomBETException('Error: IPM project not found for BET = ' + bet),'Error',null,null,
 				(Integer)DateTime.now().getTime(),
 				'BET'
 			);

@@ -76,7 +76,7 @@ global without sharing class BET_AssetService {
 		}catch(Exception ex){
 			ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_AssetService','grantAccessToBetsAssets',
                 'Exception while granting access for ' + betId + ' for BET ' +  betId + ' related assets',
-                new BET_CustomBETException(ex.getMessage()),null,null,null,(Integer)DateTime.now().getTime(),'BET');
+                new BET_CustomBETException(ex.getMessage()),'Error',null,null,(Integer)DateTime.now().getTime(),'BET');
 		}
 	}
 
@@ -109,7 +109,7 @@ global without sharing class BET_AssetService {
 	        	Integer endIdx = asset.URL_of_Asset__c.indexOf('?');    
 	        	Id identifier = (Id)asset.URL_of_Asset__c.substring(startIdx+10, endIdx);
 				asset.File_Id__c = versionFileMap.get(identifier);
-				if(asset.File_Id__c == null && !Test.isRunningTest()){
+				if(asset.File_Id__c == null){
 					ConnectApi.FeedItem fi = ConnectApi.ChatterFeeds.getFeedItem(null, asset.Related_Feed_Item__c);      
 					ConnectApi.ContentAttachment ca = (ConnectApi.ContentAttachment) fi.attachment;
 					if(ca != null){
