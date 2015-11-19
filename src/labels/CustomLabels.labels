@@ -2774,6 +2774,27 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>I Accept</value>
     </labels>
     <labels>
+        <fullName>IPM_BETIdNullMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BETIdNullMsg</shortDescription>
+        <value>BET Id cannot be null.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Bosscard_Shared_Chatter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Bosscard Shared Chatter</shortDescription>
+        <value>BOSSCARD Shared Via Chatter</value>
+    </labels>
+    <labels>
+        <fullName>IPM_image</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM image</shortDescription>
+        <value>&quot;https://unilever.my.salesforce.com</value>
+    </labels>
+    <labels>
         <fullName>LAUNCH_PINNOVATE_CMD</fullName>
         <language>en_US</language>
         <protected>false</protected>
