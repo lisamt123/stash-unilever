@@ -143,9 +143,9 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
         }
         public pageReference CloneCampaign(){
 
-           Oblix_SOW_Projects__c project = SelectedProject.clone();
+           Oblix_SOW_Projects__c project = new Oblix_SOW_Projects__c(); //SelectedProject.clone();
            project.name = SelectedProject.name +' Clone';
-           
+           project.Financial_Year__c = selectedProject.Financial_Year__c;
            try{
            	   insert project;
            	   insertRelatedCloneRecords(project, SelectedProject);
@@ -181,6 +181,7 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
                         }
                         insert lstAssetClone;
                     }                        
+          /*
            //get splits of the parent         
           List<Oblix_Marketing_SOW_Project_Splits__c> lstSplitFromParent = [Select Id, Name, Project_Splits__c, OblixCountry__c, 
                                                 Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c =: SelectedProject.Id
@@ -193,6 +194,7 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
                         }
                         insert lstSplitClone;
                     }
+         */           
         }
         /* 
         Function related to the asset record 

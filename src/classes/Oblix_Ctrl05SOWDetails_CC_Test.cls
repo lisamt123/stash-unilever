@@ -4,7 +4,7 @@ private class Oblix_Ctrl05SOWDetails_CC_Test {
 
   private static final String TWO_ELEMENTS_MESSSAGE = 'There should be two elements';
   private static final String NOT_NULL_MESSSAGE = 'Page reference should not be null';
-
+  private static final String FINAL_TEST = 'test';
   @isTest static void selectOptionsTest() {
     User u = Oblix_TestUtils.createTestUser();
 
@@ -66,7 +66,7 @@ private class Oblix_Ctrl05SOWDetails_CC_Test {
       controller.selectedSewId = mSow.id;
       controller.RerenderSelectedSow();
 
-      Attachment att = new Attachment(parentId = mSow.id, name = 'attachmentUnitTest', body = Blob.valueOf('test'));
+      Attachment att = new Attachment(parentId = mSow.id, name = 'attachmentUnitTest', body = Blob.valueOf(FINAL_TEST));
       insert att;
 
       controller.ViewAttachements();
@@ -83,14 +83,14 @@ private class Oblix_Ctrl05SOWDetails_CC_Test {
   }
   @isTest static void removeAttachments_Test() {
     System.runAs(Oblix_TestUtils.createTestUser()) {
-      Attachment attach = Oblix_TestUtils.createAttachment('Test', 'Test',
-                          Oblix_TestUtils.createTestMarketingSow('test', null,
-                                  Oblix_TestUtils.createBrand('Test', 'test').Id).Id);
-      System.assertEquals(1, [SELECT Id FROM Attachment].size());
+      Attachment attach = Oblix_TestUtils.createAttachment(FINAL_TEST, FINAL_TEST,
+                          Oblix_TestUtils.createTestMarketingSow(FINAL_TEST, null,
+                                  Oblix_TestUtils.createBrand(FINAL_TEST, FINAL_TEST).Id).Id);
+      System.assertEquals(1, [SELECT Id FROM Attachment Limit 100].size());
       Test.startTest();
       Oblix_Ctrl05SOWDetails_CC.removeAttachments(new List<String> {attach.Id});
       Test.stopTest();
-      System.assertEquals(0, [SELECT Id FROM Attachment].size());
+      System.assertEquals(0, [SELECT Id FROM Attachment Limit 100].size());
     }
   }
   @isTest static void uploadeAttachmentTest(){
@@ -104,7 +104,7 @@ private class Oblix_Ctrl05SOWDetails_CC_Test {
 
       Oblix_Ctrl05SOWDetails_CC controller = new Oblix_Ctrl05SOWDetails_CC();
 
-      controller.attachment = new Attachment(name = 'Test',body = Blob.valueOf('Test'));
+      controller.attachment = new Attachment(name = FINAL_TEST,body = Blob.valueOf(FINAL_TEST));
 
       controller.selectedSewId = mSow.id;
 

@@ -98,7 +98,7 @@
 				});
 			  });           
     }
-	var brandLG ;
+	
 	function PopupValueDrivers(){           
         $(function() {
                 $( "#dialogDrivers" ).dialog({
@@ -115,19 +115,12 @@
                            //Scale2=  $(".projScale2").val();                                  
                            //CampaignIdea =  $(".projCampaignIdea").val();
 						    var innovation = $('input[name="innovation"]:checked').val();	
-						    console.dir(innovation);
-							if(innovation == "Innovation"){
-								blockme(); 							
-								console.dir($(".projBrandInnov").val());
-                                brandLG = $(".projBrandInnov").val();								
-								setInfoDrivers(innovation,$(".projBrandInnov").val(),$(".projCampaignIdea").val(),$(".projScale1").val(),$(".projScale2").val());      
-							}else{
-								blockme();
-							    console.dir($(".projBrandBrand").val());	
-								brandLG = $(".projBrandBrand").val();
-								setInfoDrivers(innovation,$(".projBrandBrand").val(),$(".projCampaignIdea").val(),$(".projScale1").val(),$(".projScale2").val());      
-							}
-													                          
+						    console.dir(innovation);							
+							console.dir($(".projBrandInnov").val());
+							console.dir($(".projBrandBrand").val());
+							blockme(); 									
+							setInfoDrivers(innovation,$(".projBrandInnov").val(),$(".projBrandBrand").val(),$(".projCampaignIdea").val(),$(".projScale1").val(),$(".projScale2").val());     
+											                          
                             $(this).dialog("close");  
                    },                                      
                     Close: function() {
@@ -236,14 +229,23 @@
          });           
     }
 	function PopupAgencyHub(){
+
+		var countryOptions = '<select>';
+		var countries = '{!countryOptions}';
+		for(var i=0;i<countries.length;i++){
+			countryOptions = countryOptions + '<option value="'+countries[i]+'">';
+		}
+		countryOptions = countryOptions + '</select>';
         $('.addAnotherBtn').click(function(event){            
             event.preventDefault();   
-            counter = counter+1;                                        
-            var newRow = $('<tr><td></td><td><div class="idSplit_'+counter+'" style="display:none">{!split.id}</div></td><td></td><td><apex:inputField value="{!agencySplitInstanceJS.Percentage__c}" styleClass=" percentage pourcentageSplit_'+counter+'" style="width:30px"/> %</td><td></td></tr>');
+            counter = counter+1;      			
+            //var countryOption =  $('<apex:selectList value="{!split.OblixCountry__c}" multiselect="false" size="1" styleClass="countrySplit_'+counter+'"><apex:selectOptions value=""/></apex:selectList>').html();
+            console.dir(countryOptions);
+            var newRow = $('<tr><td></td><td><div class="idSplit_'+counter+'" style="display:none">{!split.id}</div></td><td>'+countryOptions+'</td><td><input class="percentage pourcentageSplit_'+counter+'" style="width:30px"/> %</td><td></td></tr>');
             $('table.agencyHubList').append(newRow);           
            
         });
-
+        
         $(function() {
 			$( "#agencyHub" ).dialog({
 			  width: 800,

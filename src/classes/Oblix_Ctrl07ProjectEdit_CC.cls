@@ -73,9 +73,12 @@
         public map<string,string> mapAbreviation {get;set;}
         public List<SelectOption> innovationOptions {get;set;}
         public List<SelectOption> brandOptions {get;set;}
-        
+
         //Can Adjust Boolean
         public Boolean canAdjust {get;set;}
+        
+        public String selectedBrandInnov {get;set;}
+        public String selectedBrandBrand {get;set;}
         
         public Oblix_Ctrl07ProjectEdit_CC (){
             Id idUser = UserInfo.getUserId();
@@ -85,6 +88,9 @@
             mapRegionCntries = new Map<String,String>();
             setIdCss = '[]';   
             listItems = '';
+            //Brand_Led_Growth = '';
+            selectedBrandInnov = '';
+            selectedBrandBrand ='';
             mapAbreviation = Oblix_Utils.getAbreViationForCardAssets();
             counterAsset = 0; 
             estimateCost = 0;      
@@ -184,15 +190,23 @@
                 project = [Select Id,Name, Innovation_Projects__c ,ProjectTotalAssetscore__c,Jobs_to_be_Done__c ,Campaign_Fees_Total__c,Completed_Stage__c,Financial_Year__r.currency__c,Projected_Stage__c,Financial_Year__r.Financial_Year__c,BET_first_release__c,Value_to_be_paid_in_Current_FY__c,Campaign_Status__c,Preview_Date__c,Start_of_TV_production__c,Final_release__c,Live_Date__c,Live_date_Asset_delivery__c, Date_for_Assets_to_be_in_BET__c,Timescale_Notes__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c, Project_Finish_Date__c,Project_Stage__c,Platform__c,CreatedById, Project_Start_Date__c,CreatedDate,OblixRegion__c,Project_Priority__c,Project_Completion_Date__c,Description__c,OblixCountries__c,First_Air_Date__c,Production_Completion_Date__c, Financial_Year__c from Oblix_SOW_Projects__c where id=:projectId];               
                 estimateCost = project.Campaign_Fees_Total__c;
                 //lstAssets = [select Id,Agency_Projects__r.id,Channels__c,RecordType.Name,Asset_Picklist__c,Name,RecordTypeId,Sub_Category__c,FULL_Description__c, Asset_Title__c  from Oblix_Project_Assets__c limit 1000];               
-                getAssetCampaign();               
+                if(project.Brand_Led_Growth__c != null && project.Brand_Led_Growth__c.contains('€')){
+                    system.debug('###project.Brand_Led_Growth__c l194 : '+project.Brand_Led_Growth__c);
+                    selectedBrandBrand = project.Brand_Led_Growth__c;
+                }else{
+                    system.debug('###project.Brand_Led_Growth__c l196 : '+project.Brand_Led_Growth__c);
+                    selectedBrandInnov = project.Brand_Led_Growth__c;
+                }   
                 
+                getAssetCampaign();                               
                 getRecordTypesInfo();
                 if(project.OblixCountries__c != null){
                     lstSelectedRegion = project.OblixCountries__c.split(',');
                 }
                 if(project.OblixRegion__c != null){
                     lstSelectedRegion.addAll(project.OblixRegion__c.split(',')); 
-                }               
+                } 
+                            
                 system.debug('### mapIdCSSCountryRegion :'+mapIdCSSCountryRegion);
                 lstIdCSSSelected = '';
                 for(string slctedRegionOrCountry :lstSelectedRegion){
@@ -359,7 +373,14 @@
        
         public void setInfoDrivers(){
              if(projectId != null){
-                //project.Brand_Led_Growth__c = project.Brand_Led_Growth__c;
+                system.debug('###selectedBrandBrand : '+selectedBrandBrand);
+                system.debug('###selectedBrandInnov : '+selectedBrandInnov);
+                
+                if(selectedBrandInnov != '') {
+                    project.Brand_Led_Growth__c = selectedBrandInnov;
+                }else{
+                    project.Brand_Led_Growth__c = selectedBrandBrand;
+                }    
                 update project;
             }
         }
@@ -532,7 +553,7 @@
             if(!calculator.isEmpty()){
                 for(Oblix_Calculator__c c:calculator){   
                    // if(c.Name == 'France'){countryOptions.add(new SelectOption(c.name,c.Name));}        
-                   if(mapIdCountries.get(c.name)!= null) countryOptions.add(new SelectOption(mapIdCountries.get(c.name),c.Name));
+                   if(mapIdCountries.get(c.name.toUpperCase())!= null) countryOptions.add(new SelectOption(mapIdCountries.get(c.name.toUpperCase()),c.Name));
                 }
             }
             
@@ -571,6 +592,7 @@
             
             assetInstance = mapAssetsPerSubCat.get(subCat);
             RecordType  recordT = [SELECT Name,id FROM RecordType WHERE sObjectType = 'Oblix_Project_Assets__c' and name =: recordType];
+            system.debug('### recordT  '+recordT );
             list<Asset_Scoring__c> lstscore = [select id from Asset_Scoring__c where Sub_Category__c =:subCat and Type__c =:recordT.Name and Name like :complexity];
             //assetInstance.Sub_Category__c = subCat;
             
@@ -591,8 +613,7 @@
               assetInstance.Id = NULL;
            }
            insert assetInstance;
-         
-           
+
            Oblix_Project_Assets__c getAssetName = [select Name,Quantity__c,Sub_Category__c,Asset_Type__c,Asset_Title__c  from Oblix_Project_Assets__c where id =:assetInstance.id];
            lstAssetsForCard.add(getAssetName);
            system.debug('### project.Campaign_Fees_Total__c : '+project.Campaign_Fees_Total__c);

@@ -732,7 +732,7 @@
         <description>Agency Hubs or partners</description>
         <externalId>false</externalId>
         <inlineHelpText>Agency involvement required to manage the scale of the project effectively. (eg/ number of lead markets to be consulted or Lead agency coordinating among many other suppliers/ partners.)</inlineHelpText>
-        <label>Campaign Scale 2: Agecny Hubs</label>
+        <label>Campaign Scale 2: Agency Hubs</label>
         <picklist>
             <picklistValues>
                 <fullName>1 location</fullName>
@@ -1005,7 +1005,7 @@
         <externalId>false</externalId>
         <formula>Percentage_of_Fee_for_this_FY__c * Total_Fees_for_Project__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Fee to be paid in Current FY</label>
+        <label>Fees To Be Paid In Current FY</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>

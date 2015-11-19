@@ -40,8 +40,8 @@
             <translation><!-- Banner Adaptations --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Behind the scenes footage</masterLabel>
-            <translation><!-- Behind the scenes footage --></translation>
+            <masterLabel>Behind the Scenes Footage</masterLabel>
+            <translation><!-- Behind the Scenes Footage --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Billboards</masterLabel>
@@ -98,10 +98,6 @@
         <picklistValues>
             <masterLabel>EDM Adaptation</masterLabel>
             <translation><!-- EDM Adaptation --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Enewletters</masterLabel>
-            <translation><!-- Enewletters --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Experiential</masterLabel>
@@ -282,6 +278,10 @@
         <picklistValues>
             <masterLabel>eNewsletter Adaptation</masterLabel>
             <translation><!-- eNewsletter Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>eNewsletters</masterLabel>
+            <translation><!-- eNewsletters --></translation>
         </picklistValues>
     </fields>
     <fields>

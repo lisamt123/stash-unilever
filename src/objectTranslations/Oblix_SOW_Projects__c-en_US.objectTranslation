@@ -363,7 +363,7 @@
     </fields>
     <fields>
         <help><!-- Agency involvement required to manage the scale of the project effectively. (eg/ number of lead markets to be consulted or Lead agency coordinating among many other suppliers/ partners.) --></help>
-        <label><!-- Campaign Scale 2: Agecny Hubs --></label>
+        <label><!-- Campaign Scale 2: Agency Hubs --></label>
         <name>Project_Scale_2__c</name>
         <picklistValues>
             <masterLabel>1 location</masterLabel>
@@ -529,7 +529,7 @@
         <name>Total_Value_Driver__c</name>
     </fields>
     <fields>
-        <label><!-- Fee to be paid in Current FY --></label>
+        <label><!-- Fees To Be Paid In Current FY --></label>
         <name>Value_to_be_paid_in_Current_FY__c</name>
     </fields>
     <layouts>

@@ -13,7 +13,7 @@ public with sharing class Oblix_SplitHandler_Test {
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
             
             Oblix_Marketing_SOW_Project_Splits__c splits = Oblix_TestUtils.createSowProjectSplits(project.Id);
-            
+            System.assertEquals(splits.Project_Splits__c, project.Id, 'split has the same project');
             Oblix_SplitHandler handler = new Oblix_SplitHandler();
             handler.bulkBefore();
             handler.beforeInsert(splits);

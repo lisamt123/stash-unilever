@@ -29,7 +29,7 @@ public with sharing class Oblix_TR06SowMarketBrandPopulate {
 			}
 		}
 		List<MDO_CategoryBrands__c> lstBrandCategories = [Select Id, Name, brand_id__c, product_Category_Id__c, 
-											product_Category_Id__r.parent_L3__c, product_Category_Id__r.parent_L5__c   
+											product_Category_Id__r.parent_L2__c, product_Category_Id__r.Id
 												from MDO_CategoryBrands__c where brand_id__c in : setBrandsIds];
 		System.debug('###lstBrandCategories : '+lstBrandCategories);										
 		if(lstBrandCategories.size()>0){
@@ -46,8 +46,8 @@ public with sharing class Oblix_TR06SowMarketBrandPopulate {
 				System.debug('###market : '+market);			
 				if(MapBrandIdToCategory.get(market.OblixBrand__c)!= null){
 					System.debug('###MapBrandIdToCategory.get(market.OblixBrand__c) : '+MapBrandIdToCategory.get(market.OblixBrand__c));		
-					market.BigOblixProductCategory__c = MapBrandIdToCategory.get(market.OblixBrand__c).parent_L3__c;
-					market.SmallProductCategory__c = MapBrandIdToCategory.get(market.OblixBrand__c).parent_L5__c;
+					market.BigOblixProductCategory__c = MapBrandIdToCategory.get(market.OblixBrand__c).parent_L2__c;
+					market.SmallProductCategory__c = MapBrandIdToCategory.get(market.OblixBrand__c).Id;
 				}else{
 					market.BigOblixProductCategory__c = null;
 					market.SmallProductCategory__c  = null;

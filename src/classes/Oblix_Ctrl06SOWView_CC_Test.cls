@@ -127,14 +127,14 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 
 	@isTest static void removeAttachments_Test() {
 		System.runAs(Oblix_TestUtils.createTestUser()) {
-			Attachment attach = Oblix_TestUtils.createAttachment('Test', 'Test',
-			                    Oblix_TestUtils.createTestMarketingSow('test', null,
-			                            Oblix_TestUtils.createBrand('Test', 'test').Id).Id);
-			System.assertEquals(1, [SELECT Id FROM Attachment].size());
+			Attachment attach = Oblix_TestUtils.createAttachment(TEST_NAME, TEST_NAME,
+			                    Oblix_TestUtils.createTestMarketingSow(TEST_NAME, null,
+			                            Oblix_TestUtils.createBrand(TEST_NAME, TEST_NAME).Id).Id);
+			System.assertEquals(1, [SELECT Id FROM Attachment Limit 100].size());
 			Test.startTest();
 			Oblix_Ctrl06SOWView_CC.removeAttachments(new List<String> {attach.Id});
 			Test.stopTest();
-			System.assertEquals(0, [SELECT Id FROM Attachment].size());
+			System.assertEquals(0, [SELECT Id FROM Attachment Limit 100].size());
 		}
 	}
 

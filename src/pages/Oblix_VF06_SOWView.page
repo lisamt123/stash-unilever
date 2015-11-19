@@ -19,6 +19,7 @@
         var redirectToAttachment = function (attachmentId){
         'use strict';
         window.open('/servlet/servlet.FileDownload?file=' + attachmentId);
+        
     }
 
     var removeAttachments = function (attachmentsId){
@@ -54,7 +55,13 @@
     <script type="text/javascript">
     
     $(document).ready(function() {
-           $.unblockUI();
+            $(".cmplex").find("select").hide();
+            $(".cmplex").find("input").attr("placeholder", "{!$ObjectType.Marketing_SOW__c.fields.Agency_Contact__c.label}");
+            $(".complex").find("select").hide();
+            $(".complex").find("input").attr("placeholder", "{!$ObjectType.Marketing_SOW__c.fields.Unilever_Lead__c.label}");
+      
+      
+            $.unblockUI();
     });
     $j = jQuery.noConflict();
     
@@ -937,7 +944,7 @@
                     <tr><td colspan="2">&nbsp;</td></tr>                      
                     <tr>
                      <td colspan="2"><h2 class="darkGreen">{!$Label.Oblix_lbl_UIUX_Approved} &nbsp;</h2> <strong>
-                     <apex:outputLabel id="mapApprovedId" value="€ {!mapApproved[selSow.id]}"/></strong></td>
+                     € <apex:outputLabel id="mapApprovedId" value="{!mapApproved[selSow.id]}"/></strong></td>
                    </tr>
                    <tr>
                      <td colspan="2"><h2 class="mainGreen">{!$Label.Oblix_lbl_UIUX_Current} &nbsp; &nbsp; &nbsp; </h2><strong>
@@ -983,7 +990,8 @@
           <section class="column5">
              <div class="cnter">
                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back_To_Dashboard}"  title="{!$Label.Oblix_lbl_UIUX_Go_back_to_the_edit_mode}"  action="{!backAction}" styleClass="Oblix_large_btn Oblix_view_btn"/><br/><br/>
-                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}"  title="{!$Label.Oblix_lbl_UIUX_View_Campaign_details}"  action="{!EditAction}" onclick="blockme()" oncomplete="$.unblockUI()" styleClass="Oblix_large_btn" reRender="showForm"/><br/><br/>
+                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}"  title="{!$Label.Oblix_lbl_UIUX_View_Campaign_details}"  action="{!EditAction}" onclick="blockme()" oncomplete="$('[id$=mlktp]').hide();$.unblockUI()" styleClass="Oblix_large_btn" reRender="showForm"/>
+                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Clone}"  title="{!$Label.Oblix_lbl_UIUX_Clone_SOW_Title}"  action="{!CloneAction}" onclick="blockme()" oncomplete="$('[id$=mlktp]').hide();$.unblockUI()" styleClass="Oblix_large_btn" reRender="showForm,projectForm"/><br/><br/>
                      <apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_Export}" onclick="" title="{!$Label.Oblix_lbl_UIUX_View_PDF_format}"  styleClass="Oblix_btn" disabled="true"/><apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Reporting}" onclick="" disabled="true" title="{!$Label.Oblix_lbl_UIUX_View_PDF_format}"  styleClass="Oblix_btn"/><br/><br/>
                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Approval}" title="{!$Label.Oblix_lbl_UIUX_Approval}"  onclick="" styleClass="Oblix_large_btn" disabled="true"/>
              </div>  
@@ -1001,28 +1009,28 @@
               
                <table width="100%" class="Oblix_tableDetails">
                  <tr>
-                      <td width="40%"><strong>{!$ObjectType.Marketing_SOW__c.fields.Name.label}  * </strong></td>
-                      <td><apex:inputField value="{!selSow.Name}" /></td>
+                  <!--    <td width="40%"><strong>{!$ObjectType.Marketing_SOW__c.fields.Name.label}  * </strong></td>  -->
+                      <td><apex:inputField value="{!selSow.Name}" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.Name.label}" /></td>
                  </tr>
                  <tr>
-                     <td><strong>{!$ObjectType.Marketing_SOW__c.fields.BB_or_BD__c.label}  * </strong></td>
-                     <td><apex:inputField value="{!selSow.BB_or_BD__c}"  styleClass="Oblix_picklist" /></td>
+                 <!--    <td><strong>{!$ObjectType.Marketing_SOW__c.fields.BB_or_BD__c.label}  * </strong></td> -->
+                     <td><apex:inputField value="{!selSow.BB_or_BD__c}"  styleClass="Oblix_picklist"   html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.BB_or_BD__c.label} "  /></td>
                  </tr>
                  <tr>
-                     <td><strong>{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label} *</strong></td>
-                     <td><apex:inputField value="{!selSow.Oblix_AgencyEstimate__c}"  required="true"  /></td>
+                    <!-- <td><strong>{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label} *</strong></td>  -->
+                     <td><apex:inputField value="{!selSow.Oblix_AgencyEstimate__c}"  required="true" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label} *"  /></td>
                  </tr>   
                  <tr>
-                     <td><strong>{!$ObjectType.Marketing_SOW__c.fields.OblixBrand__c.label}  *</strong></td>
-                     <td><apex:inputField value="{!selSow.OblixBrand__c}"  required="true"  /></td>
+                  <!--   <td><strong>{!$ObjectType.Marketing_SOW__c.fields.OblixBrand__c.label}  *</strong></td>  -->
+                     <td><apex:inputField value="{!selSow.OblixBrand__c}"  required="true"   html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.OblixBrand__c.label} *"  /></td>
                  </tr>
                  <tr>
-                     <td><strong>{!$ObjectType.Marketing_SOW__c.fields.BigOblixProductCategory__c.label}</strong></td>
-                     <td><apex:inputField value="{!selSow.BigOblixProductCategory__c}" /></td>
+                  <!--   <td><strong>{!$ObjectType.Marketing_SOW__c.fields.BigOblixProductCategory__c.label}</strong></td>  -->
+                     <td><apex:inputField value="{!selSow.BigOblixProductCategory__c}"  html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.BigOblixProductCategory__c.label}"  /></td>
                  </tr>
                  <tr>
-                     <td><strong>{!$ObjectType.Marketing_SOW__c.fields.SmallProductCategory__c.label}</strong></td>
-                     <td><apex:inputField value="{!selSow.SmallProductCategory__c}" /></td>
+                   <!--  <td><strong>{!$ObjectType.Marketing_SOW__c.fields.SmallProductCategory__c.label}</strong></td> -->
+                     <td><apex:inputField value="{!selSow.SmallProductCategory__c}"  html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.SmallProductCategory__c.label}"  /></td>
                  </tr>
                </table>
              
@@ -1031,18 +1039,24 @@
            <section class="column2">
                <table width="100%"> 
                    <tr>    
-                      <td width="40%" colspan="2"><strong>{!$ObjectType.Marketing_SOW__c.fields.Agency_Contact__c.label}</strong><apex:inputField value="{!selSow.Agency_Contact__c}"/></td>
+                      <td width="40%" colspan="2">
+                         <!--  <strong>{!$ObjectType.Marketing_SOW__c.fields.Agency_Contact__c.label}</strong>    -->
+                          <apex:inputField value="{!selSow.Agency_Contact__c}" styleClass="cmplex"  />
+                      </td>
                    </tr>
                    <tr>
-                      <td colspan="2"><strong>{!$ObjectType.Marketing_SOW__c.fields.Unilever_Lead__c.label}</strong><apex:inputField value="{!selSow.Unilever_Lead__c}"/></td>
+                      <td colspan="2">
+                     <!-- <strong>{!$ObjectType.Marketing_SOW__c.fields.Unilever_Lead__c.label}</strong> -->
+                      <apex:inputField value="{!selSow.Unilever_Lead__c}"  styleClass="complex" />
+                      </td>
                    </tr>
                    <tr>
-                     <td><strong>{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label} * </strong></td>
-                     <td><apex:inputField value="{!selSow.Financial_Year__c}"   styleClass="Oblix_picklist"/></td>
+                  <!--   <td><strong>{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label} * </strong></td>  -->
+                     <td><apex:inputField value="{!selSow.Financial_Year__c}" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label}"   styleClass="Oblix_picklist"/></td>
                    </tr>                 
                    <tr>
                      <td colspan="2"><strong class="darkGreen">{!$Label.Oblix_lbl_UIUX_Approved} &nbsp;</strong> <strong>
-                     <apex:outputPanel rendered="{!selSow.id != null}">€ {!mapApproved[selSow.id]} </apex:outputPanel>  </strong></td>
+                     € <apex:outputPanel rendered="{!selSow.id != null}">{!mapApproved[selSow.id]} </apex:outputPanel>  </strong></td>
                    </tr>
                     <tr>
                      <td colspan="2"><strong class="mainGreen">{!$Label.Oblix_lbl_UIUX_Current} &nbsp; &nbsp; &nbsp; </strong><strong>

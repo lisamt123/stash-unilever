@@ -7,8 +7,8 @@
     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
     <script src="{!URLFOR($Resource.JQueryBlockUI)}" ></script>
-   
     <script src="{!URLFOR($Resource.Oblix_editProjectJS)}" ></script>
+   
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.OblixUIUXVF08ProjectCss)}" />
     
      <script>
@@ -17,10 +17,12 @@
        // Variable to select the picklist fields related to the campaign using css class attribute
 
        var setIdCss = {!setIdCss};
-        console.dir('{!lstIdCSSSelected}');
+       // console.dir('{!lstIdCSSSelected}');
        // Variable for the add other button , disabled now 
        var counter = {!counterAsset};
+       // var countries = {!countryOptions};
        $(document).ready(function(){
+           
            $('#dialogTimeLine span.dateFormat').remove();
            $('#dialogMoreDetails span.dateFormat').remove();
             // Select default checkbox values 
@@ -34,6 +36,7 @@
                      
        });
     </script> 
+    
     <style>
         .tabs-min .ui-tabs-nav .ui-state-active { 
         background: transparent url("{!URLFOR($Resource.Oblix_uiTabsArrow)}") no-repeat bottom center; 
@@ -211,8 +214,9 @@
    
    <apex:actionFunction name="setInfoDrivers" action="{!setInfoDrivers}" oncomplete="$.unblockUI()" RERender="nothing">  
         <apex:param name="innovation" assignTo="{!project.Innovation_Projects__c}" value="" />  
-        <apex:param name="brandLG" assignTo="{!project.Brand_Led_Growth__c}" value="" /> 
-        <apex:param name="campaignIdea" assignTo="{!project.Campaign_Idea__c}" value="" />  
+        <apex:param name="innov" assignTo="{!selectedBrandInnov}" value="{!selectedBrandInnov}"/> 
+        <apex:param name="brand" assignTo="{!selectedBrandBrand}" value="{!selectedBrandBrand}"/> 
+        <apex:param name="idea" assignTo="{!project.Campaign_Idea__c}" value="" /> 
         <apex:param name="scale1" assignTo="{!project.Project_Scale_1__c}" value="" /> 
         <apex:param name="scale2" assignTo="{!project.Project_Scale_2__c}" value="" />        
    </apex:actionFunction>  
@@ -268,16 +272,17 @@
                <tr>
                   <td colspan="2" width="50%">    
                            <input class="Innovation" type="radio" name="innovation" value="Innovation"/>                 
-                            <apex:selectList value="{!project.Brand_Led_Growth__c}" multiselect="false" size="1" styleClass="input_init projBrandInnov">
+                            <apex:selectList value="{!selectedBrandInnov}" multiselect="false" size="1" styleClass="input_init projBrandInnov">
                                 <apex:selectOptions value="{!innovationOptions}"/>
                             </apex:selectList><br/>
                       <div style="width:60%;PADDING-TOP:8px;PADDING-left:19px">{!$Label.Oblix_lbl_UIUX_Identifying_priorities}</div>                      
                   </td>
                    <td colspan="2" width="50%">
                         <input class="Brand_Led_Growth" type="radio"  name="innovation" value="Brand Led Growth"/>
-                        <apex:selectList value="{!project.Brand_Led_Growth__c}" multiselect="false" size="1" styleClass="input_init projBrandBrand">
+                        <apex:selectList value="{!selectedBrandBrand}" multiselect="false" size="1" styleClass="input_init projBrandBrand">
                             <apex:selectOptions value="{!brandOptions}"/>
                         </apex:selectList><br/>
+                        
                       <div style="width:80%;PADDING-TOP: 8px;PADDING-left:19px">{!$Label.Oblix_lbl_UIUX_Identifying_priorities2} </div>
                   </td>                
               </tr>                           
@@ -328,7 +333,7 @@
                         </td>   
                         --> 
                         <td><apex:inputField value="{!split.Percentage__c}" style="width:30px" styleClass=" percentage pourcentageSplit_{!display}"/> %</td>
-                        <td><div style="display :{!if(display == 1,'block','none')}">&nbsp;<button type="button" disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only addAnotherBtn" role="button" aria-disabled="false"><span class="ui-button-text">Add Another</span></button></div></td>
+                        <td><div style="display :{!if(display == 1,'block','none')}">&nbsp;<button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only addAnotherBtn" disabled="false" role="button" aria-disabled="false"><span class="ui-button-text">Add Another</span></button></div></td>
                    </tr>               
                  <apex:variable var="display" value="{!display + 1}"/>               
                </apex:repeat>                              
@@ -451,8 +456,8 @@
                 
                 <div class="Oblix_header_activeArrow header_pos_3">
                 <div class="Oblix_header_arrowTitle">
-                    <apex:outputPanel rendered="{!projectId != null}" ><span>{!$Label.Oblix_lbl_UIUX_Edit_Campaign}  </span><br/></apex:outputPanel>
-                    <apex:outputPanel rendered="{!projectId == null}" ><span> {!$Label.Oblix_lbl_UIUX_New_Campaign}  </span><br/></apex:outputPanel>
+                    <apex:outputPanel rendered="{!project.Id != null}" ><span>{!$Label.Oblix_lbl_UIUX_Edit_Campaign}  </span><br/></apex:outputPanel>
+                    <apex:outputPanel rendered="{!project.Id == null}" ><span> {!$Label.Oblix_lbl_UIUX_New_Campaign}  </span><br/></apex:outputPanel>
                 </div>
                 </div>
                 </td>
@@ -471,7 +476,10 @@
              <table class="Oblix_projects_header" width="100%">
                 <tr>
                     <td>
-                        <h1> {!$Label.Oblix_lbl_UIUX_View_Campaign} : {!project.name}</h1>
+                        <h1>
+                         <apex:outputPanel rendered="{!project.Id != null}" ><span>{!$Label.Oblix_lbl_UIUX_Edit_Campaign} : {!project.name} </span><br/></apex:outputPanel>
+                         <apex:outputPanel rendered="{!project.Id == null}" ><span> {!$Label.Oblix_lbl_UIUX_New_Campaign}  </span><br/></apex:outputPanel>
+                     </h1>
                     </td>
                     <td>
                     </td>
@@ -511,8 +519,8 @@
                                    <table width="100%" >
                                      <tr>
                                           <td>
-                                            <strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.name.label}</strong><br/>
-                                            <apex:inputField styleClass="input_init"  value="{!project.Name}" style="border-left-color: #ff0000;border-style: solid;border-left-width :medium"/>
+                                           <!-- <strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.name.label}</strong><br/> -->
+                                            <apex:inputField styleClass="input_init" html-placeholder="{!$ObjectType.Oblix_SOW_Projects__c.fields.name.label}"  value="{!project.Name}" style="border-left-color: #ff0000;border-style: solid;border-left-width :medium"/>
                                            
                                           </td>
                                           
@@ -520,8 +528,8 @@
                                      <tr><td colspan="2">&nbsp;</td></tr>                                 
                                      <tr collrow="2">
                                          <td>
-                                             <strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Description__c.label}</strong><br/>
-                                             <apex:inputField styleClass="textArea_init" value="{!project.Description__c}"/>
+                                         <!--    <strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Description__c.label}</strong><br/>   -->
+                                             <apex:inputField styleClass="textArea_init" html-placeholder="{!$ObjectType.Oblix_SOW_Projects__c.fields.Description__c.label}" value="{!project.Description__c}"/>
                                          </td>
                                      </tr>   
                                     
@@ -532,12 +540,14 @@
                                    <table width="100%"> 
                                        
                                        <tr>    
-                                          <td colspan="2"><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Platform__c.label}&nbsp;</strong><apex:inputField styleClass="input_init"   value="{!project.Platform__c}"/></td>
+                                          <td colspan="2">
+                                          <!-- <strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Platform__c.label}&nbsp;</strong>  -->
+                                          <apex:inputField styleClass="input_init"  html-placeholder="{!$ObjectType.Oblix_SOW_Projects__c.fields.Platform__c.label}"   value="{!project.Platform__c}"/></td>
                                        </tr>
                                        <tr>
                                           <td>
-                                             <strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Jobs_to_be_Done__c.label}</strong><br/>
-                                             <apex:inputField styleClass="textArea_init"   value="{!project.Jobs_to_be_Done__c}"/>
+                                              <!-- <strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Jobs_to_be_Done__c.label}</strong><br/>  -->
+                                             <apex:inputField styleClass="textArea_init" html-placeholder="{!$ObjectType.Oblix_SOW_Projects__c.fields.Jobs_to_be_Done__c.label}"   value="{!project.Jobs_to_be_Done__c}"/>
                                          </td>
                                        </tr>
                                        <tr>
@@ -581,10 +591,10 @@
                                        </td>
                                        </tr>
                                        <tr>
-                                       <td ><strong>&nbsp; &nbsp; {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Status__c.label}</strong></td>
+                                   <!--    <td ><strong>&nbsp; &nbsp; {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Status__c.label}</strong></td>  -->
                                        <td>
-                                            <apex:inputField styleClass="picklist_init" style="width:100%" value="{!project.Campaign_Status__c}"/>
-                                        </td>                                       
+                                            <div style="float:rigth"><apex:inputField styleClass="picklist_init" html-placeholder=" {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Status__c.label}"  style="width:50%" value="{!project.Campaign_Status__c}"/></div>
+                                       </td>                                       
                                      </tr>    
                                    <tr><td><strong>&nbsp;</strong></td></tr>
                                    <tr><td colspan="2"><h3><center>{!$Label.Oblix_lbl_UIUX_Unsaved}</center></h3></td></tr>  

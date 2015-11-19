@@ -67,6 +67,14 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
 
     public Oblix_Ctrl06SOWView_CC() {
         listLimit = 999;
+        
+        initializeAttributes();
+
+        init();
+    }
+
+    public void initializeAttributes(){
+
         notes = new list<note>();
         noteAsset = new note();
         thousandBlocks = new List<limitWrapper>();
@@ -90,7 +98,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         }
 
         lstCampaignNonCampaign  = new List<CampaignNonCampaignItems>();
-        init();
+
     }
 
     public void init() {
@@ -199,6 +207,83 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
     }
     public void EditAction() {
         isEdit = true;
+    }
+
+    public void CloneAction(){
+
+        // create a 'clone' record and initialize it's values
+        Marketing_SOW__c selSowClone = new Marketing_SOW__c(
+            Name = selSow.Name,
+            BB_or_BD__c = selSow.BB_or_BD__c,
+            Oblix_AgencyEstimate__c = selSow.Oblix_AgencyEstimate__c,
+            Oblix_AgencyEstimate__r = selSow.Oblix_AgencyEstimate__r,
+            OblixBrand__c = selSow.OblixBrand__c,
+            OblixBrand__r = selSow.OblixBrand__r,
+            BigOblixProductCategory__c = selSow.BigOblixProductCategory__c,
+            BigOblixProductCategory__r = selSow.BigOblixProductCategory__r,
+            SmallProductCategory__c = selSow.SmallProductCategory__c,
+            SmallProductCategory__r = selSow.SmallProductCategory__r,
+            Agency_Contact__c = selSow.Agency_Contact__c,
+            Agency_Contact__r = selSow.Agency_Contact__r,
+            Unilever_Lead__c = selSow.Unilever_Lead__c,
+            Unilever_Lead__r = selSow.Unilever_Lead__r);
+
+
+
+        // reinitialize ALL attributes except the ones on the screen when creating new SOW
+
+        sowId = null;
+        selSow = null;
+
+        ApexPAges.currentPage().getParameters().clear();
+
+        projectId = null;
+        lstAttachements = null;
+        lstAttachementsToAdd = null;
+        AttachementToAdd = null;
+        myDoc = null;
+        notes = null;
+        //Projects to the Sow
+        lstProjects = null;
+        // Ids of SOW projects
+        // private set<id> setIdsProject;
+        IdsProject = null;
+        lstAssets = null;
+        isEdit = null;
+        userConnected = null;
+        pr = null;
+        PrStatus = null;
+        PrStage = null;
+        setRecordType = null;
+        SelectedProject = null;
+        isViewProject = null;
+        lstOtherItems = null;
+        seriesProject = null;
+        mapApproved = null;
+        lstCampaignNonCampaign = null;
+        noteAsset = null;
+
+        //Thousand Block Part :
+        thousandBlocks = null;
+        selectedProjectId = null;
+        countOfUpdatesFeed = null;
+        filesCountList = null;
+        //Selected count
+        FileCount = null;
+
+        allFileList = null;
+
+        //achraf
+        attachment = null;
+
+        initializeAttributes();
+        init();
+
+        // set the VF page values
+        selSow = selSowClone;
+        sowId = null;
+        
+
     }
 
     /* Method used to save a New SOW

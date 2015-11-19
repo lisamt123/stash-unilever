@@ -150,7 +150,7 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Behind the scenes footage</fullName>
+                <fullName>Behind the Scenes Footage</fullName>
                 <controllingFieldValues>Origination Lite</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -382,7 +382,7 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Enewletters</fullName>
+                <fullName>eNewsletters</fullName>
                 <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -740,7 +740,7 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Behind the scenes footage</fullName>
+                <fullName>Behind the Scenes Footage</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -797,10 +797,6 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>EDM Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Enewletters</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -975,6 +971,10 @@ Changed to Campaign on 26/10/2015</description>
                 <fullName>eNewsletter Adaptation</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>eNewsletters</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Asset_Type__c</picklist>
@@ -1082,7 +1082,7 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Behind the scenes footage</fullName>
+                <fullName>Behind the Scenes Footage</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1139,10 +1139,6 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>EDM Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Enewletters</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1325,6 +1321,10 @@ Changed to Campaign on 26/10/2015</description>
                 <fullName>eNewsletter Adaptation</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>eNewsletters</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Asset_Type__c</picklist>
@@ -1392,7 +1392,7 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Behind the scenes footage</fullName>
+                <fullName>Behind the Scenes Footage</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1449,10 +1449,6 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>EDM Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Enewletters</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1625,6 +1621,10 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>eNewsletter Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>eNewsletters</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1772,7 +1772,7 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Behind the scenes footage</fullName>
+                <fullName>Behind the Scenes Footage</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1829,10 +1829,6 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>EDM Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Enewletters</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2005,6 +2001,10 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>eNewsletter Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>eNewsletters</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2066,7 +2066,7 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Behind the scenes footage</fullName>
+                <fullName>Behind the Scenes Footage</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2123,10 +2123,6 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>EDM Adaptation</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Enewletters</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2299,6 +2295,10 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>eNewsletter Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>eNewsletters</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

@@ -11,6 +11,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.Oblix_SowDetailHomeCss)}" />
+    <script src="{!URLFOR($Resource.Oblix_SOWDetailsJS)}" ></script>
     <script src="{!URLFOR($Resource.JQueryBlockUI)}" ></script>
      
   
@@ -45,28 +46,19 @@
                 });
                 $('#example tfoot tr').insertBefore($('#example thead tr'));
                 $('.Oblix_large_btn,.Oblix_btn').tooltip({delay: { "show": 500},
-                position:  {
-                    using: function( position, feedback ) {
-                    $( this ).css( position );
-                    $( "<div>" )
-                        .addClass( "arrow" )
-                        .addClass( feedback.vertical )
-                        .addClass( feedback.horizontal )
-                        .appendTo( this );
-                    }
+                    position:  {
+                        using: function( position, feedback ) {
+                        $( this ).css( position );
+                        $( "<div>" )
+                            .addClass( "arrow" )
+                            .addClass( feedback.vertical )
+                            .addClass( feedback.horizontal )
+                            .appendTo( this );
+                        }
               }});
          });   
  </script>     
- <script>
-     function Popup(){
-            // lstAttachementsView();
-             $("#dialog").dialog({width: 1000,modal:true,
-                 close: function(event,ui){
-                     $("pop").dialog('destroy');          
-                        }
-                 });           
-            }
-</script> 
+
 <style>
     h2{ font-size: 120%;}
     h3{font-size: 12px;}
@@ -148,19 +140,11 @@
             width: 100%;
         }
     }
-
+    .Oblix_btn{
+        width: 105px ! important;
+     }
 </style>
-    
-<script>
-    function openAtt(){
-            $('#xdialogAddAtt').slideDown( "slow", function() {});
-         }
-         function closeAtt(){
-            $('#xdialogAddAtt').slideUp( "slow", function() {});
-        }
-</script>
-    
-         
+   
      </apex:form>
      <apex:form id="att">
          <div id="xdialogAddAtt" title="New Attachment " style=" display:none; width:100%; position: absolute; z-index: 100000; left:40%; right:30%; top: 30%; ">   
@@ -183,42 +167,8 @@
                      <apex:commandButton action="{!cancel}"  value="{!$Label.Oblix_lbl_UIUX_Cancel}" onclick="closeAtt();"/>
                 </td>
            </tr>
-         </table></div>
-           <script>
-    var redirectToAttachment = function (attachmentId){
-        'use strict';
-        window.open('/servlet/servlet.FileDownload?file=' + attachmentId);
-    }
-
-    var removeAttachments = function (attachmentsId){
-        'use strict';
-        var attachmentsId = [];
-        $('#dialog').find('table > tbody').children().children().find('input:checkbox:checked').each(function (){
-            attachmentsId.push($(this).attr('data-attachment-id'));
-        })
-        if(attachmentsId.length !== 0){
-            $('#dialog').dialog('close');
-            removeService(attachmentsId).then(function (){
-                acceptRemoveAttachment();
-            }, function (err){
-                console.log(err);
-            });
-        }
-    }
-    var removeService = function (attachmentsIds){
-        'use strict';
-        var deferred = $.Deferred();
-        Visualforce.remoting.Manager.invokeAction('Oblix_Ctrl05SOWDetails_CC.removeAttachments', attachmentsIds, function (data, status){
-            deferred.resolve({data: data, status: status});
-        });
-        return deferred.promise();
-    }
-    var acceptRemoveAttachment = function (){
-        $('#dialog').dialog('close');
-        removeAttachmentsBack();
-    }
-    </script>
-   </div>
+         </table></div>      
+        </div>
    <!-- Jamal -->
    </apex:form>
     <apex:form id="jqueryId2">
