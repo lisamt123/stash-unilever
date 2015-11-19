@@ -3009,6 +3009,11 @@ angular.module('unileverApp')
             var parseData = function(result) {
                 console.warn(result);
                 $scope.bet = result.data.bet;
+				
+				if($scope.bet.assetPrioritySet){
+					$scope.state.field = 'displayOrder';
+					$scope.state.reverse = false;
+				}
 
                 if (!$scope.betRefresh) {
                     //init chatter
@@ -3237,11 +3242,13 @@ angular.module('unileverApp')
                         filterValues: []
                     }
                 };
-                $scope.state = {
-                    activeTab: 'info',
-                    field: 'assetLastModifiedDate',
-                    reverse: true
-                };
+			
+				$scope.state = {
+					activeTab: 'info',
+					field: 'assetLastModifiedDate',
+					reverse: true
+				};
+				
                 $scope.chatterState = {
                     field: 'draftCreatedDate',
                     reverse: true
