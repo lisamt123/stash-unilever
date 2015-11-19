@@ -814,9 +814,7 @@
        </apex:form>     
    </div>
    <apex:form >
-   <apex:actionFunction name="removeAttachmentsBack" action="{!init}">
-        <apex:param name="attachmentToRemove" value=""/>
-    </apex:actionFunction>
+   <apex:actionFunction name="removeAttachmentsBack" action="{!init}" reRender="sowDetailId"/>
    <div id="dialog" title="{!$Label.Oblix_lbl_UIUX_Attachment_List}" style="display:none">   
       <apex:pageBlock >
        <apex:pageBlockTable value="{!lstAttachements}" var="attach">

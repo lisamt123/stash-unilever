@@ -89,7 +89,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Cut downs and Tag</fullName>
+                <fullName>Cut downs and Tags</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -278,7 +278,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cut downs and Tag</fullName>
+                <fullName>Cut downs and Tags</fullName>
                 <default>false</default>
             </values>
             <values>

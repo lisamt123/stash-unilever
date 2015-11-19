@@ -19,12 +19,9 @@
        var setIdCss = {!setIdCss};
        // console.dir('{!lstIdCSSSelected}');
        // Variable for the add other button , disabled now 
-       var counter = {!counterAsset};
+           var counter = {!counterAsset};
        // var countries = {!countryOptions};
-       $(document).ready(function(){
-           
-           $('#dialogTimeLine span.dateFormat').remove();
-           $('#dialogMoreDetails span.dateFormat').remove();
+       $(document).ready(function(){           
             // Select default checkbox values 
             if('{!lstIdCSSSelected}' != ''){
              var selectedId = ('{!lstIdCSSSelected}').split(',');
@@ -38,7 +35,7 @@
     </script> 
     
     <style>
-        .tabs-min .ui-tabs-nav .ui-state-active { 
+     .tabs-min .ui-tabs-nav .ui-state-active { 
         background: transparent url("{!URLFOR($Resource.Oblix_uiTabsArrow)}") no-repeat bottom center; 
         border: none; 
     }
@@ -68,6 +65,7 @@
              color: #fff;
 
         }
+
         .Oblix_header a{
             text-decoration:none;
             cursor:pointer; 
@@ -113,13 +111,13 @@
 
           }
           
-            .Oblix_header_Arrow:active, .Oblix_header_Arrow:hover {
-          background-color: transparent;
+        .Oblix_header_Arrow:active, .Oblix_header_Arrow:hover {
+            background-color: transparent;
             background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
             background-repeat: no-repeat;
 
           }
-           .Oblix_header_previousArrow{ 
+        .Oblix_header_previousArrow{ 
             background-color: transparent;      
             background-image : url("{!URLFOR($Resource.assetUI,'previouslevel_arrow.png')}");
             background-repeat: no-repeat;
@@ -132,8 +130,8 @@
             position: relative;
         }
         
-          .Oblix_header_Arrow{ 
-          background-color: transparent;      
+       .Oblix_header_Arrow{ 
+            background-color: transparent;      
             background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow.png')}");
             background-repeat: no-repeat;
             font-family: DIN, Arial;
@@ -145,8 +143,8 @@
             position: relative;
          }
          
-          .Oblix_header_activeArrow{ 
-        background-color: transparent;      
+      .Oblix_header_activeArrow{ 
+            background-color: transparent;      
             background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow_down.png')}");
             background-repeat: no-repeat;
              font-family: DIN, Arial;
@@ -201,7 +199,7 @@
       <apex:param name="otherInfo" assignTo="{!project.Project_Priority__c}" value="" />  
    </apex:actionFunction> 
    
-   <apex:actionFunction name="setInfoCountries" action="{!setInfoCountries}" oncomplete="{!if(projectId != null,'location.reload()','$.unblockUI()')}">  
+   <apex:actionFunction name="setInfoCountries" action="{!setInfoCountries}" oncomplete="{!if(projectId != null && isError == false ,'location.reload()','$.unblockUI()')}"  reRender="myerror">  
       <apex:param name="region" assignTo="{!project.OblixRegion__c}" value="" />  
       <apex:param name="countries" assignTo="{!project.OblixCountries__c}" value="" />  
    </apex:actionFunction> 
@@ -515,7 +513,7 @@
                             
                             <td width="40%">
                              <section class="PrColumn1">
-                            
+                                   
                                    <table width="100%" >
                                      <tr>
                                           <td>
@@ -592,8 +590,10 @@
                                        </tr>
                                        <tr>
                                    <!--    <td ><strong>&nbsp; &nbsp; {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Status__c.label}</strong></td>  -->
+                                       <td width="50%">
+                                       </td>
                                        <td>
-                                            <div style="float:rigth"><apex:inputField styleClass="picklist_init" html-placeholder=" {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Status__c.label}"  style="width:50%" value="{!project.Campaign_Status__c}"/></div>
+                                            <div><apex:inputField styleClass="picklist_init" html-placeholder=" {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Status__c.label}"  style="width:100%" value="{!project.Campaign_Status__c}"/></div>
                                        </td>                                       
                                      </tr>    
                                    <tr><td><strong>&nbsp;</strong></td></tr>

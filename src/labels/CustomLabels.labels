@@ -3612,11 +3612,25 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>Choose stages for this FY</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Clone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Clone</shortDescription>
+        <value>Clone</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Clone_Campaign</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Clone_Campaign</shortDescription>
         <value>Clone Campaign</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Clone_SOW_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Clone_SOW_Title</shortDescription>
+        <value>Clone this SOW</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Comming_Soon</fullName>
@@ -3847,14 +3861,14 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Identifying_priorities</shortDescription>
-        <value>Identifying priorities for the brand based on the total turnover the campaign is protecting ( Select this option, only if incremental turnover value is unavailable )</value>
+        <value>Identifying priorities for the brand based on the incremental turnover the project drives</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Identifying_priorities2</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Identifying_priorities2</shortDescription>
-        <value>Identifying priorities for the brand based on the incremental turnover the project drives</value>
+        <value>Identifying priorities for the brand based on the total turnover the campaign is protecting (Select this option, only if incremental turnover value is unavailable)</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Information</fullName>
