@@ -261,6 +261,7 @@ public class WINatPOSRemoteActionWrapper {
         public String feedId{get;set;}
         public String assetPrimaryFileId{get;set;}
         public String assetDownloadPdfUrl{get;set;}
+        public String videoUrl{get;set;}
         public List<AssetDetailStats> downloadStatistics;
         public List<AssetDetailStats> shareStatistics;
         public List<AssetDetailStats> followStatistics;
@@ -314,8 +315,9 @@ public class WINatPOSRemoteActionWrapper {
         public Integer likeCount;
         public Integer commentCount;
         public Set<String> topics;
-        public String modifyDate; 
-        public AssetCaruselWrapper(String cAssetId,String cAssetName,String cAssetDescription,String cAssetType, List<String> cRelatedFiles,Integer cLikeCount,Integer cCommentCount,Set<String> cTopics,String cModifyDate){
+        public String modifyDate;
+        public String videoUrl;
+        public AssetCaruselWrapper(String cAssetId,String cAssetName,String cAssetDescription,String cAssetType, List<String> cRelatedFiles,Integer cLikeCount,Integer cCommentCount,Set<String> cTopics,String cModifyDate, String cVideoUrl){
             this.assetId=cAssetId;
             this.relatedFiles=cRelatedFiles;
             this.assetName=cAssetName;
@@ -325,6 +327,7 @@ public class WINatPOSRemoteActionWrapper {
             this.commentCount=cCommentCount;
             this.topics=cTopics;
             this.modifyDate=cModifyDate;
+            this.videoUrl = cVideoUrl;
         }
     }
     

@@ -413,20 +413,6 @@ public with sharing class WINatPOSUtil {
     	return Search.query(query);
     }
     
-    /*******************************************************************
-	Purpose: Method is querying for Brands for Community user ( with sharing )
-	Parameters: [String brandId]
-	Returns: [List<Brand_Master__c>]
-	Throws [Exceptions]: [optional] 
-	********************************************************************/
-    public static List<Brand_Master__c> getBrandForCarusel(Id brandId){
-    		
-		return [select name,Brand_Logo__c,id,
-                                            (select ParentId, SubscriberId from FeedSubscriptionsForEntity where SubscriberId =: UserInfo.getUserId()),
-                                            (Select Feed_URL__c, Name,Feed_ID__c,id From Files__r order by Name asc)
-                                             from Brand_Master__c where id =: brandId];
-	}
-    
      /*******************************************************************
 	Purpose: Method is querying for Brands for Community user ( with sharing )
 	Parameters: [List<Brand_Master__c> brands]
@@ -441,19 +427,6 @@ public with sharing class WINatPOSUtil {
                      from Brand_Master__c where id in : brands order by name];
 	}
 	
-    /*******************************************************************
-	Purpose: Method is querying for Categories for Community user ( with sharing )
-	Parameters: [String categoryId]
-	Returns: [List<Category__c>]
-	Throws [Exceptions]: [optional] 
-	********************************************************************/	
-	public static List<Category__c> getCatForCarusel(Id categoryId){
-		
-		return [select name,Category_Logo__c,id,
-                                            (select ParentId, SubscriberId from FeedSubscriptionsForEntity where SubscriberId =: UserInfo.getUserId()),
-                                            (select Feed_URL__c, Name,Feed_ID__c,id From CategoryUploads__r order by Name asc) 
-                                             from Category__c where id =: categoryId];
-	}
 	
 	/*******************************************************************
 	Purpose: Method is querying for Categories for Community user ( with sharing )
@@ -477,7 +450,7 @@ public with sharing class WINatPOSUtil {
 	********************************************************************/	
 	public static List<Asset__c> getAssetsForHomePage(){
 		
-		return [select id,Name,POS_Asset_Type__c,Description__c,LastModifiedDate,
+		return [select id,Name,POS_Asset_Type__c,Description__c,LastModifiedDate, Video_URL_Link__c,
                                      (Select Feed_Thumbnail_URL__c,Feed_Id__c from Files__r where Is_Primary_Image__c=true),
                                      (select CommentCount, LikeCount,id from Feeds)
                                      From Asset__c where Carousel_Published__c=true

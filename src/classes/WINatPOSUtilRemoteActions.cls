@@ -87,7 +87,7 @@ public without sharing class WINatPOSUtilRemoteActions {
         if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
         	assetsList = WINatPOSUtil.getAssetsForHomePage();
         }else{
-        	assetsList = [select id,Name,POS_Asset_Type__c,Description__c,LastModifiedDate,
+        	assetsList = [select id,Name,POS_Asset_Type__c,Description__c,LastModifiedDate, Video_URL_Link__c,
                                      (Select Feed_Thumbnail_URL__c,Feed_Id__c from Files__r where Is_Primary_Image__c=true),
                                      (select CommentCount, LikeCount,id from Feeds)
                                      From Asset__c where Carousel_Published__c=true
@@ -131,7 +131,7 @@ public without sharing class WINatPOSUtilRemoteActions {
             }
             //convert dateTime to string to dislay in following format eg. September 16, 2014                             
             String convertedModifedDate = asetItem.LastModifiedDate.format('MMMMM d, yyyy');                                       
-            WINatPOSRemoteActionWrapper.AssetCaruselWrapper assetCarusel=new  WINatPOSRemoteActionWrapper.AssetCaruselWrapper(asetItem.id,asetItem.name,asetItem.Description__c,asetItem.POS_Asset_Type__c, relatedFiles,likeCount,commentCount,uniqueTopics,convertedModifedDate);
+            WINatPOSRemoteActionWrapper.AssetCaruselWrapper assetCarusel=new  WINatPOSRemoteActionWrapper.AssetCaruselWrapper(asetItem.id, asetItem.name, asetItem.Description__c, asetItem.POS_Asset_Type__c, relatedFiles, likeCount, commentCount, uniqueTopics, convertedModifedDate, asetItem.Video_URL_Link__c);
             caruselResults.add(assetCarusel);                         
                                                                                                                                                            
         }
@@ -441,7 +441,7 @@ public without sharing class WINatPOSUtilRemoteActions {
         }
         
         if (objectAPIName == 'Asset_Group__c') {
-            assets = [Select Owner.Name,Id,Asset_Group__c,Asset_Group__r.Name, Name, Category__c,Touchpoint__c,Country__c,Category__r.Name, Brand__c, Brand__r.Name, Channels__c, Description__c, Placement__c, Market_Cluster__c,POS_Asset_Type__c, BET__c, BET__r.Name,Buy_Online_in_Europe__c, 
+            assets = [Select Owner.Name, Id, Asset_Group__c, Video_URL_Link__c, Asset_Group__r.Name, Name, Category__c,Touchpoint__c,Country__c,Category__r.Name, Brand__c, Brand__r.Name, Channels__c, Description__c, Placement__c, Market_Cluster__c,POS_Asset_Type__c, BET__c, BET__r.Name,Buy_Online_in_Europe__c, 
                              (Select Id, Name, Category__c, Category__r.Name, Type__c, Sub_Type__c, File_Button_Text__c, Is_Primary_Image__c, Feed_ID__c, Feed_URL__c,Feed_Thumbnail_URL__c 
                               From Files__r 
                               Order By Sort_Order__c ASC),
@@ -464,7 +464,7 @@ public without sharing class WINatPOSUtilRemoteActions {
                 isUserFollowCollection=false;
             }
         } else {
-            assets = [Select Owner.Name,Id, Name,Touchpoint__c,Country__c, Category__c, Category__r.Name, Brand__c, Brand__r.Name, Channels__c, Description__c, Placement__c, Market_Cluster__c,POS_Asset_Type__c, BET__c, BET__r.Name,Buy_Online_in_Europe__c, 
+            assets = [Select Owner.Name, Id, Name, Touchpoint__c, Video_URL_Link__c, Country__c, Category__c, Category__r.Name, Brand__c, Brand__r.Name, Channels__c, Description__c, Placement__c, Market_Cluster__c,POS_Asset_Type__c, BET__c, BET__r.Name,Buy_Online_in_Europe__c, 
                              (Select Id, Name, Category__c, Category__r.Name, Type__c, Sub_Type__c, File_Button_Text__c, Is_Primary_Image__c, Feed_ID__c, Feed_URL__c,Feed_Thumbnail_URL__c 
                               From Files__r 
                               Order By Sort_Order__c ASC),
@@ -561,6 +561,7 @@ public without sharing class WINatPOSUtilRemoteActions {
                 tmpAssetItem.feedId=primaryImageFeedId;
                 tmpAssetItem.assetPrimaryFileId=primaryFileId;
                 tmpAssetItem.assetDownloadPdfUrl=URL.getSalesforceBaseUrl().toExternalForm() + '/apex/WinAtPOSPrintablePDFView?id=' + a.Id;
+                tmpAssetItem.videoUrl = a.Video_URL_Link__c;
                 if(firstAsset){
                     
                     Map<String,List<WINatPOSRemoteActionWrapper.AssetDetailStats>> statistics = retriveStatistics(primaryFileId, a.id);
@@ -788,7 +789,7 @@ public without sharing class WINatPOSUtilRemoteActions {
         
         List<Asset__c> assetSearchList=new List<Asset__c>();
         List<Asset_Group__c> assetGroupSearchList=new List<Asset_Group__c>();
-        WINatPOSRemoteActionWrapper gatheredResults=gatherResultsForSearch(searchType, brandId,categoryId,keyWord, assetType,assetChannel, assetCluster, assetPlacment,country);
+        WINatPOSRemoteActionWrapper gatheredResults = gatherResultsForSearch(searchType, brandId,categoryId,keyWord, assetType,assetChannel, assetCluster, assetPlacment,country);
         if(gatheredResults.status == '1'){
             return gatheredResults;
             
@@ -1013,8 +1014,8 @@ public without sharing class WINatPOSUtilRemoteActions {
         //Start building final query
         Boolean isSoslQuery=false;
         String finalSoslQuery='';
-        String finalSoqlQuery='select id,Name,Asset_Group__c,Brand__c,Category__c,Channels__c,Country__c,Description__c,Market_Cluster__c,Modern_Channels__c,Placement__c,POS_Asset_Type__c,Touchpoint__c from Asset__c '+whereClauseForAsset;
-        String finalSoqlQueryWithTouchPoint='select id,Name,Asset_Group__c,Brand__c,Category__c,Channels__c,Country__c,Description__c,Market_Cluster__c,Modern_Channels__c,Placement__c,POS_Asset_Type__c,Touchpoint__c from Asset__c '+whereClauseForTouchpoint;
+        String finalSoqlQuery='select id,Name,Asset_Group__c,Brand__c,Category__c,Channels__c,Country__c,Description__c,Market_Cluster__c,Modern_Channels__c,Placement__c,POS_Asset_Type__c,Touchpoint__c, Video_URL_Link__c from Asset__c '+whereClauseForAsset;
+        String finalSoqlQueryWithTouchPoint='select id,Name,Asset_Group__c,Brand__c,Category__c,Channels__c,Country__c,Description__c,Market_Cluster__c,Modern_Channels__c,Placement__c,POS_Asset_Type__c,Touchpoint__c, Video_URL_Link__c from Asset__c '+whereClauseForTouchpoint;
         String finalSoqlQueryAssetGroup='select id,Name,Brand__c,Category__c,Market_Cluster__c,Type__c from Asset_Group__c '+whereClauseForAssetGroup;
         if(keyWord != null && keyWord !='' && keyWord.trim() !=''){ 
             // Added by ISzegedi
@@ -1029,10 +1030,10 @@ public without sharing class WINatPOSUtilRemoteActions {
         if(isSoslQuery){
             if((assetChannel != null  && assetChannel != '') || (assetPlacment != null  && assetPlacment != '') || (country != null  && country != '')){
                 system.debug('*** WINatPOS gatherResultsForSearch method final sosl query call without quering Asset_Group__c');
-                finalSoslQuery +='IN ALL FIELDS RETURNING Asset__c (id,Name,Asset_Group__c,Brand__c,Category__c,Channels__c,Country__c,Description__c,Market_Cluster__c,Modern_Channels__c,Placement__c,POS_Asset_Type__c,Touchpoint__c '+whereClauseForAsset+' order by Name)';
+                finalSoslQuery +='IN ALL FIELDS RETURNING Asset__c (id,Name,Asset_Group__c,Brand__c,Category__c,Channels__c,Country__c,Description__c,Market_Cluster__c,Modern_Channels__c,Placement__c,POS_Asset_Type__c,Touchpoint__c, Video_URL_Link__c '+whereClauseForAsset+' order by Name)';
             }else{
                 system.debug('*** WINatPOS gatherResultsForSearch method final sosl query call with quering Asset_Group__c');
-                finalSoslQuery +='IN ALL FIELDS RETURNING Asset__c (id,Name,Asset_Group__c,Brand__c,Category__c,Channels__c,Country__c,Description__c,Market_Cluster__c,Modern_Channels__c,Placement__c,POS_Asset_Type__c,Touchpoint__c '+whereClauseForAsset+' order by Name), '
+                finalSoslQuery +='IN ALL FIELDS RETURNING Asset__c (id,Name,Asset_Group__c,Brand__c,Category__c,Channels__c,Country__c,Description__c,Market_Cluster__c,Modern_Channels__c,Placement__c,POS_Asset_Type__c,Touchpoint__c, Video_URL_Link__c '+whereClauseForAsset+' order by Name), '
                                                     + 'Asset_Group__c (id,Name,Brand__c,Category__c,Market_Cluster__c,Type__c '+ whereClauseForAssetGroup+' order by Name)';
             }
              
@@ -1112,7 +1113,7 @@ public without sharing class WINatPOSUtilRemoteActions {
         //put debug info here
         List<Asset__c> assetSearchList=new List<Asset__c>();
         List<Asset_Group__c> assetGroupSearchList=new List<Asset_Group__c>();
-        WINatPOSRemoteActionWrapper gatheredResults=gatherResultsForSearch(searchType, brandId,categoryId,keyWord, assetType,assetChannel, assetCluster, assetPlacment,country);
+        WINatPOSRemoteActionWrapper gatheredResults = gatherResultsForSearch(searchType, brandId,categoryId,keyWord, assetType,assetChannel, assetCluster, assetPlacment,country);
         if(gatheredResults.status == '1'){
             return gatheredResults;
             
