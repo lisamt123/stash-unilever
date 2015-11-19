@@ -23,12 +23,10 @@ public with sharing class WINatPOSUtil {
     public static final String categorySearch='categorySearch';
     public static final String brandSearch='brandSearch';
     public static final String innovationSearch='innovationSearch';
-    //public static final String instoreSearch='instoreSearch';
     public static final String repetableSearch='repetableSearch';
     public static final String keywordSearch='keywordSearch';
     public static final String bestPracticesSearch = 'bestPracticesSearch';
     public static final String ctaSearch = 'ctaSearch';
-    //public static final String assetTypeForInstoreSearch='In Store Execution';
     public static final String assetTypeForBestPractisesSearch = 'Best Practices';
     public static final String assetTypeForInnovationSearch='Innovation';
     public static final String assetTypeForRepetableSearch='Repeatable Model';
@@ -48,7 +46,6 @@ public with sharing class WINatPOSUtil {
         keywordSearch    => new List<String>{'Categories','Asset Types','Channels','Clusters','Placement'},
         categorySearch   => new List<String>{'Brands','Asset Types','Channels','Clusters','Placement'},
         brandSearch      => new List<String>{'Categories','Asset Types','Channels','Clusters','Placement'},
-        //instoreSearch    => new List<String>{'Categories','Brands','Clusters','Countries'},
         bestPracticesSearch		=> new List<String>{'Categories','Brands','Clusters','Countries'},
         innovationSearch => new List<String>{'Categories','Brands'},
         repetableSearch  => new List<String>{},
@@ -59,7 +56,6 @@ public with sharing class WINatPOSUtil {
     public static final Map<String,String> assetTypeTranslationFromDbToUI = new Map<String,String>{
 		'Masterbrand' => 'Brand Guideline',
         'Innovation'  => 'Innovation Guidelines',
-        //'In Store Execution' => 'Instore Executions', 
         'Best Practices' => 'Best Practices',
         'Repeatable Model' =>'Repeatable Models',
         'Call To Action' => 'Call To Action'    
@@ -69,7 +65,6 @@ public with sharing class WINatPOSUtil {
     public static final Map<String,String> assetTypeTranslationFromUIToDb = new Map<String,String>{
 		'Brand Guideline' => 'Masterbrand',
         'Innovation Guidelines' => 'Innovation',
-        //'Instore Executions' => 'In Store Execution',
         'Best Practices' => 'Best Practices',
         'Repeatable Models' => 'Repeatable Model',
         'Call To Action' => 'Call To Action'    
