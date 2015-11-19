@@ -5,15 +5,15 @@
 */
 @isTest
 public with sharing class IPM_FunnelController_Test {
-	public static IPM_Project__c project;
-	private static user testUser;
+    public static IPM_Project__c project;
+    private static user testUser;
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     private static List<user>userList=new List<user>();
     private static string projectId;
-	
-	private static void initializeData(){
-		testUser=IPM_TestFactory_Helper.createUser(false);
-		insert testUser;
+    
+    private static void initializeData(){
+        testUser=IPM_TestFactory_Helper.createUser(false);
+        insert testUser;
         userList.add(testUser);
         List<User>userLists=[SELECT id FROM user WHERE id=:testUser.id LIMIT 1];
         System.AssertEquals(userLists[0].id, testUser.id,'User not found');
@@ -33,17 +33,17 @@ public with sharing class IPM_FunnelController_Test {
         project=projlList[0];
         projectId=projlList[0].Id;
         System.assertEquals(projlList[0].id,projectRecord.id);
-	}
-	
-	static testmethod void testGetAssociatedProjectPhases(){
-		initializeData();
-		test.startTest();
-		system.runAs(testUser){
-			IPM_FunnelController funnelController = new IPM_FunnelController ();
-	        funnelController.project = project;
-	        List<string> projectPhases = funnelController.getAssociatedProjectPhases();
-	        system.debug(logginglevel.error, 'projectPhases--> ' + projectPhases);	
-		}
-		test.stopTest();
-	} 
+    }
+    
+    static testmethod void testGetAssociatedProjectPhases(){
+        initializeData();
+        test.startTest();
+        system.runAs(testUser){
+            IPM_FunnelController funnelController = new IPM_FunnelController ();
+            funnelController.project = project;
+            List<string> projectPhases = funnelController.getAssociatedProjectPhases();
+            system.assertEquals(funnelController.project, project, 'project record should be same');
+        }
+        test.stopTest();
+    } 
 }

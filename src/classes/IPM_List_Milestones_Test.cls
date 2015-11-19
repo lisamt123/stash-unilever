@@ -100,7 +100,7 @@ public class IPM_List_Milestones_Test {
 			mileList.toggleSortCompletedOn();
 			List<IPM_Milestone__c> completedmilestoneList = [Select Id, IPM_Phase__c, IPM_Completed__c, IPM_Completed_On__c from IPM_Milestone__c WHERE IPM_Project__c =: proj.Id];
 			// First milestone should be completed and today date should be set.
-			System.Assert(completedmilestoneList[0].IPM_Completed__c == true);
+			System.Assert(completedmilestoneList[0].IPM_Completed__c);
 			System.Assert(completedmilestoneList[0].IPM_Completed_On__c == System.today());
 			
 			

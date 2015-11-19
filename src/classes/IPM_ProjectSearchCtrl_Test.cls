@@ -37,8 +37,9 @@ public class IPM_ProjectSearchCtrl_Test {
         system.assertEquals(3, lstGeographies.size() , 'Master data for 3 geographies are added.');
         
         //Update Geographies's parent L2 lookup
-        for(integer i = 0 ; i < lstGeographies.size() - 1 ; i++)
+        for(integer i = 0 ; i < lstGeographies.size() - 1 ; i++){
             lstGeographies[i+1].parent_L2__c = lstGeographies[i].Id;
+        }
         update lstGeographies;
         
         //Assign countries to project
@@ -396,7 +397,7 @@ public class IPM_ProjectSearchCtrl_Test {
             }
             insert lstProjects;
             
-            System.debug('lstCountries==>'+lstCountries+'==>lstGeographies==>'+lstGeographies);
+            
             for(Integer i = 0 ; i < lstCountries.size() ; i++){
                     lstCountries[i].MDO_Geography__c = lstGeographies[i].Id;
                     lstCountries[i].IPM_Project__c = lstProjects[i].Id;
@@ -441,7 +442,7 @@ public class IPM_ProjectSearchCtrl_Test {
             }
             insert lstProjects;
             
-            System.debug('lstCountries==>'+lstCountries+'==>lstGeographies==>'+lstGeographies);
+            
             for(Integer i = 0 ; i < lstCountries.size() ; i++){
                     lstCountries[i].MDO_Geography__c = lstGeographies[i].Id;
                     lstCountries[i].IPM_Project__c = lstProjects[i].Id;
@@ -485,7 +486,7 @@ public class IPM_ProjectSearchCtrl_Test {
             }
             insert lstProjects;
             
-            System.debug('lstCountries==>'+lstCountries+'==>lstGeographies==>'+lstGeographies);
+            
             for(Integer i = 0 ; i < lstCountries.size() ; i++){
                     lstCountries[i].MDO_Geography__c = lstGeographies[i].Id;
                     lstCountries[i].IPM_Project__c = lstProjects[i].Id;

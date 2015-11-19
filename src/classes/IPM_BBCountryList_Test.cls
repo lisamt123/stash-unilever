@@ -7,8 +7,6 @@
 public class IPM_BBCountryList_Test{
 
     public static IPM_Project__c project;// Project object initialization
-   
-    private static List<user>userList=new List<user>();
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     public static IPM_BBCountryList ipm_bbcountryList;
     private static final string TEST_COMMENTS_STR='TestComments1';

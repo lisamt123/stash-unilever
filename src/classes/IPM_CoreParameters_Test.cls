@@ -85,7 +85,7 @@ private with sharing class IPM_CoreParameters_Test {
             System.assertEquals(mdmPosition.Category_Name__c, Laundry_STR, 'category should be ' + space_STR + Laundry_STR); //positive test
             cateList = IPM_TestFactory_Helper.createIPMCategory();
             //get coreparameter configuration
-            CoreConfigList = IPM_TestFactory_Helper.createIPMCoreParameterConfig();
+            coreConfigList = IPM_TestFactory_Helper.createIPMCoreParameterConfig();
             //insert coreparameter help text
             List < IPM_CorePara_helps_example__c > corehelpsList = new List < IPM_CorePara_helps_example__c > ();
             IPM_CorePara_helps_example__c coreParamHelp = IPM_TestFactory_Helper.createCoreParamHelpExapmle(false);

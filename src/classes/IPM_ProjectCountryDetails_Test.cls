@@ -24,8 +24,6 @@ private class IPM_ProjectCountryDetails_Test {
     public static List<MDO_Geography__c> mdo_geoList;
     public static User platformUser;
     public static List<IPM_Company_Card__c> companyCardList; 
-    //public static IPM_Project__c ipmProject ;
-    //public static List<IPM_Project__c> projectList;
     public static List<IPM_Project_Document__c> projDocList;
     public static IPM_Project_Document_Section__c projDocSec;
    
@@ -136,8 +134,6 @@ private class IPM_ProjectCountryDetails_Test {
     
     static testMethod void testCountryUpdate(){
         
-        //createData();
-        
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];
         System.runAs(globalUser){
         	List<IPM_Project__c> toUpdateProjList = new List<IPM_Project__c>();
@@ -210,12 +206,7 @@ private class IPM_ProjectCountryDetails_Test {
 	        IPM_Project__c updatedCountry = [Select Id,First_Sync_To_EcoDesign__c,EcoDesign_Sync_Status__c from IPM_Project__c Limit 1][0];
 	        System.assertEquals('Ready',updatedCountry.EcoDesign_Sync_Status__c);
 	            
-	       
-	        //delete toUpdateCountry;
-	        
         }
-        
-            
     }
     
     
@@ -230,7 +221,6 @@ private class IPM_ProjectCountryDetails_Test {
    
     static testMethod void testAtLeastOneAssmnt(){
         
-        //createData();
        	User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];
         System.runAs(globalUser){
             

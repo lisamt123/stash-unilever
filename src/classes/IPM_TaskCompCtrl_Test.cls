@@ -12,7 +12,6 @@ private class IPM_TaskCompCtrl_Test{
     public static list<IPM_Project__c> projectDetailList;
     private static final String  USER_NAME ='PLATFORM_USER';
     private static final String  PROJECT_ID ='Pid';
-    private static final Id PROJECT_TASK_ID = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
     
     /***********************************
       @name: projectSetUpData

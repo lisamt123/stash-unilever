@@ -37,9 +37,7 @@ public class  IPM_Resource_Allocation_Test {
         {
             // user has to be created as system admin 
             stdUserForResourceAllocation= IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
-            
         }       
-      
         
         List<User>userLists=[SELECT id FROM user WHERE id=:stdUserForResourceAllocation.id LIMIT 1];
         System.AssertEquals(userLists[0].id, stdUserForResourceAllocation.id,'user id is:'+userLists[0].id);//positive test
@@ -60,13 +58,7 @@ public class  IPM_Resource_Allocation_Test {
             insert projectListObj;
             List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:projectListObj[0].ID LIMIT 1];
             System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name');//positive test
-            
             project=projectListObj[0];
-            
-            
-            
-            
-            
         }
     }
     
@@ -161,13 +153,9 @@ public class  IPM_Resource_Allocation_Test {
             pRef.getParameters().put(IPM_ConstantUtils.TEAM_ROLETYPE,IPM_ConstantUtils.TEAM_GUEST);
             ipmResAlloccation=new IPM_Resource_Allocation();
             
-            
-            
         }
     }
 
-
-    
     /*
     * @Description To check if the same category has been assigned to GD
     */
@@ -191,7 +179,6 @@ public class  IPM_Resource_Allocation_Test {
             ipmResAlloccation.SearchLeader='searchLeader';
             ipmResAlloccation.isInvokedFromRollouts=true;
             ipmResAlloccation.rolloutId=projRollOut.Id;
-            
             
             ipmResAlloccation.changeRoleType='gfgf';
             ipmResAlloccation.SearchTeambyCat= IPM_ConstantUtils.TEAM_MYCATEGORY;
@@ -240,7 +227,6 @@ public class  IPM_Resource_Allocation_Test {
         system.RunAs(globalUser){
             test.startTest();
             
-            
             ipmResAlloccation.getSameCategory();
             userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);
@@ -251,11 +237,9 @@ public class  IPM_Resource_Allocation_Test {
             ipmResAlloccation.HoldCoreMember(); 
             ipmResAlloccation.holdLeader(); 
             
-            
         }
         Test.stopTest(); 
     }
-    
     
     /*
     * @Description To check if the same category has been assigned to GD
@@ -302,11 +286,9 @@ public class  IPM_Resource_Allocation_Test {
             List<IPM_Project_Resource__c>resList1=[SELECT id,IPM_User__c,IPM_User__r.name,IPM_User__r.SmallPhotoUrl,IPM_Project_Role_Owner__c,
             IPM_Role_Type__c FROM IPM_Project_Resource__c where Id=:projectResRecord.Id limit 1]; 
             System.assertEquals(resList1[0].IPM_Role_Type__c,IPM_ConstantUtils.TEAM_RND,FUNCTION_NOT_CALL_PROPERLY);   
-            
         }
         Test.stopTest(); 
     }
-    
     
     /*
     * @Description To check if the same category has been assigned to GD
@@ -333,7 +315,6 @@ public class  IPM_Resource_Allocation_Test {
             ipmResAlloccation.getCoreMemberds();
             userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);
-            
         }
         Test.stopTest(); 
     }
@@ -463,7 +444,4 @@ public class  IPM_Resource_Allocation_Test {
         }
         Test.stopTest(); 
     }
-    
-    
-
 }

@@ -137,7 +137,7 @@ private class IPM_Team_Assignment_Controller_Test{
         ipmProjectResource4.IPM_Project_Role_Owner__c=true;
         insert ipmProjectResource4;
         system.assertEquals(ipmProjectResource4.IPM_Project__c,project.id,System.Label.IPM_Record_successfully_saved);//positive test
-        system.debug('ipmProjectResource4 --> ' + ipmProjectResource4);
+       
         
         ipmProjectResource5 = IPM_TestFactory_Helper.createIPMProjectResource(project.id,FALSE);
         ipmProjectResource5.IPM_Role_Type__c = 'Guest';
@@ -145,7 +145,7 @@ private class IPM_Team_Assignment_Controller_Test{
         ipmProjectResource5.IPM_Project__c= project.id;
         insert ipmProjectResource5;
         System.assertNotEquals(ipmProjectResource5.id, null,System.Label.IPM_Record_successfully_saved);
-        system.debug('ipmProjectResource5 --> ' + ipmProjectResource5);
+        
         
         system.Runas(sUser){
             Test.startTest();

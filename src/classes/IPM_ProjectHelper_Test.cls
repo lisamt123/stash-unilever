@@ -152,24 +152,23 @@ public with sharing class IPM_ProjectHelper_Test
             List<IPM_Project_Rollout__c> localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>());  
              
             insert localRolloutList; 
-            
-            
+           
             // Create Country specific information.
             List<IPM_Country__c> countryList= new List<IPM_Country__c>();
             
             for(IPM_Project_Rollout__c localRollout : localRolloutList)
             {
                 String geoExternalId = '';
-                if(localRollout.IPM_Rollout_Project__c.contains('AFR'))
+                if(localRollout.IPM_Rollout_Project__c.contains('AF'))
                 {
-                    geoExternalId = 'AGO';
+                    geoExternalId = 'AG';
                 }
                 else if(localRollout.IPM_Rollout_Project__c.contains('LA'))
                 {
-                    geoExternalId = 'BRA';
+                    geoExternalId = 'BR';
                 }
                 
-                IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new mdm_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
+                IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
                 IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO');    
                 
                 countryList.add(tempCountry);

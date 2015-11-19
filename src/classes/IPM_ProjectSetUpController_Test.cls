@@ -37,7 +37,7 @@ private class IPM_ProjectSetUpController_Test {
         ProjectWithOutBoss.IPM_Project_Name__c='ProjectWithOutBoss';
         ProjectWithOutBoss.IPM_Project_Type__c='Original';
         insert projectWithOutBoss;
-        List<IPM_Project__c> BDProjectList = [ SELECT Id,Name FROM IPM_Project__c WHERE Name='ProjectWithOutBoss'];
+        List<IPM_Project__c> BDProjectList = [ SELECT Id,Name FROM IPM_Project__c WHERE Name='ProjectWithOutBoss' LIMIT 1];
         system.assertEquals(BDProjectList[0].Name,ProjectWithOutBoss.Name);
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>();
         IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
@@ -70,6 +70,8 @@ private class IPM_ProjectSetUpController_Test {
         sic = new IPM_ProjectSetUpController (sc);
         initiateProjectCreation();
         sic.saveProceed();
+        List<IPM_Project__c>projectList=[SELECT IPM_Project_Name__c FROM IPM_Project__c where id=:projectWithOutBoss.id LIMIT 1];
+        system.assertEquals(projectList[0].IPM_Project_Name__c, projectWithOutBoss.IPM_Project_Name__c, 'Project name should be same as:'+projectList[0].IPM_Project_Name__c);
         Test.stopTest();
     }
     /**********************************************************************
@@ -92,6 +94,7 @@ private class IPM_ProjectSetUpController_Test {
         List<IPM_User_Profile__c> tempUserProfileList = IPM_TestFactory_Helper.createUserProfileList(new List<Id>{loggedInUser},companyCardList,false);     
         insert tempUserProfileList;
         userProfileList.addAll(tempUserProfileList);    
+        
         Test.startTest();
         PageReference pageRef = Page.IPM_ProjectSetUpView;
         Test.setCurrentPageReference(pageRef);  
@@ -166,7 +169,7 @@ private class IPM_ProjectSetUpController_Test {
                 }               
                 List<SelectOption> brandPosOptionList = sic.getBrandPos();
                 if(brandPosOptionList.size()>1){
-                sic.project.IPM_Brand_Positioning__c = brandPosOptionList[1].getValue();  
+                	sic.project.IPM_Brand_Positioning__c = brandPosOptionList[1].getValue();  
                 }
                 // Error Scenario
                 sic.getGateKeepingModels();
@@ -307,7 +310,7 @@ private class IPM_ProjectSetUpController_Test {
         system.runAs(newUsr){
             System.assertNotEquals(ipmProjectResource5.id, null);//positive test
             sic.project.IPM_Project_Gatekeeper__c=newUsr.id;
-           sic.getProjectResource();//get project resource record
+            sic.getProjectResource();//get project resource record
             sic.getMilesTaskIpmuserType();//get current logged in user access
             sic.getIpmuserType();//get current logged in user access
             system.assert(!sic.isEditable, IPM_ConstantUtils.MSG_ISEDITABLE_SHOULD_NOT_NULL);//positive test

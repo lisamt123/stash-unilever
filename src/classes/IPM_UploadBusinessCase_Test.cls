@@ -11,6 +11,7 @@
 public class IPM_UploadBusinessCase_Test {
     public static User u1 = new User();
     public static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
+    public static final String EMPTY_LIST = 'list empty';
 /**********************************************************************
     *  @Description: Test Method to initialize data for the other test methods
     *  @name : testIPM_UploadBusinessCase
@@ -21,20 +22,11 @@ public class IPM_UploadBusinessCase_Test {
          test.startTest(); 
         //Global     
             
-            Profile p = [SELECT Id FROM Profile WHERE Name='IPM NG Basic']; 
-            u1 = IPM_TestFactory_Helper.createUser(FALSE);
-            u1 = new User(Alias = 'fin30', Email='finGrid0@testorg4.com', 
-                          EmailEncodingKey='UTF-8', LastName='finGrid0', LanguageLocaleKey='en_US', 
-                          LocaleSidKey='en_US', ProfileId = p.Id, 
-                          TimeZoneSidKey='America/Los_Angeles', UserName='finGrid0@testorg4.com', 
-                          IPM_Category__c = 'test4'  , IPM_Brand_Positioning__c= 'test4',IPM_Brand_Name__c ='test1',
-                          IPM_Role__c='Gate Keeper' ,IPM_Sub_Category__c='test', isActive =true);
-            insert u1;
-             user uname = [select LastName from User where id=:u1.Id];
+            u1 = u1 = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
             
-            system.assert(uname.LastName == 'finGrid0', 'User insert failed'); 
             system.runAs(u1){
                 projectList = IPM_TestFactory_Helper.insertIPMProjectList();
+                system.assertEquals(projectList.isEmpty() , false, EMPTY_LIST);  
                 IPM_UploadBusinessCase att1 = new IPM_UploadBusinessCase();
                 att1.objAttachment = new attachment();
                 Test.setCurrentPageReference(new PageReference('Page.myPage')); 
@@ -43,6 +35,7 @@ public class IPM_UploadBusinessCase_Test {
                 att1.filebody = b;
                 att1.filename = 'Att1';
                 att1.saveBusinessCase();
+                          
                 
                 IPM_UploadBusinessCase att = new IPM_UploadBusinessCase();
                 att.filebody = b;
