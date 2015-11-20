@@ -7200,6 +7200,11 @@ Create Libaries and Content</description>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Application_Usage__c.Application_Login_Month__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Application_Usage__c.Application__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7216,6 +7221,11 @@ Create Libaries and Content</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>Application_Usage__c.Days_Since_Last_Access__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Application_Usage__c.Job_Function__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
