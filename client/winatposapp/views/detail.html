@@ -1,0 +1,155 @@
+<div class="detail-container">
+    <div ng-if="isGroup == true">
+        <h2 class="page-title" ps-html="assetGroupName"></h2>
+        <ul class="page-title-buttons">
+            <li ng-if="userFollowTheCollection == false && isGroup == true"><a href="javascript:void(0)" ng-click="follow(assetGroupId, isGroup)">Follow asset group <span class="unilever-caret follow"></span></a></li> 
+            
+            <li ng-if="userFollowTheCollection == true && isGroup == true"><a href="javascript:void(0)" ng-click="unfollow(assetGroupId, isGroup)">Unfollow asset group <span class="unilever-caret unfollow"></span></a></li>
+
+            <li ng-if="isGroup == true && assetGroupdownloadPdfUrl != undefined && assetGroupdownloadPdfUrl !=''"><a href="javascript:void(0)" ng-click="downloadPdf(assetGroupdownloadPdfUrl)">Download all primary images as PDF file <span class="unilever-caret download"></span></a></li>                          
+        </ul>
+
+        <div ps-detail detailitems="detailItems" resourcebasepath="resourceBasePath"></div>	
+    </div>
+
+    <div ng-repeat="asset in detailItems" class="assetItem" ng-show="$index == activeElement" ng-hide="$index != activeElement">
+        <div ng-if="isGroup == false">
+            <h2 class="page-title" ps-html="asset.assetName"></h2>
+
+            <ul class="page-title-buttons">
+                <li ng-if="userFollowTheCollection == false && isGroup == true"><a href="javascript:void(0)" ng-click="follow(assetGroupId, isGroup)">Follow <span class="unilever-caret follow"></span></a></li> 
+                <li ng-if="asset.userFollowAsset == false && isGroup == false"><a href="javascript:void(0)" ng-click="follow(asset.assetId, isGroup)">Follow <span class="unilever-caret follow"></span></a></li> 
+
+                <li ng-if="userFollowTheCollection == true && isGroup == true"><a href="javascript:void(0)" ng-click="unfollow(assetGroupId, isGroup)">Unfollow <span class="unilever-caret unfollow"></span></a></li>
+                <li ng-if="asset.userFollowAsset == true && isGroup == false"><a href="javascript:void(0)" ng-click="unfollow(asset.assetId, isGroup)">Unfollow <span class="unilever-caret unfollow"></span></a></li>            
+            </ul>
+
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="asset-content">
+            <div class="asset-left">
+                <div class="asset-image">
+                    <img ng-src="{{ (asset.primaryImageUrl == undefined || asset.primaryImageUrl === null || asset.primaryImageUrl === '') ? resourceBasePath + 'images/emptydetail.png' : (asset.primaryImageUrl | psParseUrl) }}" alt="" ps-parse-url/>
+                </div>
+                <div class="clearfix"></div>
+                <div class="asset-download-btns">
+                    <div ng-if="asset.downloadImageURL != undefined && asset.downloadImageURL !=''" class="asset-download-btn">
+                        <span class="asset-download-btn-image photo"></span><a href="javascript:void(0)" ng-click="downloadAsset(asset.feedId, asset.assetPrimaryFileId, asset.downloadImageURL)">Download image source file only</a>
+                    </div>  
+                    <div ng-if="asset.assetDownloadPdfUrl != undefined && asset.assetDownloadPdfUrl !=''" class="asset-download-btn"><span class="asset-download-btn-image photo"></span><a href="javascript:void(0)" ng-click="downloadPdf(asset.assetDownloadPdfUrl)">Download image and description as a PDF</a></div>
+                </div>
+            </div>
+            <div class="asset-right">
+                <div class="asset-description">
+                    <div ng-if="isGroup == true">
+                        <h2 class="asset-title" ps-html="asset.assetName"></h2>
+
+                        <div class="asset-group">
+                            <ul class="page-asset-buttons">
+                                <li ng-if="asset.userFollowAsset == false"><a href="javascript:void(0)" ng-click="follow(asset.assetId)">Follow asset <span class="unilever-caret follow"></span></a></li> 
+                                <li ng-if="asset.userFollowAsset == true"><a href="javascript:void(0)" ng-click="unfollow(asset.assetId)">Unfollow asset <span class="unilever-caret unfollow"></span></a></li>     
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <div class="asset-table-info">
+                        <div class="asset-table-info-row">
+                            <div class="info-label">Category</div><div class="info-value" ps-html="asset.assetCategory"></div>
+                        </div>
+
+                        <div class="asset-table-info-row">
+                            <div class="info-label">Brand</div><div class="info-value" ps-html="asset.assetBrand"></div>
+                        </div>
+
+                        <div class="asset-table-info-row">
+                            <div class="info-label">Type</div><div class="info-value" ps-html="asset.assetType"></div>
+                        </div>
+
+                        <div class="asset-table-info-row">
+                            <div class="info-label">Channels</div><div class="info-value" ps-html="asset.assetChannels"></div>
+                        </div>
+
+                        <div class="asset-table-info-row">
+                            <div class="info-label">Cluster</div><div class="info-value" ps-html="asset.assetCluster"></div>
+                        </div>
+                                            
+                        <div class="asset-table-info-row">
+                            <div class="info-label">Country</div><div class="info-value" ps-html="asset.assetCountry"></div>
+                        </div>
+                        <div class="asset-table-info-row">
+                            <div class="info-label">Placement</div><div class="info-value" ps-html="asset.assetPlacement"></div>
+                        </div>
+                        <div class="asset-table-info-row">
+                            <div class="info-label">Touchpoint</div><div class="info-value" ps-html="asset.assetTouchpoint"></div>
+                        </div>
+                        <div class="asset-table-info-row">
+                            <div class="info-label">Asset Owner</div><div class="info-value" ps-html="asset.assetOwner"></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="asset-text" ps-html="asset.assetDescription">
+                    </div>
+                    <div class="clearfix"></div>
+                    <div ng-if="asset.videoUrl">
+                        <br />
+                        <div><a class="btn btn-default" ng-href="{{asset.videoUrl}}" target="_blank">Click to play video</a></div>
+                    </div>
+                    <div class="asset-additionalfiles" ng-if="!asset.videoUrl">
+                        <div class="asset-download-btns">
+                            <div ng-repeat="item in asset.assetFiles" ng-if="item.Feed_URL__c != undefined && item.Feed_URL__c !='' && item.Is_Primary_Image__c != true && item.Type__c != 'Generated'" class="asset-download-btn">
+                                <span ng-if="item.Show_Presentation__c == 'visible'" class="asset-download-btn-image presentation"></span>
+                                <span ng-if="item.Show_Production_Engineering__c == 'visible'" class="asset-download-btn-image settings"></span>
+                                <span ng-if="item.Show_Production_Engineering__c != 'visible' && item.Show_Presentation__c != 'visible'" class="asset-download-btn-image photo"></span>
+
+                                <a href="javascript:void(0)" ng-click="downloadAsset(item.Feed_ID__c, item.Id, item.Feed_URL__c)" ps-html="item.Name"></a>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="clear"></div>
+                    <div class="asset-buttons" ng-if="asset.buyOnlineInEuropeUrl != undefined || asset.brandExpirenceUrl != undefined">
+                        <button class="btn ordernow" type="button" ng-if="asset.buyOnlineInEuropeUrl != undefined" ng-click="downloadPdf(asset.buyOnlineInEuropeUrl)">Order now via unibuy</button> 
+                        <button class="btn brandexperience" type="button" ng-if="asset.brandExpirenceUrl != undefined" ng-click="downloadPdf(asset.brandExpirenceUrl)">Brand experience toolkit</button>
+                    </div>            
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="asset-statistics statistics-{{$index}}">
+            <div class="statistics-column left-column">
+                <div class="statistics-column-header"></div>
+                <div class="statistics-column-title">Followed by</div>
+                <div class="statistics-column-content">
+                    <div ng-repeat="item in asset.followStatistics" ng-if="asset.followStatistics" class="statistic-row">
+                        <div class="statistic-avatar">
+                            <img ng-src="{{ (item.userPhotoUrl == undefined || item.userPhotoUrl === null) ? resourceBasePath + '/images/collection.png' : (item.userPhotoUrl | psParseUrl) }}" alt="" ps-parse-url/>
+                        </div>
+                        <div class="statistic-label">
+                            <span class="statistic-name" ps-html="item.userName"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="statistics-column right-column">
+                <div class="statistics-column-header"></div>
+                <div class="statistics-column-title">Downloaded by</div>
+                <div class="statistics-column-content">
+                    <div ng-repeat="item in asset.downloadStatistics" ng-if="asset.downloadStatistics" class="statistic-row">
+                        <div class="statistic-avatar">
+                            <img ng-src="{{ (item.userPhotoUrl == undefined || item.userPhotoUrl === null) ? resourceBasePath + '/images/collection.png' : (item.userPhotoUrl | psParseUrl) }}" alt="" ps-parse-url/>
+                        </div>
+                        <div class="statistic-label">
+                            <span class="statistic-name" ps-html="item.userName"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ps-chatter-manager ps-entity-id="assetid"></div>
