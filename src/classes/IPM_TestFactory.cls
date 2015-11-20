@@ -394,13 +394,11 @@ public without sharing class IPM_TestFactory {
         String fieldLabel = fieldDescObj.getLabel().replace(' ',EMPTY_STRING);
         Object finalValue = null;
         
-		
-		if (!isExcludedField(fieldDescObj) && !isExcludedField(obj, fieldDescObj) && !fieldDescObj.isAutoNumber() && !fieldDescObj.isCalculated() && 
-	            ( 
-	                fieldDescObj.isCustom() || 
-	                ( !fieldDescObj.isCustom() && fieldDescObj.getName()=='RecordTypeId') ||  
-	                ( !fieldDescObj.isCustom() && ( fieldDescObj.isCreateable() || fieldDescObj.isUpdateable() ) )  
-	            )  
+        if (!isExcludedField(fieldDescObj) && !isExcludedField(obj, fieldDescObj) && !fieldDescObj.isAutoNumber() && !fieldDescObj.isCalculated() && 
+              ( 
+                  fieldDescObj.isCustom() || 
+                  ( !fieldDescObj.isCustom() && ( fieldDescObj.isCreateable() || fieldDescObj.isUpdateable() ) )  
+              )  
             )
         {
             if(providedFieldValue != null)
@@ -554,15 +552,6 @@ public without sharing class IPM_TestFactory {
                 if(providedFieldValue!=null && recordType.getRecordTypeId() == String.valueOf(providedFieldValue) )
                 {
                     obj.put('RecordTypeId', recordType.getRecordTypeId());
-                }
-            }
-            
-            if(obj.get('RecordTypeId') == null)
-            {
-                for (Schema.RecordTypeInfo recordType : recordTypes) {
-                    if (recordType.isAvailable() && recordType.isDefaultRecordTypeMapping()) {
-                        obj.put('RecordTypeId', recordType.getRecordTypeId());
-                    }
                 }
             }
         }

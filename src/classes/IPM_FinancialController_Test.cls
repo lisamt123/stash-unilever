@@ -35,7 +35,7 @@ public class IPM_FinancialController_Test {
                 {
                     projectRolloutList = projectToRolloutMap.get(projectRollout.IPM_Project__c);
                 }
-                projectRolloutList.add(projectRollout); 
+                projectRolloutList.add(projectRollout);
                 projectToRolloutMap.put(projectRollout.IPM_Project__c,projectRolloutList);
             }
             
@@ -88,7 +88,7 @@ public class IPM_FinancialController_Test {
         { 
             Test.startTest();
             
-            List<IPM_Project__c>  projectList = [Select Id,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet];
+            List<IPM_Project__c>  projectList = [Select Id,Name,IPM_Phase__c,IPM_Project_Type__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet];
             system.assert(projectList.size()>0);
             
             PageReference pageRef = new PageReference('/apex/IPM_Financial?Id='+projectList[0].Id);
@@ -121,7 +121,7 @@ public class IPM_FinancialController_Test {
             
             
             
-            List<IPM_Project__c>lstLocalProjects = [Select Id,IPM_Parent_Project__r.Name from IPM_Project__c WHERE IPM_Parent_Project__c = :projectList[0].Id AND IPMProject_Span__c = :IPM_ConstantUtils.PROJECT_SPAN_LOCAL LIMIT 1];     
+            List<IPM_Project__c>lstLocalProjects = [Select Id,IPM_Project_Type__c,IPM_Parent_Project__r.Name from IPM_Project__c WHERE IPM_Parent_Project__c = :projectList[0].Id AND IPMProject_Span__c = :IPM_ConstantUtils.PROJECT_SPAN_LOCAL LIMIT 1];     
             //System.assertEquals(lstLocalProjects[0].IPM_Parent_Project__r.Name,'TestComments1','function not call properly');
             List<Id> globalProjectIdList = new List<Id>();
             
@@ -153,11 +153,11 @@ public class IPM_FinancialController_Test {
                 Test.setCurrentPageReference(pageRef); 
                     
                 ipmFinCon = new IPM_FinancialController();
-	            ipmFinCon.editFinancials();
-	            ipmFinCon.saveFinancials();
-	            
-	            ipmFinCon.CopyPasteTemplate();
-            	ipmFinCon.gotoSection();
+                ipmFinCon.editFinancials();
+                ipmFinCon.saveFinancials();
+                
+                ipmFinCon.CopyPasteTemplate();
+                ipmFinCon.gotoSection();
                 
                 ipmFinCon.currentTab = 'topdown';
                 ipmFinCon.changeTabs();
@@ -166,13 +166,10 @@ public class IPM_FinancialController_Test {
                 ipmFinCon.changeTabs();
                 
                 ipmFinCon.currentTab = 'myview';
-            	ipmFinCon.changeTabs();
-            	
-            	ipmFinCon.CopyPasteTemplate();
-            	ipmFinCon.gotoSection();
+                ipmFinCon.changeTabs();
             
-            	ipmFinCon.refreshFromRegional();
-            	
+                ipmFinCon.refreshFromRegional();
+                
                 break;
             }
         }
@@ -188,7 +185,7 @@ public class IPM_FinancialController_Test {
         
         System.runAs(userList[0])
         {
-            List<IPM_Project__c>  projectList = [Select Id, Name, IPM_Phase__c, (Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet];
+            List<IPM_Project__c>  projectList = [Select Id, Name,IPM_Project_Type__c, IPM_Phase__c, (Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet];
             system.assert(projectList.size() > 0);
             
             for(IPM_Project__c ipmProj : projectList){
@@ -222,8 +219,6 @@ public class IPM_FinancialController_Test {
             ipmFinCon.editFinancials();
             ipmFinCon.saveFinancials();
             
-            ipmFinCon.CopyPasteTemplate();
-            ipmFinCon.gotoSection();
             
         }
     } 
@@ -236,14 +231,14 @@ public class IPM_FinancialController_Test {
         
         test.startTest();
 
-		project4=IPM_TestFactory_Helper.createIPMProject(FALSE);
+        project4=IPM_TestFactory_Helper.createIPMProject(FALSE);
         
            project4.Sustainability_Period__c='3';
            project4.IPM_Target_Launch_Dates__c=system.today().addYears(3); 
            project4.IPM_IsCompleted__c=true; 
-		   project4.IPM_Project_Type__c='Original';
-		   project4.IPM_Project_Name__c='ProjectName';
-		   project4.IPM_Phase__c='Ideas';
+           project4.IPM_Project_Type__c='Original';
+           project4.IPM_Project_Name__c='ProjectName';
+           project4.IPM_Phase__c='Ideas';
            project4.IPM_Brand_Positioning__c='Dirt Is Good';
            project4.IPM_GateKeeping_Model__c='RCLT';
            project4.IPM_ProjectSubType__c='Innovation/Rennovation';
@@ -258,10 +253,10 @@ public class IPM_FinancialController_Test {
           test.stopTest();
     }
     /*
-	Created by - Sanjay Singh
-	Purpose - Currency related implementation
-	Note: Below method covers new code written for currency related changes but whole class does not cover 75% as its clonned from IPM_Financial test class
-	*/
+    Created by - Sanjay Singh
+    Purpose - Currency related implementation
+    Note: Below method covers new code written for currency related changes but whole class does not cover 75% as its clonned from IPM_Financial test class
+    */
     static testMethod void testCurrency(){
         //set up exchange rate object data
         initializeDataTemp3(); 
