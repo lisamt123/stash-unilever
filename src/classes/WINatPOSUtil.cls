@@ -448,7 +448,7 @@ public with sharing class WINatPOSUtil {
 	
 	/*******************************************************************
 	Purpose: Method is querying for Assets for Home page for Community user ( with sharing )
-	Parameters: [String optional]
+	Parameters: [optional]
 	Returns: [List<Category__c>]
 	Throws [Exceptions]: [optional] 
 	********************************************************************/	
@@ -459,6 +459,25 @@ public with sharing class WINatPOSUtil {
                                      (select CommentCount, LikeCount,id from Feeds)
                                      From Asset__c where Carousel_Published__c=true
                                      ];
+	}
+	
+	/*******************************************************************
+	Purpose: Method returns Community name specified in Custom Setting
+	Returns: [String]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/	
+	public static String getCommunityName(){
+		System.Debug('*** WINatPOS getCommunityName ' );
+		
+		WinAtPos_General_Settings__c myCustomSetting = WinAtPos_General_Settings__c.getOrgDefaults();
+		
+		String communityName = '';
+		
+		if(myCustomSetting != null && myCustomSetting.Community_Name__c != null){
+			communityName = myCustomSetting.Community_Name__c;
+		}
+		
+		return communityName;
 	}
    
    /*******************************************************************
@@ -471,10 +490,12 @@ public with sharing class WINatPOSUtil {
    		System.Debug('*** WINatPOS checkIsCommunityUser input parameter userId: ' + userId + ' userProfileId: ' + userProfileId );
    		
 		List<User> tmpUser = [SELECT User_License__c, ProfileId FROM User WHERE Id=:userId AND ProfileId =:userProfileId  LIMIT 1];
-		List<Profile> tmpProfile = [SELECT Name FROM Profile WHERE Id = :userProfileId LIMIT 1];
+		//List<Profile> tmpProfile = [SELECT Name FROM Profile WHERE Id = :userProfileId LIMIT 1];
 		
-		if(!tmpUser.isEmpty() && !tmpProfile.isEmpty()){
-			if(tmpUser[0].User_License__c == WINatPOSUtil.USER_LICENSE_PARTNER_COMMUNITY && tmpProfile[0].Name == WINatPOSUtil.USER_PROFILE_AGENCY_PORTAL_USER){
+		//if(!tmpUser.isEmpty() && !tmpProfile.isEmpty()){
+		if(!tmpUser.isEmpty()){
+			//if(tmpUser[0].User_License__c == WINatPOSUtil.USER_LICENSE_PARTNER_COMMUNITY && tmpProfile[0].Name == WINatPOSUtil.USER_PROFILE_AGENCY_PORTAL_USER){
+			if(tmpUser[0].User_License__c == WINatPOSUtil.USER_LICENSE_PARTNER_COMMUNITY ){
 				return true;
 			}
 		}
