@@ -365,6 +365,7 @@ var numberOfFilesInUploadQueue = 0;
     }
 
     function filesSelected(){
+      unBlockLoadBtn();
       var sTableHTML = '' + getTableHeader();
       var filelist = document.getElementById("multiplefiles").files || [];
       for (var i = 0; i < filelist.length; i++) {
@@ -377,6 +378,7 @@ var numberOfFilesInUploadQueue = 0;
     function loadFiles(){
       var filelist = document.getElementById("multiplefiles").files || [];
       if (validateInput()){
+        blockLoadBtn();
         numberOfFilesInUploadQueue = filelist.length;
         for (var i = 0; i < filelist.length; i++) {
             uploadSingleFile(i);
@@ -457,4 +459,13 @@ var numberOfFilesInUploadQueue = 0;
         jQuery('.form-errors').show();
       }
     }
- 
+
+   function blockLoadBtn(){
+      jQuery("#btnUploadFiles").attr("disabled", true);
+      jQuery("#btnUploadFiles").text(lblUploadFilesLoading).removeClass('betBtnPink').addClass('betBtnGray');
+   }
+   
+   function unBlockLoadBtn(){
+      jQuery("#btnUploadFiles").attr("disabled", false);
+      jQuery("#btnUploadFiles").text(lblUploadFiles).removeClass('betBtnGray').addClass('betBtnPink');
+   }

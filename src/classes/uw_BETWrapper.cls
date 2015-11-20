@@ -265,6 +265,8 @@ public with sharing class uw_BETWrapper {
         public Boolean beforeFirstDueDate;
 
         public Boolean expectedAssetsProvided {get;set;}
+
+        public Boolean assetPrioritySet {get;set;}
         
         public BetSearchItem(String betId, String betName, String betChatterGroupId, Datetime betFinalRelease, String betPresentationId, String betIconLocation, String betDescription, String betBrandName, String betRegion, String betProjectName,
             String betIPMProjectName,  
