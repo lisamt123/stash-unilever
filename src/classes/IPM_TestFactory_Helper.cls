@@ -24,7 +24,7 @@ public with sharing class IPM_TestFactory_Helper {
     public static final string EXTERNAL = 'External';
     public static final string ORIGINAL_PROJECTYPE = 'Original';
     public static final string OPERATIONAL_PROJECTYPE = 'Operational';
-    public static final string GEOGRAPHICAL_SCOPE ='IPM_Geographical_Scope__c';
+    public static final string GEOGRAPHICAL_SCOPE ='IPM_TxtGeographical_Scope__c';
     public static final string MARKET_CLUSTER_CC ='IPM_Market_Cluster__c';
     public static final string IPM_MCO_CC ='IPM_MCO__c';
     public static final string SUSTAINABILITY_PERIOD = 'Project_Sustainability_Period__c';
