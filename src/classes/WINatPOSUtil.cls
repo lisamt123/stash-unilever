@@ -400,6 +400,7 @@ public with sharing class WINatPOSUtil {
 	Throws [Exceptions]: [optional] 
 	********************************************************************/
     public static List<sObject> retrieveForCommunityUsers(String query){
+    	System.Debug('*** WINatPOS retrieveForCommunityUsers input parameter query: ' + query );
     	return Database.query(query);
     }
     
@@ -410,6 +411,7 @@ public with sharing class WINatPOSUtil {
 	Throws [Exceptions]: [optional] 
 	********************************************************************/
     public static List<List<SObject>> searchForCommunityUsers(String query){
+    	System.Debug('*** WINatPOS searchForCommunityUsers input parameter query: ' + query );
     	return Search.query(query);
     }
     
@@ -420,6 +422,7 @@ public with sharing class WINatPOSUtil {
 	Throws [Exceptions]: [optional] 
 	********************************************************************/
     public static List<Brand_Master__c> getBrandForCaruselByList(List<Brand_Master__c> brands){
+    	System.Debug('*** WINatPOS searchForCommunityUsers input parameter brands: ' + brands );
     		
 		return [select name,Brand_Logo__c,id,
                     (select ParentId, SubscriberId from FeedSubscriptionsForEntity where SubscriberId =: UserInfo.getUserId()),
@@ -435,6 +438,7 @@ public with sharing class WINatPOSUtil {
 	Throws [Exceptions]: [optional] 
 	********************************************************************/	
 	public static List<Category__c> getCatForCaruselByList(List<Category__c> categories){
+		System.Debug('*** WINatPOS searchForCommunityUsers input parameter categories: ' + categories );
 		
 		return [SELECT name,Category_Logo__c,id,
                     (SELECT ParentId, SubscriberId FROM FeedSubscriptionsForEntity WHERE SubscriberId =: UserInfo.getUserId()),
@@ -449,7 +453,7 @@ public with sharing class WINatPOSUtil {
 	Throws [Exceptions]: [optional] 
 	********************************************************************/	
 	public static List<Asset__c> getAssetsForHomePage(){
-		
+		System.Debug('*** WINatPOS getAssetsForHomePage ' );
 		return [select id,Name,POS_Asset_Type__c,Description__c,LastModifiedDate, Video_URL_Link__c,
                                      (Select Feed_Thumbnail_URL__c,Feed_Id__c from Files__r where Is_Primary_Image__c=true),
                                      (select CommentCount, LikeCount,id from Feeds)
@@ -464,7 +468,8 @@ public with sharing class WINatPOSUtil {
 	Throws [Exceptions]: [optional] 
 	********************************************************************/
    public static Boolean checkIsCommunityUser(Id userId, Id userProfileId){
-   	
+   		System.Debug('*** WINatPOS checkIsCommunityUser input parameter userId: ' + userId + ' userProfileId: ' + userProfileId );
+   		
 		List<User> tmpUser = [SELECT User_License__c, ProfileId FROM User WHERE Id=:userId AND ProfileId =:userProfileId  LIMIT 1];
 		List<Profile> tmpProfile = [SELECT Name FROM Profile WHERE Id = :userProfileId LIMIT 1];
 		
