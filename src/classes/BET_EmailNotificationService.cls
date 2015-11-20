@@ -11,7 +11,7 @@ VERSION  AUTHOR                DATE        DETAIL   Description
 /* Without sharing due to it is a service class used by external system */
 public without sharing class BET_EmailNotificationService {
 
-	private static final OrgWideEmailAddress owea = [select Id from OrgWideEmailAddress where displayname = 'CB4L'];
+	private static final OrgWideEmailAddress owea = [select Id from OrgWideEmailAddress where displayname = 'Unilever'];
 
 	private BET_EmailNotificationService() {}
 
