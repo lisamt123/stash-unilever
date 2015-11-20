@@ -108,7 +108,6 @@
       serverurl="${sf.serverurl}"
       checkOnly="true"
       logType="Debugonly"
-      testLevel="RunSpecifiedTests"
       allowMissingFiles="true"
       autoUpdatePackage="true"
       ignoreWarnings="true"
