@@ -16,13 +16,14 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 public with sharing  class WinAtPOSHomeController {
     public String entityId{get;set;}  
     public String winAtPosGroupId{get;set;} 
-  
+    public Boolean isCommunityUser{get;set;}
     public String keyWord{get;set;}
     
     //Controller cunstructor
     public WinAtPOSHomeController(){
     
         winAtPosGroupId=getWinAtPOSGroupId();
+        isCommunityUser=WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId());
     }
     
     public PageReference updateChatterFeed(){
@@ -52,7 +53,6 @@ public with sharing  class WinAtPOSHomeController {
 	********************************************************************/
     public String getWinAtPOSGroupId(){
         system.debug('*** WINatPOS getWinAtPOSGroupId method initialized');
-        
         WinAtPOSRemoteActions__c  remotActionConf=WinAtPOSRemoteActions__c.getValues('WinAtPOSRemoteActionConf');
         String winAtPosGroup=remotActionConf != null ? remotActionConf.WinAtPosGroup__c :'';
         if(System.Test.isRunningTest()){
@@ -61,6 +61,7 @@ public with sharing  class WinAtPOSHomeController {
         List<CollaborationGroup> colGroup=[SELECT Id,Name From CollaborationGroup where name =: winAtPosGroup limit 1];
         if(!colGroup.isEmpty()){
             system.debug('*** WINatPOS getWinAtPOSGroupId method returned: '+colGroup.get(0).Id);
+            //return '0TO290000004CbCGAU';
             return colGroup.get(0).Id;
         }
         system.debug('*** WINatPOS getWinAtPOSGroupId method retuned: null');
@@ -232,4 +233,5 @@ public with sharing  class WinAtPOSHomeController {
     public static WINatPOSRemoteActionWrapper getSearchResultListPdf(String searchType, String brandId,String categoryId,String keyWord,String assetType,String assetChannel,String assetCluster,String assetPlacment,String country,Integer pageSize,Integer pageNumber){
         return WINatPOSUtilRemoteActions.getSearchResultListPdf(searchType,brandId,categoryId,keyWord,assetType,assetChannel,assetCluster,assetPlacment,country,pageSize,pageNumber,false);
     }
+    
 }
