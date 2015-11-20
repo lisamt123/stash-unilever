@@ -224,7 +224,7 @@ public with sharing  class WinAtPOSHomeController {
     
     /*******************************************************************
     Purpose: Method returns information if pdf file can be genarate for search 
-	and return pdf file url if image size isn't too big
+    and return pdf file url if image size isn't too big
     Parameters: [optional]
     Returns: WINatPOSRemoteActionWrapper
     Throws [Exceptions]: [optional] 
@@ -233,5 +233,4 @@ public with sharing  class WinAtPOSHomeController {
     public static WINatPOSRemoteActionWrapper getSearchResultListPdf(String searchType, String brandId,String categoryId,String keyWord,String assetType,String assetChannel,String assetCluster,String assetPlacment,String country,Integer pageSize,Integer pageNumber){
         return WINatPOSUtilRemoteActions.getSearchResultListPdf(searchType,brandId,categoryId,keyWord,assetType,assetChannel,assetCluster,assetPlacment,country,pageSize,pageNumber,false);
     }
-    
 }
