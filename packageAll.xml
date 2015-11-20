@@ -271,16 +271,31 @@
     <types>
         <members>*</members>
         <name>Scontrol</name>
-    </types>
+    </types>  
     <types>
         <members>AA_forcetk</members>
         <members>AgentAppStaticResource</members>
         <members>Core_IC_IdeationApp</members>
+        <members>EcoDesignJS</members>
         <members>HROResources</members>
+        <members>IPM_BET_Logo</members>
+        <members>IPM_FinancialGrid</members>
+        <members>IPM_Financial_Upload_Test</members>
+        <members>IPM_ProjectType</members>
+        <members>IPM_Resource</members>
         <members>LoadImage</members>
+        <members>OV_bootstrap_drilldown</members>
+        <members>OV_jquery</members>
+        <members>OV_jqueryDotDot</members>
+        <members>OV_styles</members>
+        <members>OV_styles2</members>
+        <members>OV_styles3</members>
+        <members>OV_stylesMerged</members>
         <members>PSARViewTableauDashboard</members>
+        <members>bootstrapSF1</members>
+        <members>reportDocumentTypeIcons</members>
         <name>StaticResource</name>
-    </types>    
+    </types>     
     <types>
         <members>*</members>
         <name>SharingReason</name>
