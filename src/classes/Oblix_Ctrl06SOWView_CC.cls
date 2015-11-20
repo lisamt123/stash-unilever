@@ -67,13 +67,13 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
 
     public Oblix_Ctrl06SOWView_CC() {
         listLimit = 999;
-        
+
         initializeAttributes();
 
         init();
     }
 
-    public void initializeAttributes(){
+    public void initializeAttributes() {
 
         notes = new list<note>();
         noteAsset = new note();
@@ -209,7 +209,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         isEdit = true;
     }
 
-    public void CloneAction(){
+    public void CloneAction() {
 
         // create a 'clone' record and initialize it's values
         Marketing_SOW__c selSowClone = new Marketing_SOW__c(
@@ -282,7 +282,49 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         // set the VF page values
         selSow = selSowClone;
         sowId = null;
-        
+    }
+
+    /**
+    *   Method used to delete SOW and related objects
+    *   @return [page reference to Dahsboard]
+    */
+    public PageReference deleteAction(){
+
+        // Campaign and Non-Campaign items are Master-Detail relationship - they will be automatically deleted
+        // Campaign has Assets(MD) and Splits(Lookup), so splits will have to be deleted manually
+
+        PageReference pr = new PageReference('/apex/Oblix_VF05_SOWDetailsV');
+
+        // get related agency splits
+        try{
+
+            List<Oblix_Marketing_SOW_Project_Splits__c> splits = [SELECT Id FROM Oblix_Marketing_SOW_Project_Splits__c WHERE Project_Splits__r.Financial_Year__c =:selSow.Id];
+            
+            List<Database.DeleteResult> drChildRecords = Database.delete(splits, true);
+            
+            Boolean isSuccess = true;
+            for(Database.DeleteResult dr : drChildRecords){
+                if(dr.isSuccess() == false){
+                    isSuccess = false;
+                    break;
+                }
+            }
+            
+            // only try to delete SOW if we managed to delete it's child campaign splits records
+            if(isSuccess){
+            
+                Database.DeleteResult drSOWRecord = Database.delete(selsow, true);
+            
+            }
+
+        // not a DML exception
+        } catch (Exception e){
+
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'There was an issue while trying to delete this SOW: ' + e.getMessage()));
+
+        }
+
+        return pr;
 
     }
 
@@ -316,7 +358,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
                               Name, SmallProductCategory__c, OblixBrand__c, Marketing_Agency__c, LastModifiedDate, CreatedDate,
                               SOW_Status__c, BB_or_BD__c   from Marketing_SOW__c where Id = : selSow.Id
                              ];
-                     
+
                 } else {
                     update selSow;
                     sowId = selSow.Id;
@@ -329,14 +371,14 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
                 }
                 sowId = selSow.Id;
                 list<Marketing_SOW__c> childSow = new list<Marketing_SOW__c>();
-                        System.debug('###selSow.id : ' + selSow.id);
-                        childSow = [select id, OblixSOWOverallTotal__c from Marketing_SOW__c where MarketingSOWParent__c = :selSow.id  and Type_of_SOW__c = 'Baseline'];
-                        System.debug('###childSow : ' + childSow );
-                        if (childSow.size() > 0) {
-                            mapApproved.put(selSow.id, (integer)childSow[0].OblixSOWOverallTotal__c);
-                        } else {
-                            mapApproved.put(selSow.id, 0);
-                        }
+                System.debug('###selSow.id : ' + selSow.id);
+                childSow = [select id, OblixSOWOverallTotal__c from Marketing_SOW__c where MarketingSOWParent__c = :selSow.id  and Type_of_SOW__c = 'Baseline'];
+                System.debug('###childSow : ' + childSow );
+                if (childSow.size() > 0) {
+                    mapApproved.put(selSow.id, (integer)childSow[0].OblixSOWOverallTotal__c);
+                } else {
+                    mapApproved.put(selSow.id, 0);
+                }
                 if (!LstAttachementsToAdd.isEmpty()) {
                     for (Attachment att : lstAttachementsToAdd) {
                         att.parentId = selSow.id;
@@ -355,7 +397,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
                 } else if (noteAsset.body != null && noteAsset.id == null) {
                     throw new Oblix_Utils.CustomException('TOO_LONG_NOTE');
                 }
-                
+
             }
         } catch (Exception le) {
 

@@ -58,8 +58,9 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
     //achraf
     public Attachment attachment {
         get {
-            if (attachment == null)
-                attachment = new Attachment();
+            if (attachment == null){
+				attachment = new Attachment();            	
+            }
             return attachment;
         } set;
     }
@@ -102,7 +103,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
      */
     public List<SelectOption> getSmallCategory() {
         Map<Id, String> MapSmallCatIdToName = new Map<Id, String>();
-        if (lstMarkCategoriesFilter.size() > 0) {
+        if (!lstMarkCategoriesFilter.isEmpty()) {
             for (Marketing_SOW__c mark : lstMarkCategoriesFilter) {
                 if (mark.SmallProductCategory__c != null) {
                     if (!MapSmallCatIdToName.containsKey(mark.SmallProductCategory__c)) MapSmallCatIdToName.put(mark.SmallProductCategory__c, mark.SmallProductCategory__r.Name);
@@ -111,7 +112,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
         }
         System.debug('###MapSmallCatIdToName : ' + MapSmallCatIdToName);
         List<SelectOption> options = new List<SelectOption>();
-        if (MapSmallCatIdToName.keySet().size() > 0) {
+        if (!MapSmallCatIdToName.keySet().isEmpty()) {
             for (Id sowCat : MapSmallCatIdToName.keySet()) {
                 if (MapSmallCatIdToName.get(sowCat) != null) {
                     options.add(new SelectOption(sowCat, MapSmallCatIdToName.get(sowCat)));
@@ -128,7 +129,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
      */
     public List<SelectOption> getBigCategory() {
         Map<Id, String> MapBigCatIdToName = new Map<Id, String>();
-        if (lstMarkCategoriesFilter.size() > 0) {
+        if (!lstMarkCategoriesFilter.isEmpty()) {
             for (Marketing_SOW__c mark : lstMarkCategoriesFilter) {
                 if (mark.BigOblixProductCategory__c != null) {
                     if (!MapBigCatIdToName.containsKey(mark.BigOblixProductCategory__c)) MapBigCatIdToName.put(mark.BigOblixProductCategory__c, mark.BigOblixProductCategory__r.Name);
@@ -136,7 +137,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
             }
         }
         List<SelectOption> options = new List<SelectOption>();
-        if (MapBigCatIdToName.keySet().size() > 0) {
+        if (!MapBigCatIdToName.keySet().isEmpty()) {
             for (Id sowCat : MapBigCatIdToName.keySet()) {
                 if (MapBigCatIdToName.get(sowCat) != null) {
                     options.add(new SelectOption(sowCat, MapBigCatIdToName.get(sowCat)));
@@ -154,7 +155,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
     //loop through Ids and for each id we have the name : map constructed
     public List<SelectOption> getBrandItems() {
         Map<Id, String> MapBrandIdToName = new Map<Id, String>();
-        if (lstMarkCategoriesFilter.size() > 0) {
+        if (!lstMarkCategoriesFilter.isEmpty()) {
             for (Marketing_SOW__c mark : lstMarkCategoriesFilter) {
                 if (mark.OblixBrand__c != null) {
                     if (!MapBrandIdToName.containsKey(mark.OblixBrand__c)) MapBrandIdToName.put(mark.OblixBrand__c, mark.OblixBrand__r.Name);
@@ -162,7 +163,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
             }
         }
         List<SelectOption> options = new List<SelectOption>();
-        if (MapBrandIdToName.keySet().size() > 0) {
+        if (!MapBrandIdToName.keySet().isEmpty()) {
             for (Id sowCat : MapBrandIdToName.keySet()) {
                 if (MapBrandIdToName.get(sowCat) != null) {
                     options.add(new SelectOption(sowCat, MapBrandIdToName.get(sowCat)));
@@ -348,7 +349,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
                 System.debug('###selSow.id : ' + selSow.id);
                 childSow = [select id, OblixSOWOverallTotal__c from Marketing_SOW__c where MarketingSOWParent__c = :selSow.id  and Type_of_SOW__c = 'Baseline'  ];
                 System.debug('###childSow : ' + childSow );
-                if (childSow.size() > 0) {
+                if (!childSow.isEmpty()) {
                     mapApproved.put(selSow.id, (integer)childSow[0].OblixSOWOverallTotal__c);
                 } else {
                     mapApproved.put(selSow.id, 0);
@@ -357,37 +358,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
                 lstProjects = [Select Id, Name, Project_Finish_Date__c, Project_Start_Date__c, Financial_Year__c, Production_Completion_Date__c, Project_Completion_Date__c, First_Air_Date__c from Oblix_SOW_Projects__c where Financial_Year__c = : selSow.Id];
                 notes = [ select body from note where parentId = :selSow.Id];
             }
-            /*
-            string seriesbis = '';
-            date d_projStart, d_prodCompletion, d_projEnd,d_firstAir,d_projCompletion ;
-            string series = '';
-            date d1,d2;
-            if(lstProjects.size() >0)
-
-            for(Oblix_SOW_Projects__c  pr:lstProjects){
-
-                if(pr.Project_Start_Date__c != null) d_projStart = pr.Project_Start_Date__c.addMonths(-1);
-                else d_projStart  = date.newInstance(2015,1,1);
-                if(pr.Project_Finish_Date__c != null ) d_projEnd = pr.Project_Finish_Date__c.addMonths(-1);
-                else d_projEnd = date.newInstance(2015,1,1);
-
-                if(pr.Production_Completion_Date__c != null)d_prodCompletion = pr.Production_Completion_Date__c.addMonths(-1);
-                else d_prodCompletion = date.newInstance(2015,1,1);
-                if(pr.First_Air_Date__c != null) d_firstAir = pr.First_Air_Date__c.addMonths(-1);
-                else d_firstAir = date.newInstance(2015,1,1);
-                if(pr.Project_Completion_Date__c != null) d_projCompletion = pr.Project_Completion_Date__c.addMonths(-1);
-                else d_projCompletion = date.newInstance(2015,1,1);
-
-                series = series +'{'+
-                        '"unitName"'+':"'+pr.name+'",'+
-                        '"beginTimestamp"'+':'+'Date.UTC('+d_projStart.year()+','+d_projStart.month()+','+ d_projStart.day()+'),'+
-                        '"x1Timestamp"'+':'+'Date.UTC('+d_projCompletion.year()+','+d_projCompletion.month()+','+ d_projCompletion.day()+'),'+
-                        '"x2Timestamp"'+':'+'Date.UTC('+d_firstAir.year()+','+d_firstAir.month()+','+d_firstAir.day()+'),'+
-                        '"x3Timestamp"'+':'+'Date.UTC('+d_prodCompletion.year()+','+d_prodCompletion.month()+','+ d_prodCompletion.day()+'),'+
-                        '"endTimestamp"'+':'+'Date.UTC('+d_projEnd.year()+','+d_projEnd.month()+','+ d_projEnd.day()+')'+
-                        +'}' + ',' ;
-            }
-            seriesProject = '['+series.removeEnd(',')+']';*/
+            
         }
     }
     /*
@@ -400,10 +371,13 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
         }
     }
     public pageReference ViewAction() {
-        return new pagereference('/apex/Oblix_VF06_SOWView?sowId=' + selSow.Id);
+    	Pagereference meNewPage = Page.Oblix_VF06_SOWView;
+		meNewPage.getParameters().put('sowId', selSow.Id);
+        return meNewPage;
     }
     public pageReference CreateSOWAction() {
-        return new pagereference('/apex/Oblix_VF06_SOWView');
+    	PageReference mypageViewSow = Page.Oblix_VF06_SOWView;
+        return mypageViewSow;
     }
     /*
     *   Wrapper Class : Used to bypass the Limit of 1000 Record on a repeat
@@ -443,10 +417,6 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
                 attachment = new Attachment();
             }
         }
-
-
-
-        //return null;
     }
     public void Cancel () {
         return;

@@ -139,13 +139,56 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 	}
 
 	@isTest static void CloneAction_Test() {
-		System.runAs(Oblix_TestUtils.createTestUser()) {
+		User currentUser = Oblix_TestUtils.createTestUser();
+		System.runAs(currentUser) {
 			Marketing_SOW__c marketingSow = Oblix_TestUtils.createTestMarketingSow(TEST_NAME, null,
 			                                Oblix_TestUtils.createBrand(TEST_NAME, TEST_NAME).Id);
-			//marketingSow.
+			marketingSow.BB_or_BD__c = 'BD';
+			MDO_Category__c smallCategory = null;
+			MDO_Category__c bigCategory = null;
+			Set<String> categoryNames = new Set<String> {
+				Oblix_TestUtils.DEFAULT_BIG_PROD_CAT_NAME,
+				Oblix_TestUtils.DEFAULT_SMALL_PROD_CAT_NAME
+			};
+			for (MDO_Category__c productCategory : [SELECT Id, Name FROM MDO_Category__c WHERE Name IN :categoryNames]) {
+				if (productCategory.Name.equalsIgnoreCase(Oblix_TestUtils.DEFAULT_BIG_PROD_CAT_NAME)) {
+					bigCategory = productCategory;
+				}
+				if (productCategory.Name.equalsIgnoreCase(Oblix_TestUtils.DEFAULT_BIG_PROD_CAT_NAME)) {
+					smallCategory = productCategory;
+				}
+			}
+			String selectedYear = 'test';
+			marketingSow.BigOblixProductCategory__c = bigCategory.Id;
+			marketingSow.SmallProductCategory__c = smallCategory.Id;
+			marketingSow.Financial_Year__c = selectedYear;
+			marketingSow.Unilever_Lead__c = currentUser.Id;
+			marketingSow.Agency_Contact__c = currentUser.Id;
+			marketingSow.Oblix_AgencyEstimate__c = Oblix_TestUtils.createAccount().Id;
+			update marketingSow;
+			Oblix_Ctrl06SOWView_CC view = new Oblix_Ctrl06SOWView_CC();
+			view.selSow = marketingSow;
+			Test.startTest();
+			view.CloneAction();
+			Test.stopTest();
+			System.assertEquals(null, view.sowId);
 		}
 	}
 
+	@isTest static void SaveSOW_Error_Test() {
+		System.runAs(Oblix_TestUtils.createTestUser()) {
+			Marketing_SOW__c marketingSow = Oblix_TestUtils.createTestMarketingSow(TEST_NAME, null,
+			                                Oblix_TestUtils.createBrand(TEST_NAME, TEST_NAME).Id);
+			marketingSow.BB_or_BD__c = null;
+			marketingSow.Financial_Year__c = null;
+			update marketingSow;
+
+			Test.startTest();
+			new Oblix_Ctrl06SOWView_CC().SaveSOW();
+			Test.stopTest();
+		}
+	}
+	
 	@isTest static void actionsTest() {
 		User u = Oblix_TestUtils.createTestUser();
 		System.runAs(u) {

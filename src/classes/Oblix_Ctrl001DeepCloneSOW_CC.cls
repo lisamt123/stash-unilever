@@ -50,7 +50,6 @@ public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
                     system.debug('##permission Name :'+permission.PermissionSet.Name);
                     if(permission.PermissionSet.Name == 'Oblix_SWOP_UL_1_V1' || permission.PermissionSet.Name == 'Oblix_SWOP_Super_User_V1'){
                         canClone = true;
-                        break;
                     }
                 }
             }

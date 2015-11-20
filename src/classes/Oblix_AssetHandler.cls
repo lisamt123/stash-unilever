@@ -70,11 +70,8 @@ public with sharing class Oblix_AssetHandler implements ITrigger {
     public void andFinally()
     {
         System.debug('Entering FAU_ProgramHandler.andFinally');
-        if(triggerShouldExecute){
-            if(Trigger.isAfter){
+        if(triggerShouldExecute && Trigger.isAfter){
                 update lstProjectAgenciesToUpdate;
-            }
-            
         }
         System.debug('Exiting Oblix_ProjectHandler.andFinally');
     }

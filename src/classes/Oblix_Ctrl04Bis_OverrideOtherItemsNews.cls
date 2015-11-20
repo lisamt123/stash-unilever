@@ -200,12 +200,13 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
         try{
             system.debug('###OItem.FTE__c :'+OItem.FTE__c);
             system.debug('###lstCalculatorRate[0].FTE__c :'+lstCalculatorRate);
-            if(OItem.RecordTypeId == Oblix_Utils.MapRecordType(marKObjName).get('Resource') && !lstCalculatorRate.IsEmpty() && lstCalculatorRate.size()>0 && OItem.FTE__c != null && OItem.FTE__c > 0){
+            Integer calculatorSize = lstCalculatorRate.size();
+            if(OItem.RecordTypeId == Oblix_Utils.MapRecordType(marKObjName).get('Resource') && !lstCalculatorRate.IsEmpty() && calculatorSize >0 && OItem.FTE__c != null && OItem.FTE__c > 0){
                 OItem.OblixOtherItemFee__c = lstCalculatorRate[0].FTE__c/OItem.FTE__c; 
             }else if((OItem.FTE__c == null || OItem.FTE__c == 0) && !lstCalculatorRate.IsEmpty()){
                 OItem.OblixOtherItemFee__c = lstCalculatorRate[0].FTE__c;
             }
-            else if(OItem.RecordTypeId == Oblix_Utils.MapRecordType(marKObjName).get('Activity') && !lstCalculatorRate.IsEmpty() && lstCalculatorRate.size()>0 && OItem.No_of_Hours_Required__c != null && lstCalculatorRate[0].Role_Daily_Rate_EUR__c != null){
+            else if(OItem.RecordTypeId == Oblix_Utils.MapRecordType(marKObjName).get('Activity') && !lstCalculatorRate.IsEmpty() && calculatorSize >0 && OItem.No_of_Hours_Required__c != null && lstCalculatorRate[0].Role_Daily_Rate_EUR__c != null){
                 OItem.OblixOtherItemFee__c = lstCalculatorRate[0].Role_Daily_Rate_EUR__c * OItem.No_of_Hours_Required__c;
             }else{
                  OItem.OblixOtherItemFee__c = 0;
