@@ -190,13 +190,21 @@
     </fields>
     <fields>
         <fullName>Type__c</fullName>
-        <description>Asset Groups can be created for Innovation (Guidelines) and Repeatable Models.</description>
+        <description>Asset Groups can be created for Innovation (Guidelines) and Repeatable Models. In Addition can be created for In-Store Execution and Masterbrand .</description>
         <externalId>false</externalId>
-        <inlineHelpText>Asset Groups can be created for Innovation (Guidelines) and Repeatable Models.</inlineHelpText>
+        <inlineHelpText>Asset Groups can be created for Innovation (Guidelines) and Repeatable Models. In Addition can be created for In-Store Execution and Masterbrand .</inlineHelpText>
         <label>Asset Type</label>
         <picklist>
             <picklistValues>
+                <fullName>Masterbrand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Innovation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Store Execution</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

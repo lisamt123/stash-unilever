@@ -20,7 +20,8 @@
   <apex:stylesheet value="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
  <apex:includeScript value="{!URLFOR($Resource.LoadImage)}"/>
 <!--script src="https://maps.googleapis.com/maps/api/js?v=3.exp&language=en" type="text/javascript" /-->
-<apex:includeScript value="https://maps.googleapis.com/maps/api/js?v=3.exp&language=en{! If($Label.GoogleAPIKey != 'Null' ,'&key='+$Label.GoogleAPIKey,'') }"/>
+<!--apex:includeScript value="https://maps.googleapis.com/maps/api/js?v=3.exp&language=en{! If($Label.GoogleAPIKey != 'Null' ,'&key='+$Label.GoogleAPIKey,'') }"/-->
+<apex:includeScript value="https://maps.googleapis.com/maps/api/js?v=3.exp&language=en{! If($Label.GoogleAPIKey != 'Null' ,'&client='+$Label.GoogleAPIKey,'') }"/>
     <apex:includeScript value="{!$Resource.AA_forcetk}/forcetk.js"/>
    <script src="{!URLFOR($Resource.AgentAppStaticResource, 'js/common/agentReportCreate.js')}"></script>
 <script src="{!URLFOR($Resource.AgentAppStaticResource, 'js/require.js')}" data-main="{!URLFOR($Resource.AgentAppStaticResource, 'js/main.js')}"></script>
