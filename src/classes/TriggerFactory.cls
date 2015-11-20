@@ -110,7 +110,7 @@ public with sharing class TriggerFactory
      */
     private static ITrigger getHandler(Schema.sObjectType soType)
     {
-       /* if (soType == FAU_Participant__c.sObjectType)
+        if (soType == FAU_Participant__c.sObjectType)
         {
             return new FAU_ParticipantHandler();
         }
@@ -135,7 +135,7 @@ public with sharing class TriggerFactory
         }
         if (soType == FAU_Webinar__c.sObjectType){
             return new FAU_WebinarHandler();
-        } */
+        } 
         
        if (soType == IPM_User_Profile__c.sObjectType){
             return new IPM_UserProfileHandler();
