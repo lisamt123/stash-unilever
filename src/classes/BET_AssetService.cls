@@ -76,7 +76,7 @@ global without sharing class BET_AssetService {
 		}catch(Exception ex){
 			ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_AssetService','grantAccessToBetsAssets',
                 'Exception while granting access for ' + betId + ' for BET ' +  betId + ' related assets',
-                new BET_CustomBETException(ex.getMessage()),'Error',null,null,(Integer)DateTime.now().getTime(),'BET');
+                new BET_CustomBETException(ex.getMessage()),'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
 		}
 	}
 

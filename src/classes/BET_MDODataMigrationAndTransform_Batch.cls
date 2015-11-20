@@ -126,7 +126,7 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
         for(uw_Bet__c betRecord : betsForErrors){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_MDODataMigrationAndTransform_Batch','proceedWithDataTransormation',
                 'Invalid MDO matching for BET  ' + betRecord.id + ' category : ' + betRecord.Sub_Category__c + ', ' + betRecord.Product_Category__c,
-                new BET_CustomBETException('Invalid MDO matching for BET : ' + betRecord),'Error',null,null,(Integer)DateTime.now().getTime(),'BET');
+                new BET_CustomBETException('Invalid MDO matching for BET : ' + betRecord),'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
         }
     }
     
