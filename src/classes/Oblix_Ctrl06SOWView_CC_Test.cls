@@ -182,10 +182,11 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 			marketingSow.BB_or_BD__c = null;
 			marketingSow.Financial_Year__c = null;
 			update marketingSow;
-
+			Oblix_Ctrl06SOWView_CC ctrl = new Oblix_Ctrl06SOWView_CC();
 			Test.startTest();
-			new Oblix_Ctrl06SOWView_CC().SaveSOW();
+			ctrl.SaveSOW();
 			Test.stopTest();
+			System.assertNotEquals(null, ctrl.selSow, 'Checking if method changed selSow value');
 		}
 	}
 	

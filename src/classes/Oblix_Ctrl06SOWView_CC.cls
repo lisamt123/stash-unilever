@@ -304,7 +304,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
             
             Boolean isSuccess = true;
             for(Database.DeleteResult dr : drChildRecords){
-                if(dr.isSuccess() == false){
+                if(!dr.isSuccess()){
                     isSuccess = false;
                     break;
                 }
