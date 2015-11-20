@@ -82,6 +82,7 @@ public with sharing class uw_BETRemoteController {
 
         betOperationAdmin = BET_CommonService.isBETOperationAdmin() && !isHubAdmin && !isBetOwnerOrManager ? 'true' : 'false';
         expectedAssetsProvided = BET_AssetService.expectedAssetsSetForBet(newBetId) ? 'true' : 'false';
+
         if (newBetId == null) {
             newBetId = '';
         }
@@ -89,6 +90,7 @@ public with sharing class uw_BETRemoteController {
         helpLink = uw_CustomSettingsManager.getCustomSettingStringVal(uw_CustomSettingsManager.BET_HELP_URL, '');
         String groupId = BET_Settings__c.getOrgDefaults().HelpChatterGroupId__c == null ? '' : (String)BET_Settings__c.getOrgDefaults().HelpChatterGroupId__c;
         homeInfoText = String.format(Label.BET_Home_Page_Info,new List<String>{groupId,Label.BET_Help_Group_Name});
+
     }
     /*******************************************************************
     Purpose: Method returns list of BET Owned by current logged in user
@@ -207,6 +209,18 @@ public with sharing class uw_BETRemoteController {
             }
 
             results.bet.expectedAssetsProvided = BET_AssetService.expectedAssetsSetForBet(betId);
+
+            Boolean assetPrioritySet = false;
+            for(uw_Asset__c asset : [select Order_Of_Display__c from uw_Asset__c where uw_Bet__c =: betId]){
+                if(asset.Order_Of_Display__c != null){
+                    assetPrioritySet = true;
+                } else {
+                    assetPrioritySet = false;
+                    break;
+                }
+            } 
+
+            results.bet.assetPrioritySet = assetPrioritySet;
 
             System.debug('results.bet.expectedAssetsProvided ' + results.bet.expectedAssetsProvided);
 

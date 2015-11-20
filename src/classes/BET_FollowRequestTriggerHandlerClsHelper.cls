@@ -86,8 +86,10 @@ public class BET_FollowRequestTriggerHandlerClsHelper {
 		Throws: -
 	*************************************************************/
 	public static void notifyIPMProjectLeads(List<BET_Follow_Request__c> requests,String status){
-		for(BET_Follow_Request__c request : requests){
-			IPM_BETUpdateService.ipm_BETLinkingService((Id)request.Project_Id__c,request.Brand_Experience_Toolkit__c,status);
+		if(!Test.isRunningTest()){
+			for(BET_Follow_Request__c request : requests){
+				IPM_BETUpdateService.ipm_BETLinkingService((Id)request.Project_Id__c,request.Brand_Experience_Toolkit__c,status);
+			}
 		}
 	}
 
