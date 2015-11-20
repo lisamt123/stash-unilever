@@ -72,7 +72,7 @@ public class IPM_NotifyUsersRoleChanged_Test {
         //Insert test data as platform user's context
         System.runAs(platformUser){
                 //create company card required for creation of project
-                ipmCompanyCard = IPM_TestFactory_Helper.createIPMCompanyCard(false);
+                ipmCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
                 ipmCompanyCard.IPM_Business_Partner__c = UserInfo.getUserId();
                 insert ipmCompanyCard;
                 

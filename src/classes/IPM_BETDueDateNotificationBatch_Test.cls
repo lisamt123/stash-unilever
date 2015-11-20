@@ -66,7 +66,7 @@ public class IPM_BETDueDateNotificationBatch_Test{
             iDs.add(eachProj.Id);
         }
         System.assertEquals(5, [Select count() from IPM_Project__c where id in:iDs],PROJECT_INSERTED_ASSERTION);
-        
+        Id  PROJECT_MILESTONE_RECTYPE = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.milePMRecordType).getRecordTypeId(); 
         lstIpmMilestones = new List<IPM_Milestone__c>();
         for(Integer i=1; i<=5; i++){
             ipmMilestone = IPM_TestFactory_Helper.createIPMMilestone(lstProjects[i-1].id, false);
@@ -78,6 +78,7 @@ public class IPM_BETDueDateNotificationBatch_Test{
             ipmMilestone.IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
             ipmMilestone.IPM_Type_of_Milestone__c = IPM_ConstantUtils.BET;
             ipmMilestone.IPM_Completed_On__c = null;
+			ipmMilestone.RecordTypeId = PROJECT_MILESTONE_RECTYPE; 
             lstIpmMilestones.add(ipmMilestone);
             
         }
