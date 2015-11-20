@@ -7,7 +7,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderAddress>cb4l@unilever.com</senderAddress>
+        <senderAddress>marketing@unilever.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>Approval_Emails/BET_Archived</template>
     </alerts>
@@ -18,7 +18,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderAddress>cb4l@unilever.com</senderAddress>
+        <senderAddress>marketing@unilever.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>Approval_Emails/BET_Unarchived</template>
     </alerts>
