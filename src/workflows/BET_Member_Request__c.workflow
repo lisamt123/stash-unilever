@@ -8,7 +8,7 @@
             <field>UserId__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderAddress>cb4l@unilever.com</senderAddress>
+        <senderAddress>marketing@unilever.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>Approval_Emails/BET_Member_Request_Approved</template>
     </alerts>
@@ -20,7 +20,7 @@
             <field>UserId__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderAddress>cb4l@unilever.com</senderAddress>
+        <senderAddress>marketing@unilever.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>Approval_Emails/BET_Member_Request_Rejected</template>
     </alerts>
@@ -32,7 +32,7 @@
             <field>Bet_owner__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderAddress>cb4l@unilever.com</senderAddress>
+        <senderAddress>marketing@unilever.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>Approval_Emails/BET_Member_Request_Created</template>
     </alerts>
