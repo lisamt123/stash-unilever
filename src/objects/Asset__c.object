@@ -50,7 +50,6 @@
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
@@ -61,7 +60,7 @@
     <enableReports>true</enableReports>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Asset_Group__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -460,11 +459,15 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>In Store Execution</fullName>
+                <fullName>Repeatable Model</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Repeatable Model</fullName>
+                <fullName>Call To Action</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Best Practices</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -1262,7 +1265,33 @@ ToDelete=Asset will be removed by the system automatically at the scheduled dele
         <type>MultiselectPicklist</type>
         <visibleLines>4</visibleLines>
     </fields>
-    <label>Asset</label>    <nameField>
+    <fields>
+        <fullName>Video_URL_Link__c</fullName>
+        <description>Optional field to hold the url for associated video</description>
+        <externalId>false</externalId>
+        <label>Video URL Link</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Asset</label>
+    <listViews>
+        <fullName>ALL</fullName>
+        <columns>NAME</columns>
+        <columns>Category__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Asset_Group__c</columns>
+        <columns>Status__c</columns>
+        <columns>Channels__c</columns>
+        <columns>POS_Asset_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>ALL</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
         <label>Asset Name</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>
