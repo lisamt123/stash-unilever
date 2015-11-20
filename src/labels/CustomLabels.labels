@@ -1687,6 +1687,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <shortDescription>BET_UpdateBetAddMembers</shortDescription>
         <value>Update BET &amp; add members</value>
     </labels>
+	 <labels>
+        <fullName>BET_Uploading</fullName>
+        <categories>BET</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BET_Uploading</shortDescription>
+        <value>Uploading...</value>
+    </labels>
     <labels>
         <fullName>BET_Upload_And_Save</fullName>
         <categories>BET</categories>
