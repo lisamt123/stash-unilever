@@ -597,7 +597,9 @@
                 }
                 AgencyDepartments = Oblix_Utils.selectOptionSortByLabel(AgencyDepartments);
                 AgencyDepartments = Oblix_Utils.setFirstValue('-Agency Department-', Oblix_Utils.selectOptionSortByLabel(AgencyDepartments ));
-                
+
+                myAct.selectedAgencyDepartment = '';
+                                
                 //else add error (there is no to select)
             } else {
                 myAct.agencyVisible = false;
@@ -646,6 +648,8 @@
                 }
                 AgencyDepartments1 = Oblix_Utils.selectOptionSortByLabel(AgencyDepartments1);
                 AgencyDepartments1 = Oblix_Utils.setFirstValue('-Agency Department-', Oblix_Utils.selectOptionSortByLabel(AgencyDepartments1 ));
+                
+                myRes.selectedAgencyDepartment = '';
 
             } //else add error (there is no to select) 
             //  fillRoleTitle();

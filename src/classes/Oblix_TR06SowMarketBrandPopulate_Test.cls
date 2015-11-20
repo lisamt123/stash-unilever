@@ -43,9 +43,9 @@ private class Oblix_TR06SowMarketBrandPopulate_Test {
         		insert marketingSow;
         		
         		Marketing_SOW__c marketingSowRetrieve = [Select Id, Name,BigOblixProductCategory__c, SmallProductCategory__c, OblixBrand__c from Marketing_SOW__c where id=: marketingSow.Id];
-        		MDO_CategoryBrands__c mdoCategBrandRetrieve = [Select Id, Name, product_Category_Id__c, product_Category_Id__r.parent_L3__c, product_Category_Id__r.parent_L5__c from MDO_CategoryBrands__c where id=:mdoCategBrand.Id];
-        		System.assertequals(marketingSowRetrieve.BigOblixProductCategory__c, mdoCategBrandRetrieve.product_Category_Id__r.parent_L3__c);
-        		System.assertequals(marketingSowRetrieve.SmallProductCategory__c, mdoCategBrandRetrieve.product_Category_Id__r.parent_L5__c);
+        		MDO_CategoryBrands__c mdoCategBrandRetrieve = [Select Id, Name, product_Category_Id__c, product_Category_Id__r.parent_L2__c from MDO_CategoryBrands__c where id=:mdoCategBrand.Id];
+        		System.assertequals(marketingSowRetrieve.BigOblixProductCategory__c, mdoCategBrandRetrieve.product_Category_Id__r.parent_L2__c);
+        		System.assertequals(marketingSowRetrieve.SmallProductCategory__c, mdoCategBrandRetrieve.product_Category_Id__c);
         		mdoCategBrand.product_Category_Id__c =null;
         		update mdoCategBrand;
         		delete mdoCategBrand;

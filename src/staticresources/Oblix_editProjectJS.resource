@@ -1,7 +1,10 @@
 <!-- Created by Asmae ESSBAI For the EditProject page -->
+<!-- Last modified Date : 19/11/2015 -->
 
  $(document).ready(function(){
-	
+	<!-- override the standard date picker -->
+    $('#dialogTimeLine span.dateFormat').remove();
+	$('#dialogMoreDetails span.dateFormat').remove();
 	$('#datePicker').addClass('ui-dialog');
 	<!-- The accordion part  -->
     $('tr.data, tr.btt').show().find('td').wrapInner('<div />');
@@ -114,7 +117,7 @@
                           // Scale1= $(".projScale1").val();
                            //Scale2=  $(".projScale2").val();                                  
                            //CampaignIdea =  $(".projCampaignIdea").val();
-						    var innovation = $('input[name="innovation"]:checked').val();	
+						    var innovation = $('input[name="innovation"]:checked').val();								
 						    console.dir(innovation);							
 							console.dir($(".projBrandInnov").val());
 							console.dir($(".projBrandBrand").val());
@@ -230,19 +233,20 @@
     }
 	function PopupAgencyHub(){
 
-		var countryOptions = '<select>';
-		var countries = '{!countryOptions}';
-		for(var i=0;i<countries.length;i++){
-			countryOptions = countryOptions + '<option value="'+countries[i]+'">';
-		}
-		countryOptions = countryOptions + '</select>';
+		//var countryOptions = '<select>';
+		//var countries = '{!countryOptions}';
+		//for(var i=0;i<countries.length;i++){
+		//	countryOptions = countryOptions + '<option value="'+countries[i]+'">';
+		//}
+		//countryOptions = countryOptions + '</select>';
         $('.addAnotherBtn').click(function(event){            
-            event.preventDefault();   
+            //event.preventDefault();   
             counter = counter+1;      			
             //var countryOption =  $('<apex:selectList value="{!split.OblixCountry__c}" multiselect="false" size="1" styleClass="countrySplit_'+counter+'"><apex:selectOptions value=""/></apex:selectList>').html();
-            console.dir(countryOptions);
-            var newRow = $('<tr><td></td><td><div class="idSplit_'+counter+'" style="display:none">{!split.id}</div></td><td>'+countryOptions+'</td><td><input class="percentage pourcentageSplit_'+counter+'" style="width:30px"/> %</td><td></td></tr>');
-            $('table.agencyHubList').append(newRow);           
+           // console.dir(countryOptions);
+           // var newRow = $('<tr><td></td><td><div class="idSplit_'+counter+'" style="display:none">{!split.id}</div></td><td>'+countryOptions+'</td><td><input class="percentage pourcentageSplit_'+counter+'" style="width:30px"/> %</td><td></td></tr>');
+            //$('table.agencyHubList').append(newRow);     
+           			
            
         });
         

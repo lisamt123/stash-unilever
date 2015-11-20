@@ -176,8 +176,7 @@
                  project.Financial_Year__c = ApexPAges.currentPage().getParameters().get('sowId');               
             }else{
                 project = [Select Id,Name, Innovation_Projects__c ,ProjectTotalAssetscore__c,Jobs_to_be_Done__c ,Campaign_Fees_Total__c,Completed_Stage__c,Financial_Year__r.currency__c,Projected_Stage__c,Financial_Year__r.Financial_Year__c,BET_first_release__c,Value_to_be_paid_in_Current_FY__c,Campaign_Status__c,Preview_Date__c,Start_of_TV_production__c,Final_release__c,Live_Date__c,Live_date_Asset_delivery__c, Date_for_Assets_to_be_in_BET__c,Timescale_Notes__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c, Project_Finish_Date__c,Project_Stage__c,Platform__c,CreatedById, Project_Start_Date__c,CreatedDate,OblixRegion__c,Project_Priority__c,Project_Completion_Date__c,Description__c,OblixCountries__c,First_Air_Date__c,Production_Completion_Date__c, Financial_Year__c from Oblix_SOW_Projects__c where id=:projectId];               
-                estimateCost = project.Campaign_Fees_Total__c;
-                //lstAssets = [select Id,Agency_Projects__r.id,Channels__c,RecordType.Name,Asset_Picklist__c,Name,RecordTypeId,Sub_Category__c,FULL_Description__c, Asset_Title__c  from Oblix_Project_Assets__c limit 1000];               
+                estimateCost = project.Campaign_Fees_Total__c;              
                 getAssetCampaign();                               
                 getRecordTypesInfo();
                 if(project.OblixCountries__c != null){
@@ -236,9 +235,9 @@
                 for(recordType rec:recordTypes){
                         lstRecordType.add(rec.name);
                         setRecordType.add(rec.Name); 
-                        //setIdCss.add((asset.RecordType.Name).replaceAll(' ',''));
-                        if(mapRTIdCSS.get(rec.Name) == null)
-                        mapRTIdCSS.put(rec.Name,(rec.Name).replaceAll(' ',''));
+                        if(mapRTIdCSS.get(rec.Name) == null){
+                            mapRTIdCSS.put(rec.Name,(rec.Name).replaceAll(' ',''));
+                        }
                    
                 }
                 setIdCss = '';
@@ -257,9 +256,12 @@
         private void getAssetCampaign(){
              list<Oblix_Project_Assets__c> lstAsset = [select Id,Agency_Projects__r.id,Channels__c,RecordType.Name,Quantity__c ,Asset_Picklist__c, Asset_Title__c , Name,RecordTypeId,Sub_Category__c,FULL_Description__c,FULL_Description__r.name from Oblix_Project_Assets__c where Agency_Projects__r.id =:project.id  limit 1000];  
              for(Oblix_Project_Assets__c asse:lstAsset){
-                    if(asse.FULL_Description__c != null) 
-                    asse.Asset_Title__c = asse.Quantity__c +' X '+mapAbreviation.get(''+asse.RecordType.Name)+'-'+mapAbreviation.get(''+asse.Sub_Category__c)+'-'+'0'+asse.FULL_Description__r.name.remove('Score ');
-                    if(asse.Asset_Title__c != null) asse.Asset_Title__c = asse.Asset_Title__c.replaceAll('null','');
+                    if(asse.FULL_Description__c != null){
+                        asse.Asset_Title__c = asse.Quantity__c +' X '+mapAbreviation.get(''+asse.RecordType.Name)+'-'+mapAbreviation.get(''+asse.Sub_Category__c)+'-'+'0'+asse.FULL_Description__r.name.remove('Score ');
+                    }
+                    if(asse.Asset_Title__c != null){
+                        asse.Asset_Title__c = asse.Asset_Title__c.replaceAll('null','');
+                    }    
                 }
                 lstAssetsForCard.addAll(lstAsset);
                 if(!lstAsset.isEmpty()){                             
@@ -303,7 +305,7 @@
                       ];
             for(MDO_Geography__c country : lstCountries){
                    lstRegion.add(country.parent_L5__r.Name);
-                   mapIdCountries.put((country.name).toUpperCase(),country.id);
+                   mapIdCountries.put(country.name.toUpperCase(),country.id);
                    if(country.parent_L5__c != null){
                        if(!mapRelatedCntries.containsKey(country.parent_L5__r.Name)){
                           mapRelatedCntries.put(country.parent_L5__r.Name,new list<string>());                         
@@ -331,7 +333,7 @@
         } 
         public void setInfoCountries(){         
              if(projectId != null){
-                if(project.OblixCountries__c != null) ValueDriversProject(project.OblixCountries__c);
+                if(project.OblixCountries__c != null) {ValueDriversProject(project.OblixCountries__c);}
                    try{
                      update project;
                     }catch(DMLException le){
@@ -366,7 +368,7 @@
                 system.debug('###selectedBrandBrand : '+selectedBrandBrand);
                 system.debug('###selectedBrandInnov : '+selectedBrandInnov);
                 
-                if(selectedBrandInnov != '') {
+                if(project.Innovation_Projects__c == 'Innovation') {
                     project.Brand_Led_Growth__c = selectedBrandInnov;
                 }else{
                     project.Brand_Led_Growth__c = selectedBrandBrand;
@@ -413,45 +415,48 @@
                 listItems = listItems.removeEnd(',');
                 list<string> items = listItems.split(',');
                 System.debug('## items : '+items );              
-                for(string it:items){
-                    if(projectId != null){
-                        agencySplitInstanceJS.Project_Splits__c = projectId;  
-                    }
+                for(string it:items){                 
                     list<string> item = it.split('_');
                     System.debug('## item  : '+item ); 
                     if(item[1] InstanceOf ID ){
                         agencySplitInstanceJS.OblixCountry__c = item[1];
-                    }                   
+                    }                  
+                    if(projectId != null){
+                        agencySplitInstanceJS.Project_Splits__c = projectId;  
+                    }
                     agencySplitInstanceJS.Percentage__c  = Decimal.valueOf(item[2]);
                     if(item[0] InstanceOf ID){
                           agencySplitInstanceJS.id = Id.valueOf(item[0]);
                           if(agencySplitInstanceJS.Percentage__c != 0){                   
                             splitToUpdate.add(agencySplitInstanceJS);
-                          }
-                          if(agencySplitInstanceJS.Percentage__c == 0){  
+                          }else{
+                             //if(agencySplitInstanceJS.Percentage__c == 0){  
                              splitToDelete.add(agencySplitInstanceJS);
                           }
                    }
                    if(item[0] == ' ' && agencySplitInstanceJS.Percentage__c != 0){ 
                         splitToInsert.add(agencySplitInstanceJS);
                    }
-                   System.debug('## agencySplitInstanceJS : '+agencySplitInstanceJS); 
+                   //System.debug('## agencySplitInstanceJS : '+agencySplitInstanceJS); 
                    agencySplitInstanceJS = new Oblix_Marketing_SOW_Project_Splits__c();
                 }
               }  
                 
-        try{
+               if(projectId != null){
+                    
+                    delete splitToDelete; 
+                    update splitToUpdate;                              
+                    insert splitToInsert; 
+               }
                // System.debug('## splitToUpdate : '+splitToUpdate);
                // System.debug('## splitToDelete : '+splitToDelete);
                // System.debug('## splitToInsert : '+splitToInsert);
-                if(projectId != null){ 
-                    delete splitToDelete; 
-                    update splitToUpdate;                              
-                    insert splitToInsert;
-                }
-            }catch(Exception e){
-                   System.debug('###Error Occured : '+e.getMessage());   
-            }
+               // if(projectId != null){ 
+                   
+               // }
+            //}catch(Exception e){
+                  // System.debug('###Error Occured : '+e.getMessage());   
+          //  }
            
         }
         public void setMoreDetails(){
@@ -536,12 +541,12 @@
                 financialYear =  project.Financial_Year__r.Financial_Year__c;
             }
             List<Oblix_Calculator__c> calculator = [select Name,OblixCountry__c from Oblix_Calculator__c where recordType.Name ='Country Box Number' and Financial_Year__c =:financialYear order by name];
-            list<string> nameCountry = new list<string>();           
+            //list<string> nameCountry = new list<string>();           
             countryOptions.add(new SelectOption('','-None-'));
             if(!calculator.isEmpty()){
                 for(Oblix_Calculator__c c:calculator){   
                    // if(c.Name == 'France'){countryOptions.add(new SelectOption(c.name,c.Name));}        
-                   if(mapIdCountries.get(c.name.toUpperCase())!= null) countryOptions.add(new SelectOption(mapIdCountries.get(c.name.toUpperCase()),c.Name.toUpperCase()));
+                   if(mapIdCountries.get(c.name.toUpperCase())!= null){countryOptions.add(new SelectOption(mapIdCountries.get(c.name.toUpperCase()),c.Name.toUpperCase()));}
                 }
             }
             

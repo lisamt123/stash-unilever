@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>ITrigger</members>
@@ -282,6 +282,7 @@
         <members>Oblix_HightChartJS</members>
         <members>Oblix_SOWDetailsCSS</members>
         <members>Oblix_SOWDetailsJS</members>
+        <members>Oblix_SOWViewJS</members>
         <members>Oblix_SowDeepCloneVF01JS</members>
         <members>Oblix_SowDetailHomeCss</members>
         <members>Oblix_editProjectCSS</members>

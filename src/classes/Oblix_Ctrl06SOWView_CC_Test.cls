@@ -138,6 +138,14 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 		}
 	}
 
+	@isTest static void CloneAction_Test() {
+		System.runAs(Oblix_TestUtils.createTestUser()) {
+			Marketing_SOW__c marketingSow = Oblix_TestUtils.createTestMarketingSow(TEST_NAME, null,
+			                                Oblix_TestUtils.createBrand(TEST_NAME, TEST_NAME).Id);
+			//marketingSow.
+		}
+	}
+
 	@isTest static void actionsTest() {
 		User u = Oblix_TestUtils.createTestUser();
 		System.runAs(u) {

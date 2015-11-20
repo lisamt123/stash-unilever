@@ -10,11 +10,12 @@
     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
     <script src="{!URLFOR($Resource.JQueryBlockUI)}" ></script>
-
+    
     <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highstock/2.1.9/themes/sand-signika.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
-    <script>
+    <script src="{!URLFOR($Resource.Oblix_SOWViewJS)}" ></script>
+     <script>
    //$( document ).ready(function(){
         var redirectToAttachment = function (attachmentId){
         'use strict';
@@ -22,95 +23,38 @@
         
     }
 
-    var removeAttachments = function (attachmentsId){
-        'use strict';
-        var attachmentsId = [];
-        $('#dialog').find('table > tbody').children().children().find('input:checkbox:checked').each(function (){
-            attachmentsId.push($(this).attr('data-attachment-id'));
-        })
-        if(attachmentsId.length !== 0){
-            $('#dialog').dialog('close');
-            removeService(attachmentsId).then(function (){
-                acceptRemoveAttachment();
-            }, function (err){
-                console.log(err);
-            });
-        }
-    }
-    var removeService = function (attachmentsIds){
-        'use strict';
-        var deferred = $.Deferred();
-        Oblix_Ctrl06SOWView_CC.removeAttachments(attachmentsIds, function (data, status){
-            deferred.resolve({data: data, status: status});
-        });
-        return deferred.promise();
-    }
-    var acceptRemoveAttachment = function (){
-        $('#dialog').dialog('close');
-        removeAttachmentsBack();
-    }
+   
    //});
     </script>
+    
+   
    
     <script type="text/javascript">
     
-    $(document).ready(function() {
-            $(".cmplex").find("select").hide();
+     function preparePH(){
             $(".cmplex").find("input").attr("placeholder", "{!$ObjectType.Marketing_SOW__c.fields.Agency_Contact__c.label}");
-            $(".complex").find("select").hide();
             $(".complex").find("input").attr("placeholder", "{!$ObjectType.Marketing_SOW__c.fields.Unilever_Lead__c.label}");
-      
-      
+            $(".complex").find("select").hide();
+            $(".cmplex").find("select").hide();
+            
+            
+    }
+    
+    var table = $('#example').DataTable();
+    
+    $(document).ready(function() {
+            preparePH();
             $.unblockUI();
     });
     $j = jQuery.noConflict();
     
-    function blockme() {
-       $.blockUI({ css: { 
-            border: 'none', 
-            padding: '15px', 
-            backgroundColor: '#000', 
-            '-webkit-border-radius': '10px', 
-            '-moz-border-radius': '10px', 
-            opacity: .5, 
-            color: '#fff' 
-        } }); 
-    }
-   
-   </script>  
     
+   </script>  
+ 
      <script>
           $ = jQuery.noConflict(); 
-           $(document).ready(function(){
-              $('#example').dataTable({
-                     
-                     })
-                     .columnFilter({
-                      
-                        aoColumns: [
-                                null,
-                                null,
-                                null,
-                                null,
-                                null,
-                                null,
-                                null,
-                                null
-                            ]
-            
-                    });
-                    var table = $('#example').DataTable();
-                    $('.Oblix_large_btn,.Oblix_btn').tooltip({delay: { "show": 500},
-                    position:  {
-                        using: function( position, feedback ) {
-                        $( this ).css( position );
-                        $( "<div>" )
-                            .addClass( "arrow" )
-                            .addClass( feedback.vertical )
-                            .addClass( feedback.horizontal )
-                            .appendTo( this );
-                        }
-                      }});
+           $(document).ready(function(){            
+                    var table = $('#example').DataTable();                
                     $('#example tbody').on( 'click', 'tr', function () {
                     if ( $( this ).hasClass( "camp" ) ) { blockme();
                     $(this).toggleClass('selected');
@@ -126,30 +70,7 @@
                 
               });
      </script>
-     <script>
-      function PopupAddAttachmnt(){
-       
-         $(function() {
-                $( "#PopupAddAttachmnt" ).dialog({
-                  width: 600,
-                  modal: true, 
-                  zIndex: 9,
-                  buttons: {
-                     Save : function() {                            
-                            SaveAttachments();         
-                            $( this ).dialog( "close");   
-                        },                                       
-                    Close : function() {
-                      $( this ).dialog( "close" );
-                    }                 
-                  }
-                });
-              });           
-     }
-     
-     
-     </script>
-     
+   
      <apex:actionFunction name="SaveAttachments" action="{!SaveAttachments}" rerender="accountTable, pageMessages">
          <apex:param value="{!allFileList}" assignTo="{!allFileList}" name="allFileList"/>
      </apex:actionFunction>
@@ -1063,6 +984,9 @@
                    <tr>
                    </tr>
                </table>
+               <script> 
+               preparePH();
+               </script>
            </section> 
            </td>
            <td width="20%">
@@ -1098,7 +1022,7 @@
                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back}" immediate="true" action="{!backAction}"  title="{!$Label.Oblix_lbl_UIUX_Back_to_SOW}" styleClass="Oblix_large_btn"/><br/><br/>
                  </apex:actionRegion>
                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Approval}" onclick="" disabled="true" title="{!$Label.Oblix_lbl_UIUX_Comming_Soon}"  styleClass="Oblix_large_btn"/><br/><br/>
-                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Save}"   action="{!SaveSOW}" title="{!$Label.Oblix_lbl_UIUX_Save_Sow}" reRender="showForm,projectButtonId,mapApprovedId" styleClass="Oblix_large_btn"/><br/><br/>
+                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Save}"   action="{!SaveSOW}" title="{!$Label.Oblix_lbl_UIUX_Save_Sow}"  reRender="showForm,projectButtonId,mapApprovedId" styleClass="Oblix_large_btn"/><br/><br/>
                  
              </div>  
           </section>   

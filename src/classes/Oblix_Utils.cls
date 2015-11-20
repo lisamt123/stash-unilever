@@ -20,6 +20,9 @@ public with sharing class Oblix_Utils {
   private static final String COMPLETED_BRIEFFING = Label.Oblix_Lbl_UIUX_Utils_Completed_Briefing;
   private static final String PROJECT_ASSET_NAME = 'Oblix_Project_Assets__c';
   private static final String DIGITAL = 'digital';
+  private static final String AUDIO_VISUAL = 'Audio_Visual';
+  private static final String EXPERIENTIAL = 'Experiential';
+  private static final String STATIC_IMAGERY = 'Static_Imagery';
 //Used to Wrap RecordType By Object
   public static Map<string, ID> MapRecordType(String ObjectName) {
 
@@ -494,11 +497,11 @@ public static string getSelectedStageCheckbox(string projected, string Completed
   public static map<string, string> getMapRTforSubCat() {
 
     map<string, string> mapRTforSubCat = new map<string, string>();
-    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get('Audio_Visual'));
-    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get('Audio_Visual'));
-    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get('Audio_Visual'));
-    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get('Audio_Visual'));
-    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get('Audio_Visual'));
+    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(AUDIO_VISUAL));
+    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(AUDIO_VISUAL));
+    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(AUDIO_VISUAL));
+    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(AUDIO_VISUAL));
+    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(AUDIO_VISUAL));
 
     mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(DIGITAL));
     mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(DIGITAL));
@@ -506,11 +509,11 @@ public static string getSelectedStageCheckbox(string projected, string Completed
     mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(DIGITAL));
     mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(DIGITAL));
 
-    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get('Experiential'));
-    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get('Experiential'));
+    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(EXPERIENTIAL));
+    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(EXPERIENTIAL));
 
-    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get('Static_Imagery'));
-    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get('Static_Imagery'));
+    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(STATIC_IMAGERY));
+    mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get(STATIC_IMAGERY));
 
     mapRTforSubCat.put(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory, Oblix_Utils.MapRecordType(PROJECT_ASSET_NAME).get('Stimulus_Materials_Research_requirements'));
 

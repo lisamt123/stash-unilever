@@ -164,7 +164,9 @@
         .Oblix_recordTypeth th, .Oblix_recordTypeth_title th{
             cursor:pointer;
          }
-           
+         .disabledCSS{
+             disabled:true;
+          }
     </style>
     <script>     
 
@@ -269,14 +271,14 @@
       <table width="90%">           
                <tr>
                   <td colspan="2" width="50%">    
-                           <input class="Innovation" type="radio" name="innovation" value="Innovation"/>                 
+                           <input class="Innovation" type="radio" name="innovation" value="Innovation" onchange="$('.projBrandBrand').attr('disabled','disabled');$('.projBrandInnov').removeAttr('disabled');"/>                 
                             <apex:selectList value="{!selectedBrandInnov}" multiselect="false" size="1" styleClass="input_init projBrandInnov">
                                 <apex:selectOptions value="{!innovationOptions}"/>
                             </apex:selectList><br/>
                       <div style="width:60%;PADDING-TOP:8px;PADDING-left:19px">{!$Label.Oblix_lbl_UIUX_Identifying_priorities}</div>                      
                   </td>
                    <td colspan="2" width="50%">
-                        <input class="Brand_Led_Growth" type="radio"  name="innovation" value="Brand Led Growth"/>
+                        <input class="Brand_Led_Growth" type="radio"  name="innovation" value="Brand Led Growth" onchange="$('.projBrandBrand').removeAttr('disabled');$('.projBrandInnov').attr('disabled','disabled');"/>
                         <apex:selectList value="{!selectedBrandBrand}" multiselect="false" size="1" styleClass="input_init projBrandBrand">
                             <apex:selectOptions value="{!brandOptions}"/>
                         </apex:selectList><br/>
