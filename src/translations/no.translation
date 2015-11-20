@@ -2301,7 +2301,7 @@
         <name>Agency_List</name>
     </customTabs>
     <customTabs>
-        <label><!-- Agent App --></label>
+        <label><!-- Agent --></label>
         <name>Agent_App</name>
     </customTabs>
     <customTabs>
