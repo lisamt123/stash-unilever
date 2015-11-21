@@ -164,9 +164,12 @@ public class IPM_TaskHelper_Test{
                 
                 User bdUserUpdated = [Select Id,IsActive,LastName from User where LastName=:USER_NAME limit 1];
                 System.assertEquals(bdUserUpdated.IsActive,false, 'IsActive Is Checked');
+                
+                platformUserPL1 = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+                
             }
         Test.stopTest();
-        system.runAs(globalUser)
+        system.runAs(platformUserPL1)
         {
             list<IPM_Task__c> taskList = [SELECT Id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Function__c,IPM_Section__c,IPM_Type_of_Gate__c,IPM_Assignee__c 
                                           FROM IPM_Task__c WHERE IPM_Function__c =:IPM_ConstantUtils.FUNCTIONAL_ROLE_BD];
