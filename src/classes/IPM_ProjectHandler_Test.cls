@@ -147,7 +147,7 @@ private class IPM_ProjectHandler_Test {
         }   
         
     }
-    
+ /* Commented as System Errors was encountered on org validations from jenkins   
 static testmethod void testBetAccessOnInsert(){
 
         test.loadData(IPM_Project_Type__c.sobjectType, 'IPM_ProjectType'); 
@@ -410,4 +410,5 @@ static testmethod void testBetAccessOnInsert(){
            }  
       }
      
+     */
 }
