@@ -81,9 +81,9 @@ public class IPM_List_Milestones_Test {
             mileList.toggleSortMilestones();
             mileList.toggleSortPhases();
             
-            List<IPM_Milestone__c> milestoneList = [Select Id, IPM_Phase__c,IPM_Project__c ,IPM_Due_Date__c from IPM_Milestone__c WHERE IPM_Project__c =: proj.Id];
+            List<IPM_Milestone__c> milestoneList = [Select Id, IPM_Phase__c, IPM_Due_Date__c from IPM_Milestone__c WHERE IPM_Project__c =: proj.Id];
             // First milestone should be of Ideas phase
-            System.AssertEquals(milestoneList[0].IPM_Project__c,proj.Id,'milestone project is:'+milestoneList[0].IPM_Project__c);
+            System.Assert(milestoneList[0].IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS);
             
             mileList.filteredphaseM();
             mileList.filterCompleteMilestones();

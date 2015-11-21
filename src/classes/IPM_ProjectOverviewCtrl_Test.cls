@@ -672,9 +672,9 @@ public class IPM_ProjectOverviewCtrl_Test
             system.assertEquals(String.format(System.label.IPM_BETLinkFunctionalMsg,new string[]{bet.name}),overCtrl1.betInformationMessage,BET_ERROR_MSG);
         }
      }*/
-     //Commenting  to run the test class
+    
     //Test method to test BET functionality for other phases
-   /* static testMethod void testCreateBETMessagesOtherPhases(){
+   static testMethod void testCreateBETMessagesOtherPhases(){
         test.loadData(IPM_Project_Type__c.sobjectType, 'IPM_ProjectType');//
         test.loadData(IPM_BET_Search_Fields__c.sobjectType, 'IPM_BET_Search_Test');//
         test.loadData(IPM_ProjectMetadata__c.sobjectType, 'IPM_Project_Metadata');//
@@ -718,7 +718,7 @@ public class IPM_ProjectOverviewCtrl_Test
             IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
             system.assertEquals(system.label.IPM_NoNewBETMsgFunctional,overCtrl1.betInformationMessage,BET_ERROR_MSG);
         }
-      }*/
+      }
       
     /*static testMethod void testNoBETMessagesOtherPhases(){
         test.loadData(IPM_Project_Type__c.sobjectType, 'IPM_ProjectType');//
