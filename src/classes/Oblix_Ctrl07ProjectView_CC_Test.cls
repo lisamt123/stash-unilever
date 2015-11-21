@@ -124,6 +124,7 @@ private class Oblix_Ctrl07ProjectView_CC_Test {
             project.Id = null;
             ctrl.SelectedProject = project;
             ctrl.SaveProject();
+            System.assertEquals(ctrl.SelectedProject != null, true, 'project is being created');
         }
     }
 }

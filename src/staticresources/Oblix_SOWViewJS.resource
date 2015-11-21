@@ -78,5 +78,29 @@
                   
     });
 	
+	function confirmDelete(){
+        $(function() {
+            $( "#dialog-confirm" ).dialog({
+                resizable: false,
+                modal: true,
+                buttons: {
+                    "Delete all items": function() {
+                        blockme();
+                        deleteSOW();
+                        $( this ).dialog( "close" );
+                    },
+                    Cancel: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        });
+    }
 	
+	function preparePH(){
+            $(".cmplex").find("input").attr("placeholder", "{!$ObjectType.Marketing_SOW__c.fields.Agency_Contact__c.label}");
+            $(".complex").find("input").attr("placeholder", "{!$ObjectType.Marketing_SOW__c.fields.Unilever_Lead__c.label}");
+            $(".complex").find("select").hide();
+            $(".cmplex").find("select").hide();
+    }
   

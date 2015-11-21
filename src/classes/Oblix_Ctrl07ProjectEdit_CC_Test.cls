@@ -45,19 +45,6 @@ private class Oblix_Ctrl07ProjectEdit_CC_Test {
         }
     }
 
-    @isTest static void assetWrapperTest() {
-        Test.startTest();
-
-        //Oblix_Ctrl07ProjectEdit_CC.assetWrapper wrapper = new Oblix_Ctrl07ProjectEdit_CC.assetWrapper();
-
-        //System.assert(wrapper.assetWrapp != null,'It should not be null');
-        //System.assert(wrapper.keyAsset == '','This should be empty string');
-        //System.assert(wrapper.quantity == 0,'Quantity should be zero');
-
-        Test.stopTest();
-
-    }
-
     @istest static void backActionWithProjectTest() {
         User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {

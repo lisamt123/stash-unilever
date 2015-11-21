@@ -22,62 +22,23 @@
         window.open('/servlet/servlet.FileDownload?file=' + attachmentId);
         
     }
-
-   
    //});
     </script>
-    
-   
    
     <script type="text/javascript">
-
-    function confirmDelete(){
-
-        $(function() {
-            $( "#dialog-confirm" ).dialog({
-                resizable: false,
-                modal: true,
-                buttons: {
-                    "Delete all items": function() {
-                        blockme();
-                        deleteSOW();
-                        $( this ).dialog( "close" );
-                    },
-                    Cancel: function() {
-                        $( this ).dialog( "close" );
-                    }
-                }
-            });
-        });
-        
-    }
-    
-     function preparePH(){
-            $(".cmplex").find("input").attr("placeholder", "{!$ObjectType.Marketing_SOW__c.fields.Agency_Contact__c.label}");
-            $(".complex").find("input").attr("placeholder", "{!$ObjectType.Marketing_SOW__c.fields.Unilever_Lead__c.label}");
-            $(".complex").find("select").hide();
-            $(".cmplex").find("select").hide();
-            
-            
-    }
-    
-    var table = $('#example').DataTable();
-    table.settings()[0] = {
-		"aoColumnDefs": [
-      		{ "bSearchable": false, "aTargets": [ 0 ] }
-    	]
-	};
-    
-    $(document).ready(function() {
-            preparePH();
-            $.unblockUI();
-    });
-    $j = jQuery.noConflict();
-    
-    
+	    var table = $('#example').DataTable();
+	    table.settings()[0] = {
+			"aoColumnDefs": [
+	      		{ "bSearchable": false, "aTargets": [ 0 ] }
+	    	]
+		};
+		$(document).ready(function() {
+	            preparePH();
+	            $.unblockUI();
+	    });
+	    $j = jQuery.noConflict();
    </script>  
-
-
+	
     <script>
           $ = jQuery.noConflict(); 
            $(document).ready(function(){            
