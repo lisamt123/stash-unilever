@@ -2,8 +2,7 @@
 private class AA_AddCompetitorName_Test {
 
     static testMethod void myUnitTest() {
-    	/*VVO Test*/
-        Schema.DescribeSObjectResult R = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
+    	Schema.DescribeSObjectResult R = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
         Id recTypeId = (RT.get('Competitor Brand')).getRecordTypeId();
        aa_Agent_Competitor__c compititorname=new aa_Agent_Competitor__c(Name='testCompititor');
