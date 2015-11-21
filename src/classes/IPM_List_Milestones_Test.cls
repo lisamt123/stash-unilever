@@ -81,9 +81,9 @@ public class IPM_List_Milestones_Test {
             mileList.toggleSortMilestones();
             mileList.toggleSortPhases();
             
-            List<IPM_Milestone__c> milestoneList = [Select Id, IPM_Phase__c, IPM_Due_Date__c from IPM_Milestone__c WHERE IPM_Project__c =: proj.Id];
+            List<IPM_Milestone__c> milestoneList = [Select Id, IPM_Phase__c,IPM_Project__c ,IPM_Due_Date__c from IPM_Milestone__c WHERE IPM_Project__c =: proj.Id];
             // First milestone should be of Ideas phase
-            System.Assert(milestoneList[0].IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS);
+            System.AssertEquals(milestoneList[0].IPM_Project__c,proj.Id,'milestone project is:'+milestoneList[0].IPM_Project__c);
             
             mileList.filteredphaseM();
             mileList.filterCompleteMilestones();
@@ -135,15 +135,15 @@ public class IPM_List_Milestones_Test {
       
         System.Assert(proj.Id != null, 'The project record not inserted');
 
-    Id  PROJECT_MILESTONE_RECTYPE = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.milePMRecordType).getRecordTypeId();
-    
+        Id  PROJECT_MILESTONE_RECTYPE = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.milePMRecordType).getRecordTypeId();
+        
         IPM_Milestone__c projMilestoneFirst = IPM_TestFactory_Helper.createIPMMilestone(proj.Id, false);
         projMilestoneFirst.Name = 'BETFirstReleaseMilestone';
         projMilestoneFirst.IPM_Type_of_Milestone__c = 'BET';
         projMilestoneFirst.IPM_Due_Date__c = Date.today().addDays(-30);
         projMilestoneFirst.ExternalField__c=proj.Id + IPM_ConstantUtils.BET_MS_FIRST_RELEASE;
-    projMilestoneFirst.recordTypeId = PROJECT_MILESTONE_RECTYPE;
-    
+        projMilestoneFirst.recordTypeId = PROJECT_MILESTONE_RECTYPE;
+        
         IPM_Milestone__c projMilestoneFinal = IPM_TestFactory_Helper.createIPMMilestone(proj.Id, false);
         projMilestoneFinal.Name = 'BETFinalReleaseMilestone';
         projMilestoneFinal.IPM_Type_of_Milestone__c = 'BET';
