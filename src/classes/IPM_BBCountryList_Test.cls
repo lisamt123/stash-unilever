@@ -19,7 +19,9 @@ public class IPM_BBCountryList_Test{
     public static User stdUserForBBCountryList;
     public static mdo_Geography__c mdoGeo=new mdo_Geography__c();
     public static IPM_Financial__c fin;
-    public static List<IPM_Country__c>countryList=new List<IPM_Country__c>();
+  
+     public static List<IPM_Country__c>countryList=new List<IPM_Country__c>();
+    public static List<MDO_Geography__c> mdoGeoList=new List<MDO_Geography__c>();
     public static IPM_Project__c ParentProject;// Project object initialization
       /*************************************************************************************************************************
     * @description Test Data
@@ -84,7 +86,7 @@ public class IPM_BBCountryList_Test{
             String geoExternalId = '';
             for(IPM_Project_Rollout__c localRolloutObj : localRolloutList)
             {
-                geoExternalId = '';
+                
                 if(localRolloutObj.IPM_Rollout_Project__c.contains('AFR'))
                 {
                     geoExternalId = 'AG';
@@ -94,18 +96,20 @@ public class IPM_BBCountryList_Test{
                     geoExternalId = 'BR';
                 }
                 
-                
-            }
-            MDO_Geography__c mdo = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId);
-                
-                insert mdo;
-                List<MDO_Geography__c>mdoList=[select Id from MDO_Geography__c where id=:mdo.Id limit 1];
-                system.assertNotEquals(mdoList[0].Id,null,'mdo created');
-                
+                MDO_Geography__c mdo = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId); 
+                mdoGeoList.add(mdo);    
                 IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo.id,
-                IPM_Project__c = localRolloutList[0].IPM_Project__c,local_Rollout__c = localRolloutList[0].Id,IPM_Rollout_Status__c = 'With MCO');    
+                IPM_Project__c = localRolloutObj.IPM_Project__c,local_Rollout__c = localRolloutObj.Id,IPM_Rollout_Status__c = 'With MCO');    
                 countryList.add(tempCountry);
+            }
+            
+                    
+             insert mdoGeoList;
+             List<MDO_Geography__c>mdoList=[select Id from MDO_Geography__c where id=:mdoGeoList[0].Id limit 1];
+             system.assertNotEquals(mdoList[0].Id,null,'mdo created'); 
+            
             insert countryList;
+           
             
             List<IPM_Country__c>counList=[select Id,IPM_Rollout_Status__c from IPM_Country__c where Id=:countryList[0].Id limit 1];
             system.assertEquals(counList[0].IPM_Rollout_Status__c,'With MCO','country inserted');
@@ -116,7 +120,7 @@ public class IPM_BBCountryList_Test{
     /*************************************************************************************************************************
     * @description Test Data
     */
-    @testSetup static void initializeTestMethodData(){
+    static void initializeTestMethodData(){
         
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
         globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
@@ -145,8 +149,9 @@ public class IPM_BBCountryList_Test{
     * @description Running Test Script
     */
     static testMethod void saveScoreTest(){
-        initializeTestMethodData();
+        
         test.startTest();
+        initializeTestMethodData();
         system.runAs(globalUser){
          pRef = Page.IPM_ProjectDocumentSectionEditor;
          pRef.getParameters().put('id', ParentProject.Id);

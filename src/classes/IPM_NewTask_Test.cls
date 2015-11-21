@@ -449,7 +449,7 @@ public class IPM_NewTask_Test{
     public static TestMethod void createTaskWithFunctionalOwner(){
         Test.startTest();
         
-            User userBD = [Select Id,LastName from User where LastName=:USER_NAME AND IPM_Role__c=:IPM_ConstantUtils.FUNCTIONAL_ROLE_BD limit 1]; 
+            User userBD = [Select Id,LastName from User where LastName=:USER_NAME limit 1]; 
             
             initializedData();
             
@@ -490,7 +490,7 @@ public class IPM_NewTask_Test{
     public static TestMethod void createTaskFromAssociatedToDosTabByFO(){
         Test.startTest();
         
-            User userBD = [Select Id,LastName from User where LastName=:USER_NAME AND IPM_Role__c=:IPM_ConstantUtils.FUNCTIONAL_ROLE_BD limit 1]; 
+            User userBD = [Select Id,LastName from User where LastName=:USER_NAME limit 1]; 
             
             initializedData();
             createProjectResource(projectDetailList[0].Id,userBD.id);
