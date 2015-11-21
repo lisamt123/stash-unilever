@@ -297,7 +297,7 @@
                 fYear = Marketing_SOW.Financial_Year__c;
                 agency = Marketing_SOW.Oblix_AgencyEstimate__c;
                 MScurrency = Marketing_SOW.currency__c;
-                if (MScurrency =='EUR') MScurrency = '€';
+                if (MScurrency =='EUR') {MScurrency = '€';  }
                 fillCountries();
             }
         
@@ -327,7 +327,7 @@
         }
         
         public void delElm() {
-            if (newItems[elemToDel].id != null) Xitems.add(newItems[elemToDel]);
+            if (newItems[elemToDel].id != null) {Xitems.add(newItems[elemToDel]);  }
             newItems.remove(elemToDel);
             saveStatus = 'Unsaved';
         }
@@ -362,7 +362,7 @@
         
             Map < String, String > abrev = Oblix_Utils.getAbreViationForCardAssets();
             string abr = abrev.get( myAct.lookupActivity.Activities__c);
-            if (abr == null) abr = '';
+            if (abr == null) {  abr = '';   }
             newItem.non_campaign_title__c = 'ACT-' + abr;
             // myAct.lookupActivity.Activities__c
             //    newItem.id =itemID ;
@@ -379,7 +379,7 @@
                 newItems[ElemToEdit] = x;
                 edit1 = false;
         
-            } else newItems.add(x); // cest un ajout
+            } else {newItems.add(x);} // cest un ajout
         
             myAct.clear();
            
@@ -397,7 +397,7 @@
             }
            
         
-            Id devRecordTypeId = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get('Dedicated Resource').getRecordTypeId();
+            Id devRecordTypeId = rtResource ;// Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get('Dedicated Resource').getRecordTypeId();
             //recordtype
             
              if (edit2) { // c'est un update
@@ -424,7 +424,7 @@
             if (edit2) { // c'est un Edit
                 newItems[ElemToEdit] = newItem1;
                 edit2 = false;
-            } else newItems.add(newItem1);
+            } else { newItems.add(newItem1);  }
         
             newItem1 = new Marketing_Basics__c();
             myRes.clear();
@@ -506,10 +506,10 @@
             map < String, String > RoleTitleNamesMap = new map < String, String > ();
             for (Oblix_Calculator__c c: RoleTitleNames) {
                 if (c.Role_Title__c != null)
-                    RoleTitleNamesMap.put(c.Role_Title__c, c.Role_Title__c);
-            }
+                    { RoleTitleNamesMap.put(c.Role_Title__c, c.Role_Title__c); }
+            } 
             RoleTitles = new List < SelectOption > ();
-            if (RoleTitleNamesMap.size() > 0) {
+            if (!RoleTitleNamesMap.keyset().isEmpty() ) {
                 myAct.roleVisible = true;
                  myAct.selectedRoleTitle = null;
                 for (String temp: RoleTitleNamesMap.keySet()) {
@@ -538,11 +538,11 @@
             map < String, String > RoleTitleNamesMap = new map < String, String > ();
             for (Oblix_Calculator__c c: RoleTitleNames) {
                 if (c.Role_Title__c != null)
-                    RoleTitleNamesMap.put(c.Role_Title__c, c.Role_Title__c);
+                  {  RoleTitleNamesMap.put(c.Role_Title__c, c.Role_Title__c); }
             }
             RoleTitles1 = new List < SelectOption > ();
          
-            if (RoleTitleNamesMap.size() > 0) {
+            if (!RoleTitleNamesMap.keyset().isEmpty()) {
                 myRes.roleVisible = true;
                  myRes.selectedRoleTitle = null;
                 for (String temp: RoleTitleNamesMap.keySet()) {
@@ -580,19 +580,20 @@
             system.debug('===========newItem.OblixCountry__c' + newItem.OblixCountry__c);
             //  Agency_DepartmentNames=[select Financial_Year__c,Oblix_Agency__c, OblixCountry__c, OblixCountry__r.name,Agency_Department__c  from Oblix_Calculator__c where Financial_Year__c=:fYear and  Oblix_Agency__c =:agency and OblixCountry__r.name=: myAct.selectedCountryname];
             Agency_DepartmentNames = [select Financial_Year__c, Oblix_Agency__c, OblixCountry__c, OblixCountry__r.name, Agency_Department__c from Oblix_Calculator__c where RecordTypeId = : rtCountry and Financial_Year__c = : fYear and Oblix_Agency__c = : agency and OblixCountry__r.name like:  myAct.selectedCountryname];
-            if (Agency_DepartmentNames.size() > 0)
+            if (!Agency_DepartmentNames.isEmpty() ){
                  myAct.selectedCountry = Agency_DepartmentNames[0].OblixCountry__c;
+                 }
             map < String, String > Agency_DepartmentMap = new map < String, String > ();
            // Agency_DepartmentMap.put('', 'Agency Department');
             for (Oblix_Calculator__c c: Agency_DepartmentNames) {
                 Agency_DepartmentMap.put(c.Agency_Department__c, c.Agency_Department__c);
             }
             AgencyDepartments = new List < SelectOption > ();
-            if (Agency_DepartmentMap.size() > 0) {
+            if (!Agency_DepartmentMap.keyset().isEmpty() ) {
                 myAct.agencyVisible = true;
                 myAct.selectedAgencyDepartment = null;
                 for (String temp: Agency_DepartmentMap.keySet()) {
-                    if (myAct.selectedAgencyDepartment == null) myAct.selectedAgencyDepartment = temp;
+                    if (myAct.selectedAgencyDepartment == null) {myAct.selectedAgencyDepartment = temp;}
                     AgencyDepartments.add(new SelectOption(temp, Agency_DepartmentMap.get(temp)));
                 }
                 AgencyDepartments = Oblix_Utils.selectOptionSortByLabel(AgencyDepartments);
@@ -628,7 +629,7 @@
             system.debug('===========newItem.OblixCountry__c' + newItem.OblixCountry__c);
         
             Agency_DepartmentNames = [select Financial_Year__c, Oblix_Agency__c, OblixCountry__c, OblixCountry__r.name, Agency_Department__c from Oblix_Calculator__c where RecordTypeId = : rtCountry and Financial_Year__c = : fYear and Oblix_Agency__c = : agency and OblixCountry__r.name like:  myRes.selectedCountryname];
-            if (Agency_DepartmentNames.size() > 0)
+            if (!Agency_DepartmentNames.isEmpty())
                  myRes.selectedCountry = Agency_DepartmentNames[0].OblixCountry__c;
             system.debug('============================zz=Agency_DepartmentNames' + Agency_DepartmentNames);
         
@@ -639,11 +640,11 @@
                 Agency_DepartmentMap.put(c.Agency_Department__c, c.Agency_Department__c);
             }
             AgencyDepartments1 = new List < SelectOption > ();
-            if (Agency_DepartmentMap.size() > 0) {
+            if (!Agency_DepartmentMap.keyset().isEmpty()) {
                 myRes.agencyVisible = true;
                 myRes.selectedAgencyDepartment = null;
                 for (String temp: Agency_DepartmentMap.keySet()) {
-                    if (myAct.selectedAgencyDepartment == null) myAct.selectedAgencyDepartment = temp;
+                    if (myAct.selectedAgencyDepartment == null) {myAct.selectedAgencyDepartment = temp;}
                     AgencyDepartments1.add(new SelectOption(temp, Agency_DepartmentMap.get(temp)));
                 }
                 AgencyDepartments1 = Oblix_Utils.selectOptionSortByLabel(AgencyDepartments1);
@@ -698,11 +699,11 @@
             map<String,String>  countriesMap =new map<String,String> () ;
             for (Oblix_Calculator__c c: countriesNames ){
                 if (c.OblixCountry__c !=null)
-                    countriesMAp.put(c.OblixCountry__r.name ,c.OblixCountry__r.name );
+                   { countriesMAp.put(c.OblixCountry__r.name ,c.OblixCountry__r.name );  }
             }
             countries = new List<SelectOption>();
            
-            if( countriesMap.size()>0){
+            if( !countriesMap.isEmpty()){
                 for (String cID: countriesMap.keySet()){
                     //if (selectedCountry ==null) {       selectedCountry = cid;  //fill the selectOption  //remplir automatiquement par la premiere valeur
                     //        newItem.OblixCountry__c = cid;  } //fill the lookup

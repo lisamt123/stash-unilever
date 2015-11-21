@@ -614,11 +614,11 @@
            estimateCost =  project.Campaign_Fees_Total__c;
            assetInstance = new Oblix_Project_Assets__c ();
            assetInstance.clear();
-           mapAssetsPerSubCat.put(subCat, new Oblix_Project_Assets__c(Sub_Category__c=subCat, recordTypeId = mapRTforSubCat.get(subCat)));
+           mapAssetsPerSubCat.put(subCat, new Oblix_Project_Assets__c(Sub_Category__c=subCat,Quantity__c=1, recordTypeId = mapRTforSubCat.get(subCat)));
         }
         
         public void ReInitializeInstance(){
-            mapAssetsPerSubCat.put(subCat, new Oblix_Project_Assets__c(Sub_Category__c=subCat, recordTypeId = mapRTforSubCat.get(subCat)));
+            mapAssetsPerSubCat.put(subCat, new Oblix_Project_Assets__c(Sub_Category__c=subCat,Quantity__c=1, recordTypeId = mapRTforSubCat.get(subCat)));
         }
         /*
         public class assetWrapper {

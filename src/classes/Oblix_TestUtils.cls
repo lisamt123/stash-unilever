@@ -104,4 +104,21 @@ public with sharing class Oblix_TestUtils {
         return attach; 
     }
 
+    public static Account createAccount(){
+        Account acc = new Account();
+        acc.Name = 'testAccount';
+        insert acc;
+        return acc;
+    }
+
+    public static Oblix_Calculator__c createCalculator(String name, String floc){
+        Oblix_Calculator__c calc = new Oblix_Calculator__c();
+        calc.RecordTypeId = Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Country_Box_Number');
+        calc.Financial_Year__c = floc;
+        calc.Name = name;
+
+        insert calc;
+        return calc;
+    }
+
 }

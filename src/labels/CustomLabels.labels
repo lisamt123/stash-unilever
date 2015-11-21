@@ -2214,7 +2214,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Audio / Visual ORIGINATION – LITE</shortDescription>
-        <value>Full creative development and production of a simple video &lt;15 seconds eg/ educational video on use, you tube preroll, short video recipes etc.</value>
+        <value>Full creative development and production of a simple video &lt;15 seconds eg/ educational video on use, you tube preroll, short video recipes etc</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score3</fullName>
@@ -3736,6 +3736,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Delete</shortDescription>
         <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Delete_SOW_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Delete_SOW_Title</shortDescription>
+        <value>Delete this SOW</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Delete_item</fullName>

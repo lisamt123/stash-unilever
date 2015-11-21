@@ -35,8 +35,12 @@
     <script>
      $ = jQuery.noConflict(); 
            $(document).ready(function(){
-           $('#example').dataTable({})
-                 .columnFilter({aoColumns: [null,null,null,null,null,null,null,null] });
+           $('#example').dataTable({
+				"aoColumnDefs": [
+      				{ "bSearchable": false, "aTargets": [ 0 ] }
+    			]
+           });
+           //.columnFilter({aoColumns: [null,null,null,null,null,null,null,null] });
                  var table = $('#example').DataTable();
                  $('#example tbody').on( 'click', 'tr', function () {
                     blockme();
@@ -370,7 +374,7 @@
                 <th style="display:none;width:0px !important">{!$ObjectType.Marketing_SOW__c.fields.Id.label}</th>
                 <th>{!$ObjectType.Marketing_SOW__c.fields.Name.label}</th>
                 <th>{!$ObjectType.Marketing_SOW__c.fields.OblixBrand__c.label}</th>
-                <th>{!$ObjectType.Marketing_SOW__c.fields.Marketing_Agency__c.label}</th>
+                <th>{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label}</th>
                 <th>{!$Label.Oblix_Lbl_UIUX_Last_updated}</th>
                 <th>{!$ObjectType.Marketing_SOW__c.fields.SOW_Status__c.label}</th>
                 <th>{!$Label.Oblix_Lbl_UIUX_05_Current}</th>
@@ -384,7 +388,7 @@
                         <td style="display:none;width:0px !important">{!sow.Id}</td>
                         <td>{!sow.Name}</td>
                         <td>{!sow.OblixBrand__r.Name}</td>
-                        <td width="15%">{!sow.Marketing_Agency__c}</td>
+                        <td width="15%">{!sow.Oblix_AgencyEstimate__r.name}</td>
                         <td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!sow.LastModifiedDate}" /></apex:outputText></td>
                         <td>{!sow.SOW_Status__c}</td>
                         <td>€ {!sow.OblixSOWOverallTotal__c} </td>

@@ -58,7 +58,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
     public Attachment attachment {
         get {
             if (attachment == null)
-                attachment = new Attachment();
+                {attachment = new Attachment();}
             return attachment;
         } set;
     }
@@ -84,7 +84,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         myDoc = new Attachment();
         seriesProject = '';
         mapApproved = new map<id, integer>();
-        if (projectId == null) SelectedProject = new Oblix_SOW_Projects__c();
+        if (projectId == null) {SelectedProject = new Oblix_SOW_Projects__c();}
         pr = new Oblix_SOW_Projects__c ();
         isEdit = false;
         //Initialize
@@ -118,16 +118,17 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
                      ];
         }
         System.debug('###selSow : ' + selSow);
-        if (projectId == null) SelectedProject = new Oblix_SOW_Projects__c();
-        else
+        if (projectId == null){ SelectedProject = new Oblix_SOW_Projects__c();}
+        else{
             SelectedProject = [Select Id, Name, Project_Finish_Date__c, Project_Stage__c, Platform__c, CreatedById, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, OblixCountries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c from Oblix_SOW_Projects__c where id = :projectId];
-
+            }
+    
         if (selSow != null && selSow.Id != null) {
             list<Marketing_SOW__c> childSow = new list<Marketing_SOW__c>();
             System.debug('###selSow.id : ' + selSow.id);
             childSow = [select id, OblixSOWOverallTotal__c from Marketing_SOW__c where MarketingSOWParent__c = :selSow.id  and Type_of_SOW__c = 'Baseline'  ];
             System.debug('###childSow : ' + childSow );
-            if (childSow.size() > 0) {
+            if (!childSow.isEmpty()) {
                 mapApproved.put(selSow.id, (integer)childSow[0].OblixSOWOverallTotal__c);
             } else {
                 mapApproved.put(selSow.id, 0);
@@ -161,21 +162,21 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
             date d_projStart, d_prodCompletion, d_projEnd, d_firstAir, d_projCompletion ;
             string series = '';
             //date d1,d2;
-            if (lstProjects.size() > 0)
+            if (lstProjects.size() > 0){
 
                 for (Oblix_SOW_Projects__c  pr : lstProjects) {
 
-                    if (pr.Project_Start_Date__c != null) d_projStart = pr.Project_Start_Date__c.addMonths(-1);
-                    else d_projStart  = date.newInstance(2015, 1, 1);
-                    if (pr.Project_Finish_Date__c != null ) d_projEnd = pr.Project_Finish_Date__c.addMonths(-1);
-                    else d_projEnd = date.newInstance(2015, 1, 1);
+                    if (pr.Project_Start_Date__c != null) { d_projStart = pr.Project_Start_Date__c.addMonths(-1);  }
+                    else { d_projStart  = date.newInstance(2015, 1, 1);}
+                    if (pr.Project_Finish_Date__c != null ){ d_projEnd = pr.Project_Finish_Date__c.addMonths(-1);  }
+                    else { d_projEnd = date.newInstance(2015, 1, 1);}
 
-                    if (pr.Production_Completion_Date__c != null)d_prodCompletion = pr.Production_Completion_Date__c.addMonths(-1);
-                    else d_prodCompletion = date.newInstance(2015, 1, 1);
-                    if (pr.First_Air_Date__c != null) d_firstAir = pr.First_Air_Date__c.addMonths(-1);
-                    else d_firstAir = date.newInstance(2015, 1, 1);
-                    if (pr.Project_Completion_Date__c != null) d_projCompletion = pr.Project_Completion_Date__c.addMonths(-1);
-                    else d_projCompletion = date.newInstance(2015, 1, 1);
+                    if (pr.Production_Completion_Date__c != null) { d_prodCompletion = pr.Production_Completion_Date__c.addMonths(-1);  }
+                    else { d_prodCompletion = date.newInstance(2015, 1, 1); }
+                    if (pr.First_Air_Date__c != null) { d_firstAir = pr.First_Air_Date__c.addMonths(-1);}
+                    else {d_firstAir = date.newInstance(2015, 1, 1);}
+                    if (pr.Project_Completion_Date__c != null){ d_projCompletion = pr.Project_Completion_Date__c.addMonths(-1);}
+                    else {d_projCompletion = date.newInstance(2015, 1, 1);}
                     String dateutc = 'Date.UTC(' ;
                     series = series + '{' +
                              '"unitName"' + ':"' + pr.name + '",' +
@@ -186,6 +187,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
                              '"endTimestamp"' + ':' + dateutc + d_projEnd.year() + ',' + d_projEnd.month() + ',' + d_projEnd.day() + ')' +
                              +'}' + ',' ;
                 }
+            }
             seriesProject = '[' + series.removeEnd(',') + ']';
 
         }
@@ -374,7 +376,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
                 System.debug('###selSow.id : ' + selSow.id);
                 childSow = [select id, OblixSOWOverallTotal__c from Marketing_SOW__c where MarketingSOWParent__c = :selSow.id  and Type_of_SOW__c = 'Baseline'];
                 System.debug('###childSow : ' + childSow );
-                if (childSow.size() > 0) {
+                if (!childSow.isEmpty()) {
                     mapApproved.put(selSow.id, (integer)childSow[0].OblixSOWOverallTotal__c);
                 } else {
                     mapApproved.put(selSow.id, 0);
@@ -568,7 +570,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         //Attachment a = new Attachment(parentId = accid, name=myfile.name, body = myfile.body);
         for (Attachment a : allFileList) {
             if (a.name != '' && a.name != '' && a.body != null)
-                lstAttachementsToAdd.add(new Attachment(name = a.name, body = a.body)) ;
+                {lstAttachementsToAdd.add(new Attachment(name = a.name, body = a.body)) ;}
         }
 
         return null;
@@ -578,7 +580,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         allFileList.clear() ;
         //Adding multiple attachments instance
         for (Integer i = 1 ; i <= Integer.valueOf(FileCount) ; i++)
-            allFileList.add(new Attachment()) ;
+         {   allFileList.add(new Attachment()) ;  }
         return null ;
     }
     /* Inner Class Used to have list of Campaign and non Campaign in the same list

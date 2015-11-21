@@ -210,7 +210,7 @@
                                    <tr><td colspan="2">&nbsp;</td></tr>                           
                                    <tr>
                                         <td><strong>&nbsp; {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Status__c.label} &nbsp; &nbsp;</strong></td>
-                                        <td colspan="2"><apex:inputField styleClass="picklist_init" style="width:130%" value="{!SelectedProject.Campaign_Status__c}"/></td> 
+                                        <td colspan="2"><apex:inputField id="CampaignStatus" styleClass="picklist_init" style="width:130%" value="{!SelectedProject.Campaign_Status__c}"/></td> 
                                    </tr>  
                                     <tr><td colspan="2">&nbsp;</td></tr>  
                                     <tr>
@@ -224,7 +224,7 @@
                                      <br/> <br/>
                                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back_to_SOW}" action="{!BackToSow}" styleClass="Oblix_projects_btn"/><br/><br/><!-- EditAction -->
                                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Clone_Campaign}" styleClass="Oblix_projects_btn" action="{!CloneCampaign}"/><br/><br/>
-                                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Cancel_Campaign}" rerender="EditPanel" styleClass="Oblix_projects_btn" disabled="true"/><br/><br/>
+                                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Cancel_Campaign}" reRender="CampaignStatus" onclick="blockme()" oncomplete="$.unblockUI()" styleClass="Oblix_projects_btn" action="{!cancelCampaign}"/><br/><br/>
                                       <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit_Add_Items}" action="{!EditAddItems}" styleClass="Oblix_projects_btn"/><br/><br/><br/>
                                       <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Save_Campaign}" action="{!SaveProject}" styleClass="Oblix_projects_btn"/><br/>
                                  </div>  
@@ -870,6 +870,18 @@
          } 
         }       
    });
+
+   function blockme() {
+      $.blockUI({ css: { 
+           border: 'none', 
+           padding: '15px', 
+           backgroundColor: '#000',
+           '-webkit-border-radius': '10px', 
+           '-moz-border-radius': '10px', 
+           opacity: .5, 
+           color: '#fff' 
+       } }); 
+   }
    
    </script>
  

@@ -257,6 +257,26 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
          public PageReference EditAddItems(){
              return new PageReference('/apex/Oblix_VF08_ProjectEdit?projectId='+SelectedProject.Id);
          }
+
+
+    /**
+    *   Method used to cancel this campaign
+    *   @return [reload page]
+    */
+    public void cancelCampaign(){
+
+        try{
+
+            selectedProject.Campaign_Status__c = 'Canceled';
+            update selectedProject;
+
+        } catch (DMLException e){
+
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'There was an issue while trying to update this campaign: ' + e.getMessage()));
+
+        }
+
+    }
        
          
      

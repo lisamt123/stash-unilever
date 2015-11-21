@@ -189,7 +189,34 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 			System.assertNotEquals(null, ctrl.selSow, 'Checking if method changed selSow value');
 		}
 	}
-	
+
+	@isTest static void deleteAction_Test() {
+		System.runAs(Oblix_TestUtils.createTestUser()) {
+			Marketing_SOW__c marketingSow = Oblix_TestUtils.createTestMarketingSow(TEST_NAME, null,
+			                                Oblix_TestUtils.createBrand(TEST_NAME, TEST_NAME).Id);
+			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('test', marketingSow.Id);
+			Oblix_Marketing_SOW_Project_Splits__c projectSplit = Oblix_TestUtils.createSowProjectSplits(project.Id);
+
+			Oblix_Ctrl06SOWView_CC ctrl = new Oblix_Ctrl06SOWView_CC();
+			ctrl.selSow = marketingSow;
+			Test.startTest();
+			PageReference result = ctrl.deleteAction();
+			Test.stopTest();
+			System.assertNotEquals(null, result, 'Page is not correct');
+		}
+	}
+
+	@isTest static void CountriesByFYear_Test() {
+		System.runAs(Oblix_TestUtils.createTestUser()) {
+			String calcParam = 'test';
+			Oblix_TestUtils.createCalculator('test_calc', calcParam);
+			Test.startTest();
+			Set<String> result = Oblix_Utils.CountriesByFYear(calcParam);
+			Test.stopTest();
+			System.assertEquals(1, result.size(), 'Wrong size.');
+		}
+	}
+
 	@isTest static void actionsTest() {
 		User u = Oblix_TestUtils.createTestUser();
 		System.runAs(u) {

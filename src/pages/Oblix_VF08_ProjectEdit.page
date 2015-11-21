@@ -243,7 +243,7 @@
     <!-- Countries popUp Start-->
     
     <div id="dialogCountries" title="{!$Label.Oblix_lbl_UIUX_Choose_Countries}" style="display:none">   
-    <center>
+    
       <table width="90%">        
           <tr valign="top">
           <apex:repeat value="{!lstRegion}" var="region">
@@ -257,14 +257,14 @@
            </apex:repeat>
            </tr>    
       </table>
-      </center>
+      
    </div>
   <!-- Countries PopUp End -->
    <!-- ValueDrivers popUp Start-->
     <div id="dialogDrivers" class="dialogDrivers" title="Value Drivers" style="display:none">   
     <br/>
      {!$Label.Oblix_lbl_UIUX_Visible_to_Unilever}<br/>
-    <center>
+    
     <br/>
       <h1>{!$Label.Oblix_lbl_UIUX_Please_Choose}</h1>
       <br/><br/>
@@ -302,19 +302,19 @@
               </tr>
              
       </table>
-      </center>
+      
    </div>
   <!-- ValueDrivers PopUp End -->
    <!-- Agency Hub popUp Start-->
     <div id="agencyHub" title="Agency Hub Split " style="display:none" class="agencyHub"> 
    
-      <center>
+      
      <br/>
       <h1>{!$Label.Oblix_lbl_UIUX_List_lead_agency_market} </h1>
       <br/><br/>
       <table width="70%" class="agencyHubList">
         
-         <center>
+         
                <apex:variable value="{!1}" var="display"/>
                <apex:repeat value="{!lstProjectSplitHubs}" var="split">
                     <tr>
@@ -337,15 +337,15 @@
                    </tr>               
                  <apex:variable var="display" value="{!display + 1}"/>               
                </apex:repeat>                              
-          </center>
+          
       </table>
-      </center>
+      
    </div>
   <!-- Agency hub PopUp End -->
   
    <!-- Stage popUp Start-->
     <div id="dialogStages" title="{!$Label.Oblix_lbl_UIUX_Choose_stages}  " style="display:none">   
-       <center>
+       
        <table width="80%">  
            <tr>    
               <td colspan="3"><strong>{!$Label.Oblix_lbl_UIUX_Stages} : </strong></td>                                       
@@ -369,17 +369,17 @@
            </tr>   
            </apex:repeat>            
       </table>
-      </center>
+      
    </div>
   <!-- Stage End -->
   <!-- TimeLines popUp Start-->
       <div id="dialogTimeLine" title="{!$Label.Oblix_lbl_UIUX_TimeLines}" style="display:none">  
-      <center> 
+       
       <br/>
-      <center><h1>{!$Label.Oblix_lbl_UIUX_Fill_date}</h1></center>
+      <h1>{!$Label.Oblix_lbl_UIUX_Fill_date}</h1>
       <br/>
       <table width="90%">
-         <center>
+         
             <tr>    
               <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Start_Date__c.label} </strong></td><td><apex:inputField value="{!project.Project_Start_Date__c}" styleclass="dateProjSD"/></td>
               <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.BET_first_release__c.label} </strong></td><td><apex:inputField value="{!project.BET_first_release__c}" styleclass="dateProjBFR" /></td>
@@ -404,22 +404,22 @@
                 <td colspan="6"><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Timescale_Notes__c.label}  </strong><br/><br/><apex:inputField style="width:100%;min-height:100px"  value="{!project.Timescale_Notes__c}" styleclass="ProjTimescale"/></td>
               </tr>   
               <tr><td colspan="2">&nbsp;</td></tr> 
-              <tr><td colspan="6"><center><h1>Other info</h1></center></td></tr> 
+              <tr><td colspan="6"><h1>Other info</h1></td></tr> 
               <tr><td colspan="2">&nbsp;</td></tr> 
-              <tr><td colspan="6"><center><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Priority__c.label}</strong> &nbsp; <apex:inputField value="{!project.Project_Priority__c}" style="width:20%" styleclass="ProjPriority picklist_init"/></center></td></tr> 
-          </center>
+              <tr><td colspan="6"><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Priority__c.label}</strong> &nbsp; <apex:inputField value="{!project.Project_Priority__c}" style="width:20%" styleclass="ProjPriority picklist_init"/></td></tr> 
+          
       </table>
-      </center>
+      
    </div>
    <!-- TimeLines popUp End -->
    
      <!-- More Details Popup Start-->
       <div id="dialogMoreDetails" title="{!$Label.Oblix_lbl_UIUX_Add_details_optional} " style="display:none">  
-      <center> 
+       
       <br/>
       <br/>
       <table width="90%">
-         <center>
+         
             
               <tr><td colspan="4">&nbsp;</td></tr> 
               <tr>
@@ -431,13 +431,13 @@
              <tr>
                 <td colspan="3"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Additional_Description__c.label} </strong><br/><br/><apex:inputField style="width:100%;min-height:100px"  value="{!assetInstance.Additional_Description__c}" styleclass="itemAdditionalNote"/></td>
               </tr>  
-          </center>
+          
       </table>
-      </center>
+      
    </div>
    <!-- More Details popUp End -->
    
-  <center>
+  
     
     <div class="Oblix_header"><!-- 3 levels -->
        <div style="postion: relative; top:-200px; background: transparent;">
@@ -467,7 +467,7 @@
             </tr>
         </table></div>
     </div>
-    </center>
+    
     <br/><br/>
    
      <div class="Oblix_table padding_remove">
@@ -599,16 +599,16 @@
                                        </td>                                       
                                      </tr>    
                                    <tr><td><strong>&nbsp;</strong></td></tr>
-                                   <tr><td colspan="2"><h3><center>{!$Label.Oblix_lbl_UIUX_Unsaved}</center></h3></td></tr>  
+                                   <tr><td colspan="2"><h3>{!$Label.Oblix_lbl_UIUX_Unsaved}</h3></td></tr>  
                               </table>
                               </section>
                              
-                              <section class="PrColumn5">
-                                 <center>
+                              <section class="PrColumn5" style="padding-left:3%;">
+                                 
                                      <br/><br/>
-                                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back} " action="{!BackAction}" immediate="true" rerender="EditPanel" styleClass="Oblix_projects_btn"/><br/><br/>
+                                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back} " action="{!BackAction}" immediate="true" rerender="EditPanel" styleClass="Oblix_projects_btn" /><br/><br/>
                                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Save_Campaign}" action="{!SaveProjectAction}" styleClass="Oblix_projects_btn" reRender="myerror"/><br/>              
-                                 </center>  
+                                   
                               </section>   
                               </td>
                            </tr>
@@ -660,12 +660,13 @@
                                      <apex:outputPanel rendered="{!isEdit == false}" id="assetBlock">  
                                      <div id="{!mapRTIdCSS[recordType]}_tabs">
                                          <ul>
-                                             <apex:variable var="count" value="{!1}"/>
+
+                                             <apex:variable var="count" value="{!1}"/>                                           
                                              <apex:repeat value="{!mapRTSUBCat[recordType]}" var="subCat">
-                                                <li><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count}">{!subCat}</a></li>
+                                                <li style="display:{!if(recordType != $Label.Oblix_Lbl_UIUX_Stimulus_Materials,'block','none')}"><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count}">{!subCat}</a></li>
                                                 <apex:variable var="count" value="{!count + 1}"/>
                                              </apex:repeat>
-                                             
+                                            
                                         </ul>
                                         <!-- Admin tabs-1--> 
                                         <apex:variable var="count2" value="{!1}"/>
@@ -684,7 +685,7 @@
                                                    
                                                     <apex:repeat value="{!mapSubCategOption[subCat]}" var="opt">
                                                     <div id="{!mapRTIdCSS[recordType]}_tabs-{!count2}{!opt}">
-                                                         <center>
+                                                         
                                                          <apex:outputPanel id="assetPart">
                                                          <apex:actionRegion >
                                                          <table width="100%" class="AssetName">                                                    
@@ -715,7 +716,7 @@
                                                         </table>
                                                         </apex:actionRegion> 
                                                         </apex:outputPanel>  
-                                                        </center>
+                                                        
                                                     </div>
                                                   </apex:repeat>                               
                                                 </div> 

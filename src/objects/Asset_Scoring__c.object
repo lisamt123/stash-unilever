@@ -128,6 +128,18 @@
                 <fullName>Origination Full</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Origination</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Experiential - Promotional Ideas Origination</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Experiential - Promotional Ideas Adaptation</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
@@ -291,6 +303,18 @@
             </values>
             <values>
                 <fullName>Digital Campaign Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Experiential - Promotional Ideas Adaptation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Experiential - Promotional Ideas Origination</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Origination</fullName>
                 <default>false</default>
             </values>
             <values>

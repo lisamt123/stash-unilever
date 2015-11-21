@@ -64,6 +64,10 @@
             <translation><!-- Campaign Teaser Video --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Campaign Wesbite Update</masterLabel>
+            <translation><!-- Campaign Wesbite Update --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Cinema Film</masterLabel>
             <translation><!-- Cinema Film --></translation>
         </picklistValues>
@@ -108,6 +112,14 @@
             <translation><!-- Extended Stills --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Film Adaptation</masterLabel>
+            <translation><!-- Film Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Film Re-edit</masterLabel>
+            <translation><!-- Film Re-edit --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Finished Film</masterLabel>
             <translation><!-- Finished Film --></translation>
         </picklistValues>
@@ -122,6 +134,10 @@
         <picklistValues>
             <masterLabel>Flash Take Overs</masterLabel>
             <translation><!-- Flash Take Overs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Homepage</masterLabel>
+            <translation><!-- Homepage --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Interactive Game</masterLabel>
@@ -172,6 +188,10 @@
             <translation><!-- Narration --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>POS Adaptation</masterLabel>
+            <translation><!-- POS Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Photomatic</masterLabel>
             <translation><!-- Photomatic --></translation>
         </picklistValues>
@@ -190,6 +210,10 @@
         <picklistValues>
             <masterLabel>Radio</masterLabel>
             <translation><!-- Radio --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Radio Adaptation</masterLabel>
+            <translation><!-- Radio Adaptation --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Re-Shoot</masterLabel>
@@ -240,8 +264,16 @@
             <translation><!-- Street Banners --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>TV Adaptation</masterLabel>
+            <translation><!-- TV Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>TV Master</masterLabel>
             <translation><!-- TV Master --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TV Re-Edit</masterLabel>
+            <translation><!-- TV Re-Edit --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Tactical Print</masterLabel>
