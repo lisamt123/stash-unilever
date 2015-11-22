@@ -307,7 +307,6 @@
         <members>IPM_ProjectType</members>
         <members>IPM_Resource</members>
         <members>LoadImage</members>
-<<<<<<< HEAD
         <members>OV_bootstrap_drilldown</members>
         <members>OV_jquery</members>
         <members>OV_jqueryDotDot</members>
@@ -319,18 +318,7 @@
         <members>bootstrapSF1</members>
         <members>reportDocumentTypeIcons</members>
         <name>StaticResource</name>
-    </types>     
-=======
-	    <members>EcoDesignJS</members>
-        <members>IPM_BET_Logo</members>
-        <members>IPM_FinancialGrid</members>
-        <members>IPM_Financial_Upload_Test</members>
-        <members>IPM_ProjectType</members>
-        <members>IPM_Resource</members>
-	    <members>PSARViewTableauDashboard</members>
-        <name>StaticResource</name>
     </types> 
->>>>>>> FETCH_HEAD
     <types>
         <members>*</members>
         <name>SharingReason</name>
