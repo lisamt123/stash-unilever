@@ -44,13 +44,13 @@ public class WINatPOSPurgeStats_Test {
         dlstats4.Content_Name__c = 'Magnum';
         dlstats4.Content_Size__c = 2048;
         dlstats4.Content_Type__c = 'JPEG';
-        dlstats4.Timestamp__c = System.now() - 31;
+        dlstats4.Timestamp__c = System.now() - 32;
         
         Download_Statistics__c dlstats5 = new Download_Statistics__c();
         dlstats5.Content_Name__c = 'Cif';
         dlstats5.Content_Size__c = 4096;
         dlstats5.Content_Type__c = 'PNG';
-        dlstats5.Timestamp__c = System.now() - 31;
+        dlstats5.Timestamp__c = System.now() - 32;
         
         List<Download_Statistics__c> dlstatsList = new List<Download_statistics__c>();
         dlstatsList.add(dlstats1);
