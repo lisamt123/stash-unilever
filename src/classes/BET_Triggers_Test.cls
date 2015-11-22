@@ -11,120 +11,145 @@ History
 -------
 VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   Maciej Krol             22/12/2014      INITIAL DEVELOPMENT
-1.1 -   Michal Bluj             29/07/2015      SWITCHING TO MDO Objects 
 **********************************************************************/
 @isTest
 private class BET_Triggers_Test {
-
-
-    private static final String PROJECT_ASSERT_COMMENT = 'Category field search must match category name';
-    private static final String BRAND_ASSERT_COMMENT = 'Brand field search must match brand name';
-    private static final String CATEGORY_ASSERT_COMMENT = 'Category field search must match category name';
-    private static final String OWNER_ASSERT_COMMENT = 'Owner field search must match owner name';
-
     static testMethod void testMethodOne(){
-        Test.startTest();
         uw_Inoplan_Project__c inoplan = BET_TestingHelper.initInoplan('Test Inoplan', true);
-        MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
-        MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup, 'Test Category');
-        MDO_Brand__c brand = BET_TestUtils.createBrand('Axe');
+        BET_Category__c parentCategory = BET_TestingHelper.initCategory('Test Parent', true);
+        BET_Category__c subCategory = BET_TestingHelper.initCategory('Test Subcategory', parentCategory, true);
+        uw_Brand__c brand = BET_TestingHelper.initBrand('Test Brand', true);
+        BET_TestingHelper.initCategoryBrand(subCategory, brand, true);
+        User u = BET_TestingHelper.getDefaultOwner();
 
-        uw_BET__c bet = BET_TestUtils.getTestBet('Test BET '+system.now(),categoryGroup.id,
-                                                category.id,brand.id, inoplan.id,null,
-                                                BET_TestingHelper.BET_STATUS_FIRSTRELEASE);
-        insert bet;
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET(u, 'Test BET Name', BET_TestingHelper.BET_STATUS_FIRSTRELEASE, inoplan, parentCategory, subCategory, brand, true);
 
-        bet = BET_TestingHelper.getBET(bet.Id);
-
+        uw_BET__c bet = wrap.BET;
         //check if text field values for SOSL are populated by trigger
-        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan.Name,PROJECT_ASSERT_COMMENT);
-        System.assertEquals(bet.Brand_Keyword_Search__c, brand.Name,BRAND_ASSERT_COMMENT);
-        System.assertEquals(bet.Category_Keyword_Search__c, category.Name,CATEGORY_ASSERT_COMMENT);
-        //System.assertEquals(bet.Owner_Keyword_Search__c, UserInfo.getFirstName() + ' ' + UserInfo.getLastName());
+        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan.Name);
+        System.assertEquals(bet.Brand_Keyword_Search__c, brand.Name);
+        System.assertEquals(bet.Category_Keyword_Search__c, subCategory.Name);
+        System.assertEquals(bet.Owner_Keyword_Search__c, u.Name);
 
         uw_Inoplan_Project__c inoplan2 = BET_TestingHelper.initInoplan('Test Inoplan 2', true);
-        MDO_Category__c categoryGroup2 = BET_TestUtils.createCategoryGroup();
-        MDO_Category__c category2 = BET_TestUtils.createCategory(categoryGroup2, 'Test Category 1');
-        MDO_Brand__c brand2 = BET_TestUtils.createBrand('Axe 1');
+        BET_Category__c parentCategory2 = BET_TestingHelper.initCategory('Test Parent 2', true);
+        BET_Category__c subCategory2 = BET_TestingHelper.initCategory('Test Subcategory 2', parentCategory2, true);
+        uw_Brand__c brand2 = BET_TestingHelper.initBrand('Test Brand 2', true);
+        BET_TestingHelper.initCategoryBrand(subCategory2, brand2, true);
         User u2 = BET_TestingHelper.getDefaultManager();
 
         bet.Inoplan_Project__c = inoplan2.Id;
-        bet.Product_Category__c = category2.Id;
+        bet.Category__c = parentCategory2.Id;
+        bet.Sub_Category__c = subCategory2.Id;
         bet.OwnerId = u2.Id;
-        bet.Product_Brand__c = brand2.Id;
+        bet.uw_Brand__c = brand2.Id;
 
         update bet;
 
         bet = BET_TestingHelper.getBET(bet.Id);
 
         //check if text field values for SOSL are populated by trigger
-        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan2.Name,PROJECT_ASSERT_COMMENT);
-        System.assertEquals(bet.Brand_Keyword_Search__c, brand2.Name,BRAND_ASSERT_COMMENT);
-        System.assertEquals(bet.Category_Keyword_Search__c, category2.Name,CATEGORY_ASSERT_COMMENT);
-        System.assertEquals(bet.Owner_Keyword_Search__c, u2.Name,OWNER_ASSERT_COMMENT);
+        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan2.Name);
+        System.assertEquals(bet.Brand_Keyword_Search__c, brand2.Name);
+        System.assertEquals(bet.Category_Keyword_Search__c, subCategory2.Name);
+        System.assertEquals(bet.Owner_Keyword_Search__c, u2.Name);
+
+        User admin = BET_TestingHelper.createAdminUser('test', 'admin@tes.com', 'test');
+
+        system.runAs(admin){
+            u2.Firstname = 'Tom';
+            u2.LastName = 'Hanks';
+            update u2;
+        }        
 
         inoplan2.Name = 'Test Inoplan 3';
         update inoplan2;
 
+        brand2.Name = 'Test Brand 3';
+        update brand2;
+
+        subCategory2.Name = 'Test Subcategory 3';
+        update subCategory2;        
+
         bet = BET_TestingHelper.getBET(bet.Id);
 
-        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan2.Name,PROJECT_ASSERT_COMMENT);
+        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan2.Name);
+        System.assertEquals(bet.Brand_Keyword_Search__c, brand2.Name);
+        System.assertEquals(bet.Category_Keyword_Search__c, subCategory2.Name);
 
         Integer countFeedItems = [SELECT count() FROM FeedItem WHERE ParentId =: bet.Studio_Chatter_Group__c];
         bet.Status__c = BET_TestingHelper.BET_STATUS_FINALRELEASE;
         update bet;
 
         Integer countFeedItemsAfter = [SELECT count() FROM FeedItem WHERE ParentId =: bet.Studio_Chatter_Group__c];
-        System.assertEquals(countFeedItems+1, countFeedItemsAfter, 'Feed items counters must match');
-        Test.stopTest();
+        System.assertEquals(countFeedItems+1, countFeedItemsAfter);
     }
 
-    static testMethod void testMethodTwo(){
-        Test.startTest();
+static testMethod void testMethodTwo(){
         uw_Inoplan_Project__c inoplan = BET_TestingHelper.initInoplan('Test Inoplan', true);
-        MDO_Category__c categoryGroup = BET_TestUtils.createCategoryGroup();
-        MDO_Category__c category = BET_TestUtils.createCategory(categoryGroup, 'Test Category');
-        MDO_Brand__c brand = BET_TestUtils.createBrand('Axe');
+        BET_Category__c parentCategory = BET_TestingHelper.initCategory('Test Parent', true);
+        BET_Category__c subCategory = BET_TestingHelper.initCategory('Test Subcategory', parentCategory, true);
 
-        uw_BET__c bet = BET_TestUtils.getTestBet('Test BET '+system.now(),categoryGroup.id,
-                                                category.id,brand.id, inoplan.id,null,
-                                                BET_TestingHelper.BET_STATUS_FIRSTRELEASE);
-        insert bet;
+        uw_Brand__c brand = BET_TestingHelper.initBrand('Test Brand', true);
+        BET_TestingHelper.initCategoryBrand(subCategory, brand, true);
+        User u = BET_TestingHelper.getDefaultOwner();
 
-        bet = BET_TestingHelper.getBET(bet.Id);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET(u, 'Test BET Name', BET_TestingHelper.BET_STATUS_FIRSTRELEASE, inoplan, parentCategory, subCategory, brand, true);
 
+        uw_BET__c bet = wrap.BET;
         //check if text field values for SOSL are populated by trigger
-        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan.Name,PROJECT_ASSERT_COMMENT);
-        System.assertEquals(bet.Brand_Keyword_Search__c, brand.Name,BRAND_ASSERT_COMMENT);
-        System.assertEquals(bet.Category_Keyword_Search__c, category.Name,CATEGORY_ASSERT_COMMENT);
+        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan.Name);
+        System.assertEquals(bet.Brand_Keyword_Search__c, brand.Name);
+        System.assertEquals(bet.Category_Keyword_Search__c, subCategory.Name);
+        System.assertEquals(bet.Owner_Keyword_Search__c, u.Name);
 
         uw_Inoplan_Project__c inoplan2 = BET_TestingHelper.initInoplan('Test Inoplan 2', true);
-        MDO_Category__c categoryGroup2 = BET_TestUtils.createCategoryGroup();
-        MDO_Category__c category2 = BET_TestUtils.createCategory(categoryGroup2, 'Test Category 1');
-        MDO_Brand__c brand2 = BET_TestUtils.createBrand('Axe 1');
+        BET_Category__c parentCategory2 = BET_TestingHelper.initCategory('Test Parent 2', true);
+        BET_Category__c subCategory2 = BET_TestingHelper.initCategory('Test Subcategory 2', parentCategory2, true);
+        uw_Brand__c brand2 = BET_TestingHelper.initBrand('Test Brand 2', true);
+        BET_TestingHelper.initCategoryBrand(subCategory2, brand2, true);
         User u2 = BET_TestingHelper.getDefaultManager();
 
         bet.Inoplan_Project__c = inoplan2.Id;
-        bet.Product_Category__c = category2.Id;
+        bet.Category__c = parentCategory2.Id;
+        bet.Sub_Category__c = subCategory2.Id;
         bet.OwnerId = u2.Id;
-        bet.Product_Brand__c = brand2.Id;
+        bet.uw_Brand__c = brand2.Id;
 
         update bet;
 
         bet = BET_TestingHelper.getBET(bet.Id);
 
         //check if text field values for SOSL are populated by trigger
-        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan2.Name,PROJECT_ASSERT_COMMENT);
-        System.assertEquals(bet.Brand_Keyword_Search__c, brand2.Name,BRAND_ASSERT_COMMENT);
-        System.assertEquals(bet.Category_Keyword_Search__c, category2.Name,CATEGORY_ASSERT_COMMENT);
-        System.assertEquals(bet.Owner_Keyword_Search__c, u2.Name,OWNER_ASSERT_COMMENT);    
+        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan2.Name);
+        System.assertEquals(bet.Brand_Keyword_Search__c, brand2.Name);
+        System.assertEquals(bet.Category_Keyword_Search__c, subCategory2.Name);
+        System.assertEquals(bet.Owner_Keyword_Search__c, u2.Name);
 
+        User admin = BET_TestingHelper.createAdminUser('test', 'admin@tes.com', 'test');
+
+        Test.startTest();//testing future method from the trigger;
+        system.runAs(admin){
+            u2.Firstname = 'Tom';
+            u2.LastName = 'Hanks';
+            update u2;
+        }        
+        Test.stopTest();
         inoplan2.Name = 'Test Inoplan 3';
         update inoplan2;
 
+        brand2.Name = 'Test Brand 3';
+        update brand2;
+
+        subCategory2.Name = 'Test Subcategory 3';
+        update subCategory2;        
+
         bet = BET_TestingHelper.getBET(bet.Id);
 
-        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan2.Name,PROJECT_ASSERT_COMMENT);
+        System.assertEquals(bet.Inoplan_Project_Keyword_Search__c, inoplan2.Name);
+        System.assertEquals(bet.Brand_Keyword_Search__c, brand2.Name);
+        System.assertEquals(bet.Category_Keyword_Search__c, subCategory2.Name);
+        System.assertEquals(bet.Owner_Keyword_Search__c, 'Tom Hanks');
 
         uw_Custom_Setting__c cs = new uw_Custom_Setting__c();
         cs.Checkbox_Value__c = true;
@@ -135,7 +160,6 @@ private class BET_Triggers_Test {
         update bet;
 
         Integer countFeedItemsAfter = [SELECT count() FROM FeedItem WHERE ParentId =: bet.Studio_Chatter_Group__c];
-        System.assertEquals(countFeedItems, countFeedItemsAfter,'Feed count must match');
-        Test.stopTest();
+        System.assertEquals(countFeedItems, countFeedItemsAfter);
     }
 }

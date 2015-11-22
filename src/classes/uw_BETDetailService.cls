@@ -18,8 +18,7 @@ public with sharing class uw_BETDetailService {
         'assetName'         =>  'Name',
         'assetMediaType'    =>  'Media_Type__c',
         'assetCountry'      =>  'Country__c',
-        'assetLastUpdated'  =>  'LastModifiedDate',
-        'displayOrder'      =>  'Order_Of_Display__c'
+        'assetLastUpdated'  =>  'LastModifiedDate'
     };
 
     private static Map<String, String> feedFieldToLabel = new Map<String, String>{
@@ -37,16 +36,13 @@ public with sharing class uw_BETDetailService {
     ********************************************************************/
     private static uw_BET__c getBet(String betId){
         try { 
-            uw_BET__c bet = [ SELECT Id, Name, Background_Colour__c, Banner_1_Location__c, Banner_2_Location__c, Banner_Colour__c, 
-                                Border_Colour__c, CollaborationGroupId__c, Date_Published__c,Description__c, FirstReleaseDate__c, 
-                                FinalReleaseDate__c,Final_Release_Due_Date__c,First_Release_Due_Date__c, Font_Colour__c, Icon_Location__c, Inoplan_Project__c, Inoplan_Project__r.Name,
-                                Launch_Date__c, Presentation_Id__c, Region__c, Status__c, Sharing__c, LastModifiedDate, CreatedDate, 
-                                Studio_Chatter_Group__c, OwnerId, Owner.Name, Brand_Keyword_Search__c, Category_Keyword_Search__c, 
-                                Owner_Keyword_Search__c, Region_Keyword_Search__c, 
-                                Inoplan_Project_Keyword_Search__c,Product_Brand__c, Product_Brand__r.name, IPM_Project__c, IPM_Project__r.name, 
-                                Category_Group__c, Product_Category__c, Brand_Position__c ,is_Archived__c, Brand_Position__r.name,
-                                Total_Actual_Assets__c,Total_Expected_Assets__c
-                                FROM uw_BET__c WHERE Id = :betId ];
+            uw_BET__c bet = [ SELECT Id, Name, Background_Colour__c, Banner_1_Location__c, Banner_2_Location__c, Banner_Colour__c, Border_Colour__c,
+                                uw_Brand__r.Name, uw_Brand__c, Category__r.Name, Category__c, CollaborationGroupId__c, Date_Published__c,
+                                Description__c, First_release_date__c, Final_release_date__c, Font_Colour__c, Icon_Location__c, 
+                                Inoplan_Project__c, Inoplan_Project__r.Name, Launch_Date__c, Market_Cluster__c, Presentation_Id__c, 
+                                Region__c, Status__c, Sub_Category__c, Sub_Category__r.Name, Sharing__c, LastModifiedDate, CreatedDate, Studio_Chatter_Group__c,
+                                OwnerId, Owner.Name, Brand_Keyword_Search__c, Category_Keyword_Search__c, Owner_Keyword_Search__c,
+                                Region_Keyword_Search__c, Inoplan_Project_Keyword_Search__c FROM uw_BET__c WHERE Id = :betId ];
             return bet;
         }catch(QueryException qe) {
             throw new BetException('No BET found.');
@@ -128,7 +124,7 @@ public with sharing class uw_BETDetailService {
  
         String orderDir = sortAsc ? 'ASC' : 'DESC';
 
-        String finalSoqlQuery = 'SELECT Id, Name, Media_Type__c, Country__c, LastModifiedDate, Description__c, Url_of_asset__c, CreatedById, Order_Of_Display__c FROM uw_Asset__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir +' LIMIT '+pageSize+' OFFSET '+startIndex ;
+        String finalSoqlQuery = 'SELECT Id, Name, Media_Type__c, Country__c, LastModifiedDate, Description__c, Url_of_asset__c, CreatedById FROM uw_Asset__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir +' LIMIT '+pageSize+' OFFSET '+startIndex ;
         List<uw_Asset__c> assetList = new List<uw_Asset__c>();
 
         assetList = Database.query(finalSoqlQuery);        
@@ -231,10 +227,10 @@ public with sharing class uw_BETDetailService {
 
         String groupId = bet.Studio_Chatter_Group__c;
         String query = 'SELECT Id, ContentFileName, CreatedDate, CreatedBy.Name FROM CollaborationGroupFeed WHERE Type=\'ContentPost\' AND ParentId = :groupId AND Id NOT IN :feedIds ORDER BY ' +sortField+ ' ' +orderDir +' LIMIT ' +pageSize+'  OFFSET ' +startIndex;
-        system.debug('--------============-----------');
-        system.debug(query);
-        system.debug(groupId);
-        system.debug(feedIds);
+system.debug('--------============-----------');
+system.debug(query);
+system.debug(groupId);
+system.debug(feedIds);
         List<CollaborationGroupFeed> feedList = Database.query(query);
         List<uw_BETWrapper.DraftItem> draftList = new List<uw_BETWrapper.DraftItem>();
         for(CollaborationGroupFeed f : feedList){
@@ -257,7 +253,6 @@ public with sharing class uw_BETDetailService {
                 if(ca != null){
                     file.URL_of_Asset__c = ca.downloadUrl;
                     file.thumbnail__c = ca.renditionUrl;
-                    file.File_Id__c = ca.Id;
                 }else{
                     throw new BetException('Can\'t find attachment for Feed');
                 } 

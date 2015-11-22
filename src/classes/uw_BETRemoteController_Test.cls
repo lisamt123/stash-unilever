@@ -67,9 +67,9 @@ private class uw_BETRemoteController_Test {
     }
 
     static testMethod void testMethodTwo(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET1', true);
 
-        BET_TestingHelper.BET_TestingData wrap2 = BET_TestingHelper.initBET('Test BET2_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap2 = BET_TestingHelper.initBET('Test BET2', true);
         Id tmpId = wrap2.BET.Id;
         delete wrap2.BET;
 
@@ -96,10 +96,10 @@ private class uw_BETRemoteController_Test {
     }
 
     static testMethod void testMethodThree(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET2_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET2', true);
         wrap.addMember();
 
-        BET_TestingHelper.BET_TestingData wrap2 = BET_TestingHelper.initBET('Test BET3_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap2 = BET_TestingHelper.initBET('Test BET3', true);
         wrap2.addMember();
 
         uw_BETWrapper response;
@@ -115,7 +115,7 @@ private class uw_BETRemoteController_Test {
     }
 
     static testMethod void testMethodFour(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET2_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET2', true);
         wrap.addMember();
 
         uw_BETWrapper response;
@@ -132,7 +132,7 @@ private class uw_BETRemoteController_Test {
     }
 
     static testMethod void testMethodFive(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST', true);
         wrap.addAsset('TEST', BET_TestingHelper.ASSET_SUBFUNCTION_BD, BET_TestingHelper.ASSET_STUDIOTYPE_CREATIVEWORK, BET_TestingHelper.ASSET_STATUS_APPROVED, BET_TestingHelper.ASSET_MEDIATYPE_BETPRESENTATION);
 
         uw_BETWrapper response;
@@ -152,7 +152,7 @@ private class uw_BETRemoteController_Test {
     }
 
     static testMethod void testMethodSix(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST', true);
 
         uw_Asset__c presentation = wrap.addPresentation('Test Presentation.PPT', BET_TestingHelper.ASSET_STATUS_DRAFT);
 
@@ -173,7 +173,7 @@ private class uw_BETRemoteController_Test {
     }
 
     static testMethod void testMethodSeven(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST', true);
         wrap.addAsset('Test Presentation.PPT', BET_TestingHelper.ASSET_SUBFUNCTION_BB, BET_TestingHelper.ASSET_STUDIOTYPE_CREATIVEWORK, BET_TestingHelper.ASSET_STATUS_SHARED, BET_TestingHelper.ASSET_MEDIATYPE_KEYVISUAL);
 
         uw_BETWrapper response;
@@ -194,7 +194,7 @@ private class uw_BETRemoteController_Test {
     }
 
     static testMethod void testMethodEight(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST', true);
         wrap.addAsset('TEST', BET_TestingHelper.ASSET_SUBFUNCTION_BD, BET_TestingHelper.ASSET_STUDIOTYPE_CREATIVEWORK, BET_TestingHelper.ASSET_STATUS_APPROVED, BET_TestingHelper.ASSET_MEDIATYPE_BETPRESENTATION);
         uw_Asset__c presentation = wrap.addPresentation('Test Presentation.PPT', BET_TestingHelper.ASSET_STATUS_DRAFT);
         wrap.addAsset('Test Presentation.PPT', BET_TestingHelper.ASSET_SUBFUNCTION_BB, BET_TestingHelper.ASSET_STUDIOTYPE_CREATIVEWORK, BET_TestingHelper.ASSET_STATUS_SHARED, BET_TestingHelper.ASSET_MEDIATYPE_KEYVISUAL);
@@ -217,7 +217,7 @@ private class uw_BETRemoteController_Test {
     }
 
     static testMethod void testMethodNine(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST', true);
         wrap.addPresentation('TEST', BET_TestingHelper.ASSET_STATUS_APPROVED);
 
         uw_BETWrapper response;
@@ -234,7 +234,7 @@ private class uw_BETRemoteController_Test {
     }
 
     static testMethod void testMethodTen(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST', true);
         
         FeedItem assetFeedItem = new FeedItem(
             ParentId = wrap.BET.Studio_Chatter_Group__c,
@@ -259,7 +259,7 @@ private class uw_BETRemoteController_Test {
     }
 
     static testMethod void testMethodEleven(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST', true);
         
         FeedItem assetFeedItem = new FeedItem(
             ParentId = wrap.BET.Studio_Chatter_Group__c,
@@ -279,7 +279,7 @@ private class uw_BETRemoteController_Test {
 
     //cover catch block
     static testMethod void testMethodTwelve(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST', true);
         wrap.addAsset('TEST', BET_TestingHelper.ASSET_SUBFUNCTION_BD, BET_TestingHelper.ASSET_STUDIOTYPE_CREATIVEWORK, BET_TestingHelper.ASSET_STATUS_APPROVED, BET_TestingHelper.ASSET_MEDIATYPE_BETPRESENTATION);
 
         uw_BETWrapper response;
@@ -291,7 +291,7 @@ private class uw_BETRemoteController_Test {
     
     //cover catch block
     static testMethod void testMethodThirteen(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST', true);
 
         uw_Asset__c presentation = wrap.addPresentation('Test Presentation.PPT', BET_TestingHelper.ASSET_STATUS_DRAFT);
 
@@ -304,7 +304,7 @@ private class uw_BETRemoteController_Test {
     
     //cover catch block
     static testMethod void testMethodFourteen(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST', true);
         wrap.addAsset('Test Presentation.PPT', BET_TestingHelper.ASSET_SUBFUNCTION_BB, BET_TestingHelper.ASSET_STUDIOTYPE_CREATIVEWORK, BET_TestingHelper.ASSET_STATUS_SHARED, BET_TestingHelper.ASSET_MEDIATYPE_KEYVISUAL);
 
         uw_BETWrapper response;
@@ -316,7 +316,7 @@ private class uw_BETRemoteController_Test {
     
     //cover catch block
     static testMethod void testMethodFifteen(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST', true);
         wrap.addAsset('TEST', BET_TestingHelper.ASSET_SUBFUNCTION_BD, BET_TestingHelper.ASSET_STUDIOTYPE_CREATIVEWORK, BET_TestingHelper.ASSET_STATUS_APPROVED, BET_TestingHelper.ASSET_MEDIATYPE_BETPRESENTATION);
         uw_Asset__c presentation = wrap.addPresentation('Test Presentation.PPT', BET_TestingHelper.ASSET_STATUS_DRAFT);
         wrap.addAsset('Test Presentation.PPT', BET_TestingHelper.ASSET_SUBFUNCTION_BB, BET_TestingHelper.ASSET_STUDIOTYPE_CREATIVEWORK, BET_TestingHelper.ASSET_STATUS_SHARED, BET_TestingHelper.ASSET_MEDIATYPE_KEYVISUAL);
@@ -395,7 +395,7 @@ private class uw_BETRemoteController_Test {
 
     //cover catch block
     static testMethod void testMethodSixteen(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST', true);
         wrap.addPresentation('TEST', BET_TestingHelper.ASSET_STATUS_APPROVED);
 
         delete wrap.BET;
@@ -409,7 +409,7 @@ private class uw_BETRemoteController_Test {
 
     //cover catch block
     static testMethod void testMethodSeventeen(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST', true);
         
         FeedItem assetFeedItem = new FeedItem(
             ParentId = wrap.BET.Studio_Chatter_Group__c,
@@ -431,7 +431,7 @@ private class uw_BETRemoteController_Test {
 
     //cover catch block
     static testMethod void testMethodEighteen(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST', true);
         
         FeedItem assetFeedItem = new FeedItem(
             ParentId = wrap.BET.Studio_Chatter_Group__c,
@@ -452,7 +452,7 @@ private class uw_BETRemoteController_Test {
     }
 
     static testMethod void testMethodNineteen(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST', true);
         
         FeedItem assetFeedItem = new FeedItem(
             ParentId = wrap.BET.Studio_Chatter_Group__c,
@@ -472,7 +472,7 @@ private class uw_BETRemoteController_Test {
 
     //cover catch block
     static testMethod void testMethodTwenty(){
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST_'+system.now(), true);
+        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('BETTEST', true);
         
         FeedItem assetFeedItem = new FeedItem(
             ParentId = wrap.BET.Studio_Chatter_Group__c,

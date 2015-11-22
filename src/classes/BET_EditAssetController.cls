@@ -11,8 +11,7 @@ History
 -------
 VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   Maciej Krol             22/12/2014      INITIAL DEVELOPMENT
-1.1 -   Blessy Voola            28 Apr 2015   T0- Move BET to final release if a key visual and BET presentation 
-                                                is uploaded and approved irrespective of their order of uploading.
+1.1 -   Blessy Voola            28 Apr 2015   T0- Move BET to final release if a key visual and BET presentation is uploaded and approved irrespective of their order of uploading.
 **********************************************************************/
 public with sharing class BET_EditAssetController {
     @TestVisible private Integer throwUTException;
@@ -25,6 +24,8 @@ public with sharing class BET_EditAssetController {
     public Boolean isPresentationUploaded{get;set;}
     public String message{get;set;}
     public Boolean hasModifyAccess {get; protected set;}
+
+    private final SObject parent;
     
     PageReference pageRef = null;
 
@@ -39,7 +40,7 @@ public with sharing class BET_EditAssetController {
         
         displayForm = false;            
         if (assetId != null) {
-            file = [SELECT Name, Sub_Function__c, Studio_Asset_Type__c, Media_Type__c, Country__c, Status__c, Is_bucket_field__c, Id, uw_BET__c, Related_Feed_Item__c, File_Id__c FROM uw_Asset__c WHERE Id =: assetId LIMIT 1];
+            file = [SELECT Name, Sub_Function__c, Studio_Asset_Type__c, Media_Type__c, Country__c, Status__c, Is_bucket_field__c, Id, uw_BET__c, Related_Feed_Item__c FROM uw_Asset__c WHERE Id =: assetId LIMIT 1];
             if (file != null) {
                 displayForm = true;
                 pepareForm();
@@ -52,7 +53,6 @@ public with sharing class BET_EditAssetController {
     ********************************************************************/
     private void pepareForm(){
         bet = [SELECT Presentation_Id__c, Status__c FROM uw_BET__c WHERE id =: file.uw_BET__c LIMIT 1];
-
         hasModifyAccess = BET_CommonService.canModify(bet.Id);
 
         if(hasModifyAccess){
@@ -68,14 +68,15 @@ public with sharing class BET_EditAssetController {
     Returns: Boolean
     Author: Blessy Voola
     ********************************************************************/
-    public boolean isVisualApproved(){
-        List<uw_Asset__c> fl=  [SELECT Name, Sub_Function__c, Studio_Asset_Type__c, Media_Type__c, Country__c, Status__c, Is_bucket_field__c, Id, uw_BET__c, Related_Feed_Item__c FROM uw_Asset__c WHERE uw_bet__c =: file.uw_BET__c];
-        for(uw_Asset__c flist:fl){
-            if(flist.Media_Type__c == 'Key Visual' && flist.Status__c == 'Approved'){
-                return true;
-            }
-        }
-        return false;
+    public boolean isVisualApproved()
+    {
+    List<uw_Asset__c> fl=  [SELECT Name, Sub_Function__c, Studio_Asset_Type__c, Media_Type__c, Country__c, Status__c, Is_bucket_field__c, Id, uw_BET__c, Related_Feed_Item__c FROM uw_Asset__c WHERE uw_bet__c =: file.uw_BET__c];
+              for(uw_Asset__c flist:fl)
+              {
+              if(flist.Media_Type__c == 'Key Visual'&&flist.Status__c == 'Approved')
+              return true;
+              }
+              return false;
     }
         /*T0-End*/
     
@@ -89,25 +90,39 @@ public with sharing class BET_EditAssetController {
         message = '';
 
         List<String> errorResult = validateData();
-        if (!errorResult.isEmpty()){
+        if (errorResult.size()>0){
             for(string error : errorResult){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, + error ));
             }
             return null;
         }  
-        return proceedAssetUpdate();
-    }
 
-    private PageReference proceedAssetUpdate(){
         Boolean updateBet = false;  
-
-        bet = [SELECT Presentation_Id__c, Status__c FROM uw_BET__c WHERE id =: file.uw_BET__c LIMIT 1];
-
         if(file.Sub_Function__c == 'Brand Development' && file.Status__c == 'Approved'){
-            if(file.Studio_Asset_Type__c == 'Brand Experience Presentation' && bet.Status__c != 'Final release' && bet.Status__c != 'First release'){
-                updateBet = brandExperiencePresentation();                       
-            }else if(file.Studio_Asset_Type__c == 'Creative Work' && file.Media_Type__c == 'Key Visual' && bet.Status__c == 'First release'){
-                updateBet = creativeWork();
+            if( file.Studio_Asset_Type__c == 'Brand Experience Presentation'){
+                if(bet.Status__c != 'Final release' && bet.Status__c != 'First release'){
+                /*T0-Begin*/
+                if(isVisualApproved()){
+                             bet.Status__c = 'Final release';
+                             updateBet=true;
+                              message = 'Your BET is now in Final Release';
+                     }
+                    
+                else{
+                    bet.Status__c = 'First release';
+                    updateBet = true;
+                    message = 'Your BET is now in First Release';
+                    }
+                }
+                
+               /*T0-End*/                        
+            }else if(file.Studio_Asset_Type__c == 'Creative Work'){
+                if(file.Media_Type__c == 'Key Visual' && bet.Status__c == 'First release'){
+                    bet.Status__c = 'Final release';
+                    updateBet = true;
+                    message = 'Your BET is now in Final Release';
+                }
+             
             }
         }  
 
@@ -115,49 +130,27 @@ public with sharing class BET_EditAssetController {
         if (Test.isRunningTest()) {
             caId = Id.valueOf('069000000000001');
         } else {
-            //ConnectApi.FeedItem fi = ConnectApi.ChatterFeeds.getFeedItem(null, file.Related_Feed_Item__c);      
-            //ConnectApi.ContentAttachment ca = (ConnectApi.ContentAttachment) fi.attachment;
-            //caId = ca.Id;
-            if(file.File_Id__c == null){
-                ConnectApi.FeedItem fi = ConnectApi.ChatterFeeds.getFeedItem(null, file.Related_Feed_Item__c);      
-                ConnectApi.ContentAttachment ca = (ConnectApi.ContentAttachment) fi.attachment;
-                caId = ca.Id;
-                file.File_Id__c = caId;
-            } else {
-                caId = Id.valueOf(file.File_Id__c);
-            }
+            ConnectApi.FeedItem fi = ConnectApi.ChatterFeeds.getFeedItem(null, file.Related_Feed_Item__c);      
+            ConnectApi.ContentAttachment ca = (ConnectApi.ContentAttachment) fi.attachment;
+            caId = ca.Id;
         }
-
-        updateBet = setPresentation(updateBet,caId);
-
-        return udateAsset(updateBet);
-    }
-
-    private Boolean setPresentation(Boolean updateBet,Id caId){
-        Boolean updBet = false;
         if(file.Studio_Asset_Type__c == 'Brand Experience Presentation'){
             file.Think_Big_Promotion_Date__c = Datetime.now();
             file.Big_Think_Pack__c = true;
             if (bet.Presentation_Id__c != caId) {
                 bet.Presentation_Id__c = caId;
-                updBet = true;
+                updateBet = true;
             }
             file.Media_Type__c = 'BET Presentation';
             isPresentationUploaded = true;
         }else{
             if (bet.Presentation_Id__c == caId) {
                 bet.Presentation_Id__c = null;
-                updBet = true;
+                updateBet = true;
                 isPresentationUploaded = true;
             }
         }
 
-        System.debug('updBet ' + updBet + ' updateBet ' + updateBet);
-
-        return !updBet ? updateBet : updBet;
-    }
-
-    private PageReference udateAsset(Boolean updateBet){
         Savepoint sp = Database.setSavepoint();
         try {
             if (Test.isRunningTest() && throwUTException == 1) {
@@ -172,61 +165,10 @@ public with sharing class BET_EditAssetController {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, e.getMessage()));  
             return null;
         }
+
         runJsSuccess = true;
-        return null;       
-    }
 
-    private Boolean brandExperiencePresentation(){
-        Boolean updateBet = false;  
-        // IPM-BET US43
-        Boolean keyVisualIsThere = false;
-        if(file.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){ // IPM-BET US43
-            bet.FirstReleaseDate__c = date.today();
-
-            keyVisualIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 
-                                                          where Studio_Asset_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_TYPE_CW
-                                                          and Media_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW
-                                                          and Status__c =: uw_CustomAssetUploadExtension.BET_ASSET_APPROVED
-                                                          and uw_bet__c =: file.uw_BET__c].isEmpty();
-        }
-
-        if(keyVisualIsThere){
-            bet.FinalReleaseDate__c = date.today();
-            updateBet = true;
-        }
-        // IPM-BET US43
-
-        /*T0-Begin*/
-        if(isVisualApproved()){
-            bet.Status__c = 'Final release';
-            updateBet = true;
-            message = 'Your BET is now in Final Release';
-        } else {
-            bet.Status__c = 'First release';
-            updateBet = true;
-            message = 'Your BET is now in First Release';
-        }
-        return updateBet;
-    }
-
-    private Boolean creativeWork(){
-        Boolean updateBet = false; 
-        // IPM-BET US43
-        if(file.Media_Type__c == uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW && file.Status__c == uw_CustomAssetUploadExtension.BET_ASSET_APPROVED){ // IPM-BET US43
-            Boolean brandExperiencePresnetationIsThere = ![select Media_Type__c,Status__c,Studio_Asset_Type__c from uw_Asset__c 
-                                                              where Studio_Asset_Type__c =: uw_CustomAssetUploadExtension.BET_ASSET_TYPE_BEP
-                                                              and Status__c =: uw_CustomAssetUploadExtension.BET_ASSET_APPROVED
-                                                              and uw_bet__c =: file.uw_BET__c].isEmpty();
-            if(brandExperiencePresnetationIsThere) {
-                bet.FinalReleaseDate__c = date.today();
-                updateBet = true;
-            }
-        }
-        // IPM-BET US43
-        bet.Status__c = 'Final release';
-        updateBet = true;
-        message = 'Your BET is now in Final Release';
-        return updateBet;
+        return null;           
     }
 
     /*******************************************************************

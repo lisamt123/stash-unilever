@@ -3,239 +3,460 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.1     Kendre Dnyaneshwar      19 Mar 2015     T1- code changes to make custom buttons(Add members,Approve,Deny,Delete)
                                                 action progress visible.        
 1.2     Kendre Dnyaneshwar      27 Apr 2015     T2- Rendered attribute added in delete commnad button to hide delete option
-                                                for owner of the BET.       
-1.3     Michal Bluj             14 Aug 2015     IPM related changes                                                                         
+                                                for owner of the BET.                                                                                
 -->
 
-<apex:page standardController="BET_Member_Request__c" showHeader="false" extensions="BET_ManageMembersController"  id="memberpage">
-
-  <apex:stylesheet value="{!$Resource.BET}/css/BETCommon.css" />
-  <apex:stylesheet value="{!$Resource.BET}/css/BETManageMembersStyles.css" />
-  <apex:includeScript value="{!$Resource.BET}/scripts/BETManageMembersJS.js" />
-
+<apex:page standardController="uw_BET_Team_Member__c" showHeader="false" extensions="BET_ManageMembersController" docType="html-5.0" id="memberpage">
+    <apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />    
+    <apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />    
   <script>
-    function updateRoleOnMember(memId, role, idx){
-      Visualforce.remoting.Manager.invokeAction(
-        '{!$RemoteAction.BET_ManageMembersController.updateMemberRole}',
-        memId,
-        role,
-        function(result, event){
-          if (event.status) {
-          }
-        },
-        {escape: true}
-      );
-    }
-  </script>
+        jQuery.noConflict();
+        jQuery(document).ready(function( $ ) {
+            jQuery('.question-icon[data-tooltip!=""]').qtip({
+                content: {
+                    attr: 'data-tooltip'
+                }
+            });
+            jQuery('.uwtooltip[data-tooltip!=""]').qtip({
+                content: {
+                    attr: 'data-tooltip'
+                }
+            });
 
-  <apex:form id="form">
+        });
+       function notifyUser(id, memberrole) {
+           alert('Value has changed: ' + id);
+            alert('Value has changed: ' + document.getElementById(memberrole).value);
+       }
+        
+       function updateRole(id, memberrole) {
+           //alert('Value has changed: ' + id);
+           //alert('Value has changed: ' + memberrole);
+           //alert('Value has changed: ' + document.getElementById(memberrole).value);
+           changeRole(id, document.getElementById(memberrole).value);
+       }
+  </script>
+  <style type="text/css">
+        @font-face{ font-family:DINWebPro;src:url("{!URLFOR($Resource.fuse_brief1_resources_1, 'fonts/DINWebPro.eot')}")}
+        @font-face{ font-family:DINWebPro;src:url("{!URLFOR($Resource.fuse_brief1_resources_1, 'fonts/DINWebPro.woff')}") format("woff")}
+        @font-face{ font-family:DINWebPro-Medium;src:url("{!URLFOR($Resource.fuse_brief1_resources_1, 'fonts/DINWebPro-Medium.eot')}")}
+        @font-face{ font-family:DINWebPro-Medium;src:url("{!URLFOR($Resource.fuse_brief1_resources_1, 'fonts/DINWebPro-Medium.woff')}") format("woff")}
+        @font-face{ font-family:DINWebPro-Bold;src:url("{!URLFOR($Resource.fuse_brief1_resources_1, 'fonts/DINWebPro-Bold.eot')}")}
+        @font-face{ font-family:DINWebPro-Bold;src:url("{!URLFOR($Resource.fuse_brief1_resources_1, 'fonts/DINWebPro-Bold.woff')}") format("woff")}
+        .image-colour-scheme { width:10px; overflow:none; }
+        #colour-scheme { overflow: auto; font-family: "DINWebPro","sans-serif" !important; }
+        #banner-logo { font-family: "DINWebPro","sans-serif" !important; }
+        #colour { font-family: "DINWebPro","sans-serif" !important; }
+        .dinpro { font-family: "DINWebPro","sans-serif" !important; }
+        .buttong2y{
+           background-color: #792b7d;
+           font-size: 24px;
+           font-family: "DINWebPro","sans-serif" !important;
+           vertical-align: middle;
+        }
+        .membersHeader{
+           background-color: #792b7d;
+           color:white;
+           font-size: 28px;
+           font-family: "DINWebPro","sans-serif" !important;
+         }
+         
+         .hideDropdown select {
+           visibility: hidden !important;
+           display: none !important;
+         }
+
+         /** Colors **/
+.unileverApp .btn {
+  margin: 0;
+}
+body {
+  font-size: 100%;
+}
+body select {
+  font-family: 'Rockwell';
+  font-size: 14px;
+  padding: 8px 10px 10px;
+  border: 2px solid #dcdcdc;
+  margin: 0px 4px 8px;
+  color: #4d5051;
+}
+body .lookupInput input {
+  font-family: 'Rockwell';
+  font-size: 14px;
+  border: 2px solid #dcdcdc;
+  padding: 11px 10px 9px;
+  color: #4d5051;
+}
+body input[type="text"] {
+  font-family: 'Rockwell';
+  font-size: 14px;
+  border: 2px solid #dcdcdc;
+  padding: 11px 10px 9px;
+  color: #4d5051;
+}
+body .lookupIcon,
+body .lookupIconOn {
+  width: 41px;
+  height: 40px;
+  position: absolute;
+  margin-left: -22px;
+  background-image: url('data:image/gif;base64,R0lGODlhKAAoANUAAAAAAP////v7/PT09e3t7tfY2bu8vbW3uK6wsaWnqKCio56goZeZmnp9foyPkIqNjoWIiYOGh4GEhZOWl4+Sk2tvcGhsbWZqa3Z6e3R4eWpubnh8fH+Dg5WYmKOmpqGkpJyfn5qdncfJycXHx77AwLCysqmrq/Lz8+vs7Onq6uTl5eLj4+Dh4d3e3tna2tbX19TV1dLT083Ozv39/fj4+Pb29vHx8e/v7////wAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAADgALAAAAAAoACgAAAa4wItwSCwaj8ikcslsOp/QqHRKrVqv2Kx2y016XrWAyoDpChuugHpd83QltLVcTdpqUusWwjMSrCdaH2slRBwoaipaMGoxRhRrHFkDagtHN2ohWWsORytqblgnaglGFpMBDFkxaisWRQprG1khayQVQw6nLVoWLGspBggycgdbDTZzczOZWhkFyXICHVsWEyIrNy4mD8hqAhRmRBKiagThRBFhASfnRBAoNCDt8/T19vf4+fr7/P1mQQA7');
+  background-position: center center;
+  padding-bottom: 0px !important;
+}
+body .btn.buttong2y {
+  font-family: 'Rockwell' !important;
+  font-weight: normal;
+  font-size: 17px;
+  padding: 10px 20px;
+  background: #be236d !important;
+  border: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+body .btn.buttong2y[value="Delete"] {
+  text-indent: -9999px;
+  background-color: transparent !important;
+  background-image: url('data:image/png;base64,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') !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+}
+body .btn.buttong2y[value="Add Member"] {
+  background-image: url('data:image/png;base64,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') !important;
+  background-repeat: no-repeat !important;
+  background-position: 7px center !important;
+  padding: 10px 20px 10px 30px;
+}
+body .bPageBlock {
+  background: #ffffff;
+  border: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+body .bPageBlock .pbTitle h2 {
+  font-family: 'Rockwell';
+  font-weight: normal;
+  font-size: 17px;
+  color: #4d5051;
+}
+body .bPageBlock .pbBody .labelCol span {
+  font-size: 15px !important;
+  font-weight: normal;
+  margin-top: 10px;
+  display: block;
+}
+body .individualPalette .secondaryPalette.bPageBlock {
+  background: #ffffff;
+  border: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+body .individualPalette .secondaryPalette.bPageBlock .pbTitle h2 {
+  font-family: 'Rockwell';
+  font-weight: normal;
+  font-size: 17px;
+  color: #4d5051;
+}
+body .individualPalette .secondaryPalette.bPageBlock .pbBody .labelCol span {
+  font-size: 15px !important;
+  font-weight: normal;
+  margin-top: 10px;
+  display: block;
+}
+body .apexp .pbBody table.list {
+  border: none;
+}
+body .apexp .pbBody table.list tr.headerRow th {
+  background: #666a6b;
+  padding: 10px;
+  font-weight: normal;
+  border-bottom: none;
+  font-size: 15px;
+  color: #ffffff;
+}
+body .apexp .pbBody table.list tr.dataRow.highlight td {
+  background-color: #fae6f0;
+}
+body .apexp .pbBody table.list tr td {
+  border-color: #d4d4d4;
+}
+body .apexp .bPageBlock .detailList tr td,
+body .apexp .bPageBlock .detailList tr th {
+  border-bottom: none;
+}
+body .apexp .bPageBlock .detailList tr.dataRow td {
+  border-bottom: 1px solid #d4d4d4;
+}
+body .apexp .bPageBlock.apexDefaultPageBlock .pbHeader > table {
+  border: none;
+}
+body .apexp .bPageBlock.apexDefaultPageBlock .pbBottomButtons {
+  border-top: 0px;
+}
+body .detailList {
+  font-family: 'Rockwell';
+}
+body .detailList .dataCol .dataCell select {
+  margin: 0px;
+}
+body td {
+  font-family: 'Rockwell';
+  font-size: 15px;
+}
+.hide-header {
+    display: none;
+}
+body .bPageBlock .requiredBlock {
+    display: none;
+}
+body .bPageBlock .requiredInput {
+    display: inline-block;
+    vertical-align: middle;
+    height: auto;
+}
+
+.question-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    background: url({!$Resource.BETApp}/images/question-mark.png) center center/100% no-repeat;
+    cursor: pointer;
+}
+.question-icon-large {
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+}
+.qtip {
+    position: absolute;
+    left: -28000px;
+    top: -28000px;
+    display: none;
+    max-width: 280px;
+    min-width: 50px;
+    background-color: #eeeeed;
+    color: gray;
+    font-family: Arial;
+    font-size: 12px;
+    line-height: 12px;
+    direction: ltr;
+    box-shadow: none;
+    padding: 0;
+    border: 1px solid #333333;
+}
+.qtip-content {
+    line-height: 1.5;
+    position: relative;
+    padding: 5px;
+    overflow: hidden;
+    text-align: left;
+    word-wrap: break-word;
+}
+    </style>
+  <apex:pageBlock >
+    <apex:outputPanel style="font-size: 24px;" >
+    </apex:outputPanel>
+    <!--
+    <apex:outputLabel value="  BET Name: " style="font-size: 24px;"/>
+     -->
+     <apex:outputText label="BET Name" value="   {!BetName}" style="font-size: 24px;"/>
+  </apex:pageBlock>
+  
+  <apex:form >
   <apex:outputpanel id="showpage">
   <apex:pageMessages /> 
-
-  <apex:tabPanel switchType="client" selectedTab="browseMembers" id="MembersTabPanel" tabClass="activeTab" 
-                       inactiveTabClass="inactiveTab">
-
-    <apex:tab label="{!$Label.BET_Browse_members}" name="browseMembers" id="browseMembersid">
-     
-        <div style="{!If(isBETOperationAdmin,'display:none;','')}">
-        <div>
-          <apex:outputText value="{!$Label.BET_Add_Internal_User}" rendered="{!OR(isBetOwnerOrManager,isHubAdmin)}" styleClass="addMembersUserLabel"/>
-          <apex:outputText value="{!$Label.BET_Suggest_Member}" rendered="{!NOT(OR(isBetOwnerOrManager,isHubAdmin))}" styleClass="addMembersUserLabel"/>
-        </div>
-        <table width="100%">
-          <tr>
-            <td width="230px">
-              <div class="styled-select">
-              <apex:selectList value="{!betMemberRequest.Role__c}" styleClass="addMembersDropdown" required="false" size="1" multiselect="false">
-                <apex:selectOptions value="{!memberRequestRoles}" />
-              </apex:selectList>
-              </div>
-            </td>
-            <td>
-              <div class="hideOwner">   
-                <apex:inputField value="{!betMemberRequest.UserId__c}"/>
-              </div>
-            </td>
-            <td>
-              <div style="float:right">
-                <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addMember}" rendered="{!OR(isBetOwnerOrManager,isHubAdmin)}" styleClass="btn-small-pink" style="height: 35px;width: 110px;" >
-
-                </apex:commandButton>
-
-                <apex:commandButton value="{!$Label.BET_Suggest_Member}" action="{!addMember}" 
-                                    rendered="{!NOT(OR(isBetOwnerOrManager,isHubAdmin))}"
-                                    onclick="alert('{!$Label.BET_Suggest_Member_Message}'); return true;"
-                                    styleClass="btn-small-pink" style="height: 35px;width: 110px;">
-                </apex:commandButton>
-              </div>
-            </td>
-          </tr>
-        </table>
-        </div>
+  <apex:pageBlock title="Add Members" id="addmembers" rendered="{!hasModifyAccess}">
+    <apex:pageBlockSection columns="1"> 
+     <apex:pageBlockSectionItem >
+     <apex:pageBlockTable value="{!BETTeamMember}" var="teamMamber" headerClass="hide-header" columnsWidth="135px,220px">
+         <apex:column >
+    <apex:outputPanel layout="inline" styleClass="question-icon"
+        html-data-tooltip="Members are only able to view the BET and upload into the BB Sharing tab. <br>They cannot access anything in the Settings menu.<br><br>Managers have the same permissions as the owner" />
+       <apex:inputField label="Role" value="{!BETTeamMember.Role__c}" required="true" style="padding-right: 2px;margin-bottom: 0px;padding-left: 0;"/>
+        </apex:column>
+         <apex:column >
+         <!--
+       <apex:inputField label="User" value="{!BETTeamMember.Team_Member__c}" style="width:100%;"/>
+       -->
+       <apex:inputField label="User" type="text" value="{!BETTeamMember.Team_Member__c}" styleclass="hideDropdown" />
+        </apex:column>
+         <apex:column >
+         <!-- <apex:commandButton value="Add Member" action="{!addMember}" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="showpage" /> -->
+         <!--T1 Start -->  
+             <apex:commandButton value="Add Member" action="{!addMember}" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="showpage" onclick="this.value = 'Adding...'" status="saveStatus"/>
+                <apex:actionStatus id="saveStatus" >
+                  <apex:facet name="start" >
+                    <apex:image value="/img/loading.gif" height="16" width="16" />                  
+                  </apex:facet>
+              </apex:actionStatus>
+          <!--T1 end -->
+          </apex:column>
+       </apex:pageBlockTable>
+       </apex:pageBlockSectionItem>
+       <p/>
+       <hr/>
+       <apex:pageBlockSectionItem >
+         <apex:pageBlockTable value="{!BETTeamMember}" var="teamMamber" headerClass="hide-header" columnsWidth="135px,220px">
+         <apex:column >
+         <apex:facet name="header">Role</apex:facet>
+          <apex:outputText label="Role" value="External Agency User" style="font-size: 14px;"/>
+           </apex:column>
+         <apex:column >
+         <apex:facet name="header">Email (External User)</apex:facet>
+          <apex:inputField label="Email" type="text" value="{!BETTeamMember.email__c}" style="width:90%;"/>
+         </apex:column>
+          <apex:column >
+          <apex:facet name="header">Add Member</apex:facet>
+         <!-- <apex:commandButton value="Add Member" action="{!addMember}" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="showpage" /> -->
+         <!-- T1 Start -->
+            <apex:commandButton value="Add Member" action="{!addMember}" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="showpage" onclick="this.value = 'Adding...'" status="saveStatus1"/>          
+               <apex:actionStatus id="saveStatus1">
+                  <apex:facet name="start">
+                    <apex:image value="/img/loading.gif" height="16" width="16" />
+                  </apex:facet> 
+               </apex:actionStatus>
+          <!-- T1 End -->  
+          </apex:column>
+         </apex:pageBlockTable>
+       </apex:pageBlockSectionItem>
+       <br />
+        <apex:outputText value="{!inviteSent}"/>
+    </apex:pageBlockSection>
+   </apex:pageBlock>
+   <apex:pageBlock id="requestpending" title="Pending Requests">
+    <apex:pageBlockSection columns="1">
+       <apex:pageBlockTable value="{!pendingRequests}" var="pending" style="width:100%;" columnsWidth="56px,105px,170px,109px,86px">
+       <apex:column >
+           <apex:facet name="header">Photo</apex:facet>  
+           <apex:image url="{!pending.Team_Member__r.SmallPhotoUrl}"/>
+         </apex:column>
+       <apex:column >
+           <apex:facet name="header">Name</apex:facet>  
+           <apex:outputField value="{!pending.Team_Member__r.Name}"/>
+         </apex:column>
+         <apex:column >
+           <apex:facet name="header">Title</apex:facet>  
+           <apex:outputField value="{!pending.Team_Member__r.Title}"/>
+         </apex:column>
+         <apex:column rendered="{!hasModifyAccess}">
+            <apex:facet name="header">Approve</apex:facet>  
+            <!--
+            <apex:outputField value="{!pending.id}" rendered="true"/>
+            -->
+            <!-- <apex:commandButton value="Approve" action="{!approveRequest}" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="showpage" > -->
+            <!-- T1 Start -->   
+             <apex:commandButton value="Approve" action="{!approveRequest}" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="showpage" onclick="this.value = 'Approving...'">
+            <!-- T1 End -->
+                <apex:param name="id" value="{!pending.id}" assignTo="{!recordId}" />
+                
+           </apex:commandButton>
+            <!--
+           <apex:inputCheckbox value="{!pending.Pending_Request__c}"/>
+           -->
+         </apex:column>
+         <apex:column rendered="{!hasModifyAccess}">
+            <apex:facet name="header">Deny</apex:facet>  
+            <!--
+            <apex:outputField value="{!pending.id}" rendered="true"/>
+            -->
+            <!--
+           <apex:inputCheckbox value="{!pending.Request_Denied__c}"/>
+           -->
+          <!-- <apex:commandButton value="Deny"  action="{!denyRequest}"  styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="showpage" > -->
+            <!-- T1 Start -->  
+              <apex:commandButton value="Deny"  action="{!denyRequest}"  styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="showpage" onclick="this.value = 'Denying...'">
+            <!-- T1 End -->  
+              <apex:param name="id" value="{!pending.id}" assignTo="{!recordId}" />
+           </apex:commandButton>
+         </apex:column>
+       </apex:pageBlockTable>
+    </apex:pageBlockSection>
+    </apex:pageBlock>
+    <!--
+    <apex:pageBlock id="hiddenBlock" rendered="false"></apex:pageBlock>
+    -->
     
-        <div style="{!If(OR(isBETOperationAdmin,NOT(OR(isBetOwnerOrManager,isHubAdmin))),'display:none;','')}">
+    <apex:pageBlock title="Browse Members" id="browsemembers">
+    <apex:outputPanel layout="none" rendered="{!myPrivilegesChanged}">
+        <script type="text/javascript">
+            window.top.postMessage({action: 'checkPrivileges'}, document.location.protocol + '//' + document.domain);
+        </script>
+    </apex:outputPanel>
+    <apex:pageBlockSection columns="1">
+       <apex:pageBlockTable value="{!members}" var="member" style="width:100%;" columnsWidth="56px,105px,170px,109px,86px">
+          <apex:column >
+           <apex:facet name="header">Photo</apex:facet>  
+           <apex:image url="{!member.Team_Member__r.SmallPhotoUrl}"/>
+         </apex:column>
+         <apex:column >
+         <apex:facet name="header">Name</apex:facet>  
+           <apex:outputField value="{!member.Team_Member__r.Name}" rendered="{!!ISBLANK(member.Team_Member__c)}"/>
+           <apex:outputPanel layout="block" html-data-tooltip="{!member.email__c}" styleClass="uwtooltip" style="width:105px;text-overflow:ellipsis;overflow:hidden;" rendered="{!ISBLANK(member.Team_Member__c)}">
+              {!member.email__c}
+           </apex:outputPanel>
+         </apex:column>
+         <apex:column >
+         <apex:facet name="header">Title</apex:facet>  
+           <apex:outputField value="{!member.Team_Member__r.Title}"/>
+         </apex:column>
+         <apex:column > 
+           <apex:facet name="header">Role</apex:facet> 
+           <!--
+           <apex:selectList id="roles" value="{!uw_BET_Team_Member__c.Role__c}"
+                size="1" required="true" onchange="alert('Value Changed');">
+           <apex:selectOptions value="{!roles}"/>
+           </apex:selectList>
+           -->
+           <!--
+           <apex:inputField id="memberRole" value="{!member.Role__c}" onchange="notifyUser('{!member.id}', '{!$Component.memberRole}')"/> 
+             <apex:inputField id="memberRole" value="{!member.Role__c}" onchange="updateRole('{!member.id}', '{!$Component.memberRole}')"  rendered="{!member.Role__c != 'External Agency User'}"/>  
+           -->
+           <apex:inputField id="memberRole" value="{!member.Role__c}" onchange="updateRole('{!member.id}', '{!$Component.memberRole}')" required="{!member.Role__c != 'External Agency User'}" rendered="{! hasModifyAccess == true && member.Role__c != 'External Agency User'}"/> 
 
-        <div style="padding-top: 20px;">
-          <apex:outputText value="{!$Label.BET_External_Agency_User}" styleClass="addMembersUserLabel"/>
-        </div>
-          <table width="100%">
-            <tr>
-              <td>
-                  <apex:inputField value="{!betMemberRequest.External_User_Email__c}" styleClass="addmemberEmailInput" />
-              </td>
-              <td>
-                <div style="float:right">
-                  <apex:commandButton value="{!$Label.BET_Add_Member}" action="{!addExternalMember}"
-                                    styleClass="btn-small-pink" style="height: 35px;width: 110px;"/> 
-                </div>
-              </td>
-            </tr>
-          </table>
-
-          <hr width="100%" style="color: rgb(121, 121, 121);background-color: rgb(121, 121, 121);height: 2px;border: medium none;" /> 
-          
-          </div>
-
-        <div class="headerButtonsBrowsMembers"> 
-        
-          <apex:commandButton value="{!$Label.BET_Delete_selected}" action="{!massDelete}" 
-                              rendered="{!OR(isBetOwnerOrManager,isHubAdmin)}"
-                              styleClass="btn-small-pink" style="height: 35px;width: 110px;"/> 
-       
-        </div>
-
-        <table width="100%" class="browseMembersTable">
-          <th class="browseMembersheaderStyle" style="{!IF(OR(isBetOwnerOrManager,isHubAdmin),'width: 45px;','display:none')}">
-            <apex:inputCheckbox value="{!selectAll}" id="globcheckboxbrowse" onchange="selectOrDeselectkAllBrowse();"/>
-          </th>
-          <th class="browseMembersheaderStyle" style="width: 90px;">
-            {!$Label.BET_Photo}
-          </th>
-          <th class="browseMembersheaderStyle" style="width: 150px;">
-            {!$Label.BET_Name}
-          </th>
-          <th class="browseMembersheaderStyle" style="width: 240px;">
-            {!$Label.BET_Title}
-          </th>
-          <th class="browseMembersheaderStyle" style="width: 200px;">
-            {!$ObjectType.BET_Member_Request__c.Fields.Role__c.Label}
-          </th>
-          <th class="browseMembersheaderStyle" style="{!IF(OR(isBetOwnerOrManager,isHubAdmin),'','display:none')}">
-            {!$Label.BET_Delete}
-          </th>
-          <apex:variable var="cnt" value="{!0}" /> 
-          <apex:repeat value="{!members}" var="member" id="repeater">
-            <tr class="memberRow" id="{!member.objectId}" >
-              <td style="{!IF(OR(isBetOwnerOrManager,isHubAdmin),'','display:none')}">
-                <apex:inputCheckbox value="{!member.isSelected}" rendered="{!NOT(member.isbetOwner)}"/>
-              </td>
-              <td>
-                <apex:image url="{!member.photo}"/>
-              </td>
-              <td>
-                <apex:outputText value="{!member.firstName} {!member.lastName}"/>
-              </td>
-              <td>
-                <apex:outputText value="{!member.title}"/>
-              </td>
-              <td style="{!IF(NOT(OR(isBetOwnerOrManager,isHubAdmin)),'','display:none')}">
-                <apex:outputText id="role" value="{!member.role}"/>
-              </td>
-              <td style="{!IF(OR(isBetOwnerOrManager,isHubAdmin),'','display:none')}">
-
-                <apex:selectList value="{!member.obj.Role__c}" required="false" size="1" multiselect="false" 
-                                 style="width: 180px;" 
-                                 onchange="updateRoleOnMember('{!member.objectId}',this.value,{!cnt})" 
-                                 rendered="{!AND(NOT(member.isbetOwner),member.obj.Role__c != 'External Agency User')}">
-                  <apex:selectOptions value="{!memberRequestRoles}" />
-                </apex:selectList>
-
-                <apex:outputField id="memberRoleExternal" value="{!member.obj.Role__c}" 
-                                  rendered="{!OR(member.isbetOwner,member.obj.Role__c == 'External Agency User')}"/> 
-
-              </td>
-              <td style="{!IF(OR(isBetOwnerOrManager,isHubAdmin),'','display:none')}">
-                <apex:commandButton action="{!doDelete}" value="{!$Label.BET_Delete}" styleClass="buttong2y" style="background: #e6007e; color:white;" rendered="{!NOT(member.isbetOwner)}" rerender="browseMembersid" status="saveStatus4">
-                  <apex:actionStatus id="saveStatus4">
-                    <apex:facet name="start">
-                      <apex:image value="/img/loading.gif" style="width: 16px;height: 16px;" />
-                    </apex:facet> 
-                  </apex:actionStatus>  
-                  <apex:param name="obid" assignTo="{!selectedMemberId}" value="{!member.objectId}"/>
-                </apex:commandButton>
-              </td>
-            </tr>
-            <apex:variable var="cnt" value="{!cnt+1}"/>
-          </apex:repeat>
-        </table>
-
-    </apex:tab>
-
-    <apex:tab label="{!$Label.BET_Approve_members}" name="approveMembers" id="approveMembersid" rendered="{!isBetOwnerOrManager}">
-
-      <div class="headerButtons">  
-        <apex:commandButton value="{!$Label.BET_Approve_selected}" action="{!massApprove}" rendered="{!isBetOwnerOrManager}"
-          styleClass="btn-small-pink" style="height: 35px;width: 130px;"/> 
-        <apex:commandButton value="{!$Label.BET_Deny_selected}" action="{!massDeny}" rendered="{!isBetOwnerOrManager}"
-          styleClass="btn-small-gray" style="height: 35px;width: 130px;" /> 
-      </div>
-
-      <table width="100%" class="approveMembersTable">
-        <th class="approveMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'width: 45px;','display:none')}">
-            <apex:inputCheckbox value="{!selectAll}" id="globcheckbox" onchange="selectOrDeselectkAll();"/>
-        </th>
-        <th class="approveMembersheaderStyle" style="width: 90px;">
-            {!$Label.BET_Photo}
-        </th>
-        <th class="approveMembersheaderStyle" style="width: 150px;">
-            {!$Label.BET_Name}
-        </th>
-        <th class="approveMembersheaderStyle" style="width: 240px;">
-            {!$Label.BET_Title}
-          </th>
-        <th class="approveMembersheaderStyle" style="width: 200px;">
-            {!$Label.BET_Project}
-        </th>
-        <th class="approveMembersheaderStyle" style="{!IF(isBetOwnerOrManager,'','display:none')}">
-            {!$Label.BET_Approve}
-        </th>
-
-        <apex:repeat value="{!memberRequests}" var="memberRequest">
-          <tr class="memberRequestRow">
-            <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
-              <apex:inputCheckbox value="{!memberRequest.isSelected}"/>
-            </td>
-            <td>
-              <apex:image url="{!memberRequest.photo}"/>
-            </td>
-            <td>
-              <apex:outputText value="{!memberRequest.firstName} {!memberRequest.lastName}"/>
-            </td>
-            <td>
-              <apex:outputText value="{!memberRequest.title}"/>
-            </td>
-            <td>
-              <apex:outputText value="{!memberRequest.projectName }"/>
-            </td>
-            <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
-              <apex:commandLink action="{!doApprove}" value="{!$Label.BET_Approve}">
-                <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
-              </apex:commandLink>
-              &nbsp;|&nbsp; 
-              <apex:commandLink action="{!doDeny}" value="{!$Label.BET_Deny}">
-                <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
-              </apex:commandLink>
-            </td>
-          </tr>
-        </apex:repeat>
-
-      </table>
-
+           <apex:outputField id="memberRoleExternal" value="{!member.Role__c}" rendered="{! hasModifyAccess==false || member.Role__c == 'External Agency User'}"/> 
+    
+         <!--
+          <apex:inputField id="memberRoleInternal" value="{!member.Role__c}" onchange="updateRole('{!member.id}', '{!$Component.memberRole}')" rendered="{!member.Role__c != 'External Agency User'}"/> 
+           <apex:outputField id="memberRoleExternal" value="{!member.Role__c}" rendered="{!member.Role__c == 'External Agency User'}"/> 
+         -->
+         </apex:column>      
+         <apex:column rendered="{!hasModifyAccess && $User.Id != member.Team_Member__c}">
+            <apex:facet name="header">Delete</apex:facet>  
+            <!--
+            <apex:outputField value="{!pending.id}" rendered="true"/>
+            -->
+            <!--<apex:commandButton value="Delete" action="{!deleteMember}" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="browsemembers" > -->
+            <!-- T1 Start -->    
+             <!-- T2 Start -->
+              <!--<apex:commandButton value="Delete" action="{!deleteMember}" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="browsemembers" status="saveStatus4"> -->
+              <apex:commandButton value="Delete" rendered="{!member.IsOwner__c == false}" action="{!deleteMember}" styleClass="buttong2y" style="background: #e6007e; color:white;" rerender="browsemembers" status="saveStatus4">
+             <!-- T2 End -->
+             <apex:actionStatus id="saveStatus4">
+              <apex:facet name="start">
+               <apex:image value="/img/loading.gif" height="16" width="16" />
+              </apex:facet> 
+             </apex:actionStatus>
+            <!-- T1 End -->   
+                <apex:param name="id" value="{!member.id}" assignTo="{!recordId}" />
+           </apex:commandButton>
+            <!--
+           <apex:inputCheckbox value="{!pending.Pending_Request__c}"/>
+           -->
+         </apex:column>
+       </apex:pageBlockTable>
+    </apex:pageBlockSection>
   
-    </apex:tab>
-
-  </apex:tabPanel>
-    
+    <apex:actionFunction name="changeRole" action="{!setRole}" rerender="browsemembers, requestpending">
+        <apex:param id="memberId" name="memberId" value=""/>
+        <apex:param id="role" name="role" value=""/>
+    </apex:actionFunction>
+  
+  </apex:pageBlock>
   </apex:outputpanel>
   </apex:form>
 </apex:page>

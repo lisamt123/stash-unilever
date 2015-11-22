@@ -1,5 +1,5 @@
-Hi {!IPM_Project__c.OwnerFullName},
+Hi {!01IE0000000lVMI.OwnerFullName}, 
 
-The project {!IPM_Project__c.IPM_Project_Name__c} has not been updated since 3 Weeks.The project would be archieved if not updated with in 4 weeks from the created date.
-Thanks,
+The project {!01IE0000000lVMI.00NE0000005URMP} has not been updated since 3 Weeks.The project would be archieved if not updated with in 4 weeks from the created date. 
+Thanks, 
 Unilever

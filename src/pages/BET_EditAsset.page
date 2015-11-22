@@ -166,11 +166,14 @@
           saveInProgress = false;
           setFieldVariables();
           prepareForm();
+
           fileType.on('change', function() {
             fileAssetTypeAction(this.value);
           });
+
           if (jQuery('[id$="runJsSuccess"]').val() == "true" ) {
-            window.top.postMessage({
+            window.top.postMessage(
+            {
               action: 'saveAsset', 
               presentation: jQuery('[id$="isPresentationUploaded"]').val() == 'true',
               msg: jQuery('[id$="message"]').val()

@@ -190,8 +190,9 @@ public with sharing class uw_UnitTestDataFactory {
         return u;
     }
     
-    /*public static uw_BET__c initBET(String betName, uw_Brand__c brand, Boolean insertFlag,uw_Inoplan_Project__c projectName) {
+    public static uw_BET__c initBET(String betName, uw_Brand__c brand, Boolean insertFlag,uw_Inoplan_Project__c projectName) {
         uw_BET__c bet = new uw_BET__c();
+        bet.uw_Brand__c = brand.Id;
         bet.Status__c = 'First release';
         bet.Sharing__c = 'Private';
         bet.Product_Category_Sub_Division__c = 'Foods';
@@ -203,38 +204,23 @@ public with sharing class uw_UnitTestDataFactory {
             insert bet;
             system.assert(bet!=null);           
             // requery to pick up anything that was added by triggers
-            bet = [SELECT Studio_Chatter_Group__c, Id, Name FROM uw_bet__c WHERE id=:bet.Id];
-        }       
-        
-        return bet;
-    }*/
-
-	public static uw_BET__c initBET(String betName, Boolean insertFlag,uw_Inoplan_Project__c projectName) {
-        uw_BET__c bet = new uw_BET__c();
-        bet.Status__c = 'First release';
-        bet.Sharing__c = 'Private';
-        bet.Product_Category_Sub_Division__c = 'Foods';
-        bet.Category_Level_2__c ='Beverages';
-        bet.Inoplan_Project__c = projectName.id;
-        bet.Name = betName;
-
-        if (insertFlag) {
-            insert bet;
-            system.assert(bet!=null);
             bet = [SELECT Studio_Chatter_Group__c, Id, Name FROM uw_bet__c WHERE id=:bet.Id];
         }       
         
         return bet;
     }
 
-    /*public static uw_BET__c initBET(String betName, uw_Brand__c brand, Boolean insertFlag,uw_Inoplan_Project__c projectName, BET_Category__c category, BET_Category__c subCategory) {
+    public static uw_BET__c initBET(String betName, uw_Brand__c brand, Boolean insertFlag,uw_Inoplan_Project__c projectName, BET_Category__c category, BET_Category__c subCategory) {
         uw_BET__c bet = new uw_BET__c();
+        bet.uw_Brand__c = brand.Id;
         bet.Status__c = 'First release';
         bet.Sharing__c = 'Private';
         bet.Product_Category_Sub_Division__c = 'Foods';
         bet.Category_Level_2__c ='Beverages';
         bet.Inoplan_Project__c = projectName.id;
         bet.Name = betName;
+        bet.Category__c = category.Id;
+        bet.Sub_Category__c = subCategory.Id;
 
         if (insertFlag) {
             insert bet;
@@ -244,7 +230,7 @@ public with sharing class uw_UnitTestDataFactory {
         }       
         
         return bet;
-    }*/
+    }
 
     
 /*    public static uw_BET__c initBET_New(String betName, uw_Brand__c brand, Boolean insertFlag,uw_Inoplan_Project__c projectName) {
@@ -272,7 +258,7 @@ public with sharing class uw_UnitTestDataFactory {
         List<uw_BET__c> betList = new List<uw_BET__c>();
         for (String betName:betNames) {
         integer i=0;
-            uw_BET__c betX = initBET(betName,false,projectName[i]);
+            uw_BET__c betX = initBET(betName, brand, false,projectName[i]);
             betList.add(betX);
             i=i+1;
         }
