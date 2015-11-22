@@ -20783,10 +20783,6 @@
         <layout>ContentVersion-General</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>ContentVersion-One View</layout>
-        <recordType>ContentVersion.One_View</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Contract-Contract Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -25621,10 +25617,6 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>InstallPackaging</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>LightningExperienceUser</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

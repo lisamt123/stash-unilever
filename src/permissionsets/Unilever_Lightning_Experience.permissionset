@@ -22739,8 +22739,4 @@
         <tab>uw_Terms_Conditions__c</tab>
         <visibility>None</visibility>
     </tabSettings>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>LightningExperienceUser</name>
-    </userPermissions>
 </PermissionSet>

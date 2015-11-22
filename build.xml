@@ -651,7 +651,7 @@
       </fileset>
     </replaceregexp>
     <replaceregexp byline="false" flags="gm">
-      <regexp pattern="[\s].*userPermissions.*[\s].*[\s].*(ViewAllData|EditBillingInfo|ManageSandboxes|ManageTranslation|CustomizeApplication).*[\s].*"/>
+      <regexp pattern="[\s].*userPermissions.*[\s].*[\s].*(ViewAllData|EditBillingInfo|ManageSandboxes|ManageTranslation|CustomizeApplication|LightningExperienceUser).*[\s].*"/>
       <substitution expression=""/>
       <fileset dir="${basedir}">
         <include name="**/*.profile"/>
@@ -666,6 +666,14 @@
         <include name="**/*.permissionset"/>
       </fileset>
     </replaceregexp>
+    <replaceregexp byline="false" flags="gm">
+      <regexp pattern="[\s].*layoutAssignments.*[\s].*[\s].*(ContentVersion-One).*[\s].*"/>
+      <substitution expression=""/>
+      <fileset dir="${basedir}">
+        <include name="**/*.profile"/>
+        <include name="**/*.permissionset"/>
+      </fileset>
+    </replaceregexp>    
     <delete><fileset dir="${basedir}" includes="**/agf__ADM_Work__c.object"/></delete>
     <delete><fileset dir="${basedir}" includes="**/KnowledgeArticleVersion.object"/></delete>
     <delete><fileset dir="${basedir}" includes="**/SocialPost.workflow"/></delete>
