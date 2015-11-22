@@ -96,7 +96,7 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
                 }
             } catch (NullPointerException exc){
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_MDODataMigrationAndTransform_Batch','proceedWithDataTransormation',
-                exc.getStackTraceString(),exc,'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
+                'NullPointerException for bet ' + bet.id + ' ' + exc.getStackTraceString(),exc,'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
             }
         }
         System.debug('Exit proceedWithDataTransormation : ' + betsForUpdate + ', ' + betsForErrors);
