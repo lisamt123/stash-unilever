@@ -14,63 +14,6 @@
 */
     public with sharing class Oblix_Ctrl09_nonCampaignEdit{
     
-    
-    /*  // class wrapper
-      public class NonCamp{  
-      
-        private String ActivityName= System.Label.Oblix_Lbl_Activity;
-        private String marKObjName= System.Label.Oblix_Lbl_Marketing_Basics_c ;
-    
-        public String name {get;set;}
-        //public id itemID{get;set;} 
-        public Marketing_Basics__c lookupActivity{get;set;}
-        public String selectedRoleTitle{get;set;}        
-        public String selectedCountry{get;set;}
-        public String selectedCountryname{get;set;}
-        public String selectedAgencyDepartment{get;set;}
-        public String Rate {get;set;}
-        public String result {get;set;}
-        public  integer val {get;set;}
-        
-        public Boolean agencyVisible {get;set;}
-        public Boolean roleVisible {get;set;}
-        public Boolean valVisible {get;set;}
-        public Boolean rateVisible {get;set;}
-        public Boolean resultVisible {get;set;}
-        public Boolean addVisible {get;set;}
-        
-        public nonCamp(){
-            lookupActivity = new Marketing_Basics__c ();
-            lookupActivity.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get(ActivityName);
-        
-        }
-        
-        public void clear() {
-             lookupActivity = new Marketing_Basics__c ();
-            lookupActivity.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get(ActivityName);
-            lookupActivity.Activities__c = '';
-            lookupActivity.Other_Activities__c = '';
-            val = 0;
-            selectedCountry = '';
-            selectedCountryname = '';
-            selectedRoleTitle = '';
-            selectedAgencyDepartment = '';
-            result = '';
-            rate = '';
-           
-            agencyVisible = false;
-            roleVisible = false;
-            valVisible = false;
-            resultVisible = false;
-            addVisible = false;
-        
-            }   
-    }
-    
-   */
-    //////////////////////
-    
-    
         public Oblix_wrapper_NonCamp myAct {get;set;} 
         public Oblix_wrapper_NonCamp myRes {get;set;}
         
@@ -629,8 +572,9 @@
             system.debug('===========newItem.OblixCountry__c' + newItem.OblixCountry__c);
         
             Agency_DepartmentNames = [select Financial_Year__c, Oblix_Agency__c, OblixCountry__c, OblixCountry__r.name, Agency_Department__c from Oblix_Calculator__c where RecordTypeId = : rtCountry and Financial_Year__c = : fYear and Oblix_Agency__c = : agency and OblixCountry__r.name like:  myRes.selectedCountryname];
-            if (!Agency_DepartmentNames.isEmpty())
+            if (!Agency_DepartmentNames.isEmpty()){
                  myRes.selectedCountry = Agency_DepartmentNames[0].OblixCountry__c;
+            }
             system.debug('============================zz=Agency_DepartmentNames' + Agency_DepartmentNames);
         
             map < String, String > Agency_DepartmentMap = new map < String, String > ();
@@ -740,15 +684,17 @@
          * @return  : Page Reference
          */
         public pagereference back() {
-            PageReference page = new PageReference('/apex/Oblix_VF10_nonCampaignView?MSid=' + MSid);
-            page.setRedirect(True);
-            return page;
+            Pagereference meNewPage = Page.Oblix_VF10_nonCampaignView;
+				meNewPage.getParameters().put('MSid', MSid);
+            	meNewPage.setRedirect(True);
+            return meNewPage;
             return null;
         } 
         public pagereference backtoSow(){
-         PageReference  page = new PageReference('/apex/Oblix_VF06_SOWView?sowId='+MSid);
-           page.setRedirect(True);
-           return page;
+         Pagereference meNewPage = Page.Oblix_VF06_SOWView;
+				meNewPage.getParameters().put('sowId', MSid);
+            	meNewPage.setRedirect(True);
+           return meNewPage;
         
         }
     }

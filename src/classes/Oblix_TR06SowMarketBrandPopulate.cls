@@ -32,7 +32,7 @@ public with sharing class Oblix_TR06SowMarketBrandPopulate {
 											product_Category_Id__r.parent_L2__c, product_Category_Id__r.Id
 												from MDO_CategoryBrands__c where brand_id__c in : setBrandsIds];
 		System.debug('###lstBrandCategories : '+lstBrandCategories);										
-		if(lstBrandCategories.size()>0){
+		if(!lstBrandCategories.isEmpty()){
 			for(MDO_CategoryBrands__c categBrand : lstBrandCategories){
 				if(!MapBrandIdToCategory.containsKey(categBrand.brand_id__c)){
 					MapBrandIdToCategory.put(categBrand.brand_id__c, categBrand.product_Category_Id__r);

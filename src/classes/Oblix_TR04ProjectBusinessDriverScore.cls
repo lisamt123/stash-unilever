@@ -251,7 +251,7 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
                 project.Total_Value_Driver__c = TotalBusinessvaluedriverScore;
                  System.debug('###project.Total_Value_Driver__c : '+project.Total_Value_Driver__c);
                  System.debug('###project.ProjectTotalAssetScore__c : '+project.ProjectTotalAssetScore__c );
-                if(project.ProjectTotalAssetScore__c != null) TotalProjectScore = (project.ProjectTotalAssetScore__c/100)*TotalBusinessvaluedriverScore;
+                if(project.ProjectTotalAssetScore__c != null){ TotalProjectScore = (project.ProjectTotalAssetScore__c/100)*TotalBusinessvaluedriverScore; }
                 project.Total_Project_Score__c = TotalProjectScore ;
                 System.debug('###project.Total_Project_Score__c : '+project.Total_Project_Score__c);
                 if(!lstCalculatorBoxRange.isEmpty()){

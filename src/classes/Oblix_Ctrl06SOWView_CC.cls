@@ -199,14 +199,24 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
     }
 
     public pageReference backAction() {
-        return new pageReference('/apex/Oblix_VF05_SOWDetailsV');
+        Pagereference meNewPage = Page.Oblix_VF05_SOWDetailsV;
+            	meNewPage.setRedirect(True);
+        return meNewPage;
     }
+    /*
     public pageReference CreateProjectAction() {
-        return new pageReference('/apex/Oblix_VF07_ProjectNew?projectId=' + projectId);
+        Pagereference meNewPage = Page.Oblix_VF07_ProjectNew;
+				meNewPage.getParameters().put('projectId', projectId);
+            	meNewPage.setRedirect(True);
+        return meNewPage;
     }
     public pageReference SaveProjectAction() {
-        return new pageReference('/apex/Oblix_VF06_SOWView?id=' + sowId);
+         Pagereference meNewPage = Page.Oblix_VF06_SOWView;
+				meNewPage.getParameters().put('id', sowId);
+            	meNewPage.setRedirect(True);
+        return meNewPage;
     }
+    */
     public void EditAction() {
         isEdit = true;
     }
@@ -295,7 +305,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         // Campaign and Non-Campaign items are Master-Detail relationship - they will be automatically deleted
         // Campaign has Assets(MD) and Splits(Lookup), so splits will have to be deleted manually
 
-        PageReference pr = new PageReference('/apex/Oblix_VF05_SOWDetailsV');
+        PageReference pr = Page.Oblix_VF05_SOWDetailsV;
 
         // get related agency splits
         try{
@@ -431,9 +441,11 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
      * @return [Redirection to the selected MS]
      */
     public PageReference msDetail() {
-        PageReference  page = new PageReference('/apex/Oblix_VF10_nonCampaignView?MSid=' + selSow.id );
-        page.setRedirect(True);
-        return page;
+        Pagereference meNewPage = Page.Oblix_VF10_nonCampaignView;
+				meNewPage.getParameters().put('MSid', selSow.id);
+            	meNewPage.setRedirect(True);
+        meNewPage.setRedirect(True);
+        return meNewPage;
     }
 
     /* Method used toupload the attachement
@@ -475,28 +487,30 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
      */
     public PageReference ViewProject() {
 
-        PageReference page ;
+        PageReference meNewPage ;
         List<Marketing_Basics__c > x = [select id from Marketing_Basics__c where id = :selectedProjectId limit 1]  ;
         if ( x.isempty() )  {
-            page  = new PageReference('/apex/Oblix_VF07_ProjectView?projectId=' + selectedProjectId);
+                meNewPage = Page.Oblix_VF07_ProjectView;
+				meNewPage.getParameters().put('projectId', selectedProjectId);
         } else return null;
-
-
-        page.setRedirect(True);
-        return page;
+        meNewPage.setRedirect(True);
+        return meNewPage;
     }
     /* Non campaign Added by Achraf */
     public PageReference createNonCamp() {
-        PageReference ref = new PageReference('/apex/Oblix_VF09_nonCampaignEdit' + '?MSid=' + sowId); // id de Marketing_SOW__c au quel seront ajouté les new Marketing_Basics__c  records
-        ref.setRedirect(true);
-        return ref;
+        Pagereference meNewPage = Page.Oblix_VF09_nonCampaignEdit;
+				meNewPage.getParameters().put('MSid', sowId);
+            	meNewPage.setRedirect(True);
+        return meNewPage;
     }
 
     /* Method used to redirect to the Selected Project View
     * @return [Redirection to the Project View Page]
     */
     public PageReference AddProject() {
-        return new PageReference('/apex/Oblix_VF08_ProjectEdit?sowId=' + selSow.Id);
+        Pagereference meNewPage = Page.Oblix_VF08_ProjectEdit;
+				meNewPage.getParameters().put('sowId', selSow.Id);
+        return meNewPage;
     }
 
     //List of Projects Part

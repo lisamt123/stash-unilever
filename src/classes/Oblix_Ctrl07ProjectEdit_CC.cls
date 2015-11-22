@@ -117,8 +117,8 @@
             lstRecordType = new list<string>();
             //lstAES = new list<Decimal>();
             lstAssetsForCard = new list<Oblix_Project_Assets__c>();          
-            if(projectId == null) isEdit = false;      
-            if(projectId != null) isEdit = true;  
+            if(projectId == null){ isEdit = false; }      
+            if(projectId != null){ isEdit = true;  }  
             //mapRTSUBCatAsset = new map<string,Oblix_Project_Assets__c>(); 
             lstAssets = new list<Oblix_Project_Assets__c>();
             mapRTAssets = new map<string,list<Oblix_Project_Assets__c>>();
@@ -266,7 +266,7 @@
                 lstAssetsForCard.addAll(lstAsset);
                 if(!lstAsset.isEmpty()){                             
                     for(Oblix_Project_Assets__c asset:lstAsset){
-                        if(!(mapRTAssets).containsKey(asset.RecordType.Name))mapRTAssets.put(asset.RecordType.Name,new list<Oblix_Project_Assets__c>());
+                        if(!(mapRTAssets).containsKey(asset.RecordType.Name)) { mapRTAssets.put(asset.RecordType.Name,new list<Oblix_Project_Assets__c>()); }
                         mapRTAssets.get(asset.RecordType.Name).add(asset); 
                         mapRTforSubCat.put(asset.Sub_Category__c,asset.RecordTypeId);
                         

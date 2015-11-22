@@ -40,12 +40,12 @@
           MScurrency = Marketing_SOW.currency__c ; 
          List <Marketing_Basics__c>  Marketing_Basics = [select name,non_campaign_title__c,Activities__c, Other_Activities__c , recordTypeId,FTE__c,No_of_Hours_Required__c, Oblix_SOWMarketing__c,OblixCountry__c,OblixCountry__r.name ,Role_Title__c,Agency_Department__c,OblixOtherItemFee__c from Marketing_Basics__c  where Oblix_SOWMarketing__c= :MSid order by name];
        for (Marketing_Basics__c  M :Marketing_Basics  ){
-            if(m.OblixOtherItemFee__c!= null)   total+=Integer.valueof(m.OblixOtherItemFee__c ) ; 
-             if (m.recordTypeId ==ARecordTypeId   ) activities.add(m);
-             else  resources.add(m);
+            if(m.OblixOtherItemFee__c!= null) {   total+=Integer.valueof(m.OblixOtherItemFee__c ) ;   }
+             if (m.recordTypeId ==ARecordTypeId ) { activities.add(m); }
+             else { resources.add(m);}
           }
-          if (activities.isempty()){ nActivities =0 ; } else nActivities =  activities.size();
-          if (resources.isempty()){ nResources=0 ; } else nResources=  resources.size();
+          if (activities.isempty()){ nActivities =0 ; } else { nActivities =  activities.size(); }
+          if (resources.isempty()){ nResources=0 ; } else { nResources=  resources.size(); }
             
     }
    
@@ -54,9 +54,10 @@
          * @return [Redirection VF 06] 
          */ 
     public pagereference back(){
-         PageReference  page = new PageReference('/apex/Oblix_VF06_SOWView?sowId='+MSid);
-           page.setRedirect(True);
-           return page;
+         Pagereference meNewPage = Page.Oblix_VF06_SOWView;
+				meNewPage.getParameters().put('sowId', MSid);
+            	meNewPage.setRedirect(True);
+           return meNewPage;
         
         }
         
@@ -64,15 +65,17 @@
          * @return [Redirection to vf09 to add items] 
          */     
     public pagereference addnewItems(){
-          PageReference  page = new PageReference('/apex/Oblix_VF09_nonCampaignEdit?MSid='+MSid);
-           page.setRedirect(True);
-           return page;
+          Pagereference meNewPage = Page.Oblix_VF09_nonCampaignEdit;
+				meNewPage.getParameters().put('MSid', MSid);
+            	meNewPage.setRedirect(True);
+           return meNewPage;
        
     }
     
     public pagereference goToEditItem(){
-        system.debug('###itemToUpdate : '+itemToUpdate);
-        return new PageReference('/apex/Oblix_VF09_nonCampaignEdit?itm='+itemToUpdate);
+        Pagereference meNewPage = Page.Oblix_VF09_nonCampaignEdit;
+				meNewPage.getParameters().put('itm', itemToUpdate);
+        return meNewPage;
     }
    
     }

@@ -92,7 +92,7 @@ public with sharing class Oblix_Ctrl03AssetLookupNew {
          system.debug('###lstQueryWhere :' + lstQueryWhere );
          
          String WhereQuery = 'select id, name, Type__c, Sub_Category__c,Description__c from Asset_Scoring__c';
-        if(lstQueryWhere.size() == 0){
+        if(lstQueryWhere.isEmpty()){
             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,'Please Select Type at least'));
             return null;
         }else{

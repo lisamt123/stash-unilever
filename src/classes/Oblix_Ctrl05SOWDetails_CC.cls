@@ -106,7 +106,9 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
         if (!lstMarkCategoriesFilter.isEmpty()) {
             for (Marketing_SOW__c mark : lstMarkCategoriesFilter) {
                 if (mark.SmallProductCategory__c != null) {
-                    if (!MapSmallCatIdToName.containsKey(mark.SmallProductCategory__c)) MapSmallCatIdToName.put(mark.SmallProductCategory__c, mark.SmallProductCategory__r.Name);
+                    if (!MapSmallCatIdToName.containsKey(mark.SmallProductCategory__c)){
+                    	MapSmallCatIdToName.put(mark.SmallProductCategory__c, mark.SmallProductCategory__r.Name);	
+                    }
                 }
             }
         }
@@ -132,7 +134,9 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
         if (!lstMarkCategoriesFilter.isEmpty()) {
             for (Marketing_SOW__c mark : lstMarkCategoriesFilter) {
                 if (mark.BigOblixProductCategory__c != null) {
-                    if (!MapBigCatIdToName.containsKey(mark.BigOblixProductCategory__c)) MapBigCatIdToName.put(mark.BigOblixProductCategory__c, mark.BigOblixProductCategory__r.Name);
+                    if (!MapBigCatIdToName.containsKey(mark.BigOblixProductCategory__c)){
+                    	MapBigCatIdToName.put(mark.BigOblixProductCategory__c, mark.BigOblixProductCategory__r.Name);
+                    }
                 }
             }
         }
@@ -243,7 +247,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
         WhereQuery = 'Select Id, Agency_Contact__c,Oblix_AgencyEstimate__r.name , Oblix_AgencyEstimate__c,OblixSOWOverallTotal__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c  where recordType.name = \'Parent Sow Marketing\'';
         List<String> lstQueryWhere = buildQueryWhere();
         system.debug('###Sfdc lstQueryWhere :' + lstQueryWhere );
-        if (lstQueryWhere.size() == 0) {
+        if (lstQueryWhere.isEmpty()) {
             thousandBlocks = new List<limitWrapper>();
             //ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,Oblix_Constants.SELECT_ONE_FILTER));
         } else {
@@ -311,7 +315,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
 
         }
 
-        if (thousandBlocks.size() == 0) {
+        if (thousandBlocks.isEmpty()) {
             loopCount++;
             thousandBlocks.add(new limitWrapper(tmpMarket, loopCount));
         }

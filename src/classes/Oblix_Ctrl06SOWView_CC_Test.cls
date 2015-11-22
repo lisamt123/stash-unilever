@@ -236,10 +236,6 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 
 			PageReference back = controller.backAction();
 
-			PageReference createProject = controller.CreateProjectAction();
-
-			PageReference saveProject = controller.SaveProjectAction();
-
 			PageReference detail = controller.msDetail();
 
 			PageReference nonCamp = controller.createNonCamp();
@@ -271,8 +267,6 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 			Test.stopTest();
 
 			System.assert(back != null, NOT_NULL_MESSAGE);
-			System.assert(createProject != null, NOT_NULL_MESSAGE);
-			System.assert(saveProject != null, NOT_NULL_MESSAGE);
 			System.assert(detail != null, NOT_NULL_MESSAGE);
 			System.assert(nonCamp != null, NOT_NULL_MESSAGE);
 			System.assert(addProj != null, NOT_NULL_MESSAGE);

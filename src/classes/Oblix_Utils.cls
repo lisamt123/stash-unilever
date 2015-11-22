@@ -480,8 +480,8 @@ public static string getSelectedStageCheckbox(string projected, string Completed
     system.debug('===========temp' + temp);
 
 
-    if (temp == null) return temp[0].id;
-    else return null;
+    if (temp == null) { return temp[0].id; }
+    else { return null; }
   }
 
   public static set<String> CountriesByFYear(String fYear_loc) {
