@@ -47,16 +47,10 @@ public class BET_BETChangesLogger {
     Throws: -
   *************************************************************/
   public void logChanges(){	
-    Map<Id, List<String>> feedsMap;
-    try {
-      feedsMap = fillFeeds();
-      if(!feedsMap.isEmpty()){
-          BET_BETHandlerClsHelper.insertFeeds(feedsMap);
-      }
-    } catch (DmlException e){
-      ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_MDODataMigrationAndTransform_Batch','logChanges',
-                'logChanges ' + feedsMap, e,'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
-    }    
+    Map<Id, List<String>> feedsMap = fillFeeds();
+    if(!feedsMap.isEmpty()){
+      BET_BETHandlerClsHelper.insertFeeds(feedsMap);
+    }  
   }
 
   /************************************************************
