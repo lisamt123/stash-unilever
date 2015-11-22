@@ -47,12 +47,12 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
         return Database.getQueryLocator(query);
     }
 
-    global void execute(Database.BatchableContext BC, List<sObject> scope) {
+	global void execute(Database.BatchableContext BC, List<sObject> scope) {
         try{
             update proceedWithDataTransormation((List<uw_Bet__c>)scope);
         } catch (DmlException e){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_MDODataMigrationAndTransform_Batch','execute',
-                'execute ' + (List<uw_Bet__c>)scope, e,'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
+                'execute ' + (List<uw_Bet__c>)scope + ' ' + e.getStackTraceString(), e,'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
         }  
     }
     
