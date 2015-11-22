@@ -23,9 +23,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 		// Get the information from the CronTrigger API object
       	CronTrigger ct = [SELECT Id, CronExpression, TimesTriggered, NextFireTime FROM CronTrigger WHERE id = :jobId];
 
-      	System.assertEquals(sch, ct.CronExpression);
+      	System.assertEquals(sch, ct.CronExpression,'Expressions must match');
 
-      	System.assertEquals(0, ct.TimesTriggered);
+      	System.assertEquals(0, ct.TimesTriggered,'Cron should not be triggered');
 
 	    Test.stopTest(); 	
 	} 

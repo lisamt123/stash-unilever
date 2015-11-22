@@ -1,0 +1,15 @@
+CreatedById=CreatedById 
+CreatedDate=CreatedById 
+Id=Id
+IPM_BLG__c=IPM_BLG__c
+IPM_Innovation_Renovation__c=IPM_Innovation_Renovation__c 
+IPM_Operational__c=IPM_Operational__c
+IPM_Option__c=IPM_Option__c 
+IPM_Project_Type__c=IPM_Project_Type__c
+IPM_Question_Number__c=IPM_Question_Number__c
+IsDeleted=IsDeleted
+LastModifiedById=LastModifiedById
+LastModifiedDate=LastModifiedDate
+Name=Name
+SetupOwnerId=SetupOwnerId
+SystemModstamp=SystemModstamp

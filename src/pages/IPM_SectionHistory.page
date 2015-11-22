@@ -1,0 +1,24 @@
+<!-- 
+*************************************************************************
+*@Description:This page is used To capture the section level History
+*@Author: Cognizant
+*@Created Date: 12/03/2015
+*************************************************************************
+-->
+
+<apex:page standardController="IPM_Project_Document_Section__c" sidebar="false" showHeader="false" extensions="IPM_GetHelpDoc"> 
+    
+    <!-- To place the help symbol in the top right hand corner of page -->
+    <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
+        <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
+    </apex:outputPanel>
+
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/bootstrap.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Styles.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Buttons.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_HomePage.css')}"/>  
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_ObjectHistory.css')}" />
+    <c:IPM_ObjectHistoryComponent myObjectName="{!IPM_Project_Document_Section__c}" recordLimitCount="50"></c:IPM_ObjectHistoryComponent>    
+    <apex:includeScript value="{!URLFOR($Resource.IPM_Resource, 'js/jquery.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.IPM_Resource, 'js/IPM_SectionHistory.js')}"/>
+</apex:page>

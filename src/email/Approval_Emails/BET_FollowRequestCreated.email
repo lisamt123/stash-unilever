@@ -1,0 +1,16 @@
+<html>
+This project {!BET_Follow_Request__c.Project_Name__c} is linking to your BET {!BET_Follow_Request__c.Brand_Experience_Toolkit__c}, it will not be leading the BET and therefore will not have any direct impact to on your BET.
+<br/>
+<br/>
+If this project has requested access to the BET for it’s members, membership will also be automatically granted with this link.
+<br/>
+<br/>
+To DENY this request for membership access and to link to your BET, click 
+<a href="{!BET_Follow_Request__c.Bet_Link__c}">here</a> within 72 hours of this email. 
+<br/>
+<br/>
+To manage membership to your BET please open the BET and click on Members <a href="{!BET_Follow_Request__c.Bet_Link__c}">{!BET_Follow_Request__c.Brand_Experience_Toolkit__c}</a>.
+<br/>
+<br/>
+To change the lead project at anytime, please contact system admin by clicking <a href="mailto:cb4l@unilever.com?subject=BET SYSTEM REQUEST for {!BET_Follow_Request__c.Brand_Experience_Toolkit__c}">here</a>
+</html>
