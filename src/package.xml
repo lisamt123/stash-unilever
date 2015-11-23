@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>AA_ApplicationWrapperObj_Test</members>
+        <members>EA_Constants</members>
+        <members>EA_ConstantsTestClass</members>
+        <members>EA_ControllerClass</members>
+        <members>EA_ControllerTestClass</members>
+        <members>EA_Feedback_Controller</members>
+        <members>EA_Feedback_ControllerTestClass</members>
+        <members>EA_Notification_Controller</members>
+        <members>EA_Notification_ControllerTestClass</members>
+        <members>EA_Utils</members>
+        <members>EA_UtilsTestClass</members>
+        <members>EA_Wrapper_Class</members>
+        <members>EA_Wrapper_ClassTestClass</members>
         <name>ApexClass</name>
     </types>
-    <version>35.0</version>
+    <types>
+        <members>EA_BadgeDetails__c</members>
+        <members>EA_Team_Member__c</members>
+        <members>EA_ThemesDetails__c</members>
+        <members>Everyday_Activity__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>EA_BadgeImages</members>
+        <members>EA_Badges</members>
+        <members>EA_StaticResource</members>
+        <name>StaticResource</name>
+    </types>
+    <version>29.0</version>
 </Package>
