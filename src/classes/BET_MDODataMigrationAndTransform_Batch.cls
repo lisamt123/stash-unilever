@@ -47,8 +47,13 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
         return Database.getQueryLocator(query);
     }
 
-    global void execute(Database.BatchableContext BC, List<sObject> scope) {
-        update proceedWithDataTransormation((List<uw_Bet__c>)scope);
+	global void execute(Database.BatchableContext BC, List<sObject> scope) {
+        try{
+            update proceedWithDataTransormation((List<uw_Bet__c>)scope);
+        } catch (DmlException e){
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_MDODataMigrationAndTransform_Batch','execute',
+                'execute ' + (List<uw_Bet__c>)scope + ' ' + e.getStackTraceString(), e,'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
+        }  
     }
     
     global void finish(Database.BatchableContext BC) {
@@ -60,33 +65,38 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
         List<uw_Bet__c> betsForUpdate = new List<uw_Bet__c>();
         List<uw_Bet__c> betsForErrors = new List<uw_Bet__c>();
         for(uw_Bet__c bet : scope) {
-            System.debug('Step 1 : Retriving category group by name : ' +  bet.Category__r.name.toUpperCase('en'));
-            MDO_Category__c categoryGroup = categoryGroups.get(bet.Category__r.name.toUpperCase('en'));
-            System.debug('Step 2 : Retrieved category group : ' + categoryGroup);
-            System.debug('Step 3 : Retriving category brand by name : ' +  bet.uw_Brand__r.name.toUpperCase('en'));
-            List<MDO_Brand__c> brandsobj = brands.get(bet.uw_Brand__r.name.toUpperCase('en'));
-            System.debug('Step 4 : Retrieved brand : ' + brandsobj);
-            bet.Category_Group__c = categoryGroup == null ? null : categoryGroup.id;
-            if(categoryGroup != null) {
-                bet.Product_Category__c = retrieveCategoryId(categoryGroup,bet);
-            }
-            if(brandsobj != null) {
-                for(MDO_Brand__c brand : brandsobj){
-                    bet.Product_Brand__c = brand.id;
-                    if(bet.Product_Category__c != null && bet.Product_Brand__c != null){
-                        System.debug('Step 8 : Retriving getBrandPosition : ' +  bet.Product_Brand__c + ' ' + bet.Product_Category__c);
-                        bet.Brand_Position__c = getBrandPosition(bet.Product_Brand__c,bet.Product_Category__c);
-                        System.debug('Step 9 : Retrived brand position : ' +  bet.Brand_Position__c);
-                    }
-                    if(bet.Brand_Position__c != null){
-                        break;
+            try{
+                System.debug('Step 1 : Retriving category group by name : ' +  bet.Category__r.name.toUpperCase('en'));
+                MDO_Category__c categoryGroup = categoryGroups.get(bet.Category__r.name.toUpperCase('en'));
+                System.debug('Step 2 : Retrieved category group : ' + categoryGroup);
+                System.debug('Step 3 : Retriving category brand by name : ' +  bet.uw_Brand__r.name.toUpperCase('en'));
+                List<MDO_Brand__c> brandsobj = brands.get(bet.uw_Brand__r.name.toUpperCase('en'));
+                System.debug('Step 4 : Retrieved brand : ' + brandsobj);
+                bet.Category_Group__c = categoryGroup == null ? null : categoryGroup.id;
+                if(categoryGroup != null) {
+                    bet.Product_Category__c = retrieveCategoryId(categoryGroup,bet);
+                }
+                if(brandsobj != null) {
+                    for(MDO_Brand__c brand : brandsobj){
+                        bet.Product_Brand__c = brand.id;
+                        if(bet.Product_Category__c != null && bet.Product_Brand__c != null){
+                            System.debug('Step 8 : Retriving getBrandPosition : ' +  bet.Product_Brand__c + ' ' + bet.Product_Category__c);
+                            bet.Brand_Position__c = getBrandPosition(bet.Product_Brand__c,bet.Product_Category__c);
+                            System.debug('Step 9 : Retrived brand position : ' +  bet.Brand_Position__c);
+                        }
+                        if(bet.Brand_Position__c != null){
+                            break;
+                        }
                     }
                 }
-            }
-            if(validateBet(bet)){
-                betsForUpdate.add(bet);
-            } else {
-                betsForErrors.add(bet);
+                if(validateBet(bet)){
+                    betsForUpdate.add(bet);
+                } else {
+                    betsForErrors.add(bet);
+                }
+            } catch (NullPointerException exc){
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_MDODataMigrationAndTransform_Batch','proceedWithDataTransormation',
+                'NullPointerException for bet ' + bet.id + ' ' + exc.getStackTraceString(),exc,'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
             }
         }
         System.debug('Exit proceedWithDataTransormation : ' + betsForUpdate + ', ' + betsForErrors);
