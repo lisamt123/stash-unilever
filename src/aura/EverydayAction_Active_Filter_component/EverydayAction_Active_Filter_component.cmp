@@ -1,0 +1,23 @@
+<aura:component >
+    <ltng:require styles="/resource/EAStaticResource_Ruma/assets/styles/salesforce-lightning-design-system-vf.css" />
+ <style>
+   .slds ul {
+  list-style: none;
+  margin-left: 0px;
+}
+         </style>
+	<aura:attribute name="themeName" type="string" ></aura:attribute>
+ 
+   <div class="slds">
+      <ul class="slds-list--vertical slds-has-dividers liststyle">
+          <li class="slds-list__item">
+            <div onclick="{!c.activeFilter}">
+              <span class="activeFilter" >
+      			<ui:outputText value="{!v.themeName}" />
+   				</span>
+              </div>  
+               <div class="tick_img"></div>
+		  </li>
+		</ul>
+    </div>
+</aura:component>

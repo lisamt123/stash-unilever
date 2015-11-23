@@ -1,0 +1,21 @@
+<aura:component controller="EA_ControllerClass">
+    <aura:attribute name="acivities" type="EA_Wrapper_Class.EA_UserProfile_Wrapper[]"/>
+    <aura:attribute name="showmessage" type="boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+	<div>
+        <c:EA_UserProfile_Component />
+    </div>
+    <aura:iteration items="{!v.acivities}" var="activity">
+        <c:EA_Activity_Dashboard_Component activity="{!activity}"/>
+       
+        
+    </aura:iteration> 
+    <aura:if isTrue="{!v.showmessage}">
+   
+    <span> Try out some activities in "All Themes" tab and earn points!  </span>
+     </aura:if>
+   
+    
+    
+            
+</aura:component>

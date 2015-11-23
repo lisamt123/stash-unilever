@@ -1,0 +1,15 @@
+.THIS .slds .slds-text-body--regular space_below{
+    margin-top: 40px;
+}
+
+.THIS .slds-list__item{
+    margin-top:-50px;
+}
+.THIS  .divider .divider {
+  height: 1px;
+  width: 100%;
+  display: block;
+  margin-left: 0px;
+  overflow: hidden;
+  background-color: #e5e5e5;
+}

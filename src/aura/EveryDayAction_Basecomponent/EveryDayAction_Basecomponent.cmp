@@ -1,0 +1,4 @@
+<aura:component implements="force:appHostable">
+   <!-- <ltng:require styles="/resource/EA_StaticResource/css/bootstrap-namespaced.min.css" />-->
+	<c:EverydayActivity_Detailcard_component />
+</aura:component>

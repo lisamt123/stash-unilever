@@ -1,0 +1,20 @@
+.THIS .activeFilter{
+         font-weight: bold;
+    	  color: #0C8EFF;
+        }
+.THIS .tick_img {
+    	background: url(/resource/NewsCenterIcons/Sort_Tick.svg) no-repeat;
+   		width: 30px;
+  height: 20px;
+  position: absolute;
+  display: inline-block;
+  margin-left: 250px;
+  margin-top: -20px;
+		}
+.THIS .list-sec{
+        margin-left:25px;
+        }
+.THIS .slds ul {
+    list-style: none;
+    margin-left: 12px;
+}
