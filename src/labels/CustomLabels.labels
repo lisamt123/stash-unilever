@@ -12356,12 +12356,4 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM_Search_MCO_Country_Name</shortDescription>
         <value>Search MCO / Country Name</value>
     </labels>
-	<labels>
-        <fullName>BET_Uploading</fullName>
-        <categories>BET</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>BET_Uploading</shortDescription>
-        <value>Uploading...</value>
-    </labels>
 </CustomLabels>
