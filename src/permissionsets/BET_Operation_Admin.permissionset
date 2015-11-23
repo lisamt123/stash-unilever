@@ -1342,17 +1342,7 @@
     </classAccesses>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BET_Category_Brands__c.External_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>BET_Category__c.BET_Parent_Category__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>BET_Category__c.External_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8167,11 +8157,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>uw_BET__c.External_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>uw_BET__c.FinalReleaseDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -8438,11 +8423,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>uw_Brand__c.Description__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Brand__c.External_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
