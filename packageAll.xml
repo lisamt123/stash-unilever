@@ -321,10 +321,6 @@
     </types> 
     <types>
         <members>*</members>
-        <name>SharingReason</name>
-    </types>
-    <types>
-        <members>*</members>
         <name>Translations</name>
     </types>
     <types>
