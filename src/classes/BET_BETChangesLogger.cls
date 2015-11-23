@@ -8,7 +8,7 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  28-09-2015  Initial
 *************************************************************************************/
-/* Helper class takes sharing settings from its 'parent' class */
+/* Helper class takes sharing settings from its 'parent' */
 public class BET_BETChangesLogger {
 
   private static final String BET_STATUS_CHANGED = 'BET Status has been changed. ';
@@ -49,8 +49,8 @@ public class BET_BETChangesLogger {
   public void logChanges(){	
     Map<Id, List<String>> feedsMap = fillFeeds();
     if(!feedsMap.isEmpty()){
-        BET_BETHandlerClsHelper.insertFeeds(feedsMap);
-    }    
+      BET_BETHandlerClsHelper.insertFeeds(feedsMap);
+    }  
   }
 
   /************************************************************
@@ -73,12 +73,26 @@ public class BET_BETChangesLogger {
   *************************************************************/
   private Map<Id, List<String>> buildFeedMap(){
     Map<Id, List<String>> feedsMap = new Map<Id, List<String>>();
+    Set<String> collaborationGroups = new Set<String>();
+    Set<String> activeCollaborationGroups = new Set<String>();
+
+    for(Integer i=0; i< Trigger.new.size(); i++){
+      uw_BET__c oldRecord = (uw_BET__c)Trigger.old[i];
+      collaborationGroups.add(oldRecord.Studio_Chatter_Group__c);
+    }
+
+    for(CollaborationGroup cg : [select id from CollaborationGroup where id in : collaborationGroups and IsArchived = false]){
+      activeCollaborationGroups.add(cg.id);
+    }
+
     for(Integer i=0; i< Trigger.new.size(); i++){
       uw_BET__c oldRecord = (uw_BET__c)Trigger.old[i];
       uw_BET__c newRecord = (uw_BET__c)Trigger.new[i];
       List<String> diffs = addDifferences(oldRecord,newRecord);
       if(!diffs.isEmpty()){
-        feedsMap.put(oldRecord.Studio_Chatter_Group__c, diffs);
+        if(activeCollaborationGroups.contains(oldRecord.Studio_Chatter_Group__c)) {
+          feedsMap.put(oldRecord.Studio_Chatter_Group__c, diffs);
+        }
       }
     }
     return feedsMap;
