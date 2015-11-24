@@ -686,7 +686,7 @@
                                        <td width="40%"><span style="Color:grey"></span></td>
                                        <td width="10%"></td>
                                        <td></td>
-                                       <td>Fee</td>
+                                       <td>{!$Label.Oblix_lbl_UIUX_Cost}</td>
                                        <td></td>
                                        <td width="5%"> € {!total}  </td>
                                    </tr>

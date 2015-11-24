@@ -147,6 +147,28 @@
     .Oblix_btn{
         width: 105px ! important;
      }
+    a.Oblix_btn:hover{
+    	text-decoration: none;
+	}
+    a.Oblix_btn{
+        text-decoration: none;
+        background: #6BA539 none repeat scroll 0% 0%;
+        color: #FFF;
+        padding: 4px 10px 3px !important;
+        height: 30px;
+        font-weight: bold;
+        font-size: 0.9em;
+        border-radius: 3px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #B5B5B5 #B5B5B5 #7F7F7F;
+        -moz-border-top-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        border-image: none;
+        margin: 1px;
+    }
 </style>
    
      </apex:form>
@@ -185,25 +207,25 @@
        <apex:pageBlockTable value="{!lstAttachements}" var="attach">
            <apex:column headerValue="{!$Label.Oblix_lbl_UIUX_Name}">
                
-               <apex:outputLink value="/{!attach.Id}" target="_blank">{!attach.Name}</apex:outputLink>
+               <apex:outputText >{!attach.Name}</apex:outputText>
            </apex:column>
             <apex:column headerValue="{!$Label.Oblix_lbl_UIUX_Parent_Name}">
                  <apex:outputField value="{!attach.Parent.Name}"/>
            </apex:column>
-           <apex:column headerValue="Created By">
+           <apex:column headerValue="{!$Label.Oblix_lbl_UIUX_Created_By}">
                  <apex:outputField value="{!attach.CreatedBy.Name}"/>
            </apex:column>
-           <apex:column headerValue="Created Date">
+           <apex:column headerValue="{!$Label.Oblix_lbl_UIUX_Created_Date}">
                  <apex:outputField value="{!attach.CreatedDate}"/>
            </apex:column>
-           <apex:column headerValue="View">
-                <apex:commandButton value="View" onclick="redirectToAttachment('{!attach.Id}')"/>     
+           <apex:column headerValue="{!$Label.Oblix_lbl_UIUX_View_2}">
+                <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_View_2}" onclick="redirectToAttachment('{!attach.Id}')"/>     
            </apex:column>
-           <apex:column headerValue="To Delete">
+           <apex:column headerValue="{!$Label.Oblix_lbl_UIUX_To_Delete}">
                 <input type="checkbox" data-attachment-id="{!attach.Id}" />
            </apex:column>
        </apex:pageBlockTable>
-       <apex:commandButton value="Delete" onclick="removeAttachments(); return false;"/>
+       <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete}" onclick="removeAttachments(); return false;"/>
      </apex:pageBlock>
    </div>
    
@@ -253,7 +275,7 @@
        
        <!-- <apex:form > -->
       
-            <table cellspacing="20px"  width="100%">
+            <table width="100%" class="topAlign">
              <tr>
                       <td colspan="6" style="border-bottom: 1px solid #6BA539; text-align:top; padding-bottom:20px;">
                       <h2 class="darkGreen">{!selSow.Name}</h2>
@@ -262,7 +284,7 @@
             <tr>
             <td width="25%">
             <section class="column1">
-               <table width="100%" class="Oblix_tableDetails topAlign ">
+               <table width="100%" class="Oblix_tableDetails topAlign">
                  
                  <tr>
                      <td align="left" width="50%"><strong>{!$ObjectType.Marketing_SOW__c.fields.BB_or_BD__c.label} </strong></td>
@@ -293,7 +315,7 @@
            </td>
            <td width="25%">
              <section class="column2">
-                 <table width="100%" class="topAlign"> 
+                 <table width="100%" class="Oblix_tableDetails topAlign"> 
                      <tr>    
                         <td width="50%"><strong>{!$ObjectType.Marketing_SOW__c.fields.Agency_Contact__c.label} </strong></td>
                         <td width="50%" align="left">{!selSow.Agency_Contact__r.name}</td>
@@ -311,16 +333,16 @@
                      <tr><td colspan="2">&nbsp;</td></tr>                      
                      <tr>
                        <td colspan="2"><h2 class="darkGreen">Approved: &nbsp;</h2> <strong>
-                       € {!mapApproved[selSow.id]} </strong></td>
+                       € {!ROUND(mapApproved[selSow.id], 0)} </strong></td>
                      </tr>
                      <tr>
                        <td colspan="2"><h2 class="mainGreen">Current: &nbsp; &nbsp; &nbsp; </h2><strong>
-                        € {!selSow.OblixSOWOverallTotal__c} </strong></td>
+                        € {!ROUND(selSow.OblixSOWOverallTotal__c, 0)} </strong></td>
                      </tr>
                  </table>
              </section> 
            </td>
-           <td width="20%">
+           <td>
            <section class="column3">   
               <strong>Notes</strong><br/>
               <p class="Oblix_notes">
@@ -336,7 +358,7 @@
                
            </section>
            </td>
-           <td>
+           <td width="15%">
            <section class="column4">
                <table width="100%" class="topAlign">  
                    <tr> 
@@ -351,14 +373,18 @@
                    </tr>
               </table>
           </section>
-         
-          <section class="column5">
-            <div class="cntr">
-                 <apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_View}" title="{!$Label.Oblix_Lbl_UIUX_View_project_details}" reRender="Oblix_sowDetail" action="{!ViewAction}" styleClass="Oblix_large_btn" style="width:100%;"/><br/><br/>
-                 <apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_Export}" disabled="true" title="{!$Label.Oblix_Lbl_UIUX_Export}"  styleClass="Oblix_btn"/><apex:commandButton value="Reporting" title="Reporting"  disabled="true" styleClass="Oblix_btn" /><br/><br/>
-                 <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Approval}" title="{!$Label.Oblix_lbl_UIUX_Approval}"  disabled="true" styleClass="Oblix_large_btn" style="width:100%;"/>
-             </div>  
-          </section>   
+               
+          </td>
+          <td class="columnMiddle">
+              <section class="column5">
+                <div class="cntr">
+                     <apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_View}" title="{!$Label.Oblix_Lbl_UIUX_View_project_details}" reRender="Oblix_sowDetail" action="{!ViewAction}" styleClass="Oblix_large_btn" style="width:100%;"/><br/><br/>
+                    <apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_Export}" disabled="true" title="{!$Label.Oblix_Lbl_UIUX_Export}"  styleClass="Oblix_btn"/>
+                    <!--<apex:outputLink value="{!reportFolderURL}" title="Reporting" styleClass="Oblix_btn" target="_blank" disabled="{!reportFolderURL == ''}">Reporting</apex:outputLink><br/><br/>-->
+                    <apex:commandButton value="Reporting" disabled="true" title="Reporting"  styleClass="Oblix_btn"/>
+                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Approval}" title="{!$Label.Oblix_lbl_UIUX_Approval}"  disabled="true" styleClass="Oblix_large_btn" style="width:100%;"/>
+                 </div>  
+              </section>
           </td>
           </tr>
           </table>
@@ -391,7 +417,7 @@
                         <td width="15%">{!sow.Oblix_AgencyEstimate__r.name}</td>
                         <td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!sow.LastModifiedDate}" /></apex:outputText></td>
                         <td>{!sow.SOW_Status__c}</td>
-                        <td>€ {!sow.OblixSOWOverallTotal__c} </td>
+                        <td>€ {!ROUND(sow.OblixSOWOverallTotal__c,0)} </td>
                      </tr>
                 </apex:repeat>
               </apex:repeat>

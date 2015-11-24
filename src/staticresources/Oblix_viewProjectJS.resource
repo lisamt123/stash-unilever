@@ -53,3 +53,46 @@
              }); 
             
      }
+	
+
+   <!-- Popup : Cancel Campaign -->
+    function PopupdialogCancelCampaign(){
+            $("#dialogCancel").dialog({
+                width: 700,
+                modal:true,
+                
+                 buttons: [
+                    {
+                        text: 'Cancel Campaign',
+                        click: function() {
+                            blockme();
+							console.dir($('.perOfFee').val());
+							console.dir($('.cancelValue').text());
+							var cancel = $('.cancelValue').text();
+							cancel = parseInt(cancel.replace('€ ','')); 
+                            CancelCampaign($('.perOfFee').val(),cancel);
+                            $( this ).dialog( "close" );
+                            }
+                    },
+                    {
+                        text: 'Dont Cancel',
+                        click: function() {$( this ).dialog( "close" );}
+                    }
+                  ]   
+            });
+    }
+	
+	
+	function blockme() {
+      $.blockUI({ css: { 
+           border: 'none', 
+           padding: '15px', 
+           backgroundColor: '#000',
+           '-webkit-border-radius': '10px', 
+           '-moz-border-radius': '10px', 
+           opacity: .5, 
+           color: '#fff' 
+       } }); 
+   }
+   
+	

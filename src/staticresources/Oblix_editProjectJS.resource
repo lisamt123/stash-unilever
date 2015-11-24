@@ -1,12 +1,12 @@
-<!-- Created by Asmae ESSBAI For the EditProject page -->
-<!-- Last modified Date : 19/11/2015 -->
+//  Created by Asmae ESSBAI For the EditProject page 
+//  Last modified Date : 19/11/2015 
 
  $(document).ready(function(){
-	<!-- override the standard date picker -->
+	//  override the standard date picker 
     $('#dialogTimeLine span.dateFormat').remove();
 	$('#dialogMoreDetails span.dateFormat').remove();
 	$('#datePicker').addClass('ui-dialog');
-	<!-- The accordion part  -->
+	//  The accordion part  
     $('tr.data, tr.btt').show().find('td').wrapInner('<div />');
     $('tr.data, tr.btt').find('td > div').hide();
     $('table tr.Oblix_recordTypeth').click(function(){
@@ -26,7 +26,7 @@
 		$(this).toggleClass('show');
 		//$('tr.data, tr.btt').find('').hide();
     });
-	<!-- The JQuery tab() for all sub categories -->
+	//  The JQuery tab() for all sub categories 
 	if(setIdCss != '[]'){
 		for (var i=0; i<setIdCss.length;i++) {
 			$('#'+setIdCss[i]+'_tabs').tabs();
@@ -69,11 +69,18 @@
     });
 	   
 });
-	<!-- Select Regions while one of the related countries is selected  -->
-	function CheckRegions(x){        
-		 $( "."+x).prop( "checked", true);
+	//  Select Regions while one of the related countries is selected  
+	function CheckRegions(x){
+		if($('#'+x).parent().siblings('input[type=checkbox]:checked').length === 0){
+			$( "#"+x).prop( "checked", false);
+		} else {
+			$( "#"+x).prop( "checked", true);
+		}
+		
+	
+		 
 	}
-	<!-- Added by Achref for the Value drivers Popup  -->
+	//  Added by Achref for the Value drivers Popup  
 	function  addStyletoDependent(){
 	   $('select[id*="Growthhhhh"]').addClass( "input_init xxl" );
 	}
@@ -81,7 +88,7 @@
 	   // alert($('select[id*="Growthhhhh"]').val());
 		$(this).addClass( "input_init xxl" );
 	}
-    <!-- Functions for the differents dialog popup -->
+    //  Functions for the differents dialog popup 
     function PopupdialogMoreDetails(){     
 		 $(function() {
 				$( "#dialogMoreDetails" ).dialog({
@@ -303,6 +310,25 @@
 				}                 
 			  }
 			});
-		  });           
+		  });  
+
     }
-	
+
+	function confirmSetAsGlobal(){
+        $(function() {
+            $( "#dialog-confirm" ).dialog({
+                resizable: false,
+                modal: true,
+                buttons: {
+                    "Set as Global": function() {
+                        blockme();
+                        setAsGlobal();
+                        $( this ).dialog( "close" );
+                    },
+                    Cancel: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        });
+    }

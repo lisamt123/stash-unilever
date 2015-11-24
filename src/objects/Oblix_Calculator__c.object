@@ -1,59 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionOverrides>
-        <actionName>Accept</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>CancelEdit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Clone</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Delete</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Edit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>List</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>New</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>SaveEdit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Tab</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Project Oblix scoring Calculator</description>
-    <enableActivities>false</enableActivities>
-    <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
     <fields>
         <fullName>Agency_Department__c</fullName>
-        <externalId>false</externalId>
         <label>Agency Department</label>
         <picklist>
             <picklistValues>
@@ -94,280 +46,168 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Box_10__c</fullName>
-        <externalId>false</externalId>
         <label>Box 10</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_11__c</fullName>
-        <externalId>false</externalId>
         <label>Box 11</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_12__c</fullName>
-        <externalId>false</externalId>
         <label>Box 12</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_13__c</fullName>
-        <externalId>false</externalId>
         <label>Box 13</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_14__c</fullName>
-        <externalId>false</externalId>
         <label>Box 14</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_15__c</fullName>
-        <externalId>false</externalId>
         <label>Box 15</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_16__c</fullName>
-        <externalId>false</externalId>
         <label>Box 16</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_17__c</fullName>
-        <externalId>false</externalId>
         <label>Box 17</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_18__c</fullName>
-        <externalId>false</externalId>
         <label>Box 18</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_19__c</fullName>
-        <externalId>false</externalId>
         <label>Box 19</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_1__c</fullName>
         <description>Project Oblix Calculator</description>
-        <externalId>false</externalId>
         <label>Box 1</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_20__c</fullName>
-        <externalId>false</externalId>
         <label>Box 20</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_2__c</fullName>
         <description>Oblix Calculator</description>
-        <externalId>false</externalId>
         <label>Box 2</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_3__c</fullName>
         <description>Project Oblix</description>
-        <externalId>false</externalId>
         <label>Box 3</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_4__c</fullName>
-        <externalId>false</externalId>
         <label>Box 4</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_5__c</fullName>
-        <externalId>false</externalId>
         <label>Box 5</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_6__c</fullName>
-        <externalId>false</externalId>
         <label>Box 6</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_7__c</fullName>
-        <externalId>false</externalId>
         <label>Box 7</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_8__c</fullName>
-        <externalId>false</externalId>
         <label>Box 8</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_9__c</fullName>
-        <externalId>false</externalId>
         <label>Box 9</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Box_Range__c</fullName>
-        <externalId>false</externalId>
         <label>Box Range</label>
         <length>10</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>FTE__c</fullName>
         <description>Used to calculate the Rate</description>
-        <externalId>false</externalId>
         <label>FTE Rate (EUR)</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Percent</type>
     </fields>
     <fields>
         <fullName>Financial_Year__c</fullName>
         <description>Oblix Calculator Financial year</description>
-        <externalId>false</externalId>
         <label>Financial Year</label>
         <picklist>
             <picklistValues>
@@ -416,86 +256,56 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Job_Description__c</fullName>
-        <externalId>false</externalId>
         <label>Job Description</label>
         <length>32768</length>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>5</visibleLines>
     </fields>
     <fields>
         <fullName>OblixCountry__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
         <label>Country</label>
         <referenceTo>MDO_Geography__c</referenceTo>
         <relationshipLabel>SWOP Calculator</relationshipLabel>
         <relationshipName>SWOP_Calculator</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Oblix_Agency__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
         <label>Agency</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>SWOP Calculator</relationshipLabel>
         <relationshipName>SWOP_Calculator</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Points_High__c</fullName>
-        <externalId>false</externalId>
         <label>Points High</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Points_Low__c</fullName>
-        <externalId>false</externalId>
         <label>Points Low</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Role_Daily_Rate_EUR__c</fullName>
         <description>This is the hourly rate for the Role selected for the Agency selected, for the country selected.</description>
-        <externalId>false</externalId>
         <inlineHelpText>This is the hourly rate for the Role selected for the Agency selected, for the country selected.</inlineHelpText>
         <label>Role Hourly Rate (EUR)</label>
         <precision>8</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
     <fields>
         <fullName>Role_Title__c</fullName>
-        <externalId>false</externalId>
         <label>Role Title</label>
         <picklist>
             <controllingField>Agency_Department__c</controllingField>
@@ -1116,8 +926,6 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <label>SWOP Calculator</label>
@@ -1141,7 +949,6 @@
             <value>Box Range</value>
         </filters>
         <label>Box Range</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>CountryBoxInfo</fullName>
@@ -1160,7 +967,6 @@
             <value>Oblix_Calculator__c.Country_Box_Number</value>
         </filters>
         <label>Country Box Info</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Role_Rate</fullName>
@@ -1182,15 +988,12 @@
             <value>Oblix_Calculator__c.Role_Rate</value>
         </filters>
         <label>Role Rate</label>
-        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Name</label>
-        <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>SWOP Calculator</pluralLabel>
-    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>Box_Range</fullName>
         <active>true</active>

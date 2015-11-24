@@ -876,8 +876,7 @@
                               </apex:outputPanel>
                              
                                
-                               <section class="PrColumn1">
-                                </section>
+                             
                                    <table width="100%" >
                                   
                                      <tr height="50">
@@ -895,13 +894,13 @@
                                     </tr>
                                     <tr height="50">
                                            <td>
-                                            <apex:inputField value="{!myAct.lookupActivity.Activities__c}"  style="min-width:90%; min-height:30px;" id="activityid"  onchange="if ($(this).val()=='Other'){ $('.otherr').prop('disabled', false);}else{ $('.otherr').prop('disabled', true);}"  />
+                                            <apex:inputField value="{!myAct.lookupActivity.Activities__c}"  styleclass="picklist_init" style="width:110%;" id="activityid"  onchange="if ($(this).val()=='Other'){ $('.otherr').prop('disabled', false);}else{ $('.otherr').prop('disabled', true);}"  />
                                           </td>
                                             <td>
                                          <!--    <input type="radio" name="activity" value="{!nopick}" /> -->
                                           </td>
                                           <td >
-                                            <apex:inputText style="width:300px;" value="{!myAct.lookupActivity.Other_Activities__c}" styleClass="input_init otherr"  id="otherId"   html-placeholder="{!$Label.Oblix_Lbl_Select_Other}" disabled="{!IF(myAct.lookupActivity.Activities__c=='Other',false,true)}"/>
+                                            <apex:inputText style="width:110%;" value="{!myAct.lookupActivity.Other_Activities__c}" styleClass="input_init otherr"  id="otherId"   html-placeholder="{!$Label.Oblix_Lbl_Select_Other}" disabled="{!IF(myAct.lookupActivity.Activities__c=='Other',false,true)}"/>
                                           </td>
                                      </tr>
                                      <tr height="50">
@@ -912,7 +911,7 @@
                                           
                                          -->
                                           <td>
-                                               <apex:selectList size="1" value="{!myAct.selectedCountryname}" onchange="adupdate();blockme();" styleclass="picklist_init"   style="min-width:100%;" id="country">
+                                               <apex:selectList size="1" value="{!myAct.selectedCountryname}" onchange="adupdate();blockme();" styleclass="picklist_init"   style="width:110%;"  id="country">
                                                    <apex:selectOptions value="{!countries }"/>
                                                </apex:selectList>
                                           </td>

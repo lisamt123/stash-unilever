@@ -99,6 +99,11 @@
         .Oblix_sowDashboard{
             height:300px;
         }
+		.Oblix_tableDetails {
+    		border-spacing: 10px 0px;
+    		border-collapse: separate;
+    
+		}
         .Oblix_tableDetails tr h1{
             font-size:16px;
         }
@@ -116,7 +121,7 @@
             width:85% !important;
         }
         .column1,.column2 {
-            width: 49%; 
+            /*width: 49%; */
             float: left;
         }
         .column3{
@@ -124,12 +129,13 @@
             float: left;
         }   
         .column5{
-             width: 45%; 
+             /*width: 45%; */
             float: right;
-          /*  vertical-align:center; */
+            vertical-align:center;
         }
+		.columnMiddle{vertical-align:middle}
         .column4{
-            width: 38%; 
+            /*width: 38%; */
             float: left;
         }
         .column4 h1{
@@ -262,7 +268,9 @@
   background-position: 0 0;
  }
         .Oblix_notes{
-            PADDING-right: 41px;
+            PADDING-right: 5px;
+    		max-height: 15em;
+    		overflow: auto;
         }
         
        .Oblix_filter_btn{

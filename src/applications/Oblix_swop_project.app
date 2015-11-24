@@ -7,5 +7,5 @@
     <tab>standard-File</tab>
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
-    <tab>Marketing_SOW__c</tab>
+    <tab>SWOP</tab>
 </CustomApplication>

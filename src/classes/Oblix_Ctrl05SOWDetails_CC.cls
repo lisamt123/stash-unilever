@@ -66,6 +66,27 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
     }
 
     public String attachmentToRemove {get; set;}
+    
+    public PageReference reportFolderURL {
+        get{
+            
+            if(reportFolderURL == null){
+                
+                List<Folder> reportFolderIdList = [SELECT Id FROM Folder WHERE Name =: Oblix_Constants.SWOPReportFolder];
+                if(!reportFolderIdList.isEmpty()){
+                    reportFolderURL = new PageReference('/' + reportFolderIdList[0].Id);
+                }
+                
+            }
+            
+            return reportFolderURL;
+            
+        } set;
+    }
+    
+    public PageReference forwardToReportFolder(){
+        return reportFolderURL;
+    }
 
 
     public Oblix_Ctrl05SOWDetails_CC() {

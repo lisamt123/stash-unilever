@@ -16,7 +16,10 @@
     --------------    
 */
 global class Oblix_Constants {
-        public static string Lbl_SOWSTATUS_AWAITINGAPPROVAL          		= Label.Oblix_Lbl_SOWSTATUS_AWAITINGAPPROVAL;
+    
+    		public static string SWOPReportFolder 							= Label.Oblix_Lbl_SWOPReportFolder;
+    
+        	public static string Lbl_SOWSTATUS_AWAITINGAPPROVAL          	= Label.Oblix_Lbl_SOWSTATUS_AWAITINGAPPROVAL;
          	public static string Innovation_Projects_Innovation 			= Label.Oblix_Lbl_Innovation_Projects_Innovation;
 			public static string BrandLedGrowth_IncremTurnoverLess10 		= Label.Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess10;
 			public static string BrandLedGrowth_IncremTurnover1020 			= Label.Oblix_Lbl_BrandLedGrowth_IncremTurnover1020;

@@ -622,4 +622,39 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
             }
         }
     }
+    
+    public void getCategoryBrand(){
+        
+        List<MDO_CategoryBrands__c> categoryBrandList = [SELECT Id, product_Category_Id__r.Id, product_Category_Id__r.Name, product_Category_Id__r.parent_L2__r.Id, product_Category_Id__r.parent_L2__r.Name FROM MDO_CategoryBrands__c WHERE brand_id__c =:selSow.OblixBrand__c];
+        
+        System.debug('numberOfCategoryBrands: ' + categoryBrandList.size());
+        
+        if(categoryBrandList.size() == 1){
+            
+            selSow.BigOblixProductCategory__r = categoryBrandList[0].product_Category_Id__r.parent_L2__r;
+            selSow.BigOblixProductCategory__c = categoryBrandList[0].product_Category_Id__r.parent_L2__c;
+            selSow.SmallProductCategory__r = categoryBrandList[0].product_Category_Id__r;
+            selSow.SmallProductCategory__c = categoryBrandList[0].product_Category_Id__c;
+            
+        } else {
+            
+            selSow.BigOblixProductCategory__r = null;
+            selSow.BigOblixProductCategory__c = null;
+            selSow.SmallProductCategory__r = null;
+            selSow.SmallProductCategory__c = null;
+            
+        }
+        
+    }
+    /*public static MDO_CategoryBrands__c getCategoryBrand(){
+        String brandName = ApexPages.currentPage().getParameters().get('brandId');
+        List<MDO_CategoryBrands__c> categoryBrandList = [SELECT Id, product_Category_Id__r.Id, product_Category_Id__r.Name, product_Category_Id__r.parent_L2__r.Id, product_Category_Id__r.parent_L2__r.Name FROM MDO_CategoryBrands__c LIMIT 1];
+        if(categoryBrandList.size() == 0){
+            // no categories for this brand.
+        } else if(categoryBrandList.size() > 1){
+            // multiple category brands exist.
+        }
+        
+        return categoryBrandList.iterator().next();
+    }*/
 }
