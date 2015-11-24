@@ -109,7 +109,7 @@ global without sharing class BET_AssetService {
 				Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/');
 	        	Id identifier = (Id)asset.URL_of_Asset__c.substring(startIdx+10, startIdx+25);
 				asset.File_Id__c = versionFileMap.get(identifier);
-				if(asset.File_Id__c == null && !Test.isRunningTest()){
+				if(asset.File_Id__c == null && !Test.isRunningTest() && asset.Related_Feed_Item__c != null){
 					ConnectApi.FeedItem fi = ConnectApi.ChatterFeeds.getFeedItem(null, asset.Related_Feed_Item__c);      
 					ConnectApi.ContentAttachment ca = (ConnectApi.ContentAttachment) fi.attachment;
 					if(ca != null){
