@@ -2,7 +2,7 @@ public with sharing class IPM_TestFactory_Helper {
     public static final String CHARTER_GATE_FULL = 'Charter Gate Full';
     public static final String IDEA_GRAPHIC= 'Idea / Graphic';
     public static final String IDEAS = 'Ideas';
-    public static boolean FALSE_VAR = False;
+    public static final boolean FALSE_VAR = False;
     public static final String GCLT_RCLT = 'GCLT & RCLT';
     public static final String TEST_CONTENT =  'A quick brown fox jumped over a lazy dog';
     public static final String NEWVARIANTSIZE_STR = 'New Variant/ Size';
@@ -243,7 +243,7 @@ public with sharing class IPM_TestFactory_Helper {
                                         IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => GCLT_RCLT,
                                         IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),'IPMProject_Span__c'=>C_GLOBAL, 
                                         IPM_PROJECT_LEADER => UserInfo.getUserId(),'IPM_CompanyCardText__c' => 'Global Company Card',
-                                        'IPM_Brand_Positioning__c' => 'Dirt is Good','IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
+                                        BRAND_POS => 'Dirt is Good','IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
                                         'IPM_ProjectSubType__c' => 'Innovation/Renovation',IPM_PHASE=> IDEAS,'IPM_SourceProjectType__c' => ORIGINAL_PROJECTYPE,
                                         'Sustainability_Period__c' => '3','IPM_Category_Text__c' => HOUSEHOLDCARE,'IPM_Child_Complexity__c' =>IPM_ConstantUtils.COMPLEXITY_FULL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,true); 
@@ -570,7 +570,7 @@ public with sharing class IPM_TestFactory_Helper {
                                         IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => GCLT_RCLT,
                                         IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),'IPMProject_Span__c'=>'Regional', 
                                         IPM_PROJECT_LEADER => UserInfo.getUserId(),'IPM_CompanyCardText__c' => 'Regional Company Card',
-                                        'IPM_Brand_Positioning__c' => 'Dirt is Good','IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
+                                        BRAND_POS => 'Dirt is Good','IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
                                         'IPM_ProjectSubType__c' => 'Innovation/Renovation',IPM_PHASE=> IDEAS,'IPM_SourceProjectType__c' => ORIGINAL_PROJECTYPE,
                                         'IPM_Category_Text__c' => HOUSEHOLDCARE,'IPM_Child_Complexity__c' =>IPM_ConstantUtils.COMPLEXITY_FULL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
@@ -594,7 +594,7 @@ public with sharing class IPM_TestFactory_Helper {
                                         IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => GCLT_RCLT,
                                         IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),'IPMProject_Span__c'=>C_GLOBAL, 
                                         IPM_PROJECT_LEADER => UserInfo.getUserId(),'IPM_CompanyCardText__c' => 'Global Company Card',
-                                        'IPM_Brand_Positioning__c' => 'Dirt is Good','IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
+                                        BRAND_POS => 'Dirt is Good','IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
                                         'IPM_ProjectSubType__c' => 'Innovation/Renovation',IPM_PHASE=> IDEAS,'IPM_SourceProjectType__c' => ORIGINAL_PROJECTYPE,
                                         'Sustainability_Period__c' => '3','IPM_Category_Text__c' => HOUSEHOLDCARE,'IPM_Child_Complexity__c' =>IPM_ConstantUtils.COMPLEXITY_FULL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
@@ -835,7 +835,7 @@ public with sharing class IPM_TestFactory_Helper {
                                                                     'IPM_Consumer_Need__c'=>TEST_CONTENT,'IPM_Deliverables__c'=>TEST_CONTENT,
                                                                     'IPM_Potential_Business_Opportunity__c'=>TEST_CONTENT,'IPM_Resources__c'=>TEST_CONTENT,
                                                                     'IPM_Scope__c'=>TEST_CONTENT,'IPM_IsSaved__c'=>true,
-                                                                    'IPM_Brand_Positioning__c'=>'Dirt Is Good','IPM_Target_Launch_Date__c'=>'20/10/2020',
+                                                                    BRAND_POS=>'Dirt Is Good','IPM_Target_Launch_Date__c'=>'20/10/2020',
                                                                     'IPM_Is_Archived__c' => false};
             IPM_Bosscard__c ipmBosscard = (IPM_Bosscard__c)IPM_TestFactory.createSObject('IPM_Bosscard__c',bossCardMap,false);
             ipmBosscardTestList.add(ipmBosscard);
@@ -852,7 +852,7 @@ public with sharing class IPM_TestFactory_Helper {
                                                                 'IPM_Consumer_Need__c'=>TEST_CONTENT,'IPM_Deliverables__c'=>TEST_CONTENT,
                                                                 'IPM_Potential_Business_Opportunity__c'=>TEST_CONTENT,'IPM_Resources__c'=>TEST_CONTENT,
                                                                 'IPM_Scope__c'=>TEST_CONTENT,'IPM_IsSaved__c'=>true,
-                                                                'IPM_Brand_Positioning__c'=>'Dirt Is Good','IPM_Target_Launch_Date__c'=>'20/10/2020',
+                                                                BRAND_POS=>'Dirt Is Good','IPM_Target_Launch_Date__c'=>'20/10/2020',
                                                                 'IPM_Is_Archived__c' => false};
         IPM_Bosscard__c ipmBosscard = (IPM_Bosscard__c)IPM_TestFactory.createSObject('IPM_Bosscard__c',bossCardMap,false);
         if(doInsert) { 
@@ -1933,4 +1933,5 @@ public with sharing class IPM_TestFactory_Helper {
     public static final String STANDARD = 'Standard';
     public static final String HOUSEHOLDCARE = 'Household Care';
     public static final String LAUNDRY = 'Laundry';  
+	public static final String BRAND_POS = 'IPM_Brand_Positioning__c';
 }
