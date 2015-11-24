@@ -1,0 +1,169 @@
+<apex:page controller="uw_CustomAssetUploadExtension" showHeader="false" action="{!checkfeed}" >
+
+    <apex:stylesheet value="{!$Resource.BET}/css/BETCommon.css" />
+    <apex:stylesheet value="{!$Resource.BET}/css/BETUploadAssetsStyles.css" />
+    <apex:stylesheet value="{!$Resource.BET}/css/BETSingleAssetUpload.css" />
+    <apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />
+    <apex:includeScript value="{!$Resource.BETApp}/js/jquery-ui.js" />
+    <apex:includeScript value="{!$Resource.BET}/scripts/BETSingleAssetUpload.js" />
+
+  	<script type="text/javascript">
+      jQuery.noConflict();
+      var __sfdcSessionId = '{!GETSESSIONID()}';
+      
+  	</script>
+  
+   <style>
+  .elementHidden{
+    display: none;
+  }
+  .elem-label {
+    width: 200px;
+  }
+
+  .clear{
+    margin-top: 10px;
+  }
+
+  .elem{
+    float: left;
+  }
+
+  .elem select, .elem input{
+    width: 364px;
+  }
+  .elem table.multiSelectPicklistTable select {
+    width: 169px!important;
+  }
+  .form-errors{
+    display: none;
+  }
+
+  #ballsWaveG {
+    display: none;
+  }
+  
+  </style>
+  <apex:outputPanel layout="block" id="maincontainer" styleClass="min100" rendered="{!displayForm}">
+      <script>
+        jQuery.noConflict();
+        jQuery( document ).ready(function() {
+          saveInProgress = false;
+          prepareForm();
+
+          jQuery('[id$="fileAssetType"]').on('change', function(){
+            if(jQuery('[id$="fileSubFunction"]')[0].value !== null && jQuery('[id$="fileSubFunction"]')[0].value !== ''){
+              fileAssetTypeAction(this.value);
+            }          
+          });
+
+          if ( jQuery('[id$="runJsSuccess"]').val() == "true" ){
+            window.top.postMessage(
+            {
+              action: 'saveAsset', 
+              presentation: jQuery('[id$="isPresentationUploaded"]').val() == 'true',
+              msg: jQuery('[id$="message"]').val()
+            }, 
+            document.location.protocol + '//' + document.domain
+            );
+          }
+        });
+
+      </script>
+
+
+      <apex:form styleClass="min100">
+        
+        <input id="parentId" type="hidden" name="parentId" value="{!parentId}" />
+        <apex:inputHidden value="{!runJsSuccess}" id="runJsSuccess"/>
+        <apex:inputHidden value="{!isPresentationUploaded}" id="isPresentationUploaded"/>
+        <apex:inputHidden value="{!message}" id="message"/>
+        <p>{!$Label.BET_Asset_MetaData}</p>
+        <br />
+        <div id="fileNameArea">
+          <apex:outputPanel >
+            <input id="file-input" type="file" name="file"/>
+            <div class="clear">&nbsp;</div>
+            <div class="elem-label"><apex:outputLabel >{!$Label.BET_Asset_Name}</apex:outputLabel></div>
+            <div class="elem"><apex:inputField value="{!file.Name}" id="fileName" /></div>
+          </apex:outputPanel>
+          <div class="clear">&nbsp;</div>
+        </div>
+        <div id="fileSubFunctionArea" class="elementHidden">
+          <apex:outputPanel >
+            <div class="elem-label"><apex:outputLabel >{!$Label.BET_Sub_Function}</apex:outputLabel></div> 
+            <div class="elem"><apex:inputField value="{!file.Sub_Function__c}" id="fileSubFunction"/></div>
+          </apex:outputPanel>
+        </div>
+        <div id="fileAssetTypeArea" class="elementHidden">
+          <apex:outputPanel >
+            <div class="elem-label"><apex:outputLabel >{!$Label.BET_Asset_Type}</apex:outputLabel></div> 
+            <div class="elem"><apex:inputField value="{!file.Studio_Asset_Type__c}" id="fileAssetType"/></div>
+          </apex:outputPanel>
+          <div class="clear">&nbsp;</div>
+        </div>       
+        <div id="fileMediaChannelArea" class="elementHidden">
+          <apex:outputPanel >
+            <div class="elem-label"><apex:outputLabel >{!$Label.BET_Asset_Media_Type}</apex:outputLabel></div> 
+            <div class="elem"><apex:inputField value="{!file.Media_Type__c}" id="fileMediaChannel"/></div>
+          </apex:outputPanel>
+          <div class="clear">&nbsp;</div>
+        </div>
+        <div id="fileCountryArea" class="elementHidden">
+          <apex:outputPanel >
+            <div class="elem-label"><apex:outputLabel >{!$Label.BET_Asset_Country}</apex:outputLabel></div> 
+            <div class="elem"><apex:inputField value="{!file.Country__c}" id="fileCountry"/></div>
+          </apex:outputPanel>
+          <div class="clear">&nbsp;</div>
+        </div>
+        <div id="fileStatusArea">
+          <apex:outputPanel rendered="{!hasModifyAccess}">
+            <div class="elem-label"><apex:outputLabel >{!$Label.BET_Asset_Status}</apex:outputLabel></div> 
+            <div class="elem"><apex:inputField value="{!file.Status__c}" id="fileStatus" /></div>
+            <div class="clear">&nbsp;</div>
+          </apex:outputPanel>
+        </div>
+
+        <input id="resultFileId" type="hidden" name="resultFileId" value="{!file.Id}" />
+        <br />        
+        <p class="form-errors"></p> 
+        <br />
+        <input type="button" value="{!$Label.BET_Upload_And_Save}" onclick="saveForm();" class="betBtnPink" /> 
+        <p class="process-status"></p> 
+        <div id="ballsWaveG">
+          <div id="ballsWaveG_1" class="ballsWaveG">
+          </div>
+          <div id="ballsWaveG_2" class="ballsWaveG">
+          </div>
+          <div id="ballsWaveG_3" class="ballsWaveG">
+          </div>
+          <div id="ballsWaveG_4" class="ballsWaveG">
+          </div>
+          <div id="ballsWaveG_5" class="ballsWaveG">
+          </div>
+          <div id="ballsWaveG_6" class="ballsWaveG">
+          </div>
+          <div id="ballsWaveG_7" class="ballsWaveG">
+          </div>
+          <div id="ballsWaveG_8" class="ballsWaveG">
+          </div>
+        </div>
+
+        <apex:actionFunction id="saveAndSaveExpected" action="{!saveFileAndConnect}" 
+                             name="methodOneInJavascript" reRender="maincontainer">
+          <apex:param name="firstParam" assignTo="{!feedid}" value="" />
+        </apex:actionFunction> 
+
+        <apex:pageMessages />
+        
+      </apex:form>
+      </apex:outputPanel>
+        <apex:outputPanel rendered="{!displayForm == false}">
+    <br />
+    <p>{!errorMessage}</p>
+    <br />
+  </apex:outputPanel>
+
+
+	
+</apex:page>

@@ -1,0 +1,72 @@
+<aura:component >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="aura:doneRendering" action="{!c.doInitFiltersCode}" />
+
+    <!-- setup attributes -->
+    <aura:attribute name="menuItems" type="String[]" default="Choose KPI,Filtering,Linking" />
+    <aura:attribute name="defaultMenuItem" type="String" default="Choose KPI" />
+    <aura:attribute name="isVisible" type="Boolean" default="true" />
+
+    <aura:attribute name="selected" type="Object" />
+    <aura:attribute name="chooseOptions" type="Object" />
+    <aura:attribute name="filters" type="Object" />
+
+    <!-- setup application area -->
+    <div id="wizardBody" aura:id="wizardBody" class="wizardBody" style="{!v.isVisible == true ? '' : 'display:none'}">
+        <div id="mask" aura:id="mask" class="mask" />
+
+        <div id="wizardContent" aura:id="wizardContent" class="wizardContent">
+            <c:OV_TabView navbarUid="jsBaseTabSet" tabLabels="{!v.menuItems}" selectedTab="{!v.defaultMenuItem}" tabClick="{!c.onTabClick}" />
+            <div class="wizardPages">
+                <div class="wizardPage" aura:id="chooseOptions">
+                    <aura:renderIf isTrue="{!empty(v.chooseOptions) == false}">
+                        <ul id="chooseOptions">
+                            <aura:iteration items="{!v.chooseOptions}" var="level1">
+                                <li>
+                                    <a href="#" data-type="chooseOption" data-value="{!level1.optionId}" class="{!level1.optionId == v.selected.optionId ? 'selected' : ''}">{!level1.optionName}</a>
+                                    <aura:renderIf isTrue="{!empty(level1.childNodes) == false}">
+                                        <ul>
+                                            <aura:iteration items="{!level1.childNodes}" var="level2">
+                                                <li>
+                                                    <a href="#" data-type="chooseOption" data-value="{!level2.optionId}" class="{!level2.optionId == v.selected.optionId ? 'selected' : ''}">{!level2.optionName}</a>
+                                                </li>
+                                            </aura:iteration>
+                                        </ul>
+                                    </aura:renderIf>
+                                </li>
+                            </aura:iteration>
+                        </ul>
+                    </aura:renderIf>
+                </div>
+
+                <div class="wizardPage" aura:id="filters">
+                    <aura:renderIf isTrue="{!empty(v.filters) == false}">
+                        <aura:iteration items="{!v.filters}" var="filterDef">
+                            <ul id="{! 'f' + filterDef.filterId}">
+                                <aura:iteration items="{!filterDef.childNodes}" var="level1">
+                                    <li>
+                                        <a href="#" data-type="filters" data-value="{!level1.filterId}" class="{!level1.filterId == v.selected.filterId ? 'selected' : ''}">{!level1.filterName}</a>
+                                        <aura:renderIf isTrue="{!empty(level1.childNodes) == false}">
+                                            <ul>
+                                                <aura:iteration items="{!level1.childNodes}" var="level2">
+                                                    <li>
+                                                        <a href="#" data-type="filters" data-value="{!level2.filterId}" class="{!level2.filterId == v.selected.filterId ? 'selected' : ''}">{!level2.filterName}</a>
+                                                    </li>
+                                                </aura:iteration>
+                                            </ul>
+                                        </aura:renderIf>
+                                    </li>
+                                </aura:iteration>
+                            </ul>
+                        </aura:iteration>
+                    </aura:renderIf>
+                </div>
+
+
+                <div class="wizardPage" aura:id="linking">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

@@ -46,12 +46,44 @@
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+<<<<<<< HEAD
     <description>MDO_Geography__c new master data Object for Geography
 MDO geography master data</description>
     <enableActivities>true</enableActivities>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+=======
+    <description>MDO geography master data</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>IPM_Effective_from__c</fullName>
+        <description>Date upon which a particular Geography is considered to take effect</description>
+        <externalId>false</externalId>
+        <label>Effective_from</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Effective_to__c</fullName>
+        <description>date until which a specific Geography was considered</description>
+        <externalId>false</externalId>
+        <label>Effective_to</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+>>>>>>> FETCH_HEAD
     <fields>
         <fullName>ISO_3166_1_alpha__c</fullName>
         <externalId>false</externalId>
@@ -65,7 +97,10 @@ MDO geography master data</description>
     </fields>
     <fields>
         <fullName>ISO_3166_1_code__c</fullName>
+<<<<<<< HEAD
         <description>This field is use to match county code in ipm_county object with geography  object iso 3166-1 code.</description>
+=======
+>>>>>>> FETCH_HEAD
         <externalId>false</externalId>
         <label>ISO 3166-1 Code</label>
         <length>2</length>
@@ -87,11 +122,43 @@ MDO geography master data</description>
         <unique>false</unique>
     </fields>
     <fields>
+<<<<<<< HEAD
         <fullName>geography_type__c</fullName>
         <externalId>false</externalId>
         <label>Geography Type</label>
         <picklist>
             <picklistValues>
+=======
+        <fullName>Status__c</fullName>
+        <description>This field to get active records only.</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>geo_type__c</fullName>
+        <externalId>false</externalId>
+        <label>Geo Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cluster</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+>>>>>>> FETCH_HEAD
                 <fullName>Country/Dependency</fullName>
                 <default>false</default>
             </picklistValues>
@@ -115,8 +182,48 @@ MDO geography master data</description>
                 <fullName>World</fullName>
                 <default>false</default>
             </picklistValues>
+<<<<<<< HEAD
             <picklistValues>
                 <fullName>Unilever Cluster</fullName>
+=======
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>geography_type__c</fullName>
+        <externalId>false</externalId>
+        <label>Geography Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cluster</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country/Dependency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country Cluste</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country Group</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country Sub Group</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Region</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>World</fullName>
+>>>>>>> FETCH_HEAD
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -129,7 +236,11 @@ MDO geography master data</description>
         <fullName>mdm_id__c</fullName>
         <externalId>true</externalId>
         <label>MDM ID</label>
+<<<<<<< HEAD
         <length>11</length>
+=======
+        <length>32</length>
+>>>>>>> FETCH_HEAD
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -414,18 +525,31 @@ MDO geography master data</description>
         <fullName>parent_id_tree__c</fullName>
         <externalId>false</externalId>
         <label>parent Id Tree</label>
+<<<<<<< HEAD
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+=======
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+>>>>>>> FETCH_HEAD
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>parent_mdm_Id__c</fullName>
         <externalId>false</externalId>
         <label>Parent MDM Id</label>
+<<<<<<< HEAD
         <length>11</length>
+=======
+        <length>32</length>
+>>>>>>> FETCH_HEAD
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -445,6 +569,7 @@ MDO geography master data</description>
     </fields>
     <label>Geography</label>
     <listViews>
+<<<<<<< HEAD
         <fullName>All</fullName>
         <columns>OBJECT_ID</columns>
         <columns>NAME</columns>
@@ -452,10 +577,37 @@ MDO geography master data</description>
         <columns>parent_id__c</columns>
         <columns>geography_type__c</columns>
         <columns>parent_mdm_id_tree__c</columns>
+=======
+        <fullName>All1</fullName>
+        <columns>geography_type__c</columns>
+        <columns>NAME</columns>
+        <columns>parent_id__c</columns>
+        <columns>parent_L2__c</columns>
+        <columns>parent_mdm_Id__c</columns>
+        <columns>Status__c</columns>
+>>>>>>> FETCH_HEAD
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
     </listViews>
+<<<<<<< HEAD
+=======
+    <listViews>
+        <fullName>Countries</fullName>
+        <columns>NAME</columns>
+        <columns>geography_type__c</columns>
+        <columns>parent_L2__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>geography_type__c</field>
+            <operation>equals</operation>
+            <value>Country/Dependency</value>
+        </filters>
+        <label>Countries</label>
+        <language>en_US</language>
+    </listViews>
+>>>>>>> FETCH_HEAD
     <nameField>
         <label>Name</label>
         <trackHistory>false</trackHistory>

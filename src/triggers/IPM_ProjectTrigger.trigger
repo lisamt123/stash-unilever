@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 trigger IPM_ProjectTrigger on IPM_Project__c (after insert, after update) {
     
     IPM_ProjectTriggerHandler handler = new IPM_ProjectTriggerHandler(Trigger.isExecuting);
@@ -9,4 +10,8 @@ trigger IPM_ProjectTrigger on IPM_Project__c (after insert, after update) {
             handler.onAfterInsert(Trigger.new);
         }
     }
+=======
+trigger IPM_ProjectTrigger on IPM_Project__c (before insert,after insert,before update,after update,before delete,after delete) {
+    TriggerFactory.createHandler(IPM_Project__c.sObjectType);    
+>>>>>>> FETCH_HEAD
 }
