@@ -381,6 +381,22 @@
     </fields>
     <label>Alert Rule</label>
     <listViews>
+        <fullName>Alert_Ansicht_Test</fullName>
+        <columns>NAME</columns>
+        <columns>L5_Reason_Code__c</columns>
+        <columns>L5_Product_Category__c</columns>
+        <columns>Threshold__c</columns>
+        <columns>Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>DACH</value>
+        </filters>
+        <label>Alert Ansicht Test</label>
+        <language>de</language>
+    </listViews>
+    <listViews>
         <fullName>All_Alert_Rules1</fullName>
         <columns>NAME</columns>
         <columns>Active__c</columns>
