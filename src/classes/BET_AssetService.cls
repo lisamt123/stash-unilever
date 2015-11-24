@@ -92,8 +92,7 @@ global without sharing class BET_AssetService {
 		for(uw_Asset__c asset : assets){
 			if(!String.isEmpty(asset.URL_of_Asset__c)){
 				Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/');
-	        	Integer endIdx = asset.URL_of_Asset__c.indexOf('?');    
-	        	Id identifier = (Id)asset.URL_of_Asset__c.substring(startIdx+10, endIdx);
+	        	Id identifier = (Id)asset.URL_of_Asset__c.substring(startIdx+10, startIdx+28);
 	        	identifiers.add(identifier);
         	}
         }
@@ -106,8 +105,7 @@ global without sharing class BET_AssetService {
 		for(uw_Asset__c asset : assets){
 			if(!String.isEmpty(asset.URL_of_Asset__c)){
 				Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/');
-	        	Integer endIdx = asset.URL_of_Asset__c.indexOf('?');    
-	        	Id identifier = (Id)asset.URL_of_Asset__c.substring(startIdx+10, endIdx);
+	        	Id identifier = (Id)asset.URL_of_Asset__c.substring(startIdx+10, startIdx+28);
 				asset.File_Id__c = versionFileMap.get(identifier);
 				if(asset.File_Id__c == null && !Test.isRunningTest()){
 					ConnectApi.FeedItem fi = ConnectApi.ChatterFeeds.getFeedItem(null, asset.Related_Feed_Item__c);      
