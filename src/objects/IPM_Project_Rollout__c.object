@@ -47,9 +47,47 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Added_At_Stage__c</fullName>
+        <externalId>false</externalId>
+        <label>Added At Stage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Ideas</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Feasibility</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Capability</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Deployment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PLE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
     <fields>
         <fullName>Calculated_Sustainability_Period__c</fullName>
         <externalId>false</externalId>
@@ -63,6 +101,7 @@
     <fields>
         <fullName>External_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <description>Used for Data Migration</description>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>100</length>
@@ -78,6 +117,28 @@
         <label>Finance Lead</label>
         <referenceTo>User</referenceTo>
         <relationshipName>IPM_Project_Rollout1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Global_Project_Phase__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(IPM_Project__r.IPM_Phase__c)</formula>
+        <label>Global Project Phase</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Company_Card__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>IPM Company Card</label>
+        <referenceTo>IPM_Company_Card__c</referenceTo>
+        <relationshipLabel>IPM Project Rollout</relationshipLabel>
+        <relationshipName>IPM_Project_Rollout</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -108,6 +169,50 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_PhaseChangeQueueJobId__c</fullName>
+        <externalId>false</externalId>
+        <label>Phase Change Queue Job Id</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Job_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Job Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Not Applicable</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Eligible For Processing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Picked For Processing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Processing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Failed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>IPM_Project__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -118,6 +223,15 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Regional_Original_Project__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( AND( ISPICKVAL(Regional_Project__r.IPMProject_Span__c, &apos;Regional&apos;),ISPICKVAL(Regional_Project__r.IPM_Project_Type__c , &apos;Original&apos;)),true,false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Regional Original Project</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IPM_Regional_PL_Text__c</fullName>
@@ -141,6 +255,28 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>IPM_RolloutJobType__c</fullName>
+        <externalId>false</externalId>
+        <label>Rollout Job Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Process Phase Change</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Adhoc - Rollout Project Creation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Phase Change - Rollout Project Creation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>IPM_Rollout_Project__c</fullName>
         <caseSensitive>false</caseSensitive>
         <externalId>true</externalId>
@@ -150,6 +286,48 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Rollout_Span__c</fullName>
+        <externalId>false</externalId>
+        <label>Rollout Span</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Rollout_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Rollout Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Rollout</fullName>
+                <default>true</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Small_C__c</fullName>
+        <externalId>false</externalId>
+        <label>Small C</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Status__c</fullName>
@@ -308,7 +486,7 @@
     <fields>
         <fullName>Regional_Rollout_External_Id__c</fullName>
         <externalId>false</externalId>
-        <formula>Regional_Rollout__r.IPM_Rollout_Project__c</formula>
+        <formula>IF(Regional_Project__c!=null,Regional_Project__r.IPM_Project_Name__c,Regional_Rollout__r.IPM_Rollout_Project__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Regional Rollout External Id</label>
         <required>false</required>
@@ -480,19 +658,27 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
-    <fields>
-        <fullName>Unilever_Geography__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Unilever Geography</label>
-        <referenceTo>mdm_Geography__c</referenceTo>
-        <relationshipLabel>IPM Project Rollout</relationshipLabel>
-        <relationshipName>IPM_Project_Rollout</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
     <label>IPM Project Rollout</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>IPM_Rollout_Project__c</columns>
+        <columns>Regional_Rollout__c</columns>
+        <columns>IPM_Project__c</columns>
+        <columns>Regional_Project__c</columns>
+        <columns>Local_Project__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Market_Cluster_Name__c</columns>
+        <columns>MCO_Name__c</columns>
+        <columns>IPM_Regional_PL__c</columns>
+        <columns>Finance_Member__c</columns>
+        <columns>KeyMCO__c</columns>
+        <columns>Type__c</columns>
+        <columns>IPM_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>IPM Project Rollout Name</label>
         <type>Text</type>
@@ -503,10 +689,97 @@
         <active>true</active>
         <label>Local Rollouts</label>
         <picklistValues>
+            <picklist>Added_At_Stage__c</picklist>
+            <values>
+                <fullName>Capability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Feasibility</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ideas</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Market Deployment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PLE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_Local_Rollout_Status__c</picklist>
             <values>
                 <fullName>Not Created</fullName>
                 <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Project_Job_Status__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Eligible For Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Failed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Applicable</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Picked For Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Processing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RolloutJobType__c</picklist>
+            <values>
+                <fullName>Adhoc - Rollout Project Creation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phase Change - Rollout Project Creation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Process Phase Change</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Rollout_Span__c</picklist>
+            <values>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Rollout_Type__c</picklist>
+            <values>
+                <fullName>Rollout</fullName>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -647,10 +920,97 @@
         <active>true</active>
         <label>Regional Rollout</label>
         <picklistValues>
+            <picklist>Added_At_Stage__c</picklist>
+            <values>
+                <fullName>Capability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Feasibility</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ideas</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Market Deployment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PLE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_Local_Rollout_Status__c</picklist>
             <values>
                 <fullName>Not Created</fullName>
                 <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Project_Job_Status__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Eligible For Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Failed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Applicable</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Picked For Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Processing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_RolloutJobType__c</picklist>
+            <values>
+                <fullName>Adhoc - Rollout Project Creation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phase Change - Rollout Project Creation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Process Phase Change</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Rollout_Span__c</picklist>
+            <values>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Rollout_Type__c</picklist>
+            <values>
+                <fullName>Rollout</fullName>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>

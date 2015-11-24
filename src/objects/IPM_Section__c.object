@@ -48,9 +48,50 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <description>This will be the main section object, Using this object, it will be roll out to Project/Gate Document Sections are defined.</description>
     <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>External_ID__c</fullName>
+        <description>This is used as a reference point for the copy over sections items custom settings</description>
+        <externalId>true</externalId>
+        <label>External ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Character_Limit__c</fullName>
+        <description>To store the character count limit per section</description>
+        <externalId>false</externalId>
+        <label>Character Limit</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_DocSecSuffix__c</fullName>
+        <description>Used to Store the matiching suffix of Inoplan, for Data Loading</description>
+        <externalId>false</externalId>
+        <label>IPM_DocSecSuffix</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>IPM_Document_Template__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -91,11 +132,15 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>RnD</fullName>
+                <fullName>R&amp;D</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>CD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PL</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -103,6 +148,16 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Has_Appendix__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checked if the section has related appendix section</description>
+        <externalId>false</externalId>
+        <label>Has Appendix</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IPM_Negotiable__c</fullName>
@@ -226,7 +281,58 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
+    <fields>
+        <fullName>Is_IPM_Global_Consolidated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is IPM Global Consolidated</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ProjectSpan__c</fullName>
+        <description>To Store the Phase for which the section is applicable</description>
+        <externalId>false</externalId>
+        <label>ProjectSpan</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
     <label>IPM Section</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>IPM_Section_Name__c</columns>
+        <columns>IPM_DocSecSuffix__c</columns>
+        <columns>IPM_Section_Sequence__c</columns>
+        <columns>External_ID__c</columns>
+        <columns>IPM_Section_Label_Type__c</columns>
+        <columns>IPM_Section_Type__c</columns>
+        <columns>IPM_Document_Template__c</columns>
+        <columns>IPM_FunctionalRole__c</columns>
+        <columns>IPM_Parent_Section__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <displayFormat>S-{0000}</displayFormat>
         <label>Section ID</label>
@@ -239,8 +345,9 @@
         <customTabListAdditionalFields>IPM_Section_Type__c</customTabListAdditionalFields>
         <lookupDialogsAdditionalFields>IPM_Section_Name__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>IPM_Section_Type__c</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>IPM_Section_Sequence__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>IPM_Section_Name__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>IPM_Section_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IPM_Parent_Section__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <startsWith>Vowel</startsWith>

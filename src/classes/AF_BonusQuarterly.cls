@@ -602,7 +602,7 @@ public with sharing class AF_BonusQuarterly {
         validateTotal = Totals_BonusMeasureTrad+Totals_BonusMeasureDigital;
         String validationError;
          if(sum_of_bonus_basefee!=validateTotal){
-             validationError='Manaul adjustment to Bonusablefees must reconcile back to Base Fee Matrix.';
+             validationError='Manual adjustment to Bonusable fees must reconcile back to Base Fee Matrix.';
             Decimal Validationdifference= sum_of_bonus_basefee-validateTotal;
             Decimal Validationdifferencer =Validationdifference;
             if (Validationdifferencer <0) Validationdifferencer=Validationdifferencer*-1;

@@ -48,14 +48,38 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <description>mdo master object to store brands</description>
     <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>IPM_Effective_from__c</fullName>
+        <description>Date upon which a particular Brand is considered to take effect</description>
+        <externalId>false</externalId>
+        <label>Effective_from</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Effective_to__c</fullName>
+        <description>Date until which a specific Brand was considered</description>
+        <externalId>false</externalId>
+        <label>Effective_to</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
     <fields>
         <fullName>mdm_id__c</fullName>
         <externalId>true</externalId>
         <label>MDM ID</label>
-        <length>11</length>
+        <length>6</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -82,16 +106,11 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
-    <label>MDO Brand</label>
+    <label>Brand</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>OBJECT_ID</columns>
-        <columns>NAME</columns>
-        <columns>mdm_id__c</columns>
-        <columns>status__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Name</label>
@@ -100,5 +119,5 @@
     </nameField>
     <pluralLabel>Brands</pluralLabel>
     <searchLayouts/>
-    <sharingModel>Read</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

@@ -48,14 +48,80 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <description>This object is used to describe the Countries the project is rolling out</description>
     <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fieldSets>
+        <fullName>IPM_Country_Field_Set_For_Ecodesign</fullName>
+        <description>This Field set contains fields which, if updated , needs to be synced with EcoDesign system.</description>
+        <displayedFields>
+            <field>IPM_Project__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Regional_Project__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Local_Project__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Project_Country__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Geography__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Country_Code__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Country_Name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>IPM Country Field Set For Ecodesign</label>
+    </fieldSets>
+    <fields>
+        <fullName>Added_At_Stage__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Local_Rollout__r.Added_At_Stage__c)</formula>
+        <label>Added At Stage</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Calculation_Index__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>This field is to satisfy requirement 2203, 2219. this index will indicate whether the country is invloved in the calculation or not.</description>
+        <externalId>false</externalId>
+        <label>Calculation Index</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>Country_Code__c</fullName>
         <externalId>false</externalId>
-        <formula>Geography__r.ISO_3166_1_Code__c</formula>
+        <formula>MDO_Geography__r.ISO_3166_1_code__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Old Formula --&gt; Geography__r.ISO_3166_1_code__c    New  Formula --&gt; MDO_Geography__r.ISO_3166_1_code__c</inlineHelpText>
         <label>Country Code</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -65,15 +131,29 @@
     </fields>
     <fields>
         <fullName>Country_Name__c</fullName>
+        <description>Referring Geography Name</description>
         <externalId>false</externalId>
-        <formula>Geography__r.ISO_Country_Dependency_Name__c</formula>
+        <formula>MDO_Geography__r.Name</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Old --&gt; MDO_Geography__r.Name   New Formula --&gt;  Geography__r.ISO_Country_Dependency_Name__c</inlineHelpText>
         <label>Country Name</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>Geography__c</fullName>
@@ -83,7 +163,7 @@
         <referenceTo>mdm_Geography__c</referenceTo>
         <relationshipLabel>IPM Countries</relationshipLabel>
         <relationshipName>IPM_Countries</relationshipName>
-        <required>true</required>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -111,6 +191,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Financial__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>IPM Financial</label>
+        <referenceTo>IPM_Financial__c</referenceTo>
+        <relationshipLabel>IPM Countries</relationshipLabel>
+        <relationshipName>IPM_Countries</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>IPM_ISO_Code__c</fullName>
         <externalId>false</externalId>
         <label>ISO Code</label>
@@ -120,6 +213,15 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Local_Project_Association_Timestamp__c</fullName>
+        <externalId>false</externalId>
+        <label>Local Project Association Timestamp</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>IPM_Local_Project__c</fullName>
@@ -183,6 +285,15 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Regional_Proj_Association_Timestamp__c</fullName>
+        <externalId>false</externalId>
+        <label>Regional Project Association Timestamp</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>IPM_Regional_Project__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -219,6 +330,26 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Small_C_shr__c</fullName>
+        <externalId>false</externalId>
+        <label>Small C</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IS_EI_Country__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>IS EI Country</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Key__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -226,6 +357,19 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Local_Rollout_Charter__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Local Rollout Charter</label>
+        <referenceTo>IPM_Project_Rollout__c</referenceTo>
+        <relationshipLabel>IPM Countries (Local Rollout Charter)</relationshipLabel>
+        <relationshipName>IPM_Countries_Charter</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Local_Rollout__c</fullName>
@@ -243,8 +387,9 @@
     <fields>
         <fullName>MCO_Code__c</fullName>
         <externalId>false</externalId>
-        <formula>Geography__r.Country_Group_Code__c</formula>
+        <formula>MDO_Geography__r.parent_L2__r.mdm_id__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Old Formula --&gt;Geography__r.Country_Group_Code__c     New Formula --&gt; MDO_Geography__r.parent_L2__r.mdm_id__c</inlineHelpText>
         <label>MCO Code</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -255,8 +400,9 @@
     <fields>
         <fullName>MCO_Name__c</fullName>
         <externalId>false</externalId>
-        <formula>Geography__r.Country_Group__c</formula>
+        <formula>MDO_Geography__r.parent_L2__r.Name</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Old Formula  --&gt;  Geography__r.Country_Group__c      New Formula ---&gt; MDO_Geography__r.parent_L2__r.Name</inlineHelpText>
         <label>MCO Name</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -265,10 +411,25 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>MDO_Geography__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <description>It is Used to store new MDO Geography Object Values for Rollout generation</description>
+        <externalId>false</externalId>
+        <label>MDO_Geography</label>
+        <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>IPM Countries</relationshipLabel>
+        <relationshipName>IPM_Countries</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Market_Cluster_Code__c</fullName>
         <externalId>false</externalId>
-        <formula>Geography__r.Unilever_Cluster_Code__c</formula>
+        <formula>MDO_Geography__r.parent_L2__r.parent_L2__r.mdm_id__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Old Formula --&gt; Geography__r.Country_Cluster_Code__c    New Formula --&gt;MDO_Geography__r.parent_L4__r.mdm_id__c</inlineHelpText>
         <label>Market Cluster Code</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -279,8 +440,9 @@
     <fields>
         <fullName>Market_Cluster_Name__c</fullName>
         <externalId>false</externalId>
-        <formula>Geography__r.Unilever_Cluster__c</formula>
+        <formula>MDO_Geography__r.parent_L2__r.parent_L2__r.Name</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Old Formula --&gt; Geography__r.Country_Cluster__c         New Formula --&gt; MDO_Geography__r.parent_L4__r.Name</inlineHelpText>
         <label>Market Cluster Name</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -300,7 +462,33 @@
         <type>Text</type>
         <unique>true</unique>
     </fields>
+    <fields>
+        <fullName>Test_Financial__c</fullName>
+        <externalId>false</externalId>
+        <label>Test Financial</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>IPM Country</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Project_Country__c</columns>
+        <columns>IPM_Project__c</columns>
+        <columns>IPM_Regional_Project__c</columns>
+        <columns>IPM_Local_Project__c</columns>
+        <columns>Country_Name__c</columns>
+        <columns>Country_Code__c</columns>
+        <columns>IPM_Rollout_Status__c</columns>
+        <columns>Local_Rollout__c</columns>
+        <columns>Market_Cluster_Name__c</columns>
+        <columns>MCO_Name__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>C-{0000}</displayFormat>
         <label>IPM Country No</label>
@@ -309,5 +497,5 @@
     </nameField>
     <pluralLabel>IPM Countries</pluralLabel>
     <searchLayouts/>
-    <sharingModel>Read</sharingModel>
+    <sharingModel>Private</sharingModel>
 </CustomObject>

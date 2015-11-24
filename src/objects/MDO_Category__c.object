@@ -48,9 +48,13 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Store mdo product category master data</description>
     <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>category_type__c</fullName>
         <description>store product category type</description>
@@ -108,7 +112,7 @@
         <description>store mdm id</description>
         <externalId>true</externalId>
         <label>MDM ID</label>
-        <length>10</length>
+        <length>32</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -354,18 +358,19 @@
         <description>store parent id tree for product category</description>
         <externalId>false</externalId>
         <label>Parent Id Tree</label>
-        <length>255</length>
+        <precision>3</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
         <fullName>parent_mdm_Id__c</fullName>
         <externalId>false</externalId>
         <label>Parent MDM Id</label>
-        <length>10</length>
+        <length>32</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -398,19 +403,14 @@
     <label>ProductCategory</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>OBJECT_ID</columns>
-        <columns>NAME</columns>
+        <columns>category_type__c</columns>
         <columns>mdm_id__c</columns>
-        <columns>parent_id__c</columns>
-        <columns>parent_id_tree__c</columns>
-        <columns>parent_mdm_id_tree__c</columns>
+        <columns>parent_mdm_Id__c</columns>
+        <columns>parent_L1__c</columns>
+        <columns>NAME</columns>
         <columns>status__c</columns>
+        <columns>parent_mdm_id_tree__c</columns>
         <filterScope>Everything</filterScope>
-        <filters>
-            <field>category_type__c</field>
-            <operation>equals</operation>
-            <value>Category</value>
-        </filters>
         <label>All</label>
         <language>en_US</language>
     </listViews>
@@ -421,5 +421,5 @@
     </nameField>
     <pluralLabel>ProductCategory</pluralLabel>
     <searchLayouts/>
-    <sharingModel>Read</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

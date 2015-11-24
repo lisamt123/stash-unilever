@@ -47,9 +47,13 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>Approx_Results_Timing__c</fullName>
         <externalId>false</externalId>
@@ -84,7 +88,8 @@
         </picklist>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Element__c</fullName>
@@ -148,17 +153,74 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_CMI_Overall_Colour_Score_Method__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM CMI Overall Colour Score Method</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Manual</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>System</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_CMI_Records_Count__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM CMI Records Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Project__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>IPM Project</label>
         <referenceTo>IPM_Project__c</referenceTo>
         <relationshipLabel>IPM Gate CMIs</relationshipLabel>
         <relationshipName>IPM_Gate_CMIs</relationshipName>
-        <required>false</required>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Lookup</type>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>IPM_Skip_Test_Reason__c</fullName>
+        <description>For Filling Reason for Skipping Test</description>
+        <externalId>false</externalId>
+        <label>IPM Skip Test Reason</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Skip_Test__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>For Skipping Concept Test</description>
+        <externalId>false</externalId>
+        <label>IPM Skip Test</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Input__c</fullName>
@@ -687,18 +749,22 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Bases II - Nielsen</fullName>
+                <controllingFieldValues>Full Mix-Volume</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Designor post use - Ipsos</fullName>
+                <controllingFieldValues>Full Mix-Volume</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Bases III - Nielsen</fullName>
+                <controllingFieldValues>Full Mix-Volume</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Designor post use with full mix - Ipsos</fullName>
+                <controllingFieldValues>Full Mix-Volume</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -708,6 +774,17 @@
         <type>Picklist</type>
     </fields>
     <label>IPM Gate CMI</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>IPM_Project__c</columns>
+        <columns>Test__c</columns>
+        <columns>Results__c</columns>
+        <columns>KPI__c</columns>
+        <columns>Input__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>IPM  Name</label>
         <trackHistory>true</trackHistory>
@@ -715,5 +792,5 @@
     </nameField>
     <pluralLabel>IPM Gate CMIs</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

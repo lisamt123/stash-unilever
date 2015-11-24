@@ -13,7 +13,7 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>IPM_Managed_Category__c</field>
             </layoutItems>
         </layoutColumns>
@@ -54,6 +54,10 @@
         <editHeading>true</editHeading>
         <label>Financials Data</label>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_Geographical_Region__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IPM_Company_Turnover__c</field>
@@ -112,14 +116,25 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>IPM_User__c</fields>
         <fields>IPM_User_Function__c</fields>
-        <fields>IPM_User_Role__c</fields>
         <fields>IPM_Job_title__c</fields>
+        <fields>IPM_User_Role__c</fields>
+        <fields>IPM_User_Category__c</fields>
+        <fields>WL__c</fields>
         <relatedList>IPM_User_Profile__c.IPM_Company_Card__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>IPM_Project__c.IPM_Company_Card__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>IPM_Bosscard__c.IPM_Company_Card__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>IPM_Project_Rollout__c.IPM_Company_Card__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
@@ -127,7 +142,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hL0000000Hq0i</masterLabel>
+        <masterLabel>00hM0000000VHZY</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

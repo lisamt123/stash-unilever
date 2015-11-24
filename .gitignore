@@ -4,6 +4,10 @@
 *.sublime-settings
 *.sublime-workspace
 config/*
+.project
+.settings
+salesforce.schema
+Referenced Packages
 
 # Logs and databases #
 ######################
@@ -20,3 +24,7 @@ config/*
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Files breaking git for Windows users 
+######################
+***HELP***.homePageComponent

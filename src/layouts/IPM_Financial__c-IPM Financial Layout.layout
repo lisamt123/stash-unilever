@@ -39,6 +39,38 @@
                 <behavior>Required</behavior>
                 <field>Project_Sustainability_Period__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Misaligned_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Financial_Countries__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_Auto_Aligned_Fin_TLD__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>MisalignmentDateTime__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_BD_BB_Feedback__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Year_1_iTO_Local__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>IPM_CPP_Local__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Target_Launch_Date_Updated_From__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -112,6 +144,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IPM_Country_Feedback__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Misaligned__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -416,9 +452,15 @@
         <fields>Year__c</fields>
         <fields>Year_Type__c</fields>
         <fields>PL_Type__c</fields>
+        <fields>Financial_External_Id__c</fields>
+        <fields>External_Id__c</fields>
         <relatedList>IPM_Financial_Year__c.IPM_Financial__c</relatedList>
         <sortField>Year_Type__c</sortField>
         <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>IPM_Country__c.IPM_Financial__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

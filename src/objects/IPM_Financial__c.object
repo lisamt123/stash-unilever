@@ -47,9 +47,13 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
-    <enableFeeds>false</enableFeeds>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>false</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
     <fieldSets>
         <fullName>IPM_Financial_FS</fullName>
         <description>IPMFinancialYearTriggerHandler Class</description>
@@ -71,6 +75,42 @@
         <label>IPM_Financial_FS</label>
     </fieldSets>
     <fields>
+        <fullName>Added_At_Stage__c</fullName>
+        <externalId>false</externalId>
+        <label>Added At Stage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Ideas</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Feasibility</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Capability</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Deployment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PLE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>BIC_Charter__c</fullName>
         <defaultValue>0</defaultValue>
         <externalId>false</externalId>
@@ -78,6 +118,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -90,6 +131,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -97,7 +139,13 @@
     <fields>
         <fullName>BIC_Difference__c</fullName>
         <externalId>false</externalId>
-        <formula>ABS(BIC_Regional__c - BIC_Local__c)</formula>
+        <formula>IF(BIC_Regional__c &lt;&gt; 0, 
+	IF((ABS(BIC_Regional__c - BIC_Local__c)/BIC_Regional__c) &gt; 0.05, 
+		ABS(BIC_Regional__c - BIC_Local__c), 
+		0
+	), 
+	ABS(BIC_Regional__c - BIC_Local__c)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>BIC Difference</label>
         <precision>18</precision>
@@ -115,6 +163,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -127,6 +176,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -139,6 +189,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -151,6 +202,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -163,6 +215,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -247,6 +300,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -259,6 +313,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -266,7 +321,13 @@
     <fields>
         <fullName>CAPEX_Difference__c</fullName>
         <externalId>false</externalId>
-        <formula>ABS(CAPEX_Regional__c - CAPEX_Local__c)</formula>
+        <formula>IF(CAPEX_Regional__c &lt;&gt; 0, 
+	IF((ABS(CAPEX_Regional__c - CAPEX_Local__c)/CAPEX_Regional__c) &gt; 0.05, 
+		ABS(CAPEX_Regional__c - CAPEX_Local__c), 
+		0
+	), 
+	ABS(CAPEX_Regional__c - CAPEX_Local__c)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>CAPEX Difference</label>
         <precision>18</precision>
@@ -284,6 +345,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -296,6 +358,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -308,6 +371,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -320,6 +384,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -332,6 +397,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -341,6 +407,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Charter Approved</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -350,6 +417,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Charter Locked</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -359,6 +427,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Contract Approved</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -368,6 +437,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Contract Locked</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -377,6 +447,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Copy Global to Local</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -386,6 +457,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Copy Global to Regional</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -395,6 +467,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Copy Local to Regional</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -404,6 +477,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Copy Regional to Local</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -426,15 +500,30 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Financial_Countries__c</fullName>
+        <description>List of countries to be shown for the particular financial on the page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>List of countries to be shown for the particular financial on the page</inlineHelpText>
+        <label>Financial Countries</label>
+        <length>131072</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
         <fullName>Financial_External_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
         <externalId>true</externalId>
         <label>Financial External ID</label>
         <length>100</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>GM_Y1_bps_vs_DNDS_Charter__c</fullName>
@@ -444,6 +533,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -457,6 +547,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -465,7 +556,13 @@
     <fields>
         <fullName>GM_Y1_bps_vs_DNDS_Difference__c</fullName>
         <externalId>false</externalId>
-        <formula>ABS(GM_Y1_bps_vs_DNDS_Regional__c - GM_Y1_bps_vs_DNDS_Local__c)</formula>
+        <formula>IF(GM_Y1_bps_vs_DNDS_Regional__c &lt;&gt; 0, 
+	IF((ABS(GM_Y1_bps_vs_DNDS_Regional__c - GM_Y1_bps_vs_DNDS_Local__c)/GM_Y1_bps_vs_DNDS_Regional__c) &gt; 0.05, 
+		ABS(GM_Y1_bps_vs_DNDS_Regional__c - GM_Y1_bps_vs_DNDS_Local__c), 
+		0
+	), 
+	ABS(GM_Y1_bps_vs_DNDS_Regional__c - GM_Y1_bps_vs_DNDS_Local__c)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>GM Y1 bps vs DNDS Difference</label>
         <precision>18</precision>
@@ -520,6 +617,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -533,6 +631,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -571,8 +670,7 @@
     <fields>
         <fullName>Global_Project_Id__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(NOT(ISBLANK(Parent_Project__c)), Parent_Project__r.Id, IF(NOT(ISBLANK(Regional_Project__c)), Regional_Project__r.IPM_Parent_Project__c, IPM_Project_Rollout__r.IPM_Project__c))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>IF(NOT(ISBLANK(Parent_Project__c)), Parent_Project__r.Id, IF(NOT(ISBLANK(Regional_Project__c)), Regional_Project__r.Id,IF(NOT(ISBLANK(Local_Project__c)),Local_Project__r.Id,IPM_Project_Rollout__r.IPM_Project__c)))</formula>
         <label>Global Project Id</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -815,21 +913,55 @@
         <type>Summary</type>
     </fields>
     <fields>
-        <fullName>IPM_Business_Case_Confirmed__c</fullName>
+        <fullName>IPM_Auto_Aligned_Fin_TLD__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>To capture if BB is confirming the Local Business Case</description>
+        <description>Auto Aligned Fin TLD</description>
         <externalId>false</externalId>
-        <label>Business Case Confirmed</label>
+        <label>IPM Auto Aligned Fin TLD</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>IPM_Business_Impact__c</fullName>
-        <description>Capture Business Impact of the project</description>
+        <fullName>IPM_BD_BB_Feedback__c</fullName>
         <externalId>false</externalId>
-        <label>IPM Business Impact</label>
-        <length>14</length>
+        <label>IPM BD-BB Feedback</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Business_Case_Confirmed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To capture if BB is confirming the Local Business Case</description>
+        <externalId>false</externalId>
+        <label>Business Case Confirmed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_CPP_Local__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( OR(ISBLANK(OpCo__c), OpCo__c=0),&quot;NA&quot;,
+IF(AND(Year_1_iTO_Local__c!=0,Year_1_iTO_Local__c &gt;= (OpCo__c *0.005) ),
+&quot;Gold&quot;,
+IF(AND(Year_1_iTO_Local__c!=0,Year_1_iTO_Local__c &gt;= (OpCo__c *0.001), OpCo__c &lt; (Gross_Y1_Turnover_Local__c *0.005) ),
+&quot;Silver&quot;,
+IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
+&quot;Bronze&quot;,
+&quot;NA&quot;
+)
+)
+)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM CPP Local</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -837,16 +969,17 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>IPM_Company_Project_Priority__c</fullName>
-        <description>To hold the CPP percentage</description>
+        <fullName>IPM_Category__c</fullName>
+        <description>Used in sharing rules</description>
         <externalId>false</externalId>
-        <label>IPM Company Project Priority</label>
-        <precision>18</precision>
+        <label>Category</label>
+        <length>255</length>
         <required>false</required>
-        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Percent</type>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Country_Feedback__c</fullName>
@@ -854,134 +987,11 @@
         <externalId>false</externalId>
         <label>Country Feedback</label>
         <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Html</type>
         <visibleLines>25</visibleLines>
-    </fields>
-    <fields>
-        <fullName>IPM_Gross_Project_A_P__c</fullName>
-        <externalId>false</externalId>
-        <label>Gross Project A&amp;P</label>
-        <precision>12</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>IPM_Gross_Project_GP__c</fullName>
-        <externalId>false</externalId>
-        <label>Gross Project GP</label>
-        <precision>12</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>IPM_Gross_Project_Turnover__c</fullName>
-        <externalId>false</externalId>
-        <label>Gross Project Turnover</label>
-        <precision>12</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>IPM_Incremental_Turnover__c</fullName>
-        <externalId>false</externalId>
-        <label>Incremental Turnover</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>IPM_IsAggregate__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>IsAggregate</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>IPM_Market_Description__c</fullName>
-        <externalId>false</externalId>
-        <label>Market Description</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Turnover</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>GP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>GM%</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>A&amp;P (-)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>A&amp;P%</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PBO</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>PBO%</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>i TO</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>i GP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>iGM%</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>i A&amp;P (-)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>i PBO</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Capex (-)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Project BIC (-)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>IPM_Project_Rollout__c</fullName>
@@ -992,19 +1002,7 @@
         <relationshipLabel>IPM Financials</relationshipLabel>
         <relationshipName>IPM_Financials</relationshipName>
         <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>IPM_Project__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>IPM Project</label>
-        <referenceTo>IPM_Project__c</referenceTo>
-        <relationshipLabel>IPM Financials</relationshipLabel>
-        <relationshipName>IPM_Financials</relationshipName>
-        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1017,6 +1015,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1029,6 +1028,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1036,7 +1036,13 @@
     <fields>
         <fullName>IRR_Difference__c</fullName>
         <externalId>false</externalId>
-        <formula>ABS(IRR_Regional__c - IRR_Local__c)</formula>
+        <formula>IF(IRR_Regional__c &lt;&gt; 0, 
+	IF((ABS(IRR_Regional__c - IRR_Local__c)/IRR_Regional__c) &gt; 0.05, 
+		ABS(IRR_Regional__c - IRR_Local__c), 
+		0
+	), 
+	ABS(IRR_Regional__c - IRR_Local__c)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IRR Difference</label>
         <precision>18</precision>
@@ -1054,6 +1060,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1066,6 +1073,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1078,6 +1086,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1090,6 +1099,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1102,6 +1112,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1349,6 +1360,7 @@
         <relationshipLabel>IPM Financials (Global)</relationshipLabel>
         <relationshipName>IPM_Financials_Global</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1362,6 +1374,7 @@
         <relationshipLabel>IPM Financials (Local)</relationshipLabel>
         <relationshipName>IPM_Financials_Local</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1375,6 +1388,7 @@
         <relationshipLabel>IPM Financials (Regional)</relationshipLabel>
         <relationshipName>IPM_Financials_Regional</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1385,6 +1399,7 @@
         <externalId>false</externalId>
         <label>Last Saved (Global)</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
@@ -1395,6 +1410,7 @@
         <externalId>false</externalId>
         <label>Last Saved (Local)</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
@@ -1405,6 +1421,7 @@
         <externalId>false</externalId>
         <label>Last Saved (Regional)</label>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
@@ -1418,6 +1435,7 @@
         <relationshipLabel>IPM Financials (Local)</relationshipLabel>
         <relationshipName>IPM_Financials_Local</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1427,6 +1445,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>MD Approved</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -1436,6 +1455,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>MD Locked</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -1445,6 +1465,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>MR Approved</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -1454,9 +1475,20 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>MR Locked</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Misaligned_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Misaligned Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>Misaligned__c</fullName>
@@ -1476,6 +1508,16 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>MisalignmentDateTime__c</fullName>
+        <externalId>false</externalId>
+        <label>MisalignmentDateTime</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>NPV_Charter__c</fullName>
         <defaultValue>0</defaultValue>
         <externalId>false</externalId>
@@ -1483,6 +1525,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1495,6 +1538,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1502,7 +1546,13 @@
     <fields>
         <fullName>NPV_Difference__c</fullName>
         <externalId>false</externalId>
-        <formula>ABS(NPV_Regional__c - NPV_Local__c)</formula>
+        <formula>IF(NPV_Regional__c &lt;&gt; 0, 
+	IF((ABS(NPV_Regional__c - NPV_Local__c)/NPV_Regional__c) &gt; 0.05, 
+		ABS(NPV_Regional__c - NPV_Local__c), 
+		0
+	), 
+	ABS(NPV_Regional__c - NPV_Local__c)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>NPV Difference</label>
         <precision>18</precision>
@@ -1520,6 +1570,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1532,6 +1583,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1544,6 +1596,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1556,6 +1609,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1568,9 +1622,24 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>OpCo__c</fullName>
+        <externalId>false</externalId>
+        <formula>Local_Project__r.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>OpCo</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_Charter__c</fullName>
@@ -1580,6 +1649,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1593,6 +1663,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1601,7 +1672,13 @@
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_Difference__c</fullName>
         <externalId>false</externalId>
-        <formula>ABS(PBO_Y1_bps_vs_DNDS_Regional__c - PBO_Y1_bps_vs_DNDS_Local__c)</formula>
+        <formula>IF(PBO_Y1_bps_vs_DNDS_Regional__c &lt;&gt; 0, 
+	IF((ABS(PBO_Y1_bps_vs_DNDS_Regional__c - PBO_Y1_bps_vs_DNDS_Local__c)/PBO_Y1_bps_vs_DNDS_Regional__c) &gt; 0.05, 
+		ABS(PBO_Y1_bps_vs_DNDS_Regional__c - PBO_Y1_bps_vs_DNDS_Local__c), 
+		0
+	), 
+	ABS(PBO_Y1_bps_vs_DNDS_Regional__c - PBO_Y1_bps_vs_DNDS_Local__c)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>PBO Y1 bps vs DNDS Difference</label>
         <precision>18</precision>
@@ -1656,6 +1733,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1669,6 +1747,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1701,6 +1780,7 @@
         <relationshipLabel>IPM Financials (Consolidated)</relationshipLabel>
         <relationshipName>IPM_Financials_Consolidated</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1713,6 +1793,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1726,6 +1807,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1734,7 +1816,13 @@
     <fields>
         <fullName>Payback_Difference__c</fullName>
         <externalId>false</externalId>
-        <formula>ABS(Payback_Regional__c - Payback_Local__c)</formula>
+        <formula>IF(Payback_Regional__c &lt;&gt; 0, 
+	IF((ABS(Payback_Regional__c - Payback_Local__c)/Payback_Regional__c) &gt; 0.05, 
+		ABS(Payback_Regional__c - Payback_Local__c), 
+		0
+	), 
+	ABS(Payback_Regional__c - Payback_Local__c)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Payback Difference</label>
         <precision>18</precision>
@@ -1753,6 +1841,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1766,6 +1855,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1779,6 +1869,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1792,6 +1883,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1805,6 +1897,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1817,6 +1910,7 @@
         <label>Project Sustainability Period</label>
         <length>10</length>
         <required>true</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -1835,6 +1929,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Regional_Market_Cluster_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(NOT(ISBLANK(Regional_Project__c)), Regional_Project__r.Market_Cluster_Name__c , IPM_Project_Rollout__r.Market_Cluster_Name__c )</formula>
+        <label>Regional Market Cluster Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Regional_Project__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
         <externalId>false</externalId>
@@ -1843,6 +1948,7 @@
         <relationshipLabel>IPM Financials (Regional)</relationshipLabel>
         <relationshipName>IPM_Financials_Regional</relationshipName>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -1880,6 +1986,31 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Target_Launch_Date_Updated_From__c</fullName>
+        <externalId>false</externalId>
+        <label>Target Launch Date Updated From</label>
+        <picklist>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rollout</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Project</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1889,6 +2020,7 @@
         <externalId>false</externalId>
         <label>Target Launch Date</label>
         <required>true</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -1999,6 +2131,7 @@
         <label>Volume Unit Charter</label>
         <length>100</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2010,6 +2143,7 @@
         <label>Volume Unit Contract</label>
         <length>100</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2043,6 +2177,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2062,6 +2197,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2072,6 +2208,7 @@
         <label>Volume Unit MD</label>
         <length>100</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2083,6 +2220,7 @@
         <label>Volume Unit MR</label>
         <length>100</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2103,6 +2241,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2122,6 +2261,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -2134,10 +2274,38 @@
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Year_1_iTO_Local__c</fullName>
+        <description>This is used to calculate Priority</description>
+        <externalId>false</externalId>
+        <label>Year 1 iTO Local</label>
+        <summarizedField>IPM_Financial_Year__c.Turnover_Local__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year_Type__c</field>
+            <operation>equals</operation>
+            <value>innovation</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.PL_Type__c</field>
+            <operation>equals</operation>
+            <value>Incremental</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>Year_3_iTO_Charter__c</fullName>
@@ -2147,6 +2315,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -2159,6 +2328,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -2176,7 +2346,7 @@
         <summaryFilterItems>
             <field>IPM_Financial_Year__c.Year_Type__c</field>
             <operation>equals</operation>
-            <value>Calendar</value>
+            <value>Innovation</value>
         </summaryFilterItems>
         <summaryFilterItems>
             <field>IPM_Financial_Year__c.PL_Type__c</field>
@@ -2223,6 +2393,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -2235,6 +2406,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -2265,14 +2437,113 @@
         <trackTrending>false</trackTrending>
         <type>Summary</type>
     </fields>
+    <fields>
+        <fullName>isGateSubmissionDue__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isGateSubmissionDue</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <label>IPM Financial</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>CREATED_DATE</columns>
+        <columns>NAME</columns>
+        <columns>Financial_External_ID__c</columns>
+        <columns>Parent_Project__c</columns>
+        <columns>Regional_External_Id__c</columns>
+        <columns>IPM_Project_Rollout__c</columns>
+        <columns>Regional_Project__c</columns>
+        <columns>BIC_Charter__c</columns>
+        <columns>BIC_Contract__c</columns>
+        <columns>BIC_Difference__c</columns>
+        <columns>BIC_Global__c</columns>
+        <columns>BIC_Local__c</columns>
+        <columns>BIC_MD__c</columns>
+        <columns>BIC_MR__c</columns>
+        <columns>Project_Sustainability_Period__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Finder</fullName>
+        <columns>Project_Sustainability_Period__c</columns>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Project_Sustainability_Period__c</field>
+            <operation>equals</operation>
+            <value>5</value>
+        </filters>
+        <label>Finder</label>
+        <language>en_US</language>
+        
+    </listViews>
+    <listViews>
+        <fullName>Finder_Global_Projects</fullName>
+        <columns>Project_Sustainability_Period__c</columns>
+        <columns>NAME</columns>
+        <columns>Year_1_iTO_Local__c</columns>
+        <columns>Gross_Y1_Gross_Profit_Local__c</columns>
+        <columns>IPM_CPP_Local__c</columns>
+        <columns>Local_Project__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Business_Impact_Global__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Regional_Project__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>Finder-Global Projects</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Finder_Local_Projects</fullName>
+        <columns>Project_Sustainability_Period__c</columns>
+        <columns>NAME</columns>
+        <columns>Year_1_iTO_Local__c</columns>
+        <columns>Gross_Y1_Gross_Profit_Local__c</columns>
+        <columns>IPM_CPP_Local__c</columns>
+        <columns>Local_Project__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Local_Project__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>Finder-Local Projects</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Finder_Regional_Projects</fullName>
+        <columns>Project_Sustainability_Period__c</columns>
+        <columns>NAME</columns>
+        <columns>Year_1_iTO_Local__c</columns>
+        <columns>Gross_Y1_Gross_Profit_Local__c</columns>
+        <columns>IPM_CPP_Local__c</columns>
+        <columns>Local_Project__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Business_Impact_Regional__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>Finder-Regional Projects</label>
+        <language>en_US</language>
+    </listViews>
+    
     <nameField>
         <displayFormat>FIN-{0000}</displayFormat>
         <label>Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>IPM Financials</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>Consolidated</fullName>
@@ -2280,61 +2551,29 @@
         <description>Consolidated Financials</description>
         <label>Consolidated</label>
         <picklistValues>
-            <picklist>IPM_Market_Description__c</picklist>
+            <picklist>Added_At_Stage__c</picklist>
             <values>
-                <fullName>A%26P %28-%29</fullName>
+                <fullName>Capability</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>A%26P%25</fullName>
+                <fullName>Feasibility</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Capex %28-%29</fullName>
+                <fullName>Ideas</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Market Deployment</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>GM%25</fullName>
+                <fullName>Market Ready</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>GP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PBO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PBO%25</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Project BIC %28-%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Turnover</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>i A%26P %28-%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>i GP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>i PBO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>i TO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>iGM%25</fullName>
+                <fullName>PLE</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2350,6 +2589,21 @@
             </values>
             <values>
                 <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Target_Launch_Date_Updated_From__c</picklist>
+            <values>
+                <fullName>None</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rollout</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2403,61 +2657,29 @@
         <active>true</active>
         <label>Default</label>
         <picklistValues>
-            <picklist>IPM_Market_Description__c</picklist>
+            <picklist>Added_At_Stage__c</picklist>
             <values>
-                <fullName>A%26P %28-%29</fullName>
+                <fullName>Capability</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>A%26P%25</fullName>
+                <fullName>Feasibility</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Capex %28-%29</fullName>
+                <fullName>Ideas</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Market Deployment</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>GM%25</fullName>
+                <fullName>Market Ready</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>GP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PBO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PBO%25</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Project BIC %28-%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Turnover</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>i A%26P %28-%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>i GP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>i PBO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>i TO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>iGM%25</fullName>
+                <fullName>PLE</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2473,6 +2695,21 @@
             </values>
             <values>
                 <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Target_Launch_Date_Updated_From__c</picklist>
+            <values>
+                <fullName>None</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rollout</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
