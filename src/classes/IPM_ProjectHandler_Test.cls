@@ -410,5 +410,4 @@ static testmethod void testBetAccessOnInsert(){
            }  
       }
      
-     
 }

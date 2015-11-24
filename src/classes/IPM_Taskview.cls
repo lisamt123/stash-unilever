@@ -76,9 +76,7 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
         try
         {
             Id loggedInUser = userinfo.getuserid();
-            System.debug('resources===>'+[Select Id,IPM_Role_Type__c,IPM_User__c from IPM_Project_Resource__c limit 1000]);
-            System.debug('logged-in user===>'+userinfo.getuserid());
-            System.debug('lprojectId===>'+projectId);
+           
             // To query the Team Members on project Resource object
             list<IPM_Project_Resource__c> projectResourceList = [select Id,IPM_Role_Type__c,IPM_User__c,IPM_Project_Role_Owner__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Project__r.Deputy_Project_Leader__c,IPM_Project__r.IPM_Technical_Project_Leader__c 
                                                                  from IPM_Project_Resource__c where 
@@ -86,7 +84,7 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
             
             if(projectResourceList != null && !projectResourceList.isEmpty()){
                 IPM_Project_Resource__c projectResource = projectResourceList[0];
-                system.debug(' projectResource.IPM_Role_Type__c==>'+ projectResource.IPM_Role_Type__c);
+              
                 if( projectResource.IPM_Role_Type__c != IPM_Utils.Guest ){
                 
                     isMilestoneEditable = false;
@@ -121,8 +119,7 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
                     isMilestoneEditable=true;
                     
                 }
-                System.debug('loggedInUser==>'+loggedInUser );
-                System.debug('project.IPM_Technical_Project_Leader__c==>'+project.IPM_Technical_Project_Leader__c);
+              
                if(loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c || loggedInUser == project.IPM_Technical_Project_Leader__c)
                {
                         isTaskeditable =true;

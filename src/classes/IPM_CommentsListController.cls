@@ -40,8 +40,9 @@ global with sharing class IPM_CommentsListController {
         	onLoadComments();
         }
         
-        if(parentID!=null && IPM_ConstantUtils.EMPTY_STRING_INITIAL != parentID)
+        if(parentID!=null && IPM_ConstantUtils.EMPTY_STRING_INITIAL != parentID){
                 countOfComments=[Select Count() from FeedItem where ParentId =: parentID and type =:IPM_ConstantUtils.COMMENT_TYPE];
+        }
      }
     /*****************************************************************
     @Description :Add a new feedItem as a comment to the project document section
@@ -63,8 +64,9 @@ global with sharing class IPM_CommentsListController {
                     Apexpages.addmessage(new apexpages.message(apexpages.severity.info,System.Label.IPM_Data_Value_Too_Large));
                 }
                 else{
-                        if(insertCommentsList != null && !insertCommentsList.isEmpty())
-                        insert insertCommentsList;
+                        if(insertCommentsList != null && !insertCommentsList.isEmpty()){
+                        	insert insertCommentsList;
+                        }
                 } 
                 onLoadComments();
                 getCommentsWrapper();

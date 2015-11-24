@@ -27,6 +27,9 @@ public with sharing class IPM_ProjectHelper
     // Query Additional Parameters
     public static final String LIMIT_CLAUSE_STR = ' limit 50000 ';
     public static final String FOR_UPDATE_STR = ' FOR UPDATE ';
+    public static final String WHERE_CLAUSE_STR = ' where ipm_project__c in :resultantprojectids ';
+    
+    public static final String IPM_PROJECT_ROLLOUT = 'IPM_Project_Rollout__c';
     
     public static Set<Id> incomingProjectIds = new Set<Id>();
     public static Set<Id> resultantProjectIds = new Set<Id>();
@@ -409,7 +412,7 @@ public with sharing class IPM_ProjectHelper
             // Get project document specific Information
             
             String projectDocumentQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Document__c',false,null);
-            String projectDocumentWhereClause = ' WHERE IPM_Project__c in :resultantProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR; // NO SONAR QUBE string literal used in dynamic SOQL 
+            String projectDocumentWhereClause = WHERE_CLAUSE_STR+LIMIT_CLAUSE_STR + FOR_UPDATE_STR; // NO SONAR QUBE string literal used in dynamic SOQL 
             projectDocumentQuery = projectDocumentQuery + projectDocumentWhereClause;
             projectDocumentMap = new Map<Id,IPM_Project_Document__c>( (List<IPM_Project_Document__c>) database.query(projectDocumentQuery) );
              
@@ -475,7 +478,7 @@ public with sharing class IPM_ProjectHelper
             // Get Questionnaire Specific information
              
             String projectQuestionnaireQuery = IPM_Utils.prepareSOQLQuery('IPM_Questionnaire__c',false,null);
-            String projectQuestionnaireWhereClause = ' WHERE IPM_Project__c in :resultantProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+            String projectQuestionnaireWhereClause = WHERE_CLAUSE_STR+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
             projectQuestionnaireQuery = projectQuestionnaireQuery + projectQuestionnaireWhereClause;
             projectQuestionnaireMap = new Map<Id,IPM_Questionnaire__c>( (List<IPM_Questionnaire__c>) database.query(projectQuestionnaireQuery) );
             
@@ -492,7 +495,7 @@ public with sharing class IPM_ProjectHelper
             // Get Resource Specific Information
             
             String projectResourceQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Resource__c',false,null);
-            String projectResourceWhereClause = ' WHERE IPM_Project__c in :resultantProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+            String projectResourceWhereClause = WHERE_CLAUSE_STR+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
             projectResourceQuery = projectResourceQuery + projectResourceWhereClause;
             projectResourceMap = new Map<Id,IPM_Project_Resource__c>( (List<IPM_Project_Resource__c>) database.query(projectResourceQuery) );
             
@@ -509,7 +512,7 @@ public with sharing class IPM_ProjectHelper
             
             // Get CMI Gate Specific information
             String projectCMIGateQuery = IPM_Utils.prepareSOQLQuery('IPM_Gate_CMI__c',false,null);
-            String projectCMIGateWhereClause = ' WHERE IPM_Project__c in :resultantProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+            String projectCMIGateWhereClause = WHERE_CLAUSE_STR+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
             projectCMIGateQuery = projectCMIGateQuery + projectCMIGateWhereClause;
             projectCMIGateMap = new Map<Id,IPM_Gate_CMI__c>( (List<IPM_Gate_CMI__c>) database.query(projectCMIGateQuery) );
             
@@ -555,7 +558,7 @@ public with sharing class IPM_ProjectHelper
             
             // Get References for Child rollouts for parent Rollouts. we have 2 types of Rollouts. Regional and Local. 
             // Local dont have any childs, so only Regional Rollout in Where Clause
-            String projectRolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null); // NO SONAR QUBE 'ipm_project_rollout__c' used in dyanmic SOQL
+            String projectRolloutQuery = IPM_Utils.prepareSOQLQuery(IPM_PROJECT_ROLLOUT,false,null); // NO SONAR QUBE IPM_PROJECT_ROLLOUT used in dyanmic SOQL
             String projectRolloutWhereClause = ' WHERE Id in:projectSourceRolloutSet OR (Regional_Rollout__c in :projectSourceRolloutSet AND recordTypeId = :LOCAL_ROLLOUT_RECORDTYPE ) '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
             projectRolloutQuery = projectRolloutQuery + projectRolloutWhereClause;
             Map<Id,IPM_Project_Rollout__c> projectsSourceRolloutsMap = new Map<Id,IPM_Project_Rollout__c>( (List<IPM_Project_Rollout__c>) database.query(projectRolloutQuery) );
@@ -639,7 +642,7 @@ public with sharing class IPM_ProjectHelper
     {
         // Get Task Specific information
         String projectTaskQuery = IPM_Utils.prepareSOQLQuery('IPM_Task__c',false,null);
-        String projectTaskWhereClause = ' WHERE IPM_Project__c in :resultantProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+        String projectTaskWhereClause = WHERE_CLAUSE_STR+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
         projectTaskQuery = projectTaskQuery + projectTaskWhereClause;
         projectTaskMap = new Map<Id,IPM_Task__c>( (List<IPM_Task__c>) database.query(projectTaskQuery) );
         
@@ -667,7 +670,6 @@ public with sharing class IPM_ProjectHelper
         // upsert based on Salesforce Id as mapping for Existing Project Documents is already done .
         if(preparedprojectDocumentList!=null && !preparedprojectDocumentList.isEmpty())
         {   
-            System.debug('---preparedprojectDocumentList------------>>'+preparedprojectDocumentList);
             upsert preparedprojectDocumentList Id;
             
                
@@ -892,9 +894,6 @@ public with sharing class IPM_ProjectHelper
                         postFixToUniqueFinancialKeySet.put(KEY_POSTFIX,uniqueFinancialKeySet);
                     }
                     
-                    System.debug(LoggingLevel.Error,'completeFinancialUniqueKeySet-->>'+completeFinancialUniqueKeySet);
-                    System.debug(LoggingLevel.Error,'postFixToUniqueFinancialKeySet-->>'+postFixToUniqueFinancialKeySet);
-                    
                     // Store the list of Unique Keys against projects.
                     if(!postFixToUniqueFinancialKeySet.isEmpty())
                     {
@@ -1038,7 +1037,7 @@ public with sharing class IPM_ProjectHelper
                                             isChanged = true;
                                         }
                                     
-                                        if(regionalRollout!=null && financialObj.get('IPM_Project_Rollout__c') != regionalRollout && updateFieldAPIs.contains('IPM_Project_Rollout__c'))
+                                        if(regionalRollout!=null && financialObj.get(IPM_PROJECT_ROLLOUT) != regionalRollout && updateFieldAPIs.contains(IPM_PROJECT_ROLLOUT))
                                         {
                                             financialObj.IPM_Project_Rollout__c= regionalRollout;
                                             isChanged = true;
@@ -1057,7 +1056,6 @@ public with sharing class IPM_ProjectHelper
                                             if(gateIndicator!=null)
                                             {
                                                 Boolean gateApprovalValue = (Boolean)financialObj.get(gateIndicator);
-                                                System.debug(LoggingLevel.Error,'gateIndicator-->>'+gateIndicator);
                                                 if(!gateApprovalValue)
                                                 {
                                                     financialObj.put(gateIndicator,true);
@@ -1212,7 +1210,7 @@ public with sharing class IPM_ProjectHelper
                                                     isChanged = true;
                                                 }
                                         
-                                                if(regionalRollout!=null && financialObj.get('IPM_Project_Rollout__c') != regionalRollout && insertFieldAPIs.contains('IPM_Project_Rollout__c'))
+                                                if(regionalRollout!=null && financialObj.get(IPM_PROJECT_ROLLOUT) != regionalRollout && insertFieldAPIs.contains(IPM_PROJECT_ROLLOUT))
                                                 {   
                                                     financialObj.IPM_Project_Rollout__c= regionalRollout;
                                                     isChanged = true;
@@ -1264,7 +1262,6 @@ public with sharing class IPM_ProjectHelper
             }
         }
         
-        System.debug(LoggingLevel.Error,'financialsToUpsert-->>'+financialsToUpsert);
         
         if(!financialsToUpsert.isEmpty())
         {
@@ -1327,7 +1324,7 @@ public with sharing class IPM_ProjectHelper
         if(incomingProjectIds!=null && !incomingProjectIds.isEmpty())
         {
             
-            String projectRolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null);
+            String projectRolloutQuery = IPM_Utils.prepareSOQLQuery(IPM_PROJECT_ROLLOUT,false,null);
             String projectRolloutWhereClause = ' WHERE IPM_Project__c in:incomingProjectIds OR Local_Project__c in :incomingProjectIds OR Regional_Project__c in :incomingProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
             projectRolloutQuery = projectRolloutQuery + projectRolloutWhereClause;
             Map<Id,IPM_Project_Rollout__c> rolloutDetailMap = new Map<Id,IPM_Project_Rollout__c>( (List<IPM_Project_Rollout__c>) database.query(projectRolloutQuery) );

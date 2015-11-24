@@ -172,7 +172,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 }
             }
             
-            System.debug(LoggingLevel.ERROR,'ipmProjectList-->>'+ipmProjectList);
             
             if(!ipmProjectList.isEmpty())
             {
@@ -290,12 +289,15 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             currentStage = IPM_ConstantUtils.CHARTER_GATE;
             
         }    
-        else if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY)
+        else if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY) {
             currentStage = IPM_ConstantUtils.CONTRACT_GATE;
-        else if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY)
+		}
+        else if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY) {
             currentStage = IPM_ConstantUtils.MARKET_READY_GATE;
-        else if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY)
-            currentStage = IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE;
+		}
+        else if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY){
+            currentStage = IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE; 
+		}
         
         String headerString = IPM_ConstantUtils.PERCENTAGE + IPM_ConstantUtils.SECTION_TYPE_HEADER + IPM_ConstantUtils.PERCENTAGE;
 
@@ -326,8 +328,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         documentSections = new List<SelectOption>();
         documentSections.add(new SelectOption(IPM_ConstantUtils.BLANK, Label.IPM_GO_TO_DOCUMENT_SECTION));
         if(lstCurrentDocuments!=null && !lstCurrentDocuments.isEmpty()){
-            For(IPM_Project_Document_Section__c documentSection : lstCurrentDocuments[0].IPM_Project_Sections__r)
+            For(IPM_Project_Document_Section__c documentSection : lstCurrentDocuments[0].IPM_Project_Sections__r){
                 documentSections.add(new SelectOption(documentSection.Id, documentSection.IPM_Section_Sequence__c + IPM_ConstantUtils.EMPTY_STRING_DELIMITER + documentSection.IPM_Section_Name__c));
+			}
         }
     }
 
@@ -424,18 +427,21 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 // If Project is Local Rollout Project
                 else if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
                 {
-                    if (currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME)
+                    if (currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME) {
                         getLocalMyViewWrappers();
-                    else if (currentTab == IPM_ConstantUtils.TAB_TOPDOWN_NAME)
+					}
+                    else if (currentTab == IPM_ConstantUtils.TAB_TOPDOWN_NAME) {
                         getLocalMyViewWrappers();
+					}
                 }
         } // If Project is Global Operational Project
         else if(project.IPM_SourceProjectType__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
         { 
             mapDefaultFinancials = new Map<String, IPM_Financial__c> (); 
             
-            if (currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME)
+            if (currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME) {
                 getOperationalMyViewWrappers(); 
+			}
         }
         
          if(statefulCurrentFinancialId != NULL){
@@ -450,19 +456,19 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * @return       NONE
     */
     private void getRecordtypes(){
-        if (REGIONAL_ROLLOUT_RECORDTYPE == null)
+        if (REGIONAL_ROLLOUT_RECORDTYPE == null) {
             REGIONAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId();
-
-        if (LOCAL_ROLLOUT_RECORDTYPE == null)
+         }
+        if (LOCAL_ROLLOUT_RECORDTYPE == null) {
             LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
-
-        if (DEFAULT_FINANCIAL_RECORDTYPE == null)
+        }
+        if (DEFAULT_FINANCIAL_RECORDTYPE == null) {
             DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
-           
+         }     
         
-        if (CONSOLIDATED_FINANCIAL_RECORDTYPE == null)
+        if (CONSOLIDATED_FINANCIAL_RECORDTYPE == null) {
             CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
-           
+        }        
     }
     
     /*******************************************************************************************************
@@ -525,8 +531,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         {
             currentFinancialId = firstFinancialId;    
         }
-        
-        System.debug('currentFinancialId-->>'+currentFinancialId);
         
     }
     
@@ -624,8 +628,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 firstFinancialId = ipmFinancial.Id;
            }
         }
-        if ((currentFinancialId == NULL) || (currentFinancialId == IPM_ConstantUtils.BLANK))
+        if ((currentFinancialId == NULL) || (currentFinancialId == IPM_ConstantUtils.BLANK)) {
             currentFinancialId = firstFinancialId;
+		}
            
         }
     
@@ -760,19 +765,21 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
                                               
         For(IPM_Financial__c ipmFinancial : lstIpmFinancial){
-            if(ipmFinancial.Regional_Project__c == NULL)
+            if(ipmFinancial.Regional_Project__c == NULL) {
                 mapConsolidatedFinancials.put(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL, ipmFinancial);
-            else
+			}
+            else {
                 mapConsolidatedFinancials.put(ipmFinancial.Regional_Project__r.Market_Cluster_Name__c, ipmFinancial);
+			}
 
-            if (previousFinancialId == ipmFinancial.Id)
+            if (previousFinancialId == ipmFinancial.Id) {
                 currentFinancialId = previousFinancialId;
+			}
             }
       
 
         if ((currentFinancialId == NULL) || (currentFinancialId == IPM_ConstantUtils.BLANK)){
             currentFinancialId = firstFinancialId;
-            
         }
     }
     
@@ -977,10 +984,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 
         String firstFinancialId = '';
         For (IPM_Financial__c financial : lstLocalFinancials){
-            if ((firstFinancialId == NULL) || (firstFinancialId == IPM_ConstantUtils.BLANK))
+            if ((firstFinancialId == NULL) || (firstFinancialId == IPM_ConstantUtils.BLANK)) {
                 firstFinancialId = financial.Id;
-            if (previousFinancialId == financial.Id)
+			}
+            if (previousFinancialId == financial.Id) {
                 currentFinancialId = previousFinancialId;
+			}
         }
 
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
@@ -992,17 +1001,21 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         if(!lstIpmFinancial.isEmpty()){
         For(IPM_Financial__c ipmFinancial : lstIpmFinancial){
-            if (ipmFinancial.Regional_Project__c == NULL)
+            if (ipmFinancial.Regional_Project__c == NULL) {
                 mapConsolidatedFinancials.put(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL, ipmFinancial);
-            else
+			}
+            else {
                 mapConsolidatedFinancials.put(ipmFinancial.Regional_Project__r.Market_Cluster_Name__c, ipmFinancial);
+			}
 
-            if (previousFinancialId == ipmFinancial.Id)
+            if (previousFinancialId == ipmFinancial.Id) {
                 currentFinancialId = previousFinancialId;
+			}
             }
         }
-        if ((currentFinancialId == NULL) || (currentFinancialId == IPM_ConstantUtils.BLANK))
+        if ((currentFinancialId == NULL) || (currentFinancialId == IPM_ConstantUtils.BLANK)){
             currentFinancialId = firstFinancialId;
+		}
 
     }
 
@@ -1020,13 +1033,15 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         String queryString = 'SELECT ';
        
         //IPM Financial
-        For (String field : Schema.SObjectType.IPM_Financial__c.fields.getMap().KeySet())
+        For (String field : Schema.SObjectType.IPM_Financial__c.fields.getMap().KeySet()) {
             queryString+= field + ', ';
+		}
         //IPM Financial Year
         queryString+= 'Last_Saved_By_Global__r.Name,Last_Saved_By_Regional__r.Name,Last_Saved_By_Local__r.Name, (SELECT ';
         For (String field : Schema.SObjectType.IPM_Financial_Year__c.fields.getMap().KeySet()){
-            if (field != 'Id')
+            if (field != 'Id') {
                 queryString+= field + ', ';
+			}
         }
         
       
@@ -1274,8 +1289,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
              getSustainabilityPeriod();
              getFinancials();
             
-            if(currentFinancial.Project_Sustainability_Period__c == selectedSustainabilityPeriod)
+            if(currentFinancial.Project_Sustainability_Period__c == selectedSustainabilityPeriod) {
                 sustainabilityPeriodChanging = false;
+			}
             
         } catch (Exception eX){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
@@ -1659,8 +1675,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 
         //Add all the objects
         if (mapFinancialYearRecords!=null && !mapFinancialYearRecords.isEmpty()){
-            For(IPM_Financial_Year__c obj : mapFinancialYearRecords.values())
+            For(IPM_Financial_Year__c obj : mapFinancialYearRecords.values()) {
                 lstUpdateFinancials.add(obj);
+		    }
         }
     }
 
@@ -1678,10 +1695,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         {
             IPM_Financial_Year__c fyRecord = mapFinancialYears.get(generateMapKey(yearType, IPM_ConstantUtils.BLANK + valueWrapper.index, plType));
             String recordId = fyRecord.Id;
-            If (mapFinancialYearRecords.containsKey(recordId))
+            if (mapFinancialYearRecords.containsKey(recordId)) {
                 fyRecord = mapFinancialYearRecords.get(recordId);
-            else
+			}
+            else {
                 mapFinancialYearRecords.put(recordId, fyRecord);
+			}
             
             fyRecord.put(fieldName, valueWrapper.value);
         }
@@ -1693,7 +1712,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * @return       NONE
     */
     public void refreshFromLocal() {
-        System.debug('RTDebug refreshFromLocal');
         try{
             currentFinancial.Copy_Local_to_Regional__c = true;
             Database.update(currentFinancial);
@@ -1712,7 +1730,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * @return       NONE
     */
     public void refreshFromRegional() {
-        System.debug('RTDebug refreshFromRegional');
         try{
             currentFinancial.Copy_Regional_to_Local__c = true;
             Database.update(currentFinancial);
@@ -1843,7 +1860,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                              
      
                                     }
-                 if(isValidWrapperFailed==true){
+                 if(isValidWrapperFailed){
                   valueWrapperGross.isValueInvalid = true;
                     valueWrapperIncremental.isValueInvalid = true;
                     isValidationFailed = true;
@@ -1871,7 +1888,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                         
                      }
                
-                 if(isValidWrapperFailed==true){
+                 if(isValidWrapperFailed){
                   valueWrapperGross.isValueInvalid = true;
                     valueWrapperIncremental.isValueInvalid = true;
                     isValidationFailed = true;
@@ -1919,8 +1936,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         {
             get
             {
-               if(selectedCurrency==null)
+               if(selectedCurrency==null){
                selectedCurrency='EUR';
+			   }
                return selectedCurrency;
             }
         set;
@@ -1936,13 +1954,14 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     exrate = 1;
                 }
                                 /*Instead of calling everytime on list change, making it conditional in below method*/
-                //getFinancials();
-                getFinancialsPartial();
+                getFinancials();
+                ///getFinancialsPartial();
             }
             return null;
         }
     
     /*This methid is called every time currency is changed on IPM_Financial_Currency page*/
+    /* DO NOT DELETE - KEPT FOR PERFORMANCE CHECK
     private void getFinancialsPartial(){
         if (currentFinancial != NULL){
             financialsInnovation = new IPM_FinancialWrapper();
@@ -1967,10 +1986,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
            
         }else{
-            /*When page is loaded [currentFinancial] has all the data so no need to query every time currency is changed*/
+            //When page is loaded [currentFinancial] has all the data so no need to query every time currency is changed
             getFinancials();
         }
-    }
+    }*/
     
     /*public pageReference goBacktoFin(){
         pageReference ref = new pageReference('/apex/IPM_Financial?id='+projectId);

@@ -473,7 +473,9 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     }
                 }
                 else
+                {
                     finExternalID=project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_DEFAULT;
+                }
     }
     
     public void validateRisk()
