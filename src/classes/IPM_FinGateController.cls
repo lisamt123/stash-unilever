@@ -43,8 +43,9 @@ public with sharing class IPM_FinGateController {
     * @return       NONE
     */
     public void showFinancials() {
-        if (projectId == null)
+        if (projectId == null) {
             projectId = ApexPages.currentPage().getParameters().get('id');
+		}
         
         if (projectId != NULL){
             project = [SELECT Id, IPM_Project_Name__c, Sustainability_Period__c, IPMProject_Span__c, Market_Cluster__c, Market_Cluster_Name__c, IPM_Parent_Project__c, 
@@ -77,14 +78,17 @@ public with sharing class IPM_FinGateController {
     */
     private void getFieldSuffix(){
         if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL 
-        	 ||(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS))
+        	 ||(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS)) {
             fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+		}
 
-        else if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
+        else if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) {
             fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+		}
 
-        else
+        else {
             fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+		}
     }
 
     /*******************************************************************************************************
@@ -128,19 +132,23 @@ public with sharing class IPM_FinGateController {
     */
     private void getFinancials(){
         String ExternalId; // NO SONAR. variable used in Dyanamic SOQL
-        if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL || (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))
+        if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL || (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)) {
             ExternalId = project.IPM_Project_Name__c;
-        else
+	    } 
+        else {
             ExternalId = project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+		}
         String queryString = 'SELECT ';
         //IPM Financial
-        For (String field : Schema.SObjectType.IPM_Financial__c.fields.getMap().KeySet())
+        For (String field : Schema.SObjectType.IPM_Financial__c.fields.getMap().KeySet()) {
             queryString+= field + ', ';
+		}
         //IPM Financial Year
         queryString+= '(SELECT ';
         For (String field : Schema.SObjectType.IPM_Financial_Year__c.fields.getMap().KeySet()){
-            if (field != 'Id')
+            if (field != 'Id') {
                 queryString+= field + ', ';
+			}
         }
         queryString+= 'Id FROM IPM_Financial_Years__r ORDER BY Year__c)';
         queryString+= 'FROM IPM_Financial__c WHERE Financial_External_ID__c =: ExternalId';// need to repace by external is

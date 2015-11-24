@@ -219,7 +219,6 @@ public with sharing class IPM_GateCMIController{
                                 IPM_Project_Document_Section__c,IPM_CMI_Outcome_Color_Achieved__c,IPM_CMI_Results_Acheived__c,IPM_CMI_Outcome_Color__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c 
                          FROM IPM_Project_Document_Section_Content__c 
                          WHERE IPM_Project_Document_Section__c=:projDocSecId];
-            System.debug(sectionList+'***sectionList***');             
             for(IPM_Project_Document_Section_Content__c pdsc:sectionList){
                 if(restrictCountry==null){
                     resList.add(pdsc);
@@ -282,13 +281,10 @@ public with sharing class IPM_GateCMIController{
                     }
                 }
             }
-            System.debug(selectedCountryName+'***selectedCountryName***');
-            System.debug(projDocSec.IPM_CMI_Selected_Countries__c+'***projDocSec.IPM_CMI_Selected_Countries__c***');             
             if(projDocSec.IPM_CMI_Selected_Countries__c!=selectedCountryName){
                 projDocSec.IPM_CMI_Selected_Countries__c=selectedCountryName;
                 update projDocSec;
             }
-            System.debug(projDocSec.IPM_CMI_Selected_Countries__c+'***projDocSec.IPM_CMI_Selected_Countries__c***'); 
             if(!String.isBlank(selectedCountryName)){
                 countryNameList=selectedCountryName.split(IPM_ConstantUtils.SEMICOLON);
             }

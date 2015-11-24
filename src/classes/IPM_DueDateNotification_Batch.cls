@@ -50,11 +50,12 @@ global without sharing class IPM_DueDateNotification_Batch implements Database.B
         {
           //Check if milestone is current active milestone of the project 
           
-          if(Test.isRunningTest())
+          if(Test.isRunningTest()){
               projectPhase = eachMilestone.IPM_Project__r.IPM_Temporary_Phase__c;
-          else
+          } 
+          else {
               projectPhase = eachMilestone.IPM_Project__r.IPM_Phase__c;
-              
+          }
           if(projectPhase == eachMilestone.IPM_Phase__c && String.IsNotBlank(String.valueOf(eachMilestone.IPM_Due_Date__c)))
           {
              dateValue=Date.valueOf(System.today()).daysBetween(Date.valueOf(eachMilestone.IPM_Due_Date__c));
@@ -79,13 +80,13 @@ global without sharing class IPM_DueDateNotification_Batch implements Database.B
                           projLeadSet.add(eachMilestone.IPM_Project__r.IPM_Company_Card__r.IPM_Business_Partner__c);
                     }
                     for(IPM_Project_Resource__c eachResource:resourceList)
-          			{	
-                    	if(eachMilestone.IPM_Project__c == eachResource.IPM_Project__c && eachResource.IPM_User__c != null)
-                    	{
-                    		  projLeadSet.add(eachResource.IPM_User__c);
-                    	}
-          			}
-          		projIdNewProjectsSet.add(eachMilestone.IPM_Project__c);
+                    {   
+                        if(eachMilestone.IPM_Project__c == eachResource.IPM_Project__c && eachResource.IPM_User__c != null)
+                        {
+                              projLeadSet.add(eachResource.IPM_User__c);
+                        }
+                    }
+                projIdNewProjectsSet.add(eachMilestone.IPM_Project__c);
                 subjectIdMentionIdSetMap.put(eachMilestone.IPM_Project__c,projLeadSet);
                 projIdchatterMessageMap.put(eachMilestone.IPM_Project__c,IPM_ConstantUtils.IPM_SPACE + IPM_ConstantUtils.PLANNED+eachMilestone.IPM_Type_of_gate__c+IPM_ConstantUtils.IPM_SPACE+IPM_ConstantUtils.GATE+IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_DUE_ON_TODAY+System.Label.IPM_Remember_To_Update);
                 
@@ -111,13 +112,13 @@ global without sharing class IPM_DueDateNotification_Batch implements Database.B
                           projLeadSet.add(eachMilestone.IPM_Project__r.IPM_Company_Card__r.IPM_Business_Partner__c);
                     }
                     for(IPM_Project_Resource__c eachResource:resourceList)
-          			{	
-                    	if(eachMilestone.IPM_Project__c == eachResource.IPM_Project__c && eachResource.IPM_User__c != null)
-                    	{
-                    		  projLeadSet.add(eachResource.IPM_User__c);
-                    	}
-          			}	   
-          		projIdNewProjectsSet.add(eachMilestone.IPM_Project__c);
+                    {   
+                        if(eachMilestone.IPM_Project__c == eachResource.IPM_Project__c && eachResource.IPM_User__c != null)
+                        {
+                              projLeadSet.add(eachResource.IPM_User__c);
+                        }
+                    }      
+                projIdNewProjectsSet.add(eachMilestone.IPM_Project__c);
                 subjectIdMentionIdSetMap.put(eachMilestone.IPM_Project__c,projLeadSet);
                 projIdchatterMessageMap.put(eachMilestone.IPM_Project__c,IPM_ConstantUtils.IPM_SPACE+IPM_ConstantUtils.PLANNED+eachMilestone.IPM_Type_of_gate__c+IPM_ConstantUtils.IPM_SPACE+IPM_ConstantUtils.GATE+IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_Due_Date_In_21_days+IPM_ConstantUtils.DUE_DATE_STR2);
                 
@@ -136,7 +137,7 @@ global without sharing class IPM_DueDateNotification_Batch implements Database.B
                 eachMilestone.IPM_Milestone_Due_Date_In_Past__c = false;
                 milestonesUpdated.add(eachMilestone);
                }
-          	}  
+            }  
         }
         
         try

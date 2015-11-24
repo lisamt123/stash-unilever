@@ -18,7 +18,7 @@ public with sharing class IPM_FinancialActionStandards {
     public Decimal numValue{get; set;}
     public void setprojectId (ID p){
         projectId = p;
-        showFinancialActionStandards();
+        showFinancialActionStandards(); 
     }
     
     /***********************************************************************************************************************************************************
@@ -99,14 +99,17 @@ public with sharing class IPM_FinancialActionStandards {
     * @return       NONE
     */
     public void getFieldSuffix(){
-        if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL || (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS))
-            fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+        if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL || (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS)) {
+            fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL; 
+		}
 
-        else if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+        else if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {
             fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+		}
 
-        else
+        else {
             fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+		}
 
     }
 
@@ -142,28 +145,33 @@ public with sharing class IPM_FinancialActionStandards {
                     
         
         mapFinancialYears = new Map<String, IPM_Financial_Year__c>();
-        For(IPM_Financial_Year__c finYear : financial.IPM_Financial_Years__r)
+        For(IPM_Financial_Year__c finYear : financial.IPM_Financial_Years__r) {
             mapFinancialYears.put(finYear.External_Id__c, finYear);
+		}
         
         
         String firstFullYearGrossExtId = financialExternalId + '_' + IPM_ConstantUtils.Y1_LABEL + '_' + IPM_ConstantUtils.YEAR_TYPE_INNOVATION + '_' + IPM_ConstantUtils.PL_TYPE_GROSS;
-        if (mapFinancialYears.containsKey(firstFullYearGrossExtId))
+        if (mapFinancialYears.containsKey(firstFullYearGrossExtId)) {
             firstFullYearGross = mapFinancialYears.get(firstFullYearGrossExtId);
+		}
         
         String firstFullYearIncrementalExtId = financialExternalId + '_' + IPM_ConstantUtils.Y1_LABEL + '_' + IPM_ConstantUtils.YEAR_TYPE_INNOVATION + '_' + IPM_ConstantUtils.PL_TYPE_INCREMENTAL;
         
-        if (mapFinancialYears.containsKey(firstFullYearIncrementalExtId))
+        if (mapFinancialYears.containsKey(firstFullYearIncrementalExtId)) {
             firstFullYearIncremental = mapFinancialYears.get(firstFullYearIncrementalExtId);
+		}
         
         if ((firstFullYearGross != null) && (firstFullYearIncremental != null)){
             //Generate Wrappers
             printDoc = ApexPages.currentPage().getParameters().get('printDoc');
             
             String actionsStandardsFieldSuffix;
-            if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)
+            if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) {
                 actionsStandardsFieldSuffix = fieldSuffix;
-            else
+			}
+            else {
                 actionsStandardsFieldSuffix = IPM_ConstantUtils.FIELD_SUFFIX_CHARTER;
+			}
             
             innovationValueShareWrapper.actionStandardValue = ((Decimal) firstFullYearGross.get(IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE + actionsStandardsFieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).setScale(1);
            
@@ -177,10 +185,12 @@ public with sharing class IPM_FinancialActionStandards {
     
             //Charter - Always Process Charter Results
             lstGateNames.add(IPM_ConstantUtils.CHARTER_GATE);
-            if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)
+            if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) {
                 processWrapperListGateValues(fieldSuffix);
-            else
+			}
+            else {
                 processWrapperListGateValues(IPM_ConstantUtils.FIELD_SUFFIX_CHARTER);
+			}
     
             
             //Contract - Only Process if Project phase is not Ideas && Gate Not Charter 
@@ -188,10 +198,12 @@ public with sharing class IPM_FinancialActionStandards {
                     && (printDoc != IPM_ConstantUtils.CHARTER_GATE)){
     
                 lstGateNames.add(IPM_ConstantUtils.CONTRACT_GATE);
-                if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY)
+                if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY) {
                     processWrapperListGateValues(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL);
-                else
+				}
+                else {
                     processWrapperListGateValues(IPM_ConstantUtils.FIELD_SUFFIX_CONTRACT);
+				}
             }
     
             //Market Ready - Only Process if Project phase is not Ideas,Feasibility && Gate Not Charter,Contract 
@@ -201,10 +213,12 @@ public with sharing class IPM_FinancialActionStandards {
                     && (printDoc != IPM_ConstantUtils.CONTRACT_GATE)){
     
                 lstGateNames.add(IPM_ConstantUtils.MARKET_READY_GATE);
-                if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY)
-                    processWrapperListGateValues(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL);
-                else
+                if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY) {
+                    processWrapperListGateValues(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL); 
+				}
+                else {
                     processWrapperListGateValues(IPM_ConstantUtils.FIELD_SUFFIX_MARKET_READY);
+				}
             }
     
             //Market Deployment - Only Process if Project phase is not Ideas,Feasibility,Capability && Gate Not Charter,Contract,Market Ready 
@@ -216,10 +230,12 @@ public with sharing class IPM_FinancialActionStandards {
                     && (printDoc != IPM_ConstantUtils.MARKET_READY_GATE)){
     
                 lstGateNames.add(IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE);
-                if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY)
+                if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY) {
                     processWrapperListGateValues(IPM_ConstantUtils.PROJECT_SPAN_LOCAL);
-                else
+				}
+                else {
                     processWrapperListGateValues(IPM_ConstantUtils.FIELD_SUFFIX_MARKET_DEPLOYMENT);
+				}
             }
             
             //1 Column (attributes) + 1 column (Action Standards) + 1 column (Comments) + Number of Gates to be made visible

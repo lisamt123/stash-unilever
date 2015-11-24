@@ -72,7 +72,9 @@ public with sharing class IPM_Milestone {
             // Reterive the project type 
             IPM_Project_Type__c projectType = IPM_Utils.retrieveProjectType(projectObject);
             if(projectType!=null)
-            sourceProjectType = projectType.Source_Project_Type__c; // Get the source Project type
+            {
+            	sourceProjectType = projectType.Source_Project_Type__c; // Get the source Project type
+            }	
             
             if(String.IsNotBlank(ApexPages.currentPage().getParameters().get(IPM_Utils.taskId)))
             {
