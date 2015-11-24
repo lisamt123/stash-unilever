@@ -1,0 +1,5 @@
+<apex:page standardController="CMS_Content__c" extensions="isll_ReturnUrlExtention">
+	<apex:form >
+		<c:isll_CmsContentComponent cmsContentId="{!Id}" mode="edit"/>
+	</apex:form>
+</apex:page>

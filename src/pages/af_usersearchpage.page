@@ -1,0 +1,100 @@
+<apex:page controller="af_usersearch" sidebar="false">
+
+  <apex:form >
+  <apex:pageMessages id="errors" />
+        
+  <apex:pageBlock title="Find User" mode="edit">
+
+  <table width="100%" border="0">
+  <tr>  
+    <td width="200" valign="top">
+
+      <apex:pageBlock title="Search Fields" mode="edit" id="criteria">
+
+
+      <table cellpadding="2" cellspacing="2">
+      <tr>
+        <td style="font-weight:bold;">First Name<br/>
+        <apex:inputText value="{!firstname}"/>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold;">Last Name<br/>
+        <apex:inputText value="{!lastName}"/>
+        </td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold;">Email<br/>
+            <apex:inputText value="{!email}"/>
+        </td>
+      </tr>
+
+
+      </table>
+
+      </apex:pageBlock>
+      <apex:commandButton action="{!runSearch}" value="Search" status="status"/>
+        <apex:ActionStatus id="status" >
+        <apex:facet name="start">
+            <c:AF_Spinner BackColor="#efefef" borderColor="#efefef" borderSize="0" height="50px" width="180px" Message="Please wait" messageStyle="color:black;font-size:10pt;font-family:arial;font-weight:bold;" ImageUrl="/img/loading.gif"/>
+        </apex:facet>
+        </apex:ActionStatus>
+    </td>
+    <td valign="top">
+
+    <apex:pageBlock mode="edit" id="results">
+
+        <apex:pageBlockTable value="{!users}" var="user">
+		<apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Name" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="name" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputLink value="/apex/AF_MultiSelectPage?userid={!user.id}">
+            	{!user.name}
+            </apex:outputLink>
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="First Name" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="firstName" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!user.firstName}"/>
+            </apex:column>
+
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Last Name" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="lastName" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!user.lastName}"/>
+            </apex:column>
+
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:commandLink value="Email" action="{!toggleSort}" rerender="results,debug">
+                        <apex:param name="sortField" value="email" assignTo="{!sortField}"/>
+                    </apex:commandLink>
+                </apex:facet>
+                <apex:outputField value="{!user.email}"/>
+            </apex:column>
+        </apex:pageBlockTable>
+
+    </apex:pageBlock>
+
+    </td>
+  </tr>
+  </table>
+
+  <apex:pageBlock title="Debug - SOQL" id="debug" >
+      <apex:outputText value="{!debugSoql}" />           
+  </apex:pageBlock>    
+
+  </apex:pageBlock>
+
+  </apex:form>
+
+</apex:page>

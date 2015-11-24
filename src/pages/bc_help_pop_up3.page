@@ -1,0 +1,48 @@
+<apex:page showHeader="false" sidebar="false">
+ <link rel="stylesheet" type="text/css" media="all" href="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/css/style.css')}" />
+
+<div class="help_template">
+<div class="title">TEST</div>
+  <p>
+      This page holds all the information about your Brand Centre. If you have just created it you should completed all the required information. If you have already created your Brand Centre and you wish to edit some information, click edit to change a value on the screen. 
+
+  </p>
+<p>
+ <img src="{!URLFOR($Resource.ulw_help_pop_up, 'img/help_image_3.jpg')}"/>
+  
+</p>
+
+<table width="800" border="0" cellpadding="4">
+  <tr>
+    <td class="bubblebox"><span class="numcolor">1</span></td>
+    <td class="bubbletxt"><span>Click Edit to change details on the page.
+</span></td>
+  </tr>
+  <tr>
+    <td class="bubblebox"><span class="numcolor">2</span></td>
+    <td class="bubbletxt"><span>Select Delete to delete your Brand Centre. 
+</span></td>
+  </tr>
+  <tr>
+    <td class="bubblebox"><span class="numcolor">3</span></td>
+    <td class="bubbletxt"><span>Click New Article to add an Article to your Brand Centre. 
+</span></td>
+  </tr>
+  <tr>
+    <td class="bubblebox"><span class="numcolor">4</span></td>
+    <td class="bubbletxt"><span>Click New Links to add your Who’s who link. 
+</span></td>
+  </tr>
+  <tr>
+    <td class="bubblebox"><span class="numcolor">5</span></td>
+    <td class="bubbletxt"><span>Click New Brand Link Centre Sections to add a new section to your Brand Centre
+</span></td>
+  </tr>
+  <tr>
+    <td class="bubblebox"><span class="numcolor">6</span></td>
+    <td class="bubbletxt"><span>For further help on creating your Brand Centre, please see the Brand Centre Admin guide on the Chatter Help Group.
+</span></td>
+  </tr>
+</table>
+</div>
+</apex:page>

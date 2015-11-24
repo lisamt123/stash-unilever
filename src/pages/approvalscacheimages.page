@@ -1,0 +1,4 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false"  docType="html-5.0" cache="false" applyBodyTag="false" applyHtmlTag="false">
+ <html manifest="/apex/approvalscacheimagesmanifest" type="text/cache-manifest">
+ </html>
+</apex:page>

@@ -1,0 +1,485 @@
+<!--
+VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
+1.1     Kendre Dnyaneshwar      19 Mar 2015     T1- code changes to make custom buttons(Save, cancel, Archieve BET)
+                                                action progress visible.                                                 
+-->
+<apex:page standardController="uw_BET__c" extensions="uw_BetEditController" showHeader="false">  
+  <apex:includeScript value="{!URLFOR($Resource.jscolor_1_4_1, 'jscolor/jscolor.js')}" />
+    <apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />    
+    <apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />    
+    <script>
+        jQuery.noConflict();
+        jQuery( document ).ready(function( $ ) {
+            jQuery('.question-icon[data-tooltip!=""]').qtip({
+                content: {
+                    attr: 'data-tooltip'
+                }
+            });
+            jQuery('.question-icon-left[data-tooltip!=""]').qtip({
+                content: {
+                    attr: 'data-tooltip'
+                },
+                position: {
+                  my: 'bottom right',
+                  at: 'top left'
+                }
+            });
+            jQuery('.launchDateArea a').attr('href', null);
+            jQuery('.launchDateArea a').on('click', function() {
+                var name = jQuery('.launchDateArea input').attr('name');
+                jQuery('input[name="'+name+'"]').focus();
+                return false;
+            });      
+
+            jQuery('#clearCurrentBanner').on('click', function(){
+                jQuery('#banner-container').hide('');
+                clearBannerAction();
+            });
+
+            jQuery('#clearFutureBanner').on('click', function(){
+                var input = jQuery('[id$="upload_banner"]');
+                input.replaceWith(input.val('').clone(true));               
+            });
+
+            jQuery('#clearCurrentIcon').on('click', function(){
+                jQuery('#icon-container').hide('');
+                clearIconAction();  
+            }); 
+
+            jQuery('#clearFutureIcon').on('click', function(){
+                var input = jQuery('[id$="upload_icon"]');
+                input.replaceWith(input.val('').clone(true));               
+            });
+
+            if ( jQuery('[id$="runJsSuccess"]').val() == "true" ){
+                //alert('test');
+                window.top.postMessage({action: 'saveBetPreferences',moveHome:{!if(moveHome,'true','false')}}, document.location.protocol + '//' + document.domain);
+            }
+        });
+    </script>
+
+    <!-- Define Tab panel .css styles -->
+    <style>
+    /** Colors **/
+.unileverApp .btn {
+  margin: 0;
+}
+body {
+  font-size: 100%;
+}
+body input.btn {
+  padding: 12px 40px;
+}
+body .btn {
+  font-family: 'Arial';
+  font-weight: normal;
+  border: none;
+  font-size: 13px;
+  color: #ffffff;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+body .btn.btn-cancel {
+  background: #666a6b;
+}
+body .btn.btn-save {
+  background: #be236d;
+}
+body button.clearButton {
+  background: #be236d;
+  border: none;
+  padding: 12px 20px;
+  font-family: 'Rockwell';
+  font-weight: normal;
+  margin: 4px 0px;
+  line-height: 1;
+  font-size: 17px;
+  color: #ffffff;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+.rich-tab-bottom-line {
+  border-bottom: 3px solid #be236d;
+}
+.rich-tabpanel-content {
+  font-family: 'Rockwell';
+  background: #f4f4f5;
+  border-left: 3px solid #be236d;
+  border-right: 3px solid #be236d;
+  border-bottom: 3px solid #be236d;
+  padding: 14px;
+}
+.rich-tabpanel-content label {
+  color: #4d5051;
+  font-size: 17px;
+}
+.form-item .item-label {
+  margin-bottom: 4px;
+}
+.form-item .item-label label {
+  font-family: 'Rockwell';
+  color: #4d5051;
+  font-size: 17px;
+}
+.form-item .item-input {
+  position: relative;
+}
+.form-item .item-input input {
+  width: 95%;
+  font-family: 'Rockwell';
+  font-size: 17px;
+  border: 2px solid #dcdcdc;
+  padding: 8px;
+  color: #4d5051;
+}
+.form-item .item-input select {
+  width: 47.5%;
+  display: block;
+  font-family: 'Rockwell';
+  font-size: 17px;
+  padding: 7px;
+  border: none;
+  margin-bottom: 8px;
+  color: #4d5051;
+}
+.form-item .item-input textarea {
+  width: 95%;
+  min-height: 50px;
+  border: none;
+}
+.form-item .item-input table {
+  width: 100%;
+}
+.form-item .item-input table select {
+  width: 90%;
+}
+.form-item .item-input .multiSelectPicklistCell {
+  width: 10%;
+}
+.form-item .item-input .lookupIcon,
+.form-item .item-input .lookupIconOn {
+  background-position: center center;
+  width: 41px;
+  height: 40px;
+  position: absolute;
+  margin-left: -41px;
+  background-image: url('data:image/gif;base64,R0lGODlhKAAoANUAAAAAAP////v7/PT09e3t7tfY2bu8vbW3uK6wsaWnqKCio56goZeZmnp9foyPkIqNjoWIiYOGh4GEhZOWl4+Sk2tvcGhsbWZqa3Z6e3R4eWpubnh8fH+Dg5WYmKOmpqGkpJyfn5qdncfJycXHx77AwLCysqmrq/Lz8+vs7Onq6uTl5eLj4+Dh4d3e3tna2tbX19TV1dLT083Ozv39/fj4+Pb29vHx8e/v7////wAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAADgALAAAAAAoACgAAAa4wItwSCwaj8ikcslsOp/QqHRKrVqv2Kx2y016XrWAyoDpChuugHpd83QltLVcTdpqUusWwjMSrCdaH2slRBwoaipaMGoxRhRrHFkDagtHN2ohWWsORytqblgnaglGFpMBDFkxaisWRQprG1khayQVQw6nLVoWLGspBggycgdbDTZzczOZWhkFyXICHVsWEyIrNy4mD8hqAhRmRBKiagThRBFhASfnRBAoNCDt8/T19vf4+fr7/P1mQQA7');
+}
+.form-item .item-input .dateInput .dateFormat {
+  display: inline-block;
+  height: 20px;
+  width: 19px;
+  position: absolute;
+  top: 10px;
+  margin-left: -30px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-image: url('data:image/png;base64,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');
+  font-size: 0px;
+}
+.form-item .item-input .dateInput .dateFormat a {
+  height: 20px;
+  display: block;
+  opacity: 0;
+}
+.rich-tabhdr-side-border {
+  display: none;
+}
+.rich-tab-header {
+  font-family: 'Rockwell';
+  width: 208px;
+  padding: 10px 0px;
+  border: none;
+  font-size: 17px;
+  cursor: pointer;
+}
+.rich-tabhdr-cell-active .rich-tabhdr-side-cell {
+  border: none;
+}
+.rich-tabhdr-cell-active .activeTab {
+  color: #ffffff;
+  background-position: center bottom;
+  background-color: transparent;
+  background-image: url('data:image/png;base64,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');
+}
+.rich-tabhdr-cell-inactive {
+  padding: 0px;
+}
+.rich-tabhdr-cell-inactive .rich-tabhdr-side-cell {
+  border: none;
+}
+.rich-tabhdr-cell-inactive .inactiveTab {
+  color: #be236d;
+  background-position: center bottom;
+  background-color: transparent;
+  background-image: url('data:image/png;base64,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');
+}
+
+.form-item .item-input .hideOwner select {
+    display: none;
+}
+.question-icon, .question-icon-left {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    background: url({!$Resource.BETApp}/images/question-mark.png) center center/100% no-repeat;
+    cursor: pointer;
+}
+.question-icon-large {
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+}
+.qtip {
+position: absolute;
+left: -28000px;
+top: -28000px;
+display: none;
+max-width: 280px;
+min-width: 50px;
+background-color: #eeeeed;
+color: gray;
+font-family: Arial;
+font-size: 12px;
+line-height: 12px;
+direction: ltr;
+box-shadow: none;
+padding: 0;
+border: 1px solid #333333;
+}
+.qtip-content {
+line-height: 1.5;
+position: relative;
+padding: 5px;
+overflow: hidden;
+text-align: left;
+word-wrap: break-word;
+}
+body .bPageBlock .requiredBlock {
+    display: none;
+}
+body .bPageBlock .requiredInput {
+    display: inline-block;
+    vertical-align: middle;
+    height: auto;
+}
+    </style>
+            
+    <!-- Create Tab panel -->
+    <apex:form >
+        <apex:pageMessages escape="false"/>
+        <apex:inputHidden value="{!runJsSuccess}" id="runJsSuccess"/>
+
+        <apex:tabPanel switchType="client" selectedTab="name1" id="AccountTabPanel" tabClass="activeTab" inactiveTabClass="inactiveTab">
+            <apex:tab label="Toolkit Info" name="name1" id="tabOne">
+                <div>
+                    <div class="form-item">
+                        <div class="item-label">
+                            <apex:outputLabel >Toolkit Name</apex:outputLabel>
+                            <apex:outputPanel layout="inline" styleClass="question-icon"
+                                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Name.inlineHelpText)}"
+                                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Name.inlineHelpText}" />
+                        </div>
+                        <div class="item-input">
+                            <apex:inputfield value="{!bet.Name}"/>
+                        </div>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    <div class="form-item">
+                        <div class="item-label">
+                            <apex:outputLabel >Inoplan Project</apex:outputLabel>
+                            <apex:outputPanel layout="inline" styleClass="question-icon"
+                                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Inoplan_Project__c.inlineHelpText)}"
+                                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Inoplan_Project__c.inlineHelpText}" />
+                        </div>
+                        <div class="item-input">
+                            <apex:inputfield value="{!bet.Inoplan_Project__c}"/>
+                        </div>
+                    </div>                  
+                </div>
+
+                <div>
+                    <div class="form-item">
+                        <div class="item-label">
+                            <apex:outputLabel >Category</apex:outputLabel>
+                            <apex:outputPanel layout="inline" styleClass="question-icon"
+                                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Category__c.inlineHelpText)}"
+                                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Category__c.inlineHelpText}" />
+                        </div>
+                        <div class="item-input">
+                            <apex:inputfield value="{!bet.Category__c}"/>
+                        </div>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    <div class="form-item">
+                        <div class="item-label">
+                            <apex:outputLabel >Sub Category</apex:outputLabel>
+                            <apex:outputPanel layout="inline" styleClass="question-icon"
+                                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Sub_Category__c.inlineHelpText)}"
+                                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Sub_Category__c.inlineHelpText}" />
+                        </div>
+                        <div class="item-input">
+                            <apex:inputfield value="{!bet.Sub_Category__c}"/>
+                        </div>
+                    </div>
+              <div class="clear">&nbsp;</div>
+              <div class="form-item">
+                <div class="item-label">
+                  <apex:outputLabel >Brand</apex:outputLabel>
+                    <apex:outputPanel layout="inline" styleClass="question-icon"
+                        rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.uw_Brand__c.inlineHelpText)}"
+                        html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.uw_Brand__c.inlineHelpText}" />
+                </div>
+                <div class="item-input">
+                  <apex:inputfield value="{!bet.uw_Brand__c}"/>
+                </div>
+              </div>
+                </div>
+
+                <div>
+                    <div class="form-item">
+                        <div class="item-label">
+                            <apex:outputLabel >Scope</apex:outputLabel>
+                            <apex:outputPanel layout="inline" styleClass="question-icon"
+                                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Scope__c.inlineHelpText)}"
+                                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Scope__c.inlineHelpText}" />
+                        </div>
+                        <div class="item-input">
+                            <apex:inputfield value="{!bet.Scope__c}"/>
+                        </div>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    <div class="form-item">
+                <div class="item-label">
+                            <apex:outputLabel >Market Clusters</apex:outputLabel>
+                            <apex:outputPanel layout="inline" styleClass="question-icon"
+                                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Market_Clusters__c.inlineHelpText)}"
+                                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Market_Clusters__c.inlineHelpText}" />
+                        </div>
+                        <div class="item-input">
+                            <apex:inputfield value="{!bet.Market_Clusters__c}"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="form-item">
+                        <div class="item-label">
+                            <apex:outputLabel >Launch Date</apex:outputLabel>
+                            <apex:outputPanel layout="inline" styleClass="question-icon"
+                                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText)}"
+                                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Launch_Date__c.inlineHelpText}" />
+                        </div>
+                        <div class="item-input launchDateArea">
+                            <apex:inputfield value="{!bet.Launch_Date__c}"/>
+                        </div>
+                    </div>
+                    <div class="clear">&nbsp;</div>
+                    <div class="form-item">
+                        <div class="item-label">
+                            <apex:outputLabel >Toolkit Description</apex:outputLabel>
+                            <apex:outputPanel layout="inline" styleClass="question-icon"
+                                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText)}"
+                                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Description__c.inlineHelpText}" />
+                        </div>
+                        <div class="item-input">
+                            <apex:inputTextarea rows="5" value="{!bet.Description__c}"/>
+                        </div>
+                    </div>              
+              <div class="clear">&nbsp;</div>
+              <div class="form-item owner-field">
+                <div class="item-label">
+                  <apex:outputLabel >Owner</apex:outputLabel>
+                    <apex:outputPanel layout="inline" styleClass="question-icon"
+                        rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Ownerid.inlineHelpText)}"
+                        html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Ownerid.inlineHelpText}" />
+                </div>
+                <div class="item-input">
+                  <apex:inputfield styleClass="hideOwner" value="{!bet.Ownerid}"/>
+                </div>
+              </div>
+              <div class="clear">&nbsp;</div>
+              <div class="form-item">
+                <div class="item-label">
+                  <apex:outputLabel >Visibility</apex:outputLabel>
+                    <apex:outputPanel layout="inline" styleClass="question-icon"
+                        rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Sharing__c.inlineHelpText)}"
+                        html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Sharing__c.inlineHelpText}" />
+                </div>
+                <div class="item-input">
+                  <apex:inputfield value="{!bet.Sharing__c}" required="true"/>
+                </div>
+              </div>
+                </div>
+            </apex:tab>
+
+            <apex:tab label="Branding options" name="name2" id="tabTwo">
+                <apex:actionFunction action="{!clearBanner}" name="clearBannerAction"></apex:actionFunction>
+                <div id="banner-container">
+                    <apex:outputPanel rendered="{!showClearBanner}"> 
+                        <div id="banner-area">
+                            <apex:image width="325" height="62" rendered="{! bet.Banner_1_Location__c!=''  }" value="/servlet/servlet.FileDownload?file={!bet.Banner_1_Location__c }"/>
+                        </div>
+                        <button type="button" id="clearCurrentBanner" class="clearButton">Clear</button> 
+                    </apex:outputPanel>
+                </div>
+                <div>
+                    <apex:outputPanel layout="inline" styleClass="question-icon"
+                        rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Banner_1_Location__c.inlineHelpText)}"
+                        html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Banner_1_Location__c.inlineHelpText}" />
+                    <apex:outputLabel >Banner (640x150 pixels)</apex:outputLabel>
+                    <apex:inputFile id="upload_banner" value="{!banner.body}" filename="{!banner.name}"/>
+                    <button type="button" id="clearFutureBanner" class="clearButton">Clear</button> 
+                </div>
+                <div class="clear">&nbsp;</div> 
+
+                <apex:actionFunction action="{!clearIcon}" name="clearIconAction"></apex:actionFunction>
+
+                <div id="icon-container">
+                    <apex:outputPanel rendered="{!showClearIcon}"> 
+                        <div id="icon-area">
+                            <apex:image width="40" height="40" rendered="{! bet.Icon_Location__c!=''  }" value="/servlet/servlet.FileDownload?file={!bet.Icon_Location__c }"/>
+                        </div>
+                        <button type="button" id="clearCurrentIcon" class="clearButton">Clear</button>  
+                    </apex:outputPanel>         
+                </div>
+                <div>
+                    <apex:outputPanel layout="inline" styleClass="question-icon"
+                        rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Icon_Location__c.inlineHelpText)}"
+                        html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Icon_Location__c.inlineHelpText}" />
+                    <apex:outputLabel >Icon (40x40 pixels)</apex:outputLabel>
+                    <apex:inputFile id="upload_icon" value="{!icon.body}" filename="{!icon.name}"/>
+                    <button type="button" id="clearFutureIcon" class="clearButton">Clear</button> 
+                </div>              
+                <div class="clear">&nbsp;</div> 
+            <div class="clear">&nbsp;</div> 
+            </apex:tab>
+        </apex:tabPanel>
+      <div class="clear">&nbsp;</div>
+        <div style="float:right">
+     <!-- <apex:commandButton value="Archive BET" styleClass="btn-save" action="{!archiveBET}" rendered="{!bet.Is_Archived__c == false}" /> -->
+     
+       <!--T1 start--> 
+      <apex:commandButton value="Archive BET" styleClass="btn-save" action="{!archiveBET}" rendered="{!bet.Is_Archived__c == false}" onclick="this.value = 'Archiving...'"/>
+       <!--T1 end-->  
+       
+        <apex:outputPanel layout="inline" styleClass="question-icon-left question-icon-large"
+            html-data-tooltip="Archived BETs are moved to the Archive area on the Home Page and Search" />
+        </div>
+        <div style="float:left;">
+            <!-- <apex:commandButton value="Save" styleClass="btn-save" action="{!saveBET}" />  -->
+            <!-- <apex:commandButton value="Cancel"  styleClass="btn-cancel" /> -->
+            <!--T1 start-->
+            <apex:commandButton value="Save" styleClass="btn-save" action="{!saveBET}" onclick="this.value = 'Saving...'"/>
+            <apex:commandButton value="Cancel"  styleClass="btn-cancel" action="{!cancelBET}"  onclick="this.value = 'Canceling ...'"/>
+            <!--T1 end-->
+    
+
+        </div>
+    </apex:form>
+
+    
+</apex:page>

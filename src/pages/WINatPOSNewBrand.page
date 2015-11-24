@@ -1,0 +1,47 @@
+<!--
+**********************************************************************
+Name: WINatPOSNewBrand
+Copyright © 2014 Unilever.
+======================================================
+==========================================================
+Purpose: VisualForce page to support creating new Brand
+Used in: File New button
+==========================================================
+History
+-------
+VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
+1.0 -   Karol Szepietowski          10/12/2014      INITIAL DEVELOPMENT
+***********************************************************************
+-->
+<apex:page standardController="Brand_Master__c" extensions="WINatPOSDropDownController">
+  <style type="text/css">
+           [id*=HelpLink] { float:right; font-weight: bold;  }
+           .inputWidth{width: 175px;}
+  </style> 	
+  <apex:form >
+    <apex:pageMessages />  
+        <apex:pageBlock mode="edit" title="{!if(ISNULL(Brand_Master__c.Id),'New Brand','Brand Edit')}"> 
+          <apex:pageBlockButtons location="bottom" >       
+            <apex:commandButton value="Save" action="{!save}" />
+            <apex:commandButton value="Cancel" action="{!cancel}"/>
+          </apex:pageBlockButtons>
+          <apex:pageBlockButtons location="top">       
+            <apex:outputLink value="{!$Resource.WINatPOSHelperCreateBrand}" id="HelpLink" target="_blank">Help for Brand <span class="helpButton" id="example-title-_help"><img src="/s.gif" class="helpOrb"/></span></apex:outputLink>
+          </apex:pageBlockButtons>
+          <script>
+       		sfdcPage.setHelp('example-title', '{!$Label.WinAtPOS_Helper_link_tooltip}');
+      	  </script>  
+          <apex:pageBlockSection columns="1" title="Information">
+              <apex:inputField value="{!Brand_Master__c.Name}" required="true"/>
+              <apex:inputField value="{!Brand_Master__c.Apps__c}"  />
+              <apex:pageBlockSectionItem helpText="{!$ObjectType.Brand_Master__c.fields.Primary_Category__c.inlineHelpText}">  
+                  <apex:outputLabel value="Primary Category" for="category"></apex:outputLabel>
+                   <apex:selectList styleClass="inputWidth" id="category" value="{!Brand_Master__c.Primary_Category__c}" size="1" title="Category">
+                       <apex:selectOptions value="{!categories}"></apex:selectOptions>
+                   </apex:selectList>
+              </apex:pageBlockSectionItem>
+              <apex:inputField value="{!Brand_Master__c.Brand_Logo__c}"  />
+          </apex:pageBlockSection>          
+       </apex:pageBlock>
+  </apex:form>    
+</apex:page>

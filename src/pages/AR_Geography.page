@@ -1,0 +1,148 @@
+<!--
+	Unilever
+	Page Name: AR_Geography
+	Sebastian Ortiz | 2013-09-13
+
+	Page for unilever geography
+
+-->
+<apex:page docType="html-5.0" standardStylesheets="false" showHeader="false" applyHtmlTag="false" applyBodyTag="false" controller="AR_GeographyController" action="{!InitPage}">
+	
+	<apex:composition template="AR_Template">
+	
+		<apex:define name="content">
+			
+			<style>
+				.multiSelectPicklistRow
+				{
+					min-width: 350px !important;
+					width: 350px !important;
+				}
+				
+				.multiSelectPicklistRow td
+				{
+					min-width: 175px !important;
+					width: 175px !important;
+				}
+				
+				.multiSelectPicklistRow select
+				{
+					min-width: 175px !important;
+					width: 175px !important;
+				}
+				
+				.multiSelectPicklistCell
+				{
+					max-width: 23px !important;
+					text-align: center;
+					padding: 0;
+					margin: 0;
+				}
+			</style>
+			
+			<section role="main" id="content" class="form global-content">
+			
+				<apex:form styleClass="form-validate">
+				
+		            <header class="main-header">
+		            
+		            	<nav class="steps-wrapper" style="margin-bottom:15px;">
+	                   		<c:AR_ProgressBar pController="{!this}" />
+		                </nav>
+		                
+		                <h1>Geography</h1>
+		                <p>
+		                	Please provide details of all your organisations offices, including your main office, adding as many offices as you need.
+		                </p>
+		                
+		            </header>
+				
+	                <apex:outputPanel layout="block" id="mainContainer" styleClass="form-fields-wrapper">
+	                
+						<ul class="form-errors active">
+							<apex:messages />
+	                    </ul>
+	                    
+	                    <apex:outputPanel layout="block" id="geoTable" rendered="{!GeographyObjectList.size > 0}">
+		                    <table class="table">
+		                        <thead>
+		                            <tr>
+		                            	<apex:repeat value="{!FieldSetMap['ar_Geography__c']['geography_table']}" var="field">
+		                                	<th>{!field.Label}</th>
+		                                </apex:repeat>
+		                                <td>
+		                                	<apex:actionStatus id="delRowStatus">
+						                		<apex:facet name="start">
+						                			<apex:image value="/img/loading.gif" />
+						                		</apex:facet>
+						                	</apex:actionStatus>
+							        	</td>
+		                            </tr>
+		                        </thead>
+		                        <tbody>
+		                        	<apex:repeat value="{!GeographyObjectList}" var="geo">
+			                            <tr style="{!IF(geo.isDeleted,'display:none','')}">
+			                            	<apex:repeat value="{!FieldSetMap['ar_Geography__c']['geography_table']}" var="field">
+				                                <td><apex:outputField value="{!geo.obj[field.fieldPath]}" /></td>
+				                            </apex:repeat>
+				                            
+				                            <td>
+				                            	<apex:commandLink action="{!geo.remove}" status="delRowStatus" reRender="geoTable">
+				                            		<img src="{!URLFOR($Resource.AR_StaticResources, 'img/delete-row.png')}" class="remove-row"/>
+												</apex:commandLink>
+				                            </td>
+			                            </tr>
+		                            </apex:repeat>
+		                        </tbody>
+		                    </table>
+		                </apex:outputPanel>
+
+	                    <fieldset class="repeater"><legend>New Office Location</legend>
+                    		<apex:repeat value="{!FieldSetMap['ar_Geography__c']['geography']}" var="field">
+								<div class="form-row {!CASE(field.Type,'string','text','url','text','double','text','percent','text','multipicklist','select',field.Type)}-row clearfix">
+									<label class="form-row-label">
+			                            <apex:outputText value="{!field.label}" />
+			                        </label>
+			                        <div class="form-input">
+			                        	<apex:outputText rendered="{!field.Type=='picklist'}">
+			                        		<label class="select-label">
+			                        			<apex:inputField value="{!GeographyObject.obj[field.fieldPath]}" styleClass="select" />
+			                        		</label>
+			                        	</apex:outputText>
+			                        	<apex:outputText rendered="{!AND(field.Type!='picklist',field.Type!='multipicklist')}">
+											<apex:inputField value="{!GeographyObject.obj[field.fieldPath]}" />
+										</apex:outputText>
+										<apex:outputText rendered="{!field.Type=='multipicklist'}">
+											<apex:inputField value="{!GeographyObject.obj[field.fieldPath]}" />
+										</apex:outputText>
+										<apex:outputText rendered="{!$ObjectType['ar_Geography__c'].fields[field.fieldPath].InlineHelpText != null}">
+				                        	<p class="helper">{!$ObjectType['ar_Geography__c'].fields[field.fieldPath].InlineHelpText}</p>
+				                        </apex:outputText>
+									</div>
+								</div>
+							</apex:repeat>
+							
+							<p class="submit-instruction">Once you included all of the above information, press the button below to submit and add another one</p>
+							
+							<apex:commandButton action="{!addNewGeographyObject}" styleClass="repeater-add" value="Add Geography" />
+							
+						</fieldset>
+						
+					</apex:outputPanel>
+						
+	                <footer class="form-footer">
+		                <ul>
+		                    <li><apex:commandLink styleClass="next" action="{!nextStep}" /></li>
+		                    <li><apex:commandButton styleClass="save" action="{!save}" /></li>
+		                    <li><apex:commandLink styleClass="back" action="{!previousStep}"  /></li>
+		                </ul>
+		            </footer>
+		            
+		         </apex:form>
+	            
+	        </section>
+	        
+		</apex:define>
+		
+	</apex:composition>
+</apex:page>

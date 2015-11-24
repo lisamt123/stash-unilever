@@ -1,0 +1,53 @@
+<apex:page docType="html-5.0" standardStylesheets="false" showHeader="false" title="Unilever Agency Portal - Resume Application" controller="AR_ResumeApplication" action="{!init}">
+
+	<apex:composition template="AR_Template">
+	
+		<apex:define name="content">
+		
+			<section role="main" id="content" class="global-content form global-content">
+	            <header class="main-header">
+	                <h1>
+	                    Resume Application
+	                </h1>
+	                <p>To resume a saved application, enter your email address and the unique key supplied to you.</p>
+	            </header>
+	            
+	            <apex:form styleClass="form" forceSSL="true">
+	            
+	            	<div class="form-fields-wrapper">
+	            
+		                <ul class="form-errors active">
+		                	<apex:messages />
+		                </ul>
+		                
+		                <div class="form-row text-row clearfix">
+		                    <label for="lovely-1" class="form-row-label">Email Address</label>
+		                    <div class="form-input">
+		                        <apex:inputText value="{!email}" />
+		                        <p class="helper">The email address you supplied when you started your application.</p>
+		                    </div>
+		                </div>
+			                
+		                <div class="form-row text-row clearfix">
+		                     <label class="form-row-label">Key</label>
+		                     <div class="form-input">
+		                        <apex:inputSecret value="{!uniqueKey}" />
+		                        <p class="helper">The unique key provided to you when you started your application. If you can't find this, check your email.</p>
+		                    </div>
+		                </div>
+			                
+			        </div>
+		                
+	                <div class="form-fields-wrapper clearfix">
+	                    <apex:commandLink action="{!continueApplication}" styleClass="btn btn-resume-application" value="Resume Application" />
+	                </div>
+	                
+	            </apex:form>
+	            
+	        </section>
+		    
+		</apex:define>
+    
+	</apex:composition>
+	
+</apex:page>

@@ -1,0 +1,21 @@
+<apex:page docType="html-5.0" standardStylesheets="false" showHeader="false" title="Unilever Agency Roster - FAQ">
+
+	<apex:composition template="AR_Template">
+	
+		<apex:define name="content">
+		
+			<section role="main" id="content" class="global-content clearfix section-faqs">
+			
+				<header class="main-header">
+		        	<h1>FAQs</h1>
+		        </header>
+		        
+		        <c:AR_Faqs />
+		        
+		    </section>
+	
+		</apex:define>
+    
+	</apex:composition>
+	
+</apex:page>

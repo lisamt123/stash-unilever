@@ -1,0 +1,3 @@
+<apex:page standardController="Asset_Group__c">
+  <apex:detail subject="{!Asset_Group__c.id}" inlineEdit="true" relatedList="true" relatedListHover="true" title="true" showChatter="true" />
+</apex:page>

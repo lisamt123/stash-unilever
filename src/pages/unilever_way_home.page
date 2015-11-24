@@ -1,0 +1,112 @@
+<apex:page showheader="false" sidebar="false">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" media="all" href="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/css/style.css')}" />
+  <script type="text/javascript" src="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/js/jwplayer.js')}"></script>
+  <div id="main_container">
+    <img src="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/images/home_page_logo.jpg')}" id="logo" />
+    <div id="wrapper">
+        <div class="page_row">
+            <a href="/sfc/servlet.shepherd/version/download/068E0000000cIApIAM?asPdf=false" class="block_link">
+             <img src="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/images/home_page_top_first_image.jpg')}" title="top image" />
+            </a>
+            <a href="https://player.vimeo.com/video/54356652" class="block_link intro_video">
+            <img src="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/images/home_page_video_place_holder.jpg')}" title="video link" />
+             </a>
+            <a href="http://inside.unilever.com/marketing" class="block_link afvp" id="068c0000000DV82" target="new"  >
+            <img src="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/images/home_page_live_link.jpg')}" title="top right link" />
+            </a>
+        </div>
+        <div class="page_row" id="pipe_links_bg">
+            <a class="block_link" id="my_chatter" href="/_ui/core/chatter/ui/ChatterPage" target="_top">
+            <img src="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/images/home_page_chatter_button.jpg')}" title="chatter link" />
+            </a>
+            <a href="/apex/hub_home?sfdc.tabName=01rE0000000ZkVb" class="block_link" id="tools" target="_top" >
+            <img src="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/images/home_page_tool_button.jpg')}" title="tools link" />
+            </a>
+            <a href="/a0E?fcf=00BE0000003YMPz" class="block_link" id="brand_centers" target="_top" >
+            <img src="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/images/home_page_brand_centers.jpg')}" title="brand centres link" />
+            </a>
+            <a href="/a0C?fcf=00BE0000003YMPw" class="block_link" id="brand_experience" target="_top" >
+            <img src="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/images/home_page_brand_experience_button.jpg')}" title="brand experience link" />
+
+            </a>
+        </div>
+        <div class="page_row">
+            <div id="column1" class="no_left_margin">
+                <div class="top_strip no_left_margin">
+                    <div class="tutorial">CHATTER<br/> TUTORIAL</div>
+                    <a href="https://player.vimeo.com/video/54356434" class="play_link" >     
+                        <img src="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/images/home_page_play.png')}" class="play"  alt="play button" />
+                    </a>
+                    <a href="/_ui/core/chatter/ui/ChatterPage" class="description block_link" target="_top" >Works like Facebook, but it's packed with features to help you get your work done fast &gt;&gt;</a>
+                </div>
+            </div>
+            <div id="column2">
+                <div class="top_strip">
+                    <div class="tutorial">TOOLS<br/> TUTORIAL</div>
+                    <a href="https://player.vimeo.com/video/55346400" class="play_link"><img  src="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/images/home_page_play.png')}" class="play"  alt="play button" /></a>
+                     <a href="/apex/hub_home?sfdc.tabName=01rE0000000ZkVb" class="description block_link" target="_top" >Being at the centre of the Unilever Way, it's the place to engage with the latest marketing knowledge and resources &gt;&gt;</a>
+                    
+                </div>
+            </div>
+            <div id="column3">
+                <div class="top_strip">
+                    <div class="tutorial">BRAND CENTRE<br/> TUTORIAL</div>
+                    <a href="https://player.vimeo.com/video/54356129" class="play_link" ><img  src="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/images/home_page_play.png')}" class="play"  alt="play button" /></a>
+                      <a href="/a0E?fcf=00BE0000003YMPz" class="description block_link" target="_top" >Where people work on the brand, share, collaborate and find the resources they need &gt;&gt;</a>
+                </div>
+            </div>
+            <div id="column4">
+                <div class="top_strip">
+                    <div class="tutorial">BRAND EXPERIENCE<br/> TUTORIAL</div>
+                    <a href="https://player.vimeo.com/video/54355945" class="play_link" ><img src="{!URLFOR($Resource.ulw_brief_2_static_resources, 'static_resources/images/home_page_play.png')}" class="play"  alt="play button" /></a>
+                    <a href="/a0C?fcf=00BE0000003YMPw" class="description block_link" target="_top" >A new way of working that replaces think Big Packs and Market Development toolkits &gt;&gt;</a>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+           $('.top_strip a.play_link').click(function(){
+                var video_path = $(this).attr("href");
+                if(video_path == "#" || video_path == ""){
+                    return false;
+                }
+                var str = '<iframe src="'+video_path+'" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
+                $('.body_overlay').css("display","");
+                $('#player').html(str);
+                return false;
+                
+            });
+            $('a.intro_video').click(function(){
+                var video_path = $(this).attr("href");
+                if(video_path == "#" || video_path == ""){
+                    return false;
+                }
+                var str = '<iframe src="'+video_path+'" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
+                $('.body_overlay').css("display","");
+                $('#player').html(str);
+                return false;
+                
+            });
+            
+            
+            function close_overlay(){
+                $(".body_overlay").hide();
+                return false;
+            }
+            
+        </script>
+        <div class="body_overlay" style="display:none ;">
+            <div id="video_popper_wrapper">
+                <div id="video_close" onclick="close_overlay(); "></div>
+                <div id="player"></div>
+                
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+  
+  
+  
+</apex:page>

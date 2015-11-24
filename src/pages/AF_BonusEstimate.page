@@ -1,0 +1,401 @@
+<apex:page controller="AF_BonusMatrixOverrideController" showheader="false" >
+ <script>
+     function isNumberKey(evt)
+       {
+          var charCode = (evt.which) ? evt.which : event.keyCode;
+          var result = false;
+          var errorMsg = document.getElementById("regTitle");
+          if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+          {
+             errorMsg.innerHTML = "<b>Please enter numbers only.</b>";
+             result = false;
+          }
+          else
+          {
+           errorMsg.innerHTML = "";
+           result = true;         
+          }             
+          return result; 
+       }
+  </script>
+  <!-- Common_Style File Start -->
+<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<!-- Common_Style File End -->
+
+  <!--Bootstrap_css File  start-->
+      <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.css')}" type="text/css"/>
+     <!--Bootstrap_css File End -->
+ <style>
+  #iframe_cont
+{
+    width:100%;
+}
+.modal-body
+{
+    height: 93%;
+} 
+.modal-body #iframe_cont
+{
+   height:100%;
+}
+.modal-dialog
+{
+  width:85% !important;
+  height:95% !important;
+  margin-top:8px;
+}
+.modal-content
+{
+  height:102%;
+}
+ </style>    
+     
+       <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"></script>
+     <!-- <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/> -->
+     <!--   Bootstrap_Js File start 
+     <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"/> -->
+     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script> 
+     <!-- Bootstrap_Js File End -->
+     
+     <!-- Bootstrap Tooltip Method Start--> 
+<script type="text/javascript" language="javascript">
+        var bsjQuery = jQuery.noConflict();
+        bsjQuery(document).ready(function() {
+           bsjQuery(myFunction);
+         }); 
+         function myFunction() {
+             bsjQuery('[data-toggle=tooltip]').tooltip(); 
+             bsjQuery(".submit_btn_screen1_bonus, .submit_btn").each(function(){
+    var originalClick = bsjQuery(this).attr("onclick");
+    bsjQuery(this).attr("onclick", 'parent.document.body.setAttribute("data-shouldRefreshPage", "1");' + originalClick);
+}) 
+        }
+    </script>
+<!-- Bootstrap Tooltip Method End--> 
+ <apex:form id="frm" styleClass="AF_BonusEstimate">
+  <div class="row">           
+        <div class="col-lg-12 charttable1">         
+            <apex:image url="{!$Resource.header_new}" styleClass="headimg"/>            
+        </div>          
+    </div>
+ 
+ <!-- <div class="heading_main">
+       <h1 class="heading_text"> Bonus Estimate </h1>
+      </div>-->
+ 
+ <apex:tabPanel switchType="ajax" id="MainPanel" tabClass="activeTab" inactiveTabClass="inactiveTab" >
+ <apex:tab label="Bonus Estimate" name="Bonus Estimate" id="BonusEstimate" styleClass="padding7P" oncomplete="myFunction(); ">
+      <apex:pagemessages id="pm1"/>
+     <apex:pageBlock >
+     <div class="billingTo"> <apex:outputText id="Billing" >Billing to {!BonusMatrixObj.Unilever_Entity_Name__c}</apex:outputText> </div>
+     </apex:pageBlock>
+     <apex:image url="{!$Resource.Help}" width="30px" height="30px" onclick="openHelpLink();" styleClass="floatR"/>
+    <table class="billingTo_FormTable">
+   <tr class="entityRow">
+        <td class="emptyCell"> <apex:outputText ></apex:outputText></td>
+         <td class="dispInline"><!-- Bonus Matrix Fees -->
+         <span class="fontB marginL16P"> <apex:outputText ><!-- {!agreedBaseFee} --></apex:outputText></span>
+         </td>
+         <td class="entityCell">
+                 <span>Unilever Entity</span>  
+                <span>{!BonusMatrixObj.Unilever_Entity_Name__c}
+            </span>
+            </td>
+        <td class="entityCell2">
+                  <span>Agency Entity</span> 
+                <span> {!BonusMatrixObj.Agency_Entity_Name__c}
+                </span>  
+            </td>
+            <br/>
+     </tr>
+     
+     <tr class="bonusValueRow">
+       <td class="bonusValueLable">
+       <apex:outputText >Bonus Value</apex:outputText></td>
+       
+      <td class="bonusValueOutput">
+             <span class="bonusValueEuro">€ </span>
+              <span class="bonusValueOutputBox">
+       <apex:outputText value="{0,number,###,###,###.##}">
+        <apex:param value="{!BonusMatrixObj.AF_Value__c}"/>
+       </apex:outputText>
+       </span>
+       </td>
+       
+       
+       <td class="oopsAgencyCurrencyCode"><!-- <apex:outputText >{!oopsAgencyCurrencyCode}</apex:outputText> --></td>
+       <td class="oopsEstimateAgencyValue"><apex:outputText ><!--{!oopsEstimateAgencyValue} --></apex:outputText> </td>
+     </tr>
+     
+     
+ <tr class="overrideBonusValue">
+               <td class="overrideBonusValueCell">
+               <apex:outputText >Override Bonus Value</apex:outputText>
+               </td>
+                
+               <td class="overrideBonusValueInput">
+                    <span class="overrideBonusValueInputEuro">€ </span>
+               <apex:inputtext value="{!BonusMatrixValue}" id="override1" onkeypress="return isNumberKey(event)" styleClass="values1 wid142P" disabled="{!!isBonusEstimateEdit}" html-data-toggle="tooltip" title="{!$Label.AF_BNMXLB_Override}">
+                    
+                     <apex:actionSupport action="{!CalculateLocalC}" reRender="TotalLocal" event="onchange"/>
+                     </apex:inputtext>
+                     <apex:inputText value="{!BonusMatrixObj.AF_Value__c}" id="override" onkeypress="return isNumberKey(event)" rendered="false" />
+                     
+                      <div class="alertMesg" id="regTitle"></div>
+                   <!--  <apex:inputText value="{!BonusMatrixObj.AF_Value__c}" id="override2" onkeypress="return isNumberKey(event)" />-->
+                     <!--  
+                    
+                 
+                     <apex:actionSupport event="onchange" action="{!Calculate_overrideamt}" reRender="convertedvalue"/>
+                    </apex:inputText>
+                     -->
+              </td>
+      
+    </tr>
+     
+     
+       <tr class="dzdRow">
+               <td class="emptyCell3">
+                <apex:outputText >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </apex:outputText>
+               </td>
+     
+      <td class="dzdRowCurrencyNameCell">
+              
+      <span class="marginL-5P"><apex:outputText styleClass="dzdRowCurrencyNameOutputTxt">
+            {!BonusMatrixObj.AF_Rate_Currency__c}
+      </apex:outputText></span>
+     
+      </td>
+     
+     <td class="esLocalCell">
+          <span>         
+            <apex:outputText value="{0,number,###,###,###.##}" id="TotalLocal" >
+                 <apex:param value="{!EsLocal}"/>
+               </apex:outputText>  
+          </span>
+             
+              </td>
+        
+     </tr>  
+    <!-- <apex:outputPanel rendered="{!IF(AND(BonusMatrixObj.AF_Ready_For_PO_Exchange_Rate__c==null,IsReadyforPO),'true','false')}">
+         <tr class="bonusMatrixObjEmptyRow">
+               <td class="bonusMatrixObjEmptyCell">
+                <apex:outputText >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                
+                </apex:outputText>
+               </td>
+     
+      <td class="bonusMatrixObjOutputCell">
+              
+      <apex:outputText styleClass="bonusMatrixObjOutputBox">
+           LC -{!BonusMatrixObj.AF_Rate_Currency__c}
+      </apex:outputText>
+     
+      </td>
+     
+     <td class="eslocal2Cell">
+          <span>         
+            <apex:outputText value="{0,number,###,###,###.##}" id="TotalLocal1" >
+                 <apex:param value="{!EsLocal}"/>
+               </apex:outputText>  
+          </span>
+             
+              </td>
+        
+     </tr> 
+     </apex:outputPanel>-->
+          
+     <tr class="currentAverageUnileverRateRow">
+       <td class="currentAverageUnileverRateCell">
+       <apex:outputPanel rendered="{!!IsReadyforPO}">
+        <apex:outputText styleClass="marginT10P">Current Average Unilever Exchange Rate {!BonusMatrixObj.AF_Agency_Exchange_Rate__c}</apex:outputText>
+        </apex:outputPanel>
+       </td>
+       </tr>    
+         
+          <tr>
+     <td>
+       <apex:commandButton value="Add Comment" onClick="commentsToggleOpen('commentAddTable');return false;" styleClass="submit_btn_addcomment"  html-data-toggle="tooltip" title="{!$Label.AF_BFMX_General_feedback}"/>
+       <apex:commandButton value="Save" action="{!Save}" StyleClass="submit_btn_screen1_bonus" reRender="frm,pm1"  rendered="{!IF(AND(isBonusEstimateEdit,NOT(IsReadyforPO)),'true','false')}" status="status"/>      
+     </td>
+     </tr> 
+     </table>     
+      <c:AF_CommentsListComp ParentRecordValue="{!ParentId}" IsViewAllValue="false" ParentObjectTypeDesc="AF_Bonus_Matrix__c"  />  
+      <c:AF_FieldHistoryComp ParentRecordValue="{!ParentId}" IsViewAllValue="false"  ParentObjectName="AF_Bonus_Matrix__c"/>
+     </apex:tab>
+     
+     <apex:tab label="PO Number" name="PO Number" id="PONumber" styleClass="padding7P" rendered="{!IF(AND(IsShowPOTab,IsReadyforPO),true,false)}" oncomplete="myFunction();">
+    <apex:pagemessages id="pm2"/>
+    <table class="poNumberGrid" align="Center" style="padding:10px">
+    <tr>
+    <td class="wid150PX">
+    <span class="poNumberLabel">
+         <apex:outputLabel >PO Number</apex:outputLabel>
+         </span>
+    </td>
+    <!--<td>
+     <span style="font-size: 16px; font-weight:bold;display: inline;text-align: center;/* width: 339px!important; *//* border: 1px solid red; */margin-left: 27px;">
+           <apex:outputLabel >PO Value</apex:outputLabel>
+           </span>
+    </td>-->
+    </tr>
+    
+    <tr>
+    <td>
+       <apex:inputField id="po_number" value="{!BonusMatrixObj.PO_Number__c}" styleClass="values1_bonus" rendered="{!isPOEditable}"/>
+       <apex:outputPanel rendered="{!IsReadonlyPO}">
+       <span class="poNumberOutPutField">
+       <apex:outputField value="{!BonusMatrixObj.PO_Number__c}" />
+       </span>
+        </apex:outputPanel>
+      </td>
+ <!--   <td>
+      <Apex:inputfield id="povalue" value="{!BonusMatrixObj.AF_PO_Value__c}" styleClass="values2_bonus" rendered="{!isPOEditable}"/>
+       <apex:outputPanel rendered="{!!isPOEditable}">
+       <span style="margin-top: 5px;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 16px; display: block;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 125px;height: 25px;padding-top: 5px;">
+       <apex:outputField value="{!BonusMatrixObj.AF_PO_Value__c}" rendered="{!!isPOEditable}" />
+       </span>
+       </apex:outputPanel>
+    </td>-->
+    </tr>
+    <tr>
+    <td colspan= "2">
+         
+       <!--  <apex:commandButton value="Save" action="{!SavePO}" style="Align:center" styleClass="save_btn" Rerender="pm2"/>-->
+     <apex:commandButton value="Save" action="{!SavePO}" StyleClass="btn submit_btn"  reRender="pm2" rendered="{!isPOEditable}"/>
+   <!--  <apex:commandButton value="Save" action="{!SavePO}" styleClass="submit_btnblur"   reRender="pm2"/> -->
+    
+    </td>
+    </tr>
+    </table>
+   
+    </apex:tab>
+     
+    </apex:tabPanel>
+    
+    
+    <apex:ActionStatus id="status" >
+        <apex:facet name="start">
+            <c:AF_Spinner BackColor="#efefef" borderColor="#efefef" borderSize="3" height="50px" width="180px" Message="Please wait" messageStyle="color:Darkred;font-size:10pt;font-family:arial;font-weight:bold;" ImageUrl="/img/loading.gif"/>
+        </apex:facet>
+        </apex:ActionStatus>
+        
+        
+        <!-- Bootstrap bootstrap modal window Start -->    
+<div class="model_container">
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+           </div>
+         <div class="modal-body">
+              <apex:image url="{!$Resource.Loading}" height="36" width="36" styleClass="loading_img"/>
+              <div id="loader_cont">
+                
+              </div>
+              <iframe frameborder="0" name="remotepage" id="iframe_cont"></iframe>
+         </div>
+         <!--
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+         </div>
+         -->
+        </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div> 
+<!-- Bootstrap bootstrap modal window End --> 
+
+  
+ </apex:form>
+
+<!-- Bootstrap bootstrap modal window methods  Start-->
+<script>
+document.body.setAttribute("data-shouldRefreshPage", "0");
+bsjQuery(document).ready(function(){
+ bsjQuery(document).on('click','.modalButton3', function(e) {
+    bsjQuery("#iframe_cont").contents().find("body").html('');
+    var src = bsjQuery(this).attr('data-src');
+    var height = bsjQuery(this).attr('data-height') || 340;
+    var width = bsjQuery(this).attr('data-width') || 1110;
+    bsjQuery('#myModal3').on('hidden.bs.modal',shouldRefreshPage);
+    bsjQuery("#myModal3 iframe").attr({'src':src,
+                        'height': height,
+                        'width': width});                                  
+});
+});
+
+
+
+function timerForPageRefresh(){
+    shouldRefreshPage(!bsjQuery('#myModal3').is(":visible"));
+}
+function shouldRefreshPage(flag) {
+   if(document.body.getAttribute("data-shouldRefreshPage") != "0" && flag){
+       document.body.setAttribute("data-shouldRefreshPage", "0");
+       window.location.reload(true);
+   }
+   else if(!flag){
+       window.setTimeout(timerForPageRefresh, 100);
+   }
+}
+/* Change the click attributes of save buttons to set Flag on Top document to refresh page on close of modal */
+function initializePageRefresh(){
+    var originalClick = bsjQuery(this).attr("onclick");
+    bsjQuery(this).attr("onclick", 'parent.document.body.setAttribute("data-shouldRefreshPage", "1");' + originalClick);
+}
+
+bsjQuery('#iframe_cont').load(function(){
+    var popupFrame = bsjQuery("#iframe_cont").contents();
+    if(popupFrame.find("iframe").length ){
+        popupFrame.find("iframe").each(function(){
+            bsjQuery(this).contents().find(".EditSave").each(initializePageRefresh);
+        });
+    }
+    popupFrame.find(".EditSave").each(initializePageRefresh);
+    
+});
+</script>
+<!-- Bootstrap bootstrap modal window methods End-->
+
+<!-- Bootstrap bootstrap modal window loading_img methods Start-->
+<script> 
+    bsjQuery(document).ready(function () {
+        bsjQuery('#iframe_cont').on('load', function () {
+         bsjQuery('#loader_cont, .loading_img').show();
+            console.log("madhu");
+            bsjQuery('#loader_cont, .loading_img').delay(3000).hide(0);
+            //setTimeout("jQuery('#loader_cont, .loading_img').hide();",6000 );
+        });
+    });   
+</script>
+<!-- Bootstrap bootstrap modal window loading_img methods End-->
+<script>
+function myCustFunc(){
+$(".submit_btn_screen1_bonus").each(function(){
+    var originalClick = $(this).attr("onclick");
+    $(this).attr("onclick", 'parent.document.body.setAttribute("data-shouldRefreshPage", "1");' + originalClick);
+})
+}
+</script>
+ <script>
+  function commentsToggleOpen(elementId) 
+  {
+      //alert(elementId);
+      document.getElementById(elementId).style.display = 'block';
+  }
+  function commentsToggleClose(elementId) 
+
+  { 
+      //alert(elementId);
+      document.getElementById(elementId).style.display = 'none';
+  }
+  commentsToggleClose('commentAddTable');
+
+
+</script>
+</apex:page>

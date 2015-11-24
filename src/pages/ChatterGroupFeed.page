@@ -1,0 +1,99 @@
+<apex:page standardController="CollaborationGroup"  extensions="ChatterGroupFeedController" showHeader="false" sidebar="false" standardStylesheets="true" action="{!DisplayMessages}" >
+
+<!--Author:Mindtree
+    Date:3/7/2014
+    Description: CSS for the announcement panel.  --> 
+ <style>
+ .link{
+  text-decoration: none;
+  color: #015ba7;
+  font-size: 95%;
+  }
+ 
+ .link:hover{  
+  text-decoration: underline;
+  }
+ 
+ .panel{
+  width:620px;
+  background-color: #ffffdc;
+  border:1px solid #eaeaea;
+  moz-border-radius: 4px;
+  border-radius: 4px; 
+  padding-top: 10px !important;
+  padding-left: 10px !important;
+  padding-right: 5px !important;
+  padding-bottom: 10px !important;
+  }
+ </style>
+<!-- -----end------ -->
+
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<script>
+ $j = jQuery.noConflict();
+
+ $j(document).ready(function(){ 
+       
+     modifyDisplay();
+     
+     $j('.feedsupermenu').append('<div id="refreshChatterFeed" style="vertical-align: middle; float: left; margin-left: 20px; font-family: Arial; font-size: 100%; font-weight: normal; font-style: normal; color: rgb(0, 125, 187); cursor: pointer; "><img id="refrshImg" style="vertical-align:text-bottom;" src="{!URLFOR($Resource.NewsArticle_Statics, '/img/u141_normal.png')}" alt="Refresh" /><span> Refresh </span></div>');
+     
+     $j('#refreshChatterFeed').on("click",function() {
+        location.reload(true);
+        modifyDisplay(); 
+     });  
+     
+     $j('#publishersharebutton').on("click",function() { 
+       setTimeout(RefreshAnnouncementPanel, 100);
+     });   
+ });
+
+ function modifyDisplay(){
+    $j('a[href^="https://"]').attr('target','_blank');
+    $j('a.feeditemtimestamp').attr('target','_blank');
+    $j('a.contentThumbnail-a').hide();
+    $j('div.metadata').hide();
+    $j('span.feeditemseparatingdot').hide();
+    $j('a.more-file-actions').hide();
+ } 
+</script> 
+
+<!--Author:Mindtree
+    Date:3/7/2014
+    Description:Display The announcement post on Visualforce Page.  -->
+<apex:form >
+<br/>
+<apex:outputPanel id="AnnouncementPanel" >
+<apex:outputPanel rendered="{!isAnnouncement}"  >
+<div  style="{!if(longAncmtBody==true,'height:65px', 'height:50px')}" class="panel">
+               
+            <!--Announcement Header -->  
+                    <span><b>Announcement</b>&nbsp;-&nbsp;Created On&nbsp;</span> 
+            <!-- Announcement Created Date -->
+                    <span style="color: gray;font-size: .1000 em;" >{!strAncmtCreatedDate}</span>                                     
+            <!--Announcement Body -->  
+               
+                    <p style="float:left; width:600px; max-width:600px;word-wrap:break-word;margin: 5px 0;">
+                      {!announcementBody} 
+                      <apex:outputLink value="/_ui/core/chatter/groups/GroupProfilePage?g={!GroupId}&fId={!feedItemId}" target="_blank" rendered="{!longAncmtBody}" styleclass="link" title="Announcement Detail">More</apex:outputLink>
+                    </p>
+                      <!-- View link and Comment Count link --> 
+                   <span style="float:left;">        
+                   <apex:outputLink value="/_ui/core/chatter/groups/GroupProfilePage?g={!GroupId}&fId={!feedItemId}" target="_blank" rendered="{!CommentCount==0}" title="Comment on this post" styleclass="link" >View</apex:outputLink>
+                   <apex:outputLink value="/_ui/core/chatter/groups/GroupProfilePage?g={!GroupId}&fId={!feedItemId}" target="_blank" rendered="{!CommentCount>0}" title="Comment on this post" styleclass="link">{!CommentCount} comment</apex:outputLink>                      
+                   </span>                
+</div>
+</apex:outputPanel> 
+</apex:outputPanel>
+
+<apex:actionFunction action="{!announcementDetail}" name="RefreshAnnouncementPanel"  reRender="AnnouncementPanel"  />
+</apex:form>
+<!-- -----end------ -->
+
+
+<!-- <chatter:feedWithFollowers entityId="{!$CurrentPage.parameters.groupId}"/> -->
+
+<chatter:feed entityId="{!$CurrentPage.parameters.groupId}" rendered="{!bol_grp_member_message}"/>
+ <apex:PageMessages escape="false"/>
+ 
+</apex:page>
