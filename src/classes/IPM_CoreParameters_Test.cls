@@ -40,7 +40,7 @@ private with sharing class IPM_CoreParameters_Test {
     private static string common_STR = 'answer values should be';
     private static string readAccess = 'Current logged in user should have read access';
     private static string editAccess = 'Current logged in user should have edit access';
-    private static string Laundry_STR = 'Laundry';*/
+    private static string Laundry_STR = 'Laundry';
 	
     /**************************************************
      * @description : Master data 

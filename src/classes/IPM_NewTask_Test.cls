@@ -65,6 +65,8 @@ public class IPM_NewTask_Test{
     public static void initializedData(){
         Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3','TestComments4','TestComments5','TestComments6','TestComments7','TestComments8','TestComments9','TestComments10'};
         
+		set<string> projIdSet = new set<string>();
+
         projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,
                             (Select Id from Project_Documents__r),
                             (Select Id from IPM_Financials_Consolidated__r ),

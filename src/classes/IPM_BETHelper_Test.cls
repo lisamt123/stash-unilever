@@ -1,17 +1,5 @@
 @istest
 class IPM_BETHelper_Test {
-
-    static IPM_Project__c projectList[0]  = IPM_TestFactory_Helper.createIPMProject(false);
-    static IPM_Project__c projectList[1]  = IPM_TestFactory_Helper.createIPMProject(false);
-    static IPM_Project__c projectList[2]  = IPM_TestFactory_Helper.createIPMProject(false);
-    static IPM_Project__c projectList[3]  = IPM_TestFactory_Helper.createIPMProject(false);
-    static IPM_Project__c projectList[4]  = IPM_TestFactory_Helper.createIPMProject(false);
-    static IPM_Project__c projectList[5]  = IPM_TestFactory_Helper.createIPMProject(false);
-    static IPM_Project__c projectList[6]  = IPM_TestFactory_Helper.createIPMProject(false);
-    static IPM_Project__c projectList[7]  = IPM_TestFactory_Helper.createIPMProject(false);
-    static IPM_Project__c projectList[8]  = IPM_TestFactory_Helper.createIPMProject(false);
-    static IPM_Project__c projectList[9] = IPM_TestFactory_Helper.createIPMProject(false);
-    static IPM_Project__c projectList[10] = IPM_TestFactory_Helper.createIPMProject(false); 
     public static list<IPM_Project__c> projectList=IPM_TestFactory_Helper.createIPMProjectList(false,11);
     static User runningUser = IPM_TestFactory_Helper.createUser(false);
     
@@ -49,17 +37,8 @@ class IPM_BETHelper_Test {
         
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCards,regionalCompanyCards,localCompanyCards};
         insert companyCardList;
-        
-         IPM_TestFactory_Helper.getProjectMasterData();
-         
-         //projectList = IPM_TestFactory_Helper.projectSetUp(11,stdUserForBET );
-         
-         System.runAs(platformUser)
-         { 
-            insert projectList;
-         }  
-         system.assertEquals(projectList.size(),11,'Projects are not created'); 
-        
+        System.assert(companyCardList.size() >0);
+        IPM_TestFactory_Helper.getProjectMasterData();
     }
     
     
